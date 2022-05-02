@@ -5,12 +5,12 @@ public class TLRPC$TL_channelParticipantsContacts extends TLRPC$ChannelParticipa
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f853q = abstractSerializedData.readString(z);
+        this.q = abstractSerializedData.readString(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeString(this.f853q);
+        abstractSerializedData.writeString(this.q);
     }
 }

@@ -7,8 +7,8 @@ public class TLRPC$TL_photoStrippedSize extends TLRPC$PhotoSize {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.type = abstractSerializedData.readString(z);
         this.bytes = abstractSerializedData.readByteArray(z);
-        this.f883h = 50;
-        this.f884w = 50;
+        this.h = 50;
+        this.w = 50;
     }
 
     @Override

@@ -24,7 +24,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     int intValue = Utilities.parseInt(split[0]).intValue();
                     if (intValue >= 0 && intValue < 3) {
                         if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m33d("received disabled notification channel event for " + stringExtra + " state = " + booleanExtra);
+                            FileLog.d("received disabled notification channel event for " + stringExtra + " state = " + booleanExtra);
                         }
                         if (SystemClock.elapsedRealtime() - AccountInstance.getInstance(intValue).getNotificationsController().lastNotificationChannelCreateTime > 1000) {
                             SharedPreferences notificationsSettings = AccountInstance.getInstance(intValue).getNotificationsSettings();
@@ -33,7 +33,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                             if (startsWith) {
                                 if (stringExtra.equals(notificationsSettings.getString("channels", null))) {
                                     if (BuildVars.LOGS_ENABLED) {
-                                        FileLog.m33d("apply channel " + stringExtra + " state");
+                                        FileLog.d("apply channel " + stringExtra + " state");
                                     }
                                     SharedPreferences.Editor edit = notificationsSettings.edit();
                                     String globalNotificationsKey = NotificationsController.getGlobalNotificationsKey(2);
@@ -48,7 +48,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                             } else if (split[1].startsWith("groups")) {
                                 if (stringExtra.equals(notificationsSettings.getString("groups", null))) {
                                     if (BuildVars.LOGS_ENABLED) {
-                                        FileLog.m33d("apply channel " + stringExtra + " state");
+                                        FileLog.d("apply channel " + stringExtra + " state");
                                     }
                                     SharedPreferences.Editor edit2 = notificationsSettings.edit();
                                     String globalNotificationsKey2 = NotificationsController.getGlobalNotificationsKey(0);
@@ -65,7 +65,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                 if (longValue != 0) {
                                     if (stringExtra.equals(notificationsSettings.getString("org.telegram.key" + longValue, null))) {
                                         if (BuildVars.LOGS_ENABLED) {
-                                            FileLog.m33d("apply channel " + stringExtra + " state");
+                                            FileLog.d("apply channel " + stringExtra + " state");
                                         }
                                         SharedPreferences.Editor edit3 = notificationsSettings.edit();
                                         String str = "notify2_" + longValue;
@@ -86,7 +86,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                 }
                             } else if (stringExtra.equals(notificationsSettings.getString("private", null))) {
                                 if (BuildVars.LOGS_ENABLED) {
-                                    FileLog.m33d("apply channel " + stringExtra + " state");
+                                    FileLog.d("apply channel " + stringExtra + " state");
                                 }
                                 SharedPreferences.Editor edit4 = notificationsSettings.edit();
                                 String globalNotificationsKey3 = NotificationsController.getGlobalNotificationsKey(1);
@@ -100,7 +100,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                             }
                             AccountInstance.getInstance(intValue).getConnectionsManager().resumeNetworkMaybe();
                         } else if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m33d("received disable notification event right after creating notification channel, ignoring");
+                            FileLog.d("received disable notification event right after creating notification channel, ignoring");
                         }
                     }
                 }

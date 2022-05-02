@@ -59,7 +59,7 @@ public class AudioRecoder {
             this.extractor.unselectTrack(this.trackIndex);
             this.extractor.release();
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
         }
     }
 

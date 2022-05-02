@@ -71,7 +71,7 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
                         this.waitingForLoad = false;
                     }
                 } catch (Exception e) {
-                    FileLog.m29e((Throwable) e, false);
+                    FileLog.e((Throwable) e, false);
                 }
             }
             this.lastOffset = i + i3;

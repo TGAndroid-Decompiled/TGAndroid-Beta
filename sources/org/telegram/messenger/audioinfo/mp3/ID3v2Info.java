@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.R;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.tgnet.ConnectionsManager;
 
@@ -318,15 +318,15 @@ public class ID3v2Info extends AudioInfo {
                 }
                 return;
             case 2:
-            case C0952R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
+            case R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
                 this.album = parseTextFrame(iD3v2FrameBody);
                 return;
             case 3:
-            case C0952R.styleable.MapAttrs_uiZoomControls:
+            case R.styleable.MapAttrs_uiZoomControls:
                 this.composer = parseTextFrame(iD3v2FrameBody);
                 return;
             case 4:
-            case C0952R.styleable.MapAttrs_uiZoomGestures:
+            case R.styleable.MapAttrs_uiZoomGestures:
                 String parseTextFrame = parseTextFrame(iD3v2FrameBody);
                 if (parseTextFrame.length() > 0) {
                     this.genre = parseTextFrame;
@@ -352,11 +352,11 @@ public class ID3v2Info extends AudioInfo {
                     return;
                 }
             case 5:
-            case C0952R.styleable.MapAttrs_uiTiltGestures:
+            case R.styleable.MapAttrs_uiTiltGestures:
                 this.compilation = "1".equals(parseTextFrame(iD3v2FrameBody));
                 return;
             case 6:
-            case C0952R.styleable.MapAttrs_useViewLifecycle:
+            case R.styleable.MapAttrs_useViewLifecycle:
                 this.copyright = parseTextFrame(iD3v2FrameBody);
                 return;
             case 7:
@@ -496,7 +496,7 @@ public class ID3v2Info extends AudioInfo {
                     return;
                 }
                 return;
-            case C0952R.styleable.MapAttrs_zOrderOnTop:
+            case R.styleable.MapAttrs_zOrderOnTop:
                 String parseTextFrame6 = parseTextFrame(iD3v2FrameBody);
                 if (parseTextFrame6.length() >= 4) {
                     try {

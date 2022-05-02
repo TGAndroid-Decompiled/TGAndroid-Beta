@@ -34,7 +34,7 @@ public class TLRPC$TL_chatPhoto extends TLRPC$ChatPhoto {
             try {
                 this.strippedBitmap = new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(this.stripped_thumb, "b"));
             } catch (Throwable th) {
-                FileLog.m30e(th);
+                FileLog.e(th);
             }
         }
     }

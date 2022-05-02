@@ -8,7 +8,7 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.SparseArray;
-import androidx.core.content.p001pm.ShortcutManagerCompat;
+import androidx.core.content.pm.ShortcutManagerCompat;
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.lang.annotation.Retention;
@@ -243,7 +243,7 @@ public class SharedConfig {
                 edit.putLong("appUpdateCheckTime", lastUpdateCheckTime);
                 edit.apply();
             } catch (Exception e) {
-                FileLog.m30e(e);
+                FileLog.e(e);
             }
         }
     }
@@ -306,7 +306,7 @@ public class SharedConfig {
                     passportConfigMap.put(next.toUpperCase(), jSONObject.getString(next).toUpperCase());
                 }
             } catch (Throwable th) {
-                FileLog.m30e(th);
+                FileLog.e(th);
             }
         }
         return passportConfigMap;
@@ -321,7 +321,7 @@ public class SharedConfig {
         try {
             i = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode;
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             i = BuildVars.BUILD_VERSION;
         }
         return pendingAppUpdateBuildVersion == i;
@@ -347,7 +347,7 @@ public class SharedConfig {
                     passcodeHash = Utilities.bytesToHex(Utilities.computeSHA256(bArr, 0, length));
                     saveConfig();
                 } catch (Exception e) {
-                    FileLog.m30e(e);
+                    FileLog.e(e);
                 }
             }
             return equals;
@@ -361,7 +361,7 @@ public class SharedConfig {
             System.arraycopy(passcodeSalt, 0, bArr2, bytes2.length + 16, 16);
             return passcodeHash.equals(Utilities.bytesToHex(Utilities.computeSHA256(bArr2, 0, length2)));
         } catch (Exception e2) {
-            FileLog.m30e(e2);
+            FileLog.e(e2);
             return false;
         }
     }
@@ -497,7 +497,7 @@ public class SharedConfig {
             File externalFilesDir = ApplicationLoader.applicationContext.getExternalFilesDir(null);
             Utilities.clearDir(new File(externalFilesDir.getAbsolutePath() + "/logs").getAbsolutePath(), 0, j, false);
         } catch (Throwable th) {
-            FileLog.m30e(th);
+            FileLog.e(th);
         }
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putInt("lastLogsCheckTime", lastLogsCheckTime);
@@ -528,7 +528,7 @@ public class SharedConfig {
                     try {
                         Utilities.clearDir(createMediaPaths.valueAt(i3).getAbsolutePath(), 0, j, false);
                     } catch (Throwable th) {
-                        FileLog.m30e(th);
+                        FileLog.e(th);
                     }
                 }
             }
@@ -538,7 +538,7 @@ public class SharedConfig {
             try {
                 Utilities.clearDir(file2.getAbsolutePath(), 0, i - 86400, false);
             } catch (Throwable th2) {
-                FileLog.m30e(th2);
+                FileLog.e(th2);
             }
         }
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
@@ -914,7 +914,7 @@ public class SharedConfig {
                 new File(file3, ".nomedia").delete();
             }
         } catch (Throwable th) {
-            FileLog.m30e(th);
+            FileLog.e(th);
         }
     }
 
@@ -977,7 +977,7 @@ public class SharedConfig {
                 devicePerformanceClass = 2;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m33d("device performance info (cpu_count = " + i2 + ", freq = " + ceil + ", memoryClass = " + memoryClass + ", android version " + i + ")");
+                FileLog.d("device performance info (cpu_count = " + i2 + ", freq = " + ceil + ", memoryClass = " + memoryClass + ", android version " + i + ")");
             }
         }
         return devicePerformanceClass;

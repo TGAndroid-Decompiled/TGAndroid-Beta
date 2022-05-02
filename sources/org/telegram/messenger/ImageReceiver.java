@@ -24,11 +24,11 @@ import androidx.annotation.Keep;
 import java.util.ArrayList;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.p009ui.Components.AnimatedFileDrawable;
-import org.telegram.p009ui.Components.RLottieDrawable;
-import org.telegram.p009ui.Components.RecyclableDrawable;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.ui.Components.AnimatedFileDrawable;
+import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.Components.RecyclableDrawable;
 
 public class ImageReceiver implements NotificationCenter.NotificationCenterDelegate {
     public static final int DEFAULT_CROSSFADE_DURATION = 150;
@@ -460,8 +460,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 if (tLRPC$Document == null) {
                     tLRPC$Document = ((MessageObject) obj).getDocument();
                 }
-                if (!(tLRPC$Document == null || tLRPC$Document.dc_id == 0 || tLRPC$Document.f861id == 0)) {
-                    key = "q_" + tLRPC$Document.dc_id + "_" + tLRPC$Document.f861id;
+                if (!(tLRPC$Document == null || tLRPC$Document.dc_id == 0 || tLRPC$Document.id == 0)) {
+                    key = "q_" + tLRPC$Document.dc_id + "_" + tLRPC$Document.id;
                     this.currentKeyQuality = true;
                 }
             }
@@ -1150,7 +1150,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                                 }
                             } catch (Exception e) {
                                 onBitmapException(bitmapDrawable);
-                                FileLog.m30e(e);
+                                FileLog.e(e);
                             }
                         } else {
                             int i9 = 0;
@@ -1299,7 +1299,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                                 }
                             } catch (Exception e2) {
                                 onBitmapException(bitmapDrawable);
-                                FileLog.m30e(e2);
+                                FileLog.e(e2);
                             }
                         } else {
                             int i11 = 0;
@@ -1344,7 +1344,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                         bitmapDrawable.draw(canvas);
                     } catch (Exception e3) {
                         onBitmapException(bitmapDrawable);
-                        FileLog.m30e(e3);
+                        FileLog.e(e3);
                     }
                 }
                 canvas.restore();
@@ -1400,7 +1400,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                             }
                         } catch (Exception e4) {
                             onBitmapException(bitmapDrawable);
-                            FileLog.m30e(e4);
+                            FileLog.e(e4);
                         }
                     }
                     bitmapDrawable.setAlpha(i);
@@ -1449,7 +1449,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                             }
                         } catch (Exception e5) {
                             onBitmapException(bitmapDrawable);
-                            FileLog.m30e(e5);
+                            FileLog.e(e5);
                         }
                     }
                     bitmapDrawable.setAlpha(i);
@@ -1488,7 +1488,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                     drawable.setAlpha(i);
                     drawable.draw(canvas);
                 } catch (Exception e6) {
-                    FileLog.m30e(e6);
+                    FileLog.e(e6);
                 }
             }
         }

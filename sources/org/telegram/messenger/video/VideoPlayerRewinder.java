@@ -1,7 +1,7 @@
 package org.telegram.messenger.video;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.p009ui.Components.VideoPlayer;
+import org.telegram.ui.Components.VideoPlayer;
 
 public class VideoPlayerRewinder {
     private long rewindBackSeekPlayerPosition;

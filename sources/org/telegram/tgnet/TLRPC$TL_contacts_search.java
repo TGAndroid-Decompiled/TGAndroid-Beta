@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 public class TLRPC$TL_contacts_search extends TLObject {
     public static int constructor = 301470424;
     public int limit;
-    public String f901q;
+    public String q;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -13,7 +13,7 @@ public class TLRPC$TL_contacts_search extends TLObject {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeString(this.f901q);
+        abstractSerializedData.writeString(this.q);
         abstractSerializedData.writeInt32(this.limit);
     }
 }

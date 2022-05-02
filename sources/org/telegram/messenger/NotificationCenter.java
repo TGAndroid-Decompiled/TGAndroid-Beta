@@ -867,10 +867,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f821id;
+        private int id;
 
         private DelayedPost(int i, Object[] objArr) {
-            this.f821id = i;
+            this.id = i;
             this.args = objArr;
         }
     }
@@ -1005,7 +1005,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i = 0; i < this.delayedPostsTmp.size(); i++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i);
-                postNotificationNameInternal(delayedPost.f821id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }
@@ -1128,7 +1128,7 @@ public class NotificationCenter {
         } else {
             this.delayedPosts.add(new DelayedPost(i, objArr));
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m32e("delay post notification " + i + " with args count = " + objArr.length);
+                FileLog.e("delay post notification " + i + " with args count = " + objArr.length);
             }
         }
     }

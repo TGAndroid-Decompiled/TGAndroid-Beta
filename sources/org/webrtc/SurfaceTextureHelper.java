@@ -7,7 +7,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import java.util.concurrent.Callable;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.R;
 import org.webrtc.EglBase;
 import org.webrtc.TextureBufferImpl;
 import org.webrtc.VideoFrame;
@@ -52,7 +52,7 @@ public class SurfaceTextureHelper {
                 try {
                     return new SurfaceTextureHelper(EglBase.Context.this, handler, z, yuvConverter, frameRefMonitor);
                 } catch (RuntimeException e) {
-                    Logging.m7e(SurfaceTextureHelper.TAG, str + " create failure", e);
+                    Logging.e(SurfaceTextureHelper.TAG, str + " create failure", e);
                     return null;
                 }
             }
@@ -98,7 +98,7 @@ public class SurfaceTextureHelper {
         this.setListenerRunnable = new Runnable() {
             @Override
             public void run() {
-                Logging.m9d(SurfaceTextureHelper.TAG, "Setting listener to " + SurfaceTextureHelper.this.pendingListener);
+                Logging.d(SurfaceTextureHelper.TAG, "Setting listener to " + SurfaceTextureHelper.this.pendingListener);
                 SurfaceTextureHelper surfaceTextureHelper = SurfaceTextureHelper.this;
                 surfaceTextureHelper.listener = surfaceTextureHelper.pendingListener;
                 SurfaceTextureHelper.this.pendingListener = null;
@@ -140,13 +140,13 @@ public class SurfaceTextureHelper {
 
     public void lambda$new$0(SurfaceTexture surfaceTexture) {
         if (this.hasPendingTexture) {
-            Logging.m9d(TAG, "A frame is already pending, dropping frame.");
+            Logging.d(TAG, "A frame is already pending, dropping frame.");
         }
         this.hasPendingTexture = true;
         tryDeliverTextureFrame();
     }
 
-    @TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
+    @TargetApi(R.styleable.MapAttrs_uiZoomGestures)
     private static void setOnFrameAvailableListener(SurfaceTexture surfaceTexture, SurfaceTexture.OnFrameAvailableListener onFrameAvailableListener, Handler handler) {
         if (Build.VERSION.SDK_INT >= 21) {
             surfaceTexture.setOnFrameAvailableListener(onFrameAvailableListener, handler);
@@ -165,7 +165,7 @@ public class SurfaceTextureHelper {
     }
 
     public void stopListening() {
-        Logging.m9d(TAG, "stopListening()");
+        Logging.d(TAG, "stopListening()");
         this.handler.removeCallbacks(this.setListenerRunnable);
         ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new Runnable() {
             @Override
@@ -260,7 +260,7 @@ public class SurfaceTextureHelper {
     }
 
     public void dispose() {
-        Logging.m9d(TAG, "dispose()");
+        Logging.d(TAG, "dispose()");
         ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new Runnable() {
             @Override
             public final void run() {
@@ -295,7 +295,7 @@ public class SurfaceTextureHelper {
             throw new IllegalStateException("Wrong thread.");
         } else if (!this.isQuitting && this.hasPendingTexture && !this.isTextureInUse && this.listener != null) {
             if (this.textureWidth == 0 || this.textureHeight == 0) {
-                Logging.m5w(TAG, "Texture size has not been set.");
+                Logging.w(TAG, "Texture size has not been set.");
                 return;
             }
             this.isTextureInUse = true;

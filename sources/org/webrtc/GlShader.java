@@ -20,7 +20,7 @@ public class GlShader {
                 GlUtil.checkNoGLES2Error("compileShader");
                 return glCreateShader;
             }
-            Logging.m8e(TAG, "Compile error " + GLES20.glGetShaderInfoLog(glCreateShader) + " in shader:\n" + str);
+            Logging.e(TAG, "Compile error " + GLES20.glGetShaderInfoLog(glCreateShader) + " in shader:\n" + str);
             throw new RuntimeException(GLES20.glGetShaderInfoLog(glCreateShader));
         }
         throw new RuntimeException("glCreateShader() failed. GLES20 error: " + GLES20.glGetError());
@@ -38,7 +38,7 @@ public class GlShader {
             int[] iArr = {0};
             GLES20.glGetProgramiv(this.program, 35714, iArr, 0);
             if (iArr[0] != 1) {
-                Logging.m8e(TAG, "Could not link program: " + GLES20.glGetProgramInfoLog(this.program));
+                Logging.e(TAG, "Could not link program: " + GLES20.glGetProgramInfoLog(this.program));
                 throw new RuntimeException(GLES20.glGetProgramInfoLog(this.program));
             }
             return;
@@ -93,7 +93,7 @@ public class GlShader {
             try {
                 GlUtil.checkNoGLES2Error("glUseProgram");
             } catch (Exception e) {
-                FileLog.m30e(e);
+                FileLog.e(e);
             }
         } else {
             throw new RuntimeException("The program has been released");
@@ -101,7 +101,7 @@ public class GlShader {
     }
 
     public void release() {
-        Logging.m9d(TAG, "Deleting shader.");
+        Logging.d(TAG, "Deleting shader.");
         int i = this.program;
         if (i != -1) {
             GLES20.glDeleteProgram(i);

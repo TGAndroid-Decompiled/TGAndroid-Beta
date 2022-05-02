@@ -86,7 +86,7 @@ public class Utilities {
             fileInputStream.close();
             random.setSeed(bArr);
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
         }
     }
 
@@ -245,7 +245,7 @@ public class Utilities {
             messageDigest.update(bArr, i, i2);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return new byte[20];
         }
     }
@@ -264,7 +264,7 @@ public class Utilities {
                 byteBuffer.position(position);
                 return digest;
             } catch (Exception e) {
-                FileLog.m30e(e);
+                FileLog.e(e);
                 byteBuffer.limit(limit);
                 byteBuffer.position(position);
                 return new byte[20];
@@ -294,7 +294,7 @@ public class Utilities {
             messageDigest.update(bArr, i, i2);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return new byte[32];
         }
     }
@@ -307,7 +307,7 @@ public class Utilities {
             }
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return new byte[32];
         }
     }
@@ -318,7 +318,7 @@ public class Utilities {
             messageDigest.update(bArr, 0, bArr.length);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return new byte[64];
         }
     }
@@ -330,7 +330,7 @@ public class Utilities {
             messageDigest.update(bArr2, 0, bArr2.length);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return new byte[64];
         }
     }
@@ -349,7 +349,7 @@ public class Utilities {
             messageDigest.update(bArr3, 0, bArr3.length);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return new byte[64];
         }
     }
@@ -369,7 +369,7 @@ public class Utilities {
                 byteBuffer.position(position);
                 return digest;
             } catch (Exception e) {
-                FileLog.m30e(e);
+                FileLog.e(e);
                 byteBuffer.limit(limit);
                 byteBuffer.position(position);
                 return new byte[32];
@@ -401,7 +401,7 @@ public class Utilities {
             }
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return null;
         }
     }

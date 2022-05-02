@@ -136,6 +136,6 @@ public class MediaStream {
                 return;
             }
         }
-        Logging.m8e(TAG, "Couldn't not find track");
+        Logging.e(TAG, "Couldn't not find track");
     }
 }

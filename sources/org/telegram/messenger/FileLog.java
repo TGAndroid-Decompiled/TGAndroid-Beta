@@ -111,7 +111,7 @@ public class FileLog {
         }
     }
 
-    public static void m31e(final String str, final Throwable th) {
+    public static void e(final String str, final Throwable th) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
             Log.e(tag, str, th);
@@ -137,7 +137,7 @@ public class FileLog {
         }
     }
 
-    public static void m32e(final String str) {
+    public static void e(final String str) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
             Log.e(tag, str);
@@ -162,11 +162,11 @@ public class FileLog {
         }
     }
 
-    public static void m30e(Throwable th) {
-        m29e(th, true);
+    public static void e(Throwable th) {
+        e(th, true);
     }
 
-    public static void m29e(final Throwable th, boolean z) {
+    public static void e(final Throwable th, boolean z) {
         if (BuildVars.LOGS_ENABLED) {
             if (BuildVars.DEBUG_VERSION && needSent(th) && z) {
                 AndroidUtilities.appCenterLog(th);
@@ -205,7 +205,7 @@ public class FileLog {
         return !(th instanceof InterruptedException) && !(th instanceof MediaCodecVideoConvertor.ConversionCanceledException);
     }
 
-    public static void m33d(final String str) {
+    public static void d(final String str) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
             Log.d(tag, str);
@@ -230,7 +230,7 @@ public class FileLog {
         }
     }
 
-    public static void m28w(final String str) {
+    public static void w(final String str) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
             Log.w(tag, str);

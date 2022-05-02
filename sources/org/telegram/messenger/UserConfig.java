@@ -174,7 +174,7 @@ public class UserConfig extends BaseController {
                 }
                 edit.commit();
             } catch (Exception e) {
-                FileLog.m30e(e);
+                FileLog.e(e);
             }
         }
     }
@@ -195,7 +195,7 @@ public class UserConfig extends BaseController {
         long j;
         synchronized (this.sync) {
             TLRPC$User tLRPC$User = this.currentUser;
-            j = tLRPC$User != null ? tLRPC$User.f985id : 0L;
+            j = tLRPC$User != null ? tLRPC$User.id : 0L;
         }
         return j;
     }
@@ -223,7 +223,7 @@ public class UserConfig extends BaseController {
         synchronized (this.sync) {
             TLRPC$User tLRPC$User2 = this.currentUser;
             this.currentUser = tLRPC$User;
-            this.clientUserId = tLRPC$User.f985id;
+            this.clientUserId = tLRPC$User.id;
             checkPremium(tLRPC$User2, tLRPC$User);
         }
     }

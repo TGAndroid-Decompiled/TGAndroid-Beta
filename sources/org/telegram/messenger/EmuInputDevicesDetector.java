@@ -52,7 +52,7 @@ public final class EmuInputDevicesDetector {
                 }
             }
         } catch (IOException e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return null;
         }
     }

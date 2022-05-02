@@ -8,10 +8,10 @@ import android.os.Handler;
 import java.security.Signature;
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
-import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
 
-@TargetApi(C0952R.styleable.MapAttrs_zOrderOnTop)
+@TargetApi(R.styleable.MapAttrs_zOrderOnTop)
 public final class FingerprintManagerCompatApi23 {
 
     public static abstract class AuthenticationCallback {
@@ -36,7 +36,7 @@ public final class FingerprintManagerCompatApi23 {
             }
             return fingerprintManager.hasEnrolledFingerprints();
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return false;
         }
     }
@@ -49,7 +49,7 @@ public final class FingerprintManagerCompatApi23 {
             }
             return fingerprintManager.isHardwareDetected();
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return false;
         }
     }
@@ -58,7 +58,7 @@ public final class FingerprintManagerCompatApi23 {
         try {
             getFingerprintManager(context).authenticate(wrapCryptoObject(cryptoObject), (CancellationSignal) obj, i, wrapCallback(authenticationCallback), handler);
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
         }
     }
 

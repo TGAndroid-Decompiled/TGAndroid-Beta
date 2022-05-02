@@ -38,10 +38,10 @@ public class Emoji {
     public static HashMap<String, String> emojiColor = new HashMap<>();
     private static Runnable invalidateUiRunnable = Emoji$$ExternalSyntheticLambda1.INSTANCE;
     public static boolean emojiDrawingUseAlpha = true;
-    private static int drawImgSize = AndroidUtilities.m34dp(20.0f);
+    private static int drawImgSize = AndroidUtilities.dp(20.0f);
 
     static {
-        bigImgSize = AndroidUtilities.m34dp(AndroidUtilities.isTablet() ? 40.0f : 34.0f);
+        bigImgSize = AndroidUtilities.dp(AndroidUtilities.isTablet() ? 40.0f : 34.0f);
         int i = 0;
         while (true) {
             Bitmap[][] bitmapArr = emojiBmp;
@@ -114,7 +114,7 @@ public class Emoji {
             AndroidUtilities.runOnUIThread(invalidateUiRunnable);
         } catch (Throwable th) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m31e("Error loading emoji", th);
+                FileLog.e("Error loading emoji", th);
             }
         }
     }
@@ -325,13 +325,13 @@ public class Emoji {
 
         public EmojiSpan(EmojiDrawable emojiDrawable, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
             super(emojiDrawable, i);
-            this.size = AndroidUtilities.m34dp(20.0f);
+            this.size = AndroidUtilities.dp(20.0f);
             this.fontMetrics = fontMetricsInt;
             if (fontMetricsInt != null) {
                 int abs = Math.abs(fontMetricsInt.descent) + Math.abs(this.fontMetrics.ascent);
                 this.size = abs;
                 if (abs == 0) {
-                    this.size = AndroidUtilities.m34dp(20.0f);
+                    this.size = AndroidUtilities.dp(20.0f);
                 }
             }
         }
@@ -349,8 +349,8 @@ public class Emoji {
             Paint.FontMetricsInt fontMetricsInt2 = this.fontMetrics;
             if (fontMetricsInt2 == null) {
                 int size = super.getSize(paint, charSequence, i, i2, fontMetricsInt);
-                int dp = AndroidUtilities.m34dp(8.0f);
-                int dp2 = AndroidUtilities.m34dp(10.0f);
+                int dp = AndroidUtilities.dp(8.0f);
+                int dp2 = AndroidUtilities.dp(10.0f);
                 int i3 = (-dp2) - dp;
                 fontMetricsInt.top = i3;
                 int i4 = dp2 - dp;
@@ -515,7 +515,7 @@ public class Emoji {
                 }
                 sortEmoji();
             } catch (Exception e) {
-                FileLog.m30e(e);
+                FileLog.e(e);
             }
             try {
                 String string3 = globalEmojiSettings.getString("color", "");
@@ -526,7 +526,7 @@ public class Emoji {
                     }
                 }
             } catch (Exception e2) {
-                FileLog.m30e(e2);
+                FileLog.e(e2);
             }
         }
     }

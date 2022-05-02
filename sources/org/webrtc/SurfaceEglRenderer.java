@@ -2,7 +2,7 @@ package org.webrtc;
 
 import android.view.SurfaceHolder;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.p009ui.ActionBar.Theme$$ExternalSyntheticLambda2;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda2;
 import org.webrtc.EglBase;
 import org.webrtc.RendererCommon;
 
@@ -113,6 +113,6 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     }
 
     private void logD(String str) {
-        Logging.m9d(TAG, this.name + ": " + str);
+        Logging.d(TAG, this.name + ": " + str);
     }
 }

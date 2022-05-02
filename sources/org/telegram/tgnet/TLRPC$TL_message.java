@@ -20,7 +20,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
         this.edit_hide = (2097152 & readInt32) != 0;
         this.pinned = (16777216 & readInt32) != 0;
         this.noforwards = (readInt32 & ConnectionsManager.FileTypeFile) != 0;
-        this.f877id = abstractSerializedData.readInt32(z);
+        this.id = abstractSerializedData.readInt32(z);
         if ((this.flags & 256) != 0) {
             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
@@ -135,7 +135,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
         int i10 = this.noforwards ? i9 | ConnectionsManager.FileTypeFile : i9 & (-67108865);
         this.flags = i10;
         abstractSerializedData.writeInt32(i10);
-        abstractSerializedData.writeInt32(this.f877id);
+        abstractSerializedData.writeInt32(this.id);
         if ((this.flags & 256) != 0) {
             this.from_id.serializeToStream(abstractSerializedData);
         }

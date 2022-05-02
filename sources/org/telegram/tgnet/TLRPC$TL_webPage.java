@@ -6,7 +6,7 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.flags = abstractSerializedData.readInt32(z);
-        this.f994id = abstractSerializedData.readInt64(z);
+        this.id = abstractSerializedData.readInt64(z);
         this.url = abstractSerializedData.readString(z);
         this.display_url = abstractSerializedData.readString(z);
         this.hash = abstractSerializedData.readInt32(z);
@@ -71,7 +71,7 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
-        abstractSerializedData.writeInt64(this.f994id);
+        abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeString(this.url);
         abstractSerializedData.writeString(this.display_url);
         abstractSerializedData.writeInt32(this.hash);

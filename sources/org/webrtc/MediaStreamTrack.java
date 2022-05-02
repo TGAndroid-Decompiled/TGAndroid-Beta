@@ -74,7 +74,7 @@ public class MediaStreamTrack {
         throw new IllegalArgumentException("nativeTrack may not be null");
     }
 
-    public String m3id() {
+    public String id() {
         checkMediaStreamTrackExists();
         return nativeGetId(this.nativeTrack);
     }

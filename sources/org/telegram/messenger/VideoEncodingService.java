@@ -33,7 +33,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.stopEncodingService);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploadProgressChanged);
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m33d("destroy video service");
+            FileLog.d("destroy video service");
         }
     }
 
@@ -56,7 +56,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
                 try {
                     NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(4, this.builder.build());
                 } catch (Throwable th) {
-                    FileLog.m30e(th);
+                    FileLog.e(th);
                 }
             }
         } else if (i == NotificationCenter.stopEncodingService) {
@@ -92,7 +92,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             return 2;
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m33d("start video service");
+            FileLog.d("start video service");
         }
         if (this.builder == null) {
             NotificationsController.checkOtherNotificationsChannel();
@@ -101,13 +101,13 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             builder.setSmallIcon(17301640);
             this.builder.setWhen(System.currentTimeMillis());
             this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
-            this.builder.setContentTitle(LocaleController.getString("AppName", C0952R.string.AppName));
+            this.builder.setContentTitle(LocaleController.getString("AppName", R.string.AppName));
             if (booleanExtra) {
-                this.builder.setTicker(LocaleController.getString("SendingGif", C0952R.string.SendingGif));
-                this.builder.setContentText(LocaleController.getString("SendingGif", C0952R.string.SendingGif));
+                this.builder.setTicker(LocaleController.getString("SendingGif", R.string.SendingGif));
+                this.builder.setContentText(LocaleController.getString("SendingGif", R.string.SendingGif));
             } else {
-                this.builder.setTicker(LocaleController.getString("SendingVideo", C0952R.string.SendingVideo));
-                this.builder.setContentText(LocaleController.getString("SendingVideo", C0952R.string.SendingVideo));
+                this.builder.setTicker(LocaleController.getString("SendingVideo", R.string.SendingVideo));
+                this.builder.setContentText(LocaleController.getString("SendingVideo", R.string.SendingVideo));
             }
         }
         this.currentProgress = 0;

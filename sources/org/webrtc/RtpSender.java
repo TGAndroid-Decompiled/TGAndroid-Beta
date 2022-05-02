@@ -72,7 +72,7 @@ public class RtpSender {
         return nativeGetParameters(this.nativeRtpSender);
     }
 
-    public String m0id() {
+    public String id() {
         checkRtpSenderExists();
         return nativeGetId(this.nativeRtpSender);
     }

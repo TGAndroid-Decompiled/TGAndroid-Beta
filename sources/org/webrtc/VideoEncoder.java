@@ -125,36 +125,36 @@ public interface VideoEncoder {
         public static final ScalingSettings OFF = new ScalingSettings();
         public final Integer high;
         public final Integer low;
-        public final boolean f1121on;
+        public final boolean on;
 
         public ScalingSettings(int i, int i2) {
-            this.f1121on = true;
+            this.on = true;
             this.low = Integer.valueOf(i);
             this.high = Integer.valueOf(i2);
         }
 
         private ScalingSettings() {
-            this.f1121on = false;
+            this.on = false;
             this.low = null;
             this.high = null;
         }
 
         @Deprecated
         public ScalingSettings(boolean z) {
-            this.f1121on = z;
+            this.on = z;
             this.low = null;
             this.high = null;
         }
 
         @Deprecated
         public ScalingSettings(boolean z, int i, int i2) {
-            this.f1121on = z;
+            this.on = z;
             this.low = Integer.valueOf(i);
             this.high = Integer.valueOf(i2);
         }
 
         public String toString() {
-            if (!this.f1121on) {
+            if (!this.on) {
                 return "OFF";
             }
             return "[ " + this.low + ", " + this.high + " ]";

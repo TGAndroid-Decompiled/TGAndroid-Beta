@@ -22,7 +22,7 @@ public abstract class TLRPC$Theme extends TLObject {
                             z3 = true;
                         }
                         this.for_chat = z3;
-                        this.f976id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.slug = abstractSerializedData2.readString(z2);
                         this.title = abstractSerializedData2.readString(z2);
@@ -47,7 +47,7 @@ public abstract class TLRPC$Theme extends TLObject {
                         int i4 = this.for_chat ? i3 | 32 : i3 & (-33);
                         this.flags = i4;
                         abstractSerializedData2.writeInt32(i4);
-                        abstractSerializedData2.writeInt64(this.f976id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.slug);
                         abstractSerializedData2.writeString(this.title);
@@ -77,7 +77,7 @@ public abstract class TLRPC$Theme extends TLObject {
                             z3 = true;
                         }
                         this.isDefault = z3;
-                        this.f976id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.slug = abstractSerializedData2.readString(z2);
                         this.title = abstractSerializedData2.readString(z2);
@@ -95,7 +95,7 @@ public abstract class TLRPC$Theme extends TLObject {
                         int i3 = this.isDefault ? i2 | 2 : i2 & (-3);
                         this.flags = i3;
                         abstractSerializedData2.writeInt32(i3);
-                        abstractSerializedData2.writeInt64(this.f976id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.slug);
                         abstractSerializedData2.writeString(this.title);
@@ -120,7 +120,7 @@ public abstract class TLRPC$Theme extends TLObject {
                             z3 = true;
                         }
                         this.isDefault = z3;
-                        this.f976id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.slug = abstractSerializedData2.readString(z2);
                         this.title = abstractSerializedData2.readString(z2);
@@ -141,7 +141,7 @@ public abstract class TLRPC$Theme extends TLObject {
                         int i3 = this.isDefault ? i2 | 2 : i2 & (-3);
                         this.flags = i3;
                         abstractSerializedData2.writeInt32(i3);
-                        abstractSerializedData2.writeInt64(this.f976id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.slug);
                         abstractSerializedData2.writeString(this.title);

@@ -5,7 +5,7 @@ public class TLRPC$TL_userRequest_old2 extends TLRPC$User {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f985id = abstractSerializedData.readInt32(z);
+        this.id = abstractSerializedData.readInt32(z);
         this.first_name = abstractSerializedData.readString(z);
         this.last_name = abstractSerializedData.readString(z);
         this.username = abstractSerializedData.readString(z);
@@ -18,7 +18,7 @@ public class TLRPC$TL_userRequest_old2 extends TLRPC$User {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt32((int) this.f985id);
+        abstractSerializedData.writeInt32((int) this.id);
         abstractSerializedData.writeString(this.first_name);
         abstractSerializedData.writeString(this.last_name);
         abstractSerializedData.writeString(this.username);

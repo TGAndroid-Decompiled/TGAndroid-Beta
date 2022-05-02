@@ -10,6 +10,6 @@ public final class VideoCapturerDevice$2$$ExternalSyntheticLambda0 implements Ru
 
     @Override
     public final void run() {
-        VideoCapturerDevice.C09922.lambda$onFirstFrameAvailable$0();
+        VideoCapturerDevice.AnonymousClass2.lambda$onFirstFrameAvailable$0();
     }
 }

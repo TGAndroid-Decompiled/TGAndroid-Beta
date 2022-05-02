@@ -24,7 +24,7 @@ public class VideoFrameDrawer {
         Matrix matrix2 = new Matrix(textureBuffer.getTransformMatrix());
         matrix2.preConcat(matrix);
         float[] convertMatrixFromAndroidGraphicsMatrix = RendererCommon.convertMatrixFromAndroidGraphicsMatrix(matrix2);
-        int i9 = C37091.$SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type[textureBuffer.getType().ordinal()];
+        int i9 = AnonymousClass1.$SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type[textureBuffer.getType().ordinal()];
         if (i9 == 1) {
             glDrawer.drawOes(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i, i2, convertMatrixFromAndroidGraphicsMatrix, i3, i4, i5, i6, i7, i8, z);
         } else if (i9 == 2) {
@@ -34,7 +34,7 @@ public class VideoFrameDrawer {
         }
     }
 
-    public static class C37091 {
+    public static class AnonymousClass1 {
         static final int[] $SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type;
 
         static {
@@ -64,7 +64,7 @@ public class VideoFrameDrawer {
         private YuvUploader() {
         }
 
-        YuvUploader(C37091 r1) {
+        YuvUploader(AnonymousClass1 r1) {
             this();
         }
 
@@ -157,7 +157,7 @@ public class VideoFrameDrawer {
     public void drawFrame(VideoFrame videoFrame, RendererCommon.GlDrawer glDrawer, Matrix matrix, int i, int i2, int i3, int i4, boolean z, boolean z2) {
         calculateTransformedRenderSize(z ? videoFrame.getRotatedHeight() : videoFrame.getRotatedWidth(), z ? videoFrame.getRotatedWidth() : videoFrame.getRotatedHeight(), matrix);
         if (this.renderWidth <= 0 || this.renderHeight <= 0) {
-            Logging.m5w(TAG, "Illegal frame size: " + this.renderWidth + "x" + this.renderHeight);
+            Logging.w(TAG, "Illegal frame size: " + this.renderWidth + "x" + this.renderHeight);
             return;
         }
         boolean z3 = videoFrame.getBuffer() instanceof VideoFrame.TextureBuffer;

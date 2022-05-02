@@ -59,7 +59,7 @@ public class FilePathDatabase {
             if (!z) {
                 createBackup();
             }
-            FileLog.m33d("files db created from_backup= " + z);
+            FileLog.d("files db created from_backup= " + z);
         } catch (Exception e) {
             if (!z && restoreBackup()) {
                 createDatabase(true);
@@ -79,7 +79,7 @@ public class FilePathDatabase {
         File file2 = new File(filesDirFixed, "file_to_path_backup.db");
         try {
             AndroidUtilities.copyFile(this.cacheFile, file2);
-            FileLog.m33d("file db backup created " + file2.getAbsolutePath());
+            FileLog.d("file db backup created " + file2.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -108,7 +108,7 @@ public class FilePathDatabase {
         if (z) {
             if (BuildVars.DEBUG_VERSION) {
                 if (Thread.currentThread() == Looper.getMainLooper().getThread() && Thread.currentThread() == Looper.getMainLooper().getThread()) {
-                    FileLog.m30e(new Exception("Warning, not allowed in main thread"));
+                    FileLog.e(new Exception("Warning, not allowed in main thread"));
                 }
                 if (this.dispatchQueue.getHandler() != null && Thread.currentThread() == this.dispatchQueue.getHandler().getLooper().getThread()) {
                     throw new RuntimeException("Error, lead to infinity loop");
@@ -205,9 +205,9 @@ public class FilePathDatabase {
             });
             try {
                 countDownLatch.await();
-                FileLog.m33d("checkMediaExistance size=" + arrayList.size() + " time=" + (System.currentTimeMillis() - currentTimeMillis));
+                FileLog.d("checkMediaExistance size=" + arrayList.size() + " time=" + (System.currentTimeMillis() - currentTimeMillis));
                 if (BuildVars.DEBUG_VERSION && Thread.currentThread() == Looper.getMainLooper().getThread()) {
-                    FileLog.m30e(new Exception("warning, not allowed in main thread"));
+                    FileLog.e(new Exception("warning, not allowed in main thread"));
                 }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -227,13 +227,13 @@ public class FilePathDatabase {
     }
 
     public static class PathData {
-        public final int f808dc;
-        public final long f809id;
+        public final int dc;
+        public final long id;
         public final int type;
 
         public PathData(long j, int i, int i2) {
-            this.f809id = j;
-            this.f808dc = i;
+            this.id = j;
+            this.dc = i;
             this.type = i2;
         }
     }

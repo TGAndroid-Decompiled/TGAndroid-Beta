@@ -36,7 +36,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         @Override
         public void onDone(CameraSession cameraSession) {
             CameraCapturer.this.checkIsOnCameraThread();
-            Logging.m9d(CameraCapturer.TAG, "Create session done. Switch state: " + CameraCapturer.this.switchState);
+            Logging.d(CameraCapturer.TAG, "Create session done. Switch state: " + CameraCapturer.this.switchState);
             CameraCapturer.this.uiThreadHandler.removeCallbacks(CameraCapturer.this.openCameraTimeoutRunnable);
             synchronized (CameraCapturer.this.stateLock) {
                 CameraCapturer.this.capturerObserver.onCapturerStarted(true);
@@ -70,7 +70,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                 CameraCapturer.this.capturerObserver.onCapturerStarted(false);
                 CameraCapturer.access$1710(CameraCapturer.this);
                 if (CameraCapturer.this.openAttemptsRemaining <= 0) {
-                    Logging.m5w(CameraCapturer.TAG, "Opening camera failed, passing: " + str);
+                    Logging.w(CameraCapturer.TAG, "Opening camera failed, passing: " + str);
                     CameraCapturer.this.sessionOpening = false;
                     CameraCapturer.this.stateLock.notifyAll();
                     SwitchState switchState = CameraCapturer.this.switchState;
@@ -88,7 +88,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                         CameraCapturer.this.eventsHandler.onCameraError(str);
                     }
                 } else {
-                    Logging.m5w(CameraCapturer.TAG, "Opening camera failed, retry: " + str);
+                    Logging.w(CameraCapturer.TAG, "Opening camera failed, retry: " + str);
                     CameraCapturer.this.createSessionInternal(CameraCapturer.OPEN_CAMERA_DELAY_MS);
                 }
             }
@@ -100,7 +100,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             CameraCapturer.this.checkIsOnCameraThread();
             synchronized (CameraCapturer.this.stateLock) {
                 if (CameraCapturer.this.currentSession != null) {
-                    Logging.m5w(CameraCapturer.TAG, "onCameraOpening while session was open.");
+                    Logging.w(CameraCapturer.TAG, "onCameraOpening while session was open.");
                 } else {
                     CameraCapturer.this.eventsHandler.onCameraOpening(CameraCapturer.this.cameraName);
                 }
@@ -112,7 +112,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             CameraCapturer.this.checkIsOnCameraThread();
             synchronized (CameraCapturer.this.stateLock) {
                 if (cameraSession != CameraCapturer.this.currentSession) {
-                    Logging.m5w(CameraCapturer.TAG, "onCameraError from another session: " + str);
+                    Logging.w(CameraCapturer.TAG, "onCameraError from another session: " + str);
                     return;
                 }
                 CameraCapturer.this.eventsHandler.onCameraError(str);
@@ -125,7 +125,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             CameraCapturer.this.checkIsOnCameraThread();
             synchronized (CameraCapturer.this.stateLock) {
                 if (cameraSession != CameraCapturer.this.currentSession) {
-                    Logging.m5w(CameraCapturer.TAG, "onCameraDisconnected from another session.");
+                    Logging.w(CameraCapturer.TAG, "onCameraDisconnected from another session.");
                     return;
                 }
                 CameraCapturer.this.eventsHandler.onCameraDisconnected();
@@ -140,7 +140,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                 if (cameraSession == CameraCapturer.this.currentSession || CameraCapturer.this.currentSession == null) {
                     CameraCapturer.this.eventsHandler.onCameraClosed();
                 } else {
-                    Logging.m9d(CameraCapturer.TAG, "onCameraClosed from another session.");
+                    Logging.d(CameraCapturer.TAG, "onCameraClosed from another session.");
                 }
             }
         }
@@ -150,7 +150,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             CameraCapturer.this.checkIsOnCameraThread();
             synchronized (CameraCapturer.this.stateLock) {
                 if (cameraSession != CameraCapturer.this.currentSession) {
-                    Logging.m5w(CameraCapturer.TAG, "onFrameCaptured from another session.");
+                    Logging.w(CameraCapturer.TAG, "onFrameCaptured from another session.");
                     return;
                 }
                 if (!CameraCapturer.this.firstFrameObserved) {
@@ -247,7 +247,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void startCapture(int i, int i2, int i3) {
-        Logging.m9d(TAG, "startCapture: " + i + "x" + i2 + "@" + i3);
+        Logging.d(TAG, "startCapture: " + i + "x" + i2 + "@" + i3);
         if (this.applicationContext != null) {
             synchronized (this.stateLock) {
                 if (!this.sessionOpening && this.currentSession == null) {
@@ -259,7 +259,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                     createSessionInternal(0);
                     return;
                 }
-                Logging.m5w(TAG, "Session already open");
+                Logging.w(TAG, "Session already open");
                 return;
             }
         }
@@ -279,20 +279,20 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void stopCapture() {
-        Logging.m9d(TAG, "Stop capture");
+        Logging.d(TAG, "Stop capture");
         synchronized (this.stateLock) {
             while (this.sessionOpening) {
-                Logging.m9d(TAG, "Stop capture: Waiting for session to open");
+                Logging.d(TAG, "Stop capture: Waiting for session to open");
                 try {
                     this.stateLock.wait();
                 } catch (InterruptedException unused) {
-                    Logging.m5w(TAG, "Stop capture interrupted while waiting for the session to open.");
+                    Logging.w(TAG, "Stop capture interrupted while waiting for the session to open.");
                     Thread.currentThread().interrupt();
                     return;
                 }
             }
             if (this.currentSession != null) {
-                Logging.m9d(TAG, "Stop capture: Nulling session");
+                Logging.d(TAG, "Stop capture: Nulling session");
                 this.cameraStatistics.release();
                 this.cameraStatistics = null;
                 final CameraSession cameraSession = this.currentSession;
@@ -305,15 +305,15 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                 this.currentSession = null;
                 this.capturerObserver.onCapturerStopped();
             } else {
-                Logging.m9d(TAG, "Stop capture: No session open");
+                Logging.d(TAG, "Stop capture: No session open");
             }
         }
-        Logging.m9d(TAG, "Stop capture done");
+        Logging.d(TAG, "Stop capture done");
     }
 
     @Override
     public void changeCaptureFormat(int i, int i2, int i3) {
-        Logging.m9d(TAG, "changeCaptureFormat: " + i + "x" + i2 + "@" + i3);
+        Logging.d(TAG, "changeCaptureFormat: " + i + "x" + i2 + "@" + i3);
         synchronized (this.stateLock) {
             stopCapture();
             startCapture(i, i2, i3);
@@ -322,13 +322,13 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void dispose() {
-        Logging.m9d(TAG, "dispose");
+        Logging.d(TAG, "dispose");
         stopCapture();
     }
 
     @Override
     public void switchCamera(final CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler) {
-        Logging.m9d(TAG, "switchCamera");
+        Logging.d(TAG, "switchCamera");
         this.cameraThreadHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -344,7 +344,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void switchCamera(final CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, final String str) {
-        Logging.m9d(TAG, "switchCamera");
+        Logging.d(TAG, "switchCamera");
         this.cameraThreadHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -359,23 +359,23 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         if (thread != null) {
             StackTraceElement[] stackTrace = thread.getStackTrace();
             if (stackTrace.length > 0) {
-                Logging.m9d(TAG, "CameraCapturer stack trace:");
+                Logging.d(TAG, "CameraCapturer stack trace:");
                 for (StackTraceElement stackTraceElement : stackTrace) {
-                    Logging.m9d(TAG, stackTraceElement.toString());
+                    Logging.d(TAG, stackTraceElement.toString());
                 }
             }
         }
     }
 
     public void reportCameraSwitchError(String str, CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler) {
-        Logging.m8e(TAG, str);
+        Logging.e(TAG, str);
         if (cameraSwitchHandler != null) {
             cameraSwitchHandler.onCameraSwitchError(str);
         }
     }
 
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
-        Logging.m9d(TAG, "switchCamera internal");
+        Logging.d(TAG, "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
             reportCameraSwitchError("Attempted to switch to unknown camera device " + str, cameraSwitchHandler);
             return;
@@ -394,7 +394,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                     return;
                 }
                 this.switchState = SwitchState.IN_PROGRESS;
-                Logging.m9d(TAG, "switchCamera: Stopping session");
+                Logging.d(TAG, "switchCamera: Stopping session");
                 this.cameraStatistics.release();
                 this.cameraStatistics = null;
                 final CameraSession cameraSession = this.currentSession;
@@ -409,7 +409,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                 this.sessionOpening = true;
                 this.openAttemptsRemaining = 1;
                 createSessionInternal(0);
-                Logging.m9d(TAG, "switchCamera done");
+                Logging.d(TAG, "switchCamera done");
                 return;
             }
             reportCameraSwitchError("switchCamera: camera is not running.", cameraSwitchHandler);
@@ -418,7 +418,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     public void checkIsOnCameraThread() {
         if (Thread.currentThread() != this.cameraThreadHandler.getLooper().getThread()) {
-            Logging.m8e(TAG, "Check is on camera thread failed.");
+            Logging.e(TAG, "Check is on camera thread failed.");
             throw new RuntimeException("Not on camera thread.");
         }
     }

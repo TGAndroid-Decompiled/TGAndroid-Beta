@@ -90,7 +90,7 @@ public class FileLoadOperation {
     private boolean isCdn;
     private boolean isForceRequest;
     private boolean isPreloadVideoOperation;
-    private byte[] f807iv;
+    private byte[] iv;
     private byte[] key;
     protected long lastProgressUpdateTime;
     protected TLRPC$InputFileLocation location;
@@ -200,33 +200,33 @@ public class FileLoadOperation {
 
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData, boolean z2) {
-                    this.f872id = abstractSerializedData.readInt64(z2);
+                    this.id = abstractSerializedData.readInt64(z2);
                     this.access_hash = abstractSerializedData.readInt64(z2);
                 }
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
                     abstractSerializedData.writeInt32(constructor);
-                    abstractSerializedData.writeInt64(this.f872id);
+                    abstractSerializedData.writeInt64(this.id);
                     abstractSerializedData.writeInt64(this.access_hash);
                 }
             };
             this.location = tLRPC$TL_inputEncryptedFileLocation;
             TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = imageLocation.location;
             long j = tLRPC$TL_fileLocationToBeDeprecated.volume_id;
-            tLRPC$TL_inputEncryptedFileLocation.f872id = j;
+            tLRPC$TL_inputEncryptedFileLocation.id = j;
             tLRPC$TL_inputEncryptedFileLocation.volume_id = j;
             tLRPC$TL_inputEncryptedFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated.local_id;
             tLRPC$TL_inputEncryptedFileLocation.access_hash = imageLocation.access_hash;
             byte[] bArr = new byte[32];
-            this.f807iv = bArr;
-            System.arraycopy(imageLocation.f812iv, 0, bArr, 0, bArr.length);
+            this.iv = bArr;
+            System.arraycopy(imageLocation.iv, 0, bArr, 0, bArr.length);
             this.key = imageLocation.key;
         } else if (imageLocation.photoPeer != null) {
             TLRPC$TL_inputPeerPhotoFileLocation tLRPC$TL_inputPeerPhotoFileLocation = new TLRPC$TL_inputPeerPhotoFileLocation();
             TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated2 = imageLocation.location;
             long j2 = tLRPC$TL_fileLocationToBeDeprecated2.volume_id;
-            tLRPC$TL_inputPeerPhotoFileLocation.f872id = j2;
+            tLRPC$TL_inputPeerPhotoFileLocation.id = j2;
             tLRPC$TL_inputPeerPhotoFileLocation.volume_id = j2;
             tLRPC$TL_inputPeerPhotoFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated2.local_id;
             tLRPC$TL_inputPeerPhotoFileLocation.photo_id = imageLocation.photoId;
@@ -237,7 +237,7 @@ public class FileLoadOperation {
             TLRPC$TL_inputStickerSetThumb tLRPC$TL_inputStickerSetThumb = new TLRPC$TL_inputStickerSetThumb();
             TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated3 = imageLocation.location;
             long j3 = tLRPC$TL_fileLocationToBeDeprecated3.volume_id;
-            tLRPC$TL_inputStickerSetThumb.f872id = j3;
+            tLRPC$TL_inputStickerSetThumb.id = j3;
             tLRPC$TL_inputStickerSetThumb.volume_id = j3;
             tLRPC$TL_inputStickerSetThumb.local_id = tLRPC$TL_fileLocationToBeDeprecated3.local_id;
             tLRPC$TL_inputStickerSetThumb.thumb_version = imageLocation.thumbVersion;
@@ -247,7 +247,7 @@ public class FileLoadOperation {
             if (imageLocation.photoId != 0) {
                 TLRPC$TL_inputPhotoFileLocation tLRPC$TL_inputPhotoFileLocation = new TLRPC$TL_inputPhotoFileLocation();
                 this.location = tLRPC$TL_inputPhotoFileLocation;
-                tLRPC$TL_inputPhotoFileLocation.f872id = imageLocation.photoId;
+                tLRPC$TL_inputPhotoFileLocation.id = imageLocation.photoId;
                 TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated4 = imageLocation.location;
                 tLRPC$TL_inputPhotoFileLocation.volume_id = tLRPC$TL_fileLocationToBeDeprecated4.volume_id;
                 tLRPC$TL_inputPhotoFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated4.local_id;
@@ -260,7 +260,7 @@ public class FileLoadOperation {
             } else {
                 TLRPC$TL_inputDocumentFileLocation tLRPC$TL_inputDocumentFileLocation = new TLRPC$TL_inputDocumentFileLocation();
                 this.location = tLRPC$TL_inputDocumentFileLocation;
-                tLRPC$TL_inputDocumentFileLocation.f872id = imageLocation.documentId;
+                tLRPC$TL_inputDocumentFileLocation.id = imageLocation.documentId;
                 TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated5 = imageLocation.location;
                 tLRPC$TL_inputDocumentFileLocation.volume_id = tLRPC$TL_fileLocationToBeDeprecated5.volume_id;
                 tLRPC$TL_inputDocumentFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated5.local_id;
@@ -323,20 +323,20 @@ public class FileLoadOperation {
 
             @Override
             public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-                this.f872id = abstractSerializedData.readInt64(z);
+                this.id = abstractSerializedData.readInt64(z);
                 this.access_hash = abstractSerializedData.readInt64(z);
             }
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
                 abstractSerializedData.writeInt32(constructor);
-                abstractSerializedData.writeInt64(this.f872id);
+                abstractSerializedData.writeInt64(this.id);
                 abstractSerializedData.writeInt64(this.access_hash);
             }
         };
         this.location = tLRPC$TL_inputSecureFileLocation;
         TLRPC$TL_secureFile tLRPC$TL_secureFile = secureDocument.secureFile;
-        tLRPC$TL_inputSecureFileLocation.f872id = tLRPC$TL_secureFile.f971id;
+        tLRPC$TL_inputSecureFileLocation.id = tLRPC$TL_secureFile.id;
         tLRPC$TL_inputSecureFileLocation.access_hash = tLRPC$TL_secureFile.access_hash;
         this.datacenterId = tLRPC$TL_secureFile.dc_id;
         this.totalBytesCount = tLRPC$TL_secureFile.size;
@@ -508,7 +508,7 @@ public class FileLoadOperation {
                         this.filePartsStream.writeInt(range2.end);
                     }
                 } catch (Exception e) {
-                    FileLog.m30e(e);
+                    FileLog.e(e);
                 }
                 ArrayList<FileLoadOperationStream> arrayList2 = this.streamListeners;
                 if (arrayList2 != null) {
@@ -518,7 +518,7 @@ public class FileLoadOperation {
                     }
                 }
             } else if (BuildVars.LOGS_ENABLED) {
-                FileLog.m32e(this.cacheFileFinal + " downloaded duplicate file part " + i + " - " + i2);
+                FileLog.e(this.cacheFileFinal + " downloaded duplicate file part " + i + " - " + i2);
             }
         }
     }
@@ -539,7 +539,7 @@ public class FileLoadOperation {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
         }
         return fileArr[0];
     }
@@ -676,7 +676,7 @@ public class FileLoadOperation {
                     this.requestsCount--;
                 }
                 if (BuildVars.DEBUG_VERSION) {
-                    FileLog.m33d("frame get cancel request at offset " + this.priorityRequestInfo.offset);
+                    FileLog.d("frame get cancel request at offset " + this.priorityRequestInfo.offset);
                 }
                 this.priorityRequestInfo = null;
             }
@@ -798,7 +798,7 @@ public class FileLoadOperation {
                         this.cacheFileFinal.deleteOnExit();
                     }
                 } catch (Exception e) {
-                    FileLog.m30e(e);
+                    FileLog.e(e);
                 }
             }
             File file2 = this.cacheFileTemp;
@@ -808,7 +808,7 @@ public class FileLoadOperation {
                         this.cacheFileTemp.deleteOnExit();
                     }
                 } catch (Exception e2) {
-                    FileLog.m30e(e2);
+                    FileLog.e(e2);
                 }
             }
             File file3 = this.cacheFileParts;
@@ -818,7 +818,7 @@ public class FileLoadOperation {
                         this.cacheFileParts.deleteOnExit();
                     }
                 } catch (Exception e3) {
-                    FileLog.m30e(e3);
+                    FileLog.e(e3);
                 }
             }
             File file4 = this.cacheIvTemp;
@@ -828,7 +828,7 @@ public class FileLoadOperation {
                         this.cacheIvTemp.deleteOnExit();
                     }
                 } catch (Exception e4) {
-                    FileLog.m30e(e4);
+                    FileLog.e(e4);
                 }
             }
             File file5 = this.cacheFilePreload;
@@ -838,7 +838,7 @@ public class FileLoadOperation {
                         this.cacheFilePreload.deleteOnExit();
                     }
                 } catch (Exception e5) {
-                    FileLog.m30e(e5);
+                    FileLog.e(e5);
                 }
             }
         }
@@ -851,13 +851,13 @@ public class FileLoadOperation {
                 try {
                     randomAccessFile.getChannel().close();
                 } catch (Exception e) {
-                    FileLog.m30e(e);
+                    FileLog.e(e);
                 }
                 this.fileOutputStream.close();
                 this.fileOutputStream = null;
             }
         } catch (Exception e2) {
-            FileLog.m30e(e2);
+            FileLog.e(e2);
         }
         try {
             RandomAccessFile randomAccessFile2 = this.preloadStream;
@@ -865,13 +865,13 @@ public class FileLoadOperation {
                 try {
                     randomAccessFile2.getChannel().close();
                 } catch (Exception e3) {
-                    FileLog.m30e(e3);
+                    FileLog.e(e3);
                 }
                 this.preloadStream.close();
                 this.preloadStream = null;
             }
         } catch (Exception e4) {
-            FileLog.m30e(e4);
+            FileLog.e(e4);
         }
         try {
             RandomAccessFile randomAccessFile3 = this.fileReadStream;
@@ -879,13 +879,13 @@ public class FileLoadOperation {
                 try {
                     randomAccessFile3.getChannel().close();
                 } catch (Exception e5) {
-                    FileLog.m30e(e5);
+                    FileLog.e(e5);
                 }
                 this.fileReadStream.close();
                 this.fileReadStream = null;
             }
         } catch (Exception e6) {
-            FileLog.m30e(e6);
+            FileLog.e(e6);
         }
         try {
             RandomAccessFile randomAccessFile4 = this.filePartsStream;
@@ -893,13 +893,13 @@ public class FileLoadOperation {
                 try {
                     randomAccessFile4.getChannel().close();
                 } catch (Exception e7) {
-                    FileLog.m30e(e7);
+                    FileLog.e(e7);
                 }
                 this.filePartsStream.close();
                 this.filePartsStream = null;
             }
         } catch (Exception e8) {
-            FileLog.m30e(e8);
+            FileLog.e(e8);
         }
         try {
             RandomAccessFile randomAccessFile5 = this.fiv;
@@ -908,7 +908,7 @@ public class FileLoadOperation {
                 this.fiv = null;
             }
         } catch (Exception e9) {
-            FileLog.m30e(e9);
+            FileLog.e(e9);
         }
         if (this.delayedRequestInfos != null) {
             for (int i = 0; i < this.delayedRequestInfos.size(); i++) {
@@ -937,7 +937,7 @@ public class FileLoadOperation {
             if (this.isPreloadVideoOperation) {
                 this.preloadFinished = true;
                 if (BuildVars.DEBUG_VERSION) {
-                    FileLog.m33d("finished preloading file to " + this.cacheFileTemp + " loaded " + this.totalPreloadedBytes + " of " + this.totalBytesCount);
+                    FileLog.d("finished preloading file to " + this.cacheFileTemp + " loaded " + this.totalPreloadedBytes + " of " + this.totalBytesCount);
                 }
             } else {
                 File file = this.cacheIvTemp;
@@ -968,9 +968,9 @@ public class FileLoadOperation {
                         } catch (ZipException unused) {
                             this.ungzip = false;
                         } catch (Throwable th) {
-                            FileLog.m30e(th);
+                            FileLog.e(th);
                             if (BuildVars.LOGS_ENABLED) {
-                                FileLog.m32e("unable to ungzip temp = " + this.cacheFileTemp + " to final = " + this.cacheFileFinal);
+                                FileLog.e("unable to ungzip temp = " + this.cacheFileTemp + " to final = " + this.cacheFileFinal);
                             }
                         }
                     }
@@ -979,7 +979,7 @@ public class FileLoadOperation {
                             try {
                                 z2 = AndroidUtilities.copyFile(this.cacheFileTemp, this.cacheFileFinal);
                             } catch (Exception e) {
-                                FileLog.m30e(e);
+                                FileLog.e(e);
                             }
                         } else {
                             try {
@@ -998,12 +998,12 @@ public class FileLoadOperation {
                                 }
                                 z2 = this.cacheFileTemp.renameTo(this.cacheFileFinal);
                             } catch (Exception e2) {
-                                FileLog.m30e(e2);
+                                FileLog.e(e2);
                             }
                         }
                         if (!z2) {
                             if (BuildVars.LOGS_ENABLED) {
-                                FileLog.m32e("unable to rename temp = " + this.cacheFileTemp + " to final = " + this.cacheFileFinal + " retry = " + this.renameRetryCount);
+                                FileLog.e("unable to rename temp = " + this.cacheFileTemp + " to final = " + this.cacheFileFinal + " retry = " + this.renameRetryCount);
                             }
                             int i2 = this.renameRetryCount + 1;
                             this.renameRetryCount = i2;
@@ -1028,7 +1028,7 @@ public class FileLoadOperation {
                     }
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m33d("finished downloading file to " + this.cacheFileFinal);
+                    FileLog.d("finished downloading file to " + this.cacheFileFinal);
                 }
                 if (z) {
                     int i3 = this.currentType;
@@ -1342,7 +1342,7 @@ public class FileLoadOperation {
                     }
                     this.requestedPreloadedBytesRanges.put(i, 1);
                     if (BuildVars.DEBUG_VERSION) {
-                        FileLog.m33d("start next preload from " + i + " size " + this.totalBytesCount + " for " + this.cacheFilePreload);
+                        FileLog.d("start next preload from " + i + " size " + this.totalBytesCount + " for " + this.cacheFilePreload);
                     }
                     this.preloadNotRequestedBytesCount -= this.currentDownloadChunkSize;
                 } else {
@@ -1403,7 +1403,7 @@ public class FileLoadOperation {
                     }
                     if (this.streamPriorityStartOffset != 0) {
                         if (BuildVars.DEBUG_VERSION) {
-                            FileLog.m33d("frame get offset = " + this.streamPriorityStartOffset);
+                            FileLog.d("frame get offset = " + this.streamPriorityStartOffset);
                         }
                         this.streamPriorityStartOffset = 0;
                         this.priorityRequestInfo = requestInfo;
@@ -1438,7 +1438,7 @@ public class FileLoadOperation {
         if (this.requestInfos.contains(requestInfo)) {
             if (requestInfo == this.priorityRequestInfo) {
                 if (BuildVars.DEBUG_VERSION) {
-                    FileLog.m33d("frame get request completed " + this.priorityRequestInfo.offset);
+                    FileLog.d("frame get request completed " + this.priorityRequestInfo.offset);
                 }
                 this.priorityRequestInfo = null;
             }

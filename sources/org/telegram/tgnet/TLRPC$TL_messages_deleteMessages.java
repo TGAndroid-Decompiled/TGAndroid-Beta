@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TLRPC$TL_messages_deleteMessages extends TLObject {
     public static int constructor = -443640366;
     public int flags;
-    public ArrayList<Integer> f930id = new ArrayList<>();
+    public ArrayList<Integer> id = new ArrayList<>();
     public boolean revoke;
 
     public static TLRPC$TL_messages_deleteMessages TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -34,7 +34,7 @@ public class TLRPC$TL_messages_deleteMessages extends TLObject {
         if (readInt322 == 481674261) {
             int readInt323 = abstractSerializedData.readInt32(z);
             for (int i = 0; i < readInt323; i++) {
-                this.f930id.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+                this.id.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
             }
         } else if (z) {
             throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
@@ -48,10 +48,10 @@ public class TLRPC$TL_messages_deleteMessages extends TLObject {
         this.flags = i;
         abstractSerializedData.writeInt32(i);
         abstractSerializedData.writeInt32(481674261);
-        int size = this.f930id.size();
+        int size = this.id.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            abstractSerializedData.writeInt32(this.f930id.get(i2).intValue());
+            abstractSerializedData.writeInt32(this.id.get(i2).intValue());
         }
     }
 }
