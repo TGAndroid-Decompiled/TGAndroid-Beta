@@ -12,6 +12,6 @@ public final class VoIPService$$ExternalSyntheticLambda96 implements RequestDele
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        VoIPService.lambda$onTgVoipStop$75(tLObject, tLRPC$TL_error);
+        VoIPService.lambda$callFailed$82(tLObject, tLRPC$TL_error);
     }
 }

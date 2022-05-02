@@ -10,7 +10,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
     public int flags;
     public boolean gifs;
     public int hash;
-    public long f886id;
+    public long f875id;
     public boolean installed;
     public int installed_date;
     public boolean masks;
@@ -30,7 +30,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f886id = abstractSerializedData2.readInt64(z2);
+                        this.f875id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.title = abstractSerializedData2.readString(z2);
                         this.short_name = abstractSerializedData2.readString(z2);
@@ -39,7 +39,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f886id);
+                        abstractSerializedData2.writeInt64(this.f875id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeString(this.short_name);
@@ -62,7 +62,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                             z3 = true;
                         }
                         this.masks = z3;
-                        this.f886id = abstractSerializedData2.readInt64(z2);
+                        this.f875id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.title = abstractSerializedData2.readString(z2);
                         this.short_name = abstractSerializedData2.readString(z2);
@@ -82,7 +82,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                         int i5 = this.masks ? i4 | 8 : i4 & (-9);
                         this.flags = i5;
                         abstractSerializedData2.writeInt32(i5);
-                        abstractSerializedData2.writeInt64(this.f886id);
+                        abstractSerializedData2.writeInt64(this.f875id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeString(this.short_name);
@@ -114,7 +114,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                         if ((readInt32 & 1) != 0) {
                             this.installed_date = abstractSerializedData2.readInt32(z2);
                         }
-                        this.f886id = abstractSerializedData2.readInt64(z2);
+                        this.f875id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.title = abstractSerializedData2.readString(z2);
                         this.short_name = abstractSerializedData2.readString(z2);
@@ -143,7 +143,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32(this.installed_date);
                         }
-                        abstractSerializedData2.writeInt64(this.f886id);
+                        abstractSerializedData2.writeInt64(this.f875id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeString(this.short_name);
@@ -173,7 +173,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                         if ((readInt32 & 1) != 0) {
                             this.installed_date = abstractSerializedData2.readInt32(z2);
                         }
-                        this.f886id = abstractSerializedData2.readInt64(z2);
+                        this.f875id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.title = abstractSerializedData2.readString(z2);
                         this.short_name = abstractSerializedData2.readString(z2);
@@ -217,7 +217,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32(this.installed_date);
                         }
-                        abstractSerializedData2.writeInt64(this.f886id);
+                        abstractSerializedData2.writeInt64(this.f875id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeString(this.short_name);
@@ -255,7 +255,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                         if ((readInt32 & 1) != 0) {
                             this.installed_date = abstractSerializedData2.readInt32(z2);
                         }
-                        this.f886id = abstractSerializedData2.readInt64(z2);
+                        this.f875id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.title = abstractSerializedData2.readString(z2);
                         this.short_name = abstractSerializedData2.readString(z2);
@@ -276,7 +276,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32(this.installed_date);
                         }
-                        abstractSerializedData2.writeInt64(this.f886id);
+                        abstractSerializedData2.writeInt64(this.f875id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeString(this.short_name);
@@ -304,7 +304,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                         if ((readInt32 & 1) != 0) {
                             this.installed_date = abstractSerializedData2.readInt32(z2);
                         }
-                        this.f886id = abstractSerializedData2.readInt64(z2);
+                        this.f875id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.title = abstractSerializedData2.readString(z2);
                         this.short_name = abstractSerializedData2.readString(z2);
@@ -328,7 +328,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32(this.installed_date);
                         }
-                        abstractSerializedData2.writeInt64(this.f886id);
+                        abstractSerializedData2.writeInt64(this.f875id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeString(this.short_name);

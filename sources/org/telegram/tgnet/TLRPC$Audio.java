@@ -5,8 +5,8 @@ public abstract class TLRPC$Audio extends TLObject {
     public int date;
     public int dc_id;
     public int duration;
-    public long f850id;
-    public byte[] f851iv;
+    public long f839id;
+    public byte[] f840iv;
     public byte[] key;
     public String mime_type;
     public int size;
@@ -21,7 +21,7 @@ public abstract class TLRPC$Audio extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f850id = abstractSerializedData2.readInt64(z2);
+                        this.f839id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.user_id = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -34,7 +34,7 @@ public abstract class TLRPC$Audio extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f850id);
+                        abstractSerializedData2.writeInt64(this.f839id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt32(this.date);
@@ -54,7 +54,7 @@ public abstract class TLRPC$Audio extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f850id = abstractSerializedData2.readInt64(z2);
+                        this.f839id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.user_id = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -66,7 +66,7 @@ public abstract class TLRPC$Audio extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f850id);
+                        abstractSerializedData2.writeInt64(this.f839id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt32(this.date);
@@ -82,7 +82,7 @@ public abstract class TLRPC$Audio extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f850id = abstractSerializedData2.readInt64(z2);
+                        this.f839id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.user_id = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -90,13 +90,13 @@ public abstract class TLRPC$Audio extends TLObject {
                         this.size = abstractSerializedData2.readInt32(z2);
                         this.dc_id = abstractSerializedData2.readInt32(z2);
                         this.key = abstractSerializedData2.readByteArray(z2);
-                        this.f851iv = abstractSerializedData2.readByteArray(z2);
+                        this.f840iv = abstractSerializedData2.readByteArray(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f850id);
+                        abstractSerializedData2.writeInt64(this.f839id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt32(this.date);
@@ -104,7 +104,7 @@ public abstract class TLRPC$Audio extends TLObject {
                         abstractSerializedData2.writeInt32(this.size);
                         abstractSerializedData2.writeInt32(this.dc_id);
                         abstractSerializedData2.writeByteArray(this.key);
-                        abstractSerializedData2.writeByteArray(this.f851iv);
+                        abstractSerializedData2.writeByteArray(this.f840iv);
                     }
                 };
                 break;
@@ -114,13 +114,13 @@ public abstract class TLRPC$Audio extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f850id = abstractSerializedData2.readInt64(z2);
+                        this.f839id = abstractSerializedData2.readInt64(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f850id);
+                        abstractSerializedData2.writeInt64(this.f839id);
                     }
                 };
                 break;

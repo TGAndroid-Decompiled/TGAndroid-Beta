@@ -737,7 +737,7 @@ public class MessagesStorage extends BaseController {
                     byteBufferValue2.reuse();
                     if (TLdeserialize != null) {
                         TLRPC$TL_chatFull tLRPC$TL_chatFull = new TLRPC$TL_chatFull();
-                        tLRPC$TL_chatFull.f855id = intValue2;
+                        tLRPC$TL_chatFull.f844id = intValue2;
                         tLRPC$TL_chatFull.chat_photo = new TLRPC$TL_photoEmpty();
                         tLRPC$TL_chatFull.notify_settings = new TLRPC$TL_peerNotifySettingsEmpty_layer77();
                         tLRPC$TL_chatFull.exported_invite = null;
@@ -1867,7 +1867,7 @@ public class MessagesStorage extends BaseController {
                             case 10:
                             case 14:
                                 final TLRPC$TL_dialog tLRPC$TL_dialog = new TLRPC$TL_dialog();
-                                tLRPC$TL_dialog.f860id = byteBufferValue.readInt64(false);
+                                tLRPC$TL_dialog.f849id = byteBufferValue.readInt64(false);
                                 tLRPC$TL_dialog.top_message = byteBufferValue.readInt32(false);
                                 tLRPC$TL_dialog.read_inbox_max_id = byteBufferValue.readInt32(false);
                                 tLRPC$TL_dialog.read_outbox_max_id = byteBufferValue.readInt32(false);
@@ -1961,8 +1961,8 @@ public class MessagesStorage extends BaseController {
                                 });
                                 break;
                             case 12:
-                            case C0952R.styleable.MapAttrs_uiTiltGestures:
-                            case C0952R.styleable.MapAttrs_uiZoomControls:
+                            case C0890R.styleable.MapAttrs_uiTiltGestures:
+                            case C0890R.styleable.MapAttrs_uiZoomControls:
                                 removePendingTask(longValue);
                                 break;
                             case 13:
@@ -2016,7 +2016,7 @@ public class MessagesStorage extends BaseController {
                                     }
                                 });
                                 break;
-                            case C0952R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
+                            case C0890R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
                                 final long readInt644 = byteBufferValue.readInt64(false);
                                 byteBufferValue.readInt32(false);
                                 final TLRPC$TL_messages_deleteScheduledMessages TLdeserialize11 = TLRPC$TL_messages_deleteScheduledMessages.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
@@ -2032,7 +2032,7 @@ public class MessagesStorage extends BaseController {
                                     });
                                     break;
                                 }
-                            case C0952R.styleable.MapAttrs_uiZoomGestures:
+                            case C0890R.styleable.MapAttrs_uiZoomGestures:
                                 final Theme.OverrideWallpaperInfo overrideWallpaperInfo = new Theme.OverrideWallpaperInfo();
                                 byteBufferValue.readInt64(false);
                                 overrideWallpaperInfo.isBlurred = byteBufferValue.readBool(false);
@@ -2051,7 +2051,7 @@ public class MessagesStorage extends BaseController {
                                     }
                                 });
                                 break;
-                            case C0952R.styleable.MapAttrs_useViewLifecycle:
+                            case C0890R.styleable.MapAttrs_useViewLifecycle:
                                 final TLRPC$InputPeer TLdeserialize12 = TLRPC$InputPeer.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
@@ -2060,7 +2060,7 @@ public class MessagesStorage extends BaseController {
                                     }
                                 });
                                 break;
-                            case C0952R.styleable.MapAttrs_zOrderOnTop:
+                            case C0890R.styleable.MapAttrs_zOrderOnTop:
                                 final long readInt645 = byteBufferValue.readInt64(false);
                                 final int readInt3217 = byteBufferValue.readInt32(false);
                                 final int readInt3218 = byteBufferValue.readInt32(false);
@@ -2462,13 +2462,13 @@ public class MessagesStorage extends BaseController {
             int i3 = z ? 1 : 0;
             long longValue = queryFinalized.longValue(i2);
             TLRPC$TL_dialog tLRPC$TL_dialog = new TLRPC$TL_dialog();
-            tLRPC$TL_dialog.f860id = longValue;
+            tLRPC$TL_dialog.f849id = longValue;
             tLRPC$TL_dialog.top_message = queryFinalized.intValue(1);
             tLRPC$TL_dialog.unread_count = queryFinalized.intValue(2);
             tLRPC$TL_dialog.last_message_date = queryFinalized.intValue(3);
             int intValue = queryFinalized.intValue(10);
             tLRPC$TL_dialog.pts = intValue;
-            tLRPC$TL_dialog.flags = (intValue == 0 || DialogObject.isUserDialog(tLRPC$TL_dialog.f860id)) ? 0 : 1;
+            tLRPC$TL_dialog.flags = (intValue == 0 || DialogObject.isUserDialog(tLRPC$TL_dialog.f849id)) ? 0 : 1;
             tLRPC$TL_dialog.read_inbox_max_id = queryFinalized.intValue(11);
             tLRPC$TL_dialog.read_outbox_max_id = queryFinalized.intValue(12);
             int intValue2 = queryFinalized.intValue(14);
@@ -2496,13 +2496,13 @@ public class MessagesStorage extends BaseController {
                     TLdeserialize.readAttachPath(byteBufferValue2, getUserConfig().clientUserId);
                     byteBufferValue2.reuse();
                     MessageObject.setUnreadFlags(TLdeserialize, queryFinalized.intValue(5));
-                    TLdeserialize.f877id = queryFinalized.intValue(6);
+                    TLdeserialize.f866id = queryFinalized.intValue(6);
                     int intValue3 = queryFinalized.intValue(9);
                     if (intValue3 != 0) {
                         tLRPC$TL_dialog.last_message_date = intValue3;
                     }
                     TLdeserialize.send_state = queryFinalized.intValue(7);
-                    TLdeserialize.dialog_id = tLRPC$TL_dialog.f860id;
+                    TLdeserialize.dialog_id = tLRPC$TL_dialog.f849id;
                     tLRPC$TL_messages_dialogs.messages.add(TLdeserialize);
                     addUsersAndChatsFromMessage(TLdeserialize, arrayList, arrayList2);
                     try {
@@ -2524,7 +2524,7 @@ public class MessagesStorage extends BaseController {
                                     }
                                 }
                                 if (tLRPC$Message.replyMessage == null) {
-                                    longSparseArray.put(tLRPC$TL_dialog.f860id, tLRPC$Message);
+                                    longSparseArray.put(tLRPC$TL_dialog.f849id, tLRPC$Message);
                                 }
                             }
                         }
@@ -2560,7 +2560,7 @@ public class MessagesStorage extends BaseController {
                 SQLiteDatabase sQLiteDatabase = this.database;
                 Locale locale = Locale.US;
                 Object[] objArr = new Object[i];
-                objArr[0] = Integer.valueOf(tLRPC$Message3.f877id);
+                objArr[0] = Integer.valueOf(tLRPC$Message3.f866id);
                 objArr[1] = Long.valueOf(keyAt);
                 SQLiteCursor queryFinalized2 = sQLiteDatabase.queryFinalized(String.format(locale, "SELECT data, mid, date, uid FROM messages_v2 WHERE mid = %d and uid = %d", objArr), new Object[0]);
                 while (queryFinalized2.next()) {
@@ -2569,7 +2569,7 @@ public class MessagesStorage extends BaseController {
                         TLRPC$Message TLdeserialize3 = TLRPC$Message.TLdeserialize(byteBufferValue3, byteBufferValue3.readInt32(false), false);
                         TLdeserialize3.readAttachPath(byteBufferValue3, getUserConfig().clientUserId);
                         byteBufferValue3.reuse();
-                        TLdeserialize3.f877id = queryFinalized2.intValue(1);
+                        TLdeserialize3.f866id = queryFinalized2.intValue(1);
                         TLdeserialize3.date = queryFinalized2.intValue(2);
                         TLdeserialize3.dialog_id = queryFinalized2.longValue(3);
                         addUsersAndChatsFromMessage(TLdeserialize3, arrayList, arrayList2);
@@ -2609,15 +2609,15 @@ public class MessagesStorage extends BaseController {
             boolean z = false;
             while (queryFinalized.next()) {
                 MessagesController.DialogFilter dialogFilter = new MessagesController.DialogFilter();
-                dialogFilter.f819id = queryFinalized.intValue(i);
+                dialogFilter.f808id = queryFinalized.intValue(i);
                 dialogFilter.order = queryFinalized.intValue(1);
                 dialogFilter.unreadCount = -1;
                 dialogFilter.pendingUnreadCount = -1;
                 dialogFilter.flags = queryFinalized.intValue(3);
                 dialogFilter.name = queryFinalized.stringValue(4);
                 this.dialogFilters.add(dialogFilter);
-                this.dialogFiltersMap.put(dialogFilter.f819id, dialogFilter);
-                sparseArray.put(dialogFilter.f819id, dialogFilter);
+                this.dialogFiltersMap.put(dialogFilter.f808id, dialogFilter);
+                sparseArray.put(dialogFilter.f808id, dialogFilter);
                 if (dialogFilter.pendingUnreadCount < 0) {
                     z = true;
                 }
@@ -2625,10 +2625,10 @@ public class MessagesStorage extends BaseController {
                 while (i2 < 2) {
                     if (i2 == 0) {
                         SQLiteDatabase sQLiteDatabase = this.database;
-                        sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT peer, pin FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f819id, new Object[i]);
+                        sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT peer, pin FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f808id, new Object[i]);
                     } else {
                         SQLiteDatabase sQLiteDatabase2 = this.database;
-                        sQLiteCursor = sQLiteDatabase2.queryFinalized("SELECT peer FROM dialog_filter_ep WHERE id = " + dialogFilter.f819id, new Object[i]);
+                        sQLiteCursor = sQLiteDatabase2.queryFinalized("SELECT peer FROM dialog_filter_ep WHERE id = " + dialogFilter.f808id, new Object[i]);
                     }
                     while (sQLiteCursor.next()) {
                         long longValue = sQLiteCursor.longValue(i);
@@ -2716,10 +2716,10 @@ public class MessagesStorage extends BaseController {
                 } else {
                     this.dialogFilters.add(dialogFilter);
                 }
-                this.dialogFiltersMap.put(dialogFilter.f819id, dialogFilter);
+                this.dialogFiltersMap.put(dialogFilter.f808id, dialogFilter);
             }
             SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO dialog_filter VALUES(?, ?, ?, ?, ?)");
-            executeFast.bindInteger(1, dialogFilter.f819id);
+            executeFast.bindInteger(1, dialogFilter.f808id);
             executeFast.bindInteger(2, dialogFilter.order);
             executeFast.bindInteger(3, dialogFilter.unreadCount);
             executeFast.bindInteger(4, dialogFilter.flags);
@@ -2728,16 +2728,16 @@ public class MessagesStorage extends BaseController {
             executeFast.dispose();
             if (z2) {
                 SQLiteDatabase sQLiteDatabase = this.database;
-                sQLiteDatabase.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + dialogFilter.f819id).stepThis().dispose();
+                sQLiteDatabase.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + dialogFilter.f808id).stepThis().dispose();
                 SQLiteDatabase sQLiteDatabase2 = this.database;
-                sQLiteDatabase2.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f819id).stepThis().dispose();
+                sQLiteDatabase2.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f808id).stepThis().dispose();
                 this.database.beginTransaction();
                 SQLitePreparedStatement executeFast2 = this.database.executeFast("REPLACE INTO dialog_filter_pin_v2 VALUES(?, ?, ?)");
                 int size = dialogFilter.alwaysShow.size();
                 for (int i = 0; i < size; i++) {
                     long longValue = dialogFilter.alwaysShow.get(i).longValue();
                     executeFast2.requery();
-                    executeFast2.bindInteger(1, dialogFilter.f819id);
+                    executeFast2.bindInteger(1, dialogFilter.f808id);
                     executeFast2.bindLong(2, longValue);
                     executeFast2.bindInteger(3, dialogFilter.pinnedDialogs.get(longValue, Integer.MIN_VALUE));
                     executeFast2.step();
@@ -2747,7 +2747,7 @@ public class MessagesStorage extends BaseController {
                     long keyAt = dialogFilter.pinnedDialogs.keyAt(i2);
                     if (DialogObject.isEncryptedDialog(keyAt)) {
                         executeFast2.requery();
-                        executeFast2.bindInteger(1, dialogFilter.f819id);
+                        executeFast2.bindInteger(1, dialogFilter.f808id);
                         executeFast2.bindLong(2, keyAt);
                         executeFast2.bindInteger(3, dialogFilter.pinnedDialogs.valueAt(i2));
                         executeFast2.step();
@@ -2758,7 +2758,7 @@ public class MessagesStorage extends BaseController {
                 int size3 = dialogFilter.neverShow.size();
                 for (int i3 = 0; i3 < size3; i3++) {
                     executeFast3.requery();
-                    executeFast3.bindInteger(1, dialogFilter.f819id);
+                    executeFast3.bindInteger(1, dialogFilter.f808id);
                     executeFast3.bindLong(2, dialogFilter.neverShow.get(i3).longValue());
                     executeFast3.step();
                 }
@@ -2839,7 +2839,7 @@ public class MessagesStorage extends BaseController {
         boolean z2 = false;
         for (int i3 = 0; i3 < size3; i3++) {
             MessagesController.DialogFilter dialogFilter4 = this.dialogFilters.get(i3);
-            int indexOf = arrayList4.indexOf(Integer.valueOf(dialogFilter4.f819id));
+            int indexOf = arrayList4.indexOf(Integer.valueOf(dialogFilter4.f808id));
             if (dialogFilter4.order != indexOf) {
                 dialogFilter4.order = indexOf;
                 z2 = true;
@@ -2876,13 +2876,13 @@ public class MessagesStorage extends BaseController {
     public void lambda$deleteDialogFilter$46(MessagesController.DialogFilter dialogFilter) {
         try {
             this.dialogFilters.remove(dialogFilter);
-            this.dialogFiltersMap.remove(dialogFilter.f819id);
+            this.dialogFiltersMap.remove(dialogFilter.f808id);
             SQLiteDatabase sQLiteDatabase = this.database;
-            sQLiteDatabase.executeFast("DELETE FROM dialog_filter WHERE id = " + dialogFilter.f819id).stepThis().dispose();
+            sQLiteDatabase.executeFast("DELETE FROM dialog_filter WHERE id = " + dialogFilter.f808id).stepThis().dispose();
             SQLiteDatabase sQLiteDatabase2 = this.database;
-            sQLiteDatabase2.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + dialogFilter.f819id).stepThis().dispose();
+            sQLiteDatabase2.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + dialogFilter.f808id).stepThis().dispose();
             SQLiteDatabase sQLiteDatabase3 = this.database;
-            sQLiteDatabase3.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f819id).stepThis().dispose();
+            sQLiteDatabase3.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f808id).stepThis().dispose();
         } catch (Exception e) {
             FileLog.m30e(e);
         }
@@ -2937,7 +2937,7 @@ public class MessagesStorage extends BaseController {
                 executeFast.requery();
                 executeFast.bindInteger(1, dialogFilter.order);
                 executeFast.bindInteger(2, dialogFilter.flags);
-                executeFast.bindInteger(3, dialogFilter.f819id);
+                executeFast.bindInteger(3, dialogFilter.f808id);
                 executeFast.step();
             }
             executeFast.dispose();
@@ -3011,11 +3011,11 @@ public class MessagesStorage extends BaseController {
                             TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(i), i);
                             TLdeserialize.readAttachPath(byteBufferValue, getUserConfig().clientUserId);
                             byteBufferValue.reuse();
-                            TLdeserialize.f877id = sQLiteCursor.intValue(1);
+                            TLdeserialize.f866id = sQLiteCursor.intValue(1);
                             TLdeserialize.date = sQLiteCursor.intValue(2);
                             TLdeserialize.dialog_id = sQLiteCursor.longValue(3);
                             addUsersAndChatsFromMessage(TLdeserialize, arrayList, arrayList2);
-                            ArrayList<TLRPC$Message> arrayList4 = valueAt.get(TLdeserialize.f877id);
+                            ArrayList<TLRPC$Message> arrayList4 = valueAt.get(TLdeserialize.f866id);
                             if (arrayList4 != null) {
                                 int size2 = arrayList4.size();
                                 for (int i3 = 0; i3 < size2; i3++) {
@@ -3119,7 +3119,7 @@ public class MessagesStorage extends BaseController {
                         TLdeserialize.readAttachPath(byteBufferValue2, getUserConfig().clientUserId);
                         byteBufferValue2.reuse();
                         MessageObject.setUnreadFlags(TLdeserialize, queryFinalized2.intValue(0));
-                        TLdeserialize.f877id = queryFinalized2.intValue(3);
+                        TLdeserialize.f866id = queryFinalized2.intValue(3);
                         TLdeserialize.date = queryFinalized2.intValue(4);
                         str2 = str;
                         TLdeserialize.dialog_id = queryFinalized2.longValue(5);
@@ -3127,7 +3127,7 @@ public class MessagesStorage extends BaseController {
                         int max = Math.max(i3, TLdeserialize.date);
                         addUsersAndChatsFromMessage(TLdeserialize, arrayList7, arrayList8);
                         TLdeserialize.send_state = queryFinalized2.intValue(2);
-                        if ((TLdeserialize.peer_id.channel_id == 0 && !MessageObject.isUnread(TLdeserialize) && !DialogObject.isEncryptedDialog(TLdeserialize.dialog_id)) || TLdeserialize.f877id > 0) {
+                        if ((TLdeserialize.peer_id.channel_id == 0 && !MessageObject.isUnread(TLdeserialize) && !DialogObject.isEncryptedDialog(TLdeserialize.dialog_id)) || TLdeserialize.f866id > 0) {
                             TLdeserialize.send_state = 0;
                         }
                         if (DialogObject.isEncryptedDialog(TLdeserialize.dialog_id) && !queryFinalized2.isNull(5)) {
@@ -3195,7 +3195,7 @@ public class MessagesStorage extends BaseController {
                     if (byteBufferValue3 != null) {
                         TLRPC$Message TLdeserialize3 = TLRPC$Message.TLdeserialize(byteBufferValue3, byteBufferValue3.readInt32(z2), z2);
                         byteBufferValue3.reuse();
-                        TLdeserialize3.f877id = queryFinalized3.intValue(1);
+                        TLdeserialize3.f866id = queryFinalized3.intValue(1);
                         TLdeserialize3.date = queryFinalized3.intValue(2);
                         TLdeserialize3.dialog_id = queryFinalized3.longValue(3);
                         ArrayList<TLRPC$EncryptedChat> arrayList15 = arrayList14;
@@ -3246,7 +3246,7 @@ public class MessagesStorage extends BaseController {
                         if (tLRPC$Chat == null || (!ChatObject.isNotInChat(tLRPC$Chat) && !tLRPC$Chat.min && tLRPC$Chat.migrated_to == null)) {
                             longSparseArray2 = longSparseArray7;
                         } else {
-                            long j2 = -tLRPC$Chat.f854id;
+                            long j2 = -tLRPC$Chat.f843id;
                             this.database.executeFast("UPDATE dialogs SET unread_count = 0 WHERE did = " + j2).stepThis().dispose();
                             this.database.executeFast(String.format(Locale.US, "UPDATE messages_v2 SET read_state = 3 WHERE uid = %d AND mid > 0 AND read_state IN(0,2) AND out = 0", Long.valueOf(j2))).stepThis().dispose();
                             arrayList2.remove(i6);
@@ -3326,7 +3326,7 @@ public class MessagesStorage extends BaseController {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$WallPaper.getObjectSize());
             tLRPC$WallPaper.serializeToStream(nativeByteBuffer);
             if (i != 0) {
-                sQLitePreparedStatement.bindLong(1, tLRPC$WallPaper.f993id);
+                sQLitePreparedStatement.bindLong(1, tLRPC$WallPaper.f982id);
                 sQLitePreparedStatement.bindByteBuffer(2, nativeByteBuffer);
                 if (i < 0) {
                     sQLitePreparedStatement.bindInteger(3, i);
@@ -3335,7 +3335,7 @@ public class MessagesStorage extends BaseController {
                 }
             } else {
                 sQLitePreparedStatement.bindByteBuffer(1, nativeByteBuffer);
-                sQLitePreparedStatement.bindLong(2, tLRPC$WallPaper.f993id);
+                sQLitePreparedStatement.bindLong(2, tLRPC$WallPaper.f982id);
             }
             sQLitePreparedStatement.step();
             nativeByteBuffer.reuse();
@@ -3492,27 +3492,27 @@ public class MessagesStorage extends BaseController {
                 if (document == null) {
                     return false;
                 }
-                j = document.f861id;
+                j = document.f850id;
             } else if (MessageObject.isVideoMessage(tLRPC$Message) || MessageObject.isRoundVideoMessage(tLRPC$Message) || MessageObject.isGifMessage(tLRPC$Message)) {
                 if (document == null) {
                     return false;
                 }
-                j = document.f861id;
+                j = document.f850id;
                 i = 4;
             } else if (document != null) {
-                j = document.f861id;
+                j = document.f850id;
                 i = 8;
             } else if (photo == null || FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize()) == null) {
                 j = 0;
                 i = 0;
             } else {
-                j = photo.f882id;
+                j = photo.f871id;
             }
             i = 1;
         } else if (document == null) {
             return false;
         } else {
-            j = document.f861id;
+            j = document.f850id;
             i = 2;
         }
         if (j != 0) {
@@ -3526,7 +3526,7 @@ public class MessagesStorage extends BaseController {
                 if (!TextUtils.isEmpty(attachFileName)) {
                     arrayList3.add(attachFileName);
                 }
-                File pathToAttach = getFileLoader().getPathToAttach(tLRPC$PhotoSize, z);
+                File pathToAttach = FileLoader.getPathToAttach(tLRPC$PhotoSize, z);
                 if (pathToAttach.toString().length() > 0) {
                     arrayList.add(pathToAttach);
                 }
@@ -3540,13 +3540,13 @@ public class MessagesStorage extends BaseController {
             if (!TextUtils.isEmpty(attachFileName2)) {
                 arrayList3.add(attachFileName2);
             }
-            File pathToAttach2 = getFileLoader().getPathToAttach(document, z);
+            File pathToAttach2 = FileLoader.getPathToAttach(document, z);
             if (pathToAttach2.toString().length() > 0) {
                 arrayList.add(pathToAttach2);
             }
             int size2 = document.thumbs.size();
             while (i2 < size2) {
-                File pathToAttach3 = getFileLoader().getPathToAttach(document.thumbs.get(i2));
+                File pathToAttach3 = FileLoader.getPathToAttach(document.thumbs.get(i2));
                 if (pathToAttach3.toString().length() > 0) {
                     arrayList.add(pathToAttach3);
                 }
@@ -3732,7 +3732,7 @@ public class MessagesStorage extends BaseController {
                         ((TLRPC$Message) arrayList.get(i)).serializeToStream(nativeByteBuffer);
                     }
                     executeFast.bindLong(1, j);
-                    executeFast.bindLong(2, tLRPC$Photo.f882id);
+                    executeFast.bindLong(2, tLRPC$Photo.f871id);
                     executeFast.bindByteBuffer(3, nativeByteBuffer);
                     executeFast.step();
                     nativeByteBuffer.reuse();
@@ -4218,7 +4218,7 @@ public class MessagesStorage extends BaseController {
                 SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?)");
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$ChatFull.getObjectSize());
                 tLRPC$ChatFull.serializeToStream(nativeByteBuffer);
-                executeFast.bindLong(1, tLRPC$ChatFull.f855id);
+                executeFast.bindLong(1, tLRPC$ChatFull.f844id);
                 executeFast.bindByteBuffer(2, nativeByteBuffer);
                 executeFast.bindInteger(3, tLRPC$ChatFull.pinned_msg_id);
                 executeFast.bindInteger(4, tLRPC$ChatFull.online_count);
@@ -4494,7 +4494,7 @@ public class MessagesStorage extends BaseController {
         HashMap<Integer, MessageObject> hashMap = new HashMap<>();
         ArrayList<Integer> arrayList = new ArrayList<>();
         try {
-            SQLiteCursor queryFinalized2 = this.database.queryFinalized("SELECT info, pinned FROM user_settings WHERE uid = " + tLRPC$User.f985id, new Object[0]);
+            SQLiteCursor queryFinalized2 = this.database.queryFinalized("SELECT info, pinned FROM user_settings WHERE uid = " + tLRPC$User.f974id, new Object[0]);
             boolean z6 = true;
             if (!queryFinalized2.next() || (byteBufferValue = queryFinalized2.byteBufferValue(0)) == null) {
                 tLRPC$UserFull2 = null;
@@ -4531,14 +4531,14 @@ public class MessagesStorage extends BaseController {
                 }
             }
             queryFinalized2.dispose();
-            SQLiteCursor queryFinalized3 = getMessagesStorage().getDatabase().queryFinalized(String.format(Locale.US, "SELECT mid FROM chat_pinned_v2 WHERE uid = %d ORDER BY mid DESC", Long.valueOf(tLRPC$User.f985id)), new Object[0]);
+            SQLiteCursor queryFinalized3 = getMessagesStorage().getDatabase().queryFinalized(String.format(Locale.US, "SELECT mid FROM chat_pinned_v2 WHERE uid = %d ORDER BY mid DESC", Long.valueOf(tLRPC$User.f974id)), new Object[0]);
             while (queryFinalized3.next()) {
                 int intValue = queryFinalized3.intValue(0);
                 arrayList.add(Integer.valueOf(intValue));
                 hashMap.put(Integer.valueOf(intValue), null);
             }
             queryFinalized3.dispose();
-            queryFinalized = this.database.queryFinalized("SELECT count, end FROM chat_pinned_count WHERE uid = " + tLRPC$User.f985id, new Object[0]);
+            queryFinalized = this.database.queryFinalized("SELECT count, end FROM chat_pinned_count WHERE uid = " + tLRPC$User.f974id, new Object[0]);
             if (queryFinalized.next()) {
                 int intValue2 = queryFinalized.intValue(0);
                 try {
@@ -4585,7 +4585,7 @@ public class MessagesStorage extends BaseController {
                 arrayList.add(Integer.valueOf(tLRPC$UserFull2.pinned_msg_id));
                 hashMap.put(Integer.valueOf(tLRPC$UserFull2.pinned_msg_id), null);
             }
-            if (!arrayList.isEmpty() && (loadPinnedMessages = getMediaDataController().loadPinnedMessages(tLRPC$User.f985id, 0L, arrayList, false)) != null) {
+            if (!arrayList.isEmpty() && (loadPinnedMessages = getMediaDataController().loadPinnedMessages(tLRPC$User.f974id, 0L, arrayList, false)) != null) {
                 int size = loadPinnedMessages.size();
                 for (int i5 = 0; i5 < size; i5++) {
                     MessageObject messageObject = loadPinnedMessages.get(i5);
@@ -4636,7 +4636,7 @@ public class MessagesStorage extends BaseController {
         if (z) {
             try {
                 SQLiteDatabase sQLiteDatabase = this.database;
-                SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT uid FROM user_settings WHERE uid = " + tLRPC$UserFull.user.f985id, new Object[0]);
+                SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT uid FROM user_settings WHERE uid = " + tLRPC$UserFull.user.f974id, new Object[0]);
                 boolean next = queryFinalized.next();
                 queryFinalized.dispose();
                 if (!next) {
@@ -4650,7 +4650,7 @@ public class MessagesStorage extends BaseController {
         SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO user_settings VALUES(?, ?, ?)");
         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$UserFull.getObjectSize());
         tLRPC$UserFull.serializeToStream(nativeByteBuffer);
-        executeFast.bindLong(1, tLRPC$UserFull.user.f985id);
+        executeFast.bindLong(1, tLRPC$UserFull.user.f974id);
         executeFast.bindByteBuffer(2, nativeByteBuffer);
         executeFast.bindInteger(3, tLRPC$UserFull.pinned_msg_id);
         executeFast.step();
@@ -4659,10 +4659,10 @@ public class MessagesStorage extends BaseController {
         if ((tLRPC$UserFull.flags & 2048) != 0) {
             SQLitePreparedStatement executeFast2 = this.database.executeFast("UPDATE dialogs SET folder_id = ? WHERE did = ?");
             executeFast2.bindInteger(1, tLRPC$UserFull.folder_id);
-            executeFast2.bindLong(2, tLRPC$UserFull.user.f985id);
+            executeFast2.bindLong(2, tLRPC$UserFull.user.f974id);
             executeFast2.step();
             executeFast2.dispose();
-            this.unknownDialogsIds.remove(tLRPC$UserFull.user.f985id);
+            this.unknownDialogsIds.remove(tLRPC$UserFull.user.f974id);
         }
     }
 
@@ -4724,7 +4724,7 @@ public class MessagesStorage extends BaseController {
         int i2;
         try {
             SQLiteDatabase sQLiteDatabase = this.database;
-            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT online, inviter, links FROM chat_settings_v2 WHERE uid = " + tLRPC$ChatFull.f855id, new Object[0]);
+            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT online, inviter, links FROM chat_settings_v2 WHERE uid = " + tLRPC$ChatFull.f844id, new Object[0]);
             if (queryFinalized.next()) {
                 i2 = queryFinalized.intValue(0);
                 tLRPC$ChatFull.inviterId = queryFinalized.longValue(1);
@@ -4744,7 +4744,7 @@ public class MessagesStorage extends BaseController {
                 SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?)");
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$ChatFull.getObjectSize());
                 tLRPC$ChatFull.serializeToStream(nativeByteBuffer);
-                executeFast.bindLong(1, tLRPC$ChatFull.f855id);
+                executeFast.bindLong(1, tLRPC$ChatFull.f844id);
                 executeFast.bindByteBuffer(2, nativeByteBuffer);
                 executeFast.bindInteger(3, tLRPC$ChatFull.pinned_msg_id);
                 executeFast.bindInteger(4, tLRPC$ChatFull.online_count);
@@ -4755,14 +4755,14 @@ public class MessagesStorage extends BaseController {
                 nativeByteBuffer.reuse();
                 if (tLRPC$ChatFull instanceof TLRPC$TL_channelFull) {
                     SQLiteDatabase sQLiteDatabase2 = this.database;
-                    SQLiteCursor queryFinalized2 = sQLiteDatabase2.queryFinalized("SELECT inbox_max, outbox_max FROM dialogs WHERE did = " + (-tLRPC$ChatFull.f855id), new Object[0]);
+                    SQLiteCursor queryFinalized2 = sQLiteDatabase2.queryFinalized("SELECT inbox_max, outbox_max FROM dialogs WHERE did = " + (-tLRPC$ChatFull.f844id), new Object[0]);
                     if (queryFinalized2.next() && queryFinalized2.intValue(0) < tLRPC$ChatFull.read_inbox_max_id) {
                         int intValue = queryFinalized2.intValue(1);
                         SQLitePreparedStatement executeFast2 = this.database.executeFast("UPDATE dialogs SET unread_count = ?, inbox_max = ?, outbox_max = ? WHERE did = ?");
                         executeFast2.bindInteger(1, tLRPC$ChatFull.unread_count);
                         executeFast2.bindInteger(2, tLRPC$ChatFull.read_inbox_max_id);
                         executeFast2.bindInteger(3, Math.max(intValue, tLRPC$ChatFull.read_outbox_max_id));
-                        executeFast2.bindLong(4, -tLRPC$ChatFull.f855id);
+                        executeFast2.bindLong(4, -tLRPC$ChatFull.f844id);
                         executeFast2.step();
                         executeFast2.dispose();
                     }
@@ -4771,10 +4771,10 @@ public class MessagesStorage extends BaseController {
                 if ((tLRPC$ChatFull.flags & 2048) != 0) {
                     SQLitePreparedStatement executeFast3 = this.database.executeFast("UPDATE dialogs SET folder_id = ? WHERE did = ?");
                     executeFast3.bindInteger(1, tLRPC$ChatFull.folder_id);
-                    executeFast3.bindLong(2, -tLRPC$ChatFull.f855id);
+                    executeFast3.bindLong(2, -tLRPC$ChatFull.f844id);
                     executeFast3.step();
                     executeFast3.dispose();
-                    this.unknownDialogsIds.remove(-tLRPC$ChatFull.f855id);
+                    this.unknownDialogsIds.remove(-tLRPC$ChatFull.f844id);
                 }
             }
         } catch (Exception e) {
@@ -5520,9 +5520,9 @@ public class MessagesStorage extends BaseController {
                     TLdeserialize.send_state = queryFinalized.intValue(2);
                     TLdeserialize.readAttachPath(byteBufferValue, getUserConfig().clientUserId);
                     byteBufferValue.reuse();
-                    if (sparseArray.indexOfKey(TLdeserialize.f877id) < 0) {
+                    if (sparseArray.indexOfKey(TLdeserialize.f866id) < 0) {
                         MessageObject.setUnreadFlags(TLdeserialize, queryFinalized.intValue(0));
-                        TLdeserialize.f877id = queryFinalized.intValue(3);
+                        TLdeserialize.f866id = queryFinalized.intValue(3);
                         TLdeserialize.date = queryFinalized.intValue(4);
                         if (!queryFinalized.isNull(5)) {
                             TLdeserialize.random_id = queryFinalized.longValue(5);
@@ -5532,7 +5532,7 @@ public class MessagesStorage extends BaseController {
                         TLdeserialize.seq_out = queryFinalized.intValue(8);
                         TLdeserialize.ttl = queryFinalized.intValue(9);
                         arrayList.add(TLdeserialize);
-                        sparseArray.put(TLdeserialize.f877id, TLdeserialize);
+                        sparseArray.put(TLdeserialize.f866id, TLdeserialize);
                         if (DialogObject.isEncryptedDialog(TLdeserialize.dialog_id)) {
                             int encryptedChatId = DialogObject.getEncryptedChatId(TLdeserialize.dialog_id);
                             if (!arrayList8.contains(Integer.valueOf(encryptedChatId))) {
@@ -5546,7 +5546,7 @@ public class MessagesStorage extends BaseController {
                             arrayList7.add(Long.valueOf(-TLdeserialize.dialog_id));
                         }
                         addUsersAndChatsFromMessage(TLdeserialize, arrayList6, arrayList7);
-                        if (TLdeserialize.send_state != 3 && ((TLdeserialize.peer_id.channel_id == 0 && !MessageObject.isUnread(TLdeserialize) && !DialogObject.isEncryptedDialog(TLdeserialize.dialog_id)) || TLdeserialize.f877id > 0)) {
+                        if (TLdeserialize.send_state != 3 && ((TLdeserialize.peer_id.channel_id == 0 && !MessageObject.isUnread(TLdeserialize) && !DialogObject.isEncryptedDialog(TLdeserialize.dialog_id)) || TLdeserialize.f866id > 0)) {
                             TLdeserialize.send_state = 0;
                         }
                     }
@@ -5565,8 +5565,8 @@ public class MessagesStorage extends BaseController {
                     TLdeserialize2.send_state = queryFinalized2.intValue(i2);
                     TLdeserialize2.readAttachPath(byteBufferValue2, getUserConfig().clientUserId);
                     byteBufferValue2.reuse();
-                    if (sparseArray.indexOfKey(TLdeserialize2.f877id) < 0) {
-                        TLdeserialize2.f877id = queryFinalized2.intValue(2);
+                    if (sparseArray.indexOfKey(TLdeserialize2.f866id) < 0) {
+                        TLdeserialize2.f866id = queryFinalized2.intValue(2);
                         TLdeserialize2.date = queryFinalized2.intValue(3);
                         if (!queryFinalized2.isNull(4)) {
                             TLdeserialize2.random_id = queryFinalized2.longValue(4);
@@ -5574,7 +5574,7 @@ public class MessagesStorage extends BaseController {
                         TLdeserialize2.dialog_id = queryFinalized2.longValue(5);
                         TLdeserialize2.ttl = queryFinalized2.intValue(6);
                         arrayList2.add(TLdeserialize2);
-                        sparseArray.put(TLdeserialize2.f877id, TLdeserialize2);
+                        sparseArray.put(TLdeserialize2.f866id, TLdeserialize2);
                         if (DialogObject.isEncryptedDialog(TLdeserialize2.dialog_id)) {
                             int encryptedChatId2 = DialogObject.getEncryptedChatId(TLdeserialize2.dialog_id);
                             if (!arrayList8.contains(Integer.valueOf(encryptedChatId2))) {
@@ -5589,7 +5589,7 @@ public class MessagesStorage extends BaseController {
                         }
                         addUsersAndChatsFromMessage(TLdeserialize2, arrayList6, arrayList7);
                         if (TLdeserialize2.send_state != 3) {
-                            if (!(TLdeserialize2.peer_id.channel_id != 0 || MessageObject.isUnread(TLdeserialize2) || DialogObject.isEncryptedDialog(TLdeserialize2.dialog_id)) || TLdeserialize2.f877id > 0) {
+                            if (!(TLdeserialize2.peer_id.channel_id != 0 || MessageObject.isUnread(TLdeserialize2) || DialogObject.isEncryptedDialog(TLdeserialize2.dialog_id)) || TLdeserialize2.f866id > 0) {
                                 TLdeserialize2.send_state = 0;
                             }
                             z2 = false;
@@ -5729,9 +5729,9 @@ public class MessagesStorage extends BaseController {
     public static int lambda$getMessagesInternal$120(TLRPC$Message tLRPC$Message, TLRPC$Message tLRPC$Message2) {
         int i;
         int i2;
-        int i3 = tLRPC$Message.f877id;
-        if (i3 <= 0 || (i2 = tLRPC$Message2.f877id) <= 0) {
-            if (i3 >= 0 || (i = tLRPC$Message2.f877id) >= 0) {
+        int i3 = tLRPC$Message.f866id;
+        if (i3 <= 0 || (i2 = tLRPC$Message2.f866id) <= 0) {
+            if (i3 >= 0 || (i = tLRPC$Message2.f866id) >= 0) {
                 int i4 = tLRPC$Message.date;
                 int i5 = tLRPC$Message2.date;
                 if (i4 > i5) {
@@ -5751,7 +5751,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$getMessagesInternal$121(TLRPC$TL_messages_messages tLRPC$TL_messages_messages, int i, long j, long j2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, boolean z, boolean z2, int i11, int i12, boolean z3, int i13, boolean z4) {
-        getMessagesController().processLoadedMessages(tLRPC$TL_messages_messages, i, j, j2, i2, i3, i4, true, i5, i6, i7, i8, i9, i10, z, z2 ? 1 : 0, i11, i12, z3, i13, z4, null);
+        getMessagesController().processLoadedMessages(tLRPC$TL_messages_messages, i, j, j2, i2, i3, i4, true, i5, i6, i7, i8, i9, i10, z, z2 ? 1 : 0, i11, i12, z3, i13, z4);
     }
 
     public void getMessages(final long j, final long j2, boolean z, final int i, final int i2, final int i3, final int i4, final int i5, final int i6, final boolean z2, final int i7, final int i8, final boolean z3) {
@@ -5852,7 +5852,7 @@ public class MessagesStorage extends BaseController {
                     if (appWidgetManager == null) {
                         appWidgetManager = AppWidgetManager.getInstance(ApplicationLoader.applicationContext);
                     }
-                    appWidgetManager.notifyAppWidgetViewDataChanged(queryFinalized.intValue(0), C0952R.C0954id.list_view);
+                    appWidgetManager.notifyAppWidgetViewDataChanged(queryFinalized.intValue(0), C0890R.C0892id.list_view);
                 }
                 queryFinalized.dispose();
             } catch (Exception e) {
@@ -6064,24 +6064,24 @@ public class MessagesStorage extends BaseController {
                             arrayList.add(Long.valueOf(longValue3));
                         }
                         TLRPC$TL_dialog tLRPC$TL_dialog = new TLRPC$TL_dialog();
-                        tLRPC$TL_dialog.f860id = longValue3;
+                        tLRPC$TL_dialog.f849id = longValue3;
                         tLRPC$TL_dialog.top_message = sQLiteCursor.intValue(1);
                         tLRPC$TL_dialog.unread_count = sQLiteCursor.intValue(2);
                         tLRPC$TL_dialog.last_message_date = sQLiteCursor.intValue(3);
-                        longSparseArray.put(tLRPC$TL_dialog.f860id, tLRPC$TL_dialog);
+                        longSparseArray.put(tLRPC$TL_dialog.f849id, tLRPC$TL_dialog);
                         NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(4);
                         if (byteBufferValue != null) {
                             TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                             TLdeserialize.readAttachPath(byteBufferValue, getUserConfig().clientUserId);
                             byteBufferValue.reuse();
                             MessageObject.setUnreadFlags(TLdeserialize, sQLiteCursor.intValue(5));
-                            TLdeserialize.f877id = sQLiteCursor.intValue(6);
+                            TLdeserialize.f866id = sQLiteCursor.intValue(6);
                             TLdeserialize.send_state = sQLiteCursor.intValue(7);
                             int intValue = sQLiteCursor.intValue(8);
                             if (intValue != 0) {
                                 tLRPC$TL_dialog.last_message_date = intValue;
                             }
-                            long j = tLRPC$TL_dialog.f860id;
+                            long j = tLRPC$TL_dialog.f849id;
                             TLdeserialize.dialog_id = j;
                             longSparseArray2.put(j, TLdeserialize);
                             addUsersAndChatsFromMessage(TLdeserialize, arrayList4, arrayList5);
@@ -6095,7 +6095,7 @@ public class MessagesStorage extends BaseController {
                         long longValue4 = ((Long) arrayList.get(i3)).longValue();
                         if (longSparseArray.get(((Long) arrayList.get(i3)).longValue()) == null) {
                             TLRPC$TL_dialog tLRPC$TL_dialog2 = new TLRPC$TL_dialog();
-                            tLRPC$TL_dialog2.f860id = longValue4;
+                            tLRPC$TL_dialog2.f849id = longValue4;
                             longSparseArray.put(longValue4, tLRPC$TL_dialog2);
                             if (DialogObject.isChatDialog(longValue4)) {
                                 long j2 = -longValue4;
@@ -6205,10 +6205,10 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement.bindInteger(3, (tLRPC$EncryptedChat.key_use_count_in << 16) | tLRPC$EncryptedChat.key_use_count_out);
                 sQLitePreparedStatement.bindInteger(4, tLRPC$EncryptedChat.in_seq_no);
                 sQLitePreparedStatement.bindInteger(5, tLRPC$EncryptedChat.mtproto_seq);
-                sQLitePreparedStatement.bindInteger(6, tLRPC$EncryptedChat.f865id);
+                sQLitePreparedStatement.bindInteger(6, tLRPC$EncryptedChat.f854id);
                 sQLitePreparedStatement.step();
                 if (z && tLRPC$EncryptedChat.in_seq_no != 0) {
-                    long encryptedChatId = DialogObject.getEncryptedChatId(tLRPC$EncryptedChat.f865id);
+                    long encryptedChatId = DialogObject.getEncryptedChatId(tLRPC$EncryptedChat.f854id);
                     this.database.executeFast(String.format(Locale.US, "DELETE FROM messages_v2 WHERE mid IN (SELECT m.mid FROM messages_v2 as m LEFT JOIN messages_seq as s ON m.mid = s.mid WHERE m.uid = %d AND m.date = 0 AND m.mid < 0 AND s.seq_out <= %d) AND uid = %d", Long.valueOf(encryptedChatId), Integer.valueOf(tLRPC$EncryptedChat.in_seq_no), Long.valueOf(encryptedChatId))).stepThis().dispose();
                 }
             } catch (Exception e) {
@@ -6243,7 +6243,7 @@ public class MessagesStorage extends BaseController {
             try {
                 sQLitePreparedStatement = this.database.executeFast("UPDATE enc_chats SET ttl = ? WHERE uid = ?");
                 sQLitePreparedStatement.bindInteger(1, tLRPC$EncryptedChat.ttl);
-                sQLitePreparedStatement.bindInteger(2, tLRPC$EncryptedChat.f865id);
+                sQLitePreparedStatement.bindInteger(2, tLRPC$EncryptedChat.f854id);
                 sQLitePreparedStatement.step();
             } catch (Exception e) {
                 FileLog.m30e(e);
@@ -6277,7 +6277,7 @@ public class MessagesStorage extends BaseController {
             try {
                 sQLitePreparedStatement = this.database.executeFast("UPDATE enc_chats SET layer = ? WHERE uid = ?");
                 sQLitePreparedStatement.bindInteger(1, tLRPC$EncryptedChat.layer);
-                sQLitePreparedStatement.bindInteger(2, tLRPC$EncryptedChat.f865id);
+                sQLitePreparedStatement.bindInteger(2, tLRPC$EncryptedChat.f854id);
                 sQLitePreparedStatement.step();
             } catch (Exception e) {
                 FileLog.m30e(e);
@@ -6357,7 +6357,7 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement.bindInteger(14, tLRPC$EncryptedChat.in_seq_no);
                 sQLitePreparedStatement.bindLong(15, tLRPC$EncryptedChat.admin_id);
                 sQLitePreparedStatement.bindInteger(16, tLRPC$EncryptedChat.mtproto_seq);
-                sQLitePreparedStatement.bindInteger(17, tLRPC$EncryptedChat.f865id);
+                sQLitePreparedStatement.bindInteger(17, tLRPC$EncryptedChat.f854id);
                 sQLitePreparedStatement.step();
                 nativeByteBuffer.reuse();
                 nativeByteBuffer2.reuse();
@@ -6497,8 +6497,8 @@ public class MessagesStorage extends BaseController {
             byte[] bArr6 = tLRPC$EncryptedChat.key_hash;
             NativeByteBuffer nativeByteBuffer5 = new NativeByteBuffer(bArr6 != null ? bArr6.length : 1);
             tLRPC$EncryptedChat.serializeToStream(nativeByteBuffer);
-            executeFast.bindInteger(1, tLRPC$EncryptedChat.f865id);
-            executeFast.bindLong(2, tLRPC$User.f985id);
+            executeFast.bindInteger(1, tLRPC$EncryptedChat.f854id);
+            executeFast.bindLong(2, tLRPC$User.f974id);
             executeFast.bindString(3, formatUserSearchName(tLRPC$User));
             executeFast.bindByteBuffer(4, nativeByteBuffer);
             byte[] bArr7 = tLRPC$EncryptedChat.a_or_b;
@@ -6541,7 +6541,7 @@ public class MessagesStorage extends BaseController {
             nativeByteBuffer5.reuse();
             if (tLRPC$Dialog != null) {
                 SQLitePreparedStatement executeFast2 = this.database.executeFast("REPLACE INTO dialogs VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                executeFast2.bindLong(1, tLRPC$Dialog.f860id);
+                executeFast2.bindLong(1, tLRPC$Dialog.f849id);
                 executeFast2.bindInteger(2, tLRPC$Dialog.last_message_date);
                 executeFast2.bindInteger(3, tLRPC$Dialog.unread_count);
                 executeFast2.bindInteger(4, tLRPC$Dialog.top_message);
@@ -6591,7 +6591,7 @@ public class MessagesStorage extends BaseController {
             for (int i = 0; i < arrayList.size(); i++) {
                 TLRPC$User tLRPC$User = arrayList.get(i);
                 if (tLRPC$User.min) {
-                    SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data FROM users WHERE uid = %d", Long.valueOf(tLRPC$User.f985id)), new Object[0]);
+                    SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data FROM users WHERE uid = %d", Long.valueOf(tLRPC$User.f974id)), new Object[0]);
                     if (queryFinalized.next()) {
                         try {
                             NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -6629,7 +6629,7 @@ public class MessagesStorage extends BaseController {
                 executeFast.requery();
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$User.getObjectSize());
                 tLRPC$User.serializeToStream(nativeByteBuffer);
-                executeFast.bindLong(1, tLRPC$User.f985id);
+                executeFast.bindLong(1, tLRPC$User.f974id);
                 executeFast.bindString(2, formatUserSearchName(tLRPC$User));
                 TLRPC$UserStatus tLRPC$UserStatus = tLRPC$User.status;
                 if (tLRPC$UserStatus != null) {
@@ -6684,7 +6684,7 @@ public class MessagesStorage extends BaseController {
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$Chat.getObjectSize());
                 tLRPC$Chat.serializeToStream(nativeByteBuffer);
                 executeFast.bindByteBuffer(1, nativeByteBuffer);
-                executeFast.bindLong(2, tLRPC$Chat.f854id);
+                executeFast.bindLong(2, tLRPC$Chat.f843id);
                 executeFast.step();
                 nativeByteBuffer.reuse();
                 executeFast.dispose();
@@ -6700,7 +6700,7 @@ public class MessagesStorage extends BaseController {
             for (int i = 0; i < arrayList.size(); i++) {
                 TLRPC$Chat tLRPC$Chat = arrayList.get(i);
                 if (tLRPC$Chat.min) {
-                    SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data FROM chats WHERE uid = %d", Long.valueOf(tLRPC$Chat.f854id)), new Object[0]);
+                    SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data FROM chats WHERE uid = %d", Long.valueOf(tLRPC$Chat.f843id)), new Object[0]);
                     if (queryFinalized.next()) {
                         try {
                             NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -6751,7 +6751,7 @@ public class MessagesStorage extends BaseController {
                 tLRPC$Chat.flags |= 131072;
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$Chat.getObjectSize());
                 tLRPC$Chat.serializeToStream(nativeByteBuffer);
-                executeFast.bindLong(1, tLRPC$Chat.f854id);
+                executeFast.bindLong(1, tLRPC$Chat.f843id);
                 String str2 = tLRPC$Chat.title;
                 if (str2 != null) {
                     executeFast.bindString(2, str2.toLowerCase());
@@ -6993,7 +6993,7 @@ public class MessagesStorage extends BaseController {
             while (queryFinalized.next()) {
                 DownloadObject downloadObject = new DownloadObject();
                 downloadObject.type = queryFinalized.intValue(1);
-                downloadObject.f805id = queryFinalized.longValue(0);
+                downloadObject.f796id = queryFinalized.longValue(0);
                 downloadObject.parent = queryFinalized.stringValue(3);
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(2);
                 if (byteBufferValue != null) {
@@ -7103,7 +7103,7 @@ public class MessagesStorage extends BaseController {
                                 byteBufferValue.reuse();
                                 TLRPC$MessageMedia tLRPC$MessageMedia = TLdeserialize.media;
                                 if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
-                                    TLdeserialize.f877id = intValue;
+                                    TLdeserialize.f866id = intValue;
                                     tLRPC$MessageMedia.webpage = (TLRPC$WebPage) longSparseArray.valueAt(i2);
                                     arrayList.add(TLdeserialize);
                                 }
@@ -7127,12 +7127,12 @@ public class MessagesStorage extends BaseController {
                     tLRPC$Message.serializeToStream(nativeByteBuffer);
                     executeFast.requery();
                     executeFast.bindByteBuffer(1, nativeByteBuffer);
-                    executeFast.bindInteger(2, tLRPC$Message.f877id);
+                    executeFast.bindInteger(2, tLRPC$Message.f866id);
                     executeFast.bindLong(3, MessageObject.getDialogId(tLRPC$Message));
                     executeFast.step();
                     executeFast2.requery();
                     executeFast2.bindByteBuffer(1, nativeByteBuffer);
-                    executeFast2.bindInteger(2, tLRPC$Message.f877id);
+                    executeFast2.bindInteger(2, tLRPC$Message.f866id);
                     executeFast2.bindLong(3, MessageObject.getDialogId(tLRPC$Message));
                     executeFast2.step();
                     nativeByteBuffer.reuse();
@@ -7436,7 +7436,7 @@ public class MessagesStorage extends BaseController {
                 executeFast.requery();
                 int i2 = tLRPC$Message.stickerVerified;
                 executeFast.bindInteger(1, i2 == 0 ? 1 : i2 == 2 ? 2 : 0);
-                executeFast.bindInteger(2, tLRPC$Message.f877id);
+                executeFast.bindInteger(2, tLRPC$Message.f866id);
                 executeFast.bindLong(3, MessageObject.getDialogId(tLRPC$Message));
                 executeFast.step();
             }
@@ -7485,7 +7485,7 @@ public class MessagesStorage extends BaseController {
 
     public void lambda$markMessageAsSendError$155(TLRPC$Message tLRPC$Message, boolean z) {
         try {
-            long j = tLRPC$Message.f877id;
+            long j = tLRPC$Message.f866id;
             if (z) {
                 this.database.executeFast(String.format(Locale.US, "UPDATE scheduled_messages_v2 SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(tLRPC$Message)))).stepThis().dispose();
             } else {
@@ -7557,7 +7557,7 @@ public class MessagesStorage extends BaseController {
                     } else {
                         executeFast.bindInteger(1, 0);
                     }
-                    executeFast.bindLong(2, tLRPC$User.f985id);
+                    executeFast.bindLong(2, tLRPC$User.f974id);
                     executeFast.step();
                 }
                 executeFast.dispose();
@@ -7575,15 +7575,15 @@ public class MessagesStorage extends BaseController {
                 if (sb.length() != 0) {
                     sb.append(",");
                 }
-                sb.append(tLRPC$User2.f985id);
-                longSparseArray.put(tLRPC$User2.f985id, tLRPC$User2);
+                sb.append(tLRPC$User2.f974id);
+                longSparseArray.put(tLRPC$User2.f974id, tLRPC$User2);
             }
             ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
             getUsersInternal(sb.toString(), arrayList2);
             int size3 = arrayList2.size();
             for (int i3 = 0; i3 < size3; i3++) {
                 TLRPC$User tLRPC$User3 = arrayList2.get(i3);
-                TLRPC$User tLRPC$User4 = (TLRPC$User) longSparseArray.get(tLRPC$User3.f985id);
+                TLRPC$User tLRPC$User4 = (TLRPC$User) longSparseArray.get(tLRPC$User3.f974id);
                 if (tLRPC$User4 != null) {
                     if (tLRPC$User4.first_name == null || tLRPC$User4.last_name == null) {
                         TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto = tLRPC$User4.photo;
@@ -7904,14 +7904,14 @@ public class MessagesStorage extends BaseController {
                         } else {
                             TLRPC$TL_folder tLRPC$TL_folder = new TLRPC$TL_folder();
                             tLRPC$TL_dialogFolder.folder = tLRPC$TL_folder;
-                            tLRPC$TL_folder.f905id = queryFinalized2.intValue(15);
+                            tLRPC$TL_folder.f894id = queryFinalized2.intValue(15);
                             tLRPC$TL_dialog = tLRPC$TL_dialogFolder;
                         }
                     }
                 } else {
                     tLRPC$TL_dialog = new TLRPC$TL_dialog();
                 }
-                tLRPC$TL_dialog.f860id = longValue2;
+                tLRPC$TL_dialog.f849id = longValue2;
                 tLRPC$TL_dialog.top_message = queryFinalized2.intValue(1);
                 tLRPC$TL_dialog.read_inbox_max_id = queryFinalized2.intValue(10);
                 tLRPC$TL_dialog.read_outbox_max_id = queryFinalized2.intValue(11);
@@ -7933,13 +7933,13 @@ public class MessagesStorage extends BaseController {
                     TLdeserialize.readAttachPath(byteBufferValue2, getUserConfig().clientUserId);
                     byteBufferValue2.reuse();
                     MessageObject.setUnreadFlags(TLdeserialize, queryFinalized2.intValue(5));
-                    TLdeserialize.f877id = queryFinalized2.intValue(6);
+                    TLdeserialize.f866id = queryFinalized2.intValue(6);
                     TLdeserialize.send_state = queryFinalized2.intValue(7);
                     int intValue2 = queryFinalized2.intValue(8);
                     if (intValue2 != 0) {
                         tLRPC$TL_dialog.last_message_date = intValue2;
                     }
-                    TLdeserialize.dialog_id = tLRPC$TL_dialog.f860id;
+                    TLdeserialize.dialog_id = tLRPC$TL_dialog.f849id;
                     tLRPC$TL_messages_dialogs.messages.add(TLdeserialize);
                     addUsersAndChatsFromMessage(TLdeserialize, arrayList5, arrayList6);
                 }
@@ -8032,12 +8032,12 @@ public class MessagesStorage extends BaseController {
             TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
             if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported_old) {
                 if (tLRPC$MessageMedia.bytes.length == 0) {
-                    tLRPC$MessageMedia.bytes = Utilities.intToBytes(142);
+                    tLRPC$MessageMedia.bytes = Utilities.intToBytes(140);
                 }
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported) {
                 TLRPC$TL_messageMediaUnsupported_old tLRPC$TL_messageMediaUnsupported_old = new TLRPC$TL_messageMediaUnsupported_old();
                 tLRPC$Message.media = tLRPC$TL_messageMediaUnsupported_old;
-                tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(142);
+                tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(140);
                 tLRPC$Message.flags |= 512;
             }
         }

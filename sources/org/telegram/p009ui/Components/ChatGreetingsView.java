@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
@@ -55,11 +55,11 @@ public class ChatGreetingsView extends LinearLayout {
         addView(this.stickerToSendView, LayoutHelper.createLinear(112, 112, 1, 0, 16, 0, 16));
         updateColors();
         if (i <= 0) {
-            this.titleView.setText(LocaleController.getString("NoMessages", C0952R.string.NoMessages));
-            this.descriptionView.setText(LocaleController.getString("NoMessagesGreetingsDescription", C0952R.string.NoMessagesGreetingsDescription));
+            this.titleView.setText(LocaleController.getString("NoMessages", C0890R.string.NoMessages));
+            this.descriptionView.setText(LocaleController.getString("NoMessagesGreetingsDescription", C0890R.string.NoMessagesGreetingsDescription));
         } else {
-            this.titleView.setText(LocaleController.formatString("NearbyPeopleGreetingsMessage", C0952R.string.NearbyPeopleGreetingsMessage, tLRPC$User.first_name, LocaleController.formatDistance(i, 1)));
-            this.descriptionView.setText(LocaleController.getString("NearbyPeopleGreetingsDescription", C0952R.string.NearbyPeopleGreetingsDescription));
+            this.titleView.setText(LocaleController.formatString("NearbyPeopleGreetingsMessage", C0890R.string.NearbyPeopleGreetingsMessage, tLRPC$User.first_name, LocaleController.formatDistance(i, 1)));
+            this.descriptionView.setText(LocaleController.getString("NearbyPeopleGreetingsDescription", C0890R.string.NearbyPeopleGreetingsDescription));
         }
         this.preloadedGreetingsSticker = tLRPC$Document;
         if (tLRPC$Document == null) {
@@ -115,8 +115,8 @@ public class ChatGreetingsView extends LinearLayout {
             }
             TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i3);
             if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeImageSize) {
-                i = tLRPC$DocumentAttribute.f864w;
-                i2 = tLRPC$DocumentAttribute.f863h;
+                i = tLRPC$DocumentAttribute.f853w;
+                i2 = tLRPC$DocumentAttribute.f852h;
                 break;
             }
             i3++;

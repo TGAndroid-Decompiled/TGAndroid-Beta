@@ -43,7 +43,7 @@ import com.google.zxing.qrcode.QRCodeReader;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
@@ -58,7 +58,7 @@ import org.telegram.messenger.camera.Size;
 import org.telegram.p009ui.ActionBar.ActionBarLayout;
 import org.telegram.p009ui.ActionBar.BaseFragment;
 import org.telegram.p009ui.ActionBar.BottomSheet;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.CameraScanActivity;
@@ -71,7 +71,7 @@ import org.telegram.p009ui.Components.TypefaceSpan;
 import org.telegram.p009ui.Components.URLSpanNoUnderline;
 import org.telegram.p009ui.PhotoAlbumPickerActivity;
 
-@TargetApi(C0952R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom)
+@TargetApi(C0890R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom)
 public class CameraScanActivity extends BaseFragment {
     private CameraView cameraView;
     private int currentType;
@@ -96,7 +96,6 @@ public class CameraScanActivity extends BaseFragment {
     private Paint cornerPaint = new Paint(1);
     private Path path = new Path();
     private float backShadowAlpha = 0.5f;
-    protected boolean shownAsBottomSheet = false;
     private SpringAnimation qrAppearing = null;
     private float qrAppearingValue = 0.0f;
     private RectF fromBounds = new RectF();
@@ -109,7 +108,7 @@ public class CameraScanActivity extends BaseFragment {
     private BarcodeDetector visionQrReader = null;
     private float recognizedT = 0.0f;
     private float useRecognizedBounds = 0.0f;
-    private Runnable requestShot = new RunnableC12137();
+    private Runnable requestShot = new RunnableC11497();
     private float averageProcessTime = 0.0f;
     private long processTimesCount = 0;
 
@@ -143,17 +142,18 @@ public class CameraScanActivity extends BaseFragment {
             return null;
         }
         ActionBarLayout[] actionBarLayoutArr = {new ActionBarLayout(baseFragment.getParentActivity())};
-        DialogC12061 r9 = new DialogC12061(baseFragment.getParentActivity(), false, actionBarLayoutArr, i, z, cameraScanActivityDelegate);
+        DialogC11421 r9 = new DialogC11421(baseFragment.getParentActivity(), false, actionBarLayoutArr, i, z, cameraScanActivityDelegate);
         r9.setUseLightStatusBar(false);
         AndroidUtilities.setLightNavigationBar(r9.getWindow(), false);
-        AndroidUtilities.setNavigationBarColor(r9.getWindow(), -16777216, false);
-        r9.setUseLightStatusBar(false);
+        if (Build.VERSION.SDK_INT >= 26) {
+            r9.getWindow().setNavigationBarColor(-16777216);
+        }
         r9.getWindow().addFlags(512);
         r9.show();
         return actionBarLayoutArr;
     }
 
-    public class DialogC12061 extends BottomSheet {
+    public class DialogC11421 extends BottomSheet {
         CameraScanActivity fragment;
         final ActionBarLayout[] val$actionBarLayout;
         final CameraScanActivityDelegate val$cameraDelegate;
@@ -165,7 +165,7 @@ public class CameraScanActivity extends BaseFragment {
             return false;
         }
 
-        DialogC12061(Context context, boolean z, ActionBarLayout[] actionBarLayoutArr, int i, boolean z2, CameraScanActivityDelegate cameraScanActivityDelegate) {
+        DialogC11421(Context context, boolean z, ActionBarLayout[] actionBarLayoutArr, int i, boolean z2, CameraScanActivityDelegate cameraScanActivityDelegate) {
             super(context, z);
             this.val$actionBarLayout = actionBarLayoutArr;
             this.val$type = i;
@@ -174,21 +174,20 @@ public class CameraScanActivity extends BaseFragment {
             actionBarLayoutArr[0].init(new ArrayList<>());
             CameraScanActivity cameraScanActivity = new CameraScanActivity(i) {
                 {
-                    DialogC12061.this = this;
+                    DialogC11421.this = this;
                 }
 
                 @Override
                 public void finishFragment() {
-                    DialogC12061.this.dismiss();
+                    DialogC11421.this.dismiss();
                 }
 
                 @Override
                 public void removeSelfFromStack() {
-                    DialogC12061.this.dismiss();
+                    DialogC11421.this.dismiss();
                 }
             };
             this.fragment = cameraScanActivity;
-            cameraScanActivity.shownAsBottomSheet = true;
             cameraScanActivity.needGalleryButton = z2;
             actionBarLayoutArr[0].addFragmentToStack(this.fragment);
             actionBarLayoutArr[0].showLastFragment();
@@ -202,7 +201,7 @@ public class CameraScanActivity extends BaseFragment {
             setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    CameraScanActivity.DialogC12061.this.lambda$new$0(dialogInterface);
+                    CameraScanActivity.DialogC11421.this.lambda$new$0(dialogInterface);
                 }
             });
         }
@@ -268,21 +267,14 @@ public class CameraScanActivity extends BaseFragment {
 
     @Override
     public View createView(Context context) {
-        this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
-        if (this.shownAsBottomSheet) {
-            this.actionBar.setItemsColor(-1, false);
-            this.actionBar.setItemsBackgroundColor(-1, false);
-            this.actionBar.setTitleColor(-1);
-        } else {
-            this.actionBar.setItemsColor(Theme.getColor("windowBackgroundWhiteGrayText2"), false);
-            this.actionBar.setItemsBackgroundColor(Theme.getColor("actionBarWhiteSelector"), false);
-            this.actionBar.setTitleColor(Theme.getColor("actionBarDefaultTitle"));
-        }
+        this.actionBar.setBackButtonImage(C0890R.C0891drawable.ic_ab_back);
+        this.actionBar.setItemsColor(Theme.getColor("windowBackgroundWhiteGrayText2"), false);
+        this.actionBar.setItemsBackgroundColor(Theme.getColor("actionBarWhiteSelector"), false);
         this.actionBar.setCastShadows(false);
         if (!AndroidUtilities.isTablet() && !isQr()) {
             this.actionBar.showActionModeTop();
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
             {
                 CameraScanActivity.this = this;
             }
@@ -459,7 +451,7 @@ public class CameraScanActivity extends BaseFragment {
                 public final void run() {
                     CameraScanActivity.this.initCameraView();
                 }
-            }, 450L);
+            }, 350L);
         } else {
             initCameraView();
         }
@@ -476,7 +468,7 @@ public class CameraScanActivity extends BaseFragment {
             viewGroup.addView(this.actionBar);
         }
         if (this.currentType == 2) {
-            this.actionBar.setTitle(LocaleController.getString("AuthAnotherClientScan", C0952R.string.AuthAnotherClientScan));
+            this.actionBar.setTitle(LocaleController.getString("AuthAnotherClientScan", C0890R.string.AuthAnotherClientScan));
         }
         final Paint paint = new Paint(1);
         paint.setPathEffect(LinkPath.getRoundedEffect());
@@ -582,17 +574,17 @@ public class CameraScanActivity extends BaseFragment {
         this.recognizedMrzView.setAlpha(0.0f);
         int i2 = this.currentType;
         if (i2 == 0) {
-            this.titleTextView.setText(LocaleController.getString("PassportScanPassport", C0952R.string.PassportScanPassport));
-            this.descriptionText.setText(LocaleController.getString("PassportScanPassportInfo", C0952R.string.PassportScanPassportInfo));
+            this.titleTextView.setText(LocaleController.getString("PassportScanPassport", C0890R.string.PassportScanPassport));
+            this.descriptionText.setText(LocaleController.getString("PassportScanPassportInfo", C0890R.string.PassportScanPassportInfo));
             this.titleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.recognizedMrzView.setTypeface(Typeface.MONOSPACE);
         } else {
             if (!this.needGalleryButton) {
                 if (i2 == 1) {
-                    this.titleTextView.setText(LocaleController.getString("AuthAnotherClientScan", C0952R.string.AuthAnotherClientScan));
+                    this.titleTextView.setText(LocaleController.getString("AuthAnotherClientScan", C0890R.string.AuthAnotherClientScan));
                 } else {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("AuthAnotherClientInfo5", C0952R.string.AuthAnotherClientInfo5));
-                    String[] strArr = {LocaleController.getString("AuthAnotherClientDownloadClientUrl", C0952R.string.AuthAnotherClientDownloadClientUrl), LocaleController.getString("AuthAnotherWebClientUrl", C0952R.string.AuthAnotherWebClientUrl)};
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("AuthAnotherClientInfo5", C0890R.string.AuthAnotherClientInfo5));
+                    String[] strArr = {LocaleController.getString("AuthAnotherClientDownloadClientUrl", C0890R.string.AuthAnotherClientDownloadClientUrl), LocaleController.getString("AuthAnotherWebClientUrl", C0890R.string.AuthAnotherWebClientUrl)};
                     int i3 = 0;
                     for (int i4 = 2; i3 < i4; i4 = 2) {
                         String spannableStringBuilder2 = spannableStringBuilder.toString();
@@ -622,14 +614,14 @@ public class CameraScanActivity extends BaseFragment {
             this.recognizedMrzView.setTextSize(1, 16.0f);
             this.recognizedMrzView.setPadding(AndroidUtilities.m34dp(10.0f), 0, AndroidUtilities.m34dp(10.0f), AndroidUtilities.m34dp(10.0f));
             if (!this.needGalleryButton) {
-                this.recognizedMrzView.setText(LocaleController.getString("AuthAnotherClientNotFound", C0952R.string.AuthAnotherClientNotFound));
+                this.recognizedMrzView.setText(LocaleController.getString("AuthAnotherClientNotFound", C0890R.string.AuthAnotherClientNotFound));
             }
             viewGroup.addView(this.recognizedMrzView);
             if (this.needGalleryButton) {
                 ImageView imageView = new ImageView(context);
                 this.galleryButton = imageView;
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
-                this.galleryButton.setImageResource(C0952R.C0953drawable.qr_gallery);
+                this.galleryButton.setImageResource(C0890R.C0891drawable.qr_gallery);
                 this.galleryButton.setBackgroundDrawable(Theme.createSelectorDrawableFromDrawables(Theme.createCircleDrawable(AndroidUtilities.m34dp(60.0f), 587202559), Theme.createCircleDrawable(AndroidUtilities.m34dp(60.0f), 1157627903)));
                 viewGroup.addView(this.galleryButton);
                 this.galleryButton.setOnClickListener(new View.OnClickListener() {
@@ -642,7 +634,7 @@ public class CameraScanActivity extends BaseFragment {
             ImageView imageView2 = new ImageView(context);
             this.flashButton = imageView2;
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
-            this.flashButton.setImageResource(C0952R.C0953drawable.qr_flashlight);
+            this.flashButton.setImageResource(C0890R.C0891drawable.qr_flashlight);
             this.flashButton.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.m34dp(60.0f), 587202559));
             viewGroup.addView(this.flashButton);
             this.flashButton.setOnClickListener(new View.OnClickListener() {
@@ -965,8 +957,8 @@ public class CameraScanActivity extends BaseFragment {
         this.backgroundHandlerThread.quitSafely();
     }
 
-    public class RunnableC12137 implements Runnable {
-        RunnableC12137() {
+    public class RunnableC11497 implements Runnable {
+        RunnableC11497() {
             CameraScanActivity.this = r1;
         }
 
@@ -976,7 +968,7 @@ public class CameraScanActivity extends BaseFragment {
                 CameraScanActivity.this.handler.post(new Runnable() {
                     @Override
                     public final void run() {
-                        CameraScanActivity.RunnableC12137.this.lambda$run$0();
+                        CameraScanActivity.RunnableC11497.this.lambda$run$0();
                     }
                 });
             }
@@ -1178,7 +1170,7 @@ public class CameraScanActivity extends BaseFragment {
         private QrResult(CameraScanActivity cameraScanActivity) {
         }
 
-        QrResult(CameraScanActivity cameraScanActivity, DialogC12061 r2) {
+        QrResult(CameraScanActivity cameraScanActivity, DialogC11421 r2) {
             this(cameraScanActivity);
         }
     }

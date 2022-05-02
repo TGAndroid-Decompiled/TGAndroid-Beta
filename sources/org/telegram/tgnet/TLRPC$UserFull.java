@@ -13,7 +13,7 @@ public abstract class TLRPC$UserFull extends TLObject {
     public int flags;
     public int folder_id;
     public boolean has_scheduled;
-    public long f986id;
+    public long f975id;
     public TLRPC$TL_contacts_link_layer101 link;
     public TLRPC$PeerNotifySettings notify_settings;
     public boolean phone_calls_available;
@@ -116,7 +116,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                             z3 = true;
                         }
                         this.video_calls_available = z3;
-                        this.f986id = abstractSerializedData2.readInt64(z2);
+                        this.f975id = abstractSerializedData2.readInt64(z2);
                         if ((this.flags & 2) != 0) {
                             this.about = abstractSerializedData2.readString(z2);
                         }
@@ -162,7 +162,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
                         abstractSerializedData2.writeInt32(i7);
-                        abstractSerializedData2.writeInt64(this.f986id);
+                        abstractSerializedData2.writeInt64(this.f975id);
                         if ((this.flags & 2) != 0) {
                             abstractSerializedData2.writeString(this.about);
                         }

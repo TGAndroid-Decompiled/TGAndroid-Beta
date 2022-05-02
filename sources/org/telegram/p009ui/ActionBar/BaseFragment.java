@@ -44,7 +44,7 @@ import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.tgnet.ConnectionsManager;
 
 public abstract class BaseFragment {
-    protected C1006ActionBar actionBar;
+    protected C0945ActionBar actionBar;
     protected Bundle arguments;
     protected boolean finishing;
     protected boolean fragmentBeginToShow;
@@ -186,7 +186,7 @@ public abstract class BaseFragment {
         throw new IllegalStateException("trying to set current account when fragment UI already created");
     }
 
-    public C1006ActionBar getActionBar() {
+    public C0945ActionBar getActionBar() {
         return this.actionBar;
     }
 
@@ -220,7 +220,7 @@ public abstract class BaseFragment {
 
     public void setInPreviewMode(boolean z) {
         this.inPreviewMode = z;
-        C1006ActionBar actionBar = this.actionBar;
+        C0945ActionBar actionBar = this.actionBar;
         if (actionBar != null) {
             boolean z2 = false;
             if (z) {
@@ -252,7 +252,7 @@ public abstract class BaseFragment {
             }
             this.fragmentView = null;
         }
-        C1006ActionBar actionBar = this.actionBar;
+        C0945ActionBar actionBar = this.actionBar;
         if (actionBar != null) {
             ViewGroup viewGroup2 = (ViewGroup) actionBar.getParent();
             if (viewGroup2 != null) {
@@ -312,15 +312,15 @@ public abstract class BaseFragment {
             }
             ActionBarLayout actionBarLayout4 = this.parentLayout;
             if (actionBarLayout4 != null && this.actionBar == null) {
-                C1006ActionBar createActionBar = createActionBar(actionBarLayout4.getContext());
+                C0945ActionBar createActionBar = createActionBar(actionBarLayout4.getContext());
                 this.actionBar = createActionBar;
                 createActionBar.parentFragment = this;
             }
         }
     }
 
-    public C1006ActionBar createActionBar(Context context) {
-        C1006ActionBar actionBar = new C1006ActionBar(context);
+    public C0945ActionBar createActionBar(Context context) {
+        C0945ActionBar actionBar = new C0945ActionBar(context);
         actionBar.setBackgroundColor(getThemedColor("actionBarDefault"));
         actionBar.setItemsBackgroundColor(getThemedColor("actionBarDefaultSelector"), false);
         actionBar.setItemsBackgroundColor(getThemedColor("actionBarActionModeDefaultSelector"), true);
@@ -378,7 +378,7 @@ public abstract class BaseFragment {
         getMessagesStorage().cancelTasksForGuid(this.classGuid);
         boolean z = true;
         this.isFinished = true;
-        C1006ActionBar actionBar = this.actionBar;
+        C0945ActionBar actionBar = this.actionBar;
         if (actionBar != null) {
             actionBar.setEnabled(false);
         }
@@ -403,7 +403,7 @@ public abstract class BaseFragment {
     }
 
     public void onPause() {
-        C1006ActionBar actionBar = this.actionBar;
+        C0945ActionBar actionBar = this.actionBar;
         if (actionBar != null) {
             actionBar.onPause();
         }
@@ -524,7 +524,7 @@ public abstract class BaseFragment {
         } catch (Exception e) {
             FileLog.m30e(e);
         }
-        C1006ActionBar actionBar = this.actionBar;
+        C0945ActionBar actionBar = this.actionBar;
         if (actionBar != null) {
             actionBar.onPause();
         }
@@ -537,7 +537,7 @@ public abstract class BaseFragment {
     }
 
     public void onBecomeFullyVisible() {
-        C1006ActionBar actionBar;
+        C0945ActionBar actionBar;
         if (((AccessibilityManager) ApplicationLoader.applicationContext.getSystemService("accessibility")).isEnabled() && (actionBar = getActionBar()) != null) {
             String title = actionBar.getTitle();
             if (!TextUtils.isEmpty(title)) {
@@ -682,13 +682,13 @@ public abstract class BaseFragment {
             return null;
         }
         ActionBarLayout[] actionBarLayoutArr = {new ActionBarLayout(getParentActivity())};
-        DialogC10561 r7 = new DialogC10561(this, getParentActivity(), true, actionBarLayoutArr, baseFragment);
+        DialogC09941 r7 = new DialogC09941(this, getParentActivity(), true, actionBarLayoutArr, baseFragment);
         baseFragment.setParentDialog(r7);
         r7.show();
         return actionBarLayoutArr;
     }
 
-    class DialogC10561 extends BottomSheet {
+    class DialogC09941 extends BottomSheet {
         final ActionBarLayout[] val$actionBarLayout;
         final BaseFragment val$fragment;
 
@@ -697,7 +697,7 @@ public abstract class BaseFragment {
             return false;
         }
 
-        DialogC10561(BaseFragment baseFragment, Context context, boolean z, ActionBarLayout[] actionBarLayoutArr, final BaseFragment baseFragment2) {
+        DialogC09941(BaseFragment baseFragment, Context context, boolean z, ActionBarLayout[] actionBarLayoutArr, final BaseFragment baseFragment2) {
             super(context, z);
             this.val$actionBarLayout = actionBarLayoutArr;
             this.val$fragment = baseFragment2;
@@ -780,7 +780,7 @@ public abstract class BaseFragment {
             return true;
         }
         Theme.ResourcesProvider resourceProvider = getResourceProvider();
-        C1006ActionBar actionBar = this.actionBar;
+        C0945ActionBar actionBar = this.actionBar;
         String str = (actionBar == null || !actionBar.isActionModeShowed()) ? "actionBarDefault" : "actionBarActionModeDefault";
         if (resourceProvider != null) {
             i = resourceProvider.getColorOrDefault(str);

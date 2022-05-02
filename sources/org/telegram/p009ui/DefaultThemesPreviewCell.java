@@ -1,6 +1,5 @@
 package org.telegram.p009ui;
 
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.p009ui.ActionBar.BaseFragment;
@@ -38,14 +37,12 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     RLottieDrawable darkThemeDrawable;
     TextCell dayNightCell;
     private final LinearLayoutManager layoutManager;
-    private ValueAnimator navBarAnimator;
-    private int navBarColor;
     private final FlickerLoadingView progressView;
     private final RecyclerListView recyclerView;
     private int selectedPosition = -1;
     int themeIndex;
 
-    public DefaultThemesPreviewCell(final Context context, final BaseFragment baseFragment, int i) {
+    public DefaultThemesPreviewCell(Context context, final BaseFragment baseFragment, int i) {
         super(context);
         this.currentType = i;
         setOrientation(1);
@@ -100,7 +97,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         recyclerListView.setEmptyView(flickerLoadingView);
         recyclerListView.setAnimateEmptyView(true, 0);
         if (this.currentType == 0) {
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(C0952R.raw.sun_outline, "2131558525", AndroidUtilities.m34dp(28.0f), AndroidUtilities.m34dp(28.0f), true, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(C0890R.raw.sun_outline, "2131558525", AndroidUtilities.m34dp(28.0f), AndroidUtilities.m34dp(28.0f), true, null);
             this.darkThemeDrawable = rLottieDrawable;
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
             this.darkThemeDrawable.beginApplyLayerColors();
@@ -111,13 +108,13 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             addView(textCell, LayoutHelper.createFrame(-1, -2.0f));
             TextCell textCell2 = new TextCell(context);
             this.browseThemesCell = textCell2;
-            textCell2.setTextAndIcon(LocaleController.getString("SettingsBrowseThemes", C0952R.string.SettingsBrowseThemes), C0952R.C0953drawable.msg_colors, false);
+            textCell2.setTextAndIcon(LocaleController.getString("SettingsBrowseThemes", C0890R.string.SettingsBrowseThemes), C0890R.C0891drawable.msg_colors, false);
             addView(this.browseThemesCell, LayoutHelper.createFrame(-1, -2.0f));
             this.dayNightCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 @android.annotation.SuppressLint({"NotifyDataSetChanged"})
-                public void onClick(android.view.View r14) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DefaultThemesPreviewCell.View$OnClickListenerC27242.onClick(android.view.View):void");
+                public void onClick(android.view.View r11) {
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DefaultThemesPreviewCell.View$OnClickListenerC26472.onClick(android.view.View):void");
                 }
             });
             this.darkThemeDrawable.setPlayInDirectionOfCustomEndFrame(true);
@@ -130,9 +127,9 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             if (!Theme.isCurrentThemeDay()) {
                 RLottieDrawable rLottieDrawable2 = this.darkThemeDrawable;
                 rLottieDrawable2.setCurrentFrame(rLottieDrawable2.getFramesCount() - 1);
-                this.dayNightCell.setTextAndIcon(LocaleController.getString("SettingsSwitchToDayMode", C0952R.string.SettingsSwitchToDayMode), (Drawable) this.darkThemeDrawable, true);
+                this.dayNightCell.setTextAndIcon(LocaleController.getString("SettingsSwitchToDayMode", C0890R.string.SettingsSwitchToDayMode), (Drawable) this.darkThemeDrawable, true);
             } else {
-                this.dayNightCell.setTextAndIcon(LocaleController.getString("SettingsSwitchToNightMode", C0952R.string.SettingsSwitchToNightMode), (Drawable) this.darkThemeDrawable, true);
+                this.dayNightCell.setTextAndIcon(LocaleController.getString("SettingsSwitchToNightMode", C0890R.string.SettingsSwitchToNightMode), (Drawable) this.darkThemeDrawable, true);
             }
         }
         ArrayList<ChatThemeBottomSheet.ChatThemeItem> arrayList = Theme.defaultEmojiThemes;
@@ -164,11 +161,11 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             TLRPC$TL_theme tlTheme = chatThemeItem.chatTheme.getTlTheme(this.themeIndex);
             Theme.ThemeInfo theme = Theme.getTheme(Theme.getBaseThemeKey(tlTheme.settings.get(chatThemeItem.chatTheme.getSettingsIndex(this.themeIndex))));
             if (theme != null) {
-                Theme.ThemeAccent themeAccent = theme.accentsByThemeId.get(tlTheme.f976id);
+                Theme.ThemeAccent themeAccent = theme.accentsByThemeId.get(tlTheme.f965id);
                 if (themeAccent == null) {
                     themeAccent = theme.createNewAccent(tlTheme, baseFragment.getCurrentAccount());
                 }
-                accentId = themeAccent.f999id;
+                accentId = themeAccent.f987id;
                 theme.setCurrentAccentId(accentId);
             }
             themeInfo = theme;
@@ -247,8 +244,8 @@ public class DefaultThemesPreviewCell extends LinearLayout {
                 if (tlTheme != null) {
                     if (Theme.getActiveTheme().name.equals(Theme.getBaseThemeKey(tlTheme.settings.get(this.adapter.items.get(i).chatTheme.getSettingsIndex(this.themeIndex))))) {
                         if (Theme.getActiveTheme().accentsByThemeId != null) {
-                            Theme.ThemeAccent themeAccent = Theme.getActiveTheme().accentsByThemeId.get(tlTheme.f976id);
-                            if (themeAccent != null && themeAccent.f999id == Theme.getActiveTheme().currentAccentId) {
+                            Theme.ThemeAccent themeAccent = Theme.getActiveTheme().accentsByThemeId.get(tlTheme.f965id);
+                            if (themeAccent != null && themeAccent.f987id == Theme.getActiveTheme().currentAccentId) {
                                 this.selectedPosition = i;
                                 break;
                             }

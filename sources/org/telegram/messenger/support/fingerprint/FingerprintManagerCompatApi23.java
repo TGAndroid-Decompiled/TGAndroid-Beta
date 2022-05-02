@@ -8,10 +8,10 @@ import android.os.Handler;
 import java.security.Signature;
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 
-@TargetApi(C0952R.styleable.MapAttrs_zOrderOnTop)
+@TargetApi(C0890R.styleable.MapAttrs_zOrderOnTop)
 public final class FingerprintManagerCompatApi23 {
 
     public static abstract class AuthenticationCallback {

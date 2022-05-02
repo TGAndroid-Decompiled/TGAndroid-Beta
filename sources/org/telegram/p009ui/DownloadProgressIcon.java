@@ -10,7 +10,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageReceiver;
@@ -23,8 +23,6 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
     private int currentAccount;
     int currentColor;
     float currentProgress;
-    RLottieDrawable downloadCompleteDrawable;
-    RLottieDrawable downloadDrawable;
     float progress;
     float progressDt;
     boolean showCompletedIcon;
@@ -33,16 +31,12 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
     ArrayList<ProgressObserver> currentListeners = new ArrayList<>();
     ImageReceiver downloadImageReceiver = new ImageReceiver(this);
     ImageReceiver downloadCompleteImageReceiver = new ImageReceiver(this);
+    RLottieDrawable downloadDrawable = new RLottieDrawable(C0890R.raw.download_progress, "download_progress", AndroidUtilities.m34dp(28.0f), AndroidUtilities.m34dp(28.0f), true, null);
+    RLottieDrawable downloadCompleteDrawable = new RLottieDrawable(C0890R.raw.download_finish, "download_finish", AndroidUtilities.m34dp(28.0f), AndroidUtilities.m34dp(28.0f), true, null);
 
     public DownloadProgressIcon(int i, Context context) {
         super(context);
         this.currentAccount = i;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(C0952R.raw.download_progress, "download_progress", AndroidUtilities.m34dp(28.0f), AndroidUtilities.m34dp(28.0f), true, null);
-        this.downloadDrawable = rLottieDrawable;
-        rLottieDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
-        RLottieDrawable rLottieDrawable2 = new RLottieDrawable(C0952R.raw.download_finish, "download_finish", AndroidUtilities.m34dp(28.0f), AndroidUtilities.m34dp(28.0f), true, null);
-        this.downloadCompleteDrawable = rLottieDrawable2;
-        rLottieDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
         this.downloadImageReceiver.setImageBitmap(this.downloadDrawable);
         this.downloadCompleteImageReceiver.setImageBitmap(this.downloadCompleteDrawable);
         this.downloadImageReceiver.setAutoRepeat(1);

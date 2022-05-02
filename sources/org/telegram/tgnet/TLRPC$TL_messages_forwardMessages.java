@@ -9,7 +9,7 @@ public class TLRPC$TL_messages_forwardMessages extends TLObject {
     public boolean drop_media_captions;
     public int flags;
     public TLRPC$InputPeer from_peer;
-    public ArrayList<Integer> f934id = new ArrayList<>();
+    public ArrayList<Integer> f923id = new ArrayList<>();
     public ArrayList<Long> random_id = new ArrayList<>();
     public int schedule_date;
     public TLRPC$InputPeer send_as;
@@ -38,10 +38,10 @@ public class TLRPC$TL_messages_forwardMessages extends TLObject {
         abstractSerializedData.writeInt32(i5);
         this.from_peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
-        int size = this.f934id.size();
+        int size = this.f923id.size();
         abstractSerializedData.writeInt32(size);
         for (int i6 = 0; i6 < size; i6++) {
-            abstractSerializedData.writeInt32(this.f934id.get(i6).intValue());
+            abstractSerializedData.writeInt32(this.f923id.get(i6).intValue());
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.random_id.size();

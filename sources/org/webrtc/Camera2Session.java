@@ -15,13 +15,13 @@ import android.view.Surface;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.webrtc.Camera2Session;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
 import org.webrtc.VideoSink;
 
-@TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
+@TargetApi(C0890R.styleable.MapAttrs_uiZoomGestures)
 public class Camera2Session implements CameraSession {
     private static final String TAG = "Camera2Session";
     private final Context applicationContext;

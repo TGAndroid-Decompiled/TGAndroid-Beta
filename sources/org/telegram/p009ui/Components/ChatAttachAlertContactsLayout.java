@@ -20,9 +20,9 @@ import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.PhoneFormat.C0894PhoneFormat;
+import org.telegram.PhoneFormat.C0832PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
@@ -166,7 +166,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                 return;
             }
             if (TextUtils.isEmpty(tLRPC$User.phone)) {
-                this.statusTextView.setText(LocaleController.getString("NumberUnknown", C0952R.string.NumberUnknown));
+                this.statusTextView.setText(LocaleController.getString("NumberUnknown", C0890R.string.NumberUnknown));
             } else if (this.formattedPhoneNumberUser == this.currentUser || (charSequence2 = this.formattedPhoneNumber) == null) {
                 this.statusTextView.setText("");
                 Utilities.globalQueue.postRunnable(new Runnable() {
@@ -181,7 +181,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public void lambda$setStatus$3() {
-            C0894PhoneFormat phoneFormat = C0894PhoneFormat.getInstance();
+            C0832PhoneFormat phoneFormat = C0832PhoneFormat.getInstance();
             this.formattedPhoneNumber = phoneFormat.format("+" + this.currentUser.phone);
             this.formattedPhoneNumberUser = this.currentUser;
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -230,11 +230,11 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             public void onTextChange(String str) {
                 if (str.length() != 0) {
                     if (ChatAttachAlertContactsLayout.this.emptyView != null) {
-                        ChatAttachAlertContactsLayout.this.emptyView.setText(LocaleController.getString("NoResult", C0952R.string.NoResult));
+                        ChatAttachAlertContactsLayout.this.emptyView.setText(LocaleController.getString("NoResult", C0890R.string.NoResult));
                     }
                 } else if (ChatAttachAlertContactsLayout.this.listView.getAdapter() != ChatAttachAlertContactsLayout.this.listAdapter) {
                     int currentTop = ChatAttachAlertContactsLayout.this.getCurrentTop();
-                    ChatAttachAlertContactsLayout.this.emptyView.setText(LocaleController.getString("NoContacts", C0952R.string.NoContacts));
+                    ChatAttachAlertContactsLayout.this.emptyView.setText(LocaleController.getString("NoContacts", C0890R.string.NoContacts));
                     ChatAttachAlertContactsLayout.this.emptyView.showTextView();
                     ChatAttachAlertContactsLayout.this.listView.setAdapter(ChatAttachAlertContactsLayout.this.listAdapter);
                     ChatAttachAlertContactsLayout.this.listAdapter.notifyDataSetChanged();
@@ -267,12 +267,12 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.searchField = searchField;
-        searchField.setHint(LocaleController.getString("SearchFriends", C0952R.string.SearchFriends));
+        searchField.setHint(LocaleController.getString("SearchFriends", C0890R.string.SearchFriends));
         this.frameLayout.addView(this.searchField, LayoutHelper.createFrame(-1, -1, 51));
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context, null, resourcesProvider);
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.showTextView();
-        this.emptyView.setText(LocaleController.getString("NoContacts", C0952R.string.NoContacts));
+        this.emptyView.setText(LocaleController.getString("NoContacts", C0890R.string.NoContacts));
         addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             @Override
@@ -697,11 +697,11 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public static CharSequence lambda$onBindViewHolder$0(ContactsController.Contact contact) {
-            return contact.phones.isEmpty() ? "" : C0894PhoneFormat.getInstance().format(contact.phones.get(0));
+            return contact.phones.isEmpty() ? "" : C0832PhoneFormat.getInstance().format(contact.phones.get(0));
         }
 
         public static CharSequence lambda$onBindViewHolder$1(TLRPC$User tLRPC$User) {
-            C0894PhoneFormat phoneFormat = C0894PhoneFormat.getInstance();
+            C0832PhoneFormat phoneFormat = C0832PhoneFormat.getInstance();
             return phoneFormat.format("+" + tLRPC$User.phone);
         }
 
@@ -872,11 +872,11 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public static CharSequence lambda$onBindViewHolder$4(ContactsController.Contact contact) {
-            return contact.phones.isEmpty() ? "" : C0894PhoneFormat.getInstance().format(contact.phones.get(0));
+            return contact.phones.isEmpty() ? "" : C0832PhoneFormat.getInstance().format(contact.phones.get(0));
         }
 
         public static CharSequence lambda$onBindViewHolder$5(TLRPC$User tLRPC$User) {
-            C0894PhoneFormat phoneFormat = C0894PhoneFormat.getInstance();
+            C0832PhoneFormat phoneFormat = C0832PhoneFormat.getInstance();
             return phoneFormat.format("+" + tLRPC$User.phone);
         }
 

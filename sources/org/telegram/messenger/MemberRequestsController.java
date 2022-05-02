@@ -47,7 +47,7 @@ public class MemberRequestsController extends BaseController {
         tLRPC$TL_messages_getChatInviteImporters.requested = true;
         tLRPC$TL_messages_getChatInviteImporters.limit = 30;
         if (!isEmpty) {
-            tLRPC$TL_messages_getChatInviteImporters.f935q = str;
+            tLRPC$TL_messages_getChatInviteImporters.f924q = str;
             tLRPC$TL_messages_getChatInviteImporters.flags |= 4;
         }
         if (tLRPC$TL_chatInviteImporter == null) {

@@ -60,7 +60,7 @@ public class ReactionsEffectOverlay {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Reactions.ReactionsEffectOverlay.<init>(android.content.Context, org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.Components.ReactionsContainerLayout, org.telegram.ui.Cells.ChatMessageCell, float, float, java.lang.String, int, int):void");
     }
 
-    public class C22941 extends FrameLayout {
+    public class C22171 extends FrameLayout {
         final int val$animationType;
         final ChatMessageCell val$cell;
         final ChatActivity val$chatActivity;
@@ -72,7 +72,7 @@ public class ReactionsEffectOverlay {
         final float val$fromY;
         final String val$reaction;
 
-        C22941(Context context, BaseFragment baseFragment, ChatMessageCell chatMessageCell, String str, ChatActivity chatActivity, int i, int i2, boolean z, float f, float f2, float f3) {
+        C22171(Context context, BaseFragment baseFragment, ChatMessageCell chatMessageCell, String str, ChatActivity chatActivity, int i, int i2, boolean z, float f, float f2, float f3) {
             super(context);
             this.val$fragment = baseFragment;
             this.val$cell = chatMessageCell;
@@ -88,7 +88,7 @@ public class ReactionsEffectOverlay {
 
         @Override
         protected void dispatchDraw(android.graphics.Canvas r20) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Reactions.ReactionsEffectOverlay.C22941.dispatchDraw(android.graphics.Canvas):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Reactions.ReactionsEffectOverlay.C22171.dispatchDraw(android.graphics.Canvas):void");
         }
 
         public void lambda$dispatchDraw$0() {
@@ -280,7 +280,7 @@ public class ReactionsEffectOverlay {
         private AvatarParticle(ReactionsEffectOverlay reactionsEffectOverlay) {
         }
 
-        AvatarParticle(ReactionsEffectOverlay reactionsEffectOverlay, C22941 r2) {
+        AvatarParticle(ReactionsEffectOverlay reactionsEffectOverlay, C22171 r2) {
             this(reactionsEffectOverlay);
         }
     }

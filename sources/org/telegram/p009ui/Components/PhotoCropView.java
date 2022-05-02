@@ -27,16 +27,15 @@ import org.telegram.p009ui.Components.Crop.CropTransform;
 import org.telegram.p009ui.Components.Crop.CropView;
 
 public class PhotoCropView extends FrameLayout {
-    public CropView cropView;
+    private CropView cropView;
     private PhotoCropViewDelegate delegate;
     private boolean inBubbleMode;
-    public boolean isReset;
     private final Theme.ResourcesProvider resourcesProvider;
     private AnimatorSet thumbAnimation;
     private boolean thumbImageVisible;
     private float thumbImageVisibleProgress;
     private AnimatorSet thumbOverrideAnimation;
-    public CropRotationWheel wheelView;
+    private CropRotationWheel wheelView;
     private boolean thumbImageVisibleOverride = true;
     private float thumbAnimationProgress = 1.0f;
     private float flashAlpha = 0.0f;
@@ -66,8 +65,6 @@ public class PhotoCropView extends FrameLayout {
     public interface PhotoCropViewDelegate {
         int getVideoThumbX();
 
-        boolean mirror();
-
         void onChange(boolean z);
 
         void onTapUp();
@@ -75,8 +72,6 @@ public class PhotoCropView extends FrameLayout {
         void onUpdate();
 
         void onVideoThumbClick();
-
-        boolean rotate();
     }
 
     public PhotoCropView(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -88,9 +83,7 @@ public class PhotoCropView extends FrameLayout {
         cropView.setListener(new CropView.CropViewListener() {
             @Override
             public void onChange(boolean z) {
-                PhotoCropView photoCropView = PhotoCropView.this;
-                photoCropView.isReset = z;
-                if (photoCropView.delegate != null) {
+                if (PhotoCropView.this.delegate != null) {
                     PhotoCropView.this.delegate.onChange(z);
                 }
             }
@@ -127,9 +120,7 @@ public class PhotoCropView extends FrameLayout {
             @Override
             public void onChange(float f) {
                 PhotoCropView.this.cropView.setRotation(f);
-                PhotoCropView photoCropView = PhotoCropView.this;
-                photoCropView.isReset = false;
-                if (photoCropView.delegate != null) {
+                if (PhotoCropView.this.delegate != null) {
                     PhotoCropView.this.delegate.onChange(false);
                 }
             }
@@ -146,18 +137,12 @@ public class PhotoCropView extends FrameLayout {
 
             @Override
             public boolean rotate90Pressed() {
-                if (PhotoCropView.this.delegate != null) {
-                    return PhotoCropView.this.delegate.rotate();
-                }
-                return false;
+                return PhotoCropView.this.rotate();
             }
 
             @Override
             public boolean mirror() {
-                if (PhotoCropView.this.delegate != null) {
-                    return PhotoCropView.this.delegate.mirror();
-                }
-                return false;
+                return PhotoCropView.this.mirror();
             }
         });
         addView(this.wheelView, LayoutHelper.createFrame(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -217,12 +202,12 @@ public class PhotoCropView extends FrameLayout {
         return drawChild;
     }
 
-    public boolean rotate(float f) {
+    public boolean rotate() {
         CropRotationWheel cropRotationWheel = this.wheelView;
         if (cropRotationWheel != null) {
             cropRotationWheel.reset(false);
         }
-        return this.cropView.rotate(f);
+        return this.cropView.rotate90Degrees();
     }
 
     public boolean mirror() {
@@ -336,9 +321,9 @@ public class PhotoCropView extends FrameLayout {
         return this.cropView.isReady();
     }
 
-    public void reset(boolean z) {
+    public void reset() {
         this.wheelView.reset(true);
-        this.cropView.reset(z);
+        this.cropView.reset();
     }
 
     public void onAppear() {

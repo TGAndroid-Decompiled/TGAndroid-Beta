@@ -9,13 +9,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Components.EditTextBoldCursor;
@@ -40,10 +40,10 @@ public class ChangeNameActivity extends BaseFragment {
 
     @Override
     public View createView(Context context) {
-        this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C0890R.C0891drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("EditName", C0952R.string.EditName));
-        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setTitle(LocaleController.getString("EditName", C0890R.string.EditName));
+        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -54,7 +54,7 @@ public class ChangeNameActivity extends BaseFragment {
                 }
             }
         });
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, C0952R.C0953drawable.ic_done, AndroidUtilities.m34dp(56.0f), LocaleController.getString("Done", C0952R.string.Done));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, C0890R.C0891drawable.ic_done, AndroidUtilities.m34dp(56.0f), LocaleController.getString("Done", C0890R.string.Done));
         TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).getClientUserId()));
         if (user == null) {
             user = UserConfig.getInstance(this.currentAccount).getCurrentUser();
@@ -77,7 +77,7 @@ public class ChangeNameActivity extends BaseFragment {
         this.firstNameField.setGravity(LocaleController.isRTL ? 5 : 3);
         this.firstNameField.setInputType(49152);
         this.firstNameField.setImeOptions(5);
-        this.firstNameField.setHint(LocaleController.getString("FirstName", C0952R.string.FirstName));
+        this.firstNameField.setHint(LocaleController.getString("FirstName", C0890R.string.FirstName));
         this.firstNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.firstNameField.setCursorSize(AndroidUtilities.m34dp(20.0f));
         this.firstNameField.setCursorWidth(1.5f);
@@ -103,7 +103,7 @@ public class ChangeNameActivity extends BaseFragment {
         this.lastNameField.setGravity(LocaleController.isRTL ? 5 : 3);
         this.lastNameField.setInputType(49152);
         this.lastNameField.setImeOptions(6);
-        this.lastNameField.setHint(LocaleController.getString("LastName", C0952R.string.LastName));
+        this.lastNameField.setHint(LocaleController.getString("LastName", C0890R.string.LastName));
         this.lastNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.lastNameField.setCursorSize(AndroidUtilities.m34dp(20.0f));
         this.lastNameField.setCursorWidth(1.5f);

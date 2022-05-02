@@ -68,16 +68,16 @@ public class RecyclerItemsEnterAnimator {
             ofFloat.start();
             i--;
         }
-        ViewTreeObserver$OnPreDrawListenerC23172 r1 = new ViewTreeObserver$OnPreDrawListenerC23172(progressView, i);
+        ViewTreeObserver$OnPreDrawListenerC22402 r1 = new ViewTreeObserver$OnPreDrawListenerC22402(progressView, i);
         this.preDrawListeners.add(r1);
         this.listView.getViewTreeObserver().addOnPreDrawListener(r1);
     }
 
-    public class ViewTreeObserver$OnPreDrawListenerC23172 implements ViewTreeObserver.OnPreDrawListener {
+    public class ViewTreeObserver$OnPreDrawListenerC22402 implements ViewTreeObserver.OnPreDrawListener {
         final int val$finalFrom;
         final View val$finalProgressView;
 
-        ViewTreeObserver$OnPreDrawListenerC23172(View view, int i) {
+        ViewTreeObserver$OnPreDrawListenerC22402(View view, int i) {
             this.val$finalProgressView = view;
             this.val$finalFrom = i;
         }
@@ -100,7 +100,7 @@ public class RecyclerItemsEnterAnimator {
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            RecyclerItemsEnterAnimator.ViewTreeObserver$OnPreDrawListenerC23172.this.lambda$onPreDraw$0(childAdapterPosition, valueAnimator);
+                            RecyclerItemsEnterAnimator.ViewTreeObserver$OnPreDrawListenerC22402.this.lambda$onPreDraw$0(childAdapterPosition, valueAnimator);
                         }
                     });
                     ofFloat.addListener(new AnimatorListenerAdapter() {

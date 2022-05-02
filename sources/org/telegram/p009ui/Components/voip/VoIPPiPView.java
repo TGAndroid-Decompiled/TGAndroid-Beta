@@ -26,7 +26,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -261,7 +261,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
         this.yOffset = ((int) ((f * 1.05f) - f)) / 2;
         float f2 = i * 0.4f;
         this.xOffset = ((int) ((1.05f * f2) - f2)) / 2;
-        final Drawable drawable = ContextCompat.getDrawable(context, C0952R.C0953drawable.calls_pip_outershadow);
+        final Drawable drawable = ContextCompat.getDrawable(context, C0890R.C0891drawable.calls_pip_outershadow);
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected void onDraw(Canvas canvas) {
@@ -299,15 +299,15 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
             this.floatingView.addView(this.topShadow, -1, AndroidUtilities.m34dp(60.0f));
             ImageView imageView = new ImageView(context);
             this.closeIcon = imageView;
-            imageView.setImageResource(C0952R.C0953drawable.pip_close);
+            imageView.setImageResource(C0890R.C0891drawable.pip_close);
             this.closeIcon.setPadding(AndroidUtilities.m34dp(8.0f), AndroidUtilities.m34dp(8.0f), AndroidUtilities.m34dp(8.0f), AndroidUtilities.m34dp(8.0f));
-            this.closeIcon.setContentDescription(LocaleController.getString("Close", C0952R.string.Close));
+            this.closeIcon.setContentDescription(LocaleController.getString("Close", C0890R.string.Close));
             this.floatingView.addView(this.closeIcon, LayoutHelper.createFrame(40, 40.0f, 53, 4.0f, 4.0f, 4.0f, 0.0f));
             ImageView imageView2 = new ImageView(context);
             this.enlargeIcon = imageView2;
-            imageView2.setImageResource(C0952R.C0953drawable.pip_enlarge);
+            imageView2.setImageResource(C0890R.C0891drawable.pip_enlarge);
             this.enlargeIcon.setPadding(AndroidUtilities.m34dp(8.0f), AndroidUtilities.m34dp(8.0f), AndroidUtilities.m34dp(8.0f), AndroidUtilities.m34dp(8.0f));
-            this.enlargeIcon.setContentDescription(LocaleController.getString("Open", C0952R.string.Open));
+            this.enlargeIcon.setContentDescription(LocaleController.getString("Open", C0890R.string.Open));
             this.floatingView.addView(this.enlargeIcon, LayoutHelper.createFrame(40, 40.0f, 51, 4.0f, 4.0f, 4.0f, 0.0f));
             this.closeIcon.setOnClickListener(VoIPPiPView$$ExternalSyntheticLambda2.INSTANCE);
             this.enlargeIcon.setOnClickListener(new View.OnClickListener() {
@@ -480,7 +480,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
             if (Build.VERSION.SDK_INT >= 21) {
                 setOutlineProvider(new ViewOutlineProvider(this, VoIPPiPView.this) {
                     @Override
-                    @TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
+                    @TargetApi(C0890R.styleable.MapAttrs_uiZoomGestures)
                     public void getOutline(View view, Outline outline) {
                         outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / view.getScaleX()) * AndroidUtilities.m34dp(4.0f));
                     }
@@ -603,7 +603,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
                         }
                     });
                     ofFloat.setDuration(300L).setInterpolator(CubicBezierInterpolator.DEFAULT);
-                    ofFloat.addListener(new C26733(z));
+                    ofFloat.addListener(new C25983(z));
                     ofFloat.start();
                     VoIPPiPView.this.expandAnimator = ofFloat;
                 }
@@ -666,10 +666,10 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
             }
         }
 
-        public class C26733 extends AnimatorListenerAdapter {
+        public class C25983 extends AnimatorListenerAdapter {
             final boolean val$expanded;
 
-            C26733(boolean z) {
+            C25983(boolean z) {
                 this.val$expanded = z;
             }
 
@@ -683,7 +683,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            VoIPPiPView.FloatingView.C26733.this.lambda$onAnimationEnd$0(z);
+                            VoIPPiPView.FloatingView.C25983.this.lambda$onAnimationEnd$0(z);
                         }
                     }, 64L);
                 }

@@ -11,6 +11,6 @@ public final class Bulletin$ParentLayout$1$$ExternalSyntheticLambda3 implements 
 
     @Override
     public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-        Bulletin.ParentLayout.C16671.lambda$onFling$3(dynamicAnimation, f, f2);
+        Bulletin.ParentLayout.C16031.lambda$onFling$3(dynamicAnimation, f, f2);
     }
 }

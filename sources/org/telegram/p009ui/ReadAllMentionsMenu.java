@@ -5,7 +5,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.p009ui.ActionBar.ActionBarPopupWindow;
@@ -20,13 +20,13 @@ public class ReadAllMentionsMenu {
         ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem((Context) activity, true, true, resourcesProvider);
         actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.m34dp(200.0f));
         if (i == 0) {
-            i2 = C0952R.string.ReadAllReactions;
+            i2 = C0890R.string.ReadAllReactions;
             str = "ReadAllReactions";
         } else {
-            i2 = C0952R.string.ReadAllMentions;
+            i2 = C0890R.string.ReadAllMentions;
             str = "ReadAllMentions";
         }
-        actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(str, i2), C0952R.C0953drawable.msg_seen);
+        actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(str, i2), C0890R.C0891drawable.msg_seen);
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -39,7 +39,7 @@ public class ReadAllMentionsMenu {
         actionBarPopupWindow.setDismissAnimationDuration(220);
         actionBarPopupWindow.setOutsideTouchable(true);
         actionBarPopupWindow.setClippingEnabled(true);
-        actionBarPopupWindow.setAnimationStyle(C0952R.style.PopupContextAnimation);
+        actionBarPopupWindow.setAnimationStyle(C0890R.style.PopupContextAnimation);
         actionBarPopupWindow.setFocusable(true);
         actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m34dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m34dp(1000.0f), Integer.MIN_VALUE));
         actionBarPopupWindow.setInputMethodMode(2);

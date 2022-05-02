@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.ChatListItemAnimator;
 import java.util.Iterator;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -36,7 +36,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.p009ui.ActionBar.ActionBarMenu;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ChatActivity;
 import org.telegram.p009ui.Components.BotWebViewContainer;
@@ -130,22 +130,22 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
     public ChatAttachAlertBotWebViewLayout(ChatAttachAlert chatAttachAlert, Context context, Theme.ResourcesProvider resourcesProvider) {
         super(chatAttachAlert, context, resourcesProvider);
-        ActionBarMenuItem addItem = this.parentAlert.actionBar.createMenu().addItem(0, C0952R.C0953drawable.ic_ab_other);
+        ActionBarMenuItem addItem = this.parentAlert.actionBar.createMenu().addItem(0, C0890R.C0891drawable.ic_ab_other);
         this.otherItem = addItem;
-        addItem.addSubItem(C0952R.C0954id.menu_open_bot, C0952R.C0953drawable.msg_bot, LocaleController.getString((int) C0952R.string.BotWebViewOpenBot));
-        this.otherItem.addSubItem(C0952R.C0954id.menu_reload_page, C0952R.C0953drawable.msg_retry, LocaleController.getString((int) C0952R.string.BotWebViewReloadPage));
-        this.otherItem.addSubItem(C0952R.C0954id.menu_delete_bot, C0952R.C0953drawable.msg_delete, LocaleController.getString((int) C0952R.string.BotWebViewDeleteBot));
-        this.parentAlert.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
+        addItem.addSubItem(C0890R.C0892id.menu_open_bot, C0890R.C0891drawable.msg_bot, LocaleController.getString((int) C0890R.string.BotWebViewOpenBot));
+        this.otherItem.addSubItem(C0890R.C0892id.menu_reload_page, C0890R.C0891drawable.msg_retry, LocaleController.getString((int) C0890R.string.BotWebViewReloadPage));
+        this.otherItem.addSubItem(C0890R.C0892id.menu_delete_bot, C0890R.C0891drawable.msg_delete, LocaleController.getString((int) C0890R.string.BotWebViewDeleteBot));
+        this.parentAlert.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
                     ChatAttachAlertBotWebViewLayout.this.parentAlert.dismiss();
-                } else if (i == C0952R.C0954id.menu_open_bot) {
+                } else if (i == C0890R.C0892id.menu_open_bot) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("user_id", ChatAttachAlertBotWebViewLayout.this.botId);
                     ChatAttachAlertBotWebViewLayout.this.parentAlert.baseFragment.presentFragment(new ChatActivity(bundle));
                     ChatAttachAlertBotWebViewLayout.this.parentAlert.dismiss();
-                } else if (i == C0952R.C0954id.menu_reload_page) {
+                } else if (i == C0890R.C0892id.menu_reload_page) {
                     if (ChatAttachAlertBotWebViewLayout.this.webViewContainer.getWebView() != null) {
                         ChatAttachAlertBotWebViewLayout.this.webViewContainer.getWebView().animate().cancel();
                         ChatAttachAlertBotWebViewLayout.this.webViewContainer.getWebView().animate().alpha(0.0f).start();
@@ -156,7 +156,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                     ChatAttachAlertBotWebViewLayout.this.webViewContainer.setBotUser(MessagesController.getInstance(ChatAttachAlertBotWebViewLayout.this.currentAccount).getUser(Long.valueOf(ChatAttachAlertBotWebViewLayout.this.botId)));
                     ChatAttachAlertBotWebViewLayout.this.webViewContainer.loadFlicker(ChatAttachAlertBotWebViewLayout.this.currentAccount, ChatAttachAlertBotWebViewLayout.this.botId);
                     ChatAttachAlertBotWebViewLayout.this.webViewContainer.reload();
-                } else if (i == C0952R.C0954id.menu_delete_bot) {
+                } else if (i == C0890R.C0892id.menu_delete_bot) {
                     Iterator<TLRPC$TL_attachMenuBot> it = MediaDataController.getInstance(ChatAttachAlertBotWebViewLayout.this.currentAccount).getAttachMenuBots().bots.iterator();
                     while (it.hasNext()) {
                         TLRPC$TL_attachMenuBot next = it.next();
@@ -182,7 +182,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         WebViewSwipeContainer webViewSwipeContainer = new WebViewSwipeContainer(context) {
             @Override
             protected void onMeasure(int i, int i2) {
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(((View.MeasureSpec.getSize(i2) - C1006ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.m34dp(84.0f)) + ChatAttachAlertBotWebViewLayout.this.measureOffsetY, 1073741824));
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(((View.MeasureSpec.getSize(i2) - C0945ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.m34dp(84.0f)) + ChatAttachAlertBotWebViewLayout.this.measureOffsetY, 1073741824));
             }
         };
         this.swipeContainer = webViewSwipeContainer;
@@ -575,7 +575,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     public static class WebViewSwipeContainer extends FrameLayout {
-        public static final SimpleFloatPropertyCompat<WebViewSwipeContainer> SWIPE_OFFSET_Y = new SimpleFloatPropertyCompat<>("swipeOffsetY", C1796xea937ca8.INSTANCE, C1797xea937ca9.INSTANCE);
+        public static final SimpleFloatPropertyCompat<WebViewSwipeContainer> SWIPE_OFFSET_Y = new SimpleFloatPropertyCompat<>("swipeOffsetY", C1731xea937ca8.INSTANCE, C1732xea937ca9.INSTANCE);
         private Delegate delegate;
         private boolean flingInProgress;
         private GestureDetectorCompat gestureDetector;
@@ -589,7 +589,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         private float swipeOffsetY;
         private int swipeStickyRange;
         private WebView webView;
-        private float topActionBarOffsetY = C1006ActionBar.getCurrentActionBarHeight();
+        private float topActionBarOffsetY = C0945ActionBar.getCurrentActionBarHeight();
         private float offsetY = -1.0f;
         private float pendingOffsetY = -1.0f;
 
@@ -908,7 +908,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     public static final class WebProgressView extends View {
-        private final SimpleFloatPropertyCompat<WebProgressView> LOAD_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("loadProgress", C1792x21c92f6c.INSTANCE, C1793x21c92f6d.INSTANCE).setMultiplier(100.0f);
+        private final SimpleFloatPropertyCompat<WebProgressView> LOAD_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("loadProgress", C1727x21c92f6c.INSTANCE, C1728x21c92f6d.INSTANCE).setMultiplier(100.0f);
         private Paint bluePaint;
         private float loadProgress;
         private Theme.ResourcesProvider resourcesProvider;

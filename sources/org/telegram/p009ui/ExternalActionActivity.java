@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -81,8 +81,8 @@ public class ExternalActionActivity extends Activity implements ActionBarLayout.
     protected void onCreate(Bundle bundle) {
         ApplicationLoader.postInitApplication();
         requestWindowFeature(1);
-        setTheme(C0952R.style.Theme_TMessages);
-        getWindow().setBackgroundDrawableResource(C0952R.C0953drawable.transparent);
+        setTheme(C0890R.style.Theme_TMessages);
+        getWindow().setBackgroundDrawableResource(C0890R.C0891drawable.transparent);
         if (SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture) {
             try {
                 getWindow().setFlags(8192, 8192);
@@ -138,7 +138,7 @@ public class ExternalActionActivity extends Activity implements ActionBarLayout.
             actionBarLayout.setRemoveActionBarExtraHeight(true);
             this.layersActionBarLayout.setBackgroundView(frameLayout);
             this.layersActionBarLayout.setUseAlphaAnimations(true);
-            this.layersActionBarLayout.setBackgroundResource(C0952R.C0953drawable.boxshadow);
+            this.layersActionBarLayout.setBackgroundResource(C0890R.C0891drawable.boxshadow);
             relativeLayout.addView(this.layersActionBarLayout, LayoutHelper.createRelative(530, AndroidUtilities.isSmallTablet() ? 528 : 700));
             this.layersActionBarLayout.init(layerFragmentsStack);
             this.layersActionBarLayout.setDelegate(this);
@@ -287,9 +287,9 @@ public class ExternalActionActivity extends Activity implements ActionBarLayout.
                         this.layersActionBarLayout.showLastFragment();
                     }
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle(LocaleController.getString("AppName", C0952R.string.AppName));
-                    builder.setMessage(LocaleController.getString("PleaseLoginPassport", C0952R.string.PleaseLoginPassport));
-                    builder.setPositiveButton(LocaleController.getString("OK", C0952R.string.OK), null);
+                    builder.setTitle(LocaleController.getString("AppName", C0890R.string.AppName));
+                    builder.setMessage(LocaleController.getString("PleaseLoginPassport", C0890R.string.PleaseLoginPassport));
+                    builder.setPositiveButton(LocaleController.getString("OK", C0890R.string.OK), null);
                     builder.show();
                     return true;
                 } else if (activatedAccountsCount >= 2) {
@@ -429,7 +429,7 @@ public class ExternalActionActivity extends Activity implements ActionBarLayout.
         try {
             alertDialog.dismiss();
             if ("APP_VERSION_OUTDATED".equals(tLRPC$TL_error.text)) {
-                AlertDialog showUpdateAppAlert = AlertsCreator.showUpdateAppAlert(this, LocaleController.getString("UpdateAppAlert", C0952R.string.UpdateAppAlert), true);
+                AlertDialog showUpdateAppAlert = AlertsCreator.showUpdateAppAlert(this, LocaleController.getString("UpdateAppAlert", C0890R.string.UpdateAppAlert), true);
                 if (showUpdateAppAlert != null) {
                     showUpdateAppAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override

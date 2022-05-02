@@ -283,7 +283,7 @@ public class TextureRenderer {
                     if (f >= mediaEntity.metadata[0]) {
                         mediaEntity.currentFrame = 0.0f;
                     }
-                    drawTexture(false, this.stickerTexture[0], mediaEntity.f834x, mediaEntity.f835y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                    drawTexture(false, this.stickerTexture[0], mediaEntity.f823x, mediaEntity.f824y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                 } else if (mediaEntity.animatedFileDrawable != null) {
                     float f2 = mediaEntity.currentFrame;
                     int i7 = (int) f2;
@@ -302,12 +302,12 @@ public class TextureRenderer {
                         this.stickerCanvas.drawBitmap(backgroundBitmap, 0.0f, 0.0f, (Paint) null);
                         GLES20.glBindTexture(3553, this.stickerTexture[0]);
                         GLUtils.texImage2D(3553, 0, this.stickerBitmap, 0);
-                        drawTexture(false, this.stickerTexture[0], mediaEntity.f834x, mediaEntity.f835y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                        drawTexture(false, this.stickerTexture[0], mediaEntity.f823x, mediaEntity.f824y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                     }
                 } else if (mediaEntity.bitmap != null) {
                     GLES20.glBindTexture(3553, this.stickerTexture[0]);
                     GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
-                    drawTexture(false, this.stickerTexture[0], mediaEntity.f834x, mediaEntity.f835y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                    drawTexture(false, this.stickerTexture[0], mediaEntity.f823x, mediaEntity.f824y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                 }
             }
         }

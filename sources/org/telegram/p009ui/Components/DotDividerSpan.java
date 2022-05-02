@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 
 public class DotDividerSpan extends ReplacementSpan {
     int color;
-    Paint f1038p = new Paint(1);
+    Paint f1024p = new Paint(1);
     int topPadding;
 
     @Override
@@ -18,10 +18,10 @@ public class DotDividerSpan extends ReplacementSpan {
     @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
         if (this.color != paint.getColor()) {
-            this.f1038p.setColor(paint.getColor());
+            this.f1024p.setColor(paint.getColor());
         }
         float dpf2 = AndroidUtilities.dpf2(3.0f) / 2.0f;
-        canvas.drawCircle(f + dpf2, ((i5 - i3) / 2) + this.topPadding, dpf2, this.f1038p);
+        canvas.drawCircle(f + dpf2, ((i5 - i3) / 2) + this.topPadding, dpf2, this.f1024p);
     }
 
     public void setTopPadding(int i) {

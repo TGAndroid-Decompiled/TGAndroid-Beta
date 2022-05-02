@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Bitmaps;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.Utilities;
@@ -56,7 +56,7 @@ public class VideoSeekPreviewImage extends View {
     public VideoSeekPreviewImage(Context context, VideoSeekPreviewImageDelegate videoSeekPreviewImageDelegate) {
         super(context);
         setVisibility(4);
-        this.frameDrawable = context.getResources().getDrawable(C0952R.C0953drawable.videopreview);
+        this.frameDrawable = context.getResources().getDrawable(C0890R.C0891drawable.videopreview);
         this.textPaint.setTextSize(AndroidUtilities.m34dp(13.0f));
         this.textPaint.setColor(-1);
         this.delegate = videoSeekPreviewImageDelegate;
@@ -190,7 +190,7 @@ public class VideoSeekPreviewImage extends View {
             Object parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt(uri.getQueryParameter("rid")).intValue());
             TLRPC$TL_document tLRPC$TL_document = new TLRPC$TL_document();
             tLRPC$TL_document.access_hash = Utilities.parseLong(uri.getQueryParameter("hash")).longValue();
-            tLRPC$TL_document.f861id = Utilities.parseLong(uri.getQueryParameter("id")).longValue();
+            tLRPC$TL_document.f850id = Utilities.parseLong(uri.getQueryParameter("id")).longValue();
             tLRPC$TL_document.size = Utilities.parseInt(uri.getQueryParameter("size")).intValue();
             tLRPC$TL_document.dc_id = Utilities.parseInt(uri.getQueryParameter("dc")).intValue();
             tLRPC$TL_document.mime_type = uri.getQueryParameter("mime");
@@ -201,9 +201,9 @@ public class VideoSeekPreviewImage extends View {
             tLRPC$TL_document.attributes.add(new TLRPC$TL_documentAttributeVideo());
             if (FileLoader.getInstance(intValue).isLoadingFile(FileLoader.getAttachFileName(tLRPC$TL_document))) {
                 File directory = FileLoader.getDirectory(4);
-                str = new File(directory, tLRPC$TL_document.dc_id + "_" + tLRPC$TL_document.f861id + ".temp").getAbsolutePath();
+                str = new File(directory, tLRPC$TL_document.dc_id + "_" + tLRPC$TL_document.f850id + ".temp").getAbsolutePath();
             } else {
-                str = FileLoader.getInstance(intValue).getPathToAttach(tLRPC$TL_document, false).getAbsolutePath();
+                str = FileLoader.getPathToAttach(tLRPC$TL_document, false).getAbsolutePath();
             }
             this.fileDrawable = new AnimatedFileDrawable(new File(str), true, tLRPC$TL_document.size, tLRPC$TL_document, null, parentObject, 0L, intValue, true);
         } else {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_messages_getMessagesReactions extends TLObject {
     public static int constructor = -1950707482;
-    public ArrayList<Integer> f940id = new ArrayList<>();
+    public ArrayList<Integer> f929id = new ArrayList<>();
     public TLRPC$InputPeer peer;
 
     @Override
@@ -17,10 +17,10 @@ public class TLRPC$TL_messages_getMessagesReactions extends TLObject {
         abstractSerializedData.writeInt32(constructor);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
-        int size = this.f940id.size();
+        int size = this.f929id.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt32(this.f940id.get(i).intValue());
+            abstractSerializedData.writeInt32(this.f929id.get(i).intValue());
         }
     }
 }

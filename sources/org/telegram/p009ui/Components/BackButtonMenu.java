@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.UserObject;
@@ -55,7 +55,7 @@ public class BackButtonMenu {
         }
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(parentActivity);
         Rect rect = new Rect();
-        baseFragment.getParentActivity().getResources().getDrawable(C0952R.C0953drawable.popup_fixed_alert).mutate().getPadding(rect);
+        baseFragment.getParentActivity().getResources().getDrawable(C0890R.C0891drawable.popup_fixed_alert).mutate().getPadding(rect);
         actionBarPopupWindowLayout.setBackgroundColor(Theme.getColor("actionBarDefaultSubmenuBackground"));
         final AtomicReference atomicReference = new AtomicReference();
         int i = 0;
@@ -84,15 +84,15 @@ public class BackButtonMenu {
             } else if (tLRPC$User != null) {
                 arrayList = stackedHistoryDialogs;
                 if (pulledDialog.activity == ChatActivity.class && UserObject.isUserSelf(tLRPC$User)) {
-                    str = LocaleController.getString("SavedMessages", C0952R.string.SavedMessages);
+                    str = LocaleController.getString("SavedMessages", C0890R.string.SavedMessages);
                     avatarDrawable.setAvatarType(1);
                     backupImageView.setImageDrawable(avatarDrawable);
                 } else if (UserObject.isReplyUser(tLRPC$User)) {
-                    str = LocaleController.getString("RepliesTitle", C0952R.string.RepliesTitle);
+                    str = LocaleController.getString("RepliesTitle", C0890R.string.RepliesTitle);
                     avatarDrawable.setAvatarType(12);
                     backupImageView.setImageDrawable(avatarDrawable);
                 } else if (UserObject.isDeleted(tLRPC$User)) {
-                    str = LocaleController.getString("HiddenName", C0952R.string.HiddenName);
+                    str = LocaleController.getString("HiddenName", C0890R.string.HiddenName);
                     avatarDrawable.setInfo(tLRPC$User);
                     backupImageView.setImage(ImageLocation.getForUser(tLRPC$User, 1), "50_50", avatarDrawable, tLRPC$User);
                 } else {
@@ -130,7 +130,7 @@ public class BackButtonMenu {
         actionBarPopupWindow.setDismissAnimationDuration(220);
         actionBarPopupWindow.setOutsideTouchable(true);
         actionBarPopupWindow.setClippingEnabled(true);
-        actionBarPopupWindow.setAnimationStyle(C0952R.style.PopupContextAnimation);
+        actionBarPopupWindow.setAnimationStyle(C0890R.style.PopupContextAnimation);
         actionBarPopupWindow.setFocusable(true);
         actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m34dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m34dp(1000.0f), Integer.MIN_VALUE));
         actionBarPopupWindow.setInputMethodMode(2);
@@ -202,11 +202,11 @@ public class BackButtonMenu {
                 Bundle bundle = new Bundle();
                 TLRPC$Chat tLRPC$Chat = pulledDialog.chat;
                 if (tLRPC$Chat != null) {
-                    bundle.putLong("chat_id", tLRPC$Chat.f854id);
+                    bundle.putLong("chat_id", tLRPC$Chat.f843id);
                 } else {
                     TLRPC$User tLRPC$User = pulledDialog.user;
                     if (tLRPC$User != null) {
-                        bundle.putLong("user_id", tLRPC$User.f985id);
+                        bundle.putLong("user_id", tLRPC$User.f974id);
                     }
                 }
                 bundle.putInt("dialog_folder_id", pulledDialog.folderId);

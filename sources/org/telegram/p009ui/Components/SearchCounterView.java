@@ -34,13 +34,13 @@ public class SearchCounterView extends View {
     int lastH;
     private final Theme.ResourcesProvider resourcesProvider;
     private int textColor;
-    float f1083x;
+    float f1069x;
     TextPaint textPaint = new TextPaint(1);
     RectF rectF = new RectF();
     private float countChangeProgress = 1.0f;
     private String textColorKey = "chat_searchPanelText";
     int gravity = 17;
-    float f1082dx = 0.0f;
+    float f1068dx = 0.0f;
 
     public SearchCounterView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -87,7 +87,7 @@ public class SearchCounterView extends View {
                 }
                 invalidate();
             }
-            this.f1082dx = 0.0f;
+            this.f1068dx = 0.0f;
             if (z2) {
                 ValueAnimator valueAnimator2 = this.countAnimator;
                 if (valueAnimator2 != null) {
@@ -173,7 +173,7 @@ public class SearchCounterView extends View {
                     } else {
                         this.countAnimationStableLayout2 = null;
                     }
-                    this.f1082dx = this.countOldLayout.getPrimaryHorizontal(i2) - this.countAnimationStableLayout.getPrimaryHorizontal(i3);
+                    this.f1068dx = this.countOldLayout.getPrimaryHorizontal(i2) - this.countAnimationStableLayout.getPrimaryHorizontal(i3);
                 }
                 this.countWidthOld = this.countWidth;
                 this.countAnimationIncrement = i < this.currentCount;
@@ -215,7 +215,7 @@ public class SearchCounterView extends View {
             }
             updateX(f);
             RectF rectF = this.rectF;
-            float f3 = this.f1083x;
+            float f3 = this.f1069x;
             rectF.set(f3, measuredHeight, f + f3 + AndroidUtilities.m34dp(11.0f), AndroidUtilities.m34dp(23.0f) + measuredHeight);
             boolean z = this.countAnimationIncrement;
             if (this.countAnimationInLayout != null) {
@@ -252,7 +252,7 @@ public class SearchCounterView extends View {
             }
             if (this.countAnimationStableLayout != null) {
                 canvas.save();
-                canvas.translate(this.countLeft + (this.f1082dx * (1.0f - this.countChangeProgress)), AndroidUtilities.m34dp(2.0f) + measuredHeight);
+                canvas.translate(this.countLeft + (this.f1068dx * (1.0f - this.countChangeProgress)), AndroidUtilities.m34dp(2.0f) + measuredHeight);
                 this.textPaint.setAlpha(255);
                 this.countAnimationStableLayout.draw(canvas);
                 canvas.restore();
@@ -286,7 +286,7 @@ public class SearchCounterView extends View {
         } else {
             this.countLeft = (int) ((getMeasuredWidth() - f) / 2.0f);
         }
-        this.f1083x = this.countLeft - AndroidUtilities.m34dp(5.5f);
+        this.f1069x = this.countLeft - AndroidUtilities.m34dp(5.5f);
     }
 
     private void drawInternal(Canvas canvas) {

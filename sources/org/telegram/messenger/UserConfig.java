@@ -195,7 +195,7 @@ public class UserConfig extends BaseController {
         long j;
         synchronized (this.sync) {
             TLRPC$User tLRPC$User = this.currentUser;
-            j = tLRPC$User != null ? tLRPC$User.f985id : 0L;
+            j = tLRPC$User != null ? tLRPC$User.f974id : 0L;
         }
         return j;
     }
@@ -222,7 +222,7 @@ public class UserConfig extends BaseController {
     public void setCurrentUser(TLRPC$User tLRPC$User) {
         synchronized (this.sync) {
             this.currentUser = tLRPC$User;
-            this.clientUserId = tLRPC$User.f985id;
+            this.clientUserId = tLRPC$User.f974id;
         }
     }
 
@@ -417,9 +417,5 @@ public class UserConfig extends BaseController {
         edit.putLong(sb6.toString(), j4);
         edit.putBoolean("hasValidDialogLoadIds", true);
         edit.commit();
-    }
-
-    public boolean isPremium() {
-        return this.currentUser.premium;
     }
 }

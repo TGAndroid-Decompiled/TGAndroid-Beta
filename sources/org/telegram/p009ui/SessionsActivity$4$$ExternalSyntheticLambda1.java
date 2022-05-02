@@ -13,6 +13,6 @@ public final class SessionsActivity$4$$ExternalSyntheticLambda1 implements Reque
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        SessionsActivity.C34974.lambda$onSessionTerminated$1(tLObject, tLRPC$TL_error);
+        SessionsActivity.C34154.lambda$onSessionTerminated$1(tLObject, tLRPC$TL_error);
     }
 }

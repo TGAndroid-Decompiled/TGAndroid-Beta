@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 public abstract class TLRPC$InputPhoto extends TLObject {
     public long access_hash;
     public byte[] file_reference;
-    public long f875id;
+    public long f864id;
 
     public static TLRPC$InputPhoto TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$InputPhoto tLRPC$InputPhoto;

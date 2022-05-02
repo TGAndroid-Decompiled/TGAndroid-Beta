@@ -24,7 +24,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.Components.CircularViewPager;
 import org.telegram.p009ui.Components.ProfileGalleryView;
 import org.telegram.p009ui.PinchToZoomHelper;
@@ -57,7 +57,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     private final boolean isProfileFragment;
     private boolean isScrollingListView;
     private boolean isSwipingViewPager;
-    private final C1006ActionBar parentActionBar;
+    private final C0945ActionBar parentActionBar;
     private final int parentClassGuid;
     private final RecyclerListView parentListView;
     Path path;
@@ -114,7 +114,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         }
     }
 
-    public ProfileGalleryView(Context context, C1006ActionBar actionBar, RecyclerListView recyclerListView, Callback callback) {
+    public ProfileGalleryView(Context context, C0945ActionBar actionBar, RecyclerListView recyclerListView, Callback callback) {
         super(context);
         this.downPoint = new PointF();
         this.isScrollingListView = true;
@@ -203,7 +203,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         this.imagesLayerNum = i;
     }
 
-    public ProfileGalleryView(Context context, long j, C1006ActionBar actionBar, RecyclerListView recyclerListView, ProfileActivity.AvatarImageView avatarImageView, int i, Callback callback) {
+    public ProfileGalleryView(Context context, long j, C0945ActionBar actionBar, RecyclerListView recyclerListView, ProfileActivity.AvatarImageView avatarImageView, int i, Callback callback) {
         super(context);
         this.downPoint = new PointF();
         this.isScrollingListView = true;
@@ -711,7 +711,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         private final ArrayList<Item> objects = new ArrayList<>();
         private final ArrayList<BackupImageView> imageViews = new ArrayList<>();
 
-        public ViewPagerAdapter(Context context, ProfileActivity.AvatarImageView avatarImageView, C1006ActionBar actionBar) {
+        public ViewPagerAdapter(Context context, ProfileActivity.AvatarImageView avatarImageView, C0945ActionBar actionBar) {
             this.context = context;
             this.parentAvatarImageView = avatarImageView;
             Paint paint = new Paint(1);
@@ -903,7 +903,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         protected void onSizeChanged(int i, int i2, int i3, int i4) {
             super.onSizeChanged(i, i2, i3, i4);
             if (this.radialProgress != null) {
-                int currentActionBarHeight = (ProfileGalleryView.this.parentActionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + C1006ActionBar.getCurrentActionBarHeight();
+                int currentActionBarHeight = (ProfileGalleryView.this.parentActionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + C0945ActionBar.getCurrentActionBarHeight();
                 int dp2 = AndroidUtilities.dp2(80.0f);
                 RadialProgress2 radialProgress2 = this.radialProgress;
                 int i5 = this.radialProgressSize;

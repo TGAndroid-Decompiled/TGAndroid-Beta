@@ -42,7 +42,7 @@ public class Render {
         double distanceTo = point.getDistanceTo(point2);
         Point substract = point2.substract(point);
         Point point3 = new Point(1.0d, 1.0d, 0.0d);
-        float atan2 = Math.abs(renderState.angle) > 0.0f ? renderState.angle : (float) Math.atan2(substract.f1053y, substract.f1052x);
+        float atan2 = Math.abs(renderState.angle) > 0.0f ? renderState.angle : (float) Math.atan2(substract.f1039y, substract.f1038x);
         float f = ((renderState.baseWeight * renderState.scale) * 1.0f) / renderState.viewportScale;
         double max = Math.max(1.0f, renderState.spacing * f);
         if (distanceTo > 0.0d) {

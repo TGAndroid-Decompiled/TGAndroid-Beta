@@ -35,7 +35,7 @@ import androidx.annotation.Keep;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -180,7 +180,7 @@ public class ColorPicker extends FrameLayout {
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", C0952R.string.ColorPickerMainColor));
+            accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", C0890R.string.ColorPickerMainColor));
             accessibilityNodeInfo.setClassName(Button.class.getName());
             accessibilityNodeInfo.setChecked(this.checked);
             accessibilityNodeInfo.setCheckable(true);
@@ -192,7 +192,7 @@ public class ColorPicker extends FrameLayout {
         super(context);
         this.delegate = colorPickerDelegate;
         setWillNotDraw(false);
-        this.circleDrawable = context.getResources().getDrawable(C0952R.C0953drawable.knob_shadow).mutate();
+        this.circleDrawable = context.getResources().getDrawable(C0890R.C0891drawable.knob_shadow).mutate();
         Paint paint = new Paint();
         this.linePaint = paint;
         paint.setColor(301989888);
@@ -358,7 +358,7 @@ public class ColorPicker extends FrameLayout {
         ImageView imageView = new ImageView(getContext());
         this.addButton = imageView;
         imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 1));
-        this.addButton.setImageResource(C0952R.C0953drawable.themes_addcolor);
+        this.addButton.setImageResource(C0890R.C0891drawable.themes_addcolor);
         this.addButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"), PorterDuff.Mode.MULTIPLY));
         this.addButton.setScaleType(ImageView.ScaleType.CENTER);
         this.addButton.setOnClickListener(new View.OnClickListener() {
@@ -367,7 +367,7 @@ public class ColorPicker extends FrameLayout {
                 ColorPicker.this.lambda$new$2(view);
             }
         });
-        this.addButton.setContentDescription(LocaleController.getString("Add", C0952R.string.Add));
+        this.addButton.setContentDescription(LocaleController.getString("Add", C0890R.string.Add));
         addView(this.addButton, LayoutHelper.createFrame(30, 30.0f, 49, 36.0f, 1.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(getContext()) {
             @Override
@@ -378,7 +378,7 @@ public class ColorPicker extends FrameLayout {
         };
         this.clearButton = imageView2;
         imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 1));
-        this.clearButton.setImageResource(C0952R.C0953drawable.themes_deletecolor);
+        this.clearButton.setImageResource(C0890R.C0891drawable.themes_deletecolor);
         this.clearButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"), PorterDuff.Mode.MULTIPLY));
         this.clearButton.setAlpha(0.0f);
         this.clearButton.setScaleX(0.0f);
@@ -391,7 +391,7 @@ public class ColorPicker extends FrameLayout {
                 ColorPicker.this.lambda$new$3(view);
             }
         });
-        this.clearButton.setContentDescription(LocaleController.getString("ClearButton", C0952R.string.ClearButton));
+        this.clearButton.setContentDescription(LocaleController.getString("ClearButton", C0890R.string.ClearButton));
         addView(this.clearButton, LayoutHelper.createFrame(30, 30.0f, 51, 97.0f, 1.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.resetButton = textView;
@@ -406,11 +406,11 @@ public class ColorPicker extends FrameLayout {
             ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, null, 0, Theme.getColor("windowBackgroundWhiteBlackText"));
             this.menuItem = actionBarMenuItem;
             actionBarMenuItem.setLongClickEnabled(false);
-            this.menuItem.setIcon(C0952R.C0953drawable.ic_ab_other);
-            this.menuItem.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C0952R.string.AccDescrMoreOptions));
-            this.menuItem.addSubItem(1, C0952R.C0953drawable.msg_edit, LocaleController.getString("OpenInEditor", C0952R.string.OpenInEditor));
-            this.menuItem.addSubItem(2, C0952R.C0953drawable.msg_share, LocaleController.getString("ShareTheme", C0952R.string.ShareTheme));
-            this.menuItem.addSubItem(3, C0952R.C0953drawable.msg_delete, LocaleController.getString("DeleteTheme", C0952R.string.DeleteTheme));
+            this.menuItem.setIcon(C0890R.C0891drawable.ic_ab_other);
+            this.menuItem.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C0890R.string.AccDescrMoreOptions));
+            this.menuItem.addSubItem(1, C0890R.C0891drawable.msg_edit, LocaleController.getString("OpenInEditor", C0890R.string.OpenInEditor));
+            this.menuItem.addSubItem(2, C0890R.C0891drawable.msg_share, LocaleController.getString("ShareTheme", C0890R.string.ShareTheme));
+            this.menuItem.addSubItem(3, C0890R.C0891drawable.msg_delete, LocaleController.getString("DeleteTheme", C0890R.string.DeleteTheme));
             this.menuItem.setMenuYOffset(-AndroidUtilities.m34dp(80.0f));
             this.menuItem.setSubMenuOpenSide(2);
             this.menuItem.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
@@ -607,7 +607,7 @@ public class ColorPicker extends FrameLayout {
                                 ColorPicker.this.clearButton.setVisibility(4);
                             }
                             for (int i5 = 0; i5 < ColorPicker.this.radioButton.length; i5++) {
-                                if (ColorPicker.this.radioButton[i5].getTag(C0952R.C0954id.index_tag) == null) {
+                                if (ColorPicker.this.radioButton[i5].getTag(C0890R.C0892id.index_tag) == null) {
                                     ColorPicker.this.radioButton[i5].setVisibility(4);
                                 }
                             }
@@ -659,7 +659,7 @@ public class ColorPicker extends FrameLayout {
         while (true) {
             RadioButton[] radioButtonArr = this.radioButton;
             if (i4 < radioButtonArr.length) {
-                boolean z2 = radioButtonArr[i4].getTag(C0952R.C0954id.index_tag) != null;
+                boolean z2 = radioButtonArr[i4].getTag(C0890R.C0892id.index_tag) != null;
                 if (i4 < this.colorsCount) {
                     this.radioButton[i4].setVisibility(0);
                     if (arrayList != null) {
@@ -682,7 +682,7 @@ public class ColorPicker extends FrameLayout {
                         }
                         this.radioButton[i4].setTranslationX(i5);
                     }
-                    this.radioButton[i4].setTag(C0952R.C0954id.index_tag, 1);
+                    this.radioButton[i4].setTag(C0890R.C0892id.index_tag, 1);
                 } else {
                     if (arrayList == null) {
                         this.radioButton[i4].setVisibility(4);
@@ -699,7 +699,7 @@ public class ColorPicker extends FrameLayout {
                     if (!z) {
                         this.radioButton[i4].setTranslationX(i5);
                     }
-                    this.radioButton[i4].setTag(C0952R.C0954id.index_tag, null);
+                    this.radioButton[i4].setTag(C0890R.C0892id.index_tag, null);
                 }
                 i5 += AndroidUtilities.m34dp(30.0f) + AndroidUtilities.m34dp(13.0f);
                 i4++;

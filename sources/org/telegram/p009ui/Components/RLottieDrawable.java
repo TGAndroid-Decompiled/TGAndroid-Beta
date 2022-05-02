@@ -23,7 +23,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.CharacterCompat;
 import org.telegram.messenger.DispatchQueuePool;
 import org.telegram.messenger.FileLog;
@@ -115,8 +115,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         return -2;
     }
 
-    public class RunnableC22885 implements Runnable {
-        RunnableC22885() {
+    public class RunnableC22115 implements Runnable {
+        RunnableC22115() {
         }
 
         @Override
@@ -129,7 +129,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                     Runnable rLottieDrawable$5$$ExternalSyntheticLambda0 = new Runnable() {
                         @Override
                         public final void run() {
-                            RLottieDrawable.RunnableC22885.this.lambda$run$0();
+                            RLottieDrawable.RunnableC22115.this.lambda$run$0();
                         }
                     };
                     rLottieDrawable2.cacheGenerateTask = rLottieDrawable$5$$ExternalSyntheticLambda0;
@@ -264,7 +264,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 RLottieDrawable.this.decodeFrameFinishedInternal();
             }
         };
-        this.uiRunnableGenerateCache = new RunnableC22885();
+        this.uiRunnableGenerateCache = new RunnableC22115();
         this.loadFrameRunnable = new Runnable() {
             @Override
             public void run() {
@@ -493,7 +493,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 RLottieDrawable.this.decodeFrameFinishedInternal();
             }
         };
-        this.uiRunnableGenerateCache = new RunnableC22885();
+        this.uiRunnableGenerateCache = new RunnableC22115();
         this.loadFrameRunnable = new Runnable() {
             @Override
             public void run() {
@@ -727,7 +727,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 RLottieDrawable.this.decodeFrameFinishedInternal();
             }
         };
-        this.uiRunnableGenerateCache = new RunnableC22885();
+        this.uiRunnableGenerateCache = new RunnableC22115();
         this.loadFrameRunnable = new Runnable() {
             @Override
             public void run() {
@@ -892,10 +892,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         this.height = i2;
         this.isDice = 1;
         if ("🎲".equals(str)) {
-            str2 = readRes(null, C0952R.raw.diceloop);
+            str2 = readRes(null, C0890R.raw.diceloop);
             this.diceSwitchFramesCount = 60;
         } else {
-            str2 = "🎯".equals(str) ? readRes(null, C0952R.raw.dartloop) : null;
+            str2 = "🎯".equals(str) ? readRes(null, C0890R.raw.dartloop) : null;
         }
         getPaint().setFlags(2);
         if (TextUtils.isEmpty(str2)) {
@@ -1071,7 +1071,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 RLottieDrawable.this.decodeFrameFinishedInternal();
             }
         };
-        this.uiRunnableGenerateCache = new RunnableC22885();
+        this.uiRunnableGenerateCache = new RunnableC22115();
         this.loadFrameRunnable = new Runnable() {
             @Override
             public void run() {

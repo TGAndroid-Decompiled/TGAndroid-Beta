@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.UserObject;
 import org.telegram.p009ui.ActionBar.SimpleTextView;
@@ -60,16 +60,16 @@ public class MemberRequestCell extends FrameLayout {
         addView(simpleTextView2, LayoutHelper.createFrame(-1, -2.0f, 48, z3 ? 12.0f : 74.0f, 36.0f, z3 ? 74.0f : 12.0f, 0.0f));
         int dp = AndroidUtilities.m34dp(17.0f);
         TextView textView = new TextView(getContext());
-        int i3 = 0;
-        textView.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
+        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView.setMaxLines(1);
+        int i3 = 0;
         textView.setPadding(dp, 0, dp, 0);
         if (z) {
-            i = C0952R.string.AddToChannel;
+            i = C0890R.string.AddToChannel;
             str = "AddToChannel";
         } else {
-            i = C0952R.string.AddToGroup;
+            i = C0890R.string.AddToGroup;
             str = "AddToGroup";
         }
         textView.setText(LocaleController.getString(str, i));
@@ -90,7 +90,7 @@ public class MemberRequestCell extends FrameLayout {
         textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView2.setMaxLines(1);
         textView2.setPadding(dp, 0, dp, 0);
-        textView2.setText(LocaleController.getString("Dismiss", C0952R.string.Dismiss));
+        textView2.setText(LocaleController.getString("Dismiss", C0890R.string.Dismiss));
         textView2.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText"));
         textView2.setTextSize(14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
@@ -132,12 +132,12 @@ public class MemberRequestCell extends FrameLayout {
         String formatDateAudio = LocaleController.formatDateAudio(tLRPC$TL_chatInviteImporter.date, false);
         long j = tLRPC$TL_chatInviteImporter.approved_by;
         if (j == 0) {
-            this.statusTextView.setText(LocaleController.formatString("RequestedToJoinAt", C0952R.string.RequestedToJoinAt, formatDateAudio));
+            this.statusTextView.setText(LocaleController.formatString("RequestedToJoinAt", C0890R.string.RequestedToJoinAt, formatDateAudio));
             return;
         }
         TLRPC$User tLRPC$User2 = longSparseArray.get(j);
         if (tLRPC$User2 != null) {
-            this.statusTextView.setText(LocaleController.formatString("AddedBy", C0952R.string.AddedBy, UserObject.getFirstName(tLRPC$User2), formatDateAudio));
+            this.statusTextView.setText(LocaleController.formatString("AddedBy", C0890R.string.AddedBy, UserObject.getFirstName(tLRPC$User2), formatDateAudio));
         } else {
             this.statusTextView.setText("");
         }

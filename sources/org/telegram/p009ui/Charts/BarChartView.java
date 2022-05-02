@@ -42,7 +42,7 @@ public class BarChartView extends BaseChartView<ChartData, BarViewData> {
                     int length = fArr.length;
                     float f = 1.0f;
                     float f2 = fArr.length < 2 ? 1.0f : fArr[1] * this.pickerWidth;
-                    int[] iArr = barViewData.line.f1014y;
+                    int[] iArr = barViewData.line.f1002y;
                     float f3 = barViewData.alpha;
                     int i4 = 0;
                     int i5 = 0;

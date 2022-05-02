@@ -14,7 +14,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
@@ -77,7 +77,7 @@ public class SessionCell extends FrameLayout {
             this.nameTextView.setText(sb);
             if ((tLRPC$TL_authorization.flags & 1) != 0) {
                 setTag("windowBackgroundWhiteValueText");
-                str2 = LocaleController.getString("Online", C0952R.string.Online);
+                str2 = LocaleController.getString("Online", C0890R.string.Online);
             } else {
                 setTag("windowBackgroundWhiteGrayText3");
                 str2 = LocaleController.stringForMessageListDate(tLRPC$TL_authorization.date_active);
@@ -113,8 +113,8 @@ public class SessionCell extends FrameLayout {
             this.onlineTextView.setText(LocaleController.stringForMessageListDate(tLRPC$TL_webAuthorization.date_active));
             this.onlineTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText3"));
             StringBuilder sb3 = new StringBuilder();
-            if (tLRPC$TL_webAuthorization.f983ip.length() != 0) {
-                sb3.append(tLRPC$TL_webAuthorization.f983ip);
+            if (tLRPC$TL_webAuthorization.f972ip.length() != 0) {
+                sb3.append(tLRPC$TL_webAuthorization.f972ip);
             }
             if (tLRPC$TL_webAuthorization.region.length() != 0) {
                 if (sb3.length() != 0) {
@@ -155,32 +155,32 @@ public class SessionCell extends FrameLayout {
         }
         String lowerCase2 = tLRPC$TL_authorization.device_model.toLowerCase();
         boolean contains = lowerCase2.contains("safari");
-        int i = C0952R.C0953drawable.device_web_other;
+        int i = C0890R.C0891drawable.device_web_other;
         String str = "avatar_backgroundCyan";
         str = "avatar_backgroundPink";
         if (contains) {
-            i = C0952R.C0953drawable.device_web_safari;
+            i = C0890R.C0891drawable.device_web_safari;
         } else if (lowerCase2.contains("edge")) {
-            i = C0952R.C0953drawable.device_web_edge;
+            i = C0890R.C0891drawable.device_web_edge;
         } else if (lowerCase2.contains("chrome")) {
-            i = C0952R.C0953drawable.device_web_chrome;
+            i = C0890R.C0891drawable.device_web_chrome;
         } else if (lowerCase2.contains("opera")) {
-            i = C0952R.C0953drawable.device_web_opera;
+            i = C0890R.C0891drawable.device_web_opera;
         } else if (lowerCase2.contains("firefox")) {
-            i = C0952R.C0953drawable.device_web_firefox;
+            i = C0890R.C0891drawable.device_web_firefox;
         } else if (!lowerCase2.contains("vivaldi")) {
             if (lowerCase.contains("ios")) {
-                i = lowerCase2.contains("ipad") ? C0952R.C0953drawable.device_tablet_ios : C0952R.C0953drawable.device_phone_ios;
+                i = lowerCase2.contains("ipad") ? C0890R.C0891drawable.device_tablet_ios : C0890R.C0891drawable.device_phone_ios;
                 str = "avatar_backgroundBlue";
             } else if (lowerCase.contains("windows")) {
-                i = C0952R.C0953drawable.device_desktop_win;
+                i = C0890R.C0891drawable.device_desktop_win;
             } else if (lowerCase.contains("macos")) {
-                i = C0952R.C0953drawable.device_desktop_osx;
+                i = C0890R.C0891drawable.device_desktop_osx;
             } else if (lowerCase.contains("android")) {
-                i = lowerCase2.contains("tab") ? C0952R.C0953drawable.device_tablet_android : C0952R.C0953drawable.device_phone_android;
+                i = lowerCase2.contains("tab") ? C0890R.C0891drawable.device_tablet_android : C0890R.C0891drawable.device_phone_android;
                 str = "avatar_backgroundGreen";
             } else if (tLRPC$TL_authorization.app_name.toLowerCase().contains("desktop")) {
-                i = C0952R.C0953drawable.device_desktop_other;
+                i = C0890R.C0891drawable.device_desktop_other;
             }
             Drawable mutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, i).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("avatar_text"), PorterDuff.Mode.SRC_IN));
@@ -224,7 +224,7 @@ public class SessionCell extends FrameLayout {
     public void showStub(FlickerLoadingView flickerLoadingView) {
         this.globalGradient = flickerLoadingView;
         this.showStub = true;
-        Drawable mutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, AndroidUtilities.isTablet() ? C0952R.C0953drawable.device_tablet_android : C0952R.C0953drawable.device_phone_android).mutate();
+        Drawable mutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, AndroidUtilities.isTablet() ? C0890R.C0891drawable.device_tablet_android : C0890R.C0891drawable.device_phone_android).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("avatar_text"), PorterDuff.Mode.SRC_IN));
         this.imageView.setImageDrawable(new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.m34dp(42.0f), Theme.getColor("avatar_backgroundGreen")), mutate));
         invalidate();

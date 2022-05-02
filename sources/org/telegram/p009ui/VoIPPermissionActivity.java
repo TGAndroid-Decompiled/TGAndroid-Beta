@@ -5,14 +5,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import java.util.ArrayList;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.p009ui.Components.voip.VoIPHelper;
 import org.telegram.tgnet.TLRPC$PhoneCall;
 
-@TargetApi(C0952R.styleable.MapAttrs_zOrderOnTop)
+@TargetApi(C0890R.styleable.MapAttrs_zOrderOnTop)
 public class VoIPPermissionActivity extends Activity {
     @Override
     protected void onCreate(Bundle bundle) {

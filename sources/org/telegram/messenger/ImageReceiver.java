@@ -45,7 +45,6 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private int autoRepeat;
     private RectF bitmapRect;
     private Object blendMode;
-    private BitmapShader cachedGradientShader;
     private boolean canceledLoading;
     private boolean centerRotation;
     private ColorFilter colorFilter;
@@ -92,7 +91,6 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private float imageH;
     private int imageOrientation;
     private BitmapShader imageShader;
-    private Bitmap imageShaderBitmap;
     private int imageTag;
     private float imageW;
     private float imageX;
@@ -112,7 +110,6 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private boolean manualAlphaAnimator;
     private BitmapShader mediaShader;
     private int mediaTag;
-    private boolean mustScaleImageShaderBitmap;
     private boolean needsQualityThumb;
     private float overrideAlpha;
     private int param;
@@ -124,9 +121,6 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private Path roundPath;
     private int[] roundRadius;
     private RectF roundRect;
-    private float scaleImageShaderBitmap;
-    private BitmapShader scaledImageShader;
-    private Bitmap scaledImageShaderBitmap;
     private SetImageBackup setImageBackup;
     private Matrix shaderMatrix;
     private boolean shouldGenerateQualityThumb;
@@ -302,7 +296,6 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         this.crossfadeAlpha = (byte) 1;
         this.crossfadeDuration = DEFAULT_CROSSFADE_DURATION;
         this.loadingOperations = new ArrayList<>();
-        this.mustScaleImageShaderBitmap = false;
         this.parentView = view;
         this.roundPaint = new Paint(3);
         this.currentAccount = UserConfig.selectedAccount;
@@ -460,8 +453,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 if (tLRPC$Document == null) {
                     tLRPC$Document = ((MessageObject) obj).getDocument();
                 }
-                if (!(tLRPC$Document == null || tLRPC$Document.dc_id == 0 || tLRPC$Document.f861id == 0)) {
-                    key = "q_" + tLRPC$Document.dc_id + "_" + tLRPC$Document.f861id;
+                if (!(tLRPC$Document == null || tLRPC$Document.dc_id == 0 || tLRPC$Document.f850id == 0)) {
+                    key = "q_" + tLRPC$Document.dc_id + "_" + tLRPC$Document.f850id;
                     this.currentKeyQuality = true;
                 }
             }
@@ -821,34 +814,23 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             this.imageShader = bitmapShader;
             if (this.gradientShader != null && (drawable instanceof BitmapDrawable)) {
                 if (Build.VERSION.SDK_INT >= 28) {
-                    Bitmap bitmap = this.scaledImageShaderBitmap;
-                    if (!(bitmap == null || bitmap == this.imageShaderBitmap)) {
-                        bitmap.recycle();
-                    }
-                    this.scaledImageShaderBitmap = null;
-                    this.mustScaleImageShaderBitmap = true;
-                    this.scaleImageShaderBitmap = 1.0f;
-                    BitmapShader bitmapShader2 = this.gradientShader;
-                    this.cachedGradientShader = bitmapShader2;
-                    BitmapShader bitmapShader3 = this.imageShader;
-                    this.scaledImageShader = bitmapShader3;
-                    this.composeShader = new ComposeShader(bitmapShader2, bitmapShader3, PorterDuff.Mode.DST_IN);
+                    this.composeShader = new ComposeShader(this.gradientShader, this.imageShader, PorterDuff.Mode.DST_IN);
                     return;
                 }
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
                 int width = bitmapDrawable.getBitmap().getWidth();
                 int height = bitmapDrawable.getBitmap().getHeight();
-                Bitmap bitmap2 = this.legacyBitmap;
-                if (bitmap2 == null || bitmap2.getWidth() != width || this.legacyBitmap.getHeight() != height) {
-                    Bitmap bitmap3 = this.legacyBitmap;
-                    if (bitmap3 != null) {
-                        bitmap3.recycle();
+                Bitmap bitmap = this.legacyBitmap;
+                if (bitmap == null || bitmap.getWidth() != width || this.legacyBitmap.getHeight() != height) {
+                    Bitmap bitmap2 = this.legacyBitmap;
+                    if (bitmap2 != null) {
+                        bitmap2.recycle();
                     }
                     this.legacyBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
                     this.legacyCanvas = new Canvas(this.legacyBitmap);
-                    Bitmap bitmap4 = this.legacyBitmap;
+                    Bitmap bitmap3 = this.legacyBitmap;
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                    this.legacyShader = new BitmapShader(bitmap4, tileMode, tileMode);
+                    this.legacyShader = new BitmapShader(bitmap3, tileMode, tileMode);
                     if (this.legacyPaint == null) {
                         Paint paint = new Paint();
                         this.legacyPaint = paint;
@@ -859,26 +841,6 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    private boolean scaleImageShaderBitmap(float f) {
-        if (this.imageShader == null || this.composeShader == null || this.imageShaderBitmap == null || !this.mustScaleImageShaderBitmap) {
-            return false;
-        }
-        if (Math.abs(this.scaleImageShaderBitmap - f) > 0.001f) {
-            this.scaleImageShaderBitmap = f;
-            Bitmap bitmap = this.scaledImageShaderBitmap;
-            if (!(bitmap == null || bitmap == this.imageShaderBitmap)) {
-                bitmap.recycle();
-            }
-            Bitmap bitmap2 = this.imageShaderBitmap;
-            this.scaledImageShaderBitmap = Bitmap.createScaledBitmap(bitmap2, (int) (bitmap2.getWidth() * f), (int) (this.imageShaderBitmap.getHeight() * f), true);
-            Bitmap bitmap3 = this.scaledImageShaderBitmap;
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            this.scaledImageShader = new BitmapShader(bitmap3, tileMode, tileMode);
-            this.composeShader = new ComposeShader(this.cachedGradientShader, this.scaledImageShader, PorterDuff.Mode.DST_IN);
-        }
-        return true;
-    }
-
     private void updateDrawableRadius(Drawable drawable) {
         if (drawable != null) {
             if ((hasRoundRadius() || this.gradientShader != null) && (drawable instanceof BitmapDrawable)) {
@@ -887,8 +849,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                     if (bitmapDrawable instanceof AnimatedFileDrawable) {
                         ((AnimatedFileDrawable) drawable).setRoundRadius(this.roundRadius);
                     } else if (bitmapDrawable.getBitmap() != null) {
-                        this.imageShaderBitmap = bitmapDrawable.getBitmap();
-                        Bitmap bitmap = this.imageShaderBitmap;
+                        Bitmap bitmap = bitmapDrawable.getBitmap();
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                         setDrawableShader(drawable, new BitmapShader(bitmap, tileMode, tileMode));
                     }
@@ -1036,7 +997,6 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         Paint paint;
         int i4;
         int i5;
-        RectF rectF;
         int[] iArr;
         int[] iArr2;
         int[] iArr3;
@@ -1120,25 +1080,23 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             if (bitmapShader != null) {
                 if (this.isAspectFit) {
                     float max = Math.max(f6, f7);
-                    RectF rectF2 = this.drawRegion;
+                    RectF rectF = this.drawRegion;
                     float f8 = this.imageX;
                     float f9 = this.imageW;
                     float f10 = (int) (i5 / max);
                     float f11 = this.imageY;
                     float f12 = this.imageH;
                     float f13 = (int) (i4 / max);
-                    rectF2.set(((f9 - f10) / 2.0f) + f8, f11 + ((f12 - f13) / 2.0f), f8 + ((f9 + f10) / 2.0f), f11 + ((f12 + f13) / 2.0f));
+                    rectF.set(((f9 - f10) / 2.0f) + f8, f11 + ((f12 - f13) / 2.0f), f8 + ((f9 + f10) / 2.0f), f11 + ((f12 + f13) / 2.0f));
                     if (this.isVisible) {
+                        this.roundPaint.setShader(bitmapShader);
                         this.shaderMatrix.reset();
                         Matrix matrix = this.shaderMatrix;
-                        RectF rectF3 = this.drawRegion;
-                        matrix.setTranslate((int) rectF3.left, (int) rectF3.top);
+                        RectF rectF2 = this.drawRegion;
+                        matrix.setTranslate(rectF2.left, rectF2.top);
                         float f14 = 1.0f / max;
-                        if (!scaleImageShaderBitmap(f14)) {
-                            this.shaderMatrix.preScale(f14, f14);
-                        }
+                        this.shaderMatrix.preScale(f14, f14);
                         bitmapShader.setLocalMatrix(this.shaderMatrix);
-                        this.roundPaint.setShader(bitmapShader);
                         this.roundPaint.setAlpha(i);
                         this.roundRect.set(this.drawRegion);
                         if (this.isRoundRect) {
@@ -1188,38 +1146,39 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                         }
                     }
                     float min = 1.0f / Math.min(f6, f7);
-                    RectF rectF4 = this.roundRect;
+                    RectF rectF3 = this.roundRect;
                     float f15 = this.imageX;
                     float f16 = this.sideClip;
                     float f17 = this.imageY;
-                    rectF4.set(f15 + f16, f17 + f16, (f15 + this.imageW) - f16, (f17 + this.imageH) - f16);
+                    rectF3.set(f15 + f16, f17 + f16, (f15 + this.imageW) - f16, (f17 + this.imageH) - f16);
                     if (Math.abs(f6 - f7) > 5.0E-4f) {
                         float f18 = i5 / f7;
                         if (f18 > f3) {
-                            RectF rectF5 = this.drawRegion;
+                            RectF rectF4 = this.drawRegion;
                             float f19 = this.imageX;
                             float f20 = (int) f18;
                             float f21 = this.imageY;
-                            rectF5.set(f19 - ((f20 - f3) / 2.0f), f21, f19 + ((f20 + f3) / 2.0f), f21 + f5);
+                            rectF4.set(f19 - ((f20 - f3) / 2.0f), f21, f19 + ((f20 + f3) / 2.0f), f21 + f5);
                         } else {
-                            RectF rectF6 = this.drawRegion;
+                            RectF rectF5 = this.drawRegion;
                             float f22 = this.imageX;
                             float f23 = this.imageY;
                             float f24 = (int) (i4 / f6);
-                            rectF6.set(f22, f23 - ((f24 - f5) / 2.0f), f22 + f3, f23 + ((f24 + f5) / 2.0f));
+                            rectF5.set(f22, f23 - ((f24 - f5) / 2.0f), f22 + f3, f23 + ((f24 + f5) / 2.0f));
                         }
                     } else {
-                        RectF rectF7 = this.drawRegion;
+                        RectF rectF6 = this.drawRegion;
                         float f25 = this.imageX;
                         float f26 = this.imageY;
-                        rectF7.set(f25, f26, f25 + f3, f26 + f5);
+                        rectF6.set(f25, f26, f25 + f3, f26 + f5);
                     }
                     if (this.isVisible) {
                         this.shaderMatrix.reset();
                         Matrix matrix2 = this.shaderMatrix;
-                        float f27 = this.drawRegion.left;
+                        RectF rectF7 = this.drawRegion;
+                        float f27 = rectF7.left;
                         float f28 = this.sideClip;
-                        matrix2.setTranslate((int) (f27 + f28), (int) (rectF.top + f28));
+                        matrix2.setTranslate(f27 + f28, rectF7.top + f28);
                         if (i2 == 90) {
                             this.shaderMatrix.preRotate(90.0f);
                             this.shaderMatrix.preTranslate(0.0f, -this.drawRegion.width());
@@ -1230,18 +1189,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                             this.shaderMatrix.preRotate(270.0f);
                             this.shaderMatrix.preTranslate(-this.drawRegion.height(), 0.0f);
                         }
-                        if (bitmapShader != this.imageShader || !scaleImageShaderBitmap(min)) {
-                            this.shaderMatrix.preScale(min, min);
-                        } else if (bitmapShader != this.imageShader || this.gradientShader == null) {
-                            this.roundPaint.setShader(bitmapShader);
-                        } else {
-                            ComposeShader composeShader2 = this.composeShader;
-                            if (composeShader2 != null) {
-                                this.roundPaint.setShader(composeShader2);
-                            } else {
-                                this.roundPaint.setShader(this.legacyShader);
-                            }
-                        }
+                        this.shaderMatrix.preScale(min, min);
                         if (this.isRoundVideo) {
                             float f29 = (f3 + (AndroidUtilities.roundMessageInset * 2)) / f3;
                             this.shaderMatrix.postScale(f29, f29, this.drawRegion.centerX(), this.drawRegion.centerY());
@@ -1466,14 +1414,13 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 float f64 = f62 - (f63 * 2.0f);
                 float f65 = this.imageH;
                 float max3 = Math.max(f62 == 0.0f ? 1.0f : intrinsicWidth / f64, f65 == 0.0f ? 1.0f : intrinsicHeight / (f65 - (f63 * 2.0f)));
-                int i16 = (int) (intrinsicHeight / max3);
                 RectF rectF21 = this.drawRegion;
                 float f66 = this.imageX;
                 float f67 = this.imageW;
                 float f68 = (int) (intrinsicWidth / max3);
                 float f69 = this.imageY;
                 float f70 = this.imageH;
-                float f71 = i16;
+                float f71 = (int) (intrinsicHeight / max3);
                 rectF21.set(((f67 - f68) / 2.0f) + f66, ((f70 - f71) / 2.0f) + f69, f66 + ((f67 + f68) / 2.0f), f69 + ((f70 + f71) / 2.0f));
             } else {
                 RectF rectF22 = this.drawRegion;

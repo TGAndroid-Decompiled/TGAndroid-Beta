@@ -32,9 +32,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -112,7 +111,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         this.resourcesProvider = resourcesProvider;
         this.currentAccount = i;
         this.animationEnabled = (!MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) || SharedConfig.getDevicePerformanceClass() == 0) ? false : z;
-        this.shadow = ContextCompat.getDrawable(context, C0952R.C0953drawable.reactions_bubble_shadow).mutate();
+        this.shadow = ContextCompat.getDrawable(context, C0890R.C0891drawable.reactions_bubble_shadow).mutate();
         Rect rect = this.shadowPad;
         int dp2 = AndroidUtilities.m34dp(7.0f);
         rect.bottom = dp2;
@@ -456,26 +455,12 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             } else {
                 list = MediaDataController.getInstance(this.currentAccount).getEnabledReactionsList();
             }
-            checkPremiumReactions(list);
             setReactionsList(list);
             return;
         }
         this.waitingLoadingChatId = -messageObject.getFromChatId();
         MessagesController.getInstance(this.currentAccount).loadFullChat(-messageObject.getFromChatId(), 0, true);
         setVisibility(4);
-    }
-
-    private void checkPremiumReactions(List<TLRPC$TL_availableReaction> list) {
-        if (!AccountInstance.getInstance(this.currentAccount).getUserConfig().getCurrentUser().premium) {
-            int i = 0;
-            while (i < list.size()) {
-                if (list.get(i).premium) {
-                    list.remove(i);
-                    i--;
-                }
-                i++;
-            }
-        }
     }
 
     public void startEnterAnimation() {
@@ -784,7 +769,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.chatInfoDidLoad) {
             TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
-            if (tLRPC$ChatFull.f855id == this.waitingLoadingChatId && getVisibility() != 0 && !tLRPC$ChatFull.available_reactions.isEmpty()) {
+            if (tLRPC$ChatFull.f844id == this.waitingLoadingChatId && getVisibility() != 0 && !tLRPC$ChatFull.available_reactions.isEmpty()) {
                 setMessage(this.messageObject, null);
                 setVisibility(0);
                 startEnterAnimation();

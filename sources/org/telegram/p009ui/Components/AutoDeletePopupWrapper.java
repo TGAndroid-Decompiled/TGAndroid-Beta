@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.ActionBarMenuSubItem;
@@ -28,12 +28,12 @@ public class AutoDeletePopupWrapper {
     }
 
     public AutoDeletePopupWrapper(final Context context, final PopupSwipeBackLayout popupSwipeBackLayout, final Callback callback, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context, z ? C0952R.C0953drawable.popup_fixed_alert : 0, resourcesProvider);
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context, z ? C0890R.C0891drawable.popup_fixed_alert : 0, resourcesProvider);
         this.windowLayout = actionBarPopupWindowLayout;
         actionBarPopupWindowLayout.setFitItems(true);
         this.callback = callback;
         if (popupSwipeBackLayout != null) {
-            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.windowLayout, C0952R.C0953drawable.msg_arrow_back, LocaleController.getString("Back", C0952R.string.Back), false, resourcesProvider);
+            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.windowLayout, C0890R.C0891drawable.msg_arrow_back, LocaleController.getString("Back", C0890R.string.Back), false, resourcesProvider);
             this.backItem = addItem;
             addItem.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -42,31 +42,31 @@ public class AutoDeletePopupWrapper {
                 }
             });
         }
-        ActionBarMenuItem.addItem(this.windowLayout, C0952R.C0953drawable.msg_autodelete_1d, LocaleController.getString("AutoDelete1Day", C0952R.string.AutoDelete1Day), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
+        ActionBarMenuItem.addItem(this.windowLayout, C0890R.C0891drawable.msg_autodelete_1d, LocaleController.getString("AutoDelete1Day", C0890R.string.AutoDelete1Day), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 AutoDeletePopupWrapper.this.lambda$new$1(callback, view);
             }
         });
-        ActionBarMenuItem.addItem(this.windowLayout, C0952R.C0953drawable.msg_autodelete_1w, LocaleController.getString("AutoDelete7Days", C0952R.string.AutoDelete7Days), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
+        ActionBarMenuItem.addItem(this.windowLayout, C0890R.C0891drawable.msg_autodelete_1w, LocaleController.getString("AutoDelete7Days", C0890R.string.AutoDelete7Days), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 AutoDeletePopupWrapper.this.lambda$new$2(callback, view);
             }
         });
-        ActionBarMenuItem.addItem(this.windowLayout, C0952R.C0953drawable.msg_autodelete_1m, LocaleController.getString("AutoDelete1Month", C0952R.string.AutoDelete1Month), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
+        ActionBarMenuItem.addItem(this.windowLayout, C0890R.C0891drawable.msg_autodelete_1m, LocaleController.getString("AutoDelete1Month", C0890R.string.AutoDelete1Month), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 AutoDeletePopupWrapper.this.lambda$new$3(callback, view);
             }
         });
-        ActionBarMenuItem.addItem(this.windowLayout, C0952R.C0953drawable.msg_customize, LocaleController.getString("AutoDeleteCustom", C0952R.string.AutoDeleteCustom), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
+        ActionBarMenuItem.addItem(this.windowLayout, C0890R.C0891drawable.msg_customize, LocaleController.getString("AutoDeleteCustom", C0890R.string.AutoDeleteCustom), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 AutoDeletePopupWrapper.this.lambda$new$5(context, callback, view);
             }
         });
-        ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(this.windowLayout, C0952R.C0953drawable.msg_disable, LocaleController.getString("AutoDeleteDisable", C0952R.string.AutoDeleteDisable), false, resourcesProvider);
+        ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(this.windowLayout, C0890R.C0891drawable.msg_disable, LocaleController.getString("AutoDeleteDisable", C0890R.string.AutoDeleteDisable), false, resourcesProvider);
         this.disableItem = addItem2;
         addItem2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,14 +77,14 @@ public class AutoDeletePopupWrapper {
         addItem2.setColors(Theme.getColor("dialogTextRed2"), Theme.getColor("dialogTextRed2"));
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor("graySection"));
-        frameLayout.setTag(C0952R.C0954id.fit_width_tag, 1);
+        frameLayout.setTag(C0890R.C0892id.fit_width_tag, 1);
         this.windowLayout.addView((View) frameLayout, LayoutHelper.createLinear(-1, 8));
         TextView textView = new TextView(context);
-        textView.setTag(C0952R.C0954id.fit_width_tag, 1);
+        textView.setTag(C0890R.C0892id.fit_width_tag, 1);
         textView.setPadding(AndroidUtilities.m34dp(13.0f), AndroidUtilities.m34dp(8.0f), AndroidUtilities.m34dp(13.0f), AndroidUtilities.m34dp(8.0f));
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
-        textView.setText(LocaleController.getString("AutoDeletePopupDescription", C0952R.string.AutoDeletePopupDescription));
+        textView.setText(LocaleController.getString("AutoDeletePopupDescription", C0890R.string.AutoDeletePopupDescription));
         this.windowLayout.addView((View) textView, LayoutHelper.createLinear(-1, -2));
     }
 

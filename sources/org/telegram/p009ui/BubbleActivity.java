@@ -11,7 +11,7 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
@@ -61,8 +61,8 @@ public class BubbleActivity extends BasePermissionsActivity implements ActionBar
     protected void onCreate(Bundle bundle) {
         ApplicationLoader.postInitApplication();
         requestWindowFeature(1);
-        setTheme(C0952R.style.Theme_TMessages);
-        getWindow().setBackgroundDrawableResource(C0952R.C0953drawable.transparent);
+        setTheme(C0890R.style.Theme_TMessages);
+        getWindow().setBackgroundDrawableResource(C0890R.C0891drawable.transparent);
         if (SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture) {
             try {
                 getWindow().setFlags(8192, 8192);

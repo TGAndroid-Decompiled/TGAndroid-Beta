@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -34,7 +34,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.ChatMessageCell;
@@ -161,16 +161,16 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             };
             setWillNotDraw(false);
             setClipToPadding(false);
-            this.shadowDrawable = Theme.getThemedDrawable(context, (int) C0952R.C0953drawable.greydivider_bottom, "windowBackgroundGrayShadow");
+            this.shadowDrawable = Theme.getThemedDrawable(context, (int) C0890R.C0891drawable.greydivider_bottom, "windowBackgroundGrayShadow");
             setPadding(0, AndroidUtilities.m34dp(11.0f), 0, AndroidUtilities.m34dp(11.0f));
             TLRPC$User user = MessagesController.getInstance(((BaseFragment) privacyControlActivity).currentAccount).getUser(Long.valueOf(UserConfig.getInstance(((BaseFragment) privacyControlActivity).currentAccount).getClientUserId()));
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-            tLRPC$TL_message.message = LocaleController.getString("PrivacyForwardsMessageLine", C0952R.string.PrivacyForwardsMessageLine);
+            tLRPC$TL_message.message = LocaleController.getString("PrivacyForwardsMessageLine", C0890R.string.PrivacyForwardsMessageLine);
             tLRPC$TL_message.date = (((int) (System.currentTimeMillis() / 1000)) - 3600) + 60;
             tLRPC$TL_message.dialog_id = 1L;
             tLRPC$TL_message.flags = 261;
             tLRPC$TL_message.from_id = new TLRPC$TL_peerUser();
-            tLRPC$TL_message.f877id = 1;
+            tLRPC$TL_message.f866id = 1;
             TLRPC$TL_messageFwdHeader tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader();
             tLRPC$TL_message.fwd_from = tLRPC$TL_messageFwdHeader;
             tLRPC$TL_messageFwdHeader.from_name = ContactsController.formatName(user.first_name, user.last_name);
@@ -497,25 +497,25 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         if (this.rulesType == 5) {
             this.messageCell = new MessageCell(this, context);
         }
-        this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C0890R.C0891drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         int i = this.rulesType;
         if (i == 6) {
-            this.actionBar.setTitle(LocaleController.getString("PrivacyPhone", C0952R.string.PrivacyPhone));
+            this.actionBar.setTitle(LocaleController.getString("PrivacyPhone", C0890R.string.PrivacyPhone));
         } else if (i == 5) {
-            this.actionBar.setTitle(LocaleController.getString("PrivacyForwards", C0952R.string.PrivacyForwards));
+            this.actionBar.setTitle(LocaleController.getString("PrivacyForwards", C0890R.string.PrivacyForwards));
         } else if (i == 4) {
-            this.actionBar.setTitle(LocaleController.getString("PrivacyProfilePhoto", C0952R.string.PrivacyProfilePhoto));
+            this.actionBar.setTitle(LocaleController.getString("PrivacyProfilePhoto", C0890R.string.PrivacyProfilePhoto));
         } else if (i == 3) {
-            this.actionBar.setTitle(LocaleController.getString("PrivacyP2P", C0952R.string.PrivacyP2P));
+            this.actionBar.setTitle(LocaleController.getString("PrivacyP2P", C0890R.string.PrivacyP2P));
         } else if (i == 2) {
-            this.actionBar.setTitle(LocaleController.getString("Calls", C0952R.string.Calls));
+            this.actionBar.setTitle(LocaleController.getString("Calls", C0890R.string.Calls));
         } else if (i == 1) {
-            this.actionBar.setTitle(LocaleController.getString("GroupsAndChannels", C0952R.string.GroupsAndChannels));
+            this.actionBar.setTitle(LocaleController.getString("GroupsAndChannels", C0890R.string.GroupsAndChannels));
         } else {
-            this.actionBar.setTitle(LocaleController.getString("PrivacyLastSeen", C0952R.string.PrivacyLastSeen));
+            this.actionBar.setTitle(LocaleController.getString("PrivacyLastSeen", C0890R.string.PrivacyLastSeen));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
@@ -527,7 +527,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
             }
         });
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, C0952R.C0953drawable.ic_done, AndroidUtilities.m34dp(56.0f), LocaleController.getString("Done", C0952R.string.Done));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, C0890R.C0891drawable.ic_done, AndroidUtilities.m34dp(56.0f), LocaleController.getString("Done", C0890R.string.Done));
         boolean hasChanges = hasChanges();
         float f = 1.0f;
         this.doneButton.setAlpha(hasChanges ? 1.0f : 0.0f);
@@ -865,9 +865,9 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     private void showErrorAlert() {
         if (getParentActivity() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setTitle(LocaleController.getString("AppName", C0952R.string.AppName));
-            builder.setMessage(LocaleController.getString("PrivacyFloodControlError", C0952R.string.PrivacyFloodControlError));
-            builder.setPositiveButton(LocaleController.getString("OK", C0952R.string.OK), null);
+            builder.setTitle(LocaleController.getString("AppName", C0890R.string.AppName));
+            builder.setMessage(LocaleController.getString("PrivacyFloodControlError", C0890R.string.PrivacyFloodControlError));
+            builder.setPositiveButton(LocaleController.getString("OK", C0890R.string.OK), null);
             showDialog(builder.create());
         }
     }
@@ -1142,13 +1142,13 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             messageCell.messageObject.messageOwner.fwd_from.from_id = new TLRPC$TL_peerUser();
             int i = this.currentType;
             if (i == 0) {
-                this.messageCell.hintView.setOverrideText(LocaleController.getString("PrivacyForwardsEverybody", C0952R.string.PrivacyForwardsEverybody));
+                this.messageCell.hintView.setOverrideText(LocaleController.getString("PrivacyForwardsEverybody", C0890R.string.PrivacyForwardsEverybody));
                 this.messageCell.messageObject.messageOwner.fwd_from.from_id.user_id = 1L;
             } else if (i == 1) {
-                this.messageCell.hintView.setOverrideText(LocaleController.getString("PrivacyForwardsNobody", C0952R.string.PrivacyForwardsNobody));
+                this.messageCell.hintView.setOverrideText(LocaleController.getString("PrivacyForwardsNobody", C0890R.string.PrivacyForwardsNobody));
                 this.messageCell.messageObject.messageOwner.fwd_from.from_id.user_id = 0L;
             } else {
-                this.messageCell.hintView.setOverrideText(LocaleController.getString("PrivacyForwardsContacts", C0952R.string.PrivacyForwardsContacts));
+                this.messageCell.hintView.setOverrideText(LocaleController.getString("PrivacyForwardsContacts", C0890R.string.PrivacyForwardsContacts));
                 this.messageCell.messageObject.messageOwner.fwd_from.from_id.user_id = 1L;
             }
             this.messageCell.cell.forceResetMessageObject();
@@ -1176,18 +1176,18 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 if (!globalMainSettings.getBoolean("privacyAlertShowed", false)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                     if (this.rulesType == 1) {
-                        builder.setMessage(LocaleController.getString("WhoCanAddMeInfo", C0952R.string.WhoCanAddMeInfo));
+                        builder.setMessage(LocaleController.getString("WhoCanAddMeInfo", C0890R.string.WhoCanAddMeInfo));
                     } else {
-                        builder.setMessage(LocaleController.getString("CustomHelp", C0952R.string.CustomHelp));
+                        builder.setMessage(LocaleController.getString("CustomHelp", C0890R.string.CustomHelp));
                     }
-                    builder.setTitle(LocaleController.getString("AppName", C0952R.string.AppName));
-                    builder.setPositiveButton(LocaleController.getString("OK", C0952R.string.OK), new DialogInterface.OnClickListener() {
+                    builder.setTitle(LocaleController.getString("AppName", C0890R.string.AppName));
+                    builder.setPositiveButton(LocaleController.getString("OK", C0890R.string.OK), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
                             PrivacyControlActivity.this.lambda$processDone$7(globalMainSettings, dialogInterface, i);
                         }
                     });
-                    builder.setNegativeButton(LocaleController.getString("Cancel", C0952R.string.Cancel), null);
+                    builder.setNegativeButton(LocaleController.getString("Cancel", C0890R.string.Cancel), null);
                     showDialog(builder.create());
                     return;
                 }
@@ -1206,15 +1206,15 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             return true;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString("UserRestrictionsApplyChanges", C0952R.string.UserRestrictionsApplyChanges));
-        builder.setMessage(LocaleController.getString("PrivacySettingsChangedAlert", C0952R.string.PrivacySettingsChangedAlert));
-        builder.setPositiveButton(LocaleController.getString("ApplyTheme", C0952R.string.ApplyTheme), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString("UserRestrictionsApplyChanges", C0890R.string.UserRestrictionsApplyChanges));
+        builder.setMessage(LocaleController.getString("PrivacySettingsChangedAlert", C0890R.string.PrivacySettingsChangedAlert));
+        builder.setPositiveButton(LocaleController.getString("ApplyTheme", C0890R.string.ApplyTheme), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 PrivacyControlActivity.this.lambda$checkDiscard$8(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("PassportDiscard", C0952R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(LocaleController.getString("PassportDiscard", C0890R.string.PassportDiscard), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 PrivacyControlActivity.this.lambda$checkDiscard$9(dialogInterface, i);
@@ -1270,7 +1270,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                     view2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                 } else if (i != 4) {
                     view = new ShadowSectionCell(this.mContext);
-                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, (int) C0952R.C0953drawable.greydivider, "windowBackgroundGrayShadow"));
+                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, (int) C0890R.C0891drawable.greydivider, "windowBackgroundGrayShadow"));
                     combinedDrawable.setFullsize(true);
                     view.setBackgroundDrawable(combinedDrawable);
                 } else {

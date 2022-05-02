@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
@@ -30,7 +30,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.HeaderCell;
@@ -76,10 +76,10 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
     @Override
     public View createView(Context context) {
         this.searching = false;
-        this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C0890R.C0891drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("Language", C0952R.string.Language));
-        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setTitle(LocaleController.getString("Language", C0890R.string.Language));
+        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -87,7 +87,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                 }
             }
         });
-        this.actionBar.createMenu().addItem(0, C0952R.C0953drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+        this.actionBar.createMenu().addItem(0, C0890R.C0891drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
                 LanguageSelectActivity.this.searching = true;
@@ -123,7 +123,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                     LanguageSelectActivity.this.listView.setAdapter(LanguageSelectActivity.this.listAdapter);
                 }
             }
-        }).setSearchFieldHint(LocaleController.getString("Search", C0952R.string.Search));
+        }).setSearchFieldHint(LocaleController.getString("Search", C0890R.string.Search));
         this.listAdapter = new ListAdapter(context, false);
         this.searchListViewAdapter = new ListAdapter(context, true);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -132,7 +132,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
-        emptyTextProgressView.setText(LocaleController.getString("NoResult", C0952R.string.NoResult));
+        emptyTextProgressView.setText(LocaleController.getString("NoResult", C0890R.string.NoResult));
         this.emptyView.showTextView();
         this.emptyView.setShowAtCenter(true);
         frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
@@ -259,15 +259,15 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             }
             if (!(localeInfo == null || localeInfo.pathToFile == null || (localeInfo.isRemote() && localeInfo.serverIndex != Integer.MAX_VALUE))) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setTitle(LocaleController.getString("DeleteLocalizationTitle", C0952R.string.DeleteLocalizationTitle));
-                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DeleteLocalizationText", C0952R.string.DeleteLocalizationText, localeInfo.name)));
-                builder.setPositiveButton(LocaleController.getString("Delete", C0952R.string.Delete), new DialogInterface.OnClickListener() {
+                builder.setTitle(LocaleController.getString("DeleteLocalizationTitle", C0890R.string.DeleteLocalizationTitle));
+                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DeleteLocalizationText", C0890R.string.DeleteLocalizationText, localeInfo.name)));
+                builder.setPositiveButton(LocaleController.getString("Delete", C0890R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
                         LanguageSelectActivity.this.lambda$createView$2(localeInfo, dialogInterface, i2);
                     }
                 });
-                builder.setNegativeButton(LocaleController.getString("Cancel", C0952R.string.Cancel), null);
+                builder.setNegativeButton(LocaleController.getString("Cancel", C0890R.string.Cancel), null);
                 AlertDialog create = builder.create();
                 showDialog(create);
                 TextView textView = (TextView) create.getButton(-1);
@@ -446,13 +446,13 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             HeaderCell headerCell = new HeaderCell(context);
             this.header = headerCell;
             headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-            this.header.setText(LocaleController.getString("TranslateMessages", C0952R.string.TranslateMessages));
+            this.header.setText(LocaleController.getString("TranslateMessages", C0890R.string.TranslateMessages));
             addView(this.header, LayoutHelper.createLinear(-1, -2));
             boolean value = getValue();
             TextCheckCell textCheckCell = new TextCheckCell(context);
             this.showButtonCheck = textCheckCell;
-            textCheckCell.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor("windowBackgroundWhite")));
-            this.showButtonCheck.setTextAndCheck(LocaleController.getString("ShowTranslateButton", C0952R.string.ShowTranslateButton), value, value);
+            textCheckCell.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.getColor("windowBackgroundWhite"), Theme.getColor("listSelectorSDK21")));
+            this.showButtonCheck.setTextAndCheck(LocaleController.getString("ShowTranslateButton", C0890R.string.ShowTranslateButton), value, value);
             this.showButtonCheck.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -462,7 +462,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             addView(this.showButtonCheck, LayoutHelper.createLinear(-1, -2));
             TextSettingsCell textSettingsCell = new TextSettingsCell(context);
             this.doNotTranslateCell = textSettingsCell;
-            textSettingsCell.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor("windowBackgroundWhite")));
+            textSettingsCell.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.getColor("windowBackgroundWhite"), Theme.getColor("listSelectorSDK21")));
             this.doNotTranslateCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -477,13 +477,13 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             this.info = textInfoPrivacyCell;
             textInfoPrivacyCell.setTopPadding(11);
             this.info.setBottomPadding(16);
-            this.info.setText(LocaleController.getString("TranslateMessagesInfo1", C0952R.string.TranslateMessagesInfo1));
+            this.info.setText(LocaleController.getString("TranslateMessagesInfo1", C0890R.string.TranslateMessagesInfo1));
             addView(this.info, LayoutHelper.createLinear(-1, -2));
             TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context);
             this.info2 = textInfoPrivacyCell2;
             textInfoPrivacyCell2.setTopPadding(0);
             this.info2.setBottomPadding(16);
-            this.info2.setText(LocaleController.getString("TranslateMessagesInfo2", C0952R.string.TranslateMessagesInfo2));
+            this.info2.setText(LocaleController.getString("TranslateMessagesInfo2", C0890R.string.TranslateMessagesInfo2));
             this.info2.setAlpha(value ? 0.0f : f);
             addView(this.info2, LayoutHelper.createLinear(-1, -2));
             updateHeight();
@@ -531,7 +531,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             if (str == null) {
                 str = String.format(LocaleController.getPluralString("Languages", getRestrictedLanguages().size()), Integer.valueOf(getRestrictedLanguages().size()));
             }
-            this.doNotTranslateCell.setTextAndValue(LocaleController.getString("DoNotTranslate", C0952R.string.DoNotTranslate), str, false);
+            this.doNotTranslateCell.setTextAndValue(LocaleController.getString("DoNotTranslate", C0890R.string.DoNotTranslate), str, false);
             this.doNotTranslateCell.setClickable(z);
             float[] fArr = new float[2];
             fArr[0] = this.doNotTranslateCell.getAlpha();
@@ -674,7 +674,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                 } else {
                     HeaderCell headerCell = new HeaderCell(this.mContext);
                     headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                    headerCell.setText(LocaleController.getString("Language", C0952R.string.Language));
+                    headerCell.setText(LocaleController.getString("Language", C0890R.string.Language));
                     textRadioCell = headerCell;
                 }
                 return new RecyclerListView.Holder(view);

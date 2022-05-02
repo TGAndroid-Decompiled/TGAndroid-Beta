@@ -82,7 +82,7 @@ public class CounterView extends View {
         private int textColor;
         public boolean updateVisibility;
         int width;
-        float f1030x;
+        float f1018x;
         int animationType = -1;
         public TextPaint textPaint = new TextPaint(1);
         public RectF rectF = new RectF();
@@ -120,7 +120,7 @@ public class CounterView extends View {
             float dp = (this.lastH - AndroidUtilities.m34dp(23.0f)) / 2.0f;
             updateX(this.countWidth);
             RectF rectF = this.rectF;
-            float f = this.f1030x;
+            float f = this.f1018x;
             rectF.set(f, dp, this.countWidth + f + AndroidUtilities.m34dp(11.0f), AndroidUtilities.m34dp(23.0f) + dp);
             Paint paint = this.circlePaint;
             if (paint != null && this.drawBackground) {
@@ -324,7 +324,7 @@ public class CounterView extends View {
                     f = 1.0f;
                 }
                 RectF rectF = this.rectF;
-                float f10 = this.f1030x;
+                float f10 = this.f1018x;
                 rectF.set(f10, dp, f8 + f10 + AndroidUtilities.m34dp(11.0f), AndroidUtilities.m34dp(23.0f) + dp);
                 canvas.save();
                 canvas.scale(f, f, this.rectF.centerX(), this.rectF.centerY());
@@ -396,7 +396,7 @@ public class CounterView extends View {
                     updateX(this.countWidth);
                     float dp = (this.lastH - AndroidUtilities.m34dp(23.0f)) / 2.0f;
                     RectF rectF = this.rectF;
-                    float f2 = this.f1030x;
+                    float f2 = this.f1018x;
                     rectF.set(f2, dp, this.countWidth + f2 + AndroidUtilities.m34dp(11.0f), AndroidUtilities.m34dp(23.0f) + dp);
                     return;
                 }
@@ -410,14 +410,14 @@ public class CounterView extends View {
                 float f4 = i2 == i3 ? i2 : (i2 * f3) + (i3 * (1.0f - f3));
                 updateX(f4);
                 RectF rectF2 = this.rectF;
-                float f5 = this.f1030x;
+                float f5 = this.f1018x;
                 rectF2.set(f5, dp2, f4 + f5 + AndroidUtilities.m34dp(11.0f), AndroidUtilities.m34dp(23.0f) + dp2);
                 return;
             }
             updateX(this.countWidth);
             float dp3 = (this.lastH - AndroidUtilities.m34dp(23.0f)) / 2.0f;
             RectF rectF3 = this.rectF;
-            float f6 = this.f1030x;
+            float f6 = this.f1018x;
             rectF3.set(f6, dp3, this.countWidth + f6 + AndroidUtilities.m34dp(11.0f), AndroidUtilities.m34dp(23.0f) + dp3);
         }
 
@@ -438,7 +438,7 @@ public class CounterView extends View {
             } else {
                 this.countLeft = (int) ((this.width - f) / 2.0f);
             }
-            this.f1030x = this.countLeft - dp;
+            this.f1018x = this.countLeft - dp;
         }
 
         public float getCenterX() {

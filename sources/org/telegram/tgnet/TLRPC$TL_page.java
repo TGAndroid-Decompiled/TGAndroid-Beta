@@ -9,7 +9,7 @@ public class TLRPC$TL_page extends TLRPC$Page {
         this.flags = readInt32;
         this.part = (readInt32 & 1) != 0;
         this.rtl = (readInt32 & 2) != 0;
-        this.f878v2 = (readInt32 & 4) != 0;
+        this.f867v2 = (readInt32 & 4) != 0;
         this.url = abstractSerializedData.readString(z);
         int readInt322 = abstractSerializedData.readInt32(z);
         if (readInt322 == 481674261) {
@@ -65,7 +65,7 @@ public class TLRPC$TL_page extends TLRPC$Page {
         this.flags = i;
         int i2 = this.rtl ? i | 2 : i & (-3);
         this.flags = i2;
-        int i3 = this.f878v2 ? i2 | 4 : i2 & (-5);
+        int i3 = this.f867v2 ? i2 | 4 : i2 & (-5);
         this.flags = i3;
         abstractSerializedData.writeInt32(i3);
         abstractSerializedData.writeString(this.url);

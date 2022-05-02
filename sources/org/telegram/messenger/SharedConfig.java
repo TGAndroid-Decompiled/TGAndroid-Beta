@@ -28,9 +28,6 @@ public class SharedConfig {
     public static final int PERFORMANCE_CLASS_AVERAGE = 1;
     public static final int PERFORMANCE_CLASS_HIGH = 2;
     public static final int PERFORMANCE_CLASS_LOW = 0;
-    public static final int SAVE_TO_GALLERY_FLAG_CHANNELS = 4;
-    public static final int SAVE_TO_GALLERY_FLAG_GROUP = 2;
-    public static final int SAVE_TO_GALLERY_FLAG_PEER = 1;
     public static boolean allowBigEmoji = false;
     public static boolean allowScreenCapture = false;
     public static boolean appLocked = false;
@@ -103,7 +100,7 @@ public class SharedConfig {
     public static boolean roundCamera16to9 = false;
     public static boolean saveIncomingPhotos = false;
     public static boolean saveStreamMedia = false;
-    public static int saveToGalleryFlags = 0;
+    public static boolean saveToGallery = false;
     public static int scheduledOrNoSoundHintShows = 0;
     public static int searchMessagesAsListHintShows = 0;
     public static boolean searchMessagesAsListUsed = false;
@@ -441,7 +438,7 @@ public class SharedConfig {
         edit.commit();
     }
 
-    public static void removeScheduledOrNoSoundHint() {
+    public static void removeScheduledOrNoSuoundHint() {
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putInt("scheduledOrNoSoundHintShows", 3);
         edit.commit();
@@ -616,16 +613,13 @@ public class SharedConfig {
         edit.commit();
     }
 
-    public static void toggleSaveToGalleryFlag(int i) {
-        int i2 = saveToGalleryFlags;
-        if ((i2 & i) != 0) {
-            saveToGalleryFlags = (i ^ (-1)) & i2;
-        } else {
-            saveToGalleryFlags = i | i2;
-        }
-        MessagesController.getGlobalMainSettings().edit().putInt("save_gallery_flags", saveToGalleryFlags).apply();
+    public static void toggleSaveToGallery() {
+        saveToGallery = !saveToGallery;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("save_gallery", saveToGallery);
+        edit.commit();
         ImageLoader.getInstance().checkMediaPaths();
-        ImageLoader.getInstance().getCacheOutQueue().postRunnable(SharedConfig$$ExternalSyntheticLambda3.INSTANCE);
+        ImageLoader.getInstance().getCacheOutQueue().postRunnable(SharedConfig$$ExternalSyntheticLambda2.INSTANCE);
     }
 
     public static void toggleAutoplayGifs() {
@@ -887,7 +881,7 @@ public class SharedConfig {
     }
 
     public static void checkSaveToGalleryFiles() {
-        Utilities.globalQueue.postRunnable(SharedConfig$$ExternalSyntheticLambda2.INSTANCE);
+        Utilities.globalQueue.postRunnable(SharedConfig$$ExternalSyntheticLambda3.INSTANCE);
     }
 
     public static void lambda$checkSaveToGalleryFiles$3() {
@@ -897,21 +891,21 @@ public class SharedConfig {
             file2.mkdir();
             File file3 = new File(file, "Telegram Video");
             file3.mkdir();
-            if (saveToGalleryFlags == 0 && BuildVars.NO_SCOPED_STORAGE) {
+            if (saveToGallery) {
                 if (file2.isDirectory()) {
-                    AndroidUtilities.createEmptyFile(new File(file2, ".nomedia"));
+                    new File(file2, ".nomedia").delete();
                 }
                 if (file3.isDirectory()) {
-                    AndroidUtilities.createEmptyFile(new File(file3, ".nomedia"));
+                    new File(file3, ".nomedia").delete();
                     return;
                 }
                 return;
             }
             if (file2.isDirectory()) {
-                new File(file2, ".nomedia").delete();
+                AndroidUtilities.createEmptyFile(new File(file2, ".nomedia"));
             }
             if (file3.isDirectory()) {
-                new File(file3, ".nomedia").delete();
+                AndroidUtilities.createEmptyFile(new File(file3, ".nomedia"));
             }
         } catch (Throwable th) {
             FileLog.m30e(th);

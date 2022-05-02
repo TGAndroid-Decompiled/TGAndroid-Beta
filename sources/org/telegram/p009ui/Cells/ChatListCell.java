@@ -10,7 +10,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -37,10 +37,10 @@ public class ChatListCell extends LinearLayout {
             setWillNotDraw(false);
             this.isThreeLines = z;
             if (z) {
-                i = C0952R.string.ChatListExpanded;
+                i = C0890R.string.ChatListExpanded;
                 str = "ChatListExpanded";
             } else {
-                i = C0952R.string.ChatListDefault;
+                i = C0890R.string.ChatListDefault;
                 str = "ChatListDefault";
             }
             setContentDescription(LocaleController.getString(str, i));
@@ -80,10 +80,10 @@ public class ChatListCell extends LinearLayout {
             Theme.dialogs_onlineCirclePaint.setColor(Color.argb((int) ((1.0f - this.button.getProgress()) * 31.0f), red, green, blue));
             canvas.drawRoundRect(this.rect, AndroidUtilities.m34dp(6.0f), AndroidUtilities.m34dp(6.0f), Theme.dialogs_onlineCirclePaint);
             if (this.isThreeLines) {
-                i = C0952R.string.ChatListExpanded;
+                i = C0890R.string.ChatListExpanded;
                 str = "ChatListExpanded";
             } else {
-                i = C0952R.string.ChatListDefault;
+                i = C0890R.string.ChatListDefault;
                 str = "ChatListDefault";
             }
             String string = LocaleController.getString(str, i);

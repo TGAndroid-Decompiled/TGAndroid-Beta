@@ -20,7 +20,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.BottomSheet;
@@ -35,7 +35,7 @@ public class QRCodeBottomSheet extends BottomSheet {
 
     public QRCodeBottomSheet(final Context context, String str, String str2) {
         super(context, false);
-        setTitle(LocaleController.getString("InviteByQRCode", C0952R.string.InviteByQRCode), true);
+        setTitle(LocaleController.getString("InviteByQRCode", C0890R.string.InviteByQRCode), true);
         final ImageView imageView = new ImageView(this, context) {
             @Override
             protected void onMeasure(int i, int i2) {
@@ -63,7 +63,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         this.iconImage = rLottieImageView;
         rLottieImageView.setBackgroundColor(-1);
         this.iconImage.setAutoRepeat(true);
-        this.iconImage.setAnimation(C0952R.raw.qr_code_logo, 60, 60);
+        this.iconImage.setAnimation(C0890R.raw.qr_code_logo, 60, 60);
         this.iconImage.playAnimation();
         FrameLayout frameLayout = new FrameLayout(context) {
             float lastX;
@@ -97,7 +97,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        textView2.setText(LocaleController.getString("ShareQrCode", C0952R.string.ShareQrCode));
+        textView2.setText(LocaleController.getString("ShareQrCode", C0890R.string.ShareQrCode));
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -118,7 +118,7 @@ public class QRCodeBottomSheet extends BottomSheet {
             intent.setType("image/*");
             intent.putExtra("android.intent.extra.STREAM", bitmapShareUri);
             try {
-                AndroidUtilities.findActivity(context).startActivityForResult(Intent.createChooser(intent, LocaleController.getString("InviteByQRCode", C0952R.string.InviteByQRCode)), 500);
+                AndroidUtilities.findActivity(context).startActivityForResult(Intent.createChooser(intent, LocaleController.getString("InviteByQRCode", C0890R.string.InviteByQRCode)), 500);
             } catch (ActivityNotFoundException e) {
                 e.printStackTrace();
             }

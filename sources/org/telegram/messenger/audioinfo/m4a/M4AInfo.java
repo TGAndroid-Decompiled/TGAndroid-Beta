@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.messenger.audioinfo.mp3.ID3v1Genre;
 
@@ -420,7 +420,7 @@ public class M4AInfo extends AudioInfo {
                 this.comment = mP4Atom.readString("UTF-8");
                 return;
             case '\f':
-            case C0952R.styleable.MapAttrs_uiTiltGestures:
+            case C0890R.styleable.MapAttrs_uiTiltGestures:
                 String str3 = this.composer;
                 if (str3 == null || str3.trim().length() == 0) {
                     this.composer = mP4Atom.readString("UTF-8");
@@ -452,7 +452,7 @@ public class M4AInfo extends AudioInfo {
             case 17:
                 this.lyrics = mP4Atom.readString("UTF-8");
                 return;
-            case C0952R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
+            case C0890R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
                 this.title = mP4Atom.readString("UTF-8");
                 return;
             default:

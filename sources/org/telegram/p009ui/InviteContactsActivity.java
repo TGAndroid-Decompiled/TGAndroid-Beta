@@ -34,7 +34,7 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -42,7 +42,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.GroupCreateSectionCell;
@@ -326,10 +326,10 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.allSpans.clear();
         this.selectedContacts.clear();
         this.currentDeletingSpan = null;
-        this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C0890R.C0891drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("InviteFriends", C0952R.string.InviteFriends));
-        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setTitle(LocaleController.getString("InviteFriends", C0890R.string.InviteFriends));
+        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -430,7 +430,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.editText.setImeOptions(268435462);
         this.editText.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         this.spansContainer.addView(this.editText);
-        this.editText.setHintText(LocaleController.getString("SearchFriends", C0952R.string.SearchFriends));
+        this.editText.setHintText(LocaleController.getString("SearchFriends", C0890R.string.SearchFriends));
         this.editText.setCustomSelectionActionModeCallback(new ActionMode.Callback(this) {
             @Override
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
@@ -489,7 +489,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                     InviteContactsActivity.this.adapter.searchDialogs(InviteContactsActivity.this.editText.getText().toString());
                     InviteContactsActivity.this.listView.setFastScrollVisible(false);
                     InviteContactsActivity.this.listView.setVerticalScrollBarEnabled(true);
-                    InviteContactsActivity.this.emptyView.setText(LocaleController.getString("NoResult", C0952R.string.NoResult));
+                    InviteContactsActivity.this.emptyView.setText(LocaleController.getString("NoResult", C0890R.string.NoResult));
                     return;
                 }
                 InviteContactsActivity.this.closeSearch();
@@ -501,7 +501,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         } else {
             this.emptyView.showTextView();
         }
-        this.emptyView.setText(LocaleController.getString("NoContacts", C0952R.string.NoContacts));
+        this.emptyView.setText(LocaleController.getString("NoContacts", C0890R.string.NoContacts));
         viewGroup2.addView(this.emptyView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         RecyclerListView recyclerListView = new RecyclerListView(context);
@@ -538,7 +538,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         textView.setBackgroundColor(Theme.getColor("contacts_inviteBackground"));
         this.infoTextView.setTextColor(Theme.getColor("contacts_inviteText"));
         this.infoTextView.setGravity(17);
-        this.infoTextView.setText(LocaleController.getString("InviteFriendsHelp", C0952R.string.InviteFriendsHelp));
+        this.infoTextView.setText(LocaleController.getString("InviteFriendsHelp", C0890R.string.InviteFriendsHelp));
         this.infoTextView.setTextSize(1, 13.0f);
         this.infoTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         this.infoTextView.setPadding(AndroidUtilities.m34dp(17.0f), AndroidUtilities.m34dp(9.0f), AndroidUtilities.m34dp(17.0f), AndroidUtilities.m34dp(9.0f));
@@ -573,7 +573,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.textView.setTextColor(Theme.getColor("contacts_inviteText"));
         this.textView.setGravity(17);
         this.textView.setCompoundDrawablePadding(AndroidUtilities.m34dp(8.0f));
-        this.textView.setText(LocaleController.getString("InviteToTelegram", C0952R.string.InviteToTelegram).toUpperCase());
+        this.textView.setText(LocaleController.getString("InviteToTelegram", C0890R.string.InviteToTelegram).toUpperCase());
         this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         linearLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 16));
         updateHint();
@@ -698,7 +698,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.adapter.searchDialogs(null);
         this.listView.setFastScrollVisible(true);
         this.listView.setVerticalScrollBarEnabled(false);
-        this.emptyView.setText(LocaleController.getString("NoContacts", C0952R.string.NoContacts));
+        this.emptyView.setText(LocaleController.getString("NoContacts", C0890R.string.NoContacts));
     }
 
     private void fetchContacts() {
@@ -762,7 +762,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 inviteUserCell = new InviteUserCell(this.context, true);
             } else {
                 InviteTextCell inviteTextCell = new InviteTextCell(this.context);
-                inviteTextCell.setTextAndIcon(LocaleController.getString("ShareTelegram", C0952R.string.ShareTelegram), C0952R.C0953drawable.share);
+                inviteTextCell.setTextAndIcon(LocaleController.getString("ShareTelegram", C0890R.string.ShareTelegram), C0890R.C0891drawable.share);
                 inviteUserCell = inviteTextCell;
             }
             return new RecyclerListView.Holder(inviteUserCell);
@@ -816,13 +816,13 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             }
             Timer timer2 = new Timer();
             this.searchTimer = timer2;
-            timer2.schedule(new C29711(str), 200L, 300L);
+            timer2.schedule(new C28921(str), 200L, 300L);
         }
 
-        public class C29711 extends TimerTask {
+        public class C28921 extends TimerTask {
             final String val$query;
 
-            C29711(String str) {
+            C28921(String str) {
                 this.val$query = str;
             }
 
@@ -838,7 +838,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteContactsActivity.InviteAdapter.C29711.this.lambda$run$1(str);
+                        InviteContactsActivity.InviteAdapter.C28921.this.lambda$run$1(str);
                     }
                 });
             }
@@ -847,13 +847,13 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 Utilities.searchQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteContactsActivity.InviteAdapter.C29711.this.lambda$run$0(str);
+                        InviteContactsActivity.InviteAdapter.C28921.this.lambda$run$0(str);
                     }
                 });
             }
 
             public void lambda$run$0(java.lang.String r17) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.InviteContactsActivity.InviteAdapter.C29711.lambda$run$0(java.lang.String):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.InviteContactsActivity.InviteAdapter.C28921.lambda$run$0(java.lang.String):void");
             }
         }
 

@@ -11,12 +11,11 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
-import org.telegram.p009ui.Components.AttachBotIntroTopView;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
 
@@ -28,38 +27,40 @@ public class AttachBotIntroTopView extends View {
 
     public AttachBotIntroTopView(Context context) {
         super(context);
-        C15991 r0 = new C15991(this);
-        this.imageReceiver = r0;
-        r0.setAlpha(0.0f);
-        this.attachDrawable = ContextCompat.getDrawable(context, C0952R.C0953drawable.input_attach).mutate().getConstantState().newDrawable();
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.imageReceiver = imageReceiver;
+        imageReceiver.setAlpha(0.0f);
+        this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
+            @Override
+            public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
+                AttachBotIntroTopView.this.lambda$new$1(imageReceiver2, z, z2, z3);
+            }
+
+            @Override
+            public void onAnimationReady(ImageReceiver imageReceiver2) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
+            }
+        });
+        this.attachDrawable = ContextCompat.getDrawable(context, C0890R.C0891drawable.input_attach).mutate().getConstantState().newDrawable();
         this.paint.setStyle(Paint.Style.STROKE);
         this.paint.setStrokeWidth(AndroidUtilities.m34dp(3.0f));
         this.paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
-    public class C15991 extends ImageReceiver {
-        C15991(View view) {
-            super(view);
-        }
+    public void lambda$new$1(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
+        duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                AttachBotIntroTopView.this.lambda$new$0(valueAnimator);
+            }
+        });
+        duration.start();
+    }
 
-        @Override
-        public boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z, int i2) {
-            boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i, z, i2);
-            ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-            duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    AttachBotIntroTopView.C15991.this.lambda$setImageBitmapByKey$0(valueAnimator);
-                }
-            });
-            duration.start();
-            return imageBitmapByKey;
-        }
-
-        public void lambda$setImageBitmapByKey$0(ValueAnimator valueAnimator) {
-            AttachBotIntroTopView.this.imageReceiver.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-            invalidate();
-        }
+    public void lambda$new$0(ValueAnimator valueAnimator) {
+        this.imageReceiver.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        invalidate();
     }
 
     public void setAttachBot(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {

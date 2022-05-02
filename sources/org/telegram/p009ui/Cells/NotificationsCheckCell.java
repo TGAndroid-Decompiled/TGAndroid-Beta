@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.LayoutHelper;
@@ -45,7 +45,7 @@ public class NotificationsCheckCell extends FrameLayout {
             this.moveImageView = imageView;
             imageView.setFocusable(false);
             this.moveImageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.moveImageView.setImageResource(C0952R.C0953drawable.poll_reorder);
+            this.moveImageView.setImageResource(C0890R.C0891drawable.poll_reorder);
             this.moveImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.MULTIPLY));
             addView(this.moveImageView, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 5 : 3) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
         }

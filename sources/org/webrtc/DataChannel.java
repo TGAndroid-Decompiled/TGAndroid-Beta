@@ -39,7 +39,7 @@ public class DataChannel {
         public int maxRetransmitTimeMs = -1;
         public int maxRetransmits = -1;
         public String protocol = "";
-        public int f1108id = -1;
+        public int f1095id = -1;
 
         @CalledByNative("Init")
         boolean getOrdered() {
@@ -68,7 +68,7 @@ public class DataChannel {
 
         @CalledByNative("Init")
         int getId() {
-            return this.f1108id;
+            return this.f1095id;
         }
     }
 

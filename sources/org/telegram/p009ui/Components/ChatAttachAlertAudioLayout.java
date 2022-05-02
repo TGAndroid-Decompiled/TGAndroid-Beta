@@ -30,7 +30,7 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -131,7 +131,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             }
         };
         this.searchField = searchField;
-        searchField.setHint(LocaleController.getString("SearchMusic", C0952R.string.SearchMusic));
+        searchField.setHint(LocaleController.getString("SearchMusic", C0890R.string.SearchMusic));
         this.frameLayout.addView(this.searchField, LayoutHelper.createFrame(-1, -1, 51));
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context, null, resourcesProvider);
         this.progressView = emptyTextProgressView;
@@ -146,7 +146,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         this.emptyView.setOnTouchListener(ChatAttachAlertAudioLayout$$ExternalSyntheticLambda0.INSTANCE);
         ImageView imageView = new ImageView(context);
         this.emptyImageView = imageView;
-        imageView.setImageResource(C0952R.C0953drawable.music_empty);
+        imageView.setImageResource(C0890R.C0891drawable.music_empty);
         this.emptyImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("dialogEmptyImage"), PorterDuff.Mode.MULTIPLY));
         this.emptyView.addView(this.emptyImageView, LayoutHelper.createLinear(-2, -2));
         TextView textView = new TextView(context);
@@ -277,10 +277,10 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             this.emptyView.setVisibility(8);
         } else {
             if (this.listView.getAdapter() == this.searchAdapter) {
-                this.emptyTitleTextView.setText(LocaleController.getString("NoAudioFound", C0952R.string.NoAudioFound));
+                this.emptyTitleTextView.setText(LocaleController.getString("NoAudioFound", C0890R.string.NoAudioFound));
             } else {
-                this.emptyTitleTextView.setText(LocaleController.getString("NoAudioFiles", C0952R.string.NoAudioFiles));
-                this.emptySubtitleTextView.setText(LocaleController.getString("NoAudioFilesInfo", C0952R.string.NoAudioFilesInfo));
+                this.emptyTitleTextView.setText(LocaleController.getString("NoAudioFiles", C0890R.string.NoAudioFiles));
+                this.emptySubtitleTextView.setText(LocaleController.getString("NoAudioFilesInfo", C0890R.string.NoAudioFilesInfo));
             }
             this.currentEmptyView = this.emptyView;
             this.progressView.setVisibility(8);
@@ -475,7 +475,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     private void showErrorBox(String str) {
-        new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString("AppName", C0952R.string.AppName)).setMessage(str).setPositiveButton(LocaleController.getString("OK", C0952R.string.OK), null).show();
+        new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString("AppName", C0890R.string.AppName)).setMessage(str).setPositiveButton(LocaleController.getString("OK", C0890R.string.OK), null).show();
     }
 
     private void onItemClick(View view) {
@@ -484,8 +484,8 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             MediaController.AudioEntry audioEntry = (MediaController.AudioEntry) sharedAudioCell.getTag();
             boolean z = false;
             int i = 1;
-            if (this.selectedAudios.indexOfKey(audioEntry.f813id) >= 0) {
-                this.selectedAudios.remove(audioEntry.f813id);
+            if (this.selectedAudios.indexOfKey(audioEntry.f802id) >= 0) {
+                this.selectedAudios.remove(audioEntry.f802id);
                 this.selectedAudiosOrder.remove(audioEntry);
                 sharedAudioCell.setChecked(false, true);
             } else {
@@ -493,11 +493,11 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                     int size = this.selectedAudios.size();
                     int i2 = this.maxSelectedFiles;
                     if (size >= i2) {
-                        showErrorBox(LocaleController.formatString("PassportUploadMaxReached", C0952R.string.PassportUploadMaxReached, LocaleController.formatPluralString("Files", i2)));
+                        showErrorBox(LocaleController.formatString("PassportUploadMaxReached", C0890R.string.PassportUploadMaxReached, LocaleController.formatPluralString("Files", i2)));
                         return;
                     }
                 }
-                this.selectedAudios.put(audioEntry.f813id, audioEntry);
+                this.selectedAudios.put(audioEntry.f802id, audioEntry);
                 this.selectedAudiosOrder.add(audioEntry);
                 sharedAudioCell.setChecked(true, true);
                 z = true;
@@ -558,7 +558,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                 try {
                     try {
                         MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                        audioEntry.f813id = query.getInt(0);
+                        audioEntry.f802id = query.getInt(0);
                         audioEntry.author = query.getString(1);
                         audioEntry.title = query.getString(i);
                         audioEntry.path = query.getString(3);
@@ -567,7 +567,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                         File file = new File(audioEntry.path);
                         TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
                         tLRPC$TL_message.out = true;
-                        tLRPC$TL_message.f877id = i4;
+                        tLRPC$TL_message.f866id = i4;
                         tLRPC$TL_message.peer_id = new TLRPC$TL_peerUser();
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         tLRPC$TL_message.from_id = tLRPC$TL_peerUser;
@@ -587,7 +587,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                             tLRPC$TL_message.flags |= 768;
                             String fileExtension = FileLoader.getFileExtension(file);
                             TLRPC$Document tLRPC$Document = tLRPC$TL_message.media.document;
-                            tLRPC$Document.f861id = 0L;
+                            tLRPC$Document.f850id = 0L;
                             tLRPC$Document.access_hash = 0L;
                             tLRPC$Document.file_reference = new byte[0];
                             tLRPC$Document.date = tLRPC$TL_message.date;
@@ -720,7 +720,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                 sharedAudioCell.setTag(audioEntry);
                 boolean z = true;
                 sharedAudioCell.setMessageObject(audioEntry.messageObject, i2 != ChatAttachAlertAudioLayout.this.audioEntries.size() - 1);
-                if (ChatAttachAlertAudioLayout.this.selectedAudios.indexOfKey(audioEntry.f813id) < 0) {
+                if (ChatAttachAlertAudioLayout.this.selectedAudios.indexOfKey(audioEntry.f802id) < 0) {
                     z = false;
                 }
                 sharedAudioCell.setChecked(z, false);
@@ -845,7 +845,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                     ChatAttachAlertAudioLayout.this.listView.setAdapter(ChatAttachAlertAudioLayout.this.searchAdapter);
                 }
                 if (ChatAttachAlertAudioLayout.this.listView.getAdapter() == ChatAttachAlertAudioLayout.this.searchAdapter) {
-                    ChatAttachAlertAudioLayout.this.emptySubtitleTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoAudioFoundInfo", C0952R.string.NoAudioFoundInfo, str)));
+                    ChatAttachAlertAudioLayout.this.emptySubtitleTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoAudioFoundInfo", C0890R.string.NoAudioFoundInfo, str)));
                 }
                 this.searchResult = arrayList;
                 notifyDataSetChanged();
@@ -901,7 +901,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                 sharedAudioCell.setTag(audioEntry);
                 boolean z = true;
                 sharedAudioCell.setMessageObject(audioEntry.messageObject, i2 != this.searchResult.size() - 1);
-                if (ChatAttachAlertAudioLayout.this.selectedAudios.indexOfKey(audioEntry.f813id) < 0) {
+                if (ChatAttachAlertAudioLayout.this.selectedAudios.indexOfKey(audioEntry.f802id) < 0) {
                     z = false;
                 }
                 sharedAudioCell.setChecked(z, false);

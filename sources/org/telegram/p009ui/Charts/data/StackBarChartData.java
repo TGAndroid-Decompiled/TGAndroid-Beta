@@ -14,14 +14,14 @@ public class StackBarChartData extends ChartData {
     }
 
     public void init() {
-        int length = this.lines.get(0).f1014y.length;
+        int length = this.lines.get(0).f1002y.length;
         int size = this.lines.size();
         this.ySum = new int[length];
         for (int i = 0; i < length; i++) {
             this.ySum[i] = 0;
             for (int i2 = 0; i2 < size; i2++) {
                 int[] iArr = this.ySum;
-                iArr[i] = iArr[i] + this.lines.get(i2).f1014y[i];
+                iArr[i] = iArr[i] + this.lines.get(i2).f1002y[i];
             }
         }
         this.ySumSegmentTree = new SegmentTree(this.ySum);

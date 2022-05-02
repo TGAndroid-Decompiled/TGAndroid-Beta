@@ -7,11 +7,11 @@ import android.hardware.display.VirtualDisplay;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.view.Surface;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 import org.webrtc.VideoSink;
 
-@TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
+@TargetApi(C0890R.styleable.MapAttrs_uiZoomGestures)
 public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     private static final int DISPLAY_FLAGS = 3;
     private static final int VIRTUAL_DISPLAY_DPI = 400;

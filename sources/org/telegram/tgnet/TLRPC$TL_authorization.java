@@ -14,7 +14,7 @@ public class TLRPC$TL_authorization extends TLObject {
     public boolean encrypted_requests_disabled;
     public int flags;
     public long hash;
-    public String f888ip;
+    public String f877ip;
     public boolean official_app;
     public boolean password_pending;
     public String platform;
@@ -55,7 +55,7 @@ public class TLRPC$TL_authorization extends TLObject {
         this.app_version = abstractSerializedData.readString(z);
         this.date_created = abstractSerializedData.readInt32(z);
         this.date_active = abstractSerializedData.readInt32(z);
-        this.f888ip = abstractSerializedData.readString(z);
+        this.f877ip = abstractSerializedData.readString(z);
         this.country = abstractSerializedData.readString(z);
         this.region = abstractSerializedData.readString(z);
     }
@@ -83,7 +83,7 @@ public class TLRPC$TL_authorization extends TLObject {
         abstractSerializedData.writeString(this.app_version);
         abstractSerializedData.writeInt32(this.date_created);
         abstractSerializedData.writeInt32(this.date_active);
-        abstractSerializedData.writeString(this.f888ip);
+        abstractSerializedData.writeString(this.f877ip);
         abstractSerializedData.writeString(this.country);
         abstractSerializedData.writeString(this.region);
     }

@@ -270,69 +270,69 @@ public class GcmPushListenerService extends FirebaseMessagingService {
         }
         switch (c) {
             case 0:
-                return LocaleController.formatString("PushChatReactContact", C0952R.string.PushChatReactContact, objArr);
+                return LocaleController.formatString("PushChatReactContact", C0890R.string.PushChatReactContact, objArr);
             case 1:
-                return LocaleController.formatString("PushReactGeoLocation", C0952R.string.PushReactGeoLocation, objArr);
+                return LocaleController.formatString("PushReactGeoLocation", C0890R.string.PushReactGeoLocation, objArr);
             case 2:
-                return LocaleController.formatString("PushChatReactNotext", C0952R.string.PushChatReactNotext, objArr);
+                return LocaleController.formatString("PushChatReactNotext", C0890R.string.PushChatReactNotext, objArr);
             case 3:
-                return LocaleController.formatString("PushReactNoText", C0952R.string.PushReactNoText, objArr);
+                return LocaleController.formatString("PushReactNoText", C0890R.string.PushReactNoText, objArr);
             case 4:
-                return LocaleController.formatString("PushChatReactInvoice", C0952R.string.PushChatReactInvoice, objArr);
+                return LocaleController.formatString("PushChatReactInvoice", C0890R.string.PushChatReactInvoice, objArr);
             case 5:
-                return LocaleController.formatString("PushReactContect", C0952R.string.PushReactContect, objArr);
+                return LocaleController.formatString("PushReactContect", C0890R.string.PushReactContect, objArr);
             case 6:
-                return LocaleController.formatString("PushChatReactSticker", C0952R.string.PushChatReactSticker, objArr);
+                return LocaleController.formatString("PushChatReactSticker", C0890R.string.PushChatReactSticker, objArr);
             case 7:
-                return LocaleController.formatString("PushReactGame", C0952R.string.PushReactGame, objArr);
+                return LocaleController.formatString("PushReactGame", C0890R.string.PushReactGame, objArr);
             case '\b':
-                return LocaleController.formatString("PushReactPoll", C0952R.string.PushReactPoll, objArr);
+                return LocaleController.formatString("PushReactPoll", C0890R.string.PushReactPoll, objArr);
             case '\t':
-                return LocaleController.formatString("PushReactQuiz", C0952R.string.PushReactQuiz, objArr);
+                return LocaleController.formatString("PushReactQuiz", C0890R.string.PushReactQuiz, objArr);
             case '\n':
-                return LocaleController.formatString("PushReactText", C0952R.string.PushReactText, objArr);
+                return LocaleController.formatString("PushReactText", C0890R.string.PushReactText, objArr);
             case 11:
-                return LocaleController.formatString("PushReactInvoice", C0952R.string.PushReactInvoice, objArr);
+                return LocaleController.formatString("PushReactInvoice", C0890R.string.PushReactInvoice, objArr);
             case '\f':
-                return LocaleController.formatString("PushChatReactDoc", C0952R.string.PushChatReactDoc, objArr);
+                return LocaleController.formatString("PushChatReactDoc", C0890R.string.PushChatReactDoc, objArr);
             case '\r':
-                return LocaleController.formatString("PushChatReactGeo", C0952R.string.PushChatReactGeo, objArr);
+                return LocaleController.formatString("PushChatReactGeo", C0890R.string.PushChatReactGeo, objArr);
             case 14:
-                return LocaleController.formatString("PushChatReactGif", C0952R.string.PushChatReactGif, objArr);
+                return LocaleController.formatString("PushChatReactGif", C0890R.string.PushChatReactGif, objArr);
             case 15:
-                return LocaleController.formatString("PushReactSticker", C0952R.string.PushReactSticker, objArr);
+                return LocaleController.formatString("PushReactSticker", C0890R.string.PushReactSticker, objArr);
             case 16:
-                return LocaleController.formatString("PushChatReactAudio", C0952R.string.PushChatReactAudio, objArr);
+                return LocaleController.formatString("PushChatReactAudio", C0890R.string.PushChatReactAudio, objArr);
             case 17:
-                return LocaleController.formatString("PushChatReactPhoto", C0952R.string.PushChatReactPhoto, objArr);
-            case C0952R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
-                return LocaleController.formatString("PushChatReactRound", C0952R.string.PushChatReactRound, objArr);
-            case C0952R.styleable.MapAttrs_uiTiltGestures:
-                return LocaleController.formatString("PushChatReactVideo", C0952R.string.PushChatReactVideo, objArr);
-            case C0952R.styleable.MapAttrs_uiZoomControls:
-                return LocaleController.formatString("PushChatReactGeoLive", C0952R.string.PushChatReactGeoLive, objArr);
-            case C0952R.styleable.MapAttrs_uiZoomGestures:
-                return LocaleController.formatString("PushReactAudio", C0952R.string.PushReactAudio, objArr);
-            case C0952R.styleable.MapAttrs_useViewLifecycle:
-                return LocaleController.formatString("PushReactPhoto", C0952R.string.PushReactPhoto, objArr);
-            case C0952R.styleable.MapAttrs_zOrderOnTop:
-                return LocaleController.formatString("PushReactRound", C0952R.string.PushReactRound, objArr);
+                return LocaleController.formatString("PushChatReactPhoto", C0890R.string.PushChatReactPhoto, objArr);
+            case C0890R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
+                return LocaleController.formatString("PushChatReactRound", C0890R.string.PushChatReactRound, objArr);
+            case C0890R.styleable.MapAttrs_uiTiltGestures:
+                return LocaleController.formatString("PushChatReactVideo", C0890R.string.PushChatReactVideo, objArr);
+            case C0890R.styleable.MapAttrs_uiZoomControls:
+                return LocaleController.formatString("PushChatReactGeoLive", C0890R.string.PushChatReactGeoLive, objArr);
+            case C0890R.styleable.MapAttrs_uiZoomGestures:
+                return LocaleController.formatString("PushReactAudio", C0890R.string.PushReactAudio, objArr);
+            case C0890R.styleable.MapAttrs_useViewLifecycle:
+                return LocaleController.formatString("PushReactPhoto", C0890R.string.PushReactPhoto, objArr);
+            case C0890R.styleable.MapAttrs_zOrderOnTop:
+                return LocaleController.formatString("PushReactRound", C0890R.string.PushReactRound, objArr);
             case 24:
-                return LocaleController.formatString("PushReactVideo", C0952R.string.PushReactVideo, objArr);
+                return LocaleController.formatString("PushReactVideo", C0890R.string.PushReactVideo, objArr);
             case 25:
-                return LocaleController.formatString("PushReactDoc", C0952R.string.PushReactDoc, objArr);
+                return LocaleController.formatString("PushReactDoc", C0890R.string.PushReactDoc, objArr);
             case 26:
-                return LocaleController.formatString("PushReactGeo", C0952R.string.PushReactGeo, objArr);
+                return LocaleController.formatString("PushReactGeo", C0890R.string.PushReactGeo, objArr);
             case 27:
-                return LocaleController.formatString("PushReactGif", C0952R.string.PushReactGif, objArr);
+                return LocaleController.formatString("PushReactGif", C0890R.string.PushReactGif, objArr);
             case 28:
-                return LocaleController.formatString("PushChatReactGame", C0952R.string.PushChatReactGame, objArr);
+                return LocaleController.formatString("PushChatReactGame", C0890R.string.PushChatReactGame, objArr);
             case 29:
-                return LocaleController.formatString("PushChatReactPoll", C0952R.string.PushChatReactPoll, objArr);
+                return LocaleController.formatString("PushChatReactPoll", C0890R.string.PushChatReactPoll, objArr);
             case 30:
-                return LocaleController.formatString("PushChatReactQuiz", C0952R.string.PushChatReactQuiz, objArr);
+                return LocaleController.formatString("PushChatReactQuiz", C0890R.string.PushChatReactQuiz, objArr);
             case 31:
-                return LocaleController.formatString("PushChatReactText", C0952R.string.PushChatReactText, objArr);
+                return LocaleController.formatString("PushChatReactText", C0890R.string.PushChatReactText, objArr);
             default:
                 return null;
         }

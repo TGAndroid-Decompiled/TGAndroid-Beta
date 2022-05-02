@@ -466,12 +466,12 @@ public class ViewPagerFixed extends FrameLayout {
 
         public static class Tab {
             public int counter;
-            public int f1099id;
+            public int f1086id;
             public String title;
             public int titleWidth;
 
             public Tab(int i, String str) {
-                this.f1099id = i;
+                this.f1086id = i;
                 this.title = str;
             }
 
@@ -505,7 +505,7 @@ public class ViewPagerFixed extends FrameLayout {
 
             @Override
             public int getId() {
-                return this.currentTab.f1099id;
+                return this.currentTab.f1086id;
             }
 
             @Override
@@ -526,7 +526,7 @@ public class ViewPagerFixed extends FrameLayout {
                 int i5;
                 int i6;
                 int i7;
-                if (!(this.currentTab.f1099id == Integer.MAX_VALUE || TabsView.this.editingAnimationProgress == 0.0f)) {
+                if (!(this.currentTab.f1086id == Integer.MAX_VALUE || TabsView.this.editingAnimationProgress == 0.0f)) {
                     canvas.save();
                     float f = TabsView.this.editingAnimationProgress * (this.currentPosition % 2 == 0 ? 1.0f : -1.0f);
                     canvas.translate(AndroidUtilities.m34dp(0.66f) * f, 0.0f);
@@ -541,7 +541,7 @@ public class ViewPagerFixed extends FrameLayout {
                 }
                 String str4 = "chats_tabUnreadActiveBackground";
                 String str5 = "chats_tabUnreadUnactiveBackground";
-                if (this.currentTab.f1099id == i2) {
+                if (this.currentTab.f1086id == i2) {
                     str2 = TabsView.this.activeTextColorKey;
                     str = TabsView.this.unactiveTextColorKey;
                 } else {
@@ -550,7 +550,7 @@ public class ViewPagerFixed extends FrameLayout {
                     str5 = str4;
                     str4 = str5;
                 }
-                if ((TabsView.this.animatingIndicator || TabsView.this.manualScrollingToId != -1) && ((i7 = this.currentTab.f1099id) == i2 || i7 == i)) {
+                if ((TabsView.this.animatingIndicator || TabsView.this.manualScrollingToId != -1) && ((i7 = this.currentTab.f1086id) == i2 || i7 == i)) {
                     TabsView.this.textPaint.setColor(ColorUtils.blendARGB(Theme.getColor(str), Theme.getColor(str2), TabsView.this.animatingIndicatorProgress));
                 } else {
                     TabsView.this.textPaint.setColor(Theme.getColor(str2));
@@ -565,7 +565,7 @@ public class ViewPagerFixed extends FrameLayout {
                     i4 = 0;
                     i3 = 0;
                 }
-                if (this.currentTab.f1099id != Integer.MAX_VALUE && (TabsView.this.isEditing || TabsView.this.editingStartAnimationProgress != 0.0f)) {
+                if (this.currentTab.f1086id != Integer.MAX_VALUE && (TabsView.this.isEditing || TabsView.this.editingStartAnimationProgress != 0.0f)) {
                     i3 = (int) (i3 + ((AndroidUtilities.m34dp(20.0f) - i3) * TabsView.this.editingStartAnimationProgress));
                 }
                 int i9 = this.currentTab.titleWidth;
@@ -590,13 +590,13 @@ public class ViewPagerFixed extends FrameLayout {
                     this.textLayout.draw(canvas);
                     canvas.restore();
                 }
-                if (str3 != null || (this.currentTab.f1099id != Integer.MAX_VALUE && (TabsView.this.isEditing || TabsView.this.editingStartAnimationProgress != 0.0f))) {
+                if (str3 != null || (this.currentTab.f1086id != Integer.MAX_VALUE && (TabsView.this.isEditing || TabsView.this.editingStartAnimationProgress != 0.0f))) {
                     TabsView.this.textCounterPaint.setColor(Theme.getColor(TabsView.this.backgroundColorKey));
                     if (!Theme.hasThemeKey(str4) || !Theme.hasThemeKey(str5)) {
                         TabsView.this.counterPaint.setColor(TabsView.this.textPaint.getColor());
                     } else {
                         int color = Theme.getColor(str4);
-                        if ((TabsView.this.animatingIndicator || TabsView.this.manualScrollingToPosition != -1) && ((i6 = this.currentTab.f1099id) == i2 || i6 == i)) {
+                        if ((TabsView.this.animatingIndicator || TabsView.this.manualScrollingToPosition != -1) && ((i6 = this.currentTab.f1086id) == i2 || i6 == i)) {
                             TabsView.this.counterPaint.setColor(ColorUtils.blendARGB(Theme.getColor(str5), color, TabsView.this.animatingIndicatorProgress));
                         } else {
                             TabsView.this.counterPaint.setColor(color);
@@ -604,7 +604,7 @@ public class ViewPagerFixed extends FrameLayout {
                     }
                     int dp = measuredWidth + this.currentTab.titleWidth + AndroidUtilities.m34dp(6.0f);
                     int measuredHeight = (getMeasuredHeight() - AndroidUtilities.m34dp(20.0f)) / 2;
-                    if (this.currentTab.f1099id == Integer.MAX_VALUE || ((!TabsView.this.isEditing && TabsView.this.editingStartAnimationProgress == 0.0f) || str3 != null)) {
+                    if (this.currentTab.f1086id == Integer.MAX_VALUE || ((!TabsView.this.isEditing && TabsView.this.editingStartAnimationProgress == 0.0f) || str3 != null)) {
                         TabsView.this.counterPaint.setAlpha(255);
                     } else {
                         TabsView.this.counterPaint.setAlpha((int) (TabsView.this.editingStartAnimationProgress * 255.0f));
@@ -614,13 +614,13 @@ public class ViewPagerFixed extends FrameLayout {
                     float f2 = AndroidUtilities.density;
                     canvas.drawRoundRect(rectF, f2 * 11.5f, f2 * 11.5f, TabsView.this.counterPaint);
                     if (str3 != null) {
-                        if (this.currentTab.f1099id != Integer.MAX_VALUE) {
+                        if (this.currentTab.f1086id != Integer.MAX_VALUE) {
                             TabsView.this.textCounterPaint.setAlpha((int) ((1.0f - TabsView.this.editingStartAnimationProgress) * 255.0f));
                         }
                         RectF rectF2 = this.rect;
                         canvas.drawText(str3, rectF2.left + ((rectF2.width() - i4) / 2.0f), measuredHeight + AndroidUtilities.m34dp(14.5f), TabsView.this.textCounterPaint);
                     }
-                    if (this.currentTab.f1099id != Integer.MAX_VALUE && (TabsView.this.isEditing || TabsView.this.editingStartAnimationProgress != 0.0f)) {
+                    if (this.currentTab.f1086id != Integer.MAX_VALUE && (TabsView.this.isEditing || TabsView.this.editingStartAnimationProgress != 0.0f)) {
                         TabsView.this.deletePaint.setColor(TabsView.this.textCounterPaint.getColor());
                         TabsView.this.deletePaint.setAlpha((int) (TabsView.this.editingStartAnimationProgress * 255.0f));
                         float dp2 = AndroidUtilities.m34dp(3.0f);
@@ -628,7 +628,7 @@ public class ViewPagerFixed extends FrameLayout {
                         canvas.drawLine(this.rect.centerX() - dp2, this.rect.centerY() + dp2, this.rect.centerX() + dp2, this.rect.centerY() - dp2, TabsView.this.deletePaint);
                     }
                 }
-                if (this.currentTab.f1099id != Integer.MAX_VALUE && TabsView.this.editingAnimationProgress != 0.0f) {
+                if (this.currentTab.f1086id != Integer.MAX_VALUE && TabsView.this.editingAnimationProgress != 0.0f) {
                     canvas.restore();
                 }
             }
@@ -636,7 +636,7 @@ public class ViewPagerFixed extends FrameLayout {
             @Override
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setSelected((this.currentTab == null || TabsView.this.selectedTabId == -1 || this.currentTab.f1099id != TabsView.this.selectedTabId) ? false : true);
+                accessibilityNodeInfo.setSelected((this.currentTab == null || TabsView.this.selectedTabId == -1 || this.currentTab.f1086id != TabsView.this.selectedTabId) ? false : true);
             }
         }
 
@@ -688,8 +688,7 @@ public class ViewPagerFixed extends FrameLayout {
             };
             this.listView = recyclerListView;
             ((DefaultItemAnimator) recyclerListView.getItemAnimator()).setDelayAnimations(false);
-            this.listView.setSelectorType(8);
-            this.listView.setSelectorRadius(6);
+            this.listView.setSelectorType(7);
             this.listView.setSelectorDrawableColor(Theme.getColor(this.selectorColorKey));
             RecyclerListView recyclerListView2 = this.listView;
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 0, false) {
@@ -762,7 +761,7 @@ public class ViewPagerFixed extends FrameLayout {
             if (this.delegate.canPerformActions()) {
                 TabView tabView = (TabView) view;
                 if (i != this.currentPosition || (tabsViewDelegate = this.delegate) == null) {
-                    scrollToTab(tabView.currentTab.f1099id, i);
+                    scrollToTab(tabView.currentTab.f1086id, i);
                 } else {
                     tabsViewDelegate.onSamePageSelected();
                 }
@@ -1026,7 +1025,7 @@ public class ViewPagerFixed extends FrameLayout {
                 int size = arrayList.size();
                 for (int i = 0; i < size; i++) {
                     arrayList.get(i);
-                    tLRPC$TL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(arrayList.get(i).f819id));
+                    tLRPC$TL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(arrayList.get(i).f808id));
                 }
                 ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, ViewPagerFixed$TabsView$$ExternalSyntheticLambda0.INSTANCE);
                 this.orderChanged = false;

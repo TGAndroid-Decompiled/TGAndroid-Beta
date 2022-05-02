@@ -62,8 +62,8 @@ public abstract class TLRPC$PageBlock extends TLObject {
                         if ((this.flags & 16) != 0) {
                             this.poster_photo_id = abstractSerializedData2.readInt64(z2);
                         }
-                        this.f960w = abstractSerializedData2.readInt32(z2);
-                        this.f959h = abstractSerializedData2.readInt32(z2);
+                        this.f949w = abstractSerializedData2.readInt32(z2);
+                        this.f948h = abstractSerializedData2.readInt32(z2);
                         TLRPC$TL_pageCaption tLRPC$TL_pageCaption = new TLRPC$TL_pageCaption();
                         this.caption = tLRPC$TL_pageCaption;
                         tLRPC$TL_pageCaption.text = TLRPC$RichText.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -87,8 +87,8 @@ public abstract class TLRPC$PageBlock extends TLObject {
                         if ((this.flags & 16) != 0) {
                             abstractSerializedData2.writeInt64(this.poster_photo_id);
                         }
-                        abstractSerializedData2.writeInt32(this.f960w);
-                        abstractSerializedData2.writeInt32(this.f959h);
+                        abstractSerializedData2.writeInt32(this.f949w);
+                        abstractSerializedData2.writeInt32(this.f948h);
                         this.caption.text.serializeToStream(abstractSerializedData2);
                     }
                 };
@@ -103,10 +103,10 @@ public abstract class TLRPC$PageBlock extends TLObject {
                     public TLRPC$RichText caption;
                     public int flags;
                     public boolean full_width;
-                    public int f961h;
+                    public int f950h;
                     public String html;
                     public String url;
-                    public int f962w;
+                    public int f951w;
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
@@ -124,8 +124,8 @@ public abstract class TLRPC$PageBlock extends TLObject {
                         if ((this.flags & 4) != 0) {
                             this.html = abstractSerializedData2.readString(z2);
                         }
-                        this.f962w = abstractSerializedData2.readInt32(z2);
-                        this.f961h = abstractSerializedData2.readInt32(z2);
+                        this.f951w = abstractSerializedData2.readInt32(z2);
+                        this.f950h = abstractSerializedData2.readInt32(z2);
                         this.caption = TLRPC$RichText.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                     }
 
@@ -143,8 +143,8 @@ public abstract class TLRPC$PageBlock extends TLObject {
                         if ((this.flags & 4) != 0) {
                             abstractSerializedData2.writeString(this.html);
                         }
-                        abstractSerializedData2.writeInt32(this.f962w);
-                        abstractSerializedData2.writeInt32(this.f961h);
+                        abstractSerializedData2.writeInt32(this.f951w);
+                        abstractSerializedData2.writeInt32(this.f950h);
                         this.caption.serializeToStream(abstractSerializedData2);
                     }
                 };

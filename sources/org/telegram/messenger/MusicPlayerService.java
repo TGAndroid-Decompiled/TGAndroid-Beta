@@ -98,7 +98,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             this.mediaSession = new MediaSession(this, "telegramAudioPlayer");
             this.playbackState = new PlaybackState.Builder();
             this.albumArtPlaceholder = Bitmap.createBitmap(AndroidUtilities.m34dp(102.0f), AndroidUtilities.m34dp(102.0f), Bitmap.Config.ARGB_8888);
-            Drawable drawable = getResources().getDrawable(C0952R.C0953drawable.nocover_big);
+            Drawable drawable = getResources().getDrawable(C0890R.C0891drawable.nocover_big);
             drawable.setBounds(0, 0, this.albumArtPlaceholder.getWidth(), this.albumArtPlaceholder.getHeight());
             drawable.draw(new Canvas(this.albumArtPlaceholder));
             this.mediaSession.setCallback(new MediaSession.Callback() {
@@ -241,7 +241,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         this.loadingFilePath = null;
         this.imageReceiver.setImageBitmap((Drawable) null);
         if (smallCover != null || TextUtils.isEmpty(artworkUrl)) {
-            this.loadingFilePath = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(messageObject.getDocument()).getAbsolutePath();
+            this.loadingFilePath = FileLoader.getPathToAttach(messageObject.getDocument()).getAbsolutePath();
         } else {
             cover = loadArtworkFromUrl(artworkUrl2, true, !z);
             if (cover == null) {
@@ -261,7 +261,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             PendingIntent broadcast3 = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_NEXT).setComponent(new ComponentName(this, MusicPlayerReceiver.class)), 268435456);
             PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_SEEK).setComponent(new ComponentName(this, MusicPlayerReceiver.class)), 268435456);
             Notification.Builder builder = new Notification.Builder(this);
-            builder.setSmallIcon(C0952R.C0953drawable.player).setOngoing(z2).setContentTitle(musicTitle).setContentText(musicAuthor).setSubText(audioInfo != null ? audioInfo.getAlbum() : null).setContentIntent(activity).setDeleteIntent(service).setShowWhen(false).setCategory("transport").setPriority(2).setStyle(new Notification.MediaStyle().setMediaSession(this.mediaSession.getSessionToken()).setShowActionsInCompactView(0, 1, 2));
+            builder.setSmallIcon(C0890R.C0891drawable.player).setOngoing(z2).setContentTitle(musicTitle).setContentText(musicAuthor).setSubText(audioInfo != null ? audioInfo.getAlbum() : null).setContentIntent(activity).setDeleteIntent(service).setShowWhen(false).setCategory("transport").setPriority(2).setStyle(new Notification.MediaStyle().setMediaSession(this.mediaSession.getSessionToken()).setShowActionsInCompactView(0, 1, 2));
             if (i3 >= 26) {
                 NotificationsController.checkOtherNotificationsChannel();
                 builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
@@ -271,12 +271,12 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             } else {
                 builder.setLargeIcon(this.albumArtPlaceholder);
             }
-            String string = LocaleController.getString("Next", C0952R.string.Next);
-            String string2 = LocaleController.getString("AccDescrPrevious", C0952R.string.AccDescrPrevious);
+            String string = LocaleController.getString("Next", C0890R.string.Next);
+            String string2 = LocaleController.getString("AccDescrPrevious", C0890R.string.AccDescrPrevious);
             if (MediaController.getInstance().isDownloadingCurrentMessage()) {
                 f = 1.0f;
                 this.playbackState.setState(6, 0L, 1.0f).setActions(0L);
-                builder.addAction(new Notification.Action.Builder((int) C0952R.C0953drawable.ic_action_previous, string2, broadcast).build()).addAction(new Notification.Action.Builder((int) C0952R.C0953drawable.loading_animation2, LocaleController.getString("Loading", C0952R.string.Loading), (PendingIntent) null).build()).addAction(new Notification.Action.Builder((int) C0952R.C0953drawable.ic_action_next, string, broadcast3).build());
+                builder.addAction(new Notification.Action.Builder((int) C0890R.C0891drawable.ic_action_previous, string2, broadcast).build()).addAction(new Notification.Action.Builder((int) C0890R.C0891drawable.loading_animation2, LocaleController.getString("Loading", C0890R.string.Loading), (PendingIntent) null).build()).addAction(new Notification.Action.Builder((int) C0890R.C0891drawable.ic_action_next, string, broadcast3).build());
                 str3 = musicTitle;
                 str2 = musicAuthor;
             } else {
@@ -285,13 +285,13 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 str2 = musicAuthor;
                 this.playbackState.setState(z2 ? 3 : 2, MediaController.getInstance().getPlayingMessageObject().audioProgressSec * 1000, z2 ? 1.0f : 0.0f).setActions(822L);
                 if (z2) {
-                    i2 = C0952R.string.AccActionPause;
+                    i2 = C0890R.string.AccActionPause;
                     str4 = "AccActionPause";
                 } else {
-                    i2 = C0952R.string.AccActionPlay;
+                    i2 = C0890R.string.AccActionPlay;
                     str4 = "AccActionPlay";
                 }
-                builder.addAction(new Notification.Action.Builder((int) C0952R.C0953drawable.ic_action_previous, string2, broadcast).build()).addAction(new Notification.Action.Builder(z2 ? C0952R.C0953drawable.ic_action_pause : C0952R.C0953drawable.ic_action_play, LocaleController.getString(str4, i2), broadcast2).build()).addAction(new Notification.Action.Builder((int) C0952R.C0953drawable.ic_action_next, string, broadcast3).build());
+                builder.addAction(new Notification.Action.Builder((int) C0890R.C0891drawable.ic_action_previous, string2, broadcast).build()).addAction(new Notification.Action.Builder(z2 ? C0890R.C0891drawable.ic_action_pause : C0890R.C0891drawable.ic_action_play, LocaleController.getString(str4, i2), broadcast2).build()).addAction(new Notification.Action.Builder((int) C0890R.C0891drawable.ic_action_next, string, broadcast3).build());
             }
             this.mediaSession.setPlaybackState(this.playbackState.build());
             musicAuthor = str2;
@@ -308,9 +308,9 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         } else {
             str = musicTitle;
             f = 1.0f;
-            RemoteViews remoteViews = new RemoteViews(getApplicationContext().getPackageName(), (int) C0952R.layout.player_small_notification);
-            RemoteViews remoteViews2 = supportBigNotifications ? new RemoteViews(getApplicationContext().getPackageName(), (int) C0952R.layout.player_big_notification) : null;
-            Notification build2 = new NotificationCompat.Builder(getApplicationContext()).setSmallIcon(C0952R.C0953drawable.player).setContentIntent(activity).setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(str).build();
+            RemoteViews remoteViews = new RemoteViews(getApplicationContext().getPackageName(), (int) C0890R.layout.player_small_notification);
+            RemoteViews remoteViews2 = supportBigNotifications ? new RemoteViews(getApplicationContext().getPackageName(), (int) C0890R.layout.player_big_notification) : null;
+            Notification build2 = new NotificationCompat.Builder(getApplicationContext()).setSmallIcon(C0890R.C0891drawable.player).setContentIntent(activity).setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(str).build();
             build2.contentView = remoteViews;
             if (supportBigNotifications) {
                 build2.bigContentView = remoteViews2;
@@ -320,63 +320,63 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 setListeners(remoteViews2);
             }
             if (bitmap != null) {
-                build2.contentView.setImageViewBitmap(C0952R.C0954id.player_album_art, bitmap);
+                build2.contentView.setImageViewBitmap(C0890R.C0892id.player_album_art, bitmap);
                 if (supportBigNotifications) {
-                    build2.bigContentView.setImageViewBitmap(C0952R.C0954id.player_album_art, bitmap);
+                    build2.bigContentView.setImageViewBitmap(C0890R.C0892id.player_album_art, bitmap);
                 }
             } else {
-                build2.contentView.setImageViewResource(C0952R.C0954id.player_album_art, C0952R.C0953drawable.nocover_small);
+                build2.contentView.setImageViewResource(C0890R.C0892id.player_album_art, C0890R.C0891drawable.nocover_small);
                 if (supportBigNotifications) {
-                    build2.bigContentView.setImageViewResource(C0952R.C0954id.player_album_art, C0952R.C0953drawable.nocover_big);
+                    build2.bigContentView.setImageViewResource(C0890R.C0892id.player_album_art, C0890R.C0891drawable.nocover_big);
                 }
             }
             if (MediaController.getInstance().isDownloadingCurrentMessage()) {
-                build2.contentView.setViewVisibility(C0952R.C0954id.player_pause, 8);
-                build2.contentView.setViewVisibility(C0952R.C0954id.player_play, 8);
-                build2.contentView.setViewVisibility(C0952R.C0954id.player_next, 8);
-                build2.contentView.setViewVisibility(C0952R.C0954id.player_previous, 8);
-                build2.contentView.setViewVisibility(C0952R.C0954id.player_progress_bar, 0);
+                build2.contentView.setViewVisibility(C0890R.C0892id.player_pause, 8);
+                build2.contentView.setViewVisibility(C0890R.C0892id.player_play, 8);
+                build2.contentView.setViewVisibility(C0890R.C0892id.player_next, 8);
+                build2.contentView.setViewVisibility(C0890R.C0892id.player_previous, 8);
+                build2.contentView.setViewVisibility(C0890R.C0892id.player_progress_bar, 0);
                 if (supportBigNotifications) {
-                    build2.bigContentView.setViewVisibility(C0952R.C0954id.player_pause, 8);
-                    build2.bigContentView.setViewVisibility(C0952R.C0954id.player_play, 8);
-                    build2.bigContentView.setViewVisibility(C0952R.C0954id.player_next, 8);
-                    build2.bigContentView.setViewVisibility(C0952R.C0954id.player_previous, 8);
-                    build2.bigContentView.setViewVisibility(C0952R.C0954id.player_progress_bar, 0);
+                    build2.bigContentView.setViewVisibility(C0890R.C0892id.player_pause, 8);
+                    build2.bigContentView.setViewVisibility(C0890R.C0892id.player_play, 8);
+                    build2.bigContentView.setViewVisibility(C0890R.C0892id.player_next, 8);
+                    build2.bigContentView.setViewVisibility(C0890R.C0892id.player_previous, 8);
+                    build2.bigContentView.setViewVisibility(C0890R.C0892id.player_progress_bar, 0);
                 }
             } else {
-                build2.contentView.setViewVisibility(C0952R.C0954id.player_progress_bar, 8);
-                build2.contentView.setViewVisibility(C0952R.C0954id.player_next, 0);
-                build2.contentView.setViewVisibility(C0952R.C0954id.player_previous, 0);
+                build2.contentView.setViewVisibility(C0890R.C0892id.player_progress_bar, 8);
+                build2.contentView.setViewVisibility(C0890R.C0892id.player_next, 0);
+                build2.contentView.setViewVisibility(C0890R.C0892id.player_previous, 0);
                 if (supportBigNotifications) {
-                    build2.bigContentView.setViewVisibility(C0952R.C0954id.player_next, 0);
-                    build2.bigContentView.setViewVisibility(C0952R.C0954id.player_previous, 0);
+                    build2.bigContentView.setViewVisibility(C0890R.C0892id.player_next, 0);
+                    build2.bigContentView.setViewVisibility(C0890R.C0892id.player_previous, 0);
                     i = 8;
-                    build2.bigContentView.setViewVisibility(C0952R.C0954id.player_progress_bar, 8);
+                    build2.bigContentView.setViewVisibility(C0890R.C0892id.player_progress_bar, 8);
                 } else {
                     i = 8;
                 }
                 if (MediaController.getInstance().isMessagePaused()) {
-                    build2.contentView.setViewVisibility(C0952R.C0954id.player_pause, i);
-                    build2.contentView.setViewVisibility(C0952R.C0954id.player_play, 0);
+                    build2.contentView.setViewVisibility(C0890R.C0892id.player_pause, i);
+                    build2.contentView.setViewVisibility(C0890R.C0892id.player_play, 0);
                     if (supportBigNotifications) {
-                        build2.bigContentView.setViewVisibility(C0952R.C0954id.player_pause, i);
-                        build2.bigContentView.setViewVisibility(C0952R.C0954id.player_play, 0);
+                        build2.bigContentView.setViewVisibility(C0890R.C0892id.player_pause, i);
+                        build2.bigContentView.setViewVisibility(C0890R.C0892id.player_play, 0);
                     }
                 } else {
-                    build2.contentView.setViewVisibility(C0952R.C0954id.player_pause, 0);
-                    build2.contentView.setViewVisibility(C0952R.C0954id.player_play, i);
+                    build2.contentView.setViewVisibility(C0890R.C0892id.player_pause, 0);
+                    build2.contentView.setViewVisibility(C0890R.C0892id.player_play, i);
                     if (supportBigNotifications) {
-                        build2.bigContentView.setViewVisibility(C0952R.C0954id.player_pause, 0);
-                        build2.bigContentView.setViewVisibility(C0952R.C0954id.player_play, i);
+                        build2.bigContentView.setViewVisibility(C0890R.C0892id.player_pause, 0);
+                        build2.bigContentView.setViewVisibility(C0890R.C0892id.player_play, i);
                     }
                 }
             }
-            build2.contentView.setTextViewText(C0952R.C0954id.player_song_name, str);
-            build2.contentView.setTextViewText(C0952R.C0954id.player_author_name, musicAuthor);
+            build2.contentView.setTextViewText(C0890R.C0892id.player_song_name, str);
+            build2.contentView.setTextViewText(C0890R.C0892id.player_author_name, musicAuthor);
             if (supportBigNotifications) {
-                build2.bigContentView.setTextViewText(C0952R.C0954id.player_song_name, str);
-                build2.bigContentView.setTextViewText(C0952R.C0954id.player_author_name, musicAuthor);
-                build2.bigContentView.setTextViewText(C0952R.C0954id.player_album_title, (audioInfo == null || TextUtils.isEmpty(audioInfo.getAlbum())) ? "" : audioInfo.getAlbum());
+                build2.bigContentView.setTextViewText(C0890R.C0892id.player_song_name, str);
+                build2.bigContentView.setTextViewText(C0890R.C0892id.player_author_name, musicAuthor);
+                build2.bigContentView.setTextViewText(C0890R.C0892id.player_album_title, (audioInfo == null || TextUtils.isEmpty(audioInfo.getAlbum())) ? "" : audioInfo.getAlbum());
             }
             build2.flags |= 2;
             startForeground(5, build2);
@@ -469,11 +469,11 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
     }
 
     public void setListeners(RemoteViews remoteViews) {
-        remoteViews.setOnClickPendingIntent(C0952R.C0954id.player_previous, PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_PREVIOUS), 134217728));
-        remoteViews.setOnClickPendingIntent(C0952R.C0954id.player_close, PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_CLOSE), 134217728));
-        remoteViews.setOnClickPendingIntent(C0952R.C0954id.player_pause, PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_PAUSE), 134217728));
-        remoteViews.setOnClickPendingIntent(C0952R.C0954id.player_next, PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_NEXT), 134217728));
-        remoteViews.setOnClickPendingIntent(C0952R.C0954id.player_play, PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_PLAY), 134217728));
+        remoteViews.setOnClickPendingIntent(C0890R.C0892id.player_previous, PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_PREVIOUS), 134217728));
+        remoteViews.setOnClickPendingIntent(C0890R.C0892id.player_close, PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_CLOSE), 134217728));
+        remoteViews.setOnClickPendingIntent(C0890R.C0892id.player_pause, PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_PAUSE), 134217728));
+        remoteViews.setOnClickPendingIntent(C0890R.C0892id.player_next, PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_NEXT), 134217728));
+        remoteViews.setOnClickPendingIntent(C0890R.C0892id.player_play, PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_PLAY), 134217728));
     }
 
     @Override

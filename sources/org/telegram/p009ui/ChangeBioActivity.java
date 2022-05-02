@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -25,7 +25,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Components.AlertsCreator;
@@ -54,10 +54,10 @@ public class ChangeBioActivity extends BaseFragment {
     @Override
     public View createView(Context context) {
         String str;
-        this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C0890R.C0891drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("UserBio", C0952R.string.UserBio));
-        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setTitle(LocaleController.getString("UserBio", C0890R.string.UserBio));
+        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -67,9 +67,9 @@ public class ChangeBioActivity extends BaseFragment {
                 }
             }
         });
-        ActionBarMenuItem addItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, C0952R.C0953drawable.ic_done, AndroidUtilities.m34dp(56.0f));
+        ActionBarMenuItem addItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, C0890R.C0891drawable.ic_done, AndroidUtilities.m34dp(56.0f));
         this.doneButton = addItemWithWidth;
-        addItemWithWidth.setContentDescription(LocaleController.getString("Done", C0952R.string.Done));
+        addItemWithWidth.setContentDescription(LocaleController.getString("Done", C0890R.string.Done));
         LinearLayout linearLayout = new LinearLayout(context);
         this.fragmentView = linearLayout;
         LinearLayout linearLayout2 = linearLayout;
@@ -115,7 +115,7 @@ public class ChangeBioActivity extends BaseFragment {
             }
         }});
         this.firstNameField.setMinHeight(AndroidUtilities.m34dp(36.0f));
-        this.firstNameField.setHint(LocaleController.getString("UserBio", C0952R.string.UserBio));
+        this.firstNameField.setHint(LocaleController.getString("UserBio", C0890R.string.UserBio));
         this.firstNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.firstNameField.setCursorSize(AndroidUtilities.m34dp(20.0f));
         this.firstNameField.setCursorWidth(1.5f);
@@ -156,7 +156,7 @@ public class ChangeBioActivity extends BaseFragment {
         this.helpTextView.setTextSize(1, 15.0f);
         this.helpTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText8"));
         this.helpTextView.setGravity(LocaleController.isRTL ? 5 : 3);
-        this.helpTextView.setText(AndroidUtilities.replaceTags(LocaleController.getString("UserBioInfo", C0952R.string.UserBioInfo)));
+        this.helpTextView.setText(AndroidUtilities.replaceTags(LocaleController.getString("UserBioInfo", C0890R.string.UserBioInfo)));
         linearLayout2.addView(this.helpTextView, LayoutHelper.createLinear(-2, -2, LocaleController.isRTL ? 5 : 3, 24, 10, 24, 0));
         TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(UserConfig.getInstance(this.currentAccount).getClientUserId());
         if (!(userFull == null || (str = userFull.about) == null)) {
@@ -244,7 +244,7 @@ public class ChangeBioActivity extends BaseFragment {
             FileLog.m30e(e);
         }
         tLRPC$UserFull.about = str;
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(tLRPC$User.f985id), tLRPC$UserFull);
+        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(tLRPC$User.f974id), tLRPC$UserFull);
         finishFragment();
     }
 

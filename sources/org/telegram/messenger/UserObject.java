@@ -1,7 +1,7 @@
 package org.telegram.messenger;
 
 import android.text.TextUtils;
-import org.telegram.PhoneFormat.C0894PhoneFormat;
+import org.telegram.PhoneFormat.C0832PhoneFormat;
 import org.telegram.tgnet.TLRPC$TL_userContact_old2;
 import org.telegram.tgnet.TLRPC$TL_userDeleted_old2;
 import org.telegram.tgnet.TLRPC$TL_userEmpty;
@@ -29,7 +29,7 @@ public class UserObject {
 
     public static boolean isReplyUser(TLRPC$User tLRPC$User) {
         if (tLRPC$User != null) {
-            long j = tLRPC$User.f985id;
+            long j = tLRPC$User.f974id;
             if (j == 708513 || j == 1271266957) {
                 return true;
             }
@@ -39,13 +39,13 @@ public class UserObject {
 
     public static String getUserName(TLRPC$User tLRPC$User) {
         if (tLRPC$User == null || isDeleted(tLRPC$User)) {
-            return LocaleController.getString("HiddenName", C0952R.string.HiddenName);
+            return LocaleController.getString("HiddenName", C0890R.string.HiddenName);
         }
         String formatName = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
         if (formatName.length() != 0 || TextUtils.isEmpty(tLRPC$User.phone)) {
             return formatName;
         }
-        C0894PhoneFormat phoneFormat = C0894PhoneFormat.getInstance();
+        C0832PhoneFormat phoneFormat = C0832PhoneFormat.getInstance();
         return phoneFormat.format("+" + tLRPC$User.phone);
     }
 
@@ -63,7 +63,7 @@ public class UserObject {
         } else if (!z && str.length() <= 2) {
             return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
         }
-        return !TextUtils.isEmpty(str) ? str : LocaleController.getString("HiddenName", C0952R.string.HiddenName);
+        return !TextUtils.isEmpty(str) ? str : LocaleController.getString("HiddenName", C0890R.string.HiddenName);
     }
 
     public static boolean hasPhoto(TLRPC$User tLRPC$User) {

@@ -23,10 +23,10 @@ public class FireworksEffect {
         float scale;
         int type;
         float velocity;
-        float f1040vx;
-        float f1041vy;
-        float f1042x;
-        float f1043y;
+        float f1026vx;
+        float f1027vy;
+        float f1028x;
+        float f1029y;
 
         private Particle() {
         }
@@ -36,7 +36,7 @@ public class FireworksEffect {
                 FireworksEffect.this.particlePaint.setColor(this.color);
                 FireworksEffect.this.particlePaint.setStrokeWidth(AndroidUtilities.m34dp(1.5f) * this.scale);
                 FireworksEffect.this.particlePaint.setAlpha((int) (this.alpha * 255.0f));
-                canvas.drawPoint(this.f1042x, this.f1043y, FireworksEffect.this.particlePaint);
+                canvas.drawPoint(this.f1028x, this.f1029y, FireworksEffect.this.particlePaint);
             }
         }
     }
@@ -69,15 +69,15 @@ public class FireworksEffect {
                 size--;
             } else {
                 particle.alpha = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation(f / f2);
-                float f3 = particle.f1042x;
-                float f4 = particle.f1040vx;
+                float f3 = particle.f1028x;
+                float f4 = particle.f1026vx;
                 float f5 = particle.velocity;
                 float f6 = (float) j;
-                particle.f1042x = f3 + (((f4 * f5) * f6) / 500.0f);
-                float f7 = particle.f1043y;
-                float f8 = particle.f1041vy;
-                particle.f1043y = f7 + (((f5 * f8) * f6) / 500.0f);
-                particle.f1041vy = f8 + (f6 / 100.0f);
+                particle.f1028x = f3 + (((f4 * f5) * f6) / 500.0f);
+                float f7 = particle.f1029y;
+                float f8 = particle.f1027vy;
+                particle.f1029y = f7 + (((f5 * f8) * f6) / 500.0f);
+                particle.f1027vy = f8 + (f6 / 100.0f);
                 particle.currentTime += f6;
             }
             i++;
@@ -109,10 +109,10 @@ public class FireworksEffect {
                     } else {
                         particle = new Particle();
                     }
-                    particle.f1042x = nextFloat;
-                    particle.f1043y = nextFloat2;
-                    particle.f1040vx = cos * 1.5f;
-                    particle.f1041vy = sin;
+                    particle.f1028x = nextFloat;
+                    particle.f1029y = nextFloat2;
+                    particle.f1026vx = cos * 1.5f;
+                    particle.f1027vy = sin;
                     particle.color = i3;
                     particle.alpha = 1.0f;
                     particle.currentTime = 0.0f;

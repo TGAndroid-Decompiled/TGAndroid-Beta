@@ -12,16 +12,16 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.PhoneFormat.C0894PhoneFormat;
+import org.telegram.PhoneFormat.C0832PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserObject;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.CheckBoxCell;
@@ -80,14 +80,14 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
     @Override
     public View createView(Context context) {
         String str;
-        this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C0890R.C0891drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         if (this.addContact) {
-            this.actionBar.setTitle(LocaleController.getString("NewContact", C0952R.string.NewContact));
+            this.actionBar.setTitle(LocaleController.getString("NewContact", C0890R.string.NewContact));
         } else {
-            this.actionBar.setTitle(LocaleController.getString("EditName", C0952R.string.EditName));
+            this.actionBar.setTitle(LocaleController.getString("EditName", C0890R.string.EditName));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -108,7 +108,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                 }
             }
         });
-        this.doneButton = this.actionBar.createMenu().addItem(1, LocaleController.getString("Done", C0952R.string.Done).toUpperCase());
+        this.doneButton = this.actionBar.createMenu().addItem(1, LocaleController.getString("Done", C0890R.string.Done).toUpperCase());
         this.fragmentView = new ScrollView(context);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -158,7 +158,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.firstNameField.setGravity(LocaleController.isRTL ? 5 : 3);
         this.firstNameField.setInputType(49152);
         this.firstNameField.setImeOptions(5);
-        this.firstNameField.setHint(LocaleController.getString("FirstName", C0952R.string.FirstName));
+        this.firstNameField.setHint(LocaleController.getString("FirstName", C0890R.string.FirstName));
         this.firstNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.firstNameField.setCursorSize(AndroidUtilities.m34dp(20.0f));
         this.firstNameField.setCursorWidth(1.5f);
@@ -195,7 +195,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.lastNameField.setGravity(LocaleController.isRTL ? 5 : 3);
         this.lastNameField.setInputType(49152);
         this.lastNameField.setImeOptions(6);
-        this.lastNameField.setHint(LocaleController.getString("LastName", C0952R.string.LastName));
+        this.lastNameField.setHint(LocaleController.getString("LastName", C0890R.string.LastName));
         this.lastNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.lastNameField.setCursorSize(AndroidUtilities.m34dp(20.0f));
         this.lastNameField.setCursorWidth(1.5f);
@@ -211,7 +211,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         TLRPC$User user = getMessagesController().getUser(Long.valueOf(this.user_id));
         if (user != null) {
             if (user.phone == null && (str = this.phone) != null) {
-                user.phone = C0894PhoneFormat.stripExceptNumbers(str);
+                user.phone = C0832PhoneFormat.stripExceptNumbers(str);
             }
             this.firstNameField.setText(user.first_name);
             EditTextBoldCursor editTextBoldCursor3 = this.firstNameField;
@@ -231,7 +231,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                 CheckBoxCell checkBoxCell = new CheckBoxCell(getParentActivity(), 0);
                 this.checkBoxCell = checkBoxCell;
                 checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                this.checkBoxCell.setText(LocaleController.formatString("SharePhoneNumberWith", C0952R.string.SharePhoneNumberWith, UserObject.getFirstName(user)), "", true, false);
+                this.checkBoxCell.setText(LocaleController.formatString("SharePhoneNumberWith", C0890R.string.SharePhoneNumberWith, UserObject.getFirstName(user)), "", true, false);
                 this.checkBoxCell.setPadding(AndroidUtilities.m34dp(7.0f), 0, AndroidUtilities.m34dp(7.0f), 0);
                 this.checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -276,14 +276,14 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         TLRPC$User user;
         if (this.nameTextView != null && (user = getMessagesController().getUser(Long.valueOf(this.user_id))) != null) {
             if (TextUtils.isEmpty(user.phone)) {
-                this.nameTextView.setText(LocaleController.getString("MobileHidden", C0952R.string.MobileHidden));
-                this.infoTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("MobileHiddenExceptionInfo", C0952R.string.MobileHiddenExceptionInfo, UserObject.getFirstName(user))));
+                this.nameTextView.setText(LocaleController.getString("MobileHidden", C0890R.string.MobileHidden));
+                this.infoTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("MobileHiddenExceptionInfo", C0890R.string.MobileHiddenExceptionInfo, UserObject.getFirstName(user))));
             } else {
                 TextView textView = this.nameTextView;
-                C0894PhoneFormat phoneFormat = C0894PhoneFormat.getInstance();
+                C0832PhoneFormat phoneFormat = C0832PhoneFormat.getInstance();
                 textView.setText(phoneFormat.format("+" + user.phone));
                 if (this.needAddException) {
-                    this.infoTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("MobileVisibleInfo", C0952R.string.MobileVisibleInfo, UserObject.getFirstName(user))));
+                    this.infoTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("MobileVisibleInfo", C0890R.string.MobileVisibleInfo, UserObject.getFirstName(user))));
                 }
             }
             this.onlineTextView.setText(LocaleController.formatUserStatus(this.currentAccount, user));

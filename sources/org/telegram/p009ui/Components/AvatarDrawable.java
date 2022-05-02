@@ -81,7 +81,7 @@ public class AvatarDrawable extends Drawable {
     public AvatarDrawable(TLRPC$User tLRPC$User, boolean z) {
         this();
         if (tLRPC$User != null) {
-            setInfo(tLRPC$User.f985id, tLRPC$User.first_name, tLRPC$User.last_name, null);
+            setInfo(tLRPC$User.f974id, tLRPC$User.first_name, tLRPC$User.last_name, null);
             this.drawDeleted = UserObject.isDeleted(tLRPC$User);
         }
     }
@@ -89,7 +89,7 @@ public class AvatarDrawable extends Drawable {
     public AvatarDrawable(TLRPC$Chat tLRPC$Chat, boolean z) {
         this();
         if (tLRPC$Chat != null) {
-            setInfo(tLRPC$Chat.f854id, tLRPC$Chat.title, null, null);
+            setInfo(tLRPC$Chat.f843id, tLRPC$Chat.title, null, null);
         }
     }
 
@@ -127,7 +127,7 @@ public class AvatarDrawable extends Drawable {
 
     public void setInfo(TLRPC$User tLRPC$User) {
         if (tLRPC$User != null) {
-            setInfo(tLRPC$User.f985id, tLRPC$User.first_name, tLRPC$User.last_name, null);
+            setInfo(tLRPC$User.f974id, tLRPC$User.first_name, tLRPC$User.last_name, null);
             this.drawDeleted = UserObject.isDeleted(tLRPC$User);
         }
     }
@@ -193,7 +193,7 @@ public class AvatarDrawable extends Drawable {
 
     public void setInfo(TLRPC$Chat tLRPC$Chat) {
         if (tLRPC$Chat != null) {
-            setInfo(tLRPC$Chat.f854id, tLRPC$Chat.title, null, null);
+            setInfo(tLRPC$Chat.f843id, tLRPC$Chat.title, null, null);
         }
     }
 

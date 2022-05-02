@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.LayoutHelper;
@@ -28,7 +28,7 @@ public class LocationLoadingCell extends FrameLayout {
         addView(radialProgressView, LayoutHelper.createFrame(-2, -2, 17));
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
-        imageView.setImageResource(C0952R.C0953drawable.location_empty);
+        imageView.setImageResource(C0890R.C0891drawable.location_empty);
         this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("dialogEmptyImage"), PorterDuff.Mode.MULTIPLY));
         addView(this.imageView, LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 0.0f, 0.0f, 24.0f));
         TextView textView = new TextView(context);
@@ -37,7 +37,7 @@ public class LocationLoadingCell extends FrameLayout {
         this.textView.setGravity(17);
         this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         this.textView.setTextSize(1, 17.0f);
-        this.textView.setText(LocaleController.getString("NoPlacesFound", C0952R.string.NoPlacesFound));
+        this.textView.setText(LocaleController.getString("NoPlacesFound", C0890R.string.NoPlacesFound));
         addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 34.0f, 0.0f, 0.0f));
     }
 

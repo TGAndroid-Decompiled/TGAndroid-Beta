@@ -14,11 +14,11 @@ import android.widget.ViewSwitcher;
 import androidx.core.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.BlurredRecyclerView;
 import org.telegram.p009ui.Components.Easings;
@@ -76,8 +76,8 @@ public class DialogsEmptyCell extends LinearLayout {
                 return lambda$new$2;
             }
         });
-        this.subtitleView.setInAnimation(context, C0952R.anim.alpha_in);
-        this.subtitleView.setOutAnimation(context, C0952R.anim.alpha_out);
+        this.subtitleView.setInAnimation(context, C0890R.anim.alpha_in);
+        this.subtitleView.setOutAnimation(context, C0890R.anim.alpha_out);
         addView(this.subtitleView, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 7.0f, 52.0f, 0.0f));
     }
 
@@ -111,26 +111,26 @@ public class DialogsEmptyCell extends LinearLayout {
         if (this.currentType != i) {
             this.currentType = i;
             if (i == 0 || i == 1) {
-                i2 = C0952R.raw.utyan_newborn;
-                str = LocaleController.getString("NoChatsHelp", C0952R.string.NoChatsHelp);
-                this.titleView.setText(LocaleController.getString("NoChats", C0952R.string.NoChats));
+                i2 = C0890R.raw.utyan_newborn;
+                str = LocaleController.getString("NoChatsHelp", C0890R.string.NoChatsHelp);
+                this.titleView.setText(LocaleController.getString("NoChats", C0890R.string.NoChats));
             } else if (i != 2) {
                 this.imageView.setAutoRepeat(true);
-                i2 = C0952R.raw.filter_new;
-                str = LocaleController.getString("FilterAddingChatsInfo", C0952R.string.FilterAddingChatsInfo);
-                this.titleView.setText(LocaleController.getString("FilterAddingChats", C0952R.string.FilterAddingChats));
+                i2 = C0890R.raw.filter_new;
+                str = LocaleController.getString("FilterAddingChatsInfo", C0890R.string.FilterAddingChatsInfo);
+                this.titleView.setText(LocaleController.getString("FilterAddingChats", C0890R.string.FilterAddingChats));
             } else {
                 this.imageView.setAutoRepeat(false);
-                i2 = C0952R.raw.filter_no_chats;
-                str = LocaleController.getString("FilterNoChatsToDisplayInfo", C0952R.string.FilterNoChatsToDisplayInfo);
-                this.titleView.setText(LocaleController.getString("FilterNoChatsToDisplay", C0952R.string.FilterNoChatsToDisplay));
+                i2 = C0890R.raw.filter_no_chats;
+                str = LocaleController.getString("FilterNoChatsToDisplayInfo", C0890R.string.FilterNoChatsToDisplayInfo);
+                this.titleView.setText(LocaleController.getString("FilterNoChatsToDisplay", C0890R.string.FilterNoChatsToDisplay));
             }
             if (i2 != 0) {
                 this.imageView.setVisibility(0);
                 if (this.currentType == 1) {
                     if (isUtyanAnimationTriggered()) {
                         this.utyanCollapseProgress = 1.0f;
-                        String string = LocaleController.getString("NoChatsContactsHelp", C0952R.string.NoChatsContactsHelp);
+                        String string = LocaleController.getString("NoChatsContactsHelp", C0890R.string.NoChatsContactsHelp);
                         if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
                             string = string.replace('\n', ' ');
                         }
@@ -204,7 +204,7 @@ public class DialogsEmptyCell extends LinearLayout {
         }
         this.utyanAnimationTriggered = true;
         if (z) {
-            String string = LocaleController.getString("NoChatsContactsHelp", C0952R.string.NoChatsContactsHelp);
+            String string = LocaleController.getString("NoChatsContactsHelp", C0890R.string.NoChatsContactsHelp);
             if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
                 string = string.replace('\n', ' ');
             }
@@ -262,7 +262,7 @@ public class DialogsEmptyCell extends LinearLayout {
         }
         int i3 = this.currentType;
         if (i3 == 0 || i3 == 1) {
-            i2 = (int) (i2 - (((int) (C1006ActionBar.getCurrentActionBarHeight() / 2.0f)) * (1.0f - this.utyanCollapseProgress)));
+            i2 = (int) (i2 - (((int) (C0945ActionBar.getCurrentActionBarHeight() / 2.0f)) * (1.0f - this.utyanCollapseProgress)));
         }
         float f = i2;
         this.imageView.setTranslationY(f);
@@ -282,7 +282,7 @@ public class DialogsEmptyCell extends LinearLayout {
             i2 = View.MeasureSpec.getSize(i);
         }
         if (i2 == 0) {
-            i2 = (AndroidUtilities.displaySize.y - C1006ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
+            i2 = (AndroidUtilities.displaySize.y - C0945ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
         }
         if (getParent() instanceof BlurredRecyclerView) {
             i2 -= ((BlurredRecyclerView) getParent()).blurTopPadding;
@@ -307,7 +307,7 @@ public class DialogsEmptyCell extends LinearLayout {
                 i3 = View.MeasureSpec.getSize(i2);
             }
             if (i3 == 0) {
-                i3 = (AndroidUtilities.displaySize.y - C1006ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
+                i3 = (AndroidUtilities.displaySize.y - C0945ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
             }
             if (getParent() instanceof BlurredRecyclerView) {
                 i3 -= ((BlurredRecyclerView) getParent()).blurTopPadding;

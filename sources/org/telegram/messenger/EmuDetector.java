@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmuDetector {
-    private static final String f806IP = "10.0.2.15";
+    private static final String f797IP = "10.0.2.15";
     private static final int MIN_PROPERTIES_THRESHOLD = 5;
     @SuppressLint({"StaticFieldLeak"})
     private static EmuDetector mEmulatorDetector;
@@ -273,7 +273,7 @@ public class EmuDetector {
             return false;
         }
         for (String str : sb2.split("\n")) {
-            if ((str.contains("wlan0") || str.contains("tunl0") || str.contains("eth0")) && str.contains(f806IP)) {
+            if ((str.contains("wlan0") || str.contains("tunl0") || str.contains("eth0")) && str.contains(f797IP)) {
                 return true;
             }
         }

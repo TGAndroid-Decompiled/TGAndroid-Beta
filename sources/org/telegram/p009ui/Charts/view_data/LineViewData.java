@@ -47,7 +47,7 @@ public class LineViewData {
         paint3.setStyle(Paint.Style.STROKE);
         paint3.setStrokeCap(Paint.Cap.ROUND);
         paint3.setColor(line.color);
-        int[] iArr = line.f1014y;
+        int[] iArr = line.f1002y;
         this.linesPath = new float[iArr.length << 2];
         this.linesPathBottom = new float[iArr.length << 2];
     }

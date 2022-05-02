@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Adapters.FiltersView;
 import org.telegram.p009ui.Components.RLottieDrawable;
@@ -14,9 +14,9 @@ import org.telegram.p009ui.Components.RLottieDrawable;
 public class ActionBarMenu extends LinearLayout {
     public boolean drawBlur = true;
     protected boolean isActionMode;
-    protected C1006ActionBar parentActionBar;
+    protected C0945ActionBar parentActionBar;
 
-    public ActionBarMenu(Context context, C1006ActionBar actionBar) {
+    public ActionBarMenu(Context context, C0945ActionBar actionBar) {
         super(context);
         setOrientation(0);
         this.parentActionBar = actionBar;
@@ -166,7 +166,7 @@ public class ActionBarMenu extends LinearLayout {
     }
 
     public void onItemClick(int i) {
-        C1006ActionBar.ActionBarMenuOnItemClick actionBarMenuOnItemClick = this.parentActionBar.actionBarMenuOnItemClick;
+        C0945ActionBar.ActionBarMenuOnItemClick actionBarMenuOnItemClick = this.parentActionBar.actionBarMenuOnItemClick;
         if (actionBarMenuOnItemClick != null) {
             actionBarMenuOnItemClick.onItemClick(i);
         }

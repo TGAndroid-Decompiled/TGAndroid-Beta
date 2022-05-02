@@ -1320,7 +1320,7 @@ public class FilterShaders {
             GLES20.glUniform1f(this.radialBlurExcludeSizeHandle, this.delegate.getBlurExcludeSize());
             GLES20.glUniform1f(this.radialBlurExcludeBlurSizeHandle, this.delegate.getBlurExcludeBlurSize());
             Point blurExcludePoint = this.delegate.getBlurExcludePoint();
-            GLES20.glUniform2f(this.radialBlurExcludePointHandle, blurExcludePoint.f1072x, blurExcludePoint.f1073y);
+            GLES20.glUniform2f(this.radialBlurExcludePointHandle, blurExcludePoint.f1058x, blurExcludePoint.f1059y);
             GLES20.glUniform1f(this.radialBlurAspectRatioHandle, this.renderBufferHeight / this.renderBufferWidth);
             GLES20.glEnableVertexAttribArray(this.radialBlurInputTexCoordHandle);
             GLES20.glVertexAttribPointer(this.radialBlurInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
@@ -1334,7 +1334,7 @@ public class FilterShaders {
             GLES20.glUniform1f(this.linearBlurExcludeBlurSizeHandle, this.delegate.getBlurExcludeBlurSize());
             GLES20.glUniform1f(this.linearBlurAngleHandle, this.delegate.getBlurAngle());
             Point blurExcludePoint2 = this.delegate.getBlurExcludePoint();
-            GLES20.glUniform2f(this.linearBlurExcludePointHandle, blurExcludePoint2.f1072x, blurExcludePoint2.f1073y);
+            GLES20.glUniform2f(this.linearBlurExcludePointHandle, blurExcludePoint2.f1058x, blurExcludePoint2.f1059y);
             GLES20.glUniform1f(this.linearBlurAspectRatioHandle, this.renderBufferHeight / this.renderBufferWidth);
             GLES20.glEnableVertexAttribArray(this.linearBlurInputTexCoordHandle);
             GLES20.glVertexAttribPointer(this.linearBlurInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);

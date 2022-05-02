@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.UserConfig;
@@ -45,9 +45,9 @@ public class SendLocationCell extends FrameLayout {
         super(context);
         this.resourcesProvider = resourcesProvider;
         this.live = z;
-        this.imageView = new ImageView(context);
-        setBackground(Theme.AdaptiveRipple.rect());
-        this.imageView.setTag(z ? "location_sendLiveLocationBackgroundlocation_sendLiveLocationIcon" : "location_sendLocationBackgroundlocation_sendLocationIcon");
+        ImageView imageView = new ImageView(context);
+        this.imageView = imageView;
+        imageView.setTag(z ? "location_sendLiveLocationBackgroundlocation_sendLiveLocationIcon" : "location_sendLocationBackgroundlocation_sendLocationIcon");
         String str = "location_sendLiveLocationBackground";
         Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m34dp(42.0f), getThemedColor(z ? str : "location_sendLocationBackground"), getThemedColor(!z ? "location_sendLocationBackground" : str));
         if (z) {
@@ -60,17 +60,17 @@ public class SendLocationCell extends FrameLayout {
             AndroidUtilities.runOnUIThread(this.invalidateRunnable, 1000L);
             setWillNotDraw(false);
         } else {
-            Drawable drawable = getResources().getDrawable(C0952R.C0953drawable.pin);
+            Drawable drawable = getResources().getDrawable(C0890R.C0891drawable.pin);
             drawable.setColorFilter(new PorterDuffColorFilter(getThemedColor("location_sendLocationIcon"), PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable2 = new CombinedDrawable(createSimpleSelectorCircleDrawable, drawable);
             combinedDrawable2.setCustomSize(AndroidUtilities.m34dp(42.0f), AndroidUtilities.m34dp(42.0f));
             combinedDrawable2.setIconSize(AndroidUtilities.m34dp(24.0f), AndroidUtilities.m34dp(24.0f));
             this.imageView.setBackgroundDrawable(combinedDrawable2);
         }
-        ImageView imageView = this.imageView;
+        ImageView imageView2 = this.imageView;
         boolean z2 = LocaleController.isRTL;
         int i = 5;
-        addView(imageView, LayoutHelper.createFrame(42, 42.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 15.0f, 12.0f, !z2 ? 0.0f : 15.0f, 0.0f));
+        addView(imageView2, LayoutHelper.createFrame(42, 42.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 15.0f, 12.0f, !z2 ? 0.0f : 15.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.titleTextView = simpleTextView;
         simpleTextView.setTextSize(16);
@@ -146,13 +146,13 @@ public class SendLocationCell extends FrameLayout {
     public void checkText() {
         LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId);
         if (sharingLocationInfo != null) {
-            String string = LocaleController.getString("StopLiveLocation", C0952R.string.StopLiveLocation);
+            String string = LocaleController.getString("StopLiveLocation", C0890R.string.StopLiveLocation);
             TLRPC$Message tLRPC$Message = sharingLocationInfo.messageObject.messageOwner;
             int i = tLRPC$Message.edit_date;
             setText(string, LocaleController.formatLocationUpdateDate(i != 0 ? i : tLRPC$Message.date));
             return;
         }
-        setText(LocaleController.getString("SendLiveLocation", C0952R.string.SendLiveLocation), LocaleController.getString("SendLiveLocationInfo", C0952R.string.SendLiveLocationInfo));
+        setText(LocaleController.getString("SendLiveLocation", C0890R.string.SendLiveLocation), LocaleController.getString("SendLiveLocationInfo", C0890R.string.SendLiveLocationInfo));
     }
 
     @Override

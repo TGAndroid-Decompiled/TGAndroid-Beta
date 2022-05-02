@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
@@ -199,54 +199,54 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         if (UserConfig.getInstance(UserConfig.selectedAccount).isClientActivated()) {
             int eventType = Theme.getEventType();
             if (eventType == 0) {
-                i8 = C0952R.C0953drawable.menu_groups_ny;
-                i7 = C0952R.C0953drawable.menu_contacts_ny;
-                i6 = C0952R.C0953drawable.menu_calls_ny;
-                i5 = C0952R.C0953drawable.menu_bookmarks_ny;
-                i4 = C0952R.C0953drawable.menu_settings_ny;
-                i3 = C0952R.C0953drawable.menu_invite_ny;
-                i2 = C0952R.C0953drawable.menu_help_ny;
-                i = C0952R.C0953drawable.menu_nearby_ny;
+                i8 = C0890R.C0891drawable.menu_groups_ny;
+                i7 = C0890R.C0891drawable.menu_contacts_ny;
+                i6 = C0890R.C0891drawable.menu_calls_ny;
+                i5 = C0890R.C0891drawable.menu_bookmarks_ny;
+                i4 = C0890R.C0891drawable.menu_settings_ny;
+                i3 = C0890R.C0891drawable.menu_invite_ny;
+                i2 = C0890R.C0891drawable.menu_help_ny;
+                i = C0890R.C0891drawable.menu_nearby_ny;
             } else {
                 if (eventType == 1) {
-                    i8 = C0952R.C0953drawable.menu_groups_14;
-                    i = C0952R.C0953drawable.menu_secret_14;
-                    i7 = C0952R.C0953drawable.menu_contacts_14;
-                    i6 = C0952R.C0953drawable.menu_calls_14;
-                    i5 = C0952R.C0953drawable.menu_bookmarks_14;
-                    i4 = C0952R.C0953drawable.menu_settings_14;
-                    i3 = C0952R.C0953drawable.menu_secret_ny;
+                    i8 = C0890R.C0891drawable.menu_groups_14;
+                    i = C0890R.C0891drawable.menu_secret_14;
+                    i7 = C0890R.C0891drawable.menu_contacts_14;
+                    i6 = C0890R.C0891drawable.menu_calls_14;
+                    i5 = C0890R.C0891drawable.menu_bookmarks_14;
+                    i4 = C0890R.C0891drawable.menu_settings_14;
+                    i3 = C0890R.C0891drawable.menu_secret_ny;
                 } else if (eventType == 2) {
-                    i8 = C0952R.C0953drawable.menu_groups_hw;
-                    i7 = C0952R.C0953drawable.menu_contacts_hw;
-                    i6 = C0952R.C0953drawable.menu_calls_hw;
-                    i5 = C0952R.C0953drawable.menu_bookmarks_hw;
-                    i4 = C0952R.C0953drawable.menu_settings_hw;
-                    i3 = C0952R.C0953drawable.menu_invite_hw;
-                    i2 = C0952R.C0953drawable.menu_help_hw;
-                    i = C0952R.C0953drawable.menu_secret_hw;
+                    i8 = C0890R.C0891drawable.menu_groups_hw;
+                    i7 = C0890R.C0891drawable.menu_contacts_hw;
+                    i6 = C0890R.C0891drawable.menu_calls_hw;
+                    i5 = C0890R.C0891drawable.menu_bookmarks_hw;
+                    i4 = C0890R.C0891drawable.menu_settings_hw;
+                    i3 = C0890R.C0891drawable.menu_invite_hw;
+                    i2 = C0890R.C0891drawable.menu_help_hw;
+                    i = C0890R.C0891drawable.menu_secret_hw;
                 } else {
-                    i8 = C0952R.C0953drawable.menu_groups;
-                    i = C0952R.C0953drawable.menu_nearby;
-                    i7 = C0952R.C0953drawable.menu_contacts;
-                    i6 = C0952R.C0953drawable.menu_calls;
-                    i5 = C0952R.C0953drawable.menu_saved;
-                    i4 = C0952R.C0953drawable.menu_settings;
-                    i3 = C0952R.C0953drawable.menu_invite;
+                    i8 = C0890R.C0891drawable.menu_groups;
+                    i = C0890R.C0891drawable.menu_nearby;
+                    i7 = C0890R.C0891drawable.menu_contacts;
+                    i6 = C0890R.C0891drawable.menu_calls;
+                    i5 = C0890R.C0891drawable.menu_saved;
+                    i4 = C0890R.C0891drawable.menu_settings;
+                    i3 = C0890R.C0891drawable.menu_invite;
                 }
-                i2 = C0952R.C0953drawable.menu_help;
+                i2 = C0890R.C0891drawable.menu_help;
             }
-            this.items.add(new Item(2, LocaleController.getString("NewGroup", C0952R.string.NewGroup), i8));
-            this.items.add(new Item(6, LocaleController.getString("Contacts", C0952R.string.Contacts), i7));
-            this.items.add(new Item(10, LocaleController.getString("Calls", C0952R.string.Calls), i6));
+            this.items.add(new Item(2, LocaleController.getString("NewGroup", C0890R.string.NewGroup), i8));
+            this.items.add(new Item(6, LocaleController.getString("Contacts", C0890R.string.Contacts), i7));
+            this.items.add(new Item(10, LocaleController.getString("Calls", C0890R.string.Calls), i6));
             if (this.hasGps) {
-                this.items.add(new Item(12, LocaleController.getString("PeopleNearby", C0952R.string.PeopleNearby), i));
+                this.items.add(new Item(12, LocaleController.getString("PeopleNearby", C0890R.string.PeopleNearby), i));
             }
-            this.items.add(new Item(11, LocaleController.getString("SavedMessages", C0952R.string.SavedMessages), i5));
-            this.items.add(new Item(8, LocaleController.getString("Settings", C0952R.string.Settings), i4));
+            this.items.add(new Item(11, LocaleController.getString("SavedMessages", C0890R.string.SavedMessages), i5));
+            this.items.add(new Item(8, LocaleController.getString("Settings", C0890R.string.Settings), i4));
             this.items.add(null);
-            this.items.add(new Item(7, LocaleController.getString("InviteFriends", C0952R.string.InviteFriends), i3));
-            this.items.add(new Item(13, LocaleController.getString("TelegramFeatures", C0952R.string.TelegramFeatures), i2));
+            this.items.add(new Item(7, LocaleController.getString("InviteFriends", C0890R.string.InviteFriends), i3));
+            this.items.add(new Item(13, LocaleController.getString("TelegramFeatures", C0890R.string.TelegramFeatures), i2));
         }
     }
 
@@ -268,7 +268,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         if (i2 < 0 || i2 >= this.items.size() || (item = this.items.get(i2)) == null) {
             return -1;
         }
-        return item.f1000id;
+        return item.f988id;
     }
 
     public int getFirstAccountPosition() {
@@ -284,17 +284,17 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
 
     public static class Item {
         public int icon;
-        public int f1000id;
+        public int f988id;
         public String text;
 
         public Item(int i, String str, int i2) {
             this.icon = i2;
-            this.f1000id = i;
+            this.f988id = i;
             this.text = str;
         }
 
         public void bind(DrawerActionCell drawerActionCell) {
-            drawerActionCell.setTextAndIcon(this.f1000id, this.text, this.icon);
+            drawerActionCell.setTextAndIcon(this.f988id, this.text, this.icon);
         }
     }
 }

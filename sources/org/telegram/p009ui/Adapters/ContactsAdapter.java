@@ -13,13 +13,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Cells.DividerCell;
 import org.telegram.p009ui.Cells.GraySectionCell;
@@ -296,7 +296,7 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             view.setPadding(dp, dp2, AndroidUtilities.m34dp(f), AndroidUtilities.m34dp(8.0f));
         } else if (i != 4) {
             view = new ShadowSectionCell(this.mContext);
-            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, (int) C0952R.C0953drawable.greydivider, "windowBackgroundGrayShadow"));
+            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, (int) C0890R.C0891drawable.greydivider, "windowBackgroundGrayShadow"));
             combinedDrawable.setFullsize(true);
             view.setBackgroundDrawable(combinedDrawable);
         } else {
@@ -309,7 +309,7 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                     }
                     int i4 = 0;
                     if (size == 0) {
-                        size = (AndroidUtilities.displaySize.y - C1006ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
+                        size = (AndroidUtilities.displaySize.y - C0945ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
                     }
                     int dp3 = AndroidUtilities.m34dp(50.0f);
                     int dp4 = ContactsAdapter.this.onlyUsers != 0 ? 0 : AndroidUtilities.m34dp(30.0f) + dp3;
@@ -348,7 +348,7 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             userCell.setData(user, null, null, 0);
             LongSparseArray<?> longSparseArray = this.checkedMap;
             if (longSparseArray != null) {
-                if (longSparseArray.indexOfKey(user.f985id) >= 0) {
+                if (longSparseArray.indexOfKey(user.f974id) >= 0) {
                     z = true;
                 }
                 userCell.setChecked(z, !this.scrolling);
@@ -357,7 +357,7 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             if (longSparseArray2 == null) {
                 return;
             }
-            if (longSparseArray2.indexOfKey(user.f985id) >= 0) {
+            if (longSparseArray2.indexOfKey(user.f974id) >= 0) {
                 userCell.setAlpha(0.5f);
             } else {
                 userCell.setAlpha(1.0f);
@@ -376,32 +376,32 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                 }
             } else if (this.needPhonebook) {
                 if (i2 == 0) {
-                    textCell.setTextAndIcon(LocaleController.getString("InviteFriends", C0952R.string.InviteFriends), C0952R.C0953drawable.menu_invite, false);
+                    textCell.setTextAndIcon(LocaleController.getString("InviteFriends", C0890R.string.InviteFriends), C0890R.C0891drawable.menu_invite, false);
                 } else if (i2 == 1) {
-                    textCell.setTextAndIcon(LocaleController.getString("AddPeopleNearby", C0952R.string.AddPeopleNearby), C0952R.C0953drawable.menu_location, false);
+                    textCell.setTextAndIcon(LocaleController.getString("AddPeopleNearby", C0890R.string.AddPeopleNearby), C0890R.C0891drawable.menu_location, false);
                 }
             } else if (this.isAdmin) {
                 if (this.isChannel) {
-                    textCell.setTextAndIcon(LocaleController.getString("ChannelInviteViaLink", C0952R.string.ChannelInviteViaLink), C0952R.C0953drawable.profile_link, false);
+                    textCell.setTextAndIcon(LocaleController.getString("ChannelInviteViaLink", C0890R.string.ChannelInviteViaLink), C0890R.C0891drawable.profile_link, false);
                 } else {
-                    textCell.setTextAndIcon(LocaleController.getString("InviteToGroupByLink", C0952R.string.InviteToGroupByLink), C0952R.C0953drawable.profile_link, false);
+                    textCell.setTextAndIcon(LocaleController.getString("InviteToGroupByLink", C0890R.string.InviteToGroupByLink), C0890R.C0891drawable.profile_link, false);
                 }
             } else if (i2 == 0) {
-                textCell.setTextAndIcon(LocaleController.getString("NewGroup", C0952R.string.NewGroup), C0952R.C0953drawable.menu_groups, false);
+                textCell.setTextAndIcon(LocaleController.getString("NewGroup", C0890R.string.NewGroup), C0890R.C0891drawable.menu_groups, false);
             } else if (i2 == 1) {
-                textCell.setTextAndIcon(LocaleController.getString("NewSecretChat", C0952R.string.NewSecretChat), C0952R.C0953drawable.menu_secret, false);
+                textCell.setTextAndIcon(LocaleController.getString("NewSecretChat", C0890R.string.NewSecretChat), C0890R.C0891drawable.menu_secret, false);
             } else if (i2 == 2) {
-                textCell.setTextAndIcon(LocaleController.getString("NewChannel", C0952R.string.NewChannel), C0952R.C0953drawable.menu_broadcast, false);
+                textCell.setTextAndIcon(LocaleController.getString("NewChannel", C0890R.string.NewChannel), C0890R.C0891drawable.menu_broadcast, false);
             }
         } else if (itemViewType == 2) {
             GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
             int i3 = this.sortType;
             if (i3 == 0) {
-                graySectionCell.setText(LocaleController.getString("Contacts", C0952R.string.Contacts));
+                graySectionCell.setText(LocaleController.getString("Contacts", C0890R.string.Contacts));
             } else if (i3 == 1) {
-                graySectionCell.setText(LocaleController.getString("SortedByName", C0952R.string.SortedByName));
+                graySectionCell.setText(LocaleController.getString("SortedByName", C0890R.string.SortedByName));
             } else {
-                graySectionCell.setText(LocaleController.getString("SortedByLastSeen", C0952R.string.SortedByLastSeen));
+                graySectionCell.setText(LocaleController.getString("SortedByLastSeen", C0890R.string.SortedByLastSeen));
             }
         }
     }

@@ -11,6 +11,6 @@ public final class ThemeEditorView$1$$ExternalSyntheticLambda1 implements Dialog
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        ThemeEditorView.C25181.lambda$onTouchEvent$0(dialogInterface);
+        ThemeEditorView.C24411.lambda$onTouchEvent$0(dialogInterface);
     }
 }

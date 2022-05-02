@@ -5,7 +5,7 @@ public class TLRPC$TL_wallPaper extends TLRPC$WallPaper {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f993id = abstractSerializedData.readInt64(z);
+        this.f982id = abstractSerializedData.readInt64(z);
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         boolean z2 = false;
@@ -27,7 +27,7 @@ public class TLRPC$TL_wallPaper extends TLRPC$WallPaper {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f993id);
+        abstractSerializedData.writeInt64(this.f982id);
         int i = this.creator ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.isDefault ? i | 2 : i & (-3);

@@ -31,7 +31,7 @@ import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -168,12 +168,12 @@ public class FilterTabsView extends FrameLayout {
 
     public class Tab {
         public int counter;
-        public int f1039id;
+        public int f1025id;
         public String title;
         public int titleWidth;
 
         public Tab(int i, String str) {
-            this.f1039id = i;
+            this.f1025id = i;
             this.title = str;
         }
 
@@ -182,7 +182,7 @@ public class FilterTabsView extends FrameLayout {
             int ceil = (int) Math.ceil(FilterTabsView.this.textPaint.measureText(this.title));
             this.titleWidth = ceil;
             if (z) {
-                i = FilterTabsView.this.delegate.getTabCounter(this.f1039id);
+                i = FilterTabsView.this.delegate.getTabCounter(this.f1025id);
                 if (i < 0) {
                     i = 0;
                 }
@@ -260,7 +260,7 @@ public class FilterTabsView extends FrameLayout {
 
         @Override
         public int getId() {
-            return this.currentTab.f1039id;
+            return this.currentTab.f1025id;
         }
 
         @Override
@@ -407,10 +407,10 @@ public class FilterTabsView extends FrameLayout {
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            accessibilityNodeInfo.setSelected((this.currentTab == null || FilterTabsView.this.selectedTabId == -1 || this.currentTab.f1039id != FilterTabsView.this.selectedTabId) ? false : true);
+            accessibilityNodeInfo.setSelected((this.currentTab == null || FilterTabsView.this.selectedTabId == -1 || this.currentTab.f1025id != FilterTabsView.this.selectedTabId) ? false : true);
             accessibilityNodeInfo.addAction(16);
             if (Build.VERSION.SDK_INT >= 21) {
-                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString("AccDescrOpenMenu2", C0952R.string.AccDescrOpenMenu2)));
+                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString("AccDescrOpenMenu2", C0890R.string.AccDescrOpenMenu2)));
             } else {
                 accessibilityNodeInfo.addAction(32);
             }
@@ -466,7 +466,7 @@ public class FilterTabsView extends FrameLayout {
         };
         this.listView = recyclerListView;
         recyclerListView.setClipChildren(false);
-        C20374 r3 = new C20374();
+        C19694 r3 = new C19694();
         this.itemAnimator = r3;
         r3.setDelayAnimations(false);
         this.listView.setItemAnimator(this.itemAnimator);
@@ -553,8 +553,8 @@ public class FilterTabsView extends FrameLayout {
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
     }
 
-    public class C20374 extends DefaultItemAnimator {
-        C20374() {
+    public class C19694 extends DefaultItemAnimator {
+        C19694() {
         }
 
         @Override
@@ -568,7 +568,7 @@ public class FilterTabsView extends FrameLayout {
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        FilterTabsView.C20374.this.lambda$runPendingAnimations$0(valueAnimator);
+                        FilterTabsView.C19694.this.lambda$runPendingAnimations$0(valueAnimator);
                     }
                 });
                 ofFloat.setDuration(getMoveDuration());
@@ -631,7 +631,7 @@ public class FilterTabsView extends FrameLayout {
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            FilterTabsView.C20374.lambda$animateMoveImpl$1(FilterTabsView.TabView.this, valueAnimator2);
+                            FilterTabsView.C19694.lambda$animateMoveImpl$1(FilterTabsView.TabView.this, valueAnimator2);
                         }
                     });
                     ofFloat.addListener(new AnimatorListenerAdapter(this) {
@@ -681,11 +681,11 @@ public class FilterTabsView extends FrameLayout {
                 if (i != 0) {
                     float dp = AndroidUtilities.m34dp(6.0f);
                     if (tabView.rect.left - dp < f && tabView.rect.right + dp > f) {
-                        this.delegate.onDeletePressed(tabView.currentTab.f1039id);
+                        this.delegate.onDeletePressed(tabView.currentTab.f1025id);
                     }
                 }
             } else if (i != this.currentPosition || (filterTabsViewDelegate = this.delegate) == null) {
-                scrollToTab(tabView.currentTab.f1039id, i);
+                scrollToTab(tabView.currentTab.f1025id, i);
             } else {
                 filterTabsViewDelegate.onSamePageSelected();
             }
@@ -861,9 +861,9 @@ public class FilterTabsView extends FrameLayout {
         if (!this.tabs.isEmpty()) {
             int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.m34dp(7.0f)) - AndroidUtilities.m34dp(7.0f);
             Tab tab = this.tabs.get(0);
-            tab.setTitle(LocaleController.getString("FilterAllChats", C0952R.string.FilterAllChats));
+            tab.setTitle(LocaleController.getString("FilterAllChats", C0890R.string.FilterAllChats));
             int width = tab.getWidth(false);
-            tab.setTitle(this.allTabsWidth > size ? LocaleController.getString("FilterAllChatsShort", C0952R.string.FilterAllChatsShort) : LocaleController.getString("FilterAllChats", C0952R.string.FilterAllChats));
+            tab.setTitle(this.allTabsWidth > size ? LocaleController.getString("FilterAllChatsShort", C0890R.string.FilterAllChatsShort) : LocaleController.getString("FilterAllChats", C0890R.string.FilterAllChats));
             int width2 = (this.allTabsWidth - width) + tab.getWidth(false);
             int i3 = this.additionalTabWidth;
             int size2 = width2 < size ? (size - width2) / this.tabs.size() : 0;
@@ -959,7 +959,7 @@ public class FilterTabsView extends FrameLayout {
             int size = arrayList.size();
             for (int i = 0; i < size; i++) {
                 arrayList.get(i);
-                tLRPC$TL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(arrayList.get(i).f819id));
+                tLRPC$TL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(arrayList.get(i).f808id));
             }
             ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, FilterTabsView$$ExternalSyntheticLambda0.INSTANCE);
             this.orderChanged = false;
@@ -974,7 +974,7 @@ public class FilterTabsView extends FrameLayout {
         int i2 = this.idToPosition.get(i, -1);
         if (i2 >= 0 && i2 < this.tabs.size()) {
             Tab tab = this.tabs.get(i2);
-            if (tab.counter != this.delegate.getTabCounter(tab.f1039id) && this.delegate.getTabCounter(tab.f1039id) >= 0) {
+            if (tab.counter != this.delegate.getTabCounter(tab.f1025id) && this.delegate.getTabCounter(tab.f1025id) >= 0) {
                 this.listView.invalidateViews();
                 if (this.positionToWidth.get(i2) != tab.getWidth(true) || this.invalidated) {
                     this.invalidated = true;
@@ -982,7 +982,7 @@ public class FilterTabsView extends FrameLayout {
                     this.listView.setItemAnimator(this.itemAnimator);
                     this.adapter.notifyDataSetChanged();
                     this.allTabsWidth = 0;
-                    this.tabs.get(0).setTitle(LocaleController.getString("FilterAllChats", C0952R.string.FilterAllChats));
+                    this.tabs.get(0).setTitle(LocaleController.getString("FilterAllChats", C0890R.string.FilterAllChats));
                     int size = this.tabs.size();
                     for (int i3 = 0; i3 < size; i3++) {
                         this.allTabsWidth += this.tabs.get(i3).getWidth(true) + AndroidUtilities.m34dp(32.0f);
@@ -1044,26 +1044,26 @@ public class FilterTabsView extends FrameLayout {
                 arrayList.set(i4, dialogFilter);
                 Tab tab = (Tab) FilterTabsView.this.tabs.get(i);
                 Tab tab2 = (Tab) FilterTabsView.this.tabs.get(i2);
-                int i6 = tab.f1039id;
-                tab.f1039id = tab2.f1039id;
-                tab2.f1039id = i6;
+                int i6 = tab.f1025id;
+                tab.f1025id = tab2.f1025id;
+                tab2.f1025id = i6;
                 int i7 = FilterTabsView.this.positionToStableId.get(i);
                 FilterTabsView.this.positionToStableId.put(i, FilterTabsView.this.positionToStableId.get(i2));
                 FilterTabsView.this.positionToStableId.put(i2, i7);
-                FilterTabsView.this.delegate.onPageReorder(tab2.f1039id, tab.f1039id);
+                FilterTabsView.this.delegate.onPageReorder(tab2.f1025id, tab.f1025id);
                 if (FilterTabsView.this.currentPosition == i) {
                     FilterTabsView.this.currentPosition = i2;
-                    FilterTabsView.this.selectedTabId = tab.f1039id;
+                    FilterTabsView.this.selectedTabId = tab.f1025id;
                 } else if (FilterTabsView.this.currentPosition == i2) {
                     FilterTabsView.this.currentPosition = i;
-                    FilterTabsView.this.selectedTabId = tab2.f1039id;
+                    FilterTabsView.this.selectedTabId = tab2.f1025id;
                 }
                 if (FilterTabsView.this.previousPosition == i) {
                     FilterTabsView.this.previousPosition = i2;
-                    FilterTabsView.this.previousId = tab.f1039id;
+                    FilterTabsView.this.previousId = tab.f1025id;
                 } else if (FilterTabsView.this.previousPosition == i2) {
                     FilterTabsView.this.previousPosition = i;
-                    FilterTabsView.this.previousId = tab2.f1039id;
+                    FilterTabsView.this.previousId = tab2.f1025id;
                 }
                 FilterTabsView.this.tabs.set(i, tab2);
                 FilterTabsView.this.tabs.set(i2, tab);

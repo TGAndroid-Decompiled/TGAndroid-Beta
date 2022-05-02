@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.telegram.PhoneFormat.C0894PhoneFormat;
+import org.telegram.PhoneFormat.C0832PhoneFormat;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
@@ -147,17 +147,17 @@ public class SearchAdapterHelper {
 
                         @Override
                         public void readParams(AbstractSerializedData abstractSerializedData, boolean z8) {
-                            this.f853q = abstractSerializedData.readString(z8);
+                            this.f842q = abstractSerializedData.readString(z8);
                         }
 
                         @Override
                         public void serializeToStream(AbstractSerializedData abstractSerializedData) {
                             abstractSerializedData.writeInt32(constructor);
-                            abstractSerializedData.writeString(this.f853q);
+                            abstractSerializedData.writeString(this.f842q);
                         }
                     };
                 }
-                tLRPC$TL_channels_getParticipants.filter.f853q = str;
+                tLRPC$TL_channels_getParticipants.filter.f842q = str;
                 tLRPC$TL_channels_getParticipants.limit = 50;
                 tLRPC$TL_channels_getParticipants.offset = 0;
                 tLRPC$TL_channels_getParticipants.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(j);
@@ -179,7 +179,7 @@ public class SearchAdapterHelper {
         if (z) {
             if (str.length() > 0) {
                 TLRPC$TL_contacts_search tLRPC$TL_contacts_search = new TLRPC$TL_contacts_search();
-                tLRPC$TL_contacts_search.f901q = str;
+                tLRPC$TL_contacts_search.f890q = str;
                 tLRPC$TL_contacts_search.limit = 20;
                 arrayList.add(new Pair(tLRPC$TL_contacts_search, new RequestDelegate() {
                     @Override
@@ -197,7 +197,7 @@ public class SearchAdapterHelper {
         if (!z5 && z6 && str.startsWith("+") && str.length() > 3) {
             this.phonesSearch.clear();
             this.phoneSearchMap.clear();
-            String stripExceptNumbers = C0894PhoneFormat.stripExceptNumbers(str);
+            String stripExceptNumbers = C0832PhoneFormat.stripExceptNumbers(str);
             ArrayList<TLRPC$TL_contact> arrayList2 = ContactsController.getInstance(this.currentAccount).contacts;
             int size = arrayList2.size();
             boolean z8 = false;
@@ -208,7 +208,7 @@ public class SearchAdapterHelper {
                         z8 = user.phone.length() == stripExceptNumbers.length();
                     }
                     this.phonesSearch.add(user);
-                    this.phoneSearchMap.put(user.f985id, user);
+                    this.phoneSearchMap.put(user.f974id, user);
                 }
             }
             if (!z8) {
@@ -277,11 +277,11 @@ public class SearchAdapterHelper {
             LongSparseArray longSparseArray2 = new LongSparseArray();
             for (int i2 = 0; i2 < tLRPC$TL_contacts_found.chats.size(); i2++) {
                 TLRPC$Chat tLRPC$Chat3 = tLRPC$TL_contacts_found.chats.get(i2);
-                longSparseArray.put(tLRPC$Chat3.f854id, tLRPC$Chat3);
+                longSparseArray.put(tLRPC$Chat3.f843id, tLRPC$Chat3);
             }
             for (int i3 = 0; i3 < tLRPC$TL_contacts_found.users.size(); i3++) {
                 TLRPC$User tLRPC$User3 = tLRPC$TL_contacts_found.users.get(i3);
-                longSparseArray2.put(tLRPC$User3.f985id, tLRPC$User3);
+                longSparseArray2.put(tLRPC$User3.f974id, tLRPC$User3);
             }
             for (int i4 = 0; i4 < 2; i4++) {
                 if (i4 != 0) {
@@ -313,11 +313,11 @@ public class SearchAdapterHelper {
                     if (tLRPC$Chat2 != null) {
                         if (z && ((!z2 || ChatObject.canAddBotsToChat(tLRPC$Chat2)) && (this.allowGlobalResults || !ChatObject.isNotInChat(tLRPC$Chat2)))) {
                             this.globalSearch.add(tLRPC$Chat2);
-                            this.globalSearchMap.put(-tLRPC$Chat2.f854id, tLRPC$Chat2);
+                            this.globalSearchMap.put(-tLRPC$Chat2.f843id, tLRPC$Chat2);
                         }
                     } else if (tLRPC$User2 != null && !z2 && ((z3 || !tLRPC$User2.bot) && ((z4 || !tLRPC$User2.self) && (this.allowGlobalResults || i4 != 1 || tLRPC$User2.contact)))) {
                         this.globalSearch.add(tLRPC$User2);
-                        this.globalSearchMap.put(tLRPC$User2.f985id, tLRPC$User2);
+                        this.globalSearchMap.put(tLRPC$User2.f974id, tLRPC$User2);
                     }
                 }
             }
@@ -346,11 +346,11 @@ public class SearchAdapterHelper {
                     if (tLRPC$Chat != null) {
                         if (z && (!z2 || ChatObject.canAddBotsToChat(tLRPC$Chat))) {
                             this.localServerSearch.add(tLRPC$Chat);
-                            this.globalSearchMap.put(-tLRPC$Chat.f854id, tLRPC$Chat);
+                            this.globalSearchMap.put(-tLRPC$Chat.f843id, tLRPC$Chat);
                         }
                     } else if (tLRPC$User != null && !z2 && ((z3 || !tLRPC$User.bot) && (z4 || !tLRPC$User.self))) {
                         this.localServerSearch.add(tLRPC$User);
-                        this.globalSearchMap.put(tLRPC$User.f985id, tLRPC$User);
+                        this.globalSearchMap.put(tLRPC$User.f974id, tLRPC$User);
                     }
                 }
             }
@@ -402,7 +402,7 @@ public class SearchAdapterHelper {
                 if (tLRPC$User != null) {
                     this.globalSearch.remove(tLRPC$User);
                     this.localServerSearch.remove(tLRPC$User);
-                    this.globalSearchMap.remove(tLRPC$User.f985id);
+                    this.globalSearchMap.remove(tLRPC$User.f974id);
                 }
             }
         }
@@ -492,26 +492,26 @@ public class SearchAdapterHelper {
                 }
                 if (obj instanceof TLRPC$User) {
                     TLRPC$User tLRPC$User = (TLRPC$User) obj;
-                    TLRPC$User tLRPC$User2 = (TLRPC$User) this.globalSearchMap.get(tLRPC$User.f985id);
+                    TLRPC$User tLRPC$User2 = (TLRPC$User) this.globalSearchMap.get(tLRPC$User.f974id);
                     if (tLRPC$User2 != null) {
                         this.globalSearch.remove(tLRPC$User2);
                         this.localServerSearch.remove(tLRPC$User2);
-                        this.globalSearchMap.remove(tLRPC$User2.f985id);
+                        this.globalSearchMap.remove(tLRPC$User2.f974id);
                     }
-                    TLObject tLObject = this.groupSearchMap.get(tLRPC$User.f985id);
+                    TLObject tLObject = this.groupSearchMap.get(tLRPC$User.f974id);
                     if (tLObject != null) {
                         this.groupSearch.remove(tLObject);
-                        this.groupSearchMap.remove(tLRPC$User.f985id);
+                        this.groupSearchMap.remove(tLRPC$User.f974id);
                     }
-                    TLObject tLObject2 = this.phoneSearchMap.get(tLRPC$User.f985id);
+                    TLObject tLObject2 = this.phoneSearchMap.get(tLRPC$User.f974id);
                     if (tLObject2 != null) {
                         this.phonesSearch.remove(tLObject2);
-                        this.phoneSearchMap.remove(tLRPC$User.f985id);
+                        this.phoneSearchMap.remove(tLRPC$User.f974id);
                     }
-                } else if ((obj instanceof TLRPC$Chat) && (tLRPC$Chat = (TLRPC$Chat) this.globalSearchMap.get(-((TLRPC$Chat) obj).f854id)) != null) {
+                } else if ((obj instanceof TLRPC$Chat) && (tLRPC$Chat = (TLRPC$Chat) this.globalSearchMap.get(-((TLRPC$Chat) obj).f843id)) != null) {
                     this.globalSearch.remove(tLRPC$Chat);
                     this.localServerSearch.remove(tLRPC$Chat);
-                    this.globalSearchMap.remove(-tLRPC$Chat.f854id);
+                    this.globalSearchMap.remove(-tLRPC$Chat.f843id);
                 }
             }
         }
@@ -528,7 +528,7 @@ public class SearchAdapterHelper {
                     if (tLRPC$User != null) {
                         this.globalSearch.remove(tLRPC$User);
                         this.localServerSearch.remove(tLRPC$User);
-                        this.globalSearchMap.remove(tLRPC$User.f985id);
+                        this.globalSearchMap.remove(tLRPC$User.f974id);
                     }
                 }
             }
@@ -540,7 +540,7 @@ public class SearchAdapterHelper {
                     if (tLRPC$User2 != null) {
                         this.globalSearch.remove(tLRPC$User2);
                         this.localServerSearch.remove(tLRPC$User2);
-                        this.globalSearchMap.remove(tLRPC$User2.f985id);
+                        this.globalSearchMap.remove(tLRPC$User2.f974id);
                     }
                 }
             }

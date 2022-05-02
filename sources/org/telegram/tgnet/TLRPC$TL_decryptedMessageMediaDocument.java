@@ -12,7 +12,7 @@ public class TLRPC$TL_decryptedMessageMediaDocument extends TLRPC$DecryptedMessa
         this.mime_type = abstractSerializedData.readString(z);
         this.size = abstractSerializedData.readInt32(z);
         this.key = abstractSerializedData.readByteArray(z);
-        this.f858iv = abstractSerializedData.readByteArray(z);
+        this.f847iv = abstractSerializedData.readByteArray(z);
         int readInt32 = abstractSerializedData.readInt32(z);
         if (readInt32 == 481674261) {
             int readInt322 = abstractSerializedData.readInt32(z);
@@ -39,7 +39,7 @@ public class TLRPC$TL_decryptedMessageMediaDocument extends TLRPC$DecryptedMessa
         abstractSerializedData.writeString(this.mime_type);
         abstractSerializedData.writeInt32(this.size);
         abstractSerializedData.writeByteArray(this.key);
-        abstractSerializedData.writeByteArray(this.f858iv);
+        abstractSerializedData.writeByteArray(this.f847iv);
         abstractSerializedData.writeInt32(481674261);
         int size = this.attributes.size();
         abstractSerializedData.writeInt32(size);

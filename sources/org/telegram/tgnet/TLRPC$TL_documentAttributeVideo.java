@@ -14,8 +14,8 @@ public class TLRPC$TL_documentAttributeVideo extends TLRPC$DocumentAttribute {
         }
         this.supports_streaming = z2;
         this.duration = abstractSerializedData.readInt32(z);
-        this.f864w = abstractSerializedData.readInt32(z);
-        this.f863h = abstractSerializedData.readInt32(z);
+        this.f853w = abstractSerializedData.readInt32(z);
+        this.f852h = abstractSerializedData.readInt32(z);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class TLRPC$TL_documentAttributeVideo extends TLRPC$DocumentAttribute {
         this.flags = i2;
         abstractSerializedData.writeInt32(i2);
         abstractSerializedData.writeInt32(this.duration);
-        abstractSerializedData.writeInt32(this.f864w);
-        abstractSerializedData.writeInt32(this.f863h);
+        abstractSerializedData.writeInt32(this.f853w);
+        abstractSerializedData.writeInt32(this.f852h);
     }
 }

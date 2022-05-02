@@ -4,7 +4,7 @@ public abstract class TLRPC$Dialog extends TLObject {
     public TLRPC$DraftMessage draft;
     public int flags;
     public int folder_id;
-    public long f860id;
+    public long f849id;
     public int last_message_date;
     public TLRPC$PeerNotifySettings notify_settings;
     public TLRPC$Peer peer;

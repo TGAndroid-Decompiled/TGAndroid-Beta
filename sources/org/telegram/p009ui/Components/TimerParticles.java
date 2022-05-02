@@ -18,10 +18,10 @@ public class TimerParticles {
         float currentTime;
         float lifeTime;
         float velocity;
-        float f1093vx;
-        float f1094vy;
-        float f1095x;
-        float f1096y;
+        float f1080vx;
+        float f1081vy;
+        float f1082x;
+        float f1083y;
 
         private Particle() {
         }
@@ -49,12 +49,12 @@ public class TimerParticles {
                 size--;
             } else {
                 particle.alpha = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation(f / f2);
-                float f3 = particle.f1095x;
-                float f4 = particle.f1093vx;
+                float f3 = particle.f1082x;
+                float f4 = particle.f1080vx;
                 float f5 = particle.velocity;
                 float f6 = (float) j;
-                particle.f1095x = f3 + (((f4 * f5) * f6) / 500.0f);
-                particle.f1096y += ((particle.f1094vy * f5) * f6) / 500.0f;
+                particle.f1082x = f3 + (((f4 * f5) * f6) / 500.0f);
+                particle.f1083y += ((particle.f1081vy * f5) * f6) / 500.0f;
                 particle.currentTime += f6;
             }
             i++;
@@ -67,7 +67,7 @@ public class TimerParticles {
         for (int i = 0; i < size; i++) {
             Particle particle2 = this.particles.get(i);
             paint.setAlpha((int) (particle2.alpha * 255.0f * f2));
-            canvas.drawPoint(particle2.f1095x, particle2.f1096y, paint);
+            canvas.drawPoint(particle2.f1082x, particle2.f1083y, paint);
         }
         double d = f - 90.0f;
         Double.isNaN(d);
@@ -90,16 +90,16 @@ public class TimerParticles {
             } else {
                 particle = new Particle();
             }
-            particle.f1095x = f3;
-            particle.f1096y = f4;
+            particle.f1082x = f3;
+            particle.f1083y = f4;
             double nextInt = Utilities.random.nextInt(140) - 70;
             Double.isNaN(nextInt);
             double d4 = nextInt * 0.017453292519943295d;
             if (d4 < 0.0d) {
                 d4 += 6.283185307179586d;
             }
-            particle.f1093vx = (float) ((Math.cos(d4) * sin) - (Math.sin(d4) * d3));
-            particle.f1094vy = (float) ((Math.sin(d4) * sin) + (Math.cos(d4) * d3));
+            particle.f1080vx = (float) ((Math.cos(d4) * sin) - (Math.sin(d4) * d3));
+            particle.f1081vy = (float) ((Math.sin(d4) * sin) + (Math.cos(d4) * d3));
             particle.alpha = 1.0f;
             particle.currentTime = 0.0f;
             particle.lifeTime = Utilities.random.nextInt(100) + 400;

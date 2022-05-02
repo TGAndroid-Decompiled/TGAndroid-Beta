@@ -244,7 +244,7 @@ public class SpoilerEffect extends Drawable {
         Iterator<Particle> it = this.particles.iterator();
         while (it.hasNext()) {
             Particle next = it.next();
-            if (!getBounds().contains((int) next.f1101x, (int) next.f1102y)) {
+            if (!getBounds().contains((int) next.f1088x, (int) next.f1089y)) {
                 it.remove();
             }
             if (this.particlesPool.size() < this.maxParticles) {
@@ -274,7 +274,7 @@ public class SpoilerEffect extends Drawable {
                 Particle particle2 = this.particles.get(i7);
                 float f2 = min;
                 particle2.currentTime = Math.min(particle2.currentTime + f2, particle2.lifeTime);
-                if (particle2.currentTime >= particle2.lifeTime || isOutOfBounds(i2, i3, i4, i5, particle2.f1101x, particle2.f1102y)) {
+                if (particle2.currentTime >= particle2.lifeTime || isOutOfBounds(i2, i3, i4, i5, particle2.f1088x, particle2.f1089y)) {
                     if (this.particlesPool.size() < this.maxParticles) {
                         this.particlesPool.push(particle2);
                     }
@@ -285,8 +285,8 @@ public class SpoilerEffect extends Drawable {
                     Particle.access$516(particle2, particle2.vecX * f3);
                     Particle.access$616(particle2, particle2.vecY * f3);
                     int i8 = particle2.alpha;
-                    this.particlePoints[i8][this.renderCount[i8] * 2] = particle2.f1101x;
-                    this.particlePoints[i8][(this.renderCount[i8] * 2) + 1] = particle2.f1102y;
+                    this.particlePoints[i8][this.renderCount[i8] * 2] = particle2.f1088x;
+                    this.particlePoints[i8][(this.renderCount[i8] * 2) + 1] = particle2.f1089y;
                     int[] iArr = this.renderCount;
                     iArr[i8] = iArr[i8] + 1;
                 }
@@ -316,7 +316,7 @@ public class SpoilerEffect extends Drawable {
                         particle = pop;
                         i = size2;
                         f = f6;
-                        if (isOutOfBounds(i2, i3, i4, i5, pop.f1101x, pop.f1102y) && i13 < 4) {
+                        if (isOutOfBounds(i2, i3, i4, i5, pop.f1088x, pop.f1089y) && i13 < 4) {
                             f6 = f;
                             pop = particle;
                             i12 = i13;
@@ -334,8 +334,8 @@ public class SpoilerEffect extends Drawable {
                     particle.alpha = Utilities.fastRandom.nextInt(ALPHAS.length);
                     this.particles.add(particle);
                     int i14 = particle.alpha;
-                    this.particlePoints[i14][this.renderCount[i14] * 2] = particle.f1101x;
-                    this.particlePoints[i14][(this.renderCount[i14] * 2) + 1] = particle.f1102y;
+                    this.particlePoints[i14][this.renderCount[i14] * 2] = particle.f1088x;
+                    this.particlePoints[i14][(this.renderCount[i14] * 2) + 1] = particle.f1089y;
                     int[] iArr2 = this.renderCount;
                     iArr2[i14] = iArr2[i14] + 1;
                     i10++;
@@ -349,10 +349,10 @@ public class SpoilerEffect extends Drawable {
                 for (int i17 = 0; i17 < this.particles.size(); i17++) {
                     Particle particle3 = this.particles.get(i17);
                     RectF rectF = this.visibleRect;
-                    if ((rectF == null || rectF.contains(particle3.f1101x, particle3.f1102y)) && (particle3.alpha == length || !this.enableAlpha)) {
+                    if ((rectF == null || rectF.contains(particle3.f1088x, particle3.f1089y)) && (particle3.alpha == length || !this.enableAlpha)) {
                         int i18 = (i17 - i16) * 2;
-                        this.particlePoints[length][i18] = particle3.f1101x;
-                        this.particlePoints[length][i18 + 1] = particle3.f1102y;
+                        this.particlePoints[length][i18] = particle3.f1088x;
+                        this.particlePoints[length][i18 + 1] = particle3.f1089y;
                         i15 += 2;
                     } else {
                         i16++;
@@ -395,15 +395,15 @@ public class SpoilerEffect extends Drawable {
     private void generateRandomLocation(Particle particle, int i) {
         List<Long> list = this.keyPoints;
         if (list == null || list.isEmpty()) {
-            particle.f1101x = getBounds().left + (Utilities.fastRandom.nextFloat() * getBounds().width());
-            particle.f1102y = getBounds().top + (Utilities.fastRandom.nextFloat() * getBounds().height());
+            particle.f1088x = getBounds().left + (Utilities.fastRandom.nextFloat() * getBounds().width());
+            particle.f1089y = getBounds().top + (Utilities.fastRandom.nextFloat() * getBounds().height());
             return;
         }
         float f = this.particleRands[i % 14];
         List<Long> list2 = this.keyPoints;
         long longValue = list2.get(Utilities.fastRandom.nextInt(list2.size())).longValue();
-        particle.f1101x = (((float) (getBounds().left + (longValue >> 16))) + (AndroidUtilities.m34dp(5.0f) * f)) - AndroidUtilities.m34dp(2.5f);
-        particle.f1102y = (((float) (getBounds().top + (longValue & 65535))) + (f * AndroidUtilities.m34dp(5.0f))) - AndroidUtilities.m34dp(2.5f);
+        particle.f1088x = (((float) (getBounds().left + (longValue >> 16))) + (AndroidUtilities.m34dp(5.0f) * f)) - AndroidUtilities.m34dp(2.5f);
+        particle.f1089y = (((float) (getBounds().top + (longValue & 65535))) + (f * AndroidUtilities.m34dp(5.0f))) - AndroidUtilities.m34dp(2.5f);
     }
 
     @Override
@@ -777,21 +777,21 @@ public class SpoilerEffect extends Drawable {
         private float vecX;
         private float vecY;
         private float velocity;
-        private float f1101x;
-        private float f1102y;
+        private float f1088x;
+        private float f1089y;
 
         private Particle() {
         }
 
         static float access$516(Particle particle, float f) {
-            float f2 = particle.f1101x + f;
-            particle.f1101x = f2;
+            float f2 = particle.f1088x + f;
+            particle.f1088x = f2;
             return f2;
         }
 
         static float access$616(Particle particle, float f) {
-            float f2 = particle.f1102y + f;
-            particle.f1102y = f2;
+            float f2 = particle.f1089y + f;
+            particle.f1089y = f2;
             return f2;
         }
     }

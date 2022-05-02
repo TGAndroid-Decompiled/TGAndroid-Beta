@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.LayoutHelper;
 
@@ -32,7 +32,7 @@ public class LocationPoweredCell extends FrameLayout {
         linearLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2));
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
-        imageView.setImageResource(C0952R.C0953drawable.foursquare);
+        imageView.setImageResource(C0890R.C0891drawable.foursquare);
         this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("windowBackgroundWhiteGrayText3"), PorterDuff.Mode.MULTIPLY));
         this.imageView.setPadding(0, AndroidUtilities.m34dp(2.0f), 0, 0);
         linearLayout.addView(this.imageView, LayoutHelper.createLinear(35, -2));

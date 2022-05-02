@@ -16,7 +16,7 @@ import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.MenuDrawable;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -37,7 +37,7 @@ public class BotCommandsMenuView extends View {
     final TextPaint textPaint;
     final RectF rectTmp = new RectF();
     final Paint paint = new Paint(1);
-    RLottieDrawable webViewAnimation = new RLottieDrawable(C0952R.raw.bot_webview_sheet_to_cross, String.valueOf((int) C0952R.raw.bot_webview_sheet_to_cross) + hashCode(), AndroidUtilities.m34dp(20.0f), AndroidUtilities.m34dp(20.0f)) {
+    RLottieDrawable webViewAnimation = new RLottieDrawable(C0890R.raw.bot_webview_sheet_to_cross, String.valueOf((int) C0890R.raw.bot_webview_sheet_to_cross) + hashCode(), AndroidUtilities.m34dp(20.0f), AndroidUtilities.m34dp(20.0f)) {
         @Override
         public void invalidateSelf() {
             super.invalidateSelf();
@@ -50,7 +50,7 @@ public class BotCommandsMenuView extends View {
             BotCommandsMenuView.this.invalidate();
         }
     };
-    private String menuText = LocaleController.getString((int) C0952R.string.BotsMenuTitle);
+    private String menuText = LocaleController.getString((int) C0890R.string.BotsMenuTitle);
     boolean drawBackgroundDrawable = true;
 
     protected void onTranslationChanged(float f) {
@@ -134,16 +134,13 @@ public class BotCommandsMenuView extends View {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.BotCommandsMenuView.dispatchDraw(android.graphics.Canvas):void");
     }
 
-    public boolean setMenuText(String str) {
+    public void setMenuText(String str) {
         if (str == null) {
-            str = LocaleController.getString((int) C0952R.string.BotsMenuTitle);
+            str = LocaleController.getString((int) C0890R.string.BotsMenuTitle);
         }
-        String str2 = this.menuText;
-        boolean z = str2 == null || !str2.equals(str);
         this.menuText = str;
         this.menuTextLayout = null;
         requestLayout();
-        return z;
     }
 
     public void setExpanded(boolean z, boolean z2) {

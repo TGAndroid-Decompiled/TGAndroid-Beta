@@ -21,7 +21,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -29,7 +29,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Components.AlertsCreator;
@@ -90,8 +90,8 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.NewContactActivity.createView(android.content.Context):android.view.View");
     }
 
-    public class C31341 extends C1006ActionBar.ActionBarMenuOnItemClick {
-        C31341() {
+    public class C30551 extends C0945ActionBar.ActionBarMenuOnItemClick {
+        C30551() {
         }
 
         @Override
@@ -129,7 +129,7 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
                     ConnectionsManager.getInstance(((BaseFragment) NewContactActivity.this).currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(((BaseFragment) NewContactActivity.this).currentAccount).sendRequest(tLRPC$TL_contacts_importContacts, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            NewContactActivity.C31341.this.lambda$onItemClick$2(tLRPC$TL_inputPhoneContact, tLRPC$TL_contacts_importContacts, tLObject, tLRPC$TL_error);
+                            NewContactActivity.C30551.this.lambda$onItemClick$2(tLRPC$TL_inputPhoneContact, tLRPC$TL_contacts_importContacts, tLObject, tLRPC$TL_error);
                         }
                     }, 2), ((BaseFragment) NewContactActivity.this).classGuid);
                 }
@@ -141,7 +141,7 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NewContactActivity.C31341.this.lambda$onItemClick$1(tLRPC$TL_contacts_importedContacts, tLRPC$TL_inputPhoneContact, tLRPC$TL_error, tLRPC$TL_contacts_importContacts);
+                    NewContactActivity.C30551.this.lambda$onItemClick$1(tLRPC$TL_contacts_importedContacts, tLRPC$TL_inputPhoneContact, tLRPC$TL_error, tLRPC$TL_contacts_importContacts);
                 }
             });
         }
@@ -157,13 +157,13 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
             } else if (NewContactActivity.this.getParentActivity() != null) {
                 NewContactActivity.this.showEditDoneProgress(false, true);
                 AlertDialog.Builder builder = new AlertDialog.Builder(NewContactActivity.this.getParentActivity());
-                builder.setTitle(LocaleController.getString("ContactNotRegisteredTitle", C0952R.string.ContactNotRegisteredTitle));
-                builder.setMessage(LocaleController.formatString("ContactNotRegistered", C0952R.string.ContactNotRegistered, ContactsController.formatName(tLRPC$TL_inputPhoneContact.first_name, tLRPC$TL_inputPhoneContact.last_name)));
-                builder.setNegativeButton(LocaleController.getString("Cancel", C0952R.string.Cancel), null);
-                builder.setPositiveButton(LocaleController.getString("Invite", C0952R.string.Invite), new DialogInterface.OnClickListener() {
+                builder.setTitle(LocaleController.getString("ContactNotRegisteredTitle", C0890R.string.ContactNotRegisteredTitle));
+                builder.setMessage(LocaleController.formatString("ContactNotRegistered", C0890R.string.ContactNotRegistered, ContactsController.formatName(tLRPC$TL_inputPhoneContact.first_name, tLRPC$TL_inputPhoneContact.last_name)));
+                builder.setNegativeButton(LocaleController.getString("Cancel", C0890R.string.Cancel), null);
+                builder.setPositiveButton(LocaleController.getString("Invite", C0890R.string.Invite), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        NewContactActivity.C31341.this.lambda$onItemClick$0(tLRPC$TL_inputPhoneContact, dialogInterface, i);
+                        NewContactActivity.C30551.this.lambda$onItemClick$0(tLRPC$TL_inputPhoneContact, dialogInterface, i);
                     }
                 });
                 NewContactActivity.this.showDialog(builder.create());

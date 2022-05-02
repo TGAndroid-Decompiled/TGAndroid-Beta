@@ -292,7 +292,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         }
         if (this.legendShowing) {
             int i = this.selectedIndex;
-            long[] jArr = this.chartData.f1012x;
+            long[] jArr = this.chartData.f1000x;
             if (i < jArr.length) {
                 this.legendSignatureView.setData(i, jArr[i], this.lines, false);
             }
@@ -338,7 +338,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
             this.chartBottom = AndroidUtilities.m34dp(100.0f);
             this.chartArea.set(this.chartStart - f, 0.0f, this.chartEnd + f, getMeasuredHeight() - this.chartBottom);
             if (this.chartData != null) {
-                this.bottomSignatureOffset = (int) (AndroidUtilities.m34dp(20.0f) / (this.pickerWidth / this.chartData.f1012x.length));
+                this.bottomSignatureOffset = (int) (AndroidUtilities.m34dp(20.0f) / (this.pickerWidth / this.chartData.f1000x.length));
             }
             measureHeightThreshold();
         }
@@ -454,7 +454,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                     }
                     int i6 = this.endXIndex - this.bottomSignatureOffset;
                     while (true) {
-                        if (i6 % i4 == 0 && i6 >= this.chartData.f1012x.length - 1) {
+                        if (i6 % i4 == 0 && i6 >= this.chartData.f1000x.length - 1) {
                             break;
                         }
                         i6++;
@@ -464,7 +464,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                     float f2 = (this.chartFullWidth * this.pickerDelegate.pickerStart) - HORIZONTAL_PADDING;
                     for (int i9 = i5 + i7; i9 < i8; i9 += i4) {
                         if (i9 >= 0) {
-                            long[] jArr = this.chartData.f1012x;
+                            long[] jArr = this.chartData.f1000x;
                             if (i9 < jArr.length - 1) {
                                 float f3 = ((((float) (jArr[i9] - jArr[0])) / ((float) (jArr[jArr.length - 1] - jArr[0]))) * this.chartFullWidth) - f2;
                                 float f4 = f3 - BOTTOM_SIGNATURE_OFFSET;
@@ -543,7 +543,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                             L l = this.lines.get(i4);
                             if (l.enabled || l.alpha != 0.0f) {
                                 float f7 = this.currentMinHeight;
-                                float measuredHeight = (getMeasuredHeight() - this.chartBottom) - (((l.line.f1014y[this.selectedIndex] - f7) / (this.currentMaxHeight - f7)) * ((getMeasuredHeight() - this.chartBottom) - SIGNATURE_TEXT_HEIGHT));
+                                float measuredHeight = (getMeasuredHeight() - this.chartBottom) - (((l.line.f1002y[this.selectedIndex] - f7) / (this.currentMaxHeight - f7)) * ((getMeasuredHeight() - this.chartBottom) - SIGNATURE_TEXT_HEIGHT));
                                 l.selectionPaint.setAlpha((int) (l.alpha * 255.0f * this.selectionA));
                                 this.selectionBackgroundPaint.setAlpha((int) (l.alpha * 255.0f * this.selectionA));
                                 canvas.drawPoint(f6, measuredHeight, l.selectionPaint);
@@ -800,7 +800,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
             if (f3 < 0.0f) {
                 this.selectedIndex = 0;
             } else if (f3 > 1.0f) {
-                this.selectedIndex = t.f1012x.length - 1;
+                this.selectedIndex = t.f1000x.length - 1;
             } else {
                 int findIndex = t.findIndex(this.startXIndex, this.endXIndex, f3);
                 this.selectedIndex = findIndex;
@@ -868,7 +868,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         float f2;
         T t = this.chartData;
         if (t != null && (i = this.selectedIndex) != -1 && this.legendShowing) {
-            this.legendSignatureView.setData(i, t.f1012x[i], this.lines, false);
+            this.legendSignatureView.setData(i, t.f1000x[i], this.lines, false);
             this.legendSignatureView.setVisibility(0);
             this.legendSignatureView.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
             float f3 = (this.chartData.xPercentage[this.selectedIndex] * this.chartFullWidth) - f;
@@ -922,7 +922,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
             clearSelection();
             this.chartData = t;
             if (t != null) {
-                if (t.f1012x[0] == 0) {
+                if (t.f1000x[0] == 0) {
                     ChartPickerDelegate chartPickerDelegate = this.pickerDelegate;
                     chartPickerDelegate.pickerStart = 0.0f;
                     chartPickerDelegate.pickerEnd = 1.0f;
@@ -976,7 +976,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         if (t == null) {
             return 0.1f;
         }
-        int length = t.f1012x.length;
+        int length = t.f1000x.length;
         if (length < 5) {
             return 1.0f;
         }
@@ -1062,7 +1062,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
             }
             ChartHeaderView chartHeaderView = this.chartHeaderView;
             if (chartHeaderView != null) {
-                long[] jArr = this.chartData.f1012x;
+                long[] jArr = this.chartData.f1000x;
                 chartHeaderView.setDates(jArr[i], jArr[this.endXIndex]);
             }
             updateLineSignature();
@@ -1198,7 +1198,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         if (this.legendShowing) {
             LegendSignatureView legendSignatureView = this.legendSignatureView;
             int i3 = this.selectedIndex;
-            legendSignatureView.setData(i3, this.chartData.f1012x[i3], this.lines, true);
+            legendSignatureView.setData(i3, this.chartData.f1000x[i3], this.lines, true);
         }
     }
 
@@ -1258,7 +1258,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         if (i < 0) {
             return -1L;
         }
-        return this.chartData.f1012x[i];
+        return this.chartData.f1000x[i];
     }
 
     public void clearSelection() {
@@ -1270,7 +1270,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     }
 
     public void selectDate(long j) {
-        this.selectedIndex = Arrays.binarySearch(this.chartData.f1012x, j);
+        this.selectedIndex = Arrays.binarySearch(this.chartData.f1000x, j);
         this.legendShowing = true;
         this.legendSignatureView.setVisibility(0);
         this.selectionA = 1.0f;
@@ -1279,21 +1279,21 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     }
 
     public long getStartDate() {
-        return this.chartData.f1012x[this.startXIndex];
+        return this.chartData.f1000x[this.startXIndex];
     }
 
     public long getEndDate() {
-        return this.chartData.f1012x[this.endXIndex];
+        return this.chartData.f1000x[this.endXIndex];
     }
 
     public void updatePicker(ChartData chartData, long j) {
-        int length = chartData.f1012x.length;
+        int length = chartData.f1000x.length;
         long j2 = j - (j % 86400000);
         long j3 = (86400000 + j2) - 1;
         int i = 0;
         int i2 = 0;
         for (int i3 = 0; i3 < length; i3++) {
-            long[] jArr = chartData.f1012x;
+            long[] jArr = chartData.f1000x;
             if (j2 > jArr[i3]) {
                 i = i3;
             }
@@ -1380,7 +1380,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         private Bitmap pickerRoundBitmap;
         private Paint xRefP;
         private RectF rectF = new RectF();
-        int f1010k = 0;
+        int f998k = 0;
         private boolean invalidate = true;
 
         public SharedUiComponents() {
@@ -1392,9 +1392,9 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
 
         Bitmap getPickerMaskBitmap(int i, int i2) {
             int i3 = (i + i2) << 10;
-            if (i3 != this.f1010k || this.invalidate) {
+            if (i3 != this.f998k || this.invalidate) {
                 this.invalidate = false;
-                this.f1010k = i3;
+                this.f998k = i3;
                 this.pickerRoundBitmap = Bitmap.createBitmap(i2, i, Bitmap.Config.ARGB_8888);
                 this.canvas = new Canvas(this.pickerRoundBitmap);
                 this.rectF.set(0.0f, 0.0f, i2, i);

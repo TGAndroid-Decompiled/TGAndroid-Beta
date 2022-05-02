@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.webrtc.CalledByNative;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
@@ -252,7 +252,7 @@ public class WebRtcAudioRecord {
         }
     }
 
-    @TargetApi(C0952R.styleable.MapAttrs_zOrderOnTop)
+    @TargetApi(C0890R.styleable.MapAttrs_zOrderOnTop)
     public void setPreferredDevice(AudioDeviceInfo audioDeviceInfo) {
         StringBuilder sb = new StringBuilder();
         sb.append("setPreferredDevice ");
@@ -311,7 +311,7 @@ public class WebRtcAudioRecord {
         return true;
     }
 
-    @TargetApi(C0952R.styleable.MapAttrs_zOrderOnTop)
+    @TargetApi(C0890R.styleable.MapAttrs_zOrderOnTop)
     private static AudioRecord createAudioRecordOnMOrHigher(int i, int i2, int i3, int i4, int i5) {
         Logging.m9d(TAG, "createAudioRecordOnMOrHigher");
         return new AudioRecord.Builder().setAudioSource(i).setAudioFormat(new AudioFormat.Builder().setEncoding(i4).setSampleRate(i2).setChannelMask(i3).build()).setBufferSizeInBytes(i5).build();
@@ -326,7 +326,7 @@ public class WebRtcAudioRecord {
         Logging.m9d(TAG, "AudioRecord: session ID: " + this.audioRecord.getAudioSessionId() + ", channels: " + this.audioRecord.getChannelCount() + ", sample rate: " + this.audioRecord.getSampleRate());
     }
 
-    @TargetApi(C0952R.styleable.MapAttrs_zOrderOnTop)
+    @TargetApi(C0890R.styleable.MapAttrs_zOrderOnTop)
     private void logMainParametersExtended() {
         if (Build.VERSION.SDK_INT >= 23) {
             Logging.m9d(TAG, "AudioRecord: buffer size in frames: " + this.audioRecord.getBufferSizeInFrames());

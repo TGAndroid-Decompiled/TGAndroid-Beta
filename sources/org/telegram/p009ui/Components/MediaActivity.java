@@ -16,7 +16,7 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageLocation;
@@ -25,7 +25,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.p009ui.ActionBar.BackDrawable;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.ActionBar.SimpleTextView;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
@@ -73,7 +73,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setCastShadows(false);
         this.actionBar.setAddToContainer(false);
-        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -86,16 +86,16 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             @Override
             protected void onMeasure(int i, int i2) {
                 int i3 = 0;
-                ((FrameLayout.LayoutParams) MediaActivity.this.sharedMediaLayout.getLayoutParams()).topMargin = C1006ActionBar.getCurrentActionBarHeight() + (((BaseFragment) MediaActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0);
+                ((FrameLayout.LayoutParams) MediaActivity.this.sharedMediaLayout.getLayoutParams()).topMargin = C0945ActionBar.getCurrentActionBarHeight() + (((BaseFragment) MediaActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0);
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
                 if (((BaseFragment) MediaActivity.this).actionBar.getOccupyStatusBar()) {
                     i3 = AndroidUtilities.statusBarHeight;
                 }
                 layoutParams.topMargin = i3;
-                layoutParams.height = C1006ActionBar.getCurrentActionBarHeight();
-                ((FrameLayout.LayoutParams) MediaActivity.this.nameTextView.getLayoutParams()).topMargin = (((C1006ActionBar.getCurrentActionBarHeight() / 2) - AndroidUtilities.m34dp(22.0f)) / 2) + AndroidUtilities.m34dp((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 5.0f : 4.0f);
-                ((FrameLayout.LayoutParams) MediaActivity.this.mediaCounterTextView.getLayoutParams()).topMargin = ((C1006ActionBar.getCurrentActionBarHeight() / 2) + (((C1006ActionBar.getCurrentActionBarHeight() / 2) - AndroidUtilities.m34dp(19.0f)) / 2)) - AndroidUtilities.m34dp(3.0f);
-                ((FrameLayout.LayoutParams) MediaActivity.this.avatarImageView.getLayoutParams()).topMargin = (C1006ActionBar.getCurrentActionBarHeight() - AndroidUtilities.m34dp(42.0f)) / 2;
+                layoutParams.height = C0945ActionBar.getCurrentActionBarHeight();
+                ((FrameLayout.LayoutParams) MediaActivity.this.nameTextView.getLayoutParams()).topMargin = (((C0945ActionBar.getCurrentActionBarHeight() / 2) - AndroidUtilities.m34dp(22.0f)) / 2) + AndroidUtilities.m34dp((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 5.0f : 4.0f);
+                ((FrameLayout.LayoutParams) MediaActivity.this.mediaCounterTextView.getLayoutParams()).topMargin = ((C0945ActionBar.getCurrentActionBarHeight() / 2) + (((C0945ActionBar.getCurrentActionBarHeight() / 2) - AndroidUtilities.m34dp(19.0f)) / 2)) - AndroidUtilities.m34dp(3.0f);
+                ((FrameLayout.LayoutParams) MediaActivity.this.avatarImageView.getLayoutParams()).topMargin = (C0945ActionBar.getCurrentActionBarHeight() - AndroidUtilities.m34dp(42.0f)) / 2;
                 super.onMeasure(i, i2);
             }
 
@@ -133,10 +133,10 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (getImageReceiver().hasNotThumb()) {
-                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrProfilePicture", C0952R.string.AccDescrProfilePicture));
+                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrProfilePicture", C0890R.string.AccDescrProfilePicture));
                     if (Build.VERSION.SDK_INT >= 21) {
-                        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString("Open", C0952R.string.Open)));
-                        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString("AccDescrOpenInPhotoViewer", C0952R.string.AccDescrOpenInPhotoViewer)));
+                        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString("Open", C0890R.string.Open)));
+                        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString("AccDescrOpenInPhotoViewer", C0890R.string.AccDescrOpenInPhotoViewer)));
                         return;
                     }
                     return;
@@ -251,7 +251,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 TLRPC$User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
                 if (user2 != null) {
                     if (user2.self) {
-                        this.nameTextView.setText(LocaleController.getString("SavedMessages", C0952R.string.SavedMessages));
+                        this.nameTextView.setText(LocaleController.getString("SavedMessages", C0890R.string.SavedMessages));
                         avatarDrawable.setAvatarType(1);
                         avatarDrawable.setSmallSize(true);
                     } else {
@@ -273,7 +273,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         }
         this.avatarImageView.setImage(ImageLocation.getForUserOrChat(tLObject, 1), "50_50", avatarDrawable, tLObject);
         if (TextUtils.isEmpty(this.nameTextView.getText())) {
-            this.nameTextView.setText(LocaleController.getString("SharedContentTitle", C0952R.string.SharedContentTitle));
+            this.nameTextView.setText(LocaleController.getString("SharedContentTitle", C0890R.string.SharedContentTitle));
         }
         if (this.sharedMediaLayout.isSearchItemVisible()) {
             z = false;

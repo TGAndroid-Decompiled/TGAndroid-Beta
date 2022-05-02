@@ -23,10 +23,8 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         this.call_not_empty = (16777216 & readInt32) != 0;
         this.fake = (33554432 & readInt32) != 0;
         this.gigagroup = (67108864 & readInt32) != 0;
-        this.noforwards = (134217728 & readInt32) != 0;
-        this.join_to_send = (268435456 & readInt32) != 0;
-        this.join_request = (readInt32 & 536870912) != 0;
-        this.f854id = abstractSerializedData.readInt64(z);
+        this.noforwards = (readInt32 & 134217728) != 0;
+        this.f843id = abstractSerializedData.readInt64(z);
         if ((this.flags & 8192) != 0) {
             this.access_hash = abstractSerializedData.readInt64(z);
         }
@@ -105,12 +103,8 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         this.flags = i16;
         int i17 = this.noforwards ? i16 | 134217728 : i16 & (-134217729);
         this.flags = i17;
-        int i18 = this.join_to_send ? i17 | 268435456 : i17 & (-268435457);
-        this.flags = i18;
-        int i19 = this.join_request ? i18 | 536870912 : i18 & (-536870913);
-        this.flags = i19;
-        abstractSerializedData.writeInt32(i19);
-        abstractSerializedData.writeInt64(this.f854id);
+        abstractSerializedData.writeInt32(i17);
+        abstractSerializedData.writeInt64(this.f843id);
         if ((this.flags & 8192) != 0) {
             abstractSerializedData.writeInt64(this.access_hash);
         }
@@ -124,8 +118,8 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
             abstractSerializedData.writeInt32(481674261);
             int size = this.restriction_reason.size();
             abstractSerializedData.writeInt32(size);
-            for (int i20 = 0; i20 < size; i20++) {
-                this.restriction_reason.get(i20).serializeToStream(abstractSerializedData);
+            for (int i18 = 0; i18 < size; i18++) {
+                this.restriction_reason.get(i18).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 16384) != 0) {

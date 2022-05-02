@@ -11,7 +11,7 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -69,7 +69,7 @@ public class BotHelpCell extends View {
             int i2 = (int) (i * 0.7f);
             String[] split = str.split("\n");
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            String string = LocaleController.getString("BotInfoTitle", C0952R.string.BotInfoTitle);
+            String string = LocaleController.getString("BotInfoTitle", C0890R.string.BotInfoTitle);
             if (z) {
                 spannableStringBuilder.append((CharSequence) string);
                 spannableStringBuilder.append((CharSequence) "\n\n");

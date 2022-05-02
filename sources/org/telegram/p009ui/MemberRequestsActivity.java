@@ -4,11 +4,11 @@ import android.content.Context;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1006ActionBar;
+import org.telegram.p009ui.ActionBar.C0945ActionBar;
 import org.telegram.p009ui.Delegates.MemberRequestsDelegate;
 
 public class MemberRequestsActivity extends BaseFragment {
@@ -32,7 +32,7 @@ public class MemberRequestsActivity extends BaseFragment {
         String str;
         int i;
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
@@ -40,17 +40,17 @@ public class MemberRequestsActivity extends BaseFragment {
                 }
             }
         });
-        this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
-        C1006ActionBar actionBar = this.actionBar;
+        this.actionBar.setBackButtonImage(C0890R.C0891drawable.ic_ab_back);
+        C0945ActionBar actionBar = this.actionBar;
         if (this.delegate.isChannel) {
-            i = C0952R.string.SubscribeRequests;
+            i = C0890R.string.SubscribeRequests;
             str = "SubscribeRequests";
         } else {
-            i = C0952R.string.MemberRequests;
+            i = C0890R.string.MemberRequests;
             str = "MemberRequests";
         }
         actionBar.setTitle(LocaleController.getString(str, i));
-        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, C0952R.C0953drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, C0890R.C0891drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
                 super.onSearchExpand();
@@ -70,7 +70,7 @@ public class MemberRequestsActivity extends BaseFragment {
                 MemberRequestsActivity.this.delegate.setQuery(editText.getText().toString());
             }
         });
-        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("Search", C0952R.string.Search));
+        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("Search", C0890R.string.Search));
         actionBarMenuItemSearchListener.setVisibility(8);
         FrameLayout rootLayout = this.delegate.getRootLayout();
         this.delegate.loadMembers();

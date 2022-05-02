@@ -11,7 +11,7 @@ import android.os.SystemClock;
 import android.view.View;
 import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -608,7 +608,7 @@ public class FlickerLoadingView extends View {
             case 5:
                 return AndroidUtilities.m34dp(80.0f);
             case 6:
-            case C0952R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
+            case C0890R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
                 return AndroidUtilities.m34dp(64.0f);
             case 7:
                 return AndroidUtilities.m34dp((SharedConfig.useThreeLinesLayout ? 78 : 72) + 1);

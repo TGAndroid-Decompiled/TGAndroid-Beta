@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -81,7 +81,7 @@ public class ReactedHeaderView extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.iconView = imageView;
         addView(imageView, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388627, 11.0f, 0.0f, 0.0f, 0.0f));
-        Drawable mutate = ContextCompat.getDrawable(context, C0952R.C0953drawable.msg_reactions).mutate();
+        Drawable mutate = ContextCompat.getDrawable(context, C0890R.C0891drawable.msg_reactions).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultSubmenuItemIcon"), PorterDuff.Mode.MULTIPLY));
         this.iconView.setImageDrawable(mutate);
         this.iconView.setVisibility(8);
@@ -148,7 +148,7 @@ public class ReactedHeaderView extends FrameLayout {
                 tLRPC$TL_channels_getParticipants.limit = MessagesController.getInstance(this.currentAccount).chatReadMarkSizeThreshold;
                 tLRPC$TL_channels_getParticipants.offset = 0;
                 tLRPC$TL_channels_getParticipants.filter = new TLRPC$TL_channelParticipantsRecent();
-                tLRPC$TL_channels_getParticipants.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(tLRPC$Chat.f854id);
+                tLRPC$TL_channels_getParticipants.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(tLRPC$Chat.f843id);
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_getParticipants, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
@@ -158,7 +158,7 @@ public class ReactedHeaderView extends FrameLayout {
                 return;
             }
             TLRPC$TL_messages_getFullChat tLRPC$TL_messages_getFullChat = new TLRPC$TL_messages_getFullChat();
-            tLRPC$TL_messages_getFullChat.chat_id = tLRPC$Chat.f854id;
+            tLRPC$TL_messages_getFullChat.chat_id = tLRPC$Chat.f843id;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getFullChat, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
@@ -178,7 +178,7 @@ public class ReactedHeaderView extends FrameLayout {
             while (true) {
                 if (i >= this.users.size()) {
                     break;
-                } else if (this.users.get(i).f985id == tLRPC$User.f985id) {
+                } else if (this.users.get(i).f974id == tLRPC$User.f974id) {
                     z = true;
                     break;
                 } else {
@@ -211,7 +211,7 @@ public class ReactedHeaderView extends FrameLayout {
             for (int i = 0; i < tLRPC$TL_channels_channelParticipants.users.size(); i++) {
                 TLRPC$User tLRPC$User = tLRPC$TL_channels_channelParticipants.users.get(i);
                 MessagesController.getInstance(this.currentAccount).putUser(tLRPC$User, false);
-                if (!tLRPC$User.self && list.contains(Long.valueOf(tLRPC$User.f985id))) {
+                if (!tLRPC$User.self && list.contains(Long.valueOf(tLRPC$User.f974id))) {
                     list2.add(tLRPC$User);
                 }
             }
@@ -234,7 +234,7 @@ public class ReactedHeaderView extends FrameLayout {
             for (int i = 0; i < tLRPC$TL_messages_chatFull.users.size(); i++) {
                 TLRPC$User tLRPC$User = tLRPC$TL_messages_chatFull.users.get(i);
                 MessagesController.getInstance(this.currentAccount).putUser(tLRPC$User, false);
-                if (!tLRPC$User.self && list.contains(Long.valueOf(tLRPC$User.f985id))) {
+                if (!tLRPC$User.self && list.contains(Long.valueOf(tLRPC$User.f974id))) {
                     list2.add(tLRPC$User);
                 }
             }
@@ -246,7 +246,7 @@ public class ReactedHeaderView extends FrameLayout {
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         TLRPC$TL_messages_getMessageReactionsList tLRPC$TL_messages_getMessageReactionsList = new TLRPC$TL_messages_getMessageReactionsList();
         tLRPC$TL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(this.message.getDialogId());
-        tLRPC$TL_messages_getMessageReactionsList.f938id = this.message.getId();
+        tLRPC$TL_messages_getMessageReactionsList.f927id = this.message.getId();
         tLRPC$TL_messages_getMessageReactionsList.limit = 3;
         tLRPC$TL_messages_getMessageReactionsList.reaction = null;
         tLRPC$TL_messages_getMessageReactionsList.offset = null;
@@ -305,13 +305,13 @@ public class ReactedHeaderView extends FrameLayout {
         while (it.hasNext()) {
             TLRPC$User next = it.next();
             TLRPC$Peer tLRPC$Peer = this.message.messageOwner.from_id;
-            if (!(tLRPC$Peer == null || next.f985id == tLRPC$Peer.user_id)) {
+            if (!(tLRPC$Peer == null || next.f974id == tLRPC$Peer.user_id)) {
                 int i2 = 0;
                 while (true) {
                     if (i2 >= this.users.size()) {
                         z2 = false;
                         break;
-                    } else if (this.users.get(i2).f985id == next.f985id) {
+                    } else if (this.users.get(i2).f974id == next.f974id) {
                         z2 = true;
                         break;
                     } else {

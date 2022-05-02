@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -124,7 +124,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
 
             @Override
             protected void onDraw(android.graphics.Canvas r13) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.FiltersListBottomSheet.C20431.onDraw(android.graphics.Canvas):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.FiltersListBottomSheet.C19751.onDraw(android.graphics.Canvas):void");
             }
         };
         this.containerView = frameLayout;
@@ -184,7 +184,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         this.titleTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.titleTextView.setPadding(AndroidUtilities.m34dp(18.0f), 0, AndroidUtilities.m34dp(18.0f), 0);
         this.titleTextView.setGravity(16);
-        this.titleTextView.setText(LocaleController.getString("FilterChoose", C0952R.string.FilterChoose));
+        this.titleTextView.setText(LocaleController.getString("FilterChoose", C0890R.string.FilterChoose));
         this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         this.containerView.addView(this.titleTextView, LayoutHelper.createFrame(-1, 50.0f, 51, 0.0f, 0.0f, 40.0f, 0.0f));
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
@@ -376,35 +376,35 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
                 bottomSheetCell.setTextColor(Theme.getColor("dialogTextBlack"));
                 int i3 = dialogFilter.flags;
                 if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i3) == (MessagesController.DIALOG_FILTER_FLAG_CONTACTS | MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS)) {
-                    i2 = C0952R.C0953drawable.menu_private;
+                    i2 = C0890R.C0891drawable.menu_private;
                 } else {
                     if ((MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ & i3) != 0) {
                         int i4 = MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS;
                         if ((i3 & i4) == i4) {
-                            i2 = C0952R.C0953drawable.menu_unread;
+                            i2 = C0890R.C0891drawable.menu_unread;
                         }
                     }
                     if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i3) == MessagesController.DIALOG_FILTER_FLAG_CHANNELS) {
-                        i2 = C0952R.C0953drawable.menu_broadcast;
+                        i2 = C0890R.C0891drawable.menu_broadcast;
                     } else if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i3) == MessagesController.DIALOG_FILTER_FLAG_GROUPS) {
-                        i2 = C0952R.C0953drawable.menu_groups;
+                        i2 = C0890R.C0891drawable.menu_groups;
                     } else if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i3) == MessagesController.DIALOG_FILTER_FLAG_CONTACTS) {
-                        i2 = C0952R.C0953drawable.menu_contacts;
+                        i2 = C0890R.C0891drawable.menu_contacts;
                     } else {
-                        i2 = (i3 & MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS) == MessagesController.DIALOG_FILTER_FLAG_BOTS ? C0952R.C0953drawable.menu_bots : C0952R.C0953drawable.menu_folders;
+                        i2 = (i3 & MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS) == MessagesController.DIALOG_FILTER_FLAG_BOTS ? C0890R.C0891drawable.menu_bots : C0890R.C0891drawable.menu_folders;
                     }
                 }
                 bottomSheetCell.setTextAndIcon(dialogFilter.name, i2);
                 return;
             }
             bottomSheetCell.getImageView().setColorFilter((ColorFilter) null);
-            Drawable drawable = this.context.getResources().getDrawable(C0952R.C0953drawable.poll_add_circle);
-            Drawable drawable2 = this.context.getResources().getDrawable(C0952R.C0953drawable.poll_add_plus);
+            Drawable drawable = this.context.getResources().getDrawable(C0890R.C0891drawable.poll_add_circle);
+            Drawable drawable2 = this.context.getResources().getDrawable(C0890R.C0891drawable.poll_add_plus);
             drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("switchTrackChecked"), PorterDuff.Mode.MULTIPLY));
             drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("checkboxCheck"), PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(drawable, drawable2);
             bottomSheetCell.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText4"));
-            bottomSheetCell.setTextAndIcon(LocaleController.getString("CreateNewFilter", C0952R.string.CreateNewFilter), combinedDrawable);
+            bottomSheetCell.setTextAndIcon(LocaleController.getString("CreateNewFilter", C0890R.string.CreateNewFilter), combinedDrawable);
         }
     }
 }

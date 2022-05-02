@@ -18,7 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.p009ui.Components.LayoutHelper;
 import org.telegram.p009ui.Components.Paint.Swatch;
 
@@ -41,7 +41,7 @@ public class ColorPicker extends FrameLayout {
     private Paint swatchStrokePaint = new Paint(1);
     private RectF rectF = new RectF();
     private float weight = 0.016773745f;
-    private Drawable shadowDrawable = getResources().getDrawable(C0952R.C0953drawable.knob_shadow);
+    private Drawable shadowDrawable = getResources().getDrawable(C0890R.C0891drawable.knob_shadow);
 
     public interface ColorPickerDelegate {
         void onBeganColorPicking();
@@ -64,7 +64,7 @@ public class ColorPicker extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.settingsButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.settingsButton.setImageResource(C0952R.C0953drawable.photo_paint_brush);
+        this.settingsButton.setImageResource(C0890R.C0891drawable.photo_paint_brush);
         addView(this.settingsButton, LayoutHelper.createFrame(46, 52.0f));
         this.settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +75,7 @@ public class ColorPicker extends FrameLayout {
         ImageView imageView2 = new ImageView(context);
         this.undoButton = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        this.undoButton.setImageResource(C0952R.C0953drawable.photo_undo);
+        this.undoButton.setImageResource(C0890R.C0891drawable.photo_undo);
         addView(this.undoButton, LayoutHelper.createFrame(46, 52.0f));
         this.undoButton.setOnClickListener(new View.OnClickListener() {
             @Override

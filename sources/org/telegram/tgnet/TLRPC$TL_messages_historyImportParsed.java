@@ -4,7 +4,7 @@ public class TLRPC$TL_messages_historyImportParsed extends TLObject {
     public static int constructor = 1578088377;
     public int flags;
     public boolean group;
-    public boolean f945pm;
+    public boolean f934pm;
     public String title;
 
     public static TLRPC$TL_messages_historyImportParsed TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -24,7 +24,7 @@ public class TLRPC$TL_messages_historyImportParsed extends TLObject {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         boolean z2 = false;
-        this.f945pm = (readInt32 & 1) != 0;
+        this.f934pm = (readInt32 & 1) != 0;
         if ((readInt32 & 2) != 0) {
             z2 = true;
         }
@@ -37,7 +37,7 @@ public class TLRPC$TL_messages_historyImportParsed extends TLObject {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        int i = this.f945pm ? this.flags | 1 : this.flags & (-2);
+        int i = this.f934pm ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.group ? i | 2 : i & (-3);
         this.flags = i2;

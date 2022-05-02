@@ -25,7 +25,6 @@ import org.telegram.p009ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.p009ui.ActionBar.Theme;
 
 public class PopupSwipeBackLayout extends FrameLayout {
-    private Runnable clickOutside;
     private GestureDetectorCompat detector;
     private ValueAnimator foregroundAnimator;
     private boolean isAnimationInProgress;
@@ -105,10 +104,6 @@ public class PopupSwipeBackLayout extends FrameLayout {
         this.onSwipeBackProgressListeners.add(onSwipeBackProgressListener);
     }
 
-    public void setOnClickOutsideListener(Runnable runnable) {
-        this.clickOutside = runnable;
-    }
-
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
         int indexOfChild = indexOfChild(view);
@@ -181,29 +176,13 @@ public class PopupSwipeBackLayout extends FrameLayout {
         }
     }
 
-    private float getCurrentForegroundHeight() {
-        float f = this.overrideForegroundHeight;
-        if (f != 0.0f) {
-            return f;
-        }
-        View childAt = getChildAt(this.currentForegroundIndex);
-        if (childAt == null) {
-            return 0.0f;
-        }
-        return childAt.getMeasuredHeight();
-    }
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (processTouchEvent(motionEvent)) {
             return true;
         }
         int actionMasked = motionEvent.getActionMasked();
-        float currentForegroundHeight = getCurrentForegroundHeight();
-        if (this.clickOutside != null && actionMasked == 0 && currentForegroundHeight > 0.0f && motionEvent.getY() > currentForegroundHeight) {
-            this.clickOutside.run();
-            return true;
-        } else if (actionMasked != 0 || this.mRect.contains(motionEvent.getX(), motionEvent.getY())) {
+        if (actionMasked != 0 || this.mRect.contains(motionEvent.getX(), motionEvent.getY())) {
             int i = this.currentForegroundIndex;
             if (i < 0 || i >= getChildCount()) {
                 return super.dispatchTouchEvent(motionEvent);
@@ -214,10 +193,9 @@ public class PopupSwipeBackLayout extends FrameLayout {
             }
             boolean dispatchTouchEvent = childAt.dispatchTouchEvent(motionEvent);
             return (!dispatchTouchEvent && actionMasked == 0) || dispatchTouchEvent || onTouchEvent(motionEvent);
-        } else {
-            callOnClick();
-            return true;
         }
+        callOnClick();
+        return true;
     }
 
     @Override

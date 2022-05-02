@@ -35,7 +35,7 @@ public class XiaomiUtilities {
         return !TextUtils.isEmpty(AndroidUtilities.getSystemProperty("ro.miui.ui.version.name"));
     }
 
-    @TargetApi(C0952R.styleable.MapAttrs_uiTiltGestures)
+    @TargetApi(C0890R.styleable.MapAttrs_uiTiltGestures)
     public static boolean isCustomPermissionGranted(int i) {
         try {
             Class cls = Integer.TYPE;

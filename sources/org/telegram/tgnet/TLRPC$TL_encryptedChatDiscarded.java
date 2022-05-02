@@ -12,7 +12,7 @@ public class TLRPC$TL_encryptedChatDiscarded extends TLRPC$EncryptedChat {
             z2 = false;
         }
         this.history_deleted = z2;
-        this.f865id = abstractSerializedData.readInt32(z);
+        this.f854id = abstractSerializedData.readInt32(z);
     }
 
     @Override
@@ -21,6 +21,6 @@ public class TLRPC$TL_encryptedChatDiscarded extends TLRPC$EncryptedChat {
         int i = this.history_deleted ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
-        abstractSerializedData.writeInt32(this.f865id);
+        abstractSerializedData.writeInt32(this.f854id);
     }
 }

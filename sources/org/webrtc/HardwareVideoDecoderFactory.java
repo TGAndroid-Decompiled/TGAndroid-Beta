@@ -22,7 +22,7 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
         }
 
         public boolean test(android.media.MediaCodecInfo r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.webrtc.HardwareVideoDecoderFactory.C36711.test(android.media.MediaCodecInfo):boolean");
+            throw new UnsupportedOperationException("Method not decompiled: org.webrtc.HardwareVideoDecoderFactory.C35881.test(android.media.MediaCodecInfo):boolean");
         }
     };
 

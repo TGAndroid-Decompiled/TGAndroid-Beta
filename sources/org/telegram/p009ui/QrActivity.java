@@ -52,7 +52,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -282,7 +282,7 @@ public class QrActivity extends BaseFragment {
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             this.logoImageView = rLottieImageView;
             rLottieImageView.setAutoRepeat(true);
-            this.logoImageView.setAnimation(C0952R.raw.qr_code_logo_2, 60, 60);
+            this.logoImageView.setAnimation(C0890R.raw.qr_code_logo_2, 60, 60);
             this.logoImageView.playAnimation();
             frameLayout.addView(this.logoImageView);
             BackupImageView backupImageView = new BackupImageView(context);
@@ -294,7 +294,7 @@ public class QrActivity extends BaseFragment {
             ImageView imageView = new ImageView(context);
             this.closeImageView = imageView;
             imageView.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m34dp(34.0f), 671088640, 687865855));
-            this.closeImageView.setImageResource(C0952R.C0953drawable.ic_ab_back);
+            this.closeImageView.setImageResource(C0890R.C0891drawable.ic_ab_back);
             this.closeImageView.setScaleType(ImageView.ScaleType.CENTER);
             this.closeImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -311,7 +311,7 @@ public class QrActivity extends BaseFragment {
             paint.setColor(-1);
             canvas.drawRoundRect(rectF, AndroidUtilities.m34dp(5.0f), AndroidUtilities.m34dp(5.0f), paint);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-            canvas.drawBitmap(BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), C0952R.C0953drawable.msg_qr_mini), (this.emojiThemeIcon.getWidth() - decodeResource.getWidth()) * 0.5f, (this.emojiThemeIcon.getHeight() - decodeResource.getHeight()) * 0.5f, paint);
+            canvas.drawBitmap(BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), C0890R.C0891drawable.msg_qr_mini), (this.emojiThemeIcon.getWidth() - decodeResource.getWidth()) * 0.5f, (this.emojiThemeIcon.getHeight() - decodeResource.getHeight()) * 0.5f, paint);
             canvas.setBitmap(null);
             ThemeListViewController themeListViewController = new ThemeListViewController(this, getParentActivity().getWindow()) {
                 @Override
@@ -331,7 +331,7 @@ public class QrActivity extends BaseFragment {
                     QrActivity.this.lambda$createView$2(emojiThemes, i);
                 }
             });
-            this.themesViewController.titleView.setText(LocaleController.getString("QrCode", C0952R.string.QrCode));
+            this.themesViewController.titleView.setText(LocaleController.getString("QrCode", C0890R.string.QrCode));
             this.themesViewController.progressView.setViewType(17);
             this.themesViewController.shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -385,7 +385,7 @@ public class QrActivity extends BaseFragment {
         RLottieImageView rLottieImageView2 = new RLottieImageView(context);
         this.logoImageView = rLottieImageView2;
         rLottieImageView2.setAutoRepeat(true);
-        this.logoImageView.setAnimation(C0952R.raw.qr_code_logo_2, 60, 60);
+        this.logoImageView.setAnimation(C0890R.raw.qr_code_logo_2, 60, 60);
         this.logoImageView.playAnimation();
         frameLayout.addView(this.logoImageView);
         BackupImageView backupImageView2 = new BackupImageView(context);
@@ -397,7 +397,7 @@ public class QrActivity extends BaseFragment {
         ImageView imageView2 = new ImageView(context);
         this.closeImageView = imageView2;
         imageView2.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m34dp(34.0f), 671088640, 687865855));
-        this.closeImageView.setImageResource(C0952R.C0953drawable.ic_ab_back);
+        this.closeImageView.setImageResource(C0890R.C0891drawable.ic_ab_back);
         this.closeImageView.setScaleType(ImageView.ScaleType.CENTER);
         this.closeImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -414,7 +414,7 @@ public class QrActivity extends BaseFragment {
         paint2.setColor(-1);
         canvas2.drawRoundRect(rectF2, AndroidUtilities.m34dp(5.0f), AndroidUtilities.m34dp(5.0f), paint2);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        canvas2.drawBitmap(BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), C0952R.C0953drawable.msg_qr_mini), (this.emojiThemeIcon.getWidth() - decodeResource.getWidth()) * 0.5f, (this.emojiThemeIcon.getHeight() - decodeResource.getHeight()) * 0.5f, paint2);
+        canvas2.drawBitmap(BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), C0890R.C0891drawable.msg_qr_mini), (this.emojiThemeIcon.getWidth() - decodeResource.getWidth()) * 0.5f, (this.emojiThemeIcon.getHeight() - decodeResource.getHeight()) * 0.5f, paint2);
         canvas2.setBitmap(null);
         ThemeListViewController themeListViewController2 = new ThemeListViewController(this, getParentActivity().getWindow()) {
             @Override
@@ -434,7 +434,7 @@ public class QrActivity extends BaseFragment {
                 QrActivity.this.lambda$createView$2(emojiThemes, i);
             }
         });
-        this.themesViewController.titleView.setText(LocaleController.getString("QrCode", C0952R.string.QrCode));
+        this.themesViewController.titleView.setText(LocaleController.getString("QrCode", C0890R.string.QrCode));
         this.themesViewController.progressView.setViewType(17);
         this.themesViewController.shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -709,7 +709,7 @@ public class QrActivity extends BaseFragment {
                 }
             });
         } else {
-            this.currMotionDrawable.setPatternBitmap(34, SvgHelper.getBitmap((int) C0952R.raw.default_pattern, this.backgroundView.getWidth(), this.backgroundView.getHeight(), -16777216));
+            this.currMotionDrawable.setPatternBitmap(34, SvgHelper.getBitmap((int) C0890R.raw.default_pattern, this.backgroundView.getWidth(), this.backgroundView.getHeight(), -16777216));
         }
         MotionBackgroundDrawable motionBackgroundDrawable4 = this.currMotionDrawable;
         motionBackgroundDrawable4.setPatternColorFilter(motionBackgroundDrawable4.getPatternColor());
@@ -785,7 +785,7 @@ public class QrActivity extends BaseFragment {
         if (pair != null && this.currentTheme.getTlTheme(z ? 1 : 0) != null) {
             long longValue = ((Long) pair.first).longValue();
             Bitmap bitmap = (Bitmap) pair.second;
-            if (longValue == this.currentTheme.getTlTheme(z).f976id && bitmap != null) {
+            if (longValue == this.currentTheme.getTlTheme(z).f965id && bitmap != null) {
                 onPatternLoaded(bitmap, this.currMotionDrawable.getIntensity(), SystemClock.elapsedRealtime() - j > 150);
             }
         }
@@ -840,7 +840,7 @@ public class QrActivity extends BaseFragment {
         Uri bitmapShareUri = AndroidUtilities.getBitmapShareUri(createBitmap, "qr_tmp.jpg", Bitmap.CompressFormat.JPEG);
         if (bitmapShareUri != null) {
             try {
-                getParentActivity().startActivityForResult(Intent.createChooser(new Intent("android.intent.action.SEND").setType("image/*").putExtra("android.intent.extra.STREAM", bitmapShareUri), LocaleController.getString("InviteByQRCode", C0952R.string.InviteByQRCode)), 500);
+                getParentActivity().startActivityForResult(Intent.createChooser(new Intent("android.intent.action.SEND").setType("image/*").putExtra("android.intent.extra.STREAM", bitmapShareUri), LocaleController.getString("InviteByQRCode", C0890R.string.InviteByQRCode)), 500);
             } catch (ActivityNotFoundException e) {
                 e.printStackTrace();
             }
@@ -1077,7 +1077,7 @@ public class QrActivity extends BaseFragment {
                     return super.calculateTimeForScrolling(i) * 6;
                 }
             };
-            Drawable mutate = parentActivity.getResources().getDrawable(C0952R.C0953drawable.sheet_shadow_round).mutate();
+            Drawable mutate = parentActivity.getResources().getDrawable(C0890R.C0891drawable.sheet_shadow_round).mutate();
             this.backgroundDrawable = mutate;
             mutate.setColorFilter(new PorterDuffColorFilter(baseFragment.getThemedColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
             FrameLayout frameLayout = new FrameLayout(parentActivity, QrActivity.this, baseFragment) {
@@ -1163,7 +1163,7 @@ public class QrActivity extends BaseFragment {
             frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 8388659, 0.0f, 0.0f, 62.0f, 0.0f));
             int themedColor = baseFragment.getThemedColor("featuredStickers_addButton");
             int dp = AndroidUtilities.m34dp(28.0f);
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(C0952R.raw.sun_outline, "2131558525", dp, dp, false, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(C0890R.raw.sun_outline, "2131558525", dp, dp, false, null);
             this.darkThemeDrawable = rLottieDrawable;
             setForceDark(Theme.getActiveTheme().isDark(), false);
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
@@ -1219,21 +1219,21 @@ public class QrActivity extends BaseFragment {
             View view = new View(parentActivity);
             this.topShadow = view;
             view.setAlpha(0.0f);
-            view.setBackground(ContextCompat.getDrawable(parentActivity, C0952R.C0953drawable.shadowdown));
+            view.setBackground(ContextCompat.getDrawable(parentActivity, C0890R.C0891drawable.shadowdown));
             view.setRotation(180.0f);
             frameLayout.addView(view);
             View view2 = new View(parentActivity);
             this.bottomShadow = view2;
-            view2.setBackground(ContextCompat.getDrawable(parentActivity, C0952R.C0953drawable.shadowdown));
+            view2.setBackground(ContextCompat.getDrawable(parentActivity, C0890R.C0891drawable.shadowdown));
             frameLayout.addView(view2);
             TextView textView2 = new TextView(parentActivity);
             this.shareButton = textView2;
-            textView2.setBackground(Theme.AdaptiveRipple.filledRect(baseFragment.getThemedColor("featuredStickers_addButton"), 6.0f));
+            textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(6.0f), baseFragment.getThemedColor("featuredStickers_addButton"), baseFragment.getThemedColor("featuredStickers_addButtonPressed")));
             textView2.setEllipsize(TextUtils.TruncateAt.END);
             textView2.setGravity(17);
             textView2.setLines(1);
             textView2.setSingleLine(true);
-            textView2.setText(LocaleController.getString("ShareQrCode", C0952R.string.ShareQrCode));
+            textView2.setText(LocaleController.getString("ShareQrCode", C0890R.string.ShareQrCode));
             textView2.setTextColor(baseFragment.getThemedColor("featuredStickers_buttonText"));
             textView2.setTextSize(1, 15.0f);
             textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));

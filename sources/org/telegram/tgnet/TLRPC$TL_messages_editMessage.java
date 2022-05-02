@@ -6,7 +6,7 @@ public class TLRPC$TL_messages_editMessage extends TLObject {
     public static int constructor = 1224152952;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;
-    public int f932id;
+    public int f921id;
     public TLRPC$InputMedia media;
     public String message;
     public boolean no_webpage;
@@ -26,7 +26,7 @@ public class TLRPC$TL_messages_editMessage extends TLObject {
         this.flags = i;
         abstractSerializedData.writeInt32(i);
         this.peer.serializeToStream(abstractSerializedData);
-        abstractSerializedData.writeInt32(this.f932id);
+        abstractSerializedData.writeInt32(this.f921id);
         if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeString(this.message);
         }

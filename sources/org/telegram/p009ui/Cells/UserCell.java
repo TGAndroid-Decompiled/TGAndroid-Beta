@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -76,8 +76,8 @@ public class UserCell extends FrameLayout {
             this.addButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             this.addButton.setTextSize(1, 14.0f);
             this.addButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-            this.addButton.setBackgroundDrawable(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
-            this.addButton.setText(LocaleController.getString("Add", C0952R.string.Add));
+            this.addButton.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+            this.addButton.setText(LocaleController.getString("Add", C0890R.string.Add));
             this.addButton.setPadding(AndroidUtilities.m34dp(17.0f), 0, AndroidUtilities.m34dp(17.0f), 0);
             View view = this.addButton;
             boolean z3 = LocaleController.isRTL;
@@ -138,7 +138,7 @@ public class UserCell extends FrameLayout {
             boolean z8 = LocaleController.isRTL;
             addView(checkBoxSquare, LayoutHelper.createFrame(18, 18.0f, (z8 ? 3 : 5) | 16, z8 ? 19.0f : 0.0f, 0.0f, z8 ? 0.0f : 19.0f, 0.0f));
         } else if (i2 == 1) {
-            CheckBox checkBox = new CheckBox(context, C0952R.C0953drawable.round_check2);
+            CheckBox checkBox = new CheckBox(context, C0890R.C0891drawable.round_check2);
             this.checkBox = checkBox;
             checkBox.setVisibility(4);
             this.checkBox.setColor(Theme.getColor("checkbox"), Theme.getColor("checkboxCheck"));
@@ -270,28 +270,28 @@ public class UserCell extends FrameLayout {
                 z3 = true;
             }
             if (!z3 || !z2) {
-                str = z3 ? LocaleController.getString("NotificationsUnmuted", C0952R.string.NotificationsUnmuted) : LocaleController.getString("NotificationsMuted", C0952R.string.NotificationsMuted);
+                str = z3 ? LocaleController.getString("NotificationsUnmuted", C0890R.string.NotificationsUnmuted) : LocaleController.getString("NotificationsMuted", C0890R.string.NotificationsMuted);
             } else {
-                str = LocaleController.getString("NotificationsCustom", C0952R.string.NotificationsCustom);
+                str = LocaleController.getString("NotificationsCustom", C0890R.string.NotificationsCustom);
             }
         } else {
             int currentTime = i2 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
             if (currentTime <= 0) {
                 if (z2) {
-                    str = LocaleController.getString("NotificationsCustom", C0952R.string.NotificationsCustom);
+                    str = LocaleController.getString("NotificationsCustom", C0890R.string.NotificationsCustom);
                 } else {
-                    str = LocaleController.getString("NotificationsUnmuted", C0952R.string.NotificationsUnmuted);
+                    str = LocaleController.getString("NotificationsUnmuted", C0890R.string.NotificationsUnmuted);
                 }
             } else if (currentTime < 3600) {
-                str = LocaleController.formatString("WillUnmuteIn", C0952R.string.WillUnmuteIn, LocaleController.formatPluralString("Minutes", currentTime / 60));
+                str = LocaleController.formatString("WillUnmuteIn", C0890R.string.WillUnmuteIn, LocaleController.formatPluralString("Minutes", currentTime / 60));
             } else if (currentTime < 86400) {
-                str = LocaleController.formatString("WillUnmuteIn", C0952R.string.WillUnmuteIn, LocaleController.formatPluralString("Hours", (int) Math.ceil((currentTime / 60.0f) / 60.0f)));
+                str = LocaleController.formatString("WillUnmuteIn", C0890R.string.WillUnmuteIn, LocaleController.formatPluralString("Hours", (int) Math.ceil((currentTime / 60.0f) / 60.0f)));
             } else {
-                str = currentTime < 31536000 ? LocaleController.formatString("WillUnmuteIn", C0952R.string.WillUnmuteIn, LocaleController.formatPluralString("Days", (int) Math.ceil(((currentTime / 60.0f) / 60.0f) / 24.0f))) : null;
+                str = currentTime < 31536000 ? LocaleController.formatString("WillUnmuteIn", C0890R.string.WillUnmuteIn, LocaleController.formatPluralString("Days", (int) Math.ceil(((currentTime / 60.0f) / 60.0f) / 24.0f))) : null;
             }
         }
         if (str == null) {
-            str = LocaleController.getString("NotificationsOff", C0952R.string.NotificationsOff);
+            str = LocaleController.getString("NotificationsOff", C0890R.string.NotificationsOff);
         }
         String str2 = str;
         if (DialogObject.isEncryptedDialog(notificationException.did)) {

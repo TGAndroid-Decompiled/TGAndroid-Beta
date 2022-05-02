@@ -15,7 +15,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -180,7 +180,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         if (i == 3 || i == 5) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.out = true;
-            tLRPC$TL_message.f877id = -Utilities.random.nextInt();
+            tLRPC$TL_message.f866id = -Utilities.random.nextInt();
             tLRPC$TL_message.peer_id = new TLRPC$TL_peerUser();
             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
             tLRPC$TL_message.from_id = tLRPC$TL_peerUser;
@@ -206,7 +206,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 String str2 = "mp3";
                 String httpUrlExtension = ImageLoader.getHttpUrlExtension(this.inlineResult.content.url, this.documentAttachType == 5 ? str2 : "ogg");
                 TLRPC$Document tLRPC$Document3 = tLRPC$TL_message.media.document;
-                tLRPC$Document3.f861id = 0L;
+                tLRPC$Document3.f850id = 0L;
                 tLRPC$Document3.access_hash = 0L;
                 tLRPC$Document3.date = tLRPC$TL_message.date;
                 tLRPC$Document3.mime_type = "audio/" + httpUrlExtension;
@@ -614,28 +614,28 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         StringBuilder sb = new StringBuilder();
         switch (this.documentAttachType) {
             case 1:
-                sb.append(LocaleController.getString("AttachDocument", C0952R.string.AttachDocument));
+                sb.append(LocaleController.getString("AttachDocument", C0890R.string.AttachDocument));
                 break;
             case 2:
-                sb.append(LocaleController.getString("AttachGif", C0952R.string.AttachGif));
+                sb.append(LocaleController.getString("AttachGif", C0890R.string.AttachGif));
                 break;
             case 3:
-                sb.append(LocaleController.getString("AttachAudio", C0952R.string.AttachAudio));
+                sb.append(LocaleController.getString("AttachAudio", C0890R.string.AttachAudio));
                 break;
             case 4:
-                sb.append(LocaleController.getString("AttachVideo", C0952R.string.AttachVideo));
+                sb.append(LocaleController.getString("AttachVideo", C0890R.string.AttachVideo));
                 break;
             case 5:
-                sb.append(LocaleController.getString("AttachMusic", C0952R.string.AttachMusic));
+                sb.append(LocaleController.getString("AttachMusic", C0890R.string.AttachMusic));
                 break;
             case 6:
-                sb.append(LocaleController.getString("AttachSticker", C0952R.string.AttachSticker));
+                sb.append(LocaleController.getString("AttachSticker", C0890R.string.AttachSticker));
                 break;
             case 7:
-                sb.append(LocaleController.getString("AttachPhoto", C0952R.string.AttachPhoto));
+                sb.append(LocaleController.getString("AttachPhoto", C0890R.string.AttachPhoto));
                 break;
             case 8:
-                sb.append(LocaleController.getString("AttachLocation", C0952R.string.AttachLocation));
+                sb.append(LocaleController.getString("AttachLocation", C0890R.string.AttachLocation));
                 break;
         }
         StaticLayout staticLayout = this.titleLayout;
@@ -657,7 +657,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             }
         } else {
             sb.append(", ");
-            sb.append(LocaleController.formatString("AccDescrMusicInfo", C0952R.string.AccDescrMusicInfo, this.descriptionLayout.getText(), this.titleLayout.getText()));
+            sb.append(LocaleController.formatString("AccDescrMusicInfo", C0890R.string.AccDescrMusicInfo, this.descriptionLayout.getText(), this.titleLayout.getText()));
         }
         accessibilityNodeInfo.setText(sb);
         CheckBox2 checkBox2 = this.checkBox;

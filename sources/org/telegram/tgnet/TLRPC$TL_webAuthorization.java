@@ -8,7 +8,7 @@ public class TLRPC$TL_webAuthorization extends TLObject {
     public int date_created;
     public String domain;
     public long hash;
-    public String f983ip;
+    public String f972ip;
     public String platform;
     public String region;
 
@@ -33,7 +33,7 @@ public class TLRPC$TL_webAuthorization extends TLObject {
         this.platform = abstractSerializedData.readString(z);
         this.date_created = abstractSerializedData.readInt32(z);
         this.date_active = abstractSerializedData.readInt32(z);
-        this.f983ip = abstractSerializedData.readString(z);
+        this.f972ip = abstractSerializedData.readString(z);
         this.region = abstractSerializedData.readString(z);
     }
 
@@ -47,7 +47,7 @@ public class TLRPC$TL_webAuthorization extends TLObject {
         abstractSerializedData.writeString(this.platform);
         abstractSerializedData.writeInt32(this.date_created);
         abstractSerializedData.writeInt32(this.date_active);
-        abstractSerializedData.writeString(this.f983ip);
+        abstractSerializedData.writeString(this.f972ip);
         abstractSerializedData.writeString(this.region);
     }
 }

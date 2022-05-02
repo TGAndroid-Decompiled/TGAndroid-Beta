@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.LayoutHelper;
@@ -21,7 +21,7 @@ public class GroupCreateSectionCell extends FrameLayout {
     public GroupCreateSectionCell(Context context) {
         super(context);
         setBackgroundColor(Theme.getColor("graySection"));
-        Drawable drawable = getResources().getDrawable(C0952R.C0953drawable.shadowdown);
+        Drawable drawable = getResources().getDrawable(C0890R.C0891drawable.shadowdown);
         this.drawable = drawable;
         drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("groupcreate_sectionShadow"), PorterDuff.Mode.MULTIPLY));
         TextView textView = new TextView(getContext());

@@ -24,7 +24,7 @@ import android.widget.FrameLayout;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -143,7 +143,7 @@ public class EditTextCaption extends EditTextBoldCursor {
     public void makeSelectedUrl() {
         final int i;
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
-        builder.setTitle(LocaleController.getString("CreateLink", C0952R.string.CreateLink));
+        builder.setTitle(LocaleController.getString("CreateLink", C0890R.string.CreateLink));
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, getContext()) {
             @Override
             public void onMeasure(int i2, int i3) {
@@ -153,7 +153,7 @@ public class EditTextCaption extends EditTextBoldCursor {
         editTextBoldCursor.setTextSize(1, 18.0f);
         editTextBoldCursor.setText("http://");
         editTextBoldCursor.setTextColor(getThemedColor("dialogTextBlack"));
-        editTextBoldCursor.setHintText(LocaleController.getString("URL", C0952R.string.URL));
+        editTextBoldCursor.setHintText(LocaleController.getString("URL", C0890R.string.URL));
         editTextBoldCursor.setHeaderHintColor(getThemedColor("windowBackgroundWhiteBlueHeader"));
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setFocusable(true);
@@ -172,13 +172,13 @@ public class EditTextCaption extends EditTextBoldCursor {
             this.selectionEnd = -1;
             this.selectionStart = -1;
         }
-        builder.setPositiveButton(LocaleController.getString("OK", C0952R.string.OK), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(LocaleController.getString("OK", C0890R.string.OK), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 EditTextCaption.this.lambda$makeSelectedUrl$0(i2, i, editTextBoldCursor, dialogInterface, i3);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", C0952R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString("Cancel", C0890R.string.Cancel), null);
         builder.show().setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
@@ -333,28 +333,28 @@ public class EditTextCaption extends EditTextBoldCursor {
     }
 
     public boolean performMenuAction(int i) {
-        if (i == C0952R.C0954id.menu_regular) {
+        if (i == C0890R.C0892id.menu_regular) {
             makeSelectedRegular();
             return true;
-        } else if (i == C0952R.C0954id.menu_bold) {
+        } else if (i == C0890R.C0892id.menu_bold) {
             makeSelectedBold();
             return true;
-        } else if (i == C0952R.C0954id.menu_italic) {
+        } else if (i == C0890R.C0892id.menu_italic) {
             makeSelectedItalic();
             return true;
-        } else if (i == C0952R.C0954id.menu_mono) {
+        } else if (i == C0890R.C0892id.menu_mono) {
             makeSelectedMono();
             return true;
-        } else if (i == C0952R.C0954id.menu_link) {
+        } else if (i == C0890R.C0892id.menu_link) {
             makeSelectedUrl();
             return true;
-        } else if (i == C0952R.C0954id.menu_strike) {
+        } else if (i == C0890R.C0892id.menu_strike) {
             makeSelectedStrike();
             return true;
-        } else if (i == C0952R.C0954id.menu_underline) {
+        } else if (i == C0890R.C0892id.menu_underline) {
             makeSelectedUnderline();
             return true;
-        } else if (i != C0952R.C0954id.menu_spoiler) {
+        } else if (i != C0890R.C0892id.menu_spoiler) {
             return false;
         } else {
             makeSelectedSpoiler();
@@ -478,14 +478,14 @@ public class EditTextCaption extends EditTextBoldCursor {
             i++;
         }
         if (hasSelection()) {
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0952R.C0954id.menu_spoiler, LocaleController.getString("Spoiler", C0952R.string.Spoiler)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0952R.C0954id.menu_bold, LocaleController.getString("Bold", C0952R.string.Bold)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0952R.C0954id.menu_italic, LocaleController.getString("Italic", C0952R.string.Italic)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0952R.C0954id.menu_mono, LocaleController.getString("Mono", C0952R.string.Mono)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0952R.C0954id.menu_strike, LocaleController.getString("Strike", C0952R.string.Strike)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0952R.C0954id.menu_underline, LocaleController.getString("Underline", C0952R.string.Underline)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0952R.C0954id.menu_link, LocaleController.getString("CreateLink", C0952R.string.CreateLink)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0952R.C0954id.menu_regular, LocaleController.getString("Regular", C0952R.string.Regular)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0890R.C0892id.menu_spoiler, LocaleController.getString("Spoiler", C0890R.string.Spoiler)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0890R.C0892id.menu_bold, LocaleController.getString("Bold", C0890R.string.Bold)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0890R.C0892id.menu_italic, LocaleController.getString("Italic", C0890R.string.Italic)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0890R.C0892id.menu_mono, LocaleController.getString("Mono", C0890R.string.Mono)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0890R.C0892id.menu_strike, LocaleController.getString("Strike", C0890R.string.Strike)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0890R.C0892id.menu_underline, LocaleController.getString("Underline", C0890R.string.Underline)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0890R.C0892id.menu_link, LocaleController.getString("CreateLink", C0890R.string.CreateLink)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(C0890R.C0892id.menu_regular, LocaleController.getString("Regular", C0890R.string.Regular)));
         }
     }
 

@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
@@ -62,7 +62,7 @@ public class ActionBarLayout extends FrameLayout {
     private boolean beginTrackingSent;
     public LayoutContainer containerView;
     private LayoutContainer containerViewBack;
-    private C1006ActionBar currentActionBar;
+    private C0945ActionBar currentActionBar;
     private AnimatorSet currentAnimation;
     private boolean delayedAnimationResumed;
     private Runnable delayedOpenAnimationRunnable;
@@ -156,7 +156,7 @@ public class ActionBarLayout extends FrameLayout {
         protected boolean drawChild(Canvas canvas, View view, long j) {
             int i;
             int i2;
-            if (view instanceof C1006ActionBar) {
+            if (view instanceof C0945ActionBar) {
                 return super.drawChild(canvas, view, j);
             }
             int childCount = getChildCount();
@@ -166,9 +166,9 @@ public class ActionBarLayout extends FrameLayout {
                     break;
                 }
                 View childAt = getChildAt(i3);
-                if (childAt == view || !(childAt instanceof C1006ActionBar) || childAt.getVisibility() != 0) {
+                if (childAt == view || !(childAt instanceof C0945ActionBar) || childAt.getVisibility() != 0) {
                     i3++;
-                } else if (((C1006ActionBar) childAt).getCastShadows()) {
+                } else if (((C0945ActionBar) childAt).getCastShadows()) {
                     i2 = childAt.getMeasuredHeight();
                     i = (int) childAt.getY();
                 }
@@ -202,7 +202,7 @@ public class ActionBarLayout extends FrameLayout {
                     break;
                 }
                 View childAt = getChildAt(i4);
-                if (childAt instanceof C1006ActionBar) {
+                if (childAt instanceof C0945ActionBar) {
                     childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                     i3 = childAt.getMeasuredHeight();
                     break;
@@ -211,7 +211,7 @@ public class ActionBarLayout extends FrameLayout {
             }
             for (int i5 = 0; i5 < childCount; i5++) {
                 View childAt2 = getChildAt(i5);
-                if (!(childAt2 instanceof C1006ActionBar)) {
+                if (!(childAt2 instanceof C0945ActionBar)) {
                     if (childAt2.getFitsSystemWindows()) {
                         measureChildWithMargins(childAt2, i, 0, i2, 0);
                     } else {
@@ -234,7 +234,7 @@ public class ActionBarLayout extends FrameLayout {
                     break;
                 }
                 View childAt = getChildAt(i6);
-                if (childAt instanceof C1006ActionBar) {
+                if (childAt instanceof C0945ActionBar) {
                     i5 = childAt.getMeasuredHeight();
                     childAt.layout(0, 0, childAt.getMeasuredWidth(), i5);
                     break;
@@ -243,7 +243,7 @@ public class ActionBarLayout extends FrameLayout {
             }
             for (int i7 = 0; i7 < childCount; i7++) {
                 View childAt2 = getChildAt(i7);
-                if (!(childAt2 instanceof C1006ActionBar)) {
+                if (!(childAt2 instanceof C0945ActionBar)) {
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt2.getLayoutParams();
                     if (childAt2.getFitsSystemWindows()) {
                         int i8 = layoutParams.leftMargin;
@@ -327,8 +327,8 @@ public class ActionBarLayout extends FrameLayout {
         super(context);
         this.parentActivity = (Activity) context;
         if (layerShadowDrawable == null) {
-            layerShadowDrawable = getResources().getDrawable(C0952R.C0953drawable.layer_shadow);
-            headerShadowDrawable = getResources().getDrawable(C0952R.C0953drawable.header_shadow).mutate();
+            layerShadowDrawable = getResources().getDrawable(C0890R.C0891drawable.layer_shadow);
+            headerShadowDrawable = getResources().getDrawable(C0890R.C0891drawable.header_shadow).mutate();
             scrimPaint = new Paint();
         }
     }
@@ -657,7 +657,7 @@ public class ActionBarLayout extends FrameLayout {
                 baseFragment3.onRemoveFromParent();
                 viewGroup2.removeViewInLayout(baseFragment3.fragmentView);
             }
-            C1006ActionBar actionBar = baseFragment3.actionBar;
+            C0945ActionBar actionBar = baseFragment3.actionBar;
             if (!(actionBar == null || !actionBar.shouldAddToContainer() || (viewGroup = (ViewGroup) baseFragment3.actionBar.getParent()) == null)) {
                 viewGroup.removeViewInLayout(baseFragment3.actionBar);
             }
@@ -696,7 +696,7 @@ public class ActionBarLayout extends FrameLayout {
         layoutParams.bottomMargin = 0;
         layoutParams.topMargin = 0;
         view.setLayoutParams(layoutParams);
-        C1006ActionBar actionBar = baseFragment.actionBar;
+        C0945ActionBar actionBar = baseFragment.actionBar;
         if (actionBar != null && actionBar.shouldAddToContainer()) {
             ViewGroup viewGroup2 = (ViewGroup) baseFragment.actionBar.getParent();
             if (viewGroup2 != null) {
@@ -851,9 +851,9 @@ public class ActionBarLayout extends FrameLayout {
 
     public void onBackPressed() {
         if (!this.transitionAnimationPreviewMode && !this.startedTracking && !checkTransitionAnimation() && !this.fragmentsStack.isEmpty() && !GroupCallPip.onBackPressed()) {
-            C1006ActionBar actionBar = this.currentActionBar;
+            C0945ActionBar actionBar = this.currentActionBar;
             if (actionBar != null && !actionBar.isActionModeShowed()) {
-                C1006ActionBar actionBar2 = this.currentActionBar;
+                C0945ActionBar actionBar2 = this.currentActionBar;
                 if (actionBar2.isSearchFieldVisible) {
                     actionBar2.closeSearchField();
                     return;
@@ -954,7 +954,7 @@ public class ActionBarLayout extends FrameLayout {
                         }
                     }
                 }
-                C1006ActionBar actionBar = baseFragment.actionBar;
+                C0945ActionBar actionBar = baseFragment.actionBar;
                 if (!(actionBar == null || !actionBar.shouldAddToContainer() || (viewGroup = (ViewGroup) baseFragment.actionBar.getParent()) == null)) {
                     viewGroup.removeViewInLayout(baseFragment.actionBar);
                 }
@@ -1146,7 +1146,7 @@ public class ActionBarLayout extends FrameLayout {
             layoutParams2.topMargin = 0;
         }
         view2.setLayoutParams(layoutParams2);
-        C1006ActionBar actionBar = baseFragment.actionBar;
+        C0945ActionBar actionBar = baseFragment.actionBar;
         if (actionBar != null && actionBar.shouldAddToContainer()) {
             if (this.removeActionBarExtraHeight) {
                 baseFragment.actionBar.setOccupyStatusBar(false);
@@ -1176,7 +1176,7 @@ public class ActionBarLayout extends FrameLayout {
             if (Build.VERSION.SDK_INT >= 21) {
                 view2.setOutlineProvider(new ViewOutlineProvider(this) {
                     @Override
-                    @TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
+                    @TargetApi(C0890R.styleable.MapAttrs_uiZoomGestures)
                     public void getOutline(View view3, Outline outline) {
                         outline.setRoundRect(0, AndroidUtilities.statusBarHeight, view3.getMeasuredWidth(), view3.getMeasuredHeight(), AndroidUtilities.m34dp(6.0f));
                     }
@@ -1421,7 +1421,7 @@ public class ActionBarLayout extends FrameLayout {
                 ArrayList<BaseFragment> arrayList = this.fragmentsStack;
                 BaseFragment baseFragment2 = arrayList.get(arrayList.size() - 1);
                 baseFragment2.onPause();
-                C1006ActionBar actionBar = baseFragment2.actionBar;
+                C0945ActionBar actionBar = baseFragment2.actionBar;
                 if (!(actionBar == null || !actionBar.shouldAddToContainer() || (viewGroup2 = (ViewGroup) baseFragment2.actionBar.getParent()) == null)) {
                     viewGroup2.removeView(baseFragment2.actionBar);
                 }
@@ -1515,7 +1515,7 @@ public class ActionBarLayout extends FrameLayout {
                     layoutParams.bottomMargin = 0;
                     layoutParams.topMargin = 0;
                     view.setLayoutParams(layoutParams);
-                    C1006ActionBar actionBar = baseFragment.actionBar;
+                    C0945ActionBar actionBar = baseFragment.actionBar;
                     if (actionBar != null && actionBar.shouldAddToContainer()) {
                         if (this.removeActionBarExtraHeight) {
                             baseFragment.actionBar.setOccupyStatusBar(false);
@@ -1675,7 +1675,7 @@ public class ActionBarLayout extends FrameLayout {
         if (!this.fragmentsStack.isEmpty()) {
             for (int i2 = 0; i2 < i; i2++) {
                 BaseFragment baseFragment = this.fragmentsStack.get(i2);
-                C1006ActionBar actionBar = baseFragment.actionBar;
+                C0945ActionBar actionBar = baseFragment.actionBar;
                 if (!(actionBar == null || !actionBar.shouldAddToContainer() || (viewGroup2 = (ViewGroup) baseFragment.actionBar.getParent()) == null)) {
                     viewGroup2.removeView(baseFragment.actionBar);
                 }
@@ -1699,7 +1699,7 @@ public class ActionBarLayout extends FrameLayout {
                 }
             }
             this.containerView.addView(view2, LayoutHelper.createFrame(-1, -1.0f));
-            C1006ActionBar actionBar2 = baseFragment2.actionBar;
+            C0945ActionBar actionBar2 = baseFragment2.actionBar;
             if (actionBar2 != null && actionBar2.shouldAddToContainer()) {
                 if (this.removeActionBarExtraHeight) {
                     baseFragment2.actionBar.setOccupyStatusBar(false);
@@ -2024,7 +2024,7 @@ public class ActionBarLayout extends FrameLayout {
 
     @Override
     public boolean onKeyUp(int i, KeyEvent keyEvent) {
-        C1006ActionBar actionBar;
+        C0945ActionBar actionBar;
         if (i == 82 && !checkTransitionAnimation() && !this.startedTracking && (actionBar = this.currentActionBar) != null) {
             actionBar.onMenuButtonPressed();
         }
@@ -2032,7 +2032,7 @@ public class ActionBarLayout extends FrameLayout {
     }
 
     public void onActionModeStarted(Object obj) {
-        C1006ActionBar actionBar = this.currentActionBar;
+        C0945ActionBar actionBar = this.currentActionBar;
         if (actionBar != null) {
             actionBar.setVisibility(8);
         }
@@ -2040,7 +2040,7 @@ public class ActionBarLayout extends FrameLayout {
     }
 
     public void onActionModeFinished(Object obj) {
-        C1006ActionBar actionBar = this.currentActionBar;
+        C0945ActionBar actionBar = this.currentActionBar;
         if (actionBar != null) {
             actionBar.setVisibility(0);
         }
@@ -2133,7 +2133,7 @@ public class ActionBarLayout extends FrameLayout {
         this.titleOverlayTextId = i;
         this.overlayAction = runnable;
         for (int i2 = 0; i2 < this.fragmentsStack.size(); i2++) {
-            C1006ActionBar actionBar = this.fragmentsStack.get(i2).actionBar;
+            C0945ActionBar actionBar = this.fragmentsStack.get(i2).actionBar;
             if (actionBar != null) {
                 actionBar.setTitleOverlayText(this.titleOverlayText, this.titleOverlayTextId, runnable);
             }

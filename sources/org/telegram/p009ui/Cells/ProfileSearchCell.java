@@ -9,9 +9,9 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.PhoneFormat.C0894PhoneFormat;
+import org.telegram.PhoneFormat.C0832PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageLocation;
@@ -170,7 +170,7 @@ public class ProfileSearchCell extends BaseCell {
         this.drawNameBot = false;
         if (this.encryptedChat != null) {
             this.drawNameLock = true;
-            this.dialog_id = DialogObject.makeEncryptedDialogId(tLRPC$EncryptedChat.f865id);
+            this.dialog_id = DialogObject.makeEncryptedDialogId(tLRPC$EncryptedChat.f854id);
             if (!LocaleController.isRTL) {
                 this.nameLockLeft = AndroidUtilities.m34dp(AndroidUtilities.leftBaseline);
                 this.nameLeft = AndroidUtilities.m34dp(AndroidUtilities.leftBaseline + 4) + Theme.dialogs_lockDrawable.getIntrinsicWidth();
@@ -182,7 +182,7 @@ public class ProfileSearchCell extends BaseCell {
         } else {
             TLRPC$Chat tLRPC$Chat = this.chat;
             if (tLRPC$Chat != null) {
-                this.dialog_id = -tLRPC$Chat.f854id;
+                this.dialog_id = -tLRPC$Chat.f843id;
                 if (SharedConfig.drawDialogIcons) {
                     if (!ChatObject.isChannel(tLRPC$Chat) || this.chat.megagroup) {
                         this.drawNameGroup = true;
@@ -209,7 +209,7 @@ public class ProfileSearchCell extends BaseCell {
             } else {
                 TLRPC$User tLRPC$User = this.user;
                 if (tLRPC$User != null) {
-                    this.dialog_id = tLRPC$User.f985id;
+                    this.dialog_id = tLRPC$User.f974id;
                     if (!LocaleController.isRTL) {
                         this.nameLeft = AndroidUtilities.m34dp(AndroidUtilities.leftBaseline);
                     } else {
@@ -249,9 +249,9 @@ public class ProfileSearchCell extends BaseCell {
         if (str5.length() == 0) {
             TLRPC$User tLRPC$User4 = this.user;
             if (tLRPC$User4 == null || (str3 = tLRPC$User4.phone) == null || str3.length() == 0) {
-                str5 = LocaleController.getString("HiddenName", C0952R.string.HiddenName);
+                str5 = LocaleController.getString("HiddenName", C0890R.string.HiddenName);
             } else {
-                str5 = C0894PhoneFormat.getInstance().format("+" + this.user.phone);
+                str5 = C0832PhoneFormat.getInstance().format("+" + this.user.phone);
             }
         }
         if (this.encryptedChat != null) {
@@ -319,21 +319,21 @@ public class ProfileSearchCell extends BaseCell {
                 if (tLRPC$User5 == null) {
                     str = null;
                 } else if (MessagesController.isSupportUser(tLRPC$User5)) {
-                    str = LocaleController.getString("SupportStatus", C0952R.string.SupportStatus);
+                    str = LocaleController.getString("SupportStatus", C0890R.string.SupportStatus);
                 } else {
                     TLRPC$User tLRPC$User6 = this.user;
                     if (tLRPC$User6.bot) {
-                        str = LocaleController.getString("Bot", C0952R.string.Bot);
+                        str = LocaleController.getString("Bot", C0890R.string.Bot);
                     } else {
-                        long j = tLRPC$User6.f985id;
+                        long j = tLRPC$User6.f974id;
                         if (j == 333000 || j == 777000) {
-                            str = LocaleController.getString("ServiceNotifications", C0952R.string.ServiceNotifications);
+                            str = LocaleController.getString("ServiceNotifications", C0890R.string.ServiceNotifications);
                         } else {
                             str = LocaleController.formatUserStatus(this.currentAccount, tLRPC$User6);
                             TLRPC$User tLRPC$User7 = this.user;
-                            if (tLRPC$User7 != null && (tLRPC$User7.f985id == UserConfig.getInstance(this.currentAccount).getClientUserId() || ((tLRPC$UserStatus = this.user.status) != null && tLRPC$UserStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()))) {
+                            if (tLRPC$User7 != null && (tLRPC$User7.f974id == UserConfig.getInstance(this.currentAccount).getClientUserId() || ((tLRPC$UserStatus = this.user.status) != null && tLRPC$UserStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()))) {
                                 textPaint3 = Theme.dialogs_onlinePaint;
-                                str = LocaleController.getString("Online", C0952R.string.Online);
+                                str = LocaleController.getString("Online", C0890R.string.Online);
                             }
                         }
                     }
@@ -351,9 +351,9 @@ public class ProfileSearchCell extends BaseCell {
                     if (i4 != 0) {
                         str2 = LocaleController.formatPluralString("Subscribers", i4);
                     } else if (TextUtils.isEmpty(tLRPC$Chat4.username)) {
-                        str2 = LocaleController.getString("ChannelPrivate", C0952R.string.ChannelPrivate).toLowerCase();
+                        str2 = LocaleController.getString("ChannelPrivate", C0890R.string.ChannelPrivate).toLowerCase();
                     } else {
-                        str2 = LocaleController.getString("ChannelPublic", C0952R.string.ChannelPublic).toLowerCase();
+                        str2 = LocaleController.getString("ChannelPublic", C0890R.string.ChannelPublic).toLowerCase();
                     }
                     str = str2;
                     this.nameTop = AndroidUtilities.m34dp(19.0f);
@@ -364,11 +364,11 @@ public class ProfileSearchCell extends BaseCell {
             if (i5 != 0) {
                 str2 = LocaleController.formatPluralString("Members", i5);
             } else if (tLRPC$Chat5.has_geo) {
-                str2 = LocaleController.getString("MegaLocation", C0952R.string.MegaLocation);
+                str2 = LocaleController.getString("MegaLocation", C0890R.string.MegaLocation);
             } else if (TextUtils.isEmpty(tLRPC$Chat5.username)) {
-                str2 = LocaleController.getString("MegaPrivate", C0952R.string.MegaPrivate).toLowerCase();
+                str2 = LocaleController.getString("MegaPrivate", C0890R.string.MegaPrivate).toLowerCase();
             } else {
-                str2 = LocaleController.getString("MegaPublic", C0952R.string.MegaPublic).toLowerCase();
+                str2 = LocaleController.getString("MegaPublic", C0890R.string.MegaPublic).toLowerCase();
             }
             str = str2;
             this.nameTop = AndroidUtilities.m34dp(19.0f);

@@ -73,7 +73,7 @@ class MediaCodecUtils {
         return false;
     }
 
-    static class C36771 {
+    static class C35941 {
         static final int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
 
         static {
@@ -103,7 +103,7 @@ class MediaCodecUtils {
     }
 
     public static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z) {
-        int i = C36771.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+        int i = C35941.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i == 1 || i == 2 || i == 3 || i == 4) {
             return new HashMap();
         }

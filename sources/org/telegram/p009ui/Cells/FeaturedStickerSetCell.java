@@ -17,7 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.C0890R;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
@@ -85,7 +85,7 @@ public class FeaturedStickerSetCell extends FrameLayout {
         addView(backupImageView2, LayoutHelper.createFrame(48, 48.0f, (!z3 ? 3 : i) | 48, z3 ? 0.0f : 12.0f, 8.0f, z3 ? 12.0f : 0.0f, 0.0f));
         ProgressButton progressButton = new ProgressButton(context);
         this.addButton = progressButton;
-        progressButton.setText(LocaleController.getString("Add", C0952R.string.Add));
+        progressButton.setText(LocaleController.getString("Add", C0890R.string.Add));
         this.addButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         this.addButton.setProgressColor(Theme.getColor("featuredStickers_buttonProgress"));
         this.addButton.setBackgroundRoundRect(Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed"));
@@ -93,7 +93,7 @@ public class FeaturedStickerSetCell extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.checkImage = imageView;
         imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("featuredStickers_addedIcon"), PorterDuff.Mode.MULTIPLY));
-        this.checkImage.setImageResource(C0952R.C0953drawable.sticker_added);
+        this.checkImage.setImageResource(C0890R.C0891drawable.sticker_added);
         addView(this.checkImage, LayoutHelper.createFrame(19, 14.0f));
     }
 
@@ -206,7 +206,7 @@ public class FeaturedStickerSetCell extends FrameLayout {
         }
         if (z3) {
             boolean z6 = this.isInstalled;
-            boolean isStickerPackInstalled = MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(tLRPC$StickerSetCovered.set.f886id);
+            boolean isStickerPackInstalled = MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(tLRPC$StickerSetCovered.set.f875id);
             this.isInstalled = isStickerPackInstalled;
             if (isStickerPackInstalled) {
                 if (!z6) {
@@ -270,7 +270,7 @@ public class FeaturedStickerSetCell extends FrameLayout {
             if (animatorSet5 != null) {
                 animatorSet5.cancel();
             }
-            boolean isStickerPackInstalled2 = MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(tLRPC$StickerSetCovered.set.f886id);
+            boolean isStickerPackInstalled2 = MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(tLRPC$StickerSetCovered.set.f875id);
             this.isInstalled = isStickerPackInstalled2;
             if (isStickerPackInstalled2) {
                 this.addButton.setVisibility(4);
