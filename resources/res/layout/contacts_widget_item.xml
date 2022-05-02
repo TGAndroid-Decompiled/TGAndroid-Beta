@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:id="@+id/contacts_widget_item" android:layout_width="match_parent" android:layout_height="86dp" android:baselineAligned="false" android:weightSum="1" android:minHeight="72dp">
+    <include layout="@layout/contacts_widget_item_1"/>
+    <include layout="@layout/contacts_widget_item_2"/>
+</LinearLayout>

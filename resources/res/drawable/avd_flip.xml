@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:drawable="@drawable/res_0x7f070000_avd_flip__0">
+    <target android:name="path_2" android:animation="@drawable/res_0x7f070001_avd_flip__1"/>
+    <target android:name="path_4" android:animation="@drawable/res_0x7f070002_avd_flip__2"/>
+    <target android:name="group_1" android:animation="@drawable/res_0x7f070003_avd_flip__3"/>
+    <target android:name="group" android:animation="@drawable/res_0x7f070004_avd_flip__4"/>
+</animated-vector>

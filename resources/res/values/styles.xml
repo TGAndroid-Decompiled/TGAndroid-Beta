@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ActionBar_Transparent_TMessages_Item" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="ActionBar_Transparent_TMessages_Start" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">#ff527da3</item>
+        <item name="android:title" />
+        <item name="android:logo">@drawable/transparent</item>
+    </style>
+    <style name="Base_TMessages_AppWidget_Background" parent="@android:style/Widget">
+        <item name="android:id">@android:id/background</item>
+        <item name="android:padding">2dp</item>
+    </style>
+    <style name="Base_TMessages_AppWidget_Badge" parent="@android:style/Widget">
+        <item name="android:textSize">13dp</item>
+        <item name="android:gravity">0x11</item>
+        <item name="android:background">@drawable/widget_badge_background</item>
+        <item name="android:paddingLeft">7dp</item>
+        <item name="android:paddingRight">7dp</item>
+        <item name="android:paddingBottom">1dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">23dp</item>
+        <item name="android:minWidth">23dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="Base_Theme_TMessages_AppWidget" parent="@style/Theme_TMessages">
+    </style>
+    <style name="DialogNoAnimation">
+        <item name="android:windowEnterAnimation">@anim/no_animation</item>
+        <item name="android:windowExitAnimation">@anim/no_animation</item>
+    </style>
+    <style name="MyTextViewStyle" parent="@android:style/Widget.Holo.Light.TextView">
+    </style>
+    <style name="PopupAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_out</item>
+    </style>
+    <style name="PopupContextAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_context_in</item>
+    </style>
+    <style name="PopupContextAnimation2" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_context_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_out</item>
+    </style>
+    <style name="TMessages_AppWidget_Background" parent="@style/Base_TMessages_AppWidget_Background">
+        <item name="android:background">@drawable/widget_bg</item>
+    </style>
+    <style name="TMessages_AppWidget_Badge" parent="@style/Base_TMessages_AppWidget_Badge">
+        <item name="android:textColor">@color/widget_badge</item>
+    </style>
+    <style name="TextAppearance_Compat_Notification" parent="@android:style/TextAppearance.StatusBar.EventContent">
+    </style>
+    <style name="TextAppearance_Compat_Notification_Info" parent="@style/TextAppearance_Compat_Notification">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance_Compat_Notification_Line2" parent="@style/TextAppearance_Compat_Notification_Info">
+    </style>
+    <style name="TextAppearance_Compat_Notification_Time" parent="@style/TextAppearance_Compat_Notification">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance_Compat_Notification_Title" parent="@android:style/TextAppearance.StatusBar.EventContent.Title">
+    </style>
+    <style name="Theme_TMessages" parent="@android:style/Theme.Holo.Light">
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:listViewStyle">@style/Theme_TMessages_ListView</item>
+        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
+        <item name="android:itemTextAppearance">@style/ActionBar_Transparent_TMessages_Item</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowActionBarOverlay">false</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_ex</item>
+        <item name="android:actionBarItemBackground">@drawable/bar_selector_style</item>
+    </style>
+    <style name="Theme_TMessages_AppWidget" parent="@style/Base_Theme_TMessages_AppWidget">
+        <item name="widgetBackgroundCornerRadius">@dimen/app_widget_background_corner_radius</item>
+        <item name="widgetPreviewContent">@null</item>
+        <item name="widgetPreviewDot">@null</item>
+        <item name="widgetPreviewImage">@null</item>
+        <item name="widgetPreviewTime">@null</item>
+        <item name="widgetPreviewTitle">@null</item>
+    </style>
+    <style name="Theme_TMessages_AppWidget_Preview" parent="@style/Theme_TMessages_AppWidget">
+        <item name="widgetPreviewContent">☀ 30°C Sunny,</item>
+        <item name="widgetPreviewDot">@null</item>
+        <item name="widgetPreviewImage">@drawable/widget_avatar_5</item>
+        <item name="widgetPreviewTime">13:00</item>
+        <item name="widgetPreviewTitle">Local Weather</item>
+    </style>
+    <style name="Theme_TMessages_AppWidget_Preview2" parent="@style/Theme_TMessages_AppWidget">
+        <item name="widgetPreviewContent">It&apos;s morning in Tokyo ��</item>
+        <item name="widgetPreviewDot">2</item>
+        <item name="widgetPreviewImage">@drawable/widget_avatar_7</item>
+        <item name="widgetPreviewTime">12:00</item>
+        <item name="widgetPreviewTitle">Rex</item>
+    </style>
+    <style name="Theme_TMessages_AppWidget_Preview3" parent="@style/Theme_TMessages_AppWidget">
+        <item name="widgetPreviewContent">�� Sticker</item>
+        <item name="widgetPreviewDot">2</item>
+        <item name="widgetPreviewImage">@drawable/widget_avatar_6</item>
+        <item name="widgetPreviewTime">11:00</item>
+        <item name="widgetPreviewTitle">Dolph Ingman</item>
+    </style>
+    <style name="Theme_TMessages_AppWidget_Preview4" parent="@style/Theme_TMessages_AppWidget">
+        <item name="widgetPreviewDot">@null</item>
+        <item name="widgetPreviewImage">@drawable/widget_avatar_1</item>
+        <item name="widgetPreviewTitle">Doge</item>
+    </style>
+    <style name="Theme_TMessages_AppWidget_Preview5" parent="@style/Theme_TMessages_AppWidget">
+        <item name="widgetPreviewDot">2</item>
+        <item name="widgetPreviewImage">@drawable/widget_avatar_4</item>
+        <item name="widgetPreviewTitle">Donald</item>
+    </style>
+    <style name="Theme_TMessages_AppWidget_Preview6" parent="@style/Theme_TMessages_AppWidget">
+        <item name="widgetPreviewDot">2</item>
+        <item name="widgetPreviewImage">@drawable/widget_avatar_2</item>
+        <item name="widgetPreviewTitle">Kate</item>
+    </style>
+    <style name="Theme_TMessages_AppWidget_Preview7" parent="@style/Theme_TMessages_AppWidget">
+        <item name="widgetPreviewDot">2</item>
+        <item name="widgetPreviewImage">@drawable/widget_avatar_3</item>
+        <item name="widgetPreviewTitle">Nick</item>
+    </style>
+    <style name="Theme_TMessages_ListView" parent="@android:style/Widget.ListView">
+        <item name="android:fadingEdge">0x0</item>
+        <item name="android:listSelector">@drawable/list_selector_ex</item>
+        <item name="android:divider">@color/divider</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+    <style name="Theme_TMessages_PopupNotification" parent="@style/Theme_TMessages">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+    <style name="Theme_TMessages_Start" parent="@android:style/Theme.Holo.Light">
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
+        <item name="android:actionBarStyle">@style/ActionBar_Transparent_TMessages_Start</item>
+    </style>
+    <style name="Theme_TMessages_Transparent" parent="@style/Theme_TMessages">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+    <style name="Theme_TMessages_TransparentWithAlerts" parent="@style/Theme_TMessages">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+    <style name="TransparentDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+    <style name="TransparentDialogNoAnimation" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
+    <style name="WalletFragmentDefaultButtonTextAppearance">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textColor">@color/wallet_primary_text_holo_light</item>
+        <item name="android:textColorHighlight">@color/wallet_highlighted_text_holo_light</item>
+        <item name="android:textColorHint">@color/wallet_hint_foreground_holo_light</item>
+        <item name="android:textColorLink">@color/wallet_link_text_light</item>
+    </style>
+    <style name="WalletFragmentDefaultDetailsHeaderTextAppearance" parent="@style/WalletFragmentDefaultDetailsTextAppearance">
+        <item name="android:textStyle">0x1</item>
+    </style>
+    <style name="WalletFragmentDefaultDetailsTextAppearance">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">0x0</item>
+        <item name="android:textColor">@color/wallet_secondary_text_holo_dark</item>
+        <item name="android:textColorHighlight">@color/wallet_highlighted_text_holo_dark</item>
+        <item name="android:textColorHint">@color/wallet_hint_foreground_holo_dark</item>
+        <item name="android:textColorLink">@color/wallet_holo_blue_light</item>
+    </style>
+    <style name="WalletFragmentDefaultStyle">
+        <item name="buyButtonAppearance">4</item>
+        <item name="buyButtonHeight">48dp</item>
+        <item name="buyButtonText">5</item>
+        <item name="buyButtonWidth">-1</item>
+        <item name="maskedWalletDetailsBackground">@color/wallet_bright_foreground_holo_light</item>
+        <item name="maskedWalletDetailsButtonBackground">@android:drawable/btn_default</item>
+        <item name="maskedWalletDetailsButtonTextAppearance">@style/WalletFragmentDefaultButtonTextAppearance</item>
+        <item name="maskedWalletDetailsHeaderTextAppearance">@style/WalletFragmentDefaultDetailsHeaderTextAppearance</item>
+        <item name="maskedWalletDetailsLogoImageType">3</item>
+        <item name="maskedWalletDetailsLogoTextColor">@color/wallet_bright_foreground_holo_dark</item>
+        <item name="maskedWalletDetailsTextAppearance">@style/WalletFragmentDefaultDetailsTextAppearance</item>
+    </style>
+    <style name="Widget_Compat_NotificationActionContainer">
+    </style>
+    <style name="Widget_Compat_NotificationActionText">
+    </style>
+    <style name="Widget_Support_CoordinatorLayout" parent="@android:style/Widget">
+        <item name="statusBarBackground">#000000</item>
+    </style>
+    <style name="scrollbarShapeStyle">
+        <item name="android:scrollbarSize">8dp</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_vertical_thumb_inset</item>
+        <item name="android:scrollbarTrackVertical">@null</item>
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+        <item name="android:scrollbarStyle">0x1000000</item>
+        <item name="android:scrollbars">0x200</item>
+        <item name="android:scrollbarFadeDuration">250</item>
+        <item name="android:scrollbarDefaultDelayBeforeFade">400</item>
+        <item name="android:fadeScrollbars">true</item>
+    </style>
+</resources>

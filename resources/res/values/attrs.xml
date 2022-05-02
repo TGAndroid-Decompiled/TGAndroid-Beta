@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="allowShortcuts" format="boolean">
+    </attr>
+    <attr name="alpha" format="float">
+    </attr>
+    <attr name="ambientEnabled" format="boolean">
+    </attr>
+    <attr name="appTheme">
+        <enum name="holo_dark" value="0" />
+        <enum name="holo_light" value="1" />
+    </attr>
+    <attr name="buttonSize" format="reference">
+        <enum name="standard" value="0" />
+        <enum name="wide" value="1" />
+        <enum name="icon_only" value="2" />
+    </attr>
+    <attr name="buyButtonAppearance">
+        <enum name="google_wallet_classic" value="1" />
+        <enum name="google_wallet_grayscale" value="2" />
+        <enum name="google_wallet_monochrome" value="3" />
+        <enum name="android_pay_dark" value="4" />
+        <enum name="android_pay_light" value="5" />
+        <enum name="android_pay_light_with_border" value="6" />
+        <enum name="classic" value="1" />
+        <enum name="grayscale" value="2" />
+        <enum name="monochrome" value="3" />
+    </attr>
+    <attr name="buyButtonHeight" format="dimension">
+        <enum name="match_parent" value="-1" />
+        <enum name="wrap_content" value="-2" />
+    </attr>
+    <attr name="buyButtonText">
+        <enum name="buy_with" value="5" />
+        <enum name="logo_only" value="6" />
+        <enum name="donate_with" value="7" />
+        <enum name="buy_with_google" value="1" />
+        <enum name="buy_now" value="2" />
+        <enum name="book_now" value="3" />
+        <enum name="donate_with_google" value="4" />
+    </attr>
+    <attr name="buyButtonWidth" format="dimension">
+        <enum name="match_parent" value="-1" />
+        <enum name="wrap_content" value="-2" />
+    </attr>
+    <attr name="cameraBearing" format="float">
+    </attr>
+    <attr name="cameraMaxZoomPreference" format="float">
+    </attr>
+    <attr name="cameraMinZoomPreference" format="float">
+    </attr>
+    <attr name="cameraTargetLat" format="float">
+    </attr>
+    <attr name="cameraTargetLng" format="float">
+    </attr>
+    <attr name="cameraTilt" format="float">
+    </attr>
+    <attr name="cameraZoom" format="float">
+    </attr>
+    <attr name="circleCrop" format="boolean">
+    </attr>
+    <attr name="colorScheme" format="reference">
+        <enum name="dark" value="0" />
+        <enum name="light" value="1" />
+        <enum name="auto" value="2" />
+    </attr>
+    <attr name="contentProviderUri" format="string">
+    </attr>
+    <attr name="coordinatorLayoutStyle" format="reference">
+    </attr>
+    <attr name="corpusId" format="string">
+    </attr>
+    <attr name="corpusVersion" format="string">
+    </attr>
+    <attr name="customThemeStyle">
+        <enum name="material" value="1" />
+        <enum name="googleMaterial2" value="2" />
+    </attr>
+    <attr name="defaultIntentAction" format="string">
+    </attr>
+    <attr name="defaultIntentActivity" format="string">
+    </attr>
+    <attr name="defaultIntentData" format="string">
+    </attr>
+    <attr name="documentMaxAgeSecs" format="integer">
+    </attr>
+    <attr name="environment">
+        <enum name="production" value="1" />
+        <enum name="test" value="3" />
+        <enum name="sandbox" value="0" />
+        <enum name="strict_sandbox" value="2" />
+    </attr>
+    <attr name="featureType">
+        <enum name="match_global_nicknames" value="1" />
+        <enum name="demote_common_words" value="2" />
+        <enum name="demote_rfc822_hostnames" value="3" />
+        <enum name="omnibox_url_section" value="4" />
+        <enum name="omnibox_title_section" value="5" />
+        <enum name="index_entity_types" value="6" />
+    </attr>
+    <attr name="font" format="reference">
+    </attr>
+    <attr name="fontProviderAuthority" format="string">
+    </attr>
+    <attr name="fontProviderCerts" format="reference">
+    </attr>
+    <attr name="fontProviderFetchStrategy">
+        <enum name="blocking" value="0" />
+        <enum name="async" value="1" />
+    </attr>
+    <attr name="fontProviderFetchTimeout" format="integer">
+        <enum name="forever" value="-1" />
+    </attr>
+    <attr name="fontProviderPackage" format="string">
+    </attr>
+    <attr name="fontProviderQuery" format="string">
+    </attr>
+    <attr name="fontProviderSystemFontFamily" format="string">
+    </attr>
+    <attr name="fontStyle">
+        <enum name="normal" value="0" />
+        <enum name="italic" value="1" />
+    </attr>
+    <attr name="fontVariationSettings" format="string">
+    </attr>
+    <attr name="fontWeight" format="integer">
+    </attr>
+    <attr name="fragmentMode">
+        <enum name="buyButton" value="1" />
+        <enum name="selectionDetails" value="2" />
+    </attr>
+    <attr name="fragmentStyle" format="reference">
+    </attr>
+    <attr name="imageAspectRatio" format="float">
+    </attr>
+    <attr name="imageAspectRatioAdjust">
+        <enum name="none" value="0" />
+        <enum name="adjust_width" value="1" />
+        <enum name="adjust_height" value="2" />
+    </attr>
+    <attr name="indexPrefixes" format="boolean">
+    </attr>
+    <attr name="inputEnabled" format="boolean">
+    </attr>
+    <attr name="keylines" format="reference">
+    </attr>
+    <attr name="latLngBoundsNorthEastLatitude" format="float">
+    </attr>
+    <attr name="latLngBoundsNorthEastLongitude" format="float">
+    </attr>
+    <attr name="latLngBoundsSouthWestLatitude" format="float">
+    </attr>
+    <attr name="latLngBoundsSouthWestLongitude" format="float">
+    </attr>
+    <attr name="layout_anchor" format="reference">
+    </attr>
+    <attr name="layout_anchorGravity">
+        <flag name="top" value="0x30" />
+        <flag name="bottom" value="0x50" />
+        <flag name="left" value="0x3" />
+        <flag name="right" value="0x5" />
+        <flag name="center_vertical" value="0x10" />
+        <flag name="fill_vertical" value="0x70" />
+        <flag name="center_horizontal" value="0x1" />
+        <flag name="fill_horizontal" value="0x7" />
+        <flag name="center" value="0x11" />
+        <flag name="fill" value="0x77" />
+        <flag name="clip_vertical" value="0x80" />
+        <flag name="clip_horizontal" value="0x8" />
+        <flag name="start" value="0x800003" />
+        <flag name="end" value="0x800005" />
+    </attr>
+    <attr name="layout_behavior" format="string">
+    </attr>
+    <attr name="layout_dodgeInsetEdges">
+        <flag name="none" value="0x0" />
+        <flag name="top" value="0x30" />
+        <flag name="bottom" value="0x50" />
+        <flag name="left" value="0x3" />
+        <flag name="right" value="0x5" />
+        <flag name="start" value="0x800003" />
+        <flag name="end" value="0x800005" />
+        <flag name="all" value="0x77" />
+    </attr>
+    <attr name="layout_insetEdge">
+        <enum name="none" value="0x0" />
+        <enum name="top" value="0x30" />
+        <enum name="bottom" value="0x50" />
+        <enum name="left" value="0x3" />
+        <enum name="right" value="0x5" />
+        <enum name="start" value="0x800003" />
+        <enum name="end" value="0x800005" />
+    </attr>
+    <attr name="layout_keyline" format="integer">
+    </attr>
+    <attr name="liteMode" format="boolean">
+    </attr>
+    <attr name="mapType">
+        <enum name="none" value="0" />
+        <enum name="normal" value="1" />
+        <enum name="satellite" value="2" />
+        <enum name="terrain" value="3" />
+        <enum name="hybrid" value="4" />
+    </attr>
+    <attr name="maskedWalletDetailsBackground" format="reference|color">
+    </attr>
+    <attr name="maskedWalletDetailsButtonBackground" format="reference|color">
+    </attr>
+    <attr name="maskedWalletDetailsButtonTextAppearance" format="reference">
+    </attr>
+    <attr name="maskedWalletDetailsHeaderTextAppearance" format="reference">
+    </attr>
+    <attr name="maskedWalletDetailsLogoImageType">
+        <enum name="google_wallet_classic" value="1" />
+        <enum name="google_wallet_monochrome" value="2" />
+        <enum name="android_pay" value="3" />
+        <enum name="classic" value="1" />
+        <enum name="monochrome" value="2" />
+    </attr>
+    <attr name="maskedWalletDetailsLogoTextColor" format="color">
+    </attr>
+    <attr name="maskedWalletDetailsTextAppearance" format="reference">
+    </attr>
+    <attr name="nestedScrollViewStyle" format="reference">
+    </attr>
+    <attr name="noIndex" format="boolean">
+    </attr>
+    <attr name="paramName" format="string">
+    </attr>
+    <attr name="paramValue" format="string">
+    </attr>
+    <attr name="perAccountTemplate" format="boolean">
+    </attr>
+    <attr name="queryPatterns" format="reference">
+    </attr>
+    <attr name="schemaOrgProperty" format="string">
+    </attr>
+    <attr name="schemaOrgType" format="string">
+    </attr>
+    <attr name="scopeUris" format="reference|string">
+    </attr>
+    <attr name="searchEnabled" format="boolean">
+    </attr>
+    <attr name="searchLabel" format="string">
+    </attr>
+    <attr name="sectionContent" format="string">
+    </attr>
+    <attr name="sectionFormat">
+        <enum name="plain" value="0" />
+        <enum name="html" value="1" />
+        <enum name="rfc822" value="2" />
+        <enum name="url" value="3" />
+        <enum name="date" value="4" />
+    </attr>
+    <attr name="sectionId" format="string">
+    </attr>
+    <attr name="sectionType">
+        <enum name="text1" value="0" />
+        <enum name="text2" value="1" />
+        <enum name="icon_uri" value="2" />
+        <enum name="intent_action" value="3" />
+        <enum name="intent_data" value="4" />
+        <enum name="intent_data_id" value="5" />
+        <enum name="intent_extra_data" value="6" />
+        <enum name="large_icon_uri" value="7" />
+        <enum name="intent_activity" value="8" />
+        <enum name="thing_proto" value="9" />
+    </attr>
+    <attr name="sectionWeight" format="integer">
+    </attr>
+    <attr name="semanticallySearchable" format="boolean">
+    </attr>
+    <attr name="settingsDescription" format="string">
+    </attr>
+    <attr name="shortcutMatchRequired" format="boolean">
+    </attr>
+    <attr name="sourceClass">
+        <enum name="email" value="0" />
+        <enum name="contact" value="1" />
+        <enum name="instant_message" value="2" />
+    </attr>
+    <attr name="statusBarBackground" format="reference|color">
+    </attr>
+    <attr name="subsectionSeparator" format="string">
+    </attr>
+    <attr name="toAddressesSection" format="string">
+    </attr>
+    <attr name="toolbarTextColorStyle">
+        <enum name="light" value="1" />
+        <enum name="dark" value="2" />
+    </attr>
+    <attr name="trimmable" format="boolean">
+    </attr>
+    <attr name="ttcIndex" format="integer">
+    </attr>
+    <attr name="uiCompass" format="boolean">
+    </attr>
+    <attr name="uiMapToolbar" format="boolean">
+    </attr>
+    <attr name="uiRotateGestures" format="boolean">
+    </attr>
+    <attr name="uiScrollGestures" format="boolean">
+    </attr>
+    <attr name="uiScrollGesturesDuringRotateOrZoom" format="boolean">
+    </attr>
+    <attr name="uiTiltGestures" format="boolean">
+    </attr>
+    <attr name="uiZoomControls" format="boolean">
+    </attr>
+    <attr name="uiZoomGestures" format="boolean">
+    </attr>
+    <attr name="useViewLifecycle" format="boolean">
+    </attr>
+    <attr name="userInputSection" format="string">
+    </attr>
+    <attr name="userInputTag" format="string">
+    </attr>
+    <attr name="userInputValue" format="string">
+    </attr>
+    <attr name="widgetBackgroundCornerRadius" format="dimension">
+    </attr>
+    <attr name="widgetPreviewContent" format="string">
+    </attr>
+    <attr name="widgetPreviewDot" format="integer">
+    </attr>
+    <attr name="widgetPreviewImage" format="reference">
+    </attr>
+    <attr name="widgetPreviewTime" format="string">
+    </attr>
+    <attr name="widgetPreviewTitle" format="string">
+    </attr>
+    <attr name="windowTransitionStyle">
+        <enum name="slide" value="1" />
+        <enum name="none" value="2" />
+    </attr>
+    <attr name="zOrderOnTop" format="boolean">
+    </attr>
+</resources>

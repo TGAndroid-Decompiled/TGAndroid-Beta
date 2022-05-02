@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme_TMessages" parent="@android:style/Theme.Material.Light">
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:listViewStyle">@style/Theme_TMessages_ListView</item>
+        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
+        <item name="android:textColorHighlight">#60808080</item>
+        <item name="android:itemTextAppearance">@style/ActionBar_Transparent_TMessages_Item</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowActionBarOverlay">false</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_ex</item>
+        <item name="android:alertDialogTheme">@style/Theme_TMessages_Dialog_Alert</item>
+        <item name="android:datePickerStyle">@style/Theme_TMessages_DatePicker</item>
+        <item name="android:calendarViewStyle">@style/Theme_TMessages_CalendarView</item>
+        <item name="android:actionBarItemBackground">@drawable/bar_selector_style</item>
+        <item name="android:colorControlActivated">#808080</item>
+        <item name="android:colorPrimary">#527da3</item>
+        <item name="android:colorPrimaryDark">#33000000</item>
+        <item name="android:navigationBarColor">#000000</item>
+        <item name="android:timePickerStyle">@style/Theme_TMessages_TimePicker</item>
+        <item name="android:timePickerDialogTheme">@style/Theme_TMessages_Dialog_Alert</item>
+        <item name="android:datePickerDialogTheme">@style/Theme_TMessages_Dialog_Alert</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:forceDarkAllowed">false</item>
+    </style>
+</resources>
