@@ -217,19 +217,19 @@ public class SessionBottomSheet extends BottomSheet {
             textView3.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(6.0f), Theme.getColor("chat_attachAudioBackground"), ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), 120)));
             linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
-            textView3.setOnClickListener(new View$OnClickListenerC34918(callback, tLRPC$TL_authorization, baseFragment));
+            textView3.setOnClickListener(new View$OnClickListenerC34938(callback, tLRPC$TL_authorization, baseFragment));
         }
         ScrollView scrollView = new ScrollView(parentActivity);
         scrollView.addView(linearLayout);
         setCustomView(scrollView);
     }
 
-    public class View$OnClickListenerC34918 implements View.OnClickListener {
+    public class View$OnClickListenerC34938 implements View.OnClickListener {
         final Callback val$callback;
         final BaseFragment val$fragment;
         final TLRPC$TL_authorization val$session;
 
-        View$OnClickListenerC34918(Callback callback, TLRPC$TL_authorization tLRPC$TL_authorization, BaseFragment baseFragment) {
+        View$OnClickListenerC34938(Callback callback, TLRPC$TL_authorization tLRPC$TL_authorization, BaseFragment baseFragment) {
             this.val$callback = callback;
             this.val$session = tLRPC$TL_authorization;
             this.val$fragment = baseFragment;
@@ -246,7 +246,7 @@ public class SessionBottomSheet extends BottomSheet {
             builder.setPositiveButton(string, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    SessionBottomSheet.View$OnClickListenerC34918.this.lambda$onClick$0(callback, tLRPC$TL_authorization, dialogInterface, i);
+                    SessionBottomSheet.View$OnClickListenerC34938.this.lambda$onClick$0(callback, tLRPC$TL_authorization, dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", C0952R.string.Cancel), null);

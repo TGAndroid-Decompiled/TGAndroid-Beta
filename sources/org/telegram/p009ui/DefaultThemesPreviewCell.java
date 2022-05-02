@@ -117,7 +117,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
                 @Override
                 @android.annotation.SuppressLint({"NotifyDataSetChanged"})
                 public void onClick(android.view.View r14) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DefaultThemesPreviewCell.View$OnClickListenerC27222.onClick(android.view.View):void");
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DefaultThemesPreviewCell.View$OnClickListenerC27242.onClick(android.view.View):void");
                 }
             });
             this.darkThemeDrawable.setPlayInDirectionOfCustomEndFrame(true);

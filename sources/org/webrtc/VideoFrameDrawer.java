@@ -24,7 +24,7 @@ public class VideoFrameDrawer {
         Matrix matrix2 = new Matrix(textureBuffer.getTransformMatrix());
         matrix2.preConcat(matrix);
         float[] convertMatrixFromAndroidGraphicsMatrix = RendererCommon.convertMatrixFromAndroidGraphicsMatrix(matrix2);
-        int i9 = C37001.$SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type[textureBuffer.getType().ordinal()];
+        int i9 = C37031.$SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type[textureBuffer.getType().ordinal()];
         if (i9 == 1) {
             glDrawer.drawOes(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i, i2, convertMatrixFromAndroidGraphicsMatrix, i3, i4, i5, i6, i7, i8, z);
         } else if (i9 == 2) {
@@ -34,7 +34,7 @@ public class VideoFrameDrawer {
         }
     }
 
-    public static class C37001 {
+    public static class C37031 {
         static final int[] $SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type;
 
         static {
@@ -64,7 +64,7 @@ public class VideoFrameDrawer {
         private YuvUploader() {
         }
 
-        YuvUploader(C37001 r1) {
+        YuvUploader(C37031 r1) {
             this();
         }
 

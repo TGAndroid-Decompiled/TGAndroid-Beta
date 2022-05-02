@@ -982,7 +982,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         });
         this.adapter.setOverScrollHeight(this.overScrollHeight);
         frameLayout2.addView(this.mapViewClip, LayoutHelper.createFrame(-1, -1, 51));
-        final C300911 r0 = new C300911(context);
+        final C301111 r0 = new C301111(context);
         this.mapView = r0;
         new Thread(new Runnable() {
             @Override
@@ -1338,8 +1338,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         finishFragment();
     }
 
-    public class C300911 extends MapView {
-        C300911(Context context) {
+    public class C301111 extends MapView {
+        C301111(Context context) {
             super(context);
         }
 
@@ -1409,7 +1409,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LocationActivity.C300911.this.lambda$onLayout$0();
+                    LocationActivity.C301111.this.lambda$onLayout$0();
                 }
             });
         }

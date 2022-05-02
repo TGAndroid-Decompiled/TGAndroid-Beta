@@ -183,7 +183,7 @@ public class PollCreateActivity extends BaseFragment {
             this.actionBar.setOccupyStatusBar(false);
         }
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new C33781());
+        this.actionBar.setActionBarMenuOnItemClick(new C33801());
         this.doneItem = this.actionBar.createMenu().addItem(1, LocaleController.getString("Create", C0952R.string.Create).toUpperCase());
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -239,8 +239,8 @@ public class PollCreateActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public class C33781 extends C1006ActionBar.ActionBarMenuOnItemClick {
-        C33781() {
+    public class C33801 extends C1006ActionBar.ActionBarMenuOnItemClick {
+        C33801() {
         }
 
         @Override
@@ -289,7 +289,7 @@ public class PollCreateActivity extends BaseFragment {
                         AlertsCreator.createScheduleDatePickerDialog(PollCreateActivity.this.getParentActivity(), PollCreateActivity.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                             @Override
                             public final void didSelectDate(boolean z, int i3) {
-                                PollCreateActivity.C33781.this.lambda$onItemClick$0(tLRPC$TL_messageMediaPoll, hashMap, z, i3);
+                                PollCreateActivity.C33801.this.lambda$onItemClick$0(tLRPC$TL_messageMediaPoll, hashMap, z, i3);
                             }
                         });
                         return;

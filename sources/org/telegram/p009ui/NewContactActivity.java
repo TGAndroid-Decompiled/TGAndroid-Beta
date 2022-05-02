@@ -90,8 +90,8 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.NewContactActivity.createView(android.content.Context):android.view.View");
     }
 
-    public class C31321 extends C1006ActionBar.ActionBarMenuOnItemClick {
-        C31321() {
+    public class C31341 extends C1006ActionBar.ActionBarMenuOnItemClick {
+        C31341() {
         }
 
         @Override
@@ -129,7 +129,7 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
                     ConnectionsManager.getInstance(((BaseFragment) NewContactActivity.this).currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(((BaseFragment) NewContactActivity.this).currentAccount).sendRequest(tLRPC$TL_contacts_importContacts, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            NewContactActivity.C31321.this.lambda$onItemClick$2(tLRPC$TL_inputPhoneContact, tLRPC$TL_contacts_importContacts, tLObject, tLRPC$TL_error);
+                            NewContactActivity.C31341.this.lambda$onItemClick$2(tLRPC$TL_inputPhoneContact, tLRPC$TL_contacts_importContacts, tLObject, tLRPC$TL_error);
                         }
                     }, 2), ((BaseFragment) NewContactActivity.this).classGuid);
                 }
@@ -141,7 +141,7 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NewContactActivity.C31321.this.lambda$onItemClick$1(tLRPC$TL_contacts_importedContacts, tLRPC$TL_inputPhoneContact, tLRPC$TL_error, tLRPC$TL_contacts_importContacts);
+                    NewContactActivity.C31341.this.lambda$onItemClick$1(tLRPC$TL_contacts_importedContacts, tLRPC$TL_inputPhoneContact, tLRPC$TL_error, tLRPC$TL_contacts_importContacts);
                 }
             });
         }
@@ -163,7 +163,7 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
                 builder.setPositiveButton(LocaleController.getString("Invite", C0952R.string.Invite), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        NewContactActivity.C31321.this.lambda$onItemClick$0(tLRPC$TL_inputPhoneContact, dialogInterface, i);
+                        NewContactActivity.C31341.this.lambda$onItemClick$0(tLRPC$TL_inputPhoneContact, dialogInterface, i);
                     }
                 });
                 NewContactActivity.this.showDialog(builder.create());

@@ -202,12 +202,12 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                 return false;
             }
         });
-        this.listView.setOnItemClickListener(new C34493());
+        this.listView.setOnItemClickListener(new C34513());
         return this.fragmentView;
     }
 
-    public class C34493 implements RecyclerListView.OnItemClickListener {
-        C34493() {
+    public class C34513 implements RecyclerListView.OnItemClickListener {
+        C34513() {
         }
 
         @Override
@@ -260,7 +260,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                     profileNotificationsActivity3.showDialog(AlertsCreator.createVibrationSelectDialog(profileNotificationsActivity3.getParentActivity(), ProfileNotificationsActivity.this.dialogId, false, false, new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileNotificationsActivity.C34493.this.lambda$onItemClick$0();
+                            ProfileNotificationsActivity.C34513.this.lambda$onItemClick$0();
                         }
                     }));
                 } else if (i == ProfileNotificationsActivity.this.enableRow) {
@@ -276,7 +276,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                     profileNotificationsActivity4.showDialog(AlertsCreator.createVibrationSelectDialog(profileNotificationsActivity4.getParentActivity(), ProfileNotificationsActivity.this.dialogId, "calls_vibrate_" + ProfileNotificationsActivity.this.dialogId, new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileNotificationsActivity.C34493.this.lambda$onItemClick$1();
+                            ProfileNotificationsActivity.C34513.this.lambda$onItemClick$1();
                         }
                     }));
                 } else if (i == ProfileNotificationsActivity.this.priorityRow) {
@@ -284,7 +284,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                     profileNotificationsActivity5.showDialog(AlertsCreator.createPrioritySelectDialog(profileNotificationsActivity5.getParentActivity(), ProfileNotificationsActivity.this.dialogId, -1, new Runnable() {
                         @Override
                         public final void run() {
-                            ProfileNotificationsActivity.C34493.this.lambda$onItemClick$2();
+                            ProfileNotificationsActivity.C34513.this.lambda$onItemClick$2();
                         }
                     }));
                 } else {
@@ -301,7 +301,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                             AlertsCreator.createSoundFrequencyPickerDialog(ProfileNotificationsActivity.this.getParentActivity(), i2, i4, new AlertsCreator.SoundFrequencyDelegate() {
                                 @Override
                                 public final void didSelectValues(int i5, int i6) {
-                                    ProfileNotificationsActivity.C34493.this.lambda$onItemClick$3(i5, i6);
+                                    ProfileNotificationsActivity.C34513.this.lambda$onItemClick$3(i5, i6);
                                 }
                             });
                         }
@@ -311,7 +311,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                             profileNotificationsActivity6.showDialog(AlertsCreator.createColorSelectDialog(profileNotificationsActivity6.getParentActivity(), ProfileNotificationsActivity.this.dialogId, -1, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    ProfileNotificationsActivity.C34493.this.lambda$onItemClick$4();
+                                    ProfileNotificationsActivity.C34513.this.lambda$onItemClick$4();
                                 }
                             }));
                         }

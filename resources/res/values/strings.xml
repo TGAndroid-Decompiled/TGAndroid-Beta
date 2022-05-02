@@ -4569,6 +4569,8 @@
     <string name="UnhideFromTop">Pin</string>
     <string name="UnknownError">Unknown error</string>
     <string name="UnlockFingerprint">Unlock with Fingerprint</string>
+    <string name="UnlockPremiumStickers">Unlock Premium Stickers</string>
+    <string name="UnlockPremiumStickersDescription">Unlock this sticker and more by subscribing to Telegram Premium.</string>
     <string name="Unmute">Unmute</string>
     <string name="UnmuteNotifications">Unmute</string>
     <string name="UnofficialApp">unofficial app</string>

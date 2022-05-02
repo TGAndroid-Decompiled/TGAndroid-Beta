@@ -389,14 +389,14 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 VideoPlayer videoPlayer = new VideoPlayer();
                 this.videoPlayer = videoPlayer;
                 videoPlayer.setTextureView(this.videoTextureView);
-                this.videoPlayer.setDelegate(new C34751(file));
+                this.videoPlayer.setDelegate(new C34771(file));
             }
             this.videoPlayer.preparePlayer(Uri.fromFile(file), "other");
             this.videoPlayer.setPlayWhenReady(true);
         }
     }
 
-    public class C34751 implements VideoPlayer.VideoPlayerDelegate {
+    public class C34771 implements VideoPlayer.VideoPlayerDelegate {
         final File val$file;
 
         @Override
@@ -423,7 +423,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         }
 
-        C34751(File file) {
+        C34771(File file) {
             this.val$file = file;
         }
 
@@ -473,7 +473,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        SecretMediaViewer.C34751.this.lambda$onError$0(file);
+                        SecretMediaViewer.C34771.this.lambda$onError$0(file);
                     }
                 }, 100L);
                 return;
@@ -1064,10 +1064,10 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         onPhotoClosed(placeProviderObject);
     }
 
-    public class C34817 extends AnimatorListenerAdapter {
+    public class C34837 extends AnimatorListenerAdapter {
         final PhotoViewer.PlaceProviderObject val$object;
 
-        C34817(PhotoViewer.PlaceProviderObject placeProviderObject) {
+        C34837(PhotoViewer.PlaceProviderObject placeProviderObject) {
             this.val$object = placeProviderObject;
         }
 
@@ -1081,7 +1081,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SecretMediaViewer.C34817.this.lambda$onAnimationEnd$0();
+                    SecretMediaViewer.C34837.this.lambda$onAnimationEnd$0();
                 }
             });
         }

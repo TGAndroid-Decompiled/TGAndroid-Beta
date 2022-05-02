@@ -843,7 +843,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         ChatAttachAlert chatAttachAlert;
         this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new C31813());
+        this.actionBar.setActionBarMenuOnItemClick(new C31833());
         if (this.currentActivityType == 7) {
             ScrollView scrollView = new ScrollView(context) {
                 @Override
@@ -944,12 +944,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         return this.fragmentView;
     }
 
-    public class C31813 extends C1006ActionBar.ActionBarMenuOnItemClick {
-        C31813() {
+    public class C31833 extends C1006ActionBar.ActionBarMenuOnItemClick {
+        C31833() {
         }
 
         private boolean onIdentityDone(final java.lang.Runnable r26, final org.telegram.p009ui.PassportActivity.ErrorRunnable r27) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PassportActivity.C31813.onIdentityDone(java.lang.Runnable, org.telegram.ui.PassportActivity$ErrorRunnable):boolean");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PassportActivity.C31833.onIdentityDone(java.lang.Runnable, org.telegram.ui.PassportActivity$ErrorRunnable):boolean");
         }
 
         public void lambda$onIdentityDone$0(String str, String str2, String str3, Runnable runnable, ErrorRunnable errorRunnable, DialogInterface dialogInterface, int i) {
@@ -985,7 +985,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
         @Override
         public void onItemClick(int r21) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PassportActivity.C31813.onItemClick(int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PassportActivity.C31833.onItemClick(int):void");
         }
 
         public void lambda$onItemClick$4() {
@@ -996,7 +996,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PassportActivity.C31813.this.lambda$onItemClick$5(tLRPC$TL_error, runnable, errorRunnable, tLRPC$TL_account_verifyEmail);
+                    PassportActivity.C31833.this.lambda$onItemClick$5(tLRPC$TL_error, runnable, errorRunnable, tLRPC$TL_account_verifyEmail);
                 }
             });
         }
@@ -1565,13 +1565,13 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PassportActivity.lambda$onPasswordDone$13(boolean, java.lang.String):void");
     }
 
-    public class C31888 implements RequestDelegate {
+    public class C31908 implements RequestDelegate {
         final TLRPC$TL_account_getPasswordSettings val$req;
         final boolean val$saved;
         final String val$textPassword;
         final byte[] val$x_bytes;
 
-        C31888(boolean z, byte[] bArr, TLRPC$TL_account_getPasswordSettings tLRPC$TL_account_getPasswordSettings, String str) {
+        C31908(boolean z, byte[] bArr, TLRPC$TL_account_getPasswordSettings tLRPC$TL_account_getPasswordSettings, String str) {
             this.val$saved = z;
             this.val$x_bytes = bArr;
             this.val$req = tLRPC$TL_account_getPasswordSettings;
@@ -1617,7 +1617,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(this.val$req, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    PassportActivity.C31888.this.lambda$resetSecret$3(tLObject, tLRPC$TL_error);
+                    PassportActivity.C31908.this.lambda$resetSecret$3(tLObject, tLRPC$TL_error);
                 }
             });
         }
@@ -1626,7 +1626,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PassportActivity.C31888.this.lambda$resetSecret$2(tLRPC$TL_error);
+                    PassportActivity.C31908.this.lambda$resetSecret$2(tLRPC$TL_error);
                 }
             });
         }
@@ -1639,7 +1639,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(new TLRPC$TL_account_getPassword(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error2) {
-                    PassportActivity.C31888.this.lambda$resetSecret$1(tLObject, tLRPC$TL_error2);
+                    PassportActivity.C31908.this.lambda$resetSecret$1(tLObject, tLRPC$TL_error2);
                 }
             }, 8);
         }
@@ -1648,7 +1648,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PassportActivity.C31888.this.lambda$resetSecret$0(tLRPC$TL_error, tLObject);
+                    PassportActivity.C31908.this.lambda$resetSecret$0(tLRPC$TL_error, tLObject);
                 }
             });
         }
@@ -1668,7 +1668,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    PassportActivity.C31888.this.lambda$generateNewSecret$8(bArr, str);
+                    PassportActivity.C31908.this.lambda$generateNewSecret$8(bArr, str);
                 }
             });
         }
@@ -1702,7 +1702,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(tLRPC$TL_account_updatePasswordSettings, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    PassportActivity.C31888.this.lambda$generateNewSecret$7(tLObject, tLRPC$TL_error);
+                    PassportActivity.C31908.this.lambda$generateNewSecret$7(tLObject, tLRPC$TL_error);
                 }
             });
         }
@@ -1711,7 +1711,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PassportActivity.C31888.this.lambda$generateNewSecret$6(tLRPC$TL_error);
+                    PassportActivity.C31908.this.lambda$generateNewSecret$6(tLRPC$TL_error);
                 }
             });
         }
@@ -1727,7 +1727,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(new TLRPC$TL_account_getPassword(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error2) {
-                    PassportActivity.C31888.this.lambda$generateNewSecret$5(tLObject, tLRPC$TL_error2);
+                    PassportActivity.C31908.this.lambda$generateNewSecret$5(tLObject, tLRPC$TL_error2);
                 }
             }, 8);
         }
@@ -1736,7 +1736,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PassportActivity.C31888.this.lambda$generateNewSecret$4(tLRPC$TL_error, tLObject);
+                    PassportActivity.C31908.this.lambda$generateNewSecret$4(tLRPC$TL_error, tLObject);
                 }
             });
         }
@@ -1758,7 +1758,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 connectionsManager.sendRequest(tLRPC$TL_account_getPassword, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                        PassportActivity.C31888.this.lambda$run$10(z, tLObject2, tLRPC$TL_error2);
+                        PassportActivity.C31908.this.lambda$run$10(z, tLObject2, tLRPC$TL_error2);
                     }
                 }, 8);
             } else if (tLRPC$TL_error == null) {
@@ -1768,7 +1768,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 dispatchQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        PassportActivity.C31888.this.lambda$run$15(tLObject, str, z2);
+                        PassportActivity.C31908.this.lambda$run$15(tLObject, str, z2);
                     }
                 });
             } else {
@@ -1776,7 +1776,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PassportActivity.C31888.this.lambda$run$16(z3, tLRPC$TL_error);
+                        PassportActivity.C31908.this.lambda$run$16(z3, tLRPC$TL_error);
                     }
                 });
             }
@@ -1786,7 +1786,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PassportActivity.C31888.this.lambda$run$9(tLRPC$TL_error, tLObject, z);
+                    PassportActivity.C31908.this.lambda$run$9(tLRPC$TL_error, tLObject, z);
                 }
             });
         }
@@ -1819,7 +1819,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            PassportActivity.C31888.this.lambda$run$11();
+                            PassportActivity.C31908.this.lambda$run$11();
                         }
                     });
                     return;
@@ -1841,7 +1841,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PassportActivity.C31888.this.lambda$run$14(tLRPC$TL_account_passwordSettings, z, bArr);
+                    PassportActivity.C31908.this.lambda$run$14(tLRPC$TL_account_passwordSettings, z, bArr);
                 }
             });
         }
@@ -1898,7 +1898,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 }, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        PassportActivity.C31888.this.lambda$run$13(tLObject, tLRPC$TL_error);
+                        PassportActivity.C31908.this.lambda$run$13(tLObject, tLRPC$TL_error);
                     }
                 });
             } else {
@@ -1910,7 +1910,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PassportActivity.C31888.this.lambda$run$12(tLObject, tLRPC$TL_error);
+                    PassportActivity.C31908.this.lambda$run$12(tLObject, tLRPC$TL_error);
                 }
             });
         }
@@ -5003,20 +5003,20 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                                 TLRPC$TL_account_saveSecureValue tLRPC$TL_account_saveSecureValue = new TLRPC$TL_account_saveSecureValue();
                                 tLRPC$TL_account_saveSecureValue.value = tLRPC$TL_inputSecureValue;
                                 tLRPC$TL_account_saveSecureValue.secure_secret_id = PassportActivity.this.secureSecretId;
-                                ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(tLRPC$TL_account_saveSecureValue, new C31761(errorRunnable, str, tLRPC$TL_account_saveSecureValue, tLRPC$TL_secureRequiredType4, tLRPC$TL_secureRequiredType3, arrayList2, secureDocument, secureDocument2, secureDocument3, arrayList3, str2, str3, runnable, this, tLRPC$TL_inputSecureValue2));
+                                ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(tLRPC$TL_account_saveSecureValue, new C31781(errorRunnable, str, tLRPC$TL_account_saveSecureValue, tLRPC$TL_secureRequiredType4, tLRPC$TL_secureRequiredType3, arrayList2, secureDocument, secureDocument2, secureDocument3, arrayList3, str2, str3, runnable, this, tLRPC$TL_inputSecureValue2));
                             }
                         }
                         tLRPC$TL_inputSecureValue2 = null;
                         TLRPC$TL_account_saveSecureValue tLRPC$TL_account_saveSecureValue2 = new TLRPC$TL_account_saveSecureValue();
                         tLRPC$TL_account_saveSecureValue2.value = tLRPC$TL_inputSecureValue;
                         tLRPC$TL_account_saveSecureValue2.secure_secret_id = PassportActivity.this.secureSecretId;
-                        ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(tLRPC$TL_account_saveSecureValue2, new C31761(errorRunnable, str, tLRPC$TL_account_saveSecureValue2, tLRPC$TL_secureRequiredType4, tLRPC$TL_secureRequiredType3, arrayList2, secureDocument, secureDocument2, secureDocument3, arrayList3, str2, str3, runnable, this, tLRPC$TL_inputSecureValue2));
+                        ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(tLRPC$TL_account_saveSecureValue2, new C31781(errorRunnable, str, tLRPC$TL_account_saveSecureValue2, tLRPC$TL_secureRequiredType4, tLRPC$TL_secureRequiredType3, arrayList2, secureDocument, secureDocument2, secureDocument3, arrayList3, str2, str3, runnable, this, tLRPC$TL_inputSecureValue2));
                     } else if (errorRunnable != null) {
                         errorRunnable.onError(null, null);
                     }
                 }
 
-                public class C31761 implements RequestDelegate {
+                public class C31781 implements RequestDelegate {
                     final PassportActivityDelegate val$currentDelegate;
                     final TLRPC$TL_secureRequiredType val$documentRequiredType;
                     final ArrayList val$documents;
@@ -5033,7 +5033,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     final String val$text;
                     final ArrayList val$translationDocuments;
 
-                    C31761(ErrorRunnable errorRunnable, String str, TLRPC$TL_account_saveSecureValue tLRPC$TL_account_saveSecureValue, TLRPC$TL_secureRequiredType tLRPC$TL_secureRequiredType, TLRPC$TL_secureRequiredType tLRPC$TL_secureRequiredType2, ArrayList arrayList, SecureDocument secureDocument, SecureDocument secureDocument2, SecureDocument secureDocument3, ArrayList arrayList2, String str2, String str3, Runnable runnable, PassportActivityDelegate passportActivityDelegate, TLRPC$TL_inputSecureValue tLRPC$TL_inputSecureValue) {
+                    C31781(ErrorRunnable errorRunnable, String str, TLRPC$TL_account_saveSecureValue tLRPC$TL_account_saveSecureValue, TLRPC$TL_secureRequiredType tLRPC$TL_secureRequiredType, TLRPC$TL_secureRequiredType tLRPC$TL_secureRequiredType2, ArrayList arrayList, SecureDocument secureDocument, SecureDocument secureDocument2, SecureDocument secureDocument3, ArrayList arrayList2, String str2, String str3, Runnable runnable, PassportActivityDelegate passportActivityDelegate, TLRPC$TL_inputSecureValue tLRPC$TL_inputSecureValue) {
                         this.val$errorRunnable = errorRunnable;
                         this.val$text = str;
                         this.val$req = tLRPC$TL_account_saveSecureValue;
@@ -5055,7 +5055,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                         final ErrorRunnable errorRunnable = this.val$errorRunnable;
                         final String str = this.val$text;
                         final TLRPC$TL_account_saveSecureValue tLRPC$TL_account_saveSecureValue = this.val$req;
-                        C317520 r15 = C317520.this;
+                        C317720 r15 = C317720.this;
                         final boolean z = z;
                         final TLRPC$TL_secureRequiredType tLRPC$TL_secureRequiredType = this.val$documentRequiredType;
                         final TLRPC$TL_secureRequiredType tLRPC$TL_secureRequiredType2 = this.val$requiredType;
@@ -5071,7 +5071,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                PassportActivity.C317520.C31761.this.lambda$onResult$0(tLRPC$TL_error, errorRunnable, str, tLRPC$TL_account_saveSecureValue, z, tLRPC$TL_secureRequiredType, tLRPC$TL_secureRequiredType2, tLRPC$TL_secureValue, tLRPC$TL_secureValue2, arrayList, secureDocument, secureDocument2, secureDocument3, arrayList2, str2, str3, i, runnable);
+                                PassportActivity.C317720.C31781.this.lambda$onResult$0(tLRPC$TL_error, errorRunnable, str, tLRPC$TL_account_saveSecureValue, z, tLRPC$TL_secureRequiredType, tLRPC$TL_secureRequiredType2, tLRPC$TL_secureValue, tLRPC$TL_secureValue2, arrayList, secureDocument, secureDocument2, secureDocument3, arrayList2, str2, str3, i, runnable);
                             }
                         });
                     }
@@ -5192,7 +5192,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                                 connectionsManager.sendRequest(tLRPC$TL_account_sendVerifyEmailCode, new RequestDelegate() {
                                     @Override
                                     public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                                        PassportActivity.C317520.C31761.this.lambda$run$2(str, tLRPC$TL_secureRequiredType, passportActivityDelegate, errorRunnable, tLObject2, tLRPC$TL_error2);
+                                        PassportActivity.C317720.C31781.this.lambda$run$2(str, tLRPC$TL_secureRequiredType, passportActivityDelegate, errorRunnable, tLObject2, tLRPC$TL_error2);
                                     }
                                 });
                                 return;
@@ -5202,7 +5202,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        PassportActivity.C317520.C31761.lambda$run$3(PassportActivity.ErrorRunnable.this, tLRPC$TL_error, str2);
+                                        PassportActivity.C317720.C31781.lambda$run$3(PassportActivity.ErrorRunnable.this, tLRPC$TL_error, str2);
                                     }
                                 });
                                 return;
@@ -5219,7 +5219,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                         ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(tLRPC$TL_account_saveSecureValue, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                                PassportActivity.C317520.C31761.this.lambda$run$4(tLRPC$TL_secureValue, tLObject2, tLRPC$TL_error2);
+                                PassportActivity.C317720.C31781.this.lambda$run$4(tLRPC$TL_secureValue, tLObject2, tLRPC$TL_error2);
                             }
                         });
                     }
@@ -5228,7 +5228,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                PassportActivity.C317520.C31761.this.lambda$run$1(tLObject, str, tLRPC$TL_secureRequiredType, passportActivityDelegate, tLRPC$TL_error, errorRunnable);
+                                PassportActivity.C317720.C31781.this.lambda$run$1(tLObject, str, tLRPC$TL_secureRequiredType, passportActivityDelegate, tLRPC$TL_error, errorRunnable);
                             }
                         });
                     }
@@ -6279,7 +6279,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
                 @Override
                 public void doOnIdle(Runnable runnable) {
-                    runnable.run();
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$doOnIdle(this, runnable);
                 }
 
                 @Override
@@ -7255,12 +7255,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 this.codeTime = 15000;
                 this.codeTimer = new Timer();
                 this.lastCodeTime = System.currentTimeMillis();
-                this.codeTimer.schedule(new C31934(), 0L, 1000L);
+                this.codeTimer.schedule(new C31954(), 0L, 1000L);
             }
         }
 
-        public class C31934 extends TimerTask {
-            C31934() {
+        public class C31954 extends TimerTask {
+            C31954() {
             }
 
             @Override
@@ -7268,7 +7268,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PassportActivity.PhoneConfirmationView.C31934.this.lambda$run$0();
+                        PassportActivity.PhoneConfirmationView.C31954.this.lambda$run$0();
                     }
                 });
             }
@@ -7305,12 +7305,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             if (this.timeTimer == null) {
                 Timer timer = new Timer();
                 this.timeTimer = timer;
-                timer.schedule(new C31945(), 0L, 1000L);
+                timer.schedule(new C31965(), 0L, 1000L);
             }
         }
 
-        public class C31945 extends TimerTask {
-            C31945() {
+        public class C31965 extends TimerTask {
+            C31965() {
             }
 
             @Override
@@ -7324,7 +7324,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            PassportActivity.PhoneConfirmationView.C31945.this.lambda$run$2();
+                            PassportActivity.PhoneConfirmationView.C31965.this.lambda$run$2();
                         }
                     });
                 }
@@ -7370,7 +7370,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                         ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(tLRPC$TL_auth_resendCode, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                PassportActivity.PhoneConfirmationView.C31945.this.lambda$run$1(tLObject, tLRPC$TL_error);
+                                PassportActivity.PhoneConfirmationView.C31965.this.lambda$run$1(tLObject, tLRPC$TL_error);
                             }
                         }, 2);
                     } else if (PhoneConfirmationView.this.nextType == 3) {
@@ -7388,7 +7388,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            PassportActivity.PhoneConfirmationView.C31945.this.lambda$run$0(tLRPC$TL_error);
+                            PassportActivity.PhoneConfirmationView.C31965.this.lambda$run$0(tLRPC$TL_error);
                         }
                     });
                 }
@@ -7549,7 +7549,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             TLRPC$TL_auth_cancelCode tLRPC$TL_auth_cancelCode = new TLRPC$TL_auth_cancelCode();
             tLRPC$TL_auth_cancelCode.phone_number = this.phone;
             tLRPC$TL_auth_cancelCode.phone_code_hash = this.phoneHash;
-            ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(tLRPC$TL_auth_cancelCode, C3195x3891375b.INSTANCE, 2);
+            ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(tLRPC$TL_auth_cancelCode, C3197x3891375b.INSTANCE, 2);
             destroyTimer();
             destroyCodeTimer();
             int i = this.verificationType;

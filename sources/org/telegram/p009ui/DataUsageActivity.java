@@ -204,7 +204,7 @@ public class DataUsageActivity extends BaseFragment {
             }
 
             public boolean checkTabsAnimationInProgress() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DataUsageActivity.C27153.checkTabsAnimationInProgress():boolean");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DataUsageActivity.C27173.checkTabsAnimationInProgress():boolean");
             }
 
             @Override
@@ -327,8 +327,8 @@ public class DataUsageActivity extends BaseFragment {
                                     DataUsageActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DataUsageActivity.this.viewPages[0].selectedType, 1.0f);
                                 }
                                 DataUsageActivity.this.tabsAnimationInProgress = false;
-                                C27153.this.maybeStartTracking = false;
-                                C27153.this.startedTracking = false;
+                                C27173.this.maybeStartTracking = false;
+                                C27173.this.startedTracking = false;
                                 ((BaseFragment) DataUsageActivity.this).actionBar.setEnabled(true);
                                 DataUsageActivity.this.scrollSlidingTextTabStrip.setEnabled(true);
                             }

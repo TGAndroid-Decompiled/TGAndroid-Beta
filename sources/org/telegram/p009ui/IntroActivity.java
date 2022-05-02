@@ -172,7 +172,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.frameContainerView.addView(frameLayout3, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 78.0f, 0.0f, 0.0f));
         TextureView textureView = new TextureView(context);
         this.frameLayout2.addView(textureView, LayoutHelper.createFrame(200, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, 17));
-        textureView.setSurfaceTextureListener(new TextureView$SurfaceTextureListenerC29552());
+        textureView.setSurfaceTextureListener(new TextureView$SurfaceTextureListenerC29572());
         ViewPager viewPager = new ViewPager(context);
         this.viewPager = viewPager;
         viewPager.setAdapter(new IntroAdapter());
@@ -303,12 +303,12 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public class TextureView$SurfaceTextureListenerC29552 implements TextureView.SurfaceTextureListener {
+    public class TextureView$SurfaceTextureListenerC29572 implements TextureView.SurfaceTextureListener {
         @Override
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         }
 
-        TextureView$SurfaceTextureListenerC29552() {
+        TextureView$SurfaceTextureListenerC29572() {
         }
 
         @Override
@@ -319,7 +319,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 IntroActivity.this.eglThread.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        IntroActivity.TextureView$SurfaceTextureListenerC29552.this.lambda$onSurfaceTextureAvailable$0();
+                        IntroActivity.TextureView$SurfaceTextureListenerC29572.this.lambda$onSurfaceTextureAvailable$0();
                     }
                 });
                 IntroActivity.this.eglThread.postRunnable(IntroActivity.this.eglThread.drawRunnable);
@@ -370,15 +370,15 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             AlertDialog alertDialog = new AlertDialog(view.getContext(), 3);
             alertDialog.setCanCancel(false);
             alertDialog.showDelayed(1000L);
-            NotificationCenter.getGlobalInstance().addObserver(new C29585(alertDialog), NotificationCenter.reloadInterface);
+            NotificationCenter.getGlobalInstance().addObserver(new C29605(alertDialog), NotificationCenter.reloadInterface);
             LocaleController.getInstance().applyLanguage(this.localeInfo, true, false, this.currentAccount);
         }
     }
 
-    public class C29585 implements NotificationCenter.NotificationCenterDelegate {
+    public class C29605 implements NotificationCenter.NotificationCenterDelegate {
         final AlertDialog val$loaderDialog;
 
-        C29585(AlertDialog alertDialog) {
+        C29605(AlertDialog alertDialog) {
             this.val$loaderDialog = alertDialog;
         }
 
@@ -390,7 +390,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        IntroActivity.C29585.this.lambda$didReceivedNotification$0();
+                        IntroActivity.C29605.this.lambda$didReceivedNotification$0();
                     }
                 }, 100L);
             }

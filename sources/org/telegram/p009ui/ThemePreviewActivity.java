@@ -633,8 +633,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
     }
 
-    public class C354622 implements ColorPicker.ColorPickerDelegate {
-        C354622() {
+    public class C354822 implements ColorPicker.ColorPickerDelegate {
+        C354822() {
         }
 
         @Override
@@ -669,7 +669,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 builder.setPositiveButton(LocaleController.getString("Delete", C0952R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        ThemePreviewActivity.C354622.this.lambda$deleteTheme$0(dialogInterface, i);
+                        ThemePreviewActivity.C354822.this.lambda$deleteTheme$0(dialogInterface, i);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", C0952R.string.Cancel), null);

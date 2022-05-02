@@ -259,6 +259,7 @@ public class MessageObject {
     public boolean viewsReloaded;
     public int wantedBotKeyboardWidth;
     public boolean wasJustSent;
+    public boolean wasPlayedPremiumAnimation;
     public boolean wasUnread;
 
     public static class SendAnimationData {
@@ -289,6 +290,17 @@ public class MessageObject {
         for (int i = 0; i < tLRPC$TL_messageReactions.recent_reactions.size(); i++) {
             if (tLRPC$TL_messageReactions.recent_reactions.get(i).unread) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isPremiumSticker(TLRPC$Document tLRPC$Document) {
+        if (!(tLRPC$Document == null || tLRPC$Document.thumbs == null)) {
+            for (int i = 0; i < tLRPC$Document.video_thumbs.size(); i++) {
+                if ("f".equals(tLRPC$Document.video_thumbs.get(i).type)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -327,6 +339,25 @@ public class MessageObject {
                 messagesStorage.markMessageReactionsAsRead(tLRPC$Message.dialog_id, tLRPC$Message.f877id, true);
             }
         }
+    }
+
+    public boolean isPremiumSticker() {
+        return isPremiumSticker(getDocument());
+    }
+
+    public TLRPC$VideoSize getPremiumStickerAnimation() {
+        return getPremiumStickerAnimation(getDocument());
+    }
+
+    public static TLRPC$VideoSize getPremiumStickerAnimation(TLRPC$Document tLRPC$Document) {
+        if (!(tLRPC$Document == null || tLRPC$Document.thumbs == null)) {
+            for (int i = 0; i < tLRPC$Document.video_thumbs.size(); i++) {
+                if ("f".equals(tLRPC$Document.video_thumbs.get(i).type)) {
+                    return tLRPC$Document.video_thumbs.get(i);
+                }
+            }
+        }
+        return null;
     }
 
     public static class VCardData {

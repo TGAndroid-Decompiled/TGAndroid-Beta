@@ -217,7 +217,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
 
             @Override
             public void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoAlbumPickerActivity.C32422.onLayout(boolean, int, int, int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoAlbumPickerActivity.C32442.onLayout(boolean, int, int, int, int):void");
             }
 
             @Override

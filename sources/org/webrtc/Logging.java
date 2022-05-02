@@ -104,7 +104,7 @@ public class Logging {
         } else if (loggingEnabled) {
             nativeLog(severity.ordinal(), str, str2);
         } else {
-            int i = C36731.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
+            int i = C36761.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
             if (i == 1) {
                 level = Level.SEVERE;
             } else if (i == 2) {
@@ -119,7 +119,7 @@ public class Logging {
         }
     }
 
-    public static class C36731 {
+    public static class C36761 {
         static final int[] $SwitchMap$org$webrtc$Logging$Severity;
 
         static {

@@ -654,7 +654,7 @@ public class LoginActivity extends BaseFragment {
             final OutlineTextContainerView outlineTextContainerView = (OutlineTextContainerView) view;
             AtomicReference atomicReference = new AtomicReference();
             final EditText attachedEditText = outlineTextContainerView.getAttachedEditText();
-            final C30338 r3 = new C30338(this, attachedEditText, atomicReference);
+            final C30358 r3 = new C30358(this, attachedEditText, atomicReference);
             outlineTextContainerView.animateError(1.0f);
             Runnable loginActivity$$ExternalSyntheticLambda13 = new Runnable() {
                 @Override
@@ -671,7 +671,7 @@ public class LoginActivity extends BaseFragment {
         }
     }
 
-    public class C30338 implements TextWatcher {
+    public class C30358 implements TextWatcher {
         final EditText val$editText;
         final AtomicReference val$timeoutCallbackRef;
 
@@ -683,7 +683,7 @@ public class LoginActivity extends BaseFragment {
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         }
 
-        C30338(LoginActivity loginActivity, EditText editText, AtomicReference atomicReference) {
+        C30358(LoginActivity loginActivity, EditText editText, AtomicReference atomicReference) {
             this.val$editText = editText;
             this.val$timeoutCallbackRef = atomicReference;
         }
@@ -695,7 +695,7 @@ public class LoginActivity extends BaseFragment {
             editText.post(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.C30338.this.lambda$beforeTextChanged$0(editText, atomicReference);
+                    LoginActivity.C30358.this.lambda$beforeTextChanged$0(editText, atomicReference);
                 }
             });
         }
@@ -2099,7 +2099,7 @@ public class LoginActivity extends BaseFragment {
                 if (!this.confirmedNumber) {
                     Point point = AndroidUtilities.displaySize;
                     if (point.x <= point.y || LoginActivity.this.isCustomKeyboardVisible() || LoginActivity.this.sizeNotifierFrameLayout.measureKeyboardHeight() <= AndroidUtilities.m34dp(20.0f)) {
-                        LoginActivity.this.phoneNumberConfirmView = new PhoneNumberConfirmView(((BaseFragment) LoginActivity.this).fragmentView.getContext(), (ViewGroup) ((BaseFragment) LoginActivity.this).fragmentView, LoginActivity.this.floatingButtonContainer, str4, new C30596(str));
+                        LoginActivity.this.phoneNumberConfirmView = new PhoneNumberConfirmView(((BaseFragment) LoginActivity.this).fragmentView.getContext(), (ViewGroup) ((BaseFragment) LoginActivity.this).fragmentView, LoginActivity.this.floatingButtonContainer, str4, new C30616(str));
                         LoginActivity.this.phoneNumberConfirmView.show();
                         return;
                     }
@@ -2317,10 +2317,10 @@ public class LoginActivity extends BaseFragment {
             }, 200L);
         }
 
-        public class C30596 implements PhoneNumberConfirmView.IConfirmDialogCallback {
+        public class C30616 implements PhoneNumberConfirmView.IConfirmDialogCallback {
             final String val$code;
 
-            C30596(String str) {
+            C30616(String str) {
                 this.val$code = str;
             }
 
@@ -2403,7 +2403,7 @@ public class LoginActivity extends BaseFragment {
                 phoneNumberConfirmView.animateProgress(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.PhoneView.C30596.this.lambda$onConfirm$1(phoneNumberConfirmView, str);
+                        LoginActivity.PhoneView.C30616.this.lambda$onConfirm$1(phoneNumberConfirmView, str);
                     }
                 });
             }
@@ -2413,7 +2413,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.PhoneView.C30596.this.lambda$onConfirm$0(str, phoneNumberConfirmView);
+                        LoginActivity.PhoneView.C30616.this.lambda$onConfirm$0(str, phoneNumberConfirmView);
                     }
                 }, 150L);
             }
@@ -3024,12 +3024,12 @@ public class LoginActivity extends BaseFragment {
                 this.codeTime = 15000;
                 this.codeTimer = new Timer();
                 this.lastCodeTime = System.currentTimeMillis();
-                this.codeTimer.schedule(new C30495(), 0L, 1000L);
+                this.codeTimer.schedule(new C30515(), 0L, 1000L);
             }
         }
 
-        public class C30495 extends TimerTask {
-            C30495() {
+        public class C30515 extends TimerTask {
+            C30515() {
             }
 
             @Override
@@ -3037,7 +3037,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.LoginActivitySmsView.C30495.this.lambda$run$0();
+                        LoginActivity.LoginActivitySmsView.C30515.this.lambda$run$0();
                     }
                 });
             }
@@ -3076,12 +3076,12 @@ public class LoginActivity extends BaseFragment {
                 this.timeText.setTag(C0952R.C0954id.color_key_tag, "windowBackgroundWhiteGrayText6");
                 Timer timer = new Timer();
                 this.timeTimer = timer;
-                timer.schedule(new C30506(), 0L, 1000L);
+                timer.schedule(new C30526(), 0L, 1000L);
             }
         }
 
-        public class C30506 extends TimerTask {
-            C30506() {
+        public class C30526 extends TimerTask {
+            C30526() {
             }
 
             @Override
@@ -3090,7 +3090,7 @@ public class LoginActivity extends BaseFragment {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            LoginActivity.LoginActivitySmsView.C30506.this.lambda$run$0();
+                            LoginActivity.LoginActivitySmsView.C30526.this.lambda$run$0();
                         }
                     });
                 }
@@ -5172,7 +5172,7 @@ public class LoginActivity extends BaseFragment {
             this.avatarEditor.setEnabled(false);
             this.avatarEditor.setClickable(false);
             frameLayout.addView(this.avatarEditor, LayoutHelper.createFrame(-1, -1.0f));
-            this.avatarEditor.addOnAttachStateChangeListener(new View$OnAttachStateChangeListenerC30414(LoginActivity.this));
+            this.avatarEditor.addOnAttachStateChangeListener(new View$OnAttachStateChangeListenerC30434(LoginActivity.this));
             RadialProgressView radialProgressView = new RadialProgressView(context, LoginActivity.this) {
                 @Override
                 public void setAlpha(float f) {
@@ -5353,17 +5353,17 @@ public class LoginActivity extends BaseFragment {
             this.isCameraWaitAnimationAllowed = true;
         }
 
-        public class View$OnAttachStateChangeListenerC30414 implements View.OnAttachStateChangeListener {
+        public class View$OnAttachStateChangeListenerC30434 implements View.OnAttachStateChangeListener {
             private boolean isAttached;
             private long lastRun = System.currentTimeMillis();
             private Runnable cameraWaitCallback = new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC30414.this.lambda$$2();
+                    LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC30434.this.lambda$$2();
                 }
             };
 
-            View$OnAttachStateChangeListenerC30414(LoginActivity loginActivity) {
+            View$OnAttachStateChangeListenerC30434(LoginActivity loginActivity) {
             }
 
             public void lambda$$2() {
@@ -5374,7 +5374,7 @@ public class LoginActivity extends BaseFragment {
                         LoginActivityRegisterView.this.cameraWaitDrawable.setOnAnimationEndListener(new Runnable() {
                             @Override
                             public final void run() {
-                                LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC30414.this.lambda$$1();
+                                LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC30434.this.lambda$$1();
                             }
                         });
                         LoginActivityRegisterView.this.avatarEditor.playAnimation();
@@ -5388,7 +5388,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC30414.this.lambda$$0();
+                        LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC30434.this.lambda$$0();
                     }
                 });
             }

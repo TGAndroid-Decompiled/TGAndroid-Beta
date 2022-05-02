@@ -177,7 +177,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         private GpsLocationListener() {
         }
 
-        GpsLocationListener(ThemeActivity themeActivity, C35251 r2) {
+        GpsLocationListener(ThemeActivity themeActivity, C35271 r2) {
             this();
         }
 
@@ -981,7 +981,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         } else {
             this.actionBar.setTitle(LocaleController.getString("AutoNightTheme", C0952R.string.AutoNightTheme));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C35251());
+        this.actionBar.setActionBarMenuOnItemClick(new C35271());
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
@@ -1012,13 +1012,13 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         return this.fragmentView;
     }
 
-    public class C35251 extends C1006ActionBar.ActionBarMenuOnItemClick {
-        C35251() {
+    public class C35271 extends C1006ActionBar.ActionBarMenuOnItemClick {
+        C35271() {
         }
 
         @Override
         public void onItemClick(int r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ThemeActivity.C35251.onItemClick(int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ThemeActivity.C35271.onItemClick(int):void");
         }
 
         public void lambda$onItemClick$0(DialogInterface dialogInterface, int i) {

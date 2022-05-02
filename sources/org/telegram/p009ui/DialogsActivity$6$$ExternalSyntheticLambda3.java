@@ -13,6 +13,6 @@ public final class DialogsActivity$6$$ExternalSyntheticLambda3 implements Reques
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        DialogsActivity.C27816.lambda$showDeleteAlert$1(tLObject, tLRPC$TL_error);
+        DialogsActivity.C27836.lambda$showDeleteAlert$1(tLObject, tLRPC$TL_error);
     }
 }

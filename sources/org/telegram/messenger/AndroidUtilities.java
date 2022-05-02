@@ -3666,38 +3666,40 @@ public class AndroidUtilities {
     }
 
     public static void updateViewVisibilityAnimated(View view, boolean z, float f, boolean z2) {
-        int i = 0;
-        if (view.getParent() == null) {
-            z2 = false;
-        }
-        Integer num = null;
-        if (!z2) {
-            view.animate().setListener(null).cancel();
-            if (!z) {
-                i = 8;
+        if (view != null) {
+            int i = 0;
+            if (view.getParent() == null) {
+                z2 = false;
             }
-            view.setVisibility(i);
-            if (z) {
-                num = 1;
+            Integer num = null;
+            if (!z2) {
+                view.animate().setListener(null).cancel();
+                if (!z) {
+                    i = 8;
+                }
+                view.setVisibility(i);
+                if (z) {
+                    num = 1;
+                }
+                view.setTag(num);
+                view.setAlpha(1.0f);
+                view.setScaleX(1.0f);
+                view.setScaleY(1.0f);
+            } else if (z && view.getTag() == null) {
+                view.animate().setListener(null).cancel();
+                if (view.getVisibility() != 0) {
+                    view.setVisibility(0);
+                    view.setAlpha(0.0f);
+                    view.setScaleX(f);
+                    view.setScaleY(f);
+                }
+                view.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
+                view.setTag(1);
+            } else if (!z && view.getTag() != null) {
+                view.animate().setListener(null).cancel();
+                view.animate().alpha(0.0f).scaleY(f).scaleX(f).setListener(new HideViewAfterAnimation(view)).setDuration(150L).start();
+                view.setTag(null);
             }
-            view.setTag(num);
-            view.setAlpha(1.0f);
-            view.setScaleX(1.0f);
-            view.setScaleY(1.0f);
-        } else if (z && view.getTag() == null) {
-            view.animate().setListener(null).cancel();
-            if (view.getVisibility() != 0) {
-                view.setVisibility(0);
-                view.setAlpha(0.0f);
-                view.setScaleX(f);
-                view.setScaleY(f);
-            }
-            view.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
-            view.setTag(1);
-        } else if (!z && view.getTag() != null) {
-            view.animate().setListener(null).cancel();
-            view.animate().alpha(0.0f).scaleY(f).scaleX(f).setListener(new HideViewAfterAnimation(view)).setDuration(150L).start();
-            view.setTag(null);
         }
     }
 

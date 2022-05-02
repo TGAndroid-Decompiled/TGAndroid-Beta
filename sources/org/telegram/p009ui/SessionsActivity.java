@@ -222,7 +222,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             }
         });
         if (this.currentType == 0) {
-            C34932 r4 = new C34932(context);
+            C34952 r4 = new C34952(context);
             this.undoView = r4;
             frameLayout2.addView(r4, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
         }
@@ -572,8 +572,8 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public class C34932 extends UndoView {
-        C34932(Context context) {
+    public class C34952 extends UndoView {
+        C34952(Context context) {
             super(context);
         }
 
@@ -586,7 +586,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 ConnectionsManager.getInstance(((BaseFragment) SessionsActivity.this).currentAccount).sendRequest(tLRPC$TL_account_resetAuthorization, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        SessionsActivity.C34932.this.lambda$hide$1(tLRPC$TL_authorization, tLObject, tLRPC$TL_error);
+                        SessionsActivity.C34952.this.lambda$hide$1(tLRPC$TL_authorization, tLObject, tLRPC$TL_error);
                     }
                 });
             }
@@ -597,7 +597,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SessionsActivity.C34932.this.lambda$hide$0(tLRPC$TL_error, tLRPC$TL_authorization);
+                    SessionsActivity.C34952.this.lambda$hide$0(tLRPC$TL_error, tLRPC$TL_authorization);
                 }
             });
         }
@@ -615,11 +615,11 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public class C34954 implements SessionBottomSheet.Callback {
+    public class C34974 implements SessionBottomSheet.Callback {
         public static void lambda$onSessionTerminated$0() {
         }
 
-        C34954() {
+        C34974() {
         }
 
         @Override
@@ -642,7 +642,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
 
     private void showSessionBottomSheet(TLRPC$TL_authorization tLRPC$TL_authorization, boolean z) {
         if (tLRPC$TL_authorization != null) {
-            new SessionBottomSheet(this, tLRPC$TL_authorization, z, new C34954()).show();
+            new SessionBottomSheet(this, tLRPC$TL_authorization, z, new C34974()).show();
         }
     }
 
@@ -1209,7 +1209,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public class C34965 implements CameraScanActivity.CameraScanActivityDelegate {
+    public class C34985 implements CameraScanActivity.CameraScanActivityDelegate {
         private TLObject response = null;
         private TLRPC$TL_error error = null;
 
@@ -1218,7 +1218,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             CameraScanActivity.CameraScanActivityDelegate.CC.$default$didFindMrzInfo(this, result);
         }
 
-        C34965() {
+        C34985() {
         }
 
         @Override
@@ -1233,7 +1233,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        SessionsActivity.C34965.this.lambda$didFindQr$0();
+                        SessionsActivity.C34985.this.lambda$didFindQr$0();
                     }
                 });
             }
@@ -1257,7 +1257,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SessionsActivity.C34965.this.lambda$processQr$4(str, runnable);
+                    SessionsActivity.C34985.this.lambda$processQr$4(str, runnable);
                 }
             }, 750L);
             return true;
@@ -1271,7 +1271,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 SessionsActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_auth_acceptLoginToken, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        SessionsActivity.C34965.this.lambda$processQr$2(runnable, tLObject, tLRPC$TL_error);
+                        SessionsActivity.C34985.this.lambda$processQr$2(runnable, tLObject, tLRPC$TL_error);
                     }
                 });
             } catch (Exception e) {
@@ -1279,7 +1279,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        SessionsActivity.C34965.this.lambda$processQr$3();
+                        SessionsActivity.C34985.this.lambda$processQr$3();
                     }
                 });
                 runnable.run();
@@ -1290,7 +1290,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SessionsActivity.C34965.this.lambda$processQr$1(tLObject, tLRPC$TL_error, runnable);
+                    SessionsActivity.C34985.this.lambda$processQr$1(tLObject, tLRPC$TL_error, runnable);
                 }
             });
         }
@@ -1307,7 +1307,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
     }
 
     public void openCameraScanActivity() {
-        CameraScanActivity.showAsSheet(this, false, 2, new C34965());
+        CameraScanActivity.showAsSheet(this, false, 2, new C34985());
     }
 
     @Override

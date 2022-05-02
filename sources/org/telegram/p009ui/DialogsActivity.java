@@ -1892,11 +1892,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         scrollToTop();
     }
 
-    public class C27816 implements FilterTabsView.FilterTabsViewDelegate {
+    public class C27836 implements FilterTabsView.FilterTabsViewDelegate {
         public static void lambda$showDeleteAlert$0() {
         }
 
-        C27816() {
+        C27836() {
         }
 
         private void showDeleteAlert(final MessagesController.DialogFilter dialogFilter) {
@@ -1907,7 +1907,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             builder.setPositiveButton(LocaleController.getString("Delete", C0952R.string.Delete), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    DialogsActivity.C27816.this.lambda$showDeleteAlert$2(dialogFilter, dialogInterface, i);
+                    DialogsActivity.C27836.this.lambda$showDeleteAlert$2(dialogFilter, dialogInterface, i);
                 }
             });
             AlertDialog create = builder.create();
@@ -2050,7 +2050,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             actionBarPopupWindowLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                 @Override
                 public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                    DialogsActivity.C27816.this.lambda$didSelectTab$3(keyEvent);
+                    DialogsActivity.C27836.this.lambda$didSelectTab$3(keyEvent);
                 }
             });
             Rect rect2 = new Rect();
@@ -2100,7 +2100,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        DialogsActivity.C27816.this.lambda$didSelectTab$4(i2, i, dialogFilter2, view);
+                        DialogsActivity.C27836.this.lambda$didSelectTab$4(i2, i, dialogFilter2, view);
                     }
                 });
                 i2++;
@@ -2210,11 +2210,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    class C27889 extends LinearLayoutManager {
+    class C27909 extends LinearLayoutManager {
         private boolean fixOffset;
         final ViewPage val$viewPage;
 
-        C27889(Context context, ViewPage viewPage) {
+        C27909(Context context, ViewPage viewPage) {
             super(context);
             this.val$viewPage = viewPage;
         }
@@ -2247,7 +2247,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         @Override
         public int scrollVerticallyBy(int r18, androidx.recyclerview.widget.RecyclerView.Recycler r19, androidx.recyclerview.widget.RecyclerView.State r20) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DialogsActivity.C27889.scrollVerticallyBy(int, androidx.recyclerview.widget.RecyclerView$Recycler, androidx.recyclerview.widget.RecyclerView$State):int");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DialogsActivity.C27909.scrollVerticallyBy(int, androidx.recyclerview.widget.RecyclerView$Recycler, androidx.recyclerview.widget.RecyclerView$State):int");
         }
 
         @Override
@@ -2267,7 +2267,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            DialogsActivity.C27889.lambda$onLayoutChildren$0(DialogsActivity.ViewPage.this);
+                            DialogsActivity.C27909.lambda$onLayoutChildren$0(DialogsActivity.ViewPage.this);
                         }
                     });
                 }
@@ -2319,8 +2319,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public class C275116 implements DialogsSearchAdapter.DialogsSearchAdapterDelegate {
-        C275116() {
+    public class C275316 implements DialogsSearchAdapter.DialogsSearchAdapterDelegate {
+        C275316() {
         }
 
         @Override
@@ -2385,7 +2385,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 builder.setPositiveButton(LocaleController.getString("StickersRemove", C0952R.string.StickersRemove), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        DialogsActivity.C275116.this.lambda$needRemoveHint$0(j, dialogInterface, i);
+                        DialogsActivity.C275316.this.lambda$needRemoveHint$0(j, dialogInterface, i);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", C0952R.string.Cancel), null);
@@ -2410,7 +2410,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             builder.setPositiveButton(LocaleController.getString("ClearButton", C0952R.string.ClearButton).toUpperCase(), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    DialogsActivity.C275116.this.lambda$needClearList$1(dialogInterface, i);
+                    DialogsActivity.C275316.this.lambda$needClearList$1(dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", C0952R.string.Cancel), null);
@@ -2492,8 +2492,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public class C276226 extends UndoView {
-        C276226(Context context) {
+    public class C276426 extends UndoView {
+        C276426(Context context) {
             super(context);
         }
 
@@ -2545,7 +2545,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                DialogsActivity.C276226.this.lambda$onRemoveDialogAction$0(i2, tLRPC$Dialog);
+                                DialogsActivity.C276426.this.lambda$onRemoveDialogAction$0(i2, tLRPC$Dialog);
                             }
                         });
                         return;
@@ -2701,13 +2701,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.actionModeViews.add(this.deleteItem);
             this.actionModeViews.add(addItemWithWidth);
             if (str == null) {
-                this.actionBar.setActionBarMenuOnItemClick(new C276730());
+                this.actionBar.setActionBarMenuOnItemClick(new C276930());
             }
         }
     }
 
-    public class C276730 extends C1006ActionBar.ActionBarMenuOnItemClick {
-        C276730() {
+    public class C276930 extends C1006ActionBar.ActionBarMenuOnItemClick {
+        C276930() {
         }
 
         @Override
@@ -2738,12 +2738,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     ((LaunchActivity) DialogsActivity.this.getParentActivity()).showPasscodeActivity(false, true, iArr[0] + (DialogsActivity.this.passcodeItem.getMeasuredWidth() / 2), iArr[1] + (DialogsActivity.this.passcodeItem.getMeasuredHeight() / 2), new Runnable() {
                         @Override
                         public final void run() {
-                            DialogsActivity.C276730.this.lambda$onItemClick$0();
+                            DialogsActivity.C276930.this.lambda$onItemClick$0();
                         }
                     }, new Runnable() {
                         @Override
                         public final void run() {
-                            DialogsActivity.C276730.this.lambda$onItemClick$1();
+                            DialogsActivity.C276930.this.lambda$onItemClick$1();
                         }
                     });
                     DialogsActivity.this.updatePasscodeButton();
@@ -2760,7 +2760,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     filtersListBottomSheet.setDelegate(new FiltersListBottomSheet.FiltersListBottomSheetDelegate() {
                         @Override
                         public final void didSelectFilter(MessagesController.DialogFilter dialogFilter) {
-                            DialogsActivity.C276730.this.lambda$onItemClick$2(dialogFilter);
+                            DialogsActivity.C276930.this.lambda$onItemClick$2(dialogFilter);
                         }
                     });
                     DialogsActivity.this.showDialog(filtersListBottomSheet);

@@ -286,7 +286,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             }
 
             public boolean checkTabsAnimationInProgress() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DialogOrContactPickerActivity.C27404.checkTabsAnimationInProgress():boolean");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DialogOrContactPickerActivity.C27424.checkTabsAnimationInProgress():boolean");
             }
 
             @Override
@@ -408,8 +408,8 @@ public class DialogOrContactPickerActivity extends BaseFragment {
                                     DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DialogOrContactPickerActivity.this.viewPages[0].selectedType, 1.0f);
                                 }
                                 DialogOrContactPickerActivity.this.tabsAnimationInProgress = false;
-                                C27404.this.maybeStartTracking = false;
-                                C27404.this.startedTracking = false;
+                                C27424.this.maybeStartTracking = false;
+                                C27424.this.startedTracking = false;
                                 ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.setEnabled(true);
                                 DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.setEnabled(true);
                             }

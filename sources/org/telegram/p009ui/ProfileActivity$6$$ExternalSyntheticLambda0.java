@@ -13,7 +13,7 @@ public final class ProfileActivity$6$$ExternalSyntheticLambda0 implements Compar
     @Override
     public final int compare(Object obj, Object obj2) {
         int lambda$$0;
-        lambda$$0 = ProfileActivity.C34356.lambda$$0((View) obj, (View) obj2);
+        lambda$$0 = ProfileActivity.C34376.lambda$$0((View) obj, (View) obj2);
         return lambda$$0;
     }
 }

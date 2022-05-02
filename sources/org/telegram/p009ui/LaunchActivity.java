@@ -1259,7 +1259,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             this.termsOfServiceView = termsOfServiceView;
             termsOfServiceView.setAlpha(0.0f);
             this.drawerLayoutContainer.addView(this.termsOfServiceView, LayoutHelper.createFrame(-1, -1.0f));
-            this.termsOfServiceView.setDelegate(new C298010());
+            this.termsOfServiceView.setDelegate(new C298210());
         }
         TLRPC$TL_help_termsOfService tLRPC$TL_help_termsOfService2 = UserConfig.getInstance(i).unacceptedTermsOfService;
         if (tLRPC$TL_help_termsOfService2 != tLRPC$TL_help_termsOfService && (tLRPC$TL_help_termsOfService2 == null || !tLRPC$TL_help_termsOfService2.f909id.data.equals(tLRPC$TL_help_termsOfService.f909id.data))) {
@@ -1271,8 +1271,8 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         this.termsOfServiceView.animate().alpha(1.0f).setDuration(150L).setInterpolator(AndroidUtilities.decelerateInterpolator).setListener(null).start();
     }
 
-    public class C298010 implements TermsOfServiceView.TermsOfServiceViewDelegate {
-        C298010() {
+    public class C298210 implements TermsOfServiceView.TermsOfServiceViewDelegate {
+        C298210() {
         }
 
         @Override
@@ -1286,7 +1286,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             LaunchActivity.this.termsOfServiceView.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.C298010.this.lambda$onAcceptTerms$0();
+                    LaunchActivity.C298210.this.lambda$onAcceptTerms$0();
                 }
             }).start();
         }
@@ -1974,14 +1974,14 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         this.actionBarLayout.presentFragment(chatActivity, true, false, true, false);
     }
 
-    public class C298313 implements MessagesController.MessagesLoadedCallback {
+    public class C298513 implements MessagesController.MessagesLoadedCallback {
         final Bundle val$args;
         final long val$dialog_id;
         final BaseFragment val$lastFragment;
         final String val$livestream;
         final AlertDialog val$progressDialog;
 
-        C298313(AlertDialog alertDialog, String str, BaseFragment baseFragment, long j, Bundle bundle) {
+        C298513(AlertDialog alertDialog, String str, BaseFragment baseFragment, long j, Bundle bundle) {
             this.val$progressDialog = alertDialog;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -2008,7 +2008,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                LaunchActivity.C298313.this.lambda$onMessagesLoaded$2(str, j, baseFragment3);
+                                LaunchActivity.C298513.this.lambda$onMessagesLoaded$2(str, j, baseFragment3);
                             }
                         }, 150L);
                     }
@@ -2021,7 +2021,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LaunchActivity.C298313.this.lambda$onMessagesLoaded$2(str2, j2, baseFragment32);
+                        LaunchActivity.C298513.this.lambda$onMessagesLoaded$2(str2, j2, baseFragment32);
                     }
                 }, 150L);
             }
@@ -2050,7 +2050,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                     accountInstance.getMessagesController().getGroupCall(j2, true, new Runnable() {
                         @Override
                         public final void run() {
-                            LaunchActivity.C298313.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
+                            LaunchActivity.C298513.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
                         }
                     });
                 } else if (baseFragment.getParentActivity() != null) {
@@ -2063,7 +2063,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.C298313.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
+                    LaunchActivity.C298513.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
                 }
             });
         }

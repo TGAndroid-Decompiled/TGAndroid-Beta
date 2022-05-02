@@ -157,7 +157,7 @@ public class ManageLinksActivity extends BaseFragment {
         }
     };
     boolean loadRevoked = false;
-    private final LinkEditActivity.Callback linkEditActivityCallback = new C31186();
+    private final LinkEditActivity.Callback linkEditActivityCallback = new C31206();
     int animationIndex = -1;
 
     @Override
@@ -1312,8 +1312,8 @@ public class ManageLinksActivity extends BaseFragment {
         }
     }
 
-    public class C31186 implements LinkEditActivity.Callback {
-        C31186() {
+    public class C31206 implements LinkEditActivity.Callback {
+        C31206() {
         }
 
         @Override
@@ -1322,7 +1322,7 @@ public class ManageLinksActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ManageLinksActivity.C31186.this.lambda$onLinkCreated$0(tLObject);
+                        ManageLinksActivity.C31206.this.lambda$onLinkCreated$0(tLObject);
                     }
                 }, 200L);
             }

@@ -1069,12 +1069,12 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         this.fragmentView.invalidate();
     }
 
-    public class C361110 implements RendererCommon.RendererEvents {
+    public class C361410 implements RendererCommon.RendererEvents {
         @Override
         public void onFrameResolutionChanged(int i, int i2, int i3) {
         }
 
-        C361110() {
+        C361410() {
         }
 
         public void lambda$onFirstFrameRendered$0() {
@@ -1086,24 +1086,24 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPFragment.C361110.this.lambda$onFirstFrameRendered$0();
+                    VoIPFragment.C361410.this.lambda$onFirstFrameRendered$0();
                 }
             });
         }
     }
 
     private void initRenderers() {
-        this.currentUserTextureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new C361110());
-        this.callingUserTextureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new C361211(), EglBase.CONFIG_PLAIN, new GlRectDrawer());
+        this.currentUserTextureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new C361410());
+        this.callingUserTextureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new C361511(), EglBase.CONFIG_PLAIN, new GlRectDrawer());
         this.callingUserMiniTextureRenderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
     }
 
-    public class C361211 implements RendererCommon.RendererEvents {
+    public class C361511 implements RendererCommon.RendererEvents {
         @Override
         public void onFrameResolutionChanged(int i, int i2, int i3) {
         }
 
-        C361211() {
+        C361511() {
         }
 
         public void lambda$onFirstFrameRendered$0() {
@@ -1115,7 +1115,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPFragment.C361211.this.lambda$onFirstFrameRendered$0();
+                    VoIPFragment.C361511.this.lambda$onFirstFrameRendered$0();
                 }
             });
         }
@@ -1155,7 +1155,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                 this.switchingToPip = true;
                 Animator createPiPTransition = createPiPTransition(false);
                 this.animationIndex = NotificationCenter.getInstance(this.currentAccount).setAnimationInProgress(this.animationIndex, null);
-                createPiPTransition.addListener(new C361312());
+                createPiPTransition.addListener(new C361612());
                 createPiPTransition.setDuration(350L);
                 createPiPTransition.setInterpolator(cubicBezierInterpolator);
                 createPiPTransition.start();
@@ -1163,8 +1163,8 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         }
     }
 
-    public class C361312 extends AnimatorListenerAdapter {
-        C361312() {
+    public class C361612 extends AnimatorListenerAdapter {
+        C361612() {
         }
 
         @Override
@@ -1173,7 +1173,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPFragment.C361312.this.lambda$onAnimationEnd$0();
+                    VoIPFragment.C361612.this.lambda$onAnimationEnd$0();
                 }
             }, 200L);
         }

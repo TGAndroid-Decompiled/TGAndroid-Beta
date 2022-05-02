@@ -605,7 +605,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 this.searchItem.setSearchFieldHint(LocaleController.getString("SearchGifsTitle", C0952R.string.SearchGifsTitle));
             }
         }
-        C32615 r3 = new C32615(context);
+        C32635 r3 = new C32635(context);
         this.sizeNotifierFrameLayout = r3;
         r3.setBackgroundColor(Theme.getColor(this.dialogBackgroundKey));
         this.fragmentView = this.sizeNotifierFrameLayout;
@@ -907,12 +907,12 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         return this.fragmentView;
     }
 
-    public class C32615 extends SizeNotifierFrameLayout {
+    public class C32635 extends SizeNotifierFrameLayout {
         private boolean ignoreLayout;
         private int lastItemSize;
         private int lastNotifyWidth;
 
-        C32615(Context context) {
+        C32635(Context context) {
             super(context);
             PhotoPickerActivity.this = r1;
         }
@@ -938,7 +938,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PhotoPickerActivity.C32615.this.lambda$onMeasure$0();
+                        PhotoPickerActivity.C32635.this.lambda$onMeasure$0();
                     }
                 });
             }
@@ -956,12 +956,12 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
 
         private void onMeasureInternal(int r13, int r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerActivity.C32615.onMeasureInternal(int, int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerActivity.C32635.onMeasureInternal(int, int):void");
         }
 
         @Override
         public void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerActivity.C32615.onLayout(boolean, int, int, int, int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerActivity.C32635.onLayout(boolean, int, int, int, int):void");
         }
 
         @Override

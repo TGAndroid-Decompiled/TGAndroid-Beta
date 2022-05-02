@@ -261,7 +261,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
 
             @Override
             public void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerSearchActivity.C32704.onLayout(boolean, int, int, int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerSearchActivity.C32724.onLayout(boolean, int, int, int, int):void");
             }
 
             @Override
@@ -280,7 +280,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             }
 
             public boolean checkTabsAnimationInProgress() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerSearchActivity.C32704.checkTabsAnimationInProgress():boolean");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerSearchActivity.C32724.checkTabsAnimationInProgress():boolean");
             }
 
             @Override
@@ -402,8 +402,8 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                                     PhotoPickerSearchActivity.this.scrollSlidingTextTabStrip.selectTabWithId(PhotoPickerSearchActivity.this.viewPages[0].selectedType, 1.0f);
                                 }
                                 PhotoPickerSearchActivity.this.tabsAnimationInProgress = false;
-                                C32704.this.maybeStartTracking = false;
-                                C32704.this.startedTracking = false;
+                                C32724.this.maybeStartTracking = false;
+                                C32724.this.startedTracking = false;
                                 ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.setEnabled(true);
                                 PhotoPickerSearchActivity.this.scrollSlidingTextTabStrip.setEnabled(true);
                             }

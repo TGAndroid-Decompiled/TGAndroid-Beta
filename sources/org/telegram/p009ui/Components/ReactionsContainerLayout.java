@@ -32,6 +32,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.C0952R;
 import org.telegram.messenger.DocumentObject;
@@ -455,12 +456,26 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             } else {
                 list = MediaDataController.getInstance(this.currentAccount).getEnabledReactionsList();
             }
+            checkPremiumReactions(list);
             setReactionsList(list);
             return;
         }
         this.waitingLoadingChatId = -messageObject.getFromChatId();
         MessagesController.getInstance(this.currentAccount).loadFullChat(-messageObject.getFromChatId(), 0, true);
         setVisibility(4);
+    }
+
+    private void checkPremiumReactions(List<TLRPC$TL_availableReaction> list) {
+        if (!AccountInstance.getInstance(this.currentAccount).getUserConfig().getCurrentUser().premium) {
+            int i = 0;
+            while (i < list.size()) {
+                if (list.get(i).premium) {
+                    list.remove(i);
+                    i--;
+                }
+                i++;
+            }
+        }
     }
 
     public void startEnterAnimation() {

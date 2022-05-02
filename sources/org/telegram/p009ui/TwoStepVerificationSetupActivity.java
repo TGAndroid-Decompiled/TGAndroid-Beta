@@ -302,7 +302,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         this.actionBar.setItemsBackgroundColor(Theme.getColor("actionBarWhiteSelector"), false);
         this.actionBar.setCastShadows(false);
         this.actionBar.setAddToContainer(false);
-        this.actionBar.setActionBarMenuOnItemClick(new C35941());
+        this.actionBar.setActionBarMenuOnItemClick(new C35961());
         if (this.currentType == 5) {
             this.actionBar.createMenu().addItem(0, C0952R.C0953drawable.ic_ab_other).addSubItem(1, LocaleController.getString("AbortPasswordMenu", C0952R.string.AbortPasswordMenu));
         }
@@ -1147,8 +1147,8 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public class C35941 extends C1006ActionBar.ActionBarMenuOnItemClick {
-        C35941() {
+    public class C35961 extends C1006ActionBar.ActionBarMenuOnItemClick {
+        C35961() {
         }
 
         @Override
@@ -1174,7 +1174,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 builder.setPositiveButton(string2, new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
-                        TwoStepVerificationSetupActivity.C35941.this.lambda$onItemClick$0(dialogInterface, i2);
+                        TwoStepVerificationSetupActivity.C35961.this.lambda$onItemClick$0(dialogInterface, i2);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", C0952R.string.Cancel), null);
