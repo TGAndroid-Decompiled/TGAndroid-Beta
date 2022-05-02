@@ -5,7 +5,7 @@ public class TLRPC$TL_poll extends TLRPC$Poll {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f874id = abstractSerializedData.readInt64(z);
+        this.f885id = abstractSerializedData.readInt64(z);
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.closed = (readInt32 & 1) != 0;
@@ -38,7 +38,7 @@ public class TLRPC$TL_poll extends TLRPC$Poll {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f874id);
+        abstractSerializedData.writeInt64(this.f885id);
         int i = this.closed ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.public_voters ? i | 2 : i & (-3);

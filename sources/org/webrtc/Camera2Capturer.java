@@ -3,11 +3,11 @@ package org.webrtc;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.hardware.camera2.CameraManager;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.webrtc.CameraSession;
 import org.webrtc.CameraVideoCapturer;
 
-@TargetApi(C0890R.styleable.MapAttrs_uiZoomGestures)
+@TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
 public class Camera2Capturer extends CameraCapturer {
     private final CameraManager cameraManager;
     private final Context context;

@@ -5,7 +5,7 @@ public abstract class TLRPC$BotInlineResult extends TLObject {
     public String description;
     public TLRPC$Document document;
     public int flags;
-    public String f841id;
+    public String f852id;
     public TLRPC$Photo photo;
     public long query_id;
     public TLRPC$BotInlineMessage send_message;
@@ -23,7 +23,7 @@ public abstract class TLRPC$BotInlineResult extends TLObject {
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.flags = abstractSerializedData2.readInt32(z2);
-                    this.f841id = abstractSerializedData2.readString(z2);
+                    this.f852id = abstractSerializedData2.readString(z2);
                     this.type = abstractSerializedData2.readString(z2);
                     if ((this.flags & 1) != 0) {
                         this.photo = TLRPC$Photo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -44,7 +44,7 @@ public abstract class TLRPC$BotInlineResult extends TLObject {
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                     abstractSerializedData2.writeInt32(constructor);
                     abstractSerializedData2.writeInt32(this.flags);
-                    abstractSerializedData2.writeString(this.f841id);
+                    abstractSerializedData2.writeString(this.f852id);
                     abstractSerializedData2.writeString(this.type);
                     if ((this.flags & 1) != 0) {
                         this.photo.serializeToStream(abstractSerializedData2);
@@ -68,7 +68,7 @@ public abstract class TLRPC$BotInlineResult extends TLObject {
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.flags = abstractSerializedData2.readInt32(z2);
-                    this.f841id = abstractSerializedData2.readString(z2);
+                    this.f852id = abstractSerializedData2.readString(z2);
                     this.type = abstractSerializedData2.readString(z2);
                     if ((this.flags & 2) != 0) {
                         this.title = abstractSerializedData2.readString(z2);
@@ -92,7 +92,7 @@ public abstract class TLRPC$BotInlineResult extends TLObject {
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                     abstractSerializedData2.writeInt32(constructor);
                     abstractSerializedData2.writeInt32(this.flags);
-                    abstractSerializedData2.writeString(this.f841id);
+                    abstractSerializedData2.writeString(this.f852id);
                     abstractSerializedData2.writeString(this.type);
                     if ((this.flags & 2) != 0) {
                         abstractSerializedData2.writeString(this.title);

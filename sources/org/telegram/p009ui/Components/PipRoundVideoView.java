@@ -32,13 +32,13 @@ import com.google.android.exoplayer2.p004ui.AspectRatioFrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Bitmaps;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
-import org.telegram.p009ui.ActionBar.C0945ActionBar;
+import org.telegram.p009ui.ActionBar.C1006ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 
 public class PipRoundVideoView implements NotificationCenter.NotificationCenterDelegate {
@@ -179,7 +179,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
                 this.aspectRatioFrameLayout = aspectRatioFrameLayout;
                 aspectRatioFrameLayout.setOutlineProvider(new ViewOutlineProvider(this) {
                     @Override
-                    @TargetApi(C0890R.styleable.MapAttrs_uiZoomGestures)
+                    @TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
                     public void getOutline(View view, Outline outline) {
                         outline.setOval(0, 0, AndroidUtilities.m34dp(120.0f), AndroidUtilities.m34dp(120.0f));
                     }
@@ -278,7 +278,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
             i3 = AndroidUtilities.displaySize.x;
         } else {
             i3 = AndroidUtilities.displaySize.y - i2;
-            i2 = C0945ActionBar.getCurrentActionBarHeight();
+            i2 = C1006ActionBar.getCurrentActionBarHeight();
         }
         int i5 = i3 - i2;
         if (i == 0) {
@@ -288,7 +288,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         } else {
             i4 = Math.round((i5 - AndroidUtilities.m34dp(20.0f)) * f) + AndroidUtilities.m34dp(10.0f);
         }
-        return !z ? i4 + C0945ActionBar.getCurrentActionBarHeight() : i4;
+        return !z ? i4 + C1006ActionBar.getCurrentActionBarHeight() : i4;
     }
 
     @Override

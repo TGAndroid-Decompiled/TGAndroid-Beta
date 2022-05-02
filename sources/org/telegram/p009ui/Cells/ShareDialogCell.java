@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageLocation;
@@ -95,7 +95,7 @@ public class ShareDialogCell extends FrameLayout {
             this.user = user;
             this.avatarDrawable.setInfo(user);
             if (this.currentType != 2 && UserObject.isReplyUser(this.user)) {
-                this.nameTextView.setText(LocaleController.getString("RepliesTitle", C0890R.string.RepliesTitle));
+                this.nameTextView.setText(LocaleController.getString("RepliesTitle", C0952R.string.RepliesTitle));
                 this.avatarDrawable.setAvatarType(12);
                 this.imageView.setImage((ImageLocation) null, (String) null, this.avatarDrawable, this.user);
             } else if (this.currentType == 2 || !UserObject.isUserSelf(this.user)) {
@@ -111,7 +111,7 @@ public class ShareDialogCell extends FrameLayout {
                 }
                 this.imageView.setForUserOrChat(this.user, this.avatarDrawable);
             } else {
-                this.nameTextView.setText(LocaleController.getString("SavedMessages", C0890R.string.SavedMessages));
+                this.nameTextView.setText(LocaleController.getString("SavedMessages", C0952R.string.SavedMessages));
                 this.avatarDrawable.setAvatarType(1);
                 this.imageView.setImage((ImageLocation) null, (String) null, this.avatarDrawable, this.user);
             }
@@ -153,7 +153,7 @@ public class ShareDialogCell extends FrameLayout {
             }
             this.lastUpdateTime = elapsedRealtime;
             TLRPC$User tLRPC$User2 = this.user;
-            boolean z = !tLRPC$User2.self && !tLRPC$User2.bot && (((tLRPC$UserStatus = tLRPC$User2.status) != null && tLRPC$UserStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) || MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.f974id)));
+            boolean z = !tLRPC$User2.self && !tLRPC$User2.bot && (((tLRPC$UserStatus = tLRPC$User2.status) != null && tLRPC$UserStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) || MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.f985id)));
             if (z || this.onlineProgress != 0.0f) {
                 int bottom = this.imageView.getBottom() - AndroidUtilities.m34dp(6.0f);
                 int right = this.imageView.getRight() - AndroidUtilities.m34dp(10.0f);

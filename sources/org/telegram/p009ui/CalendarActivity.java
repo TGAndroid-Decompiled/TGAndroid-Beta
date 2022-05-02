@@ -29,7 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Calendar;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
@@ -43,7 +43,7 @@ import org.telegram.p009ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.p009ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.p009ui.ActionBar.BackDrawable;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C0945ActionBar;
+import org.telegram.p009ui.ActionBar.C1006ActionBar;
 import org.telegram.p009ui.ActionBar.SimpleTextView;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
@@ -174,7 +174,7 @@ public class CalendarActivity extends BaseFragment {
         };
         createActionBar(context);
         this.contentView.addView(this.actionBar);
-        this.actionBar.setTitle(LocaleController.getString("Calendar", C0890R.string.Calendar));
+        this.actionBar.setTitle(LocaleController.getString("Calendar", C0952R.string.Calendar));
         this.actionBar.setCastShadows(false);
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
@@ -201,8 +201,8 @@ public class CalendarActivity extends BaseFragment {
         });
         boolean z = this.calendarType == 0 && this.canClearHistory;
         this.contentView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 36.0f, 0.0f, z ? 48.0f : 0.0f));
-        final String[] strArr = {LocaleController.getString("CalendarWeekNameShortMonday", C0890R.string.CalendarWeekNameShortMonday), LocaleController.getString("CalendarWeekNameShortTuesday", C0890R.string.CalendarWeekNameShortTuesday), LocaleController.getString("CalendarWeekNameShortWednesday", C0890R.string.CalendarWeekNameShortWednesday), LocaleController.getString("CalendarWeekNameShortThursday", C0890R.string.CalendarWeekNameShortThursday), LocaleController.getString("CalendarWeekNameShortFriday", C0890R.string.CalendarWeekNameShortFriday), LocaleController.getString("CalendarWeekNameShortSaturday", C0890R.string.CalendarWeekNameShortSaturday), LocaleController.getString("CalendarWeekNameShortSunday", C0890R.string.CalendarWeekNameShortSunday)};
-        final Drawable mutate = ContextCompat.getDrawable(context, C0890R.C0891drawable.header_shadow).mutate();
+        final String[] strArr = {LocaleController.getString("CalendarWeekNameShortMonday", C0952R.string.CalendarWeekNameShortMonday), LocaleController.getString("CalendarWeekNameShortTuesday", C0952R.string.CalendarWeekNameShortTuesday), LocaleController.getString("CalendarWeekNameShortWednesday", C0952R.string.CalendarWeekNameShortWednesday), LocaleController.getString("CalendarWeekNameShortThursday", C0952R.string.CalendarWeekNameShortThursday), LocaleController.getString("CalendarWeekNameShortFriday", C0952R.string.CalendarWeekNameShortFriday), LocaleController.getString("CalendarWeekNameShortSaturday", C0952R.string.CalendarWeekNameShortSaturday), LocaleController.getString("CalendarWeekNameShortSunday", C0952R.string.CalendarWeekNameShortSunday)};
+        final Drawable mutate = ContextCompat.getDrawable(context, C0952R.C0953drawable.header_shadow).mutate();
         this.contentView.addView(new View(context) {
             @Override
             protected void onDraw(Canvas canvas) {
@@ -215,7 +215,7 @@ public class CalendarActivity extends BaseFragment {
                 mutate.draw(canvas);
             }
         }, LayoutHelper.createFrame(-1, 38.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
-        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i != -1) {
@@ -275,7 +275,7 @@ public class CalendarActivity extends BaseFragment {
                     CalendarActivity.this.lambda$createView$0(view);
                 }
             });
-            this.selectDaysButton.setText(LocaleController.getString("SelectDays", C0890R.string.SelectDays));
+            this.selectDaysButton.setText(LocaleController.getString("SelectDays", C0952R.string.SelectDays));
             this.selectDaysButton.setAllCaps(true);
             this.bottomBar.addView(this.selectDaysButton, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
             TextView textView2 = new TextView(context);
@@ -314,7 +314,7 @@ public class CalendarActivity extends BaseFragment {
                 this.selectDaysHint = hintView;
                 hintView.setExtraTranslationY(AndroidUtilities.m34dp(24.0f));
                 this.contentView.addView(this.selectDaysHint, LayoutHelper.createFrame(-2, -2.0f, 51, 19.0f, 0.0f, 19.0f, 0.0f));
-                this.selectDaysHint.setText(LocaleController.getString("SelectDaysTooltip", C0890R.string.SelectDaysTooltip));
+                this.selectDaysHint.setText(LocaleController.getString("SelectDaysTooltip", C0952R.string.SelectDaysTooltip));
             }
             this.selectDaysHint.showForView(this.bottomBar, true);
             return;
@@ -442,7 +442,7 @@ public class CalendarActivity extends BaseFragment {
             this.loading = false;
             if (!tLRPC$TL_messages_searchResultsCalendar.messages.isEmpty()) {
                 ArrayList<TLRPC$Message> arrayList = tLRPC$TL_messages_searchResultsCalendar.messages;
-                this.lastId = arrayList.get(arrayList.size() - 1).f866id;
+                this.lastId = arrayList.get(arrayList.size() - 1).f877id;
                 this.endReached = false;
                 checkLoadNext();
             } else {
@@ -589,7 +589,7 @@ public class CalendarActivity extends BaseFragment {
             this.titleView.setGravity(17);
             this.titleView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             addView(this.titleView, LayoutHelper.createFrame(-1, 28.0f, 0, 0.0f, 12.0f, 0.0f, 4.0f));
-            GestureDetectorCompat gestureDetectorCompat = new GestureDetectorCompat(context, new C11332(CalendarActivity.this, context));
+            GestureDetectorCompat gestureDetectorCompat = new GestureDetectorCompat(context, new C11972(CalendarActivity.this, context));
             this.gestureDetector = gestureDetectorCompat;
             gestureDetectorCompat.setIsLongpressEnabled(CalendarActivity.this.calendarType == 0 ? true : z);
         }
@@ -619,7 +619,7 @@ public class CalendarActivity extends BaseFragment {
             return false;
         }
 
-        public class C11332 extends GestureDetector.SimpleOnGestureListener {
+        public class C11972 extends GestureDetector.SimpleOnGestureListener {
             final Context val$context;
 
             @Override
@@ -627,7 +627,7 @@ public class CalendarActivity extends BaseFragment {
                 return true;
             }
 
-            C11332(CalendarActivity calendarActivity, Context context) {
+            C11972(CalendarActivity calendarActivity, Context context) {
                 this.val$context = context;
             }
 
@@ -729,36 +729,36 @@ public class CalendarActivity extends BaseFragment {
                     bundle.putInt("start_from_date", dayAtCoord.date);
                     bundle.putBoolean("need_remove_previous_same_chat_activity", false);
                     ChatActivity chatActivity = new ChatActivity(bundle);
-                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(CalendarActivity.this.getParentActivity(), C0890R.C0891drawable.popup_fixed_alert, CalendarActivity.this.getResourceProvider());
+                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(CalendarActivity.this.getParentActivity(), C0952R.C0953drawable.popup_fixed_alert, CalendarActivity.this.getResourceProvider());
                     actionBarPopupWindowLayout.setBackgroundColor(CalendarActivity.this.getThemedColor("actionBarDefaultSubmenuBackground"));
                     ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(CalendarActivity.this.getParentActivity(), true, false);
-                    actionBarMenuSubItem.setTextAndIcon(LocaleController.getString("JumpToDate", C0890R.string.JumpToDate), C0890R.C0891drawable.msg_message);
+                    actionBarMenuSubItem.setTextAndIcon(LocaleController.getString("JumpToDate", C0952R.string.JumpToDate), C0952R.C0953drawable.msg_message);
                     actionBarMenuSubItem.setMinimumWidth(160);
                     actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            CalendarActivity.MonthView.C11332.this.lambda$onLongPress$1(dayAtCoord, view);
+                            CalendarActivity.MonthView.C11972.this.lambda$onLongPress$1(dayAtCoord, view);
                         }
                     });
                     actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
                     if (CalendarActivity.this.canClearHistory) {
                         ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(CalendarActivity.this.getParentActivity(), false, false);
-                        actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString("SelectThisDay", C0890R.string.SelectThisDay), C0890R.C0891drawable.msg_select);
+                        actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString("SelectThisDay", C0952R.string.SelectThisDay), C0952R.C0953drawable.msg_select);
                         actionBarMenuSubItem2.setMinimumWidth(160);
                         actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                CalendarActivity.MonthView.C11332.this.lambda$onLongPress$2(dayAtCoord, view);
+                                CalendarActivity.MonthView.C11972.this.lambda$onLongPress$2(dayAtCoord, view);
                             }
                         });
                         actionBarPopupWindowLayout.addView(actionBarMenuSubItem2);
                         ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(CalendarActivity.this.getParentActivity(), false, true);
-                        actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("ClearHistory", C0890R.string.ClearHistory), C0890R.C0891drawable.msg_delete);
+                        actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("ClearHistory", C0952R.string.ClearHistory), C0952R.C0953drawable.msg_delete);
                         actionBarMenuSubItem3.setMinimumWidth(160);
                         actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                CalendarActivity.MonthView.C11332.this.lambda$onLongPress$3(view);
+                                CalendarActivity.MonthView.C11972.this.lambda$onLongPress$3(view);
                             }
                         });
                         actionBarPopupWindowLayout.addView(actionBarMenuSubItem3);
@@ -776,7 +776,7 @@ public class CalendarActivity extends BaseFragment {
                     CalendarActivity.this.blurredView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            CalendarActivity.MonthView.C11332.this.lambda$onLongPress$4(view);
+                            CalendarActivity.MonthView.C11972.this.lambda$onLongPress$4(view);
                         }
                     });
                     CalendarActivity.this.blurredView.setVisibility(8);
@@ -794,7 +794,7 @@ public class CalendarActivity extends BaseFragment {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                CalendarActivity.MonthView.C11332.this.lambda$onLongPress$0(baseFragment, periodDay);
+                                CalendarActivity.MonthView.C11972.this.lambda$onLongPress$0(baseFragment, periodDay);
                             }
                         }, 300L);
                     }
@@ -1259,7 +1259,7 @@ public class CalendarActivity extends BaseFragment {
         String str;
         HintView hintView;
         if (!this.canClearHistory) {
-            this.actionBar.setTitle(LocaleController.getString("Calendar", C0890R.string.Calendar));
+            this.actionBar.setTitle(LocaleController.getString("Calendar", C0952R.string.Calendar));
             this.backDrawable.setRotation(0.0f, true);
             return;
         }
@@ -1278,16 +1278,16 @@ public class CalendarActivity extends BaseFragment {
                 str = LocaleController.formatPluralString("Days", abs);
                 this.backDrawable.setRotation(1.0f, true);
             } else if (z3) {
-                str = LocaleController.getString("SelectDays", C0890R.string.SelectDays);
+                str = LocaleController.getString("SelectDays", C0952R.string.SelectDays);
                 this.backDrawable.setRotation(1.0f, true);
             } else {
-                str = LocaleController.getString("Calendar", C0890R.string.Calendar);
+                str = LocaleController.getString("Calendar", C0952R.string.Calendar);
                 this.backDrawable.setRotation(0.0f, true);
             }
             if (abs > 1) {
-                this.removeDaysButton.setText(LocaleController.formatString("ClearHistoryForTheseDays", C0890R.string.ClearHistoryForTheseDays, new Object[0]));
+                this.removeDaysButton.setText(LocaleController.formatString("ClearHistoryForTheseDays", C0952R.string.ClearHistoryForTheseDays, new Object[0]));
             } else if (abs > 0 || this.inSelectionMode) {
-                this.removeDaysButton.setText(LocaleController.formatString("ClearHistoryForThisDay", C0890R.string.ClearHistoryForThisDay, new Object[0]));
+                this.removeDaysButton.setText(LocaleController.formatString("ClearHistoryForThisDay", C0952R.string.ClearHistoryForThisDay, new Object[0]));
             }
             this.actionBar.setTitleAnimated(str, z2, 150L);
             if ((!this.inSelectionMode || abs > 0) && (hintView = this.selectDaysHint) != null) {

@@ -32,7 +32,7 @@ public class DocumentObject {
             if (tLRPC$WallPaper instanceof TLRPC$TL_wallPaper) {
                 TLRPC$Document tLRPC$Document = ((TLRPC$TL_wallPaper) tLRPC$WallPaper).document;
                 this.wallpaper = tLRPC$Document;
-                this.f850id = tLRPC$Document.f850id;
+                this.f861id = tLRPC$Document.f861id;
                 this.access_hash = tLRPC$Document.access_hash;
                 this.file_reference = tLRPC$Document.file_reference;
                 this.user_id = tLRPC$Document.user_id;
@@ -44,11 +44,11 @@ public class DocumentObject {
                 this.version = tLRPC$Document.version;
                 this.dc_id = tLRPC$Document.dc_id;
                 this.key = tLRPC$Document.key;
-                this.f851iv = tLRPC$Document.f851iv;
+                this.f862iv = tLRPC$Document.f862iv;
                 this.attributes = tLRPC$Document.attributes;
                 return;
             }
-            this.f850id = -2147483648L;
+            this.f861id = -2147483648L;
             this.dc_id = Integer.MIN_VALUE;
         }
     }
@@ -63,8 +63,8 @@ public class DocumentObject {
             if (tLRPC$PhotoSize instanceof TLRPC$TL_photoPathSize) {
                 tLRPC$TL_photoPathSize = (TLRPC$TL_photoPathSize) tLRPC$PhotoSize;
             } else {
-                i = tLRPC$PhotoSize.f873w;
-                i2 = tLRPC$PhotoSize.f872h;
+                i = tLRPC$PhotoSize.f884w;
+                i2 = tLRPC$PhotoSize.f883h;
             }
             if (tLRPC$TL_photoPathSize != null && i != 0 && i2 != 0) {
                 SvgHelper.SvgDrawable drawableByPath = SvgHelper.getDrawableByPath(SvgHelper.decompress(tLRPC$TL_photoPathSize.bytes), i, i2);
@@ -119,8 +119,8 @@ public class DocumentObject {
                     }
                     TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i3);
                     if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeImageSize) {
-                        int i5 = tLRPC$DocumentAttribute.f853w;
-                        int i6 = tLRPC$DocumentAttribute.f852h;
+                        int i5 = tLRPC$DocumentAttribute.f864w;
+                        int i6 = tLRPC$DocumentAttribute.f863h;
                         i = i5;
                         i2 = i6;
                         break;

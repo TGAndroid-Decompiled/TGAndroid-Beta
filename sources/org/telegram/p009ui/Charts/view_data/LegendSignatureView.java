@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Charts.data.ChartData;
 import org.telegram.p009ui.Components.CombinedDrawable;
@@ -74,7 +74,7 @@ public class LegendSignatureView extends FrameLayout {
         this.hourTime.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         ImageView imageView = new ImageView(context);
         this.chevron = imageView;
-        imageView.setImageResource(C0890R.C0891drawable.ic_chevron_right_black_18dp);
+        imageView.setImageResource(C0952R.C0953drawable.ic_chevron_right_black_18dp);
         RadialProgressView radialProgressView = new RadialProgressView(context);
         this.progressView = radialProgressView;
         radialProgressView.setSize(AndroidUtilities.m34dp(12.0f));
@@ -93,7 +93,7 @@ public class LegendSignatureView extends FrameLayout {
         this.hourTime.setTextColor(Theme.getColor("dialogTextBlack"));
         this.chevron.setColorFilter(Theme.getColor("statisticChartChevronColor"));
         this.progressView.setProgressColor(Theme.getColor("statisticChartChevronColor"));
-        this.shadowDrawable = getContext().getResources().getDrawable(C0890R.C0891drawable.stats_tooltip).mutate();
+        this.shadowDrawable = getContext().getResources().getDrawable(C0952R.C0953drawable.stats_tooltip).mutate();
         this.backgroundDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(4.0f), Theme.getColor("dialogBackground"), Theme.getColor("listSelectorSDK21"), -16777216);
         CombinedDrawable combinedDrawable = new CombinedDrawable(this.shadowDrawable, this.backgroundDrawable, AndroidUtilities.m34dp(3.0f), AndroidUtilities.m34dp(3.0f));
         combinedDrawable.setFullsize(true);
@@ -135,7 +135,7 @@ public class LegendSignatureView extends FrameLayout {
         int i3 = 0;
         for (int i4 = 0; i4 < length; i4++) {
             if (arrayList.get(i4).enabled) {
-                i3 += arrayList.get(i4).line.f1002y[i];
+                i3 += arrayList.get(i4).line.f1014y[i];
             }
         }
         for (int i5 = 0; i5 < length; i5++) {
@@ -148,7 +148,7 @@ public class LegendSignatureView extends FrameLayout {
                     holder.root.requestLayout();
                 }
                 holder.root.setVisibility(0);
-                holder.value.setText(formatWholeNumber(line.f1002y[i]));
+                holder.value.setText(formatWholeNumber(line.f1014y[i]));
                 holder.signature.setText(line.name);
                 String str = line.colorKey;
                 if (str == null || !Theme.hasThemeKey(str)) {
@@ -160,7 +160,7 @@ public class LegendSignatureView extends FrameLayout {
                 if (this.showPercentage && (textView = holder.percentage) != null) {
                     textView.setVisibility(0);
                     holder.percentage.setTextColor(Theme.getColor("dialogTextBlack"));
-                    float f = arrayList.get(i5).line.f1002y[i] / i3;
+                    float f = arrayList.get(i5).line.f1014y[i] / i3;
                     if (f >= 0.1f || f == 0.0f) {
                         holder.percentage.setText(String.format(Locale.ENGLISH, "%d%s", Integer.valueOf(Math.round(f * 100.0f)), "%"));
                     } else {

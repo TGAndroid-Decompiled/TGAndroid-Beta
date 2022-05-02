@@ -8,7 +8,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.core.widget.NestedScrollView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
@@ -53,7 +53,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         linkActionView.setPermanent(true);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(C0890R.raw.shared_link_enter, "2131558513", AndroidUtilities.m34dp(90.0f), AndroidUtilities.m34dp(90.0f), false, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(C0952R.raw.shared_link_enter, "2131558513", AndroidUtilities.m34dp(90.0f), AndroidUtilities.m34dp(90.0f), false, null);
         this.linkIcon = rLottieDrawable;
         rLottieDrawable.setCustomEndFrame(42);
         rLottieImageView.setAnimation(this.linkIcon);
@@ -82,17 +82,17 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         });
         TextView textView = new TextView(context);
         this.titleView = textView;
-        textView.setText(LocaleController.getString("InviteLink", C0890R.string.InviteLink));
+        textView.setText(LocaleController.getString("InviteLink", C0952R.string.InviteLink));
         textView.setTextSize(24.0f);
         textView.setGravity(1);
         textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         TextView textView2 = new TextView(context);
         this.subtitle = textView2;
         if (z2) {
-            i = C0890R.string.LinkInfoChannel;
+            i = C0952R.string.LinkInfoChannel;
             str = "LinkInfoChannel";
         } else {
-            i = C0890R.string.LinkInfo;
+            i = C0952R.string.LinkInfo;
             str = "LinkInfo";
         }
         textView2.setText(LocaleController.getString(str, i));
@@ -101,7 +101,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
         TextView textView3 = new TextView(context);
         this.manage = textView3;
-        textView3.setText(LocaleController.getString("ManageInviteLinks", C0890R.string.ManageInviteLinks));
+        textView3.setText(LocaleController.getString("ManageInviteLinks", C0952R.string.ManageInviteLinks));
         textView3.setTextSize(14.0f);
         textView3.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText"));
         textView3.setBackground(Theme.createRadSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlueText"), 76), AndroidUtilities.m34dp(4.0f), AndroidUtilities.m34dp(4.0f)));
@@ -140,7 +140,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
     }
 
     public void lambda$new$1(TLRPC$ChatFull tLRPC$ChatFull, BaseFragment baseFragment, View view) {
-        ManageLinksActivity manageLinksActivity = new ManageLinksActivity(tLRPC$ChatFull.f844id, 0L, 0);
+        ManageLinksActivity manageLinksActivity = new ManageLinksActivity(tLRPC$ChatFull.f855id, 0L, 0);
         manageLinksActivity.setInfo(tLRPC$ChatFull, tLRPC$ChatFull.exported_invite);
         baseFragment.presentFragment(manageLinksActivity);
         dismiss();
@@ -180,9 +180,9 @@ public class PermanentLinkBottomSheet extends BottomSheet {
             this.linkActionView.setLink(this.invite.link);
             if (z && this.fragment != null) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage(LocaleController.getString("RevokeAlertNewLink", C0890R.string.RevokeAlertNewLink));
-                builder.setTitle(LocaleController.getString("RevokeLink", C0890R.string.RevokeLink));
-                builder.setNegativeButton(LocaleController.getString("OK", C0890R.string.OK), null);
+                builder.setMessage(LocaleController.getString("RevokeAlertNewLink", C0952R.string.RevokeAlertNewLink));
+                builder.setTitle(LocaleController.getString("RevokeLink", C0952R.string.RevokeLink));
+                builder.setNegativeButton(LocaleController.getString("OK", C0952R.string.OK), null);
                 this.fragment.showDialog(builder.create());
             }
         }

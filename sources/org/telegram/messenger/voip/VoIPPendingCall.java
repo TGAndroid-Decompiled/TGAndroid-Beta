@@ -73,7 +73,7 @@ public final class VoIPPendingCall {
         MessagesController messagesController = this.accountInstance.getMessagesController();
         TLRPC$User user = messagesController.getUser(Long.valueOf(this.userId));
         if (user != null) {
-            TLRPC$UserFull userFull = messagesController.getUserFull(user.f974id);
+            TLRPC$UserFull userFull = messagesController.getUserFull(user.f985id);
             VoIPHelper.startCall(user, this.video, userFull != null && userFull.video_calls_available, this.activity, userFull, this.accountInstance);
         } else if (isAirplaneMode()) {
             VoIPHelper.startCall(null, this.video, false, this.activity, null, this.accountInstance);

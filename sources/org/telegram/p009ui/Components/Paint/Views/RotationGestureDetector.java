@@ -4,11 +4,11 @@ import android.view.MotionEvent;
 
 public class RotationGestureDetector {
     private float angle;
-    private float f1041fX;
-    private float f1042fY;
+    private float f1055fX;
+    private float f1056fY;
     private OnRotationGestureListener mListener;
-    private float f1043sX;
-    private float f1044sY;
+    private float f1057sX;
+    private float f1058sY;
     private float startAngle;
 
     public interface OnRotationGestureListener {
@@ -41,7 +41,7 @@ public class RotationGestureDetector {
                 if (actionMasked == 2) {
                     float x = motionEvent.getX(0);
                     float y = motionEvent.getY(0);
-                    this.angle = angleBetweenLines(this.f1041fX, this.f1042fY, this.f1043sX, this.f1044sY, motionEvent.getX(1), motionEvent.getY(1), x, y);
+                    this.angle = angleBetweenLines(this.f1055fX, this.f1056fY, this.f1057sX, this.f1058sY, motionEvent.getX(1), motionEvent.getY(1), x, y);
                     if (this.mListener != null) {
                         if (Float.isNaN(this.startAngle)) {
                             this.startAngle = this.angle;
@@ -66,10 +66,10 @@ public class RotationGestureDetector {
             this.startAngle = Float.NaN;
             return true;
         }
-        this.f1043sX = motionEvent.getX(0);
-        this.f1044sY = motionEvent.getY(0);
-        this.f1041fX = motionEvent.getX(1);
-        this.f1042fY = motionEvent.getY(1);
+        this.f1057sX = motionEvent.getX(0);
+        this.f1058sY = motionEvent.getY(0);
+        this.f1055fX = motionEvent.getX(1);
+        this.f1056fY = motionEvent.getY(1);
         return true;
     }
 

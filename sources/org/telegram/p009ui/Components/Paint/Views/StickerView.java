@@ -66,7 +66,7 @@ public class StickerView extends EntityView {
             if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeSticker) {
                 TLRPC$TL_maskCoords tLRPC$TL_maskCoords = tLRPC$DocumentAttribute.mask_coords;
                 if (tLRPC$TL_maskCoords != null) {
-                    this.anchor = tLRPC$TL_maskCoords.f916n;
+                    this.anchor = tLRPC$TL_maskCoords.f927n;
                 }
             } else {
                 i++;
@@ -135,8 +135,8 @@ public class StickerView extends EntityView {
     @Override
     public void updatePosition() {
         Size size = this.baseSize;
-        setX(this.position.f1058x - (size.width / 2.0f));
-        setY(this.position.f1059y - (size.height / 2.0f));
+        setX(this.position.f1072x - (size.width / 2.0f));
+        setY(this.position.f1073y - (size.height / 2.0f));
         updateSelectionView();
     }
 
@@ -179,7 +179,7 @@ public class StickerView extends EntityView {
         Point point = this.position;
         float f = measuredWidth / 2.0f;
         float f2 = measuredWidth * scaleX;
-        return new Rect((point.f1058x - f) * scaleX, (point.f1059y - f) * scaleX, f2, f2);
+        return new Rect((point.f1072x - f) * scaleX, (point.f1073y - f) * scaleX, f2, f2);
     }
 
     @Override

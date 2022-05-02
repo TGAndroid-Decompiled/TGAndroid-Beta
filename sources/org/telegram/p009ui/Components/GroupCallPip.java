@@ -23,7 +23,7 @@ import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
@@ -101,7 +101,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
 
     public GroupCallPip(Context context, int i) {
         this.currentAccount = i;
-        C20213 r0 = new C20213(context, ViewConfiguration.get(context).getScaledTouchSlop());
+        C20903 r0 = new C20903(context, ViewConfiguration.get(context).getScaledTouchSlop());
         this.windowView = r0;
         r0.setAlpha(0.7f);
         GroupCallPipButton groupCallPipButton = new GroupCallPipButton(context, this.currentAccount, false);
@@ -203,7 +203,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.iconView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(C0890R.raw.group_pip_delete_icon, "2131558454", AndroidUtilities.m34dp(40.0f), AndroidUtilities.m34dp(40.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(C0952R.raw.group_pip_delete_icon, "2131558454", AndroidUtilities.m34dp(40.0f), AndroidUtilities.m34dp(40.0f), true, null);
         this.deleteIcon = rLottieDrawable;
         rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
         rLottieImageView.setAnimation(this.deleteIcon);
@@ -249,7 +249,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         frameLayout2.addView(groupCallPipAlertView, LayoutHelper.createFrame(-2, -2.0f));
     }
 
-    class C20213 extends FrameLayout {
+    class C20903 extends FrameLayout {
         AnimatorSet moveToBoundsAnimator;
         boolean pressed;
         float startX;
@@ -262,16 +262,16 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
                 if (sharedInstance != null && sharedInstance.isMicMute()) {
                     TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = sharedInstance.groupCall.participants.get(sharedInstance.getSelfId());
                     if (tLRPC$TL_groupCallParticipant == null || tLRPC$TL_groupCallParticipant.can_self_unmute || !tLRPC$TL_groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) {
-                        AndroidUtilities.runOnUIThread(C20213.this.micRunnable, 90L);
-                        C20213.this.performHapticFeedback(3, 2);
-                        C20213.this.pressed = true;
+                        AndroidUtilities.runOnUIThread(C20903.this.micRunnable, 90L);
+                        C20903.this.performHapticFeedback(3, 2);
+                        C20903.this.pressed = true;
                     }
                 }
             }
         };
         Runnable micRunnable = GroupCallPip$3$$ExternalSyntheticLambda0.INSTANCE;
 
-        C20213(Context context, float f) {
+        C20903(Context context, float f) {
             super(context);
             this.val$touchSlop = f;
         }
@@ -306,7 +306,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
 
         @Override
         public boolean onTouchEvent(android.view.MotionEvent r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.GroupCallPip.C20213.onTouchEvent(android.view.MotionEvent):boolean");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.GroupCallPip.C20903.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
         private void onTap() {
@@ -506,7 +506,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
             ofFloat9.setDuration(350L);
             ofFloat9.setInterpolator(cubicBezierInterpolator3);
             animatorSet.playTogether(ofFloat9);
-            animatorSet.addListener(new C20289(frameLayout, frameLayout2, windowManager, frameLayout3, frameLayout4));
+            animatorSet.addListener(new C20979(frameLayout, frameLayout2, windowManager, frameLayout3, frameLayout4));
             animatorSet.start();
             this.deleteIcon.setCustomEndFrame(66);
             this.iconView.stopAnimation();
@@ -518,14 +518,14 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
     }
 
-    public class C20289 extends AnimatorListenerAdapter {
+    public class C20979 extends AnimatorListenerAdapter {
         final View val$alert;
         final WindowManager val$windowManager;
         final View val$windowRemoveTooltipOverlayView;
         final View val$windowRemoveTooltipView;
         final View val$windowView;
 
-        C20289(View view, View view2, WindowManager windowManager, View view3, View view4) {
+        C20979(View view, View view2, WindowManager windowManager, View view3, View view4) {
             this.val$windowView = view;
             this.val$windowRemoveTooltipView = view2;
             this.val$windowManager = windowManager;
@@ -544,7 +544,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
             notificationCenter.doOnIdle(new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCallPip.C20289.lambda$onAnimationEnd$0(view, view2, windowManager, view3, view4);
+                    GroupCallPip.C20979.lambda$onAnimationEnd$0(view, view2, windowManager, view3, view4);
                 }
             });
         }

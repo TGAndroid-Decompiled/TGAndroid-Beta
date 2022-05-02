@@ -3,18 +3,18 @@ package org.telegram.tgnet;
 public class TLRPC$TL_inputSecureFile extends TLRPC$InputSecureFile {
     public static int constructor = 1399317950;
     public long access_hash;
-    public long f907id;
+    public long f918id;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f907id = abstractSerializedData.readInt64(z);
+        this.f918id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f907id);
+        abstractSerializedData.writeInt64(this.f918id);
         abstractSerializedData.writeInt64(this.access_hash);
     }
 }

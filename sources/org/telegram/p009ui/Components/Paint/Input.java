@@ -53,27 +53,27 @@ public class Input {
                     if (this.renderView.getCurrentBrush() instanceof Brush.Arrow) {
                         float f2 = this.lastAngle;
                         Point point2 = this.points[this.pointsCount - 1];
-                        Point point3 = new Point(point2.f1038x, point2.f1039y, 0.800000011920929d);
-                        double d = point2.f1038x;
+                        Point point3 = new Point(point2.f1052x, point2.f1053y, 0.800000011920929d);
+                        double d = point2.f1052x;
                         double d2 = f2;
                         Double.isNaN(d2);
                         double cos = Math.cos(d2 - 2.356194490192345d);
                         double currentWeight = this.renderView.getCurrentWeight() * 4.5f;
                         Double.isNaN(currentWeight);
                         double d3 = d + (cos * currentWeight);
-                        double d4 = point2.f1039y;
+                        double d4 = point2.f1053y;
                         Double.isNaN(d2);
                         double sin = Math.sin(d2 - 2.5132741228718345d);
                         Double.isNaN(currentWeight);
                         Point point4 = new Point(d3, d4 + (sin * currentWeight), 1.0d);
                         point4.edge = true;
                         paintPath(new Path(new Point[]{point3, point4}));
-                        double d5 = point2.f1038x;
+                        double d5 = point2.f1052x;
                         Double.isNaN(d2);
                         double cos2 = Math.cos(2.356194490192345d + d2);
                         Double.isNaN(currentWeight);
                         double d6 = d5 + (cos2 * currentWeight);
-                        double d7 = point2.f1039y;
+                        double d7 = point2.f1053y;
                         Double.isNaN(d2);
                         double sin2 = Math.sin(d2 + 2.5132741228718345d);
                         Double.isNaN(currentWeight);
@@ -116,7 +116,7 @@ public class Input {
             int i2 = i + 1;
             this.pointsCount = i2;
             if (i2 == 3) {
-                this.lastAngle = (float) Math.atan2(pointArr[2].f1039y - pointArr[1].f1039y, pointArr[2].f1038x - pointArr[1].f1038x);
+                this.lastAngle = (float) Math.atan2(pointArr[2].f1053y - pointArr[1].f1053y, pointArr[2].f1052x - pointArr[1].f1052x);
                 smoothenAndPaintPoints(false);
             }
             this.lastLocation = point;
@@ -177,15 +177,15 @@ public class Input {
         double pow = Math.pow(f2, 2.0d);
         double d = f2 * 2.0f * f;
         double d2 = f * f;
-        double d3 = point3.f1038x;
+        double d3 = point3.f1052x;
         Double.isNaN(d);
-        double d4 = (point.f1038x * pow) + (d3 * d);
-        double d5 = point2.f1038x;
+        double d4 = (point.f1052x * pow) + (d3 * d);
+        double d5 = point2.f1052x;
         Double.isNaN(d2);
-        double d6 = point.f1039y * pow;
-        double d7 = point3.f1039y;
+        double d6 = point.f1053y * pow;
+        double d7 = point3.f1053y;
         Double.isNaN(d);
-        double d8 = point2.f1039y;
+        double d8 = point2.f1053y;
         Double.isNaN(d2);
         return new Point(d4 + (d5 * d2), d6 + (d7 * d) + (d8 * d2), 1.0d);
     }

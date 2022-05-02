@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="26369" android:versionName="8.7.4" android:installLocation="auto" android:compileSdkVersion="31" android:compileSdkVersionCodename="12" package="org.telegram.messenger.web" platformBuildVersionCode="31" platformBuildVersionName="12">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="26479" android:versionName="8.7.2" android:installLocation="auto" android:compileSdkVersion="31" android:compileSdkVersionCodename="12" package="org.telegram.messenger.beta" platformBuildVersionCode="31" platformBuildVersionName="12">
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="30"/>
     <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
     <uses-feature android:name="android.hardware.location.network" android:required="false"/>
     <uses-feature android:name="android.hardware.location" android:required="false"/>
     <uses-feature android:name="android.hardware.LOCATION" android:required="false"/>
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-    <uses-permission android:name="org.telegram.messenger.web.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="org.telegram.messenger.beta.permission.MAPS_RECEIVE"/>
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
-    <permission android:name="org.telegram.messenger.web.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
+    <permission android:name="org.telegram.messenger.beta.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
     <supports-screens android:anyDensity="true" android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:resizeable="true" android:xlargeScreens="true"/>
     <uses-feature android:glEsVersion="0x20000" android:required="true"/>
     <uses-feature android:name="android.hardware.telephony" android:required="false"/>
@@ -23,6 +20,7 @@
     <uses-feature android:name="android.hardware.camera" android:required="false"/>
     <uses-feature android:name="android.hardware.camera2" android:required="false"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -73,7 +71,8 @@
     <queries>
         <package android:name="com.google.android.apps.maps"/>
     </queries>
-    <application android:theme="@style/Theme_TMessages_Start" android:label="@string/AppName" android:icon="@mipmap/ic_launcher_sa" android:name="org.telegram.messenger.ApplicationLoader" android:manageSpaceActivity="org.telegram.ui.ExternalActionActivity" android:allowBackup="false" android:hardwareAccelerated="@bool/useHardwareAcceleration" android:largeHeap="true" android:supportsRtl="false" android:roundIcon="@mipmap/ic_launcher_sa" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:allowAudioPlaybackCapture="true" android:requestLegacyExternalStorage="true" android:preserveLegacyExternalStorage="true">
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
+    <application android:theme="@style/Theme_TMessages_Start" android:label="@string/AppNameBeta" android:icon="@mipmap/ic_launcher" android:name="org.telegram.messenger.ApplicationLoader" android:manageSpaceActivity="org.telegram.ui.ExternalActionActivity" android:allowBackup="false" android:hardwareAccelerated="@bool/useHardwareAcceleration" android:largeHeap="true" android:supportsRtl="false" android:roundIcon="@mipmap/ic_launcher_round" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:allowAudioPlaybackCapture="true" android:requestLegacyExternalStorage="true" android:preserveLegacyExternalStorage="true">
         <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyA-t0jLPjUt2FxrA8VPK2EiYHcYcboIR6k"/>
         <service android:name="org.telegram.messenger.GcmPushListenerService">
             <intent-filter>
@@ -197,8 +196,8 @@
                 <data android:mimeType="text/plain"/>
             </intent-filter>
         </activity>
-        <activity android:theme="@style/Theme_TMessages_Transparent" android:name="org.telegram.p009ui.VoIPPermissionActivity" android:taskAffinity="org.telegram.messenger.web.voip" android:excludeFromRecents="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
-        <activity android:theme="@style/Theme_TMessages_TransparentWithAlerts" android:name="org.telegram.p009ui.VoIPFeedbackActivity" android:taskAffinity="org.telegram.messenger.web.voip_feedback" android:excludeFromRecents="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
+        <activity android:theme="@style/Theme_TMessages_Transparent" android:name="org.telegram.p009ui.VoIPPermissionActivity" android:taskAffinity="org.telegram.messenger.beta.voip" android:excludeFromRecents="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
+        <activity android:theme="@style/Theme_TMessages_TransparentWithAlerts" android:name="org.telegram.p009ui.VoIPFeedbackActivity" android:taskAffinity="org.telegram.messenger.beta.voip_feedback" android:excludeFromRecents="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
         <receiver android:name="org.telegram.messenger.AutoMessageHeardReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="org.telegram.messenger.ACTION_MESSAGE_HEARD"/>
@@ -292,11 +291,11 @@
         <receiver android:name="org.telegram.messenger.CustomTabsCopyReceiver" android:enabled="true"/>
         <receiver android:name="org.telegram.messenger.NotificationDismissReceiver" android:exported="false"/>
         <receiver android:name="org.telegram.messenger.voip.VoIPActionsReceiver" android:exported="false"/>
-        <provider android:name="androidx.core.content.FileProvider" android:exported="false" android:authorities="org.telegram.messenger.web.provider" android:grantUriPermissions="true">
+        <provider android:name="androidx.core.content.FileProvider" android:exported="false" android:authorities="org.telegram.messenger.beta.provider" android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths"/>
         </provider>
-        <provider android:name="org.telegram.messenger.NotificationImageProvider" android:exported="false" android:authorities="org.telegram.messenger.web.notification_image_provider" android:grantUriPermissions="true"/>
-        <provider android:name="org.telegram.messenger.voip.CallNotificationSoundProvider" android:exported="true" android:authorities="org.telegram.messenger.web.call_sound_provider"/>
+        <provider android:name="org.telegram.messenger.NotificationImageProvider" android:exported="false" android:authorities="org.telegram.messenger.beta.notification_image_provider" android:grantUriPermissions="true"/>
+        <provider android:name="org.telegram.messenger.voip.CallNotificationSoundProvider" android:exported="true" android:authorities="org.telegram.messenger.beta.call_sound_provider"/>
         <receiver android:name="org.telegram.messenger.ChatsWidgetProvider" android:exported="false">
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/chats_widget_info"/>
             <intent-filter>
@@ -353,10 +352,24 @@
             <meta-data android:name="com.google.firebase.components:com.google.mlkit.nl.languageid.LanguageIdRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
             <meta-data android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
         </service>
-        <provider android:name="com.google.firebase.provider.FirebaseInitProvider" android:exported="false" android:authorities="org.telegram.messenger.web.firebaseinitprovider" android:initOrder="100" android:directBootAware="true"/>
-        <provider android:name="com.google.mlkit.common.internal.MlKitInitProvider" android:exported="false" android:authorities="org.telegram.messenger.web.mlkitinitprovider" android:initOrder="99"/>
+        <provider android:name="com.google.firebase.provider.FirebaseInitProvider" android:exported="false" android:authorities="org.telegram.messenger.beta.firebaseinitprovider" android:initOrder="100" android:directBootAware="true"/>
+        <provider android:name="com.google.mlkit.common.internal.MlKitInitProvider" android:exported="false" android:authorities="org.telegram.messenger.beta.mlkitinitprovider" android:initOrder="99"/>
         <activity android:theme="@android:style/Theme.Translucent.NoTitleBar" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:exported="false"/>
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <activity android:theme="@android:style/Theme.NoDisplay" android:name="com.microsoft.appcenter.distribute.DeepLinkActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="appcenter" android:host="updates" android:path="/"/>
+            </intent-filter>
+        </activity>
+        <receiver android:name="com.microsoft.appcenter.distribute.DownloadManagerReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+                <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED"/>
+            </intent-filter>
+        </receiver>
         <service android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery" android:exported="false">
             <meta-data android:name="backend:com.google.android.datatransport.cct.CctBackendFactory" android:value="cct"/>
         </service>

@@ -17,7 +17,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLog;
 
 public class JNIUtilities {
@@ -29,7 +29,7 @@ public class JNIUtilities {
         return "";
     }
 
-    @TargetApi(C0890R.styleable.MapAttrs_zOrderOnTop)
+    @TargetApi(C0952R.styleable.MapAttrs_zOrderOnTop)
     public static String getCurrentNetworkInterfaceName() {
         LinkProperties linkProperties;
         ConnectivityManager connectivityManager = (ConnectivityManager) ApplicationLoader.applicationContext.getSystemService("connectivity");

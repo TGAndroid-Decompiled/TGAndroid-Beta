@@ -21,14 +21,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C0945ActionBar;
+import org.telegram.p009ui.ActionBar.C1006ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.EmptyCell;
@@ -95,11 +95,11 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         if (view instanceof GroupCreateUserCell) {
             GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) view;
             TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) groupCreateUserCell.getObject();
-            if (this.selectedIds.contains(Long.valueOf(tLRPC$Chat.f843id))) {
-                this.selectedIds.remove(Long.valueOf(tLRPC$Chat.f843id));
+            if (this.selectedIds.contains(Long.valueOf(tLRPC$Chat.f854id))) {
+                this.selectedIds.remove(Long.valueOf(tLRPC$Chat.f854id));
                 groupCreateUserCell.setChecked(false, true);
             } else {
-                this.selectedIds.add(Long.valueOf(tLRPC$Chat.f843id));
+                this.selectedIds.add(Long.valueOf(tLRPC$Chat.f854id));
                 groupCreateUserCell.setChecked(true, true);
             }
             onSelectedCountChange();
@@ -128,10 +128,10 @@ public class TooManyCommunitiesActivity extends BaseFragment {
     @Override
     public View createView(Context context) {
         this.type = this.arguments.getInt("type", 0);
-        this.actionBar.setBackButtonImage(C0890R.C0891drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("LimitReached", C0890R.string.LimitReached));
-        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setTitle(LocaleController.getString("LimitReached", C0952R.string.LimitReached));
+        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -139,7 +139,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                 }
             }
         });
-        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, C0890R.C0891drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, C0952R.C0953drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             boolean expanded = false;
 
             @Override
@@ -186,8 +186,8 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                 }
             }
         });
-        actionBarMenuItemSearchListener.setContentDescription(LocaleController.getString("Search", C0890R.string.Search));
-        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("Search", C0890R.string.Search));
+        actionBarMenuItemSearchListener.setContentDescription(LocaleController.getString("Search", C0952R.string.Search));
+        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("Search", C0952R.string.Search));
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         RecyclerListView recyclerListView = new RecyclerListView(context);
@@ -220,7 +220,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.setShowAtCenter(true);
-        this.emptyView.setText(LocaleController.getString("NoResult", C0890R.string.NoResult));
+        this.emptyView.setText(LocaleController.getString("NoResult", C0952R.string.NoResult));
         this.emptyView.showTextView();
         RadialProgressView radialProgressView = new RadialProgressView(context);
         this.progressBar = radialProgressView;
@@ -251,7 +251,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         this.buttonTextView.setGravity(17);
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        this.buttonTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+        this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
         frameLayout.addView(this.buttonLayout, LayoutHelper.createFrame(-1, 64, 80));
         this.buttonLayout.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
         this.buttonLayout.addView(this.buttonTextView, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, 12.0f, 16.0f, 12.0f));
@@ -270,14 +270,14 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             TLRPC$User user = getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId()));
             ArrayList arrayList = new ArrayList();
             for (int i = 0; i < this.inactiveChats.size(); i++) {
-                if (this.selectedIds.contains(Long.valueOf(this.inactiveChats.get(i).f843id))) {
+                if (this.selectedIds.contains(Long.valueOf(this.inactiveChats.get(i).f854id))) {
                     arrayList.add(this.inactiveChats.get(i));
                 }
             }
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) arrayList.get(i2);
                 getMessagesController().putChat(tLRPC$Chat, false);
-                getMessagesController().deleteParticipantFromChat(tLRPC$Chat.f843id, user, null);
+                getMessagesController().deleteParticipantFromChat(tLRPC$Chat.f854id, user, null);
             }
             finishFragment();
         }
@@ -326,7 +326,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             this.searchListView.setPadding(0, 0, 0, this.buttonHeight);
         }
         if (!this.selectedIds.isEmpty()) {
-            this.buttonTextView.setText(LocaleController.formatString("LeaveChats", C0890R.string.LeaveChats, LocaleController.formatPluralString("Chats", this.selectedIds.size())));
+            this.buttonTextView.setText(LocaleController.formatString("LeaveChats", C0952R.string.LeaveChats, LocaleController.formatPluralString("Chats", this.selectedIds.size())));
         }
     }
 
@@ -370,11 +370,11 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                     str = LocaleController.formatPluralString("Years", currentTime / 365);
                 }
                 if (ChatObject.isMegagroup(tLRPC$Chat)) {
-                    arrayList.add(LocaleController.formatString("InactiveChatSignature", C0890R.string.InactiveChatSignature, LocaleController.formatPluralString("Members", tLRPC$Chat.participants_count), str));
+                    arrayList.add(LocaleController.formatString("InactiveChatSignature", C0952R.string.InactiveChatSignature, LocaleController.formatPluralString("Members", tLRPC$Chat.participants_count), str));
                 } else if (ChatObject.isChannel(tLRPC$Chat)) {
-                    arrayList.add(LocaleController.formatString("InactiveChannelSignature", C0890R.string.InactiveChannelSignature, str));
+                    arrayList.add(LocaleController.formatString("InactiveChannelSignature", C0952R.string.InactiveChannelSignature, str));
                 } else {
-                    arrayList.add(LocaleController.formatString("InactiveChatSignature", C0890R.string.InactiveChatSignature, LocaleController.formatPluralString("Members", tLRPC$Chat.participants_count), str));
+                    arrayList.add(LocaleController.formatString("InactiveChatSignature", C0952R.string.InactiveChatSignature, LocaleController.formatPluralString("Members", tLRPC$Chat.participants_count), str));
                 }
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -488,11 +488,11 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                 TooManyCommunitiesHintCell tooManyCommunitiesHintCell = TooManyCommunitiesActivity.this.hintCell;
                 int i2 = TooManyCommunitiesActivity.this.type;
                 if (i2 == 0) {
-                    str = LocaleController.getString("TooManyCommunitiesHintJoin", C0890R.string.TooManyCommunitiesHintJoin);
+                    str = LocaleController.getString("TooManyCommunitiesHintJoin", C0952R.string.TooManyCommunitiesHintJoin);
                 } else if (i2 == 1) {
-                    str = LocaleController.getString("TooManyCommunitiesHintEdit", C0890R.string.TooManyCommunitiesHintEdit);
+                    str = LocaleController.getString("TooManyCommunitiesHintEdit", C0952R.string.TooManyCommunitiesHintEdit);
                 } else {
-                    str = LocaleController.getString("TooManyCommunitiesHintCreate", C0890R.string.TooManyCommunitiesHintCreate);
+                    str = LocaleController.getString("TooManyCommunitiesHintCreate", C0952R.string.TooManyCommunitiesHintCreate);
                 }
                 TooManyCommunitiesActivity.this.hintCell.setMessageText(str);
                 RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(-1, -2);
@@ -502,14 +502,14 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                 groupCreateUserCell = tooManyCommunitiesHintCell;
             } else if (i == 2) {
                 View shadowSectionCell = new ShadowSectionCell(viewGroup.getContext());
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(viewGroup.getContext(), (int) C0890R.C0891drawable.greydivider, "windowBackgroundGrayShadow"));
+                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(viewGroup.getContext(), (int) C0952R.C0953drawable.greydivider, "windowBackgroundGrayShadow"));
                 combinedDrawable.setFullsize(true);
                 shadowSectionCell.setBackground(combinedDrawable);
                 groupCreateUserCell = shadowSectionCell;
             } else if (i == 3) {
                 HeaderCell headerCell = new HeaderCell(viewGroup.getContext(), "windowBackgroundWhiteBlueHeader", 21, 8, false);
                 headerCell.setHeight(54);
-                headerCell.setText(LocaleController.getString("InactiveChats", C0890R.string.InactiveChats));
+                headerCell.setText(LocaleController.getString("InactiveChats", C0952R.string.InactiveChats));
                 groupCreateUserCell = headerCell;
             } else if (i != 5) {
                 groupCreateUserCell = new GroupCreateUserCell(viewGroup.getContext(), 1, 0, false);
@@ -537,7 +537,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                     z = false;
                 }
                 groupCreateUserCell.setObject(tLRPC$Chat, str2, str, z);
-                groupCreateUserCell.setChecked(TooManyCommunitiesActivity.this.selectedIds.contains(Long.valueOf(tLRPC$Chat.f843id)), false);
+                groupCreateUserCell.setChecked(TooManyCommunitiesActivity.this.selectedIds.contains(Long.valueOf(tLRPC$Chat.f854id)), false);
             }
         }
 
@@ -596,7 +596,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                 z = false;
             }
             groupCreateUserCell.setObject(tLRPC$Chat, str2, str, z);
-            groupCreateUserCell.setChecked(TooManyCommunitiesActivity.this.selectedIds.contains(Long.valueOf(tLRPC$Chat.f843id)), false);
+            groupCreateUserCell.setChecked(TooManyCommunitiesActivity.this.selectedIds.contains(Long.valueOf(tLRPC$Chat.f854id)), false);
         }
 
         @Override
@@ -795,7 +795,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                 }
             }
         }
-        this.buttonTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+        this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
         this.progressBar.setProgressColor(Theme.getColor("progressCircle"));
     }
 }

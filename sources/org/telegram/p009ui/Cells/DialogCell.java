@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -220,7 +220,7 @@ public class DialogCell extends BaseCell {
 
     public static class CustomDialog {
         public int date;
-        public int f997id;
+        public int f1009id;
         public boolean isMedia;
         public String message;
         public boolean muted;
@@ -307,7 +307,7 @@ public class DialogCell extends BaseCell {
     }
 
     public void setDialog(TLRPC$Dialog tLRPC$Dialog, int i, int i2) {
-        if (this.currentDialogId != tLRPC$Dialog.f849id) {
+        if (this.currentDialogId != tLRPC$Dialog.f860id) {
             ValueAnimator valueAnimator = this.statusDrawableAnimator;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
@@ -316,11 +316,11 @@ public class DialogCell extends BaseCell {
             this.statusDrawableAnimationInProgress = false;
             this.lastStatusDrawableParams = -1;
         }
-        this.currentDialogId = tLRPC$Dialog.f849id;
+        this.currentDialogId = tLRPC$Dialog.f860id;
         this.lastDialogChangedTime = System.currentTimeMillis();
         this.isDialogCell = true;
         if (tLRPC$Dialog instanceof TLRPC$TL_dialogFolder) {
-            this.currentDialogFolderId = ((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.f894id;
+            this.currentDialogFolderId = ((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.f905id;
             PullForegroundDrawable pullForegroundDrawable = this.archivedChatsDrawable;
             if (pullForegroundDrawable != null) {
                 pullForegroundDrawable.setCell(this);
@@ -352,7 +352,7 @@ public class DialogCell extends BaseCell {
 
     private void checkOnline() {
         TLRPC$User user;
-        if (!(this.user == null || (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.user.f974id))) == null)) {
+        if (!(this.user == null || (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.user.f985id))) == null)) {
             this.user = user;
         }
         this.onlineProgress = isOnline() ? 1.0f : 0.0f;
@@ -362,7 +362,7 @@ public class DialogCell extends BaseCell {
         TLRPC$User tLRPC$User = this.user;
         if (tLRPC$User != null && !tLRPC$User.self) {
             TLRPC$UserStatus tLRPC$UserStatus = tLRPC$User.status;
-            if (tLRPC$UserStatus != null && tLRPC$UserStatus.expires <= 0 && MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.f974id))) {
+            if (tLRPC$UserStatus != null && tLRPC$UserStatus.expires <= 0 && MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.f985id))) {
                 return true;
             }
             TLRPC$UserStatus tLRPC$UserStatus2 = this.user.status;
@@ -535,13 +535,13 @@ public class DialogCell extends BaseCell {
         for (int i = 0; i < size; i++) {
             TLRPC$Dialog tLRPC$Dialog = dialogs.get(i);
             TLRPC$Chat tLRPC$Chat = null;
-            if (DialogObject.isEncryptedDialog(tLRPC$Dialog.f849id)) {
-                TLRPC$EncryptedChat encryptedChat = MessagesController.getInstance(this.currentAccount).getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(tLRPC$Dialog.f849id)));
+            if (DialogObject.isEncryptedDialog(tLRPC$Dialog.f860id)) {
+                TLRPC$EncryptedChat encryptedChat = MessagesController.getInstance(this.currentAccount).getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(tLRPC$Dialog.f860id)));
                 tLRPC$User = encryptedChat != null ? MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(encryptedChat.user_id)) : null;
-            } else if (DialogObject.isUserDialog(tLRPC$Dialog.f849id)) {
-                tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$Dialog.f849id));
+            } else if (DialogObject.isUserDialog(tLRPC$Dialog.f860id)) {
+                tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$Dialog.f860id));
             } else {
-                tLRPC$Chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.f849id));
+                tLRPC$Chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.f860id));
                 tLRPC$User = null;
             }
             if (tLRPC$Chat != null) {
@@ -549,7 +549,7 @@ public class DialogCell extends BaseCell {
             } else if (tLRPC$User == null) {
                 continue;
             } else if (UserObject.isDeleted(tLRPC$User)) {
-                str = LocaleController.getString("HiddenName", C0890R.string.HiddenName);
+                str = LocaleController.getString("HiddenName", C0952R.string.HiddenName);
             } else {
                 str = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace('\n', ' ');
             }
@@ -665,11 +665,11 @@ public class DialogCell extends BaseCell {
                 if (this.currentDialogFolderId != 0) {
                     messageObject = findFolderTopMessage();
                 } else {
-                    messageObject = MessagesController.getInstance(this.currentAccount).dialogMessage.get(tLRPC$Dialog.f849id);
+                    messageObject = MessagesController.getInstance(this.currentAccount).dialogMessage.get(tLRPC$Dialog.f860id);
                 }
-                if (this.currentDialogId != tLRPC$Dialog.f849id || (((messageObject2 = this.message) != null && messageObject2.getId() != tLRPC$Dialog.top_message) || ((messageObject != null && messageObject.messageOwner.edit_date != this.currentEditDate) || this.unreadCount != tLRPC$Dialog.unread_count || this.mentionCount != tLRPC$Dialog.unread_mentions_count || this.markUnread != tLRPC$Dialog.unread_mark || this.message != messageObject || draft != this.draftMessage || this.drawPin != tLRPC$Dialog.pinned))) {
+                if (this.currentDialogId != tLRPC$Dialog.f860id || (((messageObject2 = this.message) != null && messageObject2.getId() != tLRPC$Dialog.top_message) || ((messageObject != null && messageObject.messageOwner.edit_date != this.currentEditDate) || this.unreadCount != tLRPC$Dialog.unread_count || this.mentionCount != tLRPC$Dialog.unread_mentions_count || this.markUnread != tLRPC$Dialog.unread_mark || this.message != messageObject || draft != this.draftMessage || this.drawPin != tLRPC$Dialog.pinned))) {
                     long j = this.currentDialogId;
-                    long j2 = tLRPC$Dialog.f849id;
+                    long j2 = tLRPC$Dialog.f860id;
                     boolean z3 = j != j2;
                     this.currentDialogId = j2;
                     if (z3) {
@@ -684,14 +684,14 @@ public class DialogCell extends BaseCell {
                     }
                     boolean z4 = tLRPC$Dialog instanceof TLRPC$TL_dialogFolder;
                     if (z4) {
-                        this.currentDialogFolderId = ((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.f894id;
+                        this.currentDialogFolderId = ((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.f905id;
                     } else {
                         this.currentDialogFolderId = 0;
                     }
                     int i = this.dialogsType;
                     if (i == 7 || i == 8) {
                         MessagesController.DialogFilter dialogFilter = MessagesController.getInstance(this.currentAccount).selectedDialogFilter[this.dialogsType == 8 ? (char) 1 : (char) 0];
-                        if (!(tLRPC$Dialog instanceof TLRPC$TL_dialog) || tLRPC$Dialog2 == null || dialogFilter == null || dialogFilter.pinnedDialogs.indexOfKey(tLRPC$Dialog.f849id) < 0 || dialogFilter.pinnedDialogs.indexOfKey(tLRPC$Dialog2.f849id) >= 0) {
+                        if (!(tLRPC$Dialog instanceof TLRPC$TL_dialog) || tLRPC$Dialog2 == null || dialogFilter == null || dialogFilter.pinnedDialogs.indexOfKey(tLRPC$Dialog.f860id) < 0 || dialogFilter.pinnedDialogs.indexOfKey(tLRPC$Dialog2.f860id) >= 0) {
                             z2 = false;
                         }
                         this.fullSeparator = z2;
@@ -743,7 +743,7 @@ public class DialogCell extends BaseCell {
             int size = dialogsArray.size();
             for (int i = 0; i < size; i++) {
                 TLRPC$Dialog tLRPC$Dialog = dialogsArray.get(i);
-                MessageObject messageObject2 = MessagesController.getInstance(this.currentAccount).dialogMessage.get(tLRPC$Dialog.f849id);
+                MessageObject messageObject2 = MessagesController.getInstance(this.currentAccount).dialogMessage.get(tLRPC$Dialog.f860id);
                 if (messageObject2 != null && (messageObject == null || messageObject2.messageOwner.date > messageObject.messageOwner.date)) {
                     messageObject = messageObject2;
                 }
@@ -927,25 +927,25 @@ public class DialogCell extends BaseCell {
         super.onPopulateAccessibilityEvent(accessibilityEvent);
         StringBuilder sb = new StringBuilder();
         if (this.currentDialogFolderId == 1) {
-            sb.append(LocaleController.getString("ArchivedChats", C0890R.string.ArchivedChats));
+            sb.append(LocaleController.getString("ArchivedChats", C0952R.string.ArchivedChats));
             sb.append(". ");
         } else {
             if (this.encryptedChat != null) {
-                sb.append(LocaleController.getString("AccDescrSecretChat", C0890R.string.AccDescrSecretChat));
+                sb.append(LocaleController.getString("AccDescrSecretChat", C0952R.string.AccDescrSecretChat));
                 sb.append(". ");
             }
             TLRPC$User tLRPC$User = this.user;
             if (tLRPC$User != null) {
                 if (UserObject.isReplyUser(tLRPC$User)) {
-                    sb.append(LocaleController.getString("RepliesTitle", C0890R.string.RepliesTitle));
+                    sb.append(LocaleController.getString("RepliesTitle", C0952R.string.RepliesTitle));
                 } else {
                     if (this.user.bot) {
-                        sb.append(LocaleController.getString("Bot", C0890R.string.Bot));
+                        sb.append(LocaleController.getString("Bot", C0952R.string.Bot));
                         sb.append(". ");
                     }
                     TLRPC$User tLRPC$User2 = this.user;
                     if (tLRPC$User2.self) {
-                        sb.append(LocaleController.getString("SavedMessages", C0890R.string.SavedMessages));
+                        sb.append(LocaleController.getString("SavedMessages", C0952R.string.SavedMessages));
                     } else {
                         sb.append(ContactsController.formatName(tLRPC$User2.first_name, tLRPC$User2.last_name));
                     }
@@ -955,9 +955,9 @@ public class DialogCell extends BaseCell {
                 TLRPC$Chat tLRPC$Chat = this.chat;
                 if (tLRPC$Chat != null) {
                     if (tLRPC$Chat.broadcast) {
-                        sb.append(LocaleController.getString("AccDescrChannel", C0890R.string.AccDescrChannel));
+                        sb.append(LocaleController.getString("AccDescrChannel", C0952R.string.AccDescrChannel));
                     } else {
-                        sb.append(LocaleController.getString("AccDescrGroup", C0890R.string.AccDescrGroup));
+                        sb.append(LocaleController.getString("AccDescrGroup", C0952R.string.AccDescrGroup));
                     }
                     sb.append(". ");
                     sb.append(this.chat.title);
@@ -981,9 +981,9 @@ public class DialogCell extends BaseCell {
         }
         String formatDateAudio = LocaleController.formatDateAudio(i2, true);
         if (this.message.isOut()) {
-            sb.append(LocaleController.formatString("AccDescrSentDate", C0890R.string.AccDescrSentDate, formatDateAudio));
+            sb.append(LocaleController.formatString("AccDescrSentDate", C0952R.string.AccDescrSentDate, formatDateAudio));
         } else {
-            sb.append(LocaleController.formatString("AccDescrReceivedDate", C0890R.string.AccDescrReceivedDate, formatDateAudio));
+            sb.append(LocaleController.formatString("AccDescrReceivedDate", C0952R.string.AccDescrReceivedDate, formatDateAudio));
         }
         sb.append(". ");
         if (this.chat != null && !this.message.isOut() && this.message.isFromUser() && this.message.messageOwner.action == null && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {

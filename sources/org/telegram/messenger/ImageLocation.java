@@ -34,7 +34,7 @@ public class ImageLocation {
     public long documentId;
     public byte[] file_reference;
     public int imageType;
-    public byte[] f801iv;
+    public byte[] f812iv;
     public byte[] key;
     public TLRPC$TL_fileLocationToBeDeprecated location;
     public String path;
@@ -75,7 +75,7 @@ public class ImageLocation {
         ImageLocation imageLocation = new ImageLocation();
         imageLocation.document = tLRPC$Document;
         imageLocation.key = tLRPC$Document.key;
-        imageLocation.f801iv = tLRPC$Document.f851iv;
+        imageLocation.f812iv = tLRPC$Document.f862iv;
         imageLocation.currentSize = tLRPC$Document.size;
         return imageLocation;
     }
@@ -137,7 +137,7 @@ public class ImageLocation {
                 return null;
             }
             TLRPC$TL_inputPeerUser tLRPC$TL_inputPeerUser = new TLRPC$TL_inputPeerUser();
-            tLRPC$TL_inputPeerUser.user_id = tLRPC$User.f974id;
+            tLRPC$TL_inputPeerUser.user_id = tLRPC$User.f985id;
             tLRPC$TL_inputPeerUser.access_hash = tLRPC$User.access_hash;
             int i2 = tLRPC$User.photo.dc_id;
             if (i2 == 0) {
@@ -171,12 +171,12 @@ public class ImageLocation {
             }
             if (!ChatObject.isChannel(tLRPC$Chat)) {
                 tLRPC$InputPeer = new TLRPC$TL_inputPeerChat();
-                tLRPC$InputPeer.chat_id = tLRPC$Chat.f843id;
+                tLRPC$InputPeer.chat_id = tLRPC$Chat.f854id;
             } else if (tLRPC$Chat.access_hash == 0) {
                 return null;
             } else {
                 tLRPC$InputPeer = new TLRPC$TL_inputPeerChannel();
-                tLRPC$InputPeer.channel_id = tLRPC$Chat.f843id;
+                tLRPC$InputPeer.channel_id = tLRPC$Chat.f854id;
                 tLRPC$InputPeer.access_hash = tLRPC$Chat.access_hash;
             }
             TLRPC$InputPeer tLRPC$InputPeer2 = tLRPC$InputPeer;
@@ -222,7 +222,11 @@ public class ImageLocation {
             return null;
         }
         ImageLocation forPhoto = getForPhoto(tLRPC$VideoSize.location, tLRPC$VideoSize.size, null, tLRPC$Document, null, 1, tLRPC$Document.dc_id, null, tLRPC$VideoSize.type);
-        forPhoto.imageType = 2;
+        if ("f".equals(tLRPC$VideoSize.type)) {
+            forPhoto.imageType = 1;
+        } else {
+            forPhoto.imageType = 2;
+        }
         return forPhoto;
     }
 
@@ -283,12 +287,12 @@ public class ImageLocation {
             if (tLRPC$Photo != null) {
                 imageLocation.file_reference = tLRPC$Photo.file_reference;
                 imageLocation.access_hash = tLRPC$Photo.access_hash;
-                imageLocation.photoId = tLRPC$Photo.f871id;
+                imageLocation.photoId = tLRPC$Photo.f882id;
                 imageLocation.thumbSize = str;
             } else if (tLRPC$Document != null) {
                 imageLocation.file_reference = tLRPC$Document.file_reference;
                 imageLocation.access_hash = tLRPC$Document.access_hash;
-                imageLocation.documentId = tLRPC$Document.f850id;
+                imageLocation.documentId = tLRPC$Document.f861id;
                 imageLocation.thumbSize = str;
             }
         } else {
@@ -300,7 +304,7 @@ public class ImageLocation {
             imageLocation.dc_id = tLRPC$FileLocation.dc_id;
             imageLocation.file_reference = tLRPC$FileLocation.file_reference;
             imageLocation.key = tLRPC$FileLocation.key;
-            imageLocation.f801iv = tLRPC$FileLocation.f856iv;
+            imageLocation.f812iv = tLRPC$FileLocation.f867iv;
             imageLocation.access_hash = tLRPC$FileLocation.secret;
         }
         return imageLocation;
@@ -323,9 +327,9 @@ public class ImageLocation {
             if (obj2 == null) {
                 return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + obj3;
             } else if (obj2 instanceof TLRPC$Document) {
-                return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + ((TLRPC$Document) obj2).f850id;
+                return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + ((TLRPC$Document) obj2).f861id;
             } else if (obj2 instanceof TLRPC$Photo) {
-                return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + ((TLRPC$Photo) obj2).f871id;
+                return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + ((TLRPC$Photo) obj2).f882id;
             } else if (obj2 instanceof TLRPC$PhotoSize) {
                 TLRPC$PhotoSize tLRPC$PhotoSize = (TLRPC$PhotoSize) obj2;
                 if (tLRPC$PhotoSize.location != null) {
@@ -342,7 +346,7 @@ public class ImageLocation {
 
     public String getKey(Object obj, Object obj2, boolean z) {
         if (this.secureDocument != null) {
-            return this.secureDocument.secureFile.dc_id + "_" + this.secureDocument.secureFile.f960id;
+            return this.secureDocument.secureFile.dc_id + "_" + this.secureDocument.secureFile.f971id;
         }
         TLRPC$PhotoSize tLRPC$PhotoSize = this.photoSize;
         if ((tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) || (tLRPC$PhotoSize instanceof TLRPC$TL_photoPathSize)) {
@@ -369,7 +373,7 @@ public class ImageLocation {
                 StringBuilder sb = new StringBuilder();
                 sb.append(this.document.dc_id);
                 sb.append("_");
-                sb.append(this.document.f850id);
+                sb.append(this.document.f861id);
                 sb.append("_");
                 sb.append(Theme.getBaseThemeKey(themeDocument.themeSettings));
                 sb.append("_");
@@ -383,10 +387,10 @@ public class ImageLocation {
                 }
                 sb.append(i);
                 return sb.toString();
-            } else if (tLRPC$Document.f850id == 0 || tLRPC$Document.dc_id == 0) {
+            } else if (tLRPC$Document.f861id == 0 || tLRPC$Document.dc_id == 0) {
                 return null;
             } else {
-                return this.document.dc_id + "_" + this.document.f850id;
+                return this.document.dc_id + "_" + this.document.f861id;
             }
         }
     }

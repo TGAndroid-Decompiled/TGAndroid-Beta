@@ -11,7 +11,7 @@ public abstract class TLRPC$Photo extends TLObject {
     public int flags;
     public TLRPC$GeoPoint geo;
     public boolean has_stickers;
-    public long f871id;
+    public long f882id;
     public long user_id;
     public ArrayList<TLRPC$PhotoSize> sizes = new ArrayList<>();
     public ArrayList<TLRPC$VideoSize> video_sizes = new ArrayList<>();
@@ -28,7 +28,7 @@ public abstract class TLRPC$Photo extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.has_stickers = (readInt32 & 1) != 0;
-                        this.f871id = abstractSerializedData2.readInt64(z2);
+                        this.f882id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         int readInt322 = abstractSerializedData2.readInt32(z2);
@@ -53,7 +53,7 @@ public abstract class TLRPC$Photo extends TLObject {
                         int i2 = this.has_stickers ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
-                        abstractSerializedData2.writeInt64(this.f871id);
+                        abstractSerializedData2.writeInt64(this.f882id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32(481674261);
@@ -74,7 +74,7 @@ public abstract class TLRPC$Photo extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.has_stickers = (readInt32 & 1) != 0;
-                        this.f871id = abstractSerializedData2.readInt64(z2);
+                        this.f882id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.file_reference = abstractSerializedData2.readByteArray(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -100,7 +100,7 @@ public abstract class TLRPC$Photo extends TLObject {
                         int i2 = this.has_stickers ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
-                        abstractSerializedData2.writeInt64(this.f871id);
+                        abstractSerializedData2.writeInt64(this.f882id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeByteArray(this.file_reference);
                         abstractSerializedData2.writeInt32(this.date);
@@ -119,7 +119,7 @@ public abstract class TLRPC$Photo extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f871id = abstractSerializedData2.readInt64(z2);
+                        this.f882id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.user_id = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -143,7 +143,7 @@ public abstract class TLRPC$Photo extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f871id);
+                        abstractSerializedData2.writeInt64(this.f882id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt32(this.date);
@@ -163,7 +163,7 @@ public abstract class TLRPC$Photo extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f871id = abstractSerializedData2.readInt64(z2);
+                        this.f882id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -185,7 +185,7 @@ public abstract class TLRPC$Photo extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f871id);
+                        abstractSerializedData2.writeInt64(this.f882id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32(481674261);
@@ -206,7 +206,7 @@ public abstract class TLRPC$Photo extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.has_stickers = (readInt32 & 1) != 0;
-                        this.f871id = abstractSerializedData2.readInt64(z2);
+                        this.f882id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.file_reference = abstractSerializedData2.readByteArray(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -233,7 +233,7 @@ public abstract class TLRPC$Photo extends TLObject {
                         int i2 = this.has_stickers ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
-                        abstractSerializedData2.writeInt64(this.f871id);
+                        abstractSerializedData2.writeInt64(this.f882id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeByteArray(this.file_reference);
                         abstractSerializedData2.writeInt32(this.date);
@@ -256,7 +256,7 @@ public abstract class TLRPC$Photo extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f871id = abstractSerializedData2.readInt64(z2);
+                        this.f882id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.user_id = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -281,7 +281,7 @@ public abstract class TLRPC$Photo extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f871id);
+                        abstractSerializedData2.writeInt64(this.f882id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt32(this.date);

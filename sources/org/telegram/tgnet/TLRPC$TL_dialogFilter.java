@@ -13,7 +13,7 @@ public class TLRPC$TL_dialogFilter extends TLObject {
     public boolean exclude_read;
     public int flags;
     public boolean groups;
-    public int f893id;
+    public int f904id;
     public boolean non_contacts;
     public String title;
     public ArrayList<TLRPC$InputPeer> pinned_peers = new ArrayList<>();
@@ -44,7 +44,7 @@ public class TLRPC$TL_dialogFilter extends TLObject {
         this.exclude_muted = (readInt32 & 2048) != 0;
         this.exclude_read = (readInt32 & 4096) != 0;
         this.exclude_archived = (readInt32 & 8192) != 0;
-        this.f893id = abstractSerializedData.readInt32(z);
+        this.f904id = abstractSerializedData.readInt32(z);
         this.title = abstractSerializedData.readString(z);
         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
             this.emoticon = abstractSerializedData.readString(z);
@@ -113,7 +113,7 @@ public class TLRPC$TL_dialogFilter extends TLObject {
         int i8 = this.exclude_archived ? i7 | 8192 : i7 & (-8193);
         this.flags = i8;
         abstractSerializedData.writeInt32(i8);
-        abstractSerializedData.writeInt32(this.f893id);
+        abstractSerializedData.writeInt32(this.f904id);
         abstractSerializedData.writeString(this.title);
         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
             abstractSerializedData.writeString(this.emoticon);

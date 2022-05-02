@@ -10,7 +10,7 @@ public class TLRPC$TL_fileEncryptedLocation extends TLRPC$FileLocation {
         this.local_id = abstractSerializedData.readInt32(z);
         this.secret = abstractSerializedData.readInt64(z);
         this.key = abstractSerializedData.readByteArray(z);
-        this.f856iv = abstractSerializedData.readByteArray(z);
+        this.f867iv = abstractSerializedData.readByteArray(z);
     }
 
     @Override
@@ -21,6 +21,6 @@ public class TLRPC$TL_fileEncryptedLocation extends TLRPC$FileLocation {
         abstractSerializedData.writeInt32(this.local_id);
         abstractSerializedData.writeInt64(this.secret);
         abstractSerializedData.writeByteArray(this.key);
-        abstractSerializedData.writeByteArray(this.f856iv);
+        abstractSerializedData.writeByteArray(this.f867iv);
     }
 }

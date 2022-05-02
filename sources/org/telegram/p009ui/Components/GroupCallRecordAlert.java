@@ -154,7 +154,7 @@ public class GroupCallRecordAlert extends BottomSheet {
 
             @Override
             protected void onSizeChanged(int r26, int r27, int r28, int r29) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.GroupCallRecordAlert.C21003.onSizeChanged(int, int, int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.GroupCallRecordAlert.C21013.onSizeChanged(int, int, int, int):void");
             }
 
             @Override

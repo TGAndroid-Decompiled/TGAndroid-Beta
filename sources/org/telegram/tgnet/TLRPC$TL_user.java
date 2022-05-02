@@ -25,8 +25,8 @@ public class TLRPC$TL_user extends TLRPC$User {
         this.apply_min_photo = (33554432 & readInt32) != 0;
         this.fake = (67108864 & readInt32) != 0;
         this.bot_attach_menu = (134217728 & readInt32) != 0;
-        this.bot_menu_webview = (readInt32 & 268435456) != 0;
-        this.f974id = abstractSerializedData.readInt64(z);
+        this.premium = (readInt32 & 268435456) != 0;
+        this.f985id = abstractSerializedData.readInt64(z);
         if ((this.flags & 1) != 0) {
             this.access_hash = abstractSerializedData.readInt64(z);
         }
@@ -112,10 +112,10 @@ public class TLRPC$TL_user extends TLRPC$User {
         this.flags = i15;
         int i16 = this.bot_attach_menu ? i15 | 134217728 : i15 & (-134217729);
         this.flags = i16;
-        int i17 = this.bot_menu_webview ? i16 | 268435456 : i16 & (-268435457);
+        int i17 = this.premium ? i16 | 268435456 : i16 & (-268435457);
         this.flags = i17;
         abstractSerializedData.writeInt32(i17);
-        abstractSerializedData.writeInt64(this.f974id);
+        abstractSerializedData.writeInt64(this.f985id);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt64(this.access_hash);
         }

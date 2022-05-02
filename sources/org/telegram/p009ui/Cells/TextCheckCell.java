@@ -17,7 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.AnimationProperties;
@@ -92,6 +92,12 @@ public class TextCheckCell extends FrameLayout {
         r14.setColors("switchTrack", "switchTrackChecked", "windowBackgroundWhite", "windowBackgroundWhite");
         addView(this.checkBox, LayoutHelper.createFrame(37, 20.0f, (LocaleController.isRTL ? 3 : i2) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         setClipChildren(false);
+    }
+
+    @Override
+    public void setEnabled(boolean z) {
+        super.setEnabled(z);
+        this.checkBox.setEnabled(z);
     }
 
     @Override
@@ -335,10 +341,10 @@ public class TextCheckCell extends FrameLayout {
         accessibilityNodeInfo.setCheckable(true);
         accessibilityNodeInfo.setChecked(this.checkBox.isChecked());
         if (this.checkBox.isChecked()) {
-            i = C0890R.string.NotificationsOn;
+            i = C0952R.string.NotificationsOn;
             str = "NotificationsOn";
         } else {
-            i = C0890R.string.NotificationsOff;
+            i = C0952R.string.NotificationsOff;
             str = "NotificationsOff";
         }
         accessibilityNodeInfo.setContentDescription(LocaleController.getString(str, i));

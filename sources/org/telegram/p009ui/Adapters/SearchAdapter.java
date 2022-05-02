@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-import org.telegram.PhoneFormat.C0832PhoneFormat;
+import org.telegram.PhoneFormat.C0894PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -198,9 +198,9 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                     strArr2[c2] = str4;
                 }
                 if (UserObject.isReplyUser(user)) {
-                    strArr2[2] = LocaleController.getString("RepliesTitle", C0890R.string.RepliesTitle).toLowerCase();
+                    strArr2[2] = LocaleController.getString("RepliesTitle", C0952R.string.RepliesTitle).toLowerCase();
                 } else if (user.self) {
-                    strArr2[2] = LocaleController.getString("SavedMessages", C0890R.string.SavedMessages).toLowerCase();
+                    strArr2[2] = LocaleController.getString("SavedMessages", C0952R.string.SavedMessages).toLowerCase();
                 }
                 int i7 = 0;
                 char c3 = 0;
@@ -372,13 +372,13 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                 if (tLObject instanceof TLRPC$User) {
                     TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
                     str = tLRPC$User.username;
-                    j = tLRPC$User.f974id;
+                    j = tLRPC$User.f985id;
                     z = tLRPC$User.self;
                 } else {
                     if (tLObject instanceof TLRPC$Chat) {
                         TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
                         str = tLRPC$Chat.username;
-                        j = tLRPC$Chat.f843id;
+                        j = tLRPC$Chat.f854id;
                     } else {
                         str = null;
                     }
@@ -433,7 +433,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                     return;
                 }
                 ProfileSearchCell profileSearchCell = (ProfileSearchCell) viewHolder.itemView;
-                profileSearchCell.setData(tLObject, null, z ? LocaleController.getString("SavedMessages", C0890R.string.SavedMessages) : str2, spannableStringBuilder, false, z);
+                profileSearchCell.setData(tLObject, null, z ? LocaleController.getString("SavedMessages", C0952R.string.SavedMessages) : str2, spannableStringBuilder, false, z);
                 if (!(i == getItemCount() - 1 || i == this.searchResult.size() - 1)) {
                     z2 = true;
                 }
@@ -442,14 +442,14 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
         } else if (itemViewType == 1) {
             GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
             if (getItem(i) == null) {
-                graySectionCell.setText(LocaleController.getString("GlobalSearch", C0890R.string.GlobalSearch));
+                graySectionCell.setText(LocaleController.getString("GlobalSearch", C0952R.string.GlobalSearch));
             } else {
-                graySectionCell.setText(LocaleController.getString("PhoneNumberSearch", C0890R.string.PhoneNumberSearch));
+                graySectionCell.setText(LocaleController.getString("PhoneNumberSearch", C0952R.string.PhoneNumberSearch));
             }
         } else if (itemViewType == 2) {
             TextCell textCell = (TextCell) viewHolder.itemView;
             textCell.setColors(null, "windowBackgroundWhiteBlueText2");
-            textCell.setText(LocaleController.formatString("AddContactByPhone", C0890R.string.AddContactByPhone, C0832PhoneFormat.getInstance().format("+" + ((String) getItem(i)))), false);
+            textCell.setText(LocaleController.formatString("AddContactByPhone", C0952R.string.AddContactByPhone, C0894PhoneFormat.getInstance().format("+" + ((String) getItem(i)))), false);
         }
     }
 

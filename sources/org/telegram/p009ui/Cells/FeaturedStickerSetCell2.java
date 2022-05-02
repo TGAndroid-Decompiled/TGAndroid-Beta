@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -68,7 +68,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout {
         addView(backupImageView, LayoutHelper.createFrame(48, 48.0f, (!z3 ? 3 : i2) | 48, z3 ? 0.0f : 12.0f, 8.0f, z3 ? 12.0f : 0.0f, 0.0f));
         ProgressButton progressButton = new ProgressButton(context);
         this.addButton = progressButton;
-        progressButton.setText(LocaleController.getString("Add", C0890R.string.Add));
+        progressButton.setText(LocaleController.getString("Add", C0952R.string.Add));
         progressButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         addView(progressButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
         TextView textView3 = new TextView(context);
@@ -77,7 +77,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout {
         textView3.setTextColor(Theme.getColor("featuredStickers_removeButtonText"));
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        textView3.setText(LocaleController.getString("StickersRemove", C0890R.string.StickersRemove));
+        textView3.setText(LocaleController.getString("StickersRemove", C0952R.string.StickersRemove));
         addView(textView3, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f));
         updateColors();
     }

@@ -24,7 +24,7 @@ import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.p009ui.Components.CubicBezierInterpolator;
 
 public class VoIPFloatingLayout extends FrameLayout {
@@ -108,7 +108,7 @@ public class VoIPFloatingLayout extends FrameLayout {
         if (Build.VERSION.SDK_INT >= 21) {
             setOutlineProvider(new ViewOutlineProvider() {
                 @Override
-                @TargetApi(C0890R.styleable.MapAttrs_uiZoomGestures)
+                @TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
                 public void getOutline(View view, Outline outline) {
                     if (VoIPFloatingLayout.this.overrideCornerRadius >= 0.0f) {
                         if (VoIPFloatingLayout.this.overrideCornerRadius < 1.0f) {
@@ -126,7 +126,7 @@ public class VoIPFloatingLayout extends FrameLayout {
             setClipToOutline(true);
         }
         this.mutedPaint.setColor(ColorUtils.setAlphaComponent(-16777216, 102));
-        this.mutedDrawable = ContextCompat.getDrawable(context, C0890R.C0891drawable.calls_mute_mini);
+        this.mutedDrawable = ContextCompat.getDrawable(context, C0952R.C0953drawable.calls_mute_mini);
     }
 
     @Override

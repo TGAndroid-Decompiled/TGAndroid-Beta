@@ -19,7 +19,7 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
             z2 = true;
         }
         this.video_calls_available = z2;
-        this.f975id = abstractSerializedData.readInt64(z);
+        this.f986id = abstractSerializedData.readInt64(z);
         if ((this.flags & 2) != 0) {
             this.about = abstractSerializedData.readString(z);
         }
@@ -71,7 +71,7 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
         this.flags = i6;
         abstractSerializedData.writeInt32(i6);
-        abstractSerializedData.writeInt64(this.f975id);
+        abstractSerializedData.writeInt64(this.f986id);
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeString(this.about);
         }

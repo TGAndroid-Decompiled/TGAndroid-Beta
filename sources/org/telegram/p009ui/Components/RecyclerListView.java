@@ -38,7 +38,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -465,7 +465,7 @@ public class RecyclerListView extends RecyclerView {
                 this.letterPaint.setTextSize(AndroidUtilities.m34dp(13.0f));
                 this.letterPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
                 this.paint2.setColor(Theme.getColor("windowBackgroundWhite"));
-                Drawable mutate = ContextCompat.getDrawable(context, C0890R.C0891drawable.calendar_date).mutate();
+                Drawable mutate = ContextCompat.getDrawable(context, C0952R.C0953drawable.calendar_date).mutate();
                 this.fastScrollBackgroundDrawable = mutate;
                 mutate.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhite"), -1, 0.1f), PorterDuff.Mode.MULTIPLY));
             }
@@ -476,7 +476,7 @@ public class RecyclerListView extends RecyclerView {
             updateColors();
             setFocusableInTouchMode(true);
             this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-            this.fastScrollShadowDrawable = ContextCompat.getDrawable(context, C0890R.C0891drawable.fast_scroll_shadow);
+            this.fastScrollShadowDrawable = ContextCompat.getDrawable(context, C0952R.C0953drawable.fast_scroll_shadow);
         }
 
         public void updateColors() {
@@ -2075,8 +2075,8 @@ public class RecyclerListView extends RecyclerView {
 
     public static class FoucsableOnTouchListener implements View.OnTouchListener {
         private boolean onFocus;
-        private float f1066x;
-        private float f1067y;
+        private float f1084x;
+        private float f1085y;
 
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -2085,14 +2085,14 @@ public class RecyclerListView extends RecyclerView {
                 return false;
             }
             if (motionEvent.getAction() == 0) {
-                this.f1066x = motionEvent.getX();
-                this.f1067y = motionEvent.getY();
+                this.f1084x = motionEvent.getX();
+                this.f1085y = motionEvent.getY();
                 this.onFocus = true;
                 parent.requestDisallowInterceptTouchEvent(true);
             }
             if (motionEvent.getAction() == 2) {
-                float x = this.f1066x - motionEvent.getX();
-                float y = this.f1067y - motionEvent.getY();
+                float x = this.f1084x - motionEvent.getX();
+                float y = this.f1085y - motionEvent.getY();
                 float scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
                 if (this.onFocus && Math.sqrt((x * x) + (y * y)) > scaledTouchSlop) {
                     this.onFocus = false;

@@ -6,7 +6,7 @@ import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
 import java.util.Arrays;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.webrtc.Logging;
 
 final class WebRtcAudioUtils {
@@ -81,15 +81,15 @@ final class WebRtcAudioUtils {
                 return "TYPE_FM_TUNER";
             case 17:
                 return "TYPE_TV_TUNER";
-            case C0890R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
+            case C0952R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
                 return "TYPE_TELEPHONY";
-            case C0890R.styleable.MapAttrs_uiTiltGestures:
+            case C0952R.styleable.MapAttrs_uiTiltGestures:
                 return "TYPE_AUX_LINE";
-            case C0890R.styleable.MapAttrs_uiZoomControls:
+            case C0952R.styleable.MapAttrs_uiZoomControls:
                 return "TYPE_IP";
-            case C0890R.styleable.MapAttrs_uiZoomGestures:
+            case C0952R.styleable.MapAttrs_uiZoomGestures:
                 return "TYPE_BUS";
-            case C0890R.styleable.MapAttrs_useViewLifecycle:
+            case C0952R.styleable.MapAttrs_useViewLifecycle:
                 return "TYPE_USB_HEADSET";
             default:
                 return "TYPE_UNKNOWN";

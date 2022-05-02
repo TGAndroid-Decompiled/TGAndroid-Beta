@@ -28,7 +28,7 @@ public class FlatCheckBox extends View {
     int HEIGHT = AndroidUtilities.m34dp(36.0f);
     int INNER_PADDING = AndroidUtilities.m34dp(22.0f);
     int TRANSLETE_TEXT = AndroidUtilities.m34dp(8.0f);
-    int f1032P = AndroidUtilities.m34dp(2.0f);
+    int f1046P = AndroidUtilities.m34dp(2.0f);
     RectF rectF = new RectF();
     float progress = 0.0f;
     int lastW = 0;
@@ -114,10 +114,10 @@ public class FlatCheckBox extends View {
     @Override
     protected void onMeasure(int i, int i2) {
         String str = this.text;
-        setMeasuredDimension((str == null ? 0 : (int) this.textPaint.measureText(str)) + (this.INNER_PADDING << 1) + (this.f1032P * 2), this.HEIGHT + AndroidUtilities.m34dp(4.0f));
+        setMeasuredDimension((str == null ? 0 : (int) this.textPaint.measureText(str)) + (this.INNER_PADDING << 1) + (this.f1046P * 2), this.HEIGHT + AndroidUtilities.m34dp(4.0f));
         if (getMeasuredWidth() != this.lastW) {
             this.rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.rectF.inset(this.f1032P + (this.outLinePaint.getStrokeWidth() / 2.0f), this.f1032P + (this.outLinePaint.getStrokeWidth() / 2.0f) + AndroidUtilities.m34dp(2.0f));
+            this.rectF.inset(this.f1046P + (this.outLinePaint.getStrokeWidth() / 2.0f), this.f1046P + (this.outLinePaint.getStrokeWidth() / 2.0f) + AndroidUtilities.m34dp(2.0f));
         }
     }
 

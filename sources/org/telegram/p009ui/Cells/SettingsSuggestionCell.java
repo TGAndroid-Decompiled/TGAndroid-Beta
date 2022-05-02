@@ -6,9 +6,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.PhoneFormat.C0832PhoneFormat;
+import org.telegram.PhoneFormat.C0894PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -58,7 +58,7 @@ public class SettingsSuggestionCell extends LinearLayout {
         int i = 0;
         while (i < 2) {
             TextView textView3 = new TextView(context);
-            textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+            textView3.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
             textView3.setLines(1);
             textView3.setSingleLine(true);
             textView3.setGravity(1);
@@ -102,9 +102,9 @@ public class SettingsSuggestionCell extends LinearLayout {
         if (i == 0) {
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).clientUserId));
             TextView textView = this.textView;
-            C0832PhoneFormat phoneFormat = C0832PhoneFormat.getInstance();
-            textView.setText(LocaleController.formatString("CheckPhoneNumber", C0890R.string.CheckPhoneNumber, phoneFormat.format("+" + user.phone)));
-            String string = LocaleController.getString("CheckPhoneNumberInfo", C0890R.string.CheckPhoneNumberInfo);
+            C0894PhoneFormat phoneFormat = C0894PhoneFormat.getInstance();
+            textView.setText(LocaleController.formatString("CheckPhoneNumber", C0952R.string.CheckPhoneNumber, phoneFormat.format("+" + user.phone)));
+            String string = LocaleController.getString("CheckPhoneNumberInfo", C0952R.string.CheckPhoneNumberInfo);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
             int indexOf = string.indexOf("**");
             int lastIndexOf = string.lastIndexOf("**");
@@ -112,19 +112,19 @@ public class SettingsSuggestionCell extends LinearLayout {
                 spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
                 spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
                 try {
-                    spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("CheckPhoneNumberLearnMoreUrl", C0890R.string.CheckPhoneNumberLearnMoreUrl)), indexOf, lastIndexOf - 2, 33);
+                    spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("CheckPhoneNumberLearnMoreUrl", C0952R.string.CheckPhoneNumberLearnMoreUrl)), indexOf, lastIndexOf - 2, 33);
                 } catch (Exception e) {
                     FileLog.m30e(e);
                 }
             }
             this.detailTextView.setText(spannableStringBuilder);
-            this.yesButton.setText(LocaleController.getString("CheckPhoneNumberYes", C0890R.string.CheckPhoneNumberYes));
-            this.noButton.setText(LocaleController.getString("CheckPhoneNumberNo", C0890R.string.CheckPhoneNumberNo));
+            this.yesButton.setText(LocaleController.getString("CheckPhoneNumberYes", C0952R.string.CheckPhoneNumberYes));
+            this.noButton.setText(LocaleController.getString("CheckPhoneNumberNo", C0952R.string.CheckPhoneNumberNo));
         } else if (i == 1) {
-            this.textView.setText(LocaleController.getString("YourPasswordHeader", C0890R.string.YourPasswordHeader));
-            this.detailTextView.setText(LocaleController.getString("YourPasswordRemember", C0890R.string.YourPasswordRemember));
-            this.yesButton.setText(LocaleController.getString("YourPasswordRememberYes", C0890R.string.YourPasswordRememberYes));
-            this.noButton.setText(LocaleController.getString("YourPasswordRememberNo", C0890R.string.YourPasswordRememberNo));
+            this.textView.setText(LocaleController.getString("YourPasswordHeader", C0952R.string.YourPasswordHeader));
+            this.detailTextView.setText(LocaleController.getString("YourPasswordRemember", C0952R.string.YourPasswordRemember));
+            this.yesButton.setText(LocaleController.getString("YourPasswordRememberYes", C0952R.string.YourPasswordRememberYes));
+            this.noButton.setText(LocaleController.getString("YourPasswordRememberNo", C0952R.string.YourPasswordRememberNo));
         }
     }
 

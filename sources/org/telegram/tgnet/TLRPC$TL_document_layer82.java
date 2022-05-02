@@ -5,7 +5,7 @@ public class TLRPC$TL_document_layer82 extends TLRPC$TL_document {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f850id = abstractSerializedData.readInt64(z);
+        this.f861id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.date = abstractSerializedData.readInt32(z);
         this.mime_type = abstractSerializedData.readString(z);
@@ -32,7 +32,7 @@ public class TLRPC$TL_document_layer82 extends TLRPC$TL_document {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f850id);
+        abstractSerializedData.writeInt64(this.f861id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeString(this.mime_type);

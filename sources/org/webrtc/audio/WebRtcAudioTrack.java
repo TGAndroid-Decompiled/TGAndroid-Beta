@@ -9,7 +9,7 @@ import android.media.AudioTrack;
 import android.os.Build;
 import android.os.Process;
 import java.nio.ByteBuffer;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.webrtc.CalledByNative;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
@@ -315,7 +315,7 @@ public class WebRtcAudioTrack {
         return contentType.build();
     }
 
-    @TargetApi(C0890R.styleable.MapAttrs_uiZoomGestures)
+    @TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
     private static AudioTrack createAudioTrackOnLollipopOrHigher(int i, int i2, int i3, AudioAttributes audioAttributes) {
         Logging.m9d(TAG, "createAudioTrackOnLollipopOrHigher");
         logNativeOutputSampleRate(i);

@@ -174,7 +174,7 @@ public class TextPaintView extends EntityView {
         float measuredWidth = ((getMeasuredWidth() - (this.currentType == 2 ? AndroidUtilities.m34dp(24.0f) : 0)) * getScale()) + (AndroidUtilities.m34dp(46.0f) / scaleX);
         float measuredHeight = (getMeasuredHeight() * getScale()) + (AndroidUtilities.m34dp(20.0f) / scaleX);
         Point point = this.position;
-        return new Rect((point.f1058x - (measuredWidth / 2.0f)) * scaleX, (point.f1059y - (measuredHeight / 2.0f)) * scaleX, measuredWidth * scaleX, measuredHeight * scaleX);
+        return new Rect((point.f1072x - (measuredWidth / 2.0f)) * scaleX, (point.f1073y - (measuredHeight / 2.0f)) * scaleX, measuredWidth * scaleX, measuredHeight * scaleX);
     }
 
     @Override

@@ -197,28 +197,28 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                     final int val$currentAccount;
                     final int val$type;
 
-                    public class C12861 extends GestureDetector.SimpleOnGestureListener {
-                        C12861() {
+                    public class C12871 extends GestureDetector.SimpleOnGestureListener {
+                        C12871() {
                         }
 
                         @Override
                         public boolean onDoubleTap(MotionEvent motionEvent) {
-                            boolean selectReaction = getMessageObject().selectReaction(MediaDataController.getInstance(C12851.this.val$currentAccount).getDoubleTapReaction(), false, false);
-                            C12851 r1 = C12851.this;
+                            boolean selectReaction = getMessageObject().selectReaction(MediaDataController.getInstance(C12861.this.val$currentAccount).getDoubleTapReaction(), false, false);
+                            C12861 r1 = C12861.this;
                             r1.setMessageObject(r1.getMessageObject(), null, false, false);
                             requestLayout();
                             ReactionsEffectOverlay.removeCurrent(false);
                             if (selectReaction) {
                                 ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
-                                ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], motionEvent.getX(), motionEvent.getY(), MediaDataController.getInstance(C12851.this.val$currentAccount).getDoubleTapReaction(), C12851.this.val$currentAccount, 0);
+                                ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], motionEvent.getX(), motionEvent.getY(), MediaDataController.getInstance(C12861.this.val$currentAccount).getDoubleTapReaction(), C12861.this.val$currentAccount, 0);
                                 ReactionsEffectOverlay.startAnimation();
                             }
-                            getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC12871());
+                            getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC12881());
                             return true;
                         }
 
-                        public class ViewTreeObserver$OnPreDrawListenerC12871 implements ViewTreeObserver.OnPreDrawListener {
-                            ViewTreeObserver$OnPreDrawListenerC12871() {
+                        public class ViewTreeObserver$OnPreDrawListenerC12881 implements ViewTreeObserver.OnPreDrawListener {
+                            ViewTreeObserver$OnPreDrawListenerC12881() {
                             }
 
                             @Override
@@ -232,7 +232,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                     @Override
                                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                        ThemePreviewMessagesCell.C12851.C12861.ViewTreeObserver$OnPreDrawListenerC12871.this.lambda$onPreDraw$0(valueAnimator);
+                                        ThemePreviewMessagesCell.C12861.C12871.ViewTreeObserver$OnPreDrawListenerC12881.this.lambda$onPreDraw$0(valueAnimator);
                                     }
                                 });
                                 ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -259,7 +259,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                         this.val$context = context;
                         this.val$currentAccount = i2;
                         this.val$type = i;
-                        this.gestureDetector = new GestureDetector(context, new C12861());
+                        this.gestureDetector = new GestureDetector(context, new C12871());
                     }
 
                     @Override

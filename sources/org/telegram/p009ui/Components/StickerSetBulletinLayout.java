@@ -5,7 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -93,35 +93,35 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
             if (i != 1) {
                 if (i != 2) {
                     if (i == 3) {
-                        this.titleTextView.setText(LocaleController.getString("RemovedFromRecent", C0890R.string.RemovedFromRecent));
+                        this.titleTextView.setText(LocaleController.getString("RemovedFromRecent", C0952R.string.RemovedFromRecent));
                         this.subtitleTextView.setVisibility(8);
                     } else if (i == 4) {
-                        this.titleTextView.setText(LocaleController.getString("RemovedFromFavorites", C0890R.string.RemovedFromFavorites));
+                        this.titleTextView.setText(LocaleController.getString("RemovedFromFavorites", C0952R.string.RemovedFromFavorites));
                         this.subtitleTextView.setVisibility(8);
                     } else if (i == 5) {
-                        this.titleTextView.setText(LocaleController.getString("AddedToFavorites", C0890R.string.AddedToFavorites));
+                        this.titleTextView.setText(LocaleController.getString("AddedToFavorites", C0952R.string.AddedToFavorites));
                         this.subtitleTextView.setVisibility(8);
                     }
                 } else if (tLRPC$StickerSet.masks) {
-                    this.titleTextView.setText(LocaleController.getString("AddMasksInstalled", C0890R.string.AddMasksInstalled));
-                    this.subtitleTextView.setText(LocaleController.formatString("AddMasksInstalledInfo", C0890R.string.AddMasksInstalledInfo, tLRPC$StickerSet.title));
+                    this.titleTextView.setText(LocaleController.getString("AddMasksInstalled", C0952R.string.AddMasksInstalled));
+                    this.subtitleTextView.setText(LocaleController.formatString("AddMasksInstalledInfo", C0952R.string.AddMasksInstalledInfo, tLRPC$StickerSet.title));
                 } else {
-                    this.titleTextView.setText(LocaleController.getString("AddStickersInstalled", C0890R.string.AddStickersInstalled));
-                    this.subtitleTextView.setText(LocaleController.formatString("AddStickersInstalledInfo", C0890R.string.AddStickersInstalledInfo, tLRPC$StickerSet.title));
+                    this.titleTextView.setText(LocaleController.getString("AddStickersInstalled", C0952R.string.AddStickersInstalled));
+                    this.subtitleTextView.setText(LocaleController.formatString("AddStickersInstalledInfo", C0952R.string.AddStickersInstalledInfo, tLRPC$StickerSet.title));
                 }
             } else if (tLRPC$StickerSet.masks) {
-                this.titleTextView.setText(LocaleController.getString("MasksArchived", C0890R.string.MasksArchived));
-                this.subtitleTextView.setText(LocaleController.formatString("MasksArchivedInfo", C0890R.string.MasksArchivedInfo, tLRPC$StickerSet.title));
+                this.titleTextView.setText(LocaleController.getString("MasksArchived", C0952R.string.MasksArchived));
+                this.subtitleTextView.setText(LocaleController.formatString("MasksArchivedInfo", C0952R.string.MasksArchivedInfo, tLRPC$StickerSet.title));
             } else {
-                this.titleTextView.setText(LocaleController.getString("StickersArchived", C0890R.string.StickersArchived));
-                this.subtitleTextView.setText(LocaleController.formatString("StickersArchivedInfo", C0890R.string.StickersArchivedInfo, tLRPC$StickerSet.title));
+                this.titleTextView.setText(LocaleController.getString("StickersArchived", C0952R.string.StickersArchived));
+                this.subtitleTextView.setText(LocaleController.formatString("StickersArchivedInfo", C0952R.string.StickersArchivedInfo, tLRPC$StickerSet.title));
             }
         } else if (tLRPC$StickerSet.masks) {
-            this.titleTextView.setText(LocaleController.getString("MasksRemoved", C0890R.string.MasksRemoved));
-            this.subtitleTextView.setText(LocaleController.formatString("MasksRemovedInfo", C0890R.string.MasksRemovedInfo, tLRPC$StickerSet.title));
+            this.titleTextView.setText(LocaleController.getString("MasksRemoved", C0952R.string.MasksRemoved));
+            this.subtitleTextView.setText(LocaleController.formatString("MasksRemovedInfo", C0952R.string.MasksRemovedInfo, tLRPC$StickerSet.title));
         } else {
-            this.titleTextView.setText(LocaleController.getString("StickersRemoved", C0890R.string.StickersRemoved));
-            this.subtitleTextView.setText(LocaleController.formatString("StickersRemovedInfo", C0890R.string.StickersRemovedInfo, tLRPC$StickerSet.title));
+            this.titleTextView.setText(LocaleController.getString("StickersRemoved", C0952R.string.StickersRemoved));
+            this.subtitleTextView.setText(LocaleController.formatString("StickersRemovedInfo", C0952R.string.StickersRemovedInfo, tLRPC$StickerSet.title));
         }
     }
 }

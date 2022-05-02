@@ -57,7 +57,8 @@ import org.json.JSONArray;
 import org.json.JSONTokener;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
+import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -73,7 +74,6 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_translateText;
 
 public class TranslateAlert extends Dialog {
-    private static final int MOST_SPEC = View.MeasureSpec.makeMeasureSpec(999999, Integer.MIN_VALUE);
     private Spannable allTexts;
     private TextView allTextsView;
     private boolean allowScroll;
@@ -133,9 +133,11 @@ public class TranslateAlert extends Dialog {
     private FrameLayout.LayoutParams titleLayout;
     private TextView titleView;
     private String toLanguage;
+    public static volatile DispatchQueue translateQueue = new DispatchQueue("translateQueue", false);
+    private static final int MOST_SPEC = View.MeasureSpec.makeMeasureSpec(999999, Integer.MIN_VALUE);
 
     public interface OnLinkPress {
-        void run(URLSpan uRLSpan);
+        boolean run(URLSpan uRLSpan);
     }
 
     public interface OnTranslationFail {
@@ -146,7 +148,7 @@ public class TranslateAlert extends Dialog {
         void run(String str, String str2);
     }
 
-    public static void lambda$translateText$9(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$translateText$13(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
     public void openAnimation(float f) {
@@ -278,7 +280,7 @@ public class TranslateAlert extends Dialog {
     }
 
     public TranslateAlert(BaseFragment baseFragment, Context context, int i, TLRPC$InputPeer tLRPC$InputPeer, int i2, String str, String str2, CharSequence charSequence, boolean z, OnLinkPress onLinkPress, Runnable runnable) {
-        super(context, C0890R.style.TransparentDialog);
+        super(context, C0952R.style.TransparentDialog);
         int i3;
         int i4;
         this.blockIndex = 0;
@@ -288,8 +290,6 @@ public class TranslateAlert extends Dialog {
         this.openAnimationToAnimator = null;
         this.firstMinHeight = -1;
         this.allowScroll = true;
-        this.onLinkPress = null;
-        this.onDismiss = null;
         this.fromScrollY = 0.0f;
         this.containerRect = new Rect();
         this.textRect = new Rect();
@@ -416,7 +416,7 @@ public class TranslateAlert extends Dialog {
         textView.setPivotX(LocaleController.isRTL ? textView.getWidth() : 0.0f);
         this.titleView.setPivotY(0.0f);
         this.titleView.setLines(1);
-        this.titleView.setText(LocaleController.getString("AutomaticTranslation", C0890R.string.AutomaticTranslation));
+        this.titleView.setText(LocaleController.getString("AutomaticTranslation", C0952R.string.AutomaticTranslation));
         this.titleView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.titleView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         this.titleView.setTextColor(Theme.getColor("dialogTextBlack"));
@@ -462,7 +462,7 @@ public class TranslateAlert extends Dialog {
         inlineLoadingTextView.showLoadingText = false;
         ImageView imageView = new ImageView(context);
         this.subtitleArrowView = imageView;
-        imageView.setImageResource(C0890R.C0891drawable.search_arrow);
+        imageView.setImageResource(C0952R.C0953drawable.search_arrow);
         this.subtitleArrowView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("player_actionBarSubtitle"), PorterDuff.Mode.MULTIPLY));
         if (LocaleController.isRTL) {
             this.subtitleArrowView.setScaleX(-1.0f);
@@ -497,7 +497,7 @@ public class TranslateAlert extends Dialog {
         frameLayout4.addView(view2, createFrame2);
         ImageView imageView2 = new ImageView(context);
         this.backButton = imageView2;
-        imageView2.setImageResource(C0890R.C0891drawable.ic_ab_back);
+        imageView2.setImageResource(C0952R.C0953drawable.ic_ab_back);
         this.backButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlack"), PorterDuff.Mode.MULTIPLY));
         this.backButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
         this.backButton.setPadding(AndroidUtilities.m34dp(16.0f), 0, AndroidUtilities.m34dp(16.0f), 0);
@@ -572,7 +572,7 @@ public class TranslateAlert extends Dialog {
                     return super.onTextContextMenuItem(i8);
                 }
                 ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", getText().subSequence(Math.max(0, Math.min(getSelectionStart(), getSelectionEnd())), Math.max(0, Math.max(getSelectionStart(), getSelectionEnd())))));
-                BulletinFactory.m14of(TranslateAlert.this.bulletinContainer, null).createCopyBulletin(LocaleController.getString("TextCopied", C0890R.string.TextCopied)).show();
+                BulletinFactory.m14of(TranslateAlert.this.bulletinContainer, null).createCopyBulletin(LocaleController.getString("TextCopied", C0952R.string.TextCopied)).show();
                 clearFocus();
                 return true;
             }
@@ -631,10 +631,10 @@ public class TranslateAlert extends Dialog {
         this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         this.buttonTextView.setTextSize(1, 14.0f);
-        this.buttonTextView.setText(LocaleController.getString("CloseTranslation", C0890R.string.CloseTranslation));
+        this.buttonTextView.setText(LocaleController.getString("CloseTranslation", C0952R.string.CloseTranslation));
         FrameLayout frameLayout10 = new FrameLayout(context);
         this.buttonView = frameLayout10;
-        frameLayout10.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+        frameLayout10.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor("featuredStickers_addButton"), 4.0f));
         this.buttonView.addView(this.buttonTextView);
         this.buttonView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -851,16 +851,18 @@ public class TranslateAlert extends Dialog {
     }
 
     public void lambda$dispatchTouchEvent$4() {
-        this.contentView.post(new TranslateAlert$$ExternalSyntheticLambda7(this));
+        this.contentView.post(new TranslateAlert$$ExternalSyntheticLambda10(this));
     }
 
     @Override
     protected void onCreate(Bundle bundle) {
+        int color;
         super.onCreate(bundle);
+        boolean z = false;
         this.contentView.setPadding(0, 0, 0, 0);
         setContentView(this.contentView, new ViewGroup.LayoutParams(-1, -1));
         Window window = getWindow();
-        window.setWindowAnimations(C0890R.style.DialogNoAnimation);
+        window.setWindowAnimations(C0952R.style.DialogNoAnimation);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;
         attributes.gravity = 51;
@@ -875,6 +877,11 @@ public class TranslateAlert extends Dialog {
         attributes.flags |= 256;
         attributes.height = -1;
         window.setAttributes(attributes);
+        AndroidUtilities.setNavigationBarColor(window, Theme.getColor("windowBackgroundWhite"));
+        if (AndroidUtilities.computePerceivedBrightness(color) > 0.721d) {
+            z = true;
+        }
+        AndroidUtilities.setLightNavigationBar(window, z);
         this.container.forceLayout();
     }
 
@@ -1052,13 +1059,12 @@ public class TranslateAlert extends Dialog {
 
                         @Override
                         public void onClick(View view) {
-                            if (TranslateAlert.this.onLinkPress != null) {
-                                TranslateAlert.this.onLinkPress.run(uRLSpan);
+                            if (TranslateAlert.this.onLinkPress == null) {
+                                AlertsCreator.showOpenUrlAlert(TranslateAlert.this.fragment, uRLSpan.getURL(), false, false);
+                            } else if (TranslateAlert.this.onLinkPress.run(uRLSpan)) {
                                 TranslateAlert.this.fastHide = true;
                                 TranslateAlert.this.dismiss();
-                                return;
                             }
-                            AlertsCreator.showOpenUrlAlert(TranslateAlert.this.fragment, uRLSpan.getURL(), false, false);
                         }
 
                         @Override
@@ -1106,17 +1112,16 @@ public class TranslateAlert extends Dialog {
             e.printStackTrace();
         }
         CharSequence charSequence = this.allTexts;
-        String str3 = "";
         if (charSequence == null) {
-            charSequence = str3;
+            charSequence = "";
         }
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence);
         if (this.blockIndex != 0) {
-            str3 = "\n";
+            spannableStringBuilder2.append((CharSequence) "\n");
         }
-        SpannableStringBuilder append = spannableStringBuilder2.append((CharSequence) str3).append((CharSequence) spannableStringBuilder);
-        this.allTexts = append;
-        this.textsView.setWholeText(append);
+        spannableStringBuilder2.append((CharSequence) spannableStringBuilder);
+        this.allTexts = spannableStringBuilder2;
+        this.textsView.setWholeText(spannableStringBuilder2);
         LoadingTextView2 blockAt = this.textsView.getBlockAt(this.blockIndex);
         if (blockAt != null) {
             blockAt.loaded(spannableStringBuilder, new Runnable() {
@@ -1135,14 +1140,14 @@ public class TranslateAlert extends Dialog {
     }
 
     public void lambda$fetchNext$6() {
-        this.contentView.post(new TranslateAlert$$ExternalSyntheticLambda7(this));
+        this.contentView.post(new TranslateAlert$$ExternalSyntheticLambda10(this));
     }
 
     public void lambda$fetchNext$8(boolean z) {
         if (z) {
-            Toast.makeText(getContext(), LocaleController.getString("TranslationFailedAlert1", C0890R.string.TranslationFailedAlert1), 0).show();
+            Toast.makeText(getContext(), LocaleController.getString("TranslationFailedAlert1", C0952R.string.TranslationFailedAlert1), 0).show();
         } else {
-            Toast.makeText(getContext(), LocaleController.getString("TranslationFailedAlert2", C0890R.string.TranslationFailedAlert2), 0).show();
+            Toast.makeText(getContext(), LocaleController.getString("TranslationFailedAlert2", C0952R.string.TranslationFailedAlert2), 0).show();
         }
         if (this.blockIndex == 0) {
             dismiss();
@@ -1157,34 +1162,27 @@ public class TranslateAlert extends Dialog {
         return true;
     }
 
-    public class C246510 extends Thread {
-        final long val$minDuration;
-        final OnTranslationFail val$onFail;
-        final OnTranslationSuccess val$onSuccess;
-        final CharSequence val$text;
-
-        C246510(CharSequence charSequence, long j, OnTranslationSuccess onTranslationSuccess, OnTranslationFail onTranslationFail) {
-            TranslateAlert.this = r1;
-            this.val$text = charSequence;
-            this.val$minDuration = j;
-            this.val$onSuccess = onTranslationSuccess;
-            this.val$onFail = onTranslationFail;
+    private void fetchTranslation(final CharSequence charSequence, final long j, final OnTranslationSuccess onTranslationSuccess, final OnTranslationFail onTranslationFail) {
+        if (!translateQueue.isAlive()) {
+            translateQueue.start();
         }
-
-        @Override
-        public void run() {
-            HttpURLConnection httpURLConnection;
-            Exception e;
-            final String str;
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            String str2 = null;
-            final boolean z = false;
-            try {
-                httpURLConnection = (HttpURLConnection) new URI((((("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(TranslateAlert.this.fromLanguage)) + "&tl=") + Uri.encode(TranslateAlert.this.toLanguage)) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + Uri.encode(this.val$text.toString())).toURL().openConnection();
-            } catch (Exception e2) {
-                e = e2;
-                httpURLConnection = null;
+        translateQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                TranslateAlert.this.lambda$fetchTranslation$12(charSequence, onTranslationSuccess, j, onTranslationFail);
             }
+        });
+    }
+
+    public void lambda$fetchTranslation$12(CharSequence charSequence, final OnTranslationSuccess onTranslationSuccess, long j, final OnTranslationFail onTranslationFail) {
+        HttpURLConnection httpURLConnection;
+        Exception e;
+        final String str;
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        String str2 = null;
+        final boolean z = false;
+        try {
+            httpURLConnection = (HttpURLConnection) new URI((((("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.fromLanguage)) + "&tl=") + Uri.encode(this.toLanguage)) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + Uri.encode(charSequence.toString())).toURL().openConnection();
             try {
                 httpURLConnection.setRequestMethod("GET");
                 httpURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36");
@@ -1209,52 +1207,46 @@ public class TranslateAlert extends Dialog {
                 if (str != null && str.contains("-")) {
                     str = str.substring(0, str.indexOf("-"));
                 }
-                final String str3 = "";
+                StringBuilder sb2 = new StringBuilder();
                 for (int i = 0; i < jSONArray2.length(); i++) {
                     String string = jSONArray2.getJSONArray(i).getString(0);
                     if (string != null && !string.equals("null")) {
-                        str3 = str3 + string;
+                        sb2.append(string);
                     }
                 }
-                if (this.val$text.length() > 0 && this.val$text.charAt(0) == '\n') {
-                    str3 = "\n" + str3;
+                if (charSequence.length() > 0 && charSequence.charAt(0) == '\n') {
+                    sb2.insert(0, "\n");
                 }
-                long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
-                long j = this.val$minDuration;
-                if (elapsedRealtime2 < j) {
-                    Thread.sleep(j - elapsedRealtime2);
-                }
-                final OnTranslationSuccess onTranslationSuccess = this.val$onSuccess;
+                final String sb3 = sb2.toString();
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TranslateAlert.C246510.lambda$run$0(TranslateAlert.OnTranslationSuccess.this, str3, str);
+                        TranslateAlert.lambda$fetchTranslation$9(TranslateAlert.OnTranslationSuccess.this, sb3, str);
                     }
-                });
-            } catch (Exception e3) {
-                e = e3;
+                }, Math.max(0L, j - (SystemClock.elapsedRealtime() - elapsedRealtime)));
+            } catch (Exception e2) {
+                e = e2;
                 try {
-                    StringBuilder sb2 = new StringBuilder();
-                    sb2.append("failed to translate a text ");
-                    sb2.append(httpURLConnection != null ? Integer.valueOf(httpURLConnection.getResponseCode()) : null);
-                    sb2.append(" ");
+                    StringBuilder sb4 = new StringBuilder();
+                    sb4.append("failed to translate a text ");
+                    sb4.append(httpURLConnection != null ? Integer.valueOf(httpURLConnection.getResponseCode()) : null);
+                    sb4.append(" ");
                     if (httpURLConnection != null) {
                         str2 = httpURLConnection.getResponseMessage();
                     }
-                    sb2.append(str2);
-                    Log.e("translate", sb2.toString());
-                } catch (IOException e4) {
-                    e4.printStackTrace();
+                    sb4.append(str2);
+                    Log.e("translate", sb4.toString());
+                } catch (IOException e3) {
+                    e3.printStackTrace();
                 }
                 e.printStackTrace();
-                if (!(this.val$onFail == null || TranslateAlert.this.dismissed)) {
+                if (!(onTranslationFail == null || this.dismissed)) {
                     if (httpURLConnection != null) {
                         try {
                             if (httpURLConnection.getResponseCode() == 429) {
                                 z = true;
                             }
                         } catch (Exception unused2) {
-                            final OnTranslationFail onTranslationFail = this.val$onFail;
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
@@ -1264,7 +1256,6 @@ public class TranslateAlert extends Dialog {
                             return;
                         }
                     }
-                    final OnTranslationFail onTranslationFail2 = this.val$onFail;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -1273,17 +1264,16 @@ public class TranslateAlert extends Dialog {
                     });
                 }
             }
-        }
-
-        public static void lambda$run$0(OnTranslationSuccess onTranslationSuccess, String str, String str2) {
-            if (onTranslationSuccess != null) {
-                onTranslationSuccess.run(str, str2);
-            }
+        } catch (Exception e4) {
+            e = e4;
+            httpURLConnection = null;
         }
     }
 
-    private void fetchTranslation(CharSequence charSequence, long j, OnTranslationSuccess onTranslationSuccess, OnTranslationFail onTranslationFail) {
-        new C246510(charSequence, j, onTranslationSuccess, onTranslationFail).start();
+    public static void lambda$fetchTranslation$9(OnTranslationSuccess onTranslationSuccess, String str, String str2) {
+        if (onTranslationSuccess != null) {
+            onTranslationSuccess.run(str, str2);
+        }
     }
 
     private static void translateText(int i, TLRPC$InputPeer tLRPC$InputPeer, int i2, String str, String str2) {
@@ -1298,7 +1288,7 @@ public class TranslateAlert extends Dialog {
         }
         tLRPC$TL_messages_translateText.to_lang = str2;
         try {
-            ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_translateText, TranslateAlert$$ExternalSyntheticLambda8.INSTANCE);
+            ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_translateText, TranslateAlert$$ExternalSyntheticLambda12.INSTANCE);
         } catch (Exception e) {
             FileLog.m30e(e);
         }
@@ -1705,30 +1695,6 @@ public class TranslateAlert extends Dialog {
         public LoadingTextView2(Context context, CharSequence charSequence, final boolean z, int i, int i2) {
             super(context);
             this.scaleT = 1.0f;
-            new Path() {
-                private boolean got = false;
-
-                {
-                    LoadingTextView2.this = this;
-                }
-
-                @Override
-                public void reset() {
-                    super.reset();
-                    this.got = false;
-                }
-
-                @Override
-                public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
-                    if (!this.got) {
-                        RectF rectF = LoadingTextView2.this.fetchedPathRect;
-                        int i3 = LoadingTextView2.paddingHorizontal;
-                        int i4 = LoadingTextView2.paddingVertical;
-                        rectF.set(f - i3, f2 - i4, f3 + i3, f4 + i4);
-                        this.got = true;
-                    }
-                }
-            };
             Paint paint = new Paint();
             this.loadingPaint = paint;
             float dp = AndroidUtilities.m34dp(350.0f);

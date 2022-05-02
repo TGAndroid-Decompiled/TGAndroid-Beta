@@ -120,7 +120,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
     Runnable scrollRunnable = new Runnable() {
         @Override
         public void run() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ScrollSlidingTabStrip.RunnableC23366.run():void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ScrollSlidingTabStrip.RunnableC23426.run():void");
         }
     };
     private LinearLayout.LayoutParams defaultTabLayoutParams = new LinearLayout.LayoutParams(AndroidUtilities.m34dp(36.0f), -1);
@@ -186,7 +186,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
     public void setType(Type type) {
         if (type != null && this.type != type) {
             this.type = type;
-            int i = C23377.$SwitchMap$org$telegram$ui$Components$ScrollSlidingTabStrip$Type[type.ordinal()];
+            int i = C23437.$SwitchMap$org$telegram$ui$Components$ScrollSlidingTabStrip$Type[type.ordinal()];
             if (i == 1) {
                 this.indicatorDrawable.setCornerRadius(0.0f);
             } else if (i == 2) {
@@ -196,7 +196,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         }
     }
 
-    public static class C23377 {
+    public static class C23437 {
         static final int[] $SwitchMap$org$telegram$ui$Components$ScrollSlidingTabStrip$Type;
 
         static {
@@ -232,12 +232,12 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             AutoTransition autoTransition = new AutoTransition();
             autoTransition.setDuration(250L);
             autoTransition.setOrdering(0);
-            autoTransition.addTransition(new C23333());
+            autoTransition.addTransition(new C23393());
             TransitionManager.beginDelayedTransition(this.tabsContainer, autoTransition);
         }
     }
 
-    public class C23333 extends Transition {
+    public class C23393 extends Transition {
         @Override
         public void captureEndValues(TransitionValues transitionValues) {
         }
@@ -246,7 +246,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         public void captureStartValues(TransitionValues transitionValues) {
         }
 
-        C23333() {
+        C23393() {
         }
 
         @Override
@@ -255,7 +255,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ScrollSlidingTabStrip.C23333.this.lambda$createAnimator$0(valueAnimator);
+                    ScrollSlidingTabStrip.C23393.this.lambda$createAnimator$0(valueAnimator);
                 }
             });
             return ofFloat;

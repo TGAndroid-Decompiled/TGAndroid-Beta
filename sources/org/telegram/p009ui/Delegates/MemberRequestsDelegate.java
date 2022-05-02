@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
@@ -189,19 +189,19 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             this.emptyView = stickerEmptyView;
             TextView textView = stickerEmptyView.title;
             if (this.isChannel) {
-                i = C0890R.string.NoSubscribeRequests;
+                i = C0952R.string.NoSubscribeRequests;
                 str = "NoSubscribeRequests";
             } else {
-                i = C0890R.string.NoMemberRequests;
+                i = C0952R.string.NoMemberRequests;
                 str = "NoMemberRequests";
             }
             textView.setText(LocaleController.getString(str, i));
             TextView textView2 = this.emptyView.subtitle;
             if (this.isChannel) {
-                i2 = C0890R.string.NoSubscribeRequestsDescription;
+                i2 = C0952R.string.NoSubscribeRequestsDescription;
                 str2 = "NoSubscribeRequestsDescription";
             } else {
-                i2 = C0890R.string.NoMemberRequestsDescription;
+                i2 = C0952R.string.NoMemberRequestsDescription;
                 str2 = "NoMemberRequestsDescription";
             }
             textView2.setText(LocaleController.getString(str2, i2));
@@ -218,8 +218,8 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             if (this.isShowLastItemDivider) {
                 stickerEmptyView.setBackgroundColor(Theme.getColor("windowBackgroundWhite", this.fragment.getResourceProvider()));
             }
-            this.searchEmptyView.title.setText(LocaleController.getString("NoResult", C0890R.string.NoResult));
-            this.searchEmptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", C0890R.string.SearchEmptyViewFilteredSubtitle2));
+            this.searchEmptyView.title.setText(LocaleController.getString("NoResult", C0952R.string.NoResult));
+            this.searchEmptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", C0952R.string.SearchEmptyViewFilteredSubtitle2));
             this.searchEmptyView.setAnimateLayoutChange(true);
             this.searchEmptyView.setVisibility(8);
         }
@@ -278,7 +278,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 this.fragment.dismissCurrentDialog();
                 Bundle bundle = new Bundle();
                 ProfileActivity profileActivity = new ProfileActivity(bundle);
-                bundle.putLong("user_id", tLRPC$User.f974id);
+                bundle.putLong("user_id", tLRPC$User.f985id);
                 bundle.putBoolean("removeFragmentOnChatOpen", false);
                 this.fragment.presentFragment(profileActivity);
             } else if (this.previewDialog == null) {
@@ -447,7 +447,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
         boolean z3 = false;
         for (int i = 0; i < tLRPC$TL_messages_chatInviteImporters.users.size(); i++) {
             TLRPC$User tLRPC$User = tLRPC$TL_messages_chatInviteImporters.users.get(i);
-            this.users.put(tLRPC$User.f974id, tLRPC$User);
+            this.users.put(tLRPC$User.f985id, tLRPC$User);
         }
         if (z) {
             this.adapter.setItems(tLRPC$TL_messages_chatInviteImporters.importers);
@@ -563,7 +563,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
         if (tLRPC$TL_error == null) {
             TLRPC$TL_updates tLRPC$TL_updates = (TLRPC$TL_updates) tLObject;
             if (!tLRPC$TL_updates.chats.isEmpty()) {
-                MessagesController.getInstance(this.currentAccount).loadFullChat(tLRPC$TL_updates.chats.get(0).f843id, 0, true);
+                MessagesController.getInstance(this.currentAccount).loadFullChat(tLRPC$TL_updates.chats.get(0).f854id, 0, true);
             }
             int i2 = 0;
             while (true) {
@@ -584,9 +584,9 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 multiLineLayout.imageView.setForUserOrChat(tLRPC$User, new AvatarDrawable(tLRPC$User));
                 String firstName = UserObject.getFirstName(tLRPC$User);
                 if (this.isChannel) {
-                    str = LocaleController.formatString("HasBeenAddedToChannel", C0890R.string.HasBeenAddedToChannel, firstName);
+                    str = LocaleController.formatString("HasBeenAddedToChannel", C0952R.string.HasBeenAddedToChannel, firstName);
                 } else {
-                    str = LocaleController.formatString("HasBeenAddedToGroup", C0890R.string.HasBeenAddedToGroup, firstName);
+                    str = LocaleController.formatString("HasBeenAddedToGroup", C0952R.string.HasBeenAddedToGroup, firstName);
                 }
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
                 int indexOf = str.indexOf(firstName);
@@ -648,7 +648,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             MemberRequestCell memberRequestCell;
             if (i == 1) {
                 View view = new View(viewGroup.getContext());
-                view.setBackground(Theme.getThemedDrawable(viewGroup.getContext(), (int) C0890R.C0891drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                view.setBackground(Theme.getThemedDrawable(viewGroup.getContext(), (int) C0952R.C0953drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
                 memberRequestCell = view;
             } else if (i == 2) {
                 memberRequestCell = new View(this, viewGroup.getContext()) {
@@ -769,10 +769,10 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
         private final ProfileGalleryView viewPager;
 
         public PreviewDialog(Context context, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider, boolean z) {
-            super(context, C0890R.style.TransparentDialog2);
+            super(context, C0952R.style.TransparentDialog2);
             int i;
             String str;
-            Drawable mutate = getContext().getResources().getDrawable(C0890R.C0891drawable.popup_fixed_alert2).mutate();
+            Drawable mutate = getContext().getResources().getDrawable(C0952R.C0953drawable.popup_fixed_alert2).mutate();
             this.pagerShadowDrawable = mutate;
             TextView textView = new TextView(getContext());
             this.nameText = textView;
@@ -927,13 +927,13 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             actionBarMenuSubItem.setColors(Theme.getColor("actionBarDefaultSubmenuItem", resourcesProvider), Theme.getColor("actionBarDefaultSubmenuItemIcon", resourcesProvider));
             actionBarMenuSubItem.setSelectorColor(Theme.getColor("dialogButtonSelector", resourcesProvider));
             if (z) {
-                i = C0890R.string.AddToChannel;
+                i = C0952R.string.AddToChannel;
                 str = "AddToChannel";
             } else {
-                i = C0890R.string.AddToGroup;
+                i = C0952R.string.AddToGroup;
                 str = "AddToGroup";
             }
-            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(str, i), C0890R.C0891drawable.actions_requests);
+            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(str, i), C0952R.C0953drawable.actions_requests);
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -944,7 +944,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(context, false, false);
             actionBarMenuSubItem2.setColors(Theme.getColor("actionBarDefaultSubmenuItem", resourcesProvider), Theme.getColor("actionBarDefaultSubmenuItemIcon", resourcesProvider));
             actionBarMenuSubItem2.setSelectorColor(Theme.getColor("dialogButtonSelector", resourcesProvider));
-            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString("SendMessage", C0890R.string.SendMessage), C0890R.C0891drawable.msg_msgbubble3);
+            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString("SendMessage", C0952R.string.SendMessage), C0952R.C0953drawable.msg_msgbubble3);
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -955,7 +955,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(context, false, true);
             actionBarMenuSubItem3.setColors(Theme.getColor("dialogTextRed2", resourcesProvider), Theme.getColor("dialogRedIcon", resourcesProvider));
             actionBarMenuSubItem3.setSelectorColor(Theme.getColor("dialogButtonSelector", resourcesProvider));
-            actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("DismissRequest", C0890R.string.DismissRequest), C0890R.C0891drawable.actions_remove_user);
+            actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("DismissRequest", C0952R.string.DismissRequest), C0952R.C0953drawable.actions_remove_user);
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -995,7 +995,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
         @Override
         protected void onCreate(Bundle bundle) {
             super.onCreate(bundle);
-            getWindow().setWindowAnimations(C0890R.style.DialogNoAnimation);
+            getWindow().setWindowAnimations(C0952R.style.DialogNoAnimation);
             setContentView(this.contentView, new ViewGroup.LayoutParams(-1, -1));
             WindowManager.LayoutParams attributes = getWindow().getAttributes();
             attributes.width = -1;

@@ -34,7 +34,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLog;
 import org.telegram.p009ui.ActionBar.FloatingActionMode;
 import org.telegram.p009ui.ActionBar.FloatingToolbar;
@@ -129,7 +129,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         return null;
     }
 
-    @TargetApi(C0890R.styleable.MapAttrs_zOrderOnTop)
+    @TargetApi(C0952R.styleable.MapAttrs_zOrderOnTop)
     public class ActionModeCallback2Wrapper extends ActionMode.Callback2 {
         private final ActionMode.Callback mWrapped;
 
@@ -323,7 +323,7 @@ public class EditTextBoldCursor extends EditTextEffects {
                 }
                 Field field = mCursorDrawableResField;
                 if (field != null) {
-                    field.set(this, Integer.valueOf((int) C0890R.C0891drawable.field_carret_empty));
+                    field.set(this, Integer.valueOf((int) C0952R.C0953drawable.field_carret_empty));
                 }
             } catch (Throwable unused4) {
             }
@@ -407,7 +407,7 @@ public class EditTextBoldCursor extends EditTextEffects {
 
     public void setLineColors(int i, int i2, int i3) {
         this.lineVisible = true;
-        getContext().getResources().getDrawable(C0890R.C0891drawable.search_dark).getPadding(this.padding);
+        getContext().getResources().getDrawable(C0952R.C0953drawable.search_dark).getPadding(this.padding);
         Rect rect = this.padding;
         setPadding(rect.left, rect.top, rect.right, rect.bottom);
         this.lineColor = i;

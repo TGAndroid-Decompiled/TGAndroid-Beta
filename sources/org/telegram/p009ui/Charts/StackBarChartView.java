@@ -78,11 +78,11 @@ public class StackBarChartView extends BaseChartView<StackBarChartData, StackBar
                 TransitionParams transitionParams = this.transitionParams;
                 float f14 = transitionParams.progress;
                 f3 = 1.0f - f14;
-                canvas.scale((f14 * 2.0f) + 1.0f, 1.0f, transitionParams.f1003pX, transitionParams.f1004pY);
+                canvas.scale((f14 * 2.0f) + 1.0f, 1.0f, transitionParams.f1015pX, transitionParams.f1016pY);
             } else if (i4 == 1) {
                 TransitionParams transitionParams2 = this.transitionParams;
                 f3 = transitionParams2.progress;
-                canvas.scale(f3, 1.0f, transitionParams2.f1003pX, transitionParams2.f1004pY);
+                canvas.scale(f3, 1.0f, transitionParams2.f1015pX, transitionParams2.f1016pY);
             } else {
                 f3 = i4 == 3 ? this.transitionParams.progress : 1.0f;
             }
@@ -96,7 +96,7 @@ public class StackBarChartView extends BaseChartView<StackBarChartData, StackBar
                     while (i5 < this.lines.size()) {
                         LineViewData lineViewData = (LineViewData) this.lines.get(i5);
                         if (lineViewData.enabled || lineViewData.alpha != f13) {
-                            int[] iArr = lineViewData.line.f1002y;
+                            int[] iArr = lineViewData.line.f1014y;
                             float f16 = ((f / f12) + (((StackBarChartData) this.chartData).xPercentage[max] * (f8 - f))) - f10;
                             float measuredHeight = (iArr[max] / this.currentMaxHeight) * ((getMeasuredHeight() - this.chartBottom) - BaseChartView.SIGNATURE_TEXT_HEIGHT) * lineViewData.alpha;
                             float[] fArr = lineViewData.linesPath;
@@ -152,7 +152,7 @@ public class StackBarChartView extends BaseChartView<StackBarChartData, StackBar
                     LineViewData lineViewData2 = (LineViewData) this.lines.get(i11);
                     if (!lineViewData2.enabled && lineViewData2.alpha == 0.0f) {
                     }
-                    int[] iArr2 = lineViewData2.line.f1002y;
+                    int[] iArr2 = lineViewData2.line.f1014y;
                     float[] fArr2 = ((StackBarChartData) this.chartData).xPercentage;
                     int i12 = this.selectedIndex;
                     float f19 = ((f / 2.0f) + (fArr2[i12] * (f8 - f))) - f17;
@@ -178,7 +178,7 @@ public class StackBarChartView extends BaseChartView<StackBarChartData, StackBar
             if (f3 < 0.0f) {
                 this.selectedIndex = 0;
             } else if (f3 > 1.0f) {
-                this.selectedIndex = ((StackBarChartData) t).f1000x.length - 1;
+                this.selectedIndex = ((StackBarChartData) t).f1012x.length - 1;
             } else {
                 int findIndex = ((StackBarChartData) t).findIndex(this.startXIndex, this.endXIndex, f3);
                 this.selectedIndex = findIndex;
@@ -231,7 +231,7 @@ public class StackBarChartView extends BaseChartView<StackBarChartData, StackBar
                     }
                     LineViewData lineViewData = (LineViewData) this.lines.get(i3);
                     if (lineViewData.enabled || lineViewData.alpha != 0.0f) {
-                        int i4 = lineViewData.line.f1002y[i2];
+                        int i4 = lineViewData.line.f1014y[i2];
                         int[] iArr2 = this.yMaxPoints;
                         if (i4 > iArr2[i3]) {
                             iArr2[i3] = i4;
@@ -284,7 +284,7 @@ public class StackBarChartView extends BaseChartView<StackBarChartData, StackBar
 
     @Override
     public void onCheckChanged() {
-        int length = ((StackBarChartData) this.chartData).lines.get(0).f1002y.length;
+        int length = ((StackBarChartData) this.chartData).lines.get(0).f1014y.length;
         int size = ((StackBarChartData) this.chartData).lines.size();
         ((StackBarChartData) this.chartData).ySum = new int[length];
         for (int i = 0; i < length; i++) {
@@ -293,7 +293,7 @@ public class StackBarChartView extends BaseChartView<StackBarChartData, StackBar
                 if (((StackBarViewData) this.lines.get(i2)).enabled) {
                     T t = this.chartData;
                     int[] iArr = ((StackBarChartData) t).ySum;
-                    iArr[i] = iArr[i] + ((StackBarChartData) t).lines.get(i2).f1002y[i];
+                    iArr[i] = iArr[i] + ((StackBarChartData) t).lines.get(i2).f1014y[i];
                 }
             }
         }
@@ -310,7 +310,7 @@ public class StackBarChartView extends BaseChartView<StackBarChartData, StackBar
     @Override
     public void updatePickerMinMaxHeight() {
         if (BaseChartView.ANIMATE_PICKER_SIZES) {
-            int length = ((StackBarChartData) this.chartData).f1000x.length;
+            int length = ((StackBarChartData) this.chartData).f1012x.length;
             int size = this.lines.size();
             int i = 0;
             for (int i2 = 0; i2 < length; i2++) {
@@ -318,7 +318,7 @@ public class StackBarChartView extends BaseChartView<StackBarChartData, StackBar
                 for (int i4 = 0; i4 < size; i4++) {
                     StackBarViewData stackBarViewData = (StackBarViewData) this.lines.get(i4);
                     if (stackBarViewData.enabled) {
-                        i3 += stackBarViewData.line.f1002y[i2];
+                        i3 += stackBarViewData.line.f1014y[i2];
                     }
                 }
                 if (i3 > i) {
@@ -353,14 +353,14 @@ public class StackBarChartView extends BaseChartView<StackBarChartData, StackBar
     public void initPickerMaxHeight() {
         super.initPickerMaxHeight();
         this.pickerMaxHeight = 0.0f;
-        int length = ((StackBarChartData) this.chartData).f1000x.length;
+        int length = ((StackBarChartData) this.chartData).f1012x.length;
         int size = this.lines.size();
         for (int i = 0; i < length; i++) {
             int i2 = 0;
             for (int i3 = 0; i3 < size; i3++) {
                 StackBarViewData stackBarViewData = (StackBarViewData) this.lines.get(i3);
                 if (stackBarViewData.enabled) {
-                    i2 += stackBarViewData.line.f1002y[i];
+                    i2 += stackBarViewData.line.f1014y[i];
                 }
             }
             float f = i2;

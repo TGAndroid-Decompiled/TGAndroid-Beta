@@ -19,7 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.MediaController;
@@ -89,14 +89,14 @@ public class WallpaperCell extends FrameLayout {
             addView(backupImageView, LayoutHelper.createFrame(-1, -1, 51));
             ImageView imageView = new ImageView(context);
             this.imageView2 = imageView;
-            imageView.setImageResource(C0890R.C0891drawable.ic_gallery_background);
+            imageView.setImageResource(C0952R.C0953drawable.ic_gallery_background);
             this.imageView2.setScaleType(ImageView.ScaleType.CENTER);
             addView(this.imageView2, LayoutHelper.createFrame(-1, -1, 51));
             View view = new View(context);
             this.selector = view;
             view.setBackgroundDrawable(Theme.getSelectorDrawable(false));
             addView(this.selector, LayoutHelper.createFrame(-1, -1.0f));
-            CheckBox checkBox = new CheckBox(context, C0890R.C0891drawable.round_check2);
+            CheckBox checkBox = new CheckBox(context, C0952R.C0953drawable.round_check2);
             this.checkBox = checkBox;
             checkBox.setVisibility(4);
             this.checkBox.setColor(Theme.getColor("checkbox"), Theme.getColor("checkboxCheck"));
@@ -193,7 +193,7 @@ public class WallpaperCell extends FrameLayout {
                     }
                     if ("d".equals(colorWallpaper.slug)) {
                         if (colorWallpaper.defaultCache == null) {
-                            colorWallpaper.defaultCache = SvgHelper.getBitmap((int) C0890R.raw.default_pattern, 100, 180, -16777216);
+                            colorWallpaper.defaultCache = SvgHelper.getBitmap((int) C0952R.raw.default_pattern, 100, 180, -16777216);
                         }
                         this.imageView.setImageBitmap(colorWallpaper.defaultCache);
                         this.imageView.getImageReceiver().setAlpha(Math.abs(colorWallpaper.intensity));
@@ -356,7 +356,7 @@ public class WallpaperCell extends FrameLayout {
                 this.framePaint = paint;
                 paint.setColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
                 this.circlePaint = new Paint(1);
-                this.checkDrawable = context.getResources().getDrawable(C0890R.C0891drawable.background_selected).mutate();
+                this.checkDrawable = context.getResources().getDrawable(C0952R.C0953drawable.background_selected).mutate();
                 Paint paint2 = new Paint();
                 this.backgroundPaint = paint2;
                 paint2.setColor(Theme.getColor("sharedMedia_photoPlaceholder"));

@@ -125,14 +125,14 @@ public class EntityView extends FrameLayout {
 
     public void pan(float f, float f2) {
         Point point = this.position;
-        point.f1058x += f;
-        point.f1059y += f2;
+        point.f1072x += f;
+        point.f1073y += f2;
         updatePosition();
     }
 
     public void updatePosition() {
-        setX(this.position.f1058x - (getMeasuredWidth() / 2.0f));
-        setY(this.position.f1059y - (getMeasuredHeight() / 2.0f));
+        setX(this.position.f1072x - (getMeasuredWidth() / 2.0f));
+        setY(this.position.f1073y - (getMeasuredHeight() / 2.0f));
         updateSelectionView();
     }
 
@@ -209,8 +209,8 @@ public class EntityView extends FrameLayout {
         protected void updatePosition() {
             Rect selectionBounds = EntityView.this.getSelectionBounds();
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) getLayoutParams();
-            layoutParams.leftMargin = (int) selectionBounds.f1064x;
-            layoutParams.topMargin = (int) selectionBounds.f1065y;
+            layoutParams.leftMargin = (int) selectionBounds.f1082x;
+            layoutParams.topMargin = (int) selectionBounds.f1083y;
             layoutParams.width = (int) selectionBounds.width;
             layoutParams.height = (int) selectionBounds.height;
             setLayoutParams(layoutParams);

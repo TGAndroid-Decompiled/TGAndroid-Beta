@@ -6,7 +6,7 @@ public class TLRPC$TL_messageEmpty extends TLRPC$Message {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.flags = abstractSerializedData.readInt32(z);
-        this.f866id = abstractSerializedData.readInt32(z);
+        this.f877id = abstractSerializedData.readInt32(z);
         if ((this.flags & 1) != 0) {
             this.peer_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         } else {
@@ -18,7 +18,7 @@ public class TLRPC$TL_messageEmpty extends TLRPC$Message {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
-        abstractSerializedData.writeInt32(this.f866id);
+        abstractSerializedData.writeInt32(this.f877id);
         if ((this.flags & 1) != 0) {
             this.peer_id.serializeToStream(abstractSerializedData);
         }

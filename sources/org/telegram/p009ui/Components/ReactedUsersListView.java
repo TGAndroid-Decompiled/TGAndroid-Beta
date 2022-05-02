@@ -146,12 +146,12 @@ public class ReactedUsersListView extends FrameLayout {
     public ReactedUsersListView setSeenUsers(List<TLRPC$User> list) {
         ArrayList arrayList = new ArrayList(list.size());
         for (TLRPC$User tLRPC$User : list) {
-            if (this.peerReactionMap.get(tLRPC$User.f974id) == null) {
+            if (this.peerReactionMap.get(tLRPC$User.f985id) == null) {
                 TLRPC$TL_messagePeerReaction tLRPC$TL_messagePeerReaction = new TLRPC$TL_messagePeerReaction();
                 tLRPC$TL_messagePeerReaction.reaction = null;
                 TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                 tLRPC$TL_messagePeerReaction.peer_id = tLRPC$TL_peerUser;
-                tLRPC$TL_peerUser.user_id = tLRPC$User.f974id;
+                tLRPC$TL_peerUser.user_id = tLRPC$User.f985id;
                 this.peerReactionMap.put(MessageObject.getPeerId(tLRPC$TL_peerUser), tLRPC$TL_messagePeerReaction);
                 arrayList.add(tLRPC$TL_messagePeerReaction);
             }
@@ -179,7 +179,7 @@ public class ReactedUsersListView extends FrameLayout {
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         TLRPC$TL_messages_getMessageReactionsList tLRPC$TL_messages_getMessageReactionsList = new TLRPC$TL_messages_getMessageReactionsList();
         tLRPC$TL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(this.message.getDialogId());
-        tLRPC$TL_messages_getMessageReactionsList.f927id = this.message.getId();
+        tLRPC$TL_messages_getMessageReactionsList.f938id = this.message.getId();
         tLRPC$TL_messages_getMessageReactionsList.limit = getLoadCount();
         String str = this.filter;
         tLRPC$TL_messages_getMessageReactionsList.reaction = str;

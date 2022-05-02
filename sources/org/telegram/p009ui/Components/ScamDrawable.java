@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.LocaleController;
 
 public class ScamDrawable extends Drawable {
@@ -40,9 +40,9 @@ public class ScamDrawable extends Drawable {
         this.paint.setStyle(Paint.Style.STROKE);
         this.paint.setStrokeWidth(AndroidUtilities.m34dp(1.0f));
         if (i2 == 0) {
-            this.text = LocaleController.getString("ScamMessage", C0890R.string.ScamMessage);
+            this.text = LocaleController.getString("ScamMessage", C0952R.string.ScamMessage);
         } else {
-            this.text = LocaleController.getString("FakeMessage", C0890R.string.FakeMessage);
+            this.text = LocaleController.getString("FakeMessage", C0952R.string.FakeMessage);
         }
         this.textWidth = (int) Math.ceil(this.textPaint.measureText(this.text));
     }
@@ -50,9 +50,9 @@ public class ScamDrawable extends Drawable {
     public void checkText() {
         String str;
         if (this.currentType == 0) {
-            str = LocaleController.getString("ScamMessage", C0890R.string.ScamMessage);
+            str = LocaleController.getString("ScamMessage", C0952R.string.ScamMessage);
         } else {
-            str = LocaleController.getString("FakeMessage", C0890R.string.FakeMessage);
+            str = LocaleController.getString("FakeMessage", C0952R.string.FakeMessage);
         }
         if (!str.equals(this.text)) {
             this.text = str;

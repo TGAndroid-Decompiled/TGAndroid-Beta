@@ -10,12 +10,12 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C0945ActionBar;
+import org.telegram.p009ui.ActionBar.C1006ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.FeaturedStickerSetCell;
@@ -64,10 +64,10 @@ public class FeaturedStickersActivity extends BaseFragment implements Notificati
 
     @Override
     public View createView(Context context) {
-        this.actionBar.setBackButtonImage(C0890R.C0891drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("FeaturedStickers", C0890R.string.FeaturedStickers));
-        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setTitle(LocaleController.getString("FeaturedStickers", C0952R.string.FeaturedStickers));
+        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -110,9 +110,9 @@ public class FeaturedStickersActivity extends BaseFragment implements Notificati
         TLRPC$InputStickerSet tLRPC$InputStickerSet;
         if (i >= this.stickersStartRow && i < this.stickersEndRow && getParentActivity() != null) {
             final TLRPC$StickerSetCovered tLRPC$StickerSetCovered = MediaDataController.getInstance(this.currentAccount).getFeaturedStickerSets().get(i);
-            if (tLRPC$StickerSetCovered.set.f875id != 0) {
+            if (tLRPC$StickerSetCovered.set.f886id != 0) {
                 tLRPC$InputStickerSet = new TLRPC$TL_inputStickerSetID();
-                tLRPC$InputStickerSet.f865id = tLRPC$StickerSetCovered.set.f875id;
+                tLRPC$InputStickerSet.f876id = tLRPC$StickerSetCovered.set.f886id;
             } else {
                 tLRPC$InputStickerSet = new TLRPC$TL_inputStickerSetShortName();
                 tLRPC$InputStickerSet.short_name = tLRPC$StickerSetCovered.set.short_name;
@@ -130,7 +130,7 @@ public class FeaturedStickersActivity extends BaseFragment implements Notificati
                     ((FeaturedStickerSetCell) view).setDrawProgress(true, true);
                     LongSparseArray longSparseArray = FeaturedStickersActivity.this.installingStickerSets;
                     TLRPC$StickerSetCovered tLRPC$StickerSetCovered2 = tLRPC$StickerSetCovered;
-                    longSparseArray.put(tLRPC$StickerSetCovered2.set.f875id, tLRPC$StickerSetCovered2);
+                    longSparseArray.put(tLRPC$StickerSetCovered2.set.f886id, tLRPC$StickerSetCovered2);
                 }
             });
             showDialog(stickersAlert);
@@ -210,12 +210,12 @@ public class FeaturedStickersActivity extends BaseFragment implements Notificati
                 featuredStickerSetCell.setTag(Integer.valueOf(i));
                 TLRPC$StickerSetCovered tLRPC$StickerSetCovered = featuredStickerSets.get(i);
                 boolean z = true;
-                featuredStickerSetCell.setStickersSet(tLRPC$StickerSetCovered, i != featuredStickerSets.size() - 1, FeaturedStickersActivity.this.unreadStickers != null && FeaturedStickersActivity.this.unreadStickers.contains(Long.valueOf(tLRPC$StickerSetCovered.set.f875id)));
-                if (FeaturedStickersActivity.this.installingStickerSets.indexOfKey(tLRPC$StickerSetCovered.set.f875id) < 0) {
+                featuredStickerSetCell.setStickersSet(tLRPC$StickerSetCovered, i != featuredStickerSets.size() - 1, FeaturedStickersActivity.this.unreadStickers != null && FeaturedStickersActivity.this.unreadStickers.contains(Long.valueOf(tLRPC$StickerSetCovered.set.f886id)));
+                if (FeaturedStickersActivity.this.installingStickerSets.indexOfKey(tLRPC$StickerSetCovered.set.f886id) < 0) {
                     z = false;
                 }
                 if (z && featuredStickerSetCell.isInstalled()) {
-                    FeaturedStickersActivity.this.installingStickerSets.remove(tLRPC$StickerSetCovered.set.f875id);
+                    FeaturedStickersActivity.this.installingStickerSets.remove(tLRPC$StickerSetCovered.set.f886id);
                     z = false;
                 }
                 featuredStickerSetCell.setDrawProgress(z, false);
@@ -230,8 +230,8 @@ public class FeaturedStickersActivity extends BaseFragment implements Notificati
         public void lambda$onCreateViewHolder$0(View view) {
             FeaturedStickerSetCell featuredStickerSetCell = (FeaturedStickerSetCell) view.getParent();
             TLRPC$StickerSetCovered stickerSet = featuredStickerSetCell.getStickerSet();
-            if (FeaturedStickersActivity.this.installingStickerSets.indexOfKey(stickerSet.set.f875id) < 0) {
-                FeaturedStickersActivity.this.installingStickerSets.put(stickerSet.set.f875id, stickerSet);
+            if (FeaturedStickersActivity.this.installingStickerSets.indexOfKey(stickerSet.set.f886id) < 0) {
+                FeaturedStickersActivity.this.installingStickerSets.put(stickerSet.set.f886id, stickerSet);
                 MediaDataController.getInstance(((BaseFragment) FeaturedStickersActivity.this).currentAccount).toggleStickerSet(FeaturedStickersActivity.this.getParentActivity(), stickerSet, 2, FeaturedStickersActivity.this, false, false);
                 featuredStickerSetCell.setDrawProgress(true, true);
             }
@@ -242,7 +242,7 @@ public class FeaturedStickersActivity extends BaseFragment implements Notificati
             TextInfoPrivacyCell textInfoPrivacyCell;
             if (i != 0) {
                 TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(this.mContext);
-                textInfoPrivacyCell2.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, (int) C0890R.C0891drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                textInfoPrivacyCell2.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, (int) C0952R.C0953drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
                 textInfoPrivacyCell = textInfoPrivacyCell2;
             } else {
                 FeaturedStickerSetCell featuredStickerSetCell = new FeaturedStickerSetCell(this.mContext);

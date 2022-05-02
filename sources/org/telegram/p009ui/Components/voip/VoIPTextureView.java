@@ -22,7 +22,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.Utilities;
@@ -147,11 +147,11 @@ public class VoIPTextureView extends FrameLayout {
         ImageView imageView2 = new ImageView(getContext());
         this.screencastImage = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        this.screencastImage.setImageResource(C0890R.C0891drawable.screencast_big);
+        this.screencastImage.setImageResource(C0952R.C0953drawable.screencast_big);
         this.screencastView.addView(this.screencastImage, LayoutHelper.createFrame(82, 82.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
         TextView textView = new TextView(getContext());
         this.screencastText = textView;
-        textView.setText(LocaleController.getString("VoipVideoScreenSharing", C0890R.string.VoipVideoScreenSharing));
+        textView.setText(LocaleController.getString("VoipVideoScreenSharing", C0952R.string.VoipVideoScreenSharing));
         this.screencastText.setGravity(17);
         this.screencastText.setLineSpacing(AndroidUtilities.m34dp(2.0f), 1.0f);
         this.screencastText.setTextColor(-1);
@@ -161,7 +161,7 @@ public class VoIPTextureView extends FrameLayout {
         if (z3 && Build.VERSION.SDK_INT >= 21) {
             setOutlineProvider(new ViewOutlineProvider() {
                 @Override
-                @TargetApi(C0890R.styleable.MapAttrs_uiZoomGestures)
+                @TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
                 public void getOutline(View view2, Outline outline) {
                     VoIPTextureView voIPTextureView = VoIPTextureView.this;
                     if (voIPTextureView.roundRadius < 1.0f) {

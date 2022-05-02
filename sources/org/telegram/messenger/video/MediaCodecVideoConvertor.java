@@ -31,7 +31,7 @@ public class MediaCodecVideoConvertor {
         return this.endPresentationTime;
     }
 
-    @android.annotation.TargetApi(org.telegram.messenger.C0890R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom)
+    @android.annotation.TargetApi(org.telegram.messenger.C0952R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom)
     private boolean convertVideoInternal(java.lang.String r79, java.io.File r80, int r81, boolean r82, int r83, int r84, int r85, int r86, int r87, int r88, int r89, long r90, long r92, long r94, long r96, boolean r98, boolean r99, org.telegram.messenger.MediaController.SavedFilterState r100, java.lang.String r101, java.util.ArrayList<org.telegram.messenger.VideoEditedInfo.MediaEntity> r102, boolean r103, org.telegram.messenger.MediaController.CropState r104, boolean r105) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(java.lang.String, java.io.File, int, boolean, int, int, int, int, int, int, int, long, long, long, long, boolean, boolean, org.telegram.messenger.MediaController$SavedFilterState, java.lang.String, java.util.ArrayList, boolean, org.telegram.messenger.MediaController$CropState, boolean):boolean");
     }

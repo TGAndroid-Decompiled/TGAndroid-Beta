@@ -14,7 +14,7 @@ public class TLRPC$TL_messages_search extends TLObject {
     public int min_id;
     public int offset_id;
     public TLRPC$InputPeer peer;
-    public String f940q;
+    public String f951q;
     public int top_msg_id;
 
     @Override
@@ -27,7 +27,7 @@ public class TLRPC$TL_messages_search extends TLObject {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
         this.peer.serializeToStream(abstractSerializedData);
-        abstractSerializedData.writeString(this.f940q);
+        abstractSerializedData.writeString(this.f951q);
         if ((this.flags & 1) != 0) {
             this.from_id.serializeToStream(abstractSerializedData);
         }

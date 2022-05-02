@@ -59,7 +59,7 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -263,7 +263,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             }
         }
         requestWindowFeature(1);
-        setTheme(C0890R.style.Theme_TMessages);
+        setTheme(C0952R.style.Theme_TMessages);
         if (Build.VERSION.SDK_INT >= 21) {
             try {
                 setTaskDescription(new ActivityManager.TaskDescription((String) null, (Bitmap) null, Theme.getColor("actionBarDefault") | (-16777216)));
@@ -274,7 +274,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             } catch (Throwable unused2) {
             }
         }
-        getWindow().setBackgroundDrawableResource(C0890R.C0891drawable.transparent);
+        getWindow().setBackgroundDrawableResource(C0952R.C0953drawable.transparent);
         if (SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture) {
             try {
                 getWindow().setFlags(8192, 8192);
@@ -443,7 +443,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             actionBarLayout2.setRemoveActionBarExtraHeight(true);
             this.layersActionBarLayout.setBackgroundView(this.shadowTablet);
             this.layersActionBarLayout.setUseAlphaAnimations(true);
-            this.layersActionBarLayout.setBackgroundResource(C0890R.C0891drawable.boxshadow);
+            this.layersActionBarLayout.setBackgroundResource(C0952R.C0953drawable.boxshadow);
             this.layersActionBarLayout.init(layerFragmentsStack);
             this.layersActionBarLayout.setDelegate(this);
             this.layersActionBarLayout.setDrawerLayoutContainer(this.drawerLayoutContainer);
@@ -869,7 +869,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             } else if (id == 8) {
                 openSettings(false);
             } else if (id == 9) {
-                Browser.openUrl(this, LocaleController.getString("TelegramFaqUrl", C0890R.string.TelegramFaqUrl));
+                Browser.openUrl(this, LocaleController.getString("TelegramFaqUrl", C0952R.string.TelegramFaqUrl));
                 this.drawerLayoutContainer.closeDrawer(false);
             } else if (id == 10) {
                 lambda$runLinkRequest$54(new CallLogActivity());
@@ -904,7 +904,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                 lambda$runLinkRequest$54(new ActionIntroActivity(1));
                 this.drawerLayoutContainer.closeDrawer(false);
             } else if (id == 13) {
-                Browser.openUrl(this, LocaleController.getString("TelegramFeaturesUrl", C0890R.string.TelegramFeaturesUrl));
+                Browser.openUrl(this, LocaleController.getString("TelegramFeaturesUrl", C0952R.string.TelegramFeaturesUrl));
                 this.drawerLayoutContainer.closeDrawer(false);
             }
         }
@@ -1259,10 +1259,10 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             this.termsOfServiceView = termsOfServiceView;
             termsOfServiceView.setAlpha(0.0f);
             this.drawerLayoutContainer.addView(this.termsOfServiceView, LayoutHelper.createFrame(-1, -1.0f));
-            this.termsOfServiceView.setDelegate(new C290310());
+            this.termsOfServiceView.setDelegate(new C298810());
         }
         TLRPC$TL_help_termsOfService tLRPC$TL_help_termsOfService2 = UserConfig.getInstance(i).unacceptedTermsOfService;
-        if (tLRPC$TL_help_termsOfService2 != tLRPC$TL_help_termsOfService && (tLRPC$TL_help_termsOfService2 == null || !tLRPC$TL_help_termsOfService2.f898id.data.equals(tLRPC$TL_help_termsOfService.f898id.data))) {
+        if (tLRPC$TL_help_termsOfService2 != tLRPC$TL_help_termsOfService && (tLRPC$TL_help_termsOfService2 == null || !tLRPC$TL_help_termsOfService2.f909id.data.equals(tLRPC$TL_help_termsOfService.f909id.data))) {
             UserConfig.getInstance(i).unacceptedTermsOfService = tLRPC$TL_help_termsOfService;
             UserConfig.getInstance(i).saveConfig(false);
         }
@@ -1271,8 +1271,8 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         this.termsOfServiceView.animate().alpha(1.0f).setDuration(150L).setInterpolator(AndroidUtilities.decelerateInterpolator).setListener(null).start();
     }
 
-    public class C290310 implements TermsOfServiceView.TermsOfServiceViewDelegate {
-        C290310() {
+    public class C298810 implements TermsOfServiceView.TermsOfServiceViewDelegate {
+        C298810() {
         }
 
         @Override
@@ -1286,7 +1286,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             LaunchActivity.this.termsOfServiceView.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.C290310.this.lambda$onAcceptTerms$0();
+                    LaunchActivity.C298810.this.lambda$onAcceptTerms$0();
                 }
             }).start();
         }
@@ -1421,7 +1421,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
     }
 
     public void lambda$handleIntent$16(boolean z, int[] iArr, TLRPC$User tLRPC$User, String str, ContactsActivity contactsActivity) {
-        TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(tLRPC$User.f974id);
+        TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(tLRPC$User.f985id);
         VoIPHelper.startCall(tLRPC$User, z, userFull != null && userFull.video_calls_available, this, userFull, AccountInstance.getInstance(iArr[0]));
     }
 
@@ -1465,8 +1465,8 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
     }
 
     public static void lambda$handleIntent$17(ActionIntroActivity actionIntroActivity, TLRPC$TL_error tLRPC$TL_error) {
-        String string = LocaleController.getString("AuthAnotherClient", C0890R.string.AuthAnotherClient);
-        AlertsCreator.showSimpleAlert(actionIntroActivity, string, LocaleController.getString("ErrorOccurred", C0890R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
+        String string = LocaleController.getString("AuthAnotherClient", C0952R.string.AuthAnotherClient);
+        AlertsCreator.showSimpleAlert(actionIntroActivity, string, LocaleController.getString("ErrorOccurred", C0952R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
     }
 
     public static void lambda$handleIntent$21(String str, String str2, BaseFragment baseFragment, DialogInterface dialogInterface, int i) {
@@ -1684,20 +1684,20 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                 attachBotIntroTopView.setColor(Theme.getColor("chat_attachContactIcon"));
                 attachBotIntroTopView.setBackgroundColor(Theme.getColor("dialogTopBackground"));
                 attachBotIntroTopView.setAttachBot(tLRPC$TL_attachMenuBot);
-                new AlertDialog.Builder(this).setTopView(attachBotIntroTopView).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("BotRequestAttachPermission", C0890R.string.BotRequestAttachPermission, UserObject.getUserName(tLRPC$User)))).setPositiveButton(LocaleController.getString((int) C0890R.string.BotAddToMenu), new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(this).setTopView(attachBotIntroTopView).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("BotRequestAttachPermission", C0952R.string.BotRequestAttachPermission, UserObject.getUserName(tLRPC$User)))).setPositiveButton(LocaleController.getString((int) C0952R.string.BotAddToMenu), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
                         LaunchActivity.lambda$runLinkRequest$30(i, tLRPC$TL_contacts_resolvedPeer, baseFragment, tLRPC$User, str, dialogInterface, i2);
                     }
-                }).setNegativeButton(LocaleController.getString((int) C0890R.string.Cancel), null).show();
+                }).setNegativeButton(LocaleController.getString((int) C0952R.string.Cancel), null).show();
             } else if (baseFragment instanceof ChatActivity) {
-                ((ChatActivity) baseFragment).openAttachBotLayout(tLRPC$User.f974id, str);
+                ((ChatActivity) baseFragment).openAttachBotLayout(tLRPC$User.f985id, str);
             } else {
-                BulletinFactory.m13of(baseFragment).createErrorBulletin(LocaleController.getString((int) C0890R.string.BotAlreadyAddedToAttachMenu)).show();
+                BulletinFactory.m13of(baseFragment).createErrorBulletin(LocaleController.getString((int) C0952R.string.BotAlreadyAddedToAttachMenu)).show();
             }
         } else {
             ArrayList<BaseFragment> arrayList2 = mainFragmentsStack;
-            BulletinFactory.m13of(arrayList2.get(arrayList2.size() - 1)).createErrorBulletin(LocaleController.getString((int) C0890R.string.BotCantAddToAttachMenu)).show();
+            BulletinFactory.m13of(arrayList2.get(arrayList2.size() - 1)).createErrorBulletin(LocaleController.getString((int) C0952R.string.BotCantAddToAttachMenu)).show();
         }
     }
 
@@ -1726,7 +1726,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         if (tLRPC$TL_error == null) {
             MediaDataController.getInstance(i).loadAttachMenuBots(false, true);
             if (baseFragment instanceof ChatActivity) {
-                ((ChatActivity) baseFragment).openAttachBotLayout(tLRPC$User.f974id, str);
+                ((ChatActivity) baseFragment).openAttachBotLayout(tLRPC$User.f985id, str);
             }
         }
     }
@@ -1735,7 +1735,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         long longValue = ((Long) arrayList.get(0)).longValue();
         TLRPC$TL_inputMediaGame tLRPC$TL_inputMediaGame = new TLRPC$TL_inputMediaGame();
         TLRPC$TL_inputGameShortName tLRPC$TL_inputGameShortName = new TLRPC$TL_inputGameShortName();
-        tLRPC$TL_inputMediaGame.f904id = tLRPC$TL_inputGameShortName;
+        tLRPC$TL_inputMediaGame.f915id = tLRPC$TL_inputGameShortName;
         tLRPC$TL_inputGameShortName.short_name = str;
         tLRPC$TL_inputGameShortName.bot_id = MessagesController.getInstance(i).getInputUser(tLRPC$TL_contacts_resolvedPeer.users.get(0));
         SendMessagesHelper.getInstance(i).sendGame(MessagesController.getInstance(i).getInputPeer(longValue), tLRPC$TL_inputMediaGame, 0L, 0L);
@@ -1760,10 +1760,10 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-longValue));
         if (chat == null || (!chat.creator && ((tLRPC$TL_chatAdminRights = chat.admin_rights) == null || !tLRPC$TL_chatAdminRights.add_admins))) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(LocaleController.getString("AddBot", C0890R.string.AddBot));
-            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", C0890R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? "" : chat.title)));
-            builder.setNegativeButton(LocaleController.getString("Cancel", C0890R.string.Cancel), null);
-            builder.setPositiveButton(LocaleController.getString("AddBot", C0890R.string.AddBot), new DialogInterface.OnClickListener() {
+            builder.setTitle(LocaleController.getString("AddBot", C0952R.string.AddBot));
+            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", C0952R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? "" : chat.title)));
+            builder.setNegativeButton(LocaleController.getString("Cancel", C0952R.string.Cancel), null);
+            builder.setPositiveButton(LocaleController.getString("AddBot", C0952R.string.AddBot), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
                     LaunchActivity.this.lambda$runLinkRequest$36(longValue, i, tLRPC$User, str2, dialogInterface, i2);
@@ -1948,7 +1948,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             }
             tLRPC$TL_chatAdminRights3 = tLRPC$TL_chatAdminRights;
         }
-        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(tLRPC$User.f974id, -j, tLRPC$TL_chatAdminRights3, null, null, str2, 2, true, !z, null);
+        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(tLRPC$User.f985id, -j, tLRPC$TL_chatAdminRights3, null, null, str2, 2, true, !z, null);
         chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate(this) {
             @Override
             public void didChangeOwner(TLRPC$User tLRPC$User2) {
@@ -1974,14 +1974,14 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         this.actionBarLayout.presentFragment(chatActivity, true, false, true, false);
     }
 
-    public class C290613 implements MessagesController.MessagesLoadedCallback {
+    public class C299113 implements MessagesController.MessagesLoadedCallback {
         final Bundle val$args;
         final long val$dialog_id;
         final BaseFragment val$lastFragment;
         final String val$livestream;
         final AlertDialog val$progressDialog;
 
-        C290613(AlertDialog alertDialog, String str, BaseFragment baseFragment, long j, Bundle bundle) {
+        C299113(AlertDialog alertDialog, String str, BaseFragment baseFragment, long j, Bundle bundle) {
             this.val$progressDialog = alertDialog;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -2008,7 +2008,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                LaunchActivity.C290613.this.lambda$onMessagesLoaded$2(str, j, baseFragment3);
+                                LaunchActivity.C299113.this.lambda$onMessagesLoaded$2(str, j, baseFragment3);
                             }
                         }, 150L);
                     }
@@ -2021,7 +2021,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LaunchActivity.C290613.this.lambda$onMessagesLoaded$2(str2, j2, baseFragment32);
+                        LaunchActivity.C299113.this.lambda$onMessagesLoaded$2(str2, j2, baseFragment32);
                     }
                 }, 150L);
             }
@@ -2050,11 +2050,11 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                     accountInstance.getMessagesController().getGroupCall(j2, true, new Runnable() {
                         @Override
                         public final void run() {
-                            LaunchActivity.C290613.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
+                            LaunchActivity.C299113.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
                         }
                     });
                 } else if (baseFragment.getParentActivity() != null) {
-                    BulletinFactory.m13of(baseFragment).createSimpleBulletin(C0890R.raw.linkbroken, LocaleController.getString("InviteExpired", C0890R.string.InviteExpired)).show();
+                    BulletinFactory.m13of(baseFragment).createSimpleBulletin(C0952R.raw.linkbroken, LocaleController.getString("InviteExpired", C0952R.string.InviteExpired)).show();
                 }
             }
         }
@@ -2063,7 +2063,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.C290613.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
+                    LaunchActivity.C299113.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
                 }
             });
         }
@@ -2083,7 +2083,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         @Override
         public void onError() {
             if (!LaunchActivity.this.isFinishing()) {
-                AlertsCreator.showSimpleAlert((BaseFragment) LaunchActivity.mainFragmentsStack.get(LaunchActivity.mainFragmentsStack.size() - 1), LocaleController.getString("JoinToGroupErrorNotExist", C0890R.string.JoinToGroupErrorNotExist));
+                AlertsCreator.showSimpleAlert((BaseFragment) LaunchActivity.mainFragmentsStack.get(LaunchActivity.mainFragmentsStack.size() - 1), LocaleController.getString("JoinToGroupErrorNotExist", C0952R.string.JoinToGroupErrorNotExist));
             }
             try {
                 this.val$progressDialog.dismiss();
@@ -2131,15 +2131,15 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             }
             if (tLRPC$TL_error != null) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(LocaleController.getString("AppName", C0890R.string.AppName));
+                builder.setTitle(LocaleController.getString("AppName", C0952R.string.AppName));
                 if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                    builder.setMessage(LocaleController.getString("FloodWait", C0890R.string.FloodWait));
+                    builder.setMessage(LocaleController.getString("FloodWait", C0952R.string.FloodWait));
                 } else if (tLRPC$TL_error.text.equals("USERS_TOO_MUCH")) {
-                    builder.setMessage(LocaleController.getString("JoinToGroupErrorFull", C0890R.string.JoinToGroupErrorFull));
+                    builder.setMessage(LocaleController.getString("JoinToGroupErrorFull", C0952R.string.JoinToGroupErrorFull));
                 } else {
-                    builder.setMessage(LocaleController.getString("JoinToGroupErrorNotExist", C0890R.string.JoinToGroupErrorNotExist));
+                    builder.setMessage(LocaleController.getString("JoinToGroupErrorNotExist", C0952R.string.JoinToGroupErrorNotExist));
                 }
-                builder.setPositiveButton(LocaleController.getString("OK", C0890R.string.OK), null);
+                builder.setPositiveButton(LocaleController.getString("OK", C0952R.string.OK), null);
                 showAlertDialog(builder);
             } else if (this.actionBarLayout != null) {
                 TLRPC$Updates tLRPC$Updates = (TLRPC$Updates) tLObject;
@@ -2150,7 +2150,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                     MessagesController.getInstance(i).putUsers(tLRPC$Updates.users, false);
                     MessagesController.getInstance(i).putChats(tLRPC$Updates.chats, false);
                     Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", tLRPC$Chat.f843id);
+                    bundle.putLong("chat_id", tLRPC$Chat.f854id);
                     if (!mainFragmentsStack.isEmpty()) {
                         MessagesController messagesController = MessagesController.getInstance(i);
                         ArrayList<BaseFragment> arrayList = mainFragmentsStack;
@@ -2229,9 +2229,9 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         try {
             alertDialog.dismiss();
             if ("APP_VERSION_OUTDATED".equals(tLRPC$TL_error.text)) {
-                AlertsCreator.showUpdateAppAlert(this, LocaleController.getString("UpdateAppAlert", C0890R.string.UpdateAppAlert), true);
+                AlertsCreator.showUpdateAppAlert(this, LocaleController.getString("UpdateAppAlert", C0952R.string.UpdateAppAlert), true);
             } else {
-                showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("ErrorOccurred", C0890R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
+                showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("ErrorOccurred", C0952R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
             }
         } catch (Exception e) {
             FileLog.m30e(e);
@@ -2279,10 +2279,10 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         } else if (tLRPC$TL_error == null) {
         } else {
             if ("LANG_CODE_NOT_SUPPORTED".equals(tLRPC$TL_error.text)) {
-                showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("LanguageUnsupportedError", C0890R.string.LanguageUnsupportedError)));
+                showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("LanguageUnsupportedError", C0952R.string.LanguageUnsupportedError)));
                 return;
             }
-            showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("ErrorOccurred", C0890R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
+            showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("ErrorOccurred", C0952R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
         }
     }
 
@@ -2322,7 +2322,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             lambda$runLinkRequest$54(themePreviewActivity);
             return;
         }
-        showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("ErrorOccurred", C0890R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
+        showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("ErrorOccurred", C0952R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
     }
 
     public void lambda$runLinkRequest$57() {
@@ -2365,7 +2365,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             TLRPC$TL_channels_getChannels tLRPC$TL_channels_getChannels = new TLRPC$TL_channels_getChannels();
             TLRPC$TL_inputChannel tLRPC$TL_inputChannel = new TLRPC$TL_inputChannel();
             tLRPC$TL_inputChannel.channel_id = l.longValue();
-            tLRPC$TL_channels_getChannels.f882id.add(tLRPC$TL_inputChannel);
+            tLRPC$TL_channels_getChannels.f893id.add(tLRPC$TL_inputChannel);
             iArr[0] = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_getChannels, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -2403,7 +2403,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             }
         }
         if (z) {
-            showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("LinkNotFound", C0890R.string.LinkNotFound)));
+            showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("LinkNotFound", C0952R.string.LinkNotFound)));
         }
     }
 
@@ -2473,7 +2473,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             this.updateTextView = simpleTextView;
             simpleTextView.setTextSize(15);
             this.updateTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-            this.updateTextView.setText(LocaleController.getString("AppUpdate", C0890R.string.AppUpdate));
+            this.updateTextView.setText(LocaleController.getString("AppUpdate", C0952R.string.AppUpdate));
             this.updateTextView.setTextColor(-1);
             this.updateTextView.setGravity(3);
             this.updateLayout.addView(this.updateTextView, LayoutHelper.createFrame(-2, -2.0f, 16, 74.0f, 0.0f, 0.0f, 0.0f));
@@ -2600,7 +2600,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         if (alertDialog != null) {
             if (alertDialog == this.localeDialog) {
                 try {
-                    Toast.makeText(this, getStringForLanguageAlert(LocaleController.getInstance().getCurrentLocaleInfo().shortName.equals("en") ? this.englishLocaleStrings : this.systemLocaleStrings, "ChangeLanguageLater", C0890R.string.ChangeLanguageLater), 1).show();
+                    Toast.makeText(this, getStringForLanguageAlert(LocaleController.getInstance().getCurrentLocaleInfo().shortName.equals("en") ? this.englishLocaleStrings : this.systemLocaleStrings, "ChangeLanguageLater", C0952R.string.ChangeLanguageLater), 1).show();
                 } catch (Exception e) {
                     FileLog.m30e(e);
                 }
@@ -3343,7 +3343,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
     public void lambda$didReceivedNotification$86() {
         if (this.loadingTheme != null) {
             File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-            File file = new File(filesDirFixed, "remote" + this.loadingTheme.f965id + ".attheme");
+            File file = new File(filesDirFixed, "remote" + this.loadingTheme.f976id + ".attheme");
             TLRPC$TL_theme tLRPC$TL_theme = this.loadingTheme;
             Theme.ThemeInfo applyThemeFile = Theme.applyThemeFile(file, tLRPC$TL_theme.title, tLRPC$TL_theme, true);
             if (applyThemeFile != null) {
@@ -3407,7 +3407,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             BaseFragment baseFragment = arrayList.get(arrayList.size() - 1);
             if (baseFragment instanceof ChatActivity) {
                 ChatActivity chatActivity = (ChatActivity) baseFragment;
-                if (chatActivity.getDialogId() == (-chat.f843id)) {
+                if (chatActivity.getDialogId() == (-chat.f854id)) {
                     chat = null;
                 }
                 chatActivity.getUndoView().showWithAction(0L, i, chat);
@@ -3431,7 +3431,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         int i = themeInfo.lastAccentId;
         Theme.ThemeAccent createNewAccent = themeInfo.createNewAccent(tLRPC$TL_theme, this.currentAccount);
         themeInfo.prevAccentId = themeInfo.currentAccentId;
-        themeInfo.setCurrentAccentId(createNewAccent.f987id);
+        themeInfo.setCurrentAccentId(createNewAccent.f999id);
         createNewAccent.pattern = tLRPC$TL_wallPaper;
         lambda$runLinkRequest$54(new ThemePreviewActivity(themeInfo, i != themeInfo.lastAccentId, 0, false, false));
     }
@@ -3721,16 +3721,16 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             this.currentConnectionState = connectionState;
             Runnable runnable = null;
             if (connectionState == 2) {
-                i2 = C0890R.string.WaitingForNetwork;
+                i2 = C0952R.string.WaitingForNetwork;
                 str = "WaitingForNetwork";
             } else if (connectionState == 5) {
-                i2 = C0890R.string.Updating;
+                i2 = C0952R.string.Updating;
                 str = "Updating";
             } else if (connectionState == 4) {
-                i2 = C0890R.string.ConnectingToProxy;
+                i2 = C0952R.string.ConnectingToProxy;
                 str = "ConnectingToProxy";
             } else if (connectionState == 1) {
-                i2 = C0890R.string.Connecting;
+                i2 = C0952R.string.Connecting;
                 str = "Connecting";
             } else {
                 str = null;

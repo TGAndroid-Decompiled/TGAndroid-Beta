@@ -11,7 +11,7 @@ public class TLRPC$TL_channels_getAdminLog extends TLObject {
     public int limit;
     public long max_id;
     public long min_id;
-    public String f881q;
+    public String f892q;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -23,7 +23,7 @@ public class TLRPC$TL_channels_getAdminLog extends TLObject {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
         this.channel.serializeToStream(abstractSerializedData);
-        abstractSerializedData.writeString(this.f881q);
+        abstractSerializedData.writeString(this.f892q);
         if ((this.flags & 1) != 0) {
             this.events_filter.serializeToStream(abstractSerializedData);
         }

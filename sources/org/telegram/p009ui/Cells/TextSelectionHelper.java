@@ -35,7 +35,7 @@ import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LanguageDetector;
@@ -63,13 +63,17 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
     protected float cornerRadius;
     private TextView deleteView;
     protected float enterProgress;
+    private ValueAnimator handleViewAnimator;
     protected float handleViewProgress;
     private boolean isOneTouch;
     int keyboardSize;
     private int lastX;
     private int lastY;
     private Magnifier magnifier;
+    private float magnifierDx;
     private float magnifierDy;
+    private float magnifierX;
+    private float magnifierXanimated;
     private float magnifierY;
     private float magnifierYanimated;
     protected Cell maybeSelectedView;
@@ -98,9 +102,10 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
     private int topOffset;
     private boolean tryCapture;
     protected int[] tmpCoord = new int[2];
-    protected Paint selectionPaint = new Paint();
-    protected Paint selectionHandlePaint = new Paint();
+    protected Paint selectionPaint = new Paint(1);
+    protected Paint selectionHandlePaint = new Paint(1);
     protected Path selectionPath = new Path();
+    protected Path selectionHandlePath = new Path();
     protected int selectionStart = -1;
     protected int selectionEnd = -1;
     private final ActionMode.Callback textSelectActionCallback = createActionCallback();
@@ -253,7 +258,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     textSelectionHelper11.textX = i8;
                     textSelectionHelper11.textY = i9;
                     textSelectionHelper11.selectedView = cell;
-                    textSelectionHelper11.textSelectionOverlay.performHapticFeedback(0);
+                    textSelectionHelper11.textSelectionOverlay.performHapticFeedback(0, 1);
                     TextSelectionHelper.this.showActions();
                     TextSelectionHelper.this.invalidate();
                     if (cell2 != null) {
@@ -288,7 +293,6 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             }
         }
     };
-    protected Path tempPath = new Path();
     private final ScalablePath tempPath2 = new ScalablePath();
     private int longpressDelay = ViewConfiguration.getLongPressTimeout();
     private int touchSlop = ViewConfiguration.get(ApplicationLoader.applicationContext).getScaledTouchSlop();
@@ -487,26 +491,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             if (staticLayout != null) {
                 int lineForOffset = staticLayout.getLineForOffset(i4);
                 int lineBottom = staticLayout.getLineBottom(lineForOffset) - staticLayout.getLineTop(lineForOffset);
-                float lineTop = (int) (((((int) ((staticLayout.getLineTop(lineForOffset) + this.textY) + this.selectedView.getY())) - lineBottom) - AndroidUtilities.m34dp(8.0f)) + this.layoutBlock.yOffset);
-                if (this.magnifierY != lineTop) {
-                    this.magnifierY = lineTop;
-                    this.magnifierDy = (lineTop - this.magnifierYanimated) / 200.0f;
-                }
-                if (this.magnifier == null) {
-                    this.magnifier = new Magnifier(this.textSelectionOverlay);
-                    this.magnifierYanimated = this.magnifierY;
-                }
-                float f = this.magnifierYanimated;
-                float f2 = this.magnifierY;
-                if (f != f2) {
-                    this.magnifierYanimated = f + (this.magnifierDy * 16.0f);
-                }
-                float f3 = this.magnifierDy;
-                if (f3 > 0.0f && this.magnifierYanimated > f2) {
-                    this.magnifierYanimated = f2;
-                } else if (f3 < 0.0f && this.magnifierYanimated < f2) {
-                    this.magnifierYanimated = f2;
-                }
+                int lineTop = (int) (((((int) ((staticLayout.getLineTop(lineForOffset) + this.textY) + this.selectedView.getY())) - lineBottom) - AndroidUtilities.m34dp(8.0f)) + this.layoutBlock.yOffset);
                 Cell cell = this.selectedView;
                 if (cell instanceof ArticleViewer.BlockTableCell) {
                     i3 = (int) cell.getX();
@@ -520,7 +505,44 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 } else if (i > i2) {
                     i = i2;
                 }
-                this.magnifier.show(i, this.magnifierYanimated + (lineBottom * 1.5f) + AndroidUtilities.m34dp(8.0f));
+                float f = lineTop;
+                if (this.magnifierY != f) {
+                    this.magnifierY = f;
+                    this.magnifierDy = (f - this.magnifierYanimated) / 200.0f;
+                }
+                float f2 = i;
+                if (this.magnifierX != f2) {
+                    this.magnifierX = f2;
+                    this.magnifierDx = (f2 - this.magnifierXanimated) / 100.0f;
+                }
+                if (this.magnifier == null) {
+                    this.magnifier = new Magnifier(this.textSelectionOverlay);
+                    this.magnifierYanimated = this.magnifierY;
+                    this.magnifierXanimated = this.magnifierX;
+                }
+                float f3 = this.magnifierYanimated;
+                float f4 = this.magnifierY;
+                if (f3 != f4) {
+                    this.magnifierYanimated = f3 + (this.magnifierDy * 16.0f);
+                }
+                float f5 = this.magnifierDy;
+                if (f5 > 0.0f && this.magnifierYanimated > f4) {
+                    this.magnifierYanimated = f4;
+                } else if (f5 < 0.0f && this.magnifierYanimated < f4) {
+                    this.magnifierYanimated = f4;
+                }
+                float f6 = this.magnifierXanimated;
+                float f7 = this.magnifierX;
+                if (f6 != f7) {
+                    this.magnifierXanimated = f6 + (this.magnifierDx * 16.0f);
+                }
+                float f8 = this.magnifierDx;
+                if (f8 > 0.0f && this.magnifierXanimated > f7) {
+                    this.magnifierXanimated = f7;
+                } else if (f8 < 0.0f && this.magnifierXanimated < f7) {
+                    this.magnifierXanimated = f7;
+                }
+                this.magnifier.show(this.magnifierXanimated, this.magnifierYanimated + (lineBottom * 1.5f) + AndroidUtilities.m34dp(8.0f));
                 this.magnifier.update();
             }
         }
@@ -528,15 +550,20 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
 
     protected void showHandleViews() {
         if (this.handleViewProgress != 1.0f && this.textSelectionOverlay != null) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ValueAnimator valueAnimator = this.handleViewAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.handleViewProgress, 1.0f);
+            this.handleViewAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    TextSelectionHelper.this.lambda$showHandleViews$0(valueAnimator);
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    TextSelectionHelper.this.lambda$showHandleViews$0(valueAnimator2);
                 }
             });
-            ofFloat.setDuration(250L);
-            ofFloat.start();
+            this.handleViewAnimator.setDuration(Math.abs(1.0f - this.handleViewProgress) * 250.0f);
+            this.handleViewAnimator.start();
         }
     }
 
@@ -578,7 +605,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this.textSelectionOverlay.getContext());
                     this.popupLayout = actionBarPopupWindowLayout;
                     actionBarPopupWindowLayout.setPadding(AndroidUtilities.m34dp(1.0f), AndroidUtilities.m34dp(1.0f), AndroidUtilities.m34dp(1.0f), AndroidUtilities.m34dp(1.0f));
-                    this.popupLayout.setBackgroundDrawable(this.textSelectionOverlay.getContext().getResources().getDrawable(C0890R.C0891drawable.menu_copy));
+                    this.popupLayout.setBackgroundDrawable(this.textSelectionOverlay.getContext().getResources().getDrawable(C0952R.C0953drawable.menu_copy));
                     this.popupLayout.setAnimationEnabled(false);
                     this.popupLayout.setOnTouchListener(new View.OnTouchListener() {
                         @Override
@@ -608,7 +635,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.popupLayout, -2, -2);
                     this.popupWindow = actionBarPopupWindow;
                     actionBarPopupWindow.setAnimationEnabled(false);
-                    this.popupWindow.setAnimationStyle(C0890R.style.PopupContextAnimation);
+                    this.popupWindow.setAnimationStyle(C0952R.style.PopupContextAnimation);
                     this.popupWindow.setOutsideTouchable(true);
                     ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = this.popupLayout;
                     if (actionBarPopupWindowLayout2 != null) {
@@ -795,7 +822,13 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     float f = y + textSelectionHelper3.textY;
                     float x = TextSelectionHelper.this.selectedView.getX() + TextSelectionHelper.this.textX;
                     canvas.translate(x, f);
-                    this.handleViewPaint.setColor(TextSelectionHelper.this.getThemedColor("chat_TextSelectionCursor"));
+                    Cell cell = TextSelectionHelper.this.selectedView;
+                    MessageObject messageObject = cell instanceof ChatMessageCell ? ((ChatMessageCell) cell).getMessageObject() : null;
+                    if (messageObject == null || !messageObject.isOutOwner()) {
+                        this.handleViewPaint.setColor(TextSelectionHelper.this.getThemedColor("chat_TextSelectionCursor"));
+                    } else {
+                        this.handleViewPaint.setColor(TextSelectionHelper.this.getThemedColor("chat_outTextSelectionCursor"));
+                    }
                     TextSelectionHelper textSelectionHelper5 = TextSelectionHelper.this;
                     int length = textSelectionHelper5.getText(textSelectionHelper5.selectedView, false).length();
                     TextSelectionHelper textSelectionHelper6 = TextSelectionHelper.this;
@@ -928,7 +961,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     }
                     TextSelectionHelper textSelectionHelper12 = TextSelectionHelper.this;
                     textSelectionHelper12.showMagnifier(textSelectionHelper12.lastX);
-                    if (TextSelectionHelper.this.magnifierY != TextSelectionHelper.this.magnifierYanimated) {
+                    if (!(TextSelectionHelper.this.magnifierY == TextSelectionHelper.this.magnifierYanimated && TextSelectionHelper.this.magnifierX == TextSelectionHelper.this.magnifierXanimated)) {
                         invalidate();
                     }
                 }
@@ -985,17 +1018,17 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         }
     }
 
-    public class ActionMode$CallbackC12164 implements ActionMode.Callback {
+    public class ActionMode$CallbackC12814 implements ActionMode.Callback {
         private String translateFromLanguage = null;
 
-        ActionMode$CallbackC12164() {
+        ActionMode$CallbackC12814() {
         }
 
         @Override
         public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
             menu.add(0, 16908321, 0, 17039361);
             menu.add(0, 16908319, 1, 17039373);
-            menu.add(0, 3, 2, LocaleController.getString("TranslateMessage", C0890R.string.TranslateMessage));
+            menu.add(0, 3, 2, LocaleController.getString("TranslateMessage", C0952R.string.TranslateMessage));
             return true;
         }
 
@@ -1019,12 +1052,12 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 LanguageDetector.detectLanguage(TextSelectionHelper.this.getSelectedText().toString(), new LanguageDetector.StringCallback() {
                     @Override
                     public final void run(String str) {
-                        TextSelectionHelper.ActionMode$CallbackC12164.this.lambda$onPrepareActionMode$0(menu, str);
+                        TextSelectionHelper.ActionMode$CallbackC12814.this.lambda$onPrepareActionMode$0(menu, str);
                     }
                 }, new LanguageDetector.ExceptionCallback() {
                     @Override
                     public final void run(Exception exc) {
-                        TextSelectionHelper.ActionMode$CallbackC12164.this.lambda$onPrepareActionMode$1(menu, exc);
+                        TextSelectionHelper.ActionMode$CallbackC12814.this.lambda$onPrepareActionMode$1(menu, exc);
                     }
                 });
             }
@@ -1059,7 +1092,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     TextSelectionHelper.this.onTranslateListener.run(TextSelectionHelper.this.getSelectedText(), this.translateFromLanguage, LocaleController.getInstance().getCurrentLocale().getLanguage(), new Runnable() {
                         @Override
                         public final void run() {
-                            TextSelectionHelper.ActionMode$CallbackC12164.this.lambda$onActionItemClicked$2();
+                            TextSelectionHelper.ActionMode$CallbackC12814.this.lambda$onActionItemClicked$2();
                         }
                     });
                 }
@@ -1100,7 +1133,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
     }
 
     private ActionMode.Callback createActionCallback() {
-        final ActionMode$CallbackC12164 r0 = new ActionMode$CallbackC12164();
+        final ActionMode$CallbackC12814 r0 = new ActionMode$CallbackC12814();
         return Build.VERSION.SDK_INT >= 23 ? new ActionMode.Callback2() {
             @Override
             public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
@@ -1189,86 +1222,133 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         return iArr;
     }
 
-    protected void drawSelection(Canvas canvas, StaticLayout staticLayout, int i, int i2) {
+    protected void drawSelection(Canvas canvas, StaticLayout staticLayout, int i, int i2, boolean z, boolean z2) {
         float f;
         this.selectionPath.reset();
+        this.selectionHandlePath.reset();
+        float f2 = this.cornerRadius;
+        float f3 = f2 * 1.65f;
+        int i3 = (int) (f2 / 2.0f);
         int lineForOffset = staticLayout.getLineForOffset(i);
         int lineForOffset2 = staticLayout.getLineForOffset(i2);
+        boolean z3 = true;
         if (lineForOffset == lineForOffset2) {
-            drawLine(staticLayout, lineForOffset, i, i2);
+            drawLine(staticLayout, lineForOffset, i, i2, !z, !z2);
         } else {
             int lineEnd = staticLayout.getLineEnd(lineForOffset);
+            Rect rect = null;
             if (staticLayout.getParagraphDirection(lineForOffset) != -1 && lineEnd > 0) {
                 lineEnd--;
                 CharSequence text = staticLayout.getText();
                 int primaryHorizontal = (int) staticLayout.getPrimaryHorizontal(lineEnd);
                 if (staticLayout.isRtlCharAt(lineEnd)) {
-                    int i3 = lineEnd;
-                    while (staticLayout.isRtlCharAt(i3) && i3 != 0) {
-                        i3--;
+                    int i4 = lineEnd;
+                    while (staticLayout.isRtlCharAt(i4) && i4 != 0) {
+                        i4--;
                     }
-                    f = staticLayout.getLineForOffset(i3) == staticLayout.getLineForOffset(lineEnd) ? staticLayout.getPrimaryHorizontal(i3 + 1) : staticLayout.getLineLeft(lineForOffset);
+                    f = staticLayout.getLineForOffset(i4) == staticLayout.getLineForOffset(lineEnd) ? staticLayout.getPrimaryHorizontal(i4 + 1) : staticLayout.getLineLeft(lineForOffset);
                 } else {
                     f = staticLayout.getLineRight(lineForOffset);
                 }
-                int i4 = (int) f;
-                int min = Math.min(primaryHorizontal, i4);
-                int max = Math.max(primaryHorizontal, i4);
+                int i5 = (int) f;
+                int min = Math.min(primaryHorizontal, i5);
+                int max = Math.max(primaryHorizontal, i5);
                 if (lineEnd > 0 && lineEnd < text.length() && !Character.isWhitespace(text.charAt(lineEnd - 1))) {
-                    this.selectionPath.addRect(min, staticLayout.getLineTop(lineForOffset), max, staticLayout.getLineBottom(lineForOffset), Path.Direction.CW);
+                    rect = new Rect(min, staticLayout.getLineTop(lineForOffset), max + i3, staticLayout.getLineBottom(lineForOffset));
                 }
             }
-            drawLine(staticLayout, lineForOffset, i, lineEnd);
-            drawLine(staticLayout, lineForOffset2, staticLayout.getLineStart(lineForOffset2), i2);
-            for (int i5 = lineForOffset + 1; i5 < lineForOffset2; i5++) {
-                int lineLeft = (int) staticLayout.getLineLeft(i5);
-                int lineRight = (int) staticLayout.getLineRight(i5);
-                this.selectionPath.addRect(Math.min(lineLeft, lineRight), staticLayout.getLineTop(i5) - 1, Math.max(lineLeft, lineRight), staticLayout.getLineBottom(i5) + 1, Path.Direction.CW);
+            Rect rect2 = rect;
+            drawLine(staticLayout, lineForOffset, i, lineEnd, !z, true);
+            if (rect2 != null) {
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(rect2);
+                this.selectionPath.addRect(rectF, Path.Direction.CW);
+            }
+            for (int i6 = lineForOffset + 1; i6 < lineForOffset2; i6++) {
+                int lineLeft = (int) staticLayout.getLineLeft(i6);
+                int lineRight = (int) staticLayout.getLineRight(i6);
+                this.selectionPath.addRect(Math.min(lineLeft, lineRight) - i3, staticLayout.getLineTop(i6), Math.max(lineLeft, lineRight) + i3, staticLayout.getLineBottom(i6) + 1, Path.Direction.CW);
+            }
+            z3 = true;
+            drawLine(staticLayout, lineForOffset2, staticLayout.getLineStart(lineForOffset2), i2, true, !z2);
+        }
+        int i7 = Build.VERSION.SDK_INT;
+        if (i7 < 26) {
+            z3 = false;
+        }
+        if (z3) {
+            canvas.save();
+        }
+        float primaryHorizontal2 = staticLayout.getPrimaryHorizontal(i);
+        float primaryHorizontal3 = staticLayout.getPrimaryHorizontal(i2);
+        float lineBottom = staticLayout.getLineBottom(lineForOffset);
+        float lineBottom2 = staticLayout.getLineBottom(lineForOffset2);
+        if (!z || !z2 || lineBottom != lineBottom2 || Math.abs(primaryHorizontal3 - primaryHorizontal2) >= f3) {
+            if (z) {
+                Rect rect3 = AndroidUtilities.rectTmp2;
+                rect3.set((int) primaryHorizontal2, (int) (lineBottom - f3), (int) Math.min(primaryHorizontal2 + f3, staticLayout.getLineRight(lineForOffset)), (int) lineBottom);
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                rectF2.set(rect3);
+                this.selectionHandlePath.addRect(rectF2, Path.Direction.CW);
+                if (i7 >= 26) {
+                    rect3.set(rect3.left - ((int) f3), rect3.top, rect3.right, rect3.bottom);
+                    canvas.clipOutRect(rect3);
+                }
+            }
+            if (z2) {
+                Rect rect4 = AndroidUtilities.rectTmp2;
+                rect4.set((int) Math.max(primaryHorizontal3 - f3, staticLayout.getLineLeft(lineForOffset2)), (int) (lineBottom2 - f3), (int) primaryHorizontal3, (int) lineBottom2);
+                RectF rectF3 = AndroidUtilities.rectTmp;
+                rectF3.set(rect4);
+                this.selectionHandlePath.addRect(rectF3, Path.Direction.CW);
+                if (i7 >= 26) {
+                    canvas.clipOutRect(rect4);
+                }
+            }
+        } else {
+            float min2 = Math.min(primaryHorizontal2, primaryHorizontal3);
+            float max2 = Math.max(primaryHorizontal2, primaryHorizontal3);
+            Rect rect5 = AndroidUtilities.rectTmp2;
+            rect5.set((int) min2, (int) (lineBottom - f3), (int) max2, (int) lineBottom);
+            RectF rectF4 = AndroidUtilities.rectTmp;
+            rectF4.set(rect5);
+            this.selectionHandlePath.addRect(rectF4, Path.Direction.CW);
+            if (i7 >= 26) {
+                canvas.clipOutRect(rect5);
             }
         }
         canvas.drawPath(this.selectionPath, this.selectionPaint);
-        float f2 = this.cornerRadius * 1.9f;
-        float primaryHorizontal2 = staticLayout.getPrimaryHorizontal(i);
-        float primaryHorizontal3 = staticLayout.getPrimaryHorizontal(i2);
-        if (i + 1 < staticLayout.getLineEnd(lineForOffset) && (lineForOffset == lineForOffset2 || (lineForOffset + 1 == lineForOffset2 && primaryHorizontal2 > primaryHorizontal3))) {
-            float lineBottom = staticLayout.getLineBottom(lineForOffset);
-            this.tempPath.reset();
-            float f3 = primaryHorizontal2 + f2;
-            this.tempPath.moveTo(f3, lineBottom);
-            this.tempPath.lineTo(primaryHorizontal2, lineBottom);
-            float f4 = lineBottom - f2;
-            this.tempPath.lineTo(primaryHorizontal2, f4);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(primaryHorizontal2, f4, f3, lineBottom);
-            this.tempPath.arcTo(rectF, 180.0f, -90.0f);
-            canvas.drawPath(this.tempPath, this.selectionHandlePaint);
-        }
-        if (staticLayout.getLineStart(lineForOffset2) < i2) {
-            float lineBottom2 = staticLayout.getLineBottom(lineForOffset2);
-            this.tempPath.reset();
-            float f5 = primaryHorizontal3 - f2;
-            this.tempPath.moveTo(f5, lineBottom2);
-            this.tempPath.lineTo(primaryHorizontal3, lineBottom2);
-            float f6 = lineBottom2 - f2;
-            this.tempPath.lineTo(primaryHorizontal3, f6);
-            RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.set(f5, f6, primaryHorizontal3, lineBottom2);
-            this.tempPath.arcTo(rectF2, 0.0f, 90.0f);
-            canvas.drawPath(this.tempPath, this.selectionHandlePaint);
+        if (z3) {
+            canvas.restore();
+            canvas.drawPath(this.selectionHandlePath, this.selectionHandlePaint);
         }
     }
 
-    private void drawLine(StaticLayout staticLayout, int i, int i2, int i3) {
+    private void drawLine(StaticLayout staticLayout, int i, int i2, int i3, boolean z, boolean z2) {
+        float f;
+        float f2;
+        int lineTop;
         this.tempPath2.reset();
         staticLayout.getSelectionPath(i2, i3, this.tempPath2);
         if (this.tempPath2.lastBottom < staticLayout.getLineBottom(i)) {
-            int lineTop = staticLayout.getLineTop(i);
-            ScalablePath scalablePath = this.tempPath2;
-            float f = lineTop;
-            scalablePath.scaleY((staticLayout.getLineBottom(i) - lineTop) / (scalablePath.lastBottom - f), f, this.selectionPath);
-            return;
+            f2 = staticLayout.getLineTop(i);
+            f = (staticLayout.getLineBottom(i) - lineTop) / (this.tempPath2.lastBottom - f2);
+        } else {
+            f = 1.0f;
+            f2 = 0.0f;
         }
-        this.tempPath2.scaleY(1.0f, 0.0f, this.selectionPath);
+        for (int i4 = 0; i4 < this.tempPath2.rectsCount; i4++) {
+            RectF rectF = (RectF) this.tempPath2.rects.get(i4);
+            rectF.set((int) (rectF.left - (z ? this.cornerRadius / 2.0f : 0.0f)), (int) (((rectF.top - f2) * f) + f2), (int) (rectF.right + (z2 ? this.cornerRadius / 2.0f : 0.0f)), (int) (((rectF.bottom - f2) * f) + f2));
+            this.selectionPath.addRect(rectF.left, rectF.top, rectF.right, rectF.bottom, Path.Direction.CW);
+        }
+        if (this.tempPath2.rectsCount == 0 && !z2) {
+            int lineTop2 = staticLayout.getLineTop(i);
+            int lineBottom = staticLayout.getLineBottom(i);
+            Path path = this.selectionPath;
+            float f3 = this.cornerRadius;
+            path.addRect(((int) staticLayout.getPrimaryHorizontal(i2)) - (f3 / 2.0f), lineTop2, ((int) staticLayout.getPrimaryHorizontal(i3)) + (f3 / 4.0f), lineBottom, Path.Direction.CW);
+        }
     }
 
     public static class LayoutBlock {
@@ -1352,11 +1432,14 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
 
         public void onTextSelected(ChatMessageCell chatMessageCell, ChatMessageCell chatMessageCell2) {
             final boolean z = chatMessageCell2 == null || !(chatMessageCell2.getMessageObject() == null || chatMessageCell2.getMessageObject().getId() == chatMessageCell.getMessageObject().getId());
-            int id = chatMessageCell.getMessageObject().getId();
-            this.selectedCellId = id;
+            this.selectedCellId = chatMessageCell.getMessageObject().getId();
+            try {
+                int i = chatMessageCell.getMessageObject().messageOwner.edit_date;
+            } catch (Exception unused) {
+            }
             this.enterProgress = 0.0f;
             this.isDescription = this.maybeIsDescription;
-            Animator animator = this.animatorSparseArray.get(id);
+            Animator animator = this.animatorSparseArray.get(this.selectedCellId);
             if (animator != null) {
                 animator.removeAllListeners();
                 animator.cancel();
@@ -1389,39 +1472,8 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             }
         }
 
-        public void draw(MessageObject messageObject, MessageObject.TextLayoutBlock textLayoutBlock, Canvas canvas) {
-            MessageObject messageObject2;
-            Cell cell = this.selectedView;
-            if (cell != null && ((ChatMessageCell) cell).getMessageObject() != null && !this.isDescription && (messageObject2 = ((ChatMessageCell) this.selectedView).getMessageObject()) != null && messageObject2.textLayoutBlocks != null && messageObject.getId() == this.selectedCellId) {
-                int i = this.selectionStart;
-                int i2 = this.selectionEnd;
-                if (messageObject2.textLayoutBlocks.size() > 1) {
-                    int i3 = textLayoutBlock.charactersOffset;
-                    if (i < i3) {
-                        i = i3;
-                    }
-                    int i4 = textLayoutBlock.charactersEnd;
-                    if (i > i4) {
-                        i = i4;
-                    }
-                    if (i2 < i3) {
-                        i2 = i3;
-                    }
-                    if (i2 > i4) {
-                        i2 = i4;
-                    }
-                }
-                if (i != i2) {
-                    if (messageObject2.isOutOwner()) {
-                        this.selectionPaint.setColor(getThemedColor("chat_outTextSelectionHighlight"));
-                        this.selectionHandlePaint.setColor(getThemedColor("chat_outTextSelectionHighlight"));
-                    } else {
-                        this.selectionPaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
-                        this.selectionHandlePaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
-                    }
-                    drawSelection(canvas, textLayoutBlock.textLayout, i, i2);
-                }
-            }
+        public void draw(org.telegram.messenger.MessageObject r12, org.telegram.messenger.MessageObject.TextLayoutBlock r13, android.graphics.Canvas r14) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Cells.TextSelectionHelper.ChatListTextSelectionHelper.draw(org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject$TextLayoutBlock, android.graphics.Canvas):void");
         }
 
         public int getCharOffsetFromCord(int i, int i2, int i3, int i4, ChatMessageCell chatMessageCell, boolean z) {
@@ -1611,7 +1663,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     this.selectionPaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
                     this.selectionHandlePaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
                 }
-                drawSelection(canvas, staticLayout, this.selectionStart, this.selectionEnd);
+                drawSelection(canvas, staticLayout, this.selectionStart, this.selectionEnd, true, true);
             }
         }
 
@@ -1624,7 +1676,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     this.selectionPaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
                     this.selectionHandlePaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
                 }
-                drawSelection(canvas, staticLayout, this.selectionStart, this.selectionEnd);
+                drawSelection(canvas, staticLayout, this.selectionStart, this.selectionEnd, true, true);
             }
         }
 
@@ -1674,6 +1726,10 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         }
 
         public void checkDataChanged(MessageObject messageObject) {
+            try {
+                int i = messageObject.messageOwner.edit_date;
+            } catch (Exception unused) {
+            }
             if (this.selectedCellId == messageObject.getId()) {
                 clear(true);
             }
@@ -1902,30 +1958,28 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     TextLayoutBlock textLayoutBlock = this.arrayList.get(i);
                     int i2 = this.endViewOffset;
                     int length = textLayoutBlock.getLayout().getText().length();
-                    if (i2 > length) {
-                        i2 = length;
-                    }
-                    int i3 = this.startViewPosition;
-                    if (adapterPosition == i3 && adapterPosition == this.endViewPosition) {
-                        int i4 = this.startViewChildPosition;
-                        int i5 = this.endViewChildPosition;
-                        if (i4 == i5 && i4 == i) {
-                            drawSelection(canvas, textLayoutBlock.getLayout(), this.startViewOffset, i2);
-                        } else if (i == i4) {
-                            drawSelection(canvas, textLayoutBlock.getLayout(), this.startViewOffset, length);
+                    int i3 = i2 > length ? length : i2;
+                    int i4 = this.startViewPosition;
+                    if (adapterPosition == i4 && adapterPosition == this.endViewPosition) {
+                        int i5 = this.startViewChildPosition;
+                        int i6 = this.endViewChildPosition;
+                        if (i5 == i6 && i5 == i) {
+                            drawSelection(canvas, textLayoutBlock.getLayout(), this.startViewOffset, i3, true, true);
                         } else if (i == i5) {
-                            drawSelection(canvas, textLayoutBlock.getLayout(), 0, i2);
-                        } else if (i > i4 && i < i5) {
-                            drawSelection(canvas, textLayoutBlock.getLayout(), 0, length);
+                            drawSelection(canvas, textLayoutBlock.getLayout(), this.startViewOffset, length, true, false);
+                        } else if (i == i6) {
+                            drawSelection(canvas, textLayoutBlock.getLayout(), 0, i3, false, true);
+                        } else if (i > i5 && i < i6) {
+                            drawSelection(canvas, textLayoutBlock.getLayout(), 0, length, false, false);
                         }
-                    } else if (adapterPosition == i3 && this.startViewChildPosition == i) {
-                        drawSelection(canvas, textLayoutBlock.getLayout(), this.startViewOffset, length);
+                    } else if (adapterPosition == i4 && this.startViewChildPosition == i) {
+                        drawSelection(canvas, textLayoutBlock.getLayout(), this.startViewOffset, length, true, false);
                     } else {
-                        int i6 = this.endViewPosition;
-                        if (adapterPosition == i6 && this.endViewChildPosition == i) {
-                            drawSelection(canvas, textLayoutBlock.getLayout(), 0, i2);
-                        } else if ((adapterPosition > i3 && adapterPosition < i6) || ((adapterPosition == i3 && i > this.startViewChildPosition) || (adapterPosition == i6 && i < this.endViewChildPosition))) {
-                            drawSelection(canvas, textLayoutBlock.getLayout(), 0, length);
+                        int i7 = this.endViewPosition;
+                        if (adapterPosition == i7 && this.endViewChildPosition == i) {
+                            drawSelection(canvas, textLayoutBlock.getLayout(), 0, i3, false, true);
+                        } else if ((adapterPosition > i4 && adapterPosition < i7) || ((adapterPosition == i4 && i > this.startViewChildPosition) || (adapterPosition == i7 && i < this.endViewChildPosition))) {
+                            drawSelection(canvas, textLayoutBlock.getLayout(), 0, length, false, false);
                         }
                     }
                 }
@@ -2432,6 +2486,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
     }
 
     public static class ScalablePath extends Path {
+        private static ArrayList<RectF> recycled;
         float lastBottom;
         private ArrayList<RectF> rects;
         private int rectsCount;
@@ -2445,6 +2500,10 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         @Override
         public void reset() {
             super.reset();
+            if (recycled == null) {
+                recycled = new ArrayList<>(this.rects.size());
+            }
+            recycled.addAll(this.rects);
             this.rects.clear();
             this.rectsCount = 0;
             this.lastBottom = 0.0f;
@@ -2452,29 +2511,19 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
 
         @Override
         public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
-            this.rects.add(new RectF(f, f2, f3, f4));
+            RectF rectF;
+            ArrayList<RectF> arrayList = recycled;
+            if (arrayList == null || arrayList.size() <= 0) {
+                rectF = new RectF();
+            } else {
+                rectF = recycled.remove(0);
+            }
+            rectF.set(f, f2, f3, f4);
+            this.rects.add(rectF);
             this.rectsCount++;
             super.addRect(f, f2, f3, f4, direction);
             if (f4 > this.lastBottom) {
                 this.lastBottom = f4;
-            }
-        }
-
-        public void scaleY(float f, float f2, Path path) {
-            int i = 0;
-            if (path != null) {
-                while (i < this.rectsCount) {
-                    RectF rectF = this.rects.get(i);
-                    path.addRect(rectF.left, ((rectF.top - f2) * f) + f2, rectF.right, ((rectF.bottom - f2) * f) + f2, Path.Direction.CW);
-                    i++;
-                }
-                return;
-            }
-            super.reset();
-            while (i < this.rectsCount) {
-                RectF rectF2 = this.rects.get(i);
-                super.addRect(rectF2.left, ((rectF2.top - f2) * f) + f2, rectF2.right, ((rectF2.bottom - f2) * f) + f2, Path.Direction.CW);
-                i++;
             }
         }
     }

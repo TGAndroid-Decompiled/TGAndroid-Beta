@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.Surface;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 
 class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
 
@@ -80,13 +80,13 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        @TargetApi(C0890R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom)
+        @TargetApi(C0952R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom)
         public Surface createInputSurface() {
             return this.mediaCodec.createInputSurface();
         }
 
         @Override
-        @TargetApi(C0890R.styleable.MapAttrs_uiTiltGestures)
+        @TargetApi(C0952R.styleable.MapAttrs_uiTiltGestures)
         public void setParameters(Bundle bundle) {
             this.mediaCodec.setParameters(bundle);
         }

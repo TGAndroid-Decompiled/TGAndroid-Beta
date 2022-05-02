@@ -121,7 +121,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         if (!globalServerConfig.enable_h264_encoder && !globalServerConfig.enable_h265_encoder && !globalServerConfig.enable_vp8_encoder && !globalServerConfig.enable_vp9_encoder) {
             return false;
         }
-        int i = C35921.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+        int i = C36811.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i == 1) {
             return isHardwareSupportedInCurrentSdkVp8(mediaCodecInfo);
         }
@@ -137,7 +137,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         return isHardwareSupportedInCurrentSdkH265(mediaCodecInfo);
     }
 
-    public static class C35921 {
+    public static class C36811 {
         static final int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
 
         static {
@@ -203,7 +203,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
     }
 
     private int getKeyFrameIntervalSec(VideoCodecMimeType videoCodecMimeType) {
-        int i = C35921.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+        int i = C36811.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i == 1 || i == 2) {
             return 100;
         }

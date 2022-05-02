@@ -10,6 +10,6 @@ public final class GroupCallPip$3$$ExternalSyntheticLambda0 implements Runnable 
 
     @Override
     public final void run() {
-        GroupCallPip.C20213.lambda$$0();
+        GroupCallPip.C20903.lambda$$0();
     }
 }

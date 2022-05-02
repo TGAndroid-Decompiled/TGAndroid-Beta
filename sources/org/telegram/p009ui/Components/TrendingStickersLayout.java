@@ -629,15 +629,15 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.glueToTopAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                int f1097dy = 0;
+                int f1101dy = 0;
 
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator2) {
                     int floatValue = (int) (contentTopOffset * ((Float) valueAnimator2.getAnimatedValue()).floatValue());
                     TrendingStickersLayout.this.scrollFromAnimator = true;
-                    TrendingStickersLayout.this.listView.scrollBy(0, floatValue - this.f1097dy);
+                    TrendingStickersLayout.this.listView.scrollBy(0, floatValue - this.f1101dy);
                     TrendingStickersLayout.this.scrollFromAnimator = false;
-                    this.f1097dy = floatValue;
+                    this.f1101dy = floatValue;
                 }
             });
             this.glueToTopAnimator.addListener(new AnimatorListenerAdapter() {

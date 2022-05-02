@@ -19,12 +19,12 @@ import android.view.animation.OvershootInterpolator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 
 public class TextSelectionHint extends View {
-    Animator f1079a;
+    Animator f1096a;
     int animateToEnd;
     int animateToStart;
     int currentEnd;
@@ -71,12 +71,12 @@ public class TextSelectionHint extends View {
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         if (getMeasuredWidth() != this.lastW || this.textLayout == null) {
-            Animator animator = this.f1079a;
+            Animator animator = this.f1096a;
             if (animator != null) {
                 animator.removeAllListeners();
-                this.f1079a.cancel();
+                this.f1096a.cancel();
             }
-            String string = LocaleController.getString("TextSelectionHit", C0890R.string.TextSelectionHit);
+            String string = LocaleController.getString("TextSelectionHit", C0952R.string.TextSelectionHit);
             Matcher matcher = Pattern.compile("\\*\\*.*\\*\\*").matcher(string);
             String str = null;
             if (matcher.matches()) {
@@ -262,10 +262,10 @@ public class TextSelectionHint extends View {
 
     public void show() {
         AndroidUtilities.cancelRunOnUIThread(this.dismissTunnable);
-        Animator animator = this.f1079a;
+        Animator animator = this.f1096a;
         if (animator != null) {
             animator.removeAllListeners();
-            this.f1079a.cancel();
+            this.f1096a.cancel();
         }
         if (getMeasuredHeight() == 0 || getMeasuredWidth() == 0) {
             this.showOnMeasure = true;
@@ -321,7 +321,7 @@ public class TextSelectionHint extends View {
         ofFloat4.setDuration(900L);
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playSequentially(ofFloat, ofFloat2, ofFloat3, ofFloat4);
-        this.f1079a = animatorSet;
+        this.f1096a = animatorSet;
         animatorSet.start();
         AndroidUtilities.runOnUIThread(this.dismissTunnable, 5000L);
     }
@@ -358,10 +358,10 @@ public class TextSelectionHint extends View {
     }
 
     public void hideInternal() {
-        Animator animator = this.f1079a;
+        Animator animator = this.f1096a;
         if (animator != null) {
             animator.removeAllListeners();
-            this.f1079a.cancel();
+            this.f1096a.cancel();
         }
         this.showing = false;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.prepareProgress, 0.0f);
@@ -377,7 +377,7 @@ public class TextSelectionHint extends View {
                 TextSelectionHint.this.setVisibility(4);
             }
         });
-        this.f1079a = ofFloat;
+        this.f1096a = ofFloat;
         ofFloat.start();
     }
 

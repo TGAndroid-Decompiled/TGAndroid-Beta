@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_shippingOption extends TLObject {
     public static int constructor = -1239335713;
-    public String f961id;
+    public String f972id;
     public ArrayList<TLRPC$TL_labeledPrice> prices = new ArrayList<>();
     public String title;
 
@@ -22,7 +22,7 @@ public class TLRPC$TL_shippingOption extends TLObject {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f961id = abstractSerializedData.readString(z);
+        this.f972id = abstractSerializedData.readString(z);
         this.title = abstractSerializedData.readString(z);
         int readInt32 = abstractSerializedData.readInt32(z);
         if (readInt32 == 481674261) {
@@ -43,7 +43,7 @@ public class TLRPC$TL_shippingOption extends TLObject {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeString(this.f961id);
+        abstractSerializedData.writeString(this.f972id);
         abstractSerializedData.writeString(this.title);
         abstractSerializedData.writeInt32(481674261);
         int size = this.prices.size();

@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
@@ -42,12 +42,12 @@ public class SwipeGestureSettingsView extends FrameLayout {
         String[] strArr = new String[6];
         this.strings = strArr;
         float f = 1.0f;
-        strArr[0] = LocaleController.getString("SwipeSettingsPin", C0890R.string.SwipeSettingsPin);
-        this.strings[1] = LocaleController.getString("SwipeSettingsRead", C0890R.string.SwipeSettingsRead);
-        this.strings[2] = LocaleController.getString("SwipeSettingsArchive", C0890R.string.SwipeSettingsArchive);
-        this.strings[3] = LocaleController.getString("SwipeSettingsMute", C0890R.string.SwipeSettingsMute);
-        this.strings[4] = LocaleController.getString("SwipeSettingsDelete", C0890R.string.SwipeSettingsDelete);
-        this.strings[5] = LocaleController.getString("SwipeSettingsFolders", C0890R.string.SwipeSettingsFolders);
+        strArr[0] = LocaleController.getString("SwipeSettingsPin", C0952R.string.SwipeSettingsPin);
+        this.strings[1] = LocaleController.getString("SwipeSettingsRead", C0952R.string.SwipeSettingsRead);
+        this.strings[2] = LocaleController.getString("SwipeSettingsArchive", C0952R.string.SwipeSettingsArchive);
+        this.strings[3] = LocaleController.getString("SwipeSettingsMute", C0952R.string.SwipeSettingsMute);
+        this.strings[4] = LocaleController.getString("SwipeSettingsDelete", C0952R.string.SwipeSettingsDelete);
+        this.strings[5] = LocaleController.getString("SwipeSettingsFolders", C0952R.string.SwipeSettingsFolders);
         String[] strArr2 = this.backgroundKeys;
         strArr2[0] = "chats_archiveBackground";
         strArr2[1] = "chats_archiveBackground";
@@ -171,7 +171,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
     public RLottieDrawable getIcon(int i) {
         RLottieDrawable[] rLottieDrawableArr = this.icons;
         if (rLottieDrawableArr[i] == null) {
-            int i2 = i != 1 ? i != 2 ? i != 3 ? i != 4 ? i != 5 ? C0890R.raw.swipe_pin : C0890R.raw.swipe_disabled : C0890R.raw.swipe_delete : C0890R.raw.swipe_mute : C0890R.raw.chats_archive : C0890R.raw.swipe_read;
+            int i2 = i != 1 ? i != 2 ? i != 3 ? i != 4 ? i != 5 ? C0952R.raw.swipe_pin : C0952R.raw.swipe_disabled : C0952R.raw.swipe_delete : C0952R.raw.swipe_mute : C0952R.raw.chats_archive : C0952R.raw.swipe_read;
             rLottieDrawableArr[i] = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m34dp(28.0f), AndroidUtilities.m34dp(28.0f), true, null);
             updateIconColor(i);
         }

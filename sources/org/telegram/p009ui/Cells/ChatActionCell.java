@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -186,7 +186,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         int i2 = this.customDate;
         if (i2 != i && i2 / 3600 != i / 3600) {
             if (z) {
-                str = i == 2147483646 ? LocaleController.getString("MessageScheduledUntilOnline", C0890R.string.MessageScheduledUntilOnline) : LocaleController.formatString("MessageScheduledOn", C0890R.string.MessageScheduledOn, LocaleController.formatDateChat(i));
+                str = i == 2147483646 ? LocaleController.getString("MessageScheduledUntilOnline", C0952R.string.MessageScheduledUntilOnline) : LocaleController.formatString("MessageScheduledOn", C0952R.string.MessageScheduledOn, LocaleController.formatDateChat(i));
             } else {
                 str = LocaleController.formatDateChat(i);
             }
@@ -390,9 +390,9 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             if (tLRPC$Message == null || (tLRPC$MessageMedia = tLRPC$Message.media) == null || tLRPC$MessageMedia.ttl_seconds == 0) {
                 charSequence = messageObject.messageText;
             } else if (tLRPC$MessageMedia.photo instanceof TLRPC$TL_photoEmpty) {
-                charSequence = LocaleController.getString("AttachPhotoExpired", C0890R.string.AttachPhotoExpired);
+                charSequence = LocaleController.getString("AttachPhotoExpired", C0952R.string.AttachPhotoExpired);
             } else if (tLRPC$MessageMedia.document instanceof TLRPC$TL_documentEmpty) {
-                charSequence = LocaleController.getString("AttachVideoExpired", C0890R.string.AttachVideoExpired);
+                charSequence = LocaleController.getString("AttachVideoExpired", C0952R.string.AttachVideoExpired);
             } else {
                 charSequence = messageObject.messageText;
             }

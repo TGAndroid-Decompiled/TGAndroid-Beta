@@ -2,25 +2,14 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 
-public class TLRPC$TL_attachMenuBot extends TLObject {
-    public static int constructor = -381896846;
+public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
+    public static int constructor = -928371502;
     public long bot_id;
     public int flags;
-    public ArrayList<TLRPC$TL_attachMenuBotIcon> icons = new ArrayList<>();
     public boolean inactive;
     public String short_name;
-
-    public static TLRPC$TL_attachMenuBot TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = new TLRPC$TL_attachMenuBot();
-            tLRPC$TL_attachMenuBot.readParams(abstractSerializedData, z);
-            return tLRPC$TL_attachMenuBot;
-        } else if (!z) {
-            return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_attachMenuBot", Integer.valueOf(i)));
-        }
-    }
+    public ArrayList<TLRPC$AttachMenuPeerType> peer_types = new ArrayList<>();
+    public ArrayList<TLRPC$TL_attachMenuBotIcon> icons = new ArrayList<>();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -33,12 +22,26 @@ public class TLRPC$TL_attachMenuBot extends TLObject {
         if (readInt322 == 481674261) {
             int readInt323 = abstractSerializedData.readInt32(z);
             for (int i = 0; i < readInt323; i++) {
-                TLRPC$TL_attachMenuBotIcon TLdeserialize = TLRPC$TL_attachMenuBotIcon.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                TLRPC$AttachMenuPeerType TLdeserialize = TLRPC$AttachMenuPeerType.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize != null) {
-                    this.icons.add(TLdeserialize);
+                    this.peer_types.add(TLdeserialize);
                 } else {
                     return;
                 }
+            }
+            int readInt324 = abstractSerializedData.readInt32(z);
+            if (readInt324 == 481674261) {
+                int readInt325 = abstractSerializedData.readInt32(z);
+                for (int i2 = 0; i2 < readInt325; i2++) {
+                    TLRPC$TL_attachMenuBotIcon TLdeserialize2 = TLRPC$TL_attachMenuBotIcon.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                    if (TLdeserialize2 != null) {
+                        this.icons.add(TLdeserialize2);
+                    } else {
+                        return;
+                    }
+                }
+            } else if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
             }
         } else if (z) {
             throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
@@ -54,10 +57,16 @@ public class TLRPC$TL_attachMenuBot extends TLObject {
         abstractSerializedData.writeInt64(this.bot_id);
         abstractSerializedData.writeString(this.short_name);
         abstractSerializedData.writeInt32(481674261);
-        int size = this.icons.size();
+        int size = this.peer_types.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            this.icons.get(i2).serializeToStream(abstractSerializedData);
+            this.peer_types.get(i2).serializeToStream(abstractSerializedData);
+        }
+        abstractSerializedData.writeInt32(481674261);
+        int size2 = this.icons.size();
+        abstractSerializedData.writeInt32(size2);
+        for (int i3 = 0; i3 < size2; i3++) {
+            this.icons.get(i3).serializeToStream(abstractSerializedData);
         }
     }
 }

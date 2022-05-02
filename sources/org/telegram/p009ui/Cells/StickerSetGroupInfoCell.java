@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.LayoutHelper;
@@ -20,7 +20,7 @@ public class StickerSetGroupInfoCell extends LinearLayout {
         TextView textView = new TextView(context);
         textView.setTextColor(Theme.getColor("chat_emojiPanelTrendingDescription"));
         textView.setTextSize(1, 14.0f);
-        textView.setText(LocaleController.getString("GroupStickersInfo", C0890R.string.GroupStickersInfo));
+        textView.setText(LocaleController.getString("GroupStickersInfo", C0952R.string.GroupStickersInfo));
         addView(textView, LayoutHelper.createLinear(-1, -2, 51, 17, 4, 17, 0));
         TextView textView2 = new TextView(context);
         this.addButton = textView2;
@@ -29,8 +29,8 @@ public class StickerSetGroupInfoCell extends LinearLayout {
         this.addButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         this.addButton.setTextSize(1, 14.0f);
         this.addButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        this.addButton.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
-        this.addButton.setText(LocaleController.getString("ChooseStickerSet", C0890R.string.ChooseStickerSet).toUpperCase());
+        this.addButton.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
+        this.addButton.setText(LocaleController.getString("ChooseStickerSet", C0952R.string.ChooseStickerSet).toUpperCase());
         addView(this.addButton, LayoutHelper.createLinear(-2, 28, 51, 17, 10, 14, 8));
     }
 

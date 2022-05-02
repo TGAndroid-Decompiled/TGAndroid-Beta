@@ -10,6 +10,6 @@ public final class SessionsActivity$4$$ExternalSyntheticLambda0 implements Runna
 
     @Override
     public final void run() {
-        SessionsActivity.C34154.lambda$onSessionTerminated$0();
+        SessionsActivity.C35034.lambda$onSessionTerminated$0();
     }
 }

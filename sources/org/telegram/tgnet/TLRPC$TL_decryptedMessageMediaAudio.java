@@ -9,7 +9,7 @@ public class TLRPC$TL_decryptedMessageMediaAudio extends TLRPC$DecryptedMessageM
         this.mime_type = abstractSerializedData.readString(z);
         this.size = abstractSerializedData.readInt32(z);
         this.key = abstractSerializedData.readByteArray(z);
-        this.f847iv = abstractSerializedData.readByteArray(z);
+        this.f858iv = abstractSerializedData.readByteArray(z);
     }
 
     @Override
@@ -19,6 +19,6 @@ public class TLRPC$TL_decryptedMessageMediaAudio extends TLRPC$DecryptedMessageM
         abstractSerializedData.writeString(this.mime_type);
         abstractSerializedData.writeInt32(this.size);
         abstractSerializedData.writeByteArray(this.key);
-        abstractSerializedData.writeByteArray(this.f847iv);
+        abstractSerializedData.writeByteArray(this.f858iv);
     }
 }

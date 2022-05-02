@@ -4,12 +4,12 @@ import android.text.TextUtils;
 
 public abstract class TLRPC$VideoSize extends TLObject {
     public int flags;
-    public int f980h;
+    public int f991h;
     public TLRPC$FileLocation location;
     public int size;
     public String type;
     public double video_start_ts;
-    public int f981w;
+    public int f992w;
 
     public static TLRPC$VideoSize TLdeserialize(long j, long j2, AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$TL_videoSize tLRPC$TL_videoSize;
@@ -23,8 +23,8 @@ public abstract class TLRPC$VideoSize extends TLObject {
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.type = abstractSerializedData2.readString(z2);
                     this.location = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                    this.f981w = abstractSerializedData2.readInt32(z2);
-                    this.f980h = abstractSerializedData2.readInt32(z2);
+                    this.f992w = abstractSerializedData2.readInt32(z2);
+                    this.f991h = abstractSerializedData2.readInt32(z2);
                     this.size = abstractSerializedData2.readInt32(z2);
                 }
 
@@ -33,8 +33,8 @@ public abstract class TLRPC$VideoSize extends TLObject {
                     abstractSerializedData2.writeInt32(constructor);
                     abstractSerializedData2.writeString(this.type);
                     this.location.serializeToStream(abstractSerializedData2);
-                    abstractSerializedData2.writeInt32(this.f981w);
-                    abstractSerializedData2.writeInt32(this.f980h);
+                    abstractSerializedData2.writeInt32(this.f992w);
+                    abstractSerializedData2.writeInt32(this.f991h);
                     abstractSerializedData2.writeInt32(this.size);
                 }
             };
@@ -47,8 +47,8 @@ public abstract class TLRPC$VideoSize extends TLObject {
                     this.flags = abstractSerializedData2.readInt32(z2);
                     this.type = abstractSerializedData2.readString(z2);
                     this.location = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                    this.f981w = abstractSerializedData2.readInt32(z2);
-                    this.f980h = abstractSerializedData2.readInt32(z2);
+                    this.f992w = abstractSerializedData2.readInt32(z2);
+                    this.f991h = abstractSerializedData2.readInt32(z2);
                     this.size = abstractSerializedData2.readInt32(z2);
                     if ((this.flags & 1) != 0) {
                         this.video_start_ts = abstractSerializedData2.readDouble(z2);
@@ -61,8 +61,8 @@ public abstract class TLRPC$VideoSize extends TLObject {
                     abstractSerializedData2.writeInt32(this.flags);
                     abstractSerializedData2.writeString(this.type);
                     this.location.serializeToStream(abstractSerializedData2);
-                    abstractSerializedData2.writeInt32(this.f981w);
-                    abstractSerializedData2.writeInt32(this.f980h);
+                    abstractSerializedData2.writeInt32(this.f992w);
+                    abstractSerializedData2.writeInt32(this.f991h);
                     abstractSerializedData2.writeInt32(this.size);
                     if ((this.flags & 1) != 0) {
                         abstractSerializedData2.writeDouble(this.video_start_ts);

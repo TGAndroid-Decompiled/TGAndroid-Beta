@@ -5,14 +5,14 @@ public class TLRPC$TL_documentAttributeImageSize extends TLRPC$DocumentAttribute
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f853w = abstractSerializedData.readInt32(z);
-        this.f852h = abstractSerializedData.readInt32(z);
+        this.f864w = abstractSerializedData.readInt32(z);
+        this.f863h = abstractSerializedData.readInt32(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt32(this.f853w);
-        abstractSerializedData.writeInt32(this.f852h);
+        abstractSerializedData.writeInt32(this.f864w);
+        abstractSerializedData.writeInt32(this.f863h);
     }
 }

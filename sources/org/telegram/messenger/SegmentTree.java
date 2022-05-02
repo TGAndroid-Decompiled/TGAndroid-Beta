@@ -26,7 +26,7 @@ public class SegmentTree {
         this.heap[i] = new Node();
         Node[] nodeArr = this.heap;
         nodeArr[i].from = i2;
-        nodeArr[i].f812to = (i2 + i3) - 1;
+        nodeArr[i].f823to = (i2 + i3) - 1;
         if (i3 == 1) {
             Node node = nodeArr[i];
             int[] iArr = this.array;
@@ -71,13 +71,13 @@ public class SegmentTree {
 
     private int rMaxQ(int i, int i2, int i3) {
         Node node = this.heap[i];
-        if (node.pendingVal != null && contains(node.from, node.f812to, i2, i3)) {
+        if (node.pendingVal != null && contains(node.from, node.f823to, i2, i3)) {
             return node.pendingVal.intValue();
         }
-        if (contains(i2, i3, node.from, node.f812to)) {
+        if (contains(i2, i3, node.from, node.f823to)) {
             return this.heap[i].max;
         }
-        if (!intersects(i2, i3, node.from, node.f812to)) {
+        if (!intersects(i2, i3, node.from, node.f823to)) {
             return 0;
         }
         propagate(i);
@@ -109,13 +109,13 @@ public class SegmentTree {
 
     private int rMinQ(int i, int i2, int i3) {
         Node node = this.heap[i];
-        if (node.pendingVal != null && contains(node.from, node.f812to, i2, i3)) {
+        if (node.pendingVal != null && contains(node.from, node.f823to, i2, i3)) {
             return node.pendingVal.intValue();
         }
-        if (contains(i2, i3, node.from, node.f812to)) {
+        if (contains(i2, i3, node.from, node.f823to)) {
             return this.heap[i].min;
         }
-        if (!intersects(i2, i3, node.from, node.f812to)) {
+        if (!intersects(i2, i3, node.from, node.f823to)) {
             return ConnectionsManager.DEFAULT_DATACENTER_ID;
         }
         propagate(i);
@@ -149,13 +149,13 @@ public class SegmentTree {
         int min;
         Integer pendingVal = null;
         int sum;
-        int f812to;
+        int f823to;
 
         Node() {
         }
 
         int size() {
-            return (this.f812to - this.from) + 1;
+            return (this.f823to - this.from) + 1;
         }
     }
 }

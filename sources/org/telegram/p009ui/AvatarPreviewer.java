@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
 import androidx.core.util.Preconditions;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
@@ -120,11 +120,11 @@ public class AvatarPreviewer {
     }
 
     public enum MenuItem {
-        OPEN_PROFILE("OpenProfile", C0890R.string.OpenProfile, C0890R.C0891drawable.msg_openprofile),
-        OPEN_CHANNEL("OpenChannel2", C0890R.string.OpenChannel2, C0890R.C0891drawable.msg_channel),
-        OPEN_GROUP("OpenGroup2", C0890R.string.OpenGroup2, C0890R.C0891drawable.msg_discussion),
-        SEND_MESSAGE("SendMessage", C0890R.string.SendMessage, C0890R.C0891drawable.msg_discussion),
-        MENTION("Mention", C0890R.string.Mention, C0890R.C0891drawable.msg_mention);
+        OPEN_PROFILE("OpenProfile", C0952R.string.OpenProfile, C0952R.C0953drawable.msg_openprofile),
+        OPEN_CHANNEL("OpenChannel2", C0952R.string.OpenChannel2, C0952R.C0953drawable.msg_channel),
+        OPEN_GROUP("OpenGroup2", C0952R.string.OpenGroup2, C0952R.C0953drawable.msg_discussion),
+        SEND_MESSAGE("SendMessage", C0952R.string.SendMessage, C0952R.C0953drawable.msg_discussion),
+        MENTION("Mention", C0952R.string.Mention, C0952R.C0953drawable.msg_mention);
         
         private final int iconResId;
         private final String labelKey;
@@ -227,7 +227,7 @@ public class AvatarPreviewer {
 
         @Override
         protected void onReceiveNotification(Object... objArr) {
-            if (((Long) objArr[0]).longValue() == ((TLRPC$User) this.argument).f974id) {
+            if (((Long) objArr[0]).longValue() == ((TLRPC$User) this.argument).f985id) {
                 onResult((TLRPC$UserFull) objArr[1]);
             }
         }
@@ -240,13 +240,13 @@ public class AvatarPreviewer {
 
         @Override
         protected void load() {
-            MessagesController.getInstance(UserConfig.selectedAccount).loadFullChat(((TLRPC$Chat) this.argument).f843id, this.classGuid, false);
+            MessagesController.getInstance(UserConfig.selectedAccount).loadFullChat(((TLRPC$Chat) this.argument).f854id, this.classGuid, false);
         }
 
         @Override
         protected void onReceiveNotification(Object... objArr) {
             TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
-            if (tLRPC$ChatFull != null && tLRPC$ChatFull.f844id == ((TLRPC$Chat) this.argument).f843id) {
+            if (tLRPC$ChatFull != null && tLRPC$ChatFull.f855id == ((TLRPC$Chat) this.argument).f854id) {
                 onResult(tLRPC$ChatFull);
             }
         }
@@ -345,7 +345,7 @@ public class AvatarPreviewer {
             radialProgress2.setOverrideAlpha(0.0f);
             radialProgress2.setIcon(10, false, false);
             radialProgress2.setColors(1107296256, 1107296256, -1, -1);
-            this.arrowDrawable = ContextCompat.getDrawable(context, C0890R.C0891drawable.preview_arrow);
+            this.arrowDrawable = ContextCompat.getDrawable(context, C0952R.C0953drawable.preview_arrow);
         }
 
         @Override

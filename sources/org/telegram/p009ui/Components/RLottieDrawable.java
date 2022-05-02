@@ -23,7 +23,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.CharacterCompat;
 import org.telegram.messenger.DispatchQueuePool;
 import org.telegram.messenger.FileLog;
@@ -115,8 +115,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         return -2;
     }
 
-    public class RunnableC22115 implements Runnable {
-        RunnableC22115() {
+    public class RunnableC22945 implements Runnable {
+        RunnableC22945() {
         }
 
         @Override
@@ -129,7 +129,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                     Runnable rLottieDrawable$5$$ExternalSyntheticLambda0 = new Runnable() {
                         @Override
                         public final void run() {
-                            RLottieDrawable.RunnableC22115.this.lambda$run$0();
+                            RLottieDrawable.RunnableC22945.this.lambda$run$0();
                         }
                     };
                     rLottieDrawable2.cacheGenerateTask = rLottieDrawable$5$$ExternalSyntheticLambda0;
@@ -185,23 +185,16 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     }
 
     public void recycleResources() {
-        try {
-            if (this.renderingBitmap != null) {
-                this.renderingBitmap.recycle();
-                this.renderingBitmap = null;
-            }
-            if (this.backgroundBitmap != null) {
-                this.backgroundBitmap.recycle();
-                this.backgroundBitmap = null;
-            }
-        } catch (Exception e) {
-            FileLog.m30e(e);
-            this.renderingBitmap = null;
-            this.backgroundBitmap = null;
-        }
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(this.renderingBitmap);
+        arrayList.add(this.nextRenderingBitmap);
+        this.renderingBitmap = null;
+        this.backgroundBitmap = null;
+        AndroidUtilities.recycleBitmaps(arrayList);
         if (this.onAnimationEndListener != null) {
             this.onAnimationEndListener = null;
         }
+        invalidateInternal();
     }
 
     public void setOnFinishCallback(Runnable runnable, int i) {
@@ -264,7 +257,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 RLottieDrawable.this.decodeFrameFinishedInternal();
             }
         };
-        this.uiRunnableGenerateCache = new RunnableC22115();
+        this.uiRunnableGenerateCache = new RunnableC22945();
         this.loadFrameRunnable = new Runnable() {
             @Override
             public void run() {
@@ -493,7 +486,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 RLottieDrawable.this.decodeFrameFinishedInternal();
             }
         };
-        this.uiRunnableGenerateCache = new RunnableC22115();
+        this.uiRunnableGenerateCache = new RunnableC22945();
         this.loadFrameRunnable = new Runnable() {
             @Override
             public void run() {
@@ -727,7 +720,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 RLottieDrawable.this.decodeFrameFinishedInternal();
             }
         };
-        this.uiRunnableGenerateCache = new RunnableC22115();
+        this.uiRunnableGenerateCache = new RunnableC22945();
         this.loadFrameRunnable = new Runnable() {
             @Override
             public void run() {
@@ -892,10 +885,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         this.height = i2;
         this.isDice = 1;
         if ("🎲".equals(str)) {
-            str2 = readRes(null, C0890R.raw.diceloop);
+            str2 = readRes(null, C0952R.raw.diceloop);
             this.diceSwitchFramesCount = 60;
         } else {
-            str2 = "🎯".equals(str) ? readRes(null, C0890R.raw.dartloop) : null;
+            str2 = "🎯".equals(str) ? readRes(null, C0952R.raw.dartloop) : null;
         }
         getPaint().setFlags(2);
         if (TextUtils.isEmpty(str2)) {
@@ -1071,7 +1064,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 RLottieDrawable.this.decodeFrameFinishedInternal();
             }
         };
-        this.uiRunnableGenerateCache = new RunnableC22115();
+        this.uiRunnableGenerateCache = new RunnableC22945();
         this.loadFrameRunnable = new Runnable() {
             @Override
             public void run() {
@@ -1625,26 +1618,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         this.currentParentView = view;
     }
 
-    private boolean isCurrentParentViewMaster() {
-        if (getCallback() != null || this.parentViews.size() <= 1) {
-            return true;
-        }
-        int size = this.parentViews.size();
-        int i = 0;
-        while (i < size) {
-            View view = this.parentViews.get(i).get();
-            if (view == null) {
-                this.parentViews.remove(i);
-                size--;
-                i--;
-            } else if (view.isShown()) {
-                return view == this.currentParentView;
-            }
-            i++;
-        }
-        return true;
-    }
-
     @Override
     public boolean isRunning() {
         return this.isRunning;
@@ -1756,7 +1729,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 scheduleNextGetFrame();
             } else if (this.nextRenderingBitmap == null) {
             } else {
-                if ((this.renderingBitmap == null || abs >= i) && isCurrentParentViewMaster()) {
+                if (this.renderingBitmap == null || abs >= i) {
                     HashMap<Integer, Integer> hashMap = this.vibrationPattern;
                     if (!(hashMap == null || this.currentParentView == null || (num = hashMap.get(Integer.valueOf(this.currentFrame - 1))) == null)) {
                         this.currentParentView.performHapticFeedback(num.intValue() == 1 ? 0 : 3, 2);
@@ -1811,5 +1784,9 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
 
     public void setOnFrameReadyRunnable(Runnable runnable) {
         this.onFrameReadyRunnable = runnable;
+    }
+
+    public boolean isLastFrame() {
+        return this.currentFrame == getFramesCount() - 1;
     }
 }

@@ -506,7 +506,7 @@ public class FastDateParser implements DateParser, Serializable {
     }
 
     public static class TimeZoneStrategy extends Strategy {
-        private static final int f831ID = 0;
+        private static final int f842ID = 0;
         private static final int LONG_DST = 3;
         private static final int LONG_STD = 1;
         private static final int SHORT_DST = 4;

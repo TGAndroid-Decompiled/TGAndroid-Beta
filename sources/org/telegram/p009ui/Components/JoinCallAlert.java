@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -119,7 +119,7 @@ public class JoinCallAlert extends BottomSheet {
             View view = new View(context);
             this.background = view;
             if (this.hasBackground) {
-                view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+                view.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
             }
             addView(this.background, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, z ? 0.0f : 16.0f, 16.0f, 16.0f));
             for (int i = 0; i < 2; i++) {
@@ -314,63 +314,68 @@ public class JoinCallAlert extends BottomSheet {
 
     private JoinCallAlert(Context context, long j, ArrayList<TLRPC$Peer> arrayList, int i, TLRPC$Peer tLRPC$Peer, final JoinCallAlertDelegate joinCallAlertDelegate) {
         super(context, false);
+        int i2;
         FrameLayout frameLayout;
         boolean z;
         setApplyBottomPadding(false);
         this.chats = new ArrayList<>(arrayList);
         this.delegate = joinCallAlertDelegate;
         this.currentType = i;
-        Drawable mutate = context.getResources().getDrawable(C0890R.C0891drawable.sheet_shadow_round).mutate();
+        Drawable mutate = context.getResources().getDrawable(C0952R.C0953drawable.sheet_shadow_round).mutate();
         this.shadowDrawable = mutate;
         if (i == 2) {
             if (VoIPService.getSharedInstance() != null) {
                 long selfId = VoIPService.getSharedInstance().getSelfId();
                 int size = this.chats.size();
-                int i2 = 0;
+                int i3 = 0;
                 while (true) {
-                    if (i2 >= size) {
+                    if (i3 >= size) {
                         break;
                     }
-                    TLRPC$Peer tLRPC$Peer2 = this.chats.get(i2);
+                    TLRPC$Peer tLRPC$Peer2 = this.chats.get(i3);
                     if (MessageObject.getPeerId(tLRPC$Peer2) == selfId) {
                         this.currentPeer = tLRPC$Peer2;
                         this.selectedPeer = tLRPC$Peer2;
                         break;
                     }
-                    i2++;
+                    i3++;
                 }
             } else if (tLRPC$Peer != null) {
                 long peerId = MessageObject.getPeerId(tLRPC$Peer);
                 int size2 = this.chats.size();
-                int i3 = 0;
+                int i4 = 0;
                 while (true) {
-                    if (i3 >= size2) {
+                    if (i4 >= size2) {
                         break;
                     }
-                    TLRPC$Peer tLRPC$Peer3 = this.chats.get(i3);
+                    TLRPC$Peer tLRPC$Peer3 = this.chats.get(i4);
                     if (MessageObject.getPeerId(tLRPC$Peer3) == peerId) {
                         this.currentPeer = tLRPC$Peer3;
                         this.selectedPeer = tLRPC$Peer3;
                         break;
                     }
-                    i3++;
+                    i4++;
                 }
             } else {
                 this.selectedPeer = this.chats.get(0);
             }
-            this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("voipgroup_inviteMembersBackground"), PorterDuff.Mode.MULTIPLY));
+            Drawable drawable = this.shadowDrawable;
+            i2 = Theme.getColor("voipgroup_inviteMembersBackground");
+            drawable.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.MULTIPLY));
         } else {
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
+            i2 = Theme.getColor("dialogBackground");
+            mutate.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.MULTIPLY));
             this.selectedPeer = this.chats.get(0);
         }
+        fixNavigationBar(i2);
         if (this.currentType == 0) {
             LinearLayout linearLayout = new LinearLayout(context) {
                 boolean sorted;
 
                 @Override
-                protected void onMeasure(int i4, int i5) {
+                protected void onMeasure(int i5, int i6) {
                     if (JoinCallAlert.this.currentType == 0) {
-                        int size3 = View.MeasureSpec.getSize(i4);
+                        int size3 = View.MeasureSpec.getSize(i5);
                         int size4 = JoinCallAlert.this.chats.size() * AndroidUtilities.m34dp(95.0f);
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) JoinCallAlert.this.listView.getLayoutParams();
                         if (size4 > size3) {
@@ -396,7 +401,7 @@ public class JoinCallAlert extends BottomSheet {
                             }
                         }
                     }
-                    super.onMeasure(i4, i5);
+                    super.onMeasure(i5, i6);
                 }
             };
             linearLayout.setOrientation(1);
@@ -421,29 +426,29 @@ public class JoinCallAlert extends BottomSheet {
                 }
 
                 @Override
-                protected void onMeasure(int i4, int i5) {
-                    int size3 = View.MeasureSpec.getSize(i5);
+                protected void onMeasure(int i5, int i6) {
+                    int size3 = View.MeasureSpec.getSize(i6);
                     if (Build.VERSION.SDK_INT >= 21) {
                         size3 -= AndroidUtilities.statusBarHeight;
                     }
-                    measureChildWithMargins(JoinCallAlert.this.messageTextView, i4, 0, i5, 0);
+                    measureChildWithMargins(JoinCallAlert.this.messageTextView, i5, 0, i6, 0);
                     int measuredHeight = JoinCallAlert.this.messageTextView.getMeasuredHeight();
                     ((FrameLayout.LayoutParams) JoinCallAlert.this.listView.getLayoutParams()).topMargin = AndroidUtilities.m34dp(65.0f) + measuredHeight;
                     getMeasuredWidth();
                     int dp = AndroidUtilities.m34dp(80.0f) + (JoinCallAlert.this.chats.size() * AndroidUtilities.m34dp(58.0f)) + ((BottomSheet) JoinCallAlert.this).backgroundPaddingTop + AndroidUtilities.m34dp(55.0f) + measuredHeight;
-                    int i6 = size3 / 5;
-                    int i7 = dp < i6 * 3 ? size3 - dp : i6 * 2;
-                    if (JoinCallAlert.this.listView.getPaddingTop() != i7) {
+                    int i7 = size3 / 5;
+                    int i8 = dp < i7 * 3 ? size3 - dp : i7 * 2;
+                    if (JoinCallAlert.this.listView.getPaddingTop() != i8) {
                         JoinCallAlert.this.ignoreLayout = true;
-                        JoinCallAlert.this.listView.setPadding(0, i7, 0, 0);
+                        JoinCallAlert.this.listView.setPadding(0, i8, 0, 0);
                         JoinCallAlert.this.ignoreLayout = false;
                     }
-                    super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(size3, 1073741824));
+                    super.onMeasure(i5, View.MeasureSpec.makeMeasureSpec(size3, 1073741824));
                 }
 
                 @Override
-                protected void onLayout(boolean z2, int i4, int i5, int i6, int i7) {
-                    super.onLayout(z2, i4, i5, i6, i7);
+                protected void onLayout(boolean z2, int i5, int i6, int i7, int i8) {
+                    super.onLayout(z2, i5, i6, i7, i8);
                     JoinCallAlert.this.updateLayout();
                 }
 
@@ -463,8 +468,8 @@ public class JoinCallAlert extends BottomSheet {
             this.containerView = frameLayout2;
             frameLayout2.setWillNotDraw(false);
             ViewGroup viewGroup = this.containerView;
-            int i4 = this.backgroundPaddingLeft;
-            viewGroup.setPadding(i4, 0, i4, 0);
+            int i5 = this.backgroundPaddingLeft;
+            viewGroup.setPadding(i5, 0, i5, 0);
             frameLayout = frameLayout2;
         }
         final TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
@@ -486,14 +491,14 @@ public class JoinCallAlert extends BottomSheet {
         this.listView.setGlowColor(Theme.getColor("dialogScrollGlow"));
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i5, int i6) {
+            public void onScrolled(RecyclerView recyclerView, int i6, int i7) {
                 JoinCallAlert.this.updateLayout();
             }
         });
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i5) {
-                JoinCallAlert.this.lambda$new$6(chat, view, i5);
+            public final void onItemClick(View view, int i6) {
+                JoinCallAlert.this.lambda$new$6(chat, view, i6);
             }
         });
         if (i != 0) {
@@ -505,7 +510,7 @@ public class JoinCallAlert extends BottomSheet {
         if (i == 0) {
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             rLottieImageView.setAutoRepeat(true);
-            rLottieImageView.setAnimation(C0890R.raw.utyan_schedule, 120, 120);
+            rLottieImageView.setAnimation(C0952R.raw.utyan_schedule, 120, 120);
             rLottieImageView.playAnimation();
             frameLayout.addView(rLottieImageView, LayoutHelper.createLinear(160, 160, 49, 17, 8, 17, 0));
         }
@@ -522,18 +527,18 @@ public class JoinCallAlert extends BottomSheet {
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         if (i == 0) {
             if (ChatObject.isChannelOrGiga(chat)) {
-                this.textView.setText(LocaleController.getString("StartVoipChannelTitle", C0890R.string.StartVoipChannelTitle));
+                this.textView.setText(LocaleController.getString("StartVoipChannelTitle", C0952R.string.StartVoipChannelTitle));
             } else {
-                this.textView.setText(LocaleController.getString("StartVoipChatTitle", C0890R.string.StartVoipChatTitle));
+                this.textView.setText(LocaleController.getString("StartVoipChatTitle", C0952R.string.StartVoipChatTitle));
             }
             frameLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 49, 23, 16, 23, 0));
         } else {
             if (i == 2) {
-                this.textView.setText(LocaleController.getString("VoipGroupDisplayAs", C0890R.string.VoipGroupDisplayAs));
+                this.textView.setText(LocaleController.getString("VoipGroupDisplayAs", C0952R.string.VoipGroupDisplayAs));
             } else if (ChatObject.isChannelOrGiga(chat)) {
-                this.textView.setText(LocaleController.getString("VoipChannelJoinAs", C0890R.string.VoipChannelJoinAs));
+                this.textView.setText(LocaleController.getString("VoipChannelJoinAs", C0952R.string.VoipChannelJoinAs));
             } else {
-                this.textView.setText(LocaleController.getString("VoipGroupJoinAs", C0890R.string.VoipGroupJoinAs));
+                this.textView.setText(LocaleController.getString("VoipGroupJoinAs", C0952R.string.VoipGroupJoinAs));
             }
             frameLayout.addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 51, 23.0f, 8.0f, 23.0f, 0.0f));
         }
@@ -546,8 +551,8 @@ public class JoinCallAlert extends BottomSheet {
         }
         this.messageTextView.setTextSize(1, 14.0f);
         int size3 = this.chats.size();
-        for (int i5 = 0; i5 < size3; i5++) {
-            long peerId2 = MessageObject.getPeerId(this.chats.get(i5));
+        for (int i6 = 0; i6 < size3; i6++) {
+            long peerId2 = MessageObject.getPeerId(this.chats.get(i6));
             if (peerId2 < 0) {
                 TLRPC$Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerId2));
                 if (!ChatObject.isChannel(chat2) || chat2.megagroup) {
@@ -562,13 +567,13 @@ public class JoinCallAlert extends BottomSheet {
         if (i == 0) {
             StringBuilder sb = new StringBuilder();
             if (!ChatObject.isChannel(chat) || chat.megagroup) {
-                sb.append(LocaleController.getString("VoipGroupStart2", C0890R.string.VoipGroupStart2));
+                sb.append(LocaleController.getString("VoipGroupStart2", C0952R.string.VoipGroupStart2));
             } else {
-                sb.append(LocaleController.getString("VoipChannelStart2", C0890R.string.VoipChannelStart2));
+                sb.append(LocaleController.getString("VoipChannelStart2", C0952R.string.VoipChannelStart2));
             }
             if (this.chats.size() > 1) {
                 sb.append("\n\n");
-                sb.append(LocaleController.getString("VoipChatDisplayedAs", C0890R.string.VoipChatDisplayedAs));
+                sb.append(LocaleController.getString("VoipChatDisplayedAs", C0952R.string.VoipChatDisplayedAs));
             } else {
                 this.listView.setVisibility(8);
             }
@@ -577,9 +582,9 @@ public class JoinCallAlert extends BottomSheet {
             frameLayout.addView(this.messageTextView, LayoutHelper.createLinear(-2, -2, 49, 23, 0, 23, 5));
         } else {
             if (z) {
-                this.messageTextView.setText(LocaleController.getString("VoipGroupStartAsInfoGroup", C0890R.string.VoipGroupStartAsInfoGroup));
+                this.messageTextView.setText(LocaleController.getString("VoipGroupStartAsInfoGroup", C0952R.string.VoipGroupStartAsInfoGroup));
             } else {
-                this.messageTextView.setText(LocaleController.getString("VoipGroupStartAsInfo", C0890R.string.VoipGroupStartAsInfo));
+                this.messageTextView.setText(LocaleController.getString("VoipGroupStartAsInfo", C0952R.string.VoipGroupStartAsInfo));
             }
             this.messageTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
             frameLayout.addView(this.messageTextView, LayoutHelper.createFrame(-2, -2.0f, 51, 23.0f, 0.0f, 23.0f, 5.0f));
@@ -599,9 +604,9 @@ public class JoinCallAlert extends BottomSheet {
             frameLayout.addView(this.doneButton, LayoutHelper.createLinear(-1, 50, 51, 0, 0, 0, 0));
             BottomSheetCell bottomSheetCell2 = new BottomSheetCell(context, true);
             if (ChatObject.isChannelOrGiga(chat)) {
-                bottomSheetCell2.setText(LocaleController.getString("VoipChannelScheduleVoiceChat", C0890R.string.VoipChannelScheduleVoiceChat), false);
+                bottomSheetCell2.setText(LocaleController.getString("VoipChannelScheduleVoiceChat", C0952R.string.VoipChannelScheduleVoiceChat), false);
             } else {
-                bottomSheetCell2.setText(LocaleController.getString("VoipGroupScheduleVoiceChat", C0890R.string.VoipGroupScheduleVoiceChat), false);
+                bottomSheetCell2.setText(LocaleController.getString("VoipGroupScheduleVoiceChat", C0952R.string.VoipGroupScheduleVoiceChat), false);
             }
             bottomSheetCell2.background.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -667,18 +672,18 @@ public class JoinCallAlert extends BottomSheet {
         if (this.currentType != 0) {
             long peerId = MessageObject.getPeerId(this.selectedPeer);
             if (DialogObject.isUserDialog(peerId)) {
-                this.doneButton.setText(LocaleController.formatString("VoipGroupContinueAs", C0890R.string.VoipGroupContinueAs, UserObject.getFirstName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerId)))), z);
+                this.doneButton.setText(LocaleController.formatString("VoipGroupContinueAs", C0952R.string.VoipGroupContinueAs, UserObject.getFirstName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerId)))), z);
                 return;
             }
             TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerId));
             BottomSheetCell bottomSheetCell = this.doneButton;
             Object[] objArr = new Object[1];
             objArr[0] = chat != null ? chat.title : "";
-            bottomSheetCell.setText(LocaleController.formatString("VoipGroupContinueAs", C0890R.string.VoipGroupContinueAs, objArr), z);
+            bottomSheetCell.setText(LocaleController.formatString("VoipGroupContinueAs", C0952R.string.VoipGroupContinueAs, objArr), z);
         } else if (ChatObject.isChannelOrGiga(tLRPC$Chat)) {
-            this.doneButton.setText(LocaleController.formatString("VoipChannelStartVoiceChat", C0890R.string.VoipChannelStartVoiceChat, new Object[0]), z);
+            this.doneButton.setText(LocaleController.formatString("VoipChannelStartVoiceChat", C0952R.string.VoipChannelStartVoiceChat, new Object[0]), z);
         } else {
-            this.doneButton.setText(LocaleController.formatString("VoipGroupStartVoiceChat", C0890R.string.VoipGroupStartVoiceChat, new Object[0]), z);
+            this.doneButton.setText(LocaleController.formatString("VoipGroupStartVoiceChat", C0952R.string.VoipGroupStartVoiceChat, new Object[0]), z);
         }
     }
 
@@ -770,9 +775,9 @@ public class JoinCallAlert extends BottomSheet {
                 long j = 0;
                 if (object != null) {
                     if (object instanceof TLRPC$Chat) {
-                        j = -((TLRPC$Chat) object).f843id;
+                        j = -((TLRPC$Chat) object).f854id;
                     } else {
-                        j = ((TLRPC$User) object).f974id;
+                        j = ((TLRPC$User) object).f985id;
                     }
                 }
                 if (peerId != j) {
@@ -795,7 +800,7 @@ public class JoinCallAlert extends BottomSheet {
             long peerId = MessageObject.getPeerId((TLRPC$Peer) JoinCallAlert.this.chats.get(i));
             if (peerId > 0) {
                 tLObject = MessagesController.getInstance(((BottomSheet) JoinCallAlert.this).currentAccount).getUser(Long.valueOf(peerId));
-                str = LocaleController.getString("VoipGroupPersonalAccount", C0890R.string.VoipGroupPersonalAccount);
+                str = LocaleController.getString("VoipGroupPersonalAccount", C0952R.string.VoipGroupPersonalAccount);
             } else {
                 tLObject = MessagesController.getInstance(((BottomSheet) JoinCallAlert.this).currentAccount).getChat(Long.valueOf(-peerId));
                 str = null;

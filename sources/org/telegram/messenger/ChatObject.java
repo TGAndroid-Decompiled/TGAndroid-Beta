@@ -208,7 +208,7 @@ public class ChatObject {
                     AndroidUtilities.runOnUIThread(Call.this.updateCurrentSpeakingRunnable, 550L);
                 }
                 if (z) {
-                    Call.this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallSpeakingUsersUpdated, Long.valueOf(Call.this.chatId), Long.valueOf(Call.this.call.f857id), Boolean.FALSE);
+                    Call.this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallSpeakingUsersUpdated, Long.valueOf(Call.this.chatId), Long.valueOf(Call.this.call.f868id), Boolean.FALSE);
                 }
             }
         };
@@ -279,7 +279,7 @@ public class ChatObject {
         }
 
         public void lambda$createRtmpStreamParticipant$1() {
-            this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f857id), Boolean.FALSE);
+            this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f868id), Boolean.FALSE);
         }
 
         public void createNoVideoParticipant() {
@@ -326,15 +326,15 @@ public class ChatObject {
                 this.sortedParticipants.add(tLRPC$TL_groupCallParticipant);
                 sortParticipants();
                 if (z) {
-                    this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f857id), Boolean.FALSE);
+                    this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f868id), Boolean.FALSE);
                 }
             }
         }
 
         public void migrateToChat(TLRPC$Chat tLRPC$Chat) {
-            this.chatId = tLRPC$Chat.f843id;
+            this.chatId = tLRPC$Chat.f854id;
             VoIPService sharedInstance = VoIPService.getSharedInstance();
-            if (sharedInstance != null && sharedInstance.getAccount() == this.currentAccount.getCurrentAccount() && sharedInstance.getChat() != null && sharedInstance.getChat().f843id == (-this.chatId)) {
+            if (sharedInstance != null && sharedInstance.getAccount() == this.currentAccount.getCurrentAccount() && sharedInstance.getChat() != null && sharedInstance.getChat().f854id == (-this.chatId)) {
                 sharedInstance.migrateToChat(tLRPC$Chat);
             }
         }
@@ -431,7 +431,7 @@ public class ChatObject {
                 this.call.participants_count = this.participants.size();
             }
             sortParticipants();
-            this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f857id), Boolean.FALSE);
+            this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f868id), Boolean.FALSE);
             setParticiapantsVolume();
         }
 
@@ -490,7 +490,7 @@ public class ChatObject {
 
         private void setParticiapantsVolume() {
             VoIPService sharedInstance = VoIPService.getSharedInstance();
-            if (sharedInstance != null && sharedInstance.getAccount() == this.currentAccount.getCurrentAccount() && sharedInstance.getChat() != null && sharedInstance.getChat().f843id == (-this.chatId)) {
+            if (sharedInstance != null && sharedInstance.getAccount() == this.currentAccount.getCurrentAccount() && sharedInstance.getChat() != null && sharedInstance.getChat().f854id == (-this.chatId)) {
                 sharedInstance.setParticipantsVolume();
             }
         }
@@ -546,7 +546,7 @@ public class ChatObject {
             }
             if (z) {
                 sortParticipants();
-                this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f857id), Boolean.FALSE);
+                this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f868id), Boolean.FALSE);
             }
         }
 
@@ -640,7 +640,7 @@ public class ChatObject {
                         this.call.participants_count = this.participants.size();
                     }
                     sortParticipants();
-                    this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f857id), Boolean.FALSE);
+                    this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f868id), Boolean.FALSE);
                     if (onParticipantsLoad != null) {
                         onParticipantsLoad.onLoad(arrayList);
                     } else {
@@ -846,20 +846,20 @@ public class ChatObject {
             }
             if (z5) {
                 sortParticipants();
-                this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f857id), Boolean.FALSE);
+                this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f868id), Boolean.FALSE);
             }
             if (z6) {
                 if (this.currentSpeakingPeers.size() > 0) {
                     AndroidUtilities.cancelRunOnUIThread(this.updateCurrentSpeakingRunnable);
                     AndroidUtilities.runOnUIThread(this.updateCurrentSpeakingRunnable, 550L);
                 }
-                this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallSpeakingUsersUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f857id), Boolean.FALSE);
+                this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallSpeakingUsersUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f868id), Boolean.FALSE);
             }
         }
 
         public void updateVisibleParticipants() {
             sortParticipants();
-            this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f857id), Boolean.FALSE, 0L);
+            this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f868id), Boolean.FALSE, 0L);
         }
 
         public void clearVideFramesInfo() {
@@ -1051,7 +1051,7 @@ public class ChatObject {
                     if (BuildVars.LOGS_ENABLED) {
                         FileLog.m33d("new participants reload count " + this.call.participants_count);
                     }
-                    this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f857id), Boolean.FALSE);
+                    this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f868id), Boolean.FALSE);
                 }
             }
         }
@@ -1094,13 +1094,13 @@ public class ChatObject {
             this.call = tLRPC$TL_updateGroupCall.call;
             this.participants.get(getSelfId());
             this.recording = this.call.record_start_date != 0;
-            this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f857id), Boolean.FALSE);
+            this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f868id), Boolean.FALSE);
         }
 
         public TLRPC$TL_inputGroupCall getInputGroupCall() {
             TLRPC$TL_inputGroupCall tLRPC$TL_inputGroupCall = new TLRPC$TL_inputGroupCall();
             TLRPC$GroupCall tLRPC$GroupCall = this.call;
-            tLRPC$TL_inputGroupCall.f902id = tLRPC$GroupCall.f857id;
+            tLRPC$TL_inputGroupCall.f913id = tLRPC$GroupCall.f868id;
             tLRPC$TL_inputGroupCall.access_hash = tLRPC$GroupCall.access_hash;
             return tLRPC$TL_inputGroupCall;
         }
@@ -1381,7 +1381,7 @@ public class ChatObject {
                     ChatObject.Call.this.lambda$toggleRecord$13(tLObject, tLRPC$TL_error);
                 }
             });
-            this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f857id), Boolean.FALSE);
+            this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f868id), Boolean.FALSE);
         }
 
         public void lambda$toggleRecord$13(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1609,7 +1609,7 @@ public class ChatObject {
         } else if (tLRPC$Chat == null || (tLRPC$TL_chatAdminRights = tLRPC$Chat.admin_rights) == null || !tLRPC$TL_chatAdminRights.anonymous) {
             return UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
         } else {
-            long j2 = tLRPC$Chat.f843id;
+            long j2 = tLRPC$Chat.f854id;
             return z ? -j2 : j2;
         }
     }

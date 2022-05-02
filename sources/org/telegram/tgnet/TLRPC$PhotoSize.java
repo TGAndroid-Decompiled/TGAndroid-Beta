@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public abstract class TLRPC$PhotoSize extends TLObject {
     public byte[] bytes;
-    public int f872h;
+    public int f883h;
     public TLRPC$FileLocation location;
     public int size;
     public String type;
-    public int f873w;
+    public int f884w;
 
     public static TLRPC$PhotoSize TLdeserialize(long j, long j2, long j3, AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$PhotoSize tLRPC$PhotoSize;
@@ -22,8 +22,8 @@ public abstract class TLRPC$PhotoSize extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.type = abstractSerializedData2.readString(z2);
                         this.bytes = abstractSerializedData2.readByteArray(z2);
-                        this.f872h = 50;
-                        this.f873w = 50;
+                        this.f883h = 50;
+                        this.f884w = 50;
                     }
 
                     @Override
@@ -45,8 +45,8 @@ public abstract class TLRPC$PhotoSize extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.type = abstractSerializedData2.readString(z2);
                         this.location = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                        this.f873w = abstractSerializedData2.readInt32(z2);
-                        this.f872h = abstractSerializedData2.readInt32(z2);
+                        this.f884w = abstractSerializedData2.readInt32(z2);
+                        this.f883h = abstractSerializedData2.readInt32(z2);
                         this.bytes = abstractSerializedData2.readByteArray(z2);
                     }
 
@@ -55,8 +55,8 @@ public abstract class TLRPC$PhotoSize extends TLObject {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeString(this.type);
                         this.location.serializeToStream(abstractSerializedData2);
-                        abstractSerializedData2.writeInt32(this.f873w);
-                        abstractSerializedData2.writeInt32(this.f872h);
+                        abstractSerializedData2.writeInt32(this.f884w);
+                        abstractSerializedData2.writeInt32(this.f883h);
                         abstractSerializedData2.writeByteArray(this.bytes);
                     }
                 };
@@ -78,8 +78,8 @@ public abstract class TLRPC$PhotoSize extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.type = abstractSerializedData2.readString(z2);
                         this.location = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                        this.f873w = abstractSerializedData2.readInt32(z2);
-                        this.f872h = abstractSerializedData2.readInt32(z2);
+                        this.f884w = abstractSerializedData2.readInt32(z2);
+                        this.f883h = abstractSerializedData2.readInt32(z2);
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         if (readInt32 == 481674261) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
@@ -100,8 +100,8 @@ public abstract class TLRPC$PhotoSize extends TLObject {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeString(this.type);
                         this.location.serializeToStream(abstractSerializedData2);
-                        abstractSerializedData2.writeInt32(this.f873w);
-                        abstractSerializedData2.writeInt32(this.f872h);
+                        abstractSerializedData2.writeInt32(this.f884w);
+                        abstractSerializedData2.writeInt32(this.f883h);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.sizes.size();
                         abstractSerializedData2.writeInt32(size);

@@ -13,7 +13,7 @@ public class TLRPC$TL_message_secret extends TLRPC$TL_message {
         this.out = (readInt32 & 2) != 0;
         this.mentioned = (readInt32 & 16) != 0;
         this.media_unread = (readInt32 & 32) != 0;
-        this.f866id = abstractSerializedData.readInt32(z);
+        this.f877id = abstractSerializedData.readInt32(z);
         this.ttl = abstractSerializedData.readInt32(z);
         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
         this.from_id = tLRPC$TL_peerUser;
@@ -65,7 +65,7 @@ public class TLRPC$TL_message_secret extends TLRPC$TL_message {
         int i4 = this.media_unread ? i3 | 32 : i3 & (-33);
         this.flags = i4;
         abstractSerializedData.writeInt32(i4);
-        abstractSerializedData.writeInt32(this.f866id);
+        abstractSerializedData.writeInt32(this.f877id);
         abstractSerializedData.writeInt32(this.ttl);
         abstractSerializedData.writeInt32((int) this.from_id.user_id);
         this.peer_id.serializeToStream(abstractSerializedData);

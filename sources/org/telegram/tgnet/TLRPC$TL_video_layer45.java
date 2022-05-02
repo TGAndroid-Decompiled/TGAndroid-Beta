@@ -5,7 +5,7 @@ public class TLRPC$TL_video_layer45 extends TLRPC$Video {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f977id = abstractSerializedData.readInt64(z);
+        this.f988id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.date = abstractSerializedData.readInt32(z);
         this.duration = abstractSerializedData.readInt32(z);
@@ -13,14 +13,14 @@ public class TLRPC$TL_video_layer45 extends TLRPC$Video {
         this.size = abstractSerializedData.readInt32(z);
         this.thumb = TLRPC$PhotoSize.TLdeserialize(0L, 0L, 0L, abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.dc_id = abstractSerializedData.readInt32(z);
-        this.f979w = abstractSerializedData.readInt32(z);
-        this.f976h = abstractSerializedData.readInt32(z);
+        this.f990w = abstractSerializedData.readInt32(z);
+        this.f987h = abstractSerializedData.readInt32(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f977id);
+        abstractSerializedData.writeInt64(this.f988id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeInt32(this.duration);
@@ -28,7 +28,7 @@ public class TLRPC$TL_video_layer45 extends TLRPC$Video {
         abstractSerializedData.writeInt32(this.size);
         this.thumb.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.dc_id);
-        abstractSerializedData.writeInt32(this.f979w);
-        abstractSerializedData.writeInt32(this.f976h);
+        abstractSerializedData.writeInt32(this.f990w);
+        abstractSerializedData.writeInt32(this.f987h);
     }
 }

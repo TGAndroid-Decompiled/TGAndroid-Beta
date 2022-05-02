@@ -12,12 +12,13 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$Message;
 
@@ -146,14 +147,14 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
         canvas.drawText(this.fileName, (width - ((int) Math.ceil(namePaint.measureText(this.fileName)))) / 2, AndroidUtilities.m34dp(96.0f) + dp, namePaint);
         canvas.drawText(this.fileSize, (width - ((int) Math.ceil(sizePaint.measureText(this.fileSize)))) / 2, AndroidUtilities.m34dp(125.0f) + dp, sizePaint);
         if (this.loaded) {
-            str = LocaleController.getString("OpenFile", C0890R.string.OpenFile);
+            str = LocaleController.getString("OpenFile", C0952R.string.OpenFile);
             textPaint = openPaint;
             i = 0;
         } else {
             if (this.loading) {
-                str = LocaleController.getString("Cancel", C0890R.string.Cancel).toUpperCase();
+                str = LocaleController.getString("Cancel", C0952R.string.Cancel).toUpperCase();
             } else {
-                str = LocaleController.getString("TapToDownload", C0890R.string.TapToDownload);
+                str = LocaleController.getString("TapToDownload", C0952R.string.TapToDownload);
             }
             i = AndroidUtilities.m34dp(28.0f);
             textPaint = buttonPaint;
@@ -235,7 +236,7 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
             TLRPC$Message tLRPC$Message = messageObject.messageOwner;
             if (tLRPC$Message.media != null) {
                 String str = null;
-                if ((TextUtils.isEmpty(tLRPC$Message.attachPath) || !new File(this.parentMessageObject.messageOwner.attachPath).exists()) && !FileLoader.getPathToMessage(this.parentMessageObject.messageOwner).exists()) {
+                if ((TextUtils.isEmpty(tLRPC$Message.attachPath) || !new File(this.parentMessageObject.messageOwner.attachPath).exists()) && !FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(this.parentMessageObject.messageOwner).exists()) {
                     str = FileLoader.getAttachFileName(this.parentMessageObject.getDocument());
                 }
                 this.loaded = false;

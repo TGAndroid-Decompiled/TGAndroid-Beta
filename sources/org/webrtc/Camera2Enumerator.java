@@ -16,11 +16,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraVideoCapturer;
 
-@TargetApi(C0890R.styleable.MapAttrs_uiZoomGestures)
+@TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
 public class Camera2Enumerator implements CameraEnumerator {
     private static final double NANO_SECONDS_PER_SECOND = 1.0E9d;
     private static final String TAG = "Camera2Enumerator";

@@ -8,6 +8,6 @@ public final class SharedConfig$$ExternalSyntheticLambda2 implements Runnable {
 
     @Override
     public final void run() {
-        SharedConfig.checkSaveToGalleryFiles();
+        SharedConfig.lambda$checkSaveToGalleryFiles$3();
     }
 }

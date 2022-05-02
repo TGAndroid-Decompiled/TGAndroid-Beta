@@ -9,7 +9,7 @@ import org.webrtc.VideoFrame;
 
 public class TextureBufferImpl implements VideoFrame.TextureBuffer {
     private final int height;
-    private final int f1101id;
+    private final int f1118id;
     private final RefCountDelegate refCountDelegate;
     private final RefCountMonitor refCountMonitor;
     private final Handler toI420Handler;
@@ -63,7 +63,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         this.width = i3;
         this.height = i4;
         this.type = type;
-        this.f1101id = i5;
+        this.f1118id = i5;
         this.transformMatrix = matrix;
         this.toI420Handler = handler;
         this.yuvConverter = yuvConverter;
@@ -87,7 +87,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
 
     @Override
     public int getTextureId() {
-        return this.f1101id;
+        return this.f1118id;
     }
 
     @Override
@@ -197,7 +197,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         Matrix matrix2 = new Matrix(this.transformMatrix);
         matrix2.preConcat(matrix);
         retain();
-        return new TextureBufferImpl(i, i2, i3, i4, this.type, this.f1101id, matrix2, this.toI420Handler, this.yuvConverter, new RefCountMonitor() {
+        return new TextureBufferImpl(i, i2, i3, i4, this.type, this.f1118id, matrix2, this.toI420Handler, this.yuvConverter, new RefCountMonitor() {
             @Override
             public void onRetain(TextureBufferImpl textureBufferImpl) {
                 TextureBufferImpl.this.refCountMonitor.onRetain(TextureBufferImpl.this);

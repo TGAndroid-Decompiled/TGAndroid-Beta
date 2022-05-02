@@ -20,7 +20,7 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         int readInt322 = abstractSerializedData.readInt32(z);
         this.flags2 = readInt322;
         this.can_delete_channel = (readInt322 & 1) != 0;
-        this.f844id = abstractSerializedData.readInt64(z);
+        this.f855id = abstractSerializedData.readInt64(z);
         this.about = abstractSerializedData.readString(z);
         if ((this.flags & 1) != 0) {
             this.participants_count = abstractSerializedData.readInt32(z);
@@ -173,7 +173,7 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         int i9 = this.can_delete_channel ? this.flags2 | 1 : this.flags2 & (-2);
         this.flags2 = i9;
         abstractSerializedData.writeInt32(i9);
-        abstractSerializedData.writeInt64(this.f844id);
+        abstractSerializedData.writeInt64(this.f855id);
         abstractSerializedData.writeString(this.about);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.participants_count);

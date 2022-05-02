@@ -14,7 +14,7 @@ class WebRtcAudioEffects {
     private static final String TAG = "WebRtcAudioEffectsExternal";
     private static AudioEffect.Descriptor[] cachedEffects;
     private AcousticEchoCanceler aec;
-    private NoiseSuppressor f1105ns;
+    private NoiseSuppressor f1122ns;
     private boolean shouldEnableAec;
     private boolean shouldEnableNs;
 
@@ -57,7 +57,7 @@ class WebRtcAudioEffects {
             Logging.m5w(TAG, "Platform NS is not supported");
             this.shouldEnableNs = false;
             return false;
-        } else if (this.f1105ns == null || z == this.shouldEnableNs) {
+        } else if (this.f1122ns == null || z == this.shouldEnableNs) {
             this.shouldEnableNs = z;
             return true;
         } else {
@@ -70,7 +70,7 @@ class WebRtcAudioEffects {
         Logging.m9d(TAG, "enable(audioSession=" + i + ")");
         boolean z = true;
         assertTrue(this.aec == null);
-        assertTrue(this.f1105ns == null);
+        assertTrue(this.f1122ns == null);
         String str = "enabled";
         if (isAcousticEchoCancelerSupported()) {
             AcousticEchoCanceler create = AcousticEchoCanceler.create(i);
@@ -95,13 +95,13 @@ class WebRtcAudioEffects {
         }
         if (isNoiseSuppressorSupported()) {
             NoiseSuppressor create2 = NoiseSuppressor.create(i);
-            this.f1105ns = create2;
+            this.f1122ns = create2;
             if (create2 != null) {
                 boolean enabled2 = create2.getEnabled();
                 if (!this.shouldEnableNs || !isNoiseSuppressorSupported()) {
                     z = false;
                 }
-                if (this.f1105ns.setEnabled(z) != 0) {
+                if (this.f1122ns.setEnabled(z) != 0) {
                     Logging.m8e(TAG, "Failed to set the NoiseSuppressor state");
                 }
                 StringBuilder sb2 = new StringBuilder();
@@ -110,7 +110,7 @@ class WebRtcAudioEffects {
                 sb2.append(", enable: ");
                 sb2.append(z);
                 sb2.append(", is now: ");
-                if (!this.f1105ns.getEnabled()) {
+                if (!this.f1122ns.getEnabled()) {
                     str = "disabled";
                 }
                 sb2.append(str);
@@ -128,10 +128,10 @@ class WebRtcAudioEffects {
             acousticEchoCanceler.release();
             this.aec = null;
         }
-        NoiseSuppressor noiseSuppressor = this.f1105ns;
+        NoiseSuppressor noiseSuppressor = this.f1122ns;
         if (noiseSuppressor != null) {
             noiseSuppressor.release();
-            this.f1105ns = null;
+            this.f1122ns = null;
         }
     }
 

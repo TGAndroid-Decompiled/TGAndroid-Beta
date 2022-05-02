@@ -30,7 +30,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.AlertDialog;
@@ -185,7 +185,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
     }
 
     public AlertDialog(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        super(context, C0890R.style.TransparentDialog);
+        super(context, C0952R.style.TransparentDialog);
         this.customViewHeight = -2;
         this.shadow = new BitmapDrawable[2];
         this.shadowVisibility = new boolean[2];
@@ -216,7 +216,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
         this.resourcesProvider = resourcesProvider;
         this.backgroundPaddings = new Rect();
         if (i != 3) {
-            Drawable mutate = context.getResources().getDrawable(C0890R.C0891drawable.popup_fixed_alert).mutate();
+            Drawable mutate = context.getResources().getDrawable(C0952R.C0953drawable.popup_fixed_alert).mutate();
             this.shadowDrawable = mutate;
             mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
             this.shadowDrawable.getPadding(this.backgroundPaddings);
@@ -231,7 +231,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
         int i3;
         int i4;
         super.onCreate(bundle);
-        C09871 r1 = new C09871(getContext());
+        C10491 r1 = new C10491(getContext());
         r1.setOrientation(1);
         if (this.progressViewStyle == 3) {
             r1.setBackgroundDrawable(null);
@@ -277,7 +277,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
                 }
             }
             this.topImageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.topImageView.setBackgroundDrawable(getContext().getResources().getDrawable(C0890R.C0891drawable.popup_fixed_top));
+            this.topImageView.setBackgroundDrawable(getContext().getResources().getDrawable(C0952R.C0953drawable.popup_fixed_top));
             this.topImageView.getBackground().setColorFilter(new PorterDuffColorFilter(this.topBackgroundColor, PorterDuff.Mode.MULTIPLY));
             this.topImageView.setPadding(0, 0, 0, 0);
             r1.addView(this.topImageView, LayoutHelper.createLinear(-1, this.topHeight, 51, -8, -8, 0, 0));
@@ -322,8 +322,8 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
             r1.addView(this.subtitleTextView, LayoutHelper.createLinear(-2, -2, (LocaleController.isRTL ? 5 : 3) | 48, 24, 0, 24, this.items != null ? 14 : 10));
         }
         if (this.progressViewStyle == 0) {
-            this.shadow[0] = (BitmapDrawable) getContext().getResources().getDrawable(C0890R.C0891drawable.header_shadow).mutate();
-            this.shadow[1] = (BitmapDrawable) getContext().getResources().getDrawable(C0890R.C0891drawable.header_shadow_reverse).mutate();
+            this.shadow[0] = (BitmapDrawable) getContext().getResources().getDrawable(C0952R.C0953drawable.header_shadow).mutate();
+            this.shadow[1] = (BitmapDrawable) getContext().getResources().getDrawable(C0952R.C0953drawable.header_shadow_reverse).mutate();
             this.shadow[0].setAlpha(0);
             this.shadow[1].setAlpha(0);
             this.shadow[0].setCallback(this);
@@ -710,7 +710,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
         window.setAttributes(layoutParams);
     }
 
-    public class C09871 extends LinearLayout {
+    public class C10491 extends LinearLayout {
         private boolean inLayout;
 
         @Override
@@ -718,7 +718,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
             return false;
         }
 
-        C09871(Context context) {
+        C10491(Context context) {
             super(context);
         }
 
@@ -742,7 +742,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
 
         @Override
         protected void onMeasure(int r13, int r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ActionBar.AlertDialog.C09871.onMeasure(int, int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ActionBar.AlertDialog.C10491.onMeasure(int, int):void");
         }
 
         public void lambda$onMeasure$0() {
@@ -779,7 +779,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
                     AlertDialog.this.onScrollChangedListener = new ViewTreeObserver.OnScrollChangedListener() {
                         @Override
                         public final void onScrollChanged() {
-                            AlertDialog.C09871.this.lambda$onLayout$1();
+                            AlertDialog.C10491.this.lambda$onLayout$1();
                         }
                     };
                     AlertDialog.this.contentScrollView.getViewTreeObserver().addOnScrollChangedListener(AlertDialog.this.onScrollChangedListener);
@@ -906,10 +906,10 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
     public void showCancelAlert() {
         if (this.canCacnel && this.cancelDialog == null) {
             Builder builder = new Builder(getContext());
-            builder.setTitle(LocaleController.getString("AppName", C0890R.string.AppName));
-            builder.setMessage(LocaleController.getString("StopLoading", C0890R.string.StopLoading));
-            builder.setPositiveButton(LocaleController.getString("WaitMore", C0890R.string.WaitMore), null);
-            builder.setNegativeButton(LocaleController.getString("Stop", C0890R.string.Stop), new DialogInterface.OnClickListener() {
+            builder.setTitle(LocaleController.getString("AppName", C0952R.string.AppName));
+            builder.setMessage(LocaleController.getString("StopLoading", C0952R.string.StopLoading));
+            builder.setPositiveButton(LocaleController.getString("WaitMore", C0952R.string.WaitMore), null);
+            builder.setNegativeButton(LocaleController.getString("Stop", C0952R.string.Stop), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     AlertDialog.this.lambda$showCancelAlert$5(dialogInterface, i);

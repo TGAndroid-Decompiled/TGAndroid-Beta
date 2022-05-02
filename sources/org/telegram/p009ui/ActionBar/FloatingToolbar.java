@@ -45,7 +45,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -53,7 +53,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.FloatingToolbar;
 import org.telegram.p009ui.ActionBar.Theme;
 
-@TargetApi(C0890R.styleable.MapAttrs_zOrderOnTop)
+@TargetApi(C0952R.styleable.MapAttrs_zOrderOnTop)
 public final class FloatingToolbar {
     private static final MenuItem.OnMenuItemClickListener NO_OP_MENUITEM_CLICK_LISTENER = FloatingToolbar$$ExternalSyntheticLambda0.INSTANCE;
     private int currentStyle;
@@ -270,16 +270,16 @@ public final class FloatingToolbar {
             this.mFastOutSlowInInterpolator = AnimationUtils.loadInterpolator(context, 17563661);
             this.mLinearOutSlowInInterpolator = AnimationUtils.loadInterpolator(context, 17563662);
             this.mFastOutLinearInInterpolator = AnimationUtils.loadInterpolator(context, 17563663);
-            Drawable mutate = context.getDrawable(C0890R.C0891drawable.ft_avd_tooverflow).mutate();
+            Drawable mutate = context.getDrawable(C0952R.C0953drawable.ft_avd_tooverflow).mutate();
             this.mArrow = mutate;
             mutate.setAutoMirrored(true);
-            Drawable mutate2 = context.getDrawable(C0890R.C0891drawable.ft_avd_toarrow).mutate();
+            Drawable mutate2 = context.getDrawable(C0952R.C0953drawable.ft_avd_toarrow).mutate();
             this.mOverflow = mutate2;
             mutate2.setAutoMirrored(true);
-            AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) context.getDrawable(C0890R.C0891drawable.ft_avd_toarrow_animation).mutate();
+            AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) context.getDrawable(C0952R.C0953drawable.ft_avd_toarrow_animation).mutate();
             this.mToArrow = animatedVectorDrawable;
             animatedVectorDrawable.setAutoMirrored(true);
-            AnimatedVectorDrawable animatedVectorDrawable2 = (AnimatedVectorDrawable) context.getDrawable(C0890R.C0891drawable.ft_avd_tooverflow_animation).mutate();
+            AnimatedVectorDrawable animatedVectorDrawable2 = (AnimatedVectorDrawable) context.getDrawable(C0952R.C0953drawable.ft_avd_tooverflow_animation).mutate();
             this.mToOverflow = animatedVectorDrawable2;
             animatedVectorDrawable2.setAutoMirrored(true);
             ImageButton createOverflowButton = createOverflowButton();
@@ -294,12 +294,12 @@ public final class FloatingToolbar {
             this.mCloseOverflowAnimation = animationSet2;
             animationSet2.setAnimationListener(createOverflowAnimationListener);
             this.mShowAnimation = FloatingToolbar.createEnterAnimation(createContentContainer);
-            this.mDismissAnimation = FloatingToolbar.createExitAnimation(createContentContainer, ImageReceiver.DEFAULT_CROSSFADE_DURATION, new C10153(FloatingToolbar.this));
-            this.mHideAnimation = FloatingToolbar.createExitAnimation(createContentContainer, 0, new C10164(FloatingToolbar.this));
+            this.mDismissAnimation = FloatingToolbar.createExitAnimation(createContentContainer, ImageReceiver.DEFAULT_CROSSFADE_DURATION, new C10773(FloatingToolbar.this));
+            this.mHideAnimation = FloatingToolbar.createExitAnimation(createContentContainer, 0, new C10784(FloatingToolbar.this));
         }
 
-        public class C10153 extends AnimatorListenerAdapter {
-            C10153(FloatingToolbar floatingToolbar) {
+        public class C10773 extends AnimatorListenerAdapter {
+            C10773(FloatingToolbar floatingToolbar) {
             }
 
             @Override
@@ -307,7 +307,7 @@ public final class FloatingToolbar {
                 NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new Runnable() {
                     @Override
                     public final void run() {
-                        FloatingToolbar.FloatingToolbarPopup.C10153.this.lambda$onAnimationEnd$0();
+                        FloatingToolbar.FloatingToolbarPopup.C10773.this.lambda$onAnimationEnd$0();
                     }
                 });
             }
@@ -318,8 +318,8 @@ public final class FloatingToolbar {
             }
         }
 
-        public class C10164 extends AnimatorListenerAdapter {
-            C10164(FloatingToolbar floatingToolbar) {
+        public class C10784 extends AnimatorListenerAdapter {
+            C10784(FloatingToolbar floatingToolbar) {
             }
 
             @Override
@@ -327,7 +327,7 @@ public final class FloatingToolbar {
                 NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new Runnable() {
                     @Override
                     public final void run() {
-                        FloatingToolbar.FloatingToolbarPopup.C10164.this.lambda$onAnimationEnd$0();
+                        FloatingToolbar.FloatingToolbarPopup.C10784.this.lambda$onAnimationEnd$0();
                     }
                 });
             }
@@ -609,7 +609,7 @@ public final class FloatingToolbar {
                 this.mOverflowPanel.setAlpha(1.0f);
                 this.mOverflowPanel.setVisibility(0);
                 this.mOverflowButton.setImageDrawable(this.mArrow);
-                this.mOverflowButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C0890R.string.AccDescrMoreOptions));
+                this.mOverflowButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C0952R.string.AccDescrMoreOptions));
                 if (isInRTLMode()) {
                     this.mContentContainer.setX(this.mMarginHorizontal);
                     this.mMainPanel.setX(0.0f);
@@ -641,7 +641,7 @@ public final class FloatingToolbar {
             this.mOverflowPanel.setAlpha(0.0f);
             this.mOverflowPanel.setVisibility(4);
             this.mOverflowButton.setImageDrawable(this.mOverflow);
-            this.mOverflowButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C0890R.string.AccDescrMoreOptions));
+            this.mOverflowButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C0952R.string.AccDescrMoreOptions));
             if (hasOverflow()) {
                 if (isInRTLMode()) {
                     this.mContentContainer.setX(this.mMarginHorizontal);
@@ -983,12 +983,12 @@ public final class FloatingToolbar {
             return (this.mOpenOverflowAnimation.hasStarted() && !this.mOpenOverflowAnimation.hasEnded()) || (this.mCloseOverflowAnimation.hasStarted() && !this.mCloseOverflowAnimation.hasEnded());
         }
 
-        public class animationAnimation$AnimationListenerC101313 implements Animation.AnimationListener {
+        public class animationAnimation$AnimationListenerC107513 implements Animation.AnimationListener {
             @Override
             public void onAnimationRepeat(Animation animation) {
             }
 
-            animationAnimation$AnimationListenerC101313() {
+            animationAnimation$AnimationListenerC107513() {
             }
 
             @Override
@@ -1003,7 +1003,7 @@ public final class FloatingToolbar {
                 FloatingToolbarPopup.this.mContentContainer.post(new Runnable() {
                     @Override
                     public final void run() {
-                        FloatingToolbar.FloatingToolbarPopup.animationAnimation$AnimationListenerC101313.this.lambda$onAnimationEnd$0();
+                        FloatingToolbar.FloatingToolbarPopup.animationAnimation$AnimationListenerC107513.this.lambda$onAnimationEnd$0();
                     }
                 });
             }
@@ -1015,7 +1015,7 @@ public final class FloatingToolbar {
         }
 
         private Animation.AnimationListener createOverflowAnimationListener() {
-            return new animationAnimation$AnimationListenerC101313();
+            return new animationAnimation$AnimationListenerC107513();
         }
 
         private Size measure(View view) {

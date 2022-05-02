@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -76,35 +76,24 @@ public class HintView extends FrameLayout {
             addView(this.textView, LayoutHelper.createFrame(-2, 30.0f, 51, 0.0f, z ? 6.0f : 0.0f, 0.0f, z ? 0.0f : 6.0f));
         } else {
             this.textView.setGravity(51);
-            TextView textView = this.textView;
-            int i2 = this.currentType;
-            textView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.m34dp((i2 == 7 || i2 == 8 || i2 == 9) ? 6.0f : 3.0f), getThemedColor("chat_gifSaveHintBackground")));
-            int i3 = this.currentType;
-            if (i3 == 5 || i3 == 4) {
-                this.textView.setPadding(AndroidUtilities.m34dp(9.0f), AndroidUtilities.m34dp(6.0f), AndroidUtilities.m34dp(9.0f), AndroidUtilities.m34dp(7.0f));
-            } else if (i3 == 2) {
-                this.textView.setPadding(AndroidUtilities.m34dp(7.0f), AndroidUtilities.m34dp(6.0f), AndroidUtilities.m34dp(7.0f), AndroidUtilities.m34dp(7.0f));
-            } else if (i3 == 7 || i3 == 8 || i3 == 9) {
-                this.textView.setPadding(AndroidUtilities.m34dp(8.0f), AndroidUtilities.m34dp(7.0f), AndroidUtilities.m34dp(8.0f), AndroidUtilities.m34dp(8.0f));
-            } else {
-                this.textView.setPadding(AndroidUtilities.m34dp(i3 == 0 ? 54.0f : 5.0f), AndroidUtilities.m34dp(6.0f), AndroidUtilities.m34dp(5.0f), AndroidUtilities.m34dp(7.0f));
-            }
+            this.textView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.m34dp(6.0f), getThemedColor("chat_gifSaveHintBackground")));
+            this.textView.setPadding(AndroidUtilities.m34dp(this.currentType == 0 ? 54.0f : 8.0f), AndroidUtilities.m34dp(7.0f), AndroidUtilities.m34dp(8.0f), AndroidUtilities.m34dp(8.0f));
             addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, z ? 6.0f : 0.0f, 0.0f, z ? 0.0f : 6.0f));
         }
         if (i == 0) {
-            this.textView.setText(LocaleController.getString("AutoplayVideoInfo", C0890R.string.AutoplayVideoInfo));
+            this.textView.setText(LocaleController.getString("AutoplayVideoInfo", C0952R.string.AutoplayVideoInfo));
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
-            imageView.setImageResource(C0890R.C0891drawable.tooltip_sound);
+            imageView.setImageResource(C0952R.C0953drawable.tooltip_sound);
             this.imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_gifSaveHintText"), PorterDuff.Mode.MULTIPLY));
             addView(this.imageView, LayoutHelper.createFrame(38, 34.0f, 51, 7.0f, 7.0f, 0.0f, 0.0f));
         }
         ImageView imageView2 = new ImageView(context);
         this.arrowImageView = imageView2;
-        imageView2.setImageResource(z ? C0890R.C0891drawable.tooltip_arrow_up : C0890R.C0891drawable.tooltip_arrow);
+        imageView2.setImageResource(z ? C0952R.C0953drawable.tooltip_arrow_up : C0952R.C0953drawable.tooltip_arrow);
         this.arrowImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_gifSaveHintBackground"), PorterDuff.Mode.MULTIPLY));
-        addView(this.arrowImageView, LayoutHelper.createFrame(14, 6.0f, 3 | (z ? 48 : 80), 0.0f, 0.0f, 0.0f, 0.0f));
+        addView(this.arrowImageView, LayoutHelper.createFrame(14, 6.0f, (z ? 48 : 80) | 3, 0.0f, 0.0f, 0.0f, 0.0f));
     }
 
     public void setBackgroundColor(int i, int i2) {
@@ -172,15 +161,15 @@ public class HintView extends FrameLayout {
             i6 += i2;
             this.shownY = i2;
             if (num.intValue() == -1) {
-                this.textView.setText(LocaleController.getString("PollSelectOption", C0890R.string.PollSelectOption));
+                this.textView.setText(LocaleController.getString("PollSelectOption", C0952R.string.PollSelectOption));
             } else if (chatMessageCell.getMessageObject().isQuiz()) {
                 if (num.intValue() == 0) {
-                    this.textView.setText(LocaleController.getString("NoVotesQuiz", C0890R.string.NoVotesQuiz));
+                    this.textView.setText(LocaleController.getString("NoVotesQuiz", C0952R.string.NoVotesQuiz));
                 } else {
                     this.textView.setText(LocaleController.formatPluralString("Answer", num.intValue()));
                 }
             } else if (num.intValue() == 0) {
-                this.textView.setText(LocaleController.getString("NoVotes", C0890R.string.NoVotes));
+                this.textView.setText(LocaleController.getString("NoVotes", C0952R.string.NoVotes));
             } else {
                 this.textView.setText(LocaleController.formatPluralString("Vote", num.intValue()));
             }
@@ -190,13 +179,13 @@ public class HintView extends FrameLayout {
             MessageObject messageObject = chatMessageCell.getMessageObject();
             String str = this.overrideText;
             if (str == null) {
-                this.textView.setText(LocaleController.getString("HidAccount", C0890R.string.HidAccount));
+                this.textView.setText(LocaleController.getString("HidAccount", C0952R.string.HidAccount));
             } else {
                 this.textView.setText(str);
             }
             measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
             TLRPC$User currentUser = chatMessageCell.getCurrentUser();
-            if (currentUser == null || currentUser.f974id != 0) {
+            if (currentUser == null || currentUser.f985id != 0) {
                 i6 += AndroidUtilities.m34dp(22.0f);
                 if (!messageObject.isOutOwner() && chatMessageCell.isDrawNameLayout()) {
                     dp = AndroidUtilities.m34dp(20.0f);
@@ -267,7 +256,7 @@ public class HintView extends FrameLayout {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
             animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f, 1.0f));
-            this.animatorSet.addListener(new C20361());
+            this.animatorSet.addListener(new C21051());
             this.animatorSet.setDuration(300L);
             this.animatorSet.start();
         } else {
@@ -276,8 +265,8 @@ public class HintView extends FrameLayout {
         return true;
     }
 
-    public class C20361 extends AnimatorListenerAdapter {
-        C20361() {
+    public class C21051 extends AnimatorListenerAdapter {
+        C21051() {
         }
 
         @Override
@@ -286,7 +275,7 @@ public class HintView extends FrameLayout {
             AndroidUtilities.runOnUIThread(HintView.this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    HintView.C20361.this.lambda$onAnimationEnd$0();
+                    HintView.C21051.this.lambda$onAnimationEnd$0();
                 }
             }, HintView.this.currentType == 0 ? 10000L : 2000L);
         }
@@ -321,7 +310,7 @@ public class HintView extends FrameLayout {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
             animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f, 1.0f));
-            this.animatorSet.addListener(new C20372());
+            this.animatorSet.addListener(new C21062());
             this.animatorSet.setDuration(300L);
             this.animatorSet.start();
         } else {
@@ -330,8 +319,8 @@ public class HintView extends FrameLayout {
         return true;
     }
 
-    public class C20372 extends AnimatorListenerAdapter {
-        C20372() {
+    public class C21062 extends AnimatorListenerAdapter {
+        C21062() {
         }
 
         @Override
@@ -340,7 +329,7 @@ public class HintView extends FrameLayout {
             AndroidUtilities.runOnUIThread(HintView.this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    HintView.C20372.this.lambda$onAnimationEnd$0();
+                    HintView.C21062.this.lambda$onAnimationEnd$0();
                 }
             }, HintView.this.showingDuration);
         }

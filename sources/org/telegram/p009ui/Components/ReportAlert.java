@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.BottomSheet;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -29,7 +29,7 @@ public class ReportAlert extends BottomSheet {
             super(context);
             View view = new View(context);
             this.background = view;
-            view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+            view.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
             addView(this.background, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
             TextView textView = new TextView(context);
             this.textView = textView;
@@ -64,7 +64,7 @@ public class ReportAlert extends BottomSheet {
         FrameLayout frameLayout = new FrameLayout(context);
         scrollView.addView(frameLayout, LayoutHelper.createScroll(-1, -2, 51));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
-        rLottieImageView.setAnimation(C0890R.raw.report_police, 120, 120);
+        rLottieImageView.setAnimation(C0952R.raw.report_police, 120, 120);
         rLottieImageView.playAnimation();
         frameLayout.addView(rLottieImageView, LayoutHelper.createFrame(160, 160.0f, 49, 17.0f, 14.0f, 17.0f, 0.0f));
         TextView textView = new TextView(context);
@@ -73,24 +73,24 @@ public class ReportAlert extends BottomSheet {
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
         int i2 = 5;
         if (i == 0) {
-            textView.setText(LocaleController.getString("ReportTitleSpam", C0890R.string.ReportTitleSpam));
+            textView.setText(LocaleController.getString("ReportTitleSpam", C0952R.string.ReportTitleSpam));
         } else if (i == 6) {
-            textView.setText(LocaleController.getString("ReportTitleFake", C0890R.string.ReportTitleFake));
+            textView.setText(LocaleController.getString("ReportTitleFake", C0952R.string.ReportTitleFake));
         } else if (i == 1) {
-            textView.setText(LocaleController.getString("ReportTitleViolence", C0890R.string.ReportTitleViolence));
+            textView.setText(LocaleController.getString("ReportTitleViolence", C0952R.string.ReportTitleViolence));
         } else if (i == 2) {
-            textView.setText(LocaleController.getString("ReportTitleChild", C0890R.string.ReportTitleChild));
+            textView.setText(LocaleController.getString("ReportTitleChild", C0952R.string.ReportTitleChild));
         } else if (i == 5) {
-            textView.setText(LocaleController.getString("ReportTitlePornography", C0890R.string.ReportTitlePornography));
+            textView.setText(LocaleController.getString("ReportTitlePornography", C0952R.string.ReportTitlePornography));
         } else if (i == 100) {
-            textView.setText(LocaleController.getString("ReportChat", C0890R.string.ReportChat));
+            textView.setText(LocaleController.getString("ReportChat", C0952R.string.ReportChat));
         }
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 49, 17.0f, 197.0f, 17.0f, 0.0f));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(Theme.getColor("dialogTextGray3"));
         textView2.setGravity(1);
-        textView2.setText(LocaleController.getString("ReportInfo", C0890R.string.ReportInfo));
+        textView2.setText(LocaleController.getString("ReportInfo", C0952R.string.ReportInfo));
         frameLayout.addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 49, 30.0f, 235.0f, 30.0f, 44.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.editText = editTextBoldCursor;
@@ -106,7 +106,7 @@ public class ReportAlert extends BottomSheet {
         this.editText.setGravity(!LocaleController.isRTL ? 3 : i2);
         this.editText.setInputType(180224);
         this.editText.setImeOptions(6);
-        this.editText.setHint(LocaleController.getString("ReportHint", C0890R.string.ReportHint));
+        this.editText.setHint(LocaleController.getString("ReportHint", C0952R.string.ReportHint));
         this.editText.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.editText.setCursorSize(AndroidUtilities.m34dp(20.0f));
         this.editText.setCursorWidth(1.5f);
@@ -122,7 +122,7 @@ public class ReportAlert extends BottomSheet {
         BottomSheetCell bottomSheetCell = new BottomSheetCell(context);
         this.clearButton = bottomSheetCell;
         bottomSheetCell.setBackground(null);
-        this.clearButton.setText(LocaleController.getString("ReportSend", C0890R.string.ReportSend));
+        this.clearButton.setText(LocaleController.getString("ReportSend", C0952R.string.ReportSend));
         this.clearButton.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {

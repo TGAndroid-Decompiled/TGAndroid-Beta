@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -158,7 +158,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             }
         };
         this.emptyView = stickerEmptyView;
-        stickerEmptyView.title.setText(LocaleController.getString("NoResult", C0890R.string.NoResult));
+        stickerEmptyView.title.setText(LocaleController.getString("NoResult", C0952R.string.NoResult));
         this.emptyView.subtitle.setVisibility(8);
         this.emptyView.setVisibility(8);
         this.emptyView.addView(flickerLoadingView, 0);
@@ -202,9 +202,9 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             if (i4 == 4) {
                 TLObject tLObject = mediaFilterData.chat;
                 if (tLObject instanceof TLRPC$User) {
-                    j = ((TLRPC$User) tLObject).f974id;
+                    j = ((TLRPC$User) tLObject).f985id;
                 } else if (tLObject instanceof TLRPC$Chat) {
-                    j = -((TLRPC$Chat) tLObject).f843id;
+                    j = -((TLRPC$Chat) tLObject).f854id;
                 }
             } else if (i4 == 6) {
                 FiltersView.DateData dateData = mediaFilterData.dateData;
@@ -307,9 +307,9 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
                     this.selectedMessagesCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon"));
                     createActionMode.addView(this.selectedMessagesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
                     this.selectedMessagesCountTextView.setOnTouchListener(SearchViewPager$$ExternalSyntheticLambda2.INSTANCE);
-                    this.gotoItem = createActionMode.addItemWithWidth(200, C0890R.C0891drawable.msg_message, AndroidUtilities.m34dp(54.0f), LocaleController.getString("AccDescrGoToMessage", C0890R.string.AccDescrGoToMessage));
-                    this.forwardItem = createActionMode.addItemWithWidth(201, C0890R.C0891drawable.msg_forward, AndroidUtilities.m34dp(54.0f), LocaleController.getString("Forward", C0890R.string.Forward));
-                    this.deleteItem = createActionMode.addItemWithWidth(202, C0890R.C0891drawable.msg_delete, AndroidUtilities.m34dp(54.0f), LocaleController.getString("Delete", C0890R.string.Delete));
+                    this.gotoItem = createActionMode.addItemWithWidth(200, C0952R.C0953drawable.msg_message, AndroidUtilities.m34dp(54.0f), LocaleController.getString("AccDescrGoToMessage", C0952R.string.AccDescrGoToMessage));
+                    this.forwardItem = createActionMode.addItemWithWidth(201, C0952R.C0953drawable.msg_forward, AndroidUtilities.m34dp(54.0f), LocaleController.getString("Forward", C0952R.string.Forward));
+                    this.deleteItem = createActionMode.addItemWithWidth(202, C0952R.C0953drawable.msg_delete, AndroidUtilities.m34dp(54.0f), LocaleController.getString("Delete", C0952R.string.Delete));
                 }
                 if (this.parent.getActionBar().getBackButton().getDrawable() instanceof MenuDrawable) {
                     this.parent.getActionBar().setBackButtonDrawable(new BackDrawable(false));
@@ -357,10 +357,10 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
                 AlertDialog.Builder builder = new AlertDialog.Builder(this.parent.getParentActivity());
                 builder.setTitle(LocaleController.formatPluralString("RemoveDocumentsTitle", this.selectedFiles.size()));
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("RemoveDocumentsMessage", this.selectedFiles.size()))).append((CharSequence) "\n\n").append((CharSequence) LocaleController.getString("RemoveDocumentsAlertMessage", C0890R.string.RemoveDocumentsAlertMessage));
+                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("RemoveDocumentsMessage", this.selectedFiles.size()))).append((CharSequence) "\n\n").append((CharSequence) LocaleController.getString("RemoveDocumentsAlertMessage", C0952R.string.RemoveDocumentsAlertMessage));
                 builder.setMessage(spannableStringBuilder);
-                builder.setNegativeButton(LocaleController.getString("Cancel", C0890R.string.Cancel), SearchViewPager$$ExternalSyntheticLambda1.INSTANCE);
-                builder.setPositiveButton(LocaleController.getString("Delete", C0890R.string.Delete), new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(LocaleController.getString("Cancel", C0952R.string.Cancel), SearchViewPager$$ExternalSyntheticLambda1.INSTANCE);
+                builder.setPositiveButton(LocaleController.getString("Delete", C0952R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
                         SearchViewPager.this.lambda$onActionBarItemClick$2(arrayList, dialogInterface, i2);
@@ -739,10 +739,10 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         @Override
         public String getItemTitle(int i) {
             if (this.items.get(i).type == 0) {
-                return LocaleController.getString("SearchAllChatsShort", C0890R.string.SearchAllChatsShort);
+                return LocaleController.getString("SearchAllChatsShort", C0952R.string.SearchAllChatsShort);
             }
             if (this.items.get(i).type == 1) {
-                return LocaleController.getString("DownloadsTabs", C0890R.string.DownloadsTabs);
+                return LocaleController.getString("DownloadsTabs", C0952R.string.DownloadsTabs);
             }
             return FiltersView.filters[this.items.get(i).filterIndex].title;
         }

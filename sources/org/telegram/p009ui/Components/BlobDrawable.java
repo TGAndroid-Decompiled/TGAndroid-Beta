@@ -20,8 +20,8 @@ public class BlobDrawable {
     public static float SCALE_BIG_MIN = 0.878f;
     public static float SCALE_SMALL = 0.704f;
     public static float SCALE_SMALL_MIN = 0.926f;
-    private final float f1009L;
-    private final float f1010N;
+    private final float f1021L;
+    private final float f1022N;
     public float amplitude;
     private float[] angle;
     private float[] angleNext;
@@ -39,21 +39,21 @@ public class BlobDrawable {
     private float[] pointEnd = new float[4];
     final Random random = new Random();
     public float cubicBezierK = 1.0f;
-    private final Matrix f1011m = new Matrix();
+    private final Matrix f1023m = new Matrix();
 
     public BlobDrawable(int i) {
         float f = i;
-        this.f1010N = f;
+        this.f1022N = f;
         double d = f * 2.0f;
         Double.isNaN(d);
-        this.f1009L = (float) (Math.tan(3.141592653589793d / d) * 1.3333333333333333d);
+        this.f1021L = (float) (Math.tan(3.141592653589793d / d) * 1.3333333333333333d);
         this.radius = new float[i];
         this.angle = new float[i];
         this.radiusNext = new float[i];
         this.angleNext = new float[i];
         this.progress = new float[i];
         this.speed = new float[i];
-        for (int i2 = 0; i2 < this.f1010N; i2++) {
+        for (int i2 = 0; i2 < this.f1022N; i2++) {
             generateBlob(this.radius, this.angle, i2);
             generateBlob(this.radiusNext, this.angleNext, i2);
             this.progress[i2] = 0.0f;
@@ -64,7 +64,7 @@ public class BlobDrawable {
         float f = this.maxRadius;
         float f2 = this.minRadius;
         fArr[i] = f2 + (Math.abs((this.random.nextInt() % 100.0f) / 100.0f) * (f - f2));
-        fArr2[i] = ((360.0f / this.f1010N) * i) + (((this.random.nextInt() % 100.0f) / 100.0f) * (360.0f / this.f1010N) * 0.05f);
+        fArr2[i] = ((360.0f / this.f1022N) * i) + (((this.random.nextInt() % 100.0f) / 100.0f) * (360.0f / this.f1022N) * 0.05f);
         float[] fArr3 = this.speed;
         double abs = Math.abs(this.random.nextInt() % 100.0f) / 100.0f;
         Double.isNaN(abs);
@@ -72,7 +72,7 @@ public class BlobDrawable {
     }
 
     public void update(float f, float f2) {
-        for (int i = 0; i < this.f1010N; i++) {
+        for (int i = 0; i < this.f1022N; i++) {
             float[] fArr = this.progress;
             float f3 = fArr[i];
             float[] fArr2 = this.speed;
@@ -94,7 +94,7 @@ public class BlobDrawable {
         this.path.reset();
         int i = 0;
         while (true) {
-            float f3 = this.f1010N;
+            float f3 = this.f1022N;
             if (i < f3) {
                 float[] fArr = this.progress;
                 float f4 = fArr[i];
@@ -111,25 +111,25 @@ public class BlobDrawable {
                 float f10 = fArr4[i] * f6;
                 float[] fArr5 = this.angleNext;
                 float f11 = (fArr4[i3] * f8) + (fArr5[i3] * f5);
-                float min = this.f1009L * (Math.min(f7, f9) + ((Math.max(f7, f9) - Math.min(f7, f9)) / 2.0f)) * this.cubicBezierK;
-                this.f1011m.reset();
-                this.f1011m.setRotate(f10 + (fArr5[i] * f4), f, f2);
+                float min = this.f1021L * (Math.min(f7, f9) + ((Math.max(f7, f9) - Math.min(f7, f9)) / 2.0f)) * this.cubicBezierK;
+                this.f1023m.reset();
+                this.f1023m.setRotate(f10 + (fArr5[i] * f4), f, f2);
                 float[] fArr6 = this.pointStart;
                 fArr6[0] = f;
                 float f12 = f2 - f7;
                 fArr6[1] = f12;
                 fArr6[2] = f + min;
                 fArr6[3] = f12;
-                this.f1011m.mapPoints(fArr6);
+                this.f1023m.mapPoints(fArr6);
                 float[] fArr7 = this.pointEnd;
                 fArr7[0] = f;
                 float f13 = f2 - f9;
                 fArr7[1] = f13;
                 fArr7[2] = f - min;
                 fArr7[3] = f13;
-                this.f1011m.reset();
-                this.f1011m.setRotate(f11, f, f2);
-                this.f1011m.mapPoints(this.pointEnd);
+                this.f1023m.reset();
+                this.f1023m.setRotate(f11, f, f2);
+                this.f1023m.mapPoints(this.pointEnd);
                 if (i == 0) {
                     Path path = this.path;
                     float[] fArr8 = this.pointStart;
@@ -152,7 +152,7 @@ public class BlobDrawable {
     }
 
     public void generateBlob() {
-        for (int i = 0; i < this.f1010N; i++) {
+        for (int i = 0; i < this.f1022N; i++) {
             generateBlob(this.radius, this.angle, i);
             generateBlob(this.radiusNext, this.angleNext, i);
             this.progress[i] = 0.0f;

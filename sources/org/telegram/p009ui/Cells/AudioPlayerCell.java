@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -261,7 +261,7 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
             }
         }
         if (file == null) {
-            file = FileLoader.getPathToAttach(this.currentMessageObject.getDocument());
+            file = FileLoader.getInstance(this.currentAccount).getPathToAttach(this.currentMessageObject.getDocument());
         }
         if (!TextUtils.isEmpty(fileName)) {
             if (file.exists() && file.length() == 0) {
@@ -366,7 +366,7 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (this.currentMessageObject.isMusic()) {
-            accessibilityNodeInfo.setText(LocaleController.formatString("AccDescrMusicInfo", C0890R.string.AccDescrMusicInfo, this.currentMessageObject.getMusicAuthor(), this.currentMessageObject.getMusicTitle()));
+            accessibilityNodeInfo.setText(LocaleController.formatString("AccDescrMusicInfo", C0952R.string.AccDescrMusicInfo, this.currentMessageObject.getMusicAuthor(), this.currentMessageObject.getMusicTitle()));
             return;
         }
         accessibilityNodeInfo.setText(((Object) this.titleLayout.getText()) + ", " + ((Object) this.descriptionLayout.getText()));

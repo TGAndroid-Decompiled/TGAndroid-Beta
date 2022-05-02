@@ -42,7 +42,7 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BringAppForegroundService;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -409,7 +409,7 @@ public class EmbedBottomSheet extends BottomSheet {
                         Rect pipRect = PipVideoOverlay.getPipRect(true, f);
                         float width = pipRect.width / textureView.getWidth();
                         AnimatorSet animatorSet = new AnimatorSet();
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(textureImageView, View.SCALE_X, width), ObjectAnimator.ofFloat(textureImageView, View.SCALE_Y, width), ObjectAnimator.ofFloat(textureImageView, View.TRANSLATION_X, pipRect.f1064x), ObjectAnimator.ofFloat(textureImageView, View.TRANSLATION_Y, pipRect.f1065y), ObjectAnimator.ofFloat(textureView, View.SCALE_X, width), ObjectAnimator.ofFloat(textureView, View.SCALE_Y, width), ObjectAnimator.ofFloat(textureView, View.TRANSLATION_X, pipRect.f1064x), ObjectAnimator.ofFloat(textureView, View.TRANSLATION_Y, pipRect.f1065y), ObjectAnimator.ofFloat(((BottomSheet) EmbedBottomSheet.this).containerView, View.TRANSLATION_Y, ((BottomSheet) EmbedBottomSheet.this).containerView.getMeasuredHeight() + AndroidUtilities.m34dp(10.0f)), ObjectAnimator.ofInt(((BottomSheet) EmbedBottomSheet.this).backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, 0), ObjectAnimator.ofFloat(EmbedBottomSheet.this.fullscreenVideoContainer, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(controlsView, View.ALPHA, 0.0f));
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(textureImageView, View.SCALE_X, width), ObjectAnimator.ofFloat(textureImageView, View.SCALE_Y, width), ObjectAnimator.ofFloat(textureImageView, View.TRANSLATION_X, pipRect.f1082x), ObjectAnimator.ofFloat(textureImageView, View.TRANSLATION_Y, pipRect.f1083y), ObjectAnimator.ofFloat(textureView, View.SCALE_X, width), ObjectAnimator.ofFloat(textureView, View.SCALE_Y, width), ObjectAnimator.ofFloat(textureView, View.TRANSLATION_X, pipRect.f1082x), ObjectAnimator.ofFloat(textureView, View.TRANSLATION_Y, pipRect.f1083y), ObjectAnimator.ofFloat(((BottomSheet) EmbedBottomSheet.this).containerView, View.TRANSLATION_Y, ((BottomSheet) EmbedBottomSheet.this).containerView.getMeasuredHeight() + AndroidUtilities.m34dp(10.0f)), ObjectAnimator.ofInt(((BottomSheet) EmbedBottomSheet.this).backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, 0), ObjectAnimator.ofFloat(EmbedBottomSheet.this.fullscreenVideoContainer, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(controlsView, View.ALPHA, 0.0f));
                         animatorSet.setInterpolator(new DecelerateInterpolator());
                         animatorSet.setDuration(250L);
                         animatorSet.addListener(new AnimatorListenerAdapter() {
@@ -449,12 +449,12 @@ public class EmbedBottomSheet extends BottomSheet {
                     float f2 = pipRect2.width / textureView2.getLayoutParams().width;
                     textureImageView2.setScaleX(f2);
                     textureImageView2.setScaleY(f2);
-                    textureImageView2.setTranslationX(pipRect2.f1064x);
-                    textureImageView2.setTranslationY(pipRect2.f1065y);
+                    textureImageView2.setTranslationX(pipRect2.f1082x);
+                    textureImageView2.setTranslationY(pipRect2.f1083y);
                     textureView2.setScaleX(f2);
                     textureView2.setScaleY(f2);
-                    textureView2.setTranslationX(pipRect2.f1064x);
-                    textureView2.setTranslationY(pipRect2.f1065y);
+                    textureView2.setTranslationX(pipRect2.f1082x);
+                    textureView2.setTranslationY(pipRect2.f1083y);
                 } else {
                     PipVideoOverlay.dismiss();
                 }
@@ -581,7 +581,7 @@ public class EmbedBottomSheet extends BottomSheet {
         textView3.setEllipsize(TextUtils.TruncateAt.END);
         textView3.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
         textView3.setPadding(AndroidUtilities.m34dp(18.0f), 0, AndroidUtilities.m34dp(18.0f), 0);
-        textView3.setText(LocaleController.getString("Close", C0890R.string.Close).toUpperCase());
+        textView3.setText(LocaleController.getString("Close", C0952R.string.Close).toUpperCase());
         textView3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         frameLayout3.addView(textView3, LayoutHelper.createLinear(-2, -1, 51));
         textView3.setOnClickListener(new View.OnClickListener() {
@@ -597,8 +597,8 @@ public class EmbedBottomSheet extends BottomSheet {
         ImageView imageView = new ImageView(context);
         this.pipButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.pipButton.setImageResource(C0890R.C0891drawable.video_pip);
-        this.pipButton.setContentDescription(LocaleController.getString("AccDescrPipMode", C0890R.string.AccDescrPipMode));
+        this.pipButton.setImageResource(C0952R.C0953drawable.video_pip);
+        this.pipButton.setContentDescription(LocaleController.getString("AccDescrPipMode", C0952R.string.AccDescrPipMode));
         this.pipButton.setEnabled(false);
         this.pipButton.setAlpha(0.5f);
         this.pipButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlue4"), PorterDuff.Mode.MULTIPLY));
@@ -618,8 +618,8 @@ public class EmbedBottomSheet extends BottomSheet {
         };
         ImageView imageView2 = new ImageView(context);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        imageView2.setImageResource(C0890R.C0891drawable.video_copy);
-        imageView2.setContentDescription(LocaleController.getString("CopyLink", C0890R.string.CopyLink));
+        imageView2.setImageResource(C0952R.C0953drawable.video_copy);
+        imageView2.setContentDescription(LocaleController.getString("CopyLink", C0952R.string.CopyLink));
         imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlue4"), PorterDuff.Mode.MULTIPLY));
         imageView2.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
         this.imageButtonsContainer.addView(imageView2, LayoutHelper.createFrame(48, 48, 51));
@@ -633,7 +633,7 @@ public class EmbedBottomSheet extends BottomSheet {
         this.copyTextButton.setEllipsize(TextUtils.TruncateAt.END);
         this.copyTextButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
         this.copyTextButton.setPadding(AndroidUtilities.m34dp(18.0f), 0, AndroidUtilities.m34dp(18.0f), 0);
-        this.copyTextButton.setText(LocaleController.getString("Copy", C0890R.string.Copy).toUpperCase());
+        this.copyTextButton.setText(LocaleController.getString("Copy", C0952R.string.Copy).toUpperCase());
         this.copyTextButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         linearLayout.addView(this.copyTextButton, LayoutHelper.createFrame(-2, -1, 51));
         this.copyTextButton.setOnClickListener(embedBottomSheet$$ExternalSyntheticLambda3);
@@ -645,7 +645,7 @@ public class EmbedBottomSheet extends BottomSheet {
         textView5.setEllipsize(TextUtils.TruncateAt.END);
         textView5.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
         textView5.setPadding(AndroidUtilities.m34dp(18.0f), 0, AndroidUtilities.m34dp(18.0f), 0);
-        textView5.setText(LocaleController.getString("OpenInBrowser", C0890R.string.OpenInBrowser).toUpperCase());
+        textView5.setText(LocaleController.getString("OpenInBrowser", C0952R.string.OpenInBrowser).toUpperCase());
         textView5.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         linearLayout.addView(textView5, LayoutHelper.createFrame(-2, -1, 51));
         textView5.setOnClickListener(new View.OnClickListener() {

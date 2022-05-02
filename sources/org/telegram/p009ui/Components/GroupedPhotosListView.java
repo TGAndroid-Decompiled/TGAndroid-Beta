@@ -464,7 +464,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                 if (imageLocation == null || (tLRPC$PhotoSize2 = imageLocation.photoSize) == null) {
                     i = this.itemHeight;
                 } else {
-                    i = Math.max(this.itemWidth, (int) (tLRPC$PhotoSize2.f873w * (this.itemHeight / tLRPC$PhotoSize2.f872h)));
+                    i = Math.max(this.itemWidth, (int) (tLRPC$PhotoSize2.f884w * (this.itemHeight / tLRPC$PhotoSize2.f883h)));
                 }
                 int min = Math.min(i8, i);
                 float f2 = dp * 2;
@@ -479,7 +479,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                     if (imageLocation2 == null || (tLRPC$PhotoSize = imageLocation2.photoSize) == null) {
                         i3 = this.itemHeight;
                     } else {
-                        i3 = Math.max(this.itemWidth, (int) (tLRPC$PhotoSize.f873w * (this.itemHeight / tLRPC$PhotoSize.f872h)));
+                        i3 = Math.max(this.itemWidth, (int) (tLRPC$PhotoSize.f884w * (this.itemHeight / tLRPC$PhotoSize.f883h)));
                     }
                 }
                 int min2 = Math.min(i8, i3);
@@ -525,6 +525,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                         }
                     }
                     imageReceiver.setAlpha(this.drawAlpha);
+                    imageReceiver.setRoundRadius(AndroidUtilities.m34dp(2.0f));
                     imageReceiver.draw(canvas);
                 }
                 long currentTimeMillis = System.currentTimeMillis();

@@ -13,7 +13,7 @@ import android.util.SparseArray;
 import android.view.View;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
@@ -232,7 +232,7 @@ public class SharedPhotoVideoCell2 extends View {
             this.textPaint.setTextSize(AndroidUtilities.m34dp(12.0f));
             this.textPaint.setColor(-1);
             this.textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-            Drawable drawable = ContextCompat.getDrawable(context, C0890R.C0891drawable.play_mini_video);
+            Drawable drawable = ContextCompat.getDrawable(context, C0952R.C0953drawable.play_mini_video);
             this.playDrawable = drawable;
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), this.playDrawable.getIntrinsicHeight());
             this.backgroundPaint.setColor(Theme.getColor("sharedMedia_photoPlaceholder"));

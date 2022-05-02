@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C0945ActionBar;
+import org.telegram.p009ui.ActionBar.C1006ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.AvailableReactionCell;
@@ -54,10 +54,10 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
 
     @Override
     public View createView(final Context context) {
-        this.actionBar.setTitle(LocaleController.getString("Reactions", C0890R.string.Reactions));
-        this.actionBar.setBackButtonImage(C0890R.C0891drawable.ic_ab_back);
+        this.actionBar.setTitle(LocaleController.getString("Reactions", C0952R.string.Reactions));
+        this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -71,7 +71,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         TextCheckCell textCheckCell = new TextCheckCell(context);
         this.enableReactionsCell = textCheckCell;
         textCheckCell.setHeight(56);
-        this.enableReactionsCell.setTextAndCheck(LocaleController.getString("EnableReactions", C0890R.string.EnableReactions), true ^ this.chatReactions.isEmpty(), false);
+        this.enableReactionsCell.setTextAndCheck(LocaleController.getString("EnableReactions", C0952R.string.EnableReactions), true ^ this.chatReactions.isEmpty(), false);
         TextCheckCell textCheckCell2 = this.enableReactionsCell;
         textCheckCell2.setBackgroundColor(Theme.getColor(textCheckCell2.isChecked() ? "windowBackgroundChecked" : "windowBackgroundUnchecked"));
         this.enableReactionsCell.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
@@ -112,10 +112,10 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
                 if (itemViewType == 0) {
                     TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                     textInfoPrivacyCell.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText4"));
-                    textInfoPrivacyCell.setText(ChatObject.isChannelAndNotMegaGroup(ChatReactionsEditActivity.this.currentChat) ? LocaleController.getString("EnableReactionsChannelInfo", C0890R.string.EnableReactionsChannelInfo) : LocaleController.getString("EnableReactionsGroupInfo", C0890R.string.EnableReactionsGroupInfo));
+                    textInfoPrivacyCell.setText(ChatObject.isChannelAndNotMegaGroup(ChatReactionsEditActivity.this.currentChat) ? LocaleController.getString("EnableReactionsChannelInfo", C0952R.string.EnableReactionsChannelInfo) : LocaleController.getString("EnableReactionsGroupInfo", C0952R.string.EnableReactionsGroupInfo));
                 } else if (itemViewType == 1) {
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
-                    headerCell.setText(LocaleController.getString("AvailableReactions", C0890R.string.AvailableReactions));
+                    headerCell.setText(LocaleController.getString("AvailableReactions", C0952R.string.AvailableReactions));
                     headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                 } else if (itemViewType == 2) {
                     TLRPC$TL_availableReaction tLRPC$TL_availableReaction = (TLRPC$TL_availableReaction) ChatReactionsEditActivity.this.availableReactions.get(i - 2);

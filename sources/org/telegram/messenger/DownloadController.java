@@ -799,9 +799,9 @@ public class DownloadController extends BaseController implements NotificationCe
         DownloadObject downloadObject = this.downloadQueueKeys.get(str);
         if (downloadObject != null) {
             this.downloadQueueKeys.remove(str);
-            this.downloadQueuePairs.remove(new Pair(Long.valueOf(downloadObject.f796id), Integer.valueOf(downloadObject.type)));
+            this.downloadQueuePairs.remove(new Pair(Long.valueOf(downloadObject.f805id), Integer.valueOf(downloadObject.type)));
             if (i == 0 || i == 2) {
-                getMessagesStorage().removeFromDownloadQueue(downloadObject.f796id, downloadObject.type, false);
+                getMessagesStorage().removeFromDownloadQueue(downloadObject.f805id, downloadObject.type, false);
             }
             int i2 = downloadObject.type;
             if (i2 == 1) {
@@ -1058,7 +1058,7 @@ public class DownloadController extends BaseController implements NotificationCe
             if (i >= this.recentDownloadingFiles.size()) {
                 z2 = false;
                 break;
-            } else if (this.recentDownloadingFiles.get(i).getDocument().f850id == messageObject.getDocument().f850id) {
+            } else if (this.recentDownloadingFiles.get(i).getDocument().f861id == messageObject.getDocument().f861id) {
                 z2 = true;
                 break;
             } else {
@@ -1067,7 +1067,7 @@ public class DownloadController extends BaseController implements NotificationCe
         }
         if (!z2) {
             for (int i2 = 0; i2 < this.downloadingFiles.size(); i2++) {
-                if (this.downloadingFiles.get(i2).getDocument().f850id == messageObject.getDocument().f850id) {
+                if (this.downloadingFiles.get(i2).getDocument().f861id == messageObject.getDocument().f861id) {
                     break;
                 }
             }
@@ -1092,7 +1092,7 @@ public class DownloadController extends BaseController implements NotificationCe
             SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("REPLACE INTO downloading_documents VALUES(?, ?, ?, ?, ?)");
             executeFast.bindByteBuffer(1, nativeByteBuffer);
             executeFast.bindInteger(2, messageObject.getDocument().dc_id);
-            executeFast.bindLong(3, messageObject.getDocument().f850id);
+            executeFast.bindLong(3, messageObject.getDocument().f861id);
             executeFast.bindLong(4, System.currentTimeMillis());
             executeFast.bindInteger(4, 0);
             executeFast.step();
@@ -1123,7 +1123,7 @@ public class DownloadController extends BaseController implements NotificationCe
             if (i >= this.downloadingFiles.size()) {
                 z2 = false;
                 break;
-            } else if (this.downloadingFiles.get(i).getDocument().f850id == messageObject.getDocument().f850id) {
+            } else if (this.downloadingFiles.get(i).getDocument().f861id == messageObject.getDocument().f861id) {
                 this.downloadingFiles.remove(i);
                 z2 = true;
                 break;
@@ -1137,7 +1137,7 @@ public class DownloadController extends BaseController implements NotificationCe
                 if (i2 >= this.recentDownloadingFiles.size()) {
                     z = false;
                     break;
-                } else if (this.recentDownloadingFiles.get(i2).getDocument().f850id == messageObject.getDocument().f850id) {
+                } else if (this.recentDownloadingFiles.get(i2).getDocument().f861id == messageObject.getDocument().f861id) {
                     break;
                 } else {
                     i2++;
@@ -1159,7 +1159,7 @@ public class DownloadController extends BaseController implements NotificationCe
 
     public void lambda$onDownloadComplete$6(MessageObject messageObject) {
         try {
-            getMessagesStorage().getDatabase().executeFast(String.format(Locale.ENGLISH, "UPDATE downloading_documents SET state = 1, date = %d WHERE hash = %d AND id = %d", Long.valueOf(System.currentTimeMillis()), Integer.valueOf(messageObject.getDocument().dc_id), Long.valueOf(messageObject.getDocument().f850id))).stepThis().dispose();
+            getMessagesStorage().getDatabase().executeFast(String.format(Locale.ENGLISH, "UPDATE downloading_documents SET state = 1, date = %d WHERE hash = %d AND id = %d", Long.valueOf(System.currentTimeMillis()), Integer.valueOf(messageObject.getDocument().dc_id), Long.valueOf(messageObject.getDocument().f861id))).stepThis().dispose();
             SQLiteCursor queryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT COUNT(*) FROM downloading_documents WHERE state = 1", new Object[0]);
             int intValue = queryFinalized.next() ? queryFinalized.intValue(0) : 0;
             queryFinalized.dispose();
@@ -1175,7 +1175,7 @@ public class DownloadController extends BaseController implements NotificationCe
                 while (queryFinalized3.next()) {
                     DownloadingDocumentEntry downloadingDocumentEntry = new DownloadingDocumentEntry();
                     downloadingDocumentEntry.hash = queryFinalized3.intValue(0);
-                    downloadingDocumentEntry.f795id = queryFinalized3.longValue(1);
+                    downloadingDocumentEntry.f804id = queryFinalized3.longValue(1);
                     arrayList.add(downloadingDocumentEntry);
                 }
                 queryFinalized3.dispose();
@@ -1183,7 +1183,7 @@ public class DownloadController extends BaseController implements NotificationCe
                 for (int i = 0; i < arrayList.size(); i++) {
                     executeFast.requery();
                     executeFast.bindInteger(1, ((DownloadingDocumentEntry) arrayList.get(i)).hash);
-                    executeFast.bindLong(2, ((DownloadingDocumentEntry) arrayList.get(i)).f795id);
+                    executeFast.bindLong(2, ((DownloadingDocumentEntry) arrayList.get(i)).f804id);
                     executeFast.step();
                 }
                 executeFast.dispose();
@@ -1217,7 +1217,7 @@ public class DownloadController extends BaseController implements NotificationCe
             if (i2 >= this.downloadingFiles.size()) {
                 z = false;
                 break;
-            } else if (this.downloadingFiles.get(i2).getDocument().f850id == messageObject.getDocument().f850id) {
+            } else if (this.downloadingFiles.get(i2).getDocument().f861id == messageObject.getDocument().f861id) {
                 this.downloadingFiles.remove(i2);
                 z = true;
                 break;
@@ -1228,7 +1228,7 @@ public class DownloadController extends BaseController implements NotificationCe
         if (z) {
             getNotificationCenter().postNotificationName(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
             if (i == 0) {
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 1, LocaleController.formatString("MessageNotFound", C0890R.string.MessageNotFound, new Object[0]));
+                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 1, LocaleController.formatString("MessageNotFound", C0952R.string.MessageNotFound, new Object[0]));
             }
         }
     }
@@ -1237,7 +1237,7 @@ public class DownloadController extends BaseController implements NotificationCe
         try {
             SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("DELETE FROM downloading_documents WHERE hash = ? AND id = ?");
             executeFast.bindInteger(1, messageObject.getDocument().dc_id);
-            executeFast.bindLong(2, messageObject.getDocument().f850id);
+            executeFast.bindLong(2, messageObject.getDocument().f861id);
             executeFast.step();
             executeFast.dispose();
         } catch (Exception e) {
@@ -1271,7 +1271,7 @@ public class DownloadController extends BaseController implements NotificationCe
 
     public class DownloadingDocumentEntry {
         int hash;
-        long f795id;
+        long f804id;
 
         private DownloadingDocumentEntry() {
         }
@@ -1287,8 +1287,9 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadDownloadingFiles$11() {
-        final ArrayList arrayList = new ArrayList();
-        final ArrayList arrayList2 = new ArrayList();
+        final ArrayList<MessageObject> arrayList = new ArrayList<>();
+        final ArrayList<MessageObject> arrayList2 = new ArrayList<>();
+        ArrayList arrayList3 = new ArrayList();
         try {
             SQLiteCursor queryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT data, state FROM downloading_documents ORDER BY date DESC", new Object[0]);
             while (queryFinalized.next()) {
@@ -1298,10 +1299,11 @@ public class DownloadController extends BaseController implements NotificationCe
                     TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     if (TLdeserialize != null) {
                         TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(this.currentAccount).clientUserId);
-                        MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, true);
+                        MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, false);
+                        arrayList3.add(messageObject);
                         if (intValue == 0) {
                             arrayList.add(messageObject);
-                        } else if (messageObject.mediaExists) {
+                        } else {
                             arrayList2.add(messageObject);
                         }
                     }
@@ -1312,6 +1314,8 @@ public class DownloadController extends BaseController implements NotificationCe
         } catch (Exception e) {
             FileLog.m30e(e);
         }
+        getFileLoader().checkMediaExistance(arrayList);
+        getFileLoader().checkMediaExistance(arrayList2);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -1394,10 +1398,10 @@ public class DownloadController extends BaseController implements NotificationCe
             for (int i = 0; i < arrayList.size(); i++) {
                 executeFast.requery();
                 executeFast.bindInteger(1, ((MessageObject) arrayList.get(i)).getDocument().dc_id);
-                executeFast.bindLong(2, ((MessageObject) arrayList.get(i)).getDocument().f850id);
+                executeFast.bindLong(2, ((MessageObject) arrayList.get(i)).getDocument().f861id);
                 executeFast.step();
                 try {
-                    FileLoader.getPathToMessage(((MessageObject) arrayList.get(i)).messageOwner).delete();
+                    FileLoader.getInstance(this.currentAccount).getPathToMessage(((MessageObject) arrayList.get(i)).messageOwner).delete();
                 } catch (Exception e) {
                     FileLog.m30e(e);
                 }

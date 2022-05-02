@@ -5,12 +5,12 @@ public class TLRPC$TL_userEmpty extends TLRPC$User {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f974id = abstractSerializedData.readInt64(z);
+        this.f985id = abstractSerializedData.readInt64(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f974id);
+        abstractSerializedData.writeInt64(this.f985id);
     }
 }

@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
@@ -30,7 +29,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.NotificationCenter;
@@ -110,7 +109,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         }
 
         public ActionBarPopupWindowLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
-            this(context, C0890R.C0891drawable.popup_fixed_alert2, resourcesProvider);
+            this(context, C0952R.C0953drawable.popup_fixed_alert2, resourcesProvider);
         }
 
         public ActionBarPopupWindowLayout(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
@@ -171,9 +170,9 @@ public class ActionBarPopupWindow extends PopupWindow {
                         for (int i7 = 0; i7 < childCount; i7++) {
                             View childAt = getChildAt(i7);
                             if (childAt.getVisibility() != 8) {
-                                Object tag = childAt.getTag(C0890R.C0892id.width_tag);
-                                Object tag2 = childAt.getTag(C0890R.C0892id.object_tag);
-                                Object tag3 = childAt.getTag(C0890R.C0892id.fit_width_tag);
+                                Object tag = childAt.getTag(C0952R.C0954id.width_tag);
+                                Object tag2 = childAt.getTag(C0952R.C0954id.object_tag);
+                                Object tag3 = childAt.getTag(C0952R.C0954id.fit_width_tag);
                                 if (tag != null) {
                                     childAt.getLayoutParams().width = -2;
                                 }
@@ -469,7 +468,7 @@ public class ActionBarPopupWindow extends PopupWindow {
             for (int i2 = 0; i2 < childCount; i2++) {
                 View childAt2 = this.linearLayout.getChildAt(i2);
                 if (childAt2.getVisibility() == 0) {
-                    Object tag = childAt2.getTag(C0890R.C0892id.object_tag);
+                    Object tag = childAt2.getTag(C0952R.C0954id.object_tag);
                     if (childAt2 instanceof ActionBarMenuSubItem) {
                         ((ActionBarMenuSubItem) childAt2).updateSelectorBackground(childAt2 == view || z, childAt2 == view2);
                     }
@@ -786,28 +785,22 @@ public class ActionBarPopupWindow extends PopupWindow {
     }
 
     public static class GapView extends FrameLayout {
-        String colorKey;
-        Paint paint = new Paint();
-        int color = 0;
+        Theme.ResourcesProvider resourcesProvider;
 
-        public GapView(Context context, String str) {
+        public GapView(Context context, Theme.ResourcesProvider resourcesProvider, String str) {
             super(context);
-            this.colorKey = str;
+            this.resourcesProvider = resourcesProvider;
+            setBackgroundColor(getThemedColor(str));
         }
 
-        @Override
-        protected void onDraw(Canvas canvas) {
-            int i = this.color;
-            if (i == 0) {
-                this.paint.setColor(Theme.getColor(this.colorKey));
-            } else {
-                this.paint.setColor(i);
-            }
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.paint);
+        private int getThemedColor(String str) {
+            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+            Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
+            return color != null ? color.intValue() : Theme.getColor(str);
         }
 
         public void setColor(int i) {
-            this.color = i;
+            setBackgroundColor(i);
         }
     }
 }

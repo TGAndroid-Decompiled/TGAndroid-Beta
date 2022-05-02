@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.Emoji;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.LayoutHelper;
@@ -36,16 +36,16 @@ public class EmojiReplacementCell extends FrameLayout {
         this.emoji = str;
         this.imageView.setImageDrawable(Emoji.getEmojiBigDrawable(str));
         if (i == -1) {
-            setBackgroundResource(C0890R.C0891drawable.stickers_back_left);
+            setBackgroundResource(C0952R.C0953drawable.stickers_back_left);
             setPadding(AndroidUtilities.m34dp(7.0f), 0, 0, 0);
         } else if (i == 0) {
-            setBackgroundResource(C0890R.C0891drawable.stickers_back_center);
+            setBackgroundResource(C0952R.C0953drawable.stickers_back_center);
             setPadding(0, 0, 0, 0);
         } else if (i == 1) {
-            setBackgroundResource(C0890R.C0891drawable.stickers_back_right);
+            setBackgroundResource(C0952R.C0953drawable.stickers_back_right);
             setPadding(0, 0, AndroidUtilities.m34dp(7.0f), 0);
         } else if (i == 2) {
-            setBackgroundResource(C0890R.C0891drawable.stickers_back_all);
+            setBackgroundResource(C0952R.C0953drawable.stickers_back_all);
             setPadding(AndroidUtilities.m34dp(3.0f), 0, AndroidUtilities.m34dp(3.0f), 0);
         }
         Drawable background = getBackground();

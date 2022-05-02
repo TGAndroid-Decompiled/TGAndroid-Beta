@@ -4,7 +4,7 @@ public class TLRPC$TL_channelAdminLogEvent extends TLObject {
     public static int constructor = 531458253;
     public TLRPC$ChannelAdminLogEventAction action;
     public int date;
-    public long f878id;
+    public long f889id;
     public long user_id;
 
     public static TLRPC$TL_channelAdminLogEvent TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -21,7 +21,7 @@ public class TLRPC$TL_channelAdminLogEvent extends TLObject {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f878id = abstractSerializedData.readInt64(z);
+        this.f889id = abstractSerializedData.readInt64(z);
         this.date = abstractSerializedData.readInt32(z);
         this.user_id = abstractSerializedData.readInt64(z);
         this.action = TLRPC$ChannelAdminLogEventAction.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -30,7 +30,7 @@ public class TLRPC$TL_channelAdminLogEvent extends TLObject {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f878id);
+        abstractSerializedData.writeInt64(this.f889id);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeInt64(this.user_id);
         this.action.serializeToStream(abstractSerializedData);

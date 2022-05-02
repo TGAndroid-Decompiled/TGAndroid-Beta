@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.ImageLocation;
@@ -90,7 +90,7 @@ public class MessageSeenView extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.iconView = imageView;
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
-        Drawable mutate = ContextCompat.getDrawable(context, this.isVoice ? C0890R.C0891drawable.msg_played : C0890R.C0891drawable.msg_seen).mutate();
+        Drawable mutate = ContextCompat.getDrawable(context, this.isVoice ? C0952R.C0953drawable.msg_played : C0952R.C0953drawable.msg_seen).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultSubmenuItemIcon"), PorterDuff.Mode.MULTIPLY));
         this.iconView.setImageDrawable(mutate);
         this.avatarsImageView.setAlpha(0.0f);
@@ -146,7 +146,7 @@ public class MessageSeenView extends FrameLayout {
                 tLRPC$TL_channels_getParticipants.limit = MessagesController.getInstance(i).chatReadMarkSizeThreshold;
                 tLRPC$TL_channels_getParticipants.offset = 0;
                 tLRPC$TL_channels_getParticipants.filter = new TLRPC$TL_channelParticipantsRecent();
-                tLRPC$TL_channels_getParticipants.channel = MessagesController.getInstance(i).getInputChannel(tLRPC$Chat.f843id);
+                tLRPC$TL_channels_getParticipants.channel = MessagesController.getInstance(i).getInputChannel(tLRPC$Chat.f854id);
                 ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_channels_getParticipants, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
@@ -155,7 +155,7 @@ public class MessageSeenView extends FrameLayout {
                 });
             } else {
                 TLRPC$TL_messages_getFullChat tLRPC$TL_messages_getFullChat = new TLRPC$TL_messages_getFullChat();
-                tLRPC$TL_messages_getFullChat.chat_id = tLRPC$Chat.f843id;
+                tLRPC$TL_messages_getFullChat.chat_id = tLRPC$Chat.f854id;
                 ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_getFullChat, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
@@ -183,7 +183,7 @@ public class MessageSeenView extends FrameLayout {
             for (int i2 = 0; i2 < tLRPC$TL_channels_channelParticipants.users.size(); i2++) {
                 TLRPC$User tLRPC$User = tLRPC$TL_channels_channelParticipants.users.get(i2);
                 MessagesController.getInstance(i).putUser(tLRPC$User, false);
-                hashMap.put(Long.valueOf(tLRPC$User.f974id), tLRPC$User);
+                hashMap.put(Long.valueOf(tLRPC$User.f985id), tLRPC$User);
             }
             for (int i3 = 0; i3 < arrayList.size(); i3++) {
                 this.peerIds.add((Long) arrayList.get(i3));
@@ -208,7 +208,7 @@ public class MessageSeenView extends FrameLayout {
             for (int i2 = 0; i2 < tLRPC$TL_messages_chatFull.users.size(); i2++) {
                 TLRPC$User tLRPC$User = tLRPC$TL_messages_chatFull.users.get(i2);
                 MessagesController.getInstance(i).putUser(tLRPC$User, false);
-                hashMap.put(Long.valueOf(tLRPC$User.f974id), tLRPC$User);
+                hashMap.put(Long.valueOf(tLRPC$User.f985id), tLRPC$User);
             }
             for (int i3 = 0; i3 < arrayList.size(); i3++) {
                 this.peerIds.add((Long) arrayList.get(i3));
@@ -270,7 +270,7 @@ public class MessageSeenView extends FrameLayout {
         if (this.peerIds.size() == 1 && this.users.get(0) != null) {
             this.titleView.setText(ContactsController.formatName(this.users.get(0).first_name, this.users.get(0).last_name));
         } else if (this.peerIds.size() == 0) {
-            this.titleView.setText(LocaleController.getString("NobodyViewed", C0890R.string.NobodyViewed));
+            this.titleView.setText(LocaleController.getString("NobodyViewed", C0952R.string.NobodyViewed));
         } else {
             this.titleView.setText(LocaleController.formatPluralString(this.isVoice ? "MessagePlayed" : "MessageSeen", this.peerIds.size()));
         }

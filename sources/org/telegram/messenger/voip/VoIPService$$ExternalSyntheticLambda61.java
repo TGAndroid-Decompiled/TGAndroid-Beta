@@ -8,6 +8,6 @@ public final class VoIPService$$ExternalSyntheticLambda61 implements Runnable {
 
     @Override
     public final void run() {
-        VoIPService.lambda$acceptIncomingCall$67();
+        VoIPService.lambda$startOutgoingCall$5();
     }
 }

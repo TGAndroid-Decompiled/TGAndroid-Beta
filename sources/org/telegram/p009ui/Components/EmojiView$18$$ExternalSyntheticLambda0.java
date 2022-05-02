@@ -13,6 +13,6 @@ public final class EmojiView$18$$ExternalSyntheticLambda0 implements RequestDele
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        EmojiView.C191618.lambda$sendReorder$0(tLObject, tLRPC$TL_error);
+        EmojiView.C198518.lambda$sendReorder$0(tLObject, tLRPC$TL_error);
     }
 }

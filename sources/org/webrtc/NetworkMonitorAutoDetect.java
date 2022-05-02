@@ -22,7 +22,7 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.webrtc.NetworkChangeDetector;
 import org.webrtc.NetworkMonitorAutoDetect;
 
@@ -499,12 +499,12 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
                 case 17:
                     return NetworkChangeDetector.ConnectionType.CONNECTION_3G;
                 case 13:
-                case C0890R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
+                case C0952R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
                     return NetworkChangeDetector.ConnectionType.CONNECTION_4G;
-                case C0890R.styleable.MapAttrs_uiTiltGestures:
+                case C0952R.styleable.MapAttrs_uiTiltGestures:
                 default:
                     return NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN_CELLULAR;
-                case C0890R.styleable.MapAttrs_uiZoomControls:
+                case C0952R.styleable.MapAttrs_uiZoomControls:
                     return NetworkChangeDetector.ConnectionType.CONNECTION_5G;
             }
         } else if (i == 1) {

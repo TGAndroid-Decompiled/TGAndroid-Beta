@@ -29,10 +29,10 @@ public class SnowflakesEffect {
         float scale;
         int type;
         float velocity;
-        float f1073vx;
-        float f1074vy;
-        float f1075x;
-        float f1076y;
+        float f1090vx;
+        float f1091vy;
+        float f1092x;
+        float f1093y;
 
         private Particle() {
         }
@@ -89,14 +89,14 @@ public class SnowflakesEffect {
                 SnowflakesEffect.this.bitmapPaint.setAlpha((int) (this.alpha * 255.0f));
                 canvas.save();
                 float f6 = this.scale;
-                canvas.scale(f6, f6, this.f1075x, this.f1076y);
+                canvas.scale(f6, f6, this.f1092x, this.f1093y);
                 SnowflakesEffect snowflakesEffect2 = SnowflakesEffect.this;
-                canvas.drawBitmap(snowflakesEffect2.particleBitmap, this.f1075x, this.f1076y, snowflakesEffect2.bitmapPaint);
+                canvas.drawBitmap(snowflakesEffect2.particleBitmap, this.f1092x, this.f1093y, snowflakesEffect2.bitmapPaint);
                 canvas.restore();
                 return;
             }
             SnowflakesEffect.this.particlePaint.setAlpha((int) (this.alpha * 255.0f));
-            canvas.drawPoint(this.f1075x, this.f1076y, SnowflakesEffect.this.particlePaint);
+            canvas.drawPoint(this.f1092x, this.f1093y, SnowflakesEffect.this.particlePaint);
         }
     }
 
@@ -158,12 +158,12 @@ public class SnowflakesEffect {
                 } else if (f2 - f < 2000.0f) {
                     particle.alpha = AndroidUtilities.decelerateInterpolator.getInterpolation((f2 - f) / 2000.0f);
                 }
-                float f3 = particle.f1075x;
-                float f4 = particle.f1073vx;
+                float f3 = particle.f1092x;
+                float f4 = particle.f1090vx;
                 float f5 = particle.velocity;
                 float f6 = (float) j;
-                particle.f1075x = f3 + (((f4 * f5) * f6) / 500.0f);
-                particle.f1076y += ((particle.f1074vy * f5) * f6) / 500.0f;
+                particle.f1092x = f3 + (((f4 * f5) * f6) / 500.0f);
+                particle.f1093y += ((particle.f1091vy * f5) * f6) / 500.0f;
                 particle.currentTime += f6;
             }
             i++;
@@ -197,10 +197,10 @@ public class SnowflakesEffect {
                         } else {
                             particle = new Particle();
                         }
-                        particle.f1075x = nextFloat;
-                        particle.f1076y = nextFloat2;
-                        particle.f1073vx = cos;
-                        particle.f1074vy = sin;
+                        particle.f1092x = nextFloat;
+                        particle.f1093y = nextFloat2;
+                        particle.f1090vx = cos;
+                        particle.f1091vy = sin;
                         particle.alpha = 0.0f;
                         particle.currentTime = 0.0f;
                         particle.scale = Utilities.random.nextFloat() * 1.2f;

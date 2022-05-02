@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.concurrent.CountDownLatch;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipException;
+import org.telegram.messenger.FilePathDatabase;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
@@ -89,7 +90,7 @@ public class FileLoadOperation {
     private boolean isCdn;
     private boolean isForceRequest;
     private boolean isPreloadVideoOperation;
-    private byte[] f798iv;
+    private byte[] f807iv;
     private byte[] key;
     protected long lastProgressUpdateTime;
     protected TLRPC$InputFileLocation location;
@@ -102,6 +103,7 @@ public class FileLoadOperation {
     private volatile ArrayList<Range> notLoadedBytesRangesCopy;
     private ArrayList<Range> notRequestedBytesRanges;
     public Object parentObject;
+    public FilePathDatabase.PathData pathSaveData;
     private volatile boolean paused;
     private boolean preloadFinished;
     private int preloadNotRequestedBytesCount;
@@ -122,6 +124,7 @@ public class FileLoadOperation {
     private boolean reuploadingCdn;
     private boolean started;
     private volatile int state;
+    private String storeFileName;
     private File storePath;
     private ArrayList<FileLoadOperationStream> streamListeners;
     private int streamPriorityStartOffset;
@@ -140,6 +143,8 @@ public class FileLoadOperation {
         void didFailedLoadingFile(FileLoadOperation fileLoadOperation, int i);
 
         void didFinishLoadingFile(FileLoadOperation fileLoadOperation, File file);
+
+        void saveFilePath(FilePathDatabase.PathData pathData, File file);
     }
 
     public static class RequestInfo {
@@ -195,33 +200,33 @@ public class FileLoadOperation {
 
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData, boolean z2) {
-                    this.f861id = abstractSerializedData.readInt64(z2);
+                    this.f872id = abstractSerializedData.readInt64(z2);
                     this.access_hash = abstractSerializedData.readInt64(z2);
                 }
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
                     abstractSerializedData.writeInt32(constructor);
-                    abstractSerializedData.writeInt64(this.f861id);
+                    abstractSerializedData.writeInt64(this.f872id);
                     abstractSerializedData.writeInt64(this.access_hash);
                 }
             };
             this.location = tLRPC$TL_inputEncryptedFileLocation;
             TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = imageLocation.location;
             long j = tLRPC$TL_fileLocationToBeDeprecated.volume_id;
-            tLRPC$TL_inputEncryptedFileLocation.f861id = j;
+            tLRPC$TL_inputEncryptedFileLocation.f872id = j;
             tLRPC$TL_inputEncryptedFileLocation.volume_id = j;
             tLRPC$TL_inputEncryptedFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated.local_id;
             tLRPC$TL_inputEncryptedFileLocation.access_hash = imageLocation.access_hash;
             byte[] bArr = new byte[32];
-            this.f798iv = bArr;
-            System.arraycopy(imageLocation.f801iv, 0, bArr, 0, bArr.length);
+            this.f807iv = bArr;
+            System.arraycopy(imageLocation.f812iv, 0, bArr, 0, bArr.length);
             this.key = imageLocation.key;
         } else if (imageLocation.photoPeer != null) {
             TLRPC$TL_inputPeerPhotoFileLocation tLRPC$TL_inputPeerPhotoFileLocation = new TLRPC$TL_inputPeerPhotoFileLocation();
             TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated2 = imageLocation.location;
             long j2 = tLRPC$TL_fileLocationToBeDeprecated2.volume_id;
-            tLRPC$TL_inputPeerPhotoFileLocation.f861id = j2;
+            tLRPC$TL_inputPeerPhotoFileLocation.f872id = j2;
             tLRPC$TL_inputPeerPhotoFileLocation.volume_id = j2;
             tLRPC$TL_inputPeerPhotoFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated2.local_id;
             tLRPC$TL_inputPeerPhotoFileLocation.photo_id = imageLocation.photoId;
@@ -232,7 +237,7 @@ public class FileLoadOperation {
             TLRPC$TL_inputStickerSetThumb tLRPC$TL_inputStickerSetThumb = new TLRPC$TL_inputStickerSetThumb();
             TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated3 = imageLocation.location;
             long j3 = tLRPC$TL_fileLocationToBeDeprecated3.volume_id;
-            tLRPC$TL_inputStickerSetThumb.f861id = j3;
+            tLRPC$TL_inputStickerSetThumb.f872id = j3;
             tLRPC$TL_inputStickerSetThumb.volume_id = j3;
             tLRPC$TL_inputStickerSetThumb.local_id = tLRPC$TL_fileLocationToBeDeprecated3.local_id;
             tLRPC$TL_inputStickerSetThumb.thumb_version = imageLocation.thumbVersion;
@@ -242,7 +247,7 @@ public class FileLoadOperation {
             if (imageLocation.photoId != 0) {
                 TLRPC$TL_inputPhotoFileLocation tLRPC$TL_inputPhotoFileLocation = new TLRPC$TL_inputPhotoFileLocation();
                 this.location = tLRPC$TL_inputPhotoFileLocation;
-                tLRPC$TL_inputPhotoFileLocation.f861id = imageLocation.photoId;
+                tLRPC$TL_inputPhotoFileLocation.f872id = imageLocation.photoId;
                 TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated4 = imageLocation.location;
                 tLRPC$TL_inputPhotoFileLocation.volume_id = tLRPC$TL_fileLocationToBeDeprecated4.volume_id;
                 tLRPC$TL_inputPhotoFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated4.local_id;
@@ -255,7 +260,7 @@ public class FileLoadOperation {
             } else {
                 TLRPC$TL_inputDocumentFileLocation tLRPC$TL_inputDocumentFileLocation = new TLRPC$TL_inputDocumentFileLocation();
                 this.location = tLRPC$TL_inputDocumentFileLocation;
-                tLRPC$TL_inputDocumentFileLocation.f861id = imageLocation.documentId;
+                tLRPC$TL_inputDocumentFileLocation.f872id = imageLocation.documentId;
                 TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated5 = imageLocation.location;
                 tLRPC$TL_inputDocumentFileLocation.volume_id = tLRPC$TL_fileLocationToBeDeprecated5.volume_id;
                 tLRPC$TL_inputDocumentFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated5.local_id;
@@ -318,20 +323,20 @@ public class FileLoadOperation {
 
             @Override
             public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-                this.f861id = abstractSerializedData.readInt64(z);
+                this.f872id = abstractSerializedData.readInt64(z);
                 this.access_hash = abstractSerializedData.readInt64(z);
             }
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
                 abstractSerializedData.writeInt32(constructor);
-                abstractSerializedData.writeInt64(this.f861id);
+                abstractSerializedData.writeInt64(this.f872id);
                 abstractSerializedData.writeInt64(this.access_hash);
             }
         };
         this.location = tLRPC$TL_inputSecureFileLocation;
         TLRPC$TL_secureFile tLRPC$TL_secureFile = secureDocument.secureFile;
-        tLRPC$TL_inputSecureFileLocation.f861id = tLRPC$TL_secureFile.f960id;
+        tLRPC$TL_inputSecureFileLocation.f872id = tLRPC$TL_secureFile.f971id;
         tLRPC$TL_inputSecureFileLocation.access_hash = tLRPC$TL_secureFile.access_hash;
         this.datacenterId = tLRPC$TL_secureFile.dc_id;
         this.totalBytesCount = tLRPC$TL_secureFile.size;
@@ -395,11 +400,12 @@ public class FileLoadOperation {
         return this.priority;
     }
 
-    public void setPaths(int i, String str, int i2, File file, File file2) {
+    public void setPaths(int i, String str, int i2, File file, File file2, String str2) {
         this.storePath = file;
         this.tempPath = file2;
         this.currentAccount = i;
         this.fileName = str;
+        this.storeFileName = str2;
         this.currentQueueType = i2;
     }
 
@@ -923,6 +929,8 @@ public class FileLoadOperation {
     }
 
     private void onFinishLoadingFile(final boolean z) {
+        int lastIndexOf;
+        String str;
         if (this.state == 1) {
             this.state = 3;
             cleanup();
@@ -975,6 +983,19 @@ public class FileLoadOperation {
                             }
                         } else {
                             try {
+                                if (this.pathSaveData != null) {
+                                    this.cacheFileFinal = new File(this.storePath, this.storeFileName);
+                                    int i = 1;
+                                    while (this.cacheFileFinal.exists()) {
+                                        if (this.storeFileName.lastIndexOf(46) > 0) {
+                                            str = this.storeFileName.substring(0, lastIndexOf) + " (" + i + ")" + this.storeFileName.substring(lastIndexOf);
+                                        } else {
+                                            str = this.storeFileName + " (" + i + ")";
+                                        }
+                                        this.cacheFileFinal = new File(this.storePath, str);
+                                        i++;
+                                    }
+                                }
                                 z2 = this.cacheFileTemp.renameTo(this.cacheFileFinal);
                             } catch (Exception e2) {
                                 FileLog.m30e(e2);
@@ -984,9 +1005,9 @@ public class FileLoadOperation {
                             if (BuildVars.LOGS_ENABLED) {
                                 FileLog.m32e("unable to rename temp = " + this.cacheFileTemp + " to final = " + this.cacheFileFinal + " retry = " + this.renameRetryCount);
                             }
-                            int i = this.renameRetryCount + 1;
-                            this.renameRetryCount = i;
-                            if (i < 3) {
+                            int i2 = this.renameRetryCount + 1;
+                            this.renameRetryCount = i2;
+                            if (i2 < 3) {
                                 this.state = 1;
                                 Utilities.stageQueue.postRunnable(new Runnable() {
                                     @Override
@@ -998,6 +1019,9 @@ public class FileLoadOperation {
                             }
                             this.cacheFileFinal = this.cacheFileTemp;
                         }
+                        if (this.pathSaveData != null && this.cacheFileFinal.exists()) {
+                            this.delegate.saveFilePath(this.pathSaveData, this.cacheFileFinal);
+                        }
                     } else {
                         onFail(false, 0);
                         return;
@@ -1007,14 +1031,14 @@ public class FileLoadOperation {
                     FileLog.m33d("finished downloading file to " + this.cacheFileFinal);
                 }
                 if (z) {
-                    int i2 = this.currentType;
-                    if (i2 == 50331648) {
+                    int i3 = this.currentType;
+                    if (i3 == 50331648) {
                         StatsController.getInstance(this.currentAccount).incrementReceivedItemsCount(ApplicationLoader.getCurrentNetworkType(), 3, 1);
-                    } else if (i2 == 33554432) {
+                    } else if (i3 == 33554432) {
                         StatsController.getInstance(this.currentAccount).incrementReceivedItemsCount(ApplicationLoader.getCurrentNetworkType(), 2, 1);
-                    } else if (i2 == 16777216) {
+                    } else if (i3 == 16777216) {
                         StatsController.getInstance(this.currentAccount).incrementReceivedItemsCount(ApplicationLoader.getCurrentNetworkType(), 4, 1);
-                    } else if (i2 == 67108864) {
+                    } else if (i3 == 67108864) {
                         StatsController.getInstance(this.currentAccount).incrementReceivedItemsCount(ApplicationLoader.getCurrentNetworkType(), 5, 1);
                     }
                 }

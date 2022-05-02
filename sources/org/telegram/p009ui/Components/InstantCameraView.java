@@ -54,6 +54,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -66,7 +67,7 @@ import javax.microedition.khronos.egl.EGLSurface;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -96,7 +97,7 @@ import org.telegram.tgnet.TLRPC$InputEncryptedFile;
 import org.telegram.tgnet.TLRPC$InputFile;
 import org.webrtc.EglBase;
 
-@TargetApi(C0890R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom)
+@TargetApi(C0952R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom)
 public class InstantCameraView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private float animationTranslationY;
     private AnimatorSet animatorSet;
@@ -116,7 +117,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     boolean isInPinchToZoomTouchMode;
     private boolean isMessageTransition;
     private boolean isSecretChat;
-    private byte[] f1035iv;
+    private byte[] f1049iv;
     private byte[] key;
     private Bitmap lastBitmap;
     private float[] mMVPMatrix;
@@ -174,7 +175,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     @SuppressLint({"ClickableViewAccessibility"})
     public InstantCameraView(Context context, ChatActivity chatActivity, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.aspectRatio = SharedConfig.roundCamera16to9 ? new Size(16, 9) : new Size(4, 3);
+        this.aspectRatio = SharedConfig.roundCamera16to9 ? new Size(1, 1) : new Size(4, 3);
         this.mMVPMatrix = new float[16];
         this.mSTMatrix = new float[16];
         this.moldSTMatrix = new float[16];
@@ -214,7 +215,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             this.cameraContainer = instantViewCameraContainer;
             instantViewCameraContainer.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
-                @TargetApi(C0890R.styleable.MapAttrs_uiZoomGestures)
+                @TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
                 public void getOutline(View view, Outline outline) {
                     outline.setOval(0, 0, InstantCameraView.this.textureViewSize, InstantCameraView.this.textureViewSize);
                 }
@@ -261,7 +262,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         ImageView imageView = new ImageView(context);
         this.switchCameraButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.switchCameraButton.setContentDescription(LocaleController.getString("AccDescrSwitchCamera", C0890R.string.AccDescrSwitchCamera));
+        this.switchCameraButton.setContentDescription(LocaleController.getString("AccDescrSwitchCamera", C0952R.string.AccDescrSwitchCamera));
         addView(this.switchCameraButton, LayoutHelper.createFrame(62, 62.0f, 83, 8.0f, 0.0f, 0.0f, 0.0f));
         this.switchCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -272,7 +273,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         ImageView imageView2 = new ImageView(context);
         this.muteImageView = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        this.muteImageView.setImageResource(C0890R.C0891drawable.video_mute);
+        this.muteImageView.setImageResource(C0952R.C0953drawable.video_mute);
         this.muteImageView.setAlpha(0.0f);
         addView(this.muteImageView, LayoutHelper.createFrame(48, 48, 17));
         final Paint paint3 = new Paint(1);
@@ -424,7 +425,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 this.size = ((Long) objArr[5]).longValue();
                 if (this.encryptedFile != null) {
                     this.key = (byte[]) objArr[3];
-                    this.f1035iv = (byte[]) objArr[4];
+                    this.f1049iv = (byte[]) objArr[4];
                 }
             }
         }
@@ -518,11 +519,11 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     public void showCamera() {
         if (this.textureView == null) {
             if (Build.VERSION.SDK_INT >= 21) {
-                AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) ContextCompat.getDrawable(getContext(), C0890R.C0891drawable.avd_flip);
+                AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) ContextCompat.getDrawable(getContext(), C0952R.C0953drawable.avd_flip);
                 this.switchCameraDrawable = animatedVectorDrawable;
                 this.switchCameraButton.setImageDrawable(animatedVectorDrawable);
             } else {
-                this.switchCameraButton.setImageResource(C0890R.C0891drawable.vd_flip);
+                this.switchCameraButton.setImageResource(C0952R.C0953drawable.vd_flip);
             }
             this.textureOverlayView.setAlpha(1.0f);
             this.textureOverlayView.invalidate();
@@ -536,7 +537,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             if (bitmap != null) {
                 this.textureOverlayView.setImageBitmap(bitmap);
             } else {
-                this.textureOverlayView.setImageResource(C0890R.C0891drawable.icplaceholder);
+                this.textureOverlayView.setImageResource(C0952R.C0953drawable.icplaceholder);
             }
             this.cameraReady = false;
             this.isFrontface = true;
@@ -547,7 +548,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             this.file = null;
             this.encryptedFile = null;
             this.key = null;
-            this.f1035iv = null;
+            this.f1049iv = null;
             this.needDrawFlickerStub = true;
             if (initCamera()) {
                 MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
@@ -755,7 +756,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     this.file = null;
                     this.encryptedFile = null;
                     this.key = null;
-                    this.f1035iv = null;
+                    this.f1049iv = null;
                     VideoEditedInfo videoEditedInfo = this.videoEditedInfo;
                     long j = videoEditedInfo.estimatedDuration;
                     double d = j;
@@ -793,7 +794,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 videoEditedInfo3.file = this.file;
                 videoEditedInfo3.encryptedFile = this.encryptedFile;
                 videoEditedInfo3.key = this.key;
-                videoEditedInfo3.f822iv = this.f1035iv;
+                videoEditedInfo3.f833iv = this.f1049iv;
                 this.baseFragment.sendMedia(new MediaController.PhotoEntry(0, 0, 0L, this.cameraFile.getAbsolutePath(), 0, true, 0, 0, 0L), this.videoEditedInfo, z, i2, false);
                 if (i2 != 0) {
                     startAnimation(false);
@@ -951,8 +952,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
         ArrayList<Size> previewSizes = cameraInfo3.getPreviewSizes();
         ArrayList<Size> pictureSizes = this.selectedCamera.getPictureSizes();
-        this.previewSize = CameraController.chooseOptimalSize(previewSizes, 480, 270, this.aspectRatio);
-        Size chooseOptimalSize = CameraController.chooseOptimalSize(pictureSizes, 480, 270, this.aspectRatio);
+        this.previewSize = chooseOptimalSize(previewSizes);
+        Size chooseOptimalSize = chooseOptimalSize(pictureSizes);
         this.pictureSize = chooseOptimalSize;
         if (this.previewSize.mWidth != chooseOptimalSize.mWidth) {
             for (int size = previewSizes.size() - 1; size >= 0; size--) {
@@ -1007,16 +1008,39 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         return true;
     }
 
+    private Size chooseOptimalSize(ArrayList<Size> arrayList) {
+        ArrayList arrayList2 = new ArrayList();
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (Math.max(arrayList.get(i).mHeight, arrayList.get(i).mHeight) <= 1200 && Math.min(arrayList.get(i).mHeight, arrayList.get(i).mHeight) >= 320) {
+                arrayList2.add(arrayList.get(i));
+            }
+        }
+        if (arrayList2.isEmpty() || SharedConfig.getDevicePerformanceClass() == 0) {
+            return CameraController.chooseOptimalSize(arrayList, 480, 270, this.aspectRatio);
+        }
+        Collections.sort(arrayList2, InstantCameraView$$ExternalSyntheticLambda6.INSTANCE);
+        return (Size) arrayList2.get(0);
+    }
+
+    public static int lambda$chooseOptimalSize$2(Size size, Size size2) {
+        float min = Math.min(size.mHeight, size.mWidth) / Math.max(size.mHeight, size.mWidth);
+        float min2 = Math.min(size2.mHeight, size2.mWidth) / Math.max(size2.mHeight, size2.mWidth);
+        if (min < min2) {
+            return 1;
+        }
+        return min > min2 ? -1 : 0;
+    }
+
     public void createCamera(final SurfaceTexture surfaceTexture) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                InstantCameraView.this.lambda$createCamera$4(surfaceTexture);
+                InstantCameraView.this.lambda$createCamera$5(surfaceTexture);
             }
         });
     }
 
-    public void lambda$createCamera$4(SurfaceTexture surfaceTexture) {
+    public void lambda$createCamera$5(SurfaceTexture surfaceTexture) {
         if (this.cameraThread != null) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.m33d("create camera session");
@@ -1028,18 +1052,18 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             CameraController.getInstance().openRound(this.cameraSession, surfaceTexture, new Runnable() {
                 @Override
                 public final void run() {
-                    InstantCameraView.this.lambda$createCamera$2();
+                    InstantCameraView.this.lambda$createCamera$3();
                 }
             }, new Runnable() {
                 @Override
                 public final void run() {
-                    InstantCameraView.this.lambda$createCamera$3();
+                    InstantCameraView.this.lambda$createCamera$4();
                 }
             });
         }
     }
 
-    public void lambda$createCamera$2() {
+    public void lambda$createCamera$3() {
         if (this.cameraSession != null) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.m33d("camera initied");
@@ -1048,7 +1072,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
     }
 
-    public void lambda$createCamera$3() {
+    public void lambda$createCamera$4() {
         this.cameraThread.setCurrentSession(this.cameraSession);
     }
 
@@ -1080,11 +1104,11 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
         Timer timer2 = new Timer();
         this.progressTimer = timer2;
-        timer2.schedule(new C204410(), 0L, 17L);
+        timer2.schedule(new C211310(), 0L, 17L);
     }
 
-    public class C204410 extends TimerTask {
-        C204410() {
+    public class C211310 extends TimerTask {
+        C211310() {
         }
 
         @Override
@@ -1092,7 +1116,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    InstantCameraView.C204410.this.lambda$run$0();
+                    InstantCameraView.C211310.this.lambda$run$0();
                 }
             });
         }
@@ -1332,7 +1356,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
 
         public void reinitForNewCamera() {
-            Handler handler = InstantCameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(2), 0);
             }
@@ -1360,7 +1384,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
 
         public void setCurrentSession(CameraSession cameraSession) {
-            Handler handler = InstantCameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(3, cameraSession), 0);
             }
@@ -1450,8 +1474,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     InstantCameraView.this.cameraReady = false;
                     GLES20.glGenTextures(1, InstantCameraView.this.cameraTexture, 0);
                     GLES20.glBindTexture(36197, InstantCameraView.this.cameraTexture[0]);
-                    GLES20.glTexParameteri(36197, 10241, 9729);
-                    GLES20.glTexParameteri(36197, 10240, 9729);
+                    GLES20.glTexParameteri(36197, 10241, 9728);
+                    GLES20.glTexParameteri(36197, 10240, 9728);
                     GLES20.glTexParameteri(36197, 10242, 33071);
                     GLES20.glTexParameteri(36197, 10243, 33071);
                     SurfaceTexture surfaceTexture2 = new SurfaceTexture(InstantCameraView.this.cameraTexture[0]);
@@ -1490,14 +1514,14 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
 
         public void shutdown(int i) {
-            Handler handler = InstantCameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(1, i, 0), 0);
             }
         }
 
         public void requestRender() {
-            Handler handler = InstantCameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(0, this.cameraId), 0);
             }
@@ -1634,16 +1658,16 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             this.lastCameraId = 0;
             this.buffers = new ArrayBlockingQueue<>(10);
             this.keyframeThumbs = new ArrayList<>();
-            this.recorderRunnable = new RunnableC20551();
+            this.recorderRunnable = new RunnableC21241();
         }
 
-        public class RunnableC20551 implements Runnable {
-            RunnableC20551() {
+        public class RunnableC21241 implements Runnable {
+            RunnableC21241() {
             }
 
             @Override
             public void run() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.InstantCameraView.VideoRecorder.RunnableC20551.run():void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.InstantCameraView.VideoRecorder.RunnableC21241.run():void");
             }
 
             public void lambda$run$0(double d) {
@@ -1857,7 +1881,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             InstantCameraView.this.videoEditedInfo.file = InstantCameraView.this.file;
             InstantCameraView.this.videoEditedInfo.encryptedFile = InstantCameraView.this.encryptedFile;
             InstantCameraView.this.videoEditedInfo.key = InstantCameraView.this.key;
-            InstantCameraView.this.videoEditedInfo.f822iv = InstantCameraView.this.f1035iv;
+            InstantCameraView.this.videoEditedInfo.f833iv = InstantCameraView.this.f1049iv;
             InstantCameraView.this.videoEditedInfo.estimatedSize = Math.max(1L, InstantCameraView.this.size);
             InstantCameraView.this.videoEditedInfo.framerate = 25;
             VideoEditedInfo videoEditedInfo = InstantCameraView.this.videoEditedInfo;
@@ -1961,7 +1985,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
 
         public void prepareEncoder() {
             try {
-                int minBufferSize = AudioRecord.getMinBufferSize(44100, 16, 2);
+                int minBufferSize = AudioRecord.getMinBufferSize(48000, 16, 2);
                 if (minBufferSize <= 0) {
                     minBufferSize = 3584;
                 }
@@ -1972,7 +1996,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 for (int i2 = 0; i2 < 3; i2++) {
                     this.buffers.add(new AudioBufferInfo());
                 }
-                AudioRecord audioRecord = new AudioRecord(0, 44100, 16, 2, i);
+                AudioRecord audioRecord = new AudioRecord(0, 48000, 16, 2, i);
                 this.audioRecorder = audioRecord;
                 audioRecord.startRecording();
                 if (BuildVars.LOGS_ENABLED) {
@@ -1985,7 +2009,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 this.videoBufferInfo = new MediaCodec.BufferInfo();
                 MediaFormat mediaFormat = new MediaFormat();
                 mediaFormat.setString("mime", MediaController.AUIDO_MIME_TYPE);
-                mediaFormat.setInteger("sample-rate", 44100);
+                mediaFormat.setInteger("sample-rate", 48000);
                 mediaFormat.setInteger("channel-count", 1);
                 mediaFormat.setInteger("bitrate", MessagesController.getInstance(InstantCameraView.this.currentAccount).roundAudioBitrate * 1024);
                 mediaFormat.setInteger("max-input-size", 20480);
@@ -2043,7 +2067,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                                 } else {
                                     GLES20.glBlendFunc(770, 771);
                                     int loadShader = InstantCameraView.this.loadShader(35633, "uniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n   gl_Position = uMVPMatrix * aPosition;\n   vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n}\n");
-                                    int loadShader2 = InstantCameraView.this.loadShader(35632, "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform float scaleX;\nuniform float scaleY;\nuniform float alpha;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec2 coord = vec2((vTextureCoord.x - 0.5) * scaleX, (vTextureCoord.y - 0.5) * scaleY);\n   float coef = ceil(clamp(0.2601 - dot(coord, coord), 0.0, 1.0));\n   vec3 color = texture2D(sTexture, vTextureCoord).rgb * coef + (1.0 - step(0.001, coef));\n   gl_FragColor = vec4(color * alpha, alpha);\n}\n");
+                                    InstantCameraView instantCameraView = InstantCameraView.this;
+                                    int loadShader2 = instantCameraView.loadShader(35632, instantCameraView.createFragmentShader(instantCameraView.previewSize));
                                     if (!(loadShader == 0 || loadShader2 == 0)) {
                                         int glCreateProgram = GLES20.glCreateProgram();
                                         this.drawProgram = glCreateProgram;
@@ -2308,6 +2333,13 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
     }
 
+    public String createFragmentShader(Size size) {
+        if (SharedConfig.getDevicePerformanceClass() == 0 || Math.max(size.getHeight(), size.getWidth()) * 0.7f < MessagesController.getInstance(this.currentAccount).roundVideoSize) {
+            return "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform float scaleX;\nuniform float scaleY;\nuniform float alpha;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec2 coord = vec2((vTextureCoord.x - 0.5) * scaleX, (vTextureCoord.y - 0.5) * scaleY);\n   float coef = ceil(clamp(0.2601 - dot(coord, coord), 0.0, 1.0));\n   vec3 color = texture2D(sTexture, vTextureCoord).rgb * coef + (1.0 - step(0.001, coef));\n   gl_FragColor = vec4(color * alpha, alpha);\n}\n";
+        }
+        return "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform float scaleX;\nuniform float scaleY;\nuniform float alpha;\nconst float kernel = 1.0;\nconst float pixelSizeX = 1.0 / " + size.getWidth() + ".0;\nconst float pixelSizeY = 1.0 / " + size.getHeight() + ".0;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec3 accumulation = vec3(0);\n   vec3 weightsum = vec3(0);\n   for (float x = -kernel; x <= kernel; x++){\n       for (float y = -kernel; y <= kernel; y++){\n           accumulation += texture2D(sTexture, vTextureCoord + vec2(x * pixelSizeX, y * pixelSizeY)).xyz;\n           weightsum += 1.0;\n       }\n   }\n   vec4 textColor = vec4(accumulation / weightsum, 1.0);\n   vec2 coord = vec2((vTextureCoord.x - 0.5) * scaleX, (vTextureCoord.y - 0.5) * scaleY);\n   float coef = ceil(clamp(0.2601 - dot(coord, coord), 0.0, 1.0));\n   vec3 color = textColor.rgb * coef + (1.0 - step(0.001, coef));\n   gl_FragColor = vec4(color * alpha, alpha);\n}\n";
+    }
+
     public class InstantViewCameraContainer extends FrameLayout {
         float imageProgress;
         ImageReceiver imageReceiver;
@@ -2448,7 +2480,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        InstantCameraView.this.lambda$finishZoom$5(valueAnimator);
+                        InstantCameraView.this.lambda$finishZoom$6(valueAnimator);
                     }
                 });
                 this.finishZoomTransition.addListener(new AnimatorListenerAdapter() {
@@ -2467,7 +2499,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
     }
 
-    public void lambda$finishZoom$5(ValueAnimator valueAnimator) {
+    public void lambda$finishZoom$6(ValueAnimator valueAnimator) {
         CameraSession cameraSession = this.cameraSession;
         if (cameraSession != null) {
             cameraSession.setZoom(((Float) valueAnimator.getAnimatedValue()).floatValue());

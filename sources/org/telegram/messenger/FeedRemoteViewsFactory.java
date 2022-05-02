@@ -81,28 +81,28 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
     @Override
     public RemoteViews getViewAt(int i) {
         MessageObject messageObject = this.messages.get(i);
-        RemoteViews remoteViews = new RemoteViews(this.mContext.getPackageName(), (int) C0890R.layout.feed_widget_item);
+        RemoteViews remoteViews = new RemoteViews(this.mContext.getPackageName(), (int) C0952R.layout.feed_widget_item);
         if (messageObject.type == 0) {
-            remoteViews.setTextViewText(C0890R.C0892id.feed_widget_item_text, messageObject.messageText);
-            remoteViews.setViewVisibility(C0890R.C0892id.feed_widget_item_text, 0);
+            remoteViews.setTextViewText(C0952R.C0954id.feed_widget_item_text, messageObject.messageText);
+            remoteViews.setViewVisibility(C0952R.C0954id.feed_widget_item_text, 0);
         } else if (TextUtils.isEmpty(messageObject.caption)) {
-            remoteViews.setViewVisibility(C0890R.C0892id.feed_widget_item_text, 8);
+            remoteViews.setViewVisibility(C0952R.C0954id.feed_widget_item_text, 8);
         } else {
-            remoteViews.setTextViewText(C0890R.C0892id.feed_widget_item_text, messageObject.caption);
-            remoteViews.setViewVisibility(C0890R.C0892id.feed_widget_item_text, 0);
+            remoteViews.setTextViewText(C0952R.C0954id.feed_widget_item_text, messageObject.caption);
+            remoteViews.setViewVisibility(C0952R.C0954id.feed_widget_item_text, 0);
         }
         ArrayList<TLRPC$PhotoSize> arrayList = messageObject.photoThumbs;
         if (arrayList == null || arrayList.isEmpty()) {
-            remoteViews.setViewVisibility(C0890R.C0892id.feed_widget_item_image, 8);
+            remoteViews.setViewVisibility(C0952R.C0954id.feed_widget_item_image, 8);
         } else {
-            File pathToAttach = FileLoader.getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize()));
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize()));
             if (pathToAttach.exists()) {
-                remoteViews.setViewVisibility(C0890R.C0892id.feed_widget_item_image, 0);
-                Uri uriForFile = FileProvider.getUriForFile(this.mContext, "org.telegram.messenger.web.provider", pathToAttach);
+                remoteViews.setViewVisibility(C0952R.C0954id.feed_widget_item_image, 0);
+                Uri uriForFile = FileProvider.getUriForFile(this.mContext, "org.telegram.messenger.beta.provider", pathToAttach);
                 grantUriAccessToWidget(this.mContext, uriForFile);
-                remoteViews.setImageViewUri(C0890R.C0892id.feed_widget_item_image, uriForFile);
+                remoteViews.setImageViewUri(C0952R.C0954id.feed_widget_item_image, uriForFile);
             } else {
-                remoteViews.setViewVisibility(C0890R.C0892id.feed_widget_item_image, 8);
+                remoteViews.setViewVisibility(C0952R.C0954id.feed_widget_item_image, 8);
             }
         }
         Bundle bundle = new Bundle();
@@ -111,7 +111,7 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
         bundle.putInt("currentAccount", this.accountInstance.getCurrentAccount());
         Intent intent = new Intent();
         intent.putExtras(bundle);
-        remoteViews.setOnClickFillInIntent(C0890R.C0892id.shortcut_widget_item, intent);
+        remoteViews.setOnClickFillInIntent(C0952R.C0954id.shortcut_widget_item, intent);
         return remoteViews;
     }
 

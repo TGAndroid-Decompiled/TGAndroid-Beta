@@ -5,7 +5,7 @@ public class TLRPC$TL_audio_layer45 extends TLRPC$Audio {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f839id = abstractSerializedData.readInt64(z);
+        this.f850id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.date = abstractSerializedData.readInt32(z);
         this.duration = abstractSerializedData.readInt32(z);
@@ -17,7 +17,7 @@ public class TLRPC$TL_audio_layer45 extends TLRPC$Audio {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f839id);
+        abstractSerializedData.writeInt64(this.f850id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeInt32(this.duration);

@@ -59,7 +59,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         TLRPC$TL_document tLRPC$TL_document = new TLRPC$TL_document();
         this.document = tLRPC$TL_document;
         tLRPC$TL_document.access_hash = Utilities.parseLong(this.uri.getQueryParameter("hash")).longValue();
-        this.document.f850id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
+        this.document.f861id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
         this.document.size = Utilities.parseInt(this.uri.getQueryParameter("size")).intValue();
         this.document.dc_id = Utilities.parseInt(this.uri.getQueryParameter("dc")).intValue();
         this.document.mime_type = this.uri.getQueryParameter("mime");

@@ -10,6 +10,6 @@ public final class AndroidUtilities$$ExternalSyntheticLambda6 implements OnSucce
 
     @Override
     public final void onSuccess(Object obj) {
-        AndroidUtilities.lambda$setWaitingForSms$3((Void) obj);
+        AndroidUtilities.lambda$setWaitingForSms$5((Void) obj);
     }
 }

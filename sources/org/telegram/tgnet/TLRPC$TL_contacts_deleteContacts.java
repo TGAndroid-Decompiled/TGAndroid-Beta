@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_contacts_deleteContacts extends TLObject {
     public static int constructor = 157945344;
-    public ArrayList<TLRPC$InputUser> f889id = new ArrayList<>();
+    public ArrayList<TLRPC$InputUser> f900id = new ArrayList<>();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -15,10 +15,10 @@ public class TLRPC$TL_contacts_deleteContacts extends TLObject {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(481674261);
-        int size = this.f889id.size();
+        int size = this.f900id.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.f889id.get(i).serializeToStream(abstractSerializedData);
+            this.f900id.get(i).serializeToStream(abstractSerializedData);
         }
     }
 }

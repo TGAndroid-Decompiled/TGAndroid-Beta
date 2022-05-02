@@ -43,7 +43,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FingerprintController;
 import org.telegram.messenger.LocaleController;
@@ -56,7 +56,7 @@ import org.telegram.p009ui.Components.PasscodeView;
 import org.telegram.tgnet.ConnectionsManager;
 
 public class PasscodeView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    private static final int[] ids = {C0890R.C0892id.passcode_btn_0, C0890R.C0892id.passcode_btn_1, C0890R.C0892id.passcode_btn_2, C0890R.C0892id.passcode_btn_3, C0890R.C0892id.passcode_btn_4, C0890R.C0892id.passcode_btn_5, C0890R.C0892id.passcode_btn_6, C0890R.C0892id.passcode_btn_7, C0890R.C0892id.passcode_btn_8, C0890R.C0892id.passcode_btn_9, C0890R.C0892id.passcode_btn_backspace, C0890R.C0892id.passcode_btn_fingerprint};
+    private static final int[] ids = {C0952R.C0954id.passcode_btn_0, C0952R.C0954id.passcode_btn_1, C0952R.C0954id.passcode_btn_2, C0952R.C0954id.passcode_btn_3, C0952R.C0954id.passcode_btn_4, C0952R.C0954id.passcode_btn_5, C0952R.C0954id.passcode_btn_6, C0952R.C0954id.passcode_btn_7, C0952R.C0954id.passcode_btn_8, C0952R.C0954id.passcode_btn_9, C0952R.C0954id.passcode_btn_backspace, C0952R.C0954id.passcode_btn_fingerprint};
     private Drawable backgroundDrawable;
     private FrameLayout backgroundFrameLayout;
     private CancellationSignal cancellationSignal;
@@ -458,7 +458,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         addView(this.backgroundFrameLayout, LayoutHelper.createFrame(-1, -1.0f));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
-        rLottieImageView.setAnimation(C0890R.raw.passcode_lock_close, 58, 58);
+        rLottieImageView.setAnimation(C0952R.raw.passcode_lock_close, 58, 58);
         this.imageView.setAutoRepeat(false);
         addView(this.imageView, LayoutHelper.createFrame(58, 58, 51));
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -549,11 +549,11 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         });
         ImageView imageView = new ImageView(context);
         this.checkImage = imageView;
-        imageView.setImageResource(C0890R.C0891drawable.passcode_check);
+        imageView.setImageResource(C0952R.C0953drawable.passcode_check);
         this.checkImage.setScaleType(ImageView.ScaleType.CENTER);
-        this.checkImage.setBackgroundResource(C0890R.C0891drawable.bar_selector_lock);
+        this.checkImage.setBackgroundResource(C0952R.C0953drawable.bar_selector_lock);
         this.passwordFrameLayout.addView(this.checkImage, LayoutHelper.createFrame(60, 60.0f, 85, 0.0f, 0.0f, 10.0f, 4.0f));
-        this.checkImage.setContentDescription(LocaleController.getString("Done", C0890R.string.Done));
+        this.checkImage.setContentDescription(LocaleController.getString("Done", C0952R.string.Done));
         this.checkImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -562,11 +562,11 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         });
         ImageView imageView2 = new ImageView(context);
         this.fingerprintImage = imageView2;
-        imageView2.setImageResource(C0890R.C0891drawable.fingerprint);
+        imageView2.setImageResource(C0952R.C0953drawable.fingerprint);
         this.fingerprintImage.setScaleType(ImageView.ScaleType.CENTER);
-        this.fingerprintImage.setBackgroundResource(C0890R.C0891drawable.bar_selector_lock);
+        this.fingerprintImage.setBackgroundResource(C0952R.C0953drawable.bar_selector_lock);
         this.passwordFrameLayout.addView(this.fingerprintImage, LayoutHelper.createFrame(60, 60.0f, 83, 10.0f, 0.0f, 0.0f, 4.0f));
-        this.fingerprintImage.setContentDescription(LocaleController.getString("AccDescrFingerprint", C0890R.string.AccDescrFingerprint));
+        this.fingerprintImage.setContentDescription(LocaleController.getString("AccDescrFingerprint", C0952R.string.AccDescrFingerprint));
         this.fingerprintImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -637,12 +637,12 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         ImageView imageView3 = new ImageView(context);
         this.eraseView = imageView3;
         imageView3.setScaleType(ImageView.ScaleType.CENTER);
-        this.eraseView.setImageResource(C0890R.C0891drawable.passcode_delete);
+        this.eraseView.setImageResource(C0952R.C0953drawable.passcode_delete);
         this.numbersFrameLayout.addView(this.eraseView, LayoutHelper.createFrame(50, 50, 51));
         ImageView imageView4 = new ImageView(context);
         this.fingerprintView = imageView4;
         imageView4.setScaleType(ImageView.ScaleType.CENTER);
-        this.fingerprintView.setImageResource(C0890R.C0891drawable.fingerprint);
+        this.fingerprintView.setImageResource(C0952R.C0953drawable.fingerprint);
         this.fingerprintView.setVisibility(8);
         this.numbersFrameLayout.addView(this.fingerprintView, LayoutHelper.createFrame(50, 50, 51));
         checkFingerprintButton();
@@ -656,11 +656,11 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                         accessibilityNodeInfo.setClassName("android.widget.Button");
                     }
                 };
-                frameLayout5.setBackgroundResource(C0890R.C0891drawable.bar_selector_lock);
+                frameLayout5.setBackgroundResource(C0952R.C0953drawable.bar_selector_lock);
                 frameLayout5.setTag(Integer.valueOf(i5));
                 if (i5 == 11) {
-                    frameLayout5.setContentDescription(LocaleController.getString("AccDescrFingerprint", C0890R.string.AccDescrFingerprint));
-                    setNextFocus(frameLayout5, C0890R.C0892id.passcode_btn_0);
+                    frameLayout5.setContentDescription(LocaleController.getString("AccDescrFingerprint", C0952R.string.AccDescrFingerprint));
+                    setNextFocus(frameLayout5, C0952R.C0954id.passcode_btn_0);
                 } else if (i5 == 10) {
                     frameLayout5.setOnLongClickListener(new View.OnLongClickListener() {
                         @Override
@@ -670,18 +670,18 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                             return lambda$new$3;
                         }
                     });
-                    frameLayout5.setContentDescription(LocaleController.getString("AccDescrBackspace", C0890R.string.AccDescrBackspace));
-                    setNextFocus(frameLayout5, C0890R.C0892id.passcode_btn_1);
+                    frameLayout5.setContentDescription(LocaleController.getString("AccDescrBackspace", C0952R.string.AccDescrBackspace));
+                    setNextFocus(frameLayout5, C0952R.C0954id.passcode_btn_1);
                 } else {
                     frameLayout5.setContentDescription(i5 + "");
                     if (i5 == 0) {
-                        setNextFocus(frameLayout5, C0890R.C0892id.passcode_btn_backspace);
+                        setNextFocus(frameLayout5, C0952R.C0954id.passcode_btn_backspace);
                     } else if (i5 != 9) {
                         setNextFocus(frameLayout5, ids[i5 + 1]);
                     } else if (this.fingerprintView.getVisibility() == 0) {
-                        setNextFocus(frameLayout5, C0890R.C0892id.passcode_btn_fingerprint);
+                        setNextFocus(frameLayout5, C0952R.C0954id.passcode_btn_fingerprint);
                     } else {
-                        setNextFocus(frameLayout5, C0890R.C0892id.passcode_btn_0);
+                        setNextFocus(frameLayout5, C0952R.C0954id.passcode_btn_0);
                     }
                 }
                 frameLayout5.setId(ids[i5]);
@@ -911,7 +911,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             Double.isNaN(d);
             int max = Math.max(1, (int) Math.ceil(d / 1000.0d));
             if (max != this.lastValue) {
-                this.retryTextView.setText(LocaleController.formatString("TooManyTries", C0890R.string.TooManyTries, LocaleController.formatPluralString("Seconds", max)));
+                this.retryTextView.setText(LocaleController.formatString("TooManyTries", C0952R.string.TooManyTries, LocaleController.formatPluralString("Seconds", max)));
                 this.lastValue = max;
             }
             if (this.retryTextView.getVisibility() != 0) {
@@ -1032,7 +1032,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     textView.setId(1000);
                     textView.setTextAppearance(16974344);
                     textView.setTextColor(Theme.getColor("dialogTextBlack"));
-                    textView.setText(LocaleController.getString("FingerprintInfo", C0890R.string.FingerprintInfo));
+                    textView.setText(LocaleController.getString("FingerprintInfo", C0952R.string.FingerprintInfo));
                     relativeLayout.addView(textView);
                     RelativeLayout.LayoutParams createRelative = LayoutHelper.createRelative(-2, -2);
                     createRelative.addRule(10);
@@ -1040,13 +1040,13 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     textView.setLayoutParams(createRelative);
                     ImageView imageView = new ImageView(getContext());
                     this.fingerprintImageView = imageView;
-                    imageView.setImageResource(C0890R.C0891drawable.ic_fp_40px);
+                    imageView.setImageResource(C0952R.C0953drawable.ic_fp_40px);
                     this.fingerprintImageView.setId(1001);
                     relativeLayout.addView(this.fingerprintImageView, LayoutHelper.createRelative(-2.0f, -2.0f, 0, 20, 0, 0, 20, 3, 1000));
                     TextView textView2 = new TextView(getContext());
                     this.fingerprintStatusTextView = textView2;
                     textView2.setGravity(16);
-                    this.fingerprintStatusTextView.setText(LocaleController.getString("FingerprintHelp", C0890R.string.FingerprintHelp));
+                    this.fingerprintStatusTextView.setText(LocaleController.getString("FingerprintHelp", C0952R.string.FingerprintHelp));
                     this.fingerprintStatusTextView.setTextAppearance(16974320);
                     this.fingerprintStatusTextView.setTextColor(Theme.getColor("dialogTextBlack") & 1124073471);
                     relativeLayout.addView(this.fingerprintStatusTextView);
@@ -1057,9 +1057,9 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     createRelative2.addRule(17, 1001);
                     this.fingerprintStatusTextView.setLayoutParams(createRelative2);
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setTitle(LocaleController.getString("AppName", C0890R.string.AppName));
+                    builder.setTitle(LocaleController.getString("AppName", C0952R.string.AppName));
                     builder.setView(relativeLayout);
-                    builder.setNegativeButton(LocaleController.getString("Cancel", C0890R.string.Cancel), null);
+                    builder.setNegativeButton(LocaleController.getString("Cancel", C0952R.string.Cancel), null);
                     builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
@@ -1104,7 +1104,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
 
                         @Override
                         public void onAuthenticationFailed() {
-                            PasscodeView.this.showFingerprintError(LocaleController.getString("FingerprintNotRecognized", C0890R.string.FingerprintNotRecognized));
+                            PasscodeView.this.showFingerprintError(LocaleController.getString("FingerprintNotRecognized", C0952R.string.FingerprintNotRecognized));
                         }
 
                         @Override
@@ -1238,7 +1238,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 }
                 ((MotionBackgroundDrawable) this.backgroundDrawable).setParentView(this.backgroundFrameLayout);
             }
-            this.passcodeTextView.setText(LocaleController.getString("EnterYourTelegramPasscode", C0890R.string.EnterYourTelegramPasscode));
+            this.passcodeTextView.setText(LocaleController.getString("EnterYourTelegramPasscode", C0952R.string.EnterYourTelegramPasscode));
             int i3 = SharedConfig.passcodeType;
             if (i3 == 0) {
                 if (this.retryTextView.getVisibility() != 0) {
@@ -1265,7 +1265,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             this.passwordEditText2.eraseAllCharacters(false);
             if (z2) {
                 setAlpha(0.0f);
-                getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver$OnGlobalLayoutListenerC21209(i, i2, runnable));
+                getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver$OnGlobalLayoutListenerC21989(i, i2, runnable));
                 requestLayout();
             } else {
                 setAlpha(1.0f);
@@ -1281,12 +1281,12 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
     }
 
-    public class ViewTreeObserver$OnGlobalLayoutListenerC21209 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public class ViewTreeObserver$OnGlobalLayoutListenerC21989 implements ViewTreeObserver.OnGlobalLayoutListener {
         final Runnable val$onShow;
         final int val$x;
         final int val$y;
 
-        ViewTreeObserver$OnGlobalLayoutListenerC21209(int i, int i2, Runnable runnable) {
+        ViewTreeObserver$OnGlobalLayoutListenerC21989(int i, int i2, Runnable runnable) {
             this.val$x = i;
             this.val$y = i2;
             this.val$onShow = runnable;
@@ -1308,7 +1308,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PasscodeView.ViewTreeObserver$OnGlobalLayoutListenerC21209.this.lambda$onGlobalLayout$0();
+                    PasscodeView.ViewTreeObserver$OnGlobalLayoutListenerC21989.this.lambda$onGlobalLayout$0();
                 }
             }, 350L);
             AnimatorSet animatorSet2 = new AnimatorSet();
@@ -1425,7 +1425,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PasscodeView.ViewTreeObserver$OnGlobalLayoutListenerC21209.this.lambda$onGlobalLayout$1(max, valueAnimator);
+                        PasscodeView.ViewTreeObserver$OnGlobalLayoutListenerC21989.this.lambda$onGlobalLayout$1(max, valueAnimator);
                     }
                 });
                 animatorSet2.setInterpolator(Easings.easeInOutQuad);
@@ -1438,7 +1438,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             animatorSet2.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    Runnable runnable = ViewTreeObserver$OnGlobalLayoutListenerC21209.this.val$onShow;
+                    Runnable runnable = ViewTreeObserver$OnGlobalLayoutListenerC21989.this.val$onShow;
                     if (runnable != null) {
                         runnable.run();
                     }
@@ -1485,7 +1485,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     }
 
     public void showFingerprintError(CharSequence charSequence) {
-        this.fingerprintImageView.setImageResource(C0890R.C0891drawable.ic_fingerprint_error);
+        this.fingerprintImageView.setImageResource(C0952R.C0953drawable.ic_fingerprint_error);
         this.fingerprintStatusTextView.setText(charSequence);
         this.fingerprintStatusTextView.setTextColor(-765666);
         Vibrator vibrator = (Vibrator) getContext().getSystemService("vibrator");

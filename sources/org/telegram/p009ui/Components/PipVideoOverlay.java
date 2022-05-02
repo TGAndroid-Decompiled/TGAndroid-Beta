@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.PipVideoOverlay;
 import org.telegram.p009ui.LaunchActivity;
@@ -309,12 +309,12 @@ public class PipVideoOverlay {
         if (photoViewer != null && (videoPlayer = photoViewer.getVideoPlayer()) != null && this.playPauseButton != null) {
             AndroidUtilities.cancelRunOnUIThread(this.progressRunnable);
             if (videoPlayer.isPlaying()) {
-                this.playPauseButton.setImageResource(C0890R.C0891drawable.pip_pause_large);
+                this.playPauseButton.setImageResource(C0952R.C0953drawable.pip_pause_large);
                 AndroidUtilities.runOnUIThread(this.progressRunnable, 500L);
             } else if (this.isVideoCompleted) {
-                this.playPauseButton.setImageResource(C0890R.C0891drawable.pip_replay_large);
+                this.playPauseButton.setImageResource(C0952R.C0953drawable.pip_replay_large);
             } else {
-                this.playPauseButton.setImageResource(C0890R.C0891drawable.pip_play_large);
+                this.playPauseButton.setImageResource(C0952R.C0953drawable.pip_play_large);
             }
         }
     }
@@ -374,19 +374,19 @@ public class PipVideoOverlay {
                 float f3 = rect.width;
                 float f4 = pipX + (f3 / 2.0f);
                 int i = AndroidUtilities.displaySize.x;
-                rect.f1064x = f4 >= ((float) i) / 2.0f ? (i - f3) - AndroidUtilities.m34dp(16.0f) : AndroidUtilities.m34dp(16.0f);
+                rect.f1082x = f4 >= ((float) i) / 2.0f ? (i - f3) - AndroidUtilities.m34dp(16.0f) : AndroidUtilities.m34dp(16.0f);
             } else {
-                rect.f1064x = (AndroidUtilities.displaySize.x - rect.width) - AndroidUtilities.m34dp(16.0f);
+                rect.f1082x = (AndroidUtilities.displaySize.x - rect.width) - AndroidUtilities.m34dp(16.0f);
             }
             if (pipY != -1.0f) {
-                rect.f1065y = MathUtils.clamp(pipY, AndroidUtilities.m34dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.m34dp(16.0f)) - rect.height) + AndroidUtilities.statusBarHeight;
+                rect.f1083y = MathUtils.clamp(pipY, AndroidUtilities.m34dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.m34dp(16.0f)) - rect.height) + AndroidUtilities.statusBarHeight;
             } else {
-                rect.f1065y = AndroidUtilities.m34dp(16.0f) + AndroidUtilities.statusBarHeight;
+                rect.f1083y = AndroidUtilities.m34dp(16.0f) + AndroidUtilities.statusBarHeight;
             }
             return rect;
         }
-        rect.f1064x = pipVideoOverlay.pipX;
-        rect.f1065y = pipVideoOverlay.pipY + AndroidUtilities.statusBarHeight;
+        rect.f1082x = pipVideoOverlay.pipX;
+        rect.f1083y = pipVideoOverlay.pipY + AndroidUtilities.statusBarHeight;
         PipVideoOverlay pipVideoOverlay2 = instance;
         rect.width = pipVideoOverlay2.pipWidth;
         rect.height = pipVideoOverlay2.pipHeight;
@@ -430,7 +430,7 @@ public class PipVideoOverlay {
         });
         Context context = ApplicationLoader.applicationContext;
         int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new ScaleGestureDetector$OnScaleGestureListenerC21733());
+        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new ScaleGestureDetector$OnScaleGestureListenerC22513());
         this.scaleGestureDetector = scaleGestureDetector;
         int i4 = Build.VERSION.SDK_INT;
         if (i4 >= 19) {
@@ -439,7 +439,7 @@ public class PipVideoOverlay {
         if (i4 >= 23) {
             this.scaleGestureDetector.setStylusScaleEnabled(false);
         }
-        this.gestureDetector = new GestureDetectorCompat(context, new C21754(scaledTouchSlop));
+        this.gestureDetector = new GestureDetectorCompat(context, new C22534(scaledTouchSlop));
         this.contentFrameLayout = new FrameLayout(context) {
             private Path path = new Path();
 
@@ -574,7 +574,7 @@ public class PipVideoOverlay {
         this.controlsView.addView(view2, LayoutHelper.createFrame(-1, -1.0f));
         int dp = AndroidUtilities.m34dp(8.0f);
         ImageView imageView = new ImageView(context);
-        imageView.setImageResource(C0890R.C0891drawable.pip_video_close);
+        imageView.setImageResource(C0952R.C0953drawable.pip_video_close);
         imageView.setColorFilter(Theme.getColor("voipgroup_actionBarItems"), PorterDuff.Mode.MULTIPLY);
         imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
         imageView.setPadding(dp, dp, dp, dp);
@@ -583,7 +583,7 @@ public class PipVideoOverlay {
         float f2 = 4;
         this.controlsView.addView(imageView, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, f2, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        imageView2.setImageResource(C0890R.C0891drawable.pip_video_expand);
+        imageView2.setImageResource(C0952R.C0953drawable.pip_video_expand);
         imageView2.setColorFilter(Theme.getColor("voipgroup_actionBarItems"), PorterDuff.Mode.MULTIPLY);
         imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
         imageView2.setPadding(dp, dp, dp, dp);
@@ -663,8 +663,8 @@ public class PipVideoOverlay {
         getPipConfig().setPipY(f);
     }
 
-    public class ScaleGestureDetector$OnScaleGestureListenerC21733 implements ScaleGestureDetector.OnScaleGestureListener {
-        ScaleGestureDetector$OnScaleGestureListenerC21733() {
+    public class ScaleGestureDetector$OnScaleGestureListenerC22513 implements ScaleGestureDetector.OnScaleGestureListener {
+        ScaleGestureDetector$OnScaleGestureListenerC22513() {
         }
 
         @Override
@@ -678,7 +678,7 @@ public class PipVideoOverlay {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PipVideoOverlay.ScaleGestureDetector$OnScaleGestureListenerC21733.this.lambda$onScale$0();
+                    PipVideoOverlay.ScaleGestureDetector$OnScaleGestureListenerC22513.this.lambda$onScale$0();
                 }
             });
             float focusX = scaleGestureDetector.getFocusX();
@@ -727,7 +727,7 @@ public class PipVideoOverlay {
                         dynamicAnimation.removeEndListener(this);
                         arrayList.add((SpringAnimation) dynamicAnimation);
                         if (arrayList.size() == 2) {
-                            ScaleGestureDetector$OnScaleGestureListenerC21733.this.updateLayout();
+                            ScaleGestureDetector$OnScaleGestureListenerC22513.this.updateLayout();
                         }
                     }
                 };
@@ -764,12 +764,12 @@ public class PipVideoOverlay {
         }
     }
 
-    public class C21754 extends GestureDetector.SimpleOnGestureListener {
+    public class C22534 extends GestureDetector.SimpleOnGestureListener {
         private float startPipX;
         private float startPipY;
         final int val$touchSlop;
 
-        C21754(int i) {
+        C22534(int i) {
             this.val$touchSlop = i;
         }
 
@@ -856,7 +856,7 @@ public class PipVideoOverlay {
                         PipVideoOverlay.this.pipXSpring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                             @Override
                             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f5, float f6) {
-                                PipVideoOverlay.C21754.this.lambda$onScroll$0(rawX, dynamicAnimation, z, f5, f6);
+                                PipVideoOverlay.C22534.this.lambda$onScroll$0(rawX, dynamicAnimation, z, f5, f6);
                             }
                         });
                         PipVideoOverlay.this.pipXSpring.setStartValue(f3).getSpring().setFinalPosition(rawX);

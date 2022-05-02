@@ -19,9 +19,9 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.PhoneFormat.C0832PhoneFormat;
+import org.telegram.PhoneFormat.C0894PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -55,7 +55,7 @@ public class DrawerProfileCell extends FrameLayout {
     private Rect destRect = new Rect();
     private Paint paint = new Paint();
     private Paint backPaint = new Paint(1);
-    private RLottieDrawable sunDrawable = new RLottieDrawable(C0890R.raw.sun, "2131558524", AndroidUtilities.m34dp(28.0f), AndroidUtilities.m34dp(28.0f), true, null);
+    private RLottieDrawable sunDrawable = new RLottieDrawable(C0952R.raw.sun, "2131558524", AndroidUtilities.m34dp(28.0f), AndroidUtilities.m34dp(28.0f), true, null);
 
     public DrawerProfileCell(Context context, final DrawerLayoutContainer drawerLayoutContainer) {
         super(context);
@@ -63,7 +63,7 @@ public class DrawerProfileCell extends FrameLayout {
         this.shadowView = imageView;
         imageView.setVisibility(4);
         this.shadowView.setScaleType(ImageView.ScaleType.FIT_XY);
-        this.shadowView.setImageResource(C0890R.C0891drawable.bottom_shadow);
+        this.shadowView.setImageResource(C0952R.C0953drawable.bottom_shadow);
         addView(this.shadowView, LayoutHelper.createFrame(-1, 70, 83));
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
@@ -90,7 +90,7 @@ public class DrawerProfileCell extends FrameLayout {
         ImageView imageView2 = new ImageView(context);
         this.arrowView = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        this.arrowView.setImageResource(C0890R.C0891drawable.menu_expand);
+        this.arrowView.setImageResource(C0952R.C0953drawable.menu_expand);
         addView(this.arrowView, LayoutHelper.createFrame(59, 59, 85));
         setArrowState(false);
         if (Theme.isCurrentThemeDay()) {
@@ -105,9 +105,9 @@ public class DrawerProfileCell extends FrameLayout {
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (DrawerProfileCell.this.sunDrawable.getCustomEndFrame() != 0) {
-                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToNightTheme", C0890R.string.AccDescrSwitchToNightTheme));
+                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToNightTheme", C0952R.string.AccDescrSwitchToNightTheme));
                 } else {
-                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToDayTheme", C0890R.string.AccDescrSwitchToDayTheme));
+                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToDayTheme", C0952R.string.AccDescrSwitchToDayTheme));
                 }
             }
         };
@@ -302,7 +302,7 @@ public class DrawerProfileCell extends FrameLayout {
             setArrowState(false);
             this.nameTextView.setText(UserObject.getUserName(tLRPC$User));
             TextView textView = this.phoneTextView;
-            C0832PhoneFormat phoneFormat = C0832PhoneFormat.getInstance();
+            C0894PhoneFormat phoneFormat = C0894PhoneFormat.getInstance();
             textView.setText(phoneFormat.format("+" + tLRPC$User.phone));
             AvatarDrawable avatarDrawable = new AvatarDrawable(tLRPC$User);
             avatarDrawable.setColor(Theme.getColor("avatar_backgroundInProfileBlue"));
@@ -343,10 +343,10 @@ public class DrawerProfileCell extends FrameLayout {
         }
         ImageView imageView = this.arrowView;
         if (this.accountsShown) {
-            i = C0890R.string.AccDescrHideAccounts;
+            i = C0952R.string.AccDescrHideAccounts;
             str = "AccDescrHideAccounts";
         } else {
-            i = C0890R.string.AccDescrShowAccounts;
+            i = C0952R.string.AccDescrShowAccounts;
             str = "AccDescrShowAccounts";
         }
         imageView.setContentDescription(LocaleController.getString(str, i));

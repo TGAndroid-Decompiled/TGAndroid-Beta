@@ -12,6 +12,6 @@ public final class MessagesController$$ExternalSyntheticLambda344 implements Req
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        MessagesController.lambda$removeSuggestion$21(tLObject, tLRPC$TL_error);
+        MessagesController.lambda$markMessageContentAsRead$190(tLObject, tLRPC$TL_error);
     }
 }

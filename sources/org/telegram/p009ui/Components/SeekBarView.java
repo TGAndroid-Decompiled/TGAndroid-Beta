@@ -29,8 +29,8 @@ public class SeekBarView extends FrameLayout {
     private final Theme.ResourcesProvider resourcesProvider;
     private final SeekBarAccessibilityDelegate seekBarAccessibilityDelegate;
     private int selectorWidth;
-    float f1070sx;
-    float f1071sy;
+    float f1088sx;
+    float f1089sy;
     private int thumbDX;
     private int thumbSize;
     private int thumbX;
@@ -171,14 +171,14 @@ public class SeekBarView extends FrameLayout {
         Drawable drawable2;
         Drawable drawable3;
         if (motionEvent.getAction() == 0) {
-            this.f1070sx = motionEvent.getX();
-            this.f1071sy = motionEvent.getY();
+            this.f1088sx = motionEvent.getX();
+            this.f1089sy = motionEvent.getY();
             return true;
         }
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             this.captured = false;
             if (motionEvent.getAction() == 1) {
-                if (Math.abs(motionEvent.getY() - this.f1071sy) < ViewConfiguration.get(getContext()).getScaledTouchSlop()) {
+                if (Math.abs(motionEvent.getY() - this.f1089sy) < ViewConfiguration.get(getContext()).getScaledTouchSlop()) {
                     int measuredHeight = (getMeasuredHeight() - this.thumbSize) / 2;
                     if (this.thumbX - measuredHeight > motionEvent.getX() || motionEvent.getX() > this.thumbX + this.thumbSize + measuredHeight) {
                         int x = ((int) motionEvent.getX()) - (this.thumbSize / 2);
@@ -218,7 +218,7 @@ public class SeekBarView extends FrameLayout {
         } else if (motionEvent.getAction() == 2) {
             if (!this.captured) {
                 ViewConfiguration viewConfiguration = ViewConfiguration.get(getContext());
-                if (Math.abs(motionEvent.getY() - this.f1071sy) <= viewConfiguration.getScaledTouchSlop() && Math.abs(motionEvent.getX() - this.f1070sx) > viewConfiguration.getScaledTouchSlop()) {
+                if (Math.abs(motionEvent.getY() - this.f1089sy) <= viewConfiguration.getScaledTouchSlop() && Math.abs(motionEvent.getX() - this.f1088sx) > viewConfiguration.getScaledTouchSlop()) {
                     this.captured = true;
                     getParent().requestDisallowInterceptTouchEvent(true);
                     int measuredHeight2 = (getMeasuredHeight() - this.thumbSize) / 2;

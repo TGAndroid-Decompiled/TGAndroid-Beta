@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.SimpleTextView;
@@ -81,7 +81,7 @@ public class ManageChatUserCell extends FrameLayout {
             this.optionsButton = imageView;
             imageView.setFocusable(false);
             this.optionsButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("stickers_menuSelector")));
-            this.optionsButton.setImageResource(C0890R.C0891drawable.ic_ab_other);
+            this.optionsButton.setImageResource(C0952R.C0953drawable.ic_ab_other);
             this.optionsButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu"), PorterDuff.Mode.MULTIPLY));
             this.optionsButton.setScaleType(ImageView.ScaleType.CENTER);
             addView(this.optionsButton, LayoutHelper.createFrame(60, 64, (LocaleController.isRTL ? 3 : i3) | 48));
@@ -91,7 +91,7 @@ public class ManageChatUserCell extends FrameLayout {
                     ManageChatUserCell.this.lambda$new$0(view);
                 }
             });
-            this.optionsButton.setContentDescription(LocaleController.getString("AccDescrUserOptions", C0890R.string.AccDescrUserOptions));
+            this.optionsButton.setContentDescription(LocaleController.getString("AccDescrUserOptions", C0952R.string.AccDescrUserOptions));
         }
     }
 
@@ -239,7 +239,7 @@ public class ManageChatUserCell extends FrameLayout {
     public long getUserId() {
         Object obj = this.currentObject;
         if (obj instanceof TLRPC$User) {
-            return ((TLRPC$User) obj).f974id;
+            return ((TLRPC$User) obj).f985id;
         }
         return 0L;
     }

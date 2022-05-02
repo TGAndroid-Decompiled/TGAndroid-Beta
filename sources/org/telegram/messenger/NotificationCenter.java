@@ -41,6 +41,7 @@ public class NotificationCenter {
     public static final int configLoaded;
     public static final int contactsDidLoad;
     public static final int contactsImported;
+    public static final int currentUserPremiumStatusChanged;
     public static final int dialogDeleted;
     public static final int dialogFiltersUpdated;
     public static final int dialogPhotosLoaded;
@@ -857,16 +858,19 @@ public class NotificationCenter {
         int i205 = i204 + 1;
         totalEvents = i205;
         onRequestPermissionResultReceived = i204;
-        totalEvents = i205 + 1;
+        int i206 = i205 + 1;
+        totalEvents = i206;
         onUserRingtonesUpdated = i205;
+        totalEvents = i206 + 1;
+        currentUserPremiumStatusChanged = i206;
     }
 
     public static class DelayedPost {
         private Object[] args;
-        private int f810id;
+        private int f821id;
 
         private DelayedPost(int i, Object[] objArr) {
-            this.f810id = i;
+            this.f821id = i;
             this.args = objArr;
         }
     }
@@ -1001,7 +1005,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i = 0; i < this.delayedPostsTmp.size(); i++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i);
-                postNotificationNameInternal(delayedPost.f810id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f821id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }

@@ -36,7 +36,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
@@ -46,7 +46,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C0945ActionBar;
+import org.telegram.p009ui.ActionBar.C1006ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Adapters.SearchAdapterHelper;
@@ -394,14 +394,14 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
         this.allSpans.clear();
         this.selectedContacts.clear();
         this.currentDeletingSpan = null;
-        this.actionBar.setBackButtonImage(C0890R.C0891drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C0952R.C0953drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         if (this.isInclude) {
-            this.actionBar.setTitle(LocaleController.getString("FilterAlwaysShow", C0890R.string.FilterAlwaysShow));
+            this.actionBar.setTitle(LocaleController.getString("FilterAlwaysShow", C0952R.string.FilterAlwaysShow));
         } else {
-            this.actionBar.setTitle(LocaleController.getString("FilterNeverShow", C0890R.string.FilterNeverShow));
+            this.actionBar.setTitle(LocaleController.getString("FilterNeverShow", C0952R.string.FilterNeverShow));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C0945ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1006ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
@@ -516,7 +516,7 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
         int i2 = 5;
         this.editText.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         this.spansContainer.addView(this.editText);
-        this.editText.setHintText(LocaleController.getString("SearchForPeopleAndGroups", C0890R.string.SearchForPeopleAndGroups));
+        this.editText.setHintText(LocaleController.getString("SearchForPeopleAndGroups", C0952R.string.SearchForPeopleAndGroups));
         this.editText.setCustomSelectionActionModeCallback(new ActionMode.Callback(this) {
             @Override
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
@@ -595,7 +595,7 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
                         FilterUsersActivity.this.adapter.setSearching(true);
                         FilterUsersActivity.this.listView.setFastScrollVisible(false);
                         FilterUsersActivity.this.listView.setVerticalScrollBarEnabled(true);
-                        FilterUsersActivity.this.emptyView.setText(LocaleController.getString("NoResult", C0890R.string.NoResult));
+                        FilterUsersActivity.this.emptyView.setText(LocaleController.getString("NoResult", C0952R.string.NoResult));
                         FilterUsersActivity.this.emptyView.showProgress();
                     }
                     FilterUsersActivity.this.adapter.searchDialogs(FilterUsersActivity.this.editText.getText().toString());
@@ -611,7 +611,7 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
             this.emptyView.showTextView();
         }
         this.emptyView.setShowAtCenter(true);
-        this.emptyView.setText(LocaleController.getString("NoContacts", C0890R.string.NoContacts));
+        this.emptyView.setText(LocaleController.getString("NoContacts", C0952R.string.NoContacts));
         viewGroup2.addView(this.emptyView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         RecyclerListView recyclerListView = new RecyclerListView(context);
@@ -647,7 +647,7 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
         Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m34dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
         int i3 = Build.VERSION.SDK_INT;
         if (i3 < 21) {
-            Drawable mutate = context.getResources().getDrawable(C0890R.C0891drawable.floating_shadow).mutate();
+            Drawable mutate = context.getResources().getDrawable(C0952R.C0953drawable.floating_shadow).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
             combinedDrawable.setIconSize(AndroidUtilities.m34dp(56.0f), AndroidUtilities.m34dp(56.0f));
@@ -655,7 +655,7 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
         }
         this.floatingButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
         this.floatingButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chats_actionIcon"), PorterDuff.Mode.MULTIPLY));
-        this.floatingButton.setImageResource(C0890R.C0891drawable.floating_check);
+        this.floatingButton.setImageResource(C0952R.C0953drawable.floating_check);
         if (i3 >= 21) {
             StateListAnimator stateListAnimator = new StateListAnimator();
             ImageView imageView2 = this.floatingButton;
@@ -678,7 +678,7 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
                 FilterUsersActivity.this.lambda$createView$2(view);
             }
         });
-        this.floatingButton.setContentDescription(LocaleController.getString("Next", C0890R.string.Next));
+        this.floatingButton.setContentDescription(LocaleController.getString("Next", C0952R.string.Next));
         if (!this.isInclude) {
             i2 = 3;
         }
@@ -784,9 +784,9 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
                     this.filterFlags = i2 | this.filterFlags;
                 }
             } else if (object instanceof TLRPC$User) {
-                j = ((TLRPC$User) object).f974id;
+                j = ((TLRPC$User) object).f985id;
             } else if (object instanceof TLRPC$Chat) {
-                j = -((TLRPC$Chat) object).f843id;
+                j = -((TLRPC$Chat) object).f854id;
             } else {
                 return;
             }
@@ -962,9 +962,9 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
                             break;
                     }
                 } else if (object instanceof TLRPC$User) {
-                    j = ((TLRPC$User) object).f974id;
+                    j = ((TLRPC$User) object).f985id;
                 } else {
-                    j = object instanceof TLRPC$Chat ? -((TLRPC$Chat) object).f843id : 0L;
+                    j = object instanceof TLRPC$Chat ? -((TLRPC$Chat) object).f854id : 0L;
                 }
                 if (j != 0) {
                     groupCreateUserCell.setChecked(this.selectedContacts.indexOfKey(j) >= 0, true);
@@ -996,13 +996,13 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
         this.adapter.searchDialogs(null);
         this.listView.setFastScrollVisible(true);
         this.listView.setVerticalScrollBarEnabled(false);
-        this.emptyView.setText(LocaleController.getString("NoContacts", C0890R.string.NoContacts));
+        this.emptyView.setText(LocaleController.getString("NoContacts", C0952R.string.NoContacts));
     }
 
     public void updateHint() {
         int i = this.selectedCount;
         if (i == 0) {
-            this.actionBar.setSubtitle(LocaleController.formatString("MembersCountZero", C0890R.string.MembersCountZero, LocaleController.formatPluralString("Chats", 100)));
+            this.actionBar.setSubtitle(LocaleController.formatString("MembersCountZero", C0952R.string.MembersCountZero, LocaleController.formatPluralString("Chats", 100)));
         } else {
             this.actionBar.setSubtitle(String.format(LocaleController.getPluralString("MembersCountSelected", i), Integer.valueOf(this.selectedCount), 100));
         }
@@ -1035,9 +1035,9 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
             boolean z = false;
             for (int i = 0; i < size; i++) {
                 TLRPC$Dialog tLRPC$Dialog = allDialogs.get(i);
-                if (!DialogObject.isEncryptedDialog(tLRPC$Dialog.f849id)) {
-                    if (DialogObject.isUserDialog(tLRPC$Dialog.f849id)) {
-                        TLRPC$User user = FilterUsersActivity.this.getMessagesController().getUser(Long.valueOf(tLRPC$Dialog.f849id));
+                if (!DialogObject.isEncryptedDialog(tLRPC$Dialog.f860id)) {
+                    if (DialogObject.isUserDialog(tLRPC$Dialog.f860id)) {
+                        TLRPC$User user = FilterUsersActivity.this.getMessagesController().getUser(Long.valueOf(tLRPC$Dialog.f860id));
                         if (user != null) {
                             this.contacts.add(user);
                             if (UserObject.isUserSelf(user)) {
@@ -1045,7 +1045,7 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
                             }
                         }
                     } else {
-                        TLRPC$Chat chat = FilterUsersActivity.this.getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.f849id));
+                        TLRPC$Chat chat = FilterUsersActivity.this.getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.f860id));
                         if (chat != null) {
                             this.contacts.add(chat);
                         }
@@ -1244,9 +1244,9 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
                     strArr2[c] = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).toLowerCase();
                     str2 = tLRPC$User.username;
                     if (UserObject.isReplyUser(tLRPC$User)) {
-                        strArr2[2] = LocaleController.getString("RepliesTitle", C0890R.string.RepliesTitle).toLowerCase();
+                        strArr2[2] = LocaleController.getString("RepliesTitle", C0952R.string.RepliesTitle).toLowerCase();
                     } else if (tLRPC$User.self) {
-                        strArr2[2] = LocaleController.getString("SavedMessages", C0890R.string.SavedMessages).toLowerCase();
+                        strArr2[2] = LocaleController.getString("SavedMessages", C0952R.string.SavedMessages).toLowerCase();
                     }
                 } else {
                     TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;

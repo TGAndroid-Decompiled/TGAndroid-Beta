@@ -19,7 +19,7 @@ import android.view.View;
 import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.FileLog;
 import org.telegram.p009ui.ActionBar.Theme;
 
@@ -501,7 +501,7 @@ public class VideoTimelineView extends View {
     }
 
     public static class TimeHintView extends View {
-        private float f1085cx;
+        private float f1102cx;
         private float scale;
         private boolean show;
         private Drawable tooltipBackgroundArrow;
@@ -515,7 +515,7 @@ public class VideoTimelineView extends View {
             TextPaint textPaint = new TextPaint(1);
             this.tooltipPaint = textPaint;
             textPaint.setTextSize(AndroidUtilities.m34dp(14.0f));
-            this.tooltipBackgroundArrow = ContextCompat.getDrawable(context, C0890R.C0891drawable.tooltip_arrow);
+            this.tooltipBackgroundArrow = ContextCompat.getDrawable(context, C0952R.C0953drawable.tooltip_arrow);
             updateColors();
             setTime(0);
         }
@@ -566,8 +566,8 @@ public class VideoTimelineView extends View {
                 int i = (int) ((f5 > 0.5f ? 1.0f : f5 / 0.5f) * 255.0f);
                 canvas.save();
                 float f6 = this.scale;
-                canvas.scale(f6, f6, this.f1085cx, getMeasuredHeight());
-                canvas.translate(this.f1085cx - (this.tooltipLayout.getWidth() / 2.0f), 0.0f);
+                canvas.scale(f6, f6, this.f1102cx, getMeasuredHeight());
+                canvas.translate(this.f1102cx - (this.tooltipLayout.getWidth() / 2.0f), 0.0f);
                 this.tooltipBackground.setBounds(-AndroidUtilities.m34dp(8.0f), 0, this.tooltipLayout.getWidth() + AndroidUtilities.m34dp(8.0f), (int) (this.tooltipLayout.getHeight() + AndroidUtilities.dpf2(4.0f)));
                 this.tooltipBackgroundArrow.setBounds((this.tooltipLayout.getWidth() / 2) - (this.tooltipBackgroundArrow.getIntrinsicWidth() / 2), (int) (this.tooltipLayout.getHeight() + AndroidUtilities.dpf2(4.0f)), (this.tooltipLayout.getWidth() / 2) + (this.tooltipBackgroundArrow.getIntrinsicWidth() / 2), ((int) (this.tooltipLayout.getHeight() + AndroidUtilities.dpf2(4.0f))) + this.tooltipBackgroundArrow.getIntrinsicHeight());
                 this.tooltipBackgroundArrow.setAlpha(i);
@@ -588,7 +588,7 @@ public class VideoTimelineView extends View {
         }
 
         public void setCx(float f) {
-            this.f1085cx = f;
+            this.f1102cx = f;
             invalidate();
         }
 

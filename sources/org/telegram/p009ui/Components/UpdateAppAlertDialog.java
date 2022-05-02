@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
@@ -59,7 +59,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
             View view = new View(context);
             this.background = view;
             if (this.hasBackground) {
-                view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m34dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+                view.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
             }
             addView(this.background, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, z ? 0.0f : 16.0f, 16.0f, 16.0f));
             for (int i = 0; i < 2; i++) {
@@ -120,7 +120,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         setCanceledOnTouchOutside(false);
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
-        Drawable mutate = context.getResources().getDrawable(C0890R.C0891drawable.sheet_shadow_round).mutate();
+        Drawable mutate = context.getResources().getDrawable(C0952R.C0953drawable.sheet_shadow_round).mutate();
         this.shadowDrawable = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
         FrameLayout frameLayout = new FrameLayout(context) {
@@ -221,7 +221,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setText(LocaleController.getString("AppUpdate", C0890R.string.AppUpdate));
+        textView.setText(LocaleController.getString("AppUpdate", C0952R.string.AppUpdate));
         this.linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 49, 23, 16, 23, 0));
         TextView textView2 = new TextView(getContext());
         textView2.setTextColor(Theme.getColor("dialogTextGray3"));
@@ -229,7 +229,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         textView2.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
         textView2.setLinkTextColor(Theme.getColor("dialogTextLink"));
         TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate2 = this.appUpdate;
-        textView2.setText(LocaleController.formatString("AppUpdateVersionAndSize", C0890R.string.AppUpdateVersionAndSize, tLRPC$TL_help_appUpdate2.version, AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate2.document.size)));
+        textView2.setText(LocaleController.formatString("AppUpdateVersionAndSize", C0952R.string.AppUpdateVersionAndSize, tLRPC$TL_help_appUpdate2.version, AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate2.document.size)));
         textView2.setGravity(49);
         this.linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 49, 23, 0, 23, 5));
         TextView textView3 = new TextView(getContext());
@@ -238,7 +238,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         textView3.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
         textView3.setLinkTextColor(Theme.getColor("dialogTextLink"));
         if (TextUtils.isEmpty(this.appUpdate.text)) {
-            textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString("AppUpdateChangelogEmpty", C0890R.string.AppUpdateChangelogEmpty)));
+            textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString("AppUpdateChangelogEmpty", C0952R.string.AppUpdateChangelogEmpty)));
         } else {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.appUpdate.text);
             MessageObject.addEntitiesToText(spannableStringBuilder, tLRPC$TL_help_appUpdate.entities, false, false, false, false);
@@ -255,7 +255,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         this.shadow.setTag(1);
         frameLayout.addView(this.shadow, layoutParams);
         BottomSheetCell bottomSheetCell = new BottomSheetCell(context, false);
-        bottomSheetCell.setText(LocaleController.formatString("AppUpdateDownloadNow", C0890R.string.AppUpdateDownloadNow, new Object[0]), false);
+        bottomSheetCell.setText(LocaleController.formatString("AppUpdateDownloadNow", C0952R.string.AppUpdateDownloadNow, new Object[0]), false);
         bottomSheetCell.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -264,7 +264,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         });
         frameLayout.addView(bottomSheetCell, LayoutHelper.createFrame(-1, 50.0f, 83, 0.0f, 0.0f, 0.0f, 50.0f));
         BottomSheetCell bottomSheetCell2 = new BottomSheetCell(context, true);
-        bottomSheetCell2.setText(LocaleController.getString("AppUpdateRemindMeLater", C0890R.string.AppUpdateRemindMeLater), false);
+        bottomSheetCell2.setText(LocaleController.getString("AppUpdateRemindMeLater", C0952R.string.AppUpdateRemindMeLater), false);
         bottomSheetCell2.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {

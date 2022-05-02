@@ -38,7 +38,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$User;
 
-@TargetApi(C0890R.styleable.MapAttrs_uiZoomGestures)
+@TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
 public class MusicBrowserService extends MediaBrowserService implements NotificationCenter.NotificationCenterDelegate {
     public static final String ACTION_CMD = "com.example.android.mediabrowserservice.ACTION_CMD";
     public static final String CMD_NAME = "CMD_NAME";
@@ -154,7 +154,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                         byteBufferValue.reuse();
                         if (MessageObject.isMusicMessage(TLdeserialize)) {
                             long longValue2 = queryFinalized2.longValue(0);
-                            TLdeserialize.f866id = queryFinalized2.intValue(2);
+                            TLdeserialize.f877id = queryFinalized2.intValue(2);
                             TLdeserialize.dialog_id = longValue2;
                             ArrayList<MessageObject> arrayList3 = this.musicObjects.get(longValue2);
                             ArrayList<MediaSession.QueueItem> arrayList4 = this.musicQueues.get(longValue2);
@@ -180,7 +180,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                     messagesStorage.getUsersInternal(TextUtils.join(",", arrayList), arrayList5);
                     for (int i = 0; i < arrayList5.size(); i++) {
                         TLRPC$User tLRPC$User = arrayList5.get(i);
-                        this.users.put(tLRPC$User.f974id, tLRPC$User);
+                        this.users.put(tLRPC$User.f985id, tLRPC$User);
                     }
                 }
                 if (!arrayList2.isEmpty()) {
@@ -188,7 +188,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                     messagesStorage.getChatsInternal(TextUtils.join(",", arrayList2), arrayList6);
                     for (int i2 = 0; i2 < arrayList6.size(); i2++) {
                         TLRPC$Chat tLRPC$Chat = arrayList6.get(i2);
-                        this.chats.put(tLRPC$Chat.f843id, tLRPC$Chat);
+                        this.chats.put(tLRPC$Chat.f854id, tLRPC$Chat);
                     }
                 }
             }

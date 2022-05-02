@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TLRPC$TL_channels_reportSpam extends TLObject {
     public static int constructor = -196443371;
     public TLRPC$InputChannel channel;
-    public ArrayList<Integer> f885id = new ArrayList<>();
+    public ArrayList<Integer> f896id = new ArrayList<>();
     public TLRPC$InputPeer participant;
 
     @Override
@@ -19,10 +19,10 @@ public class TLRPC$TL_channels_reportSpam extends TLObject {
         this.channel.serializeToStream(abstractSerializedData);
         this.participant.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
-        int size = this.f885id.size();
+        int size = this.f896id.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt32(this.f885id.get(i).intValue());
+            abstractSerializedData.writeInt32(this.f896id.get(i).intValue());
         }
     }
 }

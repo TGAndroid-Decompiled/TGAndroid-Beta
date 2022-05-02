@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.CombinedDrawable;
 
@@ -17,13 +17,13 @@ public class ShadowSectionCell extends View {
 
     public ShadowSectionCell(Context context, int i) {
         super(context);
-        setBackgroundDrawable(Theme.getThemedDrawable(context, (int) C0890R.C0891drawable.greydivider, "windowBackgroundGrayShadow"));
+        setBackgroundDrawable(Theme.getThemedDrawable(context, (int) C0952R.C0953drawable.greydivider, "windowBackgroundGrayShadow"));
         this.size = i;
     }
 
     public ShadowSectionCell(Context context, int i, int i2) {
         super(context);
-        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(i2), Theme.getThemedDrawable(context, (int) C0890R.C0891drawable.greydivider, "windowBackgroundGrayShadow"), 0, 0);
+        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(i2), Theme.getThemedDrawable(context, (int) C0952R.C0953drawable.greydivider, "windowBackgroundGrayShadow"), 0, 0);
         combinedDrawable.setFullsize(true);
         setBackgroundDrawable(combinedDrawable);
         this.size = i;

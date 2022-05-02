@@ -24,7 +24,7 @@ import java.util.HashSet;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -33,7 +33,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
-import org.telegram.p009ui.ActionBar.C0945ActionBar;
+import org.telegram.p009ui.ActionBar.C1006ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Adapters.DialogsAdapter;
 import org.telegram.p009ui.Cells.ArchiveHintCell;
@@ -390,12 +390,12 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                 break;
             case 2:
                 HeaderCell headerCell2 = new HeaderCell(this.mContext);
-                headerCell2.setText(LocaleController.getString("RecentlyViewed", C0890R.string.RecentlyViewed));
+                headerCell2.setText(LocaleController.getString("RecentlyViewed", C0952R.string.RecentlyViewed));
                 TextView textView = new TextView(this.mContext);
                 textView.setTextSize(1, 15.0f);
                 textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
                 textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueHeader"));
-                textView.setText(LocaleController.getString("RecentlyViewedHide", C0890R.string.RecentlyViewedHide));
+                textView.setText(LocaleController.getString("RecentlyViewedHide", C0952R.string.RecentlyViewedHide));
                 int i2 = 3;
                 textView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
                 if (!LocaleController.isRTL) {
@@ -419,7 +419,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                 };
                 frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
                 View view2 = new View(this.mContext);
-                view2.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, (int) C0890R.C0891drawable.greydivider, "windowBackgroundGrayShadow"));
+                view2.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, (int) C0952R.C0953drawable.greydivider, "windowBackgroundGrayShadow"));
                 frameLayout.addView(view2, LayoutHelper.createFrame(-1, -1.0f));
                 headerCell = frameLayout;
                 break;
@@ -439,7 +439,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                 break;
             case 8:
                 view = new ShadowSectionCell(this.mContext);
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, (int) C0890R.C0891drawable.greydivider, "windowBackgroundGrayShadow"));
+                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, (int) C0952R.C0953drawable.greydivider, "windowBackgroundGrayShadow"));
                 combinedDrawable.setFullsize(true);
                 view.setBackgroundDrawable(combinedDrawable);
                 headerCell = view;
@@ -503,7 +503,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                         }
                     }
                 };
-                CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, (int) C0890R.C0891drawable.greydivider, "windowBackgroundGrayShadow"));
+                CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, (int) C0952R.C0953drawable.greydivider, "windowBackgroundGrayShadow"));
                 combinedDrawable2.setFullsize(true);
                 view.setBackgroundDrawable(combinedDrawable2);
                 headerCell = view;
@@ -546,8 +546,8 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
             if (i4 == 2) {
                 ProfileSearchCell profileSearchCell = (ProfileSearchCell) viewHolder.itemView;
                 long dialogId = profileSearchCell.getDialogId();
-                if (tLRPC$Dialog.f849id != 0) {
-                    TLRPC$Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.f849id));
+                if (tLRPC$Dialog.f860id != 0) {
+                    TLRPC$Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.f860id));
                     tLRPC$Chat = (chat2 == null || chat2.migrated_to == null || (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(chat2.migrated_to.channel_id))) == null) ? chat2 : chat;
                 } else {
                     tLRPC$Chat = null;
@@ -559,20 +559,20 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                         if (i5 != 0) {
                             charSequence = LocaleController.formatPluralStringComma("Members", i5);
                         } else if (tLRPC$Chat.has_geo) {
-                            charSequence = LocaleController.getString("MegaLocation", C0890R.string.MegaLocation);
+                            charSequence = LocaleController.getString("MegaLocation", C0952R.string.MegaLocation);
                         } else if (TextUtils.isEmpty(tLRPC$Chat.username)) {
-                            charSequence = LocaleController.getString("MegaPrivate", C0890R.string.MegaPrivate).toLowerCase();
+                            charSequence = LocaleController.getString("MegaPrivate", C0952R.string.MegaPrivate).toLowerCase();
                         } else {
-                            charSequence = LocaleController.getString("MegaPublic", C0890R.string.MegaPublic).toLowerCase();
+                            charSequence = LocaleController.getString("MegaPublic", C0952R.string.MegaPublic).toLowerCase();
                         }
                     } else {
                         int i6 = tLRPC$Chat.participants_count;
                         if (i6 != 0) {
                             charSequence = LocaleController.formatPluralStringComma("Subscribers", i6);
                         } else if (TextUtils.isEmpty(tLRPC$Chat.username)) {
-                            charSequence = LocaleController.getString("ChannelPrivate", C0890R.string.ChannelPrivate).toLowerCase();
+                            charSequence = LocaleController.getString("ChannelPrivate", C0952R.string.ChannelPrivate).toLowerCase();
                         } else {
-                            charSequence = LocaleController.getString("ChannelPublic", C0890R.string.ChannelPublic).toLowerCase();
+                            charSequence = LocaleController.getString("ChannelPublic", C0952R.string.ChannelPublic).toLowerCase();
                         }
                     }
                 } else {
@@ -592,13 +592,13 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                 dialogCell.useSeparator = tLRPC$Dialog2 != null;
                 dialogCell.fullSeparator = tLRPC$Dialog.pinned && tLRPC$Dialog2 != null && !tLRPC$Dialog2.pinned;
                 if (i4 == 0 && AndroidUtilities.isTablet()) {
-                    dialogCell.setDialogSelected(tLRPC$Dialog.f849id == this.openedDialogId);
+                    dialogCell.setDialogSelected(tLRPC$Dialog.f860id == this.openedDialogId);
                 }
-                dialogCell.setChecked(this.selectedDialogs.contains(Long.valueOf(tLRPC$Dialog.f849id)), false);
+                dialogCell.setChecked(this.selectedDialogs.contains(Long.valueOf(tLRPC$Dialog.f860id)), false);
                 dialogCell.setDialog(tLRPC$Dialog, this.dialogsType, this.folderId);
                 DialogsPreloader dialogsPreloader = this.preloader;
                 if (dialogsPreloader != null && i < 10) {
-                    dialogsPreloader.add(tLRPC$Dialog.f849id);
+                    dialogsPreloader.add(tLRPC$Dialog.f860id);
                 }
             }
         } else if (itemViewType == 14) {
@@ -610,18 +610,18 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                 MessagesController messagesController = AccountInstance.getInstance(this.currentAccount).getMessagesController();
                 if (messagesController.dialogsMyChannels.size() > 0) {
                     if (i == 0) {
-                        headerCell.setText(LocaleController.getString("MyChannels", C0890R.string.MyChannels));
+                        headerCell.setText(LocaleController.getString("MyChannels", C0952R.string.MyChannels));
                     }
                     i3 = 0 + messagesController.dialogsMyChannels.size() + 1;
                 }
                 if (messagesController.dialogsMyGroups.size() > 0) {
                     if (i == i3) {
-                        headerCell.setText(LocaleController.getString("MyGroups", C0890R.string.MyGroups));
+                        headerCell.setText(LocaleController.getString("MyGroups", C0952R.string.MyGroups));
                     }
                     i3 += messagesController.dialogsMyGroups.size() + 1;
                 }
                 if (messagesController.dialogsCanAddUsers.size() > 0 && i == i3) {
-                    headerCell.setText(LocaleController.getString("FilterGroups", C0890R.string.FilterGroups));
+                    headerCell.setText(LocaleController.getString("FilterGroups", C0952R.string.FilterGroups));
                 }
             } catch (Exception unused) {
             }
@@ -669,17 +669,17 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
             HeaderCell headerCell2 = (HeaderCell) viewHolder.itemView;
             int i9 = this.dialogsType;
             if (i9 != 11 && i9 != 12 && i9 != 13) {
-                headerCell2.setText(LocaleController.getString((this.dialogsCount != 0 || !this.forceUpdatingContacts) ? C0890R.string.YourContacts : C0890R.string.ConnectingYourContacts));
+                headerCell2.setText(LocaleController.getString((this.dialogsCount != 0 || !this.forceUpdatingContacts) ? C0952R.string.YourContacts : C0952R.string.ConnectingYourContacts));
             } else if (i == 0) {
-                headerCell2.setText(LocaleController.getString("ImportHeader", C0890R.string.ImportHeader));
+                headerCell2.setText(LocaleController.getString("ImportHeader", C0952R.string.ImportHeader));
             } else {
-                headerCell2.setText(LocaleController.getString("ImportHeaderContacts", C0890R.string.ImportHeaderContacts));
+                headerCell2.setText(LocaleController.getString("ImportHeaderContacts", C0952R.string.ImportHeaderContacts));
             }
         } else if (itemViewType == 11) {
             TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-            textInfoPrivacyCell.setText(LocaleController.getString("TapOnThePencil", C0890R.string.TapOnThePencil));
+            textInfoPrivacyCell.setText(LocaleController.getString("TapOnThePencil", C0952R.string.TapOnThePencil));
             if (this.arrowDrawable == null) {
-                Drawable drawable = this.mContext.getResources().getDrawable(C0890R.C0891drawable.arrow_newchat);
+                Drawable drawable = this.mContext.getResources().getDrawable(C0952R.C0953drawable.arrow_newchat);
                 this.arrowDrawable = drawable;
                 drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayText4"), PorterDuff.Mode.MULTIPLY));
             }
@@ -690,11 +690,11 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
         } else if (itemViewType == 12) {
             TextCell textCell = (TextCell) viewHolder.itemView;
             textCell.setColors("windowBackgroundWhiteBlueText4", "windowBackgroundWhiteBlueText4");
-            String string = LocaleController.getString("CreateGroupForImport", C0890R.string.CreateGroupForImport);
+            String string = LocaleController.getString("CreateGroupForImport", C0952R.string.CreateGroupForImport);
             if (this.dialogsCount != 0) {
                 z2 = true;
             }
-            textCell.setTextAndIcon(string, C0890R.C0891drawable.groups_create, z2);
+            textCell.setTextAndIcon(string, C0952R.C0953drawable.groups_create, z2);
             textCell.setIsInDialogs();
             textCell.setOffsetFromImage(75);
         }
@@ -820,9 +820,9 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                 c = 1;
             }
             MessagesController.DialogFilter dialogFilter = dialogFilterArr[c];
-            int i4 = dialogFilter.pinnedDialogs.get(tLRPC$Dialog.f849id);
-            dialogFilter.pinnedDialogs.put(tLRPC$Dialog.f849id, dialogFilter.pinnedDialogs.get(tLRPC$Dialog2.f849id));
-            dialogFilter.pinnedDialogs.put(tLRPC$Dialog2.f849id, i4);
+            int i4 = dialogFilter.pinnedDialogs.get(tLRPC$Dialog.f860id);
+            dialogFilter.pinnedDialogs.put(tLRPC$Dialog.f860id, dialogFilter.pinnedDialogs.get(tLRPC$Dialog2.f860id));
+            dialogFilter.pinnedDialogs.put(tLRPC$Dialog2.f860id, i4);
         } else {
             int i5 = tLRPC$Dialog.pinnedNum;
             tLRPC$Dialog.pinnedNum = tLRPC$Dialog2.pinnedNum;
@@ -896,14 +896,14 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                 long longValue = this.preloadDialogsPool.remove(0).longValue();
                 this.currentRequestCount++;
                 this.loadingDialogs.add(Long.valueOf(longValue));
-                MessagesController.getInstance(UserConfig.selectedAccount).ensureMessagesLoaded(longValue, 0, new C10461(longValue));
+                MessagesController.getInstance(UserConfig.selectedAccount).ensureMessagesLoaded(longValue, 0, new C11081(longValue));
             }
         }
 
-        public class C10461 implements MessagesController.MessagesLoadedCallback {
+        public class C11081 implements MessagesController.MessagesLoadedCallback {
             final long val$dialog_id;
 
-            C10461(long j) {
+            C11081(long j) {
                 this.val$dialog_id = j;
             }
 
@@ -913,7 +913,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsAdapter.DialogsPreloader.C10461.this.lambda$onMessagesLoaded$0(z, j);
+                        DialogsAdapter.DialogsPreloader.C11081.this.lambda$onMessagesLoaded$0(z, j);
                     }
                 });
             }
@@ -943,7 +943,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsAdapter.DialogsPreloader.C10461.this.lambda$onError$1(j);
+                        DialogsAdapter.DialogsPreloader.C11081.this.lambda$onError$1(j);
                     }
                 });
             }
@@ -1016,7 +1016,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                     size2 = view.getMeasuredHeight();
                 }
                 if (size2 == 0) {
-                    size2 = (AndroidUtilities.displaySize.y - C0945ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
+                    size2 = (AndroidUtilities.displaySize.y - C1006ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
                 }
                 int i5 = size2 - i4;
                 int dp = AndroidUtilities.m34dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);

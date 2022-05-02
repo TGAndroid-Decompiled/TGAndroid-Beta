@@ -15,7 +15,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -59,6 +59,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     private Paint backgroundPaint;
     private boolean buttonPressed;
     private int buttonState;
+    File cacheFile;
     private boolean canPreviewGif;
     private CheckBox2 checkBox;
     private int currentAccount;
@@ -71,6 +72,8 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     private TLRPC$Document documentAttach;
     private int documentAttachType;
     private boolean drawLinkImageView;
+    boolean fileExist;
+    String fileName;
     private float imageScale;
     private TLRPC$User inlineBot;
     private TLRPC$BotInlineResult inlineResult;
@@ -86,6 +89,8 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     private Object parentObject;
     private TLRPC$Photo photoAttach;
     private RadialProgress2 radialProgress;
+    int resolveFileNameId;
+    boolean resolvingFileName;
     private float scale;
     private boolean scaled;
     private StaticLayout titleLayout;
@@ -180,7 +185,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         if (i == 3 || i == 5) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.out = true;
-            tLRPC$TL_message.f866id = -Utilities.random.nextInt();
+            tLRPC$TL_message.f877id = -Utilities.random.nextInt();
             tLRPC$TL_message.peer_id = new TLRPC$TL_peerUser();
             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
             tLRPC$TL_message.from_id = tLRPC$TL_peerUser;
@@ -206,7 +211,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 String str2 = "mp3";
                 String httpUrlExtension = ImageLoader.getHttpUrlExtension(this.inlineResult.content.url, this.documentAttachType == 5 ? str2 : "ogg");
                 TLRPC$Document tLRPC$Document3 = tLRPC$TL_message.media.document;
-                tLRPC$Document3.f850id = 0L;
+                tLRPC$Document3.f861id = 0L;
                 tLRPC$Document3.access_hash = 0L;
                 tLRPC$Document3.date = tLRPC$TL_message.date;
                 tLRPC$Document3.mime_type = "audio/" + httpUrlExtension;
@@ -273,6 +278,9 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             this.documentAttachType = 2;
         }
         requestLayout();
+        this.fileName = null;
+        this.fileExist = false;
+        this.resolvingFileName = false;
         updateButtonState(false, false);
     }
 
@@ -301,6 +309,9 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         setAttachType();
         this.documentAttachType = 2;
         requestLayout();
+        this.fileName = null;
+        this.fileExist = false;
+        this.resolvingFileName = false;
         updateButtonState(false, false);
     }
 
@@ -567,8 +578,94 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         return this.buttonState == 1 ? 10 : 4;
     }
 
-    public void updateButtonState(boolean r11, boolean r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Cells.ContextLinkCell.updateButtonState(boolean, boolean):void");
+    public void updateButtonState(boolean z, boolean z2) {
+        boolean z3;
+        String str = this.fileName;
+        if (str == null && !this.resolvingFileName) {
+            this.resolvingFileName = true;
+            int i = this.resolveFileNameId;
+            this.resolveFileNameId = i + 1;
+            this.resolveFileNameId = i;
+            Utilities.searchQueue.postRunnable(new RunnableC12341(i, z));
+            this.radialProgress.setIcon(4, z, false);
+        } else if (TextUtils.isEmpty(str)) {
+            this.buttonState = -1;
+            this.radialProgress.setIcon(4, z, false);
+        } else {
+            if (this.documentAttach != null) {
+                z3 = FileLoader.getInstance(this.currentAccount).isLoadingFile(this.fileName);
+            } else {
+                z3 = ImageLoader.getInstance().isLoadingHttpFile(this.fileName);
+            }
+            if (z3 || !this.fileExist) {
+                DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(this.fileName, this);
+                int i2 = this.documentAttachType;
+                float f = 0.0f;
+                if (i2 != 5 && i2 != 3) {
+                    this.buttonState = 1;
+                    Float fileProgress = ImageLoader.getInstance().getFileProgress(this.fileName);
+                    if (fileProgress != null) {
+                        f = fileProgress.floatValue();
+                    }
+                    this.radialProgress.setProgress(f, false);
+                } else if (!z3) {
+                    this.buttonState = 2;
+                } else {
+                    this.buttonState = 4;
+                    Float fileProgress2 = ImageLoader.getInstance().getFileProgress(this.fileName);
+                    if (fileProgress2 != null) {
+                        this.radialProgress.setProgress(fileProgress2.floatValue(), z2);
+                    } else {
+                        this.radialProgress.setProgress(0.0f, z2);
+                    }
+                }
+            } else {
+                DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
+                int i3 = this.documentAttachType;
+                if (i3 == 5 || i3 == 3) {
+                    boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
+                    if (!isPlayingMessage || (isPlayingMessage && MediaController.getInstance().isMessagePaused())) {
+                        this.buttonState = 0;
+                    } else {
+                        this.buttonState = 1;
+                    }
+                    this.radialProgress.setProgress(1.0f, z2);
+                } else {
+                    this.buttonState = -1;
+                }
+            }
+            this.radialProgress.setIcon(getIconForCurrentState(), z, z2);
+            invalidate();
+        }
+    }
+
+    public class RunnableC12341 implements Runnable {
+        final boolean val$ifSame;
+        final int val$localId;
+
+        RunnableC12341(int i, boolean z) {
+            this.val$localId = i;
+            this.val$ifSame = z;
+        }
+
+        @Override
+        public void run() {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Cells.ContextLinkCell.RunnableC12341.run():void");
+        }
+
+        public void lambda$run$0(int i, String str, File file, boolean z, boolean z2) {
+            ContextLinkCell contextLinkCell = ContextLinkCell.this;
+            contextLinkCell.resolvingFileName = false;
+            if (contextLinkCell.resolveFileNameId == i) {
+                contextLinkCell.fileName = str;
+                if (str == null) {
+                    contextLinkCell.fileName = "";
+                }
+                contextLinkCell.cacheFile = file;
+                contextLinkCell.fileExist = z;
+            }
+            contextLinkCell.updateButtonState(z2, true);
+        }
     }
 
     public void setDelegate(ContextLinkCellDelegate contextLinkCellDelegate) {
@@ -586,6 +683,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
 
     @Override
     public void onSuccessDownload(String str) {
+        this.fileExist = true;
         this.radialProgress.setProgress(1.0f, true);
         updateButtonState(false, true);
     }
@@ -614,28 +712,28 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         StringBuilder sb = new StringBuilder();
         switch (this.documentAttachType) {
             case 1:
-                sb.append(LocaleController.getString("AttachDocument", C0890R.string.AttachDocument));
+                sb.append(LocaleController.getString("AttachDocument", C0952R.string.AttachDocument));
                 break;
             case 2:
-                sb.append(LocaleController.getString("AttachGif", C0890R.string.AttachGif));
+                sb.append(LocaleController.getString("AttachGif", C0952R.string.AttachGif));
                 break;
             case 3:
-                sb.append(LocaleController.getString("AttachAudio", C0890R.string.AttachAudio));
+                sb.append(LocaleController.getString("AttachAudio", C0952R.string.AttachAudio));
                 break;
             case 4:
-                sb.append(LocaleController.getString("AttachVideo", C0890R.string.AttachVideo));
+                sb.append(LocaleController.getString("AttachVideo", C0952R.string.AttachVideo));
                 break;
             case 5:
-                sb.append(LocaleController.getString("AttachMusic", C0890R.string.AttachMusic));
+                sb.append(LocaleController.getString("AttachMusic", C0952R.string.AttachMusic));
                 break;
             case 6:
-                sb.append(LocaleController.getString("AttachSticker", C0890R.string.AttachSticker));
+                sb.append(LocaleController.getString("AttachSticker", C0952R.string.AttachSticker));
                 break;
             case 7:
-                sb.append(LocaleController.getString("AttachPhoto", C0890R.string.AttachPhoto));
+                sb.append(LocaleController.getString("AttachPhoto", C0952R.string.AttachPhoto));
                 break;
             case 8:
-                sb.append(LocaleController.getString("AttachLocation", C0890R.string.AttachLocation));
+                sb.append(LocaleController.getString("AttachLocation", C0952R.string.AttachLocation));
                 break;
         }
         StaticLayout staticLayout = this.titleLayout;
@@ -657,7 +755,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             }
         } else {
             sb.append(", ");
-            sb.append(LocaleController.formatString("AccDescrMusicInfo", C0890R.string.AccDescrMusicInfo, this.descriptionLayout.getText(), this.titleLayout.getText()));
+            sb.append(LocaleController.formatString("AccDescrMusicInfo", C0952R.string.AccDescrMusicInfo, this.descriptionLayout.getText(), this.titleLayout.getText()));
         }
         accessibilityNodeInfo.setText(sb);
         CheckBox2 checkBox2 = this.checkBox;

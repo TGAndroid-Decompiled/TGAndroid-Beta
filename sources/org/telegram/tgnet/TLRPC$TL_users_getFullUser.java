@@ -2,7 +2,7 @@ package org.telegram.tgnet;
 
 public class TLRPC$TL_users_getFullUser extends TLObject {
     public static int constructor = -1240508136;
-    public TLRPC$InputUser f970id;
+    public TLRPC$InputUser f981id;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -12,6 +12,6 @@ public class TLRPC$TL_users_getFullUser extends TLObject {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        this.f970id.serializeToStream(abstractSerializedData);
+        this.f981id.serializeToStream(abstractSerializedData);
     }
 }

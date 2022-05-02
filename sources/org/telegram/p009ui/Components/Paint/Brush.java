@@ -3,7 +3,7 @@ package org.telegram.p009ui.Components.Paint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C0890R;
+import org.telegram.messenger.C0952R;
 
 public interface Brush {
     float getAlpha();
@@ -48,7 +48,7 @@ public interface Brush {
         public Bitmap getStamp() {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inScaled = false;
-            return BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), C0890R.C0891drawable.paint_radial_brush, options);
+            return BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), C0952R.C0953drawable.paint_radial_brush, options);
         }
     }
 
@@ -82,7 +82,7 @@ public interface Brush {
         public Bitmap getStamp() {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inScaled = false;
-            return BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), C0890R.C0891drawable.paint_elliptical_brush, options);
+            return BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), C0952R.C0953drawable.paint_elliptical_brush, options);
         }
     }
 
@@ -116,7 +116,7 @@ public interface Brush {
         public Bitmap getStamp() {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inScaled = false;
-            return BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), C0890R.C0891drawable.paint_neon_brush, options);
+            return BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), C0952R.C0953drawable.paint_neon_brush, options);
         }
     }
 
@@ -150,7 +150,7 @@ public interface Brush {
         public Bitmap getStamp() {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inScaled = false;
-            return BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), C0890R.C0891drawable.paint_radial_brush, options);
+            return BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), C0952R.C0953drawable.paint_radial_brush, options);
         }
     }
 }

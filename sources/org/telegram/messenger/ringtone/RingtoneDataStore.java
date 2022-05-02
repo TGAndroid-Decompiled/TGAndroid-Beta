@@ -142,7 +142,7 @@ public class RingtoneDataStore {
         while (it.hasNext()) {
             CachedTone next = it.next();
             if (!(next.localUri == null || (tLRPC$Document = next.document) == null)) {
-                hashMap.put(Long.valueOf(tLRPC$Document.f850id), next.localUri);
+                hashMap.put(Long.valueOf(tLRPC$Document.f861id), next.localUri);
             }
         }
         this.userRingtones.clear();
@@ -152,7 +152,7 @@ public class RingtoneDataStore {
         edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, arrayList.size());
         for (int i = 0; i < arrayList.size(); i++) {
             TLRPC$Document tLRPC$Document2 = arrayList.get(i);
-            String str = (String) hashMap.get(Long.valueOf(tLRPC$Document2.f850id));
+            String str = (String) hashMap.get(Long.valueOf(tLRPC$Document2.f861id));
             SerializedData serializedData = new SerializedData(tLRPC$Document2.getObjectSize());
             tLRPC$Document2.serializeToStream(serializedData);
             edit.putString("tone_document" + i, Utilities.bytesToHex(serializedData.toByteArray()));
@@ -257,11 +257,11 @@ public class RingtoneDataStore {
             this.loaded = true;
         }
         for (int i = 0; i < this.userRingtones.size(); i++) {
-            if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f850id == j) {
+            if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f861id == j) {
                 if (!TextUtils.isEmpty(this.userRingtones.get(i).localUri)) {
                     return this.userRingtones.get(i).localUri;
                 } else {
-                    return FileLoader.getPathToAttach(this.userRingtones.get(i).document).toString();
+                    return FileLoader.getInstance(this.currentAccount).getPathToAttach(this.userRingtones.get(i).document).toString();
                 }
             }
         }
@@ -287,7 +287,7 @@ public class RingtoneDataStore {
         File pathToAttach;
         for (int i = 0; i < arrayList.size(); i++) {
             CachedTone cachedTone = (CachedTone) arrayList.get(i);
-            if ((TextUtils.isEmpty(cachedTone.localUri) || !new File(cachedTone.localUri).exists()) && (tLRPC$Document = cachedTone.document) != null && ((pathToAttach = FileLoader.getPathToAttach(tLRPC$Document)) == null || !pathToAttach.exists())) {
+            if ((TextUtils.isEmpty(cachedTone.localUri) || !new File(cachedTone.localUri).exists()) && (tLRPC$Document = cachedTone.document) != null && ((pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$Document)) == null || !pathToAttach.exists())) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -313,7 +313,7 @@ public class RingtoneDataStore {
                 this.loaded = true;
             }
             for (int i = 0; i < this.userRingtones.size(); i++) {
-                if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f850id == tLRPC$Document.f850id) {
+                if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f861id == tLRPC$Document.f861id) {
                     this.userRingtones.remove(i);
                     return;
                 }
@@ -326,7 +326,7 @@ public class RingtoneDataStore {
     }
 
     public void addTone(TLRPC$Document tLRPC$Document) {
-        if (tLRPC$Document != null && !contains(tLRPC$Document.f850id)) {
+        if (tLRPC$Document != null && !contains(tLRPC$Document.f861id)) {
             CachedTone cachedTone = new CachedTone(this);
             cachedTone.document = tLRPC$Document;
             int i = this.localIds;
@@ -344,7 +344,7 @@ public class RingtoneDataStore {
             this.loaded = true;
         }
         for (int i = 0; i < this.userRingtones.size(); i++) {
-            if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f850id == j) {
+            if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f861id == j) {
                 return this.userRingtones.get(i).document;
             }
         }
