@@ -114,4 +114,8 @@ public class DispatchQueue extends Thread {
     public boolean isReady() {
         return this.syncLatch.getCount() == 0;
     }
+
+    public Handler getHandler() {
+        return this.handler;
+    }
 }

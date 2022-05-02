@@ -1356,7 +1356,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
 
         public void reinitForNewCamera() {
-            Handler handler = InstantCameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(2), 0);
             }
@@ -1384,7 +1384,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
 
         public void setCurrentSession(CameraSession cameraSession) {
-            Handler handler = InstantCameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(3, cameraSession), 0);
             }
@@ -1514,14 +1514,14 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
 
         public void shutdown(int i) {
-            Handler handler = InstantCameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(1, i, 0), 0);
             }
         }
 
         public void requestRender() {
-            Handler handler = InstantCameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(0, this.cameraId), 0);
             }

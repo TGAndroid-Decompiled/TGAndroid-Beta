@@ -3327,7 +3327,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.shareButton.setContentDescription(LocaleController.getString("ShareFile", C0952R.string.ShareFile));
             FadingTextViewLayout fadingTextViewLayout = new FadingTextViewLayout(this, this.containerView.getContext()) {
                 @Override
-                public void onTextViewCreated(TextView textView) {
+                protected void onTextViewCreated(TextView textView) {
                     super.onTextViewCreated(textView);
                     textView.setTextSize(1, 14.0f);
                     textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
@@ -3343,7 +3343,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 private int staticCharsCount = 0;
 
                 @Override
-                public void onTextViewCreated(TextView textView) {
+                protected void onTextViewCreated(TextView textView) {
                     super.onTextViewCreated(textView);
                     textView.setTextSize(1, 13.0f);
                     textView.setEllipsize(TextUtils.TruncateAt.END);

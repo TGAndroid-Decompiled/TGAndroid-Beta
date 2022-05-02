@@ -887,8 +887,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public void lambda$new$2() {
         try {
-            this.sampleRate = 16000;
-            int minBufferSize = AudioRecord.getMinBufferSize(16000, 16, 2);
+            this.sampleRate = 48000;
+            int minBufferSize = AudioRecord.getMinBufferSize(48000, 16, 2);
             if (minBufferSize <= 0) {
                 minBufferSize = 1280;
             }
@@ -3679,7 +3679,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 });
                 return;
             }
-            this.audioRecorder = new AudioRecord(6, this.sampleRate, 16, 2, this.recordBufferSize);
+            this.audioRecorder = new AudioRecord(0, this.sampleRate, 16, 2, this.recordBufferSize);
             this.recordStartTime = System.currentTimeMillis();
             this.recordTimeCount = 0L;
             this.samplesCount = 0L;

@@ -3,6 +3,8 @@ package org.telegram.messenger;
 import android.os.Looper;
 import com.google.android.exoplayer2.util.Log;
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
@@ -10,6 +12,7 @@ import org.telegram.SQLite.SQLiteException;
 import org.telegram.SQLite.SQLitePreparedStatement;
 
 public class FilePathDatabase {
+    private static final String DATABASE_BACKUP_NAME = "file_to_path_backup";
     private static final String DATABASE_NAME = "file_to_path";
     private static final int LAST_DB_VERSION = 1;
     private File cacheFile;
@@ -32,6 +35,10 @@ public class FilePathDatabase {
     }
 
     public void lambda$new$0() {
+        createDatabase(false);
+    }
+
+    public void createDatabase(boolean z) {
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (this.currentAccount != 0) {
             File file = new File(filesDirFixed, "account" + this.currentAccount + "/");
@@ -40,40 +47,106 @@ public class FilePathDatabase {
         }
         this.cacheFile = new File(filesDirFixed, "file_to_path.db");
         this.shmCacheFile = new File(filesDirFixed, "file_to_path.db-shm");
-        boolean z = !this.cacheFile.exists();
+        boolean z2 = !this.cacheFile.exists();
         try {
             SQLiteDatabase sQLiteDatabase = new SQLiteDatabase(this.cacheFile.getPath());
             this.database = sQLiteDatabase;
             sQLiteDatabase.executeFast("PRAGMA secure_delete = ON").stepThis().dispose();
             this.database.executeFast("PRAGMA temp_store = MEMORY").stepThis().dispose();
-            if (z) {
+            if (z2) {
                 this.database.executeFast("CREATE TABLE paths(document_id INTEGER, dc_id INTEGER, type INTEGER, path TEXT, PRIMARY KEY(document_id, dc_id, type));").stepThis().dispose();
                 this.database.executeFast("PRAGMA user_version = 1").stepThis().dispose();
             }
+            if (!z) {
+                createBackup();
+            }
+            FileLog.m33d("files db created from_backup= " + z);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            if (!z && restoreBackup()) {
+                createDatabase(true);
+            } else if (BuildVars.DEBUG_VERSION) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
-    public String getPath(final long j, final int i, final int i2) {
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
-        final String[] strArr = new String[1];
-        long currentTimeMillis = System.currentTimeMillis();
-        this.dispatchQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                FilePathDatabase.this.lambda$getPath$1(j, i, i2, strArr, countDownLatch);
-            }
-        });
+    private void createBackup() {
+        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+        if (this.currentAccount != 0) {
+            File file = new File(filesDirFixed, "account" + this.currentAccount + "/");
+            file.mkdirs();
+            filesDirFixed = file;
+        }
+        File file2 = new File(filesDirFixed, "file_to_path_backup.db");
         try {
-            countDownLatch.await();
-            if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
-                new Exception("warning in main thread").printStackTrace();
+            AndroidUtilities.copyFile(this.cacheFile, file2);
+            FileLog.m33d("file db backup created " + file2.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean restoreBackup() {
+        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+        if (this.currentAccount != 0) {
+            File file = new File(filesDirFixed, "account" + this.currentAccount + "/");
+            file.mkdirs();
+            filesDirFixed = file;
+        }
+        File file2 = new File(filesDirFixed, "file_to_path_backup.db");
+        if (!file2.exists()) {
+            return false;
+        }
+        try {
+            return AndroidUtilities.copyFile(file2, this.cacheFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public String getPath(final long j, final int i, final int i2, boolean z) {
+        if (z) {
+            if (BuildVars.DEBUG_VERSION) {
+                if (Thread.currentThread() == Looper.getMainLooper().getThread() && Thread.currentThread() == Looper.getMainLooper().getThread()) {
+                    FileLog.m30e(new Exception("Warning, not allowed in main thread"));
+                }
+                if (this.dispatchQueue.getHandler() != null && Thread.currentThread() == this.dispatchQueue.getHandler().getLooper().getThread()) {
+                    throw new RuntimeException("Error, lead to infinity loop");
+                }
+            }
+            final CountDownLatch countDownLatch = new CountDownLatch(1);
+            final String[] strArr = new String[1];
+            long currentTimeMillis = System.currentTimeMillis();
+            this.dispatchQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    FilePathDatabase.this.lambda$getPath$1(j, i, i2, strArr, countDownLatch);
+                }
+            });
+            try {
+                countDownLatch.await();
+            } catch (Exception unused) {
             }
             Log.m667d("kek", "time=" + (System.currentTimeMillis() - currentTimeMillis) + "   " + Thread.currentThread());
             return strArr[0];
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } else if (!BuildVars.DEBUG_VERSION || this.dispatchQueue.getHandler() == null || Thread.currentThread() == this.dispatchQueue.getHandler().getLooper().getThread()) {
+            String str = null;
+            try {
+                SQLiteDatabase sQLiteDatabase = this.database;
+                SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT path FROM paths WHERE document_id = " + j + " AND dc_id = " + i + " AND type = " + i2, new Object[0]);
+                if (queryFinalized.next()) {
+                    str = queryFinalized.stringValue(0);
+                }
+                queryFinalized.dispose();
+            } catch (SQLiteException e) {
+                if (BuildVars.DEBUG_VERSION) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return str;
+        } else {
+            throw new RuntimeException("!!!");
         }
     }
 
@@ -92,7 +165,6 @@ public class FilePathDatabase {
     }
 
     public void putPath(final long j, final int i, final int i2, final String str) {
-        Log.m667d("kek", "put file " + j + "_" + i + "     " + str);
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -111,13 +183,49 @@ public class FilePathDatabase {
                 executeFast.bindInteger(3, i2);
                 executeFast.bindString(4, str);
                 executeFast.step();
-                return;
+            } else {
+                SQLiteDatabase sQLiteDatabase = this.database;
+                sQLiteDatabase.executeFast("DELETE FROM paths WHERE document_id = " + j + " AND dc_id = " + i + " AND type = " + i2).stepThis().dispose();
             }
-            SQLiteDatabase sQLiteDatabase = this.database;
-            sQLiteDatabase.executeFast("DELETE FROM paths WHERE document_id = " + j + " AND dc_id = " + i + " AND type = " + i2).stepThis().dispose();
         } catch (SQLiteException e) {
-            throw new RuntimeException(e);
+            if (BuildVars.DEBUG_VERSION) {
+                throw new RuntimeException(e);
+            }
         }
+    }
+
+    public void checkMediaExistance(ArrayList<MessageObject> arrayList) {
+        if (!arrayList.isEmpty()) {
+            final ArrayList arrayList2 = new ArrayList(arrayList);
+            final CountDownLatch countDownLatch = new CountDownLatch(1);
+            long currentTimeMillis = System.currentTimeMillis();
+            this.dispatchQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    FilePathDatabase.lambda$checkMediaExistance$3(arrayList2, countDownLatch);
+                }
+            });
+            FileLog.m33d("checkMediaExistance size=" + arrayList.size() + " time=" + currentTimeMillis);
+            try {
+                countDownLatch.await();
+                if (BuildVars.DEBUG_VERSION && Thread.currentThread() == Looper.getMainLooper().getThread()) {
+                    FileLog.m30e(new Exception("warning, not allowed in main thread"));
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public static void lambda$checkMediaExistance$3(ArrayList arrayList, CountDownLatch countDownLatch) {
+        for (int i = 0; i < arrayList.size(); i++) {
+            try {
+                ((MessageObject) arrayList.get(i)).checkMediaExistance(false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        countDownLatch.countDown();
     }
 
     public static class PathData {
