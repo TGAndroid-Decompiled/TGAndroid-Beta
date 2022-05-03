@@ -3,7 +3,6 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import android.util.TypedValue;
@@ -747,12 +746,6 @@ public class NumberPicker extends LinearLayout {
             int i3 = this.mValue;
             this.mValue = i2;
             updateInputTextView();
-            if (Math.abs(i3 - i2) > 0.9f && Build.VERSION.SDK_INT >= 27) {
-                try {
-                    performHapticFeedback(9, 1);
-                } catch (Exception unused) {
-                }
-            }
             if (z) {
                 notifyChange(i3, i2);
             }

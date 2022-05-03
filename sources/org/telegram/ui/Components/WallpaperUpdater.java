@@ -74,7 +74,7 @@ public class WallpaperUpdater {
                     File generatePicturePath = AndroidUtilities.generatePicturePath();
                     if (generatePicturePath != null) {
                         if (Build.VERSION.SDK_INT >= 24) {
-                            intent.putExtra("output", FileProvider.getUriForFile(this.parentActivity, "org.telegram.messenger.beta.provider", generatePicturePath));
+                            intent.putExtra("output", FileProvider.getUriForFile(this.parentActivity, "org.telegram.messenger.web.provider", generatePicturePath));
                             intent.addFlags(2);
                             intent.addFlags(1);
                         } else {

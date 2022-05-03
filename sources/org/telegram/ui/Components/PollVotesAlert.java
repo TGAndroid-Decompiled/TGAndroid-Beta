@@ -415,7 +415,6 @@ public class PollVotesAlert extends BottomSheet {
         int i;
         int i2;
         int i3 = 1;
-        fixNavigationBar();
         this.messageObject = messageObject;
         this.chatActivity = chatActivity;
         TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) messageObject.messageOwner.media;

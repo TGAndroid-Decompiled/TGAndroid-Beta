@@ -1,6 +1,5 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -38,14 +37,12 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     RLottieDrawable darkThemeDrawable;
     TextCell dayNightCell;
     private final LinearLayoutManager layoutManager;
-    private ValueAnimator navBarAnimator;
-    private int navBarColor;
     private final FlickerLoadingView progressView;
     private final RecyclerListView recyclerView;
     private int selectedPosition = -1;
     int themeIndex;
 
-    public DefaultThemesPreviewCell(final Context context, final BaseFragment baseFragment, int i) {
+    public DefaultThemesPreviewCell(Context context, final BaseFragment baseFragment, int i) {
         super(context);
         this.currentType = i;
         setOrientation(1);
@@ -116,7 +113,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             this.dayNightCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 @android.annotation.SuppressLint({"NotifyDataSetChanged"})
-                public void onClick(android.view.View r14) {
+                public void onClick(android.view.View r11) {
                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DefaultThemesPreviewCell.AnonymousClass2.onClick(android.view.View):void");
                 }
             });

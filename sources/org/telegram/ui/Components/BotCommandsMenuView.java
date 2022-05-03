@@ -134,16 +134,13 @@ public class BotCommandsMenuView extends View {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BotCommandsMenuView.dispatchDraw(android.graphics.Canvas):void");
     }
 
-    public boolean setMenuText(String str) {
+    public void setMenuText(String str) {
         if (str == null) {
             str = LocaleController.getString((int) R.string.BotsMenuTitle);
         }
-        String str2 = this.menuText;
-        boolean z = str2 == null || !str2.equals(str);
         this.menuText = str;
         this.menuTextLayout = null;
         requestLayout();
-        return z;
     }
 
     public void setExpanded(boolean z, boolean z2) {

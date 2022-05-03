@@ -15,7 +15,6 @@ import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -44,7 +43,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC$Document;
@@ -74,7 +72,6 @@ import org.telegram.ui.PhotoViewer;
 
 @SuppressLint({"NewApi"})
 public class PhotoPaintView extends FrameLayout implements EntityView.EntityViewDelegate {
-    private FrameLayout backgroundView;
     private float baseScale;
     private Bitmap bitmapToEdit;
     private Swatch brushSwatch;
@@ -217,11 +214,6 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
                 PhotoPaintView.this.lambda$new$1(view);
             }
         });
-        this.backgroundView = new FrameLayout(context);
-        Drawable mutate = getResources().getDrawable(R.drawable.gradient_bottom).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
-        this.backgroundView.setBackground(mutate);
-        addView(this.backgroundView, LayoutHelper.createFrame(-1, 72, 87));
         FrameLayout frameLayout4 = new FrameLayout(this, context) {
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
@@ -461,7 +453,6 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
             this.paintButton.setColorFilter(new PorterDuffColorFilter(getThemedColor("dialogFloatingButton"), PorterDuff.Mode.MULTIPLY));
             this.paintButton.setImageResource(R.drawable.photo_paint);
         }
-        this.backgroundView.setVisibility(this.currentEntityView instanceof TextPaintView ? 4 : 0);
         this.colorPicker.setSettingsButtonImage(i);
     }
 
@@ -500,10 +491,6 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
 
     public FrameLayout getToolsView() {
         return this.toolsView;
-    }
-
-    public FrameLayout getColorPickerBackground() {
-        return this.backgroundView;
     }
 
     public FrameLayout getCurtainView() {
@@ -570,7 +557,7 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
                             mediaEntity.document = stickerView.getSticker();
                             mediaEntity.parentObject = stickerView.getParentObject();
                             TLRPC$Document sticker = stickerView.getSticker();
-                            mediaEntity.text = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(sticker, true).getAbsolutePath();
+                            mediaEntity.text = FileLoader.getPathToAttach(sticker, true).getAbsolutePath();
                             if (MessageObject.isAnimatedStickerDocument(sticker, true) || MessageObject.isVideoStickerDocument(sticker)) {
                                 boolean isAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(sticker, true);
                                 mediaEntity.subType = (byte) (mediaEntity.subType | (isAnimatedStickerDocument ? (byte) 1 : (byte) 4));
@@ -802,7 +789,6 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
         this.colorPicker.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(currentActionBarHeight, 1073741824));
         this.toolsView.measure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
         this.curtainView.measure(i, View.MeasureSpec.makeMeasureSpec(currentActionBarHeight, 1073741824));
-        this.backgroundView.measure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(72.0f), 1073741824));
         this.ignoreLayout = false;
     }
 
@@ -832,7 +818,6 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
         frameLayout3.layout(0, i6 - frameLayout3.getMeasuredHeight(), this.toolsView.getMeasuredWidth(), i6);
         FrameLayout frameLayout4 = this.curtainView;
         frameLayout4.layout(0, dp, frameLayout4.getMeasuredWidth(), this.curtainView.getMeasuredHeight() + dp);
-        this.backgroundView.layout(0, (i6 - AndroidUtilities.dp(45.0f)) - this.backgroundView.getMeasuredHeight(), this.backgroundView.getMeasuredWidth(), i6 - AndroidUtilities.dp(45.0f));
     }
 
     @Override
@@ -1013,8 +998,8 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
         float f10;
         this.transformX = f2;
         this.transformY = f3;
-        int i = 0;
-        while (i < 3) {
+        for (int i = 0; i < 3; i++) {
+            float f11 = 1.0f;
             if (i == 0) {
                 view = this.entitiesView;
             } else if (i == 1) {
@@ -1023,7 +1008,6 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
                 view = this.renderView;
             }
             MediaController.CropState cropState2 = this.currentCropState;
-            float f11 = 1.0f;
             if (cropState2 != null) {
                 float f12 = cropState2.cropScale * 1.0f;
                 int measuredWidth = view.getMeasuredWidth();
@@ -1036,32 +1020,31 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
                     }
                     float f13 = measuredWidth;
                     float max = Math.max(f4 / ((int) (cropState.cropPw * f13)), f5 / ((int) (cropState.cropPh * f10)));
-                    f9 = f12 * max;
+                    f8 = f12 * max;
                     MediaController.CropState cropState3 = this.currentCropState;
                     float f14 = cropState3.cropScale;
                     f6 = (cropState3.cropPx * f13 * f * max * f14) + f2;
-                    f8 = f3 + (cropState3.cropPy * measuredHeight * f * max * f14);
+                    f9 = f3 + (cropState3.cropPy * measuredHeight * f * max * f14);
                     f7 = cropState3.cropRotate + i2;
                 } else {
                     return;
                 }
             } else {
+                if (i == 0) {
+                    f11 = 1.0f * this.baseScale;
+                }
                 f6 = f2;
-                f9 = i == 0 ? this.baseScale * 1.0f : 1.0f;
+                f8 = f11;
                 f7 = 0.0f;
-                f8 = f3;
+                f9 = f3;
             }
-            float f15 = f9 * f;
-            if (!Float.isNaN(f15)) {
-                f11 = f15;
-            }
-            view.setScaleX(f11);
-            view.setScaleY(f11);
+            float f15 = f8 * f;
+            view.setScaleX(f15);
+            view.setScaleY(f15);
             view.setTranslationX(f6);
-            view.setTranslationY(f8);
+            view.setTranslationY(f9);
             view.setRotation(f7);
             view.invalidate();
-            i++;
         }
         invalidate();
     }

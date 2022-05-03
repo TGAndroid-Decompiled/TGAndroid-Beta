@@ -125,6 +125,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
     private int rowCount;
     private int saveToGalleryOption1Row;
     private int saveToGalleryOption2Row;
+    private int saveToGalleryRow;
     private int saveToGallerySectionRow;
     private int scheduleFromRow;
     private int scheduleFromToInfoRow;
@@ -470,6 +471,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         this.enableAnimationsRow = -1;
         this.raiseToSpeakRow = -1;
         this.sendByEnterRow = -1;
+        this.saveToGalleryRow = -1;
         this.saveToGalleryOption1Row = -1;
         this.saveToGalleryOption2Row = -1;
         this.saveToGallerySectionRow = -1;
@@ -624,88 +626,91 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             int i47 = i46 + 1;
             this.rowCount = i47;
             this.raiseToSpeakRow = i46;
-            this.rowCount = i47 + 1;
+            int i48 = i47 + 1;
+            this.rowCount = i48;
             this.sendByEnterRow = i47;
+            this.rowCount = i48 + 1;
+            this.saveToGalleryRow = i48;
             if (SharedConfig.canBlurChat()) {
-                int i48 = this.rowCount;
-                this.rowCount = i48 + 1;
-                this.chatBlurRow = i48;
+                int i49 = this.rowCount;
+                this.rowCount = i49 + 1;
+                this.chatBlurRow = i49;
             }
-            int i49 = this.rowCount;
-            int i50 = i49 + 1;
-            this.rowCount = i50;
-            this.distanceRow = i49;
+            int i50 = this.rowCount;
             int i51 = i50 + 1;
             this.rowCount = i51;
-            this.reactionsDoubleTapRow = i50;
+            this.distanceRow = i50;
             int i52 = i51 + 1;
             this.rowCount = i52;
-            this.settings2Row = i51;
+            this.reactionsDoubleTapRow = i51;
             int i53 = i52 + 1;
             this.rowCount = i53;
-            this.stickersRow = i52;
-            this.rowCount = i53 + 1;
-            this.stickersSection2Row = i53;
+            this.settings2Row = i52;
+            int i54 = i53 + 1;
+            this.rowCount = i54;
+            this.stickersRow = i53;
+            this.rowCount = i54 + 1;
+            this.stickersSection2Row = i54;
         } else {
-            int i54 = this.rowCount;
-            int i55 = i54 + 1;
-            this.rowCount = i55;
-            this.nightDisabledRow = i54;
+            int i55 = this.rowCount;
             int i56 = i55 + 1;
             this.rowCount = i56;
-            this.nightScheduledRow = i55;
+            this.nightDisabledRow = i55;
             int i57 = i56 + 1;
             this.rowCount = i57;
-            this.nightAutomaticRow = i56;
+            this.nightScheduledRow = i56;
+            int i58 = i57 + 1;
+            this.rowCount = i58;
+            this.nightAutomaticRow = i57;
             if (Build.VERSION.SDK_INT >= 29) {
-                this.rowCount = i57 + 1;
-                this.nightSystemDefaultRow = i57;
+                this.rowCount = i58 + 1;
+                this.nightSystemDefaultRow = i58;
             }
-            int i58 = this.rowCount;
-            int i59 = i58 + 1;
-            this.rowCount = i59;
-            this.nightTypeInfoRow = i58;
-            int i60 = Theme.selectedAutoNightType;
-            if (i60 == 1) {
-                int i61 = i59 + 1;
-                this.rowCount = i61;
-                this.scheduleHeaderRow = i59;
-                int i62 = i61 + 1;
+            int i59 = this.rowCount;
+            int i60 = i59 + 1;
+            this.rowCount = i60;
+            this.nightTypeInfoRow = i59;
+            int i61 = Theme.selectedAutoNightType;
+            if (i61 == 1) {
+                int i62 = i60 + 1;
                 this.rowCount = i62;
-                this.scheduleLocationRow = i61;
+                this.scheduleHeaderRow = i60;
+                int i63 = i62 + 1;
+                this.rowCount = i63;
+                this.scheduleLocationRow = i62;
                 if (Theme.autoNightScheduleByLocation) {
-                    int i63 = i62 + 1;
-                    this.rowCount = i63;
-                    this.scheduleUpdateLocationRow = i62;
-                    this.rowCount = i63 + 1;
-                    this.scheduleLocationInfoRow = i63;
-                } else {
-                    int i64 = i62 + 1;
+                    int i64 = i63 + 1;
                     this.rowCount = i64;
-                    this.scheduleFromRow = i62;
-                    int i65 = i64 + 1;
+                    this.scheduleUpdateLocationRow = i63;
+                    this.rowCount = i64 + 1;
+                    this.scheduleLocationInfoRow = i64;
+                } else {
+                    int i65 = i63 + 1;
                     this.rowCount = i65;
-                    this.scheduleToRow = i64;
-                    this.rowCount = i65 + 1;
-                    this.scheduleFromToInfoRow = i65;
+                    this.scheduleFromRow = i63;
+                    int i66 = i65 + 1;
+                    this.rowCount = i66;
+                    this.scheduleToRow = i65;
+                    this.rowCount = i66 + 1;
+                    this.scheduleFromToInfoRow = i66;
                 }
-            } else if (i60 == 2) {
-                int i66 = i59 + 1;
-                this.rowCount = i66;
-                this.automaticHeaderRow = i59;
-                int i67 = i66 + 1;
+            } else if (i61 == 2) {
+                int i67 = i60 + 1;
                 this.rowCount = i67;
-                this.automaticBrightnessRow = i66;
-                this.rowCount = i67 + 1;
-                this.automaticBrightnessInfoRow = i67;
+                this.automaticHeaderRow = i60;
+                int i68 = i67 + 1;
+                this.rowCount = i68;
+                this.automaticBrightnessRow = i67;
+                this.rowCount = i68 + 1;
+                this.automaticBrightnessInfoRow = i68;
             }
             if (Theme.selectedAutoNightType != 0) {
-                int i68 = this.rowCount;
-                int i69 = i68 + 1;
-                this.rowCount = i69;
-                this.preferedHeaderRow = i68;
-                this.rowCount = i69 + 1;
-                this.themeListRow = i69;
+                int i69 = this.rowCount;
+                int i70 = i69 + 1;
+                this.rowCount = i70;
+                this.preferedHeaderRow = i69;
+                this.rowCount = i70 + 1;
+                this.themeListRow = i70;
                 boolean hasAccentColors2 = Theme.getCurrentNightTheme().hasAccentColors();
                 this.hasThemeAccents = hasAccentColors2;
                 ThemesHorizontalListCell themesHorizontalListCell2 = this.themesHorizontalListCell;
@@ -713,13 +718,13 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     themesHorizontalListCell2.setDrawDivider(hasAccentColors2);
                 }
                 if (this.hasThemeAccents) {
-                    int i70 = this.rowCount;
-                    this.rowCount = i70 + 1;
-                    this.themeAccentListRow = i70;
+                    int i71 = this.rowCount;
+                    this.rowCount = i71 + 1;
+                    this.themeAccentListRow = i71;
                 }
-                int i71 = this.rowCount;
-                this.rowCount = i71 + 1;
-                this.themeInfoRow = i71;
+                int i72 = this.rowCount;
+                this.rowCount = i72 + 1;
+                this.themeInfoRow = i72;
             }
         }
         ThemesHorizontalListCell themesHorizontalListCell3 = this.themesHorizontalListCell;
@@ -729,83 +734,83 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         ListAdapter listAdapter = this.listAdapter;
         if (listAdapter != null) {
             if (this.currentType == 1 && (i4 = this.previousUpdatedType) != (i5 = Theme.selectedAutoNightType) && i4 != -1) {
-                int i72 = this.nightTypeInfoRow + 1;
+                int i73 = this.nightTypeInfoRow + 1;
                 if (i4 != i5) {
-                    int i73 = 0;
+                    int i74 = 0;
                     while (true) {
                         i6 = 4;
-                        if (i73 >= 4) {
+                        if (i74 >= 4) {
                             break;
                         }
-                        RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findViewHolderForAdapterPosition(i73);
+                        RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findViewHolderForAdapterPosition(i74);
                         if (holder != null) {
                             View view = holder.itemView;
                             if (view instanceof ThemeTypeCell) {
-                                ((ThemeTypeCell) view).setTypeChecked(i73 == Theme.selectedAutoNightType);
+                                ((ThemeTypeCell) view).setTypeChecked(i74 == Theme.selectedAutoNightType);
                             }
                         }
-                        i73++;
+                        i74++;
                     }
-                    int i74 = Theme.selectedAutoNightType;
-                    if (i74 == 0) {
-                        this.listAdapter.notifyItemRangeRemoved(i72, i7 - i72);
-                    } else if (i74 == 1) {
-                        int i75 = this.previousUpdatedType;
-                        if (i75 == 0) {
-                            this.listAdapter.notifyItemRangeInserted(i72, this.rowCount - i72);
-                        } else if (i75 == 2) {
-                            this.listAdapter.notifyItemRangeRemoved(i72, 3);
+                    int i75 = Theme.selectedAutoNightType;
+                    if (i75 == 0) {
+                        this.listAdapter.notifyItemRangeRemoved(i73, i7 - i73);
+                    } else if (i75 == 1) {
+                        int i76 = this.previousUpdatedType;
+                        if (i76 == 0) {
+                            this.listAdapter.notifyItemRangeInserted(i73, this.rowCount - i73);
+                        } else if (i76 == 2) {
+                            this.listAdapter.notifyItemRangeRemoved(i73, 3);
                             ListAdapter listAdapter2 = this.listAdapter;
                             if (!Theme.autoNightScheduleByLocation) {
                                 i6 = 5;
                             }
-                            listAdapter2.notifyItemRangeInserted(i72, i6);
-                        } else if (i75 == 3) {
+                            listAdapter2.notifyItemRangeInserted(i73, i6);
+                        } else if (i76 == 3) {
                             ListAdapter listAdapter3 = this.listAdapter;
                             if (!Theme.autoNightScheduleByLocation) {
                                 i6 = 5;
                             }
-                            listAdapter3.notifyItemRangeInserted(i72, i6);
+                            listAdapter3.notifyItemRangeInserted(i73, i6);
                         }
-                    } else if (i74 == 2) {
-                        int i76 = this.previousUpdatedType;
-                        if (i76 == 0) {
-                            this.listAdapter.notifyItemRangeInserted(i72, this.rowCount - i72);
-                        } else if (i76 == 1) {
+                    } else if (i75 == 2) {
+                        int i77 = this.previousUpdatedType;
+                        if (i77 == 0) {
+                            this.listAdapter.notifyItemRangeInserted(i73, this.rowCount - i73);
+                        } else if (i77 == 1) {
                             ListAdapter listAdapter4 = this.listAdapter;
                             if (!Theme.autoNightScheduleByLocation) {
                                 i6 = 5;
                             }
-                            listAdapter4.notifyItemRangeRemoved(i72, i6);
-                            this.listAdapter.notifyItemRangeInserted(i72, 3);
-                        } else if (i76 == 3) {
-                            this.listAdapter.notifyItemRangeInserted(i72, 3);
+                            listAdapter4.notifyItemRangeRemoved(i73, i6);
+                            this.listAdapter.notifyItemRangeInserted(i73, 3);
+                        } else if (i77 == 3) {
+                            this.listAdapter.notifyItemRangeInserted(i73, 3);
                         }
-                    } else if (i74 == 3) {
-                        int i77 = this.previousUpdatedType;
-                        if (i77 == 0) {
-                            this.listAdapter.notifyItemRangeInserted(i72, this.rowCount - i72);
-                        } else if (i77 == 2) {
-                            this.listAdapter.notifyItemRangeRemoved(i72, 3);
-                        } else if (i77 == 1) {
+                    } else if (i75 == 3) {
+                        int i78 = this.previousUpdatedType;
+                        if (i78 == 0) {
+                            this.listAdapter.notifyItemRangeInserted(i73, this.rowCount - i73);
+                        } else if (i78 == 2) {
+                            this.listAdapter.notifyItemRangeRemoved(i73, 3);
+                        } else if (i78 == 1) {
                             ListAdapter listAdapter5 = this.listAdapter;
                             if (!Theme.autoNightScheduleByLocation) {
                                 i6 = 5;
                             }
-                            listAdapter5.notifyItemRangeRemoved(i72, i6);
+                            listAdapter5.notifyItemRangeRemoved(i73, i6);
                         }
                     }
                 } else {
                     boolean z2 = this.previousByLocation;
                     boolean z3 = Theme.autoNightScheduleByLocation;
                     if (z2 != z3) {
-                        int i78 = i72 + 2;
-                        listAdapter.notifyItemRangeRemoved(i78, z3 ? 3 : 2);
+                        int i79 = i73 + 2;
+                        listAdapter.notifyItemRangeRemoved(i79, z3 ? 3 : 2);
                         ListAdapter listAdapter6 = this.listAdapter;
                         if (Theme.autoNightScheduleByLocation) {
                             i = 2;
                         }
-                        listAdapter6.notifyItemRangeInserted(i78, i);
+                        listAdapter6.notifyItemRangeInserted(i79, i);
                     }
                 }
             } else if (z || this.previousUpdatedType == -1) {
@@ -814,9 +819,9 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 if (i8 == -1 && (i3 = this.themeAccentListRow) != -1) {
                     listAdapter.notifyItemInserted(i3);
                 } else if (i8 == -1 || this.themeAccentListRow != -1) {
-                    int i79 = this.themeAccentListRow;
-                    if (i79 != -1) {
-                        listAdapter.notifyItemChanged(i79);
+                    int i80 = this.themeAccentListRow;
+                    if (i80 != -1) {
+                        listAdapter.notifyItemChanged(i80);
                     }
                 } else {
                     listAdapter.notifyItemRemoved(i8);
@@ -1100,6 +1105,11 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             SharedConfig.toogleRaiseToSpeak();
             if (view instanceof TextCheckCell) {
                 ((TextCheckCell) view).setChecked(SharedConfig.raiseToSpeak);
+            }
+        } else if (i == this.saveToGalleryRow) {
+            SharedConfig.toggleSaveToGallery();
+            if (view instanceof TextCheckCell) {
+                ((TextCheckCell) view).setChecked(SharedConfig.saveToGallery);
             }
         } else if (i == this.distanceRow) {
             if (getParentActivity() != null) {
@@ -2256,6 +2266,9 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     } else if (i == ThemeActivity.this.sendByEnterRow) {
                         textCheckCell.setTextAndCheck(LocaleController.getString("SendByEnter", R.string.SendByEnter), MessagesController.getGlobalMainSettings().getBoolean("send_by_enter", false), true);
                         return;
+                    } else if (i == ThemeActivity.this.saveToGalleryRow) {
+                        textCheckCell.setTextAndCheck(LocaleController.getString("SaveToGallerySettings", R.string.SaveToGallerySettings), SharedConfig.saveToGallery, true);
+                        return;
                     } else if (i == ThemeActivity.this.raiseToSpeakRow) {
                         textCheckCell.setTextAndCheck(LocaleController.getString("RaiseToSpeak", R.string.RaiseToSpeak), SharedConfig.raiseToSpeak, true);
                         return;
@@ -2393,7 +2406,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             if (i == ThemeActivity.this.automaticBrightnessRow) {
                 return 6;
             }
-            if (i == ThemeActivity.this.scheduleLocationRow || i == ThemeActivity.this.enableAnimationsRow || i == ThemeActivity.this.sendByEnterRow || i == ThemeActivity.this.raiseToSpeakRow || i == ThemeActivity.this.customTabsRow || i == ThemeActivity.this.directShareRow || i == ThemeActivity.this.emojiRow || i == ThemeActivity.this.chatBlurRow) {
+            if (i == ThemeActivity.this.scheduleLocationRow || i == ThemeActivity.this.enableAnimationsRow || i == ThemeActivity.this.sendByEnterRow || i == ThemeActivity.this.saveToGalleryRow || i == ThemeActivity.this.raiseToSpeakRow || i == ThemeActivity.this.customTabsRow || i == ThemeActivity.this.directShareRow || i == ThemeActivity.this.emojiRow || i == ThemeActivity.this.chatBlurRow) {
                 return 7;
             }
             if (i == ThemeActivity.this.textSizeRow) {

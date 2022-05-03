@@ -197,8 +197,8 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                     final int val$currentAccount;
                     final int val$type;
 
-                    public class C00101 extends GestureDetector.SimpleOnGestureListener {
-                        C00101() {
+                    public class C00071 extends GestureDetector.SimpleOnGestureListener {
+                        C00071() {
                         }
 
                         @Override
@@ -213,12 +213,12 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                                 ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], motionEvent.getX(), motionEvent.getY(), MediaDataController.getInstance(AnonymousClass1.this.val$currentAccount).getDoubleTapReaction(), AnonymousClass1.this.val$currentAccount, 0);
                                 ReactionsEffectOverlay.startAnimation();
                             }
-                            getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC00111());
+                            getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC00081());
                             return true;
                         }
 
-                        public class ViewTreeObserver$OnPreDrawListenerC00111 implements ViewTreeObserver.OnPreDrawListener {
-                            ViewTreeObserver$OnPreDrawListenerC00111() {
+                        public class ViewTreeObserver$OnPreDrawListenerC00081 implements ViewTreeObserver.OnPreDrawListener {
+                            ViewTreeObserver$OnPreDrawListenerC00081() {
                             }
 
                             @Override
@@ -232,7 +232,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                     @Override
                                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                        ThemePreviewMessagesCell.AnonymousClass1.C00101.ViewTreeObserver$OnPreDrawListenerC00111.this.lambda$onPreDraw$0(valueAnimator);
+                                        ThemePreviewMessagesCell.AnonymousClass1.C00071.ViewTreeObserver$OnPreDrawListenerC00081.this.lambda$onPreDraw$0(valueAnimator);
                                     }
                                 });
                                 ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -259,7 +259,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                         this.val$context = context;
                         this.val$currentAccount = i2;
                         this.val$type = i;
-                        this.gestureDetector = new GestureDetector(context, new C00101());
+                        this.gestureDetector = new GestureDetector(context, new C00071());
                     }
 
                     @Override

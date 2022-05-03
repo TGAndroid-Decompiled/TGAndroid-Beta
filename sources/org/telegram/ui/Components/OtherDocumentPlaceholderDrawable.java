@@ -18,7 +18,6 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$Message;
 
@@ -236,7 +235,7 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
             TLRPC$Message tLRPC$Message = messageObject.messageOwner;
             if (tLRPC$Message.media != null) {
                 String str = null;
-                if ((TextUtils.isEmpty(tLRPC$Message.attachPath) || !new File(this.parentMessageObject.messageOwner.attachPath).exists()) && !FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(this.parentMessageObject.messageOwner).exists()) {
+                if ((TextUtils.isEmpty(tLRPC$Message.attachPath) || !new File(this.parentMessageObject.messageOwner.attachPath).exists()) && !FileLoader.getPathToMessage(this.parentMessageObject.messageOwner).exists()) {
                     str = FileLoader.getAttachFileName(this.parentMessageObject.getDocument());
                 }
                 this.loaded = false;

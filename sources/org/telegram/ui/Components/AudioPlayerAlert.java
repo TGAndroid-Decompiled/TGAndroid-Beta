@@ -1657,7 +1657,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             }
         }
         if (file == null) {
-            file = FileLoader.getInstance(this.currentAccount).getPathToMessage(messageObject.messageOwner);
+            file = FileLoader.getPathToMessage(messageObject.messageOwner);
         }
         boolean z = SharedConfig.streamMedia && ((int) messageObject.getDialogId()) != 0 && messageObject.isMusic();
         if (file.exists() || z) {

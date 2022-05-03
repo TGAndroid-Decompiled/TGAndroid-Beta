@@ -85,9 +85,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import com.android.internal.telephony.ITelephony;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
-import com.microsoft.appcenter.AppCenter;
-import com.microsoft.appcenter.crashes.Crashes;
-import com.microsoft.appcenter.distribute.Distribute;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -217,6 +214,12 @@ public class AndroidUtilities {
         void run(int i);
     }
 
+    public static void appCenterLog(Throwable th) {
+    }
+
+    public static void checkForUpdates() {
+    }
+
     public static int compare(int i, int i2) {
         if (i == i2) {
             return 0;
@@ -268,6 +271,9 @@ public class AndroidUtilities {
 
     public static int setPeerLayerVersion(int i, int i2) {
         return (i & 65535) | (i2 << 16);
+    }
+
+    public static void startAppCenter(Activity activity) {
     }
 
     static {
@@ -848,14 +854,8 @@ public class AndroidUtilities {
     }
 
     public static void requestAdjustResize(Activity activity, int i) {
-        if (activity != null) {
-            requestAdjustResize(activity.getWindow(), i);
-        }
-    }
-
-    public static void requestAdjustResize(Window window, int i) {
-        if (window != null && !isTablet()) {
-            window.setSoftInputMode(16);
+        if (activity != null && !isTablet()) {
+            activity.getWindow().setSoftInputMode(16);
             adjustOwnerClassGuid = i;
         }
     }
@@ -2240,36 +2240,6 @@ public class AndroidUtilities {
         }
     }
 
-    public static void startAppCenter(Activity activity) {
-        try {
-            if (BuildVars.DEBUG_VERSION) {
-                Distribute.setEnabledForDebuggableBuild(true);
-                AppCenter.start(activity.getApplication(), BuildVars.DEBUG_VERSION ? BuildVars.APPCENTER_HASH_DEBUG : BuildVars.APPCENTER_HASH, Distribute.class, Crashes.class);
-                AppCenter.setUserId("uid=" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId);
-            }
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
-    }
-
-    public static void checkForUpdates() {
-        try {
-            if (BuildVars.DEBUG_VERSION && SystemClock.elapsedRealtime() - lastUpdateCheckTime >= 3600000) {
-                lastUpdateCheckTime = SystemClock.elapsedRealtime();
-                Distribute.checkForUpdate();
-            }
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
-    }
-
-    public static void appCenterLog(Throwable th) {
-        try {
-            Crashes.trackError(th);
-        } catch (Throwable unused) {
-        }
-    }
-
     public static boolean shouldShowClipboardToast() {
         return Build.VERSION.SDK_INT < 31 || !OneUIUtilities.hasBuiltInClipboardToasts();
     }
@@ -2698,7 +2668,7 @@ public class AndroidUtilities {
             String str2 = messageObject.messageOwner.attachPath;
             File file = (str2 == null || str2.length() == 0) ? null : new File(messageObject.messageOwner.attachPath);
             if (file == null || !file.exists()) {
-                file = FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(messageObject.messageOwner);
+                file = FileLoader.getPathToMessage(messageObject.messageOwner);
             }
             if (file != null && file.exists()) {
                 if (baseFragment == null || !file.getName().toLowerCase().endsWith("attheme")) {
@@ -2711,7 +2681,7 @@ public class AndroidUtilities {
                             str = null;
                         }
                         if (Build.VERSION.SDK_INT >= 24) {
-                            intent.setDataAndType(FileProvider.getUriForFile(activity, "org.telegram.messenger.beta.provider", file), str != null ? str : "text/plain");
+                            intent.setDataAndType(FileProvider.getUriForFile(activity, "org.telegram.messenger.web.provider", file), str != null ? str : "text/plain");
                         } else {
                             intent.setDataAndType(Uri.fromFile(file), str != null ? str : "text/plain");
                         }
@@ -2720,7 +2690,7 @@ public class AndroidUtilities {
                                 activity.startActivityForResult(intent, 500);
                             } catch (Exception unused) {
                                 if (Build.VERSION.SDK_INT >= 24) {
-                                    intent.setDataAndType(FileProvider.getUriForFile(activity, "org.telegram.messenger.beta.provider", file), "text/plain");
+                                    intent.setDataAndType(FileProvider.getUriForFile(activity, "org.telegram.messenger.web.provider", file), "text/plain");
                                 } else {
                                     intent.setDataAndType(Uri.fromFile(file), "text/plain");
                                 }
@@ -2767,7 +2737,7 @@ public class AndroidUtilities {
         String str2 = null;
         File file = (str == null || str.length() == 0) ? null : new File(messageObject.messageOwner.attachPath);
         if (file == null || !file.exists()) {
-            file = FileLoader.getInstance(messageObject.currentAccount).getPathToMessage(messageObject.messageOwner);
+            file = FileLoader.getPathToMessage(messageObject.messageOwner);
         }
         int i = messageObject.type;
         if (i == 9 || i == 0) {
@@ -2777,7 +2747,7 @@ public class AndroidUtilities {
     }
 
     public static boolean openForView(TLRPC$Document tLRPC$Document, boolean z, Activity activity) {
-        return openForView(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true), FileLoader.getAttachFileName(tLRPC$Document), tLRPC$Document.mime_type, activity, null);
+        return openForView(FileLoader.getPathToAttach(tLRPC$Document, true), FileLoader.getAttachFileName(tLRPC$Document), tLRPC$Document.mime_type, activity, null);
     }
 
     public static SpannableStringBuilder formatSpannableSimple(String str, CharSequence... charSequenceArr) {
@@ -3326,10 +3296,6 @@ public class AndroidUtilities {
         }
     }
 
-    public static float computeDampingRatio(float f, float f2, float f3) {
-        return f2 / (((float) Math.sqrt(f3 * f)) * 2.0f);
-    }
-
     public static boolean hasFlagSecureFragment() {
         return flagSecureFragment != null;
     }
@@ -3666,40 +3632,38 @@ public class AndroidUtilities {
     }
 
     public static void updateViewVisibilityAnimated(View view, boolean z, float f, boolean z2) {
-        if (view != null) {
-            int i = 0;
-            if (view.getParent() == null) {
-                z2 = false;
+        int i = 0;
+        if (view.getParent() == null) {
+            z2 = false;
+        }
+        Integer num = null;
+        if (!z2) {
+            view.animate().setListener(null).cancel();
+            if (!z) {
+                i = 8;
             }
-            Integer num = null;
-            if (!z2) {
-                view.animate().setListener(null).cancel();
-                if (!z) {
-                    i = 8;
-                }
-                view.setVisibility(i);
-                if (z) {
-                    num = 1;
-                }
-                view.setTag(num);
-                view.setAlpha(1.0f);
-                view.setScaleX(1.0f);
-                view.setScaleY(1.0f);
-            } else if (z && view.getTag() == null) {
-                view.animate().setListener(null).cancel();
-                if (view.getVisibility() != 0) {
-                    view.setVisibility(0);
-                    view.setAlpha(0.0f);
-                    view.setScaleX(f);
-                    view.setScaleY(f);
-                }
-                view.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
-                view.setTag(1);
-            } else if (!z && view.getTag() != null) {
-                view.animate().setListener(null).cancel();
-                view.animate().alpha(0.0f).scaleY(f).scaleX(f).setListener(new HideViewAfterAnimation(view)).setDuration(150L).start();
-                view.setTag(null);
+            view.setVisibility(i);
+            if (z) {
+                num = 1;
             }
+            view.setTag(num);
+            view.setAlpha(1.0f);
+            view.setScaleX(1.0f);
+            view.setScaleY(1.0f);
+        } else if (z && view.getTag() == null) {
+            view.animate().setListener(null).cancel();
+            if (view.getVisibility() != 0) {
+                view.setVisibility(0);
+                view.setAlpha(0.0f);
+                view.setScaleX(f);
+                view.setScaleY(f);
+            }
+            view.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
+            view.setTag(1);
+        } else if (!z && view.getTag() != null) {
+            view.animate().setListener(null).cancel();
+            view.animate().alpha(0.0f).scaleY(f).scaleX(f).setListener(new HideViewAfterAnimation(view)).setDuration(150L).start();
+            view.setTag(null);
         }
     }
 
@@ -3730,7 +3694,7 @@ public class AndroidUtilities {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             bitmap.compress(compressFormat, 100, fileOutputStream);
             fileOutputStream.close();
-            Uri uriForFile = FileProvider.getUriForFile(ApplicationLoader.applicationContext, "org.telegram.messenger.beta.provider", file);
+            Uri uriForFile = FileProvider.getUriForFile(ApplicationLoader.applicationContext, "org.telegram.messenger.web.provider", file);
             fileOutputStream.close();
             return uriForFile;
         } catch (Exception e2) {

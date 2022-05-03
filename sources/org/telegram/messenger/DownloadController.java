@@ -1287,9 +1287,8 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadDownloadingFiles$11() {
-        final ArrayList<MessageObject> arrayList = new ArrayList<>();
-        final ArrayList<MessageObject> arrayList2 = new ArrayList<>();
-        ArrayList arrayList3 = new ArrayList();
+        final ArrayList arrayList = new ArrayList();
+        final ArrayList arrayList2 = new ArrayList();
         try {
             SQLiteCursor queryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT data, state FROM downloading_documents ORDER BY date DESC", new Object[0]);
             while (queryFinalized.next()) {
@@ -1299,11 +1298,10 @@ public class DownloadController extends BaseController implements NotificationCe
                     TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     if (TLdeserialize != null) {
                         TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(this.currentAccount).clientUserId);
-                        MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, false);
-                        arrayList3.add(messageObject);
+                        MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, true);
                         if (intValue == 0) {
                             arrayList.add(messageObject);
-                        } else {
+                        } else if (messageObject.mediaExists) {
                             arrayList2.add(messageObject);
                         }
                     }
@@ -1314,8 +1312,6 @@ public class DownloadController extends BaseController implements NotificationCe
         } catch (Exception e) {
             FileLog.e(e);
         }
-        getFileLoader().checkMediaExistance(arrayList);
-        getFileLoader().checkMediaExistance(arrayList2);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -1401,7 +1397,7 @@ public class DownloadController extends BaseController implements NotificationCe
                 executeFast.bindLong(2, ((MessageObject) arrayList.get(i)).getDocument().id);
                 executeFast.step();
                 try {
-                    FileLoader.getInstance(this.currentAccount).getPathToMessage(((MessageObject) arrayList.get(i)).messageOwner).delete();
+                    FileLoader.getPathToMessage(((MessageObject) arrayList.get(i)).messageOwner).delete();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }

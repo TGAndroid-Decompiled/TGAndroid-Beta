@@ -23,8 +23,6 @@ public abstract class TLRPC$Chat extends TLObject {
     public boolean has_geo;
     public boolean has_link;
     public long id;
-    public boolean join_request;
-    public boolean join_to_send;
     public boolean kicked;
     public boolean left;
     public boolean megagroup;

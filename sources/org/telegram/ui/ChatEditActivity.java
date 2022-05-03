@@ -765,7 +765,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                     boolean z2 = this.historyHidden;
                     if (z != z2) {
                         tLRPC$ChatFull.hidden_prehistory = z2;
-                        getMessagesController().toggleChannelInvitesHistory(this.chatId, this.historyHidden);
+                        getMessagesController().toogleChannelInvitesHistory(this.chatId, this.historyHidden);
                     }
                 }
                 if (this.imageUpdater.isUploadingImage()) {
@@ -796,7 +796,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 TLRPC$Chat tLRPC$Chat = this.currentChat;
                 if (z3 != tLRPC$Chat.signatures) {
                     tLRPC$Chat.signatures = true;
-                    getMessagesController().toggleChannelSignatures(this.chatId, this.signMessages);
+                    getMessagesController().toogleChannelSignatures(this.chatId, this.signMessages);
                 }
                 finishFragment();
                 return;

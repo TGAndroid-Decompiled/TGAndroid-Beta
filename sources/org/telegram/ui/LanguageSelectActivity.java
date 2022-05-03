@@ -451,7 +451,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             boolean value = getValue();
             TextCheckCell textCheckCell = new TextCheckCell(context);
             this.showButtonCheck = textCheckCell;
-            textCheckCell.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor("windowBackgroundWhite")));
+            textCheckCell.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.getColor("windowBackgroundWhite"), Theme.getColor("listSelectorSDK21")));
             this.showButtonCheck.setTextAndCheck(LocaleController.getString("ShowTranslateButton", R.string.ShowTranslateButton), value, value);
             this.showButtonCheck.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -462,7 +462,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             addView(this.showButtonCheck, LayoutHelper.createLinear(-1, -2));
             TextSettingsCell textSettingsCell = new TextSettingsCell(context);
             this.doNotTranslateCell = textSettingsCell;
-            textSettingsCell.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor("windowBackgroundWhite")));
+            textSettingsCell.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.getColor("windowBackgroundWhite"), Theme.getColor("listSelectorSDK21")));
             this.doNotTranslateCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {

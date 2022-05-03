@@ -10,7 +10,6 @@ public class TLRPC$TL_availableReaction extends TLObject {
     public int flags;
     public boolean inactive;
     public int positionInList;
-    public boolean premium;
     public String reaction;
     public TLRPC$Document select_animation;
     public TLRPC$Document static_icon;
@@ -32,12 +31,11 @@ public class TLRPC$TL_availableReaction extends TLObject {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
-        this.inactive = (readInt32 & 1) != 0;
-        if ((readInt32 & 4) != 0) {
-            z2 = true;
+        boolean z2 = true;
+        if ((readInt32 & 1) == 0) {
+            z2 = false;
         }
-        this.premium = z2;
+        this.inactive = z2;
         this.reaction = abstractSerializedData.readString(z);
         this.title = abstractSerializedData.readString(z);
         this.static_icon = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -58,9 +56,7 @@ public class TLRPC$TL_availableReaction extends TLObject {
         abstractSerializedData.writeInt32(constructor);
         int i = this.inactive ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
-        int i2 = this.premium ? i | 4 : i & (-5);
-        this.flags = i2;
-        abstractSerializedData.writeInt32(i2);
+        abstractSerializedData.writeInt32(i);
         abstractSerializedData.writeString(this.reaction);
         abstractSerializedData.writeString(this.title);
         this.static_icon.serializeToStream(abstractSerializedData);

@@ -120,19 +120,15 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 this.videoSize = directorySize2;
                 this.videoSize = directorySize2 + getDirectorySize(FileLoader.checkDirectory(FileLoader.MEDIA_DIR_VIDEO_PUBLIC), 0);
                 if (!this.canceled) {
-                    long directorySize3 = getDirectorySize(FileLoader.checkDirectory(3), 1);
-                    this.documentsSize = directorySize3;
-                    this.documentsSize = directorySize3 + getDirectorySize(FileLoader.checkDirectory(5), 1);
+                    this.documentsSize = getDirectorySize(FileLoader.checkDirectory(3), 1);
                     if (!this.canceled) {
-                        long directorySize4 = getDirectorySize(FileLoader.checkDirectory(3), 2);
-                        this.musicSize = directorySize4;
-                        this.musicSize = directorySize4 + getDirectorySize(FileLoader.checkDirectory(5), 2);
+                        this.musicSize = getDirectorySize(FileLoader.checkDirectory(3), 2);
                         if (!this.canceled) {
                             this.stickersSize = getDirectorySize(new File(FileLoader.checkDirectory(4), "acache"), 0);
                             if (!this.canceled) {
-                                long directorySize5 = getDirectorySize(FileLoader.checkDirectory(1), 0);
-                                this.audioSize = directorySize5;
-                                this.totalSize = this.cacheSize + this.videoSize + directorySize5 + this.photoSize + this.documentsSize + this.musicSize + this.stickersSize;
+                                long directorySize3 = getDirectorySize(FileLoader.checkDirectory(1), 0);
+                                this.audioSize = directorySize3;
+                                this.totalSize = this.cacheSize + this.videoSize + directorySize3 + this.photoSize + this.documentsSize + this.musicSize + this.stickersSize;
                                 if (Build.VERSION.SDK_INT >= 19) {
                                     ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
                                     file = rootDirs.get(0);
@@ -369,8 +365,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         }
                     };
                     this.bottomSheet = bottomSheet;
-                    bottomSheet.fixNavigationBar();
-                    this.bottomSheet.setAllowNestedScroll(true);
+                    bottomSheet.setAllowNestedScroll(true);
                     this.bottomSheet.setApplyBottomPadding(false);
                     LinearLayout linearLayout = new LinearLayout(getParentActivity());
                     this.bottomSheetView = linearLayout;
@@ -727,7 +722,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
         View view = this.actionTextView;
         if (view != null) {
-            view.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
+            view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
         }
     }
 

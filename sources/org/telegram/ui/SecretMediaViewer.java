@@ -811,7 +811,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 if (file.exists()) {
                     preparePlayer(file);
                 } else {
-                    File pathToMessage = FileLoader.getInstance(this.currentAccount).getPathToMessage(messageObject.messageOwner);
+                    File pathToMessage = FileLoader.getPathToMessage(messageObject.messageOwner);
                     File file2 = new File(pathToMessage.getAbsolutePath() + ".enc");
                     if (file2.exists()) {
                         pathToMessage = file2;

@@ -81,7 +81,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
     private int indicatorColor = -10066330;
     private int underlineColor = 436207616;
     private GradientDrawable indicatorDrawable = new GradientDrawable();
-    private int scrollOffset = AndroidUtilities.dp(36.0f);
+    private int scrollOffset = AndroidUtilities.dp(52.0f);
     private int underlineHeight = AndroidUtilities.dp(2.0f);
     private int lastScrollX = 0;
     SparseArray<StickerTabView> currentPlayingImages = new SparseArray<>();
@@ -115,7 +115,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
     };
     boolean expanded = false;
     private float stickerTabExpandedWidth = AndroidUtilities.dp(86.0f);
-    private float stickerTabWidth = AndroidUtilities.dp(36.0f);
+    private float stickerTabWidth = AndroidUtilities.dp(52.0f);
     private int scrollByOnNextMeasure = -1;
     Runnable scrollRunnable = new Runnable() {
         @Override
@@ -123,7 +123,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ScrollSlidingTabStrip.AnonymousClass6.run():void");
         }
     };
-    private LinearLayout.LayoutParams defaultTabLayoutParams = new LinearLayout.LayoutParams(AndroidUtilities.dp(36.0f), -1);
+    private LinearLayout.LayoutParams defaultTabLayoutParams = new LinearLayout.LayoutParams(AndroidUtilities.dp(52.0f), -1);
     private LinearLayout.LayoutParams defaultExpandLayoutParams = new LinearLayout.LayoutParams(0, -1, 1.0f);
 
     public interface ScrollSlidingTabStripDelegate {
@@ -548,11 +548,11 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
                             if (childAt instanceof StickerTabView) {
                                 ((StickerTabView) childAt).setExpanded(false);
                             }
-                            childAt.getLayoutParams().width = AndroidUtilities.dp(36.0f);
+                            childAt.getLayoutParams().width = AndroidUtilities.dp(52.0f);
                         }
                         ScrollSlidingTabStrip scrollSlidingTabStrip3 = ScrollSlidingTabStrip.this;
                         scrollSlidingTabStrip3.animateToExpanded = false;
-                        scrollSlidingTabStrip3.getLayoutParams().height = AndroidUtilities.dp(36.0f);
+                        scrollSlidingTabStrip3.getLayoutParams().height = AndroidUtilities.dp(48.0f);
                         ScrollSlidingTabStrip.this.tabsContainer.requestLayout();
                     }
                 }
@@ -568,7 +568,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
                     childAt.getLayoutParams().width = AndroidUtilities.dp(86.0f);
                 }
                 this.tabsContainer.requestLayout();
-                getLayoutParams().height = AndroidUtilities.dp(86.0f);
+                getLayoutParams().height = AndroidUtilities.dp(98.0f);
             }
             if (z) {
                 float childCount = this.stickerTabExpandedWidth * this.tabsContainer.getChildCount() * ((getScrollX() + f) / (this.stickerTabWidth * this.tabsContainer.getChildCount()));
@@ -655,7 +655,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         float dp;
         ImageLocation imageLocation;
         float f = this.expandProgress;
-        int scrollX = (int) ((getScrollX() - (this.animateToExpanded ? this.expandOffset * (1.0f - f) : 0.0f)) / (AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(50.0f) * f)));
+        int scrollX = (int) ((getScrollX() - (this.animateToExpanded ? this.expandOffset * (1.0f - f) : 0.0f)) / (AndroidUtilities.dp(52.0f) + (AndroidUtilities.dp(34.0f) * f)));
         int min = Math.min(this.tabsContainer.getChildCount(), ((int) Math.ceil(getMeasuredWidth() / dp)) + scrollX + 1);
         if (this.animateToExpanded) {
             scrollX -= 2;
@@ -742,7 +742,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
     }
 
     public int getTabSize() {
-        return AndroidUtilities.dp(this.animateToExpanded ? 86.0f : 36.0f);
+        return AndroidUtilities.dp(this.animateToExpanded ? 86.0f : 52.0f);
     }
 
     @Override

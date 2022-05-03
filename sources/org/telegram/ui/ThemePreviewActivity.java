@@ -1786,7 +1786,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) obj;
                 str = FileLoader.getAttachFileName(tLRPC$TL_wallPaper.document);
                 if (!TextUtils.isEmpty(str)) {
-                    file = FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$TL_wallPaper.document, true);
+                    file = FileLoader.getPathToAttach(tLRPC$TL_wallPaper.document, true);
                     i = tLRPC$TL_wallPaper.document.size;
                 } else {
                     return;
@@ -1796,7 +1796,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 TLRPC$Photo tLRPC$Photo = searchImage.photo;
                 if (tLRPC$Photo != null) {
                     TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, this.maxWallpaperSize, true);
-                    file2 = FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true);
+                    file2 = FileLoader.getPathToAttach(closestPhotoSizeWithSize, true);
                     str2 = FileLoader.getAttachFileName(closestPhotoSizeWithSize);
                     i = closestPhotoSizeWithSize.size;
                 } else {
@@ -2329,7 +2329,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         if (!Theme.hasThemeKey("chat_serviceBackground") || (this.backgroundImage.getBackground() instanceof MotionBackgroundDrawable)) {
             int i4 = this.checkColor;
             Theme.applyChatServiceMessageColor(new int[]{i4, i4, i4, i4}, this.backgroundImage.getBackground());
-        } else if (Theme.getCachedWallpaperNonBlocking() instanceof MotionBackgroundDrawable) {
+        } else if (Theme.getCachedWallpaper() instanceof MotionBackgroundDrawable) {
             int color = Theme.getColor("chat_serviceBackground");
             Theme.applyChatServiceMessageColor(new int[]{color, color, color, color}, this.backgroundImage.getBackground());
         }
@@ -2395,7 +2395,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         MotionBackgroundDrawable motionBackgroundDrawable2;
         int i = this.screenType;
         if (i == 0 && this.accent == null) {
-            this.backgroundImage.setBackground(Theme.getCachedWallpaperNonBlocking());
+            this.backgroundImage.setBackground(Theme.getCachedWallpaper());
         } else {
             TLRPC$PhotoSize tLRPC$PhotoSize = null;
             if (i == 2) {
@@ -2504,12 +2504,12 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     defaultAccentColor4 = i7;
                 }
                 if (TextUtils.isEmpty(themeAccent.patternSlug) || Theme.hasCustomWallpaper()) {
-                    Drawable cachedWallpaperNonBlocking = Theme.getCachedWallpaperNonBlocking();
-                    if (cachedWallpaperNonBlocking != null) {
-                        if (cachedWallpaperNonBlocking instanceof MotionBackgroundDrawable) {
-                            ((MotionBackgroundDrawable) cachedWallpaperNonBlocking).setParentView(this.backgroundImage);
+                    Drawable cachedWallpaper = Theme.getCachedWallpaper();
+                    if (cachedWallpaper != null) {
+                        if (cachedWallpaper instanceof MotionBackgroundDrawable) {
+                            ((MotionBackgroundDrawable) cachedWallpaper).setParentView(this.backgroundImage);
                         }
-                        this.backgroundImage.setBackground(cachedWallpaperNonBlocking);
+                        this.backgroundImage.setBackground(cachedWallpaper);
                     }
                 } else {
                     if (defaultAccentColor3 != 0) {

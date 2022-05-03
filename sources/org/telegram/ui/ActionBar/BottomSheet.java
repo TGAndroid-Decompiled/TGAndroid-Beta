@@ -79,7 +79,6 @@ public class BottomSheet extends Dialog {
     private boolean disableScroll;
     private Runnable dismissRunnable;
     private boolean dismissed;
-    public boolean drawDoubleNavigationBar;
     public boolean drawNavigationBar;
     private boolean focusable;
     private boolean fullHeight;
@@ -175,9 +174,6 @@ public class BottomSheet extends Dialog {
 
     public boolean onCustomOpenAnimation() {
         return false;
-    }
-
-    public void onDismissAnimationStart() {
     }
 
     protected boolean onScrollUp(float f) {
@@ -468,7 +464,7 @@ public class BottomSheet extends Dialog {
         }
 
         @Override
-        protected void dispatchDraw(android.graphics.Canvas r12) {
+        protected void dispatchDraw(android.graphics.Canvas r11) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BottomSheet.ContainerView.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -478,7 +474,7 @@ public class BottomSheet extends Dialog {
                 return super.drawChild(canvas, view, j);
             }
             if (BottomSheet.this.shouldOverlayCameraViewOverNavBar()) {
-                drawNavigationBar(canvas, 1.0f);
+                drawNavigationBar(canvas);
             }
             return super.drawChild(canvas, view, j);
         }
@@ -488,7 +484,7 @@ public class BottomSheet extends Dialog {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BottomSheet.ContainerView.onDraw(android.graphics.Canvas):void");
         }
 
-        public void drawNavigationBar(Canvas canvas, float f) {
+        public void drawNavigationBar(Canvas canvas) {
             int i = Build.VERSION.SDK_INT;
             if (i >= 26) {
                 BottomSheet bottomSheet = BottomSheet.this;
@@ -502,28 +498,18 @@ public class BottomSheet extends Dialog {
                 this.backgroundPaint.setColor(-16777216);
             }
             BottomSheet bottomSheet2 = BottomSheet.this;
-            float f2 = 0.0f;
+            float f = 0.0f;
             if ((bottomSheet2.drawNavigationBar && bottomSheet2.bottomInset != 0) || BottomSheet.this.currentPanTranslationY != 0.0f) {
                 BottomSheet bottomSheet3 = BottomSheet.this;
                 if (bottomSheet3.scrollNavBar || (i >= 29 && bottomSheet3.getAdditionalMandatoryOffsets() > 0)) {
-                    f2 = Math.max(0.0f, BottomSheet.this.getBottomInset() - (BottomSheet.this.containerView.getMeasuredHeight() - BottomSheet.this.containerView.getTranslationY()));
+                    f = Math.max(0.0f, BottomSheet.this.getBottomInset() - (BottomSheet.this.containerView.getMeasuredHeight() - BottomSheet.this.containerView.getTranslationY()));
                 }
                 BottomSheet bottomSheet4 = BottomSheet.this;
                 int bottomInset = bottomSheet4.drawNavigationBar ? bottomSheet4.getBottomInset() : 0;
-                int alpha = this.backgroundPaint.getAlpha();
-                if (f < 1.0f) {
-                    this.backgroundPaint.setAlpha((int) (alpha * f));
-                }
-                canvas.drawRect(BottomSheet.this.containerView.getLeft() + BottomSheet.this.backgroundPaddingLeft, ((getMeasuredHeight() - bottomInset) + f2) - BottomSheet.this.currentPanTranslationY, BottomSheet.this.containerView.getRight() - BottomSheet.this.backgroundPaddingLeft, getMeasuredHeight() + f2, this.backgroundPaint);
-                this.backgroundPaint.setAlpha(alpha);
+                canvas.drawRect(BottomSheet.this.containerView.getLeft() + BottomSheet.this.backgroundPaddingLeft, ((getMeasuredHeight() - bottomInset) + f) - BottomSheet.this.currentPanTranslationY, BottomSheet.this.containerView.getRight() - BottomSheet.this.backgroundPaddingLeft, getMeasuredHeight() + f, this.backgroundPaint);
                 if (BottomSheet.this.overlayDrawNavBarColor != 0) {
                     this.backgroundPaint.setColor(BottomSheet.this.overlayDrawNavBarColor);
-                    int alpha2 = this.backgroundPaint.getAlpha();
-                    if (f < 1.0f) {
-                        this.backgroundPaint.setAlpha((int) (alpha2 * f));
-                    }
-                    canvas.drawRect(BottomSheet.this.containerView.getLeft() + BottomSheet.this.backgroundPaddingLeft, ((getMeasuredHeight() - bottomInset) + f2) - BottomSheet.this.currentPanTranslationY, BottomSheet.this.containerView.getRight() - BottomSheet.this.backgroundPaddingLeft, getMeasuredHeight() + f2, this.backgroundPaint);
-                    this.backgroundPaint.setAlpha(alpha2);
+                    canvas.drawRect(BottomSheet.this.containerView.getLeft() + BottomSheet.this.backgroundPaddingLeft, ((getMeasuredHeight() - bottomInset) + f) - BottomSheet.this.currentPanTranslationY, BottomSheet.this.containerView.getRight() - BottomSheet.this.backgroundPaddingLeft, getMeasuredHeight() + f, this.backgroundPaint);
                 }
             }
         }
@@ -611,7 +597,7 @@ public class BottomSheet extends Dialog {
                 this.textView.setTextColor(getThemedColor("featuredStickers_buttonText"));
                 this.textView.setTextSize(1, 14.0f);
                 this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-                this.textView.setBackground(Theme.AdaptiveRipple.filledRect(getThemedColor("featuredStickers_addButton"), 4.0f));
+                this.textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
                 addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
             }
         }
@@ -806,19 +792,6 @@ public class BottomSheet extends Dialog {
             return WindowInsets.CONSUMED;
         }
         return windowInsets.consumeSystemWindowInsets();
-    }
-
-    public void fixNavigationBar() {
-        fixNavigationBar(getThemedColor("dialogBackground"));
-    }
-
-    public void fixNavigationBar(int i) {
-        this.drawNavigationBar = true;
-        this.drawDoubleNavigationBar = true;
-        this.scrollNavBar = true;
-        this.navBarColorKey = null;
-        this.navBarColor = i;
-        setOverlayNavBarColor(i);
     }
 
     @Override
@@ -1309,7 +1282,6 @@ public class BottomSheet extends Dialog {
                 onDismissListener.onDismiss(this);
             }
             cancelSheetAnimation();
-            onDismissAnimationStart();
             if (!this.allowCustomAnimation || !onCustomCloseAnimation()) {
                 this.currentSheetAnimationType = 2;
                 AnimatorSet animatorSet = new AnimatorSet();
@@ -1413,16 +1385,7 @@ public class BottomSheet extends Dialog {
         }
 
         public Builder(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
-            BottomSheet bottomSheet = new BottomSheet(context, z, resourcesProvider);
-            this.bottomSheet = bottomSheet;
-            bottomSheet.fixNavigationBar();
-        }
-
-        public Builder(Context context, boolean z, Theme.ResourcesProvider resourcesProvider, int i) {
-            BottomSheet bottomSheet = new BottomSheet(context, z, resourcesProvider);
-            this.bottomSheet = bottomSheet;
-            bottomSheet.setBackgroundColor(i);
-            this.bottomSheet.fixNavigationBar(i);
+            this.bottomSheet = new BottomSheet(context, z, resourcesProvider);
         }
 
         public Builder setItems(CharSequence[] charSequenceArr, DialogInterface.OnClickListener onClickListener) {
@@ -1494,6 +1457,14 @@ public class BottomSheet extends Dialog {
 
         public Builder setOnPreDismissListener(DialogInterface.OnDismissListener onDismissListener) {
             this.bottomSheet.setOnHideListener(onDismissListener);
+            return this;
+        }
+
+        public Builder fixNavigationBar() {
+            BottomSheet bottomSheet = this.bottomSheet;
+            bottomSheet.drawNavigationBar = true;
+            bottomSheet.scrollNavBar = true;
+            bottomSheet.setOverlayNavBarColor(bottomSheet.getThemedColor("dialogBackground"));
             return this;
         }
     }

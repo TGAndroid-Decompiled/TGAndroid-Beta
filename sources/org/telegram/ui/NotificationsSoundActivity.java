@@ -948,7 +948,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             File file = new File(AndroidUtilities.getCacheDir(), str);
             if (!file.exists()) {
                 try {
-                    AndroidUtilities.copyFile(FileLoader.getInstance(i).getPathToAttach(this.document), file);
+                    AndroidUtilities.copyFile(FileLoader.getPathToAttach(this.document), file);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

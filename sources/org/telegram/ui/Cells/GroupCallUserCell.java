@@ -228,7 +228,7 @@ public class GroupCallUserCell extends FrameLayout {
         }
     }
 
-    private static class VerifiedDrawable extends Drawable {
+    public static class VerifiedDrawable extends Drawable {
         private Drawable[] drawables;
 
         @Override

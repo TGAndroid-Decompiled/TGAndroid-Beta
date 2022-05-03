@@ -203,7 +203,7 @@ public class VideoSeekPreviewImage extends View {
                 File directory = FileLoader.getDirectory(4);
                 str = new File(directory, tLRPC$TL_document.dc_id + "_" + tLRPC$TL_document.id + ".temp").getAbsolutePath();
             } else {
-                str = FileLoader.getInstance(intValue).getPathToAttach(tLRPC$TL_document, false).getAbsolutePath();
+                str = FileLoader.getPathToAttach(tLRPC$TL_document, false).getAbsolutePath();
             }
             this.fileDrawable = new AnimatedFileDrawable(new File(str), true, tLRPC$TL_document.size, tLRPC$TL_document, null, parentObject, 0L, intValue, true);
         } else {

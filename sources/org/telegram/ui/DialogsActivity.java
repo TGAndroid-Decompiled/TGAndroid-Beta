@@ -2569,7 +2569,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (this.updateLayout != null) {
             if (SharedConfig.isAppUpdateAvailable()) {
                 FileLoader.getAttachFileName(SharedConfig.pendingAppUpdate.document);
-                z2 = getFileLoader().getPathToAttach(SharedConfig.pendingAppUpdate.document, true).exists();
+                z2 = FileLoader.getPathToAttach(SharedConfig.pendingAppUpdate.document, true).exists();
             } else {
                 z2 = false;
             }
@@ -6270,7 +6270,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.sendPopupWindow.setInputMethodMode(2);
         this.sendPopupWindow.setSoftInputMode(0);
         this.sendPopupWindow.getContentView().setFocusableInTouchMode(true);
-        SharedConfig.removeScheduledOrNoSoundHint();
+        SharedConfig.removeScheduledOrNoSuoundHint();
         linearLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
         this.sendPopupWindow.setFocusable(true);
         int[] iArr = new int[2];

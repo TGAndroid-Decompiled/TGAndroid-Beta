@@ -76,7 +76,7 @@ public class UserCell extends FrameLayout {
             this.addButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             this.addButton.setTextSize(1, 14.0f);
             this.addButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-            this.addButton.setBackgroundDrawable(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
+            this.addButton.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
             this.addButton.setText(LocaleController.getString("Add", R.string.Add));
             this.addButton.setPadding(AndroidUtilities.dp(17.0f), 0, AndroidUtilities.dp(17.0f), 0);
             View view = this.addButton;

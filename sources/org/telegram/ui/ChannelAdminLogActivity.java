@@ -1330,7 +1330,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             if (!(str2 == null || str2.length() == 0 || !new File(messageObject.messageOwner.attachPath).exists())) {
                 z2 = true;
             }
-            if (z2 || !getFileLoader().getPathToMessage(messageObject.messageOwner).exists()) {
+            if (z2 || !FileLoader.getPathToMessage(messageObject.messageOwner).exists()) {
                 z = z2;
             }
             if (z) {

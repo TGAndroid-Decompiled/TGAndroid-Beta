@@ -465,10 +465,10 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                         if (tLRPC$Photo != null) {
                             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, AndroidUtilities.getPhotoSize());
                             if (closestPhotoSizeWithSize != null) {
-                                File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true);
+                                File pathToAttach = FileLoader.getPathToAttach(closestPhotoSizeWithSize, true);
                                 this.finalPath = pathToAttach.getAbsolutePath();
                                 if (!pathToAttach.exists()) {
-                                    pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, false);
+                                    pathToAttach = FileLoader.getPathToAttach(closestPhotoSizeWithSize, false);
                                     if (!pathToAttach.exists()) {
                                         pathToAttach = null;
                                     }
@@ -515,7 +515,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     File generatePicturePath = AndroidUtilities.generatePicturePath();
                     if (generatePicturePath != null) {
                         if (i >= 24) {
-                            intent.putExtra("output", FileProvider.getUriForFile(this.parentFragment.getParentActivity(), "org.telegram.messenger.beta.provider", generatePicturePath));
+                            intent.putExtra("output", FileProvider.getUriForFile(this.parentFragment.getParentActivity(), "org.telegram.messenger.web.provider", generatePicturePath));
                             intent.addFlags(2);
                             intent.addFlags(1);
                         } else {
@@ -543,7 +543,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     File generateVideoPath = AndroidUtilities.generateVideoPath();
                     if (generateVideoPath != null) {
                         if (i >= 24) {
-                            intent.putExtra("output", FileProvider.getUriForFile(this.parentFragment.getParentActivity(), "org.telegram.messenger.beta.provider", generateVideoPath));
+                            intent.putExtra("output", FileProvider.getUriForFile(this.parentFragment.getParentActivity(), "org.telegram.messenger.web.provider", generateVideoPath));
                             intent.addFlags(2);
                             intent.addFlags(1);
                         } else if (i >= 18) {
@@ -749,7 +749,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             this.smallPhoto = scaleAndSaveImage;
             if (scaleAndSaveImage != null) {
                 try {
-                    ImageLoader.getInstance().putImageToCache(new BitmapDrawable(BitmapFactory.decodeFile(FileLoader.getInstance(this.currentAccount).getPathToAttach(this.smallPhoto, true).getAbsolutePath())), this.smallPhoto.location.volume_id + "_" + this.smallPhoto.location.local_id + "@50_50", true);
+                    ImageLoader.getInstance().putImageToCache(new BitmapDrawable(BitmapFactory.decodeFile(FileLoader.getPathToAttach(scaleAndSaveImage, true).getAbsolutePath())), this.smallPhoto.location.volume_id + "_" + this.smallPhoto.location.local_id + "@50_50", true);
                 } catch (Throwable unused) {
                 }
             }
@@ -879,11 +879,11 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                             }
                             Bitmap createVideoThumbnailAtTime = SendMessagesHelper.createVideoThumbnailAtTime(str4, (long) (this.videoTimestamp * 1000.0d), null, true);
                             if (createVideoThumbnailAtTime != null) {
-                                File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(this.smallPhoto, true);
+                                File pathToAttach = FileLoader.getPathToAttach(this.smallPhoto, true);
                                 if (pathToAttach != null) {
                                     pathToAttach.delete();
                                 }
-                                File pathToAttach2 = FileLoader.getInstance(this.currentAccount).getPathToAttach(this.bigPhoto, true);
+                                File pathToAttach2 = FileLoader.getPathToAttach(this.bigPhoto, true);
                                 if (pathToAttach2 != null) {
                                     pathToAttach2.delete();
                                 }
@@ -892,7 +892,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                                 this.smallPhoto = scaleAndSaveImage;
                                 if (scaleAndSaveImage != null) {
                                     try {
-                                        ImageLoader.getInstance().putImageToCache(new BitmapDrawable(BitmapFactory.decodeFile(FileLoader.getInstance(this.currentAccount).getPathToAttach(this.smallPhoto, true).getAbsolutePath())), this.smallPhoto.location.volume_id + "_" + this.smallPhoto.location.local_id + "@50_50", true);
+                                        ImageLoader.getInstance().putImageToCache(new BitmapDrawable(BitmapFactory.decodeFile(FileLoader.getPathToAttach(scaleAndSaveImage, true).getAbsolutePath())), this.smallPhoto.location.volume_id + "_" + this.smallPhoto.location.local_id + "@50_50", true);
                                     } catch (Throwable unused) {
                                     }
                                 }

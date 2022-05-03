@@ -96,7 +96,6 @@ public class CameraScanActivity extends BaseFragment {
     private Paint cornerPaint = new Paint(1);
     private Path path = new Path();
     private float backShadowAlpha = 0.5f;
-    protected boolean shownAsBottomSheet = false;
     private SpringAnimation qrAppearing = null;
     private float qrAppearingValue = 0.0f;
     private RectF fromBounds = new RectF();
@@ -146,8 +145,9 @@ public class CameraScanActivity extends BaseFragment {
         AnonymousClass1 r9 = new AnonymousClass1(baseFragment.getParentActivity(), false, actionBarLayoutArr, i, z, cameraScanActivityDelegate);
         r9.setUseLightStatusBar(false);
         AndroidUtilities.setLightNavigationBar(r9.getWindow(), false);
-        AndroidUtilities.setNavigationBarColor(r9.getWindow(), -16777216, false);
-        r9.setUseLightStatusBar(false);
+        if (Build.VERSION.SDK_INT >= 26) {
+            r9.getWindow().setNavigationBarColor(-16777216);
+        }
         r9.getWindow().addFlags(512);
         r9.show();
         return actionBarLayoutArr;
@@ -173,10 +173,6 @@ public class CameraScanActivity extends BaseFragment {
             this.val$cameraDelegate = cameraScanActivityDelegate;
             actionBarLayoutArr[0].init(new ArrayList<>());
             CameraScanActivity cameraScanActivity = new CameraScanActivity(i) {
-                {
-                    AnonymousClass1.this = this;
-                }
-
                 @Override
                 public void finishFragment() {
                     AnonymousClass1.this.dismiss();
@@ -188,7 +184,6 @@ public class CameraScanActivity extends BaseFragment {
                 }
             };
             this.fragment = cameraScanActivity;
-            cameraScanActivity.shownAsBottomSheet = true;
             cameraScanActivity.needGalleryButton = z2;
             actionBarLayoutArr[0].addFragmentToStack(this.fragment);
             actionBarLayoutArr[0].showLastFragment();
@@ -269,24 +264,13 @@ public class CameraScanActivity extends BaseFragment {
     @Override
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        if (this.shownAsBottomSheet) {
-            this.actionBar.setItemsColor(-1, false);
-            this.actionBar.setItemsBackgroundColor(-1, false);
-            this.actionBar.setTitleColor(-1);
-        } else {
-            this.actionBar.setItemsColor(Theme.getColor("windowBackgroundWhiteGrayText2"), false);
-            this.actionBar.setItemsBackgroundColor(Theme.getColor("actionBarWhiteSelector"), false);
-            this.actionBar.setTitleColor(Theme.getColor("actionBarDefaultTitle"));
-        }
+        this.actionBar.setItemsColor(Theme.getColor("windowBackgroundWhiteGrayText2"), false);
+        this.actionBar.setItemsBackgroundColor(Theme.getColor("actionBarWhiteSelector"), false);
         this.actionBar.setCastShadows(false);
         if (!AndroidUtilities.isTablet() && !isQr()) {
             this.actionBar.showActionModeTop();
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
-            {
-                CameraScanActivity.this = this;
-            }
-
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -298,10 +282,6 @@ public class CameraScanActivity extends BaseFragment {
         this.cornerPaint.setColor(-1);
         this.cornerPaint.setStyle(Paint.Style.FILL);
         ViewGroup viewGroup = new ViewGroup(context) {
-            {
-                CameraScanActivity.this = this;
-            }
-
             @Override
             protected void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i);
@@ -459,7 +439,7 @@ public class CameraScanActivity extends BaseFragment {
                 public final void run() {
                     CameraScanActivity.this.initCameraView();
                 }
-            }, 450L);
+            }, 350L);
         } else {
             initCameraView();
         }
@@ -666,10 +646,6 @@ public class CameraScanActivity extends BaseFragment {
                 photoAlbumPickerActivity.setMaxSelectedPhotos(1, false);
                 photoAlbumPickerActivity.setAllowSearchImages(false);
                 photoAlbumPickerActivity.setDelegate(new PhotoAlbumPickerActivity.PhotoAlbumPickerActivityDelegate() {
-                    {
-                        CameraScanActivity.this = this;
-                    }
-
                     @Override
                     public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i) {
                         try {
@@ -734,10 +710,6 @@ public class CameraScanActivity extends BaseFragment {
             this.flashAnimator.setDuration(200L);
             this.flashAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.flashAnimator.addListener(new AnimatorListenerAdapter() {
-                {
-                    CameraScanActivity.this = this;
-                }
-
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     CameraScanActivity.this.flashAnimator = null;
@@ -967,7 +939,6 @@ public class CameraScanActivity extends BaseFragment {
 
     public class AnonymousClass7 implements Runnable {
         AnonymousClass7() {
-            CameraScanActivity.this = r1;
         }
 
         @Override

@@ -28,7 +28,6 @@ public abstract class TLRPC$User extends TLObject {
     public boolean mutual_contact;
     public String phone;
     public TLRPC$UserProfilePhoto photo;
-    public boolean premium;
     public boolean restricted;
     public ArrayList<TLRPC$TL_restrictionReason> restriction_reason = new ArrayList<>();
     public boolean scam;

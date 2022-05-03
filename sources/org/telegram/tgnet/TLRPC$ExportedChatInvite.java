@@ -61,16 +61,6 @@ public abstract class TLRPC$ExportedChatInvite extends TLObject {
                     }
                 };
                 break;
-            case -317687113:
-                tLRPC$TL_chatInviteExported = new TLRPC$TL_chatInviteExported() {
-                    public static int constructor = -317687113;
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
-                    }
-                };
-                break;
             case -64092740:
                 tLRPC$TL_chatInviteExported = new TLRPC$TL_chatInviteExported() {
                     public static int constructor = -64092740;

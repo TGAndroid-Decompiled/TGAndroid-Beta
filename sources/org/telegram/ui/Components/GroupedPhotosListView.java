@@ -525,7 +525,6 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                         }
                     }
                     imageReceiver.setAlpha(this.drawAlpha);
-                    imageReceiver.setRoundRadius(AndroidUtilities.dp(2.0f));
                     imageReceiver.draw(canvas);
                 }
                 long currentTimeMillis = System.currentTimeMillis();

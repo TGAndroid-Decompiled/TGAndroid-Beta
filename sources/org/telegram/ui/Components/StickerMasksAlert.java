@@ -340,7 +340,6 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         this.behindKeyboardColorKey = null;
         this.behindKeyboardColor = -14342875;
         this.useLightStatusBar = false;
-        fixNavigationBar(-14342875);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.stickersDidLoad);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.recentDocumentsDidLoad);

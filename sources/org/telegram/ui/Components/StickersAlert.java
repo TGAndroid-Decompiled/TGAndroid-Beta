@@ -270,7 +270,6 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 return 0L;
             }
         };
-        fixNavigationBar();
         this.resourcesProvider = resourcesProvider;
         this.parentActivity = (Activity) context;
         final TLRPC$TL_messages_getAttachedStickers tLRPC$TL_messages_getAttachedStickers = new TLRPC$TL_messages_getAttachedStickers();
@@ -438,7 +437,6 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 return 0L;
             }
         };
-        fixNavigationBar();
         this.parentActivity = (Activity) context;
         this.importingStickers = arrayList;
         this.importingSoftware = str;
@@ -609,7 +607,6 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 return 0L;
             }
         };
-        fixNavigationBar();
         this.delegate = stickersAlertDelegate;
         this.inputStickerSet = tLRPC$InputStickerSet;
         this.stickerSet = tLRPC$TL_messages_stickerSet;
@@ -1073,17 +1070,15 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 if (!z) {
                     this.stickerEmojiTextView.setText(Emoji.replaceEmoji(MediaDataController.getInstance(this.currentAccount).getEmojiForSticker(this.selectedSticker.id), this.stickerEmojiTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(30.0f), false));
                 }
-                if (!ContentPreviewViewer.getInstance().showMenuFor(view)) {
-                    this.stickerImageView.getImageReceiver().setImage(ImageLocation.getForDocument(this.selectedSticker), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(this.selectedSticker.thumbs, 90), this.selectedSticker), (String) null, "webp", this.stickerSet, 1);
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.stickerPreviewLayout.getLayoutParams();
-                    layoutParams.topMargin = this.scrollOffsetY;
-                    this.stickerPreviewLayout.setLayoutParams(layoutParams);
-                    this.stickerPreviewLayout.setVisibility(0);
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(this.stickerPreviewLayout, View.ALPHA, 0.0f, 1.0f));
-                    animatorSet.setDuration(200L);
-                    animatorSet.start();
-                }
+                this.stickerImageView.getImageReceiver().setImage(ImageLocation.getForDocument(this.selectedSticker), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(this.selectedSticker.thumbs, 90), this.selectedSticker), (String) null, "webp", this.stickerSet, 1);
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.stickerPreviewLayout.getLayoutParams();
+                layoutParams.topMargin = this.scrollOffsetY;
+                this.stickerPreviewLayout.setLayoutParams(layoutParams);
+                this.stickerPreviewLayout.setVisibility(0);
+                AnimatorSet animatorSet = new AnimatorSet();
+                animatorSet.playTogether(ObjectAnimator.ofFloat(this.stickerPreviewLayout, View.ALPHA, 0.0f, 1.0f));
+                animatorSet.setDuration(200L);
+                animatorSet.start();
             }
         } else if (i >= 0 && i < arrayList.size()) {
             SendMessagesHelper.ImportingSticker importingSticker = this.importingStickersPaths.get(i);
@@ -2023,15 +2018,6 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             if (StickersAlert.this.stickerSetCovereds != null) {
                 FeaturedStickerSetInfoCell.createThemeDescriptions(list, StickersAlert.this.gridView, themeDescriptionDelegate);
             }
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (ContentPreviewViewer.getInstance().isVisible()) {
-            ContentPreviewViewer.getInstance().closeWithMenu();
-        } else {
-            super.onBackPressed();
         }
     }
 }

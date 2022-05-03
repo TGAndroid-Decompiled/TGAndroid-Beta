@@ -12,6 +12,6 @@ public final class MessagesController$$ExternalSyntheticLambda341 implements Req
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        MessagesController.lambda$unblockPeer$87(tLObject, tLRPC$TL_error);
+        MessagesController.lambda$processUpdates$298(tLObject, tLRPC$TL_error);
     }
 }

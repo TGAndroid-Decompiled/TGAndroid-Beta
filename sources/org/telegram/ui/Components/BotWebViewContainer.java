@@ -141,11 +141,11 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         cellFlickerDrawable.setColors(i, 153, 204);
         BackupImageView backupImageView = new BackupImageView(context) {
             {
-                this.imageReceiver = new C00161(this);
+                this.imageReceiver = new C00131(this);
             }
 
-            public class C00161 extends ImageReceiver {
-                C00161(View view) {
+            public class C00131 extends ImageReceiver {
+                C00131(View view) {
                     super(view);
                 }
 
@@ -156,7 +156,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                     duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            BotWebViewContainer.AnonymousClass1.C00161.this.lambda$setImageBitmapByKey$0(valueAnimator);
+                            BotWebViewContainer.AnonymousClass1.C00131.this.lambda$setImageBitmapByKey$0(valueAnimator);
                         }
                     });
                     duration.start();

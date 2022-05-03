@@ -554,7 +554,7 @@ public class SecretChatHelper extends BaseController {
                 tLRPC$TL_fileEncryptedLocation.volume_id = tLRPC$EncryptedFile.id;
                 tLRPC$TL_fileEncryptedLocation.secret = tLRPC$EncryptedFile.access_hash;
                 tLRPC$TL_fileEncryptedLocation.local_id = tLRPC$EncryptedFile.key_fingerprint;
-                new File(FileLoader.getDirectory(4), str2 + ".jpg").renameTo(getFileLoader().getPathToAttach(tLRPC$PhotoSize));
+                new File(FileLoader.getDirectory(4), str2 + ".jpg").renameTo(FileLoader.getPathToAttach(tLRPC$PhotoSize));
                 ImageLoader.getInstance().replaceImageInCache(str2, tLRPC$PhotoSize.location.volume_id + "_" + tLRPC$PhotoSize.location.local_id, ImageLocation.getForPhoto(tLRPC$PhotoSize, tLRPC$Message.media.photo), true);
                 ArrayList<TLRPC$Message> arrayList2 = new ArrayList<>();
                 arrayList2.add(tLRPC$Message);
@@ -580,7 +580,7 @@ public class SecretChatHelper extends BaseController {
                     tLRPC$Message.media.document.thumbs.add(tLRPC$TL_photoSizeEmpty);
                 }
                 String str3 = tLRPC$Message.attachPath;
-                if (str3 != null && str3.startsWith(FileLoader.getDirectory(4).getAbsolutePath()) && new File(tLRPC$Message.attachPath).renameTo(getFileLoader().getPathToAttach(tLRPC$Message.media.document))) {
+                if (str3 != null && str3.startsWith(FileLoader.getDirectory(4).getAbsolutePath()) && new File(tLRPC$Message.attachPath).renameTo(FileLoader.getPathToAttach(tLRPC$Message.media.document))) {
                     messageObject.mediaExists = messageObject.attachPathExists;
                     messageObject.attachPathExists = false;
                     tLRPC$Message.attachPath = "";

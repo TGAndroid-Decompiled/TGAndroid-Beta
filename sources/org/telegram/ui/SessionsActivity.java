@@ -789,6 +789,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
     }
 
     public void updateRows() {
+        boolean z = false;
         this.rowCount = 0;
         this.currentSessionSectionRow = -1;
         this.currentSessionRow = -1;
@@ -808,18 +809,20 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         this.ttlHeaderRow = -1;
         this.ttlRow = -1;
         this.ttlDivideRow = -1;
-        if (this.currentType == 0) {
-            boolean z = getMessagesController().qrLoginCamera;
+        if (this.currentType == 0 && getMessagesController().qrLoginCamera) {
+            z = true;
         }
-        int i = this.rowCount;
-        int i2 = i + 1;
-        this.rowCount = i2;
-        this.qrCodeRow = i;
-        int i3 = i2 + 1;
-        this.rowCount = i3;
-        this.qrCodeDividerRow = i2;
+        if (z) {
+            int i = this.rowCount;
+            int i2 = i + 1;
+            this.rowCount = i2;
+            this.qrCodeRow = i;
+            this.rowCount = i2 + 1;
+            this.qrCodeDividerRow = i2;
+        }
         if (!this.loading) {
             if (this.currentSession != null) {
+                int i3 = this.rowCount;
                 int i4 = i3 + 1;
                 this.rowCount = i4;
                 this.currentSessionSectionRow = i3;
@@ -881,11 +884,12 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 this.ttlDivideRow = i14;
             }
         } else if (this.currentType == 0) {
-            int i15 = i3 + 1;
-            this.rowCount = i15;
-            this.currentSessionSectionRow = i3;
-            this.rowCount = i15 + 1;
-            this.currentSessionRow = i15;
+            int i15 = this.rowCount;
+            int i16 = i15 + 1;
+            this.rowCount = i16;
+            this.currentSessionSectionRow = i15;
+            this.rowCount = i16 + 1;
+            this.currentSessionRow = i16;
         }
     }
 

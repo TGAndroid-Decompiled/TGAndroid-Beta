@@ -345,6 +345,7 @@ public class Switch extends View {
         Method method;
         try {
             int i = Build.VERSION.SDK_INT;
+            Integer num = null;
             if (i >= 29) {
                 method = HapticFeedbackConstants.class.getDeclaredMethod("hidden_semGetVibrationIndex", Integer.TYPE);
             } else {
@@ -352,11 +353,11 @@ public class Switch extends View {
             }
             if (method != null) {
                 method.setAccessible(true);
-                Integer num = (Integer) method.invoke(null, 27);
-                if (num != null) {
-                    performHapticFeedback(num.intValue(), 1);
-                    this.semHaptics = true;
-                }
+                num = (Integer) method.invoke(null, 27);
+            }
+            if (num != null) {
+                performHapticFeedback(num.intValue());
+                this.semHaptics = true;
             }
         } catch (Exception unused) {
         }

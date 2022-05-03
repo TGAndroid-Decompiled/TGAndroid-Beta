@@ -95,12 +95,6 @@ public class TextCheckCell extends FrameLayout {
     }
 
     @Override
-    public void setEnabled(boolean z) {
-        super.setEnabled(z);
-        this.checkBox.setEnabled(z);
-    }
-
-    @Override
     protected void onMeasure(int i, int i2) {
         if (this.isMultiline) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));

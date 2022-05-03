@@ -364,7 +364,45 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         addView(flickerLoadingView);
         addView(this.recyclerListView);
         this.recyclerListView.setSectionsType(2);
-        this.recyclerListView.setOnScrollListener(new AnonymousClass6());
+        this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int i) {
+                if (i == 1) {
+                    AndroidUtilities.hideKeyboard(FilteredSearchView.this.parentActivity.getCurrentFocus());
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+                MessageObject messageObject;
+                if (recyclerView.getAdapter() != null) {
+                    FilteredSearchView filteredSearchView = FilteredSearchView.this;
+                    if (filteredSearchView.adapter != null) {
+                        int findFirstVisibleItemPosition = filteredSearchView.layoutManager.findFirstVisibleItemPosition();
+                        int findLastVisibleItemPosition = FilteredSearchView.this.layoutManager.findLastVisibleItemPosition();
+                        int abs = Math.abs(findLastVisibleItemPosition - findFirstVisibleItemPosition) + 1;
+                        int itemCount = recyclerView.getAdapter().getItemCount();
+                        if (!FilteredSearchView.this.isLoading && abs > 0 && findLastVisibleItemPosition >= itemCount - 10 && !FilteredSearchView.this.endReached) {
+                            FilteredSearchView filteredSearchView2 = FilteredSearchView.this;
+                            filteredSearchView2.search(filteredSearchView2.currentSearchDialogId, filteredSearchView2.currentSearchMinDate, filteredSearchView2.currentSearchMaxDate, filteredSearchView2.currentSearchFilter, filteredSearchView2.currentIncludeFolder, filteredSearchView2.lastMessagesSearchString, false);
+                        }
+                        FilteredSearchView filteredSearchView3 = FilteredSearchView.this;
+                        if (filteredSearchView3.adapter == filteredSearchView3.sharedPhotoVideoAdapter) {
+                            if (i2 != 0 && !FilteredSearchView.this.messages.isEmpty() && TextUtils.isEmpty(FilteredSearchView.this.currentDataQuery)) {
+                                FilteredSearchView.this.showFloatingDateView();
+                            }
+                            RecyclerView.ViewHolder findViewHolderForAdapterPosition = recyclerView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition);
+                            if (findViewHolderForAdapterPosition != null && findViewHolderForAdapterPosition.getItemViewType() == 0) {
+                                View view = findViewHolderForAdapterPosition.itemView;
+                                if ((view instanceof SharedPhotoVideoCell) && (messageObject = ((SharedPhotoVideoCell) view).getMessageObject(0)) != null) {
+                                    FilteredSearchView.this.floatingDateView.setCustomDate(messageObject.messageOwner.date, false, true);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
         ChatActionCell chatActionCell = new ChatActionCell(parentActivity);
         this.floatingDateView = chatActionCell;
         chatActionCell.setCustomDate((int) (System.currentTimeMillis() / 1000), false, false);
@@ -390,58 +428,6 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             onItemClick(i, view, ((ContextLinkCell) view).getMessageObject(), 0);
         } else if (view instanceof DialogCell) {
             onItemClick(i, view, ((DialogCell) view).getMessage(), 0);
-        }
-    }
-
-    public class AnonymousClass6 extends RecyclerView.OnScrollListener {
-        AnonymousClass6() {
-        }
-
-        @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int i) {
-            if (i == 1) {
-                AndroidUtilities.hideKeyboard(FilteredSearchView.this.parentActivity.getCurrentFocus());
-            }
-        }
-
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-            MessageObject messageObject;
-            if (recyclerView.getAdapter() != null) {
-                FilteredSearchView filteredSearchView = FilteredSearchView.this;
-                if (filteredSearchView.adapter != null) {
-                    int findFirstVisibleItemPosition = filteredSearchView.layoutManager.findFirstVisibleItemPosition();
-                    int findLastVisibleItemPosition = FilteredSearchView.this.layoutManager.findLastVisibleItemPosition();
-                    int abs = Math.abs(findLastVisibleItemPosition - findFirstVisibleItemPosition) + 1;
-                    int itemCount = recyclerView.getAdapter().getItemCount();
-                    if (!FilteredSearchView.this.isLoading && abs > 0 && findLastVisibleItemPosition >= itemCount - 10 && !FilteredSearchView.this.endReached) {
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                FilteredSearchView.AnonymousClass6.this.lambda$onScrolled$0();
-                            }
-                        });
-                    }
-                    FilteredSearchView filteredSearchView2 = FilteredSearchView.this;
-                    if (filteredSearchView2.adapter == filteredSearchView2.sharedPhotoVideoAdapter) {
-                        if (i2 != 0 && !FilteredSearchView.this.messages.isEmpty() && TextUtils.isEmpty(FilteredSearchView.this.currentDataQuery)) {
-                            FilteredSearchView.this.showFloatingDateView();
-                        }
-                        RecyclerView.ViewHolder findViewHolderForAdapterPosition = recyclerView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition);
-                        if (findViewHolderForAdapterPosition != null && findViewHolderForAdapterPosition.getItemViewType() == 0) {
-                            View view = findViewHolderForAdapterPosition.itemView;
-                            if ((view instanceof SharedPhotoVideoCell) && (messageObject = ((SharedPhotoVideoCell) view).getMessageObject(0)) != null) {
-                                FilteredSearchView.this.floatingDateView.setCustomDate(messageObject.messageOwner.date, false, true);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        public void lambda$onScrolled$0() {
-            FilteredSearchView filteredSearchView = FilteredSearchView.this;
-            filteredSearchView.search(filteredSearchView.currentSearchDialogId, filteredSearchView.currentSearchMinDate, filteredSearchView.currentSearchMaxDate, filteredSearchView.currentSearchFilter, filteredSearchView.currentIncludeFolder, filteredSearchView.lastMessagesSearchString, false);
         }
     }
 

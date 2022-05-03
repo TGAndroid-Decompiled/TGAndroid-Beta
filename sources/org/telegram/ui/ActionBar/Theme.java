@@ -29,7 +29,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -45,7 +44,6 @@ import android.os.SystemClock;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.util.Log;
 import android.util.LongSparseArray;
 import android.util.SparseArray;
 import android.util.StateSet;
@@ -952,7 +950,7 @@ public class Theme {
                     if (tLRPC$WallPaper instanceof TLRPC$TL_wallPaper) {
                         TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) tLRPC$WallPaper;
                         if (tLRPC$TL_wallPaper.pattern) {
-                            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$TL_wallPaper.document, true);
+                            File pathToAttach = FileLoader.getPathToAttach(tLRPC$TL_wallPaper.document, true);
                             int size2 = arrayList.size();
                             Bitmap bitmap2 = bitmap;
                             Boolean bool = bitmap2;
@@ -1148,7 +1146,7 @@ public class Theme {
 
         public void lambda$didReceivedNotification$3(LoadingPattern loadingPattern) {
             TLRPC$TL_wallPaper tLRPC$TL_wallPaper = loadingPattern.pattern;
-            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$TL_wallPaper.document, true);
+            File pathToAttach = FileLoader.getPathToAttach(tLRPC$TL_wallPaper.document, true);
             int size = loadingPattern.accents.size();
             Bitmap bitmap = null;
             ArrayList<ThemeAccent> arrayList = null;
@@ -1218,36 +1216,6 @@ public class Theme {
             float[] fArr3 = this.tempHSV;
             fArr3[2] = Math.max(0.0f, Math.min(1.0f, fArr3[2] - 0.05f));
             return Color.HSVToColor(30, this.tempHSV);
-        }
-
-        private int textSelectionBackground(boolean z, int i, int i2) {
-            Color.colorToHSV(i2, this.tempHSV);
-            float[] fArr = this.tempHSV;
-            float f = fArr[0];
-            Color.colorToHSV(i, fArr);
-            float[] fArr2 = this.tempHSV;
-            if (fArr2[1] <= 0.0f || (fArr2[0] > 45.0f && fArr2[0] < 85.0f)) {
-                fArr2[0] = f;
-            }
-            fArr2[1] = Math.max(0.0f, Math.min(1.0f, fArr2[1] + (fArr2[2] > 0.85f ? 0.25f : 0.45f)));
-            float[] fArr3 = this.tempHSV;
-            fArr3[2] = Math.max(0.0f, Math.min(1.0f, fArr3[2] - 0.15f));
-            return Color.HSVToColor(80, this.tempHSV);
-        }
-
-        private int textSelectionHandle(int i, int i2) {
-            Color.colorToHSV(i2, this.tempHSV);
-            float[] fArr = this.tempHSV;
-            float f = fArr[0];
-            Color.colorToHSV(i, fArr);
-            float[] fArr2 = this.tempHSV;
-            if (fArr2[1] <= 0.0f || (fArr2[0] > 45.0f && fArr2[0] < 85.0f)) {
-                fArr2[0] = f;
-            }
-            fArr2[1] = Math.max(0.0f, Math.min(1.0f, fArr2[1] + 0.6f));
-            float[] fArr3 = this.tempHSV;
-            fArr3[2] = Math.max(0.0f, Math.min(1.0f, fArr3[2] - (fArr3[2] > 0.7f ? 0.25f : 0.125f)));
-            return Theme.blendOver(i, Color.HSVToColor(255, this.tempHSV));
         }
 
         private int linkSelectionBackground(int i, int i2, boolean z) {
@@ -2714,6 +2682,17 @@ public class Theme {
         return stateListDrawable;
     }
 
+    public static Drawable getRoundRectSelectorWithBackgroundDrawable(int i, int i2, int i3) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i3}), createRoundRectDrawable(i, i2), createRoundRectDrawable(i, -1));
+        }
+        StateListDrawable stateListDrawable = new StateListDrawable();
+        stateListDrawable.addState(new int[]{16842919}, createRoundRectDrawable(i, i3));
+        stateListDrawable.addState(new int[]{16842913}, createRoundRectDrawable(i, i3));
+        stateListDrawable.addState(StateSet.WILD_CARD, new ColorDrawable(i2));
+        return stateListDrawable;
+    }
+
     public static Drawable createSelectorWithBackgroundDrawable(int i, int i2) {
         if (Build.VERSION.SDK_INT >= 21) {
             return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i2}), new ColorDrawable(i), new ColorDrawable(i));
@@ -2791,103 +2770,6 @@ public class Theme {
         stateListDrawable.addState(new int[]{16842913}, new ColorDrawable(i));
         stateListDrawable.addState(StateSet.WILD_CARD, new ColorDrawable(0));
         return stateListDrawable;
-    }
-
-    public static class AdaptiveRipple {
-        private static float[] tempHSV;
-
-        public static Drawable rect() {
-            return rect(Theme.getColor("windowBackgroundWhite"));
-        }
-
-        public static Drawable rect(int i) {
-            return rect(i, 0.0f);
-        }
-
-        public static Drawable rect(int i, float... fArr) {
-            return createRect(0, calcRippleColor(i), fArr);
-        }
-
-        public static Drawable filledRect(String str, float... fArr) {
-            return filledRect(Theme.getColor(str), fArr);
-        }
-
-        public static Drawable filledRect(int i) {
-            return createRect(i, calcRippleColor(i), new float[0]);
-        }
-
-        public static Drawable filledRect(int i, float... fArr) {
-            return createRect(i, calcRippleColor(i), fArr);
-        }
-
-        private static Drawable createRect(int i, int i2, float... fArr) {
-            ColorDrawable colorDrawable = null;
-            if (i != 0) {
-                if (hasNonzeroRadii(fArr)) {
-                    ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(calcRadii(fArr), null, null));
-                    shapeDrawable.getPaint().setColor(i);
-                    colorDrawable = shapeDrawable;
-                } else {
-                    colorDrawable = new ColorDrawable(i);
-                }
-            }
-            return createRect(colorDrawable, i2, fArr);
-        }
-
-        private static Drawable createRect(Drawable drawable, int i, float... fArr) {
-            ColorDrawable colorDrawable;
-            ShapeDrawable shapeDrawable = null;
-            if (Build.VERSION.SDK_INT >= 21) {
-                if (hasNonzeroRadii(fArr)) {
-                    ShapeDrawable shapeDrawable2 = new ShapeDrawable(new RoundRectShape(calcRadii(fArr), null, null));
-                    shapeDrawable2.getPaint().setColor(-1);
-                    shapeDrawable = shapeDrawable2;
-                }
-                return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), drawable, shapeDrawable);
-            }
-            StateListDrawable stateListDrawable = new StateListDrawable();
-            if (hasNonzeroRadii(fArr)) {
-                ShapeDrawable shapeDrawable3 = new ShapeDrawable(new RoundRectShape(calcRadii(fArr), null, null));
-                shapeDrawable3.getPaint().setColor(i);
-                colorDrawable = shapeDrawable3;
-            } else {
-                colorDrawable = new ColorDrawable(i);
-            }
-            LayerDrawable layerDrawable = new LayerDrawable(new Drawable[]{drawable, colorDrawable});
-            stateListDrawable.addState(new int[]{16842919}, layerDrawable);
-            stateListDrawable.addState(new int[]{16842913}, layerDrawable);
-            stateListDrawable.addState(StateSet.WILD_CARD, drawable);
-            return stateListDrawable;
-        }
-
-        private static float[] calcRadii(float... fArr) {
-            return fArr.length == 0 ? new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f} : fArr.length == 1 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0])} : fArr.length == 2 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1])} : fArr.length == 3 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2])} : fArr.length < 8 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[3]), AndroidUtilities.dp(fArr[3])} : new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[3]), AndroidUtilities.dp(fArr[4]), AndroidUtilities.dp(fArr[5]), AndroidUtilities.dp(fArr[6]), AndroidUtilities.dp(fArr[7])};
-        }
-
-        private static boolean hasNonzeroRadii(float... fArr) {
-            for (int i = 0; i < Math.min(8, fArr.length); i++) {
-                if (fArr[i] > 0.0f) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private static int calcRippleColor(int i) {
-            if (tempHSV == null) {
-                tempHSV = new float[3];
-            }
-            Color.colorToHSV(i, tempHSV);
-            float[] fArr = tempHSV;
-            if (fArr[1] > 0.01f) {
-                fArr[1] = Math.min(1.0f, Math.max(0.0f, fArr[1] + (Theme.isCurrentThemeDark() ? -0.25f : 0.25f)));
-                float[] fArr2 = tempHSV;
-                fArr2[2] = Math.min(1.0f, Math.max(0.0f, fArr2[2] + (Theme.isCurrentThemeDark() ? 0.05f : -0.05f)));
-            } else {
-                fArr[2] = Math.min(1.0f, Math.max(0.0f, fArr[2] + (Theme.isCurrentThemeDark() ? 0.1f : -0.1f)));
-            }
-            return Color.HSVToColor(127, tempHSV);
-        }
     }
 
     public static class RippleRadMaskDrawable extends Drawable {
@@ -3840,9 +3722,6 @@ public class Theme {
             TLRPC$TL_account_getThemes tLRPC$TL_account_getThemes = new TLRPC$TL_account_getThemes();
             tLRPC$TL_account_getThemes.format = "android";
             tLRPC$TL_account_getThemes.hash = remoteThemesHash[i];
-            if (BuildVars.LOGS_ENABLED) {
-                Log.i("theme", "loading remote themes, hash " + tLRPC$TL_account_getThemes.hash);
-            }
             ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_account_getThemes, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -5967,9 +5846,12 @@ public class Theme {
     }
 
     public static Drawable getCachedWallpaper() {
-        Drawable cachedWallpaperNonBlocking = getCachedWallpaperNonBlocking();
-        if (cachedWallpaperNonBlocking != null || wallpaperLoadTask == null) {
-            return cachedWallpaperNonBlocking;
+        Drawable drawable = themedWallpaper;
+        if (drawable == null) {
+            drawable = wallpaper;
+        }
+        if (drawable != null || wallpaperLoadTask == null) {
+            return drawable;
         }
         CountDownLatch countDownLatch = new CountDownLatch(1);
         Utilities.themeQueue.postRunnable(new Theme$$ExternalSyntheticLambda2(countDownLatch));
@@ -5978,7 +5860,8 @@ public class Theme {
         } catch (Exception e) {
             FileLog.e(e);
         }
-        return getCachedWallpaperNonBlocking();
+        Drawable drawable2 = themedWallpaper;
+        return drawable2 != null ? drawable2 : wallpaper;
     }
 
     public static Drawable getCachedWallpaperNonBlocking() {
