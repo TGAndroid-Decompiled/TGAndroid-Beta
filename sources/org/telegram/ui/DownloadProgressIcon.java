@@ -23,6 +23,8 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
     private int currentAccount;
     int currentColor;
     float currentProgress;
+    RLottieDrawable downloadCompleteDrawable;
+    RLottieDrawable downloadDrawable;
     float progress;
     float progressDt;
     boolean showCompletedIcon;
@@ -31,12 +33,16 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
     ArrayList<ProgressObserver> currentListeners = new ArrayList<>();
     ImageReceiver downloadImageReceiver = new ImageReceiver(this);
     ImageReceiver downloadCompleteImageReceiver = new ImageReceiver(this);
-    RLottieDrawable downloadDrawable = new RLottieDrawable(R.raw.download_progress, "download_progress", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-    RLottieDrawable downloadCompleteDrawable = new RLottieDrawable(R.raw.download_finish, "download_finish", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
 
     public DownloadProgressIcon(int i, Context context) {
         super(context);
         this.currentAccount = i;
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.download_progress, "download_progress", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        this.downloadDrawable = rLottieDrawable;
+        rLottieDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
+        RLottieDrawable rLottieDrawable2 = new RLottieDrawable(R.raw.download_finish, "download_finish", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        this.downloadCompleteDrawable = rLottieDrawable2;
+        rLottieDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
         this.downloadImageReceiver.setImageBitmap(this.downloadDrawable);
         this.downloadCompleteImageReceiver.setImageBitmap(this.downloadCompleteDrawable);
         this.downloadImageReceiver.setAutoRepeat(1);

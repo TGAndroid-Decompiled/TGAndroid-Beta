@@ -135,6 +135,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         this.needSnapToTop = false;
         this.parentFragment = baseFragment;
         this.chatId = j;
+        fixNavigationBar();
         this.searchView.searchEditText.setHint(LocaleController.getString("SearchForChats", R.string.SearchForChats));
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         SearchAdapter searchAdapter = new SearchAdapter();
@@ -1169,7 +1170,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
                 BaseFragment baseFragment = launchActivity.getActionBarLayout().fragmentsStack.get(launchActivity.getActionBarLayout().fragmentsStack.size() - 1);
                 if (baseFragment instanceof ChatActivity) {
-                    ((ChatActivity) baseFragment).onEditTextDialogClose(true);
+                    ((ChatActivity) baseFragment).onEditTextDialogClose(true, true);
                 }
             }
         }

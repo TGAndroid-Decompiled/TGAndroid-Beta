@@ -249,7 +249,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private final Object sync = new Object();
     private ArrayList<ByteBuffer> recordBuffers = new ArrayList<>();
     public int recordBufferSize = 1280;
-    public int sampleRate = 16000;
+    public int sampleRate = 48000;
     private Runnable recordRunnable = new AnonymousClass2();
     private final ValueAnimator.AnimatorUpdateListener audioVolumeUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
         @Override
@@ -587,13 +587,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
         @Override
         public String getPath() {
-            TLRPC$PhotoSize tLRPC$PhotoSize = this.photoSize;
-            if (tLRPC$PhotoSize != null) {
-                return FileLoader.getPathToAttach(tLRPC$PhotoSize, true).getAbsolutePath();
+            if (this.photoSize != null) {
+                return FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(this.photoSize, true).getAbsolutePath();
             }
-            TLRPC$Document tLRPC$Document = this.document;
-            if (tLRPC$Document != null) {
-                return FileLoader.getPathToAttach(tLRPC$Document, true).getAbsolutePath();
+            if (this.document != null) {
+                return FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(this.document, true).getAbsolutePath();
             }
             return ImageLoader.getHttpFilePath(this.imageUrl, "jpg").getAbsolutePath();
         }
@@ -616,13 +614,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         public String getPathToAttach() {
-            TLRPC$PhotoSize tLRPC$PhotoSize = this.photoSize;
-            if (tLRPC$PhotoSize != null) {
-                return FileLoader.getPathToAttach(tLRPC$PhotoSize, true).getAbsolutePath();
+            if (this.photoSize != null) {
+                return FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(this.photoSize, true).getAbsolutePath();
             }
-            TLRPC$Document tLRPC$Document = this.document;
-            if (tLRPC$Document != null) {
-                return FileLoader.getPathToAttach(tLRPC$Document, true).getAbsolutePath();
+            if (this.document != null) {
+                return FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(this.document, true).getAbsolutePath();
             }
             return this.imageUrl;
         }
@@ -891,8 +887,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public void lambda$new$2() {
         try {
-            this.sampleRate = 16000;
-            int minBufferSize = AudioRecord.getMinBufferSize(16000, 16, 2);
+            this.sampleRate = 48000;
+            int minBufferSize = AudioRecord.getMinBufferSize(48000, 16, 2);
             if (minBufferSize <= 0) {
                 minBufferSize = 1280;
             }
@@ -1282,7 +1278,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     playMessage(this.playingMessageObject);
                 } else if (this.audioInfo == null) {
                     try {
-                        this.audioInfo = AudioInfo.getAudioInfo(FileLoader.getPathToMessage(this.playingMessageObject.messageOwner));
+                        this.audioInfo = AudioInfo.getAudioInfo(FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(this.playingMessageObject.messageOwner));
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
@@ -2334,7 +2330,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     file = file2;
                 }
             }
-            File pathToMessage = file != null ? file : FileLoader.getPathToMessage(messageObject.messageOwner);
+            File pathToMessage = file != null ? file : FileLoader.getInstance(i).getPathToMessage(messageObject.messageOwner);
             pathToMessage.exists();
             if (pathToMessage != file && !pathToMessage.exists()) {
                 FileLoader.getInstance(i).loadFile(messageObject.getDocument(), messageObject, 0, 0);
@@ -2367,7 +2363,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             file = file2;
                         }
                     }
-                    File pathToMessage = file != null ? file : FileLoader.getPathToMessage(messageObject.messageOwner);
+                    File pathToMessage = file != null ? file : FileLoader.getInstance(i).getPathToMessage(messageObject.messageOwner);
                     pathToMessage.exists();
                     if (pathToMessage != file && !pathToMessage.exists() && messageObject.isMusic()) {
                         FileLoader.getInstance(i).loadFile(messageObject.getDocument(), messageObject, 0, 0);
@@ -2770,7 +2766,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         tLRPC$TL_document.mime_type = "sound/ogg";
         tLRPC$TL_document.file_reference = emojiSound.fileReference;
         tLRPC$TL_document.dc_id = accountInstance.getConnectionsManager().getCurrentDatacenterId();
-        final File pathToAttach = FileLoader.getPathToAttach(tLRPC$TL_document, true);
+        final File pathToAttach = FileLoader.getInstance(accountInstance.getCurrentAccount()).getPathToAttach(tLRPC$TL_document, true);
         if (!pathToAttach.exists()) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2928,7 +2924,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 file = null;
             }
         }
-        final File pathToMessage = file != null ? file : FileLoader.getPathToMessage(messageObject.messageOwner);
+        final File pathToMessage = file != null ? file : FileLoader.getInstance(messageObject.currentAccount).getPathToMessage(messageObject.messageOwner);
         boolean z4 = SharedConfig.streamMedia && (messageObject.isMusic() || messageObject.isRoundVideo() || (messageObject.isVideo() && messageObject.canStreamVideo())) && !DialogObject.isEncryptedDialog(messageObject.getDialogId());
         if (pathToMessage == file || (z = pathToMessage.exists()) || z4) {
             boolean z5 = z;
@@ -3674,7 +3670,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         File file = new File(FileLoader.getDirectory(4), FileLoader.getAttachFileName(this.recordingAudio));
         this.recordingAudioFile = file;
         try {
-            if (startRecord(file.getAbsolutePath(), 16000) == 0) {
+            if (startRecord(file.getAbsolutePath(), this.sampleRate) == 0) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -3743,7 +3739,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public void generateWaveform(final MessageObject messageObject) {
         final String str = messageObject.getId() + "_" + messageObject.getDialogId();
-        final String absolutePath = FileLoader.getPathToMessage(messageObject.messageOwner).getAbsolutePath();
+        final String absolutePath = FileLoader.getInstance(messageObject.currentAccount).getPathToMessage(messageObject.messageOwner).getAbsolutePath();
         if (!this.generatingWaveform.containsKey(str)) {
             this.generatingWaveform.put(str, messageObject);
             Utilities.globalQueue.postRunnable(new Runnable() {
@@ -4008,7 +4004,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             str = null;
                         }
                         if (str == null || str.length() == 0) {
-                            str = FileLoader.getPathToMessage(messageObject.messageOwner).toString();
+                            str = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject.messageOwner).toString();
                         }
                         File file2 = new File(str);
                         if (!file2.exists()) {
@@ -4061,7 +4057,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             str2 = null;
                         }
                         if (str2 == null || str2.length() == 0) {
-                            str2 = FileLoader.getPathToMessage(messageObject2.messageOwner).toString();
+                            str2 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject2.messageOwner).toString();
                         }
                         File file5 = new File(str2);
                         if (!file5.exists()) {

@@ -74,6 +74,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     private static final int MSG_STOP_RECORDING = 1;
     private static final int MSG_VIDEOFRAME_AVAILABLE = 2;
     private static final String VERTEX_SHADER = "uniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n   gl_Position = uMVPMatrix * aPosition;\n   vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n}\n";
+    private static final int audioSampleRate = 44100;
     private ImageView blurredStubView;
     private File cameraFile;
     private CameraSession cameraSession;
@@ -827,7 +828,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
 
         public void reinitForNewCamera() {
-            Handler handler = CameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(2, Integer.valueOf(CameraView.this.info.cameraId)), 0);
             }
@@ -855,7 +856,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
 
         public void setCurrentSession(CameraSession cameraSession) {
-            Handler handler = CameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(3, cameraSession), 0);
             }
@@ -1032,21 +1033,21 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
 
         public void shutdown(int i) {
-            Handler handler = CameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(1, i, 0), 0);
             }
         }
 
         public void requestRender() {
-            Handler handler = CameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(0, this.cameraId), 0);
             }
         }
 
         public boolean startRecording(File file) {
-            Handler handler = CameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler == null) {
                 return true;
             }
@@ -1055,7 +1056,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
 
         public void stopRecording() {
-            Handler handler = CameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(5), 0);
             }
@@ -1448,7 +1449,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
 
         public void prepareEncoder() {
             try {
-                int minBufferSize = AudioRecord.getMinBufferSize(44100, 16, 2);
+                int minBufferSize = AudioRecord.getMinBufferSize(CameraView.audioSampleRate, 16, 2);
                 if (minBufferSize <= 0) {
                     minBufferSize = 3584;
                 }
@@ -1459,7 +1460,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 for (int i2 = 0; i2 < 3; i2++) {
                     this.buffers.add(new InstantCameraView.AudioBufferInfo());
                 }
-                AudioRecord audioRecord = new AudioRecord(0, 44100, 16, 2, i);
+                AudioRecord audioRecord = new AudioRecord(0, CameraView.audioSampleRate, 16, 2, i);
                 this.audioRecorder = audioRecord;
                 audioRecord.startRecording();
                 if (BuildVars.LOGS_ENABLED) {
@@ -1472,7 +1473,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 this.videoBufferInfo = new MediaCodec.BufferInfo();
                 MediaFormat mediaFormat = new MediaFormat();
                 mediaFormat.setString("mime", "audio/mp4a-latm");
-                mediaFormat.setInteger("sample-rate", 44100);
+                mediaFormat.setInteger("sample-rate", CameraView.audioSampleRate);
                 mediaFormat.setInteger("channel-count", 1);
                 mediaFormat.setInteger("bitrate", 32000);
                 mediaFormat.setInteger("max-input-size", 20480);

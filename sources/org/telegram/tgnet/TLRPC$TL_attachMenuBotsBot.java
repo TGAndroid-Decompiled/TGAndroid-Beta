@@ -21,7 +21,7 @@ public class TLRPC$TL_attachMenuBotsBot extends TLObject {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.bot = TLRPC$TL_attachMenuBot.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.bot = TLRPC$AttachMenuBot.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         int readInt32 = abstractSerializedData.readInt32(z);
         if (readInt32 == 481674261) {
             int readInt322 = abstractSerializedData.readInt32(z);

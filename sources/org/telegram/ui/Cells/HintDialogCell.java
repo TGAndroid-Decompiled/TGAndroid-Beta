@@ -36,6 +36,7 @@ public class HintDialogCell extends FrameLayout {
     boolean wasDraw;
     private AvatarDrawable avatarDrawable = new AvatarDrawable();
     private int currentAccount = UserConfig.selectedAccount;
+    private String backgroundColorKey = "windowBackgroundWhite";
 
     public HintDialogCell(Context context, boolean z) {
         super(context);
@@ -72,7 +73,7 @@ public class HintDialogCell extends FrameLayout {
                 }
             });
             addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 49, 19.0f, 42.0f, 0.0f, 0.0f));
-            this.checkBox.setChecked(true, false);
+            this.checkBox.setChecked(false, false);
             setWillNotDraw(false);
         }
     }
@@ -118,6 +119,12 @@ public class HintDialogCell extends FrameLayout {
         }
         this.avatarDrawable.setInfo(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId)));
         this.currentUser = null;
+    }
+
+    public void setColors(String str, String str2) {
+        this.nameTextView.setTextColor(Theme.getColor(str));
+        this.backgroundColorKey = str2;
+        this.checkBox.setColor("dialogRoundCheckBox", str2, "dialogRoundCheckBoxCheck");
     }
 
     public void setDialog(long j, boolean z, CharSequence charSequence) {

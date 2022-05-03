@@ -15,7 +15,7 @@ import java.util.List;
 import org.telegram.messenger.NotificationCenter;
 
 public class NotificationImageProvider extends ContentProvider implements NotificationCenter.NotificationCenterDelegate {
-    public static final String AUTHORITY = "org.telegram.messenger.web.notification_image_provider";
+    public static final String AUTHORITY = "org.telegram.messenger.beta.notification_image_provider";
     private static final UriMatcher matcher;
     private HashSet<String> waitingForFiles = new HashSet<>();
     private final Object sync = new Object();

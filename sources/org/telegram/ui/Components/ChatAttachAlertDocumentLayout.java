@@ -4,11 +4,13 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -83,7 +85,11 @@ import org.telegram.ui.PhotoPickerActivity;
 public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLayout {
     private float additionalTranslationY;
     private boolean allowMusic;
+    private LinearLayoutManager backgroundLayoutManager;
+    private ListAdapter backgroundListAdapter;
+    private RecyclerListView backgroundListView;
     private boolean canSelectOnlyImageFiles;
+    private int currentAnimationType;
     private File currentDir;
     private DocumentSelectActivityDelegate delegate;
     private StickerEmptyView emptyView;
@@ -94,6 +100,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     public boolean isSoundPicker;
     private LinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
+    ValueAnimator listAnimation;
     private RecyclerListView listView;
     private FlickerLoadingView loadingView;
     private boolean receiverRegistered;
@@ -104,12 +111,9 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     private boolean sendPressed;
     private boolean sortByName;
     private ActionBarMenuItem sortItem;
-    private ArrayList<ListItem> items = new ArrayList<>();
-    private ArrayList<HistoryEntry> history = new ArrayList<>();
     private HashMap<String, ListItem> selectedFiles = new HashMap<>();
     private ArrayList<String> selectedFilesOrder = new ArrayList<>();
     private HashMap<FilteredSearchView.MessageHashId, MessageObject> selectedMessages = new HashMap<>();
-    private ArrayList<ListItem> recentItems = new ArrayList<>();
     private int maxSelectedFiles = -1;
     private BroadcastReceiver receiver = new AnonymousClass1();
 
@@ -209,6 +213,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     public ChatAttachAlertDocumentLayout(ChatAttachAlert chatAttachAlert, Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(chatAttachAlert, context, resourcesProvider);
         this.receiverRegistered = false;
+        this.listAdapter = new ListAdapter(context);
         this.allowMusic = i == 1;
         this.isSoundPicker = i == 2;
         this.sortByName = SharedConfig.sortFilesByName;
@@ -297,13 +302,77 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         this.emptyView = stickerEmptyView;
         addView(stickerEmptyView, LayoutHelper.createFrame(-1, -1.0f));
         this.emptyView.setVisibility(8);
-        this.emptyView.setOnTouchListener(ChatAttachAlertDocumentLayout$$ExternalSyntheticLambda0.INSTANCE);
-        RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider);
-        this.listView = recyclerListView;
+        this.emptyView.setOnTouchListener(ChatAttachAlertDocumentLayout$$ExternalSyntheticLambda1.INSTANCE);
+        RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
+            Paint paint = new Paint();
+
+            {
+                ChatAttachAlertDocumentLayout.this = this;
+            }
+
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                if (ChatAttachAlertDocumentLayout.this.currentAnimationType == 2 && getChildCount() > 0) {
+                    float f = 2.14748365E9f;
+                    for (int i2 = 0; i2 < getChildCount(); i2++) {
+                        if (getChildAt(i2).getY() < f) {
+                            f = getChildAt(i2).getY();
+                        }
+                    }
+                    this.paint.setColor(Theme.getColor("dialogBackground"));
+                }
+                super.dispatchDraw(canvas);
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                if (ChatAttachAlertDocumentLayout.this.currentAnimationType != 0) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            }
+        };
+        this.backgroundListView = recyclerListView;
         recyclerListView.setSectionsType(2);
+        this.backgroundListView.setVerticalScrollBarEnabled(false);
+        RecyclerListView recyclerListView2 = this.backgroundListView;
+        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.dp(56.0f), this.backgroundListView);
+        this.backgroundLayoutManager = fillLastLinearLayoutManager;
+        recyclerListView2.setLayoutManager(fillLastLinearLayoutManager);
+        this.backgroundListView.setClipToPadding(false);
+        RecyclerListView recyclerListView3 = this.backgroundListView;
+        ListAdapter listAdapter = new ListAdapter(context);
+        this.backgroundListAdapter = listAdapter;
+        recyclerListView3.setAdapter(listAdapter);
+        this.backgroundListView.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
+        addView(this.backgroundListView, LayoutHelper.createFrame(-1, -1.0f));
+        this.backgroundListView.setVisibility(8);
+        RecyclerListView recyclerListView4 = new RecyclerListView(context, resourcesProvider) {
+            Paint paint = new Paint();
+
+            {
+                ChatAttachAlertDocumentLayout.this = this;
+            }
+
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                if (ChatAttachAlertDocumentLayout.this.currentAnimationType == 1 && getChildCount() > 0) {
+                    float f = 2.14748365E9f;
+                    for (int i2 = 0; i2 < getChildCount(); i2++) {
+                        if (getChildAt(i2).getY() < f) {
+                            f = getChildAt(i2).getY();
+                        }
+                    }
+                    this.paint.setColor(Theme.getColor("dialogBackground"));
+                }
+                super.dispatchDraw(canvas);
+            }
+        };
+        this.listView = recyclerListView4;
+        recyclerListView4.setSectionsType(2);
         this.listView.setVerticalScrollBarEnabled(false);
-        RecyclerListView recyclerListView2 = this.listView;
-        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.dp(56.0f), this.listView) {
+        RecyclerListView recyclerListView5 = this.listView;
+        FillLastLinearLayoutManager fillLastLinearLayoutManager2 = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.dp(56.0f), this.listView) {
             {
                 ChatAttachAlertDocumentLayout.this = this;
             }
@@ -312,7 +381,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i2) {
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
                     {
-                        AnonymousClass4.this = this;
+                        AnonymousClass6.this = this;
                     }
 
                     @Override
@@ -329,13 +398,10 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 startSmoothScroll(linearSmoothScroller);
             }
         };
-        this.layoutManager = fillLastLinearLayoutManager;
-        recyclerListView2.setLayoutManager(fillLastLinearLayoutManager);
+        this.layoutManager = fillLastLinearLayoutManager2;
+        recyclerListView5.setLayoutManager(fillLastLinearLayoutManager2);
         this.listView.setClipToPadding(false);
-        RecyclerListView recyclerListView3 = this.listView;
-        ListAdapter listAdapter = new ListAdapter(context);
-        this.listAdapter = listAdapter;
-        recyclerListView3.setAdapter(listAdapter);
+        this.listView.setAdapter(this.listAdapter);
         this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.searchAdapter = new SearchAdapter(context);
@@ -475,10 +541,10 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                         }
                     } else {
                         int topForScroll = getTopForScroll();
-                        ArrayList<HistoryEntry> arrayList2 = this.history;
-                        HistoryEntry remove = arrayList2.remove(arrayList2.size() - 1);
-                        this.parentAlert.actionBar.setTitle(remove.title);
-                        File file2 = remove.dir;
+                        prepareAnimation();
+                        HistoryEntry historyEntry = (HistoryEntry) this.listAdapter.history.remove(this.listAdapter.history.size() - 1);
+                        this.parentAlert.actionBar.setTitle(historyEntry.title);
+                        File file2 = historyEntry.dir;
                         if (file2 != null) {
                             listFiles(file2);
                         } else {
@@ -486,22 +552,25 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                         }
                         updateSearchButton();
                         this.layoutManager.scrollToPositionWithOffset(0, topForScroll);
+                        runAnimation(2);
                     }
                 } else if (file.isDirectory()) {
-                    HistoryEntry historyEntry = new HistoryEntry(null);
+                    HistoryEntry historyEntry2 = new HistoryEntry(null);
                     View childAt = this.listView.getChildAt(0);
                     RecyclerView.ViewHolder findContainingViewHolder = this.listView.findContainingViewHolder(childAt);
                     if (findContainingViewHolder != null) {
                         findContainingViewHolder.getAdapterPosition();
                         childAt.getTop();
-                        historyEntry.dir = this.currentDir;
-                        historyEntry.title = this.parentAlert.actionBar.getTitle();
-                        this.history.add(historyEntry);
+                        historyEntry2.dir = this.currentDir;
+                        historyEntry2.title = this.parentAlert.actionBar.getTitle();
+                        prepareAnimation();
+                        this.listAdapter.history.add(historyEntry2);
                         if (!listFiles(file)) {
-                            this.history.remove(historyEntry);
-                        } else {
-                            this.parentAlert.actionBar.setTitle(listItem.title);
+                            this.listAdapter.history.remove(historyEntry2);
+                            return;
                         }
+                        runAnimation(1);
+                        this.parentAlert.actionBar.setTitle(listItem.title);
                     }
                 } else {
                     onItemClick(view, listItem);
@@ -529,6 +598,121 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     public void lambda$new$3(View view, int i) {
         this.filtersView.cancelClickRunnables(true);
         this.searchAdapter.addSearchFilter(this.filtersView.getFilterAt(i));
+    }
+
+    private void runAnimation(final int i) {
+        final float f;
+        ValueAnimator valueAnimator = this.listAnimation;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        this.currentAnimationType = i;
+        int i2 = 0;
+        while (true) {
+            if (i2 >= getChildCount()) {
+                i2 = 0;
+                break;
+            } else if (getChildAt(i2) == this.listView) {
+                break;
+            } else {
+                i2++;
+            }
+        }
+        if (i == 1) {
+            f = AndroidUtilities.dp(150.0f);
+            this.backgroundListView.setAlpha(1.0f);
+            this.backgroundListView.setScaleX(1.0f);
+            this.backgroundListView.setScaleY(1.0f);
+            this.backgroundListView.setTranslationX(0.0f);
+            removeView(this.backgroundListView);
+            addView(this.backgroundListView, i2);
+            this.backgroundListView.setVisibility(0);
+            this.listView.setTranslationX(f);
+            this.listView.setAlpha(0.0f);
+            this.listAnimation = ValueAnimator.ofFloat(1.0f, 0.0f);
+        } else {
+            f = AndroidUtilities.dp(150.0f);
+            this.listView.setAlpha(0.0f);
+            this.listView.setScaleX(0.95f);
+            this.listView.setScaleY(0.95f);
+            this.backgroundListView.setScaleX(1.0f);
+            this.backgroundListView.setScaleY(1.0f);
+            this.backgroundListView.setTranslationX(0.0f);
+            this.backgroundListView.setAlpha(1.0f);
+            removeView(this.backgroundListView);
+            addView(this.backgroundListView, i2 + 1);
+            this.backgroundListView.setVisibility(0);
+            this.listAnimation = ValueAnimator.ofFloat(0.0f, 1.0f);
+        }
+        this.listAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                ChatAttachAlertDocumentLayout.this.lambda$runAnimation$4(i, f, valueAnimator2);
+            }
+        });
+        this.listAnimation.addListener(new AnimatorListenerAdapter() {
+            {
+                ChatAttachAlertDocumentLayout.this = this;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                super.onAnimationEnd(animator);
+                ChatAttachAlertDocumentLayout.this.backgroundListView.setVisibility(8);
+                ChatAttachAlertDocumentLayout.this.currentAnimationType = 0;
+                ChatAttachAlertDocumentLayout.this.listView.setAlpha(1.0f);
+                ChatAttachAlertDocumentLayout.this.listView.setScaleX(1.0f);
+                ChatAttachAlertDocumentLayout.this.listView.setScaleY(1.0f);
+                ChatAttachAlertDocumentLayout.this.listView.setTranslationX(0.0f);
+                ChatAttachAlertDocumentLayout.this.listView.invalidate();
+            }
+        });
+        if (i == 1) {
+            this.listAnimation.setDuration(220L);
+        } else {
+            this.listAnimation.setDuration(200L);
+        }
+        this.listAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        this.listAnimation.start();
+    }
+
+    public void lambda$runAnimation$4(int i, float f, ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (i == 1) {
+            this.listView.setTranslationX(f * floatValue);
+            this.listView.setAlpha(1.0f - floatValue);
+            this.listView.invalidate();
+            this.backgroundListView.setAlpha(floatValue);
+            float f2 = (floatValue * 0.05f) + 0.95f;
+            this.backgroundListView.setScaleX(f2);
+            this.backgroundListView.setScaleY(f2);
+            return;
+        }
+        this.backgroundListView.setTranslationX(f * floatValue);
+        this.backgroundListView.setAlpha(Math.max(0.0f, 1.0f - floatValue));
+        this.backgroundListView.invalidate();
+        this.listView.setAlpha(floatValue);
+        float f3 = (floatValue * 0.05f) + 0.95f;
+        this.listView.setScaleX(f3);
+        this.listView.setScaleY(f3);
+        this.backgroundListView.invalidate();
+    }
+
+    private void prepareAnimation() {
+        View findViewByPosition;
+        this.backgroundListAdapter.history.clear();
+        this.backgroundListAdapter.history.addAll(this.listAdapter.history);
+        this.backgroundListAdapter.items.clear();
+        this.backgroundListAdapter.items.addAll(this.listAdapter.items);
+        this.backgroundListAdapter.recentItems.clear();
+        this.backgroundListAdapter.recentItems.addAll(this.listAdapter.recentItems);
+        this.backgroundListAdapter.notifyDataSetChanged();
+        this.backgroundListView.setVisibility(0);
+        this.backgroundListView.setPadding(this.listView.getPaddingLeft(), this.listView.getPaddingTop(), this.listView.getPaddingRight(), this.listView.getPaddingBottom());
+        int findFirstVisibleItemPosition = this.layoutManager.findFirstVisibleItemPosition();
+        if (findFirstVisibleItemPosition >= 0 && (findViewByPosition = this.layoutManager.findViewByPosition(findFirstVisibleItemPosition)) != null) {
+            this.backgroundLayoutManager.scrollToPositionWithOffset(findFirstVisibleItemPosition, findViewByPosition.getTop() - this.backgroundListView.getPaddingTop());
+        }
     }
 
     @Override
@@ -780,7 +964,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                             if (lowerCase.endsWith(".jpg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif") || lowerCase.endsWith(".jpeg")) {
                                 listItem.thumb = file.getAbsolutePath();
                             }
-                            this.recentItems.add(listItem);
+                            this.listAdapter.recentItems.add(listItem);
                         }
                     }
                     query.close();
@@ -812,7 +996,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                     if (lowerCase.endsWith(".jpg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif") || lowerCase.endsWith(".jpeg")) {
                         listItem.thumb = file2.getAbsolutePath();
                     }
-                    this.recentItems.add(listItem);
+                    this.listAdapter.recentItems.add(listItem);
                 } else {
                     checkDirectory(file2);
                 }
@@ -821,17 +1005,17 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     private void sortRecentItems() {
-        Collections.sort(this.recentItems, new Comparator() {
+        Collections.sort(this.listAdapter.recentItems, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$sortRecentItems$4;
-                lambda$sortRecentItems$4 = ChatAttachAlertDocumentLayout.this.lambda$sortRecentItems$4((ChatAttachAlertDocumentLayout.ListItem) obj, (ChatAttachAlertDocumentLayout.ListItem) obj2);
-                return lambda$sortRecentItems$4;
+                int lambda$sortRecentItems$5;
+                lambda$sortRecentItems$5 = ChatAttachAlertDocumentLayout.this.lambda$sortRecentItems$5((ChatAttachAlertDocumentLayout.ListItem) obj, (ChatAttachAlertDocumentLayout.ListItem) obj2);
+                return lambda$sortRecentItems$5;
             }
         });
     }
 
-    public int lambda$sortRecentItems$4(ListItem listItem, ListItem listItem2) {
+    public int lambda$sortRecentItems$5(ListItem listItem, ListItem listItem2) {
         if (this.sortByName) {
             return listItem.file.getName().compareToIgnoreCase(listItem2.file.getName());
         }
@@ -845,18 +1029,18 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
 
     private void sortFileItems() {
         if (this.currentDir != null) {
-            Collections.sort(this.items, new Comparator() {
+            Collections.sort(this.listAdapter.items, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    int lambda$sortFileItems$5;
-                    lambda$sortFileItems$5 = ChatAttachAlertDocumentLayout.this.lambda$sortFileItems$5((ChatAttachAlertDocumentLayout.ListItem) obj, (ChatAttachAlertDocumentLayout.ListItem) obj2);
-                    return lambda$sortFileItems$5;
+                    int lambda$sortFileItems$6;
+                    lambda$sortFileItems$6 = ChatAttachAlertDocumentLayout.this.lambda$sortFileItems$6((ChatAttachAlertDocumentLayout.ListItem) obj, (ChatAttachAlertDocumentLayout.ListItem) obj2);
+                    return lambda$sortFileItems$6;
                 }
             });
         }
     }
 
-    public int lambda$sortFileItems$5(ListItem listItem, ListItem listItem2) {
+    public int lambda$sortFileItems$6(ListItem listItem, ListItem listItem2) {
         File file = listItem.file;
         if (file == null) {
             return -1;
@@ -898,7 +1082,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         this.selectedMessages.clear();
         this.searchAdapter.currentSearchFilters.clear();
         this.selectedFilesOrder.clear();
-        this.history.clear();
+        this.listAdapter.history.clear();
         listRoots();
         updateSearchButton();
         updateEmptyView();
@@ -941,7 +1125,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     public void updateSearchButton() {
         ActionBarMenuItem actionBarMenuItem = this.searchItem;
         if (actionBarMenuItem != null && !actionBarMenuItem.isSearchFieldVisible()) {
-            this.searchItem.setVisibility((this.hasFiles || this.history.isEmpty()) ? 0 : 8);
+            this.searchItem.setVisibility((this.hasFiles || this.listAdapter.history.isEmpty()) ? 0 : 8);
         }
     }
 
@@ -953,14 +1137,14 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     private boolean canClosePicker() {
-        if (this.history.size() <= 0) {
+        if (this.listAdapter.history.size() <= 0) {
             return true;
         }
-        ArrayList<HistoryEntry> arrayList = this.history;
-        HistoryEntry remove = arrayList.remove(arrayList.size() - 1);
-        this.parentAlert.actionBar.setTitle(remove.title);
+        prepareAnimation();
+        HistoryEntry historyEntry = (HistoryEntry) this.listAdapter.history.remove(this.listAdapter.history.size() - 1);
+        this.parentAlert.actionBar.setTitle(historyEntry.title);
         int topForScroll = getTopForScroll();
-        File file = remove.dir;
+        File file = historyEntry.dir;
         if (file != null) {
             listFiles(file);
         } else {
@@ -968,6 +1152,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         }
         updateSearchButton();
         this.layoutManager.scrollToPositionWithOffset(0, topForScroll);
+        runAnimation(2);
         return false;
     }
 
@@ -999,7 +1184,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                     return false;
                 }
                 this.currentDir = file;
-                this.items.clear();
+                this.listAdapter.items.clear();
                 for (File file2 : listFiles) {
                     if (file2.getName().indexOf(46) != 0) {
                         ListItem listItem = new ListItem(null);
@@ -1019,14 +1204,13 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                                 listItem.thumb = file2.getAbsolutePath();
                             }
                         }
-                        this.items.add(listItem);
+                        this.listAdapter.items.add(listItem);
                     }
                 }
                 ListItem listItem2 = new ListItem(null);
                 listItem2.title = "..";
-                if (this.history.size() > 0) {
-                    ArrayList<HistoryEntry> arrayList = this.history;
-                    File file3 = arrayList.get(arrayList.size() - 1).dir;
+                if (this.listAdapter.history.size() > 0) {
+                    File file3 = ((HistoryEntry) this.listAdapter.history.get(this.listAdapter.history.size() - 1)).dir;
                     if (file3 == null) {
                         listItem2.subtitle = LocaleController.getString("Folder", R.string.Folder);
                     } else {
@@ -1037,7 +1221,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 }
                 listItem2.icon = R.drawable.files_folder;
                 listItem2.file = null;
-                this.items.add(0, listItem2);
+                this.listAdapter.items.add(0, listItem2);
                 sortFileItems();
                 updateSearchButton();
                 AndroidUtilities.clearDrawableAnimation(this.listView);
@@ -1052,7 +1236,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
         } else if ((file.getAbsolutePath().startsWith(Environment.getExternalStorageDirectory().toString()) || file.getAbsolutePath().startsWith("/sdcard") || file.getAbsolutePath().startsWith("/mnt/sdcard")) && !Environment.getExternalStorageState().equals("mounted") && !Environment.getExternalStorageState().equals("mounted_ro")) {
             this.currentDir = file;
-            this.items.clear();
+            this.listAdapter.items.clear();
             Environment.getExternalStorageState();
             AndroidUtilities.clearDrawableAnimation(this.listView);
             this.scrolling = true;
@@ -1075,6 +1259,9 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
 
     public class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
+        private ArrayList<ListItem> items = new ArrayList<>();
+        private ArrayList<HistoryEntry> history = new ArrayList<>();
+        private ArrayList<ListItem> recentItems = new ArrayList<>();
 
         public ListAdapter(Context context) {
             ChatAttachAlertDocumentLayout.this = r1;
@@ -1088,23 +1275,23 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
 
         @Override
         public int getItemCount() {
-            int size = ChatAttachAlertDocumentLayout.this.items.size();
-            if (ChatAttachAlertDocumentLayout.this.history.isEmpty() && !ChatAttachAlertDocumentLayout.this.recentItems.isEmpty()) {
-                size += ChatAttachAlertDocumentLayout.this.recentItems.size() + 2;
+            int size = this.items.size();
+            if (this.history.isEmpty() && !this.recentItems.isEmpty()) {
+                size += this.recentItems.size() + 2;
             }
             return size + 1;
         }
 
         public ListItem getItem(int i) {
             int size;
-            int size2 = ChatAttachAlertDocumentLayout.this.items.size();
+            int size2 = this.items.size();
             if (i < size2) {
-                return (ListItem) ChatAttachAlertDocumentLayout.this.items.get(i);
+                return this.items.get(i);
             }
-            if (!ChatAttachAlertDocumentLayout.this.history.isEmpty() || ChatAttachAlertDocumentLayout.this.recentItems.isEmpty() || i == size2 || i == size2 + 1 || (size = i - (ChatAttachAlertDocumentLayout.this.items.size() + 2)) >= ChatAttachAlertDocumentLayout.this.recentItems.size()) {
+            if (!this.history.isEmpty() || this.recentItems.isEmpty() || i == size2 || i == size2 + 1 || (size = i - (this.items.size() + 2)) >= this.recentItems.size()) {
                 return null;
             }
-            return (ListItem) ChatAttachAlertDocumentLayout.this.recentItems.get(size);
+            return this.recentItems.get(size);
         }
 
         @Override
@@ -1112,7 +1299,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             if (i == getItemCount() - 1) {
                 return 3;
             }
-            int size = ChatAttachAlertDocumentLayout.this.items.size();
+            int size = this.items.size();
             if (i == size) {
                 return 2;
             }
@@ -1156,7 +1343,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) viewHolder.itemView;
                 int i2 = item.icon;
                 if (i2 != 0) {
-                    sharedDocumentCell.setTextAndValueAndTypeAndThumb(item.title, item.subtitle, null, null, i2, i != ChatAttachAlertDocumentLayout.this.items.size() - 1);
+                    sharedDocumentCell.setTextAndValueAndTypeAndThumb(item.title, item.subtitle, null, null, i2, i != this.items.size() - 1);
                 } else {
                     sharedDocumentCell.setTextAndValueAndTypeAndThumb(item.title, item.subtitle, item.ext.toUpperCase().substring(0, Math.min(item.ext.length(), 4)), item.thumb, 0, false);
                 }
@@ -1251,7 +1438,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 this.localSearchRunnable = chatAttachAlertDocumentLayout$SearchAdapter$$ExternalSyntheticLambda2;
                 AndroidUtilities.runOnUIThread(chatAttachAlertDocumentLayout$SearchAdapter$$ExternalSyntheticLambda2, 300L);
             }
-            if (!ChatAttachAlertDocumentLayout.this.canSelectOnlyImageFiles && ChatAttachAlertDocumentLayout.this.history.isEmpty()) {
+            if (!ChatAttachAlertDocumentLayout.this.canSelectOnlyImageFiles && ChatAttachAlertDocumentLayout.this.listAdapter.history.isEmpty()) {
                 long j2 = 0;
                 long j3 = 0;
                 long j4 = 0;
@@ -1277,9 +1464,9 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public void lambda$search$1(final String str) {
-            final ArrayList arrayList = new ArrayList(ChatAttachAlertDocumentLayout.this.items);
-            if (ChatAttachAlertDocumentLayout.this.history.isEmpty()) {
-                arrayList.addAll(0, ChatAttachAlertDocumentLayout.this.recentItems);
+            final ArrayList arrayList = new ArrayList(ChatAttachAlertDocumentLayout.this.listAdapter.items);
+            if (ChatAttachAlertDocumentLayout.this.listAdapter.history.isEmpty()) {
+                arrayList.addAll(0, ChatAttachAlertDocumentLayout.this.listAdapter.recentItems);
             }
             final boolean z = !this.currentSearchFilters.isEmpty();
             Utilities.searchQueue.postRunnable(new Runnable() {

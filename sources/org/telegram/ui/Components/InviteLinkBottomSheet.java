@@ -135,7 +135,8 @@ public class InviteLinkBottomSheet extends BottomSheet {
         this.chatId = j;
         this.permanent = z;
         this.isChannel = z2;
-        if (hashMap == null) {
+        fixNavigationBar(getThemedColor("graySection"));
+        if (this.users == null) {
             this.users = new HashMap<>();
         }
         this.timeDif = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() - (System.currentTimeMillis() / 1000);

@@ -63,7 +63,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         textView5.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
         textView5.setText(LocaleController.getString("SponsoredMessageAlertLearnMoreUrl", R.string.SponsoredMessageAlertLearnMoreUrl));
         textView5.setTextColor(Theme.getColor("featuredStickers_addButton", resourcesProvider));
-        textView5.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.getColor("dialogBackground", resourcesProvider), Theme.getColor("featuredStickers_addButtonPressed", resourcesProvider)));
+        textView5.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor("dialogBackground", resourcesProvider), 4.0f));
         textView5.setTextSize(1, 14.0f);
         textView5.setGravity(16);
         TextView textView6 = new TextView(activity);

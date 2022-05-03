@@ -1129,7 +1129,9 @@ public class ImageLoader {
                     if (num == null || num.intValue() == 0) {
                         Bitmap bitmap = bitmapDrawable.getBitmap();
                         if (!bitmap.isRecycled()) {
-                            bitmap.recycle();
+                            ArrayList arrayList = new ArrayList();
+                            arrayList.add(bitmap);
+                            AndroidUtilities.recycleBitmaps(arrayList);
                         }
                     }
                 }
@@ -1146,7 +1148,9 @@ public class ImageLoader {
                     if (num == null || num.intValue() == 0) {
                         Bitmap bitmap = bitmapDrawable.getBitmap();
                         if (!bitmap.isRecycled()) {
-                            bitmap.recycle();
+                            ArrayList arrayList = new ArrayList();
+                            arrayList.add(bitmap);
+                            AndroidUtilities.recycleBitmaps(arrayList);
                         }
                     }
                 }
@@ -1301,8 +1305,17 @@ public class ImageLoader {
         }
 
         public void lambda$fileDidLoaded$5(File file, String str, Object obj, int i, int i2) {
-            if (SharedConfig.saveToGallery && file != null && ((str.endsWith(".mp4") || str.endsWith(".jpg")) && (obj instanceof MessageObject) && ((MessageObject) obj).getDialogId() >= 0)) {
-                AndroidUtilities.addMediaToGallery(file.toString());
+            int i3;
+            if (!(SharedConfig.saveToGalleryFlags == 0 || file == null || ((!str.endsWith(".mp4") && !str.endsWith(".jpg")) || !(obj instanceof MessageObject)))) {
+                long dialogId = ((MessageObject) obj).getDialogId();
+                if (dialogId >= 0) {
+                    i3 = 1;
+                } else {
+                    i3 = ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(i).getChat(Long.valueOf(-dialogId))) ? 4 : 2;
+                }
+                if ((i3 & SharedConfig.saveToGalleryFlags) != 0) {
+                    AndroidUtilities.addMediaToGallery(file.toString());
+                }
             }
             NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.fileLoaded, str, file);
             ImageLoader.this.fileDidLoaded(str, file, i2);
@@ -1461,18 +1474,21 @@ public class ImageLoader {
                 if (i == 0) {
                     file3 = new File(file, "000000000_999999_temp.f");
                     file4 = new File(file2, "000000000_999999.f");
-                } else if (i == 3) {
-                    file3 = new File(file, "000000000_999999_temp.f");
-                    file4 = new File(file2, "000000000_999999.f");
-                } else if (i == 1) {
-                    file3 = new File(file, "000000000_999999_temp.f");
-                    file4 = new File(file2, "000000000_999999.f");
-                } else if (i == 2) {
-                    file3 = new File(file, "000000000_999999_temp.f");
-                    file4 = new File(file2, "000000000_999999.f");
                 } else {
-                    file4 = null;
-                    file3 = null;
+                    if (!(i == 3 || i == 5)) {
+                        if (i == 1) {
+                            file3 = new File(file, "000000000_999999_temp.f");
+                            file4 = new File(file2, "000000000_999999.f");
+                        } else if (i == 2) {
+                            file3 = new File(file, "000000000_999999_temp.f");
+                            file4 = new File(file2, "000000000_999999.f");
+                        } else {
+                            file4 = null;
+                            file3 = null;
+                        }
+                    }
+                    file3 = new File(file, "000000000_999999_temp.f");
+                    file4 = new File(file2, "000000000_999999.f");
                 }
                 bArr = new byte[1024];
                 file3.createNewFile();
@@ -1797,7 +1813,7 @@ public class ImageLoader {
             Runnable imageLoader$$ExternalSyntheticLambda2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.this.lambda$createLoadOperationForImageReceiver$6(i4, str2, str, i7, imageReceiver, i5, str4, i3, imageLocation, z, parentObject, qulityThumbDocument, isNeedsQualityThumb, isShouldGenerateQualityThumb, str3, i2, i, currentAccount);
+                    ImageLoader.this.lambda$createLoadOperationForImageReceiver$6(i4, str2, str, i7, imageReceiver, i5, str4, i3, imageLocation, z, parentObject, currentAccount, qulityThumbDocument, isNeedsQualityThumb, isShouldGenerateQualityThumb, str3, i2, i);
                 }
             };
             this.imageLoadQueue.postRunnable(imageLoader$$ExternalSyntheticLambda2);
@@ -1805,8 +1821,8 @@ public class ImageLoader {
         }
     }
 
-    public void lambda$createLoadOperationForImageReceiver$6(int r22, java.lang.String r23, java.lang.String r24, int r25, org.telegram.messenger.ImageReceiver r26, int r27, java.lang.String r28, int r29, org.telegram.messenger.ImageLocation r30, boolean r31, java.lang.Object r32, org.telegram.tgnet.TLRPC$Document r33, boolean r34, boolean r35, java.lang.String r36, int r37, int r38, int r39) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.lambda$createLoadOperationForImageReceiver$6(int, java.lang.String, java.lang.String, int, org.telegram.messenger.ImageReceiver, int, java.lang.String, int, org.telegram.messenger.ImageLocation, boolean, java.lang.Object, org.telegram.tgnet.TLRPC$Document, boolean, boolean, java.lang.String, int, int, int):void");
+    public void lambda$createLoadOperationForImageReceiver$6(int r21, java.lang.String r22, java.lang.String r23, int r24, org.telegram.messenger.ImageReceiver r25, int r26, java.lang.String r27, int r28, org.telegram.messenger.ImageLocation r29, boolean r30, java.lang.Object r31, int r32, org.telegram.tgnet.TLRPC$Document r33, boolean r34, boolean r35, java.lang.String r36, int r37, int r38) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.lambda$createLoadOperationForImageReceiver$6(int, java.lang.String, java.lang.String, int, org.telegram.messenger.ImageReceiver, int, java.lang.String, int, org.telegram.messenger.ImageLocation, boolean, java.lang.Object, int, org.telegram.tgnet.TLRPC$Document, boolean, boolean, java.lang.String, int, int):void");
     }
 
     public void preloadArtwork(final String str) {
@@ -2139,7 +2155,7 @@ public class ImageLoader {
             byte[] bArr = tLRPC$PhotoSize.bytes;
             if (bArr == null || bArr.length == 0) {
                 try {
-                    RandomAccessFile randomAccessFile = new RandomAccessFile(FileLoader.getPathToAttach(tLRPC$PhotoSize, true), "r");
+                    RandomAccessFile randomAccessFile = new RandomAccessFile(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$PhotoSize, true), "r");
                     if (((int) randomAccessFile.length()) < 20000) {
                         byte[] bArr2 = new byte[(int) randomAccessFile.length()];
                         tLRPC$PhotoSize.bytes = bArr2;
@@ -2256,7 +2272,7 @@ public class ImageLoader {
                 tLRPC$TL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
             }
             boolean z = true;
-            File pathToAttach = FileLoader.getPathToAttach(findPhotoCachedSize, true);
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
             int i = 0;
             if (MessageObject.shouldEncryptPhotoOrVideo(tLRPC$Message)) {
                 pathToAttach = new File(pathToAttach.getAbsolutePath() + ".enc");
@@ -2426,7 +2442,7 @@ public class ImageLoader {
                 }
             }
         } else {
-            File pathToAttach = FileLoader.getPathToAttach(findPhotoCachedSize, true);
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
             TLRPC$TL_photoSize_layer127 tLRPC$TL_photoSize_layer127 = new TLRPC$TL_photoSize_layer127();
             tLRPC$TL_photoSize_layer127.w = findPhotoCachedSize.w;
             tLRPC$TL_photoSize_layer127.h = findPhotoCachedSize.h;

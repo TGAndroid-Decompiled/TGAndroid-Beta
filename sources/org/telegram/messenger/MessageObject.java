@@ -259,6 +259,7 @@ public class MessageObject {
     public boolean viewsReloaded;
     public int wantedBotKeyboardWidth;
     public boolean wasJustSent;
+    public boolean wasPlayedPremiumAnimation;
     public boolean wasUnread;
 
     public static class SendAnimationData {
@@ -289,6 +290,17 @@ public class MessageObject {
         for (int i = 0; i < tLRPC$TL_messageReactions.recent_reactions.size(); i++) {
             if (tLRPC$TL_messageReactions.recent_reactions.get(i).unread) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isPremiumSticker(TLRPC$Document tLRPC$Document) {
+        if (!(tLRPC$Document == null || tLRPC$Document.thumbs == null)) {
+            for (int i = 0; i < tLRPC$Document.video_thumbs.size(); i++) {
+                if ("f".equals(tLRPC$Document.video_thumbs.get(i).type)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -327,6 +339,25 @@ public class MessageObject {
                 messagesStorage.markMessageReactionsAsRead(tLRPC$Message.dialog_id, tLRPC$Message.id, true);
             }
         }
+    }
+
+    public boolean isPremiumSticker() {
+        return isPremiumSticker(getDocument());
+    }
+
+    public TLRPC$VideoSize getPremiumStickerAnimation() {
+        return getPremiumStickerAnimation(getDocument());
+    }
+
+    public static TLRPC$VideoSize getPremiumStickerAnimation(TLRPC$Document tLRPC$Document) {
+        if (!(tLRPC$Document == null || tLRPC$Document.thumbs == null)) {
+            for (int i = 0; i < tLRPC$Document.video_thumbs.size(); i++) {
+                if ("f".equals(tLRPC$Document.video_thumbs.get(i).type)) {
+                    return tLRPC$Document.video_thumbs.get(i);
+                }
+            }
+        }
+        return null;
     }
 
     public static class VCardData {
@@ -4067,12 +4098,16 @@ public class MessageObject {
     }
 
     public void checkMediaExistance() {
+        checkMediaExistance(true);
+    }
+
+    public void checkMediaExistance(boolean z) {
         TLRPC$Photo tLRPC$Photo;
         int i;
         this.attachPathExists = false;
         this.mediaExists = false;
         if (this.type == 1 && FileLoader.getClosestPhotoSizeWithSize(this.photoThumbs, AndroidUtilities.getPhotoSize()) != null) {
-            File pathToMessage = FileLoader.getPathToMessage(this.messageOwner);
+            File pathToMessage = FileLoader.getInstance(this.currentAccount).getPathToMessage(this.messageOwner, z);
             if (needDrawBluredPreview()) {
                 this.mediaExists = new File(pathToMessage.getAbsolutePath() + ".enc").exists();
             }
@@ -4086,7 +4121,7 @@ public class MessageObject {
                 this.attachPathExists = new File(this.messageOwner.attachPath).exists();
             }
             if (!this.attachPathExists) {
-                File pathToMessage2 = FileLoader.getPathToMessage(this.messageOwner);
+                File pathToMessage2 = FileLoader.getInstance(this.currentAccount).getPathToMessage(this.messageOwner, z);
                 if (this.type == 3 && needDrawBluredPreview()) {
                     this.mediaExists = new File(pathToMessage2.getAbsolutePath() + ".enc").exists();
                 }
@@ -4102,15 +4137,15 @@ public class MessageObject {
                 if (i2 == 0) {
                     TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(this.photoThumbs, AndroidUtilities.getPhotoSize());
                     if (closestPhotoSizeWithSize != null) {
-                        this.mediaExists = FileLoader.getPathToAttach(closestPhotoSizeWithSize, true).exists();
+                        this.mediaExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, null, true, z).exists();
                     }
                 } else if (i2 == 11 && (tLRPC$Photo = this.messageOwner.action.photo) != null && !tLRPC$Photo.video_sizes.isEmpty()) {
-                    this.mediaExists = FileLoader.getPathToAttach(tLRPC$Photo.video_sizes.get(0), true).exists();
+                    this.mediaExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$Photo.video_sizes.get(0), null, true, z).exists();
                 }
             } else if (isWallpaper()) {
-                this.mediaExists = FileLoader.getPathToAttach(document, true).exists();
+                this.mediaExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(document, null, true, z).exists();
             } else {
-                this.mediaExists = FileLoader.getPathToAttach(document).exists();
+                this.mediaExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(document, null, false, z).exists();
             }
         }
     }

@@ -45,9 +45,9 @@ public class SendLocationCell extends FrameLayout {
         super(context);
         this.resourcesProvider = resourcesProvider;
         this.live = z;
-        ImageView imageView = new ImageView(context);
-        this.imageView = imageView;
-        imageView.setTag(z ? "location_sendLiveLocationBackgroundlocation_sendLiveLocationIcon" : "location_sendLocationBackgroundlocation_sendLocationIcon");
+        this.imageView = new ImageView(context);
+        setBackground(Theme.AdaptiveRipple.rect());
+        this.imageView.setTag(z ? "location_sendLiveLocationBackgroundlocation_sendLiveLocationIcon" : "location_sendLocationBackgroundlocation_sendLocationIcon");
         String str = "location_sendLiveLocationBackground";
         Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(42.0f), getThemedColor(z ? str : "location_sendLocationBackground"), getThemedColor(!z ? "location_sendLocationBackground" : str));
         if (z) {
@@ -67,10 +67,10 @@ public class SendLocationCell extends FrameLayout {
             combinedDrawable2.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             this.imageView.setBackgroundDrawable(combinedDrawable2);
         }
-        ImageView imageView2 = this.imageView;
+        ImageView imageView = this.imageView;
         boolean z2 = LocaleController.isRTL;
         int i = 5;
-        addView(imageView2, LayoutHelper.createFrame(42, 42.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 15.0f, 12.0f, !z2 ? 0.0f : 15.0f, 0.0f));
+        addView(imageView, LayoutHelper.createFrame(42, 42.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 15.0f, 12.0f, !z2 ? 0.0f : 15.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.titleTextView = simpleTextView;
         simpleTextView.setTextSize(16);

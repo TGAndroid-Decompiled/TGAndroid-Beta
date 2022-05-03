@@ -86,6 +86,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private TLRPC$ChatFull info;
     private boolean isDarkTheme;
     private boolean isSearchingMentions;
+    private Object[] lastData;
     private boolean lastForSearch;
     private Location lastKnownLocation;
     private int lastPosition;
@@ -146,6 +147,8 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             MentionsAdapter.this.lastKnownLocation = null;
         }
     };
+    private boolean isReversed = false;
+    private int lastItemCount = -1;
 
     public interface MentionsAdapterDelegate {
         void needChangePanelVisibility(boolean z);
@@ -153,6 +156,8 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         void onContextClick(TLRPC$BotInlineResult tLRPC$BotInlineResult);
 
         void onContextSearch(boolean z);
+
+        void onItemCountUpdate(int i, int i2);
     }
 
     static int access$1704(MentionsAdapter mentionsAdapter) {
@@ -223,8 +228,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             this.stickersToLoad.remove((String) objArr[0]);
             if (this.stickersToLoad.isEmpty()) {
                 MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
-                ArrayList<StickerResult> arrayList2 = this.stickers;
-                if (arrayList2 != null && !arrayList2.isEmpty()) {
+                if (getItemCountInternal() > 0) {
                     z = true;
                 }
                 mentionsAdapterDelegate.needChangePanelVisibility(z);
@@ -292,7 +296,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         for (int i = 0; i < min; i++) {
             StickerResult stickerResult = this.stickers.get(i);
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(stickerResult.sticker.thumbs, 90);
-            if (((closestPhotoSizeWithSize instanceof TLRPC$TL_photoSize) || (closestPhotoSizeWithSize instanceof TLRPC$TL_photoSizeProgressive)) && !FileLoader.getPathToAttach(closestPhotoSizeWithSize, "webp", true).exists()) {
+            if (((closestPhotoSizeWithSize instanceof TLRPC$TL_photoSize) || (closestPhotoSizeWithSize instanceof TLRPC$TL_photoSizeProgressive)) && !FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, "webp", true).exists()) {
                 this.stickersToLoad.add(FileLoader.getAttachFileName(closestPhotoSizeWithSize, "webp"));
                 FileLoader.getInstance(this.currentAccount).loadFile(ImageLocation.getForDocument(closestPhotoSizeWithSize, stickerResult.sticker), stickerResult.parent, "webp", 1, 1);
             }
@@ -343,7 +347,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     public void lambda$searchServerStickers$0(String str, TLObject tLObject) {
         ArrayList<StickerResult> arrayList;
-        int i = 0;
+        boolean z = false;
         this.lastReqId = 0;
         if (str.equals(this.lastSticker) && (tLObject instanceof TLRPC$TL_messages_stickers)) {
             TLRPC$TL_messages_stickers tLRPC$TL_messages_stickers = (TLRPC$TL_messages_stickers) tLObject;
@@ -352,18 +356,99 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             ArrayList<TLRPC$Document> arrayList3 = tLRPC$TL_messages_stickers.stickers;
             addStickersToResult(arrayList3, "sticker_search_" + str);
             ArrayList<StickerResult> arrayList4 = this.stickers;
-            if (arrayList4 != null) {
-                i = arrayList4.size();
-            }
+            int size2 = arrayList4 != null ? arrayList4.size() : 0;
             if (!this.visibleByStickersSearch && (arrayList = this.stickers) != null && !arrayList.isEmpty()) {
                 checkStickerFilesExistAndDownload();
-                this.delegate.needChangePanelVisibility(this.stickersToLoad.isEmpty());
+                MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
+                if (getItemCountInternal() > 0) {
+                    z = true;
+                }
+                mentionsAdapterDelegate.needChangePanelVisibility(z);
                 this.visibleByStickersSearch = true;
             }
-            if (size != i) {
+            if (size != size2) {
                 notifyDataSetChanged();
             }
         }
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        MentionsAdapterDelegate mentionsAdapterDelegate;
+        int i = this.lastItemCount;
+        int i2 = 0;
+        if (i == -1 || this.lastData == null) {
+            MentionsAdapterDelegate mentionsAdapterDelegate2 = this.delegate;
+            if (mentionsAdapterDelegate2 != null) {
+                mentionsAdapterDelegate2.onItemCountUpdate(0, getItemCount());
+            }
+            super.notifyDataSetChanged();
+            this.lastData = new Object[getItemCount()];
+            while (true) {
+                Object[] objArr = this.lastData;
+                if (i2 < objArr.length) {
+                    objArr[i2] = getItem(i2);
+                    i2++;
+                } else {
+                    return;
+                }
+            }
+        } else {
+            int itemCount = getItemCount();
+            boolean z = i != itemCount;
+            int min = Math.min(i, itemCount);
+            Object[] objArr2 = new Object[itemCount];
+            for (int i3 = 0; i3 < itemCount; i3++) {
+                objArr2[i3] = getItem(i3);
+            }
+            int i4 = 0;
+            while (i4 < min) {
+                if (i4 >= 0) {
+                    Object[] objArr3 = this.lastData;
+                    if (i4 < objArr3.length && i4 < itemCount && itemsEqual(objArr3[i4], objArr2[i4])) {
+                        if ((i4 == i + (-1)) != (i4 == itemCount + (-1))) {
+                            notifyItemChanged(i4);
+                        }
+                        i4++;
+                    }
+                }
+                notifyItemChanged(i4);
+                z = true;
+                i4++;
+            }
+            notifyItemRangeRemoved(min, i - min);
+            notifyItemRangeInserted(min, itemCount - min);
+            if (z && (mentionsAdapterDelegate = this.delegate) != null) {
+                mentionsAdapterDelegate.onItemCountUpdate(i, itemCount);
+            }
+            this.lastData = objArr2;
+        }
+    }
+
+    private boolean itemsEqual(Object obj, Object obj2) {
+        MediaDataController.KeywordResult keywordResult;
+        String str;
+        String str2;
+        if (obj == obj2) {
+            return true;
+        }
+        if ((obj instanceof StickerResult) && (obj2 instanceof StickerResult) && ((StickerResult) obj).sticker == ((StickerResult) obj2).sticker) {
+            return true;
+        }
+        if ((obj instanceof TLRPC$User) && (obj2 instanceof TLRPC$User) && ((TLRPC$User) obj).id == ((TLRPC$User) obj2).id) {
+            return true;
+        }
+        if ((obj instanceof TLRPC$Chat) && (obj2 instanceof TLRPC$Chat) && ((TLRPC$Chat) obj).id == ((TLRPC$Chat) obj2).id) {
+            return true;
+        }
+        if ((obj instanceof String) && (obj2 instanceof String) && obj.equals(obj2)) {
+            return true;
+        }
+        if (!(obj instanceof MediaDataController.KeywordResult) || !(obj2 instanceof MediaDataController.KeywordResult) || (str = (keywordResult = (MediaDataController.KeywordResult) obj).keyword) == null) {
+            return false;
+        }
+        MediaDataController.KeywordResult keywordResult2 = (MediaDataController.KeywordResult) obj2;
+        return str.equals(keywordResult2.keyword) && (str2 = keywordResult.emoji) != null && str2.equals(keywordResult2.emoji);
     }
 
     private void clearStickers() {
@@ -570,9 +655,6 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         String str5;
         TLRPC$User tLRPC$User = this.foundContextBot;
         if (tLRPC$User == null || (str4 = tLRPC$User.username) == null || !str4.equals(str) || (str5 = this.searchingContextQuery) == null || !str5.equals(str2)) {
-            this.searchResultBotContext = null;
-            this.searchResultBotContextSwitch = null;
-            notifyDataSetChanged();
             if (this.foundContextBot != null) {
                 if (this.inlineMediaEnabled || str == null || str2 == null) {
                     this.delegate.needChangePanelVisibility(false);
@@ -705,6 +787,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     }
                 }
                 MentionsAdapter.this.processFoundUser(tLRPC$User);
+                MentionsAdapter.this.contextUsernameReqid = 0;
             }
         }
     }
@@ -1020,6 +1103,19 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         mentionsAdapterDelegate.needChangePanelVisibility(arrayList2 != null && !arrayList2.isEmpty());
     }
 
+    public void setIsReversed(boolean z) {
+        if (this.isReversed != z) {
+            this.isReversed = z;
+            int lastItemCount = getLastItemCount();
+            if (lastItemCount > 0) {
+                notifyItemChanged(0);
+            }
+            if (lastItemCount > 1) {
+                notifyItemChanged(lastItemCount - 1);
+            }
+        }
+    }
+
     public void showUsersResult(ArrayList<TLObject> arrayList, LongSparseArray<TLObject> longSparseArray, boolean z) {
         this.searchResultUsernames = arrayList;
         this.searchResultUsernamesMap = longSparseArray;
@@ -1028,6 +1124,8 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             AndroidUtilities.cancelRunOnUIThread(runnable);
             this.cancelDelayRunnable = null;
         }
+        this.searchResultBotContext = null;
+        this.stickers = null;
         if (z) {
             notifyDataSetChanged();
             this.delegate.needChangePanelVisibility(!this.searchResultUsernames.isEmpty());
@@ -1048,6 +1146,16 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     @Override
     public int getItemCount() {
+        int itemCountInternal = getItemCountInternal();
+        this.lastItemCount = itemCountInternal;
+        return itemCountInternal;
+    }
+
+    public int getLastItemCount() {
+        return this.lastItemCount;
+    }
+
+    public int getItemCountInternal() {
         int i = 1;
         if (this.foundContextBot != null && !this.inlineMediaEnabled) {
             return 1;
@@ -1210,7 +1318,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         StickerCell stickerCell;
         if (i == 0) {
-            MentionCell mentionCell = new MentionCell(this.mContext);
+            MentionCell mentionCell = new MentionCell(this.mContext, this.resourcesProvider);
             mentionCell.setIsDarkTheme(this.isDarkTheme);
             stickerCell = mentionCell;
         } else if (i == 1) {
@@ -1240,6 +1348,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights;
         int itemViewType = viewHolder.getItemViewType();
+        boolean z = true;
         if (itemViewType == 4) {
             StickerCell stickerCell = (StickerCell) viewHolder.itemView;
             StickerResult stickerResult = this.stickers.get(i);
@@ -1259,13 +1368,13 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 textView.setText(LocaleController.formatString("AttachInlineRestricted", R.string.AttachInlineRestricted, LocaleController.formatDateForBan(currentChat.banned_rights.until_date)));
             }
         } else if (this.searchResultBotContext != null) {
-            boolean z = this.searchResultBotContextSwitch != null;
+            boolean z2 = this.searchResultBotContextSwitch != null;
             if (viewHolder.getItemViewType() != 2) {
-                if (z) {
+                if (z2) {
                     i--;
                 }
-                ((ContextLinkCell) viewHolder.itemView).setLink(this.searchResultBotContext.get(i), this.foundContextBot, this.contextMedia, i != this.searchResultBotContext.size() - 1, z && i == 0, "gif".equals(this.searchingContextUsername));
-            } else if (z) {
+                ((ContextLinkCell) viewHolder.itemView).setLink(this.searchResultBotContext.get(i), this.foundContextBot, this.contextMedia, i != this.searchResultBotContext.size() - 1, z2 && i == 0, "gif".equals(this.searchingContextUsername));
+            } else if (z2) {
                 ((BotSwitchCell) viewHolder.itemView).setText(this.searchResultBotContextSwitch.text);
             }
         } else {
@@ -1281,22 +1390,27 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 ArrayList<String> arrayList2 = this.searchResultHashtags;
                 if (arrayList2 != null) {
                     ((MentionCell) viewHolder.itemView).setText(arrayList2.get(i));
-                    return;
-                }
-                ArrayList<MediaDataController.KeywordResult> arrayList3 = this.searchResultSuggestions;
-                if (arrayList3 != null) {
-                    ((MentionCell) viewHolder.itemView).setEmojiSuggestion(arrayList3.get(i));
-                    return;
-                }
-                ArrayList<String> arrayList4 = this.searchResultCommands;
-                if (arrayList4 != null) {
-                    MentionCell mentionCell = (MentionCell) viewHolder.itemView;
-                    String str = arrayList4.get(i);
-                    String str2 = this.searchResultCommandsHelp.get(i);
-                    ArrayList<TLRPC$User> arrayList5 = this.searchResultCommandsUsers;
-                    mentionCell.setBotCommand(str, str2, arrayList5 != null ? arrayList5.get(i) : null);
+                } else {
+                    ArrayList<MediaDataController.KeywordResult> arrayList3 = this.searchResultSuggestions;
+                    if (arrayList3 != null) {
+                        ((MentionCell) viewHolder.itemView).setEmojiSuggestion(arrayList3.get(i));
+                    } else {
+                        ArrayList<String> arrayList4 = this.searchResultCommands;
+                        if (arrayList4 != null) {
+                            MentionCell mentionCell = (MentionCell) viewHolder.itemView;
+                            String str = arrayList4.get(i);
+                            String str2 = this.searchResultCommandsHelp.get(i);
+                            ArrayList<TLRPC$User> arrayList5 = this.searchResultCommandsUsers;
+                            mentionCell.setBotCommand(str, str2, arrayList5 != null ? arrayList5.get(i) : null);
+                        }
+                    }
                 }
             }
+            MentionCell mentionCell2 = (MentionCell) viewHolder.itemView;
+            if (!this.isReversed ? i >= getItemCount() - 1 : i <= 0) {
+                z = false;
+            }
+            mentionCell2.setDivider(z);
         }
     }
 

@@ -1672,6 +1672,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
             }
         });
+        this.drawDoubleNavigationBar = true;
         this.drawNavigationBar = true;
         if (Build.VERSION.SDK_INT >= 30) {
             getWindow().setNavigationBarColor(-16777216);
@@ -3532,7 +3533,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     public void lambda$new$9(DialogInterface dialogInterface) {
         BaseFragment baseFragment = this.parentActivity.getActionBarLayout().fragmentsStack.get(this.parentActivity.getActionBarLayout().fragmentsStack.size() - 1);
         if (this.anyEnterEventSent && (baseFragment instanceof ChatActivity)) {
-            ((ChatActivity) baseFragment).onEditTextDialogClose(true);
+            ((ChatActivity) baseFragment).onEditTextDialogClose(true, true);
         }
     }
 
@@ -7076,14 +7077,14 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     tLRPC$TL_userProfilePhoto.photo_big = closestPhotoSizeWithSize2.location;
                 }
                 if (!(closestPhotoSizeWithSize == null || this.avatar == null)) {
-                    FileLoader.getPathToAttach(this.avatar, true).renameTo(FileLoader.getPathToAttach(closestPhotoSizeWithSize, true));
+                    FileLoader.getInstance(((BottomSheet) GroupCallActivity.this).currentAccount).getPathToAttach(this.avatar, true).renameTo(FileLoader.getInstance(((BottomSheet) GroupCallActivity.this).currentAccount).getPathToAttach(closestPhotoSizeWithSize, true));
                     ImageLoader.getInstance().replaceImageInCache(this.avatar.volume_id + "_" + this.avatar.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUser(user, 1), false);
                 }
                 if (!(closestPhotoSizeWithSize2 == null || this.avatarBig == null)) {
-                    FileLoader.getPathToAttach(this.avatarBig, true).renameTo(FileLoader.getPathToAttach(closestPhotoSizeWithSize2, true));
+                    FileLoader.getInstance(((BottomSheet) GroupCallActivity.this).currentAccount).getPathToAttach(this.avatarBig, true).renameTo(FileLoader.getInstance(((BottomSheet) GroupCallActivity.this).currentAccount).getPathToAttach(closestPhotoSizeWithSize2, true));
                 }
                 if (!(tLRPC$VideoSize == null || str == null)) {
-                    new File(str).renameTo(FileLoader.getPathToAttach(tLRPC$VideoSize, "mp4", true));
+                    new File(str).renameTo(FileLoader.getInstance(((BottomSheet) GroupCallActivity.this).currentAccount).getPathToAttach(tLRPC$VideoSize, "mp4", true));
                 }
                 GroupCallActivity.this.accountInstance.getMessagesStorage().clearUserPhotos(user.id);
                 ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();

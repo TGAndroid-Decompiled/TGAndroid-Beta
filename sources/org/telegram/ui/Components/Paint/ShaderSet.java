@@ -11,7 +11,7 @@ public class ShaderSet {
         HashMap hashMap = new HashMap();
         HashMap hashMap2 = new HashMap();
         hashMap2.put("vertex", "precision highp float; uniform mat4 mvpMatrix; attribute vec4 inPosition; attribute vec2 inTexcoord; attribute float alpha; varying vec2 varTexcoord; varying float varIntensity; void main (void) { gl_Position = mvpMatrix * inPosition; varTexcoord = inTexcoord; varIntensity = alpha; }");
-        hashMap2.put("fragment", "precision highp float; varying vec2 varTexcoord; varying float varIntensity; uniform sampler2D texture; void main (void) { gl_FragColor = vec4(0, 0, 0, varIntensity * texture2D(texture, varTexcoord.st, 0.0).r); }");
+        hashMap2.put("fragment", "precision highp float; varying vec2 varTexcoord; varying float varIntensity; uniform sampler2D texture; void main (void) { gl_FragColor = vec4(1, 1, 1, varIntensity * texture2D(texture, varTexcoord.st, 0.0).r); }");
         hashMap2.put("attributes", new String[]{"inPosition", "inTexcoord", "alpha"});
         hashMap2.put("uniforms", new String[]{"mvpMatrix", "texture"});
         hashMap.put("brush", Collections.unmodifiableMap(hashMap2));

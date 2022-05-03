@@ -221,8 +221,16 @@ public class UserConfig extends BaseController {
 
     public void setCurrentUser(TLRPC$User tLRPC$User) {
         synchronized (this.sync) {
+            TLRPC$User tLRPC$User2 = this.currentUser;
             this.currentUser = tLRPC$User;
             this.clientUserId = tLRPC$User.id;
+            checkPremium(tLRPC$User2, tLRPC$User);
+        }
+    }
+
+    private void checkPremium(TLRPC$User tLRPC$User, TLRPC$User tLRPC$User2) {
+        if (tLRPC$User != null && tLRPC$User2 != null && tLRPC$User.premium != tLRPC$User2.premium) {
+            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.currentUserPremiumStatusChanged, new Object[0]);
         }
     }
 
@@ -417,5 +425,9 @@ public class UserConfig extends BaseController {
         edit.putLong(sb6.toString(), j4);
         edit.putBoolean("hasValidDialogLoadIds", true);
         edit.commit();
+    }
+
+    public boolean isPremium() {
+        return this.currentUser.premium;
     }
 }

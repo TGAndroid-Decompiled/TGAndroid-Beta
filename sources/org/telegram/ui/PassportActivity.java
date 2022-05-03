@@ -514,7 +514,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
         public void updateButtonState(boolean z) {
             String attachFileName = FileLoader.getAttachFileName(this.currentSecureDocument);
-            boolean exists = FileLoader.getPathToAttach(this.currentSecureDocument).exists();
+            boolean exists = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(this.currentSecureDocument).exists();
             if (TextUtils.isEmpty(attachFileName)) {
                 this.radialProgress.setBackground(null, false, false);
                 return;
@@ -4915,8 +4915,8 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 }
 
                 public void renameFile(SecureDocument secureDocument, TLRPC$TL_secureFile tLRPC$TL_secureFile) {
-                    File pathToAttach = FileLoader.getPathToAttach(secureDocument);
-                    File pathToAttach2 = FileLoader.getPathToAttach(tLRPC$TL_secureFile);
+                    File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(secureDocument);
+                    File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$TL_secureFile);
                     pathToAttach.renameTo(pathToAttach2);
                     ImageLoader.getInstance().replaceImageInCache(secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.id, tLRPC$TL_secureFile.dc_id + "_" + tLRPC$TL_secureFile.id, null, false);
                 }
@@ -6357,7 +6357,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     File generatePicturePath = AndroidUtilities.generatePicturePath();
                     if (generatePicturePath != null) {
                         if (i2 >= 24) {
-                            intent.putExtra("output", FileProvider.getUriForFile(getParentActivity(), "org.telegram.messenger.web.provider", generatePicturePath));
+                            intent.putExtra("output", FileProvider.getUriForFile(getParentActivity(), "org.telegram.messenger.beta.provider", generatePicturePath));
                             intent.addFlags(2);
                             intent.addFlags(1);
                         } else {

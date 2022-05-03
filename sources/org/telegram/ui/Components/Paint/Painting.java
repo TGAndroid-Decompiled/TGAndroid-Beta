@@ -210,7 +210,7 @@ public class Painting {
         Shader.SetColorUniform(shader.getUniform("color"), i);
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, getTexture());
-        GLES20.glTexParameteri(3553, 10241, 9728);
+        GLES20.glTexParameteri(3553, 10241, 9729);
         GLES20.glActiveTexture(33985);
         GLES20.glBindTexture(3553, getPaintTexture());
         GLES20.glBlendFunc(1, 0);

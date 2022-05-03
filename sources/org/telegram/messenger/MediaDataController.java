@@ -3790,12 +3790,13 @@ public class MediaDataController extends BaseController {
             TLRPC$User tLRPC$User = tLRPC$messages_Messages.users.get(i6);
             longSparseArray.put(tLRPC$User.id, tLRPC$User);
         }
-        final ArrayList arrayList = new ArrayList();
+        final ArrayList<MessageObject> arrayList = new ArrayList<>();
         for (int i7 = 0; i7 < tLRPC$messages_Messages.messages.size(); i7++) {
-            MessageObject messageObject = new MessageObject(this.currentAccount, tLRPC$messages_Messages.messages.get(i7), (LongSparseArray<TLRPC$User>) longSparseArray, true, true);
+            MessageObject messageObject = new MessageObject(this.currentAccount, tLRPC$messages_Messages.messages.get(i7), (LongSparseArray<TLRPC$User>) longSparseArray, true, false);
             messageObject.createStrippedThumb();
             arrayList.add(messageObject);
         }
+        getFileLoader().checkMediaExistance(arrayList);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

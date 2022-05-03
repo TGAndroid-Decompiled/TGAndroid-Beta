@@ -301,7 +301,7 @@ public class SideMenultItemAnimator extends SimpleItemAnimator {
             view = viewHolder2.itemView;
         }
         if (view2 != null) {
-            final ViewPropertyAnimator duration = view2.animate().setDuration(getChangeDuration());
+            final ViewPropertyAnimator duration = view2.animate().setDuration(getChangeOldDuration());
             this.mChangeAnimations.add(changeInfo.oldHolder);
             duration.translationX(changeInfo.toX - changeInfo.fromX);
             duration.translationY(changeInfo.toY - changeInfo.fromY);
@@ -326,7 +326,7 @@ public class SideMenultItemAnimator extends SimpleItemAnimator {
         if (view != null) {
             final ViewPropertyAnimator animate = view.animate();
             this.mChangeAnimations.add(changeInfo.newHolder);
-            animate.translationX(0.0f).translationY(0.0f).setDuration(getChangeDuration()).alpha(1.0f).setListener(new AnimatorListenerAdapter() {
+            animate.translationX(0.0f).translationY(0.0f).setDuration(getChangeNewDuration()).setStartDelay(getChangeDuration() - getChangeNewDuration()).alpha(1.0f).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationStart(Animator animator) {
                     SideMenultItemAnimator.this.dispatchChangeStarting(changeInfo.newHolder, false);

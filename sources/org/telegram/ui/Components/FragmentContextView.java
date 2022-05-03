@@ -1834,7 +1834,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         if (!this.drawOverlay || getVisibility() == 0) {
             boolean z = false;
             int i = this.currentStyle;
-            if ((i == 3 || i == 1) && this.drawOverlay) {
+            if (i == 3 || i == 1) {
                 if (GroupCallActivity.groupCallInstance == null) {
                     Theme.getFragmentContextViewWavesDrawable().getState();
                 }

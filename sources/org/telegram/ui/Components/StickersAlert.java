@@ -105,6 +105,7 @@ import org.telegram.ui.ContentPreviewViewer;
 public class StickersAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private GridAdapter adapter;
     private List<ThemeDescription> animatingDescriptions;
+    private TextView applyTextView;
     private String buttonTextColorKey;
     private int checkReqId;
     private Runnable checkRunnable;
@@ -270,6 +271,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 return 0L;
             }
         };
+        fixNavigationBar();
         this.resourcesProvider = resourcesProvider;
         this.parentActivity = (Activity) context;
         final TLRPC$TL_messages_getAttachedStickers tLRPC$TL_messages_getAttachedStickers = new TLRPC$TL_messages_getAttachedStickers();
@@ -437,6 +439,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 return 0L;
             }
         };
+        fixNavigationBar();
         this.parentActivity = (Activity) context;
         this.importingStickers = arrayList;
         this.importingSoftware = str;
@@ -607,6 +610,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 return 0L;
             }
         };
+        fixNavigationBar();
         this.delegate = stickersAlertDelegate;
         this.inputStickerSet = tLRPC$InputStickerSet;
         this.stickerSet = tLRPC$TL_messages_stickerSet;
@@ -972,6 +976,17 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.pickerBottomLayout.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         this.pickerBottomLayout.setGravity(17);
         this.containerView.addView(this.pickerBottomLayout, LayoutHelper.createFrame(-1, 48, 83));
+        TextView textView4 = new TextView(getContext());
+        this.applyTextView = textView4;
+        textView4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
+        this.applyTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.applyTextView.setGravity(17);
+        this.applyTextView.setLines(1);
+        this.applyTextView.setSingleLine(true);
+        this.applyTextView.setTextColor(getThemedColor("featuredStickers_buttonText"));
+        this.applyTextView.setTextSize(1, 15.0f);
+        this.applyTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.containerView.addView(this.applyTextView, LayoutHelper.createFrame(-1, 48.0f, 8388691, 16.0f, 162.0f, 16.0f, 16.0f));
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.stickerPreviewLayout = frameLayout3;
         frameLayout3.setVisibility(8);
@@ -988,14 +1003,14 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         backupImageView.setAspectFit(true);
         this.stickerImageView.setLayerNum(7);
         this.stickerPreviewLayout.addView(this.stickerImageView);
-        TextView textView4 = new TextView(context);
-        this.stickerEmojiTextView = textView4;
-        textView4.setTextSize(1, 30.0f);
+        TextView textView5 = new TextView(context);
+        this.stickerEmojiTextView = textView5;
+        textView5.setTextSize(1, 30.0f);
         this.stickerEmojiTextView.setGravity(85);
         this.stickerPreviewLayout.addView(this.stickerEmojiTextView);
-        TextView textView5 = new TextView(context);
-        this.previewSendButton = textView5;
-        textView5.setTextSize(1, 14.0f);
+        TextView textView6 = new TextView(context);
+        this.previewSendButton = textView6;
+        textView6.setTextSize(1, 14.0f);
         this.previewSendButton.setTextColor(getThemedColor("dialogTextBlue2"));
         this.previewSendButton.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor("dialogBackground"), getThemedColor("listSelectorSDK21")));
         this.previewSendButton.setGravity(17);
@@ -1070,15 +1085,17 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 if (!z) {
                     this.stickerEmojiTextView.setText(Emoji.replaceEmoji(MediaDataController.getInstance(this.currentAccount).getEmojiForSticker(this.selectedSticker.id), this.stickerEmojiTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(30.0f), false));
                 }
-                this.stickerImageView.getImageReceiver().setImage(ImageLocation.getForDocument(this.selectedSticker), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(this.selectedSticker.thumbs, 90), this.selectedSticker), (String) null, "webp", this.stickerSet, 1);
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.stickerPreviewLayout.getLayoutParams();
-                layoutParams.topMargin = this.scrollOffsetY;
-                this.stickerPreviewLayout.setLayoutParams(layoutParams);
-                this.stickerPreviewLayout.setVisibility(0);
-                AnimatorSet animatorSet = new AnimatorSet();
-                animatorSet.playTogether(ObjectAnimator.ofFloat(this.stickerPreviewLayout, View.ALPHA, 0.0f, 1.0f));
-                animatorSet.setDuration(200L);
-                animatorSet.start();
+                if (!ContentPreviewViewer.getInstance().showMenuFor(view)) {
+                    this.stickerImageView.getImageReceiver().setImage(ImageLocation.getForDocument(this.selectedSticker), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(this.selectedSticker.thumbs, 90), this.selectedSticker), (String) null, "webp", this.stickerSet, 1);
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.stickerPreviewLayout.getLayoutParams();
+                    layoutParams.topMargin = this.scrollOffsetY;
+                    this.stickerPreviewLayout.setLayoutParams(layoutParams);
+                    this.stickerPreviewLayout.setVisibility(0);
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(this.stickerPreviewLayout, View.ALPHA, 0.0f, 1.0f));
+                    animatorSet.setDuration(200L);
+                    animatorSet.start();
+                }
             }
         } else if (i >= 0 && i < arrayList.size()) {
             SendMessagesHelper.ImportingSticker importingSticker = this.importingStickersPaths.get(i);
@@ -1776,12 +1793,25 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
     }
 
-    private void setButton(View.OnClickListener onClickListener, String str, String str2) {
+    private void setButton(View.OnClickListener onClickListener, String str, String str2, boolean z) {
+        if (z) {
+            this.applyTextView.setText(str);
+            this.applyTextView.setOnClickListener(onClickListener);
+            this.applyTextView.setVisibility(0);
+            this.previewSendButtonShadow.setVisibility(4);
+            this.pickerBottomLayout.setOnClickListener(null);
+            this.pickerBottomLayout.setText("");
+            this.pickerBottomLayout.setVisibility(0);
+            return;
+        }
         TextView textView = this.pickerBottomLayout;
         this.buttonTextColorKey = str2;
         textView.setTextColor(getThemedColor(str2));
         this.pickerBottomLayout.setText(str.toUpperCase());
         this.pickerBottomLayout.setOnClickListener(onClickListener);
+        this.pickerBottomLayout.setVisibility(0);
+        this.previewSendButtonShadow.setVisibility(0);
+        this.applyTextView.setVisibility(8);
     }
 
     public void setShowTooltipWhenToggle(boolean z) {
@@ -2018,6 +2048,15 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             if (StickersAlert.this.stickerSetCovereds != null) {
                 FeaturedStickerSetInfoCell.createThemeDescriptions(list, StickersAlert.this.gridView, themeDescriptionDelegate);
             }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (ContentPreviewViewer.getInstance().isVisible()) {
+            ContentPreviewViewer.getInstance().closeWithMenu();
+        } else {
+            super.onBackPressed();
         }
     }
 }

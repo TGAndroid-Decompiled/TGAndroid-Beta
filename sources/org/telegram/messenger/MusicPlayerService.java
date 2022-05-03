@@ -241,7 +241,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         this.loadingFilePath = null;
         this.imageReceiver.setImageBitmap((Drawable) null);
         if (smallCover != null || TextUtils.isEmpty(artworkUrl)) {
-            this.loadingFilePath = FileLoader.getPathToAttach(messageObject.getDocument()).getAbsolutePath();
+            this.loadingFilePath = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(messageObject.getDocument()).getAbsolutePath();
         } else {
             cover = loadArtworkFromUrl(artworkUrl2, true, !z);
             if (cover == null) {

@@ -95,10 +95,10 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
         if (arrayList == null || arrayList.isEmpty()) {
             remoteViews.setViewVisibility(R.id.feed_widget_item_image, 8);
         } else {
-            File pathToAttach = FileLoader.getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize()));
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize()));
             if (pathToAttach.exists()) {
                 remoteViews.setViewVisibility(R.id.feed_widget_item_image, 0);
-                Uri uriForFile = FileProvider.getUriForFile(this.mContext, "org.telegram.messenger.web.provider", pathToAttach);
+                Uri uriForFile = FileProvider.getUriForFile(this.mContext, "org.telegram.messenger.beta.provider", pathToAttach);
                 grantUriAccessToWidget(this.mContext, uriForFile);
                 remoteViews.setImageViewUri(R.id.feed_widget_item_image, uriForFile);
             } else {

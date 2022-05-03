@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
@@ -786,28 +785,22 @@ public class ActionBarPopupWindow extends PopupWindow {
     }
 
     public static class GapView extends FrameLayout {
-        String colorKey;
-        Paint paint = new Paint();
-        int color = 0;
+        Theme.ResourcesProvider resourcesProvider;
 
-        public GapView(Context context, String str) {
+        public GapView(Context context, Theme.ResourcesProvider resourcesProvider, String str) {
             super(context);
-            this.colorKey = str;
+            this.resourcesProvider = resourcesProvider;
+            setBackgroundColor(getThemedColor(str));
         }
 
-        @Override
-        protected void onDraw(Canvas canvas) {
-            int i = this.color;
-            if (i == 0) {
-                this.paint.setColor(Theme.getColor(this.colorKey));
-            } else {
-                this.paint.setColor(i);
-            }
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.paint);
+        private int getThemedColor(String str) {
+            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+            Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
+            return color != null ? color.intValue() : Theme.getColor(str);
         }
 
         public void setColor(int i) {
-            this.color = i;
+            setBackgroundColor(i);
         }
     }
 }

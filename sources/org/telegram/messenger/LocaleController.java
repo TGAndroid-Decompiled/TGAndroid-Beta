@@ -2396,25 +2396,31 @@ public class LocaleController {
         }
     }
 
-    public static String formatDateOnline(long j) {
+    public static String formatDateOnline(long j, boolean[] zArr) {
         long j2 = j * 1000;
         try {
             Calendar calendar = Calendar.getInstance();
             int i = calendar.get(6);
             int i2 = calendar.get(1);
+            int i3 = calendar.get(11);
             calendar.setTimeInMillis(j2);
-            int i3 = calendar.get(6);
-            int i4 = calendar.get(1);
-            if (i3 == i && i2 == i4) {
+            int i4 = calendar.get(6);
+            int i5 = calendar.get(1);
+            int i6 = calendar.get(11);
+            if (i4 == i && i2 == i5) {
                 return formatString("LastSeenFormatted", R.string.LastSeenFormatted, formatString("TodayAtFormatted", R.string.TodayAtFormatted, getInstance().formatterDay.format(new Date(j2))));
             }
-            if (i3 + 1 == i && i2 == i4) {
-                return formatString("LastSeenFormatted", R.string.LastSeenFormatted, formatString("YesterdayAtFormatted", R.string.YesterdayAtFormatted, getInstance().formatterDay.format(new Date(j2))));
-            }
-            if (Math.abs(System.currentTimeMillis() - j2) < 31536000000L) {
+            if (i4 + 1 == i && i2 == i5) {
+                if (zArr == null) {
+                    return formatString("LastSeenFormatted", R.string.LastSeenFormatted, formatString("YesterdayAtFormatted", R.string.YesterdayAtFormatted, getInstance().formatterDay.format(new Date(j2))));
+                }
+                zArr[0] = true;
+                return (i3 > 6 || i6 <= 18 || !is24HourFormat) ? formatString("YesterdayAtFormatted", R.string.YesterdayAtFormatted, getInstance().formatterDay.format(new Date(j2))) : formatString("LastSeenFormatted", R.string.LastSeenFormatted, getInstance().formatterDay.format(new Date(j2)));
+            } else if (Math.abs(System.currentTimeMillis() - j2) < 31536000000L) {
                 return formatString("LastSeenDateFormatted", R.string.LastSeenDateFormatted, formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().formatterDayMonth.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2))));
+            } else {
+                return formatString("LastSeenDateFormatted", R.string.LastSeenDateFormatted, formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().formatterYear.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2))));
             }
-            return formatString("LastSeenDateFormatted", R.string.LastSeenDateFormatted, formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().formatterYear.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2))));
         } catch (Exception e) {
             FileLog.e(e);
             return "LOC_ERR";
@@ -2659,6 +2665,10 @@ public class LocaleController {
     }
 
     public static String formatUserStatus(int i, TLRPC$User tLRPC$User, boolean[] zArr) {
+        return formatUserStatus(i, tLRPC$User, zArr, null);
+    }
+
+    public static String formatUserStatus(int i, TLRPC$User tLRPC$User, boolean[] zArr, boolean[] zArr2) {
         TLRPC$UserStatus tLRPC$UserStatus;
         TLRPC$UserStatus tLRPC$UserStatus2;
         TLRPC$UserStatus tLRPC$UserStatus3;
@@ -2698,7 +2708,7 @@ public class LocaleController {
                 if (i2 == -102) {
                     return getString("WithinAMonth", R.string.WithinAMonth);
                 }
-                return formatDateOnline(i2);
+                return formatDateOnline(i2, zArr2);
             }
         }
     }

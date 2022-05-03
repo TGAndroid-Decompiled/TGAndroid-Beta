@@ -204,7 +204,7 @@ public class ProximitySheet extends FrameLayout {
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setMaxLines(2);
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        this.buttonTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+        this.buttonTextView.setBackgroundDrawable(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
         frameLayout3.addView(this.buttonTextView, LayoutHelper.createFrame(-1, 48.0f));
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override

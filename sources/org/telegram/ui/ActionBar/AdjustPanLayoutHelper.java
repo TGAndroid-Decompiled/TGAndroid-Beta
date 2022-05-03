@@ -1,25 +1,40 @@
 package org.telegram.ui.ActionBar;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
+import android.os.SystemClock;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.WindowInsets;
+import android.view.WindowInsetsAnimation;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.ChatListItemAnimator;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
 
 public class AdjustPanLayoutHelper {
+    public static boolean USE_ANDROID11_INSET_ANIMATOR = false;
     public static final Interpolator keyboardInterpolator = ChatListItemAnimator.DEFAULT_INTERPOLATOR;
     private boolean animationInProgress;
     ValueAnimator animator;
     boolean checkHierarchyHeight;
     private ViewGroup contentView;
+    float from;
+    boolean inverse;
+    boolean isKeyboardVisible;
     protected float keyboardSize;
     private boolean needDelay;
     int notificationsIndex;
@@ -27,6 +42,9 @@ public class AdjustPanLayoutHelper {
     View parentForListener;
     private View resizableView;
     private View resizableViewToSet;
+    long startAfter;
+    float to;
+    private boolean usingInsetAnimator = false;
     private Runnable delayedAnimationRunnable = new Runnable() {
         @Override
         public void run() {
@@ -58,6 +76,7 @@ public class AdjustPanLayoutHelper {
                     adjustPanLayoutHelper.previousContentHeight = adjustPanLayoutHelper.contentView.getHeight();
                     AdjustPanLayoutHelper adjustPanLayoutHelper2 = AdjustPanLayoutHelper.this;
                     adjustPanLayoutHelper2.previousStartOffset = adjustPanLayoutHelper2.startOffset();
+                    AdjustPanLayoutHelper.this.usingInsetAnimator = false;
                 }
                 return true;
             } else if (!adjustPanLayoutHelper.heightAnimationEnabled() || Math.abs(AdjustPanLayoutHelper.this.previousHeight - height) < AndroidUtilities.dp(20.0f)) {
@@ -66,6 +85,7 @@ public class AdjustPanLayoutHelper {
                 adjustPanLayoutHelper3.previousContentHeight = adjustPanLayoutHelper3.contentView.getHeight();
                 AdjustPanLayoutHelper adjustPanLayoutHelper4 = AdjustPanLayoutHelper.this;
                 adjustPanLayoutHelper4.previousStartOffset = adjustPanLayoutHelper4.startOffset();
+                AdjustPanLayoutHelper.this.usingInsetAnimator = false;
                 return true;
             } else {
                 AdjustPanLayoutHelper adjustPanLayoutHelper5 = AdjustPanLayoutHelper.this;
@@ -77,16 +97,18 @@ public class AdjustPanLayoutHelper {
                     adjustPanLayoutHelper7.previousStartOffset = adjustPanLayoutHelper7.startOffset();
                     return false;
                 }
-                if (height >= AdjustPanLayoutHelper.this.contentView.getBottom()) {
+                AdjustPanLayoutHelper adjustPanLayoutHelper8 = AdjustPanLayoutHelper.this;
+                if (height >= adjustPanLayoutHelper8.contentView.getBottom()) {
                     z = false;
                 }
-                AdjustPanLayoutHelper adjustPanLayoutHelper8 = AdjustPanLayoutHelper.this;
-                adjustPanLayoutHelper8.animateHeight(adjustPanLayoutHelper8.previousHeight, height, z);
+                adjustPanLayoutHelper8.isKeyboardVisible = z;
                 AdjustPanLayoutHelper adjustPanLayoutHelper9 = AdjustPanLayoutHelper.this;
-                adjustPanLayoutHelper9.previousHeight = height;
-                adjustPanLayoutHelper9.previousContentHeight = adjustPanLayoutHelper9.contentView.getHeight();
+                adjustPanLayoutHelper9.animateHeight(adjustPanLayoutHelper9.previousHeight, height, adjustPanLayoutHelper9.isKeyboardVisible);
                 AdjustPanLayoutHelper adjustPanLayoutHelper10 = AdjustPanLayoutHelper.this;
-                adjustPanLayoutHelper10.previousStartOffset = adjustPanLayoutHelper10.startOffset();
+                adjustPanLayoutHelper10.previousHeight = height;
+                adjustPanLayoutHelper10.previousContentHeight = adjustPanLayoutHelper10.contentView.getHeight();
+                AdjustPanLayoutHelper adjustPanLayoutHelper11 = AdjustPanLayoutHelper.this;
+                adjustPanLayoutHelper11.previousStartOffset = adjustPanLayoutHelper11.startOffset();
                 return false;
             }
         }
@@ -109,18 +131,74 @@ public class AdjustPanLayoutHelper {
         return 0;
     }
 
-    public void animateHeight(int r6, int r7, final boolean r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.AdjustPanLayoutHelper.animateHeight(int, int, boolean):void");
+    public void animateHeight(int i, int i2, boolean z) {
+        startTransition(i, i2, z);
+        this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                AdjustPanLayoutHelper.this.lambda$animateHeight$0(valueAnimator);
+            }
+        });
+        int i3 = UserConfig.selectedAccount;
+        this.animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (!AdjustPanLayoutHelper.this.usingInsetAnimator) {
+                    AdjustPanLayoutHelper.this.stopTransition();
+                }
+            }
+        });
+        this.animator.setDuration(250L);
+        this.animator.setInterpolator(keyboardInterpolator);
+        this.notificationsIndex = NotificationCenter.getInstance(i3).setAnimationInProgress(this.notificationsIndex, null);
+        if (this.needDelay) {
+            this.needDelay = false;
+            this.startAfter = SystemClock.elapsedRealtime() + 100;
+            AndroidUtilities.runOnUIThread(this.delayedAnimationRunnable, 100L);
+            return;
+        }
+        this.animator.start();
+        this.startAfter = -1L;
     }
 
-    public void lambda$animateHeight$0(float f, float f2, boolean z, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float f3 = (int) ((f * floatValue) + (f2 * (1.0f - floatValue)));
-        this.parent.setTranslationY(f3);
-        onPanTranslationUpdate(-f3, floatValue, z);
+    public void lambda$animateHeight$0(ValueAnimator valueAnimator) {
+        if (!this.usingInsetAnimator) {
+            updateTransition(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        }
     }
 
-    public void setViewHeight(int i) {
+    public void startTransition(int r6, int r7, boolean r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.AdjustPanLayoutHelper.startTransition(int, int, boolean):void");
+    }
+
+    public void updateTransition(float f) {
+        if (this.inverse) {
+            f = 1.0f - f;
+        }
+        float f2 = (int) ((this.from * f) + (this.to * (1.0f - f)));
+        this.parent.setTranslationY(f2);
+        onPanTranslationUpdate(-f2, f, this.isKeyboardVisible);
+    }
+
+    public void stopTransition() {
+        ValueAnimator valueAnimator = this.animator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        this.animationInProgress = false;
+        this.usingInsetAnimator = false;
+        NotificationCenter.getInstance(UserConfig.selectedAccount).onAnimationFinish(this.notificationsIndex);
+        this.animator = null;
+        setViewHeight(-1);
+        this.viewsToHeightSet.clear();
+        this.resizableView.requestLayout();
+        boolean z = this.isKeyboardVisible;
+        onPanTranslationUpdate(0.0f, z ? 1.0f : 0.0f, z);
+        this.parent.setTranslationY(0.0f);
+        onTransitionEnd();
+    }
+
+    private void setViewHeight(int i) {
         for (int i2 = 0; i2 < this.viewsToHeightSet.size(); i2++) {
             this.viewsToHeightSet.get(i2).getLayoutParams().height = i;
             this.viewsToHeightSet.get(i2).requestLayout();
@@ -156,6 +234,9 @@ public class AdjustPanLayoutHelper {
             if (findResizableView != null) {
                 this.parentForListener = findResizableView;
                 findResizableView.getViewTreeObserver().addOnPreDrawListener(this.onPreDrawListener);
+            }
+            if (USE_ANDROID11_INSET_ANIMATOR && Build.VERSION.SDK_INT >= 30) {
+                setupNewCallback();
             }
         }
     }
@@ -198,6 +279,10 @@ public class AdjustPanLayoutHelper {
             view.getViewTreeObserver().removeOnPreDrawListener(this.onPreDrawListener);
             this.parentForListener = null;
         }
+        View view2 = this.parent;
+        if (view2 != null && USE_ANDROID11_INSET_ANIMATOR && Build.VERSION.SDK_INT >= 30) {
+            view2.setWindowInsetsAnimationCallback(null);
+        }
     }
 
     public void setResizableView(FrameLayout frameLayout) {
@@ -219,5 +304,46 @@ public class AdjustPanLayoutHelper {
     public void runDelayedAnimation() {
         AndroidUtilities.cancelRunOnUIThread(this.delayedAnimationRunnable);
         this.delayedAnimationRunnable.run();
+    }
+
+    private void setupNewCallback() {
+        this.parent.setWindowInsetsAnimationCallback(new WindowInsetsAnimation.Callback(0) {
+            @Override
+            public WindowInsets onProgress(WindowInsets windowInsets, List<WindowInsetsAnimation> list) {
+                if (!AdjustPanLayoutHelper.this.animationInProgress) {
+                    return windowInsets;
+                }
+                WindowInsetsAnimation windowInsetsAnimation = null;
+                Iterator<WindowInsetsAnimation> it = list.iterator();
+                while (true) {
+                    if (!it.hasNext()) {
+                        break;
+                    }
+                    WindowInsetsAnimation next = it.next();
+                    if ((next.getTypeMask() & WindowInsetsCompat.Type.ime()) != 0) {
+                        windowInsetsAnimation = next;
+                        break;
+                    }
+                }
+                if (windowInsetsAnimation != null) {
+                    long elapsedRealtime = SystemClock.elapsedRealtime();
+                    AdjustPanLayoutHelper adjustPanLayoutHelper = AdjustPanLayoutHelper.this;
+                    if (elapsedRealtime >= adjustPanLayoutHelper.startAfter) {
+                        if (!adjustPanLayoutHelper.usingInsetAnimator) {
+                            AdjustPanLayoutHelper.this.usingInsetAnimator = true;
+                        }
+                        AdjustPanLayoutHelper.this.updateTransition(windowInsetsAnimation.getInterpolatedFraction());
+                    }
+                }
+                return windowInsets;
+            }
+
+            @Override
+            public void onEnd(WindowInsetsAnimation windowInsetsAnimation) {
+                if (AdjustPanLayoutHelper.this.animationInProgress) {
+                    AdjustPanLayoutHelper.this.stopTransition();
+                }
+            }
+        });
     }
 }

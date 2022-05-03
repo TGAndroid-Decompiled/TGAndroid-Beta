@@ -70,11 +70,9 @@ import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$MessageReplies;
 import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$ReplyMarkup;
 import org.telegram.tgnet.TLRPC$TL_account_password;
-import org.telegram.tgnet.TLRPC$TL_botInlineMediaResult;
 import org.telegram.tgnet.TLRPC$TL_botInlineMessageMediaAuto;
 import org.telegram.tgnet.TLRPC$TL_botInlineMessageMediaContact;
 import org.telegram.tgnet.TLRPC$TL_botInlineMessageMediaGeo;
@@ -99,13 +97,7 @@ import org.telegram.tgnet.TLRPC$TL_decryptedMessageMediaDocument;
 import org.telegram.tgnet.TLRPC$TL_decryptedMessageMediaPhoto;
 import org.telegram.tgnet.TLRPC$TL_decryptedMessageMediaVideo;
 import org.telegram.tgnet.TLRPC$TL_document;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeAnimated;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeImageSize;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker_layer55;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
 import org.telegram.tgnet.TLRPC$TL_document_layer82;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_fileLocationUnavailable;
@@ -124,7 +116,6 @@ import org.telegram.tgnet.TLRPC$TL_inputPeerChat;
 import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
 import org.telegram.tgnet.TLRPC$TL_inputPeerUser;
 import org.telegram.tgnet.TLRPC$TL_inputSingleMedia;
-import org.telegram.tgnet.TLRPC$TL_inputStickerSetEmpty;
 import org.telegram.tgnet.TLRPC$TL_inputStickerSetItem;
 import org.telegram.tgnet.TLRPC$TL_inputStickerSetShortName;
 import org.telegram.tgnet.TLRPC$TL_inputUserSelf;
@@ -166,7 +157,6 @@ import org.telegram.tgnet.TLRPC$TL_messages_uploadMedia;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$TL_photo;
 import org.telegram.tgnet.TLRPC$TL_photoCachedSize;
-import org.telegram.tgnet.TLRPC$TL_photoEmpty;
 import org.telegram.tgnet.TLRPC$TL_photoPathSize;
 import org.telegram.tgnet.TLRPC$TL_photoSize;
 import org.telegram.tgnet.TLRPC$TL_photoSizeEmpty;
@@ -187,7 +177,6 @@ import org.telegram.tgnet.TLRPC$TL_urlAuthResultAccepted;
 import org.telegram.tgnet.TLRPC$TL_urlAuthResultDefault;
 import org.telegram.tgnet.TLRPC$TL_urlAuthResultRequest;
 import org.telegram.tgnet.TLRPC$TL_user;
-import org.telegram.tgnet.TLRPC$TL_webDocument;
 import org.telegram.tgnet.TLRPC$TL_webPagePending;
 import org.telegram.tgnet.TLRPC$Update;
 import org.telegram.tgnet.TLRPC$Updates;
@@ -203,7 +192,6 @@ import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.Point;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.TwoStepVerificationSetupActivity;
-import org.webrtc.MediaStreamTrack;
 
 public class SendMessagesHelper extends BaseController implements NotificationCenter.NotificationCenterDelegate {
     private static volatile SendMessagesHelper[] Instance;
@@ -1756,7 +1744,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     }
                     TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
                     if ((closestPhotoSizeWithSize instanceof TLRPC$TL_photoSize) || (closestPhotoSizeWithSize instanceof TLRPC$TL_photoSizeProgressive)) {
-                        File pathToAttach = FileLoader.getPathToAttach(closestPhotoSizeWithSize, true);
+                        File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true);
                         if (pathToAttach.exists()) {
                             try {
                                 pathToAttach.length();
@@ -1829,8 +1817,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             File directory2 = FileLoader.getDirectory(2);
             file = new File(directory2, key + str);
         }
-        ensureMediaThumbExists(false, tLRPC$Document, file.getAbsolutePath(), null, 0L);
-        strArr[0] = getKeyForPhotoSize(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 320), bitmapArr, true, true);
+        ensureMediaThumbExists(getAccountInstance(), false, tLRPC$Document, file.getAbsolutePath(), null, 0L);
+        strArr[0] = getKeyForPhotoSize(getAccountInstance(), FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 320), bitmapArr, true, true);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -2405,7 +2393,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         sendMessage(null, str2, null, tLRPC$TL_photo, null, null, null, null, null, null, j, str, messageObject, messageObject2, null, true, null, arrayList, tLRPC$ReplyMarkup, hashMap, z, i, i2, obj, null);
     }
 
-    private void sendMessage(java.lang.String r60, java.lang.String r61, org.telegram.tgnet.TLRPC$MessageMedia r62, org.telegram.tgnet.TLRPC$TL_photo r63, org.telegram.messenger.VideoEditedInfo r64, org.telegram.tgnet.TLRPC$User r65, org.telegram.tgnet.TLRPC$TL_document r66, org.telegram.tgnet.TLRPC$TL_game r67, org.telegram.tgnet.TLRPC$TL_messageMediaPoll r68, org.telegram.tgnet.TLRPC$TL_messageMediaInvoice r69, long r70, java.lang.String r72, org.telegram.messenger.MessageObject r73, org.telegram.messenger.MessageObject r74, org.telegram.tgnet.TLRPC$WebPage r75, boolean r76, org.telegram.messenger.MessageObject r77, java.util.ArrayList<org.telegram.tgnet.TLRPC$MessageEntity> r78, org.telegram.tgnet.TLRPC$ReplyMarkup r79, java.util.HashMap<java.lang.String, java.lang.String> r80, boolean r81, int r82, int r83, java.lang.Object r84, org.telegram.messenger.MessageObject.SendAnimationData r85) {
+    private void sendMessage(java.lang.String r56, java.lang.String r57, org.telegram.tgnet.TLRPC$MessageMedia r58, org.telegram.tgnet.TLRPC$TL_photo r59, org.telegram.messenger.VideoEditedInfo r60, org.telegram.tgnet.TLRPC$User r61, org.telegram.tgnet.TLRPC$TL_document r62, org.telegram.tgnet.TLRPC$TL_game r63, org.telegram.tgnet.TLRPC$TL_messageMediaPoll r64, org.telegram.tgnet.TLRPC$TL_messageMediaInvoice r65, long r66, java.lang.String r68, org.telegram.messenger.MessageObject r69, org.telegram.messenger.MessageObject r70, org.telegram.tgnet.TLRPC$WebPage r71, boolean r72, org.telegram.messenger.MessageObject r73, java.util.ArrayList<org.telegram.tgnet.TLRPC$MessageEntity> r74, org.telegram.tgnet.TLRPC$ReplyMarkup r75, java.util.HashMap<java.lang.String, java.lang.String> r76, boolean r77, int r78, int r79, java.lang.Object r80, org.telegram.messenger.MessageObject.SendAnimationData r81) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.sendMessage(java.lang.String, java.lang.String, org.telegram.tgnet.TLRPC$MessageMedia, org.telegram.tgnet.TLRPC$TL_photo, org.telegram.messenger.VideoEditedInfo, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$TL_document, org.telegram.tgnet.TLRPC$TL_game, org.telegram.tgnet.TLRPC$TL_messageMediaPoll, org.telegram.tgnet.TLRPC$TL_messageMediaInvoice, long, java.lang.String, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$WebPage, boolean, org.telegram.messenger.MessageObject, java.util.ArrayList, org.telegram.tgnet.TLRPC$ReplyMarkup, java.util.HashMap, boolean, int, int, java.lang.Object, org.telegram.messenger.MessageObject$SendAnimationData):void");
     }
 
@@ -2461,16 +2449,16 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 putToDelayedMessages(str, delayedMessage);
                 ImageLoader.getInstance().loadHttpFile(delayedMessage.httpLocation, "file", this.currentAccount);
             } else if (delayedMessage.sendRequest != null) {
-                String file = FileLoader.getPathToAttach(delayedMessage.photoSize).toString();
+                String file = FileLoader.getInstance(this.currentAccount).getPathToAttach(delayedMessage.photoSize).toString();
                 putToDelayedMessages(file, delayedMessage);
                 getFileLoader().uploadFile(file, false, true, ConnectionsManager.FileTypePhoto);
                 putToUploadingMessages(delayedMessage.obj);
             } else {
-                String file2 = FileLoader.getPathToAttach(delayedMessage.photoSize).toString();
+                String file2 = FileLoader.getInstance(this.currentAccount).getPathToAttach(delayedMessage.photoSize).toString();
                 if (!(delayedMessage.sendEncryptedRequest == null || delayedMessage.photoSize.location.dc_id == 0)) {
                     File file3 = new File(file2);
                     if (!file3.exists()) {
-                        file2 = FileLoader.getPathToAttach(delayedMessage.photoSize, true).toString();
+                        file2 = FileLoader.getInstance(this.currentAccount).getPathToAttach(delayedMessage.photoSize, true).toString();
                         file3 = new File(file2);
                     }
                     if (!file3.exists()) {
@@ -2727,7 +2715,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                         } else {
                             tLRPC$InputEncryptedFile = ((TLRPC$TL_messages_sendEncryptedMultiMedia) delayedMessage.sendEncryptedRequest).files.get(size);
                         }
-                        String file4 = FileLoader.getPathToAttach(delayedMessage.photoSize).toString();
+                        String file4 = FileLoader.getInstance(this.currentAccount).getPathToAttach(delayedMessage.photoSize).toString();
                         putToDelayedMessages(file4, delayedMessage);
                         delayedMessage.extraHashMap.put(file4, tLRPC$InputEncryptedFile);
                         delayedMessage.extraHashMap.put(messageObject7, file4);
@@ -3599,7 +3587,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         getNotificationCenter().postNotificationName(NotificationCenter.messageReceivedByAck, Integer.valueOf(i));
     }
 
-    private void updateMediaPaths(org.telegram.messenger.MessageObject r19, org.telegram.tgnet.TLRPC$Message r20, int r21, java.lang.String r22, boolean r23) {
+    private void updateMediaPaths(org.telegram.messenger.MessageObject r20, org.telegram.tgnet.TLRPC$Message r21, int r22, java.lang.String r23, boolean r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.updateMediaPaths(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$Message, int, java.lang.String, boolean):void");
     }
 
@@ -3897,7 +3885,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         return tLRPC$TL_photo;
     }
 
-    private static boolean prepareSendingDocumentInternal(final org.telegram.messenger.AccountInstance r39, java.lang.String r40, java.lang.String r41, android.net.Uri r42, java.lang.String r43, final long r44, final org.telegram.messenger.MessageObject r46, final org.telegram.messenger.MessageObject r47, java.lang.CharSequence r48, final java.util.ArrayList<org.telegram.tgnet.TLRPC$MessageEntity> r49, final org.telegram.messenger.MessageObject r50, long[] r51, boolean r52, boolean r53, final boolean r54, final int r55, java.lang.Integer[] r56) {
+    private static boolean prepareSendingDocumentInternal(final org.telegram.messenger.AccountInstance r30, java.lang.String r31, java.lang.String r32, android.net.Uri r33, java.lang.String r34, final long r35, final org.telegram.messenger.MessageObject r37, final org.telegram.messenger.MessageObject r38, java.lang.CharSequence r39, final java.util.ArrayList<org.telegram.tgnet.TLRPC$MessageEntity> r40, final org.telegram.messenger.MessageObject r41, long[] r42, boolean r43, boolean r44, final boolean r45, final int r46, java.lang.Integer[] r47) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.prepareSendingDocumentInternal(org.telegram.messenger.AccountInstance, java.lang.String, java.lang.String, android.net.Uri, java.lang.String, long, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, java.lang.CharSequence, java.util.ArrayList, org.telegram.messenger.MessageObject, long[], boolean, boolean, boolean, int, java.lang.Integer[]):boolean");
     }
 
@@ -4211,409 +4199,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
     }
 
-    public static void lambda$prepareSendingBotContextResult$80(final long j, final TLRPC$BotInlineResult tLRPC$BotInlineResult, final AccountInstance accountInstance, final HashMap hashMap, final MessageObject messageObject, final MessageObject messageObject2, final boolean z, final int i) {
-        boolean z2;
-        final TLRPC$TL_game tLRPC$TL_game;
-        final TLRPC$TL_photo tLRPC$TL_photo;
-        String str;
-        TLRPC$TL_document tLRPC$TL_document;
-        TLRPC$WebDocument tLRPC$WebDocument;
-        String str2;
-        String str3;
-        char c;
-        char c2;
-        Bitmap bitmap;
-        String str4;
-        int lastIndexOf;
-        boolean isEncryptedDialog = DialogObject.isEncryptedDialog(j);
-        if (!"game".equals(tLRPC$BotInlineResult.type)) {
-            if (tLRPC$BotInlineResult instanceof TLRPC$TL_botInlineMediaResult) {
-                TLRPC$Document tLRPC$Document = tLRPC$BotInlineResult.document;
-                if (tLRPC$Document == null) {
-                    TLRPC$Photo tLRPC$Photo = tLRPC$BotInlineResult.photo;
-                    if (tLRPC$Photo != null && (tLRPC$Photo instanceof TLRPC$TL_photo)) {
-                        tLRPC$TL_photo = (TLRPC$TL_photo) tLRPC$Photo;
-                        z2 = isEncryptedDialog;
-                        tLRPC$TL_document = null;
-                        str = null;
-                        tLRPC$TL_game = 0;
-                    }
-                } else if (tLRPC$Document instanceof TLRPC$TL_document) {
-                    tLRPC$TL_document = (TLRPC$TL_document) tLRPC$Document;
-                    z2 = isEncryptedDialog;
-                    str = null;
-                }
-                z2 = isEncryptedDialog;
-                tLRPC$TL_document = null;
-                str = null;
-            } else {
-                TLRPC$WebDocument tLRPC$WebDocument2 = tLRPC$BotInlineResult.content;
-                if (tLRPC$WebDocument2 != null) {
-                    String httpUrlExtension = ImageLoader.getHttpUrlExtension(tLRPC$WebDocument2.url, null);
-                    if (TextUtils.isEmpty(httpUrlExtension)) {
-                        str2 = FileLoader.getExtensionByMimeType(tLRPC$BotInlineResult.content.mime_type);
-                    } else {
-                        str2 = "." + httpUrlExtension;
-                    }
-                    File file = new File(FileLoader.getDirectory(4), Utilities.MD5(tLRPC$BotInlineResult.content.url) + str2);
-                    if (file.exists()) {
-                        str3 = file.getAbsolutePath();
-                    } else {
-                        str3 = tLRPC$BotInlineResult.content.url;
-                    }
-                    str = str3;
-                    String str5 = tLRPC$BotInlineResult.type;
-                    str5.hashCode();
-                    switch (str5.hashCode()) {
-                        case -1890252483:
-                            if (str5.equals("sticker")) {
-                                c = 0;
-                                break;
-                            }
-                            c = 65535;
-                            break;
-                        case 102340:
-                            if (str5.equals("gif")) {
-                                c = 1;
-                                break;
-                            }
-                            c = 65535;
-                            break;
-                        case 3143036:
-                            if (str5.equals("file")) {
-                                c = 2;
-                                break;
-                            }
-                            c = 65535;
-                            break;
-                        case 93166550:
-                            if (str5.equals(MediaStreamTrack.AUDIO_TRACK_KIND)) {
-                                c = 3;
-                                break;
-                            }
-                            c = 65535;
-                            break;
-                        case 106642994:
-                            if (str5.equals("photo")) {
-                                c = 4;
-                                break;
-                            }
-                            c = 65535;
-                            break;
-                        case 112202875:
-                            if (str5.equals(MediaStreamTrack.VIDEO_TRACK_KIND)) {
-                                c = 5;
-                                break;
-                            }
-                            c = 65535;
-                            break;
-                        case 112386354:
-                            if (str5.equals("voice")) {
-                                c = 6;
-                                break;
-                            }
-                            c = 65535;
-                            break;
-                        default:
-                            c = 65535;
-                            break;
-                    }
-                    switch (c) {
-                        case 0:
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 5:
-                        case 6:
-                            TLRPC$TL_document tLRPC$TL_document2 = new TLRPC$TL_document();
-                            z2 = isEncryptedDialog;
-                            tLRPC$TL_document2.id = 0L;
-                            tLRPC$TL_document2.size = 0;
-                            tLRPC$TL_document2.dc_id = 0;
-                            tLRPC$TL_document2.mime_type = tLRPC$BotInlineResult.content.mime_type;
-                            tLRPC$TL_document2.file_reference = new byte[0];
-                            tLRPC$TL_document2.date = accountInstance.getConnectionsManager().getCurrentTime();
-                            TLRPC$TL_documentAttributeFilename tLRPC$TL_documentAttributeFilename = new TLRPC$TL_documentAttributeFilename();
-                            tLRPC$TL_document2.attributes.add(tLRPC$TL_documentAttributeFilename);
-                            String str6 = tLRPC$BotInlineResult.type;
-                            str6.hashCode();
-                            switch (str6.hashCode()) {
-                                case -1890252483:
-                                    if (str6.equals("sticker")) {
-                                        c2 = 0;
-                                        break;
-                                    }
-                                    c2 = 65535;
-                                    break;
-                                case 102340:
-                                    if (str6.equals("gif")) {
-                                        c2 = 1;
-                                        break;
-                                    }
-                                    c2 = 65535;
-                                    break;
-                                case 3143036:
-                                    if (str6.equals("file")) {
-                                        c2 = 2;
-                                        break;
-                                    }
-                                    c2 = 65535;
-                                    break;
-                                case 93166550:
-                                    if (str6.equals(MediaStreamTrack.AUDIO_TRACK_KIND)) {
-                                        c2 = 3;
-                                        break;
-                                    }
-                                    c2 = 65535;
-                                    break;
-                                case 112202875:
-                                    if (str6.equals(MediaStreamTrack.VIDEO_TRACK_KIND)) {
-                                        c2 = 4;
-                                        break;
-                                    }
-                                    c2 = 65535;
-                                    break;
-                                case 112386354:
-                                    if (str6.equals("voice")) {
-                                        c2 = 5;
-                                        break;
-                                    }
-                                    c2 = 65535;
-                                    break;
-                                default:
-                                    c2 = 65535;
-                                    break;
-                            }
-                            switch (c2) {
-                                case 0:
-                                    TLRPC$TL_documentAttributeSticker tLRPC$TL_documentAttributeSticker = new TLRPC$TL_documentAttributeSticker();
-                                    tLRPC$TL_documentAttributeSticker.alt = "";
-                                    tLRPC$TL_documentAttributeSticker.stickerset = new TLRPC$TL_inputStickerSetEmpty();
-                                    tLRPC$TL_document2.attributes.add(tLRPC$TL_documentAttributeSticker);
-                                    TLRPC$TL_documentAttributeImageSize tLRPC$TL_documentAttributeImageSize = new TLRPC$TL_documentAttributeImageSize();
-                                    int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(tLRPC$BotInlineResult);
-                                    tLRPC$TL_documentAttributeImageSize.w = inlineResultWidthAndHeight[0];
-                                    tLRPC$TL_documentAttributeImageSize.h = inlineResultWidthAndHeight[1];
-                                    tLRPC$TL_document2.attributes.add(tLRPC$TL_documentAttributeImageSize);
-                                    tLRPC$TL_documentAttributeFilename.file_name = "sticker.webp";
-                                    try {
-                                        if (tLRPC$BotInlineResult.thumb != null) {
-                                            Bitmap loadBitmap = ImageLoader.loadBitmap(new File(FileLoader.getDirectory(4), Utilities.MD5(tLRPC$BotInlineResult.thumb.url) + "." + ImageLoader.getHttpUrlExtension(tLRPC$BotInlineResult.thumb.url, "webp")).getAbsolutePath(), null, 90.0f, 90.0f, true);
-                                            if (loadBitmap != null) {
-                                                TLRPC$PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(loadBitmap, 90.0f, 90.0f, 55, false);
-                                                if (scaleAndSaveImage != null) {
-                                                    tLRPC$TL_document2.thumbs.add(scaleAndSaveImage);
-                                                    tLRPC$TL_document2.flags |= 1;
-                                                }
-                                                loadBitmap.recycle();
-                                                break;
-                                            }
-                                        }
-                                    } catch (Throwable th) {
-                                        FileLog.e(th);
-                                        break;
-                                    }
-                                    break;
-                                case 1:
-                                    tLRPC$TL_documentAttributeFilename.file_name = "animation.gif";
-                                    if (str.endsWith("mp4")) {
-                                        tLRPC$TL_document2.mime_type = "video/mp4";
-                                        tLRPC$TL_document2.attributes.add(new TLRPC$TL_documentAttributeAnimated());
-                                    } else {
-                                        tLRPC$TL_document2.mime_type = "image/gif";
-                                    }
-                                    int i2 = z2 ? 90 : 320;
-                                    try {
-                                        if (str.endsWith("mp4")) {
-                                            bitmap = createVideoThumbnail(str, 1);
-                                            if (bitmap == null) {
-                                                TLRPC$WebDocument tLRPC$WebDocument3 = tLRPC$BotInlineResult.thumb;
-                                                if ((tLRPC$WebDocument3 instanceof TLRPC$TL_webDocument) && "video/mp4".equals(tLRPC$WebDocument3.mime_type)) {
-                                                    String httpUrlExtension2 = ImageLoader.getHttpUrlExtension(tLRPC$BotInlineResult.thumb.url, null);
-                                                    if (TextUtils.isEmpty(httpUrlExtension2)) {
-                                                        str4 = FileLoader.getExtensionByMimeType(tLRPC$BotInlineResult.thumb.mime_type);
-                                                    } else {
-                                                        str4 = "." + httpUrlExtension2;
-                                                    }
-                                                    bitmap = createVideoThumbnail(new File(FileLoader.getDirectory(4), Utilities.MD5(tLRPC$BotInlineResult.thumb.url) + str4).getAbsolutePath(), 1);
-                                                }
-                                            }
-                                        } else {
-                                            float f = i2;
-                                            bitmap = ImageLoader.loadBitmap(str, null, f, f, true);
-                                        }
-                                        if (bitmap != null) {
-                                            float f2 = i2;
-                                            TLRPC$PhotoSize scaleAndSaveImage2 = ImageLoader.scaleAndSaveImage(bitmap, f2, f2, i2 > 90 ? 80 : 55, false);
-                                            if (scaleAndSaveImage2 != null) {
-                                                tLRPC$TL_document2.thumbs.add(scaleAndSaveImage2);
-                                                tLRPC$TL_document2.flags |= 1;
-                                            }
-                                            bitmap.recycle();
-                                            break;
-                                        }
-                                    } catch (Throwable th2) {
-                                        FileLog.e(th2);
-                                        break;
-                                    }
-                                    break;
-                                case 2:
-                                    if (tLRPC$BotInlineResult.content.mime_type.lastIndexOf(47) == -1) {
-                                        tLRPC$TL_documentAttributeFilename.file_name = "file";
-                                        break;
-                                    } else {
-                                        tLRPC$TL_documentAttributeFilename.file_name = "file." + tLRPC$BotInlineResult.content.mime_type.substring(lastIndexOf + 1);
-                                        break;
-                                    }
-                                case 3:
-                                    TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio = new TLRPC$TL_documentAttributeAudio();
-                                    tLRPC$TL_documentAttributeAudio.duration = MessageObject.getInlineResultDuration(tLRPC$BotInlineResult);
-                                    tLRPC$TL_documentAttributeAudio.title = tLRPC$BotInlineResult.title;
-                                    int i3 = tLRPC$TL_documentAttributeAudio.flags | 1;
-                                    tLRPC$TL_documentAttributeAudio.flags = i3;
-                                    String str7 = tLRPC$BotInlineResult.description;
-                                    if (str7 != null) {
-                                        tLRPC$TL_documentAttributeAudio.performer = str7;
-                                        tLRPC$TL_documentAttributeAudio.flags = i3 | 2;
-                                    }
-                                    tLRPC$TL_documentAttributeFilename.file_name = "audio.mp3";
-                                    tLRPC$TL_document2.attributes.add(tLRPC$TL_documentAttributeAudio);
-                                    break;
-                                case 4:
-                                    tLRPC$TL_documentAttributeFilename.file_name = "video.mp4";
-                                    TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = new TLRPC$TL_documentAttributeVideo();
-                                    int[] inlineResultWidthAndHeight2 = MessageObject.getInlineResultWidthAndHeight(tLRPC$BotInlineResult);
-                                    tLRPC$TL_documentAttributeVideo.w = inlineResultWidthAndHeight2[0];
-                                    tLRPC$TL_documentAttributeVideo.h = inlineResultWidthAndHeight2[1];
-                                    tLRPC$TL_documentAttributeVideo.duration = MessageObject.getInlineResultDuration(tLRPC$BotInlineResult);
-                                    tLRPC$TL_documentAttributeVideo.supports_streaming = true;
-                                    tLRPC$TL_document2.attributes.add(tLRPC$TL_documentAttributeVideo);
-                                    try {
-                                        if (tLRPC$BotInlineResult.thumb != null) {
-                                            Bitmap loadBitmap2 = ImageLoader.loadBitmap(new File(FileLoader.getDirectory(4), Utilities.MD5(tLRPC$BotInlineResult.thumb.url) + "." + ImageLoader.getHttpUrlExtension(tLRPC$BotInlineResult.thumb.url, "jpg")).getAbsolutePath(), null, 90.0f, 90.0f, true);
-                                            if (loadBitmap2 != null) {
-                                                TLRPC$PhotoSize scaleAndSaveImage3 = ImageLoader.scaleAndSaveImage(loadBitmap2, 90.0f, 90.0f, 55, false);
-                                                if (scaleAndSaveImage3 != null) {
-                                                    tLRPC$TL_document2.thumbs.add(scaleAndSaveImage3);
-                                                    tLRPC$TL_document2.flags |= 1;
-                                                }
-                                                loadBitmap2.recycle();
-                                                break;
-                                            }
-                                        }
-                                    } catch (Throwable th3) {
-                                        FileLog.e(th3);
-                                        break;
-                                    }
-                                    break;
-                                case 5:
-                                    TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio2 = new TLRPC$TL_documentAttributeAudio();
-                                    tLRPC$TL_documentAttributeAudio2.duration = MessageObject.getInlineResultDuration(tLRPC$BotInlineResult);
-                                    tLRPC$TL_documentAttributeAudio2.voice = true;
-                                    tLRPC$TL_documentAttributeFilename.file_name = "audio.ogg";
-                                    tLRPC$TL_document2.attributes.add(tLRPC$TL_documentAttributeAudio2);
-                                    break;
-                            }
-                            if (tLRPC$TL_documentAttributeFilename.file_name == null) {
-                                tLRPC$TL_documentAttributeFilename.file_name = "file";
-                            }
-                            if (tLRPC$TL_document2.mime_type == null) {
-                                tLRPC$TL_document2.mime_type = "application/octet-stream";
-                            }
-                            if (tLRPC$TL_document2.thumbs.isEmpty()) {
-                                TLRPC$TL_photoSize tLRPC$TL_photoSize = new TLRPC$TL_photoSize();
-                                int[] inlineResultWidthAndHeight3 = MessageObject.getInlineResultWidthAndHeight(tLRPC$BotInlineResult);
-                                tLRPC$TL_photoSize.w = inlineResultWidthAndHeight3[0];
-                                tLRPC$TL_photoSize.h = inlineResultWidthAndHeight3[1];
-                                tLRPC$TL_photoSize.size = 0;
-                                tLRPC$TL_photoSize.location = new TLRPC$TL_fileLocationUnavailable();
-                                tLRPC$TL_photoSize.type = "x";
-                                tLRPC$TL_document2.thumbs.add(tLRPC$TL_photoSize);
-                                tLRPC$TL_document2.flags |= 1;
-                            }
-                            tLRPC$TL_photo = null;
-                            tLRPC$TL_game = 0;
-                            tLRPC$TL_document = tLRPC$TL_document2;
-                            break;
-                        case 4:
-                            TLRPC$TL_photo generatePhotoSizes = file.exists() ? accountInstance.getSendMessagesHelper().generatePhotoSizes(str, null) : null;
-                            if (generatePhotoSizes == null) {
-                                generatePhotoSizes = new TLRPC$TL_photo();
-                                generatePhotoSizes.date = accountInstance.getConnectionsManager().getCurrentTime();
-                                generatePhotoSizes.file_reference = new byte[0];
-                                TLRPC$TL_photoSize tLRPC$TL_photoSize2 = new TLRPC$TL_photoSize();
-                                int[] inlineResultWidthAndHeight4 = MessageObject.getInlineResultWidthAndHeight(tLRPC$BotInlineResult);
-                                tLRPC$TL_photoSize2.w = inlineResultWidthAndHeight4[0];
-                                tLRPC$TL_photoSize2.h = inlineResultWidthAndHeight4[1];
-                                tLRPC$TL_photoSize2.size = 1;
-                                tLRPC$TL_photoSize2.location = new TLRPC$TL_fileLocationUnavailable();
-                                tLRPC$TL_photoSize2.type = "x";
-                                generatePhotoSizes.sizes.add(tLRPC$TL_photoSize2);
-                            }
-                            tLRPC$TL_photo = generatePhotoSizes;
-                            z2 = isEncryptedDialog;
-                            tLRPC$TL_document = null;
-                            tLRPC$TL_game = 0;
-                            break;
-                        default:
-                            z2 = isEncryptedDialog;
-                            tLRPC$TL_document = null;
-                            tLRPC$TL_photo = null;
-                            tLRPC$TL_game = tLRPC$TL_photo;
-                            break;
-                    }
-                }
-                z2 = isEncryptedDialog;
-                tLRPC$TL_document = null;
-                str = null;
-            }
-            tLRPC$TL_photo = str;
-            tLRPC$TL_game = tLRPC$TL_photo;
-        } else if (!isEncryptedDialog) {
-            TLRPC$TL_game tLRPC$TL_game2 = new TLRPC$TL_game();
-            tLRPC$TL_game2.title = tLRPC$BotInlineResult.title;
-            tLRPC$TL_game2.description = tLRPC$BotInlineResult.description;
-            tLRPC$TL_game2.short_name = tLRPC$BotInlineResult.id;
-            TLRPC$Photo tLRPC$Photo2 = tLRPC$BotInlineResult.photo;
-            tLRPC$TL_game2.photo = tLRPC$Photo2;
-            if (tLRPC$Photo2 == null) {
-                tLRPC$TL_game2.photo = new TLRPC$TL_photoEmpty();
-            }
-            TLRPC$Document tLRPC$Document2 = tLRPC$BotInlineResult.document;
-            if (tLRPC$Document2 instanceof TLRPC$TL_document) {
-                tLRPC$TL_game2.document = tLRPC$Document2;
-                tLRPC$TL_game2.flags |= 1;
-            }
-            tLRPC$TL_game = tLRPC$TL_game2;
-            z2 = isEncryptedDialog;
-            tLRPC$TL_document = null;
-            str = null;
-            tLRPC$TL_photo = null;
-        } else {
-            return;
-        }
-        if (!(hashMap == null || (tLRPC$WebDocument = tLRPC$BotInlineResult.content) == null)) {
-            hashMap.put("originalPath", tLRPC$WebDocument.url);
-        }
-        final Bitmap[] bitmapArr = new Bitmap[1];
-        final String[] strArr = new String[1];
-        if (MessageObject.isGifDocument(tLRPC$TL_document)) {
-            TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_document.thumbs, 320);
-            File pathToAttach = FileLoader.getPathToAttach(tLRPC$TL_document);
-            if (!pathToAttach.exists()) {
-                pathToAttach = FileLoader.getPathToAttach(tLRPC$TL_document, true);
-            }
-            ensureMediaThumbExists(z2, tLRPC$TL_document, pathToAttach.getAbsolutePath(), null, 0L);
-            strArr[0] = getKeyForPhotoSize(closestPhotoSizeWithSize, bitmapArr, true, true);
-        }
-        final TLRPC$TL_document tLRPC$TL_document3 = tLRPC$TL_document;
-        final String str8 = str;
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                SendMessagesHelper.lambda$prepareSendingBotContextResult$79(TLRPC$TL_document.this, bitmapArr, strArr, accountInstance, str8, j, messageObject, messageObject2, tLRPC$BotInlineResult, hashMap, z, i, tLRPC$TL_photo, tLRPC$TL_game);
-            }
-        });
+    public static void lambda$prepareSendingBotContextResult$80(final long r20, final org.telegram.tgnet.TLRPC$BotInlineResult r22, final org.telegram.messenger.AccountInstance r23, final java.util.HashMap r24, final org.telegram.messenger.MessageObject r25, final org.telegram.messenger.MessageObject r26, final boolean r27, final int r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingBotContextResult$80(long, org.telegram.tgnet.TLRPC$BotInlineResult, org.telegram.messenger.AccountInstance, java.util.HashMap, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, boolean, int):void");
     }
 
     public static void lambda$prepareSendingBotContextResult$79(TLRPC$TL_document tLRPC$TL_document, Bitmap[] bitmapArr, String[] strArr, AccountInstance accountInstance, String str, long j, MessageObject messageObject, MessageObject messageObject2, TLRPC$BotInlineResult tLRPC$BotInlineResult, HashMap hashMap, boolean z, int i, TLRPC$TL_photo tLRPC$TL_photo, TLRPC$TL_game tLRPC$TL_game) {
@@ -4689,15 +4276,15 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
     }
 
-    public static void ensureMediaThumbExists(boolean z, TLObject tLObject, String str, Uri uri, long j) {
+    public static void ensureMediaThumbExists(AccountInstance accountInstance, boolean z, TLObject tLObject, String str, Uri uri, long j) {
         TLRPC$PhotoSize scaleAndSaveImage;
         TLRPC$PhotoSize scaleAndSaveImage2;
         if (tLObject instanceof TLRPC$TL_photo) {
             TLRPC$TL_photo tLRPC$TL_photo = (TLRPC$TL_photo) tLObject;
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_photo.sizes, 90);
-            boolean exists = ((closestPhotoSizeWithSize instanceof TLRPC$TL_photoStrippedSize) || (closestPhotoSizeWithSize instanceof TLRPC$TL_photoPathSize)) ? true : FileLoader.getPathToAttach(closestPhotoSizeWithSize, true).exists();
+            boolean exists = ((closestPhotoSizeWithSize instanceof TLRPC$TL_photoStrippedSize) || (closestPhotoSizeWithSize instanceof TLRPC$TL_photoPathSize)) ? true : FileLoader.getInstance(accountInstance.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize, true).exists();
             TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_photo.sizes, AndroidUtilities.getPhotoSize());
-            boolean exists2 = FileLoader.getPathToAttach(closestPhotoSizeWithSize2, false).exists();
+            boolean exists2 = FileLoader.getInstance(accountInstance.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize2, false).exists();
             if (!exists || !exists2) {
                 Bitmap loadBitmap = ImageLoader.loadBitmap(str, uri, AndroidUtilities.getPhotoSize(), AndroidUtilities.getPhotoSize(), true);
                 if (loadBitmap == null) {
@@ -4719,7 +4306,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             if ((MessageObject.isVideoDocument(tLRPC$TL_document) || MessageObject.isNewGifDocument(tLRPC$TL_document)) && MessageObject.isDocumentHasThumb(tLRPC$TL_document)) {
                 int i = 320;
                 TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_document.thumbs, 320);
-                if (!(closestPhotoSizeWithSize3 instanceof TLRPC$TL_photoStrippedSize) && !(closestPhotoSizeWithSize3 instanceof TLRPC$TL_photoPathSize) && !FileLoader.getPathToAttach(closestPhotoSizeWithSize3, true).exists()) {
+                if (!(closestPhotoSizeWithSize3 instanceof TLRPC$TL_photoStrippedSize) && !(closestPhotoSizeWithSize3 instanceof TLRPC$TL_photoPathSize) && !FileLoader.getInstance(accountInstance.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize3, true).exists()) {
                     Bitmap createVideoThumbnailAtTime = createVideoThumbnailAtTime(str, j);
                     Bitmap createVideoThumbnail = createVideoThumbnailAtTime == null ? createVideoThumbnail(str, 1) : createVideoThumbnailAtTime;
                     if (z) {
@@ -4732,7 +4319,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
     }
 
-    public static String getKeyForPhotoSize(TLRPC$PhotoSize tLRPC$PhotoSize, Bitmap[] bitmapArr, boolean z, boolean z2) {
+    public static String getKeyForPhotoSize(AccountInstance accountInstance, TLRPC$PhotoSize tLRPC$PhotoSize, Bitmap[] bitmapArr, boolean z, boolean z2) {
         if (tLRPC$PhotoSize == null || tLRPC$PhotoSize.location == null) {
             return null;
         }
@@ -4741,7 +4328,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             try {
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inJustDecodeBounds = true;
-                File pathToAttach = FileLoader.getPathToAttach(tLRPC$PhotoSize, z2);
+                File pathToAttach = FileLoader.getInstance(accountInstance.getCurrentAccount()).getPathToAttach(tLRPC$PhotoSize, z2);
                 FileInputStream fileInputStream = new FileInputStream(pathToAttach);
                 BitmapFactory.decodeStream(fileInputStream, null, options);
                 fileInputStream.close();
@@ -4813,7 +4400,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
     }
 
-    public static void lambda$prepareSendingMedia$89(java.util.ArrayList r68, final long r69, boolean r71, boolean r72, final org.telegram.messenger.AccountInstance r73, final org.telegram.messenger.MessageObject r74, final org.telegram.messenger.MessageObject r75, final org.telegram.messenger.MessageObject r76, final boolean r77, final int r78, androidx.core.view.inputmethod.InputContentInfoCompat r79) {
+    public static void lambda$prepareSendingMedia$89(java.util.ArrayList r65, final long r66, boolean r68, boolean r69, final org.telegram.messenger.AccountInstance r70, final org.telegram.messenger.MessageObject r71, final org.telegram.messenger.MessageObject r72, final org.telegram.messenger.MessageObject r73, final boolean r74, final int r75, androidx.core.view.inputmethod.InputContentInfoCompat r76) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingMedia$89(java.util.ArrayList, long, boolean, boolean, org.telegram.messenger.AccountInstance, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, boolean, int, androidx.core.view.inputmethod.InputContentInfoCompat):void");
     }
 
@@ -5043,7 +4630,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
     }
 
-    public static void lambda$prepareSendingVideo$91(org.telegram.messenger.VideoEditedInfo r26, java.lang.String r27, final long r28, final int r30, final org.telegram.messenger.AccountInstance r31, java.lang.CharSequence r32, final org.telegram.messenger.MessageObject r33, final org.telegram.messenger.MessageObject r34, final org.telegram.messenger.MessageObject r35, final java.util.ArrayList r36, final boolean r37, final int r38, boolean r39) {
+    public static void lambda$prepareSendingVideo$91(org.telegram.messenger.VideoEditedInfo r29, java.lang.String r30, final long r31, final int r33, final org.telegram.messenger.AccountInstance r34, java.lang.CharSequence r35, final org.telegram.messenger.MessageObject r36, final org.telegram.messenger.MessageObject r37, final org.telegram.messenger.MessageObject r38, final java.util.ArrayList r39, final boolean r40, final int r41, boolean r42) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingVideo$91(org.telegram.messenger.VideoEditedInfo, java.lang.String, long, int, org.telegram.messenger.AccountInstance, java.lang.CharSequence, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, java.util.ArrayList, boolean, int, boolean):void");
     }
 

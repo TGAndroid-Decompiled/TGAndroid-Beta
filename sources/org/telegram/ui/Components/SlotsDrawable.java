@@ -8,6 +8,7 @@ import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
@@ -243,7 +244,7 @@ public class SlotsDrawable extends RLottieDrawable {
                     i3 = 20;
                 }
                 final TLRPC$Document tLRPC$Document = tLRPC$TL_messages_stickerSet.documents.get(i3);
-                String readRes = RLottieDrawable.readRes(FileLoader.getPathToAttach(tLRPC$Document, true), 0);
+                String readRes = RLottieDrawable.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true), 0);
                 if (TextUtils.isEmpty(readRes)) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override

@@ -202,12 +202,12 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         FileLoader.getInstance(this.currentAccount).getCurrentLoadingFiles(arrayList);
         FileLoader.getInstance(this.currentAccount).getRecentLoadingFiles(arrayList2);
         for (int i = 0; i < arrayList.size(); i++) {
-            if (FileLoader.getPathToMessage(arrayList.get(i).messageOwner).exists()) {
+            if (FileLoader.getInstance(this.currentAccount).getPathToMessage(arrayList.get(i).messageOwner).exists()) {
                 arrayList3.add(arrayList.get(i));
             }
         }
         for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-            if (!FileLoader.getPathToMessage(arrayList2.get(i2).messageOwner).exists()) {
+            if (!FileLoader.getInstance(this.currentAccount).getPathToMessage(arrayList2.get(i2).messageOwner).exists()) {
                 arrayList4.add(arrayList2.get(i2));
             }
         }

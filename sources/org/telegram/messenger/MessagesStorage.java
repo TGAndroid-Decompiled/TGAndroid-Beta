@@ -3526,7 +3526,7 @@ public class MessagesStorage extends BaseController {
                 if (!TextUtils.isEmpty(attachFileName)) {
                     arrayList3.add(attachFileName);
                 }
-                File pathToAttach = FileLoader.getPathToAttach(tLRPC$PhotoSize, z);
+                File pathToAttach = getFileLoader().getPathToAttach(tLRPC$PhotoSize, z);
                 if (pathToAttach.toString().length() > 0) {
                     arrayList.add(pathToAttach);
                 }
@@ -3540,13 +3540,13 @@ public class MessagesStorage extends BaseController {
             if (!TextUtils.isEmpty(attachFileName2)) {
                 arrayList3.add(attachFileName2);
             }
-            File pathToAttach2 = FileLoader.getPathToAttach(document, z);
+            File pathToAttach2 = getFileLoader().getPathToAttach(document, z);
             if (pathToAttach2.toString().length() > 0) {
                 arrayList.add(pathToAttach2);
             }
             int size2 = document.thumbs.size();
             while (i2 < size2) {
-                File pathToAttach3 = FileLoader.getPathToAttach(document.thumbs.get(i2));
+                File pathToAttach3 = getFileLoader().getPathToAttach(document.thumbs.get(i2));
                 if (pathToAttach3.toString().length() > 0) {
                     arrayList.add(pathToAttach3);
                 }
@@ -5751,7 +5751,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$getMessagesInternal$121(TLRPC$TL_messages_messages tLRPC$TL_messages_messages, int i, long j, long j2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, boolean z, boolean z2, int i11, int i12, boolean z3, int i13, boolean z4) {
-        getMessagesController().processLoadedMessages(tLRPC$TL_messages_messages, i, j, j2, i2, i3, i4, true, i5, i6, i7, i8, i9, i10, z, z2 ? 1 : 0, i11, i12, z3, i13, z4);
+        getMessagesController().processLoadedMessages(tLRPC$TL_messages_messages, i, j, j2, i2, i3, i4, true, i5, i6, i7, i8, i9, i10, z, z2 ? 1 : 0, i11, i12, z3, i13, z4, null);
     }
 
     public void getMessages(final long j, final long j2, boolean z, final int i, final int i2, final int i3, final int i4, final int i5, final int i6, final boolean z2, final int i7, final int i8, final boolean z3) {
@@ -8032,12 +8032,12 @@ public class MessagesStorage extends BaseController {
             TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
             if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported_old) {
                 if (tLRPC$MessageMedia.bytes.length == 0) {
-                    tLRPC$MessageMedia.bytes = Utilities.intToBytes(140);
+                    tLRPC$MessageMedia.bytes = Utilities.intToBytes(142);
                 }
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported) {
                 TLRPC$TL_messageMediaUnsupported_old tLRPC$TL_messageMediaUnsupported_old = new TLRPC$TL_messageMediaUnsupported_old();
                 tLRPC$Message.media = tLRPC$TL_messageMediaUnsupported_old;
-                tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(140);
+                tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(142);
                 tLRPC$Message.flags |= 512;
             }
         }

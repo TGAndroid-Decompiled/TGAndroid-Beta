@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import android.os.Looper;
-import com.google.android.exoplayer2.util.Log;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -117,7 +116,7 @@ public class FilePathDatabase {
             }
             final CountDownLatch countDownLatch = new CountDownLatch(1);
             final String[] strArr = new String[1];
-            long currentTimeMillis = System.currentTimeMillis();
+            System.currentTimeMillis();
             this.dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
@@ -128,7 +127,6 @@ public class FilePathDatabase {
                 countDownLatch.await();
             } catch (Exception unused) {
             }
-            Log.d("kek", "time=" + (System.currentTimeMillis() - currentTimeMillis) + "   " + Thread.currentThread());
             return strArr[0];
         } else if (!BuildVars.DEBUG_VERSION || this.dispatchQueue.getHandler() == null || Thread.currentThread() == this.dispatchQueue.getHandler().getLooper().getThread()) {
             String str = null;
@@ -208,7 +206,6 @@ public class FilePathDatabase {
             try {
                 countDownLatch.await();
                 FileLog.d("checkMediaExistance size=" + arrayList.size() + " time=" + (System.currentTimeMillis() - currentTimeMillis));
-                Log.d("kek", "checkMediaExistance size=" + arrayList.size() + " time=" + (System.currentTimeMillis() - currentTimeMillis));
                 if (BuildVars.DEBUG_VERSION && Thread.currentThread() == Looper.getMainLooper().getThread()) {
                     FileLog.e(new Exception("warning, not allowed in main thread"));
                 }

@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.concurrent.CountDownLatch;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipException;
+import org.telegram.messenger.FilePathDatabase;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
@@ -102,6 +103,7 @@ public class FileLoadOperation {
     private volatile ArrayList<Range> notLoadedBytesRangesCopy;
     private ArrayList<Range> notRequestedBytesRanges;
     public Object parentObject;
+    public FilePathDatabase.PathData pathSaveData;
     private volatile boolean paused;
     private boolean preloadFinished;
     private int preloadNotRequestedBytesCount;
@@ -122,6 +124,7 @@ public class FileLoadOperation {
     private boolean reuploadingCdn;
     private boolean started;
     private volatile int state;
+    private String storeFileName;
     private File storePath;
     private ArrayList<FileLoadOperationStream> streamListeners;
     private int streamPriorityStartOffset;
@@ -140,6 +143,8 @@ public class FileLoadOperation {
         void didFailedLoadingFile(FileLoadOperation fileLoadOperation, int i);
 
         void didFinishLoadingFile(FileLoadOperation fileLoadOperation, File file);
+
+        void saveFilePath(FilePathDatabase.PathData pathData, File file);
     }
 
     public static class RequestInfo {
@@ -395,11 +400,12 @@ public class FileLoadOperation {
         return this.priority;
     }
 
-    public void setPaths(int i, String str, int i2, File file, File file2) {
+    public void setPaths(int i, String str, int i2, File file, File file2, String str2) {
         this.storePath = file;
         this.tempPath = file2;
         this.currentAccount = i;
         this.fileName = str;
+        this.storeFileName = str2;
         this.currentQueueType = i2;
     }
 
@@ -923,6 +929,8 @@ public class FileLoadOperation {
     }
 
     private void onFinishLoadingFile(final boolean z) {
+        int lastIndexOf;
+        String str;
         if (this.state == 1) {
             this.state = 3;
             cleanup();
@@ -975,6 +983,19 @@ public class FileLoadOperation {
                             }
                         } else {
                             try {
+                                if (this.pathSaveData != null) {
+                                    this.cacheFileFinal = new File(this.storePath, this.storeFileName);
+                                    int i = 1;
+                                    while (this.cacheFileFinal.exists()) {
+                                        if (this.storeFileName.lastIndexOf(46) > 0) {
+                                            str = this.storeFileName.substring(0, lastIndexOf) + " (" + i + ")" + this.storeFileName.substring(lastIndexOf);
+                                        } else {
+                                            str = this.storeFileName + " (" + i + ")";
+                                        }
+                                        this.cacheFileFinal = new File(this.storePath, str);
+                                        i++;
+                                    }
+                                }
                                 z2 = this.cacheFileTemp.renameTo(this.cacheFileFinal);
                             } catch (Exception e2) {
                                 FileLog.e(e2);
@@ -984,9 +1005,9 @@ public class FileLoadOperation {
                             if (BuildVars.LOGS_ENABLED) {
                                 FileLog.e("unable to rename temp = " + this.cacheFileTemp + " to final = " + this.cacheFileFinal + " retry = " + this.renameRetryCount);
                             }
-                            int i = this.renameRetryCount + 1;
-                            this.renameRetryCount = i;
-                            if (i < 3) {
+                            int i2 = this.renameRetryCount + 1;
+                            this.renameRetryCount = i2;
+                            if (i2 < 3) {
                                 this.state = 1;
                                 Utilities.stageQueue.postRunnable(new Runnable() {
                                     @Override
@@ -998,6 +1019,9 @@ public class FileLoadOperation {
                             }
                             this.cacheFileFinal = this.cacheFileTemp;
                         }
+                        if (this.pathSaveData != null && this.cacheFileFinal.exists()) {
+                            this.delegate.saveFilePath(this.pathSaveData, this.cacheFileFinal);
+                        }
                     } else {
                         onFail(false, 0);
                         return;
@@ -1007,14 +1031,14 @@ public class FileLoadOperation {
                     FileLog.d("finished downloading file to " + this.cacheFileFinal);
                 }
                 if (z) {
-                    int i2 = this.currentType;
-                    if (i2 == 50331648) {
+                    int i3 = this.currentType;
+                    if (i3 == 50331648) {
                         StatsController.getInstance(this.currentAccount).incrementReceivedItemsCount(ApplicationLoader.getCurrentNetworkType(), 3, 1);
-                    } else if (i2 == 33554432) {
+                    } else if (i3 == 33554432) {
                         StatsController.getInstance(this.currentAccount).incrementReceivedItemsCount(ApplicationLoader.getCurrentNetworkType(), 2, 1);
-                    } else if (i2 == 16777216) {
+                    } else if (i3 == 16777216) {
                         StatsController.getInstance(this.currentAccount).incrementReceivedItemsCount(ApplicationLoader.getCurrentNetworkType(), 4, 1);
-                    } else if (i2 == 67108864) {
+                    } else if (i3 == 67108864) {
                         StatsController.getInstance(this.currentAccount).incrementReceivedItemsCount(ApplicationLoader.getCurrentNetworkType(), 5, 1);
                     }
                 }

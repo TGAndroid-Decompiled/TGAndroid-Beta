@@ -54,6 +54,7 @@ import org.telegram.tgnet.TLRPC$TL_inputChannel;
 import org.telegram.tgnet.TLRPC$TL_inputChannelEmpty;
 import org.telegram.tgnet.TLRPC$TL_inputCheckPasswordEmpty;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -156,7 +157,9 @@ public class ChatRightsEditActivity extends BaseFragment {
 
     public ChatRightsEditActivity(long j, long j2, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2, String str, int i, boolean z, boolean z2, String str2) {
         boolean z3;
+        TLRPC$UserFull userFull;
         TLRPC$Chat tLRPC$Chat;
+        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2 = tLRPC$TL_chatAdminRights;
         float f = 0.0f;
         this.asAdminT = 0.0f;
         this.asAdmin = false;
@@ -183,7 +186,26 @@ public class ChatRightsEditActivity extends BaseFragment {
             this.myAdminRights = emptyAdminRights(this.currentType != 2 || ((tLRPC$Chat = this.currentChat) != null && tLRPC$Chat.creator));
         }
         if (i == 0 || i == 2) {
-            if (tLRPC$TL_chatAdminRights == null) {
+            if (i == 2 && (userFull = getMessagesController().getUserFull(j)) != null) {
+                TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights3 = this.isChannel ? userFull.bot_broadcast_admin_rights : userFull.bot_group_admin_rights;
+                if (tLRPC$TL_chatAdminRights3 != null) {
+                    if (tLRPC$TL_chatAdminRights2 == null) {
+                        tLRPC$TL_chatAdminRights2 = tLRPC$TL_chatAdminRights3;
+                    } else {
+                        tLRPC$TL_chatAdminRights2.ban_users = tLRPC$TL_chatAdminRights2.ban_users || tLRPC$TL_chatAdminRights3.ban_users;
+                        tLRPC$TL_chatAdminRights2.add_admins = tLRPC$TL_chatAdminRights2.add_admins || tLRPC$TL_chatAdminRights3.add_admins;
+                        tLRPC$TL_chatAdminRights2.post_messages = tLRPC$TL_chatAdminRights2.post_messages || tLRPC$TL_chatAdminRights3.post_messages;
+                        tLRPC$TL_chatAdminRights2.pin_messages = tLRPC$TL_chatAdminRights2.pin_messages || tLRPC$TL_chatAdminRights3.pin_messages;
+                        tLRPC$TL_chatAdminRights2.delete_messages = tLRPC$TL_chatAdminRights2.delete_messages || tLRPC$TL_chatAdminRights3.delete_messages;
+                        tLRPC$TL_chatAdminRights2.change_info = tLRPC$TL_chatAdminRights2.change_info || tLRPC$TL_chatAdminRights3.change_info;
+                        tLRPC$TL_chatAdminRights2.anonymous = tLRPC$TL_chatAdminRights2.anonymous || tLRPC$TL_chatAdminRights3.anonymous;
+                        tLRPC$TL_chatAdminRights2.edit_messages = tLRPC$TL_chatAdminRights2.edit_messages || tLRPC$TL_chatAdminRights3.edit_messages;
+                        tLRPC$TL_chatAdminRights2.manage_call = tLRPC$TL_chatAdminRights2.manage_call || tLRPC$TL_chatAdminRights3.manage_call;
+                        tLRPC$TL_chatAdminRights2.other = tLRPC$TL_chatAdminRights2.other || tLRPC$TL_chatAdminRights3.other;
+                    }
+                }
+            }
+            if (tLRPC$TL_chatAdminRights2 == null) {
                 this.initialAsAdmin = false;
                 if (i == 2) {
                     this.adminRights = emptyAdminRights(false);
@@ -192,46 +214,46 @@ public class ChatRightsEditActivity extends BaseFragment {
                     this.asAdminT = z5 ? 1.0f : f;
                     this.initialIsSet = false;
                 } else {
-                    TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2 = new TLRPC$TL_chatAdminRights();
-                    this.adminRights = tLRPC$TL_chatAdminRights2;
-                    TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights3 = this.myAdminRights;
-                    tLRPC$TL_chatAdminRights2.change_info = tLRPC$TL_chatAdminRights3.change_info;
-                    tLRPC$TL_chatAdminRights2.post_messages = tLRPC$TL_chatAdminRights3.post_messages;
-                    tLRPC$TL_chatAdminRights2.edit_messages = tLRPC$TL_chatAdminRights3.edit_messages;
-                    tLRPC$TL_chatAdminRights2.delete_messages = tLRPC$TL_chatAdminRights3.delete_messages;
-                    tLRPC$TL_chatAdminRights2.manage_call = tLRPC$TL_chatAdminRights3.manage_call;
-                    tLRPC$TL_chatAdminRights2.ban_users = tLRPC$TL_chatAdminRights3.ban_users;
-                    tLRPC$TL_chatAdminRights2.invite_users = tLRPC$TL_chatAdminRights3.invite_users;
-                    tLRPC$TL_chatAdminRights2.pin_messages = tLRPC$TL_chatAdminRights3.pin_messages;
-                    tLRPC$TL_chatAdminRights2.other = tLRPC$TL_chatAdminRights3.other;
+                    TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights4 = new TLRPC$TL_chatAdminRights();
+                    this.adminRights = tLRPC$TL_chatAdminRights4;
+                    TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights5 = this.myAdminRights;
+                    tLRPC$TL_chatAdminRights4.change_info = tLRPC$TL_chatAdminRights5.change_info;
+                    tLRPC$TL_chatAdminRights4.post_messages = tLRPC$TL_chatAdminRights5.post_messages;
+                    tLRPC$TL_chatAdminRights4.edit_messages = tLRPC$TL_chatAdminRights5.edit_messages;
+                    tLRPC$TL_chatAdminRights4.delete_messages = tLRPC$TL_chatAdminRights5.delete_messages;
+                    tLRPC$TL_chatAdminRights4.manage_call = tLRPC$TL_chatAdminRights5.manage_call;
+                    tLRPC$TL_chatAdminRights4.ban_users = tLRPC$TL_chatAdminRights5.ban_users;
+                    tLRPC$TL_chatAdminRights4.invite_users = tLRPC$TL_chatAdminRights5.invite_users;
+                    tLRPC$TL_chatAdminRights4.pin_messages = tLRPC$TL_chatAdminRights5.pin_messages;
+                    tLRPC$TL_chatAdminRights4.other = tLRPC$TL_chatAdminRights5.other;
                     this.initialIsSet = false;
                 }
             } else {
                 this.initialAsAdmin = true;
-                TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights4 = new TLRPC$TL_chatAdminRights();
-                this.adminRights = tLRPC$TL_chatAdminRights4;
-                boolean z6 = tLRPC$TL_chatAdminRights.change_info;
-                tLRPC$TL_chatAdminRights4.change_info = z6;
-                boolean z7 = tLRPC$TL_chatAdminRights.post_messages;
-                tLRPC$TL_chatAdminRights4.post_messages = z7;
-                boolean z8 = tLRPC$TL_chatAdminRights.edit_messages;
-                tLRPC$TL_chatAdminRights4.edit_messages = z8;
-                boolean z9 = tLRPC$TL_chatAdminRights.delete_messages;
-                tLRPC$TL_chatAdminRights4.delete_messages = z9;
-                boolean z10 = tLRPC$TL_chatAdminRights.manage_call;
-                tLRPC$TL_chatAdminRights4.manage_call = z10;
-                boolean z11 = tLRPC$TL_chatAdminRights.ban_users;
-                tLRPC$TL_chatAdminRights4.ban_users = z11;
-                boolean z12 = tLRPC$TL_chatAdminRights.invite_users;
-                tLRPC$TL_chatAdminRights4.invite_users = z12;
-                boolean z13 = tLRPC$TL_chatAdminRights.pin_messages;
-                tLRPC$TL_chatAdminRights4.pin_messages = z13;
-                boolean z14 = tLRPC$TL_chatAdminRights.add_admins;
-                tLRPC$TL_chatAdminRights4.add_admins = z14;
-                boolean z15 = tLRPC$TL_chatAdminRights.anonymous;
-                tLRPC$TL_chatAdminRights4.anonymous = z15;
-                boolean z16 = tLRPC$TL_chatAdminRights.other;
-                tLRPC$TL_chatAdminRights4.other = z16;
+                TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights6 = new TLRPC$TL_chatAdminRights();
+                this.adminRights = tLRPC$TL_chatAdminRights6;
+                boolean z6 = tLRPC$TL_chatAdminRights2.change_info;
+                tLRPC$TL_chatAdminRights6.change_info = z6;
+                boolean z7 = tLRPC$TL_chatAdminRights2.post_messages;
+                tLRPC$TL_chatAdminRights6.post_messages = z7;
+                boolean z8 = tLRPC$TL_chatAdminRights2.edit_messages;
+                tLRPC$TL_chatAdminRights6.edit_messages = z8;
+                boolean z9 = tLRPC$TL_chatAdminRights2.delete_messages;
+                tLRPC$TL_chatAdminRights6.delete_messages = z9;
+                boolean z10 = tLRPC$TL_chatAdminRights2.manage_call;
+                tLRPC$TL_chatAdminRights6.manage_call = z10;
+                boolean z11 = tLRPC$TL_chatAdminRights2.ban_users;
+                tLRPC$TL_chatAdminRights6.ban_users = z11;
+                boolean z12 = tLRPC$TL_chatAdminRights2.invite_users;
+                tLRPC$TL_chatAdminRights6.invite_users = z12;
+                boolean z13 = tLRPC$TL_chatAdminRights2.pin_messages;
+                tLRPC$TL_chatAdminRights6.pin_messages = z13;
+                boolean z14 = tLRPC$TL_chatAdminRights2.add_admins;
+                tLRPC$TL_chatAdminRights6.add_admins = z14;
+                boolean z15 = tLRPC$TL_chatAdminRights2.anonymous;
+                tLRPC$TL_chatAdminRights6.anonymous = z15;
+                boolean z16 = tLRPC$TL_chatAdminRights2.other;
+                tLRPC$TL_chatAdminRights6.other = z16;
                 boolean z17 = z6 || z7 || z8 || z9 || z11 || z12 || z13 || z14 || z10 || z15 || z16;
                 this.initialIsSet = z17;
                 if (i == 2) {
@@ -406,7 +428,9 @@ public class ChatRightsEditActivity extends BaseFragment {
         });
         if (this.canEdit || (!this.isChannel && this.currentChat.creator && UserObject.isUserSelf(this.currentUser))) {
             ActionBarMenu createMenu = this.actionBar.createMenu();
-            this.doneDrawable = new CrossfadeDrawable(context.getResources().getDrawable(R.drawable.ic_done), new CircularProgressDrawable(Theme.getColor("actionBarDefaultIcon")));
+            Drawable mutate = context.getResources().getDrawable(R.drawable.ic_done).mutate();
+            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
+            this.doneDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor("actionBarDefaultIcon")));
             createMenu.addItemWithWidth(1, 0, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
             createMenu.getItem(1).setIcon(this.doneDrawable);
         }
@@ -1305,30 +1329,30 @@ public class ChatRightsEditActivity extends BaseFragment {
         }
     }
 
-    public void lambda$onDonePressed$17() {
+    public void lambda$onDonePressed$17(TLRPC$TL_error tLRPC$TL_error) {
         setLoading(false);
     }
 
     public void lambda$onDonePressed$21(DialogInterface dialogInterface, int i) {
         setLoading(true);
-        Runnable chatRightsEditActivity$$ExternalSyntheticLambda16 = new Runnable() {
+        Runnable chatRightsEditActivity$$ExternalSyntheticLambda14 = new Runnable() {
             @Override
             public final void run() {
                 ChatRightsEditActivity.this.lambda$onDonePressed$18();
             }
         };
         if (this.asAdmin || this.initialAsAdmin) {
-            getMessagesController().setUserAdminRole(this.currentChat.id, this.currentUser, this.asAdmin ? this.adminRights : emptyAdminRights(false), this.currentRank, false, this, this.isAddingNew, this.asAdmin, this.botHash, chatRightsEditActivity$$ExternalSyntheticLambda16, new Runnable() {
+            getMessagesController().setUserAdminRole(this.currentChat.id, this.currentUser, this.asAdmin ? this.adminRights : emptyAdminRights(false), this.currentRank, false, this, this.isAddingNew, this.asAdmin, this.botHash, chatRightsEditActivity$$ExternalSyntheticLambda14, new MessagesController.ErrorDelegate() {
                 @Override
-                public final void run() {
-                    ChatRightsEditActivity.this.lambda$onDonePressed$19();
+                public final void run(TLRPC$TL_error tLRPC$TL_error) {
+                    ChatRightsEditActivity.this.lambda$onDonePressed$19(tLRPC$TL_error);
                 }
             });
         } else {
-            getMessagesController().addUserToChat(this.currentChat.id, this.currentUser, 0, this.botHash, this, true, chatRightsEditActivity$$ExternalSyntheticLambda16, new Runnable() {
+            getMessagesController().addUserToChat(this.currentChat.id, this.currentUser, 0, this.botHash, this, true, chatRightsEditActivity$$ExternalSyntheticLambda14, new MessagesController.ErrorDelegate() {
                 @Override
-                public final void run() {
-                    ChatRightsEditActivity.this.lambda$onDonePressed$20();
+                public final void run(TLRPC$TL_error tLRPC$TL_error) {
+                    ChatRightsEditActivity.this.lambda$onDonePressed$20(tLRPC$TL_error);
                 }
             });
         }
@@ -1358,11 +1382,11 @@ public class ChatRightsEditActivity extends BaseFragment {
         }
     }
 
-    public void lambda$onDonePressed$19() {
+    public void lambda$onDonePressed$19(TLRPC$TL_error tLRPC$TL_error) {
         setLoading(false);
     }
 
-    public void lambda$onDonePressed$20() {
+    public void lambda$onDonePressed$20(TLRPC$TL_error tLRPC$TL_error) {
         setLoading(false);
     }
 
@@ -1748,7 +1772,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                             canvas.restore();
                         }
                     };
-                    ChatRightsEditActivity.this.addBotButton.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.getColor("featuredStickers_addButton"), 1090519039));
+                    ChatRightsEditActivity.this.addBotButton.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
                     ChatRightsEditActivity.this.addBotButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {

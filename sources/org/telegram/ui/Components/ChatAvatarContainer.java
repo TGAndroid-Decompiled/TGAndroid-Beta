@@ -41,6 +41,7 @@ import org.telegram.ui.Components.AutoDeletePopupWrapper;
 import org.telegram.ui.Components.SharedMediaLayout;
 
 public class ChatAvatarContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public boolean allowShorterStatus;
     private AvatarDrawable avatarDrawable;
     private BackupImageView avatarImageView;
     private int currentAccount;
@@ -58,6 +59,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
     private boolean secretChatTimer;
     private SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader;
     private StatusDrawable[] statusDrawables;
+    public boolean[] statusMadeShorter;
     private SimpleTextView subtitleTextView;
     private ImageView timeItem;
     private TimerDrawable timerDrawable;
@@ -76,7 +78,9 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         this.occupyStatusBar = true;
         this.leftPadding = AndroidUtilities.dp(8.0f);
         this.isOnline = new boolean[1];
+        this.statusMadeShorter = new boolean[1];
         this.onlineCount = -1;
+        this.allowShorterStatus = false;
         this.resourcesProvider = resourcesProvider;
         this.parentFragment = chatActivity;
         final boolean z2 = chatActivity != null && chatActivity.getChatMode() == 0 && !UserObject.isReplyUser(this.parentFragment.getCurrentUser());
@@ -489,6 +493,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                 if (printingString != null) {
                     printingString = TextUtils.replace(printingString, new String[]{"..."}, new String[]{str});
                 }
+                boolean[] zArr = null;
                 if (printingString != null && printingString.length() != 0 && (!ChatObject.isChannel(currentChat) || currentChat.megagroup)) {
                     if (this.parentFragment.isThreadChat() && this.titleTextView.getTag() != null) {
                         this.titleTextView.setTag(null);
@@ -578,9 +583,13 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                                 } else if (currentUser.bot) {
                                     string = LocaleController.getString("Bot", R.string.Bot);
                                 } else {
-                                    boolean[] zArr = this.isOnline;
-                                    zArr[0] = false;
-                                    str = LocaleController.formatUserStatus(this.currentAccount, currentUser, zArr);
+                                    boolean[] zArr2 = this.isOnline;
+                                    zArr2[0] = false;
+                                    int i3 = this.currentAccount;
+                                    if (this.allowShorterStatus) {
+                                        zArr = this.statusMadeShorter;
+                                    }
+                                    str = LocaleController.formatUserStatus(i3, currentUser, zArr2, zArr);
                                     z2 = this.isOnline[0];
                                 }
                             }

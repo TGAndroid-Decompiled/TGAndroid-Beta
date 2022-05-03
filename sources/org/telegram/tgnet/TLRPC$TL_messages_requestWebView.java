@@ -1,13 +1,13 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_messages_requestWebView extends TLObject {
-    public static int constructor = 262163967;
-    public boolean background;
+    public static int constructor = -1850648527;
     public TLRPC$InputUser bot;
     public int flags;
     public boolean from_bot_menu;
     public TLRPC$InputPeer peer;
     public int reply_to_msg_id;
+    public TLRPC$InputPeer send_as;
     public boolean silent;
     public String start_param;
     public TLRPC$TL_dataJSON theme_params;
@@ -21,13 +21,11 @@ public class TLRPC$TL_messages_requestWebView extends TLObject {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        int i = this.silent ? this.flags | 32 : this.flags & (-33);
+        int i = this.from_bot_menu ? this.flags | 16 : this.flags & (-17);
         this.flags = i;
-        int i2 = this.background ? i | 64 : i & (-65);
+        int i2 = this.silent ? i | 32 : i & (-33);
         this.flags = i2;
-        int i3 = this.from_bot_menu ? i2 | 16 : i2 & (-17);
-        this.flags = i3;
-        abstractSerializedData.writeInt32(i3);
+        abstractSerializedData.writeInt32(i2);
         this.peer.serializeToStream(abstractSerializedData);
         this.bot.serializeToStream(abstractSerializedData);
         if ((this.flags & 2) != 0) {
@@ -41,6 +39,9 @@ public class TLRPC$TL_messages_requestWebView extends TLObject {
         }
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.reply_to_msg_id);
+        }
+        if ((this.flags & 8192) != 0) {
+            this.send_as.serializeToStream(abstractSerializedData);
         }
     }
 }

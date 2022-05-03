@@ -53,6 +53,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
     private long lastFrameDecodeTime;
     private long lastFrameTime;
     private int lastTimeStamp;
+    private boolean limitFps;
     private Runnable loadFrameRunnable;
     private Runnable loadFrameTask;
     private final Runnable mStartTask;
@@ -119,6 +120,12 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
         int i = animatedFileDrawable.pendingRemoveLoadingFramesReset;
         animatedFileDrawable.pendingRemoveLoadingFramesReset = i - 1;
         return i;
+    }
+
+    public void invalidateInternal() {
+        for (int i = 0; i < this.parents.size(); i++) {
+            this.parents.get(i).invalidate();
+        }
     }
 
     public void updateScaleFactor() {
@@ -199,9 +206,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
                 }
                 AnimatedFileDrawable.this.loadFrameTask = null;
                 AnimatedFileDrawable.this.scheduleNextGetFrame();
-                for (int i4 = 0; i4 < AnimatedFileDrawable.this.parents.size(); i4++) {
-                    ((View) AnimatedFileDrawable.this.parents.get(i4)).invalidate();
-                }
+                AnimatedFileDrawable.this.invalidateInternal();
             }
         };
         this.uiRunnable = new Runnable() {
@@ -254,6 +259,9 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
                 if (AnimatedFileDrawable.this.metaData[3] - AnimatedFileDrawable.this.lastTimeStamp != 0) {
                     AnimatedFileDrawable animatedFileDrawable5 = AnimatedFileDrawable.this;
                     animatedFileDrawable5.invalidateAfter = animatedFileDrawable5.metaData[3] - AnimatedFileDrawable.this.lastTimeStamp;
+                    if (AnimatedFileDrawable.this.limitFps && AnimatedFileDrawable.this.invalidateAfter < 32) {
+                        AnimatedFileDrawable.this.invalidateAfter = 32;
+                    }
                 }
                 if (AnimatedFileDrawable.this.pendingSeekToUI >= 0 && AnimatedFileDrawable.this.pendingSeekTo == -1) {
                     AnimatedFileDrawable.this.pendingSeekToUI = -1L;
@@ -267,9 +275,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
                         ((View) AnimatedFileDrawable.this.secondParentViews.get(i4)).invalidate();
                     }
                 }
-                for (int i5 = 0; i5 < AnimatedFileDrawable.this.parents.size(); i5++) {
-                    ((View) AnimatedFileDrawable.this.parents.get(i5)).invalidate();
-                }
+                AnimatedFileDrawable.this.invalidateInternal();
                 AnimatedFileDrawable.this.scheduleNextGetFrame();
             }
         };
@@ -498,14 +504,13 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
                 destroyDecoder(this.nativePtr);
                 this.nativePtr = 0L;
             }
-            Bitmap bitmap = this.renderingBitmap;
-            if (bitmap != null) {
-                bitmap.recycle();
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(this.renderingBitmap);
+            arrayList.add(this.nextRenderingBitmap);
+            if (this.renderingBitmap != null) {
                 this.renderingBitmap = null;
             }
-            Bitmap bitmap2 = this.nextRenderingBitmap;
-            if (bitmap2 != null) {
-                bitmap2.recycle();
+            if (this.nextRenderingBitmap != null) {
                 this.nextRenderingBitmap = null;
             }
             DispatchQueue dispatchQueue = this.decodeQueue;
@@ -514,6 +519,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
                 this.decodeQueue = null;
             }
             getPaint().setShader(null);
+            AndroidUtilities.recycleBitmaps(arrayList);
         } else {
             this.destroyWhenDone = true;
         }
@@ -521,6 +527,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
         if (animatedFileDrawableStream != null) {
             animatedFileDrawableStream.cancel(true);
         }
+        invalidateInternal();
     }
 
     public void resetStream(boolean z) {
@@ -930,5 +937,9 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
         Bitmap bitmap = this.backgroundBitmap;
         getVideoFrame(j, bitmap, this.metaData, bitmap.getRowBytes(), false, this.startTime, this.endTime);
         return this.backgroundBitmap;
+    }
+
+    public void setLimitFps(boolean z) {
+        this.limitFps = z;
     }
 }

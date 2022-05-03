@@ -371,9 +371,11 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             this.profileSearchCell.setSublabelOffset(0, -AndroidUtilities.dp(1.0f));
             addView(this.profileSearchCell, LayoutHelper.createFrame(-1, -1.0f));
             this.button.setText(string);
+            this.button.setTextSize(1, 14.0f);
             this.button.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             this.button.setProgressColor(Theme.getColor("featuredStickers_buttonProgress"));
-            this.button.setBackgroundRoundRect(Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed"));
+            this.button.setBackgroundRoundRect(Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed"), 16.0f);
+            this.button.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
             addView(this.button, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
             this.button.setOnClickListener(new View.OnClickListener() {
                 @Override
