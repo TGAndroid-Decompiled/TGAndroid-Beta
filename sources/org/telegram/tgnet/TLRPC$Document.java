@@ -14,6 +14,7 @@ public abstract class TLRPC$Document extends TLObject {
     public long id;
     public byte[] iv;
     public byte[] key;
+    public String localPath;
     public String mime_type;
     public int size;
     public long user_id;

@@ -418,4 +418,8 @@ public class UserConfig extends BaseController {
         edit.putBoolean("hasValidDialogLoadIds", true);
         edit.commit();
     }
+
+    public boolean isPremium() {
+        return this.currentUser.premium;
+    }
 }

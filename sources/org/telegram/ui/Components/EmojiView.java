@@ -60,6 +60,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DocumentObject;
@@ -1466,7 +1467,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 this.gifTabs.setIndicatorColor(getThemedColor("chat_emojiPanelStickerPackSelectorLine"));
                 this.gifTabs.setUnderlineColor(getThemedColor("chat_emojiPanelShadowLine"));
                 this.gifTabs.setBackgroundColor(getThemedColor("chat_emojiPanelBackground"));
-                this.gifContainer.addView(this.gifTabs, LayoutHelper.createFrame(-1, 48, 51));
+                this.gifContainer.addView(this.gifTabs, LayoutHelper.createFrame(-1, 36, 51));
                 updateGifTabs();
                 this.gifTabs.setDelegate(new ScrollSlidingTabStrip.ScrollSlidingTabStripDelegate() {
                     @Override
@@ -2058,12 +2059,17 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             str = null;
         }
         if (view instanceof StickerEmojiCell) {
-            ContentPreviewViewer.getInstance().reset();
             StickerEmojiCell stickerEmojiCell = (StickerEmojiCell) view;
-            if (!stickerEmojiCell.isDisabled()) {
-                stickerEmojiCell.disable();
-                this.delegate.onStickerSelected(stickerEmojiCell, stickerEmojiCell.getSticker(), str, stickerEmojiCell.getParentObject(), stickerEmojiCell.getSendAnimationData(), true, 0);
+            if (stickerEmojiCell.getSticker() == null || !MessageObject.isPremiumSticker(stickerEmojiCell.getSticker()) || AccountInstance.getInstance(this.currentAccount).getUserConfig().isPremium()) {
+                ContentPreviewViewer.getInstance().reset();
+                if (!stickerEmojiCell.isDisabled()) {
+                    stickerEmojiCell.disable();
+                    this.delegate.onStickerSelected(stickerEmojiCell, stickerEmojiCell.getSticker(), str, stickerEmojiCell.getParentObject(), stickerEmojiCell.getSendAnimationData(), true, 0);
+                    return;
+                }
+                return;
             }
+            stickerEmojiCell.showRequirePremiumAnimation();
         }
     }
 

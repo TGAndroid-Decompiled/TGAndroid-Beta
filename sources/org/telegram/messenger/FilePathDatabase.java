@@ -205,9 +205,10 @@ public class FilePathDatabase {
                     FilePathDatabase.lambda$checkMediaExistance$3(arrayList2, countDownLatch);
                 }
             });
-            FileLog.d("checkMediaExistance size=" + arrayList.size() + " time=" + currentTimeMillis);
             try {
                 countDownLatch.await();
+                FileLog.d("checkMediaExistance size=" + arrayList.size() + " time=" + (System.currentTimeMillis() - currentTimeMillis));
+                Log.d("kek", "checkMediaExistance size=" + arrayList.size() + " time=" + (System.currentTimeMillis() - currentTimeMillis));
                 if (BuildVars.DEBUG_VERSION && Thread.currentThread() == Looper.getMainLooper().getThread()) {
                     FileLog.e(new Exception("warning, not allowed in main thread"));
                 }

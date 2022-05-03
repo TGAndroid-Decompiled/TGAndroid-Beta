@@ -222,7 +222,11 @@ public class ImageLocation {
             return null;
         }
         ImageLocation forPhoto = getForPhoto(tLRPC$VideoSize.location, tLRPC$VideoSize.size, null, tLRPC$Document, null, 1, tLRPC$Document.dc_id, null, tLRPC$VideoSize.type);
-        forPhoto.imageType = 2;
+        if ("f".equals(tLRPC$VideoSize.type)) {
+            forPhoto.imageType = 1;
+        } else {
+            forPhoto.imageType = 2;
+        }
         return forPhoto;
     }
 

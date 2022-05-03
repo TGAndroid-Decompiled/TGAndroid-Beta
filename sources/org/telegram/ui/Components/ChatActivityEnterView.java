@@ -530,8 +530,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     public class SeekBarWaveformView extends View {
         public SeekBarWaveformView(Context context) {
             super(context);
-            ChatActivityEnterView.this.seekBarWaveform = new SeekBarWaveform(context);
-            ChatActivityEnterView.this.seekBarWaveform.setDelegate(new SeekBar.SeekBarDelegate() {
+            ChatActivityEnterView.this = r2;
+            r2.seekBarWaveform = new SeekBarWaveform(context);
+            r2.seekBarWaveform.setDelegate(new SeekBar.SeekBarDelegate() {
                 @Override
                 public void onSeekBarContinuousDrag(float f) {
                     SeekBar.SeekBarDelegate.CC.$default$onSeekBarContinuousDrag(this, f);
@@ -620,6 +621,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         public RecordDot(Context context) {
             super(context);
+            ChatActivityEnterView.this = r8;
             RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.chat_audio_record_delete, "" + R.raw.chat_audio_record_delete, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
             this.drawable = rLottieDrawable;
             rLottieDrawable.setCurrentParentView(this);
@@ -757,16 +759,17 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         public RecordCircle(Context context) {
             super(context);
-            ChatActivityEnterView.this.micDrawable = getResources().getDrawable(R.drawable.input_mic_pressed).mutate();
-            ChatActivityEnterView.this.micDrawable.setColorFilter(new PorterDuffColorFilter(ChatActivityEnterView.this.getThemedColor("chat_messagePanelVoicePressed"), PorterDuff.Mode.MULTIPLY));
-            ChatActivityEnterView.this.cameraDrawable = getResources().getDrawable(R.drawable.input_video_pressed).mutate();
-            ChatActivityEnterView.this.cameraDrawable.setColorFilter(new PorterDuffColorFilter(ChatActivityEnterView.this.getThemedColor("chat_messagePanelVoicePressed"), PorterDuff.Mode.MULTIPLY));
-            ChatActivityEnterView.this.sendDrawable = getResources().getDrawable(R.drawable.attach_send).mutate();
-            ChatActivityEnterView.this.sendDrawable.setColorFilter(new PorterDuffColorFilter(ChatActivityEnterView.this.getThemedColor("chat_messagePanelVoicePressed"), PorterDuff.Mode.MULTIPLY));
-            ChatActivityEnterView.this.micOutline = getResources().getDrawable(R.drawable.input_mic).mutate();
-            ChatActivityEnterView.this.micOutline.setColorFilter(new PorterDuffColorFilter(ChatActivityEnterView.this.getThemedColor("chat_messagePanelIcons"), PorterDuff.Mode.MULTIPLY));
-            ChatActivityEnterView.this.cameraOutline = getResources().getDrawable(R.drawable.input_video).mutate();
-            ChatActivityEnterView.this.cameraOutline.setColorFilter(new PorterDuffColorFilter(ChatActivityEnterView.this.getThemedColor("chat_messagePanelIcons"), PorterDuff.Mode.MULTIPLY));
+            ChatActivityEnterView.this = r6;
+            r6.micDrawable = getResources().getDrawable(R.drawable.input_mic_pressed).mutate();
+            r6.micDrawable.setColorFilter(new PorterDuffColorFilter(r6.getThemedColor("chat_messagePanelVoicePressed"), PorterDuff.Mode.MULTIPLY));
+            r6.cameraDrawable = getResources().getDrawable(R.drawable.input_video_pressed).mutate();
+            r6.cameraDrawable.setColorFilter(new PorterDuffColorFilter(r6.getThemedColor("chat_messagePanelVoicePressed"), PorterDuff.Mode.MULTIPLY));
+            r6.sendDrawable = getResources().getDrawable(R.drawable.attach_send).mutate();
+            r6.sendDrawable.setColorFilter(new PorterDuffColorFilter(r6.getThemedColor("chat_messagePanelVoicePressed"), PorterDuff.Mode.MULTIPLY));
+            r6.micOutline = getResources().getDrawable(R.drawable.input_mic).mutate();
+            r6.micOutline.setColorFilter(new PorterDuffColorFilter(r6.getThemedColor("chat_messagePanelIcons"), PorterDuff.Mode.MULTIPLY));
+            r6.cameraOutline = getResources().getDrawable(R.drawable.input_video).mutate();
+            r6.cameraOutline.setColorFilter(new PorterDuffColorFilter(r6.getThemedColor("chat_messagePanelIcons"), PorterDuff.Mode.MULTIPLY));
             VirtualViewHelper virtualViewHelper = new VirtualViewHelper(this);
             this.virtualViewHelper = virtualViewHelper;
             ViewCompat.setAccessibilityDelegate(this, virtualViewHelper);
@@ -779,9 +782,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.lockOutlinePaint.setStyle(Paint.Style.STROKE);
             this.lockOutlinePaint.setStrokeCap(Paint.Cap.ROUND);
             this.lockOutlinePaint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
-            ChatActivityEnterView.this.lockShadowDrawable = getResources().getDrawable(R.drawable.lock_round_shadow);
-            ChatActivityEnterView.this.lockShadowDrawable.setColorFilter(new PorterDuffColorFilter(ChatActivityEnterView.this.getThemedColor("key_chat_messagePanelVoiceLockShadow"), PorterDuff.Mode.MULTIPLY));
-            this.tooltipBackground = Theme.createRoundRectDrawable(AndroidUtilities.dp(5.0f), ChatActivityEnterView.this.getThemedColor("chat_gifSaveHintBackground"));
+            r6.lockShadowDrawable = getResources().getDrawable(R.drawable.lock_round_shadow);
+            r6.lockShadowDrawable.setColorFilter(new PorterDuffColorFilter(r6.getThemedColor("key_chat_messagePanelVoiceLockShadow"), PorterDuff.Mode.MULTIPLY));
+            this.tooltipBackground = Theme.createRoundRectDrawable(AndroidUtilities.dp(5.0f), r6.getThemedColor("chat_gifSaveHintBackground"));
             this.tooltipPaint.setTextSize(AndroidUtilities.dp(14.0f));
             this.tooltipBackgroundArrow = ContextCompat.getDrawable(context, R.drawable.tooltip_arrow);
             float scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -1091,7 +1094,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             canvas.restore();
         }
 
-        private class VirtualViewHelper extends ExploreByTouchHelper {
+        public class VirtualViewHelper extends ExploreByTouchHelper {
             @Override
             protected boolean onPerformActionForVirtualView(int i, int i2, Bundle bundle) {
                 return true;
@@ -1099,6 +1102,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
             public VirtualViewHelper(View view) {
                 super(view);
+                RecordCircle.this = r1;
             }
 
             @Override
@@ -1174,6 +1178,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.doneButtonEnabledProgress = 1.0f;
         this.doneButtonEnabled = true;
         this.openKeyboardRunnable = new Runnable() {
+            {
+                ChatActivityEnterView.this = this;
+            }
+
             @Override
             public void run() {
                 if ((!ChatActivityEnterView.this.hasBotWebView() || !ChatActivityEnterView.this.botCommandsMenuIsShowing()) && !ChatActivityEnterView.this.destroyed) {
@@ -1189,6 +1197,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         };
         this.updateExpandabilityRunnable = new Runnable() {
             private int lastKnownPage = -1;
+
+            {
+                ChatActivityEnterView.this = this;
+            }
 
             @Override
             public void run() {
@@ -1238,6 +1250,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         };
         this.redDotPaint = new Paint(1);
         this.onFinishInitCameraRunnable = new Runnable() {
+            {
+                ChatActivityEnterView.this = this;
+            }
+
             @Override
             public void run() {
                 if (ChatActivityEnterView.this.delegate != null) {
@@ -1246,6 +1262,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
         };
         this.recordAudioVideoRunnable = new Runnable() {
+            {
+                ChatActivityEnterView.this = this;
+            }
+
             @Override
             public void run() {
                 if (ChatActivityEnterView.this.delegate != null && ChatActivityEnterView.this.parentActivity != null) {
@@ -1304,6 +1324,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.sendRect = new Rect();
         this.rect = new Rect();
         this.runEmojiPanelAnimation = new Runnable() {
+            {
+                ChatActivityEnterView.this = this;
+            }
+
             @Override
             public void run() {
                 if (ChatActivityEnterView.this.panelAnimation != null && !ChatActivityEnterView.this.panelAnimation.isRunning()) {
@@ -1359,6 +1383,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.sendByEnter = globalMainSettings.getBoolean("send_by_enter", false);
         this.configAnimationsEnabled = globalMainSettings.getBoolean("view_animations", true);
         FrameLayout frameLayout = new FrameLayout(activity) {
+            {
+                ChatActivityEnterView.this = this;
+            }
+
             @Override
             public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                 if (ChatActivityEnterView.this.botWebViewButton.getVisibility() == 0) {
@@ -1373,6 +1401,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.textFieldContainer.setPadding(0, AndroidUtilities.dp(1.0f), 0, 0);
         addView(this.textFieldContainer, LayoutHelper.createFrame(-1, -2.0f, 83, 0.0f, 1.0f, 0.0f, 0.0f));
         FrameLayout frameLayout2 = new FrameLayout(activity) {
+            {
+                ChatActivityEnterView.this = this;
+            }
+
             @Override
             protected void onLayout(boolean z3, int i4, int i5, int i6, int i7) {
                 super.onLayout(z3, i4, i5, i6, i7);
@@ -1410,6 +1442,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         int i4 = 0;
         while (i4 < i3) {
             this.emojiButton[i4] = new ImageView(activity) {
+                {
+                    ChatActivityEnterView.this = this;
+                }
+
                 @Override
                 protected void onDraw(Canvas canvas) {
                     super.onDraw(canvas);
@@ -1498,6 +1534,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.messageEditText.setOnKeyListener(new View.OnKeyListener() {
             boolean ctrlPressed = false;
 
+            {
+                ChatActivityEnterView.this = this;
+            }
+
             @Override
             public boolean onKey(View view, int i5, KeyEvent keyEvent) {
                 boolean z3 = false;
@@ -1536,6 +1576,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         });
         this.messageEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             boolean ctrlPressed = false;
+
+            {
+                ChatActivityEnterView.this = this;
+            }
 
             @Override
             public boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
@@ -1603,8 +1647,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.botCommandsMenuButton.setExpanded(true, false);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
             BotCommandsMenuContainer botCommandsMenuContainer = new BotCommandsMenuContainer(activity) {
+                {
+                    ChatActivityEnterView.this = this;
+                }
+
                 @Override
-                protected void onDismiss() {
+                public void onDismiss() {
                     super.onDismiss();
                     ChatActivityEnterView.this.botCommandsMenuButton.setOpened(false);
                 }
@@ -1617,6 +1665,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             recyclerListView.setAdapter(botCommandsAdapter);
             this.botCommandsMenuContainer.listView.setOnItemClickListener(new AnonymousClass17(resourcesProvider, chatActivity));
             this.botCommandsMenuContainer.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
+                {
+                    ChatActivityEnterView.this = this;
+                }
+
                 @Override
                 public boolean onItemClick(View view, int i5) {
                     if (!(view instanceof BotCommandsMenuView.BotCommandView)) {
@@ -1633,6 +1685,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.sizeNotifierLayout.addView(this.botCommandsMenuContainer, 14, LayoutHelper.createFrame(-1, -1, 80));
             this.botCommandsMenuContainer.setVisibility(8);
             BotWebViewMenuContainer botWebViewMenuContainer = new BotWebViewMenuContainer(activity, this) {
+                {
+                    ChatActivityEnterView.this = this;
+                }
+
                 @Override
                 public void onDismiss() {
                     super.onDismiss();
@@ -1685,6 +1741,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.attachLayout.addView(this.notifyButton, LayoutHelper.createLinear(48, 48));
             this.notifyButton.setOnClickListener(new View.OnClickListener() {
                 private Toast visibleToast;
+
+                {
+                    ChatActivityEnterView.this = this;
+                }
 
                 @Override
                 public void onClick(View view) {
@@ -1751,6 +1811,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.senderSelectView.setVisibility(8);
         frameLayout2.addView(this.senderSelectView, LayoutHelper.createFrame(32, 32.0f, 83, 10.0f, 8.0f, 10.0f, 8.0f));
         FrameLayout frameLayout3 = new FrameLayout(activity) {
+            {
+                ChatActivityEnterView.this = this;
+            }
+
             @Override
             public void setVisibility(int i6) {
                 super.setVisibility(i6);
@@ -1786,6 +1850,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         videoTimelineView.setColor(getThemedColor("chat_messagePanelVideoFrame"));
         this.videoTimelineView.setRoundFrames(true);
         this.videoTimelineView.setDelegate(new VideoTimelineView.VideoTimelineViewDelegate() {
+            {
+                ChatActivityEnterView.this = this;
+            }
+
             @Override
             public void onLeftProgressChanged(float f) {
                 if (ChatActivityEnterView.this.videoToSendMessageObject != null) {
@@ -1866,6 +1934,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.recordTimerView = timerView;
         this.recordTimeContainer.addView(timerView, LayoutHelper.createLinear(-1, -1, 16, 6, 0, 0, 0));
         FrameLayout frameLayout5 = new FrameLayout(activity) {
+            {
+                ChatActivityEnterView.this = this;
+            }
+
             @Override
             protected boolean drawChild(Canvas canvas, View view2, long j) {
                 if (view2 != ChatActivityEnterView.this.sendButton || !ChatActivityEnterView.this.textTransitionIsRunning) {
@@ -1959,6 +2031,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             private int drawableColor;
             private long lastAnimationTime;
             private int prevColorType;
+
+            {
+                ChatActivityEnterView.this = this;
+            }
 
             @Override
             protected void onDraw(Canvas canvas) {
@@ -2236,6 +2312,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         AnonymousClass12(Context context, Theme.ResourcesProvider resourcesProvider, Theme.ResourcesProvider resourcesProvider2, ChatActivity chatActivity, Activity activity) {
             super(context, resourcesProvider);
+            ChatActivityEnterView.this = r1;
             this.val$resourcesProvider = resourcesProvider2;
             this.val$fragment = chatActivity;
             this.val$context = activity;
@@ -2440,6 +2517,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             if (ChatActivityEnterView.this.keyboardVisible) {
                 AndroidUtilities.hideKeyboard(ChatActivityEnterView.this.messageEditText);
                 AndroidUtilities.runOnUIThread(new Runnable() {
+                    {
+                        AnonymousClass12.this = this;
+                    }
+
                     @Override
                     public void run() {
                         AnonymousClass12.this.lambda$editPhoto$3(arrayList, file);
@@ -2454,6 +2535,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 @Override
                 public boolean canCaptureMorePhotos() {
                     return false;
+                }
+
+                {
+                    AnonymousClass12.this = this;
                 }
 
                 @Override
@@ -2523,6 +2608,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         private boolean processChange;
 
         AnonymousClass15() {
+            ChatActivityEnterView.this = r1;
         }
 
         @Override
@@ -2629,6 +2715,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         final Theme.ResourcesProvider val$resourcesProvider;
 
         AnonymousClass17(Theme.ResourcesProvider resourcesProvider, ChatActivity chatActivity) {
+            ChatActivityEnterView.this = r1;
             this.val$resourcesProvider = resourcesProvider;
             this.val$fragment = chatActivity;
         }
@@ -2761,6 +2848,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         ChatActivityEnterView.this.lambda$new$12(chatFull, messagesController, recyclerView, senderView, tLRPC$Peer);
                     }
                 }) {
+                    {
+                        ChatActivityEnterView.this = this;
+                    }
+
                     @Override
                     public void dismiss() {
                         if (ChatActivityEnterView.this.senderSelectPopupWindow != this) {
@@ -3006,6 +3097,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.senderSelectView.setScaleY(1.0f);
             this.senderSelectView.setAlpha(1.0f);
             this.senderSelectView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                {
+                    ChatActivityEnterView.this = this;
+                }
+
                 @Override
                 public boolean onPreDraw() {
                     ChatActivityEnterView.this.senderSelectView.getViewTreeObserver().removeOnPreDrawListener(this);
@@ -3028,6 +3123,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.senderSelectView.setScaleY(1.0f);
             this.senderSelectView.setAlpha(1.0f);
             this.senderSelectView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                {
+                    ChatActivityEnterView.this = this;
+                }
+
                 @Override
                 public boolean onPreDraw() {
                     ChatActivityEnterView.this.senderSelectView.getViewTreeObserver().removeOnPreDrawListener(this);
@@ -3725,6 +3824,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         this.currentTopViewAnimation = ofFloat;
                         ofFloat.addUpdateListener(this.topViewUpdateListener);
                         this.currentTopViewAnimation.addListener(new AnimatorListenerAdapter() {
+                            {
+                                ChatActivityEnterView.this = this;
+                            }
+
                             @Override
                             public void onAnimationEnd(Animator animator) {
                                 ValueAnimator valueAnimator2 = ChatActivityEnterView.this.currentTopViewAnimation;
@@ -3802,6 +3905,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 this.doneButtonAnimation.playTogether(ObjectAnimator.ofFloat(this.doneButtonProgress, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.doneButtonProgress, View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.doneButtonProgress, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.doneButtonImage, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.doneButtonImage, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.doneButtonImage, View.ALPHA, 1.0f));
             }
             this.doneButtonAnimation.addListener(new AnimatorListenerAdapter() {
+                {
+                    ChatActivityEnterView.this = this;
+                }
+
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     if (ChatActivityEnterView.this.doneButtonAnimation != null && ChatActivityEnterView.this.doneButtonAnimation.equals(animator)) {
@@ -3864,6 +3971,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     this.currentTopViewAnimation = ofFloat;
                     ofFloat.addUpdateListener(this.topViewUpdateListener);
                     this.currentTopViewAnimation.addListener(new AnimatorListenerAdapter() {
+                        {
+                            ChatActivityEnterView.this = this;
+                        }
+
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             ValueAnimator valueAnimator2 = ChatActivityEnterView.this.currentTopViewAnimation;
@@ -4355,6 +4466,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 }
                 this.recordPannelAnimation.setDuration(150L);
                 this.recordPannelAnimation.addListener(new AnimatorListenerAdapter() {
+                    {
+                        ChatActivityEnterView.this = this;
+                    }
+
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         ChatActivityEnterView.this.recordedAudioPanel.setVisibility(8);
@@ -4409,6 +4524,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     animatorSet7.playTogether(animatorSet4, animatorSet6);
                 }
                 this.recordPannelAnimation.addListener(new AnimatorListenerAdapter() {
+                    {
+                        ChatActivityEnterView.this = this;
+                    }
+
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         ChatActivityEnterView.this.recordedAudioSeekBar.setAlpha(1.0f);
@@ -4786,6 +4905,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                                 this.runningAnimation2.playTogether(arrayList);
                                 this.runningAnimation2.setDuration(100L);
                                 this.runningAnimation2.addListener(new AnimatorListenerAdapter() {
+                                    {
+                                        ChatActivityEnterView.this = this;
+                                    }
+
                                     @Override
                                     public void onAnimationEnd(Animator animator) {
                                         if (animator.equals(ChatActivityEnterView.this.runningAnimation2)) {
@@ -4852,6 +4975,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                             this.runningAnimation.playTogether(arrayList2);
                             this.runningAnimation.setDuration(150L);
                             this.runningAnimation.addListener(new AnimatorListenerAdapter() {
+                                {
+                                    ChatActivityEnterView.this = this;
+                                }
+
                                 @Override
                                 public void onAnimationEnd(Animator animator) {
                                     if (animator.equals(ChatActivityEnterView.this.runningAnimation)) {
@@ -4970,6 +5097,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                             this.runningAnimation2.playTogether(arrayList3);
                             this.runningAnimation2.setDuration(100L);
                             this.runningAnimation2.addListener(new AnimatorListenerAdapter() {
+                                {
+                                    ChatActivityEnterView.this = this;
+                                }
+
                                 @Override
                                 public void onAnimationEnd(Animator animator) {
                                     if (animator.equals(ChatActivityEnterView.this.runningAnimation2)) {
@@ -5017,6 +5148,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         this.runningAnimation.playTogether(arrayList4);
                         this.runningAnimation.setDuration(150L);
                         this.runningAnimation.addListener(new AnimatorListenerAdapter() {
+                            {
+                                ChatActivityEnterView.this = this;
+                            }
+
                             @Override
                             public void onAnimationEnd(Animator animator) {
                                 if (animator.equals(ChatActivityEnterView.this.runningAnimation)) {
@@ -5118,6 +5253,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         this.runningAnimation2.playTogether(arrayList5);
                         this.runningAnimation2.setDuration(100L);
                         this.runningAnimation2.addListener(new AnimatorListenerAdapter() {
+                            {
+                                ChatActivityEnterView.this = this;
+                            }
+
                             @Override
                             public void onAnimationEnd(Animator animator) {
                                 if (animator.equals(ChatActivityEnterView.this.runningAnimation2)) {
@@ -5165,6 +5304,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     this.runningAnimation.playTogether(arrayList6);
                     this.runningAnimation.setDuration(250L);
                     this.runningAnimation.addListener(new AnimatorListenerAdapter() {
+                        {
+                            ChatActivityEnterView.this = this;
+                        }
+
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             if (animator.equals(ChatActivityEnterView.this.runningAnimation)) {
@@ -5279,6 +5422,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         this.runningAnimation2.playTogether(arrayList7);
                         this.runningAnimation2.setDuration(100L);
                         this.runningAnimation2.addListener(new AnimatorListenerAdapter() {
+                            {
+                                ChatActivityEnterView.this = this;
+                            }
+
                             @Override
                             public void onAnimationEnd(Animator animator) {
                                 if (animator.equals(ChatActivityEnterView.this.runningAnimation2)) {
@@ -5330,6 +5477,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     this.runningAnimation.playTogether(arrayList8);
                     this.runningAnimation.setDuration(150L);
                     this.runningAnimation.addListener(new AnimatorListenerAdapter() {
+                        {
+                            ChatActivityEnterView.this = this;
+                        }
+
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             if (animator.equals(ChatActivityEnterView.this.runningAnimation)) {
@@ -6098,6 +6249,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 animatorSet2.playTogether(animatorArr);
                 this.scheduledButtonAnimation.setDuration(180L);
                 this.scheduledButtonAnimation.addListener(new AnimatorListenerAdapter() {
+                    {
+                        ChatActivityEnterView.this = this;
+                    }
+
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         ChatActivityEnterView.this.scheduledButtonAnimation = null;
@@ -6190,6 +6345,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 final float f10 = f4;
                 final float f11 = f;
                 duration.addListener(new AnimatorListenerAdapter() {
+                    {
+                        ChatActivityEnterView.this = this;
+                    }
+
                     @Override
                     public void onAnimationStart(Animator animator) {
                         if (z4) {
@@ -6396,6 +6555,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
                 final long j2 = j;
                 final Runnable runnable = new Runnable() {
+                    {
+                        ChatActivityEnterView.this = this;
+                    }
+
                     @Override
                     public void run() {
                         if (ChatActivityEnterView.this.sizeNotifierLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
@@ -6545,6 +6708,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     private void createEmojiView() {
         if (this.emojiView == null) {
             EmojiView emojiView = new EmojiView(this.allowStickers, this.allowGifs, getContext(), true, this.info, this.sizeNotifierLayout, this.resourcesProvider) {
+                {
+                    ChatActivityEnterView.this = this;
+                }
+
                 @Override
                 public void setTranslationY(float f) {
                     super.setTranslationY(f);
@@ -6560,6 +6727,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.emojiView.setDragListener(new EmojiView.DragListener() {
                 int initialOffset;
                 boolean wasExpanded;
+
+                {
+                    ChatActivityEnterView.this = this;
+                }
 
                 @Override
                 public void onDragStart() {
@@ -6642,6 +6813,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
     public class AnonymousClass58 implements EmojiView.EmojiViewDelegate {
         AnonymousClass58() {
+            ChatActivityEnterView.this = r1;
         }
 
         @Override
@@ -6870,6 +7042,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         public void showTrendingStickersAlert(TrendingStickersLayout trendingStickersLayout) {
             if (ChatActivityEnterView.this.parentActivity != null && ChatActivityEnterView.this.parentFragment != null) {
                 ChatActivityEnterView.this.trendingStickersAlert = new TrendingStickersAlert(ChatActivityEnterView.this.parentActivity, ChatActivityEnterView.this.parentFragment, trendingStickersLayout, ChatActivityEnterView.this.resourcesProvider) {
+                    {
+                        AnonymousClass58.this = this;
+                    }
+
                     @Override
                     public void dismiss() {
                         super.dismiss();
@@ -7048,6 +7224,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         this.panelAnimation.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
                         this.panelAnimation.setDuration(250L);
                         this.panelAnimation.addListener(new AnimatorListenerAdapter() {
+                            {
+                                ChatActivityEnterView.this = this;
+                            }
+
                             @Override
                             public void onAnimationEnd(Animator animator) {
                                 ChatActivityEnterView.this.panelAnimation = null;
@@ -7097,6 +7277,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         this.panelAnimation.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
                         this.panelAnimation.setDuration(250L);
                         this.panelAnimation.addListener(new AnimatorListenerAdapter() {
+                            {
+                                ChatActivityEnterView.this = this;
+                            }
+
                             @Override
                             public void onAnimationEnd(Animator animator) {
                                 if (i == 0) {
@@ -7138,6 +7322,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                             this.panelAnimation.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
                             this.panelAnimation.setDuration(250L);
                             this.panelAnimation.addListener(new AnimatorListenerAdapter() {
+                                {
+                                    ChatActivityEnterView.this = this;
+                                }
+
                                 @Override
                                 public void onAnimationEnd(Animator animator) {
                                     if (i == 0) {
@@ -7244,6 +7432,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 this.emojiButtonAnimation = animatorSet2;
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this.emojiButton[0], View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.emojiButton[0], View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.emojiButton[0], View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.emojiButton[1], View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.emojiButton[1], View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.emojiButton[1], View.ALPHA, 1.0f));
                 this.emojiButtonAnimation.addListener(new AnimatorListenerAdapter() {
+                    {
+                        ChatActivityEnterView.this = this;
+                    }
+
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         if (animator.equals(ChatActivityEnterView.this.emojiButtonAnimation)) {
@@ -7342,6 +7534,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     }
                 });
                 this.searchAnimator.addListener(new AnimatorListenerAdapter() {
+                    {
+                        ChatActivityEnterView.this = this;
+                    }
+
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         ChatActivityEnterView.this.searchToOpenProgress = z2 ? 1.0f : 0.0f;
@@ -7511,6 +7707,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                                 this.panelAnimation.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
                                 this.panelAnimation.setDuration(250L);
                                 this.panelAnimation.addListener(new AnimatorListenerAdapter() {
+                                    {
+                                        ChatActivityEnterView.this = this;
+                                    }
+
                                     @Override
                                     public void onAnimationEnd(Animator animator) {
                                         ChatActivityEnterView.this.panelAnimation = null;
@@ -7878,6 +8078,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     animatorSet.setDuration(300L);
                     animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
                     animatorSet.addListener(new AnimatorListenerAdapter() {
+                        {
+                            ChatActivityEnterView.this = this;
+                        }
+
                         @Override
                         public void onAnimationEnd(Animator animator2) {
                             ChatActivityEnterView.this.stickersExpansionAnim = null;
@@ -7910,6 +8114,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 animatorSet2.setDuration(300L);
                 animatorSet2.setInterpolator(CubicBezierInterpolator.DEFAULT);
                 animatorSet2.addListener(new AnimatorListenerAdapter() {
+                    {
+                        ChatActivityEnterView.this = this;
+                    }
+
                     @Override
                     public void onAnimationEnd(Animator animator2) {
                         ChatActivityEnterView.this.stickersExpansionAnim = null;
@@ -7978,6 +8186,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         }
                     });
                     animatorSet.addListener(new AnimatorListenerAdapter() {
+                        {
+                            ChatActivityEnterView.this = this;
+                        }
+
                         @Override
                         public void onAnimationEnd(Animator animator2) {
                             ChatActivityEnterView.this.stickersExpansionAnim = null;
@@ -8012,6 +8224,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         }
                     });
                     animatorSet2.addListener(new AnimatorListenerAdapter() {
+                        {
+                            ChatActivityEnterView.this = this;
+                        }
+
                         @Override
                         public void onAnimationEnd(Animator animator2) {
                             ChatActivityEnterView.this.closeAnimationInProgress = false;
@@ -8129,6 +8345,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
 
         public ScrimDrawable() {
+            ChatActivityEnterView.this = r2;
             Paint paint = new Paint();
             this.paint = paint;
             paint.setColor(0);
@@ -8213,6 +8430,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         public SlideTextView(Context context) {
             super(context);
+            ChatActivityEnterView.this = r5;
             this.smallSize = AndroidUtilities.displaySize.x <= AndroidUtilities.dp(320.0f);
             TextPaint textPaint = new TextPaint(1);
             this.grayPaint = textPaint;
@@ -8221,7 +8439,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             this.bluePaint = textPaint2;
             textPaint2.setTextSize(AndroidUtilities.dp(15.0f));
             this.bluePaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-            this.arrowPaint.setColor(ChatActivityEnterView.this.getThemedColor("chat_messagePanelIcons"));
+            this.arrowPaint.setColor(r5.getThemedColor("chat_messagePanelIcons"));
             this.arrowPaint.setStyle(Paint.Style.STROKE);
             this.arrowPaint.setStrokeWidth(AndroidUtilities.dpf2(this.smallSize ? 1.0f : 1.6f));
             this.arrowPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -8408,6 +8626,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         public TimerView(Context context) {
             super(context);
+            ChatActivityEnterView.this = r2;
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
             textPaint.setTextSize(AndroidUtilities.dp(15.0f));
@@ -8750,7 +8969,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
         EmojiView emojiView = this.emojiView;
         if (emojiView == null || emojiView.getVisibility() != 0 || this.emojiView.getStickersExpandOffset() == 0.0f) {
             super.dispatchDraw(canvas);

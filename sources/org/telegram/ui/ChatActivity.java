@@ -11846,7 +11846,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public boolean createLayout(int i) {
+        protected boolean createLayout(int i) {
             int textWidth;
             boolean createLayout = super.createLayout(i);
             if (this.trackWidth && getVisibility() == 0 && ChatActivity.this.pinnedCounterTextView != null && (textWidth = getTextWidth() + AndroidUtilities.dp(4.0f)) != ChatActivity.this.pinnedCounterTextViewX) {
