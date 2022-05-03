@@ -11,8 +11,8 @@ public final class CarouselView$$ExternalSyntheticLambda2 implements ToIntFuncti
 
     @Override
     public final int applyAsInt(Object obj) {
-        int lambda$new$2;
-        lambda$new$2 = CarouselView.lambda$new$2((CarouselView.DrawingObject) obj);
-        return lambda$new$2;
+        int lambda$new$1;
+        lambda$new$1 = CarouselView.lambda$new$1((CarouselView.DrawingObject) obj);
+        return lambda$new$1;
     }
 }

@@ -477,7 +477,7 @@ public class ContentPreviewViewer {
 
     public void showUnlockPremiumView() {
         if (this.unlockPremiumView == null) {
-            UnlockPremiumView unlockPremiumView = new UnlockPremiumView(this.containerView.getContext(), this.resourcesProvider);
+            UnlockPremiumView unlockPremiumView = new UnlockPremiumView(this.containerView.getContext(), 0, this.resourcesProvider);
             this.unlockPremiumView = unlockPremiumView;
             this.containerView.addView(unlockPremiumView, LayoutHelper.createFrame(-1, -1.0f));
             this.unlockPremiumView.setOnClickListener(new View.OnClickListener() {

@@ -43,7 +43,7 @@ public class StickerTabView extends FrameLayout {
             this.imageView = backupImageView;
             backupImageView.setLayerNum(1);
             this.imageView.setAspectFit(false);
-            addView(this.imageView, LayoutHelper.createFrame(36, 36, 17));
+            addView(this.imageView, LayoutHelper.createFrame(26, 26, 17));
             this.visibleView = this.imageView;
         } else if (i == 1) {
             ImageView imageView = new ImageView(context);

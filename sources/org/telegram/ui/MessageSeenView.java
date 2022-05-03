@@ -280,7 +280,17 @@ public class MessageSeenView extends FrameLayout {
     }
 
     public RecyclerListView createListView() {
-        RecyclerListView recyclerListView = new RecyclerListView(getContext());
+        RecyclerListView recyclerListView = new RecyclerListView(this, getContext()) {
+            @Override
+            public void onMeasure(int i, int i2) {
+                int size = View.MeasureSpec.getSize(i2);
+                int dp = AndroidUtilities.dp(8.0f) + (AndroidUtilities.dp(44.0f) * getAdapter().getItemCount());
+                if (dp <= size) {
+                    size = dp;
+                }
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+            }
+        };
         recyclerListView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override

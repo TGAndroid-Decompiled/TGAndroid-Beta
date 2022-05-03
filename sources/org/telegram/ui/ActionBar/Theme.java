@@ -72,15 +72,14 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationBadge;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -118,7 +117,6 @@ import org.telegram.tgnet.TLRPC$WallPaperSettings;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AudioVisualizerDrawable;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
-import org.telegram.ui.Components.ChatThemeBottomSheet;
 import org.telegram.ui.Components.ChoosingStickerStatusDrawable;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.FragmentContextViewWavesDrawable;
@@ -423,7 +421,6 @@ public class Theme {
     private static boolean[] loadingRemoteThemes = new boolean[3];
     private static int[] lastLoadingThemesTime = new int[3];
     private static long[] remoteThemesHash = new long[3];
-    public static final ArrayList<ChatThemeBottomSheet.ChatThemeItem> defaultEmojiThemes = new ArrayList<>();
     public static Drawable[] avatarDrawables = new Drawable[12];
     private static StatusDrawable[] chat_status_drawables = new StatusDrawable[6];
     public static Drawable[] chat_msgInCallDrawable = new Drawable[2];
@@ -2329,34 +2326,6 @@ public class Theme {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.<clinit>():void");
     }
 
-    class AnonymousClass3 implements Runnable {
-        final ArrayList val$previewItems;
-
-        AnonymousClass3(ArrayList arrayList) {
-            this.val$previewItems = arrayList;
-        }
-
-        @Override
-        public void run() {
-            for (int i = 0; i < this.val$previewItems.size(); i++) {
-                ((ChatThemeBottomSheet.ChatThemeItem) this.val$previewItems.get(i)).chatTheme.loadPreviewColors(0);
-            }
-            final ArrayList arrayList = this.val$previewItems;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    Theme.AnonymousClass3.lambda$run$0(arrayList);
-                }
-            });
-        }
-
-        public static void lambda$run$0(ArrayList arrayList) {
-            ArrayList<ChatThemeBottomSheet.ChatThemeItem> arrayList2 = Theme.defaultEmojiThemes;
-            arrayList2.clear();
-            arrayList2.addAll(arrayList);
-        }
-    }
-
     public static void sortAccents(ThemeInfo themeInfo) {
         Collections.sort(themeInfo.themeAccents, Theme$$ExternalSyntheticLambda7.INSTANCE);
     }
@@ -3839,7 +3808,9 @@ public class Theme {
             loadingRemoteThemes[i] = true;
             TLRPC$TL_account_getThemes tLRPC$TL_account_getThemes = new TLRPC$TL_account_getThemes();
             tLRPC$TL_account_getThemes.format = "android";
-            tLRPC$TL_account_getThemes.hash = remoteThemesHash[i];
+            if (!MediaDataController.getInstance(i).defaultEmojiThemes.isEmpty()) {
+                tLRPC$TL_account_getThemes.hash = remoteThemesHash[i];
+            }
             if (BuildVars.LOGS_ENABLED) {
                 Log.i("theme", "loading remote themes, hash " + tLRPC$TL_account_getThemes.hash);
             }
@@ -3863,64 +3834,6 @@ public class Theme {
 
     public static void lambda$loadRemoteThemes$5(int r18, org.telegram.tgnet.TLObject r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.lambda$loadRemoteThemes$5(int, org.telegram.tgnet.TLObject):void");
-    }
-
-    private static void generateEmojiPreviewThemes(ArrayList<TLRPC$TL_theme> arrayList, int i) {
-        SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("emojithemes_config", 0).edit();
-        edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, arrayList.size());
-        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            TLRPC$TL_theme tLRPC$TL_theme = arrayList.get(i2);
-            SerializedData serializedData = new SerializedData(tLRPC$TL_theme.getObjectSize());
-            tLRPC$TL_theme.serializeToStream(serializedData);
-            edit.putString("theme_" + i2, Utilities.bytesToHex(serializedData.toByteArray()));
-        }
-        edit.apply();
-        if (!arrayList.isEmpty()) {
-            ArrayList arrayList2 = new ArrayList();
-            arrayList2.add(new ChatThemeBottomSheet.ChatThemeItem(EmojiThemes.createHomePreviewTheme()));
-            for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                EmojiThemes createPreviewFullTheme = EmojiThemes.createPreviewFullTheme(arrayList.get(i3));
-                ChatThemeBottomSheet.ChatThemeItem chatThemeItem = new ChatThemeBottomSheet.ChatThemeItem(createPreviewFullTheme);
-                if (createPreviewFullTheme.items.size() >= 4) {
-                    arrayList2.add(chatThemeItem);
-                }
-            }
-            ChatThemeController.chatThemeQueue.postRunnable(new AnonymousClass11(arrayList2, i));
-            return;
-        }
-        defaultEmojiThemes.clear();
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.emojiPreviewThemesChanged, new Object[0]);
-    }
-
-    public class AnonymousClass11 implements Runnable {
-        final int val$currentAccount;
-        final ArrayList val$previewItems;
-
-        AnonymousClass11(ArrayList arrayList, int i) {
-            this.val$previewItems = arrayList;
-            this.val$currentAccount = i;
-        }
-
-        @Override
-        public void run() {
-            for (int i = 0; i < this.val$previewItems.size(); i++) {
-                ((ChatThemeBottomSheet.ChatThemeItem) this.val$previewItems.get(i)).chatTheme.loadPreviewColors(this.val$currentAccount);
-            }
-            final ArrayList arrayList = this.val$previewItems;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    Theme.AnonymousClass11.lambda$run$0(arrayList);
-                }
-            });
-        }
-
-        public static void lambda$run$0(ArrayList arrayList) {
-            ArrayList<ChatThemeBottomSheet.ChatThemeItem> arrayList2 = Theme.defaultEmojiThemes;
-            arrayList2.clear();
-            arrayList2.addAll(arrayList);
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.emojiPreviewThemesChanged, new Object[0]);
-        }
     }
 
     public static String getBaseThemeKey(TLRPC$ThemeSettings tLRPC$ThemeSettings) {

@@ -60,6 +60,10 @@ public class CarouselView extends View {
         return (f2 * f2 * f2 * f2 * f2) + 1.0f;
     }
 
+    public static int lambda$new$1(DrawingObject drawingObject) {
+        return (int) (drawingObject.yRelative * 100.0f);
+    }
+
     public CarouselView(Context context, ArrayList<DrawingObject> arrayList) {
         super(context);
         this.gestureDetector = new GestureDetector(context, new GestureDetector.OnGestureListener() {
@@ -77,7 +81,8 @@ public class CarouselView extends View {
             public boolean onDown(MotionEvent motionEvent) {
                 ValueAnimator valueAnimator = CarouselView.this.autoScrollAnimation;
                 if (valueAnimator != null) {
-                    valueAnimator.cancel();
+                    valueAnimator.removeAllListeners();
+                    CarouselView.this.autoScrollAnimation.cancel();
                 }
                 CarouselView.this.overScroller.abortAnimation();
                 this.lastAngle = Math.atan2(motionEvent.getX() - CarouselView.this.cX, motionEvent.getY() - CarouselView.this.cY);
@@ -142,7 +147,8 @@ public class CarouselView extends View {
     public void scrollToInternal(final float f) {
         ValueAnimator valueAnimator = this.autoScrollAnimation;
         if (valueAnimator != null) {
-            valueAnimator.cancel();
+            valueAnimator.removeAllListeners();
+            this.autoScrollAnimation.cancel();
         }
         final float f2 = this.offsetAngle;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -150,14 +156,15 @@ public class CarouselView extends View {
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                CarouselView.this.lambda$scrollToInternal$1(f2, f, valueAnimator2);
+                CarouselView.this.lambda$scrollToInternal$2(f2, f, valueAnimator2);
             }
         });
         this.autoScrollAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
-                CarouselView carouselView;
-                CarouselView.this.autoScrollAnimation = null;
+                CarouselView carouselView = CarouselView.this;
+                carouselView.offsetAngle = f;
+                carouselView.autoScrollAnimation = null;
                 CarouselView carouselView2 = CarouselView.this;
                 int size = (int) (((90.0f - carouselView2.offsetAngle) % 360.0f) / (360.0f / carouselView.drawingObjects.size()));
                 if (size < 0) {
@@ -175,7 +182,7 @@ public class CarouselView extends View {
         this.autoScrollAnimation.start();
     }
 
-    public void lambda$scrollToInternal$1(float f, float f2, ValueAnimator valueAnimator) {
+    public void lambda$scrollToInternal$2(float f, float f2, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.offsetAngle = (f * (1.0f - floatValue)) + (f2 * floatValue);
         invalidate();
@@ -213,10 +220,6 @@ public class CarouselView extends View {
         for (int i = 0; i < this.drawingObjects.size(); i++) {
             this.drawingObjects.get(i).onDetachFromWindow();
         }
-    }
-
-    public static int lambda$new$2(DrawingObject drawingObject) {
-        return (int) (drawingObject.yRelative * 100.0f);
     }
 
     @Override

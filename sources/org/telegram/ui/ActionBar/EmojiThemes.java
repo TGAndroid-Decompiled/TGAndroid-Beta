@@ -33,7 +33,7 @@ import org.telegram.ui.ActionBar.Theme;
 public class EmojiThemes {
     private static final String[] previewColorKeys = {"chat_inBubble", "chat_outBubble", "featuredStickers_addButton", "chat_wallpaper", "chat_wallpaper_gradient_to", "key_chat_wallpaper_gradient_to2", "key_chat_wallpaper_gradient_to3", "chat_wallpaper_gradient_rotation"};
     public String emoji;
-    ArrayList<ThemeItem> items = new ArrayList<>();
+    public ArrayList<ThemeItem> items = new ArrayList<>();
     public boolean showAsDefaultStub;
 
     private EmojiThemes() {

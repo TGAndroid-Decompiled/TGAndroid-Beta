@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$TL_theme;
@@ -135,17 +136,16 @@ public class DefaultThemesPreviewCell extends LinearLayout {
                 this.dayNightCell.setTextAndIcon(LocaleController.getString("SettingsSwitchToNightMode", R.string.SettingsSwitchToNightMode), (Drawable) this.darkThemeDrawable, true);
             }
         }
-        ArrayList<ChatThemeBottomSheet.ChatThemeItem> arrayList = Theme.defaultEmojiThemes;
-        if (!arrayList.isEmpty()) {
-            ArrayList arrayList2 = new ArrayList(arrayList);
+        if (!MediaDataController.getInstance(baseFragment.getCurrentAccount()).defaultEmojiThemes.isEmpty()) {
+            ArrayList arrayList = new ArrayList(MediaDataController.getInstance(baseFragment.getCurrentAccount()).defaultEmojiThemes);
             if (this.currentType == 0) {
                 EmojiThemes createPreviewCustom = EmojiThemes.createPreviewCustom();
                 createPreviewCustom.loadPreviewColors(baseFragment.getCurrentAccount());
                 ChatThemeBottomSheet.ChatThemeItem chatThemeItem = new ChatThemeBottomSheet.ChatThemeItem(createPreviewCustom);
                 chatThemeItem.themeIndex = !Theme.isCurrentThemeDay() ? 2 : i2;
-                arrayList2.add(chatThemeItem);
+                arrayList.add(chatThemeItem);
             }
-            adapter.setItems(arrayList2);
+            adapter.setItems(arrayList);
         }
         updateDayNightMode();
         updateSelectedPosition();

@@ -1545,7 +1545,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             final DividerCell dividerCell = new DividerCell(this.val$context);
             ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this, this.val$context) {
                 @Override
-                protected void onMeasure(int i, int i2) {
+                public void onMeasure(int i, int i2) {
                     if (dividerCell.getParent() != null) {
                         dividerCell.setVisibility(8);
                         super.onMeasure(i, i2);

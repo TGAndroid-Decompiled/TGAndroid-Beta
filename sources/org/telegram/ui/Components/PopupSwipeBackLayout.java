@@ -395,40 +395,43 @@ public class PopupSwipeBackLayout extends FrameLayout {
         }
     }
 
-    public void setNewForegroundHeight(int i, int i2) {
+    public void setNewForegroundHeight(int i, int i2, boolean z) {
         this.overrideHeightIndex.put(i, i2);
         int i3 = this.currentForegroundIndex;
         if (i == i3 && i3 >= 0 && i3 < getChildCount()) {
             ValueAnimator valueAnimator = this.foregroundAnimator;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
+                this.foregroundAnimator = null;
             }
-            View childAt = getChildAt(this.currentForegroundIndex);
-            float f = this.overrideForegroundHeight;
-            if (f == 0.0f) {
-                f = childAt.getMeasuredHeight();
+            if (z) {
+                View childAt = getChildAt(this.currentForegroundIndex);
+                float f = this.overrideForegroundHeight;
+                if (f == 0.0f) {
+                    f = childAt.getMeasuredHeight();
+                }
+                ValueAnimator duration = ValueAnimator.ofFloat(f, i2).setDuration(240L);
+                duration.setInterpolator(Easings.easeInOutQuad);
+                duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        PopupSwipeBackLayout.this.lambda$setNewForegroundHeight$1(valueAnimator2);
+                    }
+                });
+                this.isAnimationInProgress = true;
+                duration.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        PopupSwipeBackLayout.this.isAnimationInProgress = false;
+                        PopupSwipeBackLayout.this.foregroundAnimator = null;
+                    }
+                });
+                duration.start();
+                this.foregroundAnimator = duration;
+                return;
             }
-            ValueAnimator duration = ValueAnimator.ofFloat(f, i2).setDuration(240L);
-            duration.setInterpolator(Easings.easeInOutQuad);
-            duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    PopupSwipeBackLayout.this.lambda$setNewForegroundHeight$1(valueAnimator2);
-                }
-            });
-            duration.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    PopupSwipeBackLayout.this.isAnimationInProgress = false;
-                }
-
-                @Override
-                public void onAnimationStart(Animator animator) {
-                    PopupSwipeBackLayout.this.isAnimationInProgress = true;
-                }
-            });
-            duration.start();
-            this.foregroundAnimator = duration;
+            this.overrideForegroundHeight = i2;
+            invalidateTransforms();
         }
     }
 

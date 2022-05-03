@@ -1,12 +1,13 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_messages_prolongWebView extends TLObject {
-    public static int constructor = -768945848;
+    public static int constructor = -362824498;
     public TLRPC$InputUser bot;
     public int flags;
     public TLRPC$InputPeer peer;
     public long query_id;
     public int reply_to_msg_id;
+    public TLRPC$InputPeer send_as;
     public boolean silent;
 
     @Override
@@ -25,6 +26,9 @@ public class TLRPC$TL_messages_prolongWebView extends TLObject {
         abstractSerializedData.writeInt64(this.query_id);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.reply_to_msg_id);
+        }
+        if ((this.flags & 8192) != 0) {
+            this.send_as.serializeToStream(abstractSerializedData);
         }
     }
 }

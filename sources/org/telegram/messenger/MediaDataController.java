@@ -32,6 +32,8 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
 import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.NotificationBadge;
 import org.telegram.messenger.ringtone.RingtoneDataStore;
 import org.telegram.messenger.ringtone.RingtoneUploader;
 import org.telegram.messenger.support.SparseLongArray;
@@ -157,18 +159,22 @@ import org.telegram.tgnet.TLRPC$TL_messages_uninstallStickerSet;
 import org.telegram.tgnet.TLRPC$TL_peerChat;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$TL_stickerPack;
+import org.telegram.tgnet.TLRPC$TL_theme;
 import org.telegram.tgnet.TLRPC$TL_topPeer;
 import org.telegram.tgnet.TLRPC$TL_topPeerCategoryBotsInline;
 import org.telegram.tgnet.TLRPC$TL_topPeerCategoryCorrespondents;
 import org.telegram.tgnet.TLRPC$TL_topPeerCategoryPeers;
 import org.telegram.tgnet.TLRPC$TL_updateBotCommands;
+import org.telegram.tgnet.TLRPC$Theme;
 import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.tgnet.TLRPC$messages_Messages;
 import org.telegram.tgnet.TLRPC$messages_StickerSet;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.Components.Bulletin;
+import org.telegram.ui.Components.ChatThemeBottomSheet;
 import org.telegram.ui.Components.StickerSetBulletinLayout;
 import org.telegram.ui.Components.StickersArchiveAlert;
 import org.telegram.ui.Components.TextStyleSpan;
@@ -273,6 +279,7 @@ public class MediaDataController extends BaseController {
     private LongSparseArray<TLRPC$StickerSetCovered> featuredStickerSetsById = new LongSparseArray<>();
     private ArrayList<Long> unreadStickerSets = new ArrayList<>();
     private ArrayList<Long> readingStickerSets = new ArrayList<>();
+    public final ArrayList<ChatThemeBottomSheet.ChatThemeItem> defaultEmojiThemes = new ArrayList<>();
     private int[] messagesSearchCount = {0, 0};
     private boolean[] messagesSearchEndReached = {false, false};
     private ArrayList<MessageObject> searchResultMessages = new ArrayList<>();
@@ -381,6 +388,7 @@ public class MediaDataController extends BaseController {
             serializedData.cleanup();
         }
         loadStickersByEmojiOrName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME, false, true);
+        loadEmojiThemes();
         this.ringtoneDataStore = new RingtoneDataStore(this.currentAccount);
     }
 
@@ -6352,5 +6360,110 @@ public class MediaDataController extends BaseController {
             return -1;
         }
         return length > length2 ? 1 : 0;
+    }
+
+    public void loadEmojiThemes() {
+        Context context = ApplicationLoader.applicationContext;
+        SharedPreferences sharedPreferences = context.getSharedPreferences("emojithemes_config_" + this.currentAccount, 0);
+        int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(new ChatThemeBottomSheet.ChatThemeItem(EmojiThemes.createHomePreviewTheme()));
+        for (int i2 = 0; i2 < i; i2++) {
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, "")));
+            try {
+                EmojiThemes createPreviewFullTheme = EmojiThemes.createPreviewFullTheme(TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true));
+                if (createPreviewFullTheme.items.size() >= 4) {
+                    arrayList.add(new ChatThemeBottomSheet.ChatThemeItem(createPreviewFullTheme));
+                }
+                ChatThemeController.chatThemeQueue.postRunnable(new AnonymousClass2(arrayList));
+            } catch (Throwable th) {
+                FileLog.e(th);
+            }
+        }
+    }
+
+    public class AnonymousClass2 implements Runnable {
+        final ArrayList val$previewItems;
+
+        AnonymousClass2(ArrayList arrayList) {
+            this.val$previewItems = arrayList;
+        }
+
+        @Override
+        public void run() {
+            for (int i = 0; i < this.val$previewItems.size(); i++) {
+                ((ChatThemeBottomSheet.ChatThemeItem) this.val$previewItems.get(i)).chatTheme.loadPreviewColors(0);
+            }
+            final ArrayList arrayList = this.val$previewItems;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    MediaDataController.AnonymousClass2.this.lambda$run$0(arrayList);
+                }
+            });
+        }
+
+        public void lambda$run$0(ArrayList arrayList) {
+            MediaDataController.this.defaultEmojiThemes.clear();
+            MediaDataController.this.defaultEmojiThemes.addAll(arrayList);
+        }
+    }
+
+    public void generateEmojiPreviewThemes(ArrayList<TLRPC$TL_theme> arrayList, int i) {
+        Context context = ApplicationLoader.applicationContext;
+        SharedPreferences.Editor edit = context.getSharedPreferences("emojithemes_config_" + i, 0).edit();
+        edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, arrayList.size());
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            TLRPC$TL_theme tLRPC$TL_theme = arrayList.get(i2);
+            SerializedData serializedData = new SerializedData(tLRPC$TL_theme.getObjectSize());
+            tLRPC$TL_theme.serializeToStream(serializedData);
+            edit.putString("theme_" + i2, Utilities.bytesToHex(serializedData.toByteArray()));
+        }
+        edit.apply();
+        if (!arrayList.isEmpty()) {
+            ArrayList arrayList2 = new ArrayList();
+            arrayList2.add(new ChatThemeBottomSheet.ChatThemeItem(EmojiThemes.createHomePreviewTheme()));
+            for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                EmojiThemes createPreviewFullTheme = EmojiThemes.createPreviewFullTheme(arrayList.get(i3));
+                ChatThemeBottomSheet.ChatThemeItem chatThemeItem = new ChatThemeBottomSheet.ChatThemeItem(createPreviewFullTheme);
+                if (createPreviewFullTheme.items.size() >= 4) {
+                    arrayList2.add(chatThemeItem);
+                }
+            }
+            ChatThemeController.chatThemeQueue.postRunnable(new AnonymousClass3(arrayList2, i));
+            return;
+        }
+        this.defaultEmojiThemes.clear();
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.emojiPreviewThemesChanged, new Object[0]);
+    }
+
+    public class AnonymousClass3 implements Runnable {
+        final int val$currentAccount;
+        final ArrayList val$previewItems;
+
+        AnonymousClass3(ArrayList arrayList, int i) {
+            this.val$previewItems = arrayList;
+            this.val$currentAccount = i;
+        }
+
+        @Override
+        public void run() {
+            for (int i = 0; i < this.val$previewItems.size(); i++) {
+                ((ChatThemeBottomSheet.ChatThemeItem) this.val$previewItems.get(i)).chatTheme.loadPreviewColors(this.val$currentAccount);
+            }
+            final ArrayList arrayList = this.val$previewItems;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    MediaDataController.AnonymousClass3.this.lambda$run$0(arrayList);
+                }
+            });
+        }
+
+        public void lambda$run$0(ArrayList arrayList) {
+            MediaDataController.this.defaultEmojiThemes.clear();
+            MediaDataController.this.defaultEmojiThemes.addAll(arrayList);
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.emojiPreviewThemesChanged, new Object[0]);
+        }
     }
 }

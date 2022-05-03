@@ -441,6 +441,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
             public static void $default$openAvatarsSearch(ChatAttachViewDelegate chatAttachViewDelegate) {
             }
+
+            public static void $default$doOnIdle(ChatAttachViewDelegate _this, Runnable runnable) {
+                runnable.run();
+            }
         }
     }
 

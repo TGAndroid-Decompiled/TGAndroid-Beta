@@ -76,9 +76,6 @@ public class UnlockPremiumReactionsWindow {
         this.blurView = view;
         frameLayout.addView(view);
         prepareBlurBitmap();
-        UnlockPremiumView unlockPremiumView = new UnlockPremiumView(context, resourcesProvider);
-        this.unlockPremiumView = unlockPremiumView;
-        frameLayout.addView(unlockPremiumView, LayoutHelper.createFrame(-1, -1.0f));
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < 5; i++) {
             ReactionDrawingObject reactionDrawingObject = new ReactionDrawingObject(this, i);
@@ -88,6 +85,9 @@ public class UnlockPremiumReactionsWindow {
         CarouselView carouselView = new CarouselView(context, arrayList);
         this.carouselView = carouselView;
         frameLayout.addView(carouselView, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 0.0f, 0.0f, 60.0f));
+        UnlockPremiumView unlockPremiumView = new UnlockPremiumView(context, 1, resourcesProvider);
+        this.unlockPremiumView = unlockPremiumView;
+        frameLayout.addView(unlockPremiumView, LayoutHelper.createFrame(-1, -1.0f));
         frameLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(View view2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9) {
@@ -233,16 +233,20 @@ public class UnlockPremiumReactionsWindow {
                 float f8 = f7 / 2.0f;
                 this.effectImageReceiver.setImageCoords(f - f8, f2 - f8, f7, f7);
                 this.effectImageReceiver.draw(canvas);
+                if (this.effectImageReceiver.getLottieAnimation() != null && !this.effectImageReceiver.getLottieAnimation().isRunning() && !this.effectImageReceiver.getLottieAnimation().isLastFrame()) {
+                    this.effectImageReceiver.getLottieAnimation().start();
+                }
             }
             if (this.actionReceiver.hasBitmapImage()) {
                 this.actionReceiver.draw(canvas);
                 if (this.actionReceiver.getLottieAnimation() != null && this.actionReceiver.getLottieAnimation().isLastFrame()) {
                     this.selected = false;
-                    return;
+                } else if (this.selected && this.actionReceiver.getLottieAnimation() != null && !this.actionReceiver.getLottieAnimation().isRunning()) {
+                    this.actionReceiver.getLottieAnimation().start();
                 }
-                return;
+            } else {
+                this.imageReceiver.draw(canvas);
             }
-            this.imageReceiver.draw(canvas);
         }
 
         @Override

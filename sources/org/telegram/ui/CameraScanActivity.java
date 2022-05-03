@@ -173,6 +173,10 @@ public class CameraScanActivity extends BaseFragment {
             this.val$cameraDelegate = cameraScanActivityDelegate;
             actionBarLayoutArr[0].init(new ArrayList<>());
             CameraScanActivity cameraScanActivity = new CameraScanActivity(i) {
+                {
+                    AnonymousClass1.this = this;
+                }
+
                 @Override
                 public void finishFragment() {
                     AnonymousClass1.this.dismiss();
@@ -279,6 +283,10 @@ public class CameraScanActivity extends BaseFragment {
             this.actionBar.showActionModeTop();
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            {
+                CameraScanActivity.this = this;
+            }
+
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -290,6 +298,10 @@ public class CameraScanActivity extends BaseFragment {
         this.cornerPaint.setColor(-1);
         this.cornerPaint.setStyle(Paint.Style.FILL);
         ViewGroup viewGroup = new ViewGroup(context) {
+            {
+                CameraScanActivity.this = this;
+            }
+
             @Override
             protected void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i);
@@ -654,6 +666,10 @@ public class CameraScanActivity extends BaseFragment {
                 photoAlbumPickerActivity.setMaxSelectedPhotos(1, false);
                 photoAlbumPickerActivity.setAllowSearchImages(false);
                 photoAlbumPickerActivity.setDelegate(new PhotoAlbumPickerActivity.PhotoAlbumPickerActivityDelegate() {
+                    {
+                        CameraScanActivity.this = this;
+                    }
+
                     @Override
                     public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i) {
                         try {
@@ -718,6 +734,10 @@ public class CameraScanActivity extends BaseFragment {
             this.flashAnimator.setDuration(200L);
             this.flashAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.flashAnimator.addListener(new AnimatorListenerAdapter() {
+                {
+                    CameraScanActivity.this = this;
+                }
+
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     CameraScanActivity.this.flashAnimator = null;
@@ -947,6 +967,7 @@ public class CameraScanActivity extends BaseFragment {
 
     public class AnonymousClass7 implements Runnable {
         AnonymousClass7() {
+            CameraScanActivity.this = r1;
         }
 
         @Override

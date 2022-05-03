@@ -12863,7 +12863,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @android.annotation.SuppressLint({"ClickableViewAccessibility"})
-    public boolean createMenu(final android.view.View r48, boolean r49, boolean r50, float r51, float r52, boolean r53) {
+    public boolean createMenu(final android.view.View r51, boolean r52, boolean r53, float r54, float r55, boolean r56) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.createMenu(android.view.View, boolean, boolean, float, float, boolean):boolean");
     }
 
@@ -12920,10 +12920,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         reactionTabHolderView2.setOutlineProgress(floatValue);
     }
 
-    public class AnonymousClass100 extends PagerAdapter {
+    public class AnonymousClass99 extends PagerAdapter {
         final SparseIntArray val$cachedHeights;
         final SparseArray val$cachedViews;
         final List val$counters;
+        final int val$finalCount;
         final int[] val$foregroundIndex;
         final int val$head;
         final MessageObject val$message;
@@ -12938,7 +12939,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return view == obj;
         }
 
-        AnonymousClass100(int i, SparseArray sparseArray, boolean z, List list, MessageObject messageObject, ReactedHeaderView reactedHeaderView, SparseIntArray sparseIntArray, int i2, ViewPager viewPager, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int[] iArr) {
+        AnonymousClass99(int i, SparseArray sparseArray, boolean z, List list, MessageObject messageObject, ReactedHeaderView reactedHeaderView, SparseIntArray sparseIntArray, int i2, ViewPager viewPager, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int[] iArr, int i3) {
             this.val$size = i;
             this.val$cachedViews = sparseArray;
             this.val$showAllReactionsTab = z;
@@ -12950,6 +12951,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.val$pager = viewPager;
             this.val$popupLayout = actionBarPopupWindowLayout;
             this.val$foregroundIndex = iArr;
+            this.val$finalCount = i3;
         }
 
         @Override
@@ -12972,7 +12974,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ReactedUsersListView onProfileSelectedListener = new ReactedUsersListView(viewGroup.getContext(), ChatActivity.this.themeDelegate, ((BaseFragment) ChatActivity.this).currentAccount, this.val$message, tLRPC$TL_reactionCount, true).setSeenUsers(this.val$reactedView.getSeenUsers()).setOnProfileSelectedListener(new ReactedUsersListView.OnProfileSelectedListener() {
                 @Override
                 public final void onProfileSelected(ReactedUsersListView reactedUsersListView, long j) {
-                    ChatActivity.AnonymousClass100.this.lambda$instantiateItem$0(reactedUsersListView, j);
+                    ChatActivity.AnonymousClass99.this.lambda$instantiateItem$0(reactedUsersListView, j);
                 }
             });
             final SparseIntArray sparseIntArray = this.val$cachedHeights;
@@ -12983,13 +12985,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ReactedUsersListView onHeightChangedListener = onProfileSelectedListener.setOnHeightChangedListener(new ReactedUsersListView.OnHeightChangedListener() {
                 @Override
                 public final void onHeightChanged(ReactedUsersListView reactedUsersListView, int i4) {
-                    ChatActivity.AnonymousClass100.lambda$instantiateItem$1(sparseIntArray, i, i3, viewPager, actionBarPopupWindowLayout, iArr, reactedUsersListView, i4);
+                    ChatActivity.AnonymousClass99.lambda$instantiateItem$1(sparseIntArray, i, i3, viewPager, actionBarPopupWindowLayout, iArr, reactedUsersListView, i4);
                 }
             });
             if (i2 < 0) {
-                ReactedHeaderView reactedHeaderView = this.val$reactedView;
-                onHeightChangedListener.getClass();
-                reactedHeaderView.setSeenCallback(new ChatActivity$$ExternalSyntheticLambda107(onHeightChangedListener));
+                onHeightChangedListener.setPredictiveCount(this.val$finalCount);
+                this.val$reactedView.setSeenCallback(new ChatActivity$$ExternalSyntheticLambda107(onHeightChangedListener));
             }
             viewGroup.addView(onHeightChangedListener);
             this.val$cachedViews.put(i, onHeightChangedListener);
@@ -13007,7 +13008,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             int i4 = i2 + i3;
             sparseIntArray.put(i, i4);
             if (viewPager.getCurrentItem() == i) {
-                actionBarPopupWindowLayout.getSwipeBack().setNewForegroundHeight(iArr[0], i4);
+                actionBarPopupWindowLayout.getSwipeBack().setNewForegroundHeight(iArr[0], i4, true);
             }
         }
 
@@ -13025,11 +13026,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public static void lambda$createMenu$156(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int[] iArr, ReactedUsersListView reactedUsersListView, int i) {
-        actionBarPopupWindowLayout.getSwipeBack().setNewForegroundHeight(iArr[0], AndroidUtilities.dp(52.0f) + i);
+        actionBarPopupWindowLayout.getSwipeBack().setNewForegroundHeight(iArr[0], AndroidUtilities.dp(52.0f) + i, true);
     }
 
-    public static void lambda$createMenu$157(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int[] iArr, View view) {
-        actionBarPopupWindowLayout.getSwipeBack().openForeground(iArr[0]);
+    public static void lambda$createMenu$157(ReactedUsersListView reactedUsersListView, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int[] iArr, View view) {
+        if (reactedUsersListView == null || reactedUsersListView.isLoaded) {
+            actionBarPopupWindowLayout.getSwipeBack().openForeground(iArr[0]);
+        }
     }
 
     public void lambda$createMenu$158(MessageSeenView messageSeenView, View view, int i) {
@@ -13218,7 +13221,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             SendMessagesHelper sendMessagesHelper = getSendMessagesHelper();
             String str = selectReaction ? tLRPC$TL_availableReaction.reaction : null;
-            AnonymousClass108 r7 = new AnonymousClass108(z, i, selectReaction, reactionsContainerLayout, f, f2, tLRPC$TL_availableReaction, messageObject);
+            AnonymousClass107 r7 = new AnonymousClass107(z, i, selectReaction, reactionsContainerLayout, f, f2, tLRPC$TL_availableReaction, messageObject);
             this.updateReactionRunnable = r7;
             sendMessagesHelper.sendReaction(messageObject, str, z2, this, r7);
             if (z) {
@@ -13229,7 +13232,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public class AnonymousClass108 implements Runnable {
+    public class AnonymousClass107 implements Runnable {
         final boolean val$added;
         final int val$finalMessageIdForCell;
         final boolean val$fromDoubleTap;
@@ -13239,7 +13242,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final float val$x;
         final float val$y;
 
-        AnonymousClass108(boolean z, int i, boolean z2, ReactionsContainerLayout reactionsContainerLayout, float f, float f2, TLRPC$TL_availableReaction tLRPC$TL_availableReaction, MessageObject messageObject) {
+        AnonymousClass107(boolean z, int i, boolean z2, ReactionsContainerLayout reactionsContainerLayout, float f, float f2, TLRPC$TL_availableReaction tLRPC$TL_availableReaction, MessageObject messageObject) {
             this.val$fromDoubleTap = z;
             this.val$finalMessageIdForCell = i;
             this.val$added = z2;
@@ -13265,7 +13268,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     chatActivity.lambda$openDiscussionMessageChat$220(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatActivity.AnonymousClass108.this.lambda$run$1(i, z, reactionsContainerLayout, f, f2, tLRPC$TL_availableReaction);
+                            ChatActivity.AnonymousClass107.this.lambda$run$1(i, z, reactionsContainerLayout, f, f2, tLRPC$TL_availableReaction);
                         }
                     });
                 } else {
@@ -13280,7 +13283,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.AnonymousClass108.this.lambda$run$0(i, z, reactionsContainerLayout, f, f2, tLRPC$TL_availableReaction);
+                    ChatActivity.AnonymousClass107.this.lambda$run$0(i, z, reactionsContainerLayout, f, f2, tLRPC$TL_availableReaction);
                 }
             }, 50L);
         }
@@ -15656,7 +15659,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             public void lambda$didLongPressUserAvatar$0(ChatMessageCell chatMessageCell, TLRPC$User tLRPC$User, AvatarPreviewer.MenuItem menuItem) {
-                int i = AnonymousClass111.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
+                int i = AnonymousClass110.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
                 if (i == 1) {
                     openProfile(tLRPC$User);
                 } else if (i == 4) {
@@ -15735,7 +15738,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             public void lambda$didLongPressChannelAvatar$2(TLRPC$Chat tLRPC$Chat, ChatMessageCell chatMessageCell, AvatarPreviewer.MenuItem menuItem) {
-                int i = AnonymousClass111.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
+                int i = AnonymousClass110.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
                 if (i == 1) {
                     openProfile(tLRPC$Chat);
                 } else if (i == 2 || i == 3) {
@@ -16566,7 +16569,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public static class AnonymousClass111 {
+    public static class AnonymousClass110 {
         static final int[] $SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem;
 
         static {
@@ -17522,7 +17525,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         updateChatListViewTopPadding();
         AnimatorSet animatorSet = new AnimatorSet();
         this.fragmentTransition = animatorSet;
-        animatorSet.addListener(new AnonymousClass110(chatActivity, runnable));
+        animatorSet.addListener(new AnonymousClass109(chatActivity, runnable));
         this.fragmentTransition.setDuration(300L);
         this.fragmentTransition.setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.fragmentTransition.playTogether(ofFloat);
@@ -17555,12 +17558,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         chatActivity.topChatPanelView.setAlpha(f);
     }
 
-    public class AnonymousClass110 extends AnimatorListenerAdapter {
+    public class AnonymousClass109 extends AnimatorListenerAdapter {
         int index;
         final Runnable val$callback;
         final ChatActivity val$previousChat;
 
-        AnonymousClass110(ChatActivity chatActivity, Runnable runnable) {
+        AnonymousClass109(ChatActivity chatActivity, Runnable runnable) {
             this.val$previousChat = chatActivity;
             this.val$callback = runnable;
         }
@@ -17580,7 +17583,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.AnonymousClass110.this.lambda$onAnimationEnd$0();
+                    ChatActivity.AnonymousClass109.this.lambda$onAnimationEnd$0();
                 }
             }, 32L);
             super.onAnimationEnd(animator);

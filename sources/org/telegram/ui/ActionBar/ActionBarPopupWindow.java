@@ -265,8 +265,7 @@ public class ActionBarPopupWindow extends PopupWindow {
 
         @Keep
         public void setBackScaleX(float f) {
-            if (this.backScaleY != f) {
-                this.backScaleY = f;
+            if (this.backScaleX != f) {
                 this.backScaleX = f;
                 invalidate();
                 onSizeChangedListener onsizechangedlistener = this.onSizeChangedListener;
@@ -497,6 +496,15 @@ public class ActionBarPopupWindow extends PopupWindow {
 
         public void setSwipeBackForegroundColor(int i) {
             getSwipeBack().setForegroundColor(i);
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
+            PopupSwipeBackLayout popupSwipeBackLayout = this.swipeBackLayout;
+            if (popupSwipeBackLayout != null) {
+                popupSwipeBackLayout.invalidateTransforms();
+            }
         }
     }
 
