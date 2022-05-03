@@ -1287,8 +1287,9 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadDownloadingFiles$11() {
-        final ArrayList arrayList = new ArrayList();
-        final ArrayList arrayList2 = new ArrayList();
+        final ArrayList<MessageObject> arrayList = new ArrayList<>();
+        final ArrayList<MessageObject> arrayList2 = new ArrayList<>();
+        ArrayList arrayList3 = new ArrayList();
         try {
             SQLiteCursor queryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT data, state FROM downloading_documents ORDER BY date DESC", new Object[0]);
             while (queryFinalized.next()) {
@@ -1298,10 +1299,11 @@ public class DownloadController extends BaseController implements NotificationCe
                     TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                     if (TLdeserialize != null) {
                         TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(this.currentAccount).clientUserId);
-                        MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, true);
+                        MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, false);
+                        arrayList3.add(messageObject);
                         if (intValue == 0) {
                             arrayList.add(messageObject);
-                        } else if (messageObject.mediaExists) {
+                        } else {
                             arrayList2.add(messageObject);
                         }
                     }
@@ -1312,6 +1314,8 @@ public class DownloadController extends BaseController implements NotificationCe
         } catch (Exception e) {
             FileLog.e(e);
         }
+        getFileLoader().checkMediaExistance(arrayList);
+        getFileLoader().checkMediaExistance(arrayList2);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

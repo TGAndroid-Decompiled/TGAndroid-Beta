@@ -4067,12 +4067,16 @@ public class MessageObject {
     }
 
     public void checkMediaExistance() {
+        checkMediaExistance(true);
+    }
+
+    public void checkMediaExistance(boolean z) {
         TLRPC$Photo tLRPC$Photo;
         int i;
         this.attachPathExists = false;
         this.mediaExists = false;
         if (this.type == 1 && FileLoader.getClosestPhotoSizeWithSize(this.photoThumbs, AndroidUtilities.getPhotoSize()) != null) {
-            File pathToMessage = FileLoader.getInstance(this.currentAccount).getPathToMessage(this.messageOwner);
+            File pathToMessage = FileLoader.getInstance(this.currentAccount).getPathToMessage(this.messageOwner, z);
             if (needDrawBluredPreview()) {
                 this.mediaExists = new File(pathToMessage.getAbsolutePath() + ".enc").exists();
             }
@@ -4086,7 +4090,7 @@ public class MessageObject {
                 this.attachPathExists = new File(this.messageOwner.attachPath).exists();
             }
             if (!this.attachPathExists) {
-                File pathToMessage2 = FileLoader.getInstance(this.currentAccount).getPathToMessage(this.messageOwner);
+                File pathToMessage2 = FileLoader.getInstance(this.currentAccount).getPathToMessage(this.messageOwner, z);
                 if (this.type == 3 && needDrawBluredPreview()) {
                     this.mediaExists = new File(pathToMessage2.getAbsolutePath() + ".enc").exists();
                 }
@@ -4102,15 +4106,15 @@ public class MessageObject {
                 if (i2 == 0) {
                     TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(this.photoThumbs, AndroidUtilities.getPhotoSize());
                     if (closestPhotoSizeWithSize != null) {
-                        this.mediaExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true).exists();
+                        this.mediaExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, null, true, z).exists();
                     }
                 } else if (i2 == 11 && (tLRPC$Photo = this.messageOwner.action.photo) != null && !tLRPC$Photo.video_sizes.isEmpty()) {
-                    this.mediaExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$Photo.video_sizes.get(0), true).exists();
+                    this.mediaExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$Photo.video_sizes.get(0), null, true, z).exists();
                 }
             } else if (isWallpaper()) {
-                this.mediaExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(document, true).exists();
+                this.mediaExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(document, null, true, z).exists();
             } else {
-                this.mediaExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(document).exists();
+                this.mediaExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(document, null, false, z).exists();
             }
         }
     }

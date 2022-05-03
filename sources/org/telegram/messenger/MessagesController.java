@@ -1510,7 +1510,7 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$processLoadedDialogFilters$14(org.telegram.tgnet.TLRPC$messages_Dialogs r20, final java.util.ArrayList r21, final org.telegram.tgnet.TLRPC$messages_Dialogs r22, final int r23, final java.util.ArrayList r24, final java.util.ArrayList r25, final java.util.ArrayList r26) {
+    public void lambda$processLoadedDialogFilters$14(org.telegram.tgnet.TLRPC$messages_Dialogs r23, final java.util.ArrayList r24, final org.telegram.tgnet.TLRPC$messages_Dialogs r25, final int r26, final java.util.ArrayList r27, final java.util.ArrayList r28, final java.util.ArrayList r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processLoadedDialogFilters$14(org.telegram.tgnet.TLRPC$messages_Dialogs, java.util.ArrayList, org.telegram.tgnet.TLRPC$messages_Dialogs, int, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList):void");
     }
 
@@ -8689,7 +8689,7 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$processLoadedDialogs$178(final int r34, final int r35, final org.telegram.tgnet.TLRPC$messages_Dialogs r36, final boolean r37, final int r38, final java.util.ArrayList r39, final int r40, final boolean r41, final boolean r42) {
+    public void lambda$processLoadedDialogs$178(final int r33, final int r34, final org.telegram.tgnet.TLRPC$messages_Dialogs r35, final boolean r36, final int r37, final java.util.ArrayList r38, final int r39, final boolean r40, final boolean r41) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processLoadedDialogs$178(int, int, org.telegram.tgnet.TLRPC$messages_Dialogs, boolean, int, java.util.ArrayList, int, boolean, boolean):void");
     }
 
@@ -9242,7 +9242,7 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$processDialogsUpdate$187(final org.telegram.tgnet.TLRPC$messages_Dialogs r19, final boolean r20) {
+    public void lambda$processDialogsUpdate$187(final org.telegram.tgnet.TLRPC$messages_Dialogs r20, final boolean r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processDialogsUpdate$187(org.telegram.tgnet.TLRPC$messages_Dialogs, boolean):void");
     }
 
@@ -12026,7 +12026,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$loadPinnedDialogs$290(final int r18, org.telegram.tgnet.TLObject r19, org.telegram.tgnet.TLRPC$TL_error r20) {
+    public void lambda$loadPinnedDialogs$290(final int r19, org.telegram.tgnet.TLObject r20, org.telegram.tgnet.TLRPC$TL_error r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$loadPinnedDialogs$290(int, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 

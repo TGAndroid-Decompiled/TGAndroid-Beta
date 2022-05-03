@@ -719,18 +719,12 @@ public class FileLoader extends BaseController {
         }
     }
 
-    private org.telegram.messenger.FileLoadOperation loadFileInternal(final org.telegram.tgnet.TLRPC$Document r28, org.telegram.messenger.SecureDocument r29, org.telegram.messenger.WebFile r30, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated r31, org.telegram.messenger.ImageLocation r32, final java.lang.Object r33, java.lang.String r34, int r35, int r36, org.telegram.messenger.FileLoadOperationStream r37, int r38, boolean r39, int r40) {
+    private org.telegram.messenger.FileLoadOperation loadFileInternal(final org.telegram.tgnet.TLRPC$Document r32, org.telegram.messenger.SecureDocument r33, org.telegram.messenger.WebFile r34, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated r35, org.telegram.messenger.ImageLocation r36, final java.lang.Object r37, java.lang.String r38, int r39, int r40, org.telegram.messenger.FileLoadOperationStream r41, int r42, boolean r43, int r44) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.loadFileInternal(org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.SecureDocument, org.telegram.messenger.WebFile, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated, org.telegram.messenger.ImageLocation, java.lang.Object, java.lang.String, int, int, org.telegram.messenger.FileLoadOperationStream, int, boolean, int):org.telegram.messenger.FileLoadOperation");
     }
 
     private boolean canSaveAsFile(Object obj) {
-        if (obj instanceof MessageObject) {
-            MessageObject messageObject = (MessageObject) obj;
-            if (messageObject.getDocument() != null && !messageObject.isAnyKindOfSticker() && !messageObject.isVoice() && !messageObject.isGif() && !messageObject.isRoundVideo()) {
-                return true;
-            }
-        }
-        return false;
+        return (obj instanceof MessageObject) && ((MessageObject) obj).isDocument();
     }
 
     private boolean canSaveToPublicStorage(Object obj) {
@@ -886,52 +880,56 @@ public class FileLoader extends BaseController {
     }
 
     public File getPathToMessage(TLRPC$Message tLRPC$Message) {
+        return getPathToMessage(tLRPC$Message, true);
+    }
+
+    public File getPathToMessage(TLRPC$Message tLRPC$Message, boolean z) {
         TLRPC$PhotoSize closestPhotoSizeWithSize;
         TLRPC$PhotoSize closestPhotoSizeWithSize2;
         TLRPC$PhotoSize closestPhotoSizeWithSize3;
         if (tLRPC$Message == null) {
             return new File("");
         }
+        boolean z2 = false;
         if (tLRPC$Message instanceof TLRPC$TL_messageService) {
             TLRPC$Photo tLRPC$Photo = tLRPC$Message.action.photo;
             if (tLRPC$Photo != null) {
                 ArrayList<TLRPC$PhotoSize> arrayList = tLRPC$Photo.sizes;
                 if (arrayList.size() > 0 && (closestPhotoSizeWithSize3 = getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize())) != null) {
-                    return getPathToAttach(closestPhotoSizeWithSize3);
+                    return getPathToAttach(closestPhotoSizeWithSize3, null, false, z);
                 }
             }
         } else {
             TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
-            boolean z = false;
             if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
                 TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
                 if (tLRPC$MessageMedia.ttl_seconds != 0) {
-                    z = true;
+                    z2 = true;
                 }
-                return getPathToAttach(tLRPC$Document, z);
+                return getPathToAttach(tLRPC$Document, null, z2, z);
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
                 ArrayList<TLRPC$PhotoSize> arrayList2 = tLRPC$MessageMedia.photo.sizes;
                 if (arrayList2.size() > 0 && (closestPhotoSizeWithSize2 = getClosestPhotoSizeWithSize(arrayList2, AndroidUtilities.getPhotoSize(), false, null, true)) != null) {
                     if (tLRPC$Message.media.ttl_seconds != 0) {
-                        z = true;
+                        z2 = true;
                     }
-                    return getPathToAttach(closestPhotoSizeWithSize2, z);
+                    return getPathToAttach(closestPhotoSizeWithSize2, null, z2, z);
                 }
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
                 TLRPC$WebPage tLRPC$WebPage = tLRPC$MessageMedia.webpage;
                 TLRPC$Document tLRPC$Document2 = tLRPC$WebPage.document;
                 if (tLRPC$Document2 != null) {
-                    return getPathToAttach(tLRPC$Document2);
+                    return getPathToAttach(tLRPC$Document2, null, false, z);
                 }
                 TLRPC$Photo tLRPC$Photo2 = tLRPC$WebPage.photo;
                 if (tLRPC$Photo2 != null) {
                     ArrayList<TLRPC$PhotoSize> arrayList3 = tLRPC$Photo2.sizes;
                     if (arrayList3.size() > 0 && (closestPhotoSizeWithSize = getClosestPhotoSizeWithSize(arrayList3, AndroidUtilities.getPhotoSize())) != null) {
-                        return getPathToAttach(closestPhotoSizeWithSize);
+                        return getPathToAttach(closestPhotoSizeWithSize, null, false, z);
                     }
                 }
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) {
-                return getPathToAttach(((TLRPC$TL_messageMediaInvoice) tLRPC$MessageMedia).photo, true);
+                return getPathToAttach(((TLRPC$TL_messageMediaInvoice) tLRPC$MessageMedia).photo, null, true, z);
             }
         }
         return new File("");
@@ -946,11 +944,15 @@ public class FileLoader extends BaseController {
     }
 
     public File getPathToAttach(TLObject tLObject, String str, boolean z) {
-        return getPathToAttach(tLObject, null, str, z);
+        return getPathToAttach(tLObject, null, str, z, true);
     }
 
-    public java.io.File getPathToAttach(org.telegram.tgnet.TLObject r11, java.lang.String r12, java.lang.String r13, boolean r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.getPathToAttach(org.telegram.tgnet.TLObject, java.lang.String, java.lang.String, boolean):java.io.File");
+    public File getPathToAttach(TLObject tLObject, String str, boolean z, boolean z2) {
+        return getPathToAttach(tLObject, null, str, z, z2);
+    }
+
+    public java.io.File getPathToAttach(org.telegram.tgnet.TLObject r11, java.lang.String r12, java.lang.String r13, boolean r14, boolean r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.getPathToAttach(org.telegram.tgnet.TLObject, java.lang.String, java.lang.String, boolean, boolean):java.io.File");
     }
 
     public FilePathDatabase getFileDatabase() {
@@ -1368,6 +1370,10 @@ public class FileLoader extends BaseController {
     public void lambda$checkCurrentDownloadsFiles$13(ArrayList arrayList) {
         getDownloadController().recentDownloadingFiles.removeAll(arrayList);
         getNotificationCenter().postNotificationName(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
+    }
+
+    public void checkMediaExistance(ArrayList<MessageObject> arrayList) {
+        getFileDatabase().checkMediaExistance(arrayList);
     }
 
     public void clearRecentDownloadedFiles() {

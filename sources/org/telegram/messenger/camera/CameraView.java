@@ -828,7 +828,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
 
         public void reinitForNewCamera() {
-            Handler handler = CameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(2, Integer.valueOf(CameraView.this.info.cameraId)), 0);
             }
@@ -856,7 +856,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
 
         public void setCurrentSession(CameraSession cameraSession) {
-            Handler handler = CameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(3, cameraSession), 0);
             }
@@ -1033,21 +1033,21 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
 
         public void shutdown(int i) {
-            Handler handler = CameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(1, i, 0), 0);
             }
         }
 
         public void requestRender() {
-            Handler handler = CameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(0, this.cameraId), 0);
             }
         }
 
         public boolean startRecording(File file) {
-            Handler handler = CameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler == null) {
                 return true;
             }
@@ -1056,7 +1056,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
 
         public void stopRecording() {
-            Handler handler = CameraView.this.getHandler();
+            Handler handler = getHandler();
             if (handler != null) {
                 sendMessage(handler.obtainMessage(5), 0);
             }
@@ -1460,7 +1460,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 for (int i2 = 0; i2 < 3; i2++) {
                     this.buffers.add(new InstantCameraView.AudioBufferInfo());
                 }
-                AudioRecord audioRecord = new AudioRecord(6, CameraView.audioSampleRate, 16, 2, i);
+                AudioRecord audioRecord = new AudioRecord(0, CameraView.audioSampleRate, 16, 2, i);
                 this.audioRecorder = audioRecord;
                 audioRecord.startRecording();
                 if (BuildVars.LOGS_ENABLED) {
