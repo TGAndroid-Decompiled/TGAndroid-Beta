@@ -26,7 +26,7 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         this.noforwards = (134217728 & readInt32) != 0;
         this.join_to_send = (268435456 & readInt32) != 0;
         this.join_request = (readInt32 & 536870912) != 0;
-        this.f854id = abstractSerializedData.readInt64(z);
+        this.id = abstractSerializedData.readInt64(z);
         if ((this.flags & 8192) != 0) {
             this.access_hash = abstractSerializedData.readInt64(z);
         }
@@ -110,7 +110,7 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         int i19 = this.join_request ? i18 | 536870912 : i18 & (-536870913);
         this.flags = i19;
         abstractSerializedData.writeInt32(i19);
-        abstractSerializedData.writeInt64(this.f854id);
+        abstractSerializedData.writeInt64(this.id);
         if ((this.flags & 8192) != 0) {
             abstractSerializedData.writeInt64(this.access_hash);
         }

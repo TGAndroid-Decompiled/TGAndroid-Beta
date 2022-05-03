@@ -20,7 +20,7 @@ public abstract class TLRPC$User extends TLObject {
     public boolean fake;
     public String first_name;
     public int flags;
-    public long f985id;
+    public long id;
     public boolean inactive;
     public String lang_code;
     public String last_name;
@@ -63,7 +63,7 @@ public abstract class TLRPC$User extends TLObject {
                         this.scam = (16777216 & readInt32) != 0;
                         this.apply_min_photo = (33554432 & readInt32) != 0;
                         this.fake = (readInt32 & ConnectionsManager.FileTypeFile) != 0;
-                        this.f985id = abstractSerializedData2.readInt32(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 1) != 0) {
                             this.access_hash = abstractSerializedData2.readInt64(z2);
                         }
@@ -148,7 +148,7 @@ public abstract class TLRPC$User extends TLObject {
                         int i16 = this.fake ? i15 | ConnectionsManager.FileTypeFile : i15 & (-67108865);
                         this.flags = i16;
                         abstractSerializedData2.writeInt32(i16);
-                        abstractSerializedData2.writeInt32((int) this.f985id);
+                        abstractSerializedData2.writeInt32((int) this.id);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt64(this.access_hash);
                         }
@@ -196,7 +196,7 @@ public abstract class TLRPC$User extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f985id = abstractSerializedData2.readInt32(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
                         this.first_name = abstractSerializedData2.readString(z2);
                         this.last_name = abstractSerializedData2.readString(z2);
                     }
@@ -204,7 +204,7 @@ public abstract class TLRPC$User extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32((int) this.f985id);
+                        abstractSerializedData2.writeInt32((int) this.id);
                         abstractSerializedData2.writeString(this.first_name);
                         abstractSerializedData2.writeString(this.last_name);
                     }
@@ -236,7 +236,7 @@ public abstract class TLRPC$User extends TLObject {
                             z3 = true;
                         }
                         this.bot_inline_geo = z3;
-                        this.f985id = abstractSerializedData2.readInt32(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 1) != 0) {
                             this.access_hash = abstractSerializedData2.readInt64(z2);
                         }
@@ -295,7 +295,7 @@ public abstract class TLRPC$User extends TLObject {
                         int i12 = this.bot_inline_geo ? i11 | 2097152 : i11 & (-2097153);
                         this.flags = i12;
                         abstractSerializedData2.writeInt32(i12);
-                        abstractSerializedData2.writeInt32((int) this.f985id);
+                        abstractSerializedData2.writeInt32((int) this.id);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt64(this.access_hash);
                         }
@@ -344,7 +344,7 @@ public abstract class TLRPC$User extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f985id = abstractSerializedData2.readInt32(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
                         this.first_name = abstractSerializedData2.readString(z2);
                         this.last_name = abstractSerializedData2.readString(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
@@ -356,7 +356,7 @@ public abstract class TLRPC$User extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32((int) this.f985id);
+                        abstractSerializedData2.writeInt32((int) this.id);
                         abstractSerializedData2.writeString(this.first_name);
                         abstractSerializedData2.writeString(this.last_name);
                         abstractSerializedData2.writeInt64(this.access_hash);
@@ -378,13 +378,13 @@ public abstract class TLRPC$User extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f985id = abstractSerializedData2.readInt32(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32((int) this.f985id);
+                        abstractSerializedData2.writeInt32((int) this.id);
                     }
                 };
                 break;
@@ -409,7 +409,7 @@ public abstract class TLRPC$User extends TLObject {
                             z3 = true;
                         }
                         this.explicit_content = z3;
-                        this.f985id = abstractSerializedData2.readInt32(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 1) != 0) {
                             this.access_hash = abstractSerializedData2.readInt64(z2);
                         }
@@ -458,7 +458,7 @@ public abstract class TLRPC$User extends TLObject {
                         int i10 = this.explicit_content ? i9 | 262144 : i9 & (-262145);
                         this.flags = i10;
                         abstractSerializedData2.writeInt32(i10);
-                        abstractSerializedData2.writeInt32((int) this.f985id);
+                        abstractSerializedData2.writeInt32((int) this.id);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt64(this.access_hash);
                         }
@@ -492,7 +492,7 @@ public abstract class TLRPC$User extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f985id = abstractSerializedData2.readInt32(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
                         this.first_name = abstractSerializedData2.readString(z2);
                         this.last_name = abstractSerializedData2.readString(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
@@ -504,7 +504,7 @@ public abstract class TLRPC$User extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32((int) this.f985id);
+                        abstractSerializedData2.writeInt32((int) this.id);
                         abstractSerializedData2.writeString(this.first_name);
                         abstractSerializedData2.writeString(this.last_name);
                         abstractSerializedData2.writeInt64(this.access_hash);
@@ -539,7 +539,7 @@ public abstract class TLRPC$User extends TLObject {
                             z3 = true;
                         }
                         this.scam = z3;
-                        this.f985id = abstractSerializedData2.readInt32(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 1) != 0) {
                             this.access_hash = abstractSerializedData2.readInt64(z2);
                         }
@@ -605,7 +605,7 @@ public abstract class TLRPC$User extends TLObject {
                         int i14 = this.scam ? i13 | ConnectionsManager.FileTypePhoto : i13 & (-16777217);
                         this.flags = i14;
                         abstractSerializedData2.writeInt32(i14);
-                        abstractSerializedData2.writeInt32((int) this.f985id);
+                        abstractSerializedData2.writeInt32((int) this.id);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt64(this.access_hash);
                         }
@@ -651,7 +651,7 @@ public abstract class TLRPC$User extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f985id = abstractSerializedData2.readInt32(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
                         this.first_name = abstractSerializedData2.readString(z2);
                         this.last_name = abstractSerializedData2.readString(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
@@ -662,7 +662,7 @@ public abstract class TLRPC$User extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32((int) this.f985id);
+                        abstractSerializedData2.writeInt32((int) this.id);
                         abstractSerializedData2.writeString(this.first_name);
                         abstractSerializedData2.writeString(this.last_name);
                         abstractSerializedData2.writeInt64(this.access_hash);
@@ -677,7 +677,7 @@ public abstract class TLRPC$User extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f985id = abstractSerializedData2.readInt32(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
                         this.first_name = abstractSerializedData2.readString(z2);
                         this.last_name = abstractSerializedData2.readString(z2);
                         this.username = abstractSerializedData2.readString(z2);
@@ -690,7 +690,7 @@ public abstract class TLRPC$User extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32((int) this.f985id);
+                        abstractSerializedData2.writeInt32((int) this.id);
                         abstractSerializedData2.writeString(this.first_name);
                         abstractSerializedData2.writeString(this.last_name);
                         abstractSerializedData2.writeString(this.username);
@@ -707,7 +707,7 @@ public abstract class TLRPC$User extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f985id = abstractSerializedData2.readInt32(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
                         this.first_name = abstractSerializedData2.readString(z2);
                         this.last_name = abstractSerializedData2.readString(z2);
                         this.phone = abstractSerializedData2.readString(z2);
@@ -719,7 +719,7 @@ public abstract class TLRPC$User extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32((int) this.f985id);
+                        abstractSerializedData2.writeInt32((int) this.id);
                         abstractSerializedData2.writeString(this.first_name);
                         abstractSerializedData2.writeString(this.last_name);
                         abstractSerializedData2.writeString(this.phone);

@@ -17,7 +17,7 @@ public class TLRPC$TL_messageService extends TLRPC$Message {
             z2 = false;
         }
         this.legacy = z2;
-        this.f877id = abstractSerializedData.readInt32(z);
+        this.id = abstractSerializedData.readInt32(z);
         if ((this.flags & 256) != 0) {
             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
@@ -48,7 +48,7 @@ public class TLRPC$TL_messageService extends TLRPC$Message {
         int i6 = this.legacy ? i5 | 524288 : i5 & (-524289);
         this.flags = i6;
         abstractSerializedData.writeInt32(i6);
-        abstractSerializedData.writeInt32(this.f877id);
+        abstractSerializedData.writeInt32(this.id);
         if ((this.flags & 256) != 0) {
             this.from_id.serializeToStream(abstractSerializedData);
         }

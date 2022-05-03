@@ -37,24 +37,24 @@ public class DialogObject {
     }
 
     public static void initDialog(TLRPC$Dialog tLRPC$Dialog) {
-        if (tLRPC$Dialog != null && tLRPC$Dialog.f860id == 0) {
+        if (tLRPC$Dialog != null && tLRPC$Dialog.id == 0) {
             if (tLRPC$Dialog instanceof TLRPC$TL_dialog) {
                 TLRPC$Peer tLRPC$Peer = tLRPC$Dialog.peer;
                 if (tLRPC$Peer != null) {
                     long j = tLRPC$Peer.user_id;
                     if (j != 0) {
-                        tLRPC$Dialog.f860id = j;
+                        tLRPC$Dialog.id = j;
                         return;
                     }
                     long j2 = tLRPC$Peer.chat_id;
                     if (j2 != 0) {
-                        tLRPC$Dialog.f860id = -j2;
+                        tLRPC$Dialog.id = -j2;
                     } else {
-                        tLRPC$Dialog.f860id = -tLRPC$Peer.channel_id;
+                        tLRPC$Dialog.id = -tLRPC$Peer.channel_id;
                     }
                 }
             } else if (tLRPC$Dialog instanceof TLRPC$TL_dialogFolder) {
-                tLRPC$Dialog.f860id = makeFolderDialogId(((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.f905id);
+                tLRPC$Dialog.id = makeFolderDialogId(((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.id);
             }
         }
     }

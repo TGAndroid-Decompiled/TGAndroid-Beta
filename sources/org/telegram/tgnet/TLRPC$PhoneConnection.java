@@ -2,8 +2,8 @@ package org.telegram.tgnet;
 
 public abstract class TLRPC$PhoneConnection extends TLObject {
     public int flags;
-    public long f880id;
-    public String f881ip;
+    public long id;
+    public String ip;
     public String ipv6;
     public String password;
     public byte[] peer_tag;
@@ -28,8 +28,8 @@ public abstract class TLRPC$PhoneConnection extends TLObject {
                         z3 = true;
                     }
                     this.stun = z3;
-                    this.f880id = abstractSerializedData2.readInt64(z2);
-                    this.f881ip = abstractSerializedData2.readString(z2);
+                    this.id = abstractSerializedData2.readInt64(z2);
+                    this.ip = abstractSerializedData2.readString(z2);
                     this.ipv6 = abstractSerializedData2.readString(z2);
                     this.port = abstractSerializedData2.readInt32(z2);
                     this.username = abstractSerializedData2.readString(z2);
@@ -44,8 +44,8 @@ public abstract class TLRPC$PhoneConnection extends TLObject {
                     int i3 = this.stun ? i2 | 2 : i2 & (-3);
                     this.flags = i3;
                     abstractSerializedData2.writeInt32(i3);
-                    abstractSerializedData2.writeInt64(this.f880id);
-                    abstractSerializedData2.writeString(this.f881ip);
+                    abstractSerializedData2.writeInt64(this.id);
+                    abstractSerializedData2.writeString(this.ip);
                     abstractSerializedData2.writeString(this.ipv6);
                     abstractSerializedData2.writeInt32(this.port);
                     abstractSerializedData2.writeString(this.username);
@@ -58,8 +58,8 @@ public abstract class TLRPC$PhoneConnection extends TLObject {
 
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                    this.f880id = abstractSerializedData2.readInt64(z2);
-                    this.f881ip = abstractSerializedData2.readString(z2);
+                    this.id = abstractSerializedData2.readInt64(z2);
+                    this.ip = abstractSerializedData2.readString(z2);
                     this.ipv6 = abstractSerializedData2.readString(z2);
                     this.port = abstractSerializedData2.readInt32(z2);
                     this.peer_tag = abstractSerializedData2.readByteArray(z2);
@@ -68,8 +68,8 @@ public abstract class TLRPC$PhoneConnection extends TLObject {
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                     abstractSerializedData2.writeInt32(constructor);
-                    abstractSerializedData2.writeInt64(this.f880id);
-                    abstractSerializedData2.writeString(this.f881ip);
+                    abstractSerializedData2.writeInt64(this.id);
+                    abstractSerializedData2.writeString(this.ip);
                     abstractSerializedData2.writeString(this.ipv6);
                     abstractSerializedData2.writeInt32(this.port);
                     abstractSerializedData2.writeByteArray(this.peer_tag);

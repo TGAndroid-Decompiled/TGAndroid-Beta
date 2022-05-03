@@ -13,9 +13,9 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
     public int duration;
     public String file_name;
     public String first_name;
-    public int f856h;
-    public long f857id;
-    public byte[] f858iv;
+    public int h;
+    public long id;
+    public byte[] iv;
     public byte[] key;
     public String last_name;
     public double lat;
@@ -29,7 +29,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
     public String url;
     public long user_id;
     public String venue_id;
-    public int f859w;
+    public int w;
 
     public static TLRPC$DecryptedMessageMedia TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$DecryptedMessageMedia tLRPC$DecryptedMessageMedia;
@@ -54,7 +54,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         this.mime_type = abstractSerializedData2.readString(z2);
                         this.size = abstractSerializedData2.readInt32(z2);
                         this.key = abstractSerializedData2.readByteArray(z2);
-                        this.f858iv = abstractSerializedData2.readByteArray(z2);
+                        this.iv = abstractSerializedData2.readByteArray(z2);
                     }
 
                     @Override
@@ -67,7 +67,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         abstractSerializedData2.writeString(this.mime_type);
                         abstractSerializedData2.writeInt32(this.size);
                         abstractSerializedData2.writeByteArray(this.key);
-                        abstractSerializedData2.writeByteArray(this.f858iv);
+                        abstractSerializedData2.writeByteArray(this.iv);
                     }
                 };
                 break;
@@ -93,11 +93,11 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         this.thumb = abstractSerializedData2.readByteArray(z2);
                         this.thumb_w = abstractSerializedData2.readInt32(z2);
                         this.thumb_h = abstractSerializedData2.readInt32(z2);
-                        this.f859w = abstractSerializedData2.readInt32(z2);
-                        this.f856h = abstractSerializedData2.readInt32(z2);
+                        this.w = abstractSerializedData2.readInt32(z2);
+                        this.h = abstractSerializedData2.readInt32(z2);
                         this.size = abstractSerializedData2.readInt32(z2);
                         this.key = abstractSerializedData2.readByteArray(z2);
-                        this.f858iv = abstractSerializedData2.readByteArray(z2);
+                        this.iv = abstractSerializedData2.readByteArray(z2);
                     }
 
                     @Override
@@ -106,11 +106,11 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         abstractSerializedData2.writeByteArray(this.thumb);
                         abstractSerializedData2.writeInt32(this.thumb_w);
                         abstractSerializedData2.writeInt32(this.thumb_h);
-                        abstractSerializedData2.writeInt32(this.f859w);
-                        abstractSerializedData2.writeInt32(this.f856h);
+                        abstractSerializedData2.writeInt32(this.w);
+                        abstractSerializedData2.writeInt32(this.h);
                         abstractSerializedData2.writeInt32(this.size);
                         abstractSerializedData2.writeByteArray(this.key);
-                        abstractSerializedData2.writeByteArray(this.f858iv);
+                        abstractSerializedData2.writeByteArray(this.iv);
                     }
                 };
                 break;
@@ -128,11 +128,11 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         this.thumb_w = abstractSerializedData2.readInt32(z2);
                         this.thumb_h = abstractSerializedData2.readInt32(z2);
                         this.duration = abstractSerializedData2.readInt32(z2);
-                        this.f859w = abstractSerializedData2.readInt32(z2);
-                        this.f856h = abstractSerializedData2.readInt32(z2);
+                        this.w = abstractSerializedData2.readInt32(z2);
+                        this.h = abstractSerializedData2.readInt32(z2);
                         this.size = abstractSerializedData2.readInt32(z2);
                         this.key = abstractSerializedData2.readByteArray(z2);
-                        this.f858iv = abstractSerializedData2.readByteArray(z2);
+                        this.iv = abstractSerializedData2.readByteArray(z2);
                     }
 
                     @Override
@@ -142,11 +142,11 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         abstractSerializedData2.writeInt32(this.thumb_w);
                         abstractSerializedData2.writeInt32(this.thumb_h);
                         abstractSerializedData2.writeInt32(this.duration);
-                        abstractSerializedData2.writeInt32(this.f859w);
-                        abstractSerializedData2.writeInt32(this.f856h);
+                        abstractSerializedData2.writeInt32(this.w);
+                        abstractSerializedData2.writeInt32(this.h);
                         abstractSerializedData2.writeInt32(this.size);
                         abstractSerializedData2.writeByteArray(this.key);
-                        abstractSerializedData2.writeByteArray(this.f858iv);
+                        abstractSerializedData2.writeByteArray(this.iv);
                     }
                 };
                 break;
@@ -162,11 +162,11 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         this.thumb_h = abstractSerializedData2.readInt32(z2);
                         this.duration = abstractSerializedData2.readInt32(z2);
                         this.mime_type = abstractSerializedData2.readString(z2);
-                        this.f859w = abstractSerializedData2.readInt32(z2);
-                        this.f856h = abstractSerializedData2.readInt32(z2);
+                        this.w = abstractSerializedData2.readInt32(z2);
+                        this.h = abstractSerializedData2.readInt32(z2);
                         this.size = abstractSerializedData2.readInt32(z2);
                         this.key = abstractSerializedData2.readByteArray(z2);
-                        this.f858iv = abstractSerializedData2.readByteArray(z2);
+                        this.iv = abstractSerializedData2.readByteArray(z2);
                     }
 
                     @Override
@@ -177,11 +177,11 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         abstractSerializedData2.writeInt32(this.thumb_h);
                         abstractSerializedData2.writeInt32(this.duration);
                         abstractSerializedData2.writeString(this.mime_type);
-                        abstractSerializedData2.writeInt32(this.f859w);
-                        abstractSerializedData2.writeInt32(this.f856h);
+                        abstractSerializedData2.writeInt32(this.w);
+                        abstractSerializedData2.writeInt32(this.h);
                         abstractSerializedData2.writeInt32(this.size);
                         abstractSerializedData2.writeByteArray(this.key);
-                        abstractSerializedData2.writeByteArray(this.f858iv);
+                        abstractSerializedData2.writeByteArray(this.iv);
                     }
                 };
                 break;
@@ -200,7 +200,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         this.duration = abstractSerializedData2.readInt32(z2);
                         this.size = abstractSerializedData2.readInt32(z2);
                         this.key = abstractSerializedData2.readByteArray(z2);
-                        this.f858iv = abstractSerializedData2.readByteArray(z2);
+                        this.iv = abstractSerializedData2.readByteArray(z2);
                     }
 
                     @Override
@@ -209,7 +209,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         abstractSerializedData2.writeInt32(this.duration);
                         abstractSerializedData2.writeInt32(this.size);
                         abstractSerializedData2.writeByteArray(this.key);
-                        abstractSerializedData2.writeByteArray(this.f858iv);
+                        abstractSerializedData2.writeByteArray(this.iv);
                     }
                 };
                 break;

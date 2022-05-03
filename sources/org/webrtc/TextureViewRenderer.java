@@ -10,7 +10,7 @@ import android.view.View;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.p009ui.ActionBar.Theme$$ExternalSyntheticLambda2;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda2;
 import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
 import org.webrtc.GlGenericDrawer;
@@ -183,7 +183,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         }
 
         private void logD(String str) {
-            Logging.m9d(TAG, this.name + ": " + str);
+            Logging.d(TAG, this.name + ": " + str);
         }
 
         @Override
@@ -583,7 +583,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     private void logD(String str) {
-        Logging.m9d(TAG, this.resourceName + ": " + str);
+        Logging.d(TAG, this.resourceName + ": " + str);
     }
 
     public void createBackgroundSurface(SurfaceTexture surfaceTexture) {

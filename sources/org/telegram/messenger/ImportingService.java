@@ -35,7 +35,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.stickersImportProgressChanged);
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m33d("destroy import service");
+            FileLog.d("destroy import service");
         }
     }
 
@@ -68,7 +68,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
     public int onStartCommand(Intent intent, int i, int i2) {
         if (hasImportingStickers() || hasImportingHistory()) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m33d("start import service");
+                FileLog.d("start import service");
             }
             if (this.builder == null) {
                 NotificationsController.checkOtherNotificationsChannel();
@@ -77,13 +77,13 @@ public class ImportingService extends Service implements NotificationCenter.Noti
                 builder.setSmallIcon(17301640);
                 this.builder.setWhen(System.currentTimeMillis());
                 this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
-                this.builder.setContentTitle(LocaleController.getString("AppName", C0952R.string.AppName));
+                this.builder.setContentTitle(LocaleController.getString("AppName", R.string.AppName));
                 if (hasImportingHistory()) {
-                    this.builder.setTicker(LocaleController.getString("ImporImportingService", C0952R.string.ImporImportingService));
-                    this.builder.setContentText(LocaleController.getString("ImporImportingService", C0952R.string.ImporImportingService));
+                    this.builder.setTicker(LocaleController.getString("ImporImportingService", R.string.ImporImportingService));
+                    this.builder.setContentText(LocaleController.getString("ImporImportingService", R.string.ImporImportingService));
                 } else {
-                    this.builder.setTicker(LocaleController.getString("ImporImportingStickersService", C0952R.string.ImporImportingStickersService));
-                    this.builder.setContentText(LocaleController.getString("ImporImportingStickersService", C0952R.string.ImporImportingStickersService));
+                    this.builder.setTicker(LocaleController.getString("ImporImportingStickersService", R.string.ImporImportingStickersService));
+                    this.builder.setContentText(LocaleController.getString("ImporImportingStickersService", R.string.ImporImportingStickersService));
                 }
             }
             this.builder.setProgress(100, 0, true);

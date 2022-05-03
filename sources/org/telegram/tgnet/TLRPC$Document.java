@@ -11,8 +11,8 @@ public abstract class TLRPC$Document extends TLObject {
     public String file_name_fixed;
     public byte[] file_reference;
     public int flags;
-    public long f861id;
-    public byte[] f862iv;
+    public long id;
+    public byte[] iv;
     public byte[] key;
     public String mime_type;
     public int size;
@@ -35,7 +35,7 @@ public abstract class TLRPC$Document extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
-                        this.f861id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.file_reference = abstractSerializedData2.readByteArray(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -83,7 +83,7 @@ public abstract class TLRPC$Document extends TLObject {
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.flags);
-                        abstractSerializedData2.writeInt64(this.f861id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeByteArray(this.file_reference);
                         abstractSerializedData2.writeInt32(this.date);
@@ -113,7 +113,7 @@ public abstract class TLRPC$Document extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f861id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.user_id = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -127,7 +127,7 @@ public abstract class TLRPC$Document extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f861id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt32(this.date);
@@ -145,7 +145,7 @@ public abstract class TLRPC$Document extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f861id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         this.mime_type = abstractSerializedData2.readString(z2);
@@ -171,7 +171,7 @@ public abstract class TLRPC$Document extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f861id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeString(this.mime_type);
@@ -199,7 +199,7 @@ public abstract class TLRPC$Document extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f861id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.user_id = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -209,13 +209,13 @@ public abstract class TLRPC$Document extends TLObject {
                         this.thumbs.add(TLRPC$PhotoSize.TLdeserialize(0L, 0L, 0L, abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2));
                         this.dc_id = abstractSerializedData2.readInt32(z2);
                         this.key = abstractSerializedData2.readByteArray(z2);
-                        this.f862iv = abstractSerializedData2.readByteArray(z2);
+                        this.iv = abstractSerializedData2.readByteArray(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f861id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt32(this.date);
@@ -225,7 +225,7 @@ public abstract class TLRPC$Document extends TLObject {
                         this.thumbs.get(0).serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.dc_id);
                         abstractSerializedData2.writeByteArray(this.key);
-                        abstractSerializedData2.writeByteArray(this.f862iv);
+                        abstractSerializedData2.writeByteArray(this.iv);
                     }
                 };
                 break;
@@ -238,7 +238,7 @@ public abstract class TLRPC$Document extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f861id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.file_reference = abstractSerializedData2.readByteArray(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -265,7 +265,7 @@ public abstract class TLRPC$Document extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f861id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeByteArray(this.file_reference);
                         abstractSerializedData2.writeInt32(this.date);

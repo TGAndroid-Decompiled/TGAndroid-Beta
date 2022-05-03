@@ -5,7 +5,7 @@ public class TLRPC$TL_groupCallDiscarded extends TLRPC$GroupCall {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f868id = abstractSerializedData.readInt64(z);
+        this.id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.duration = abstractSerializedData.readInt32(z);
     }
@@ -13,7 +13,7 @@ public class TLRPC$TL_groupCallDiscarded extends TLRPC$GroupCall {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f868id);
+        abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeInt32(this.duration);
     }

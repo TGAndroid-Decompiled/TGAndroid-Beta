@@ -22,10 +22,10 @@ import org.telegram.messenger.support.customtabs.CustomTabsSession;
 import org.telegram.messenger.support.customtabsclient.shared.CustomTabsHelper;
 import org.telegram.messenger.support.customtabsclient.shared.ServiceConnection;
 import org.telegram.messenger.support.customtabsclient.shared.ServiceConnectionCallback;
-import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.ui.ActionBar.AlertDialog;
 
 public class Browser {
     private static WeakReference<Activity> currentCustomTabsActivity;
@@ -74,7 +74,7 @@ public class Browser {
                             try {
                                 Browser.customTabsClient.warmup(0L);
                             } catch (Exception e) {
-                                FileLog.m30e(e);
+                                FileLog.e(e);
                             }
                         }
                     }
@@ -89,7 +89,7 @@ public class Browser {
                     customTabsServiceConnection = null;
                 }
             } catch (Exception e) {
-                FileLog.m30e(e);
+                FileLog.e(e);
             }
         }
     }
@@ -174,7 +174,7 @@ public class Browser {
         });
     }
 
-    public static void lambda$openUrl$0(org.telegram.p009ui.ActionBar.AlertDialog[] r3, org.telegram.tgnet.TLObject r4, int r5, android.net.Uri r6, android.content.Context r7, boolean r8) {
+    public static void lambda$openUrl$0(org.telegram.ui.ActionBar.AlertDialog[] r3, org.telegram.tgnet.TLObject r4, int r5, android.net.Uri r6, android.content.Context r7, boolean r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.lambda$openUrl$0(org.telegram.ui.ActionBar.AlertDialog[], org.telegram.tgnet.TLObject, int, android.net.Uri, android.content.Context, boolean):void");
     }
 

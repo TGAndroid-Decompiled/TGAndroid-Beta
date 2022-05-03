@@ -16,11 +16,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.R;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraVideoCapturer;
 
-@TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
+@TargetApi(R.styleable.MapAttrs_uiZoomGestures)
 public class Camera2Enumerator implements CameraEnumerator {
     private static final double NANO_SECONDS_PER_SECOND = 1.0E9d;
     private static final String TAG = "Camera2Enumerator";
@@ -38,7 +38,7 @@ public class Camera2Enumerator implements CameraEnumerator {
         try {
             return this.cameraManager.getCameraIdList();
         } catch (AndroidException e) {
-            Logging.m8e(TAG, "Camera access exception: " + e);
+            Logging.e(TAG, "Camera access exception: " + e);
             return new String[0];
         }
     }
@@ -69,7 +69,7 @@ public class Camera2Enumerator implements CameraEnumerator {
         try {
             return this.cameraManager.getCameraCharacteristics(str);
         } catch (AndroidException e) {
-            Logging.m8e(TAG, "Camera access exception: " + e);
+            Logging.e(TAG, "Camera access exception: " + e);
             return null;
         }
     }
@@ -87,7 +87,7 @@ public class Camera2Enumerator implements CameraEnumerator {
             }
             return true;
         } catch (Throwable th) {
-            Logging.m8e(TAG, "Camera access exception: " + th);
+            Logging.e(TAG, "Camera access exception: " + th);
             return false;
         }
     }
@@ -124,7 +124,7 @@ public class Camera2Enumerator implements CameraEnumerator {
             if (map.containsKey(str)) {
                 return map.get(str);
             }
-            Logging.m9d(TAG, "Get supported formats for camera index " + str + ".");
+            Logging.d(TAG, "Get supported formats for camera index " + str + ".");
             long elapsedRealtime = SystemClock.elapsedRealtime();
             try {
                 CameraCharacteristics cameraCharacteristics = cameraManager.getCameraCharacteristics(str);
@@ -151,14 +151,14 @@ public class Camera2Enumerator implements CameraEnumerator {
                         i = ((int) Math.round(NANO_SECONDS_PER_SECOND / d)) * 1000;
                     }
                     arrayList.add(new CameraEnumerationAndroid.CaptureFormat(size.width, size.height, 0, i));
-                    Logging.m9d(TAG, "Format: " + size.width + "x" + size.height + "@" + i);
+                    Logging.d(TAG, "Format: " + size.width + "x" + size.height + "@" + i);
                 }
                 cachedSupportedFormats.put(str, arrayList);
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                Logging.m9d(TAG, "Get supported formats for camera index " + str + " done. Time spent: " + (elapsedRealtime2 - elapsedRealtime) + " ms.");
+                Logging.d(TAG, "Get supported formats for camera index " + str + " done. Time spent: " + (elapsedRealtime2 - elapsedRealtime) + " ms.");
                 return arrayList;
             } catch (Exception e) {
-                Logging.m8e(TAG, "getCameraCharacteristics(): " + e);
+                Logging.e(TAG, "getCameraCharacteristics(): " + e);
                 return new ArrayList();
             }
         }

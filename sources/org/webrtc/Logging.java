@@ -104,7 +104,7 @@ public class Logging {
         } else if (loggingEnabled) {
             nativeLog(severity.ordinal(), str, str2);
         } else {
-            int i = C36731.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
+            int i = AnonymousClass1.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
             if (i == 1) {
                 level = Level.SEVERE;
             } else if (i == 2) {
@@ -119,7 +119,7 @@ public class Logging {
         }
     }
 
-    public static class C36731 {
+    public static class AnonymousClass1 {
         static final int[] $SwitchMap$org$webrtc$Logging$Severity;
 
         static {
@@ -140,33 +140,33 @@ public class Logging {
         }
     }
 
-    public static void m9d(String str, String str2) {
+    public static void d(String str, String str2) {
         log(Severity.LS_INFO, str, str2);
     }
 
-    public static void m8e(String str, String str2) {
+    public static void e(String str, String str2) {
         log(Severity.LS_ERROR, str, str2);
     }
 
-    public static void m5w(String str, String str2) {
+    public static void w(String str, String str2) {
         log(Severity.LS_WARNING, str, str2);
     }
 
-    public static void m7e(String str, String str2, Throwable th) {
+    public static void e(String str, String str2, Throwable th) {
         Severity severity = Severity.LS_ERROR;
         log(severity, str, str2);
         log(severity, str, th.toString());
         log(severity, str, getStackTraceString(th));
     }
 
-    public static void m4w(String str, String str2, Throwable th) {
+    public static void w(String str, String str2, Throwable th) {
         Severity severity = Severity.LS_WARNING;
         log(severity, str, str2);
         log(severity, str, th.toString());
         log(severity, str, getStackTraceString(th));
     }
 
-    public static void m6v(String str, String str2) {
+    public static void v(String str, String str2) {
         log(Severity.LS_VERBOSE, str, str2);
     }
 

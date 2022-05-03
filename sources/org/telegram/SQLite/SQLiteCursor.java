@@ -95,12 +95,12 @@ public class SQLiteCursor {
                 }
                 try {
                     if (BuildVars.LOGS_ENABLED) {
-                        FileLog.m33d("sqlite busy, waiting...");
+                        FileLog.d("sqlite busy, waiting...");
                     }
                     Thread.sleep(500L);
                     step = this.preparedStatement.step();
                 } catch (Exception e) {
-                    FileLog.m30e(e);
+                    FileLog.e(e);
                 }
                 if (step == 0) {
                     break;

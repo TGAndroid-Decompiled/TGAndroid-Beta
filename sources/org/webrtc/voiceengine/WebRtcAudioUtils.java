@@ -5,7 +5,7 @@ import android.media.AudioManager;
 import android.os.Build;
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.R;
 import org.webrtc.ContextUtils;
 import org.webrtc.Logging;
 import org.webrtc.MediaStreamTrack;
@@ -57,15 +57,15 @@ public final class WebRtcAudioUtils {
                 return "TYPE_FM_TUNER";
             case 17:
                 return "TYPE_TV_TUNER";
-            case C0952R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
+            case R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
                 return "TYPE_TELEPHONY";
-            case C0952R.styleable.MapAttrs_uiTiltGestures:
+            case R.styleable.MapAttrs_uiTiltGestures:
                 return "TYPE_AUX_LINE";
-            case C0952R.styleable.MapAttrs_uiZoomControls:
+            case R.styleable.MapAttrs_uiZoomControls:
                 return "TYPE_IP";
-            case C0952R.styleable.MapAttrs_uiZoomGestures:
+            case R.styleable.MapAttrs_uiZoomGestures:
                 return "TYPE_BUS";
-            case C0952R.styleable.MapAttrs_useViewLifecycle:
+            case R.styleable.MapAttrs_useViewLifecycle:
                 return "TYPE_USB_HEADSET";
             default:
                 return "TYPE_UNKNOWN";
@@ -98,7 +98,7 @@ public final class WebRtcAudioUtils {
 
     public static synchronized void setWebRtcBasedAutomaticGainControl(boolean z) {
         synchronized (WebRtcAudioUtils.class) {
-            Logging.m5w(TAG, "setWebRtcBasedAutomaticGainControl() is deprecated");
+            Logging.w(TAG, "setWebRtcBasedAutomaticGainControl() is deprecated");
         }
     }
 
@@ -106,7 +106,7 @@ public final class WebRtcAudioUtils {
         boolean z;
         synchronized (WebRtcAudioUtils.class) {
             if (useWebRtcBasedAcousticEchoCanceler) {
-                Logging.m5w(TAG, "Overriding default behavior; now using WebRTC AEC!");
+                Logging.w(TAG, "Overriding default behavior; now using WebRTC AEC!");
             }
             z = useWebRtcBasedAcousticEchoCanceler;
         }
@@ -117,7 +117,7 @@ public final class WebRtcAudioUtils {
         boolean z;
         synchronized (WebRtcAudioUtils.class) {
             if (useWebRtcBasedNoiseSuppressor) {
-                Logging.m5w(TAG, "Overriding default behavior; now using WebRTC NS!");
+                Logging.w(TAG, "Overriding default behavior; now using WebRTC NS!");
             }
             z = useWebRtcBasedNoiseSuppressor;
         }
@@ -182,7 +182,7 @@ public final class WebRtcAudioUtils {
     }
 
     static void logDeviceInfo(String str) {
-        Logging.m9d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
+        Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
     }
 
     public static void logAudioState(String str) {
@@ -194,7 +194,7 @@ public final class WebRtcAudioUtils {
     }
 
     private static void logAudioStateBasic(String str, AudioManager audioManager) {
-        Logging.m9d(str, "Audio State: audio mode: " + modeToString(audioManager.getMode()) + ", has mic: " + hasMicrophone() + ", mic muted: " + audioManager.isMicrophoneMute() + ", music active: " + audioManager.isMusicActive() + ", speakerphone: " + audioManager.isSpeakerphoneOn() + ", BT SCO: " + audioManager.isBluetoothScoOn());
+        Logging.d(str, "Audio State: audio mode: " + modeToString(audioManager.getMode()) + ", has mic: " + hasMicrophone() + ", mic muted: " + audioManager.isMicrophoneMute() + ", music active: " + audioManager.isMusicActive() + ", speakerphone: " + audioManager.isSpeakerphoneOn() + ", BT SCO: " + audioManager.isBluetoothScoOn());
     }
 
     private static boolean isVolumeFixed(AudioManager audioManager) {
@@ -206,9 +206,9 @@ public final class WebRtcAudioUtils {
 
     private static void logAudioStateVolume(String str, AudioManager audioManager) {
         int[] iArr = {0, 3, 2, 4, 5, 1};
-        Logging.m9d(str, "Audio State: ");
+        Logging.d(str, "Audio State: ");
         boolean isVolumeFixed = isVolumeFixed(audioManager);
-        Logging.m9d(str, "  fixed volume=" + isVolumeFixed);
+        Logging.d(str, "  fixed volume=" + isVolumeFixed);
         if (!isVolumeFixed) {
             for (int i = 0; i < 6; i++) {
                 int i2 = iArr[i];
@@ -219,7 +219,7 @@ public final class WebRtcAudioUtils {
                 sb.append(", max=");
                 sb.append(audioManager.getStreamMaxVolume(i2));
                 logIsStreamMute(str, audioManager, i2, sb);
-                Logging.m9d(str, sb.toString());
+                Logging.d(str, sb.toString());
             }
         }
     }
@@ -235,7 +235,7 @@ public final class WebRtcAudioUtils {
         if (Build.VERSION.SDK_INT >= 23) {
             AudioDeviceInfo[] devices = audioManager.getDevices(3);
             if (devices.length != 0) {
-                Logging.m9d(str, "Audio Devices: ");
+                Logging.d(str, "Audio Devices: ");
                 for (AudioDeviceInfo audioDeviceInfo : devices) {
                     StringBuilder sb = new StringBuilder();
                     sb.append("  ");
@@ -258,7 +258,7 @@ public final class WebRtcAudioUtils {
                     }
                     sb.append("id=");
                     sb.append(audioDeviceInfo.getId());
-                    Logging.m9d(str, sb.toString());
+                    Logging.d(str, sb.toString());
                 }
             }
         }

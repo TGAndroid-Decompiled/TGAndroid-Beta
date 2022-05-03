@@ -39,7 +39,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         if (context instanceof EglBase14.Context) {
             this.sharedContext = (EglBase14.Context) context;
         } else {
-            Logging.m5w(TAG, "No shared EglBase.Context.  Encoders will not use texture mode.");
+            Logging.w(TAG, "No shared EglBase.Context.  Encoders will not use texture mode.");
             this.sharedContext = null;
         }
         this.enableIntelVp8Encoder = z;
@@ -121,7 +121,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         if (!globalServerConfig.enable_h264_encoder && !globalServerConfig.enable_h265_encoder && !globalServerConfig.enable_vp8_encoder && !globalServerConfig.enable_vp9_encoder) {
             return false;
         }
-        int i = C36721.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+        int i = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i == 1) {
             return isHardwareSupportedInCurrentSdkVp8(mediaCodecInfo);
         }
@@ -137,7 +137,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         return isHardwareSupportedInCurrentSdkH265(mediaCodecInfo);
     }
 
-    public static class C36721 {
+    public static class AnonymousClass1 {
         static final int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
 
         static {
@@ -203,7 +203,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
     }
 
     private int getKeyFrameIntervalSec(VideoCodecMimeType videoCodecMimeType) {
-        int i = C36721.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+        int i = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i == 1 || i == 2) {
             return 100;
         }

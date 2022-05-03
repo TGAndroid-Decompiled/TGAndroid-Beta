@@ -70,7 +70,7 @@ public class FilePathDatabase {
             if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
                 new Exception("warning in main thread").printStackTrace();
             }
-            Log.m667d("kek", "time=" + (System.currentTimeMillis() - currentTimeMillis) + "   " + Thread.currentThread());
+            Log.d("kek", "time=" + (System.currentTimeMillis() - currentTimeMillis) + "   " + Thread.currentThread());
             return strArr[0];
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -92,7 +92,7 @@ public class FilePathDatabase {
     }
 
     public void putPath(final long j, final int i, final int i2, final String str) {
-        Log.m667d("kek", "put file " + j + "_" + i + "     " + str);
+        Log.d("kek", "put file " + j + "_" + i + "     " + str);
         this.dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -121,13 +121,13 @@ public class FilePathDatabase {
     }
 
     public static class PathData {
-        public final int f808dc;
-        public final long f809id;
+        public final int dc;
+        public final long id;
         public final int type;
 
         public PathData(long j, int i, int i2) {
-            this.f809id = j;
-            this.f808dc = i;
+            this.id = j;
+            this.dc = i;
             this.type = i2;
         }
     }

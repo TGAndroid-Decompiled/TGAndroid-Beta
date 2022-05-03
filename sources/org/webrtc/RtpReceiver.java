@@ -39,7 +39,7 @@ public class RtpReceiver {
         return nativeGetParameters(this.nativeRtpReceiver);
     }
 
-    public String m1id() {
+    public String id() {
         checkRtpReceiverExists();
         return nativeGetId(this.nativeRtpReceiver);
     }

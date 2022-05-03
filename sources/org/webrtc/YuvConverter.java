@@ -114,7 +114,7 @@ public class YuvConverter {
                 GLES20.glBindFramebuffer(36160, 0);
             } catch (Exception e3) {
                 e = e3;
-                FileLog.m30e(e);
+                FileLog.e(e);
                 int i6 = (i2 * height) + i;
                 int i7 = i2 / 2;
                 int i8 = i6 + i7;
@@ -140,7 +140,7 @@ public class YuvConverter {
         } catch (Exception e4) {
             e = e4;
             i = 0;
-            FileLog.m30e(e);
+            FileLog.e(e);
             int i62 = (i2 * height) + i;
             int i72 = i2 / 2;
             int i82 = i62 + i72;

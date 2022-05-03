@@ -88,7 +88,7 @@
             </intent-filter>
         </receiver>
         <service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="false" android:exported="false"/>
-        <activity android:theme="@style/Theme_TMessages_Start" android:name="org.telegram.p009ui.LaunchActivity" android:launchMode="singleTask" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustResize" android:hardwareAccelerated="@bool/useHardwareAcceleration">
+        <activity android:theme="@style/Theme_TMessages_Start" android:name="org.telegram.ui.LaunchActivity" android:launchMode="singleTask" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustResize" android:hardwareAccelerated="@bool/useHardwareAcceleration">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -162,8 +162,8 @@
                 <data android:mimeType="vnd.android.cursor.item/vnd.org.telegram.messenger.android.call.video"/>
             </intent-filter>
         </activity-alias>
-        <activity android:name="org.telegram.p009ui.BubbleActivity" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustResize" android:hardwareAccelerated="@bool/useHardwareAcceleration" android:allowEmbedded="true" android:documentLaunchMode="always" android:resizeableActivity="true"/>
-        <activity android:theme="@style/Theme_TMessages_Transparent" android:name="org.telegram.p009ui.ShareActivity" android:stateNotNeeded="true" android:excludeFromRecents="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustPan" android:hardwareAccelerated="@bool/useHardwareAcceleration">
+        <activity android:name="org.telegram.ui.BubbleActivity" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustResize" android:hardwareAccelerated="@bool/useHardwareAcceleration" android:allowEmbedded="true" android:documentLaunchMode="always" android:resizeableActivity="true"/>
+        <activity android:theme="@style/Theme_TMessages_Transparent" android:name="org.telegram.ui.ShareActivity" android:stateNotNeeded="true" android:excludeFromRecents="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustPan" android:hardwareAccelerated="@bool/useHardwareAcceleration">
             <intent-filter android:icon="@mipmap/ic_launcher" android:priority="1" android:roundIcon="@mipmap/ic_launcher_round">
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
@@ -171,24 +171,24 @@
                 <data android:scheme="tgb"/>
             </intent-filter>
         </activity>
-        <activity android:name="org.telegram.p009ui.ExternalActionActivity" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustPan" android:hardwareAccelerated="@bool/useHardwareAcceleration">
+        <activity android:name="org.telegram.ui.ExternalActionActivity" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustPan" android:hardwareAccelerated="@bool/useHardwareAcceleration">
             <intent-filter android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round">
                 <action android:name="org.telegram.passport.AUTHORIZE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name="org.telegram.p009ui.ChatsWidgetConfigActivity" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustPan" android:hardwareAccelerated="@bool/useHardwareAcceleration">
+        <activity android:name="org.telegram.ui.ChatsWidgetConfigActivity" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustPan" android:hardwareAccelerated="@bool/useHardwareAcceleration">
             <intent-filter android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round">
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
             </intent-filter>
         </activity>
-        <activity android:name="org.telegram.p009ui.ContactsWidgetConfigActivity" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustPan" android:hardwareAccelerated="@bool/useHardwareAcceleration">
+        <activity android:name="org.telegram.ui.ContactsWidgetConfigActivity" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustPan" android:hardwareAccelerated="@bool/useHardwareAcceleration">
             <intent-filter android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round">
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
             </intent-filter>
         </activity>
         <activity android:name="org.telegram.messenger.OpenChatReceiver" android:exported="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
-        <activity android:theme="@style/Theme_TMessages_PopupNotification" android:name="org.telegram.p009ui.PopupNotificationActivity" android:taskAffinity="" android:excludeFromRecents="true" android:launchMode="singleTask" android:configChanges="smallestScreenSize|screenSize|uiMode|screenLayout|orientation|navigation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustResize|stateHidden" android:resizeableActivity="false"/>
+        <activity android:theme="@style/Theme_TMessages_PopupNotification" android:name="org.telegram.ui.PopupNotificationActivity" android:taskAffinity="" android:excludeFromRecents="true" android:launchMode="singleTask" android:configChanges="smallestScreenSize|screenSize|uiMode|screenLayout|orientation|navigation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustResize|stateHidden" android:resizeableActivity="false"/>
         <activity android:name="org.telegram.messenger.GoogleVoiceClientActivity" android:exported="true">
             <intent-filter>
                 <action android:name="com.google.android.voicesearch.SEND_MESSAGE_TO_CONTACTS"/>
@@ -196,8 +196,8 @@
                 <data android:mimeType="text/plain"/>
             </intent-filter>
         </activity>
-        <activity android:theme="@style/Theme_TMessages_Transparent" android:name="org.telegram.p009ui.VoIPPermissionActivity" android:taskAffinity="org.telegram.messenger.beta.voip" android:excludeFromRecents="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
-        <activity android:theme="@style/Theme_TMessages_TransparentWithAlerts" android:name="org.telegram.p009ui.VoIPFeedbackActivity" android:taskAffinity="org.telegram.messenger.beta.voip_feedback" android:excludeFromRecents="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
+        <activity android:theme="@style/Theme_TMessages_Transparent" android:name="org.telegram.ui.VoIPPermissionActivity" android:taskAffinity="org.telegram.messenger.beta.voip" android:excludeFromRecents="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
+        <activity android:theme="@style/Theme_TMessages_TransparentWithAlerts" android:name="org.telegram.ui.VoIPFeedbackActivity" android:taskAffinity="org.telegram.messenger.beta.voip_feedback" android:excludeFromRecents="true" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
         <receiver android:name="org.telegram.messenger.AutoMessageHeardReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="org.telegram.messenger.ACTION_MESSAGE_HEARD"/>

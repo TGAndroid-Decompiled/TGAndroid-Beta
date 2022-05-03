@@ -115,7 +115,7 @@ public class EglRenderer implements VideoSink {
             try {
                 super.dispatchMessage(message);
             } catch (Exception e) {
-                Logging.m7e(EglRenderer.TAG, "Exception on EglRenderer thread", e);
+                Logging.e(EglRenderer.TAG, "Exception on EglRenderer thread", e);
                 this.exceptionCallback.run();
                 throw e;
             }
@@ -205,7 +205,7 @@ public class EglRenderer implements VideoSink {
                 if (handler != null) {
                     handler.post(this.eglSurfaceBackgroundCreationRunnable);
                 } else {
-                    FileLog.m33d("can't create background surface. render thread is null");
+                    FileLog.d("can't create background surface. render thread is null");
                 }
             }
             return;
@@ -503,7 +503,7 @@ public class EglRenderer implements VideoSink {
                     });
                 }
             } catch (Exception e) {
-                FileLog.m30e(e);
+                FileLog.e(e);
             }
         }
     }
@@ -652,14 +652,14 @@ public class EglRenderer implements VideoSink {
     }
 
     private void logE(String str, Throwable th) {
-        Logging.m7e(TAG, this.name + str, th);
+        Logging.e(TAG, this.name + str, th);
     }
 
     private void logD(String str) {
-        Logging.m9d(TAG, this.name + str);
+        Logging.d(TAG, this.name + str);
     }
 
     private void logW(String str) {
-        Logging.m5w(TAG, this.name + str);
+        Logging.w(TAG, this.name + str);
     }
 }

@@ -10,12 +10,12 @@ import android.opengl.EGLExt;
 import android.opengl.EGLSurface;
 import android.os.Build;
 import android.view.Surface;
-import org.telegram.messenger.C0952R;
+import org.telegram.messenger.R;
 import org.webrtc.EglBase;
 import org.webrtc.EglBase14;
 
 @TargetApi(18)
-public class EglBase14Impl implements EglBase14 {
+class EglBase14Impl implements EglBase14 {
     private static final int CURRENT_SDK_VERSION = Build.VERSION.SDK_INT;
     private static final int EGLExt_SDK_VERSION = 18;
     private static final String TAG = "EglBase14Impl";
@@ -32,7 +32,7 @@ public class EglBase14Impl implements EglBase14 {
         sb.append(i);
         sb.append(". isEGL14Supported: ");
         sb.append(i >= 18);
-        Logging.m9d(TAG, sb.toString());
+        Logging.d(TAG, sb.toString());
         return i >= 18;
     }
 
@@ -45,7 +45,7 @@ public class EglBase14Impl implements EglBase14 {
         }
 
         @Override
-        @TargetApi(C0952R.styleable.MapAttrs_uiZoomGestures)
+        @TargetApi(R.styleable.MapAttrs_uiZoomGestures)
         public long getNativeEglContext() {
             return EglBase14Impl.CURRENT_SDK_VERSION >= 21 ? this.egl14Context.getNativeHandle() : this.egl14Context.getHandle();
         }
@@ -63,7 +63,7 @@ public class EglBase14Impl implements EglBase14 {
         this.eglDisplay = eglDisplay;
         this.eglConfig = getEglConfig(eglDisplay, iArr);
         int openGlesVersionFromConfig = EglBase.CC.getOpenGlesVersionFromConfig(iArr);
-        Logging.m9d(TAG, "Using OpenGL ES version " + openGlesVersionFromConfig);
+        Logging.d(TAG, "Using OpenGL ES version " + openGlesVersionFromConfig);
         this.eglContext = createEglContext(eGLContext, this.eglDisplay, this.eglConfig, openGlesVersionFromConfig);
     }
 

@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
+import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,7 +41,6 @@ import org.telegram.tgnet.TLRPC$TL_videoSize;
 import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 import org.telegram.tgnet.TLRPC$WebDocument;
 import org.telegram.tgnet.TLRPC$WebPage;
-import p008j$.util.concurrent.ConcurrentHashMap;
 
 public class FileLoader extends BaseController {
     public static final int IMAGE_TYPE_ANIMATION = 2;
@@ -379,7 +379,7 @@ public class FileLoader extends BaseController {
         if (z2) {
             fileUploadOperation.setForceSmallFile();
         }
-        fileUploadOperation.setDelegate(new C09101(z, str, z3));
+        fileUploadOperation.setDelegate(new AnonymousClass1(z, str, z3));
         if (z3) {
             int i4 = this.currentUploadSmallOperationsCount;
             if (i4 < 1) {
@@ -399,12 +399,12 @@ public class FileLoader extends BaseController {
         this.uploadOperationQueue.add(fileUploadOperation);
     }
 
-    public class C09101 implements FileUploadOperation.FileUploadOperationDelegate {
+    public class AnonymousClass1 implements FileUploadOperation.FileUploadOperationDelegate {
         final boolean val$encrypted;
         final String val$location;
         final boolean val$small;
 
-        C09101(boolean z, String str, boolean z2) {
+        AnonymousClass1(boolean z, String str, boolean z2) {
             this.val$encrypted = z;
             this.val$location = str;
             this.val$small = z2;
@@ -419,7 +419,7 @@ public class FileLoader extends BaseController {
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.C09101.this.lambda$didFinishUploadingFile$0(z, str, z2, tLRPC$InputFile, tLRPC$InputEncryptedFile, bArr, bArr2, fileUploadOperation);
+                    FileLoader.AnonymousClass1.this.lambda$didFinishUploadingFile$0(z, str, z2, tLRPC$InputFile, tLRPC$InputEncryptedFile, bArr, bArr2, fileUploadOperation);
                 }
             });
         }
@@ -459,7 +459,7 @@ public class FileLoader extends BaseController {
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.C09101.this.lambda$didFailedUploadingFile$1(z, str, z2);
+                    FileLoader.AnonymousClass1.this.lambda$didFailedUploadingFile$1(z, str, z2);
                 }
             });
         }
@@ -807,7 +807,7 @@ public class FileLoader extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m29e((Throwable) e, false);
+            FileLog.e((Throwable) e, false);
         }
         return fileLoadOperationArr[0];
     }
@@ -1100,15 +1100,15 @@ public class FileLoader extends BaseController {
                 str3 = getExtensionByMimeType(tLRPC$Document.mime_type);
             }
             if (str3.length() > 1) {
-                return tLRPC$Document.dc_id + "_" + tLRPC$Document.f861id + str3;
+                return tLRPC$Document.dc_id + "_" + tLRPC$Document.id + str3;
             }
-            return tLRPC$Document.dc_id + "_" + tLRPC$Document.f861id;
+            return tLRPC$Document.dc_id + "_" + tLRPC$Document.id;
         } else if (tLObject instanceof SecureDocument) {
             SecureDocument secureDocument = (SecureDocument) tLObject;
-            return secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.f971id + ".jpg";
+            return secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.id + ".jpg";
         } else if (tLObject instanceof TLRPC$TL_secureFile) {
             TLRPC$TL_secureFile tLRPC$TL_secureFile = (TLRPC$TL_secureFile) tLObject;
-            return tLRPC$TL_secureFile.dc_id + "_" + tLRPC$TL_secureFile.f971id + ".jpg";
+            return tLRPC$TL_secureFile.dc_id + "_" + tLRPC$TL_secureFile.id + ".jpg";
         } else if (tLObject instanceof WebFile) {
             WebFile webFile = (WebFile) tLObject;
             return Utilities.MD5(webFile.url) + "." + ImageLoader.getHttpUrlExtension(webFile.url, getMimeTypePart(webFile.mime_type));
@@ -1224,7 +1224,7 @@ public class FileLoader extends BaseController {
                         file2.deleteOnExit();
                     }
                 } catch (Exception e) {
-                    FileLog.m30e(e);
+                    FileLog.e(e);
                 }
                 try {
                     File internalCacheDir = getInternalCacheDir();
@@ -1233,7 +1233,7 @@ public class FileLoader extends BaseController {
                         file3.deleteOnExit();
                     }
                 } catch (Exception e2) {
-                    FileLog.m30e(e2);
+                    FileLog.e(e2);
                 }
             } else if (file.exists()) {
                 try {
@@ -1241,7 +1241,7 @@ public class FileLoader extends BaseController {
                         file.deleteOnExit();
                     }
                 } catch (Exception e3) {
-                    FileLog.m30e(e3);
+                    FileLog.e(e3);
                 }
             }
             try {
@@ -1251,7 +1251,7 @@ public class FileLoader extends BaseController {
                     file4.deleteOnExit();
                 }
             } catch (Exception e4) {
-                FileLog.m30e(e4);
+                FileLog.e(e4);
             }
         }
         if (i == 2) {
@@ -1310,7 +1310,7 @@ public class FileLoader extends BaseController {
                     return true;
                 }
             }
-            if ((-tLRPC$FileLocation.volume_id) == tLRPC$Photo.f882id) {
+            if ((-tLRPC$FileLocation.volume_id) == tLRPC$Photo.id) {
                 return true;
             }
         }
@@ -1319,7 +1319,7 @@ public class FileLoader extends BaseController {
 
     public static long getPhotoId(TLObject tLObject) {
         if (tLObject instanceof TLRPC$Photo) {
-            return ((TLRPC$Photo) tLObject).f882id;
+            return ((TLRPC$Photo) tLObject).id;
         }
         if (tLObject instanceof TLRPC$ChatPhoto) {
             return ((TLRPC$ChatPhoto) tLObject).photo_id;

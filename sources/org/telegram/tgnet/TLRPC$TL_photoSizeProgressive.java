@@ -9,8 +9,8 @@ public class TLRPC$TL_photoSizeProgressive extends TLRPC$PhotoSize {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.type = abstractSerializedData.readString(z);
-        this.f884w = abstractSerializedData.readInt32(z);
-        this.f883h = abstractSerializedData.readInt32(z);
+        this.w = abstractSerializedData.readInt32(z);
+        this.h = abstractSerializedData.readInt32(z);
         int readInt32 = abstractSerializedData.readInt32(z);
         if (readInt32 == 481674261) {
             int readInt322 = abstractSerializedData.readInt32(z);
@@ -30,8 +30,8 @@ public class TLRPC$TL_photoSizeProgressive extends TLRPC$PhotoSize {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeString(this.type);
-        abstractSerializedData.writeInt32(this.f884w);
-        abstractSerializedData.writeInt32(this.f883h);
+        abstractSerializedData.writeInt32(this.w);
+        abstractSerializedData.writeInt32(this.h);
         abstractSerializedData.writeInt32(481674261);
         int size = this.sizes.size();
         abstractSerializedData.writeInt32(size);

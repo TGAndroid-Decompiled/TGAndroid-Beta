@@ -26,9 +26,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import java.io.File;
 import org.telegram.messenger.voip.VideoCapturerDevice;
-import org.telegram.p009ui.Components.ForegroundDetector;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.ui.Components.ForegroundDetector;
 
 public class ApplicationLoader extends Application {
     @SuppressLint({"StaticFieldLeak"})
@@ -68,7 +68,7 @@ public class ApplicationLoader extends Application {
             file.mkdirs();
             return file;
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return new File("/data/data/org.telegram.messenger/files");
         }
     }
@@ -110,7 +110,7 @@ public class ApplicationLoader extends Application {
             try {
                 isScreenOn = ((PowerManager) applicationContext.getSystemService("power")).isScreenOn();
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m33d("screen state = " + isScreenOn);
+                    FileLog.d("screen state = " + isScreenOn);
                 }
             } catch (Exception e4) {
                 e4.printStackTrace();
@@ -133,7 +133,7 @@ public class ApplicationLoader extends Application {
             }
             ((ApplicationLoader) applicationContext).initPlayServices();
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m33d("app initied");
+                FileLog.d("app initied");
             }
             MediaController.getInstance();
             for (int i2 = 0; i2 < 3; i2++) {
@@ -157,7 +157,7 @@ public class ApplicationLoader extends Application {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             startTime = elapsedRealtime;
             sb.append(elapsedRealtime);
-            FileLog.m33d(sb.toString());
+            FileLog.d(sb.toString());
         }
         if (applicationContext == null) {
             applicationContext = getApplicationContext();
@@ -175,7 +175,7 @@ public class ApplicationLoader extends Application {
             }
         };
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m33d("load libs time = " + (SystemClock.elapsedRealtime() - startTime));
+            FileLog.d("load libs time = " + (SystemClock.elapsedRealtime() - startTime));
         }
         applicationHandler = new Handler(applicationContext.getMainLooper());
         AndroidUtilities.runOnUIThread(ApplicationLoader$$ExternalSyntheticLambda3.INSTANCE);
@@ -228,16 +228,16 @@ public class ApplicationLoader extends Application {
             String str = SharedConfig.pushString;
             if (!TextUtils.isEmpty(str)) {
                 if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) {
-                    FileLog.m33d("GCM regId = " + str);
+                    FileLog.d("GCM regId = " + str);
                 }
             } else if (BuildVars.LOGS_ENABLED) {
-                FileLog.m33d("GCM Registration not found.");
+                FileLog.d("GCM Registration not found.");
             }
             Utilities.globalQueue.postRunnable(ApplicationLoader$$ExternalSyntheticLambda2.INSTANCE);
             return;
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m33d("No valid Google Play Services APK found.");
+            FileLog.d("No valid Google Play Services APK found.");
         }
         SharedConfig.pushStringStatus = "__NO_GOOGLE_PLAY_SERVICES__";
         GcmPushListenerService.sendRegistrationToServer(null);
@@ -248,7 +248,7 @@ public class ApplicationLoader extends Application {
             SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
             FirebaseMessaging.getInstance().getToken().addOnCompleteListener(ApplicationLoader$$ExternalSyntheticLambda0.INSTANCE);
         } catch (Throwable th) {
-            FileLog.m30e(th);
+            FileLog.e(th);
         }
     }
 
@@ -256,7 +256,7 @@ public class ApplicationLoader extends Application {
         SharedConfig.pushStringGetTimeEnd = SystemClock.elapsedRealtime();
         if (!task.isSuccessful()) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m33d("Failed to get regid");
+                FileLog.d("Failed to get regid");
             }
             SharedConfig.pushStringStatus = "__FIREBASE_FAILED__";
             GcmPushListenerService.sendRegistrationToServer(null);
@@ -272,7 +272,7 @@ public class ApplicationLoader extends Application {
         try {
             return GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == 0;
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return true;
         }
     }
@@ -311,7 +311,7 @@ public class ApplicationLoader extends Application {
             }
             return false;
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return false;
         }
     }
@@ -328,7 +328,7 @@ public class ApplicationLoader extends Application {
                 return true;
             }
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
         }
         return false;
     }
@@ -342,7 +342,7 @@ public class ApplicationLoader extends Application {
                 }
             }
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
         }
         return false;
     }
@@ -366,7 +366,7 @@ public class ApplicationLoader extends Application {
         try {
             ensureCurrentNetworkGet(false);
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
         }
         if (currentNetworkInfo == null) {
             return 0;
@@ -411,7 +411,7 @@ public class ApplicationLoader extends Application {
             }
             return true;
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return true;
         }
     }
@@ -435,7 +435,7 @@ public class ApplicationLoader extends Application {
             }
             return false;
         } catch (Exception e) {
-            FileLog.m30e(e);
+            FileLog.e(e);
             return true;
         }
     }
@@ -443,7 +443,7 @@ public class ApplicationLoader extends Application {
     public static boolean isNetworkOnline() {
         boolean isNetworkOnlineRealtime = isNetworkOnlineRealtime();
         if (BuildVars.DEBUG_PRIVATE_VERSION && isNetworkOnlineRealtime != isNetworkOnlineFast()) {
-            FileLog.m33d("network online mismatch");
+            FileLog.d("network online mismatch");
         }
         return isNetworkOnlineRealtime;
     }

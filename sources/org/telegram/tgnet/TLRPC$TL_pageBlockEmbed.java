@@ -6,11 +6,11 @@ public class TLRPC$TL_pageBlockEmbed extends TLRPC$PageBlock {
     public TLRPC$TL_pageCaption caption;
     public int flags;
     public boolean full_width;
-    public int f959h;
+    public int h;
     public String html;
     public long poster_photo_id;
     public String url;
-    public int f960w;
+    public int w;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -32,10 +32,10 @@ public class TLRPC$TL_pageBlockEmbed extends TLRPC$PageBlock {
             this.poster_photo_id = abstractSerializedData.readInt64(z);
         }
         if ((this.flags & 32) != 0) {
-            this.f960w = abstractSerializedData.readInt32(z);
+            this.w = abstractSerializedData.readInt32(z);
         }
         if ((this.flags & 32) != 0) {
-            this.f959h = abstractSerializedData.readInt32(z);
+            this.h = abstractSerializedData.readInt32(z);
         }
         this.caption = TLRPC$TL_pageCaption.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
     }
@@ -58,10 +58,10 @@ public class TLRPC$TL_pageBlockEmbed extends TLRPC$PageBlock {
             abstractSerializedData.writeInt64(this.poster_photo_id);
         }
         if ((this.flags & 32) != 0) {
-            abstractSerializedData.writeInt32(this.f960w);
+            abstractSerializedData.writeInt32(this.w);
         }
         if ((this.flags & 32) != 0) {
-            abstractSerializedData.writeInt32(this.f959h);
+            abstractSerializedData.writeInt32(this.h);
         }
         this.caption.serializeToStream(abstractSerializedData);
     }

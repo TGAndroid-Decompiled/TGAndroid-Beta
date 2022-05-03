@@ -18,7 +18,7 @@ public class TLRPC$TL_chat extends TLRPC$Chat {
             z2 = true;
         }
         this.noforwards = z2;
-        this.f854id = abstractSerializedData.readInt64(z);
+        this.id = abstractSerializedData.readInt64(z);
         this.title = abstractSerializedData.readString(z);
         this.photo = TLRPC$ChatPhoto.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.participants_count = abstractSerializedData.readInt32(z);
@@ -53,7 +53,7 @@ public class TLRPC$TL_chat extends TLRPC$Chat {
         int i7 = this.noforwards ? i6 | ConnectionsManager.FileTypeVideo : i6 & (-33554433);
         this.flags = i7;
         abstractSerializedData.writeInt32(i7);
-        abstractSerializedData.writeInt64(this.f854id);
+        abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeString(this.title);
         this.photo.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.participants_count);
