@@ -92,6 +92,8 @@ import org.telegram.tgnet.TLRPC$TL_dataJSON;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputCheckPasswordEmpty;
 import org.telegram.tgnet.TLRPC$TL_inputCheckPasswordSRP;
+import org.telegram.tgnet.TLRPC$TL_inputInvoiceMessage;
+import org.telegram.tgnet.TLRPC$TL_inputInvoiceSlug;
 import org.telegram.tgnet.TLRPC$TL_inputPaymentCredentialsGooglePay;
 import org.telegram.tgnet.TLRPC$TL_invoice;
 import org.telegram.tgnet.TLRPC$TL_labeledPrice;
@@ -172,6 +174,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     private boolean ignoreOnTextChange;
     private boolean initGooglePay;
     private EditTextBoldCursor[] inputFields;
+    private String invoiceSlug;
     private boolean isWebView;
     private LinearLayout linearLayout2;
     private boolean loadingPasswordInfo;
@@ -333,15 +336,30 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
         this.currentItemName = tLRPC$TL_payments_paymentReceipt.title;
         if (tLRPC$TL_payments_paymentReceipt.info != null) {
-            TLRPC$TL_payments_validateRequestedInfo tLRPC$TL_payments_validateRequestedInfo = new TLRPC$TL_payments_validateRequestedInfo();
-            this.validateRequest = tLRPC$TL_payments_validateRequestedInfo;
-            tLRPC$TL_payments_validateRequestedInfo.peer = getMessagesController().getInputPeer(tLRPC$TL_payments_paymentReceipt.bot_id);
+            this.validateRequest = new TLRPC$TL_payments_validateRequestedInfo();
+            if (this.messageObject != null) {
+                TLRPC$TL_inputInvoiceMessage tLRPC$TL_inputInvoiceMessage = new TLRPC$TL_inputInvoiceMessage();
+                tLRPC$TL_inputInvoiceMessage.peer = getMessagesController().getInputPeer(tLRPC$TL_payments_paymentReceipt.bot_id);
+                this.validateRequest.invoice = tLRPC$TL_inputInvoiceMessage;
+            } else {
+                TLRPC$TL_inputInvoiceSlug tLRPC$TL_inputInvoiceSlug = new TLRPC$TL_inputInvoiceSlug();
+                tLRPC$TL_inputInvoiceSlug.slug = this.invoiceSlug;
+                this.validateRequest.invoice = tLRPC$TL_inputInvoiceSlug;
+            }
             this.validateRequest.info = tLRPC$TL_payments_paymentReceipt.info;
         }
         this.cardName = tLRPC$TL_payments_paymentReceipt.credentials_title;
     }
 
+    public PaymentFormActivity(TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm, String str, BaseFragment baseFragment) {
+        this(tLRPC$TL_payments_paymentForm, null, str, baseFragment);
+    }
+
     public PaymentFormActivity(TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm, MessageObject messageObject, BaseFragment baseFragment) {
+        this(tLRPC$TL_payments_paymentForm, messageObject, null, baseFragment);
+    }
+
+    public PaymentFormActivity(TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm, MessageObject messageObject, String str, BaseFragment baseFragment) {
         int i;
         this.countriesArray = new ArrayList<>();
         this.countriesMap = new HashMap<>();
@@ -367,10 +385,10 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         } else {
             i = 2;
         }
-        init(tLRPC$TL_payments_paymentForm, messageObject, i, null, null, null, null, null, null, false, null, baseFragment);
+        init(tLRPC$TL_payments_paymentForm, messageObject, str, i, null, null, null, null, null, null, false, null, baseFragment);
     }
 
-    private PaymentFormActivity(TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm, MessageObject messageObject, int i, TLRPC$TL_payments_validatedRequestedInfo tLRPC$TL_payments_validatedRequestedInfo, TLRPC$TL_shippingOption tLRPC$TL_shippingOption, Long l, String str, String str2, TLRPC$TL_payments_validateRequestedInfo tLRPC$TL_payments_validateRequestedInfo, boolean z, TLRPC$TL_inputPaymentCredentialsGooglePay tLRPC$TL_inputPaymentCredentialsGooglePay, BaseFragment baseFragment) {
+    private PaymentFormActivity(TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm, MessageObject messageObject, String str, int i, TLRPC$TL_payments_validatedRequestedInfo tLRPC$TL_payments_validatedRequestedInfo, TLRPC$TL_shippingOption tLRPC$TL_shippingOption, Long l, String str2, String str3, TLRPC$TL_payments_validateRequestedInfo tLRPC$TL_payments_validateRequestedInfo, boolean z, TLRPC$TL_inputPaymentCredentialsGooglePay tLRPC$TL_inputPaymentCredentialsGooglePay, BaseFragment baseFragment) {
         this.countriesArray = new ArrayList<>();
         this.countriesMap = new HashMap<>();
         this.codesMap = new HashMap<>();
@@ -383,7 +401,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         this.settingsCell = new TextSettingsCell[2];
         this.detailSettingsCell = new TextDetailSettingsCell[7];
         this.emailCodeLength = 6;
-        init(tLRPC$TL_payments_paymentForm, messageObject, i, tLRPC$TL_payments_validatedRequestedInfo, tLRPC$TL_shippingOption, l, str, str2, tLRPC$TL_payments_validateRequestedInfo, z, tLRPC$TL_inputPaymentCredentialsGooglePay, baseFragment);
+        init(tLRPC$TL_payments_paymentForm, messageObject, str, i, tLRPC$TL_payments_validatedRequestedInfo, tLRPC$TL_shippingOption, l, str2, str3, tLRPC$TL_payments_validateRequestedInfo, z, tLRPC$TL_inputPaymentCredentialsGooglePay, baseFragment);
     }
 
     private void setCurrentPassword(TLRPC$TL_account_password tLRPC$TL_account_password) {
@@ -400,16 +418,17 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         this.delegate = paymentFormActivityDelegate;
     }
 
-    private void init(TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm, MessageObject messageObject, int i, TLRPC$TL_payments_validatedRequestedInfo tLRPC$TL_payments_validatedRequestedInfo, TLRPC$TL_shippingOption tLRPC$TL_shippingOption, Long l, String str, String str2, TLRPC$TL_payments_validateRequestedInfo tLRPC$TL_payments_validateRequestedInfo, boolean z, TLRPC$TL_inputPaymentCredentialsGooglePay tLRPC$TL_inputPaymentCredentialsGooglePay, BaseFragment baseFragment) {
+    private void init(TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm, MessageObject messageObject, String str, int i, TLRPC$TL_payments_validatedRequestedInfo tLRPC$TL_payments_validatedRequestedInfo, TLRPC$TL_shippingOption tLRPC$TL_shippingOption, Long l, String str2, String str3, TLRPC$TL_payments_validateRequestedInfo tLRPC$TL_payments_validateRequestedInfo, boolean z, TLRPC$TL_inputPaymentCredentialsGooglePay tLRPC$TL_inputPaymentCredentialsGooglePay, BaseFragment baseFragment) {
         this.currentStep = i;
         this.parentFragment = baseFragment;
-        this.paymentJson = str;
+        this.paymentJson = str2;
         this.googlePayCredentials = tLRPC$TL_inputPaymentCredentialsGooglePay;
         this.requestedInfo = tLRPC$TL_payments_validatedRequestedInfo;
         this.paymentForm = tLRPC$TL_payments_paymentForm;
         this.shippingOption = tLRPC$TL_shippingOption;
         this.tipAmount = l;
         this.messageObject = messageObject;
+        this.invoiceSlug = str;
         this.saveCardInfo = z;
         boolean z2 = false;
         this.isWebView = !"stripe".equals(tLRPC$TL_payments_paymentForm.native_provider) && !"smartglocal".equals(this.paymentForm.native_provider);
@@ -420,7 +439,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         } else {
             this.currentBotName = "";
         }
-        this.currentItemName = messageObject.messageOwner.media.title;
+        this.currentItemName = tLRPC$TL_payments_paymentForm.title;
         this.validateRequest = tLRPC$TL_payments_validateRequestedInfo;
         this.saveShippingInfo = true;
         if (z || this.currentStep == 4) {
@@ -431,7 +450,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             }
             this.saveCardInfo = z2;
         }
-        if (str2 == null) {
+        if (str3 == null) {
             TLRPC$TL_paymentSavedCredentialsCard tLRPC$TL_paymentSavedCredentialsCard = tLRPC$TL_payments_paymentForm.saved_credentials;
             if (tLRPC$TL_paymentSavedCredentialsCard != null) {
                 this.cardName = tLRPC$TL_paymentSavedCredentialsCard.title;
@@ -439,7 +458,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             }
             return;
         }
-        this.cardName = str2;
+        this.cardName = str3;
     }
 
     @Override
@@ -638,7 +657,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (getParentActivity() != null) {
             BottomSheet.Builder builder = new BottomSheet.Builder(getParentActivity());
             builder.setTitle(LocaleController.getString("PaymentCheckoutMethod", R.string.PaymentCheckoutMethod), true);
-            builder.setItems(new CharSequence[]{this.cardName, LocaleController.getString("PaymentCheckoutMethodNewCard", R.string.PaymentCheckoutMethodNewCard)}, new int[]{R.drawable.payment_card, R.drawable.msg_addbot}, new DialogInterface.OnClickListener() {
+            builder.setItems(new CharSequence[]{this.cardName, LocaleController.getString("PaymentCheckoutMethodNewCard", R.string.PaymentCheckoutMethodNewCard)}, new int[]{R.drawable.msg_payment_card, R.drawable.msg_addbot}, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     PaymentFormActivity.this.lambda$createView$16(dialogInterface, i);
@@ -650,7 +669,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public void lambda$createView$16(DialogInterface dialogInterface, int i) {
         if (i == 1) {
-            PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.paymentForm, this.messageObject, 2, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment);
+            PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.paymentForm, this.messageObject, this.invoiceSlug, 2, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment);
             paymentFormActivity.setDelegate(new PaymentFormActivityDelegate() {
                 @Override
                 public void currentPasswordUpdated(TLRPC$TL_account_password tLRPC$TL_account_password) {
@@ -683,7 +702,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     public void lambda$createView$18(View view) {
-        PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.paymentForm, this.messageObject, 0, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment);
+        PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.paymentForm, this.messageObject, this.invoiceSlug, 0, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment);
         paymentFormActivity.setDelegate(new PaymentFormActivityDelegate() {
             @Override
             public void currentPasswordUpdated(TLRPC$TL_account_password tLRPC$TL_account_password) {
@@ -710,7 +729,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     public void lambda$createView$19(View view) {
-        PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.paymentForm, this.messageObject, 0, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment);
+        PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.paymentForm, this.messageObject, this.invoiceSlug, 0, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment);
         paymentFormActivity.setDelegate(new PaymentFormActivityDelegate() {
             @Override
             public void currentPasswordUpdated(TLRPC$TL_account_password tLRPC$TL_account_password) {
@@ -737,7 +756,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     public void lambda$createView$20(View view) {
-        PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.paymentForm, this.messageObject, 0, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment);
+        PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.paymentForm, this.messageObject, this.invoiceSlug, 0, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment);
         paymentFormActivity.setDelegate(new PaymentFormActivityDelegate() {
             @Override
             public void currentPasswordUpdated(TLRPC$TL_account_password tLRPC$TL_account_password) {
@@ -764,7 +783,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     public void lambda$createView$21(View view) {
-        PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.paymentForm, this.messageObject, 0, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment);
+        PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.paymentForm, this.messageObject, this.invoiceSlug, 0, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment);
         paymentFormActivity.setDelegate(new PaymentFormActivityDelegate() {
             @Override
             public void currentPasswordUpdated(TLRPC$TL_account_password tLRPC$TL_account_password) {
@@ -887,14 +906,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         TLRPC$TL_postAddress tLRPC$TL_postAddress = this.validateRequest.info.shipping_address;
         boolean z = false;
         if (tLRPC$TL_postAddress != null) {
-            this.detailSettingsCell[2].setTextAndValueAndIcon(String.format("%s %s, %s, %s, %s, %s", tLRPC$TL_postAddress.street_line1, tLRPC$TL_postAddress.street_line2, tLRPC$TL_postAddress.city, tLRPC$TL_postAddress.state, tLRPC$TL_postAddress.country_iso2, tLRPC$TL_postAddress.post_code), LocaleController.getString("PaymentShippingAddress", R.string.PaymentShippingAddress), R.drawable.payment_address, true);
+            this.detailSettingsCell[2].setTextAndValueAndIcon(String.format("%s %s, %s, %s, %s, %s", tLRPC$TL_postAddress.street_line1, tLRPC$TL_postAddress.street_line2, tLRPC$TL_postAddress.city, tLRPC$TL_postAddress.state, tLRPC$TL_postAddress.country_iso2, tLRPC$TL_postAddress.post_code), LocaleController.getString("PaymentShippingAddress", R.string.PaymentShippingAddress), R.drawable.msg_payment_address, true);
         }
         String str = this.validateRequest.info.name;
         if (str != null) {
-            this.detailSettingsCell[3].setTextAndValueAndIcon(str, LocaleController.getString("PaymentCheckoutName", R.string.PaymentCheckoutName), R.drawable.payment_name, true);
+            this.detailSettingsCell[3].setTextAndValueAndIcon(str, LocaleController.getString("PaymentCheckoutName", R.string.PaymentCheckoutName), R.drawable.msg_contacts, true);
         }
         if (this.validateRequest.info.phone != null) {
-            this.detailSettingsCell[4].setTextAndValueAndIcon(PhoneFormat.getInstance().format(this.validateRequest.info.phone), LocaleController.getString("PaymentCheckoutPhoneNumber", R.string.PaymentCheckoutPhoneNumber), R.drawable.payment_phone, (this.validateRequest.info.email == null && this.shippingOption == null) ? false : true);
+            this.detailSettingsCell[4].setTextAndValueAndIcon(PhoneFormat.getInstance().format(this.validateRequest.info.phone), LocaleController.getString("PaymentCheckoutPhoneNumber", R.string.PaymentCheckoutPhoneNumber), R.drawable.msg_calls, (this.validateRequest.info.email == null && this.shippingOption == null) ? false : true);
         }
         String str2 = this.validateRequest.info.email;
         if (str2 != null) {
@@ -903,7 +922,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (this.shippingOption != null) {
                 z = true;
             }
-            textDetailSettingsCell.setTextAndValueAndIcon(str2, string, R.drawable.payment_email, z);
+            textDetailSettingsCell.setTextAndValueAndIcon(str2, string, R.drawable.msg_mention, z);
         }
     }
 
@@ -1458,7 +1477,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             } else {
                 i2 = 2;
             }
-            presentFragment(new PaymentFormActivity(this.paymentForm, this.messageObject, i2, this.requestedInfo, null, null, null, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), this.isWebView);
+            presentFragment(new PaymentFormActivity(this.paymentForm, this.messageObject, this.invoiceSlug, i2, this.requestedInfo, null, null, null, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), this.isWebView);
         } else if (i3 == 1) {
             if (this.paymentForm.saved_credentials != null) {
                 if (UserConfig.getInstance(this.currentAccount).tmpPassword != null && UserConfig.getInstance(this.currentAccount).tmpPassword.valid_until < ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() + 60) {
@@ -1469,7 +1488,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             } else {
                 i = 2;
             }
-            presentFragment(new PaymentFormActivity(this.paymentForm, this.messageObject, i, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), this.isWebView);
+            presentFragment(new PaymentFormActivity(this.paymentForm, this.messageObject, this.invoiceSlug, i, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), this.isWebView);
         } else if (i3 == 2) {
             TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm2 = this.paymentForm;
             if (!tLRPC$TL_payments_paymentForm2.password_missing || !(z = this.saveCardInfo)) {
@@ -1479,10 +1498,10 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     finishFragment();
                     return;
                 }
-                presentFragment(new PaymentFormActivity(tLRPC$TL_payments_paymentForm2, this.messageObject, 4, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), this.isWebView);
+                presentFragment(new PaymentFormActivity(tLRPC$TL_payments_paymentForm2, this.messageObject, this.invoiceSlug, 4, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), this.isWebView);
                 return;
             }
-            PaymentFormActivity paymentFormActivity = new PaymentFormActivity(tLRPC$TL_payments_paymentForm2, this.messageObject, 6, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, z, this.googlePayCredentials, this.parentFragment);
+            PaymentFormActivity paymentFormActivity = new PaymentFormActivity(tLRPC$TL_payments_paymentForm2, this.messageObject, this.invoiceSlug, 6, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, z, this.googlePayCredentials, this.parentFragment);
             this.passwordFragment = paymentFormActivity;
             paymentFormActivity.setCurrentPassword(this.currentPassword);
             this.passwordFragment.setDelegate(new PaymentFormActivityDelegate() {
@@ -1514,14 +1533,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             });
             presentFragment(this.passwordFragment, this.isWebView);
         } else if (i3 == 3) {
-            presentFragment(new PaymentFormActivity(this.paymentForm, this.messageObject, this.passwordOk ? 4 : 2, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), true);
+            presentFragment(new PaymentFormActivity(this.paymentForm, this.messageObject, this.invoiceSlug, this.passwordOk ? 4 : 2, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), true);
         } else if (i3 == 4) {
             NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.paymentFinished, new Object[0]);
             finishFragment();
         } else if (i3 != 6) {
         } else {
             if (!this.delegate.didSelectNewCard(this.paymentJson, this.cardName, this.saveCardInfo, this.googlePayCredentials)) {
-                presentFragment(new PaymentFormActivity(this.paymentForm, this.messageObject, 4, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), true);
+                presentFragment(new PaymentFormActivity(this.paymentForm, this.messageObject, this.invoiceSlug, 4, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment), true);
             } else {
                 finishFragment();
             }
@@ -1911,13 +1930,20 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     public void sendForm() {
         if (!this.canceled) {
             showEditDoneProgress(true, true);
-            TLRPC$TL_payments_validateRequestedInfo tLRPC$TL_payments_validateRequestedInfo = new TLRPC$TL_payments_validateRequestedInfo();
-            this.validateRequest = tLRPC$TL_payments_validateRequestedInfo;
-            tLRPC$TL_payments_validateRequestedInfo.peer = getMessagesController().getInputPeer(this.messageObject.messageOwner.peer_id);
-            TLRPC$TL_payments_validateRequestedInfo tLRPC$TL_payments_validateRequestedInfo2 = this.validateRequest;
-            tLRPC$TL_payments_validateRequestedInfo2.save = this.saveShippingInfo;
-            tLRPC$TL_payments_validateRequestedInfo2.msg_id = this.messageObject.getId();
-            this.validateRequest.info = new TLRPC$TL_paymentRequestedInfo();
+            this.validateRequest = new TLRPC$TL_payments_validateRequestedInfo();
+            if (this.messageObject != null) {
+                TLRPC$TL_inputInvoiceMessage tLRPC$TL_inputInvoiceMessage = new TLRPC$TL_inputInvoiceMessage();
+                tLRPC$TL_inputInvoiceMessage.peer = getMessagesController().getInputPeer(this.messageObject.messageOwner.peer_id);
+                tLRPC$TL_inputInvoiceMessage.msg_id = this.messageObject.getId();
+                this.validateRequest.invoice = tLRPC$TL_inputInvoiceMessage;
+            } else {
+                TLRPC$TL_inputInvoiceSlug tLRPC$TL_inputInvoiceSlug = new TLRPC$TL_inputInvoiceSlug();
+                tLRPC$TL_inputInvoiceSlug.slug = this.invoiceSlug;
+                this.validateRequest.invoice = tLRPC$TL_inputInvoiceSlug;
+            }
+            TLRPC$TL_payments_validateRequestedInfo tLRPC$TL_payments_validateRequestedInfo = this.validateRequest;
+            tLRPC$TL_payments_validateRequestedInfo.save = this.saveShippingInfo;
+            tLRPC$TL_payments_validateRequestedInfo.info = new TLRPC$TL_paymentRequestedInfo();
             if (this.paymentForm.invoice.name_requested) {
                 this.validateRequest.info.name = this.inputFields[6].getText().toString();
                 this.validateRequest.info.flags |= 1;
@@ -1946,11 +1972,11 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 tLRPC$TL_postAddress.post_code = this.inputFields[5].getText().toString();
                 this.validateRequest.info.flags |= 8;
             }
-            final TLRPC$TL_payments_validateRequestedInfo tLRPC$TL_payments_validateRequestedInfo3 = this.validateRequest;
+            final TLRPC$TL_payments_validateRequestedInfo tLRPC$TL_payments_validateRequestedInfo2 = this.validateRequest;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(this.validateRequest, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    PaymentFormActivity.this.lambda$sendForm$49(tLRPC$TL_payments_validateRequestedInfo3, tLObject, tLRPC$TL_error);
+                    PaymentFormActivity.this.lambda$sendForm$49(tLRPC$TL_payments_validateRequestedInfo2, tLObject, tLRPC$TL_error);
                 }
             }, 2);
         }
@@ -2089,8 +2115,16 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (!this.canceled) {
             showEditDoneProgress(false, true);
             final TLRPC$TL_payments_sendPaymentForm tLRPC$TL_payments_sendPaymentForm = new TLRPC$TL_payments_sendPaymentForm();
-            tLRPC$TL_payments_sendPaymentForm.msg_id = this.messageObject.getId();
-            tLRPC$TL_payments_sendPaymentForm.peer = getMessagesController().getInputPeer(this.messageObject.messageOwner.peer_id);
+            if (this.messageObject != null) {
+                TLRPC$TL_inputInvoiceMessage tLRPC$TL_inputInvoiceMessage = new TLRPC$TL_inputInvoiceMessage();
+                tLRPC$TL_inputInvoiceMessage.peer = getMessagesController().getInputPeer(this.messageObject.messageOwner.peer_id);
+                tLRPC$TL_inputInvoiceMessage.msg_id = this.messageObject.getId();
+                tLRPC$TL_payments_sendPaymentForm.invoice = tLRPC$TL_inputInvoiceMessage;
+            } else {
+                TLRPC$TL_inputInvoiceSlug tLRPC$TL_inputInvoiceSlug = new TLRPC$TL_inputInvoiceSlug();
+                tLRPC$TL_inputInvoiceSlug.slug = this.invoiceSlug;
+                tLRPC$TL_payments_sendPaymentForm.invoice = tLRPC$TL_inputInvoiceSlug;
+            }
             tLRPC$TL_payments_sendPaymentForm.form_id = this.paymentForm.form_id;
             if (UserConfig.getInstance(this.currentAccount).tmpPassword == null || this.paymentForm.saved_credentials == null) {
                 TLRPC$TL_inputPaymentCredentialsGooglePay tLRPC$TL_inputPaymentCredentialsGooglePay = this.googlePayCredentials;

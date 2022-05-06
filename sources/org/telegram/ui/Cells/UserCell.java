@@ -75,7 +75,7 @@ public class UserCell extends FrameLayout {
             textView.setGravity(17);
             this.addButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             this.addButton.setTextSize(1, 14.0f);
-            this.addButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.addButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.addButton.setBackgroundDrawable(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
             this.addButton.setText(LocaleController.getString("Add", R.string.Add));
             this.addButton.setPadding(AndroidUtilities.dp(17.0f), 0, AndroidUtilities.dp(17.0f), 0);
@@ -98,7 +98,7 @@ public class UserCell extends FrameLayout {
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
         simpleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setTextSize(16);
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         View view3 = this.nameTextView;

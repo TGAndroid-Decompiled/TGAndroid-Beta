@@ -205,7 +205,7 @@ public class UndoView extends FrameLayout {
         TextView textView3 = new TextView(context);
         this.undoTextView = textView3;
         textView3.setTextSize(1, 14.0f);
-        this.undoTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.undoTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.undoTextView.setTextColor(getThemedColor("undo_cancelColor"));
         this.undoTextView.setText(LocaleController.getString("Undo", R.string.Undo));
         this.undoButton.addView(this.undoTextView, LayoutHelper.createLinear(-2, -2, 19, 6, 4, 8, 4));
@@ -219,7 +219,7 @@ public class UndoView extends FrameLayout {
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textPaint.setColor(getThemedColor("undo_infoColor"));
         setWillNotDraw(false);
         this.backgroundDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor("undo_background"));

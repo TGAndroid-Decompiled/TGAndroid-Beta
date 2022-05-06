@@ -3,18 +3,22 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_payments_paymentForm extends TLObject {
-    public static int constructor = 378828315;
+    public static int constructor = -1340916937;
     public long bot_id;
     public boolean can_save_credentials;
+    public String description;
     public int flags;
     public long form_id;
     public TLRPC$TL_invoice invoice;
     public TLRPC$TL_dataJSON native_params;
     public String native_provider;
     public boolean password_missing;
+    public TLRPC$WebDocument photo;
     public long provider_id;
     public TLRPC$TL_paymentSavedCredentialsCard saved_credentials;
     public TLRPC$TL_paymentRequestedInfo saved_info;
+    public boolean test;
+    public String title;
     public String url;
     public ArrayList<TLRPC$User> users = new ArrayList<>();
 
@@ -36,8 +40,14 @@ public class TLRPC$TL_payments_paymentForm extends TLObject {
         this.flags = readInt32;
         this.can_save_credentials = (readInt32 & 4) != 0;
         this.password_missing = (readInt32 & 8) != 0;
+        this.test = (readInt32 & 64) != 0;
         this.form_id = abstractSerializedData.readInt64(z);
         this.bot_id = abstractSerializedData.readInt64(z);
+        this.title = abstractSerializedData.readString(z);
+        this.description = abstractSerializedData.readString(z);
+        if ((this.flags & 32) != 0) {
+            this.photo = TLRPC$WebDocument.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
         this.invoice = TLRPC$TL_invoice.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.provider_id = abstractSerializedData.readInt64(z);
         this.url = abstractSerializedData.readString(z);
@@ -76,9 +86,16 @@ public class TLRPC$TL_payments_paymentForm extends TLObject {
         this.flags = i;
         int i2 = this.password_missing ? i | 8 : i & (-9);
         this.flags = i2;
-        abstractSerializedData.writeInt32(i2);
+        int i3 = this.test ? i2 | 64 : i2 & (-65);
+        this.flags = i3;
+        abstractSerializedData.writeInt32(i3);
         abstractSerializedData.writeInt64(this.form_id);
         abstractSerializedData.writeInt64(this.bot_id);
+        abstractSerializedData.writeString(this.title);
+        abstractSerializedData.writeString(this.description);
+        if ((this.flags & 32) != 0) {
+            this.photo.serializeToStream(abstractSerializedData);
+        }
         this.invoice.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt64(this.provider_id);
         abstractSerializedData.writeString(this.url);
@@ -97,8 +114,8 @@ public class TLRPC$TL_payments_paymentForm extends TLObject {
         abstractSerializedData.writeInt32(481674261);
         int size = this.users.size();
         abstractSerializedData.writeInt32(size);
-        for (int i3 = 0; i3 < size; i3++) {
-            this.users.get(i3).serializeToStream(abstractSerializedData);
+        for (int i4 = 0; i4 < size; i4++) {
+            this.users.get(i4).serializeToStream(abstractSerializedData);
         }
     }
 }

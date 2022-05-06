@@ -166,7 +166,7 @@ public class PollVotesAlert extends BottomSheet {
             TextView textView = new TextView(getContext());
             this.textView = textView;
             textView.setTextSize(1, 14.0f);
-            this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.textView.setTextColor(Theme.getColor("key_graySectionText"));
             this.textView.setSingleLine(true);
             this.textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -243,7 +243,7 @@ public class PollVotesAlert extends BottomSheet {
             } else {
                 spannableStringBuilder = new SpannableStringBuilder(String.format(" – %s%%", Integer.valueOf(i)));
             }
-            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface("fonts/rmedium.ttf")), 3, format.length() + 3, 33);
+            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 3, format.length() + 3, 33);
             this.middleTextView.setText(spannableStringBuilder);
             if (i3 == 0) {
                 if (PollVotesAlert.this.poll.quiz) {
@@ -292,7 +292,7 @@ public class PollVotesAlert extends BottomSheet {
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.nameTextView = simpleTextView;
             simpleTextView.setTextColor(Theme.getColor("dialogTextBlack"));
-            this.nameTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.nameTextView.setTextSize(16);
             this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
             SimpleTextView simpleTextView2 = this.nameTextView;
@@ -675,7 +675,7 @@ public class PollVotesAlert extends BottomSheet {
         TextView textView = new TextView(parentActivity);
         this.titleTextView = textView;
         textView.setTextSize(1, 18.0f);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.titleTextView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(21.0f));
         this.titleTextView.setTextColor(Theme.getColor("dialogTextBlack"));
         this.titleTextView.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));

@@ -231,7 +231,7 @@ public class SharedPhotoVideoCell2 extends View {
         public SharedResources(Context context) {
             this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
             this.textPaint.setColor(-1);
-            this.textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             Drawable drawable = ContextCompat.getDrawable(context, R.drawable.play_mini_video);
             this.playDrawable = drawable;
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), this.playDrawable.getIntrinsicHeight());

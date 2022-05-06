@@ -382,7 +382,7 @@ public class ActionBar extends FrameLayout {
             } else {
                 this.titleTextView[i].setTextColor(getThemedColor("actionBarDefaultTitle"));
             }
-            this.titleTextView[i].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.titleTextView[i].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             addView(this.titleTextView[i], 0, LayoutHelper.createFrame(-2, -2, 51));
         }
     }
@@ -1101,7 +1101,7 @@ public class ActionBar extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         int i3;
         SimpleTextView simpleTextView;
         SimpleTextView simpleTextView2;

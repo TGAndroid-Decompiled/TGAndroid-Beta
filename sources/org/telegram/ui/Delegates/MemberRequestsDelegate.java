@@ -590,7 +590,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 }
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
                 int indexOf = str.indexOf(firstName);
-                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface("fonts/rmedium.ttf")), indexOf, firstName.length() + indexOf, 18);
+                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), indexOf, firstName.length() + indexOf, 18);
                 multiLineLayout.textView.setText(spannableStringBuilder);
                 if (this.allImporters.isEmpty()) {
                     Bulletin.make(this.fragment, multiLineLayout, 2750).show();
@@ -918,7 +918,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             textView.setMaxLines(1);
             textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", MemberRequestsDelegate.this.fragment.getResourceProvider()));
             textView.setTextSize(16.0f);
-            textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             viewGroup.addView(textView);
             textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText", MemberRequestsDelegate.this.fragment.getResourceProvider()));
             textView2.setTextSize(14.0f);
@@ -933,7 +933,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 i = R.string.AddToGroup;
                 str = "AddToGroup";
             }
-            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(str, i), R.drawable.actions_requests);
+            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(str, i), R.drawable.msg_requests);
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -955,7 +955,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(context, false, true);
             actionBarMenuSubItem3.setColors(Theme.getColor("dialogTextRed2", resourcesProvider), Theme.getColor("dialogRedIcon", resourcesProvider));
             actionBarMenuSubItem3.setSelectorColor(Theme.getColor("dialogButtonSelector", resourcesProvider));
-            actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("DismissRequest", R.string.DismissRequest), R.drawable.actions_remove_user);
+            actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("DismissRequest", R.string.DismissRequest), R.drawable.msg_remove);
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {

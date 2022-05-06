@@ -11,7 +11,7 @@ public final class PipVideoOverlay$$ExternalSyntheticLambda10 implements SimpleF
     @Override
     public final float get(Object obj) {
         float f;
-        f = ((PipVideoOverlay) obj).pipX;
+        f = ((PipVideoOverlay) obj).pipY;
         return f;
     }
 }

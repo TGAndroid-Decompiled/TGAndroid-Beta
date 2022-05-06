@@ -3,7 +3,7 @@ package org.telegram.messenger;
 import org.telegram.tgnet.ConnectionsManager;
 
 public class BaseController {
-    protected int currentAccount;
+    protected final int currentAccount;
     private AccountInstance parentAccountInstance;
 
     public BaseController(int i) {

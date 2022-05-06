@@ -83,6 +83,7 @@ public class CarouselView extends View {
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
                     CarouselView.this.autoScrollAnimation.cancel();
+                    CarouselView.this.autoScrollAnimation = null;
                 }
                 CarouselView.this.overScroller.abortAnimation();
                 this.lastAngle = Math.atan2(motionEvent.getX() - CarouselView.this.cX, motionEvent.getY() - CarouselView.this.cY);
@@ -149,6 +150,7 @@ public class CarouselView extends View {
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
             this.autoScrollAnimation.cancel();
+            this.autoScrollAnimation = null;
         }
         final float f2 = this.offsetAngle;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);

@@ -604,13 +604,13 @@ public class BottomSheet extends Dialog {
                 this.textView.setGravity(17);
                 this.textView.setTextColor(getThemedColor("dialogTextBlack"));
                 this.textView.setTextSize(1, 14.0f);
-                this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 addView(this.textView, LayoutHelper.createFrame(-1, -1.0f));
             } else if (i == 2) {
                 this.textView.setGravity(17);
                 this.textView.setTextColor(getThemedColor("featuredStickers_buttonText"));
                 this.textView.setTextSize(1, 14.0f);
-                this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 this.textView.setBackground(Theme.AdaptiveRipple.filledRect(getThemedColor("featuredStickers_addButton"), 4.0f));
                 addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
             }
@@ -862,7 +862,7 @@ public class BottomSheet extends Dialog {
             if (this.bigTitle) {
                 this.titleView.setTextColor(getThemedColor("dialogTextBlack"));
                 this.titleView.setTextSize(1, 20.0f);
-                this.titleView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 this.titleView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
             } else {
                 this.titleView.setTextColor(getThemedColor("dialogTextGray2"));

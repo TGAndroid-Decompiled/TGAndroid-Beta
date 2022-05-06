@@ -2,14 +2,16 @@ package org.telegram.ui.Components;
 
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 
-public final class BotWebViewMenuContainer$$ExternalSyntheticLambda20 implements SimpleFloatPropertyCompat.Setter {
+public final class BotWebViewMenuContainer$$ExternalSyntheticLambda20 implements SimpleFloatPropertyCompat.Getter {
     public static final BotWebViewMenuContainer$$ExternalSyntheticLambda20 INSTANCE = new BotWebViewMenuContainer$$ExternalSyntheticLambda20();
 
     private BotWebViewMenuContainer$$ExternalSyntheticLambda20() {
     }
 
     @Override
-    public final void set(Object obj, float f) {
-        BotWebViewMenuContainer.lambda$static$1((BotWebViewMenuContainer) obj, f);
+    public final float get(Object obj) {
+        float f;
+        f = ((BotWebViewMenuContainer) obj).actionBarTransitionProgress;
+        return f;
     }
 }

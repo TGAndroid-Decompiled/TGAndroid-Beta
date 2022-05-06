@@ -64,7 +64,7 @@ public class CropRotationWheel extends FrameLayout {
         this.bluePaint.setAntiAlias(true);
         ImageView imageView = new ImageView(context);
         this.mirrorButton = imageView;
-        imageView.setImageResource(R.drawable.photo_flip);
+        imageView.setImageResource(R.drawable.msg_photo_flip);
         this.mirrorButton.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.mirrorButton.setScaleType(ImageView.ScaleType.CENTER);
         this.mirrorButton.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +85,7 @@ public class CropRotationWheel extends FrameLayout {
         addView(this.mirrorButton, LayoutHelper.createFrame(70, 64, 19));
         ImageView imageView2 = new ImageView(context);
         this.aspectRatioButton = imageView2;
-        imageView2.setImageResource(R.drawable.tool_cropfix);
+        imageView2.setImageResource(R.drawable.msg_photo_cropfix);
         this.aspectRatioButton.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.aspectRatioButton.setScaleType(ImageView.ScaleType.CENTER);
         this.aspectRatioButton.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +99,7 @@ public class CropRotationWheel extends FrameLayout {
         addView(this.aspectRatioButton, LayoutHelper.createFrame(70, 64, 19));
         ImageView imageView3 = new ImageView(context);
         this.rotation90Button = imageView3;
-        imageView3.setImageResource(R.drawable.tool_rotate);
+        imageView3.setImageResource(R.drawable.msg_photo_rotate);
         this.rotation90Button.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.rotation90Button.setScaleType(ImageView.ScaleType.CENTER);
         this.rotation90Button.setOnClickListener(new View.OnClickListener() {

@@ -601,13 +601,15 @@ public class ActionBarLayout extends FrameLayout {
             this.previewBackgroundDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.previewBackgroundDrawable.draw(canvas);
             if (this.previewMenu == null) {
-                int measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(24.0f)) / 2;
+                int dp = AndroidUtilities.dp(32.0f);
+                int i2 = dp / 2;
+                int measuredWidth = (getMeasuredWidth() - dp) / 2;
                 float top = childAt.getTop() + viewGroup.getTranslationY();
                 if (Build.VERSION.SDK_INT < 21) {
                     i = 20;
                 }
-                int dp = (int) (top - AndroidUtilities.dp(i + 12));
-                Theme.moveUpDrawable.setBounds(measuredWidth, dp, AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(24.0f) + dp);
+                int dp2 = (int) (top - AndroidUtilities.dp(i + 12));
+                Theme.moveUpDrawable.setBounds(measuredWidth, dp2, dp + measuredWidth, i2 + dp2);
                 Theme.moveUpDrawable.draw(canvas);
             }
         }

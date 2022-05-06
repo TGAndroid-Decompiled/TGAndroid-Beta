@@ -21,8 +21,10 @@ import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -60,6 +62,7 @@ public class UnlockPremiumReactionsWindow {
         WindowManager windowManager = (WindowManager) activity.getSystemService("window");
         this.windowManager = windowManager;
         windowManager.addView(this.windowView, this.windowLayoutParams);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
     }
 
     private FrameLayout createView(Context context, List<TLRPC$TL_availableReaction> list, Theme.ResourcesProvider resourcesProvider, final float f, final float f2) {
@@ -120,6 +123,7 @@ public class UnlockPremiumReactionsWindow {
             this.blurView.animate().setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
+                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 512);
                     try {
                         UnlockPremiumReactionsWindow unlockPremiumReactionsWindow = UnlockPremiumReactionsWindow.this;
                         unlockPremiumReactionsWindow.windowManager.removeView(unlockPremiumReactionsWindow.windowView);
@@ -175,14 +179,17 @@ public class UnlockPremiumReactionsWindow {
             ImageReceiver imageReceiver = this.imageReceiver;
             imageReceiver.setUniqKeyPrefix(this.position + "_");
             this.imageReceiver.onAttachedToWindow();
+            this.imageReceiver.setLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
             this.effectImageReceiver.setParentView(view);
             ImageReceiver imageReceiver2 = this.effectImageReceiver;
             imageReceiver2.setUniqKeyPrefix(this.position + "_");
             this.effectImageReceiver.onAttachedToWindow();
+            this.effectImageReceiver.setLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
             this.actionReceiver.setParentView(view);
             ImageReceiver imageReceiver3 = this.actionReceiver;
             imageReceiver3.setUniqKeyPrefix(this.position + "_");
             this.actionReceiver.onAttachedToWindow();
+            this.actionReceiver.setLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
             SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(this.reaction.activate_animation, "windowBackgroundGray", 1.0f);
             this.imageReceiver.setImage(ImageLocation.getForDocument(this.reaction.appear_animation), "60_60_nolimit", null, null, svgThumb, 0, "tgs", this.reaction, 0);
             this.imageReceiver.setAutoRepeat(0);

@@ -8,6 +8,7 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.SparseArray;
+import android.webkit.WebView;
 import androidx.core.content.pm.ShortcutManagerCompat;
 import java.io.File;
 import java.io.RandomAccessFile;
@@ -47,6 +48,7 @@ public class SharedConfig {
     public static ProxyInfo currentProxy = null;
     public static boolean customTabs = false;
     public static int dayNightThemeSwitchHintCount = 0;
+    public static boolean debugWebView = false;
     private static int devicePerformanceClass = 0;
     public static boolean directShare = false;
     public static String directShareHash = null;
@@ -564,6 +566,17 @@ public class SharedConfig {
         forceRtmpStream = !forceRtmpStream;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("forceRtmpStream", forceRtmpStream);
+        edit.apply();
+    }
+
+    public static void toggleDebugWebView() {
+        boolean z = !debugWebView;
+        debugWebView = z;
+        if (Build.VERSION.SDK_INT >= 19) {
+            WebView.setWebContentsDebuggingEnabled(z);
+        }
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("debugWebView", debugWebView);
         edit.apply();
     }
 

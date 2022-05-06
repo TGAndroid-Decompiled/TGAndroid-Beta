@@ -159,7 +159,7 @@ public class ChangePhoneActivity extends BaseFragment {
                 }
             }
         });
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
         ScrollView scrollView = new ScrollView(context) {
             @Override
             public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
@@ -664,7 +664,7 @@ public class ChangePhoneActivity extends BaseFragment {
             this.titleTextView = textView2;
             textView2.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.titleTextView.setTextSize(1, 18.0f);
-            this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titleTextView.setGravity(LocaleController.isRTL ? 5 : 3);
             this.titleTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             this.titleTextView.setGravity(49);
@@ -949,7 +949,7 @@ public class ChangePhoneActivity extends BaseFragment {
                         this.codeField[i8].setImeOptions(268435461);
                         this.codeField[i8].setTextSize(1, 20.0f);
                         this.codeField[i8].setMaxLines(1);
-                        this.codeField[i8].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                        this.codeField[i8].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                         this.codeField[i8].setPadding(0, 0, 0, 0);
                         this.codeField[i8].setGravity(49);
                         if (this.currentType == 3) {

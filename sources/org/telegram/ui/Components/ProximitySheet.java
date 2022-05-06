@@ -145,7 +145,7 @@ public class ProximitySheet extends FrameLayout {
         textView.setText(LocaleController.getString("LocationNotifiation", R.string.LocationNotifiation));
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         textView.setOnTouchListener(ProximitySheet$$ExternalSyntheticLambda1.INSTANCE);
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -203,7 +203,7 @@ public class ProximitySheet extends FrameLayout {
         this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setMaxLines(2);
-        this.buttonTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.buttonTextView.setBackgroundDrawable(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
         frameLayout3.addView(this.buttonTextView, LayoutHelper.createFrame(-1, 48.0f));
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {

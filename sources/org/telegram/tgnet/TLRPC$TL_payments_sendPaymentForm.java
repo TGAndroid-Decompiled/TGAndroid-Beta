@@ -1,12 +1,11 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_payments_sendPaymentForm extends TLObject {
-    public static int constructor = 818134173;
+    public static int constructor = 755192367;
     public TLRPC$InputPaymentCredentials credentials;
     public int flags;
     public long form_id;
-    public int msg_id;
-    public TLRPC$InputPeer peer;
+    public TLRPC$InputInvoice invoice;
     public String requested_info_id;
     public String shipping_option_id;
     public long tip_amount;
@@ -21,8 +20,7 @@ public class TLRPC$TL_payments_sendPaymentForm extends TLObject {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt64(this.form_id);
-        this.peer.serializeToStream(abstractSerializedData);
-        abstractSerializedData.writeInt32(this.msg_id);
+        this.invoice.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.requested_info_id);
         }

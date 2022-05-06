@@ -46,9 +46,11 @@ public class ChatBigEmptyView extends LinearLayout {
             this.textViews.add(this.statusTextView);
             addView(this.statusTextView, LayoutHelper.createLinear(-2, -2, 49));
         } else {
-            ImageView imageView = new ImageView(context);
-            imageView.setImageResource(R.drawable.cloud_big);
-            addView(imageView, LayoutHelper.createLinear(-2, -2, 49, 0, 2, 0, 0));
+            RLottieImageView rLottieImageView = new RLottieImageView(context);
+            rLottieImageView.setAutoRepeat(true);
+            rLottieImageView.setAnimation(R.raw.utyan_saved_messages, 120, 120);
+            rLottieImageView.playAnimation();
+            addView(rLottieImageView, LayoutHelper.createLinear(-2, -2, 49, 0, 2, 0, 0));
         }
         TextView textView3 = new TextView(context);
         if (i == 0) {
@@ -60,7 +62,7 @@ public class ChatBigEmptyView extends LinearLayout {
         } else {
             textView3.setText(LocaleController.getString("ChatYourSelfTitle", R.string.ChatYourSelfTitle));
             textView3.setTextSize(1, 16.0f);
-            textView3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView3.setGravity(1);
         }
         textView3.setTextColor(getThemedColor("chat_serviceText"));
@@ -76,16 +78,16 @@ public class ChatBigEmptyView extends LinearLayout {
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(0);
             addView(linearLayout, LayoutHelper.createLinear(-2, -2, LocaleController.isRTL ? 5 : 3, 0, 8, 0, 0));
-            ImageView imageView2 = new ImageView(context);
-            imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_serviceText"), PorterDuff.Mode.MULTIPLY));
+            ImageView imageView = new ImageView(context);
+            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_serviceText"), PorterDuff.Mode.MULTIPLY));
             if (i == 0) {
-                imageView2.setImageResource(R.drawable.ic_lock_white);
+                imageView.setImageResource(R.drawable.ic_lock_white);
             } else if (i == 2) {
-                imageView2.setImageResource(R.drawable.list_circle);
+                imageView.setImageResource(R.drawable.list_circle);
             } else {
-                imageView2.setImageResource(R.drawable.groups_overview_check);
+                imageView.setImageResource(R.drawable.groups_overview_check);
             }
-            this.imageViews.add(imageView2);
+            this.imageViews.add(imageView);
             TextView textView4 = new TextView(context);
             textView4.setTextSize(1, 15.0f);
             textView4.setTextColor(getThemedColor("chat_serviceText"));
@@ -128,19 +130,19 @@ public class ChatBigEmptyView extends LinearLayout {
             if (LocaleController.isRTL) {
                 linearLayout.addView(textView4, LayoutHelper.createLinear(-2, -2));
                 if (i == 0) {
-                    linearLayout.addView(imageView2, LayoutHelper.createLinear(-2, -2, 8.0f, 3.0f, 0.0f, 0.0f));
+                    linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 8.0f, 3.0f, 0.0f, 0.0f));
                 } else if (i == 2) {
-                    linearLayout.addView(imageView2, LayoutHelper.createLinear(-2, -2, 8.0f, 7.0f, 0.0f, 0.0f));
+                    linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 8.0f, 7.0f, 0.0f, 0.0f));
                 } else {
-                    linearLayout.addView(imageView2, LayoutHelper.createLinear(-2, -2, 8.0f, 3.0f, 0.0f, 0.0f));
+                    linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 8.0f, 3.0f, 0.0f, 0.0f));
                 }
             } else {
                 if (i == 0) {
-                    linearLayout.addView(imageView2, LayoutHelper.createLinear(-2, -2, 0.0f, 4.0f, 8.0f, 0.0f));
+                    linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 0.0f, 4.0f, 8.0f, 0.0f));
                 } else if (i == 2) {
-                    linearLayout.addView(imageView2, LayoutHelper.createLinear(-2, -2, 0.0f, 8.0f, 8.0f, 0.0f));
+                    linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 0.0f, 8.0f, 8.0f, 0.0f));
                 } else {
-                    linearLayout.addView(imageView2, LayoutHelper.createLinear(-2, -2, 0.0f, 4.0f, 8.0f, 0.0f));
+                    linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 0.0f, 4.0f, 8.0f, 0.0f));
                 }
                 linearLayout.addView(textView4, LayoutHelper.createLinear(-2, -2));
             }

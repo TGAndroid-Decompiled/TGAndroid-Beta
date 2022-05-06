@@ -90,7 +90,7 @@ public class ReactionsLayoutInBubble {
         paint.setColor(Theme.getColor("chat_inLoader"));
         textPaint.setColor(Theme.getColor("featuredStickers_buttonText"));
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
     }
 
     public void setMessage(MessageObject messageObject, boolean z, Theme.ResourcesProvider resourcesProvider) {

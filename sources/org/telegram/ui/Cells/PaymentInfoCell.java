@@ -35,7 +35,7 @@ public class PaymentInfoCell extends FrameLayout {
         textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.nameTextView.setTextSize(1, 16.0f);
         this.nameTextView.setLines(1);
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setMaxLines(1);
         this.nameTextView.setSingleLine(true);
         this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
@@ -81,11 +81,11 @@ public class PaymentInfoCell extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i3);
     }
 
-    public void setInvoice(TLRPC$TL_messageMediaInvoice tLRPC$TL_messageMediaInvoice, String str) {
+    public void setInfo(String str, String str2, TLRPC$WebDocument tLRPC$WebDocument, String str3, Object obj) {
         int i;
-        this.nameTextView.setText(tLRPC$TL_messageMediaInvoice.title);
-        this.detailTextView.setText(tLRPC$TL_messageMediaInvoice.description);
-        this.detailExTextView.setText(str);
+        this.nameTextView.setText(str);
+        this.detailTextView.setText(str2);
+        this.detailExTextView.setText(str3);
         if (AndroidUtilities.isTablet()) {
             i = AndroidUtilities.getMinTabletSide();
         } else {
@@ -96,7 +96,6 @@ public class PaymentInfoCell extends FrameLayout {
         float dp = f / (((int) (i * 0.7f)) - AndroidUtilities.dp(2.0f));
         int i2 = (int) (f / dp);
         int i3 = (int) (360 / dp);
-        TLRPC$WebDocument tLRPC$WebDocument = tLRPC$TL_messageMediaInvoice.photo;
         int i4 = 5;
         if (tLRPC$WebDocument == null || !tLRPC$WebDocument.mime_type.startsWith("image/")) {
             this.nameTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 17.0f, 9.0f, 17.0f, 0.0f));
@@ -122,50 +121,14 @@ public class PaymentInfoCell extends FrameLayout {
         }
         textView4.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, i4 | 48, z3 ? 10.0f : 123.0f, 90.0f, z3 ? 123.0f : 10.0f, 0.0f));
         this.imageView.setVisibility(0);
-        this.imageView.getImageReceiver().setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$TL_messageMediaInvoice.photo)), String.format(Locale.US, "%d_%d", Integer.valueOf(i2), Integer.valueOf(i3)), null, null, -1, null, tLRPC$TL_messageMediaInvoice, 1);
+        this.imageView.getImageReceiver().setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$WebDocument)), String.format(Locale.US, "%d_%d", Integer.valueOf(i2), Integer.valueOf(i3)), null, null, -1, null, obj, 1);
+    }
+
+    public void setInvoice(TLRPC$TL_messageMediaInvoice tLRPC$TL_messageMediaInvoice, String str) {
+        setInfo(tLRPC$TL_messageMediaInvoice.title, tLRPC$TL_messageMediaInvoice.description, tLRPC$TL_messageMediaInvoice.photo, str, tLRPC$TL_messageMediaInvoice);
     }
 
     public void setReceipt(TLRPC$TL_payments_paymentReceipt tLRPC$TL_payments_paymentReceipt, String str) {
-        int i;
-        this.nameTextView.setText(tLRPC$TL_payments_paymentReceipt.title);
-        this.detailTextView.setText(tLRPC$TL_payments_paymentReceipt.description);
-        this.detailExTextView.setText(str);
-        if (AndroidUtilities.isTablet()) {
-            i = AndroidUtilities.getMinTabletSide();
-        } else {
-            Point point = AndroidUtilities.displaySize;
-            i = Math.min(point.x, point.y);
-        }
-        float f = 640;
-        float dp = f / (((int) (i * 0.7f)) - AndroidUtilities.dp(2.0f));
-        int i2 = (int) (f / dp);
-        int i3 = (int) (360 / dp);
-        TLRPC$WebDocument tLRPC$WebDocument = tLRPC$TL_payments_paymentReceipt.photo;
-        int i4 = 5;
-        if (tLRPC$WebDocument == null || !tLRPC$WebDocument.mime_type.startsWith("image/")) {
-            this.nameTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 17.0f, 9.0f, 17.0f, 0.0f));
-            this.detailTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 17.0f, 33.0f, 17.0f, 0.0f));
-            TextView textView = this.detailExTextView;
-            if (!LocaleController.isRTL) {
-                i4 = 3;
-            }
-            textView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, i4 | 48, 17.0f, 90.0f, 17.0f, 9.0f));
-            this.imageView.setVisibility(8);
-            return;
-        }
-        TextView textView2 = this.nameTextView;
-        boolean z = LocaleController.isRTL;
-        textView2.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 10.0f : 123.0f, 9.0f, z ? 123.0f : 10.0f, 0.0f));
-        TextView textView3 = this.detailTextView;
-        boolean z2 = LocaleController.isRTL;
-        textView3.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 10.0f : 123.0f, 33.0f, z2 ? 123.0f : 10.0f, 0.0f));
-        TextView textView4 = this.detailExTextView;
-        boolean z3 = LocaleController.isRTL;
-        if (!z3) {
-            i4 = 3;
-        }
-        textView4.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, i4 | 48, z3 ? 10.0f : 123.0f, 90.0f, z3 ? 123.0f : 10.0f, 0.0f));
-        this.imageView.setVisibility(0);
-        this.imageView.getImageReceiver().setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$TL_payments_paymentReceipt.photo)), String.format(Locale.US, "%d_%d", Integer.valueOf(i2), Integer.valueOf(i3)), null, null, -1, null, tLRPC$TL_payments_paymentReceipt, 1);
+        setInfo(tLRPC$TL_payments_paymentReceipt.title, tLRPC$TL_payments_paymentReceipt.description, tLRPC$TL_payments_paymentReceipt.photo, str, tLRPC$TL_payments_paymentReceipt);
     }
 }

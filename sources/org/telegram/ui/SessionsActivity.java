@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -13,9 +11,7 @@ import android.text.SpannableStringBuilder;
 import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,10 +81,8 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
     private int currentSessionRow;
     private int currentSessionSectionRow;
     private int currentType;
-    private LinearLayout emptyLayout;
     private EmptyTextProgressView emptyView;
     private FlickerLoadingView globalFlickerLoadingView;
-    private ImageView imageView;
     private RecyclerItemsEnterAnimator itemsEnterAnimator;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
@@ -107,8 +101,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
     private int rowCount;
     private int terminateAllSessionsDetailRow;
     private int terminateAllSessionsRow;
-    private TextView textView1;
-    private TextView textView2;
     private int ttlDays;
     private int ttlDivideRow;
     private int ttlHeaderRow;
@@ -164,45 +156,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
         frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.emptyLayout = linearLayout;
-        linearLayout.setOrientation(1);
-        this.emptyLayout.setGravity(17);
-        this.emptyLayout.setBackgroundDrawable(Theme.getThemedDrawable(context, (int) R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
-        this.emptyLayout.setLayoutParams(new AbsListView.LayoutParams(-1, AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight()));
-        ImageView imageView = new ImageView(context);
-        this.imageView = imageView;
-        if (this.currentType == 0) {
-            imageView.setImageResource(R.drawable.devices);
-        } else {
-            imageView.setImageResource(R.drawable.no_apps);
-        }
-        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("sessions_devicesImage"), PorterDuff.Mode.MULTIPLY));
-        this.emptyLayout.addView(this.imageView, LayoutHelper.createLinear(-2, -2));
-        TextView textView = new TextView(context);
-        this.textView1 = textView;
-        textView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
-        this.textView1.setGravity(17);
-        this.textView1.setTextSize(1, 17.0f);
-        this.textView1.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        if (this.currentType == 0) {
-            this.textView1.setText(LocaleController.getString("NoOtherSessions", R.string.NoOtherSessions));
-        } else {
-            this.textView1.setText(LocaleController.getString("NoOtherWebSessions", R.string.NoOtherWebSessions));
-        }
-        this.emptyLayout.addView(this.textView1, LayoutHelper.createLinear(-2, -2, 17, 0, 16, 0, 0));
-        TextView textView2 = new TextView(context);
-        this.textView2 = textView2;
-        textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
-        this.textView2.setGravity(17);
-        this.textView2.setTextSize(1, 17.0f);
-        this.textView2.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        if (this.currentType == 0) {
-            this.textView2.setText(LocaleController.getString("NoOtherSessionsInfo", R.string.NoOtherSessionsInfo));
-        } else {
-            this.textView2.setText(LocaleController.getString("NoOtherWebSessionsInfo", R.string.NoOtherWebSessionsInfo));
-        }
-        this.emptyLayout.addView(this.textView2, LayoutHelper.createLinear(-2, -2, 17, 0, 14, 0, 0));
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.showProgress();
@@ -222,9 +175,9 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             }
         });
         if (this.currentType == 0) {
-            AnonymousClass2 r4 = new AnonymousClass2(context);
-            this.undoView = r4;
-            frameLayout2.addView(r4, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
+            AnonymousClass2 r2 = new AnonymousClass2(context);
+            this.undoView = r2;
+            frameLayout2.addView(r2, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
         }
         RecyclerItemsEnterAnimator recyclerItemsEnterAnimator = new RecyclerItemsEnterAnimator(this.listView, true) {
             @Override
@@ -918,8 +871,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             } else if (i == 2) {
                 view = new HeaderCell(this.mContext);
                 view.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-            } else if (i == 3) {
-                view = SessionsActivity.this.emptyLayout;
             } else if (i == 5) {
                 view = new ScanQRCodeView(this.mContext);
             } else if (i != 6) {
@@ -935,8 +886,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             int itemViewType = viewHolder.getItemViewType();
-            boolean z = true;
-            int i2 = 0;
+            boolean z = false;
             if (itemViewType == 0) {
                 TextCell textCell = (TextCell) viewHolder.itemView;
                 if (i == SessionsActivity.this.terminateAllSessionsRow) {
@@ -950,7 +900,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 } else if (i == SessionsActivity.this.qrCodeRow) {
                     textCell.setColors("windowBackgroundWhiteBlueText4", "windowBackgroundWhiteBlueText4");
                     textCell.setTag("windowBackgroundWhiteBlueText4");
-                    textCell.setTextAndIcon(LocaleController.getString("AuthAnotherClient", R.string.AuthAnotherClient), R.drawable.msg_qrcode, true ^ SessionsActivity.this.sessions.isEmpty());
+                    textCell.setTextAndIcon(LocaleController.getString("AuthAnotherClient", R.string.AuthAnotherClient), R.drawable.msg_qrcode, !SessionsActivity.this.sessions.isEmpty());
                 }
             } else if (itemViewType == 1) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
@@ -983,55 +933,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                     textInfoPrivacyCell.setText("");
                     textInfoPrivacyCell.setFixedSize(12);
                 }
-            } else if (itemViewType != 2) {
-                int i3 = 30;
-                if (itemViewType == 3) {
-                    ViewGroup.LayoutParams layoutParams = SessionsActivity.this.emptyLayout.getLayoutParams();
-                    if (layoutParams != null) {
-                        int dp = AndroidUtilities.dp(220.0f);
-                        int currentActionBarHeight = AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight();
-                        if (SessionsActivity.this.qrCodeRow == -1) {
-                            i3 = 0;
-                        }
-                        int dp2 = currentActionBarHeight - AndroidUtilities.dp(i3 + ConnectionsManager.RequestFlagNeedQuickAck);
-                        if (Build.VERSION.SDK_INT >= 21) {
-                            i2 = AndroidUtilities.statusBarHeight;
-                        }
-                        layoutParams.height = Math.max(dp, dp2 - i2);
-                        SessionsActivity.this.emptyLayout.setLayoutParams(layoutParams);
-                    }
-                } else if (itemViewType == 5) {
-                } else {
-                    if (itemViewType != 6) {
-                        SessionCell sessionCell = (SessionCell) viewHolder.itemView;
-                        if (i == SessionsActivity.this.currentSessionRow) {
-                            if (SessionsActivity.this.currentSession == null) {
-                                sessionCell.showStub(SessionsActivity.this.globalFlickerLoadingView);
-                                return;
-                            }
-                            TLRPC$TL_authorization tLRPC$TL_authorization = SessionsActivity.this.currentSession;
-                            if (SessionsActivity.this.sessions.isEmpty() && SessionsActivity.this.passwordSessions.isEmpty() && SessionsActivity.this.qrCodeRow == -1) {
-                                z = false;
-                            }
-                            sessionCell.setSession(tLRPC$TL_authorization, z);
-                        } else if (i >= SessionsActivity.this.otherSessionsStartRow && i < SessionsActivity.this.otherSessionsEndRow) {
-                            TLObject tLObject = (TLObject) SessionsActivity.this.sessions.get(i - SessionsActivity.this.otherSessionsStartRow);
-                            if (i == SessionsActivity.this.otherSessionsEndRow - 1) {
-                                z = false;
-                            }
-                            sessionCell.setSession(tLObject, z);
-                        } else if (i >= SessionsActivity.this.passwordSessionsStartRow && i < SessionsActivity.this.passwordSessionsEndRow) {
-                            TLObject tLObject2 = (TLObject) SessionsActivity.this.passwordSessions.get(i - SessionsActivity.this.passwordSessionsStartRow);
-                            if (i == SessionsActivity.this.passwordSessionsEndRow - 1) {
-                                z = false;
-                            }
-                            sessionCell.setSession(tLObject2, z);
-                        }
-                    } else {
-                        ((TextSettingsCell) viewHolder.itemView).setTextAndValue(LocaleController.getString("IfInactiveFor", R.string.IfInactiveFor), (SessionsActivity.this.ttlDays <= 30 || SessionsActivity.this.ttlDays > 183) ? SessionsActivity.this.ttlDays == 365 ? LocaleController.formatPluralString("Years", SessionsActivity.this.ttlDays / 365) : LocaleController.formatPluralString("Weeks", SessionsActivity.this.ttlDays / 7) : LocaleController.formatPluralString("Months", SessionsActivity.this.ttlDays / 30), false);
-                    }
-                }
-            } else {
+            } else if (itemViewType == 2) {
                 HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                 if (i == SessionsActivity.this.currentSessionSectionRow) {
                     headerCell.setText(LocaleController.getString("CurrentSession", R.string.CurrentSession));
@@ -1045,6 +947,36 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                     headerCell.setText(LocaleController.getString("LoginAttempts", R.string.LoginAttempts));
                 } else if (i == SessionsActivity.this.ttlHeaderRow) {
                     headerCell.setText(LocaleController.getString("TerminateOldSessionHeader", R.string.TerminateOldSessionHeader));
+                }
+            } else if (itemViewType == 5) {
+            } else {
+                if (itemViewType != 6) {
+                    SessionCell sessionCell = (SessionCell) viewHolder.itemView;
+                    if (i == SessionsActivity.this.currentSessionRow) {
+                        if (SessionsActivity.this.currentSession == null) {
+                            sessionCell.showStub(SessionsActivity.this.globalFlickerLoadingView);
+                            return;
+                        }
+                        TLRPC$TL_authorization tLRPC$TL_authorization = SessionsActivity.this.currentSession;
+                        if (!SessionsActivity.this.sessions.isEmpty() || !SessionsActivity.this.passwordSessions.isEmpty() || SessionsActivity.this.qrCodeRow != -1) {
+                            z = true;
+                        }
+                        sessionCell.setSession(tLRPC$TL_authorization, z);
+                    } else if (i >= SessionsActivity.this.otherSessionsStartRow && i < SessionsActivity.this.otherSessionsEndRow) {
+                        TLObject tLObject = (TLObject) SessionsActivity.this.sessions.get(i - SessionsActivity.this.otherSessionsStartRow);
+                        if (i != SessionsActivity.this.otherSessionsEndRow - 1) {
+                            z = true;
+                        }
+                        sessionCell.setSession(tLObject, z);
+                    } else if (i >= SessionsActivity.this.passwordSessionsStartRow && i < SessionsActivity.this.passwordSessionsEndRow) {
+                        TLObject tLObject2 = (TLObject) SessionsActivity.this.passwordSessions.get(i - SessionsActivity.this.passwordSessionsStartRow);
+                        if (i != SessionsActivity.this.passwordSessionsEndRow - 1) {
+                            z = true;
+                        }
+                        sessionCell.setSession(tLObject2, z);
+                    }
+                } else {
+                    ((TextSettingsCell) viewHolder.itemView).setTextAndValue(LocaleController.getString("IfInactiveFor", R.string.IfInactiveFor), (SessionsActivity.this.ttlDays <= 30 || SessionsActivity.this.ttlDays > 183) ? SessionsActivity.this.ttlDays == 365 ? LocaleController.formatPluralString("Years", SessionsActivity.this.ttlDays / 365) : LocaleController.formatPluralString("Weeks", SessionsActivity.this.ttlDays / 7) : LocaleController.formatPluralString("Months", SessionsActivity.this.ttlDays / 30), false);
                 }
             }
         }
@@ -1133,7 +1065,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             textView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             textView2.setGravity(17);
             textView2.setTextSize(1, 14.0f);
-            textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
             spannableStringBuilder3.append((CharSequence) ".  ").append((CharSequence) LocaleController.getString("LinkDesktopDevice", R.string.LinkDesktopDevice));
             spannableStringBuilder3.setSpan(new ColoredImageSpan(ContextCompat.getDrawable(getContext(), R.drawable.msg_mini_qr)), 0, 1, 0);
@@ -1322,9 +1254,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "actionBarDefaultSelector"));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, "listSelectorSDK21"));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, "divider"));
-        arrayList.add(new ThemeDescription(this.imageView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, "sessions_devicesImage"));
-        arrayList.add(new ThemeDescription(this.textView1, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteGrayText2"));
-        arrayList.add(new ThemeDescription(this.textView2, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteGrayText2"));
         arrayList.add(new ThemeDescription(this.emptyView, ThemeDescription.FLAG_PROGRESSBAR, null, null, null, null, "progressCircle"));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{TextSettingsCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteRedText2"));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{TextSettingsCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlueText4"));

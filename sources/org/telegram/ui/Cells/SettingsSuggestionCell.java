@@ -38,7 +38,7 @@ public class SettingsSuggestionCell extends LinearLayout {
         TextView textView = new TextView(context);
         this.textView = textView;
         textView.setTextSize(1, 15.0f);
-        this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueHeader"));
@@ -66,7 +66,7 @@ public class SettingsSuggestionCell extends LinearLayout {
             textView3.setGravity(17);
             textView3.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             textView3.setTextSize(1, 14.0f);
-            textView3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             linearLayout.addView(textView3, LayoutHelper.createLinear(0, 40, 0.5f, i == 0 ? 0 : 4, 0, i == 0 ? 4 : 0, 0));
             if (i == 0) {
                 this.yesButton = textView3;

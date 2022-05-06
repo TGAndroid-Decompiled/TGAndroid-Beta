@@ -51,7 +51,7 @@ public class LocationCell extends FrameLayout {
         this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.nameTextView.setSingleLine(true);
         this.nameTextView.setTextColor(getThemedColor("windowBackgroundWhiteBlackText"));
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         TextView textView2 = this.nameTextView;
         boolean z3 = LocaleController.isRTL;

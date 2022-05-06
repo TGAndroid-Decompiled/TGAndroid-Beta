@@ -291,7 +291,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
             textView.setText(this.title);
             this.titleTextView.setTextColor(getThemedColor("dialogTextBlack"));
             this.titleTextView.setTextSize(1, 20.0f);
-            this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titleTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
             FrameLayout frameLayout2 = this.titleContainer;
             TextView textView2 = this.titleTextView;
@@ -387,7 +387,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
             r1.addView(this.lineProgressView, LayoutHelper.createLinear(-1, 4, 19, 24, 0, 24, 0));
             TextView textView6 = new TextView(getContext());
             this.lineProgressViewPercent = textView6;
-            textView6.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView6.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.lineProgressViewPercent.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
             this.lineProgressViewPercent.setTextColor(getThemedColor("dialogTextGray2"));
             this.lineProgressViewPercent.setTextSize(1, 14.0f);
@@ -567,7 +567,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
                 textView7.setTextSize(1, 14.0f);
                 textView7.setTextColor(getThemedColor(this.dialogButtonColorKey));
                 textView7.setGravity(17);
-                textView7.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textView7.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 textView7.setText(this.positiveButtonText.toString().toUpperCase());
                 textView7.setBackgroundDrawable(Theme.getRoundRectSelectorDrawable(getThemedColor(this.dialogButtonColorKey)));
                 textView7.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
@@ -602,7 +602,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
                 textView8.setTextSize(1, 14.0f);
                 textView8.setTextColor(getThemedColor(this.dialogButtonColorKey));
                 textView8.setGravity(17);
-                textView8.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textView8.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 textView8.setEllipsize(TextUtils.TruncateAt.END);
                 textView8.setSingleLine(true);
                 textView8.setText(this.negativeButtonText.toString().toUpperCase());
@@ -639,7 +639,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback {
                 textView9.setTextSize(1, 14.0f);
                 textView9.setTextColor(getThemedColor(this.dialogButtonColorKey));
                 textView9.setGravity(17);
-                textView9.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textView9.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 textView9.setEllipsize(TextUtils.TruncateAt.END);
                 textView9.setSingleLine(true);
                 textView9.setText(this.neutralButtonText.toString().toUpperCase());

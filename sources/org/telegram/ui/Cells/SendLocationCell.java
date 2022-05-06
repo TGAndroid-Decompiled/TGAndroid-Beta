@@ -78,7 +78,7 @@ public class SendLocationCell extends FrameLayout {
         this.titleTextView.setTag(z ? str2 : "location_sendLocationText");
         this.titleTextView.setTextColor(getThemedColor(!z ? "location_sendLocationText" : str2));
         this.titleTextView.setGravity(LocaleController.isRTL ? 5 : 3);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         SimpleTextView simpleTextView2 = this.titleTextView;
         boolean z3 = LocaleController.isRTL;
         addView(simpleTextView2, LayoutHelper.createFrame(-1, 20.0f, (z3 ? 5 : 3) | 48, z3 ? 16.0f : 73.0f, 12.0f, z3 ? 73.0f : 16.0f, 0.0f));

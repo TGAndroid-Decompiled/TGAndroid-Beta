@@ -114,7 +114,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         textView.setText(LocaleController.getString("SelectTheme", R.string.SelectTheme));
         textView.setTextColor(getThemedColor("dialogTextBlack"));
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
         this.rootLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 8388659, 0.0f, 0.0f, 62.0f, 0.0f));
         int themedColor = getThemedColor("featuredStickers_addButton");
@@ -189,7 +189,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         textView3.setText(LocaleController.getString(str, i));
         this.resetTextView.setTextColor(getThemedColor("featuredStickers_buttonText"));
         this.resetTextView.setTextSize(1, 15.0f);
-        this.resetTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.resetTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.resetTextView.setVisibility(4);
         this.rootLayout.addView(this.resetTextView, LayoutHelper.createFrame(-1, 48.0f, 8388611, 16.0f, 162.0f, 16.0f, 16.0f));
         TextView textView4 = new TextView(getContext());
@@ -201,7 +201,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         this.applyTextView.setText(LocaleController.getString("ChatApplyTheme", R.string.ChatApplyTheme));
         this.applyTextView.setTextColor(getThemedColor("featuredStickers_buttonText"));
         this.applyTextView.setTextSize(1, 15.0f);
-        this.applyTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.applyTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.applyTextView.setVisibility(4);
         this.rootLayout.addView(this.applyTextView, LayoutHelper.createFrame(-1, 48.0f, 8388611, 16.0f, 162.0f, 16.0f, 16.0f));
     }

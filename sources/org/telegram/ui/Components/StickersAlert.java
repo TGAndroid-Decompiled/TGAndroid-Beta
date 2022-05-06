@@ -105,11 +105,11 @@ import org.telegram.ui.ContentPreviewViewer;
 public class StickersAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private GridAdapter adapter;
     private List<ThemeDescription> animatingDescriptions;
-    private TextView applyTextView;
     private String buttonTextColorKey;
     private int checkReqId;
     private Runnable checkRunnable;
     private boolean clearsInputField;
+    private StickersAlertCustomButtonDelegate customButtonDelegate;
     private StickersAlertDelegate delegate;
     private FrameLayout emptyView;
     private RecyclerListView gridView;
@@ -127,6 +127,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
     private ActionBarMenuItem optionsButton;
     private Activity parentActivity;
     private BaseFragment parentFragment;
+    private FrameLayout pickerBottomFrameLayout;
     private TextView pickerBottomLayout;
     private ContentPreviewViewer.ContentPreviewViewerDelegate previewDelegate;
     private TextView previewSendButton;
@@ -150,6 +151,18 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
     private HashMap<String, SendMessagesHelper.ImportingSticker> uploadImportStickers;
     private Pattern urlPattern;
 
+    public interface StickersAlertCustomButtonDelegate {
+        String getCustomButtonColorKey();
+
+        String getCustomButtonRippleColorKey();
+
+        String getCustomButtonText();
+
+        String getCustomButtonTextColorKey();
+
+        boolean onCustomButtonPressed();
+    }
+
     public interface StickersAlertDelegate {
         boolean canSchedule();
 
@@ -168,7 +181,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         return true;
     }
 
-    public static void lambda$showNameEnterAlert$20(DialogInterface dialogInterface, int i) {
+    public static void lambda$showNameEnterAlert$21(DialogInterface dialogInterface, int i) {
     }
 
     @Override
@@ -302,7 +315,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             }
             tLRPC$TL_messages_getAttachedStickers.media = tLRPC$TL_inputStickeredMediaDocument;
         }
-        final RequestDelegate stickersAlert$$ExternalSyntheticLambda30 = new RequestDelegate() {
+        final RequestDelegate stickersAlert$$ExternalSyntheticLambda31 = new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
                 StickersAlert.this.lambda$new$1(tLRPC$TL_messages_getAttachedStickers, tLObject2, tLRPC$TL_error);
@@ -311,7 +324,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getAttachedStickers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
-                StickersAlert.this.lambda$new$2(obj, tLRPC$TL_messages_getAttachedStickers, stickersAlert$$ExternalSyntheticLambda30, tLObject2, tLRPC$TL_error);
+                StickersAlert.this.lambda$new$2(obj, tLRPC$TL_messages_getAttachedStickers, stickersAlert$$ExternalSyntheticLambda31, tLObject2, tLRPC$TL_error);
             }
         });
         init(context);
@@ -763,14 +776,15 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     StickersAlert.this.ignoreLayout = false;
                 }
                 StickersAlert.this.itemSize = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(36.0f)) / 5;
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) StickersAlert.this.gridView.getLayoutParams();
                 if (StickersAlert.this.importingStickers != null) {
-                    dp = AndroidUtilities.dp(96.0f) + (Math.max(3, (int) Math.ceil(StickersAlert.this.importingStickers.size() / 5.0f)) * AndroidUtilities.dp(82.0f)) + ((BottomSheet) StickersAlert.this).backgroundPaddingTop;
+                    dp = AndroidUtilities.dp(48.0f) + marginLayoutParams.bottomMargin + (Math.max(3, (int) Math.ceil(StickersAlert.this.importingStickers.size() / 5.0f)) * AndroidUtilities.dp(82.0f)) + ((BottomSheet) StickersAlert.this).backgroundPaddingTop;
                     i3 = AndroidUtilities.statusBarHeight;
                 } else if (StickersAlert.this.stickerSetCovereds != null) {
-                    dp = AndroidUtilities.dp(56.0f) + (AndroidUtilities.dp(60.0f) * StickersAlert.this.stickerSetCovereds.size()) + (StickersAlert.this.adapter.stickersRowCount * AndroidUtilities.dp(82.0f)) + ((BottomSheet) StickersAlert.this).backgroundPaddingTop;
+                    dp = AndroidUtilities.dp(8.0f) + marginLayoutParams.bottomMargin + (AndroidUtilities.dp(60.0f) * StickersAlert.this.stickerSetCovereds.size()) + (StickersAlert.this.adapter.stickersRowCount * AndroidUtilities.dp(82.0f)) + ((BottomSheet) StickersAlert.this).backgroundPaddingTop;
                     i3 = AndroidUtilities.dp(24.0f);
                 } else {
-                    dp = AndroidUtilities.dp(96.0f) + (Math.max(3, StickersAlert.this.stickerSet != null ? (int) Math.ceil(StickersAlert.this.stickerSet.documents.size() / 5.0f) : 0) * AndroidUtilities.dp(82.0f)) + ((BottomSheet) StickersAlert.this).backgroundPaddingTop;
+                    dp = AndroidUtilities.dp(48.0f) + marginLayoutParams.bottomMargin + (Math.max(3, StickersAlert.this.stickerSet != null ? (int) Math.ceil(StickersAlert.this.stickerSet.documents.size() / 5.0f) : 0) * AndroidUtilities.dp(82.0f)) + ((BottomSheet) StickersAlert.this).backgroundPaddingTop;
                     i3 = AndroidUtilities.statusBarHeight;
                 }
                 int i4 = dp + i3;
@@ -903,14 +917,14 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 StickersAlert.this.updateLayout();
             }
         });
-        RecyclerListView.OnItemClickListener stickersAlert$$ExternalSyntheticLambda34 = new RecyclerListView.OnItemClickListener() {
+        RecyclerListView.OnItemClickListener stickersAlert$$ExternalSyntheticLambda35 = new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
                 StickersAlert.this.lambda$init$8(view, i2);
             }
         };
-        this.stickersOnItemClickListener = stickersAlert$$ExternalSyntheticLambda34;
-        this.gridView.setOnItemClickListener(stickersAlert$$ExternalSyntheticLambda34);
+        this.stickersOnItemClickListener = stickersAlert$$ExternalSyntheticLambda35;
+        this.gridView.setOnItemClickListener(stickersAlert$$ExternalSyntheticLambda35);
         this.containerView.addView(this.gridView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 48.0f, 0.0f, 48.0f));
         FrameLayout frameLayout2 = new FrameLayout(context) {
             @Override
@@ -923,7 +937,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.emptyView = frameLayout2;
         this.containerView.addView(frameLayout2, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 48.0f));
         this.gridView.setEmptyView(this.emptyView);
-        this.emptyView.setOnTouchListener(StickersAlert$$ExternalSyntheticLambda13.INSTANCE);
+        this.emptyView.setOnTouchListener(StickersAlert$$ExternalSyntheticLambda14.INSTANCE);
         TextView textView = new TextView(context);
         this.titleTextView = textView;
         textView.setLines(1);
@@ -934,7 +948,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.titleTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.titleTextView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         this.titleTextView.setGravity(16);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.containerView.addView(this.titleTextView, LayoutHelper.createFrame(-1, 50.0f, 51, 0.0f, 0.0f, 40.0f, 0.0f));
         ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, (ActionBarMenu) null, 0, getThemedColor("key_sheet_other"), this.resourcesProvider);
         this.optionsButton = actionBarMenuItem;
@@ -967,29 +981,21 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.containerView.addView(this.shadow[1], layoutParams2);
         TextView textView2 = new TextView(context);
         this.pickerBottomLayout = textView2;
-        textView2.setBackgroundDrawable(Theme.createSelectorWithBackgroundDrawable(getThemedColor("dialogBackground"), getThemedColor("listSelectorSDK21")));
+        textView2.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor("dialogBackground"), getThemedColor("listSelectorSDK21")));
         TextView textView3 = this.pickerBottomLayout;
         this.buttonTextColorKey = "dialogTextBlue2";
         textView3.setTextColor(getThemedColor("dialogTextBlue2"));
         this.pickerBottomLayout.setTextSize(1, 14.0f);
         this.pickerBottomLayout.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        this.pickerBottomLayout.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.pickerBottomLayout.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.pickerBottomLayout.setGravity(17);
-        this.containerView.addView(this.pickerBottomLayout, LayoutHelper.createFrame(-1, 48, 83));
-        TextView textView4 = new TextView(getContext());
-        this.applyTextView = textView4;
-        textView4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
-        this.applyTextView.setEllipsize(TextUtils.TruncateAt.END);
-        this.applyTextView.setGravity(17);
-        this.applyTextView.setLines(1);
-        this.applyTextView.setSingleLine(true);
-        this.applyTextView.setTextColor(getThemedColor("featuredStickers_buttonText"));
-        this.applyTextView.setTextSize(1, 15.0f);
-        this.applyTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-        this.containerView.addView(this.applyTextView, LayoutHelper.createFrame(-1, 48.0f, 8388691, 16.0f, 162.0f, 16.0f, 16.0f));
         FrameLayout frameLayout3 = new FrameLayout(context);
-        this.stickerPreviewLayout = frameLayout3;
-        frameLayout3.setVisibility(8);
+        this.pickerBottomFrameLayout = frameLayout3;
+        frameLayout3.addView(this.pickerBottomLayout, LayoutHelper.createFrame(-1, 48.0f));
+        this.containerView.addView(this.pickerBottomFrameLayout, LayoutHelper.createFrame(-1, -2, 83));
+        FrameLayout frameLayout4 = new FrameLayout(context);
+        this.stickerPreviewLayout = frameLayout4;
+        frameLayout4.setVisibility(8);
         this.stickerPreviewLayout.setSoundEffectsEnabled(false);
         this.containerView.addView(this.stickerPreviewLayout, LayoutHelper.createFrame(-1, -1.0f));
         this.stickerPreviewLayout.setOnClickListener(new View.OnClickListener() {
@@ -1003,19 +1009,19 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         backupImageView.setAspectFit(true);
         this.stickerImageView.setLayerNum(7);
         this.stickerPreviewLayout.addView(this.stickerImageView);
-        TextView textView5 = new TextView(context);
-        this.stickerEmojiTextView = textView5;
-        textView5.setTextSize(1, 30.0f);
+        TextView textView4 = new TextView(context);
+        this.stickerEmojiTextView = textView4;
+        textView4.setTextSize(1, 30.0f);
         this.stickerEmojiTextView.setGravity(85);
         this.stickerPreviewLayout.addView(this.stickerEmojiTextView);
-        TextView textView6 = new TextView(context);
-        this.previewSendButton = textView6;
-        textView6.setTextSize(1, 14.0f);
+        TextView textView5 = new TextView(context);
+        this.previewSendButton = textView5;
+        textView5.setTextSize(1, 14.0f);
         this.previewSendButton.setTextColor(getThemedColor("dialogTextBlue2"));
         this.previewSendButton.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor("dialogBackground"), getThemedColor("listSelectorSDK21")));
         this.previewSendButton.setGravity(17);
         this.previewSendButton.setPadding(AndroidUtilities.dp(29.0f), 0, AndroidUtilities.dp(29.0f), 0);
-        this.previewSendButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.previewSendButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.stickerPreviewLayout.addView(this.previewSendButton, LayoutHelper.createFrame(-1, 48, 83));
         this.previewSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1180,6 +1186,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.installDelegate = stickersAlertInstallDelegate;
     }
 
+    public void setCustomButtonDelegate(StickersAlertCustomButtonDelegate stickersAlertCustomButtonDelegate) {
+        this.customButtonDelegate = stickersAlertCustomButtonDelegate;
+        updateFields();
+    }
+
     public void onSubItemClick(int i) {
         BaseFragment baseFragment;
         if (this.stickerSet != null) {
@@ -1214,7 +1225,13 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.StickersAlert.updateFields():void");
     }
 
-    public void lambda$updateFields$15(View view) {
+    public void lambda$updateFields$13(View view) {
+        if (this.customButtonDelegate.onCustomButtonPressed()) {
+            dismiss();
+        }
+    }
+
+    public void lambda$updateFields$16(View view) {
         dismiss();
         StickersAlertInstallDelegate stickersAlertInstallDelegate = this.installDelegate;
         if (stickersAlertInstallDelegate != null) {
@@ -1226,27 +1243,27 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_installStickerSet, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StickersAlert.this.lambda$updateFields$14(tLObject, tLRPC$TL_error);
+                    StickersAlert.this.lambda$updateFields$15(tLObject, tLRPC$TL_error);
                 }
             });
         }
     }
 
-    public void lambda$updateFields$14(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$updateFields$15(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.this.lambda$updateFields$13(tLRPC$TL_error, tLObject);
+                StickersAlert.this.lambda$updateFields$14(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$updateFields$13(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$updateFields$14(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         ?? r0 = this.stickerSet.set.masks;
         try {
             if (tLRPC$TL_error == null) {
                 if (this.showTooltipWhenToggle) {
-                    Bulletin.make(this.parentFragment, new StickerSetBulletinLayout(this.pickerBottomLayout.getContext(), this.stickerSet, 2, null, this.resourcesProvider), 1500).show();
+                    Bulletin.make(this.parentFragment, new StickerSetBulletinLayout(this.pickerBottomFrameLayout.getContext(), this.stickerSet, 2, null, this.resourcesProvider), 1500).show();
                 }
                 if (tLObject instanceof TLRPC$TL_messages_stickerSetInstallResultArchive) {
                     MediaDataController.getInstance(this.currentAccount).processStickerSetInstallResultArchive(this.parentFragment, true, r0, (TLRPC$TL_messages_stickerSetInstallResultArchive) tLObject);
@@ -1260,7 +1277,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         MediaDataController.getInstance(this.currentAccount).loadStickers(r0 == true ? 1 : 0, false, true);
     }
 
-    public void lambda$updateFields$16(View view) {
+    public void lambda$updateFields$17(View view) {
         StickersAlertInstallDelegate stickersAlertInstallDelegate = this.installDelegate;
         if (stickersAlertInstallDelegate != null) {
             stickersAlertInstallDelegate.onStickerSetUninstalled();
@@ -1269,7 +1286,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         MediaDataController.getInstance(this.currentAccount).toggleStickerSet(getContext(), this.stickerSet, 1, this.parentFragment, true, this.showTooltipWhenToggle);
     }
 
-    public void lambda$updateFields$17(View view) {
+    public void lambda$updateFields$18(View view) {
         StickersAlertInstallDelegate stickersAlertInstallDelegate = this.installDelegate;
         if (stickersAlertInstallDelegate != null) {
             stickersAlertInstallDelegate.onStickerSetUninstalled();
@@ -1278,11 +1295,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         MediaDataController.getInstance(this.currentAccount).toggleStickerSet(getContext(), this.stickerSet, 0, this.parentFragment, true, this.showTooltipWhenToggle);
     }
 
-    public void lambda$updateFields$18(View view) {
+    public void lambda$updateFields$19(View view) {
         showNameEnterAlert();
     }
 
-    public void lambda$updateFields$19(View view) {
+    public void lambda$updateFields$20(View view) {
         dismiss();
     }
 
@@ -1346,9 +1363,9 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView3, int i, KeyEvent keyEvent) {
-                boolean lambda$showNameEnterAlert$21;
-                lambda$showNameEnterAlert$21 = StickersAlert.lambda$showNameEnterAlert$21(AlertDialog.Builder.this, textView3, i, keyEvent);
-                return lambda$showNameEnterAlert$21;
+                boolean lambda$showNameEnterAlert$22;
+                lambda$showNameEnterAlert$22 = StickersAlert.lambda$showNameEnterAlert$22(AlertDialog.Builder.this, textView3, i, keyEvent);
+                return lambda$showNameEnterAlert$22;
             }
         });
         editTextBoldCursor.setSelection(editTextBoldCursor.length());
@@ -1367,7 +1384,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         create.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                StickersAlert.lambda$showNameEnterAlert$24(EditTextBoldCursor.this, dialogInterface);
+                StickersAlert.lambda$showNameEnterAlert$25(EditTextBoldCursor.this, dialogInterface);
             }
         });
         create.show();
@@ -1375,12 +1392,12 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         create.getButton(-1).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StickersAlert.this.lambda$showNameEnterAlert$28(iArr, editTextBoldCursor, textView, textView2, builder, view);
+                StickersAlert.this.lambda$showNameEnterAlert$29(iArr, editTextBoldCursor, textView, textView2, builder, view);
             }
         });
     }
 
-    public static boolean lambda$showNameEnterAlert$21(AlertDialog.Builder builder, TextView textView, int i, KeyEvent keyEvent) {
+    public static boolean lambda$showNameEnterAlert$22(AlertDialog.Builder builder, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 5) {
             return false;
         }
@@ -1388,21 +1405,21 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         return true;
     }
 
-    public static void lambda$showNameEnterAlert$24(final EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+    public static void lambda$showNameEnterAlert$25(final EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.lambda$showNameEnterAlert$23(EditTextBoldCursor.this);
+                StickersAlert.lambda$showNameEnterAlert$24(EditTextBoldCursor.this);
             }
         });
     }
 
-    public static void lambda$showNameEnterAlert$23(EditTextBoldCursor editTextBoldCursor) {
+    public static void lambda$showNameEnterAlert$24(EditTextBoldCursor editTextBoldCursor) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public void lambda$showNameEnterAlert$28(final int[] iArr, final EditTextBoldCursor editTextBoldCursor, final TextView textView, final TextView textView2, AlertDialog.Builder builder, View view) {
+    public void lambda$showNameEnterAlert$29(final int[] iArr, final EditTextBoldCursor editTextBoldCursor, final TextView textView, final TextView textView2, AlertDialog.Builder builder, View view) {
         if (iArr[0] != 1) {
             if (iArr[0] == 0) {
                 iArr[0] = 1;
@@ -1413,7 +1430,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stickers_suggestShortName, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        StickersAlert.this.lambda$showNameEnterAlert$26(editTextBoldCursor, textView, textView2, iArr, tLObject, tLRPC$TL_error);
+                        StickersAlert.this.lambda$showNameEnterAlert$27(editTextBoldCursor, textView, textView2, iArr, tLObject, tLRPC$TL_error);
                     }
                 });
             } else if (iArr[0] == 2) {
@@ -1426,7 +1443,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 SendMessagesHelper.getInstance(this.currentAccount).prepareImportStickers(this.setTitle, this.lastCheckName, this.importingSoftware, this.importingStickersPaths, new MessagesStorage.StringCallback() {
                     @Override
                     public final void run(String str) {
-                        StickersAlert.this.lambda$showNameEnterAlert$27(str);
+                        StickersAlert.this.lambda$showNameEnterAlert$28(str);
                     }
                 });
                 builder.getDismissRunnable().run();
@@ -1435,16 +1452,16 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
     }
 
-    public void lambda$showNameEnterAlert$26(final EditTextBoldCursor editTextBoldCursor, final TextView textView, final TextView textView2, final int[] iArr, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$showNameEnterAlert$27(final EditTextBoldCursor editTextBoldCursor, final TextView textView, final TextView textView2, final int[] iArr, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.this.lambda$showNameEnterAlert$25(tLObject, editTextBoldCursor, textView, textView2, iArr);
+                StickersAlert.this.lambda$showNameEnterAlert$26(tLObject, editTextBoldCursor, textView, textView2, iArr);
             }
         });
     }
 
-    public void lambda$showNameEnterAlert$25(TLObject tLObject, EditTextBoldCursor editTextBoldCursor, TextView textView, TextView textView2, int[] iArr) {
+    public void lambda$showNameEnterAlert$26(TLObject tLObject, EditTextBoldCursor editTextBoldCursor, TextView textView, TextView textView2, int[] iArr) {
         String str;
         boolean z = true;
         if (!(tLObject instanceof TLRPC$TL_stickers_suggestedShortName) || (str = ((TLRPC$TL_stickers_suggestedShortName) tLObject).short_name) == null) {
@@ -1462,7 +1479,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         iArr[0] = 2;
     }
 
-    public void lambda$showNameEnterAlert$27(String str) {
+    public void lambda$showNameEnterAlert$28(String str) {
         new ImportingAlert(getContext(), this.lastCheckName, null, this.resourcesProvider).show();
     }
 
@@ -1515,38 +1532,38 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             textView.setText(LocaleController.getString("ImportStickersLinkChecking", R.string.ImportStickersLinkChecking));
             textView.setTextColor(getThemedColor("windowBackgroundWhiteGrayText8"));
             this.lastCheckName = str;
-            Runnable stickersAlert$$ExternalSyntheticLambda16 = new Runnable() {
+            Runnable stickersAlert$$ExternalSyntheticLambda17 = new Runnable() {
                 @Override
                 public final void run() {
-                    StickersAlert.this.lambda$checkUrlAvailable$31(str, textView);
+                    StickersAlert.this.lambda$checkUrlAvailable$32(str, textView);
                 }
             };
-            this.checkRunnable = stickersAlert$$ExternalSyntheticLambda16;
-            AndroidUtilities.runOnUIThread(stickersAlert$$ExternalSyntheticLambda16, 300L);
+            this.checkRunnable = stickersAlert$$ExternalSyntheticLambda17;
+            AndroidUtilities.runOnUIThread(stickersAlert$$ExternalSyntheticLambda17, 300L);
         }
     }
 
-    public void lambda$checkUrlAvailable$31(final String str, final TextView textView) {
+    public void lambda$checkUrlAvailable$32(final String str, final TextView textView) {
         TLRPC$TL_stickers_checkShortName tLRPC$TL_stickers_checkShortName = new TLRPC$TL_stickers_checkShortName();
         tLRPC$TL_stickers_checkShortName.short_name = str;
         this.checkReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stickers_checkShortName, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StickersAlert.this.lambda$checkUrlAvailable$30(str, textView, tLObject, tLRPC$TL_error);
+                StickersAlert.this.lambda$checkUrlAvailable$31(str, textView, tLObject, tLRPC$TL_error);
             }
         }, 2);
     }
 
-    public void lambda$checkUrlAvailable$30(final String str, final TextView textView, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkUrlAvailable$31(final String str, final TextView textView, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.this.lambda$checkUrlAvailable$29(str, tLRPC$TL_error, tLObject, textView);
+                StickersAlert.this.lambda$checkUrlAvailable$30(str, tLRPC$TL_error, tLObject, textView);
             }
         });
     }
 
-    public void lambda$checkUrlAvailable$29(String str, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, TextView textView) {
+    public void lambda$checkUrlAvailable$30(String str, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, TextView textView) {
         this.checkReqId = 0;
         String str2 = this.lastCheckName;
         if (str2 != null && str2.equals(str)) {
@@ -1718,8 +1735,8 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
             @Override
             public int getBottomOffset(int i) {
-                if (StickersAlert.this.pickerBottomLayout != null) {
-                    return StickersAlert.this.pickerBottomLayout.getHeight();
+                if (StickersAlert.this.pickerBottomFrameLayout != null) {
+                    return StickersAlert.this.pickerBottomFrameLayout.getHeight();
                 }
                 return 0;
             }
@@ -1755,7 +1772,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 importingSticker.uploadMedia(this.currentAccount, (TLRPC$InputFile) objArr[1], new Runnable() {
                     @Override
                     public final void run() {
-                        StickersAlert.this.lambda$didReceivedNotification$32(str, importingSticker);
+                        StickersAlert.this.lambda$didReceivedNotification$33(str, importingSticker);
                     }
                 });
             }
@@ -1770,7 +1787,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
     }
 
-    public void lambda$didReceivedNotification$32(String str, SendMessagesHelper.ImportingSticker importingSticker) {
+    public void lambda$didReceivedNotification$33(String str, SendMessagesHelper.ImportingSticker importingSticker) {
         if (!isDismissed()) {
             this.uploadImportStickers.remove(str);
             if (!"application/x-tgsticker".equals(importingSticker.mimeType)) {
@@ -1793,25 +1810,49 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
     }
 
-    private void setButton(View.OnClickListener onClickListener, String str, String str2, boolean z) {
-        if (z) {
-            this.applyTextView.setText(str);
-            this.applyTextView.setOnClickListener(onClickListener);
-            this.applyTextView.setVisibility(0);
-            this.previewSendButtonShadow.setVisibility(4);
-            this.pickerBottomLayout.setOnClickListener(null);
-            this.pickerBottomLayout.setText("");
-            this.pickerBottomLayout.setVisibility(0);
-            return;
-        }
+    private void setButton(View.OnClickListener onClickListener, String str, String str2) {
+        setButton(onClickListener, str, str2, null, null);
+    }
+
+    private void setButton(View.OnClickListener onClickListener, String str, String str2, String str3, String str4) {
         TextView textView = this.pickerBottomLayout;
         this.buttonTextColorKey = str2;
         textView.setTextColor(getThemedColor(str2));
-        this.pickerBottomLayout.setText(str.toUpperCase());
+        TextView textView2 = this.pickerBottomLayout;
+        if (this.customButtonDelegate == null) {
+            str = str.toUpperCase();
+        }
+        textView2.setText(str);
         this.pickerBottomLayout.setOnClickListener(onClickListener);
-        this.pickerBottomLayout.setVisibility(0);
-        this.previewSendButtonShadow.setVisibility(0);
-        this.applyTextView.setVisibility(8);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.pickerBottomLayout.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) this.shadow[1].getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams3 = (ViewGroup.MarginLayoutParams) this.gridView.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams4 = (ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams();
+        if (str3 == null || str4 == null) {
+            this.pickerBottomLayout.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor("dialogBackground"), getThemedColor("listSelectorSDK21")));
+            this.pickerBottomFrameLayout.setBackgroundColor(0);
+            marginLayoutParams.bottomMargin = 0;
+            marginLayoutParams.rightMargin = 0;
+            marginLayoutParams.topMargin = 0;
+            marginLayoutParams.leftMargin = 0;
+            int dp = AndroidUtilities.dp(48.0f);
+            marginLayoutParams2.bottomMargin = dp;
+            marginLayoutParams3.bottomMargin = dp;
+            marginLayoutParams4.bottomMargin = dp;
+        } else {
+            this.pickerBottomLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor(str3), getThemedColor(str4)));
+            this.pickerBottomFrameLayout.setBackgroundColor(getThemedColor("dialogBackground"));
+            int dp2 = AndroidUtilities.dp(8.0f);
+            marginLayoutParams.bottomMargin = dp2;
+            marginLayoutParams.rightMargin = dp2;
+            marginLayoutParams.topMargin = dp2;
+            marginLayoutParams.leftMargin = dp2;
+            int dp3 = AndroidUtilities.dp(64.0f);
+            marginLayoutParams2.bottomMargin = dp3;
+            marginLayoutParams3.bottomMargin = dp3;
+            marginLayoutParams4.bottomMargin = dp3;
+        }
+        this.containerView.requestLayout();
     }
 
     public void setShowTooltipWhenToggle(boolean z) {
@@ -1854,7 +1895,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
     @Override
     public ArrayList<ThemeDescription> getThemeDescriptions() {
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        ThemeDescription.ThemeDescriptionDelegate stickersAlert$$ExternalSyntheticLambda33 = new ThemeDescription.ThemeDescriptionDelegate() {
+        ThemeDescription.ThemeDescriptionDelegate stickersAlert$$ExternalSyntheticLambda34 = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
                 StickersAlert.this.updateColors();
@@ -1867,7 +1908,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         };
         arrayList.add(new ThemeDescription(this.containerView, 0, null, null, new Drawable[]{this.shadowDrawable}, null, "dialogBackground"));
         arrayList.add(new ThemeDescription(this.containerView, 0, null, null, null, null, "key_sheet_scrollUp"));
-        this.adapter.getThemeDescriptions(arrayList, stickersAlert$$ExternalSyntheticLambda33);
+        this.adapter.getThemeDescriptions(arrayList, stickersAlert$$ExternalSyntheticLambda34);
         arrayList.add(new ThemeDescription(this.shadow[0], ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogShadowLine"));
         arrayList.add(new ThemeDescription(this.shadow[1], ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogShadowLine"));
         arrayList.add(new ThemeDescription(this.gridView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, "dialogScrollGlow"));
@@ -1881,13 +1922,13 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         arrayList.add(new ThemeDescription(this.previewSendButton, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, "dialogBackground"));
         arrayList.add(new ThemeDescription(this.previewSendButton, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, "listSelectorSDK21"));
         arrayList.add(new ThemeDescription(this.previewSendButtonShadow, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogShadowLine"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda33, "dialogLinkSelection"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda33, "dialogBackground"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda33, "key_sheet_other"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda33, "actionBarDefaultSubmenuItem"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda33, "actionBarDefaultSubmenuItemIcon"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda33, "dialogButtonSelector"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda33, "actionBarDefaultSubmenuBackground"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda34, "dialogLinkSelection"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda34, "dialogBackground"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda34, "key_sheet_other"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda34, "actionBarDefaultSubmenuItem"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda34, "actionBarDefaultSubmenuItemIcon"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda34, "dialogButtonSelector"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, stickersAlert$$ExternalSyntheticLambda34, "actionBarDefaultSubmenuBackground"));
         return arrayList;
     }
 

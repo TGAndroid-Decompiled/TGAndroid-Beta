@@ -116,7 +116,7 @@ public class PullForegroundDrawable {
     public PullForegroundDrawable(String str, String str2) {
         TextPaint textPaint = new TextPaint(1);
         this.tooltipTextPaint = textPaint;
-        textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
         this.pullTooltip = str;

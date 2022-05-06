@@ -213,7 +213,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         this.positiveButton.setTextSize(1, 14.0f);
         this.positiveButton.setTextColor(Theme.getColor("voipgroup_nameText"));
         this.positiveButton.setGravity(17);
-        this.positiveButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.positiveButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.positiveButton.setText(LocaleController.getString("VoipShareVideo", R.string.VoipShareVideo));
         if (Build.VERSION.SDK_INT >= 23) {
             this.positiveButton.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_nameText"), 76)));
@@ -238,7 +238,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             textViewArr[i] = new TextView(context);
             this.titles[i].setTextSize(1, 12.0f);
             this.titles[i].setTextColor(-1);
-            this.titles[i].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.titles[i].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titles[i].setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
             this.titles[i].setGravity(16);
             this.titles[i].setSingleLine(true);
@@ -282,7 +282,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             this.micIconView = rLottieImageView;
             rLottieImageView.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f));
             this.micIconView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(48.0f), ColorUtils.setAlphaComponent(-16777216, 76)));
-            final RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.voice_mini, "2131558556", AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
+            final RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.voice_mini, "2131558557", AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
             this.micIconView.setAnimation(rLottieDrawable);
             this.micIconView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             this.micEnabled = true;
@@ -587,7 +587,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                 textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
                 textView.setTextColor(-1);
                 textView.setTextSize(1, 15.0f);
-                textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
                 imageView = frameLayout;
             }

@@ -48,7 +48,7 @@ import org.telegram.ui.Components.RecyclerListView;
 
 public class FiltersView extends RecyclerListView {
     LinearLayoutManager layoutManager;
-    public static final MediaFilterData[] filters = {new MediaFilterData(R.drawable.search_media, R.drawable.search_media_filled, LocaleController.getString("SharedMediaTab2", R.string.SharedMediaTab2), new TLRPC$TL_inputMessagesFilterPhotoVideo(), 0), new MediaFilterData(R.drawable.search_links, R.drawable.search_links_filled, LocaleController.getString("SharedLinksTab2", R.string.SharedLinksTab2), new TLRPC$TL_inputMessagesFilterUrl(), 2), new MediaFilterData(R.drawable.search_files, R.drawable.search_files_filled, LocaleController.getString("SharedFilesTab2", R.string.SharedFilesTab2), new TLRPC$TL_inputMessagesFilterDocument(), 1), new MediaFilterData(R.drawable.search_music, R.drawable.search_music_filled, LocaleController.getString("SharedMusicTab2", R.string.SharedMusicTab2), new TLRPC$TL_inputMessagesFilterMusic(), 3), new MediaFilterData(R.drawable.search_voice, R.drawable.search_voice_filled, LocaleController.getString("SharedVoiceTab2", R.string.SharedVoiceTab2), new TLRPC$TL_inputMessagesFilterRoundVoice(), 5)};
+    public static final MediaFilterData[] filters = {new MediaFilterData(R.drawable.search_media_filled, LocaleController.getString("SharedMediaTab2", R.string.SharedMediaTab2), new TLRPC$TL_inputMessagesFilterPhotoVideo(), 0), new MediaFilterData(R.drawable.search_links_filled, LocaleController.getString("SharedLinksTab2", R.string.SharedLinksTab2), new TLRPC$TL_inputMessagesFilterUrl(), 2), new MediaFilterData(R.drawable.search_files_filled, LocaleController.getString("SharedFilesTab2", R.string.SharedFilesTab2), new TLRPC$TL_inputMessagesFilterDocument(), 1), new MediaFilterData(R.drawable.search_music_filled, LocaleController.getString("SharedMusicTab2", R.string.SharedMusicTab2), new TLRPC$TL_inputMessagesFilterMusic(), 3), new MediaFilterData(R.drawable.search_voice_filled, LocaleController.getString("SharedVoiceTab2", R.string.SharedVoiceTab2), new TLRPC$TL_inputMessagesFilterRoundVoice(), 5)};
     private static final Pattern yearPatter = Pattern.compile("20[0-9]{1,2}");
     private static final Pattern monthYearOrDayPatter = Pattern.compile("(\\w{3,}) ([0-9]{0,4})");
     private static final Pattern yearOrDayAndMonthPatter = Pattern.compile("([0-9]{0,4}) (\\w{2,})");
@@ -253,7 +253,7 @@ public class FiltersView extends RecyclerListView {
                     } else {
                         str = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name, 10);
                     }
-                    MediaFilterData mediaFilterData = new MediaFilterData(R.drawable.search_users, R.drawable.search_users_filled, str, null, 4);
+                    MediaFilterData mediaFilterData = new MediaFilterData(R.drawable.search_users_filled, str, null, 4);
                     mediaFilterData.setUser(tLRPC$User);
                     this.usersFilters.add(mediaFilterData);
                 } else if (obj instanceof TLRPC$Chat) {
@@ -262,7 +262,7 @@ public class FiltersView extends RecyclerListView {
                     if (str2.length() > 12) {
                         str2 = String.format("%s...", str2.substring(0, 10));
                     }
-                    MediaFilterData mediaFilterData2 = new MediaFilterData(R.drawable.search_users, R.drawable.search_users_filled, str2, null, 4);
+                    MediaFilterData mediaFilterData2 = new MediaFilterData(R.drawable.search_users_filled, str2, null, 4);
                     mediaFilterData2.setUser(tLRPC$Chat);
                     this.usersFilters.add(mediaFilterData2);
                 }
@@ -271,13 +271,13 @@ public class FiltersView extends RecyclerListView {
         if (arrayList2 != null) {
             for (int i2 = 0; i2 < arrayList2.size(); i2++) {
                 DateData dateData = arrayList2.get(i2);
-                MediaFilterData mediaFilterData3 = new MediaFilterData(R.drawable.search_date, R.drawable.search_date_filled, dateData.title, null, 6);
+                MediaFilterData mediaFilterData3 = new MediaFilterData(R.drawable.search_date_filled, dateData.title, null, 6);
                 mediaFilterData3.setDate(dateData);
                 this.usersFilters.add(mediaFilterData3);
             }
         }
         if (z) {
-            this.usersFilters.add(new MediaFilterData(R.drawable.chats_archive, R.drawable.chats_archive, LocaleController.getString("ArchiveSearchFilter", R.string.ArchiveSearchFilter), null, 7));
+            this.usersFilters.add(new MediaFilterData(R.drawable.chats_archive, LocaleController.getString("ArchiveSearchFilter", R.string.ArchiveSearchFilter), null, 7));
         }
         if (getAdapter() != null) {
             UpdateCallback updateCallback = new UpdateCallback(getAdapter());
@@ -685,11 +685,11 @@ public class FiltersView extends RecyclerListView {
         public boolean removable = true;
         public final String title;
 
-        public MediaFilterData(int i, int i2, String str, TLRPC$MessagesFilter tLRPC$MessagesFilter, int i3) {
-            this.iconResFilled = i2;
+        public MediaFilterData(int i, String str, TLRPC$MessagesFilter tLRPC$MessagesFilter, int i2) {
+            this.iconResFilled = i;
             this.title = str;
             this.filter = tLRPC$MessagesFilter;
-            this.filterType = i3;
+            this.filterType = i2;
         }
 
         public void setUser(TLObject tLObject) {

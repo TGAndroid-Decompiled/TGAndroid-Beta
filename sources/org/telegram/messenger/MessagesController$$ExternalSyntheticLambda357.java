@@ -12,6 +12,6 @@ public final class MessagesController$$ExternalSyntheticLambda357 implements Req
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        MessagesController.lambda$reportSpam$55(tLObject, tLRPC$TL_error);
+        MessagesController.lambda$markMessageContentAsRead$191(tLObject, tLRPC$TL_error);
     }
 }

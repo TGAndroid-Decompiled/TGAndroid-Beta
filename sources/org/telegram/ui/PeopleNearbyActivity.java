@@ -1035,7 +1035,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
                     if (PeopleNearbyActivity.this.chatsStartRow != -1) {
                         z = true;
                     }
-                    manageChatTextCell.setText(string, null, R.drawable.groups_create, z);
+                    manageChatTextCell.setText(string, null, R.drawable.msg_groups_create, z);
                 } else if (i == PeopleNearbyActivity.this.showMeRow) {
                     PeopleNearbyActivity peopleNearbyActivity = PeopleNearbyActivity.this;
                     if (peopleNearbyActivity.showingMe = peopleNearbyActivity.getUserConfig().sharingMyLocationUntil > PeopleNearbyActivity.this.getConnectionsManager().getCurrentTime()) {
@@ -1043,7 +1043,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
                         if (PeopleNearbyActivity.this.usersStartRow != -1) {
                             z = true;
                         }
-                        manageChatTextCell.setText(string2, null, R.drawable.actions_nearby_off, z);
+                        manageChatTextCell.setText(string2, null, R.drawable.msg_nearby_off, z);
                         manageChatTextCell.setColors("windowBackgroundWhiteRedText5", "windowBackgroundWhiteRedText5");
                         return;
                     }
@@ -1051,7 +1051,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
                     if (PeopleNearbyActivity.this.usersStartRow != -1) {
                         z = true;
                     }
-                    manageChatTextCell.setText(string3, null, R.drawable.actions_nearby_on, z);
+                    manageChatTextCell.setText(string3, null, R.drawable.msg_nearby, z);
                 } else if (i == PeopleNearbyActivity.this.showMoreRow) {
                     manageChatTextCell.setText(LocaleController.formatPluralString("ShowVotes", PeopleNearbyActivity.this.users.size() - 5), null, R.drawable.arrow_more, false);
                 }

@@ -29,6 +29,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$TL_channels_getInactiveChannels;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_inactiveChats;
 import org.telegram.tgnet.TLRPC$User;
@@ -250,7 +251,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         textView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         this.buttonTextView.setGravity(17);
         this.buttonTextView.setTextSize(1, 14.0f);
-        this.buttonTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
         frameLayout.addView(this.buttonLayout, LayoutHelper.createFrame(-1, 64, 80));
         this.buttonLayout.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
@@ -334,19 +335,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         this.adapter.notifyDataSetChanged();
         this.enterProgress = 0.0f;
         AndroidUtilities.runOnUIThread(this.showProgressRunnable, 500L);
-        getConnectionsManager().sendRequest(new TLObject() {
-            public static int constructor = 300429806;
-
-            @Override
-            public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-                return TLRPC$TL_messages_inactiveChats.TLdeserialize(abstractSerializedData, i, z);
-            }
-
-            @Override
-            public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
-            }
-        }, new RequestDelegate() {
+        getConnectionsManager().sendRequest(new TLRPC$TL_channels_getInactiveChannels(), new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                 TooManyCommunitiesActivity.this.lambda$loadInactiveChannels$5(tLObject, tLRPC$TL_error);

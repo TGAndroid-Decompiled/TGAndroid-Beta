@@ -109,9 +109,6 @@ public class DialogCell extends BaseCell {
     private boolean drawCount2;
     private boolean drawError;
     private boolean drawMention;
-    private boolean drawNameBot;
-    private boolean drawNameBroadcast;
-    private boolean drawNameGroup;
     private boolean drawNameLock;
     private boolean drawPin;
     private boolean drawPinBackground;
@@ -560,7 +557,7 @@ public class DialogCell extends BaseCell {
             int length2 = str.length() + length;
             spannableStringBuilder.append((CharSequence) str);
             if (tLRPC$Dialog.unread_count > 0) {
-                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface("fonts/rmedium.ttf"), 0, Theme.getColor("chats_nameArchived", this.resourcesProvider)), length, length2, 33);
+                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, Theme.getColor("chats_nameArchived", this.resourcesProvider)), length, length2, 33);
             }
             if (spannableStringBuilder.length() > 150) {
                 break;

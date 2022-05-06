@@ -1052,6 +1052,7 @@
     <string name="ChatsException_other">%1$d chats</string>
     <string name="ChatsException_two">%1$d chats</string>
     <string name="ChatsException_zero">%1$d chats</string>
+    <string name="ChatsLeaveAlert">&gt;Are you sure you want to leave selected chats?</string>
     <string name="ChatsMute">Mute</string>
     <string name="ChatsNearbyHeader">Groups nearby</string>
     <string name="ChatsSelectedClearCache_few">%1$d chats</string>
@@ -1101,7 +1102,10 @@
     <string name="ChoosePhoto">Choose photo</string>
     <string name="ChoosePhotoOrVideo">Choose photo or video</string>
     <string name="ChooseRecordVideo">Record video</string>
+    <string name="ChooseStickerMyStickerSets">My sticker sets</string>
+    <string name="ChooseStickerNoResultsFound">No results found for \"%1$s\"</string>
     <string name="ChooseStickerSet">CHOOSE STICKER SET</string>
+    <string name="ChooseStickerSetHeader">Choose sticker set</string>
     <string name="ChooseStickerSetMy">You can create your own custom sticker sets using the @stickers bot.</string>
     <string name="ChooseStickerSetNotFound">No such sticker set found</string>
     <string name="ChooseStickerSetNotFoundInfo">Try again or choose from the list below</string>
@@ -1135,6 +1139,8 @@
     <string name="ClearOtherWebSessionsHelp">You can log in on websites that support signing in with Telegram.</string>
     <string name="ClearRecentEmoji">Clear recent emoji?</string>
     <string name="ClearRecentHistory">Clear history</string>
+    <string name="ClearRecentStickersAlertMessage">Do you want to clear your recent stickers?</string>
+    <string name="ClearRecentStickersAlertTitle">Clear recent stickers</string>
     <string name="ClearSearch">Clear search history?</string>
     <string name="ClearSearchAlert">Are you sure you want to clear your search history?</string>
     <string name="ClearSearchAlertTitle">Clear search history</string>
@@ -1320,6 +1326,7 @@
     <string name="DebugMenuDisableLogs">Disable Logs</string>
     <string name="DebugMenuDisablePauseMusic">Disable pause music on record</string>
     <string name="DebugMenuDisableSmoothKeyboard">Disable smooth keyboard</string>
+    <string name="DebugMenuDisableWebViewDebug">Disable WebView debug</string>
     <string name="DebugMenuEnableCamera">Enable in-app camera</string>
     <string name="DebugMenuEnableForceRtmpStreamFlag">Enable forced RTMP Stream Flag</string>
     <string name="DebugMenuEnableLogs">Enable Logs</string>
@@ -1331,6 +1338,7 @@
     <string name="DebugMenuReloadContacts">Reload Contacts</string>
     <string name="DebugMenuResetContacts">Reset Imported Contacts</string>
     <string name="DebugMenuResetDialogs">Reset Dialogs</string>
+    <string name="DebugMenuWebViewDebugDisabled">Debug disabled!</string>
     <string name="DebugMenuWebViewDebugEnabled">Debug enabled!</string>
     <string name="DebugSendLastLogs">Send Last Logs</string>
     <string name="DebugSendLogs">Send Logs</string>
@@ -2192,6 +2200,7 @@
     <string name="IncomingCalls">Incoming calls</string>
     <string name="IncorrectLocalization">Incorrect localization file</string>
     <string name="IncorrectTheme">Incorrect theme file</string>
+    <string name="IncreaseLimit">Increase Limit</string>
     <string name="Info">Info</string>
     <string name="InstallGoogleMaps">Install Google Maps?</string>
     <string name="InstantView">INSTANT VIEW</string>
@@ -2338,12 +2347,23 @@
     <string name="LeaveChannel">Leave Channel</string>
     <string name="LeaveChannelMenu">Leave channel</string>
     <string name="LeaveChats">Leave %1$s</string>
+    <string name="LeaveCommunities_few">Leave %d communities</string>
+    <string name="LeaveCommunities_many">Leave %d communities</string>
+    <string name="LeaveCommunities_one">Leave community</string>
+    <string name="LeaveCommunities_other">Leave %d communities</string>
+    <string name="LeaveCommunities_two">Leave %d communities</string>
+    <string name="LeaveCommunities_zero">Leave %d communities</string>
     <string name="LeaveMegaMenu">Leave group</string>
     <string name="LedColor">LED Color</string>
     <string name="LedDisabled">Disabled</string>
     <string name="LimitByPeriod">Limit by time period</string>
     <string name="LimitNumberOfUses">Limit number of uses</string>
     <string name="LimitReached">Limit Reached</string>
+    <string name="LimitReachedChatInFolders">Sorry, you can\'t add more than **%1$d** chats to a folder. You can increase this limit to **%2$d** by upgrading to **Telegram Premium**.</string>
+    <string name="LimitReachedCommunities">You are a member of **%1$d** groups and channels. Please leave some before joining a new one — or upgrade to **Telegram Premium** to double the limit to **%2$d** groups and channels.</string>
+    <string name="LimitReachedFolders">You have reached the limit of **%1$d** folders. You can double the limit to **%2$d** folders by subscribing to **Telegram Premium**.</string>
+    <string name="LimitReachedPinDialogs">Sorry, you can\'t pin more than %1$d chats to the top.\n\nUnpin some of the currently pinned ones or subscribe to **Telegram Premium** to double the limit to **%2$d** chats.</string>
+    <string name="LimitReachedPublicLinks">You have reserved too many public links. Try revoking the link from an older group or channel, or upgrade to **Telegram Premium** to double the limit to **%2$d** public links.</string>
     <string name="LinkActionCopy">Copy</string>
     <string name="LinkActionShare">Share</string>
     <string name="LinkAvailable">%1$s is available.</string>
@@ -3304,6 +3324,7 @@
     <string name="PaymentFailed">Sorry, the payment was declined.</string>
     <string name="PaymentInfoHint">You paid **%1$s** for **%2$s**.</string>
     <string name="PaymentInvoice">INVOICE</string>
+    <string name="PaymentInvoiceLinkInvalid">Invalid invoice</string>
     <string name="PaymentNoShippingMethod">Sorry, it is not possible to deliver to your address.</string>
     <string name="PaymentPassword">Password &amp; Email</string>
     <string name="PaymentPasswordEmail">Your email address</string>
@@ -3772,6 +3793,7 @@
     <string name="RemoveDocumentsTitle_two">Remove %d documents</string>
     <string name="RemoveDocumentsTitle_zero">Remove %d documents</string>
     <string name="RemoveFromListText">Tap and hold on user to delete.</string>
+    <string name="RemoveGroupStickerSet">Remove Group Sticker Set</string>
     <string name="RemoveStickersCount">REMOVE %1$s</string>
     <string name="RemovedFromFavorites">Sticker was removed from Favorites</string>
     <string name="RemovedFromRecent">Sticker was removed from Recent</string>
@@ -3862,6 +3884,9 @@
     <string name="ResetChatBackgroundsAlert">Are you sure you want to reset all chat backgrounds?</string>
     <string name="ResetChatBackgroundsAlertTitle">Reset chat backgrounds</string>
     <string name="ResetChatBackgroundsInfo">Remove all uploaded chat backgrounds and restore the pre-installed ones.</string>
+    <string name="ResetCustomNotifications">Reset to default settings</string>
+    <string name="ResetCustomNotificationsAlert">Are you sure you want to reset notification settings to default?</string>
+    <string name="ResetCustomNotificationsAlertTitle">Reset notifications</string>
     <string name="ResetMyAccount">RESET MY ACCOUNT</string>
     <string name="ResetMyAccountText">You will lose all your chats and messages, along with any media and files you shared, if you proceed with resetting your account.</string>
     <string name="ResetMyAccountWarning">Warning</string>
@@ -3911,6 +3936,14 @@
     <string name="RevokeLink">Revoke Link</string>
     <string name="RevokeLinkAlert">Are you sure you want to revoke the link **%1$s**?\n\nThe group \"**%2$s**\" will become private.</string>
     <string name="RevokeLinkAlertChannel">Are you sure you want to revoke the link **%1$s**?\n\nThe channel \"**%2$s**\" will become private.</string>
+    <string name="RevokeLinksAlert">Are you sure you want to revoke this links?\n\nThe groups will become private.</string>
+    <string name="RevokeLinksAlertChannel">Are you sure you want to revoke this links?\n\nThe channels will become private.</string>
+    <string name="RevokeLinks_few">Revoke %d links</string>
+    <string name="RevokeLinks_many">Revoke %d links</string>
+    <string name="RevokeLinks_one">Revoke link</string>
+    <string name="RevokeLinks_other">Revoke %d links</string>
+    <string name="RevokeLinks_two">Revoke %d links</string>
+    <string name="RevokeLinks_zero">Revoke %d links</string>
     <string name="Revoked">Revoked</string>
     <string name="RevokedLink">Revoked Link</string>
     <string name="RevokedLinks">Revoked Links</string>
@@ -4008,6 +4041,7 @@
     <string name="SecretChatTimerMonths">m</string>
     <string name="SecretChatTimerSeconds">s</string>
     <string name="SecretChatTimerWeeks">w</string>
+    <string name="SecretChatTimerYears">y</string>
     <string name="SecretLinkPreviewAlert">Would you like to enable extended link previews in Secret Chats? Note that link previews are generated on Telegram servers.</string>
     <string name="SecretWebPage">Link Previews</string>
     <string name="SecretWebPageInfo">Link previews will be generated on Telegram servers. We do not store data about the links you send.</string>
@@ -4092,6 +4126,7 @@
     <string name="SetAdditionalPasswordInfo">You can set a password that will be required when you log in on a new device in addition to the code you get in the SMS.</string>
     <string name="SetAdmins">Set admins</string>
     <string name="SetAsAdmin">Promote to admin</string>
+    <string name="SetAsGroupStickerSet">Set as Group Sticker Set</string>
     <string name="SetAsMain">Set as main</string>
     <string name="SetBackground">SET BACKGROUND</string>
     <string name="SetColor">Set a color</string>
@@ -4193,6 +4228,7 @@
     <string name="ShowInChat">Show in chat</string>
     <string name="ShowLess">Show less</string>
     <string name="ShowMore">Show more</string>
+    <string name="ShowMoreStickers">Show More Stickers</string>
     <string name="ShowNotificationsFor">Show notifications for</string>
     <string name="ShowNotificationsForInfo">Turn this off if you want to receive notifications only from your active account.</string>
     <string name="ShowSenderNames">Show senders’ names</string>
@@ -5128,6 +5164,7 @@
     <string name="YourPasswordSuccess">Success!</string>
     <string name="YourPasswordSuccessText">Your password for Two-Step Verification is now active.</string>
     <string name="YourPhone">Your Phone</string>
+    <string name="YourPublicCommunities">Your public communities</string>
     <string name="ZoomOut">Zoom out</string>
     <string name="appcenter_distribute_dialog_actioned_on_disabled_toast">Distribute was disabled</string>
     <string name="appcenter_distribute_download_progress_number_format">%1$d MB of %2$d MB</string>

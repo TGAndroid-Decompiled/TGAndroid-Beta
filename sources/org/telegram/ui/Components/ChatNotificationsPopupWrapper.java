@@ -30,6 +30,12 @@ public class ChatNotificationsPopupWrapper {
     public ActionBarPopupWindow.ActionBarPopupWindowLayout windowLayout;
 
     public interface Callback {
+
+        public final class CC {
+            public static void $default$dismiss(Callback callback) {
+            }
+        }
+
         void dismiss();
 
         void muteFor(int i);

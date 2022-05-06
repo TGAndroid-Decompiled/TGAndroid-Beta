@@ -43,7 +43,7 @@ public class ChatGreetingsView extends LinearLayout {
         TextView textView = new TextView(context);
         this.titleView = textView;
         textView.setTextSize(1, 14.0f);
-        this.titleView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.titleView.setGravity(1);
         TextView textView2 = new TextView(context);
         this.descriptionView = textView2;

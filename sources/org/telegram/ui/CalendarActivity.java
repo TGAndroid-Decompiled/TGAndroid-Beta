@@ -155,9 +155,9 @@ public class CalendarActivity extends BaseFragment {
         this.textPaint.setTextAlign(Paint.Align.CENTER);
         this.textPaint2.setTextSize(AndroidUtilities.dp(11.0f));
         this.textPaint2.setTextAlign(Paint.Align.CENTER);
-        this.textPaint2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.textPaint2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.activeTextPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        this.activeTextPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.activeTextPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.activeTextPaint.setTextAlign(Paint.Align.CENTER);
         this.contentView = new FrameLayout(context) {
             int lastSize;
@@ -268,7 +268,7 @@ public class CalendarActivity extends BaseFragment {
             this.selectDaysButton = textView;
             textView.setGravity(17);
             this.selectDaysButton.setTextSize(1, 15.0f);
-            this.selectDaysButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.selectDaysButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.selectDaysButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -282,7 +282,7 @@ public class CalendarActivity extends BaseFragment {
             this.removeDaysButton = textView2;
             textView2.setGravity(17);
             this.removeDaysButton.setTextSize(1, 15.0f);
-            this.removeDaysButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.removeDaysButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.removeDaysButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -585,7 +585,7 @@ public class CalendarActivity extends BaseFragment {
             }
             this.titleView.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 2));
             this.titleView.setTextSize(15);
-            this.titleView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titleView.setGravity(17);
             this.titleView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             addView(this.titleView, LayoutHelper.createFrame(-1, 28.0f, 0, 0.0f, 12.0f, 0.0f, 4.0f));

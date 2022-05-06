@@ -101,7 +101,7 @@ public class PhonebookShareAlert extends BottomSheet {
             backupImageView.setForUserOrChat(phonebookShareAlert.currentUser, avatarDrawable);
             addView(backupImageView, LayoutHelper.createLinear(80, 80, 49, 0, 32, 0, 0));
             TextView textView = new TextView(context);
-            textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView.setTextSize(1, 17.0f);
             textView.setTextColor(phonebookShareAlert.getThemedColor("dialogTextBlack"));
             textView.setSingleLine(true);
@@ -365,13 +365,13 @@ public class PhonebookShareAlert extends BottomSheet {
                 int i4 = vcardItem.type;
                 if (i4 == 0) {
                     simpleLayout.textView.setText(LocaleController.getString("PhoneCopied", R.string.PhoneCopied));
-                    simpleLayout.imageView.setImageResource(R.drawable.menu_calls);
+                    simpleLayout.imageView.setImageResource(R.drawable.msg_calls);
                 } else if (i4 == 1) {
                     simpleLayout.textView.setText(LocaleController.getString("EmailCopied", R.string.EmailCopied));
-                    simpleLayout.imageView.setImageResource(R.drawable.menu_mail);
+                    simpleLayout.imageView.setImageResource(R.drawable.msg_mention);
                 } else {
                     simpleLayout.textView.setText(LocaleController.getString("TextCopied", R.string.TextCopied));
-                    simpleLayout.imageView.setImageResource(R.drawable.menu_info);
+                    simpleLayout.imageView.setImageResource(R.drawable.msg_info);
                 }
                 if (Build.VERSION.SDK_INT < 31) {
                     Bulletin.make((FrameLayout) this.containerView, simpleLayout, 1500).show();
@@ -872,36 +872,35 @@ public class PhonebookShareAlert extends BottomSheet {
 
         public void onBindViewHolder(View view, int i, int i2) {
             AndroidUtilities.VcardItem vcardItem;
-            int i3;
             boolean z = true;
             if (i2 == 1) {
                 TextCheckBoxCell textCheckBoxCell = (TextCheckBoxCell) view;
-                if (i < PhonebookShareAlert.this.phoneStartRow || i >= PhonebookShareAlert.this.phoneEndRow) {
+                int i3 = PhonebookShareAlert.this.phoneStartRow;
+                int i4 = R.drawable.msg_info;
+                if (i < i3 || i >= PhonebookShareAlert.this.phoneEndRow) {
                     vcardItem = (AndroidUtilities.VcardItem) PhonebookShareAlert.this.other.get(i - PhonebookShareAlert.this.vcardStartRow);
-                    int i4 = vcardItem.type;
-                    if (i4 == 1) {
-                        i3 = R.drawable.menu_mail;
-                    } else if (i4 == 2) {
-                        i3 = R.drawable.menu_location;
-                    } else if (i4 == 3) {
-                        i3 = R.drawable.msg_link;
-                    } else if (i4 == 4) {
-                        i3 = R.drawable.profile_info;
-                    } else if (i4 == 5) {
-                        i3 = R.drawable.menu_date;
-                    } else if (i4 == 6) {
-                        i3 = "ORG".equalsIgnoreCase(vcardItem.getRawType(true)) ? R.drawable.menu_work : R.drawable.menu_jobtitle;
-                    } else {
-                        i3 = R.drawable.menu_info;
+                    int i5 = vcardItem.type;
+                    if (i5 == 1) {
+                        i4 = R.drawable.msg_mention;
+                    } else if (i5 == 2) {
+                        i4 = R.drawable.msg_location;
+                    } else if (i5 == 3) {
+                        i4 = R.drawable.msg_link;
+                    } else if (i5 != 4) {
+                        if (i5 == 5) {
+                            i4 = R.drawable.msg_calendar2;
+                        } else if (i5 == 6) {
+                            i4 = "ORG".equalsIgnoreCase(vcardItem.getRawType(true)) ? R.drawable.msg_work : R.drawable.msg_jobtitle;
+                        }
                     }
                 } else {
                     vcardItem = (AndroidUtilities.VcardItem) PhonebookShareAlert.this.phones.get(i - PhonebookShareAlert.this.phoneStartRow);
-                    i3 = R.drawable.menu_calls;
+                    i4 = R.drawable.msg_calls;
                 }
                 if (i == getItemCount() - 1) {
                     z = false;
                 }
-                textCheckBoxCell.setVCardItem(vcardItem, i3, z);
+                textCheckBoxCell.setVCardItem(vcardItem, i4, z);
             }
         }
 

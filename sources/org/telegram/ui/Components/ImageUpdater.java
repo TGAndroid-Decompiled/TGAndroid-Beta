@@ -143,7 +143,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             ArrayList arrayList2 = new ArrayList();
             final ArrayList arrayList3 = new ArrayList();
             arrayList.add(LocaleController.getString("ChooseTakePhoto", R.string.ChooseTakePhoto));
-            arrayList2.add(Integer.valueOf((int) R.drawable.menu_camera));
+            arrayList2.add(Integer.valueOf((int) R.drawable.msg_camera));
             arrayList3.add(0);
             if (this.canSelectVideo) {
                 arrayList.add(LocaleController.getString("ChooseRecordVideo", R.string.ChooseRecordVideo));
@@ -151,16 +151,16 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 arrayList3.add(4);
             }
             arrayList.add(LocaleController.getString("ChooseFromGallery", R.string.ChooseFromGallery));
-            arrayList2.add(Integer.valueOf((int) R.drawable.profile_photos));
+            arrayList2.add(Integer.valueOf((int) R.drawable.msg_photos));
             arrayList3.add(1);
             if (this.searchAvailable) {
                 arrayList.add(LocaleController.getString("ChooseFromSearch", R.string.ChooseFromSearch));
-                arrayList2.add(Integer.valueOf((int) R.drawable.menu_search));
+                arrayList2.add(Integer.valueOf((int) R.drawable.msg_search));
                 arrayList3.add(2);
             }
             if (z) {
                 arrayList.add(LocaleController.getString("DeletePhoto", R.string.DeletePhoto));
-                arrayList2.add(Integer.valueOf((int) R.drawable.chats_delete));
+                arrayList2.add(Integer.valueOf((int) R.drawable.msg_delete));
                 arrayList3.add(3);
             }
             int[] iArr = new int[arrayList2.size()];
@@ -633,7 +633,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 }
                 PhotoCropActivity photoCropActivity = new PhotoCropActivity(bundle);
                 photoCropActivity.setDelegate(this);
-                launchActivity.lambda$runLinkRequest$54(photoCropActivity);
+                launchActivity.lambda$runLinkRequest$56(photoCropActivity);
             }
         } catch (Exception e) {
             FileLog.e(e);

@@ -6272,20 +6272,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         int i2;
         boolean z4;
         int i3;
-        boolean z5;
-        boolean z6;
+        Paint paint;
         int i4;
         int i5;
-        boolean z7;
-        int i6;
-        Paint paint;
-        boolean z8;
-        int i7;
-        boolean z9;
-        int i8;
-        boolean z10;
-        int i9;
         float f6;
+        float f7;
         TextPaint textPaint;
         if (((this.drawTime && !this.groupPhotoInvisible) || !shouldDrawTimeOnMedia()) && staticLayout != null) {
             MessageObject messageObject = this.currentMessageObject;
@@ -6303,19 +6294,19 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 } else {
                     Theme.chat_timePaint.setColor(getThemedColor(z2 ? "chat_inTimeSelectedText" : "chat_inTimeText"));
                 }
-                float f7 = getTransitionParams().animateDrawingTimeAlpha ? getTransitionParams().animateChangeProgress * f : f;
-                if (f7 != 1.0f) {
-                    Theme.chat_timePaint.setAlpha((int) (textPaint.getAlpha() * f7));
+                float f8 = getTransitionParams().animateDrawingTimeAlpha ? getTransitionParams().animateChangeProgress * f : f;
+                if (f8 != 1.0f) {
+                    Theme.chat_timePaint.setAlpha((int) (textPaint.getAlpha() * f8));
                 }
                 canvas.save();
                 if (this.drawPinnedBottom && !shouldDrawTimeOnMedia()) {
                     canvas.translate(0.0f, AndroidUtilities.dp(2.0f));
                 }
                 TransitionParams transitionParams = this.transitionParams;
-                float f8 = this.layoutHeight + transitionParams.deltaBottom;
+                float f9 = this.layoutHeight + transitionParams.deltaBottom;
                 if (transitionParams.shouldAnimateTimeX) {
-                    float f9 = transitionParams.animateChangeProgress;
-                    f4 = (transitionParams.animateFromTimeX * (1.0f - f9)) + (this.timeX * f9);
+                    float f10 = transitionParams.animateChangeProgress;
+                    f4 = (transitionParams.animateFromTimeX * (1.0f - f10)) + (this.timeX * f10);
                 } else {
                     f4 = f2;
                 }
@@ -6323,232 +6314,219 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 if (groupedMessages == null || !groupedMessages.transitionParams.backgroundChangeBounds) {
                     f5 = f2;
                 } else {
-                    f8 -= getTranslationY();
-                    float f10 = this.currentMessagesGroup.transitionParams.offsetRight;
-                    f5 = f2 + f10;
-                    f4 += f10;
+                    f9 -= getTranslationY();
+                    float f11 = this.currentMessagesGroup.transitionParams.offsetRight;
+                    f5 = f2 + f11;
+                    f4 += f11;
                 }
                 if (this.drawPinnedBottom && shouldDrawTimeOnMedia()) {
-                    f8 += AndroidUtilities.dp(1.0f);
+                    f9 += AndroidUtilities.dp(1.0f);
                 }
-                float f11 = f8;
+                float f12 = f9;
                 TransitionParams transitionParams2 = this.transitionParams;
-                boolean z11 = transitionParams2.animateBackgroundBoundsInner;
-                if (z11) {
-                    float f12 = this.animationOffsetX;
-                    f5 += f12;
-                    f4 += f12;
+                boolean z5 = transitionParams2.animateBackgroundBoundsInner;
+                if (z5) {
+                    float f13 = this.animationOffsetX;
+                    f5 += f13;
+                    f4 += f13;
                 }
-                float f13 = f5;
+                float f14 = f5;
                 ReactionsLayoutInBubble reactionsLayoutInBubble = this.reactionsLayoutInBubble;
                 if (reactionsLayoutInBubble.isSmall) {
-                    if (!z11 || transitionParams2.deltaRight == 0.0f) {
-                        f6 = reactionsLayoutInBubble.getCurrentWidth(transitionParams2.animateChangeProgress);
+                    if (!z5 || transitionParams2.deltaRight == 0.0f) {
+                        f7 = reactionsLayoutInBubble.getCurrentWidth(transitionParams2.animateChangeProgress);
                     } else {
-                        f6 = reactionsLayoutInBubble.getCurrentWidth(1.0f);
+                        f7 = reactionsLayoutInBubble.getCurrentWidth(1.0f);
                     }
-                    f4 += f6;
+                    f4 += f7;
                 }
                 if (this.transitionParams.animateEditedEnter) {
                     f4 -= this.transitionParams.animateEditedWidthDiff * (1.0f - this.transitionParams.animateChangeProgress);
                 }
-                float f14 = f4;
+                float f15 = f4;
                 if (shouldDrawTimeOnMedia()) {
-                    int i10 = -(this.drawCommentButton ? AndroidUtilities.dp(41.3f) : 0);
+                    int i6 = -(this.drawCommentButton ? AndroidUtilities.dp(41.3f) : 0);
                     if (this.currentMessageObject.shouldDrawWithoutBackground()) {
                         paint = getThemedPaint("paintChatActionBackground");
                     } else {
                         paint = getThemedPaint("paintChatTimeBackground");
                     }
                     int alpha = paint.getAlpha();
-                    paint.setAlpha((int) (alpha * this.timeAlpha * f7));
-                    Theme.chat_timePaint.setAlpha((int) (this.timeAlpha * 255.0f * f7));
-                    int i11 = this.documentAttachType;
-                    float f15 = 4.0f;
-                    if (i11 == 7 || i11 == 6) {
-                        i7 = AndroidUtilities.dp(4.0f);
-                        z8 = false;
+                    paint.setAlpha((int) (alpha * this.timeAlpha * f8));
+                    Theme.chat_timePaint.setAlpha((int) (this.timeAlpha * 255.0f * f8));
+                    int i7 = this.documentAttachType;
+                    float f16 = 4.0f;
+                    if (i7 == 7 || i7 == 6) {
+                        i4 = AndroidUtilities.dp(4.0f);
+                        z3 = false;
                     } else {
                         int[] roundRadius = this.photoImage.getRoundRadius();
-                        i7 = Math.min(AndroidUtilities.dp(8.0f), Math.max(roundRadius[2], roundRadius[3]));
-                        z8 = SharedConfig.bubbleRadius >= 10;
+                        i4 = Math.min(AndroidUtilities.dp(8.0f), Math.max(roundRadius[2], roundRadius[3]));
+                        z3 = SharedConfig.bubbleRadius >= 10;
                     }
-                    if (z8) {
-                        f15 = 6.0f;
+                    if (z3) {
+                        f16 = 6.0f;
                     }
-                    float dp = f13 - AndroidUtilities.dp(f15);
-                    float imageY2 = this.additionalTimeOffsetY + this.photoImage.getImageY2();
+                    float dp = f14 - AndroidUtilities.dp(f16);
+                    float imageY2 = this.photoImage.getImageY2() + this.additionalTimeOffsetY;
                     float dp2 = imageY2 - AndroidUtilities.dp(23.0f);
-                    this.rect.set(dp, dp2, dp + f3 + AndroidUtilities.dp((z8 ? 12 : 8) + (this.currentMessageObject.isOutOwner() ? 20 : 0)), AndroidUtilities.dp(17.0f) + dp2);
+                    this.rect.set(dp, dp2, dp + f3 + AndroidUtilities.dp((z3 ? 12 : 8) + (this.currentMessageObject.isOutOwner() ? 20 : 0)), AndroidUtilities.dp(17.0f) + dp2);
                     applyServiceShaderMatrix();
-                    float f16 = i7;
-                    canvas.drawRoundRect(this.rect, f16, f16, paint);
+                    float f17 = i4;
+                    canvas.drawRoundRect(this.rect, f17, f17, paint);
                     if (paint == getThemedPaint("paintChatActionBackground") && hasGradientService()) {
                         int alpha2 = Theme.chat_actionBackgroundGradientDarkenPaint.getAlpha();
-                        Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha((int) (alpha2 * this.timeAlpha * f7));
-                        canvas.drawRoundRect(this.rect, f16, f16, Theme.chat_actionBackgroundGradientDarkenPaint);
+                        Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha((int) (alpha2 * this.timeAlpha * f8));
+                        canvas.drawRoundRect(this.rect, f17, f17, Theme.chat_actionBackgroundGradientDarkenPaint);
                         Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha(alpha2);
                     }
                     paint.setAlpha(alpha);
-                    float f17 = -staticLayout.getLineLeft(0);
+                    float f18 = -staticLayout.getLineLeft(0);
                     if (this.reactionsLayoutInBubble.isSmall) {
                         updateReactionLayoutPosition();
                         this.reactionsLayoutInBubble.draw(canvas, this.transitionParams.animateChangeProgress, null);
                     }
                     if ((!ChatObject.isChannel(this.currentChat) || this.currentChat.megagroup) && (this.currentMessageObject.messageOwner.flags & 1024) == 0 && this.repliesLayout == null && !this.isPinned) {
-                        z9 = z8;
-                        i8 = i10;
+                        i5 = i6;
                     } else {
-                        float lineWidth = f17 + (this.timeWidth - staticLayout.getLineWidth(0));
+                        float lineWidth = f18 + (this.timeWidth - staticLayout.getLineWidth(0));
                         ReactionsLayoutInBubble reactionsLayoutInBubble2 = this.reactionsLayoutInBubble;
                         if (reactionsLayoutInBubble2.isSmall && !reactionsLayoutInBubble2.isEmpty) {
                             lineWidth -= reactionsLayoutInBubble2.width;
                         }
-                        f17 = lineWidth;
+                        float f19 = lineWidth;
                         int createStatusDrawableParams = this.transitionParams.createStatusDrawableParams();
-                        int i12 = this.transitionParams.lastStatusDrawableParams;
-                        if (i12 >= 0 && i12 != createStatusDrawableParams && !this.statusDrawableAnimationInProgress) {
-                            createStatusDrawableAnimator(i12, createStatusDrawableParams, z);
+                        int i8 = this.transitionParams.lastStatusDrawableParams;
+                        if (i8 >= 0 && i8 != createStatusDrawableParams && !this.statusDrawableAnimationInProgress) {
+                            createStatusDrawableAnimator(i8, createStatusDrawableParams, z);
                         }
-                        boolean z12 = this.statusDrawableAnimationInProgress;
-                        if (z12) {
+                        boolean z6 = this.statusDrawableAnimationInProgress;
+                        if (z6) {
                             createStatusDrawableParams = this.animateToStatusDrawableParams;
                         }
-                        if ((createStatusDrawableParams & 4) != 0) {
-                            i9 = 8;
-                            z10 = true;
-                        } else {
-                            i9 = 8;
-                            z10 = false;
-                        }
-                        boolean z13 = (createStatusDrawableParams & i9) != 0;
-                        if (z12) {
-                            int i13 = this.animateFromStatusDrawableParams;
-                            boolean z14 = (i13 & 4) != 0;
-                            boolean z15 = (i13 & i9) != 0;
-                            float f18 = i10;
-                            float f19 = f7;
-                            z9 = z8;
-                            i8 = i10;
-                            drawClockOrErrorLayout(canvas, z14, z15, f11, f19, f18, f13, 1.0f - this.statusDrawableProgress, z2);
-                            drawClockOrErrorLayout(canvas, z10, z13, f11, f19, f18, f13, this.statusDrawableProgress, z2);
+                        boolean z7 = (createStatusDrawableParams & 4) != 0;
+                        boolean z8 = (createStatusDrawableParams & 8) != 0;
+                        if (z6) {
+                            int i9 = this.animateFromStatusDrawableParams;
+                            boolean z9 = (i9 & 4) != 0;
+                            boolean z10 = (i9 & 8) != 0;
+                            float f20 = i6;
+                            float f21 = f8;
+                            f6 = f19;
+                            i5 = i6;
+                            drawClockOrErrorLayout(canvas, z9, z10, f12, f21, f20, f14, 1.0f - this.statusDrawableProgress, z2);
+                            drawClockOrErrorLayout(canvas, z7, z8, f12, f21, f20, f14, this.statusDrawableProgress, z2);
                             if (!this.currentMessageObject.isOutOwner()) {
-                                if (!z14 && !z15) {
-                                    drawViewsAndRepliesLayout(canvas, f11, f7, f18, f13, 1.0f - this.statusDrawableProgress, z2);
+                                if (!z9 && !z10) {
+                                    drawViewsAndRepliesLayout(canvas, f12, f8, f20, f14, 1.0f - this.statusDrawableProgress, z2);
                                 }
-                                if (!z10 && !z13) {
-                                    drawViewsAndRepliesLayout(canvas, f11, f7, f18, f13, this.statusDrawableProgress, z2);
+                                if (!z7 && !z8) {
+                                    drawViewsAndRepliesLayout(canvas, f12, f8, f20, f14, this.statusDrawableProgress, z2);
                                 }
                             }
                         } else {
-                            z9 = z8;
-                            i8 = i10;
-                            if (!this.currentMessageObject.isOutOwner() && !z10 && !z13) {
-                                drawViewsAndRepliesLayout(canvas, f11, f7, i8, f13, 1.0f, z2);
+                            f6 = f19;
+                            i5 = i6;
+                            if (!this.currentMessageObject.isOutOwner() && !z7 && !z8) {
+                                drawViewsAndRepliesLayout(canvas, f12, f8, i5, f14, 1.0f, z2);
                             }
-                            drawClockOrErrorLayout(canvas, z10, z13, f11, f7, i8, f13, 1.0f, z2);
+                            drawClockOrErrorLayout(canvas, z7, z8, f12, f8, i5, f14, 1.0f, z2);
                         }
                         if (this.currentMessageObject.isOutOwner()) {
-                            drawViewsAndRepliesLayout(canvas, f11, f7, i8, f13, 1.0f, z2);
+                            drawViewsAndRepliesLayout(canvas, f12, f8, i5, f14, 1.0f, z2);
                         }
                         TransitionParams transitionParams3 = this.transitionParams;
                         transitionParams3.lastStatusDrawableParams = transitionParams3.createStatusDrawableParams();
-                        if (z10 && z && getParent() != null) {
+                        if (z7 && z && getParent() != null) {
                             ((View) getParent()).invalidate();
                         }
+                        f18 = f6;
                     }
                     canvas.save();
-                    float f20 = f14 + f17;
-                    this.drawTimeX = f20;
+                    float f22 = f15 + f18;
+                    this.drawTimeX = f22;
                     float dp3 = (imageY2 - AndroidUtilities.dp(7.3f)) - staticLayout.getHeight();
                     this.drawTimeY = dp3;
-                    canvas.translate(f20, dp3);
+                    canvas.translate(f22, dp3);
                     staticLayout.draw(canvas);
                     canvas.restore();
                     Theme.chat_timePaint.setAlpha(255);
-                    z3 = z9;
-                    i2 = i8;
+                    i2 = i5;
                 } else {
                     if (this.currentMessageObject.isSponsored()) {
-                        i5 = -AndroidUtilities.dp(48.0f);
+                        i3 = -AndroidUtilities.dp(48.0f);
                         if (this.hasNewLineForTime) {
-                            i5 -= AndroidUtilities.dp(16.0f);
+                            i3 -= AndroidUtilities.dp(16.0f);
                         }
                     } else {
-                        i5 = -(this.drawCommentButton ? AndroidUtilities.dp(43.0f) : 0);
+                        i3 = -(this.drawCommentButton ? AndroidUtilities.dp(43.0f) : 0);
                     }
-                    int i14 = i5;
-                    float f21 = -staticLayout.getLineLeft(0);
+                    int i10 = i3;
+                    float f23 = -staticLayout.getLineLeft(0);
                     if (this.reactionsLayoutInBubble.isSmall) {
                         updateReactionLayoutPosition();
                         this.reactionsLayoutInBubble.draw(canvas, this.transitionParams.animateChangeProgress, null);
                     }
                     if ((ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup) || (this.currentMessageObject.messageOwner.flags & 1024) != 0 || this.repliesLayout != null || this.transitionParams.animateReplies || this.isPinned || this.transitionParams.animatePinned) {
-                        float lineWidth2 = f21 + (this.timeWidth - staticLayout.getLineWidth(0));
+                        float lineWidth2 = f23 + (this.timeWidth - staticLayout.getLineWidth(0));
                         ReactionsLayoutInBubble reactionsLayoutInBubble3 = this.reactionsLayoutInBubble;
                         if (reactionsLayoutInBubble3.isSmall && !reactionsLayoutInBubble3.isEmpty) {
                             lineWidth2 -= reactionsLayoutInBubble3.width;
                         }
-                        f21 = lineWidth2;
+                        f23 = lineWidth2;
                         int createStatusDrawableParams2 = this.transitionParams.createStatusDrawableParams();
-                        int i15 = this.transitionParams.lastStatusDrawableParams;
-                        if (i15 >= 0 && i15 != createStatusDrawableParams2 && !this.statusDrawableAnimationInProgress) {
-                            createStatusDrawableAnimator(i15, createStatusDrawableParams2, z);
+                        int i11 = this.transitionParams.lastStatusDrawableParams;
+                        if (i11 >= 0 && i11 != createStatusDrawableParams2 && !this.statusDrawableAnimationInProgress) {
+                            createStatusDrawableAnimator(i11, createStatusDrawableParams2, z);
                         }
-                        boolean z16 = this.statusDrawableAnimationInProgress;
-                        if (z16) {
+                        boolean z11 = this.statusDrawableAnimationInProgress;
+                        if (z11) {
                             createStatusDrawableParams2 = this.animateToStatusDrawableParams;
                         }
-                        if ((createStatusDrawableParams2 & 4) != 0) {
-                            i6 = 8;
-                            z7 = true;
-                        } else {
-                            i6 = 8;
-                            z7 = false;
-                        }
-                        boolean z17 = (createStatusDrawableParams2 & i6) != 0;
-                        if (z16) {
-                            int i16 = this.animateFromStatusDrawableParams;
-                            boolean z18 = (i16 & 4) != 0;
-                            boolean z19 = (i16 & i6) != 0;
-                            float f22 = i14;
-                            float f23 = f7;
-                            drawClockOrErrorLayout(canvas, z18, z19, f11, f23, f22, f13, 1.0f - this.statusDrawableProgress, z2);
-                            drawClockOrErrorLayout(canvas, z7, z17, f11, f23, f22, f13, this.statusDrawableProgress, z2);
+                        boolean z12 = (createStatusDrawableParams2 & 4) != 0;
+                        boolean z13 = (createStatusDrawableParams2 & 8) != 0;
+                        if (z11) {
+                            int i12 = this.animateFromStatusDrawableParams;
+                            boolean z14 = (i12 & 4) != 0;
+                            boolean z15 = (i12 & 8) != 0;
+                            float f24 = i10;
+                            float f25 = f8;
+                            drawClockOrErrorLayout(canvas, z14, z15, f12, f25, f24, f14, 1.0f - this.statusDrawableProgress, z2);
+                            drawClockOrErrorLayout(canvas, z12, z13, f12, f25, f24, f14, this.statusDrawableProgress, z2);
                             if (!this.currentMessageObject.isOutOwner()) {
-                                if (!z18 && !z19) {
-                                    drawViewsAndRepliesLayout(canvas, f11, f7, f22, f13, 1.0f - this.statusDrawableProgress, z2);
+                                if (!z14 && !z15) {
+                                    drawViewsAndRepliesLayout(canvas, f12, f8, f24, f14, 1.0f - this.statusDrawableProgress, z2);
                                 }
-                                if (!z7 && !z17) {
-                                    drawViewsAndRepliesLayout(canvas, f11, f7, f22, f13, this.statusDrawableProgress, z2);
+                                if (!z12 && !z13) {
+                                    drawViewsAndRepliesLayout(canvas, f12, f8, f24, f14, this.statusDrawableProgress, z2);
                                 }
                             }
                         } else {
-                            if (!this.currentMessageObject.isOutOwner() && !z7 && !z17) {
-                                drawViewsAndRepliesLayout(canvas, f11, f7, i14, f13, 1.0f, z2);
+                            if (!this.currentMessageObject.isOutOwner() && !z12 && !z13) {
+                                drawViewsAndRepliesLayout(canvas, f12, f8, i10, f14, 1.0f, z2);
                             }
-                            drawClockOrErrorLayout(canvas, z7, z17, f11, f7, i14, f13, 1.0f, z2);
+                            drawClockOrErrorLayout(canvas, z12, z13, f12, f8, i10, f14, 1.0f, z2);
                         }
                         if (this.currentMessageObject.isOutOwner()) {
-                            drawViewsAndRepliesLayout(canvas, f11, f7, i14, f13, 1.0f, z2);
+                            drawViewsAndRepliesLayout(canvas, f12, f8, i10, f14, 1.0f, z2);
                         }
                         TransitionParams transitionParams4 = this.transitionParams;
                         transitionParams4.lastStatusDrawableParams = transitionParams4.createStatusDrawableParams();
-                        if (z7 && z && getParent() != null) {
+                        if (z12 && z && getParent() != null) {
                             ((View) getParent()).invalidate();
                         }
                     }
                     canvas.save();
-                    float f24 = 6.5f;
+                    float f26 = 6.5f;
                     if (this.transitionParams.animateEditedEnter) {
                         TransitionParams transitionParams5 = this.transitionParams;
                         if (transitionParams5.animateChangeProgress != 1.0f) {
                             if (transitionParams5.animateEditedLayout != null) {
-                                float f25 = f14 + f21;
+                                float f27 = f15 + f23;
                                 if (this.pinnedBottom || this.pinnedTop) {
-                                    f24 = 7.5f;
+                                    f26 = 7.5f;
                                 }
-                                canvas.translate(f25, ((f11 - AndroidUtilities.dp(f24)) - staticLayout.getHeight()) + i14);
+                                canvas.translate(f27, ((f12 - AndroidUtilities.dp(f26)) - staticLayout.getHeight()) + i10);
                                 int alpha3 = Theme.chat_timePaint.getAlpha();
                                 Theme.chat_timePaint.setAlpha((int) (alpha3 * this.transitionParams.animateChangeProgress));
                                 this.transitionParams.animateEditedLayout.draw(canvas);
@@ -6557,97 +6535,83 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                             } else {
                                 int alpha4 = Theme.chat_timePaint.getAlpha();
                                 canvas.save();
-                                float f26 = i14;
-                                canvas.translate(this.transitionParams.animateFromTimeX + f21, ((f11 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 7.5f : 6.5f)) - staticLayout.getHeight()) + f26);
-                                float f27 = alpha4;
-                                Theme.chat_timePaint.setAlpha((int) ((1.0f - this.transitionParams.animateChangeProgress) * f27));
+                                float f28 = i10;
+                                canvas.translate(this.transitionParams.animateFromTimeX + f23, ((f12 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 7.5f : 6.5f)) - staticLayout.getHeight()) + f28);
+                                float f29 = alpha4;
+                                Theme.chat_timePaint.setAlpha((int) ((1.0f - this.transitionParams.animateChangeProgress) * f29));
                                 this.transitionParams.animateTimeLayout.draw(canvas);
                                 canvas.restore();
-                                float f28 = f14 + f21;
+                                float f30 = f15 + f23;
                                 if (this.pinnedBottom || this.pinnedTop) {
-                                    f24 = 7.5f;
+                                    f26 = 7.5f;
                                 }
-                                canvas.translate(f28, ((f11 - AndroidUtilities.dp(f24)) - staticLayout.getHeight()) + f26);
-                                Theme.chat_timePaint.setAlpha((int) (f27 * this.transitionParams.animateChangeProgress));
+                                canvas.translate(f30, ((f12 - AndroidUtilities.dp(f26)) - staticLayout.getHeight()) + f28);
+                                Theme.chat_timePaint.setAlpha((int) (f29 * this.transitionParams.animateChangeProgress));
                                 staticLayout.draw(canvas);
                                 Theme.chat_timePaint.setAlpha(alpha4);
                             }
                             canvas.restore();
-                            i2 = i14;
+                            i2 = i10;
                             z3 = false;
                         }
                     }
-                    float f29 = f14 + f21;
-                    this.drawTimeX = f29;
+                    float f31 = f15 + f23;
+                    this.drawTimeX = f31;
                     if (this.pinnedBottom || this.pinnedTop) {
-                        f24 = 7.5f;
+                        f26 = 7.5f;
                     }
-                    float dp4 = ((f11 - AndroidUtilities.dp(f24)) - staticLayout.getHeight()) + i14;
+                    float dp4 = ((f12 - AndroidUtilities.dp(f26)) - staticLayout.getHeight()) + i10;
                     this.drawTimeY = dp4;
-                    canvas.translate(f29, dp4);
+                    canvas.translate(f31, dp4);
                     staticLayout.draw(canvas);
                     canvas.restore();
-                    i2 = i14;
+                    i2 = i10;
                     z3 = false;
                 }
                 if (this.currentMessageObject.isOutOwner()) {
                     int createStatusDrawableParams3 = this.transitionParams.createStatusDrawableParams();
-                    int i17 = this.transitionParams.lastStatusDrawableParams;
-                    if (i17 >= 0 && i17 != createStatusDrawableParams3 && !this.statusDrawableAnimationInProgress) {
-                        createStatusDrawableAnimator(i17, createStatusDrawableParams3, z);
+                    int i13 = this.transitionParams.lastStatusDrawableParams;
+                    if (i13 >= 0 && i13 != createStatusDrawableParams3 && !this.statusDrawableAnimationInProgress) {
+                        createStatusDrawableAnimator(i13, createStatusDrawableParams3, z);
                     }
                     if (this.statusDrawableAnimationInProgress) {
                         createStatusDrawableParams3 = this.animateToStatusDrawableParams;
                     }
-                    boolean z20 = (createStatusDrawableParams3 & 1) != 0;
-                    boolean z21 = (createStatusDrawableParams3 & 2) != 0;
-                    boolean z22 = (createStatusDrawableParams3 & 4) != 0;
-                    if ((createStatusDrawableParams3 & 8) != 0) {
-                        i3 = 16;
-                        z4 = true;
-                    } else {
-                        i3 = 16;
-                        z4 = false;
-                    }
-                    boolean z23 = (createStatusDrawableParams3 & i3) != 0;
+                    boolean z16 = (createStatusDrawableParams3 & 1) != 0;
+                    boolean z17 = (createStatusDrawableParams3 & 2) != 0;
+                    boolean z18 = (createStatusDrawableParams3 & 4) != 0;
+                    boolean z19 = (createStatusDrawableParams3 & 8) != 0;
                     if (this.transitionYOffsetForDrawables != 0.0f) {
                         canvas.save();
                         canvas.translate(0.0f, this.transitionYOffsetForDrawables);
-                        z5 = true;
+                        z4 = true;
                     } else {
-                        z5 = false;
+                        z4 = false;
                     }
                     if (this.statusDrawableAnimationInProgress) {
-                        int i18 = this.animateFromStatusDrawableParams;
-                        boolean z24 = (i18 & 1) != 0;
-                        boolean z25 = (i18 & 2) != 0;
-                        boolean z26 = (i18 & 4) != 0;
-                        if ((i18 & 8) != 0) {
-                            i4 = 16;
-                            z6 = true;
+                        int i14 = this.animateFromStatusDrawableParams;
+                        boolean z20 = (i14 & 1) != 0;
+                        boolean z21 = (i14 & 2) != 0;
+                        boolean z22 = (i14 & 4) != 0;
+                        boolean z23 = (i14 & 8) != 0;
+                        if (z22 || !z21 || !z17 || z20 || !z16) {
+                            float f32 = i2;
+                            float f33 = f8;
+                            boolean z24 = z3;
+                            drawStatusDrawable(canvas, z20, z21, z22, z23, f33, z24, f32, f12, 1.0f - this.statusDrawableProgress, false, z2);
+                            drawStatusDrawable(canvas, z16, z17, z18, z19, f33, z24, f32, f12, this.statusDrawableProgress, false, z2);
                         } else {
-                            i4 = 16;
-                            z6 = false;
-                        }
-                        boolean z27 = (i18 & i4) != 0;
-                        if (z26 || z23 || z27 || !z25 || !z21 || z24 || !z20) {
-                            float f30 = i2;
-                            float f31 = f7;
-                            boolean z28 = z3;
-                            drawStatusDrawable(canvas, z24, z25, z26, z6, z27, f31, z28, f30, f11, 1.0f - this.statusDrawableProgress, false, z2);
-                            drawStatusDrawable(canvas, z20, z21, z22, z4, z23, f31, z28, f30, f11, this.statusDrawableProgress, false, z2);
-                        } else {
-                            drawStatusDrawable(canvas, z20, z21, z22, z4, z23, f7, z3, i2, f11, this.statusDrawableProgress, true, z2);
+                            drawStatusDrawable(canvas, z16, z17, z18, z19, f8, z3, i2, f12, this.statusDrawableProgress, true, z2);
                         }
                     } else {
-                        drawStatusDrawable(canvas, z20, z21, z22, z4, z23, f7, z3, i2, f11, 1.0f, false, z2);
+                        drawStatusDrawable(canvas, z16, z17, z18, z19, f8, z3, i2, f12, 1.0f, false, z2);
                     }
-                    if (z5) {
+                    if (z4) {
                         canvas.restore();
                     }
                     TransitionParams transitionParams6 = this.transitionParams;
                     transitionParams6.lastStatusDrawableParams = transitionParams6.createStatusDrawableParams();
-                    if (z && z22 && getParent() != null) {
+                    if (z && z18 && getParent() != null) {
                         ((View) getParent()).invalidate();
                     }
                 }
@@ -6660,12 +6624,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         boolean z2 = false;
         boolean z3 = (i2 & 1) != 0;
         boolean z4 = (i2 & 2) != 0;
-        boolean z5 = (i2 & 16) != 0;
-        boolean z6 = (i & 1) != 0;
-        boolean z7 = (i & 2) != 0;
-        boolean z8 = (i & 4) != 0;
-        boolean z9 = (i & 16) != 0;
-        if (!z8 && !z5 && !z9 && z7 && z4 && !z6 && z3) {
+        boolean z5 = (i & 1) != 0;
+        boolean z6 = (i & 2) != 0;
+        if (!((i & 4) != 0) && z6 && z4 && !z5 && z3) {
             z2 = true;
         }
         if (!this.transitionParams.messageEntering || z2) {
@@ -6793,190 +6754,172 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawViewsAndRepliesLayout(android.graphics.Canvas, float, float, float, float, float, boolean):void");
     }
 
-    private void drawStatusDrawable(Canvas canvas, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, float f, boolean z6, float f2, float f3, float f4, boolean z7, boolean z8) {
+    private void drawStatusDrawable(Canvas canvas, boolean z, boolean z2, boolean z3, boolean z4, float f, boolean z5, float f2, float f3, float f4, boolean z6, boolean z7) {
         int dp;
         int dp2;
         Drawable drawable;
         Drawable drawable2;
-        Drawable drawable3;
-        Drawable drawable4;
         int i;
-        boolean z9 = f4 != 1.0f && !z7;
+        boolean z8 = f4 != 1.0f && !z6;
         float f5 = (f4 * 0.5f) + 0.5f;
-        float f6 = z9 ? f * f4 : f;
+        float f6 = z8 ? f * f4 : f;
         float imageY2 = (this.photoImage.getImageY2() + this.additionalTimeOffsetY) - AndroidUtilities.dp(8.5f);
         if (z3) {
             MsgClockDrawable msgClockDrawable = Theme.chat_msgClockDrawable;
-            if (!shouldDrawTimeOnMedia()) {
+            if (shouldDrawTimeOnMedia()) {
+                float f7 = 24.0f;
+                if (this.currentMessageObject.shouldDrawWithoutBackground()) {
+                    i = getThemedColor("chat_serviceText");
+                    int i2 = this.layoutWidth;
+                    if (!z5) {
+                        f7 = 22.0f;
+                    }
+                    BaseCell.setDrawableBounds(msgClockDrawable, (i2 - AndroidUtilities.dp(f7)) - msgClockDrawable.getIntrinsicWidth(), (imageY2 - msgClockDrawable.getIntrinsicHeight()) + f2);
+                    msgClockDrawable.setAlpha((int) (this.timeAlpha * 255.0f * f6));
+                } else {
+                    i = getThemedColor("chat_mediaSentClock");
+                    int i3 = this.layoutWidth;
+                    if (!z5) {
+                        f7 = 22.0f;
+                    }
+                    BaseCell.setDrawableBounds(msgClockDrawable, (i3 - AndroidUtilities.dp(f7)) - msgClockDrawable.getIntrinsicWidth(), (imageY2 - msgClockDrawable.getIntrinsicHeight()) + f2);
+                    msgClockDrawable.setAlpha((int) (f6 * 255.0f));
+                }
+            } else {
                 int themedColor = getThemedColor("chat_outSentClock");
                 BaseCell.setDrawableBounds(msgClockDrawable, (this.layoutWidth - AndroidUtilities.dp(18.5f)) - msgClockDrawable.getIntrinsicWidth(), ((f3 - AndroidUtilities.dp(8.5f)) - msgClockDrawable.getIntrinsicHeight()) + f2);
                 msgClockDrawable.setAlpha((int) (f6 * 255.0f));
                 i = themedColor;
-            } else if (this.currentMessageObject.shouldDrawWithoutBackground()) {
-                i = getThemedColor("chat_serviceText");
-                BaseCell.setDrawableBounds(msgClockDrawable, (this.layoutWidth - AndroidUtilities.dp(z6 ? 24.0f : 22.0f)) - msgClockDrawable.getIntrinsicWidth(), (imageY2 - msgClockDrawable.getIntrinsicHeight()) + f2);
-                msgClockDrawable.setAlpha((int) (this.timeAlpha * 255.0f * f6));
-            } else {
-                i = getThemedColor("chat_mediaSentClock");
-                BaseCell.setDrawableBounds(msgClockDrawable, (this.layoutWidth - AndroidUtilities.dp(z6 ? 24.0f : 22.0f)) - msgClockDrawable.getIntrinsicWidth(), (imageY2 - msgClockDrawable.getIntrinsicHeight()) + f2);
-                msgClockDrawable.setAlpha((int) (f6 * 255.0f));
             }
             msgClockDrawable.setColor(i);
-            if (z9) {
+            if (z8) {
                 canvas.save();
                 canvas.scale(f5, f5, msgClockDrawable.getBounds().centerX(), msgClockDrawable.getBounds().centerY());
             }
             msgClockDrawable.draw(canvas);
             msgClockDrawable.setAlpha(255);
-            if (z9) {
+            if (z8) {
                 canvas.restore();
             }
             invalidate();
         }
-        if (!z5) {
-            float f7 = 23.5f;
-            if (z2) {
-                if (shouldDrawTimeOnMedia()) {
-                    if (z7) {
-                        canvas.save();
-                    }
-                    float f8 = 28.3f;
-                    if (this.currentMessageObject.shouldDrawWithoutBackground()) {
-                        drawable3 = getThemedDrawable("drawableMsgStickerCheck");
-                        if (z) {
-                            if (z7) {
-                                canvas.translate(AndroidUtilities.dp(4.8f) * (1.0f - f4), 0.0f);
-                            }
-                            int i2 = this.layoutWidth;
-                            if (!z6) {
-                                f8 = 26.3f;
-                            }
-                            BaseCell.setDrawableBounds(drawable3, (i2 - AndroidUtilities.dp(f8)) - drawable3.getIntrinsicWidth(), (imageY2 - drawable3.getIntrinsicHeight()) + f2);
-                        } else {
-                            BaseCell.setDrawableBounds(drawable3, (this.layoutWidth - AndroidUtilities.dp(z6 ? 23.5f : 21.5f)) - drawable3.getIntrinsicWidth(), (imageY2 - drawable3.getIntrinsicHeight()) + f2);
-                        }
-                        drawable3.setAlpha((int) (this.timeAlpha * 255.0f * f6));
-                    } else {
-                        if (z) {
-                            if (z7) {
-                                canvas.translate(AndroidUtilities.dp(4.8f) * (1.0f - f4), 0.0f);
-                            }
-                            Drawable drawable5 = Theme.chat_msgMediaCheckDrawable;
-                            int i3 = this.layoutWidth;
-                            if (!z6) {
-                                f8 = 26.3f;
-                            }
-                            BaseCell.setDrawableBounds(drawable5, (i3 - AndroidUtilities.dp(f8)) - Theme.chat_msgMediaCheckDrawable.getIntrinsicWidth(), (imageY2 - Theme.chat_msgMediaCheckDrawable.getIntrinsicHeight()) + f2);
-                        } else {
-                            BaseCell.setDrawableBounds(Theme.chat_msgMediaCheckDrawable, (this.layoutWidth - AndroidUtilities.dp(z6 ? 23.5f : 21.5f)) - Theme.chat_msgMediaCheckDrawable.getIntrinsicWidth(), (imageY2 - Theme.chat_msgMediaCheckDrawable.getIntrinsicHeight()) + f2);
-                        }
-                        Theme.chat_msgMediaCheckDrawable.setAlpha((int) (this.timeAlpha * 255.0f * f6));
-                        drawable3 = Theme.chat_msgMediaCheckDrawable;
-                    }
-                    if (z9) {
-                        canvas.save();
-                        canvas.scale(f5, f5, drawable3.getBounds().centerX(), drawable3.getBounds().centerY());
-                    }
-                    drawable3.draw(canvas);
-                    if (z9) {
-                        canvas.restore();
-                    }
-                    if (z7) {
-                        canvas.restore();
-                    }
-                    drawable3.setAlpha(255);
-                } else {
-                    if (z7) {
-                        canvas.save();
-                    }
-                    if (z) {
-                        if (z7) {
-                            canvas.translate(AndroidUtilities.dp(4.0f) * (1.0f - f4), 0.0f);
-                        }
-                        drawable2 = getThemedDrawable(z8 ? "drawableMsgOutCheckReadSelected" : "drawableMsgOutCheckRead");
-                        BaseCell.setDrawableBounds(drawable2, (this.layoutWidth - AndroidUtilities.dp(22.5f)) - drawable2.getIntrinsicWidth(), ((f3 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 9.0f : 8.0f)) - drawable2.getIntrinsicHeight()) + f2);
-                    } else {
-                        Drawable themedDrawable = getThemedDrawable(z8 ? "drawableMsgOutCheckSelected" : "drawableMsgOutCheck");
-                        BaseCell.setDrawableBounds(themedDrawable, (this.layoutWidth - AndroidUtilities.dp(18.5f)) - themedDrawable.getIntrinsicWidth(), ((f3 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 9.0f : 8.0f)) - themedDrawable.getIntrinsicHeight()) + f2);
-                        drawable2 = themedDrawable;
-                    }
-                    drawable2.setAlpha((int) (f6 * 255.0f));
-                    if (z9) {
-                        canvas.save();
-                        canvas.scale(f5, f5, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
-                    }
-                    drawable2.draw(canvas);
-                    if (z9) {
-                        canvas.restore();
-                    }
-                    if (z7) {
-                        canvas.restore();
-                    }
-                    drawable2.setAlpha(255);
-                }
-            }
-            if (z) {
-                if (shouldDrawTimeOnMedia()) {
-                    if (this.currentMessageObject.shouldDrawWithoutBackground()) {
-                        drawable = getThemedDrawable("drawableMsgStickerHalfCheck");
-                        int i4 = this.layoutWidth;
-                        if (!z6) {
-                            f7 = 21.5f;
-                        }
-                        BaseCell.setDrawableBounds(drawable, (i4 - AndroidUtilities.dp(f7)) - drawable.getIntrinsicWidth(), (imageY2 - drawable.getIntrinsicHeight()) + f2);
-                        drawable.setAlpha((int) (this.timeAlpha * 255.0f * f6));
-                    } else {
-                        drawable = Theme.chat_msgMediaHalfCheckDrawable;
-                        int i5 = this.layoutWidth;
-                        if (!z6) {
-                            f7 = 21.5f;
-                        }
-                        BaseCell.setDrawableBounds(drawable, (i5 - AndroidUtilities.dp(f7)) - drawable.getIntrinsicWidth(), (imageY2 - drawable.getIntrinsicHeight()) + f2);
-                        drawable.setAlpha((int) (this.timeAlpha * 255.0f * f6));
-                    }
-                    if (z9 || z7) {
-                        canvas.save();
-                        canvas.scale(f5, f5, drawable.getBounds().centerX(), drawable.getBounds().centerY());
-                    }
-                    drawable.draw(canvas);
-                    if (z9 || z7) {
-                        canvas.restore();
-                    }
-                    drawable.setAlpha(255);
-                } else {
-                    Drawable themedDrawable2 = getThemedDrawable(z8 ? "drawableMsgOutHalfCheckSelected" : "drawableMsgOutHalfCheck");
-                    BaseCell.setDrawableBounds(themedDrawable2, (this.layoutWidth - AndroidUtilities.dp(18.0f)) - themedDrawable2.getIntrinsicWidth(), ((f3 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 9.0f : 8.0f)) - themedDrawable2.getIntrinsicHeight()) + f2);
-                    themedDrawable2.setAlpha((int) (f6 * 255.0f));
-                    if (z9 || z7) {
-                        canvas.save();
-                        canvas.scale(f5, f5, themedDrawable2.getBounds().centerX(), themedDrawable2.getBounds().centerY());
-                    }
-                    themedDrawable2.draw(canvas);
-                    if (z9 || z7) {
-                        canvas.restore();
-                    }
-                    themedDrawable2.setAlpha(255);
-                }
-            }
-        } else if (z || z2) {
+        float f8 = 23.5f;
+        float f9 = 9.0f;
+        if (z2) {
             if (shouldDrawTimeOnMedia()) {
-                BaseCell.setDrawableBounds(Theme.chat_msgBroadcastMediaDrawable, (this.layoutWidth - AndroidUtilities.dp(z6 ? 26.0f : 24.0f)) - Theme.chat_msgBroadcastMediaDrawable.getIntrinsicWidth(), ((f3 - AndroidUtilities.dp(14.0f)) - Theme.chat_msgBroadcastMediaDrawable.getIntrinsicHeight()) + f2);
-                Theme.chat_msgBroadcastMediaDrawable.setAlpha((int) (f6 * 255.0f));
-                drawable4 = Theme.chat_msgBroadcastMediaDrawable;
+                if (z6) {
+                    canvas.save();
+                }
+                float f10 = 28.3f;
+                if (this.currentMessageObject.shouldDrawWithoutBackground()) {
+                    drawable2 = getThemedDrawable("drawableMsgStickerCheck");
+                    if (z) {
+                        if (z6) {
+                            canvas.translate(AndroidUtilities.dp(4.8f) * (1.0f - f4), 0.0f);
+                        }
+                        int i4 = this.layoutWidth;
+                        if (!z5) {
+                            f10 = 26.3f;
+                        }
+                        BaseCell.setDrawableBounds(drawable2, (i4 - AndroidUtilities.dp(f10)) - drawable2.getIntrinsicWidth(), (imageY2 - drawable2.getIntrinsicHeight()) + f2);
+                    } else {
+                        BaseCell.setDrawableBounds(drawable2, (this.layoutWidth - AndroidUtilities.dp(z5 ? 23.5f : 21.5f)) - drawable2.getIntrinsicWidth(), (imageY2 - drawable2.getIntrinsicHeight()) + f2);
+                    }
+                    drawable2.setAlpha((int) (this.timeAlpha * 255.0f * f6));
+                } else {
+                    if (z) {
+                        if (z6) {
+                            canvas.translate(AndroidUtilities.dp(4.8f) * (1.0f - f4), 0.0f);
+                        }
+                        Drawable drawable3 = Theme.chat_msgMediaCheckDrawable;
+                        int i5 = this.layoutWidth;
+                        if (!z5) {
+                            f10 = 26.3f;
+                        }
+                        BaseCell.setDrawableBounds(drawable3, (i5 - AndroidUtilities.dp(f10)) - Theme.chat_msgMediaCheckDrawable.getIntrinsicWidth(), (imageY2 - Theme.chat_msgMediaCheckDrawable.getIntrinsicHeight()) + f2);
+                    } else {
+                        BaseCell.setDrawableBounds(Theme.chat_msgMediaCheckDrawable, (this.layoutWidth - AndroidUtilities.dp(z5 ? 23.5f : 21.5f)) - Theme.chat_msgMediaCheckDrawable.getIntrinsicWidth(), (imageY2 - Theme.chat_msgMediaCheckDrawable.getIntrinsicHeight()) + f2);
+                    }
+                    Theme.chat_msgMediaCheckDrawable.setAlpha((int) (this.timeAlpha * 255.0f * f6));
+                    drawable2 = Theme.chat_msgMediaCheckDrawable;
+                }
+                if (z8) {
+                    canvas.save();
+                    canvas.scale(f5, f5, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
+                }
+                drawable2.draw(canvas);
+                if (z8) {
+                    canvas.restore();
+                }
+                if (z6) {
+                    canvas.restore();
+                }
+                drawable2.setAlpha(255);
             } else {
-                BaseCell.setDrawableBounds(Theme.chat_msgBroadcastDrawable, (this.layoutWidth - AndroidUtilities.dp(20.5f)) - Theme.chat_msgBroadcastDrawable.getIntrinsicWidth(), ((f3 - AndroidUtilities.dp(8.0f)) - Theme.chat_msgBroadcastDrawable.getIntrinsicHeight()) + f2);
-                Theme.chat_msgBroadcastDrawable.setAlpha((int) (f6 * 255.0f));
-                drawable4 = Theme.chat_msgBroadcastDrawable;
+                if (z6) {
+                    canvas.save();
+                }
+                if (z) {
+                    if (z6) {
+                        canvas.translate(AndroidUtilities.dp(4.0f) * (1.0f - f4), 0.0f);
+                    }
+                    drawable = getThemedDrawable(z7 ? "drawableMsgOutCheckReadSelected" : "drawableMsgOutCheckRead");
+                    BaseCell.setDrawableBounds(drawable, (this.layoutWidth - AndroidUtilities.dp(22.5f)) - drawable.getIntrinsicWidth(), ((f3 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 9.0f : 8.0f)) - drawable.getIntrinsicHeight()) + f2);
+                } else {
+                    drawable = getThemedDrawable(z7 ? "drawableMsgOutCheckSelected" : "drawableMsgOutCheck");
+                    BaseCell.setDrawableBounds(drawable, (this.layoutWidth - AndroidUtilities.dp(18.5f)) - drawable.getIntrinsicWidth(), ((f3 - AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 9.0f : 8.0f)) - drawable.getIntrinsicHeight()) + f2);
+                }
+                drawable.setAlpha((int) (f6 * 255.0f));
+                if (z8) {
+                    canvas.save();
+                    canvas.scale(f5, f5, drawable.getBounds().centerX(), drawable.getBounds().centerY());
+                }
+                drawable.draw(canvas);
+                if (z8) {
+                    canvas.restore();
+                }
+                if (z6) {
+                    canvas.restore();
+                }
+                drawable.setAlpha(255);
             }
-            if (z9) {
-                canvas.save();
-                canvas.scale(f5, f5, drawable4.getBounds().centerX(), drawable4.getBounds().centerY());
+        }
+        if (z) {
+            if (shouldDrawTimeOnMedia()) {
+                Drawable themedDrawable = this.currentMessageObject.shouldDrawWithoutBackground() ? getThemedDrawable("drawableMsgStickerHalfCheck") : Theme.chat_msgMediaHalfCheckDrawable;
+                int i6 = this.layoutWidth;
+                if (!z5) {
+                    f8 = 21.5f;
+                }
+                BaseCell.setDrawableBounds(themedDrawable, (i6 - AndroidUtilities.dp(f8)) - themedDrawable.getIntrinsicWidth(), (imageY2 - themedDrawable.getIntrinsicHeight()) + f2);
+                themedDrawable.setAlpha((int) (this.timeAlpha * 255.0f * f6));
+                if (z8 || z6) {
+                    canvas.save();
+                    canvas.scale(f5, f5, themedDrawable.getBounds().centerX(), themedDrawable.getBounds().centerY());
+                }
+                themedDrawable.draw(canvas);
+                if (z8 || z6) {
+                    canvas.restore();
+                }
+                themedDrawable.setAlpha(255);
+            } else {
+                Drawable themedDrawable2 = getThemedDrawable(z7 ? "drawableMsgOutHalfCheckSelected" : "drawableMsgOutHalfCheck");
+                float dp3 = (this.layoutWidth - AndroidUtilities.dp(18.0f)) - themedDrawable2.getIntrinsicWidth();
+                if (!this.pinnedBottom && !this.pinnedTop) {
+                    f9 = 8.0f;
+                }
+                BaseCell.setDrawableBounds(themedDrawable2, dp3, ((f3 - AndroidUtilities.dp(f9)) - themedDrawable2.getIntrinsicHeight()) + f2);
+                themedDrawable2.setAlpha((int) (f6 * 255.0f));
+                if (z8 || z6) {
+                    canvas.save();
+                    canvas.scale(f5, f5, themedDrawable2.getBounds().centerX(), themedDrawable2.getBounds().centerY());
+                }
+                themedDrawable2.draw(canvas);
+                if (z8 || z6) {
+                    canvas.restore();
+                }
+                themedDrawable2.setAlpha(255);
             }
-            drawable4.draw(canvas);
-            if (z9) {
-                canvas.restore();
-            }
-            drawable4.setAlpha(255);
         }
         if (z4) {
             if (shouldDrawTimeOnMedia()) {
@@ -6986,21 +6929,21 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 dp = this.layoutWidth - AndroidUtilities.dp(32.0f);
                 dp2 = AndroidUtilities.dp((this.pinnedBottom || this.pinnedTop) ? 22.0f : 21.0f);
             }
-            float f9 = (f3 - dp2) + f2;
-            this.rect.set(dp, f9, AndroidUtilities.dp(14.0f) + dp, AndroidUtilities.dp(14.0f) + f9);
+            float f11 = (f3 - dp2) + f2;
+            this.rect.set(dp, f11, AndroidUtilities.dp(14.0f) + dp, AndroidUtilities.dp(14.0f) + f11);
             int alpha = Theme.chat_msgErrorPaint.getAlpha();
             Theme.chat_msgErrorPaint.setAlpha((int) (alpha * f6));
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), Theme.chat_msgErrorPaint);
             Theme.chat_msgErrorPaint.setAlpha(alpha);
-            BaseCell.setDrawableBounds(Theme.chat_msgErrorDrawable, dp + AndroidUtilities.dp(6.0f), f9 + AndroidUtilities.dp(2.0f));
+            BaseCell.setDrawableBounds(Theme.chat_msgErrorDrawable, dp + AndroidUtilities.dp(6.0f), f11 + AndroidUtilities.dp(2.0f));
             Theme.chat_msgErrorDrawable.setAlpha((int) (f6 * 255.0f));
-            if (z9) {
+            if (z8) {
                 canvas.save();
                 canvas.scale(f5, f5, Theme.chat_msgErrorDrawable.getBounds().centerX(), Theme.chat_msgErrorDrawable.getBounds().centerY());
             }
             Theme.chat_msgErrorDrawable.draw(canvas);
             Theme.chat_msgErrorDrawable.setAlpha(255);
-            if (z9) {
+            if (z8) {
                 canvas.restore();
             }
         }

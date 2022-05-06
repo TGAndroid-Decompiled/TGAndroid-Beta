@@ -91,7 +91,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         textView.setTextSize(1, 20.0f);
         textView.setGravity(49);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setText(LocaleController.getString("UpdateTelegram", R.string.UpdateTelegram));
         frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2, 49));
         TextView textView2 = new TextView(context);
@@ -145,7 +145,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         TextView textView3 = new TextView(context);
         this.acceptTextView = textView3;
         textView3.setGravity(17);
-        this.acceptTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.acceptTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.acceptTextView.setTextColor(-1);
         this.acceptTextView.setTextSize(1, 14.0f);
         this.acceptButton.addView(this.acceptTextView, LayoutHelper.createFrame(-2, -2, 17));

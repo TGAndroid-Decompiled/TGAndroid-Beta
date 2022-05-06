@@ -544,7 +544,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             TextView textView2 = new TextView(getParentActivity());
             textView2.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
             textView2.setTextSize(1, 20.0f);
-            textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView2.setLines(1);
             textView2.setMaxLines(1);
             textView2.setSingleLine(true);
@@ -1173,13 +1173,13 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
                 if (!ChatLinkActivity.this.isChannel) {
                     manageChatTextCell.setColors("windowBackgroundWhiteRedText5", "windowBackgroundWhiteRedText5");
-                    manageChatTextCell.setText(LocaleController.getString("DiscussionUnlinkChannel", R.string.DiscussionUnlinkChannel), null, R.drawable.actions_remove_user, false);
+                    manageChatTextCell.setText(LocaleController.getString("DiscussionUnlinkChannel", R.string.DiscussionUnlinkChannel), null, R.drawable.msg_remove, false);
                 } else if (ChatLinkActivity.this.info.linked_chat_id != 0) {
                     manageChatTextCell.setColors("windowBackgroundWhiteRedText5", "windowBackgroundWhiteRedText5");
-                    manageChatTextCell.setText(LocaleController.getString("DiscussionUnlinkGroup", R.string.DiscussionUnlinkGroup), null, R.drawable.actions_remove_user, false);
+                    manageChatTextCell.setText(LocaleController.getString("DiscussionUnlinkGroup", R.string.DiscussionUnlinkGroup), null, R.drawable.msg_remove, false);
                 } else {
                     manageChatTextCell.setColors("windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteBlueButton");
-                    manageChatTextCell.setText(LocaleController.getString("DiscussionCreateGroup", R.string.DiscussionCreateGroup), null, R.drawable.menu_groups, true);
+                    manageChatTextCell.setText(LocaleController.getString("DiscussionCreateGroup", R.string.DiscussionCreateGroup), null, R.drawable.msg_groups, true);
                 }
             }
         }

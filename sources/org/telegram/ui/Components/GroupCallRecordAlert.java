@@ -93,7 +93,7 @@ public class GroupCallRecordAlert extends BottomSheet {
         }
         textView.setTextColor(-1);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         int i2 = 5;
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         this.containerView.addView(textView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 29.0f, 24.0f, 0.0f));
@@ -180,7 +180,7 @@ public class GroupCallRecordAlert extends BottomSheet {
         this.positiveButton.setTextSize(1, 14.0f);
         this.positiveButton.setTextColor(Theme.getColor("voipgroup_nameText"));
         this.positiveButton.setGravity(17);
-        this.positiveButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.positiveButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.positiveButton.setText(LocaleController.getString("VoipRecordStart", R.string.VoipRecordStart));
         if (Build.VERSION.SDK_INT >= 23) {
             this.positiveButton.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_nameText"), 76)));
@@ -205,7 +205,7 @@ public class GroupCallRecordAlert extends BottomSheet {
             textViewArr[i3] = new TextView(context);
             this.titles[i3].setTextSize(1, 12.0f);
             this.titles[i3].setTextColor(-1);
-            this.titles[i3].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.titles[i3].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titles[i3].setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
             this.titles[i3].setGravity(16);
             this.titles[i3].setSingleLine(true);

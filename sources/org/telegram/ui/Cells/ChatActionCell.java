@@ -475,7 +475,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 paint4.setColor(themedColor);
                 TextPaint textPaint = new TextPaint(1);
                 this.overrideTextPaint = textPaint;
-                textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 this.overrideTextPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
                 this.overrideTextPaint.setColor(getThemedColor(this.overrideText));
             }

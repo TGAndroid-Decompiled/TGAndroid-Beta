@@ -138,7 +138,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
             }
         };
         this.backButton = imageView;
-        imageView.setImageResource(R.drawable.menu_clear);
+        imageView.setImageResource(R.drawable.msg_clear_input);
         this.backButton.setColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.backButton.setBackground(getButtonDrawable());
         int dp = AndroidUtilities.dp(11.0f);

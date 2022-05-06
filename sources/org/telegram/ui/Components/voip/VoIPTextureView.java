@@ -156,7 +156,7 @@ public class VoIPTextureView extends FrameLayout {
         this.screencastText.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         this.screencastText.setTextColor(-1);
         this.screencastText.setTextSize(1, 15.0f);
-        this.screencastText.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.screencastText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.screencastView.addView(this.screencastText, LayoutHelper.createFrame(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
         if (z3 && Build.VERSION.SDK_INT >= 21) {
             setOutlineProvider(new ViewOutlineProvider() {

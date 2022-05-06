@@ -471,7 +471,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
             if (i == 0) {
                 TextCheckCell textCheckCell = new TextCheckCell(this.mContext);
                 textCheckCell.setColors("windowBackgroundCheckText", "switchTrackBlue", "switchTrackBlueChecked", "switchTrackBlueThumb", "switchTrackBlueThumbChecked");
-                textCheckCell.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textCheckCell.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 textCheckCell.setHeight(56);
                 textInfoPrivacyCell = textCheckCell;
             } else if (i == 1) {

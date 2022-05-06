@@ -615,7 +615,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
             textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             textView3.setGravity(17);
             textView3.setTextSize(1, 14.0f);
-            textView3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView3.setText(LocaleController.getString("ManageDeviceStorage", R.string.ManageDeviceStorage));
             textView3.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             textView3.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("featuredStickers_addButton"), ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), 120)));
@@ -624,7 +624,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
             textView4.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             textView4.setGravity(17);
             textView4.setTextSize(1, 14.0f);
-            textView4.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView4.setText(LocaleController.getString("ClearDownloadsList", R.string.ClearDownloadsList));
             textView4.setTextColor(Theme.getColor("featuredStickers_addButton"));
             textView4.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor("featuredStickers_addButton"), 120)));

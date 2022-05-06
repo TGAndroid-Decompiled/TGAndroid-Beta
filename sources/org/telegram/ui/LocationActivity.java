@@ -312,7 +312,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 textView.setEllipsize(TextUtils.TruncateAt.END);
                 textView.setSingleLine(true);
                 textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-                textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 int i = 5;
                 textView.setGravity(LocaleController.isRTL ? 5 : 3);
                 LocationActivity.this.lastPressedMarkerView.addView(textView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 18.0f, 10.0f, 18.0f, 0.0f));
@@ -634,7 +634,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 this.otherItem = addItem;
                 addItem.addSubItem(1, R.drawable.msg_openin, LocaleController.getString("OpenInExternalApp", R.string.OpenInExternalApp));
                 if (!getLocationController().isSharingLocation(this.dialogId)) {
-                    this.otherItem.addSubItem(5, R.drawable.menu_location, LocaleController.getString("SendLiveLocationMenu", R.string.SendLiveLocationMenu));
+                    this.otherItem.addSubItem(5, R.drawable.msg_location, LocaleController.getString("SendLiveLocationMenu", R.string.SendLiveLocationMenu));
                 }
                 this.otherItem.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
             }
@@ -718,7 +718,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             this.searchAreaButton.setBackgroundDrawable(createSimpleSelectorRoundRectDrawable);
             this.searchAreaButton.setTextColor(Theme.getColor("location_actionActiveIcon"));
             this.searchAreaButton.setTextSize(1, 14.0f);
-            this.searchAreaButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.searchAreaButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.searchAreaButton.setText(LocaleController.getString("PlacesInThisArea", R.string.PlacesInThisArea));
             this.searchAreaButton.setGravity(17);
             this.searchAreaButton.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
@@ -765,7 +765,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             });
         }
         this.mapTypeButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
-        this.mapTypeButton.setIcon(R.drawable.location_type);
+        this.mapTypeButton.setIcon(R.drawable.msg_map_type);
         this.mapViewClip.addView(this.mapTypeButton, LayoutHelper.createFrame(i2 >= 21 ? 40 : 44, i2 >= 21 ? 40.0f : 44.0f, 53, 0.0f, 12.0f, 12.0f, 0.0f));
         this.mapTypeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -808,7 +808,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             });
         }
         this.locationButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable2);
-        this.locationButton.setImageResource(R.drawable.location_current);
+        this.locationButton.setImageResource(R.drawable.msg_current_location);
         this.locationButton.setScaleType(ImageView.ScaleType.CENTER);
         this.locationButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("location_actionActiveIcon"), PorterDuff.Mode.MULTIPLY));
         this.locationButton.setTag("location_actionActiveIcon");
@@ -901,7 +901,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         this.emptyTitleTextView = textView;
         textView.setTextColor(Theme.getColor("dialogEmptyText"));
         this.emptyTitleTextView.setGravity(17);
-        this.emptyTitleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.emptyTitleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.emptyTitleTextView.setTextSize(1, 17.0f);
         this.emptyTitleTextView.setText(LocaleController.getString("NoPlacesFound", R.string.NoPlacesFound));
         this.emptyView.addView(this.emptyTitleTextView, LayoutHelper.createLinear(-2, -2, 17, 0, 11, 0, 0));

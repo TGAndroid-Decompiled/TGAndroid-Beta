@@ -40,7 +40,7 @@ public class StorageDiagramView extends View {
         this.rectF.set(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), getMeasuredWidth() - AndroidUtilities.dp(3.0f), getMeasuredHeight() - AndroidUtilities.dp(3.0f));
         updateDescription();
         this.textPaint.setTextSize(AndroidUtilities.dp(24.0f));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
     }
 

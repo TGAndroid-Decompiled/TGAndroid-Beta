@@ -1407,7 +1407,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                                 i4 = R.string.VoipEditDescription;
                                 str2 = "VoipEditDescription";
                             }
-                            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(str2, i4), TextUtils.isEmpty(tLRPC$TL_groupCallParticipant2.about) ? R.drawable.msg_addbio : R.drawable.msg_bio);
+                            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(str2, i4), TextUtils.isEmpty(tLRPC$TL_groupCallParticipant2.about) ? R.drawable.msg_addbio : R.drawable.msg_info);
                         }
                         i7++;
                     }
@@ -1450,7 +1450,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                                 i3 = R.string.VoipEditBio;
                                 str = "VoipEditBio";
                             }
-                            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(str, i3), TextUtils.isEmpty(tLRPC$TL_groupCallParticipant.about) ? R.drawable.msg_addbio : R.drawable.msg_bio);
+                            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(str, i3), TextUtils.isEmpty(tLRPC$TL_groupCallParticipant.about) ? R.drawable.msg_addbio : R.drawable.msg_info);
                         }
                         i7++;
                     }
@@ -1774,7 +1774,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.webRtcMicAmplitudeEvent);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didEndCall);
         this.shadowDrawable = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.bigMicDrawable = new RLottieDrawable(R.raw.voip_filled, "2131558568", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
+        this.bigMicDrawable = new RLottieDrawable(R.raw.voip_filled, "2131558569", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
         this.handDrawables = new RLottieDrawable(R.raw.hand_2, "2131558456", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
         FrameLayout frameLayout = new FrameLayout(context) {
             private int lastSize;
@@ -2525,7 +2525,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             this.scheduleStartInTextView = simpleTextView;
             simpleTextView.setGravity(17);
             this.scheduleStartInTextView.setTextColor(-1);
-            this.scheduleStartInTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.scheduleStartInTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.scheduleStartInTextView.setTextSize(18);
             this.scheduleStartInTextView.setText(LocaleController.getString("VoipChatStartsIn", R.string.VoipChatStartsIn));
             this.containerView.addView(this.scheduleStartInTextView, LayoutHelper.createFrame(-2, -2.0f, 49, 21.0f, 0.0f, 21.0f, 311.0f));
@@ -2566,14 +2566,14 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             this.scheduleTimeTextView = simpleTextView2;
             simpleTextView2.setGravity(17);
             this.scheduleTimeTextView.setTextColor(-1);
-            this.scheduleTimeTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.scheduleTimeTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.scheduleTimeTextView.setTextSize(60);
             this.containerView.addView(this.scheduleTimeTextView, LayoutHelper.createFrame(-2, -2.0f, 49, 21.0f, 0.0f, 21.0f, 231.0f));
             SimpleTextView simpleTextView3 = new SimpleTextView(context);
             this.scheduleStartAtTextView = simpleTextView3;
             simpleTextView3.setGravity(17);
             this.scheduleStartAtTextView.setTextColor(-1);
-            this.scheduleStartAtTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.scheduleStartAtTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.scheduleStartAtTextView.setTextSize(18);
             this.containerView.addView(this.scheduleStartAtTextView, LayoutHelper.createFrame(-2, -2.0f, 49, 21.0f, 0.0f, 21.0f, 201.0f));
         }
@@ -3383,7 +3383,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             this.scheduleButtonTextView.setGravity(17);
             this.scheduleButtonTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), 0, 1056964608));
             this.scheduleButtonTextView.setTextColor(-1);
-            this.scheduleButtonTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.scheduleButtonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.scheduleButtonTextView.setTextSize(1, 14.0f);
             this.containerView.addView(this.scheduleButtonTextView, LayoutHelper.createFrame(-1, 48.0f, 81, 21.0f, 0.0f, 21.0f, 20.5f));
             final TLRPC$InputPeer tLRPC$InputPeer2 = groupCallPeer;
@@ -4067,7 +4067,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 if (groupCallInvitedCell.hasAvatarSet()) {
                     bundle.putBoolean("expandPhoto", true);
                 }
-                this.parentActivity.lambda$runLinkRequest$54(new ProfileActivity(bundle));
+                this.parentActivity.lambda$runLinkRequest$56(new ProfileActivity(bundle));
                 dismiss();
             }
         } else if (i == this.listAdapter.addMemberRow) {
@@ -4661,7 +4661,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             final TextView textView = new TextView(this.val$context);
             textView.setTextColor(Theme.getColor("voipgroup_actionBarItems"));
             textView.setTextSize(1, 20.0f);
-            textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView.setGravity(51);
             textView.setSingleLine(true);
             textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -5445,12 +5445,12 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                             }
                             if (user != null) {
                                 if (Build.VERSION.SDK_INT >= 21) {
-                                    spannableStringBuilder.append(UserObject.getFirstName(user), new TypefaceSpan(AndroidUtilities.getTypeface("fonts/rmedium.ttf")), 0);
+                                    spannableStringBuilder.append(UserObject.getFirstName(user), new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0);
                                 } else {
                                     spannableStringBuilder.append((CharSequence) UserObject.getFirstName(user));
                                 }
                             } else if (Build.VERSION.SDK_INT >= 21) {
-                                spannableStringBuilder.append(chat.title, new TypefaceSpan(AndroidUtilities.getTypeface("fonts/rmedium.ttf")), 0);
+                                spannableStringBuilder.append(chat.title, new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0);
                             } else {
                                 spannableStringBuilder.append((CharSequence) chat.title);
                             }
@@ -6421,7 +6421,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     TextView textView3 = new TextView(getContext());
                     textView3.setTextColor(Theme.getColor("voipgroup_actionBarItems"));
                     textView3.setTextSize(1, 20.0f);
-                    textView3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                    textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                     textView3.setLines(1);
                     textView3.setMaxLines(1);
                     textView3.setSingleLine(true);
@@ -6482,7 +6482,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 } else {
                     bundle.putLong("chat_id", -j);
                 }
-                this.parentActivity.lambda$runLinkRequest$54(new ChatActivity(bundle));
+                this.parentActivity.lambda$runLinkRequest$56(new ChatActivity(bundle));
                 dismiss();
             } else if (i == 8) {
                 this.parentActivity.switchToAccount(this.currentAccount, true);
@@ -6494,7 +6494,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     } else {
                         bundle2.putLong("chat_id", -j);
                     }
-                    this.parentActivity.lambda$runLinkRequest$54(new ChatActivity(bundle2));
+                    this.parentActivity.lambda$runLinkRequest$56(new ChatActivity(bundle2));
                     dismiss();
                     return;
                 }
@@ -6830,12 +6830,12 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else if (i == 1) {
                 view = new GroupCallUserCell(this.mContext) {
                     @Override
-                    public void onMuteClick(GroupCallUserCell groupCallUserCell) {
+                    protected void onMuteClick(GroupCallUserCell groupCallUserCell) {
                         GroupCallActivity.this.showMenuForCell(groupCallUserCell);
                     }
 
                     @Override
-                    public void onMeasure(int i2, int i3) {
+                    protected void onMeasure(int i2, int i3) {
                         if (AndroidUtilities.isTablet()) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(420.0f), View.MeasureSpec.getSize(i2)), 1073741824), i3);
                         } else {

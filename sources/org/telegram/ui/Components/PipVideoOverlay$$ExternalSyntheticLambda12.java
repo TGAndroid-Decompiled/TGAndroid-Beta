@@ -10,6 +10,6 @@ public final class PipVideoOverlay$$ExternalSyntheticLambda12 implements SimpleF
 
     @Override
     public final void set(Object obj, float f) {
-        PipVideoOverlay.lambda$static$1((PipVideoOverlay) obj, f);
+        PipVideoOverlay.lambda$static$3((PipVideoOverlay) obj, f);
     }
 }

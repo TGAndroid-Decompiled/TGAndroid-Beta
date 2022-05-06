@@ -121,7 +121,7 @@ public class JoinGroupAlert extends BottomSheet {
             i = 0;
         }
         TextView textView = new TextView(context);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextSize(1, 17.0f);
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
         textView.setText(str5);
@@ -179,7 +179,7 @@ public class JoinGroupAlert extends BottomSheet {
             textView5.setText(LocaleController.getString(str3, i2));
             this.requestTextView.setTextColor(getThemedColor("featuredStickers_buttonText"));
             this.requestTextView.setTextSize(1, 15.0f);
-            this.requestTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.requestTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.requestTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {

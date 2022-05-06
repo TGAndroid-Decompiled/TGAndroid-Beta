@@ -12,6 +12,6 @@ public final class MediaDataController$$ExternalSyntheticLambda164 implements Re
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        MediaDataController.lambda$removeInline$105(tLObject, tLRPC$TL_error);
+        MediaDataController.lambda$removePeer$109(tLObject, tLRPC$TL_error);
     }
 }

@@ -11,8 +11,8 @@ public final class MessagesController$$ExternalSyntheticLambda226 implements Com
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        int lambda$processChannelsUpdatesQueue$258;
-        lambda$processChannelsUpdatesQueue$258 = MessagesController.lambda$processChannelsUpdatesQueue$258((TLRPC$Updates) obj, (TLRPC$Updates) obj2);
-        return lambda$processChannelsUpdatesQueue$258;
+        int lambda$processUpdatesQueue$261;
+        lambda$processUpdatesQueue$261 = MessagesController.lambda$processUpdatesQueue$261((TLRPC$Updates) obj, (TLRPC$Updates) obj2);
+        return lambda$processUpdatesQueue$261;
     }
 }

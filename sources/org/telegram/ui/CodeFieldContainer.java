@@ -176,7 +176,7 @@ public class CodeFieldContainer extends LinearLayout {
                 this.codeField[i6].setImeOptions(268435461);
                 this.codeField[i6].setTextSize(1, 20.0f);
                 this.codeField[i6].setMaxLines(1);
-                this.codeField[i6].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                this.codeField[i6].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 this.codeField[i6].setPadding(0, 0, 0, 0);
                 this.codeField[i6].setGravity(17);
                 if (i2 == 3) {

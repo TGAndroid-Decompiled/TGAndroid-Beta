@@ -41,7 +41,7 @@ public class AccountSelectCell extends FrameLayout {
         TextView textView = new TextView(context);
         this.textView = textView;
         textView.setTextSize(1, 15.0f);
-        this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
         this.textView.setSingleLine(true);

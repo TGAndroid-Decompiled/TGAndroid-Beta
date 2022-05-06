@@ -30,8 +30,10 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
@@ -57,6 +59,8 @@ import org.telegram.ui.Cells.TextColorCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.BulletinFactory;
+import org.telegram.ui.Components.ChatNotificationsPopupWrapper;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
@@ -120,7 +124,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
     }
 
     @Override
-    public View createView(Context context) {
+    public View createView(final Context context) {
         this.searching = false;
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
@@ -213,7 +217,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                NotificationsCustomSettingsActivity.this.lambda$createView$9(view, i, f, f2);
+                NotificationsCustomSettingsActivity.this.lambda$createView$8(context, view, i, f, f2);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -232,15 +236,16 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         return this.fragmentView;
     }
 
-    public void lambda$createView$9(View view, final int i, float f, float f2) {
-        final NotificationsSettingsActivity.NotificationException notificationException;
+    public void lambda$createView$8(Context context, View view, final int i, float f, float f2) {
         final ArrayList<NotificationsSettingsActivity.NotificationException> arrayList;
+        final boolean z;
+        final NotificationsSettingsActivity.NotificationException notificationException;
         ArrayList<NotificationsSettingsActivity.NotificationException> arrayList2;
         NotificationsSettingsActivity.NotificationException notificationException2;
         long j;
-        boolean z;
+        boolean z2;
         if (getParentActivity() != null) {
-            final boolean z2 = false;
+            boolean z3 = false;
             if (this.listView.getAdapter() == this.searchAdapter || (i >= this.exceptionsStartRow && i < this.exceptionsEndRow)) {
                 RecyclerView.Adapter adapter = this.listView.getAdapter();
                 SearchAdapter searchAdapter = this.searchAdapter;
@@ -250,8 +255,8 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                         arrayList2 = this.searchAdapter.searchResult;
                         notificationException2 = (NotificationsSettingsActivity.NotificationException) object;
                     } else {
-                        boolean z3 = object instanceof TLRPC$User;
-                        if (z3) {
+                        boolean z4 = object instanceof TLRPC$User;
+                        if (z4) {
                             j = ((TLRPC$User) object).id;
                         } else {
                             j = -((TLRPC$Chat) object).id;
@@ -261,35 +266,155 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                         } else {
                             NotificationsSettingsActivity.NotificationException notificationException3 = new NotificationsSettingsActivity.NotificationException();
                             notificationException3.did = j;
-                            if (z3) {
+                            if (z4) {
                                 notificationException3.did = ((TLRPC$User) object).id;
                             } else {
                                 notificationException3.did = -((TLRPC$Chat) object).id;
                             }
                             notificationException2 = notificationException3;
-                            z2 = true;
+                            z3 = true;
                         }
                         arrayList2 = this.exceptions;
                     }
                     notificationException = notificationException2;
                     arrayList = arrayList2;
+                    z = z3;
                 } else {
                     ArrayList<NotificationsSettingsActivity.NotificationException> arrayList3 = this.exceptions;
                     int i2 = i - this.exceptionsStartRow;
                     if (i2 >= 0 && i2 < arrayList3.size()) {
                         notificationException = arrayList3.get(i2);
                         arrayList = arrayList3;
+                        z = false;
                     } else {
                         return;
                     }
                 }
                 if (notificationException != null) {
-                    AlertsCreator.showCustomNotificationsDialog(this, notificationException.did, -1, null, this.currentAccount, null, new MessagesStorage.IntCallback() {
+                    final long j2 = notificationException.did;
+                    final boolean isGlobalNotificationsEnabled = NotificationsController.getInstance(this.currentAccount).isGlobalNotificationsEnabled(j2);
+                    ChatNotificationsPopupWrapper chatNotificationsPopupWrapper = new ChatNotificationsPopupWrapper(context, this.currentAccount, null, true, true, new ChatNotificationsPopupWrapper.Callback() {
                         @Override
-                        public final void run(int i3) {
-                            NotificationsCustomSettingsActivity.this.lambda$createView$0(z2, arrayList, notificationException, i, i3);
+                        public void dismiss() {
+                            ChatNotificationsPopupWrapper.Callback.CC.$default$dismiss(this);
                         }
-                    });
+
+                        @Override
+                        public void toggleSound() {
+                            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(((BaseFragment) NotificationsCustomSettingsActivity.this).currentAccount);
+                            boolean z5 = !notificationsSettings.getBoolean("sound_enabled_" + j2, true);
+                            notificationsSettings.edit().putBoolean("sound_enabled_" + j2, z5).apply();
+                            if (BulletinFactory.canShowBulletin(NotificationsCustomSettingsActivity.this)) {
+                                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = NotificationsCustomSettingsActivity.this;
+                                BulletinFactory.createSoundEnabledBulletin(notificationsCustomSettingsActivity, !z5, notificationsCustomSettingsActivity.getResourceProvider()).show();
+                            }
+                        }
+
+                        @Override
+                        public void muteFor(int i3) {
+                            if (i3 == 0) {
+                                if (NotificationsCustomSettingsActivity.this.getMessagesController().isDialogMuted(j2)) {
+                                    toggleMute();
+                                }
+                                if (BulletinFactory.canShowBulletin(NotificationsCustomSettingsActivity.this)) {
+                                    NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = NotificationsCustomSettingsActivity.this;
+                                    BulletinFactory.createMuteBulletin(notificationsCustomSettingsActivity, 4, i3, notificationsCustomSettingsActivity.getResourceProvider()).show();
+                                }
+                            } else {
+                                NotificationsCustomSettingsActivity.this.getNotificationsController().muteUntil(j2, i3);
+                                if (BulletinFactory.canShowBulletin(NotificationsCustomSettingsActivity.this)) {
+                                    NotificationsCustomSettingsActivity notificationsCustomSettingsActivity2 = NotificationsCustomSettingsActivity.this;
+                                    BulletinFactory.createMuteBulletin(notificationsCustomSettingsActivity2, 5, i3, notificationsCustomSettingsActivity2.getResourceProvider()).show();
+                                }
+                            }
+                            update();
+                        }
+
+                        @Override
+                        public void showCustomize() {
+                            if (j2 != 0) {
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("dialog_id", j2);
+                                ProfileNotificationsActivity profileNotificationsActivity = new ProfileNotificationsActivity(bundle);
+                                profileNotificationsActivity.setDelegate(new ProfileNotificationsActivity.ProfileNotificationsActivityDelegate() {
+                                    @Override
+                                    public void didCreateNewException(NotificationsSettingsActivity.NotificationException notificationException4) {
+                                    }
+
+                                    @Override
+                                    public void didRemoveException(long j3) {
+                                        setDefault();
+                                    }
+                                });
+                                NotificationsCustomSettingsActivity.this.presentFragment(profileNotificationsActivity);
+                            }
+                        }
+
+                        @Override
+                        public void toggleMute() {
+                            NotificationsCustomSettingsActivity.this.getNotificationsController().muteDialog(j2, !NotificationsCustomSettingsActivity.this.getMessagesController().isDialogMuted(j2));
+                            NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = NotificationsCustomSettingsActivity.this;
+                            BulletinFactory.createMuteBulletin(notificationsCustomSettingsActivity, notificationsCustomSettingsActivity.getMessagesController().isDialogMuted(j2), null).show();
+                            update();
+                        }
+
+                        private void update() {
+                            if (NotificationsCustomSettingsActivity.this.getMessagesController().isDialogMuted(j2) != isGlobalNotificationsEnabled) {
+                                setDefault();
+                            } else {
+                                setNotDefault();
+                            }
+                        }
+
+                        private void setNotDefault() {
+                            SharedPreferences notificationsSettings = NotificationsCustomSettingsActivity.this.getNotificationsSettings();
+                            NotificationsSettingsActivity.NotificationException notificationException4 = notificationException;
+                            notificationException4.hasCustom = notificationsSettings.getBoolean("custom_" + notificationException.did, false);
+                            NotificationsSettingsActivity.NotificationException notificationException5 = notificationException;
+                            notificationException5.notify = notificationsSettings.getInt("notify2_" + notificationException.did, 0);
+                            if (notificationException.notify != 0) {
+                                int i3 = notificationsSettings.getInt("notifyuntil_" + notificationException.did, -1);
+                                if (i3 != -1) {
+                                    notificationException.muteUntil = i3;
+                                }
+                            }
+                            if (z) {
+                                NotificationsCustomSettingsActivity.this.exceptions.add(notificationException);
+                                NotificationsCustomSettingsActivity.this.exceptionsDict.put(Long.valueOf(notificationException.did), notificationException);
+                                NotificationsCustomSettingsActivity.this.updateRows(true);
+                            } else {
+                                NotificationsCustomSettingsActivity.this.listView.getAdapter().notifyItemChanged(i);
+                            }
+                            ((BaseFragment) NotificationsCustomSettingsActivity.this).actionBar.closeSearchField();
+                        }
+
+                        public void setDefault() {
+                            int indexOf;
+                            if (!z) {
+                                if (arrayList != NotificationsCustomSettingsActivity.this.exceptions && (indexOf = NotificationsCustomSettingsActivity.this.exceptions.indexOf(notificationException)) >= 0) {
+                                    NotificationsCustomSettingsActivity.this.exceptions.remove(indexOf);
+                                    NotificationsCustomSettingsActivity.this.exceptionsDict.remove(Long.valueOf(notificationException.did));
+                                }
+                                arrayList.remove(notificationException);
+                                if (arrayList == NotificationsCustomSettingsActivity.this.exceptions) {
+                                    if (NotificationsCustomSettingsActivity.this.exceptionsAddRow != -1 && arrayList.isEmpty()) {
+                                        NotificationsCustomSettingsActivity.this.listView.getAdapter().notifyItemChanged(NotificationsCustomSettingsActivity.this.exceptionsAddRow);
+                                        NotificationsCustomSettingsActivity.this.listView.getAdapter().notifyItemRemoved(NotificationsCustomSettingsActivity.this.deleteAllRow);
+                                        NotificationsCustomSettingsActivity.this.listView.getAdapter().notifyItemRemoved(NotificationsCustomSettingsActivity.this.deleteAllSectionRow);
+                                    }
+                                    NotificationsCustomSettingsActivity.this.listView.getAdapter().notifyItemRemoved(i);
+                                    NotificationsCustomSettingsActivity.this.updateRows(false);
+                                    NotificationsCustomSettingsActivity.this.checkRowsEnabled();
+                                } else {
+                                    NotificationsCustomSettingsActivity.this.updateRows(true);
+                                    NotificationsCustomSettingsActivity.this.searchAdapter.notifyItemChanged(i);
+                                }
+                                ((BaseFragment) NotificationsCustomSettingsActivity.this).actionBar.closeSearchField();
+                            }
+                        }
+                    }, getResourceProvider());
+                    chatNotificationsPopupWrapper.lambda$update$10(j2);
+                    chatNotificationsPopupWrapper.showAsOptions(this, view, f, f2);
                     return;
                 }
                 return;
@@ -309,8 +434,8 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 DialogsActivity dialogsActivity = new DialogsActivity(bundle);
                 dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                     @Override
-                    public final void didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList4, CharSequence charSequence, boolean z4) {
-                        NotificationsCustomSettingsActivity.this.lambda$createView$2(dialogsActivity2, arrayList4, charSequence, z4);
+                    public final void didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList4, CharSequence charSequence, boolean z5) {
+                        NotificationsCustomSettingsActivity.this.lambda$createView$1(dialogsActivity2, arrayList4, charSequence, z5);
                     }
                 });
                 presentFragment(dialogsActivity);
@@ -321,7 +446,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i4) {
-                        NotificationsCustomSettingsActivity.this.lambda$createView$3(dialogInterface, i4);
+                        NotificationsCustomSettingsActivity.this.lambda$createView$2(dialogInterface, i4);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -332,10 +457,10 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     textView.setTextColor(Theme.getColor("dialogTextRed2"));
                 }
             } else if (i == this.alertRow) {
-                boolean isGlobalNotificationsEnabled = getNotificationsController().isGlobalNotificationsEnabled(this.currentType);
+                boolean isGlobalNotificationsEnabled2 = getNotificationsController().isGlobalNotificationsEnabled(this.currentType);
                 final NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) view;
                 final RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(i);
-                if (!isGlobalNotificationsEnabled) {
+                if (!isGlobalNotificationsEnabled2) {
                     getNotificationsController().setGlobalNotificationsEnabled(this.currentType, 0);
                     notificationsCheckCell.setChecked(true);
                     if (findViewHolderForAdapterPosition != null) {
@@ -346,27 +471,27 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     AlertsCreator.showCustomNotificationsDialog(this, 0L, this.currentType, this.exceptions, this.currentAccount, new MessagesStorage.IntCallback() {
                         @Override
                         public final void run(int i4) {
-                            NotificationsCustomSettingsActivity.this.lambda$createView$4(notificationsCheckCell, findViewHolderForAdapterPosition, i, i4);
+                            NotificationsCustomSettingsActivity.this.lambda$createView$3(notificationsCheckCell, findViewHolderForAdapterPosition, i, i4);
                         }
                     });
                 }
-                z2 = isGlobalNotificationsEnabled;
+                z3 = isGlobalNotificationsEnabled2;
             } else if (i == this.previewRow) {
                 if (view.isEnabled()) {
                     SharedPreferences notificationsSettings = getNotificationsSettings();
                     SharedPreferences.Editor edit = notificationsSettings.edit();
                     int i4 = this.currentType;
                     if (i4 == 1) {
-                        z = notificationsSettings.getBoolean("EnablePreviewAll", true);
-                        edit.putBoolean("EnablePreviewAll", !z);
+                        z2 = notificationsSettings.getBoolean("EnablePreviewAll", true);
+                        edit.putBoolean("EnablePreviewAll", !z2);
                     } else if (i4 == 0) {
-                        z = notificationsSettings.getBoolean("EnablePreviewGroup", true);
-                        edit.putBoolean("EnablePreviewGroup", !z);
+                        z2 = notificationsSettings.getBoolean("EnablePreviewGroup", true);
+                        edit.putBoolean("EnablePreviewGroup", !z2);
                     } else {
-                        z = notificationsSettings.getBoolean("EnablePreviewChannel", true);
-                        edit.putBoolean("EnablePreviewChannel", !z);
+                        z2 = notificationsSettings.getBoolean("EnablePreviewChannel", true);
+                        edit.putBoolean("EnablePreviewChannel", !z2);
                     }
-                    z2 = z;
+                    z3 = z2;
                     edit.commit();
                     getNotificationsController().updateServerNotificationsSettings(this.currentType);
                 } else {
@@ -389,7 +514,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     showDialog(AlertsCreator.createColorSelectDialog(getParentActivity(), 0L, this.currentType, new Runnable() {
                         @Override
                         public final void run() {
-                            NotificationsCustomSettingsActivity.this.lambda$createView$5(i);
+                            NotificationsCustomSettingsActivity.this.lambda$createView$4(i);
                         }
                     }));
                 } else {
@@ -400,7 +525,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     showDialog(AlertsCreator.createPopupSelectDialog(getParentActivity(), this.currentType, new Runnable() {
                         @Override
                         public final void run() {
-                            NotificationsCustomSettingsActivity.this.lambda$createView$6(i);
+                            NotificationsCustomSettingsActivity.this.lambda$createView$5(i);
                         }
                     }));
                 } else {
@@ -412,7 +537,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     showDialog(AlertsCreator.createVibrationSelectDialog(getParentActivity(), 0L, i5 == 1 ? "vibrate_messages" : i5 == 0 ? "vibrate_group" : "vibrate_channel", new Runnable() {
                         @Override
                         public final void run() {
-                            NotificationsCustomSettingsActivity.this.lambda$createView$7(i);
+                            NotificationsCustomSettingsActivity.this.lambda$createView$6(i);
                         }
                     }));
                 } else {
@@ -423,7 +548,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     showDialog(AlertsCreator.createPrioritySelectDialog(getParentActivity(), 0L, this.currentType, new Runnable() {
                         @Override
                         public final void run() {
-                            NotificationsCustomSettingsActivity.this.lambda$createView$8(i);
+                            NotificationsCustomSettingsActivity.this.lambda$createView$7(i);
                         }
                     }));
                 } else {
@@ -431,57 +556,12 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 }
             }
             if (view instanceof TextCheckCell) {
-                ((TextCheckCell) view).setChecked(!z2);
+                ((TextCheckCell) view).setChecked(!z3);
             }
         }
     }
 
-    public void lambda$createView$0(boolean z, ArrayList arrayList, NotificationsSettingsActivity.NotificationException notificationException, int i, int i2) {
-        int indexOf;
-        if (i2 != 0) {
-            SharedPreferences notificationsSettings = getNotificationsSettings();
-            notificationException.hasCustom = notificationsSettings.getBoolean("custom_" + notificationException.did, false);
-            int i3 = notificationsSettings.getInt("notify2_" + notificationException.did, 0);
-            notificationException.notify = i3;
-            if (i3 != 0) {
-                int i4 = notificationsSettings.getInt("notifyuntil_" + notificationException.did, -1);
-                if (i4 != -1) {
-                    notificationException.muteUntil = i4;
-                }
-            }
-            if (z) {
-                this.exceptions.add(notificationException);
-                this.exceptionsDict.put(Long.valueOf(notificationException.did), notificationException);
-                updateRows(true);
-            } else {
-                this.listView.getAdapter().notifyItemChanged(i);
-            }
-            this.actionBar.closeSearchField();
-        } else if (!z) {
-            ArrayList<NotificationsSettingsActivity.NotificationException> arrayList2 = this.exceptions;
-            if (arrayList != arrayList2 && (indexOf = arrayList2.indexOf(notificationException)) >= 0) {
-                this.exceptions.remove(indexOf);
-                this.exceptionsDict.remove(Long.valueOf(notificationException.did));
-            }
-            arrayList.remove(notificationException);
-            if (arrayList == this.exceptions) {
-                if (this.exceptionsAddRow != -1 && arrayList.isEmpty()) {
-                    this.listView.getAdapter().notifyItemChanged(this.exceptionsAddRow);
-                    this.listView.getAdapter().notifyItemRemoved(this.deleteAllRow);
-                    this.listView.getAdapter().notifyItemRemoved(this.deleteAllSectionRow);
-                }
-                this.listView.getAdapter().notifyItemRemoved(i);
-                updateRows(false);
-                checkRowsEnabled();
-            } else {
-                updateRows(true);
-                this.searchAdapter.notifyDataSetChanged();
-            }
-            this.actionBar.closeSearchField();
-        }
-    }
-
-    public void lambda$createView$2(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z) {
+    public void lambda$createView$1(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z) {
         Bundle bundle = new Bundle();
         bundle.putLong("dialog_id", ((Long) arrayList.get(0)).longValue());
         bundle.putBoolean("exception", true);
@@ -489,18 +569,23 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         profileNotificationsActivity.setDelegate(new ProfileNotificationsActivity.ProfileNotificationsActivityDelegate() {
             @Override
             public final void didCreateNewException(NotificationsSettingsActivity.NotificationException notificationException) {
-                NotificationsCustomSettingsActivity.this.lambda$createView$1(notificationException);
+                NotificationsCustomSettingsActivity.this.lambda$createView$0(notificationException);
+            }
+
+            @Override
+            public void didRemoveException(long j) {
+                ProfileNotificationsActivity.ProfileNotificationsActivityDelegate.CC.$default$didRemoveException(this, j);
             }
         });
         presentFragment(profileNotificationsActivity, true);
     }
 
-    public void lambda$createView$1(NotificationsSettingsActivity.NotificationException notificationException) {
+    public void lambda$createView$0(NotificationsSettingsActivity.NotificationException notificationException) {
         this.exceptions.add(0, notificationException);
         updateRows(true);
     }
 
-    public void lambda$createView$3(DialogInterface dialogInterface, int i) {
+    public void lambda$createView$2(DialogInterface dialogInterface, int i) {
         SharedPreferences.Editor edit = getNotificationsSettings().edit();
         int size = this.exceptions.size();
         for (int i2 = 0; i2 < size; i2++) {
@@ -524,7 +609,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         getNotificationCenter().postNotificationName(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
     }
 
-    public void lambda$createView$4(NotificationsCheckCell notificationsCheckCell, RecyclerView.ViewHolder viewHolder, int i, int i2) {
+    public void lambda$createView$3(NotificationsCheckCell notificationsCheckCell, RecyclerView.ViewHolder viewHolder, int i, int i2) {
         int i3;
         SharedPreferences notificationsSettings = getNotificationsSettings();
         int i4 = this.currentType;
@@ -545,6 +630,13 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             this.adapter.onBindViewHolder(viewHolder, i);
         }
         checkRowsEnabled();
+    }
+
+    public void lambda$createView$4(int i) {
+        RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(i);
+        if (findViewHolderForAdapterPosition != null) {
+            this.adapter.onBindViewHolder(findViewHolderForAdapterPosition, i);
+        }
     }
 
     public void lambda$createView$5(int i) {
@@ -568,14 +660,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         }
     }
 
-    public void lambda$createView$8(int i) {
-        RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(i);
-        if (findViewHolderForAdapterPosition != null) {
-            this.adapter.onBindViewHolder(findViewHolderForAdapterPosition, i);
-        }
-    }
-
-    private void checkRowsEnabled() {
+    public void checkRowsEnabled() {
         if (this.exceptions.isEmpty()) {
             int childCount = this.listView.getChildCount();
             ArrayList<Animator> arrayList = new ArrayList<>();
@@ -622,16 +707,16 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsCustomSettingsActivity.this.lambda$loadExceptions$11();
+                NotificationsCustomSettingsActivity.this.lambda$loadExceptions$10();
             }
         });
     }
 
-    public void lambda$loadExceptions$11() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsCustomSettingsActivity.lambda$loadExceptions$11():void");
+    public void lambda$loadExceptions$10() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsCustomSettingsActivity.lambda$loadExceptions$10():void");
     }
 
-    public void lambda$loadExceptions$10(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6) {
+    public void lambda$loadExceptions$9(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6) {
         getMessagesController().putUsers(arrayList, true);
         getMessagesController().putChats(arrayList2, true);
         getMessagesController().putEncryptedChats(arrayList3, true);
@@ -646,7 +731,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         updateRows(true);
     }
 
-    private void updateRows(boolean z) {
+    public void updateRows(boolean z) {
         ListAdapter listAdapter;
         ArrayList<NotificationsSettingsActivity.NotificationException> arrayList;
         this.rowCount = 0;
@@ -1268,7 +1353,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                         if (NotificationsCustomSettingsActivity.this.exceptionsStartRow != -1) {
                             z3 = true;
                         }
-                        textCell.setTextAndIcon(string2, R.drawable.actions_addmember2, z3);
+                        textCell.setTextAndIcon(string2, R.drawable.msg_contact_add, z3);
                         textCell.setColors("windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteBlueButton");
                         return;
                     } else if (i == NotificationsCustomSettingsActivity.this.deleteAllRow) {
@@ -1332,10 +1417,10 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
     @Override
     public ArrayList<ThemeDescription> getThemeDescriptions() {
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        ThemeDescription.ThemeDescriptionDelegate notificationsCustomSettingsActivity$$ExternalSyntheticLambda9 = new ThemeDescription.ThemeDescriptionDelegate() {
+        ThemeDescription.ThemeDescriptionDelegate notificationsCustomSettingsActivity$$ExternalSyntheticLambda8 = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                NotificationsCustomSettingsActivity.this.lambda$getThemeDescriptions$12();
+                NotificationsCustomSettingsActivity.this.lambda$getThemeDescriptions$11();
             }
 
             @Override
@@ -1359,16 +1444,16 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "switchTrackChecked"));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayIcon"));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"statusColor"}, (Paint[]) null, (Drawable[]) null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda9, "windowBackgroundWhiteGrayText"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"statusOnlineColor"}, (Paint[]) null, (Drawable[]) null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda9, "windowBackgroundWhiteBlueText"));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"statusColor"}, (Paint[]) null, (Drawable[]) null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda8, "windowBackgroundWhiteGrayText"));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"statusOnlineColor"}, (Paint[]) null, (Drawable[]) null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda8, "windowBackgroundWhiteBlueText"));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, null, Theme.avatarDrawables, null, "avatar_text"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda9, "avatar_backgroundRed"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda9, "avatar_backgroundOrange"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda9, "avatar_backgroundViolet"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda9, "avatar_backgroundGreen"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda9, "avatar_backgroundCyan"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda9, "avatar_backgroundBlue"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda9, "avatar_backgroundPink"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda8, "avatar_backgroundRed"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda8, "avatar_backgroundOrange"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda8, "avatar_backgroundViolet"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda8, "avatar_backgroundGreen"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda8, "avatar_backgroundCyan"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda8, "avatar_backgroundBlue"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, notificationsCustomSettingsActivity$$ExternalSyntheticLambda8, "avatar_backgroundPink"));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{GraySectionCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "key_graySectionText"));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{GraySectionCell.class}, null, null, null, "graySection"));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{NotificationsCheckCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlackText"));
@@ -1385,7 +1470,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$12() {
+    public void lambda$getThemeDescriptions$11() {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

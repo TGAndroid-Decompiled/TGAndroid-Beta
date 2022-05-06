@@ -348,7 +348,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         public void updateDrawState(TextPaint textPaint) {
             super.updateDrawState(textPaint);
             textPaint.setUnderlineText(true);
-            textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         }
 
         @Override
@@ -899,7 +899,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         }
         int i = this.currentActivityType;
         if (!(i == 0 || i == 8)) {
-            this.doneItem = this.actionBar.createMenu().addItemWithWidth(2, R.drawable.ic_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
+            this.doneItem = this.actionBar.createMenu().addItemWithWidth(2, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
             ContextProgressView contextProgressView = new ContextProgressView(context, 1);
             this.progressView = contextProgressView;
             contextProgressView.setAlpha(0.0f);
@@ -1362,7 +1362,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         textView2.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText5"));
         this.noPasswordSetTextView.setGravity(17);
         this.noPasswordSetTextView.setTextSize(1, 16.0f);
-        this.noPasswordSetTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.noPasswordSetTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.noPasswordSetTextView.setText(LocaleController.getString("TelegramPassportCreatePassword", R.string.TelegramPassportCreatePassword));
         this.linearLayout2.addView(this.noPasswordSetTextView, LayoutHelper.createFrame(-1, 24.0f, (LocaleController.isRTL ? 5 : 3) | 48, 21.0f, 9.0f, 21.0f, 0.0f));
         this.noPasswordSetTextView.setOnClickListener(new View.OnClickListener() {
@@ -6279,7 +6279,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
                 @Override
                 public void doOnIdle(Runnable runnable) {
-                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$doOnIdle(this, runnable);
+                    runnable.run();
                 }
 
                 @Override
@@ -6831,7 +6831,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             this.titleTextView = textView2;
             textView2.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.titleTextView.setTextSize(1, 18.0f);
-            this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titleTextView.setGravity(LocaleController.isRTL ? 5 : 3);
             this.titleTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             this.titleTextView.setGravity(49);
@@ -7102,7 +7102,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                         this.codeField[i8].setImeOptions(268435461);
                         this.codeField[i8].setTextSize(1, 20.0f);
                         this.codeField[i8].setMaxLines(1);
-                        this.codeField[i8].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                        this.codeField[i8].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                         this.codeField[i8].setPadding(0, 0, 0, 0);
                         this.codeField[i8].setGravity(49);
                         if (this.verificationType == 3) {

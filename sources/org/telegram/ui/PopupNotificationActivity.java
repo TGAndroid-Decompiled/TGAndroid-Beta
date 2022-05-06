@@ -414,7 +414,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         this.nameTextView.setSingleLine(true);
         this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.nameTextView.setGravity(3);
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.avatarContainer.addView(this.nameTextView);
         FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) this.nameTextView.getLayoutParams();
         layoutParams4.width = -2;
@@ -659,7 +659,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                         TextView textView = new TextView(this);
                         textView.setTextSize(1, 16.0f);
                         textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText"));
-                        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                         textView.setText(tLRPC$KeyboardButton.text.toUpperCase());
                         textView.setTag(tLRPC$KeyboardButton);
                         textView.setGravity(17);

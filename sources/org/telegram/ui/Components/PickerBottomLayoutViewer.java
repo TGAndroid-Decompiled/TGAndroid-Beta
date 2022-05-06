@@ -32,7 +32,7 @@ public class PickerBottomLayoutViewer extends FrameLayout {
         this.cancelButton.setBackgroundDrawable(Theme.createSelectorDrawable(this.isDarkTheme ? -12763843 : 788529152, 0));
         this.cancelButton.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
         this.cancelButton.setText(LocaleController.getString("Cancel", R.string.Cancel).toUpperCase());
-        this.cancelButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.cancelButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         addView(this.cancelButton, LayoutHelper.createFrame(-2, -1, 51));
         TextView textView2 = new TextView(context);
         this.doneButton = textView2;
@@ -42,11 +42,11 @@ public class PickerBottomLayoutViewer extends FrameLayout {
         this.doneButton.setBackgroundDrawable(Theme.createSelectorDrawable(!this.isDarkTheme ? 788529152 : i2, 0));
         this.doneButton.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
         this.doneButton.setText(LocaleController.getString("Send", R.string.Send).toUpperCase());
-        this.doneButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.doneButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         addView(this.doneButton, LayoutHelper.createFrame(-2, -1, 53));
         TextView textView3 = new TextView(context);
         this.doneButtonBadgeTextView = textView3;
-        textView3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.doneButtonBadgeTextView.setTextSize(1, 13.0f);
         this.doneButtonBadgeTextView.setTextColor(-1);
         this.doneButtonBadgeTextView.setGravity(17);

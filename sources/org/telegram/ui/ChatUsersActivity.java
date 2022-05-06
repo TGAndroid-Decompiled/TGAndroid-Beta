@@ -8,8 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextPaint;
@@ -22,9 +20,6 @@ import android.view.ViewTreeObserver;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
@@ -575,16 +570,19 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 }
             });
             this.searchItem = actionBarMenuItemSearchListener;
+            if (this.type == 0 && !this.firstLoaded) {
+                actionBarMenuItemSearchListener.setVisibility(8);
+            }
             if (this.type == 3) {
-                actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("ChannelSearchException", R.string.ChannelSearchException));
+                this.searchItem.setSearchFieldHint(LocaleController.getString("ChannelSearchException", R.string.ChannelSearchException));
             } else {
-                actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("Search", R.string.Search));
+                this.searchItem.setSearchFieldHint(LocaleController.getString("Search", R.string.Search));
             }
             if (!ChatObject.isChannel(this.currentChat) && !this.currentChat.creator) {
                 this.searchItem.setVisibility(8);
             }
             if (this.type == 3) {
-                this.doneItem = createMenu.addItemWithWidth(1, R.drawable.ic_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
+                this.doneItem = createMenu.addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
             }
         }
         FrameLayout frameLayout = new FrameLayout(context) {
@@ -1806,36 +1804,37 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$loadChatParticipants$14(ArrayList arrayList, ArrayList arrayList2) {
-        boolean z;
         int i;
         LongSparseArray<TLObject> longSparseArray;
         ArrayList<TLObject> arrayList3;
+        int i2;
         TLRPC$Chat tLRPC$Chat;
         LongSparseArray<TLRPC$TL_groupCallParticipant> longSparseArray2;
-        boolean z2 = false;
-        int i2 = 0;
-        while (i2 < arrayList.size()) {
-            TLRPC$TL_channels_getParticipants tLRPC$TL_channels_getParticipants = (TLRPC$TL_channels_getParticipants) arrayList.get(i2);
-            TLRPC$TL_channels_channelParticipants tLRPC$TL_channels_channelParticipants = (TLRPC$TL_channels_channelParticipants) arrayList2.get(i2);
+        boolean z = false;
+        int i3 = 0;
+        int i4 = 0;
+        while (i4 < arrayList.size()) {
+            TLRPC$TL_channels_getParticipants tLRPC$TL_channels_getParticipants = (TLRPC$TL_channels_getParticipants) arrayList.get(i4);
+            TLRPC$TL_channels_channelParticipants tLRPC$TL_channels_channelParticipants = (TLRPC$TL_channels_channelParticipants) arrayList2.get(i4);
             if (tLRPC$TL_channels_getParticipants == null || tLRPC$TL_channels_channelParticipants == null) {
-                i = i2;
+                i = i4;
             } else {
                 if (this.type == 1) {
                     getMessagesController().processLoadedAdminsResponse(this.chatId, tLRPC$TL_channels_channelParticipants);
                 }
-                getMessagesController().putUsers(tLRPC$TL_channels_channelParticipants.users, z2);
-                getMessagesController().putChats(tLRPC$TL_channels_channelParticipants.chats, z2);
+                getMessagesController().putUsers(tLRPC$TL_channels_channelParticipants.users, z);
+                getMessagesController().putChats(tLRPC$TL_channels_channelParticipants.chats, z);
                 long clientUserId = getUserConfig().getClientUserId();
                 if (this.selectType != 0) {
-                    int i3 = 0;
+                    int i5 = 0;
                     while (true) {
-                        if (i3 >= tLRPC$TL_channels_channelParticipants.participants.size()) {
+                        if (i5 >= tLRPC$TL_channels_channelParticipants.participants.size()) {
                             break;
-                        } else if (MessageObject.getPeerId(tLRPC$TL_channels_channelParticipants.participants.get(i3).peer) == clientUserId) {
-                            tLRPC$TL_channels_channelParticipants.participants.remove(i3);
+                        } else if (MessageObject.getPeerId(tLRPC$TL_channels_channelParticipants.participants.get(i5).peer) == clientUserId) {
+                            tLRPC$TL_channels_channelParticipants.participants.remove(i5);
                             break;
                         } else {
-                            i3++;
+                            i5++;
                         }
                     }
                 }
@@ -1860,74 +1859,72 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 arrayList3.clear();
                 arrayList3.addAll(tLRPC$TL_channels_channelParticipants.participants);
                 int size = tLRPC$TL_channels_channelParticipants.participants.size();
-                for (int i4 = 0; i4 < size; i4++) {
-                    TLRPC$ChannelParticipant tLRPC$ChannelParticipant = tLRPC$TL_channels_channelParticipants.participants.get(i4);
-                    i2 = i2;
+                for (int i6 = 0; i6 < size; i6++) {
+                    TLRPC$ChannelParticipant tLRPC$ChannelParticipant = tLRPC$TL_channels_channelParticipants.participants.get(i6);
+                    i4 = i4;
                     if (tLRPC$ChannelParticipant.user_id == clientUserId) {
                         arrayList3.remove(tLRPC$ChannelParticipant);
                     } else {
                         longSparseArray.put(MessageObject.getPeerId(tLRPC$ChannelParticipant.peer), tLRPC$ChannelParticipant);
                     }
                 }
-                i = i2;
+                i = i4;
+                i3 = arrayList3.size() + i3;
                 if (this.type == 2) {
                     int size2 = this.participants.size();
-                    int i5 = 0;
-                    while (i5 < size2) {
-                        TLObject tLObject = this.participants.get(i5);
+                    int i7 = 0;
+                    while (i7 < size2) {
+                        TLObject tLObject = this.participants.get(i7);
                         if (!(tLObject instanceof TLRPC$ChannelParticipant)) {
-                            this.participants.remove(i5);
+                            this.participants.remove(i7);
                         } else {
                             long peerId = MessageObject.getPeerId(((TLRPC$ChannelParticipant) tLObject).peer);
                             if ((this.contactsMap.get(peerId) == null && this.botsMap.get(peerId) == null && (this.selectType != 1 || peerId <= 0 || !UserObject.isDeleted(getMessagesController().getUser(Long.valueOf(peerId)))) && ((longSparseArray2 = this.ignoredUsers) == null || longSparseArray2.indexOfKey(peerId) < 0)) ? false : true) {
-                                this.participants.remove(i5);
+                                this.participants.remove(i7);
                                 this.participantsMap.remove(peerId);
                             } else {
-                                i5++;
+                                i7++;
                             }
                         }
-                        i5--;
+                        i7--;
                         size2--;
-                        i5++;
+                        i7++;
                     }
                 }
                 try {
-                    int i6 = this.type;
-                    if ((i6 == 0 || i6 == 3 || i6 == 2) && (tLRPC$Chat = this.currentChat) != null && tLRPC$Chat.megagroup) {
-                        TLRPC$ChatFull tLRPC$ChatFull = this.info;
-                        if ((tLRPC$ChatFull instanceof TLRPC$TL_channelFull) && tLRPC$ChatFull.participants_count <= 200) {
-                            sortUsers(arrayList3);
-                        }
-                    }
-                    if (i6 == 1) {
-                        sortAdmins(this.participants);
-                    }
+                    i2 = this.type;
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
+                if ((i2 == 0 || i2 == 3 || i2 == 2) && (tLRPC$Chat = this.currentChat) != null && tLRPC$Chat.megagroup) {
+                    TLRPC$ChatFull tLRPC$ChatFull = this.info;
+                    if ((tLRPC$ChatFull instanceof TLRPC$TL_channelFull) && tLRPC$ChatFull.participants_count <= 200) {
+                        sortUsers(arrayList3);
+                    }
+                }
+                if (i2 == 1) {
+                    sortAdmins(this.participants);
+                }
             }
-            i2 = i + 1;
-            z2 = false;
+            i4 = i + 1;
+            z = false;
         }
         if (this.type != 2 || this.delayResults <= 0) {
             ListAdapter listAdapter = this.listViewAdapter;
             showItemsAnimated(listAdapter != null ? listAdapter.getItemCount() : 0);
-            z = false;
             this.loadingUsers = false;
             this.firstLoaded = true;
-        } else {
-            z = false;
+            ActionBarMenuItem actionBarMenuItem = this.searchItem;
+            if (actionBarMenuItem != null) {
+                actionBarMenuItem.setVisibility((this.type != 0 || i3 > 5) ? 0 : 8);
+            }
         }
         updateRows();
         if (this.listViewAdapter != null) {
-            RecyclerListView recyclerListView = this.listView;
-            boolean z3 = this.openTransitionStarted;
-            int i7 = z ? 1 : 0;
-            int i8 = z ? 1 : 0;
-            recyclerListView.setAnimateEmptyView(z3, i7);
+            this.listView.setAnimateEmptyView(this.openTransitionStarted, 0);
             this.listViewAdapter.notifyDataSetChanged();
             if (this.emptyView != null && this.listViewAdapter.getItemCount() == 0 && this.firstLoaded) {
-                this.emptyView.showProgress(z, true);
+                this.emptyView.showProgress(false, true);
             }
         }
         resumeDelayedFragmentAnimation();
@@ -2361,7 +2358,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout frameLayout;
+            ChooseView chooseView;
             boolean z = false;
             int i2 = 6;
             switch (i) {
@@ -2384,84 +2381,58 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                             return lambda$onCreateViewHolder$0;
                         }
                     });
-                    frameLayout = manageChatUserCell;
+                    chooseView = manageChatUserCell;
                     break;
                 case 1:
-                    frameLayout = new TextInfoPrivacyCell(this.mContext);
+                    chooseView = new TextInfoPrivacyCell(this.mContext);
                     break;
                 case 2:
-                    FrameLayout manageChatTextCell = new ManageChatTextCell(this.mContext);
+                    ManageChatTextCell manageChatTextCell = new ManageChatTextCell(this.mContext);
                     manageChatTextCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                    frameLayout = manageChatTextCell;
+                    chooseView = manageChatTextCell;
                     break;
                 case 3:
-                    frameLayout = new ShadowSectionCell(this.mContext);
+                    chooseView = new ShadowSectionCell(this.mContext);
                     break;
                 case 4:
-                    FrameLayout frameLayout2 = new FrameLayout(this, this.mContext) {
-                        @Override
-                        protected void onMeasure(int i4, int i5) {
-                            super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i5) - AndroidUtilities.dp(56.0f), 1073741824));
-                        }
-                    };
-                    frameLayout2.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, (int) R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
-                    LinearLayout linearLayout = new LinearLayout(this.mContext);
-                    linearLayout.setOrientation(1);
-                    frameLayout2.addView(linearLayout, LayoutHelper.createFrame(-2, -2.0f, 17, 20.0f, 0.0f, 20.0f, 0.0f));
-                    ImageView imageView = new ImageView(this.mContext);
-                    imageView.setImageResource(R.drawable.group_ban_empty);
-                    imageView.setScaleType(ImageView.ScaleType.CENTER);
-                    imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("emptyListPlaceholder"), PorterDuff.Mode.MULTIPLY));
-                    linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 1));
-                    TextView textView = new TextView(this.mContext);
-                    textView.setText(LocaleController.getString("NoBlockedUsers", R.string.NoBlockedUsers));
-                    textView.setTextColor(Theme.getColor("emptyListPlaceholder"));
-                    textView.setTextSize(1, 16.0f);
-                    textView.setGravity(1);
-                    textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-                    linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 10, 0, 0));
-                    TextView textView2 = new TextView(this.mContext);
+                    TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
                     if (ChatUsersActivity.this.isChannel) {
-                        textView2.setText(LocaleController.getString("NoBlockedChannel2", R.string.NoBlockedChannel2));
+                        textInfoPrivacyCell.setText(LocaleController.getString((int) R.string.NoBlockedChannel2));
                     } else {
-                        textView2.setText(LocaleController.getString("NoBlockedGroup2", R.string.NoBlockedGroup2));
+                        textInfoPrivacyCell.setText(LocaleController.getString((int) R.string.NoBlockedGroup2));
                     }
-                    textView2.setTextColor(Theme.getColor("emptyListPlaceholder"));
-                    textView2.setTextSize(1, 15.0f);
-                    textView2.setGravity(1);
-                    linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 0, 10, 0, 0));
-                    frameLayout2.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
-                    frameLayout = frameLayout2;
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(this.mContext, (int) R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                    chooseView = textInfoPrivacyCell;
                     break;
                 case 5:
                     HeaderCell headerCell = new HeaderCell(this.mContext, "windowBackgroundWhiteBlueHeader", 21, 11, false);
                     headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     headerCell.setHeight(43);
-                    frameLayout = headerCell;
+                    chooseView = headerCell;
                     break;
                 case 6:
                     TextSettingsCell textSettingsCell = new TextSettingsCell(this.mContext);
                     textSettingsCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                    frameLayout = textSettingsCell;
+                    chooseView = textSettingsCell;
                     break;
                 case 7:
                     TextCheckCell2 textCheckCell2 = new TextCheckCell2(this.mContext);
                     textCheckCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                    frameLayout = textCheckCell2;
+                    chooseView = textCheckCell2;
                     break;
                 case 8:
                     GraySectionCell graySectionCell = new GraySectionCell(this.mContext);
                     graySectionCell.setBackground(null);
-                    frameLayout = graySectionCell;
+                    chooseView = graySectionCell;
                     break;
                 case 9:
                 default:
-                    ChooseView chooseView = new ChooseView(this.mContext);
-                    chooseView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                    frameLayout = chooseView;
+                    ChooseView chooseView2 = new ChooseView(this.mContext);
+                    chooseView2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                    chooseView = chooseView2;
                     break;
                 case 10:
-                    frameLayout = new LoadingCell(this.mContext, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(120.0f));
+                    chooseView = new LoadingCell(this.mContext, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(120.0f));
                     break;
                 case 11:
                     FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.mContext);
@@ -2471,10 +2442,10 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     flickerLoadingView.setPaddingLeft(AndroidUtilities.dp(5.0f));
                     flickerLoadingView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     flickerLoadingView.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
-                    frameLayout = flickerLoadingView;
+                    chooseView = flickerLoadingView;
                     break;
             }
-            return new RecyclerListView.Holder(frameLayout);
+            return new RecyclerListView.Holder(chooseView);
         }
 
         @Override

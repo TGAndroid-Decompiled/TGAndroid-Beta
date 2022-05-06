@@ -37,7 +37,7 @@ public class ChatUnreadCell extends FrameLayout {
         textView.setPadding(0, 0, 0, AndroidUtilities.dp(1.0f));
         this.textView.setTextSize(1, 14.0f);
         this.textView.setTextColor(getColor("chat_unreadMessagesStartText"));
-        this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
     }
 

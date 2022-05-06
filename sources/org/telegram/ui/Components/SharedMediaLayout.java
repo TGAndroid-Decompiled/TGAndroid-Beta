@@ -1106,7 +1106,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         NumberTextView numberTextView = new NumberTextView(context);
         this.selectedMessagesCountTextView = numberTextView;
         numberTextView.setTextSize(18);
-        this.selectedMessagesCountTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.selectedMessagesCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.selectedMessagesCountTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
         this.actionModeLayout.addView(this.selectedMessagesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 18, 0, 0, 0));
         this.actionModeViews.add(this.selectedMessagesCountTextView);
@@ -4380,42 +4380,36 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     public static View createEmptyStubView(Context context, int i, long j) {
         EmptyStubView emptyStubView = new EmptyStubView(context);
         if (i == 0) {
-            emptyStubView.emptyImageView.setImageResource(R.drawable.tip1);
             if (DialogObject.isEncryptedDialog(j)) {
                 emptyStubView.emptyTextView.setText(LocaleController.getString("NoMediaSecret", R.string.NoMediaSecret));
             } else {
                 emptyStubView.emptyTextView.setText(LocaleController.getString("NoMedia", R.string.NoMedia));
             }
         } else if (i == 1) {
-            emptyStubView.emptyImageView.setImageResource(R.drawable.tip2);
             if (DialogObject.isEncryptedDialog(j)) {
                 emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedFilesSecret", R.string.NoSharedFilesSecret));
             } else {
                 emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedFiles", R.string.NoSharedFiles));
             }
         } else if (i == 2) {
-            emptyStubView.emptyImageView.setImageResource(R.drawable.tip5);
             if (DialogObject.isEncryptedDialog(j)) {
                 emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedVoiceSecret", R.string.NoSharedVoiceSecret));
             } else {
                 emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedVoice", R.string.NoSharedVoice));
             }
         } else if (i == 3) {
-            emptyStubView.emptyImageView.setImageResource(R.drawable.tip3);
             if (DialogObject.isEncryptedDialog(j)) {
                 emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedLinksSecret", R.string.NoSharedLinksSecret));
             } else {
                 emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedLinks", R.string.NoSharedLinks));
             }
         } else if (i == 4) {
-            emptyStubView.emptyImageView.setImageResource(R.drawable.tip4);
             if (DialogObject.isEncryptedDialog(j)) {
                 emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedAudioSecret", R.string.NoSharedAudioSecret));
             } else {
                 emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedAudio", R.string.NoSharedAudio));
             }
         } else if (i == 5) {
-            emptyStubView.emptyImageView.setImageResource(R.drawable.tip1);
             if (DialogObject.isEncryptedDialog(j)) {
                 emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedGifSecret", R.string.NoSharedGifSecret));
             } else {

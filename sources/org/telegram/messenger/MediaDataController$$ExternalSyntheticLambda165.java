@@ -12,6 +12,6 @@ public final class MediaDataController$$ExternalSyntheticLambda165 implements Re
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        MediaDataController.lambda$markFaturedStickersAsRead$39(tLObject, tLRPC$TL_error);
+        MediaDataController.lambda$removeInline$108(tLObject, tLRPC$TL_error);
     }
 }

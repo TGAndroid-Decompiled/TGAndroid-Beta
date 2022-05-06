@@ -228,7 +228,7 @@ public class GroupCallUserCell extends FrameLayout {
         }
     }
 
-    private static class VerifiedDrawable extends Drawable {
+    public static class VerifiedDrawable extends Drawable {
         private Drawable[] drawables;
 
         @Override
@@ -332,7 +332,7 @@ public class GroupCallUserCell extends FrameLayout {
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
         simpleTextView.setTextColor(Theme.getColor("voipgroup_nameText"));
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setTextSize(16);
         this.nameTextView.setDrawablePadding(AndroidUtilities.dp(6.0f));
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
@@ -425,7 +425,7 @@ public class GroupCallUserCell extends FrameLayout {
         this.fullAboutTextView.setTextColor(Theme.getColor("voipgroup_mutedIcon"));
         this.fullAboutTextView.setVisibility(8);
         addView(this.fullAboutTextView, LayoutHelper.createFrame(-1, 60.0f, (LocaleController.isRTL ? 5 : 3) | 48, 14.0f, 32.0f, 14.0f, 0.0f));
-        this.muteDrawable = new RLottieDrawable(R.raw.voice_outlined2, "2131558559", AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
+        this.muteDrawable = new RLottieDrawable(R.raw.voice_outlined2, "2131558560", AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
         this.shakeHandDrawable = new RLottieDrawable(R.raw.hand_1, "2131558455", AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.muteButton = rLottieImageView;

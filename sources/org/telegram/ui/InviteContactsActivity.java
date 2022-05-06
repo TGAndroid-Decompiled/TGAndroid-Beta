@@ -540,7 +540,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.infoTextView.setGravity(17);
         this.infoTextView.setText(LocaleController.getString("InviteFriendsHelp", R.string.InviteFriendsHelp));
         this.infoTextView.setTextSize(1, 13.0f);
-        this.infoTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.infoTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.infoTextView.setPadding(AndroidUtilities.dp(17.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(17.0f), AndroidUtilities.dp(9.0f));
         viewGroup2.addView(this.infoTextView, LayoutHelper.createFrame(-1, -2, 83));
         FrameLayout frameLayout = new FrameLayout(context);
@@ -559,7 +559,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.counterView.addView(linearLayout, LayoutHelper.createFrame(-2, -1, 17));
         TextView textView2 = new TextView(context);
         this.counterTextView = textView2;
-        textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.counterTextView.setTextSize(1, 14.0f);
         this.counterTextView.setTextColor(Theme.getColor("contacts_inviteBackground"));
         this.counterTextView.setGravity(17);
@@ -574,7 +574,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.textView.setGravity(17);
         this.textView.setCompoundDrawablePadding(AndroidUtilities.dp(8.0f));
         this.textView.setText(LocaleController.getString("InviteToTelegram", R.string.InviteToTelegram).toUpperCase());
-        this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         linearLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 16));
         updateHint();
         this.adapter.notifyDataSetChanged();

@@ -673,7 +673,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 linearLayout2.setOrientation(1);
                 this.primary[i] = new TextView(context);
                 this.title[i] = new TextView(context);
-                this.primary[i].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                this.primary[i].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 this.primary[i].setTextSize(1, 17.0f);
                 this.title[i].setTextSize(1, 13.0f);
                 linearLayout2.addView(this.primary[i]);

@@ -70,7 +70,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
             this.textView.setGravity(17);
             this.textView.setTextColor(getThemedColor("featuredStickers_buttonText"));
             this.textView.setTextSize(1, 14.0f);
-            this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.linearLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 16, 10, 0, 0, 0));
         }
 
@@ -122,7 +122,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         FrameLayout frameLayout = new FrameLayout(context);
         setCustomView(frameLayout);
         TextView textView = new TextView(context);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextSize(1, 20.0f);
         textView.setTextColor(getThemedColor("dialogTextBlack"));
         textView.setSingleLine(true);
@@ -140,7 +140,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         this.imageView.getAnimatedDrawable().setOnFinishCallback(importingAlert$$ExternalSyntheticLambda1, 178);
         TextView textView2 = new TextView(context);
         this.percentTextView = textView2;
-        textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.percentTextView.setTextSize(1, 24.0f);
         this.percentTextView.setTextColor(getThemedColor("dialogTextBlack"));
         frameLayout.addView(this.percentTextView, LayoutHelper.createFrame(-2, -2.0f, 49, 17.0f, 262.0f, 17.0f, 0.0f));
@@ -166,7 +166,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         for (int i = 0; i < 2; i++) {
             this.importCountTextView[i] = new TextView(context);
             this.importCountTextView[i].setTextSize(1, 16.0f);
-            this.importCountTextView[i].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.importCountTextView[i].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.importCountTextView[i].setTextColor(getThemedColor("dialogTextBlack"));
             frameLayout.addView(this.importCountTextView[i], LayoutHelper.createFrame(-2, -2.0f, 49, 17.0f, 340.0f, 17.0f, 0.0f));
             this.infoTextView[i] = new TextView(context);

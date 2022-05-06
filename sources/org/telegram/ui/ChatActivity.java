@@ -1243,9 +1243,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         public UnreadCounterTextView(Context context) {
             super(context);
             this.textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-            this.textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.layoutPaint.setTextSize(AndroidUtilities.dp(15.0f));
-            this.layoutPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.layoutPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         }
 
         public void setText(CharSequence charSequence, boolean z) {
@@ -5649,7 +5649,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             setTextColor(chatActivity.getThemedColor("featuredStickers_buttonText"));
             setBackground(Theme.AdaptiveRipple.filledRect(chatActivity.getThemedColor("featuredStickers_addButton"), 16.0f));
             setTextSize(1, 14.0f);
-            setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             setGravity(17);
             setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
         }
@@ -11422,7 +11422,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             menu.add(R.id.menu_groupbolditalic, R.id.menu_spoiler, 6, LocaleController.getString("Spoiler", R.string.Spoiler));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("Bold", R.string.Bold));
-            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface("fonts/rmedium.ttf")), 0, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableStringBuilder.length(), 33);
             menu.add(R.id.menu_groupbolditalic, R.id.menu_bold, 7, spannableStringBuilder);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString("Italic", R.string.Italic));
             spannableStringBuilder2.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface("fonts/ritalic.ttf")), 0, spannableStringBuilder2.length(), 33);
@@ -15246,6 +15246,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         public void updateRowsInternal() {
             TLRPC$User tLRPC$User;
+            TLRPC$User tLRPC$User2;
             this.rowCount = 0;
             ArrayList<MessageObject> arrayList = this.isFrozen ? this.frozenMessages : ChatActivity.this.messages;
             if (!arrayList.isEmpty()) {
@@ -15261,14 +15262,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 int size = i2 + arrayList.size();
                 this.rowCount = size;
                 this.messagesEndRow = size;
-                ChatActivity chatActivity = ChatActivity.this;
-                TLRPC$User tLRPC$User2 = chatActivity.currentUser;
-                if (tLRPC$User2 == null || !tLRPC$User2.bot || chatActivity.chatMode != 0 || (((ChatActivity.this.botInfo.size() <= 0 || ((TLRPC$BotInfo) ChatActivity.this.botInfo.get(ChatActivity.this.currentUser.id)).description == null) && !UserObject.isReplyUser(ChatActivity.this.currentUser)) || !ChatActivity.this.endReached[0])) {
-                    this.botInfoRow = -5;
-                } else {
+                if ((UserObject.isReplyUser(ChatActivity.this.currentUser) || ((tLRPC$User2 = ChatActivity.this.currentUser) != null && tLRPC$User2.bot && !MessagesController.isSupportUser(tLRPC$User2) && ChatActivity.this.chatMode == 0)) && ChatActivity.this.endReached[0]) {
                     int i3 = this.rowCount;
                     this.rowCount = i3 + 1;
                     this.botInfoRow = i3;
+                } else {
+                    this.botInfoRow = -5;
                 }
                 if (!ChatActivity.this.endReached[0] || (ChatActivity.this.mergeDialogId != 0 && !ChatActivity.this.endReached[1])) {
                     int i4 = this.rowCount;
@@ -17078,8 +17077,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         arrayList.add(new ThemeDescription(this.chatListView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ChatMessageCell.class}, null, new Drawable[]{drawableArr11[10][1], drawableArr11[11][1]}, null, "chat_inLoaderPhotoSelected"));
         Drawable[][] drawableArr12 = Theme.chat_photoStatesDrawables;
         arrayList.add(new ThemeDescription(this.chatListView, 0, new Class[]{ChatMessageCell.class}, null, new Drawable[]{drawableArr12[10][1], drawableArr12[11][1]}, null, "chat_inLoaderPhotoIconSelected"));
-        arrayList.add(new ThemeDescription(this.chatListView, 0, new Class[]{ChatMessageCell.class}, null, new Drawable[]{Theme.chat_photoStatesDrawables[9][0]}, null, "chat_outFileIcon"));
-        arrayList.add(new ThemeDescription(this.chatListView, 0, new Class[]{ChatMessageCell.class}, null, new Drawable[]{Theme.chat_photoStatesDrawables[9][1]}, null, "chat_outFileSelectedIcon"));
         arrayList.add(new ThemeDescription(this.chatListView, 0, new Class[]{ChatMessageCell.class}, null, new Drawable[]{Theme.chat_photoStatesDrawables[12][0]}, null, "chat_inFileIcon"));
         arrayList.add(new ThemeDescription(this.chatListView, 0, new Class[]{ChatMessageCell.class}, null, new Drawable[]{Theme.chat_photoStatesDrawables[12][1]}, null, "chat_inFileSelectedIcon"));
         arrayList.add(new ThemeDescription(this.chatListView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ChatMessageCell.class}, null, new Drawable[]{Theme.chat_contactDrawable[0]}, null, "chat_inContactBackground"));
@@ -17106,7 +17103,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             TextPaint[] textPaintArr2 = Theme.dialogs_nameEncryptedPaint;
             arrayList.add(new ThemeDescription(this.messagesSearchListView, 0, new Class[]{DialogCell.class}, (String[]) null, new Paint[]{textPaintArr2[0], textPaintArr2[1], Theme.dialogs_searchNameEncryptedPaint}, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "chats_secretName"));
             arrayList.add(new ThemeDescription(this.messagesSearchListView, 0, new Class[]{DialogCell.class}, null, new Drawable[]{Theme.dialogs_lockDrawable}, null, "chats_secretIcon"));
-            arrayList.add(new ThemeDescription(this.messagesSearchListView, 0, new Class[]{DialogCell.class}, null, new Drawable[]{Theme.dialogs_groupDrawable, Theme.dialogs_broadcastDrawable, Theme.dialogs_botDrawable}, null, "chats_nameIcon"));
             arrayList.add(new ThemeDescription(this.messagesSearchListView, 0, new Class[]{DialogCell.class}, null, new Drawable[]{Theme.dialogs_scamDrawable, Theme.dialogs_fakeDrawable}, null, "chats_draft"));
             arrayList.add(new ThemeDescription(this.messagesSearchListView, 0, new Class[]{DialogCell.class}, Theme.dialogs_messagePaint[1], null, null, "chats_message_threeLines"));
             arrayList.add(new ThemeDescription(this.messagesSearchListView, 0, new Class[]{DialogCell.class}, Theme.dialogs_messageNamePaint, null, null, "chats_nameMessage_threeLines"));

@@ -21,7 +21,7 @@ public class ProgressButton extends Button {
         super(context);
         setAllCaps(false);
         setTextSize(1, 14.0f);
-        setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         if (Build.VERSION.SDK_INT >= 21) {
             setOutlineProvider(null);
         }

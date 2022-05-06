@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Property;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
@@ -40,27 +41,31 @@ public class HeaderCell extends FrameLayout {
     }
 
     public HeaderCell(Context context, String str, int i, int i2, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        this(context, str, i, i2, 0, z, resourcesProvider);
+    }
+
+    public HeaderCell(Context context, String str, int i, int i2, int i3, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.height = 40;
         this.resourcesProvider = resourcesProvider;
         TextView textView = new TextView(getContext());
         this.textView = textView;
         textView.setTextSize(1, 15.0f);
-        this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
-        int i3 = 5;
+        int i4 = 5;
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         this.textView.setMinHeight(AndroidUtilities.dp(this.height - i2));
         this.textView.setTextColor(getThemedColor(str));
         this.textView.setTag(str);
         float f = i;
-        addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, f, i2, f, 0.0f));
+        addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, f, i2, f, z ? 0.0f : i3));
         if (z) {
             SimpleTextView simpleTextView = new SimpleTextView(getContext());
             this.textView2 = simpleTextView;
             simpleTextView.setTextSize(13);
             this.textView2.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
-            addView(this.textView2, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 3 : i3) | 48, f, 21.0f, f, 0.0f));
+            addView(this.textView2, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 3 : i4) | 48, f, 21.0f, f, i3));
         }
         ViewCompat.setAccessibilityHeading(this, true);
     }
@@ -75,12 +80,13 @@ public class HeaderCell extends FrameLayout {
         float f = 1.0f;
         if (arrayList != null) {
             TextView textView = this.textView;
+            Property property = View.ALPHA;
             float[] fArr = new float[1];
             if (!z) {
                 f = 0.5f;
             }
             fArr[0] = f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, "alpha", fArr));
+            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
             return;
         }
         TextView textView2 = this.textView;

@@ -1,18 +1,15 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
-import org.telegram.tgnet.TLRPC$Updates;
+import org.telegram.ui.ActionBar.Theme;
 
-public final class MessagesController$$ExternalSyntheticLambda219 implements Comparator {
+public final class MessagesController$$ExternalSyntheticLambda219 implements Runnable {
     public static final MessagesController$$ExternalSyntheticLambda219 INSTANCE = new MessagesController$$ExternalSyntheticLambda219();
 
     private MessagesController$$ExternalSyntheticLambda219() {
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$processUpdatesQueue$253;
-        lambda$processUpdatesQueue$253 = MessagesController.lambda$processUpdatesQueue$253((TLRPC$Updates) obj, (TLRPC$Updates) obj2);
-        return lambda$processUpdatesQueue$253;
+    public final void run() {
+        Theme.checkAutoNightThemeConditions();
     }
 }

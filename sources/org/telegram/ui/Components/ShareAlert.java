@@ -1069,7 +1069,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             this.pickerBottomLayout.setTextColor(getThemedColor(this.darkTheme ? str8 : "dialogTextBlue2"));
             this.pickerBottomLayout.setTextSize(1, 14.0f);
             this.pickerBottomLayout.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-            this.pickerBottomLayout.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.pickerBottomLayout.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.pickerBottomLayout.setGravity(17);
             if (!this.darkTheme || this.linkToCopy[1] == null) {
                 this.pickerBottomLayout.setText(LocaleController.getString("CopyLink", R.string.CopyLink).toUpperCase());
@@ -1108,7 +1108,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     textView2.setTextSize(1, 14.0f);
                     textView2.setTextColor(getThemedColor(!this.darkTheme ? "dialogTextBlue2" : str8));
                     textView2.setGravity(16);
-                    textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                    textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                     this.sharesCountLayout.addView(textView2, LayoutHelper.createLinear(-2, -1, 16, 8, 0, 20, 0));
                 }
             }
@@ -1201,7 +1201,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
         });
         this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         View view = new View(context) {
             {
                 ShareAlert.this = this;
@@ -1673,7 +1673,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             actionBarMenuSubItem4.setTextColor(getThemedColor("voipgroup_nameText"));
             actionBarMenuSubItem4.setIconColor(getThemedColor("windowBackgroundWhiteHintText"));
         }
-        actionBarMenuSubItem4.setTextAndIcon(LocaleController.getString("SendMessage", R.string.SendMessage), R.drawable.msg_forward_send);
+        actionBarMenuSubItem4.setTextAndIcon(LocaleController.getString("SendMessage", R.string.SendMessage), R.drawable.msg_send);
         actionBarMenuSubItem4.setMinimumWidth(AndroidUtilities.dp(196.0f));
         actionBarPopupWindowLayout2.addView((View) actionBarMenuSubItem4, LayoutHelper.createLinear(-1, 48));
         actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {

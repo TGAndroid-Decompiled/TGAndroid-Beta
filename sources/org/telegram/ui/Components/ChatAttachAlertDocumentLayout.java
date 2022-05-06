@@ -278,7 +278,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         searchField.setTextColor(getThemedColor("dialogTextBlack"));
         searchField.setCursorColor(getThemedColor("dialogTextBlack"));
         searchField.setHintTextColor(getThemedColor("chat_messagePanelHint"));
-        ActionBarMenuItem addItem = createMenu.addItem(6, this.sortByName ? R.drawable.contacts_sort_time : R.drawable.contacts_sort_name);
+        ActionBarMenuItem addItem = createMenu.addItem(6, this.sortByName ? R.drawable.msg_contacts_time : R.drawable.msg_contacts_name);
         this.sortItem = addItem;
         addItem.setContentDescription(LocaleController.getString("AccDescrContactSorting", R.string.AccDescrContactSorting));
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, resourcesProvider);
@@ -738,7 +738,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             sortRecentItems();
             sortFileItems();
             this.listAdapter.notifyDataSetChanged();
-            this.sortItem.setIcon(this.sortByName ? R.drawable.contacts_sort_time : R.drawable.contacts_sort_name);
+            this.sortItem.setIcon(this.sortByName ? R.drawable.msg_contacts_time : R.drawable.msg_contacts_name);
         }
     }
 

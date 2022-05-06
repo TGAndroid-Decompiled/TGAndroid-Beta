@@ -269,7 +269,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         this.titleTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.titleTextView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         this.titleTextView.setGravity(16);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         if (!z) {
             if (tLRPC$TL_chatInviteExported.expired) {
                 this.titleTextView.setText(LocaleController.getString("ExpiredLink", R.string.ExpiredLink));
@@ -612,7 +612,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     HeaderCell headerCell2 = new HeaderCell(context, "windowBackgroundWhiteBlueHeader", 21, 15, true);
                     headerCell2.getTextView2().setTextColor(Theme.getColor("windowBackgroundWhiteRedText"));
                     headerCell2.getTextView2().setTextSize(15);
-                    headerCell2.getTextView2().setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                    headerCell2.getTextView2().setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                     headerCell = headerCell2;
                     break;
             }

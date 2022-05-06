@@ -11,8 +11,8 @@ public final class BotWebViewSheet$$ExternalSyntheticLambda1 implements View.OnA
 
     @Override
     public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        WindowInsets lambda$onCreate$11;
-        lambda$onCreate$11 = BotWebViewSheet.lambda$onCreate$11(view, windowInsets);
-        return lambda$onCreate$11;
+        WindowInsets lambda$onCreate$12;
+        lambda$onCreate$12 = BotWebViewSheet.lambda$onCreate$12(view, windowInsets);
+        return lambda$onCreate$12;
     }
 }

@@ -31,6 +31,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Calendar;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLog;
@@ -79,6 +80,7 @@ import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.TwoStepVerificationActivity;
 
@@ -428,7 +430,7 @@ public class ChatRightsEditActivity extends BaseFragment {
         });
         if (this.canEdit || (!this.isChannel && this.currentChat.creator && UserObject.isUserSelf(this.currentUser))) {
             ActionBarMenu createMenu = this.actionBar.createMenu();
-            Drawable mutate = context.getResources().getDrawable(R.drawable.ic_done).mutate();
+            Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
             this.doneDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor("actionBarDefaultIcon")));
             createMenu.addItemWithWidth(1, 0, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
@@ -945,7 +947,6 @@ public class ChatRightsEditActivity extends BaseFragment {
     }
 
     public void lambda$initTransfer$13(TLRPC$TL_error tLRPC$TL_error, TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity, TLRPC$TL_channels_editCreator tLRPC$TL_channels_editCreator) {
-        int i;
         if (tLRPC$TL_error != null) {
             if (getParentActivity() != null) {
                 if ("PASSWORD_HASH_INVALID".equals(tLRPC$TL_error.text)) {
@@ -959,8 +960,8 @@ public class ChatRightsEditActivity extends BaseFragment {
                         builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("EditAdminTransferReadyAlertText", R.string.EditAdminTransferReadyAlertText, this.currentChat.title, UserObject.getFirstName(this.currentUser))));
                         builder.setPositiveButton(LocaleController.getString("EditAdminTransferChangeOwner", R.string.EditAdminTransferChangeOwner), new DialogInterface.OnClickListener() {
                             @Override
-                            public final void onClick(DialogInterface dialogInterface, int i2) {
-                                ChatRightsEditActivity.this.lambda$initTransfer$9(dialogInterface, i2);
+                            public final void onClick(DialogInterface dialogInterface, int i) {
+                                ChatRightsEditActivity.this.lambda$initTransfer$9(dialogInterface, i);
                             }
                         });
                         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1019,18 +1020,16 @@ public class ChatRightsEditActivity extends BaseFragment {
                     textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString("EditAdminTransferAlertText2", R.string.EditAdminTransferAlertText2)));
                     if (LocaleController.isRTL) {
                         linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
-                        i = 5;
                         linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2, 5));
                     } else {
-                        i = 5;
                         linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2));
                         linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
                     }
                     if ("PASSWORD_MISSING".equals(tLRPC$TL_error.text)) {
                         builder2.setPositiveButton(LocaleController.getString("EditAdminTransferSetPassword", R.string.EditAdminTransferSetPassword), new DialogInterface.OnClickListener() {
                             @Override
-                            public final void onClick(DialogInterface dialogInterface, int i2) {
-                                ChatRightsEditActivity.this.lambda$initTransfer$10(dialogInterface, i2);
+                            public final void onClick(DialogInterface dialogInterface, int i) {
+                                ChatRightsEditActivity.this.lambda$initTransfer$10(dialogInterface, i);
                             }
                         });
                         builder2.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1038,10 +1037,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                         TextView textView4 = new TextView(getParentActivity());
                         textView4.setTextColor(Theme.getColor("dialogTextBlack"));
                         textView4.setTextSize(1, 16.0f);
-                        if (!LocaleController.isRTL) {
-                            i = 3;
-                        }
-                        textView4.setGravity(i | 48);
+                        textView4.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
                         textView4.setText(LocaleController.getString("EditAdminTransferAlertText3", R.string.EditAdminTransferAlertText3));
                         linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
                         builder2.setNegativeButton(LocaleController.getString("OK", R.string.OK), null);
@@ -1054,14 +1050,16 @@ public class ChatRightsEditActivity extends BaseFragment {
                             ChatRightsEditActivity.this.lambda$initTransfer$12(twoStepVerificationActivity, tLObject, tLRPC$TL_error2);
                         }
                     }, 8);
-                } else if (tLRPC$TL_error.text.equals("CHANNELS_TOO_MUCH")) {
-                    presentFragment(new TooManyCommunitiesActivity(1));
-                } else {
+                } else if (!tLRPC$TL_error.text.equals("CHANNELS_TOO_MUCH")) {
                     if (twoStepVerificationActivity != null) {
                         twoStepVerificationActivity.needHideProgress();
                         twoStepVerificationActivity.finishFragment();
                     }
                     AlertsCreator.showAddUserAlert(tLRPC$TL_error.text, this, this.isChannel, tLRPC$TL_channels_editCreator);
+                } else if (getParentActivity() == null || AccountInstance.getInstance(this.currentAccount).getUserConfig().isPremium()) {
+                    presentFragment(new TooManyCommunitiesActivity(1));
+                } else {
+                    showDialog(new LimitReachedBottomSheet(getParentActivity(), 5, this.currentAccount));
                 }
             }
         } else if (tLRPC$InputCheckPasswordSRP != null) {
@@ -1721,7 +1719,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                         {
                             TextPaint textPaint = new TextPaint(1);
                             this.textPaint = textPaint;
-                            textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                             this.textPaint.setTextSize(AndroidUtilities.dp(14.0f));
                             this.textPaint.setColor(-1);
                             this.mainText = new StaticLayout(LocaleController.getString("AddBotButton", R.string.AddBotButton) + " ", this.textPaint, 9999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);

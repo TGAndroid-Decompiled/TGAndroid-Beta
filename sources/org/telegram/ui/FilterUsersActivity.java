@@ -61,6 +61,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.GroupCreateSpan;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.FilterUsersActivity;
 
@@ -385,7 +386,7 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
     }
 
     @Override
-    public View createView(Context context) {
+    public View createView(final Context context) {
         Object obj;
         String str;
         int i;
@@ -630,7 +631,7 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                FilterUsersActivity.this.lambda$createView$1(view, i3);
+                FilterUsersActivity.this.lambda$createView$1(context, view, i3);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -743,7 +744,7 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
         AndroidUtilities.showKeyboard(this.editText);
     }
 
-    public void lambda$createView$1(View view, int i) {
+    public void lambda$createView$1(Context context, View view, int i) {
         long j;
         int i2;
         if (view instanceof GroupCreateUserCell) {
@@ -793,7 +794,7 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
             boolean z2 = this.selectedContacts.indexOfKey(j) >= 0;
             if (z2) {
                 this.spansContainer.removeSpan(this.selectedContacts.get(j));
-            } else if (z || this.selectedCount < 100) {
+            } else if ((z || getUserConfig().isPremium() || this.selectedCount < MessagesController.getInstance(this.currentAccount).dialogFiltersChatsLimitDefault) && this.selectedCount < MessagesController.getInstance(this.currentAccount).dialogFiltersChatsLimitPremium) {
                 if (object instanceof TLRPC$User) {
                     MessagesController.getInstance(this.currentAccount).putUser((TLRPC$User) object, !this.searching);
                 } else if (object instanceof TLRPC$Chat) {
@@ -802,6 +803,9 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
                 GroupCreateSpan groupCreateSpan = new GroupCreateSpan(this.editText.getContext(), object);
                 this.spansContainer.addSpan(groupCreateSpan, true);
                 groupCreateSpan.setOnClickListener(this);
+            } else if (!getUserConfig().isPremium()) {
+                showDialog(new LimitReachedBottomSheet(context, 4, this.currentAccount));
+                return;
             } else {
                 return;
             }

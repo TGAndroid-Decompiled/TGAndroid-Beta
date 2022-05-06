@@ -90,7 +90,7 @@ public class ChatActivityMemberRequestsDelegate {
             this.requestsCountTextView.setSingleLine();
             this.requestsCountTextView.setText((CharSequence) null);
             this.requestsCountTextView.setTextColor(this.fragment.getThemedColor("chat_topPanelTitle"));
-            this.requestsCountTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.requestsCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             linearLayout.addView(this.requestsCountTextView, LayoutHelper.createFrame(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
             ImageView imageView = new ImageView(this.fragment.getParentActivity());
             this.closeView = imageView;

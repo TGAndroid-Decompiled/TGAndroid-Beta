@@ -6,10 +6,16 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.text.style.ReplacementSpan;
+import androidx.core.content.ContextCompat;
+import org.telegram.messenger.ApplicationLoader;
 
 public class ColoredImageSpan extends ReplacementSpan {
     Drawable drawable;
     int drawableColor;
+
+    public ColoredImageSpan(int i) {
+        this(ContextCompat.getDrawable(ApplicationLoader.applicationContext, i));
+    }
 
     public ColoredImageSpan(Drawable drawable) {
         this.drawable = drawable;

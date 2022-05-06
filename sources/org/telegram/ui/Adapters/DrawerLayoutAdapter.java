@@ -199,42 +199,42 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         if (UserConfig.getInstance(UserConfig.selectedAccount).isClientActivated()) {
             int eventType = Theme.getEventType();
             if (eventType == 0) {
-                i8 = R.drawable.menu_groups_ny;
-                i7 = R.drawable.menu_contacts_ny;
-                i6 = R.drawable.menu_calls_ny;
-                i5 = R.drawable.menu_bookmarks_ny;
-                i4 = R.drawable.menu_settings_ny;
-                i3 = R.drawable.menu_invite_ny;
-                i2 = R.drawable.menu_help_ny;
-                i = R.drawable.menu_nearby_ny;
+                i8 = R.drawable.msg_groups_ny;
+                i7 = R.drawable.msg_contacts_ny;
+                i6 = R.drawable.msg_calls_ny;
+                i5 = R.drawable.msg_saved_ny;
+                i4 = R.drawable.msg_settings_ny;
+                i3 = R.drawable.msg_invite_ny;
+                i2 = R.drawable.msg_help_ny;
+                i = R.drawable.msg_nearby_ny;
             } else {
                 if (eventType == 1) {
-                    i8 = R.drawable.menu_groups_14;
-                    i = R.drawable.menu_secret_14;
-                    i7 = R.drawable.menu_contacts_14;
-                    i6 = R.drawable.menu_calls_14;
-                    i5 = R.drawable.menu_bookmarks_14;
-                    i4 = R.drawable.menu_settings_14;
-                    i3 = R.drawable.menu_secret_ny;
+                    i8 = R.drawable.msg_groups_14;
+                    i = R.drawable.msg_secret_14;
+                    i7 = R.drawable.msg_contacts_14;
+                    i6 = R.drawable.msg_calls_14;
+                    i5 = R.drawable.msg_saved_14;
+                    i4 = R.drawable.msg_settings_14;
+                    i3 = R.drawable.msg_secret_ny;
                 } else if (eventType == 2) {
-                    i8 = R.drawable.menu_groups_hw;
-                    i7 = R.drawable.menu_contacts_hw;
-                    i6 = R.drawable.menu_calls_hw;
-                    i5 = R.drawable.menu_bookmarks_hw;
-                    i4 = R.drawable.menu_settings_hw;
-                    i3 = R.drawable.menu_invite_hw;
-                    i2 = R.drawable.menu_help_hw;
-                    i = R.drawable.menu_secret_hw;
+                    i8 = R.drawable.msg_groups_hw;
+                    i7 = R.drawable.msg_contacts_hw;
+                    i6 = R.drawable.msg_calls_hw;
+                    i5 = R.drawable.msg_saved_hw;
+                    i4 = R.drawable.msg_settings_hw;
+                    i3 = R.drawable.msg_invite_hw;
+                    i2 = R.drawable.msg_help_hw;
+                    i = R.drawable.msg_secret_hw;
                 } else {
-                    i8 = R.drawable.menu_groups;
-                    i = R.drawable.menu_nearby;
-                    i7 = R.drawable.menu_contacts;
-                    i6 = R.drawable.menu_calls;
-                    i5 = R.drawable.menu_saved;
-                    i4 = R.drawable.menu_settings;
-                    i3 = R.drawable.menu_invite;
+                    i8 = R.drawable.msg_groups;
+                    i = R.drawable.msg_nearby;
+                    i7 = R.drawable.msg_contacts;
+                    i6 = R.drawable.msg_calls;
+                    i5 = R.drawable.msg_saved;
+                    i4 = R.drawable.msg_settings_old;
+                    i3 = R.drawable.msg_invite;
                 }
-                i2 = R.drawable.menu_help;
+                i2 = R.drawable.msg_help;
             }
             this.items.add(new Item(2, LocaleController.getString("NewGroup", R.string.NewGroup), i8));
             this.items.add(new Item(6, LocaleController.getString("Contacts", R.string.Contacts), i7));

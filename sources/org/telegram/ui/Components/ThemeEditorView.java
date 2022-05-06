@@ -688,7 +688,7 @@ public class ThemeEditorView {
             textView.setBackgroundDrawable(Theme.createSelectorDrawable(788529152, 0));
             textView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
             textView.setText(LocaleController.getString("CloseEditor", R.string.CloseEditor).toUpperCase());
-            textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.bottomSaveLayout.addView(textView, LayoutHelper.createFrame(-2, -1, 51));
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -703,7 +703,7 @@ public class ThemeEditorView {
             textView2.setBackgroundDrawable(Theme.createSelectorDrawable(788529152, 0));
             textView2.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
             textView2.setText(LocaleController.getString("SaveTheme", R.string.SaveTheme).toUpperCase());
-            textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.bottomSaveLayout.addView(textView2, LayoutHelper.createFrame(-2, -1, 53));
             textView2.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -723,7 +723,7 @@ public class ThemeEditorView {
             textView3.setBackgroundDrawable(Theme.createSelectorDrawable(788529152, 0));
             textView3.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
             textView3.setText(LocaleController.getString("Cancel", R.string.Cancel).toUpperCase());
-            textView3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.bottomLayout.addView(textView3, LayoutHelper.createFrame(-2, -1, 51));
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -741,7 +741,7 @@ public class ThemeEditorView {
             textView4.setBackgroundDrawable(Theme.createSelectorDrawable(788529152, 0));
             textView4.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
             textView4.setText(LocaleController.getString("Default", R.string.Default).toUpperCase());
-            textView4.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             linearLayout.addView(textView4, LayoutHelper.createFrame(-2, -1, 51));
             textView4.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -756,7 +756,7 @@ public class ThemeEditorView {
             textView5.setBackgroundDrawable(Theme.createSelectorDrawable(788529152, 0));
             textView5.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
             textView5.setText(LocaleController.getString("Save", R.string.Save).toUpperCase());
-            textView5.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView5.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             linearLayout.addView(textView5, LayoutHelper.createFrame(-2, -1, 51));
             textView5.setOnClickListener(new View.OnClickListener() {
                 @Override

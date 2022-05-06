@@ -72,7 +72,7 @@ public class GroupCreateUserCell extends FrameLayout {
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
         simpleTextView.setTextColor(Theme.getColor(this.forceDarkTheme ? "voipgroup_nameText" : "windowBackgroundWhiteBlackText"));
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setTextSize(16);
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         SimpleTextView simpleTextView2 = this.nameTextView;
@@ -100,7 +100,7 @@ public class GroupCreateUserCell extends FrameLayout {
             this.checkBox.setDrawBackgroundAsArc(3);
             CheckBox2 checkBox22 = this.checkBox;
             boolean z6 = LocaleController.isRTL;
-            addView(checkBox22, LayoutHelper.createFrame(24, 24.0f, (!z6 ? 3 : i3) | 48, z6 ? 0.0f : 40.0f, 33.0f, z6 ? 39.0f : 0.0f, 0.0f));
+            addView(checkBox22, LayoutHelper.createFrame(24, 24.0f, (!z6 ? 3 : i3) | 48, z6 ? 0.0f : this.padding + 40, 33.0f, z6 ? this.padding + 39 : 0.0f, 0.0f));
         } else if (i == 2) {
             Paint paint = new Paint(1);
             this.paint = paint;

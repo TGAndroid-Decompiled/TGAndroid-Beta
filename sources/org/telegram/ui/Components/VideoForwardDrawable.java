@@ -26,6 +26,7 @@ public class VideoForwardDrawable extends Drawable {
     private Paint paint = new Paint(1);
     private TextPaint textPaint = new TextPaint(1);
     private Path path1 = new Path();
+    private float playScaleFactor = 1.0f;
 
     public interface VideoForwardDrawableDelegate {
         void invalidate();
@@ -71,6 +72,11 @@ public class VideoForwardDrawable extends Drawable {
                 return;
             }
         }
+    }
+
+    public void setPlayScaleFactor(float f) {
+        this.playScaleFactor = f;
+        invalidate();
     }
 
     public boolean isAnimating() {

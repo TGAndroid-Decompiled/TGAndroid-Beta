@@ -31,7 +31,7 @@ public class TextPriceCell extends FrameLayout {
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
         textView2.setTextSize(1, 16.0f);
-        this.valueTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.valueTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
         this.valueTextView.setSingleLine(true);
@@ -68,8 +68,8 @@ public class TextPriceCell extends FrameLayout {
             setTag("windowBackgroundWhiteBlackText");
             this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-            this.valueTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.valueTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         } else {
             setTag("windowBackgroundWhiteGrayText2");
             this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));

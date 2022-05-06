@@ -67,7 +67,7 @@ public class ChangeBioActivity extends BaseFragment {
                 }
             }
         });
-        ActionBarMenuItem addItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_done, AndroidUtilities.dp(56.0f));
+        ActionBarMenuItem addItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f));
         this.doneButton = addItemWithWidth;
         addItemWithWidth.setContentDescription(LocaleController.getString("Done", R.string.Done));
         LinearLayout linearLayout = new LinearLayout(context);

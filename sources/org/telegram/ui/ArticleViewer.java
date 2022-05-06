@@ -1397,7 +1397,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 this.deleteView.setGravity(16);
                 this.deleteView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
                 this.deleteView.setTextSize(1, 15.0f);
-                this.deleteView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                this.deleteView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 this.deleteView.setText(LocaleController.getString("Copy", R.string.Copy).toUpperCase());
                 this.deleteView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1852,7 +1852,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     }
                 };
                 textView.setTextSize(1, 16.0f);
-                textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 textView.setText(LocaleController.getString("InstantViewReference", R.string.InstantViewReference));
                 textView.setGravity((this.adapter[0].isRtl ? 5 : 3) | 16);
                 textView.setTextColor(getTextColor());
@@ -2548,13 +2548,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if ((textFlags & 4) != 0) {
                 textPaint2.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
             } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockRelatedArticles) {
-                textPaint2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textPaint2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             } else if (this.selectedFont != 1 && !(tLRPC$PageBlock instanceof TLRPC$TL_pageBlockTitle) && !(tLRPC$PageBlock instanceof TLRPC$TL_pageBlockKicker) && !(tLRPC$PageBlock instanceof TLRPC$TL_pageBlockHeader) && !(tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSubtitle) && !(tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSubheader)) {
                 int i10 = textFlags & 1;
                 if (i10 != 0 && (textFlags & 2) != 0) {
                     textPaint2.setTypeface(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf"));
                 } else if (i10 != 0) {
-                    textPaint2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                    textPaint2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 } else if ((textFlags & 2) != 0) {
                     textPaint2.setTypeface(AndroidUtilities.getTypeface("fonts/ritalic.ttf"));
                 }
@@ -2774,7 +2774,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         int i = this.selectedFont;
         Typeface typeface = i == 0 ? Typeface.DEFAULT : Typeface.SERIF;
         Typeface typeface2 = i == 0 ? AndroidUtilities.getTypeface("fonts/ritalic.ttf") : Typeface.create("serif", 2);
-        Typeface typeface3 = this.selectedFont == 0 ? AndroidUtilities.getTypeface("fonts/rmedium.ttf") : Typeface.create("serif", 1);
+        Typeface typeface3 = this.selectedFont == 0 ? AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM) : Typeface.create("serif", 1);
         Typeface typeface4 = this.selectedFont == 0 ? AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf") : Typeface.create("serif", 3);
         for (int i2 = 0; i2 < quoteTextPaints.size(); i2++) {
             updateFontEntry(quoteTextPaints.keyAt(i2), quoteTextPaints.valueAt(i2), typeface, typeface4, typeface3, typeface2);
@@ -3112,7 +3112,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.titleTextView = simpleTextView;
         simpleTextView.setGravity(19);
         this.titleTextView.setTextSize(20);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.titleTextView.setTextColor(-5000269);
         this.titleTextView.setPivotX(0.0f);
         this.titleTextView.setPivotY(AndroidUtilities.dp(28.0f));
@@ -3275,7 +3275,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.menuButton.addSubItem(1, R.drawable.msg_search, LocaleController.getString("Search", R.string.Search));
         this.menuButton.addSubItem(2, R.drawable.msg_share, LocaleController.getString("ShareFile", R.string.ShareFile));
         this.menuButton.addSubItem(3, R.drawable.msg_openin, LocaleController.getString("OpenInExternalApp", R.string.OpenInExternalApp));
-        this.menuButton.addSubItem(4, R.drawable.menu_settings, LocaleController.getString("Settings", R.string.Settings));
+        this.menuButton.addSubItem(4, R.drawable.msg_settings_old, LocaleController.getString("Settings", R.string.Settings));
         this.menuButton.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.menuButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
         this.menuContainer.addView(this.menuButton, LayoutHelper.createFrame(48, 56.0f));
@@ -3345,7 +3345,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.searchCountText = simpleTextView2;
         simpleTextView2.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.searchCountText.setTextSize(15);
-        this.searchCountText.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.searchCountText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.searchCountText.setGravity(3);
         this.searchPanel.addView(this.searchCountText, LayoutHelper.createFrame(-2, -2.0f, 19, 18.0f, 0.0f, 108.0f, 0.0f));
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
@@ -5805,7 +5805,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         spannableStringBuilder = new SpannableStringBuilder(musicAuthor);
                     }
                     if (!TextUtils.isEmpty(musicAuthor)) {
-                        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface("fonts/rmedium.ttf")), 0, musicAuthor.length(), 18);
+                        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, musicAuthor.length(), 18);
                     }
                     CharSequence ellipsize = TextUtils.ellipsize(spannableStringBuilder, Theme.chat_audioTitlePaint, dp7, TextUtils.TruncateAt.END);
                     DrawingText drawingText = new DrawingText();
@@ -8707,7 +8707,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.isFirst = z;
             this.channelCell.setVisibility(4);
             if (!TextUtils.isEmpty(this.currentBlock.url)) {
-                this.linkDrawable = getResources().getDrawable(R.drawable.instant_link);
+                this.linkDrawable = getResources().getDrawable(R.drawable.msg_instant_link);
             }
             TLRPC$TL_pageBlockPhoto tLRPC$TL_pageBlockPhoto2 = this.currentBlock;
             if (tLRPC$TL_pageBlockPhoto2 != null) {
@@ -9064,7 +9064,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTextSize(1, 14.0f);
-            this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.textView.setText(LocaleController.getString("ChannelJoin", R.string.ChannelJoin));
             this.textView.setGravity(19);
             addView(this.textView, LayoutHelper.createFrame(-2, 39, 53));

@@ -622,7 +622,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     this.deleteView.setGravity(16);
                     this.deleteView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
                     this.deleteView.setTextSize(1, 15.0f);
-                    this.deleteView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                    this.deleteView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                     this.deleteView.setText(this.textSelectionOverlay.getContext().getString(17039361));
                     this.deleteView.setTextColor(getThemedColor("actionBarDefaultSubmenuItem"));
                     this.deleteView.setOnClickListener(new View.OnClickListener() {

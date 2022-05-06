@@ -420,7 +420,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         this.imageView.playAnimation();
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextColor(Theme.getColor("player_actionBarTitle"));
         textView.setTag("player_actionBarTitle");
         textView.setText(LocaleController.getString("LoadingStats", R.string.LoadingStats));
@@ -573,7 +573,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             arrayList3.add(Integer.valueOf((int) R.drawable.msg_stats));
             arrayList.add(LocaleController.getString("ViewMessage", R.string.ViewMessage));
             arrayList2.add(1);
-            arrayList3.add(Integer.valueOf((int) R.drawable.menu_chats));
+            arrayList3.add(Integer.valueOf((int) R.drawable.msg_msgbubble3));
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
             builder.setItems((CharSequence[]) arrayList.toArray(new CharSequence[arrayList2.size()]), AndroidUtilities.toIntArray(arrayList3), new DialogInterface.OnClickListener() {
                 @Override
@@ -2720,7 +2720,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     this.primary[i3] = new TextView(context);
                     this.secondary[i3] = new TextView(context);
                     this.title[i3] = new TextView(context);
-                    this.primary[i3].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                    this.primary[i3].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                     this.primary[i3].setTextSize(1, 17.0f);
                     this.title[i3].setTextSize(1, 13.0f);
                     this.secondary[i3].setTextSize(1, 13.0f);
@@ -2919,10 +2919,10 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             }
             arrayList3.add(LocaleController.getString("StatisticOpenProfile", R.string.StatisticOpenProfile));
             ArrayList arrayList6 = arrayList;
-            arrayList6.add(Integer.valueOf((int) R.drawable.menu_private));
+            arrayList6.add(Integer.valueOf((int) R.drawable.msg_openprofile));
             arrayList4.add(2);
             arrayList3.add(LocaleController.getString("StatisticSearchUserHistory", R.string.StatisticSearchUserHistory));
-            arrayList6.add(Integer.valueOf((int) R.drawable.menu_chats));
+            arrayList6.add(Integer.valueOf((int) R.drawable.msg_msgbubble3));
             final boolean z2 = true;
             arrayList4.add(1);
             if (z && tLRPC$TL_chatChannelParticipant2 == null) {
@@ -2963,7 +2963,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                             str = "EditAdminRights";
                         }
                         arrayList3.add(LocaleController.getString(str, i));
-                        arrayList6.add(Integer.valueOf(z2 ? R.drawable.actions_addadmin : R.drawable.actions_permissions));
+                        arrayList6.add(Integer.valueOf(z2 ? R.drawable.msg_admins : R.drawable.msg_permissions));
                         arrayList4.add(0);
                         AlertDialog.Builder builder = new AlertDialog.Builder(statisticActivity.getParentActivity());
                         builder.setItems((CharSequence[]) arrayList3.toArray(new CharSequence[arrayList4.size()]), AndroidUtilities.toIntArray(arrayList6), new DialogInterface.OnClickListener() {

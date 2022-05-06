@@ -208,8 +208,6 @@ public class Theme {
     private static AudioVisualizerDrawable chat_msgAudioVisualizeDrawable = null;
     public static Drawable chat_msgAvatarLiveLocationDrawable = null;
     public static TextPaint chat_msgBotButtonPaint = null;
-    public static Drawable chat_msgBroadcastDrawable = null;
-    public static Drawable chat_msgBroadcastMediaDrawable = null;
     public static Drawable chat_msgCallDownGreenDrawable = null;
     public static Drawable chat_msgCallDownRedDrawable = null;
     public static Drawable chat_msgCallUpGreenDrawable = null;
@@ -301,8 +299,6 @@ public class Theme {
     public static boolean dialogs_archiveDrawableRecolored = false;
     public static TextPaint dialogs_archiveTextPaint = null;
     public static TextPaint dialogs_archiveTextPaintSmall = null;
-    public static Drawable dialogs_botDrawable = null;
-    public static Drawable dialogs_broadcastDrawable = null;
     public static Drawable dialogs_checkDrawable = null;
     public static Drawable dialogs_checkReadDrawable = null;
     public static Drawable dialogs_clockDrawable = null;
@@ -312,7 +308,6 @@ public class Theme {
     public static Drawable dialogs_errorDrawable = null;
     public static Paint dialogs_errorPaint = null;
     public static ScamDrawable dialogs_fakeDrawable = null;
-    public static Drawable dialogs_groupDrawable = null;
     public static Drawable dialogs_halfCheckDrawable = null;
     public static RLottieDrawable dialogs_hidePsaDrawable = null;
     public static boolean dialogs_hidePsaDrawableRecolored = false;
@@ -435,7 +430,6 @@ public class Theme {
     public static Drawable[] chat_locationDrawable = new Drawable[2];
     public static Drawable[] chat_contactDrawable = new Drawable[2];
     public static Drawable[][] chat_fileStatesDrawable = (Drawable[][]) Array.newInstance(Drawable.class, 10, 2);
-    public static CombinedDrawable[][] chat_fileMiniStatesDrawable = (CombinedDrawable[][]) Array.newInstance(CombinedDrawable.class, 6, 2);
     public static Drawable[][] chat_photoStatesDrawables = (Drawable[][]) Array.newInstance(Drawable.class, 13, 2);
     public static Path[] chat_filePath = new Path[2];
     public static Path[] chat_updatePath = new Path[3];
@@ -4157,15 +4151,15 @@ public class Theme {
             Resources resources = context.getResources();
             avatarDrawables[0] = resources.getDrawable(R.drawable.chats_saved);
             avatarDrawables[1] = resources.getDrawable(R.drawable.ghost);
-            avatarDrawables[2] = resources.getDrawable(R.drawable.folders_private);
-            avatarDrawables[3] = resources.getDrawable(R.drawable.folders_requests);
-            avatarDrawables[4] = resources.getDrawable(R.drawable.folders_group);
-            avatarDrawables[5] = resources.getDrawable(R.drawable.folders_channel);
-            avatarDrawables[6] = resources.getDrawable(R.drawable.folders_bot);
-            avatarDrawables[7] = resources.getDrawable(R.drawable.folders_mute);
-            avatarDrawables[8] = resources.getDrawable(R.drawable.folders_read);
-            avatarDrawables[9] = resources.getDrawable(R.drawable.folders_archive);
-            avatarDrawables[10] = resources.getDrawable(R.drawable.folders_private);
+            avatarDrawables[2] = resources.getDrawable(R.drawable.msg_folders_private);
+            avatarDrawables[3] = resources.getDrawable(R.drawable.msg_folders_requests);
+            avatarDrawables[4] = resources.getDrawable(R.drawable.msg_folders_groups);
+            avatarDrawables[5] = resources.getDrawable(R.drawable.msg_folders_channels);
+            avatarDrawables[6] = resources.getDrawable(R.drawable.msg_folders_bots);
+            avatarDrawables[7] = resources.getDrawable(R.drawable.msg_folders_muted);
+            avatarDrawables[8] = resources.getDrawable(R.drawable.msg_folders_read);
+            avatarDrawables[9] = resources.getDrawable(R.drawable.msg_folders_archive);
+            avatarDrawables[10] = resources.getDrawable(R.drawable.msg_folders_private);
             avatarDrawables[11] = resources.getDrawable(R.drawable.chats_replies);
             RLottieDrawable rLottieDrawable = dialogs_archiveAvatarDrawable;
             if (rLottieDrawable != null) {
@@ -4267,7 +4261,7 @@ public class Theme {
         if (dialogs_countTextPaint == null) {
             TextPaint textPaint = new TextPaint(1);
             dialogs_countTextPaint = textPaint;
-            textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             dialogs_countPaint = new Paint(1);
             dialogs_reactionsCountPaint = new Paint(1);
             dialogs_onlineCirclePaint = new Paint(1);
@@ -4286,28 +4280,28 @@ public class Theme {
             dialogs_messagePrintingPaint = new TextPaint[2];
             for (int i = 0; i < 2; i++) {
                 dialogs_namePaint[i] = new TextPaint(1);
-                dialogs_namePaint[i].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                dialogs_namePaint[i].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 dialogs_nameEncryptedPaint[i] = new TextPaint(1);
-                dialogs_nameEncryptedPaint[i].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                dialogs_nameEncryptedPaint[i].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 dialogs_messagePaint[i] = new TextPaint(1);
                 dialogs_messagePrintingPaint[i] = new TextPaint(1);
             }
             TextPaint textPaint = new TextPaint(1);
             dialogs_searchNamePaint = textPaint;
-            textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             TextPaint textPaint2 = new TextPaint(1);
             dialogs_searchNameEncryptedPaint = textPaint2;
-            textPaint2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             TextPaint textPaint3 = new TextPaint(1);
             dialogs_messageNamePaint = textPaint3;
-            textPaint3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             dialogs_timePaint = new TextPaint(1);
             TextPaint textPaint4 = new TextPaint(1);
             dialogs_archiveTextPaint = textPaint4;
-            textPaint4.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             TextPaint textPaint5 = new TextPaint(1);
             dialogs_archiveTextPaintSmall = textPaint5;
-            textPaint5.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint5.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             dialogs_onlinePaint = new TextPaint(1);
             dialogs_offlinePaint = new TextPaint(1);
             dialogs_tabletSeletedPaint = new Paint();
@@ -4323,8 +4317,6 @@ public class Theme {
             dialogs_clockDrawable = new MsgClockDrawable();
             dialogs_errorDrawable = resources.getDrawable(R.drawable.list_warning_sign);
             dialogs_reorderDrawable = resources.getDrawable(R.drawable.list_reorder).mutate();
-            dialogs_groupDrawable = resources.getDrawable(R.drawable.list_group);
-            dialogs_broadcastDrawable = resources.getDrawable(R.drawable.list_broadcast);
             dialogs_muteDrawable = resources.getDrawable(R.drawable.list_mute).mutate();
             dialogs_verifiedDrawable = resources.getDrawable(R.drawable.verified_area).mutate();
             dialogs_scamDrawable = new ScamDrawable(11, 0);
@@ -4332,9 +4324,8 @@ public class Theme {
             dialogs_verifiedCheckDrawable = resources.getDrawable(R.drawable.verified_check).mutate();
             dialogs_mentionDrawable = resources.getDrawable(R.drawable.mentionchatslist);
             dialogs_reactionsMentionDrawable = resources.getDrawable(R.drawable.reactionchatslist);
-            dialogs_botDrawable = resources.getDrawable(R.drawable.list_bot);
             dialogs_pinnedDrawable = resources.getDrawable(R.drawable.list_pin);
-            moveUpDrawable = resources.getDrawable(R.drawable.preview_open);
+            moveUpDrawable = resources.getDrawable(R.drawable.preview_arrow);
             RectF rectF = new RectF();
             chat_updatePath[0] = new Path();
             chat_updatePath[2] = new Path();
@@ -4401,9 +4392,6 @@ public class Theme {
             setDrawableColorByKey(dialogs_halfCheckDrawable, "chats_sentReadCheck");
             setDrawableColorByKey(dialogs_clockDrawable, "chats_sentClock");
             setDrawableColorByKey(dialogs_errorDrawable, "chats_sentErrorIcon");
-            setDrawableColorByKey(dialogs_groupDrawable, "chats_nameIcon");
-            setDrawableColorByKey(dialogs_broadcastDrawable, "chats_nameIcon");
-            setDrawableColorByKey(dialogs_botDrawable, "chats_nameIcon");
             setDrawableColorByKey(dialogs_pinnedDrawable, "chats_pinnedIcon");
             setDrawableColorByKey(dialogs_reorderDrawable, "chats_pinnedIcon");
             setDrawableColorByKey(dialogs_muteDrawable, "chats_muteIcon");
@@ -4443,7 +4431,7 @@ public class Theme {
                 chat_msgTextPaintThreeEmoji = new TextPaint(1);
                 TextPaint textPaint = new TextPaint(1);
                 chat_msgBotButtonPaint = textPaint;
-                textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             }
             chat_msgTextPaintOneEmoji.setTextSize(AndroidUtilities.dp(28.0f));
             chat_msgTextPaintTwoEmoji.setTextSize(AndroidUtilities.dp(24.0f));
@@ -4460,10 +4448,10 @@ public class Theme {
             chat_infoPaint = new TextPaint(1);
             TextPaint textPaint = new TextPaint(1);
             chat_stickerCommentCountPaint = textPaint;
-            textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             TextPaint textPaint2 = new TextPaint(1);
             chat_docNamePaint = textPaint2;
-            textPaint2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             chat_docBackPaint = new Paint(1);
             chat_deleteProgressPaint = new Paint(1);
             Paint paint = new Paint(1);
@@ -4472,7 +4460,7 @@ public class Theme {
             chat_botProgressPaint.setStyle(Paint.Style.STROKE);
             TextPaint textPaint3 = new TextPaint(1);
             chat_locationTitlePaint = textPaint3;
-            textPaint3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             chat_locationAddressPaint = new TextPaint(1);
             Paint paint2 = new Paint();
             chat_urlPaint = paint2;
@@ -4495,36 +4483,36 @@ public class Theme {
             chat_audioTimePaint = new TextPaint(1);
             TextPaint textPaint4 = new TextPaint(1);
             chat_livePaint = textPaint4;
-            textPaint4.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             TextPaint textPaint5 = new TextPaint(1);
             chat_audioTitlePaint = textPaint5;
-            textPaint5.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint5.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             chat_audioPerformerPaint = new TextPaint(1);
             TextPaint textPaint6 = new TextPaint(1);
             chat_botButtonPaint = textPaint6;
-            textPaint6.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint6.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             TextPaint textPaint7 = new TextPaint(1);
             chat_contactNamePaint = textPaint7;
-            textPaint7.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint7.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             chat_contactPhonePaint = new TextPaint(1);
             chat_durationPaint = new TextPaint(1);
             TextPaint textPaint8 = new TextPaint(1);
             chat_gamePaint = textPaint8;
-            textPaint8.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint8.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             chat_shipmentPaint = new TextPaint(1);
             chat_timePaint = new TextPaint(1);
             chat_adminPaint = new TextPaint(1);
             TextPaint textPaint9 = new TextPaint(1);
             chat_namePaint = textPaint9;
-            textPaint9.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint9.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             chat_forwardNamePaint = new TextPaint(1);
             TextPaint textPaint10 = new TextPaint(1);
             chat_replyNamePaint = textPaint10;
-            textPaint10.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint10.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             chat_replyTextPaint = new TextPaint(1);
             TextPaint textPaint11 = new TextPaint(1);
             chat_instantViewPaint = textPaint11;
-            textPaint11.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint11.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             Paint paint7 = new Paint(1);
             chat_instantViewRectPaint = paint7;
             paint7.setStyle(Paint.Style.STROKE);
@@ -4542,14 +4530,14 @@ public class Theme {
             chat_statusRecordPaint.setStrokeCap(Paint.Cap.ROUND);
             TextPaint textPaint12 = new TextPaint(1);
             chat_actionTextPaint = textPaint12;
-            textPaint12.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint12.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             Paint paint10 = new Paint(1);
             chat_actionBackgroundGradientDarkenPaint = paint10;
             paint10.setColor(704643072);
             chat_timeBackgroundPaint = new Paint(1);
             TextPaint textPaint13 = new TextPaint(1);
             chat_contextResult_titleTextPaint = textPaint13;
-            textPaint13.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint13.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             chat_contextResult_descriptionTextPaint = new TextPaint(1);
             chat_composeBackgroundPaint = new Paint();
             new Paint(1);
@@ -4592,10 +4580,10 @@ public class Theme {
             playPauseAnimator.addSvgKeyFrame("M 47.421 16.941 C 50.544 18.191 50.783 19.91 50.769 22.706 C 50.761 24.484 50.76 23.953 50.79 26.073 C 50.814 27.835 49.334 30 47.124 30 L 5 30.01 C 2.79 30.01 1 28.22 1 26.01 L 1.001 10.823 C 1.001 8.218 3.532 6.895 5.572 7.26 C 7.493 8.01 47.421 16.941 47.421 16.941 Z", 267.0f);
             playPauseAnimator.addSvgKeyFrame("M 47.641 17.125 C 50.641 18.207 51.09 19.935 51.078 22.653 C 51.07 24.191 51.062 21.23 51.088 23.063 C 51.109 24.886 49.587 27 47.377 27 L 5 27.009 C 2.79 27.009 1 25.219 1 23.009 L 0.983 11.459 C 0.983 8.908 3.414 7.522 5.476 7.838 C 7.138 8.486 47.641 17.125 47.641 17.125 Z", 300.0f);
             playPauseAnimator.addSvgKeyFrame("M 48 7 C 50.21 7 52 8.79 52 11 C 52 19 52 19 52 19 C 52 21.21 50.21 23 48 23 L 4 23 C 1.79 23 0 21.21 0 19 L 0 11 C 0 8.79 1.79 7 4 7 C 48 7 48 7 48 7 Z", 383.0f);
-            chat_msgOutCheckDrawable = resources.getDrawable(R.drawable.msg_check).mutate();
-            chat_msgOutCheckSelectedDrawable = resources.getDrawable(R.drawable.msg_check).mutate();
-            chat_msgOutCheckReadDrawable = resources.getDrawable(R.drawable.msg_check).mutate();
-            chat_msgOutCheckReadSelectedDrawable = resources.getDrawable(R.drawable.msg_check).mutate();
+            chat_msgOutCheckDrawable = resources.getDrawable(R.drawable.msg_check_s).mutate();
+            chat_msgOutCheckSelectedDrawable = resources.getDrawable(R.drawable.msg_check_s).mutate();
+            chat_msgOutCheckReadDrawable = resources.getDrawable(R.drawable.msg_check_s).mutate();
+            chat_msgOutCheckReadSelectedDrawable = resources.getDrawable(R.drawable.msg_check_s).mutate();
             chat_msgMediaCheckDrawable = resources.getDrawable(R.drawable.msg_check_s).mutate();
             chat_msgStickerCheckDrawable = resources.getDrawable(R.drawable.msg_check_s).mutate();
             chat_msgOutHalfCheckDrawable = resources.getDrawable(R.drawable.msg_halfcheck).mutate();
@@ -4631,8 +4619,6 @@ public class Theme {
             chat_msgErrorDrawable = resources.getDrawable(R.drawable.msg_warning);
             chat_muteIconDrawable = resources.getDrawable(R.drawable.list_mute).mutate();
             chat_lockIconDrawable = resources.getDrawable(R.drawable.ic_lock_header);
-            chat_msgBroadcastDrawable = resources.getDrawable(R.drawable.broadcast3).mutate();
-            chat_msgBroadcastMediaDrawable = resources.getDrawable(R.drawable.broadcast3).mutate();
             chat_msgInCallDrawable[0] = resources.getDrawable(R.drawable.chat_calls_voice).mutate();
             chat_msgInCallSelectedDrawable[0] = resources.getDrawable(R.drawable.chat_calls_voice).mutate();
             chat_msgOutCallDrawable[0] = resources.getDrawable(R.drawable.chat_calls_voice).mutate();
@@ -4647,7 +4633,7 @@ public class Theme {
             for (int i = 0; i < 2; i++) {
                 chat_pollCheckDrawable[i] = resources.getDrawable(R.drawable.poll_right).mutate();
                 chat_pollCrossDrawable[i] = resources.getDrawable(R.drawable.poll_wrong).mutate();
-                chat_pollHintDrawable[i] = resources.getDrawable(R.drawable.smiles_panel_objects).mutate();
+                chat_pollHintDrawable[i] = resources.getDrawable(R.drawable.msg_emoji_objects).mutate();
                 chat_psaHelpDrawable[i] = resources.getDrawable(R.drawable.msg_psa).mutate();
             }
             calllog_msgCallUpRedDrawable = resources.getDrawable(R.drawable.ic_call_made_green_18dp).mutate();
@@ -4678,18 +4664,6 @@ public class Theme {
             chat_shareIconDrawable = resources.getDrawable(R.drawable.share_arrow).mutate();
             chat_replyIconDrawable = resources.getDrawable(R.drawable.fast_reply);
             chat_goIconDrawable = resources.getDrawable(R.drawable.message_arrow);
-            chat_fileMiniStatesDrawable[0][0] = createCircleDrawableWithIcon(AndroidUtilities.dp(22.0f), R.drawable.audio_mini_arrow);
-            chat_fileMiniStatesDrawable[0][1] = createCircleDrawableWithIcon(AndroidUtilities.dp(22.0f), R.drawable.audio_mini_arrow);
-            chat_fileMiniStatesDrawable[1][0] = createCircleDrawableWithIcon(AndroidUtilities.dp(22.0f), R.drawable.audio_mini_cancel);
-            chat_fileMiniStatesDrawable[1][1] = createCircleDrawableWithIcon(AndroidUtilities.dp(22.0f), R.drawable.audio_mini_cancel);
-            chat_fileMiniStatesDrawable[2][0] = createCircleDrawableWithIcon(AndroidUtilities.dp(22.0f), R.drawable.audio_mini_arrow);
-            chat_fileMiniStatesDrawable[2][1] = createCircleDrawableWithIcon(AndroidUtilities.dp(22.0f), R.drawable.audio_mini_arrow);
-            chat_fileMiniStatesDrawable[3][0] = createCircleDrawableWithIcon(AndroidUtilities.dp(22.0f), R.drawable.audio_mini_cancel);
-            chat_fileMiniStatesDrawable[3][1] = createCircleDrawableWithIcon(AndroidUtilities.dp(22.0f), R.drawable.audio_mini_cancel);
-            chat_fileMiniStatesDrawable[4][0] = createCircleDrawableWithIcon(AndroidUtilities.dp(22.0f), R.drawable.video_mini_arrow);
-            chat_fileMiniStatesDrawable[4][1] = createCircleDrawableWithIcon(AndroidUtilities.dp(22.0f), R.drawable.video_mini_arrow);
-            chat_fileMiniStatesDrawable[5][0] = createCircleDrawableWithIcon(AndroidUtilities.dp(22.0f), R.drawable.video_mini_cancel);
-            chat_fileMiniStatesDrawable[5][1] = createCircleDrawableWithIcon(AndroidUtilities.dp(22.0f), R.drawable.video_mini_cancel);
             int dp = AndroidUtilities.dp(2.0f);
             RectF rectF = new RectF();
             chat_filePath[0] = new Path();
@@ -4764,14 +4738,10 @@ public class Theme {
             chat_photoStatesDrawables[7][1] = createCircleDrawableWithIcon(AndroidUtilities.dp(48.0f), R.drawable.msg_round_load_m);
             chat_photoStatesDrawables[8][0] = createCircleDrawableWithIcon(AndroidUtilities.dp(48.0f), R.drawable.msg_round_cancel_m);
             chat_photoStatesDrawables[8][1] = createCircleDrawableWithIcon(AndroidUtilities.dp(48.0f), R.drawable.msg_round_cancel_m);
-            chat_photoStatesDrawables[9][0] = resources.getDrawable(R.drawable.doc_big).mutate();
-            chat_photoStatesDrawables[9][1] = resources.getDrawable(R.drawable.doc_big).mutate();
             chat_photoStatesDrawables[10][0] = createCircleDrawableWithIcon(AndroidUtilities.dp(48.0f), R.drawable.msg_round_load_m);
             chat_photoStatesDrawables[10][1] = createCircleDrawableWithIcon(AndroidUtilities.dp(48.0f), R.drawable.msg_round_load_m);
             chat_photoStatesDrawables[11][0] = createCircleDrawableWithIcon(AndroidUtilities.dp(48.0f), R.drawable.msg_round_cancel_m);
             chat_photoStatesDrawables[11][1] = createCircleDrawableWithIcon(AndroidUtilities.dp(48.0f), R.drawable.msg_round_cancel_m);
-            chat_photoStatesDrawables[12][0] = resources.getDrawable(R.drawable.doc_big).mutate();
-            chat_photoStatesDrawables[12][1] = resources.getDrawable(R.drawable.doc_big).mutate();
             chat_contactDrawable[0] = createCircleDrawableWithIcon(AndroidUtilities.dp(44.0f), R.drawable.msg_contact);
             chat_contactDrawable[1] = createCircleDrawableWithIcon(AndroidUtilities.dp(44.0f), R.drawable.msg_contact);
             chat_locationDrawable[0] = resources.getDrawable(R.drawable.msg_location).mutate();
@@ -4989,8 +4959,6 @@ public class Theme {
             setDrawableColorByKey(chat_msgErrorDrawable, "chat_sentErrorIcon");
             setDrawableColorByKey(chat_muteIconDrawable, "chat_muteIcon");
             setDrawableColorByKey(chat_lockIconDrawable, "chat_lockIcon");
-            setDrawableColorByKey(chat_msgBroadcastDrawable, "chat_outBroadcast");
-            setDrawableColorByKey(chat_msgBroadcastMediaDrawable, "chat_mediaBroadcast");
             setDrawableColorByKey(chat_inlineResultFile, "chat_inlineResultIcon");
             setDrawableColorByKey(chat_inlineResultAudio, "chat_inlineResultIcon");
             setDrawableColorByKey(chat_inlineResultLocation, "chat_inlineResultIcon");
@@ -5019,55 +4987,35 @@ public class Theme {
                 setDrawableColorByKey(statusDrawableArr[i2], "chats_actionMessage");
                 i2++;
             }
-            for (int i3 = 0; i3 < 2; i3++) {
-                setCombinedDrawableColor(chat_fileMiniStatesDrawable[i3][0], getColor("chat_outLoader"), false);
-                setCombinedDrawableColor(chat_fileMiniStatesDrawable[i3][0], getColor("chat_outMediaIcon"), true);
-                setCombinedDrawableColor(chat_fileMiniStatesDrawable[i3][1], getColor("chat_outLoaderSelected"), false);
-                setCombinedDrawableColor(chat_fileMiniStatesDrawable[i3][1], getColor("chat_outMediaIconSelected"), true);
-                int i4 = i3 + 2;
-                setCombinedDrawableColor(chat_fileMiniStatesDrawable[i4][0], getColor("chat_inLoader"), false);
-                setCombinedDrawableColor(chat_fileMiniStatesDrawable[i4][0], getColor("chat_inMediaIcon"), true);
-                setCombinedDrawableColor(chat_fileMiniStatesDrawable[i4][1], getColor("chat_inLoaderSelected"), false);
-                setCombinedDrawableColor(chat_fileMiniStatesDrawable[i4][1], getColor("chat_inMediaIconSelected"), true);
-                int i5 = i3 + 4;
-                setCombinedDrawableColor(chat_fileMiniStatesDrawable[i5][0], getColor("chat_mediaLoaderPhoto"), false);
-                setCombinedDrawableColor(chat_fileMiniStatesDrawable[i5][0], getColor("chat_mediaLoaderPhotoIcon"), true);
-                setCombinedDrawableColor(chat_fileMiniStatesDrawable[i5][1], getColor("chat_mediaLoaderPhotoSelected"), false);
-                setCombinedDrawableColor(chat_fileMiniStatesDrawable[i5][1], getColor("chat_mediaLoaderPhotoIconSelected"), true);
+            for (int i3 = 0; i3 < 5; i3++) {
+                setCombinedDrawableColor(chat_fileStatesDrawable[i3][0], getColor("chat_outLoader"), false);
+                setCombinedDrawableColor(chat_fileStatesDrawable[i3][0], getColor("chat_outMediaIcon"), true);
+                setCombinedDrawableColor(chat_fileStatesDrawable[i3][1], getColor("chat_outLoaderSelected"), false);
+                setCombinedDrawableColor(chat_fileStatesDrawable[i3][1], getColor("chat_outMediaIconSelected"), true);
+                int i4 = i3 + 5;
+                setCombinedDrawableColor(chat_fileStatesDrawable[i4][0], getColor("chat_inLoader"), false);
+                setCombinedDrawableColor(chat_fileStatesDrawable[i4][0], getColor("chat_inMediaIcon"), true);
+                setCombinedDrawableColor(chat_fileStatesDrawable[i4][1], getColor("chat_inLoaderSelected"), false);
+                setCombinedDrawableColor(chat_fileStatesDrawable[i4][1], getColor("chat_inMediaIconSelected"), true);
             }
-            for (int i6 = 0; i6 < 5; i6++) {
-                setCombinedDrawableColor(chat_fileStatesDrawable[i6][0], getColor("chat_outLoader"), false);
-                setCombinedDrawableColor(chat_fileStatesDrawable[i6][0], getColor("chat_outMediaIcon"), true);
-                setCombinedDrawableColor(chat_fileStatesDrawable[i6][1], getColor("chat_outLoaderSelected"), false);
-                setCombinedDrawableColor(chat_fileStatesDrawable[i6][1], getColor("chat_outMediaIconSelected"), true);
-                int i7 = i6 + 5;
-                setCombinedDrawableColor(chat_fileStatesDrawable[i7][0], getColor("chat_inLoader"), false);
-                setCombinedDrawableColor(chat_fileStatesDrawable[i7][0], getColor("chat_inMediaIcon"), true);
-                setCombinedDrawableColor(chat_fileStatesDrawable[i7][1], getColor("chat_inLoaderSelected"), false);
-                setCombinedDrawableColor(chat_fileStatesDrawable[i7][1], getColor("chat_inMediaIconSelected"), true);
+            for (int i5 = 0; i5 < 4; i5++) {
+                setCombinedDrawableColor(chat_photoStatesDrawables[i5][0], getColor("chat_mediaLoaderPhoto"), false);
+                setCombinedDrawableColor(chat_photoStatesDrawables[i5][0], getColor("chat_mediaLoaderPhotoIcon"), true);
+                setCombinedDrawableColor(chat_photoStatesDrawables[i5][1], getColor("chat_mediaLoaderPhotoSelected"), false);
+                setCombinedDrawableColor(chat_photoStatesDrawables[i5][1], getColor("chat_mediaLoaderPhotoIconSelected"), true);
             }
-            for (int i8 = 0; i8 < 4; i8++) {
-                setCombinedDrawableColor(chat_photoStatesDrawables[i8][0], getColor("chat_mediaLoaderPhoto"), false);
-                setCombinedDrawableColor(chat_photoStatesDrawables[i8][0], getColor("chat_mediaLoaderPhotoIcon"), true);
-                setCombinedDrawableColor(chat_photoStatesDrawables[i8][1], getColor("chat_mediaLoaderPhotoSelected"), false);
-                setCombinedDrawableColor(chat_photoStatesDrawables[i8][1], getColor("chat_mediaLoaderPhotoIconSelected"), true);
+            for (int i6 = 0; i6 < 2; i6++) {
+                int i7 = i6 + 7;
+                setCombinedDrawableColor(chat_photoStatesDrawables[i7][0], getColor("chat_outLoaderPhoto"), false);
+                setCombinedDrawableColor(chat_photoStatesDrawables[i7][0], getColor("chat_outLoaderPhotoIcon"), true);
+                setCombinedDrawableColor(chat_photoStatesDrawables[i7][1], getColor("chat_outLoaderPhotoSelected"), false);
+                setCombinedDrawableColor(chat_photoStatesDrawables[i7][1], getColor("chat_outLoaderPhotoIconSelected"), true);
+                int i8 = i6 + 10;
+                setCombinedDrawableColor(chat_photoStatesDrawables[i8][0], getColor("chat_inLoaderPhoto"), false);
+                setCombinedDrawableColor(chat_photoStatesDrawables[i8][0], getColor("chat_inLoaderPhotoIcon"), true);
+                setCombinedDrawableColor(chat_photoStatesDrawables[i8][1], getColor("chat_inLoaderPhotoSelected"), false);
+                setCombinedDrawableColor(chat_photoStatesDrawables[i8][1], getColor("chat_inLoaderPhotoIconSelected"), true);
             }
-            for (int i9 = 0; i9 < 2; i9++) {
-                int i10 = i9 + 7;
-                setCombinedDrawableColor(chat_photoStatesDrawables[i10][0], getColor("chat_outLoaderPhoto"), false);
-                setCombinedDrawableColor(chat_photoStatesDrawables[i10][0], getColor("chat_outLoaderPhotoIcon"), true);
-                setCombinedDrawableColor(chat_photoStatesDrawables[i10][1], getColor("chat_outLoaderPhotoSelected"), false);
-                setCombinedDrawableColor(chat_photoStatesDrawables[i10][1], getColor("chat_outLoaderPhotoIconSelected"), true);
-                int i11 = i9 + 10;
-                setCombinedDrawableColor(chat_photoStatesDrawables[i11][0], getColor("chat_inLoaderPhoto"), false);
-                setCombinedDrawableColor(chat_photoStatesDrawables[i11][0], getColor("chat_inLoaderPhotoIcon"), true);
-                setCombinedDrawableColor(chat_photoStatesDrawables[i11][1], getColor("chat_inLoaderPhotoSelected"), false);
-                setCombinedDrawableColor(chat_photoStatesDrawables[i11][1], getColor("chat_inLoaderPhotoIconSelected"), true);
-            }
-            setDrawableColorByKey(chat_photoStatesDrawables[9][0], "chat_outFileIcon");
-            setDrawableColorByKey(chat_photoStatesDrawables[9][1], "chat_outFileSelectedIcon");
-            setDrawableColorByKey(chat_photoStatesDrawables[12][0], "chat_inFileIcon");
-            setDrawableColorByKey(chat_photoStatesDrawables[12][1], "chat_inFileSelectedIcon");
             setCombinedDrawableColor(chat_contactDrawable[0], getColor("chat_inContactBackground"), false);
             setCombinedDrawableColor(chat_contactDrawable[0], getColor("chat_inContactIcon"), true);
             setCombinedDrawableColor(chat_contactDrawable[1], getColor("chat_outContactBackground"), false);

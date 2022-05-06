@@ -549,7 +549,7 @@ public class EmbedBottomSheet extends BottomSheet {
             textView.setTextColor(Theme.getColor("dialogTextBlack"));
             textView.setText(str2);
             textView.setSingleLine(true);
-            textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView.setEllipsize(TextUtils.TruncateAt.END);
             textView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
             this.containerLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 83, 0.0f, 0.0f, 0.0f, 77.0f));
@@ -582,7 +582,7 @@ public class EmbedBottomSheet extends BottomSheet {
         textView3.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
         textView3.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         textView3.setText(LocaleController.getString("Close", R.string.Close).toUpperCase());
-        textView3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         frameLayout3.addView(textView3, LayoutHelper.createLinear(-2, -1, 51));
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -597,7 +597,7 @@ public class EmbedBottomSheet extends BottomSheet {
         ImageView imageView = new ImageView(context);
         this.pipButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.pipButton.setImageResource(R.drawable.video_pip);
+        this.pipButton.setImageResource(R.drawable.ic_goinline);
         this.pipButton.setContentDescription(LocaleController.getString("AccDescrPipMode", R.string.AccDescrPipMode));
         this.pipButton.setEnabled(false);
         this.pipButton.setAlpha(0.5f);
@@ -618,7 +618,7 @@ public class EmbedBottomSheet extends BottomSheet {
         };
         ImageView imageView2 = new ImageView(context);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        imageView2.setImageResource(R.drawable.video_copy);
+        imageView2.setImageResource(R.drawable.msg_copy);
         imageView2.setContentDescription(LocaleController.getString("CopyLink", R.string.CopyLink));
         imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlue4"), PorterDuff.Mode.MULTIPLY));
         imageView2.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
@@ -634,7 +634,7 @@ public class EmbedBottomSheet extends BottomSheet {
         this.copyTextButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
         this.copyTextButton.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         this.copyTextButton.setText(LocaleController.getString("Copy", R.string.Copy).toUpperCase());
-        this.copyTextButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.copyTextButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         linearLayout.addView(this.copyTextButton, LayoutHelper.createFrame(-2, -1, 51));
         this.copyTextButton.setOnClickListener(embedBottomSheet$$ExternalSyntheticLambda3);
         TextView textView5 = new TextView(context);
@@ -646,7 +646,7 @@ public class EmbedBottomSheet extends BottomSheet {
         textView5.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
         textView5.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         textView5.setText(LocaleController.getString("OpenInBrowser", R.string.OpenInBrowser).toUpperCase());
-        textView5.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView5.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         linearLayout.addView(textView5, LayoutHelper.createFrame(-2, -1, 51));
         textView5.setOnClickListener(new View.OnClickListener() {
             @Override

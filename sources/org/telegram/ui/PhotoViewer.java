@@ -628,6 +628,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         protected void onRewindCanceled() {
             PhotoViewer.this.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
             PhotoViewer.this.videoForwardDrawable.setShowing(false);
+            PipVideoOverlay.onRewindCanceled();
         }
 
         @Override
@@ -637,6 +638,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 PhotoViewer.this.videoPlayerSeekbar.setProgress(f);
                 PhotoViewer.this.videoPlayerSeekbarView.invalidate();
             }
+            PipVideoOverlay.onUpdateRewindProgressUi(j, f, z);
         }
 
         @Override
@@ -645,6 +647,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             PhotoViewer.this.videoForwardDrawable.setLeftSide(!z);
             PhotoViewer.this.videoForwardDrawable.setShowing(true);
             PhotoViewer.this.containerView.invalidate();
+            PipVideoOverlay.onRewindStart(z);
         }
     };
     public final Property<View, Float> FLASH_VIEW_VALUE = new AnimationProperties.FloatProperty<View>("flashViewAlpha") {
@@ -1577,7 +1580,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
             textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-            this.textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.textPaint.setColor(-1);
             Paint paint = new Paint(1);
             this.paint = paint;
@@ -3107,7 +3110,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.menuItem.addSubItem(15, R.drawable.msg_sticker, LocaleController.getString("ShowStickers", R.string.ShowStickers)).setColors(-328966, -328966);
             this.menuItem.addSubItem(10, R.drawable.msg_shareout, LocaleController.getString("ShareFile", R.string.ShareFile)).setColors(-328966, -328966);
             this.menuItem.addSubItem(1, R.drawable.msg_gallery, LocaleController.getString("SaveToGallery", R.string.SaveToGallery)).setColors(-328966, -328966);
-            this.menuItem.addSubItem(16, R.drawable.menu_private, LocaleController.getString("SetAsMain", R.string.SetAsMain)).setColors(-328966, -328966);
+            this.menuItem.addSubItem(16, R.drawable.msg_openprofile, LocaleController.getString("SetAsMain", R.string.SetAsMain)).setColors(-328966, -328966);
             this.menuItem.addSubItem(6, R.drawable.msg_delete, LocaleController.getString("Delete", R.string.Delete)).setColors(-328966, -328966);
             this.menuItem.addSubItem(7, R.drawable.msg_cancel, LocaleController.getString("StopDownload", R.string.StopDownload)).setColors(-328966, -328966);
             this.menuItem.redrawPopup(-115203550);
@@ -3301,7 +3304,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.bottomLayout.addView(this.bottomButtonsLayout, LayoutHelper.createFrame(-2, -1, 53));
             ImageView imageView = new ImageView(this.containerView.getContext());
             this.paintButton = imageView;
-            imageView.setImageResource(R.drawable.photo_paint);
+            imageView.setImageResource(R.drawable.msg_photo_draw);
             this.paintButton.setScaleType(ImageView.ScaleType.CENTER);
             this.paintButton.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
             this.bottomButtonsLayout.addView(this.paintButton, LayoutHelper.createFrame(50, -1.0f));
@@ -3327,10 +3330,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.shareButton.setContentDescription(LocaleController.getString("ShareFile", R.string.ShareFile));
             FadingTextViewLayout fadingTextViewLayout = new FadingTextViewLayout(this, this.containerView.getContext()) {
                 @Override
-                protected void onTextViewCreated(TextView textView) {
+                public void onTextViewCreated(TextView textView) {
                     super.onTextViewCreated(textView);
                     textView.setTextSize(1, 14.0f);
-                    textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                    textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                     textView.setEllipsize(TextUtils.TruncateAt.END);
                     textView.setTextColor(-1);
                     textView.setGravity(3);
@@ -3343,12 +3346,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 private int staticCharsCount = 0;
 
                 @Override
-                protected void onTextViewCreated(TextView textView) {
+                public void onTextViewCreated(TextView textView) {
                     super.onTextViewCreated(textView);
                     textView.setTextSize(1, 13.0f);
                     textView.setEllipsize(TextUtils.TruncateAt.END);
                     textView.setTextColor(-1);
-                    textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                    textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                     textView.setGravity(3);
                 }
 
@@ -3482,7 +3485,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             TextView textView = new TextView(this.containerView.getContext());
             this.docNameTextView = textView;
             textView.setTextSize(1, 15.0f);
-            this.docNameTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.docNameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.docNameTextView.setSingleLine(true);
             this.docNameTextView.setMaxLines(1);
             this.docNameTextView.setEllipsize(TextUtils.TruncateAt.END);
@@ -3586,7 +3589,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             textView4.setTextSize(1, 15.0f);
             this.captionLimitView.setTextColor(-1280137);
             this.captionLimitView.setGravity(17);
-            this.captionLimitView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.captionLimitView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.containerView.addView(this.captionLimitView, LayoutHelper.createFrame(56, 20.0f, 85, 3.0f, 0.0f, 14.0f, 78.0f));
             LinearLayout linearLayout2 = new LinearLayout(this.parentActivity) {
                 @Override
@@ -3624,7 +3627,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             ImageView imageView4 = new ImageView(this.parentActivity);
             this.cropItem = imageView4;
             imageView4.setScaleType(ImageView.ScaleType.CENTER);
-            this.cropItem.setImageResource(R.drawable.photo_crop);
+            this.cropItem.setImageResource(R.drawable.msg_photo_crop);
             this.cropItem.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
             this.itemsLayout.addView(this.cropItem, LayoutHelper.createLinear(48, 48));
             this.cropItem.setOnClickListener(new View.OnClickListener() {
@@ -3637,7 +3640,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             ImageView imageView5 = new ImageView(this.parentActivity);
             this.rotateItem = imageView5;
             imageView5.setScaleType(ImageView.ScaleType.CENTER);
-            this.rotateItem.setImageResource(R.drawable.tool_rotate);
+            this.rotateItem.setImageResource(R.drawable.msg_photo_rotate);
             this.rotateItem.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
             this.itemsLayout.addView(this.rotateItem, LayoutHelper.createLinear(48, 48));
             this.rotateItem.setOnClickListener(new View.OnClickListener() {
@@ -3650,7 +3653,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             ImageView imageView6 = new ImageView(this.parentActivity);
             this.mirrorItem = imageView6;
             imageView6.setScaleType(ImageView.ScaleType.CENTER);
-            this.mirrorItem.setImageResource(R.drawable.photo_flip);
+            this.mirrorItem.setImageResource(R.drawable.msg_photo_flip);
             this.mirrorItem.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
             this.itemsLayout.addView(this.mirrorItem, LayoutHelper.createLinear(48, 48));
             this.mirrorItem.setOnClickListener(new View.OnClickListener() {
@@ -3663,7 +3666,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             ImageView imageView7 = new ImageView(this.parentActivity);
             this.paintItem = imageView7;
             imageView7.setScaleType(ImageView.ScaleType.CENTER);
-            this.paintItem.setImageResource(R.drawable.photo_paint);
+            this.paintItem.setImageResource(R.drawable.msg_photo_draw);
             this.paintItem.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
             this.itemsLayout.addView(this.paintItem, LayoutHelper.createLinear(48, 48));
             this.paintItem.setOnClickListener(new View.OnClickListener() {
@@ -3700,7 +3703,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             ImageView imageView10 = new ImageView(this.parentActivity);
             this.tuneItem = imageView10;
             imageView10.setScaleType(ImageView.ScaleType.CENTER);
-            this.tuneItem.setImageResource(R.drawable.photo_tools);
+            this.tuneItem.setImageResource(R.drawable.msg_photo_settings);
             this.tuneItem.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
             this.itemsLayout.addView(this.tuneItem, LayoutHelper.createLinear(48, 48));
             this.tuneItem.setOnClickListener(new View.OnClickListener() {
@@ -3736,7 +3739,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             ImageView imageView12 = new ImageView(this.parentActivity);
             this.timeItem = imageView12;
             imageView12.setScaleType(ImageView.ScaleType.CENTER);
-            this.timeItem.setImageResource(R.drawable.photo_timer);
+            this.timeItem.setImageResource(R.drawable.msg_autodelete);
             this.timeItem.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
             this.timeItem.setContentDescription(LocaleController.getString("SetTimer", R.string.SetTimer));
             this.itemsLayout.addView(this.timeItem, LayoutHelper.createLinear(48, 48));
@@ -3774,7 +3777,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.resetButton.setBackgroundDrawable(Theme.createSelectorDrawable(-12763843, 0));
             this.resetButton.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
             this.resetButton.setText(LocaleController.getString("Reset", R.string.CropReset).toUpperCase());
-            this.resetButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.resetButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.editorDoneLayout.addView(this.resetButton, LayoutHelper.createFrame(-2, -1, 49));
             this.resetButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -4975,7 +4978,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             textView.setSingleLine(true);
             textView.setText(LocaleController.getString("MessageLifetime", R.string.MessageLifetime));
             textView.setTextColor(-1);
-            textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView.setTextSize(1, 20.0f);
             textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
             textView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(4.0f));
@@ -5045,7 +5048,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             textView3.setTextSize(1, 14.0f);
             textView3.setTextColor(getThemedColor("dialogFloatingButton"));
             textView3.setGravity(17);
-            textView3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView3.setText(LocaleController.getString("Done", R.string.Done).toUpperCase());
             textView3.setBackgroundDrawable(Theme.getRoundRectSelectorDrawable(-11944718));
             textView3.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
@@ -5062,7 +5065,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             textView4.setTextSize(1, 14.0f);
             textView4.setTextColor(-1);
             textView4.setGravity(17);
-            textView4.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView4.setText(LocaleController.getString("Cancel", R.string.Cancel).toUpperCase());
             textView4.setBackgroundDrawable(Theme.getRoundRectSelectorDrawable(-1));
             textView4.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
@@ -5372,6 +5375,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.speedItem.setSubtext(LocaleController.getString("SpeedVeryFast", R.string.SpeedVeryFast));
         }
         this.chooseSpeedLayout.update(this.currentVideoSpeed);
+    }
+
+    public float getCurrentVideoSpeed() {
+        return this.currentVideoSpeed;
     }
 
     private boolean checkInlinePermissions() {
@@ -12443,6 +12450,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.videoPlayerRewinder.startRewind(this.videoPlayer, z, this.currentVideoSpeed);
             }
         }
+    }
+
+    public VideoPlayerRewinder getVideoPlayerRewinder() {
+        return this.videoPlayerRewinder;
     }
 
     @Override

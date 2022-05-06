@@ -10,8 +10,8 @@ public final class MediaDataController$$ExternalSyntheticLambda125 implements Ge
 
     @Override
     public final Object provide(Object obj) {
-        TLRPC$MessageEntity lambda$getEntities$131;
-        lambda$getEntities$131 = MediaDataController.lambda$getEntities$131((Void) obj);
-        return lambda$getEntities$131;
+        TLRPC$MessageEntity lambda$getEntities$135;
+        lambda$getEntities$135 = MediaDataController.lambda$getEntities$135((Void) obj);
+        return lambda$getEntities$135;
     }
 }

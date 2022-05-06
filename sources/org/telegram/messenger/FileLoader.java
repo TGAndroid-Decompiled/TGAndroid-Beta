@@ -60,12 +60,12 @@ public class FileLoader extends BaseController {
     public static final int QUEUE_TYPE_AUDIO = 2;
     public static final int QUEUE_TYPE_FILE = 0;
     public static final int QUEUE_TYPE_IMAGE = 1;
-    private FilePathDatabase filePathDatabase;
+    private final FilePathDatabase filePathDatabase;
     private String forceLoadingFile;
     private int lastReferenceId;
     private static volatile DispatchQueue fileLoaderQueue = new DispatchQueue("fileUploadQueue");
     private static SparseArray<File> mediaDirs = null;
-    private static volatile FileLoader[] Instance = new FileLoader[3];
+    private static final FileLoader[] Instance = new FileLoader[3];
     private LinkedList<FileUploadOperation> uploadOperationQueue = new LinkedList<>();
     private LinkedList<FileUploadOperation> uploadSmallOperationQueue = new LinkedList<>();
     private ConcurrentHashMap<String, FileUploadOperation> uploadOperationPaths = new ConcurrentHashMap<>();
@@ -129,15 +129,14 @@ public class FileLoader extends BaseController {
     }
 
     public static FileLoader getInstance(int i) {
-        FileLoader fileLoader = Instance[i];
+        FileLoader[] fileLoaderArr = Instance;
+        FileLoader fileLoader = fileLoaderArr[i];
         if (fileLoader == null) {
             synchronized (FileLoader.class) {
-                fileLoader = Instance[i];
+                fileLoader = fileLoaderArr[i];
                 if (fileLoader == null) {
-                    FileLoader[] fileLoaderArr = Instance;
-                    FileLoader fileLoader2 = new FileLoader(i);
-                    fileLoaderArr[i] = fileLoader2;
-                    fileLoader = fileLoader2;
+                    fileLoader = new FileLoader(i);
+                    fileLoaderArr[i] = fileLoader;
                 }
             }
         }
@@ -146,6 +145,7 @@ public class FileLoader extends BaseController {
 
     public FileLoader(int i) {
         super(i);
+        this.filePathDatabase = new FilePathDatabase(i);
     }
 
     public static void setMediaDirs(SparseArray<File> sparseArray) {
@@ -956,9 +956,6 @@ public class FileLoader extends BaseController {
     }
 
     public FilePathDatabase getFileDatabase() {
-        if (this.filePathDatabase == null) {
-            this.filePathDatabase = new FilePathDatabase(this.currentAccount);
-        }
         return this.filePathDatabase;
     }
 

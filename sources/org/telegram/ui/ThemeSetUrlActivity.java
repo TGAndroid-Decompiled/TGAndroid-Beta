@@ -401,7 +401,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             textView.setText(LocaleController.getString("ChooseTheme", R.string.ChooseTheme));
             textView.setTextColor(Theme.getColor("dialogTextBlack"));
             textView.setTextSize(1, 20.0f);
-            textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 51, 22, 12, 22, 4));
             textView.setOnTouchListener(ThemeSetUrlActivity$$ExternalSyntheticLambda4.INSTANCE);
             builder.setCustomView(linearLayout);

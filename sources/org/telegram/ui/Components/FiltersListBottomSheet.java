@@ -185,7 +185,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         this.titleTextView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         this.titleTextView.setGravity(16);
         this.titleTextView.setText(LocaleController.getString("FilterChoose", R.string.FilterChoose));
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.containerView.addView(this.titleTextView, LayoutHelper.createFrame(-1, 50.0f, 51, 0.0f, 0.0f, 40.0f, 0.0f));
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
     }
@@ -376,22 +376,22 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
                 bottomSheetCell.setTextColor(Theme.getColor("dialogTextBlack"));
                 int i3 = dialogFilter.flags;
                 if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i3) == (MessagesController.DIALOG_FILTER_FLAG_CONTACTS | MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS)) {
-                    i2 = R.drawable.menu_private;
+                    i2 = R.drawable.msg_openprofile;
                 } else {
                     if ((MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ & i3) != 0) {
                         int i4 = MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS;
                         if ((i3 & i4) == i4) {
-                            i2 = R.drawable.menu_unread;
+                            i2 = R.drawable.msg_markunread;
                         }
                     }
                     if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i3) == MessagesController.DIALOG_FILTER_FLAG_CHANNELS) {
-                        i2 = R.drawable.menu_broadcast;
+                        i2 = R.drawable.msg_channel;
                     } else if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i3) == MessagesController.DIALOG_FILTER_FLAG_GROUPS) {
-                        i2 = R.drawable.menu_groups;
+                        i2 = R.drawable.msg_groups;
                     } else if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i3) == MessagesController.DIALOG_FILTER_FLAG_CONTACTS) {
-                        i2 = R.drawable.menu_contacts;
+                        i2 = R.drawable.msg_contacts;
                     } else {
-                        i2 = (i3 & MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS) == MessagesController.DIALOG_FILTER_FLAG_BOTS ? R.drawable.menu_bots : R.drawable.menu_folders;
+                        i2 = (i3 & MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS) == MessagesController.DIALOG_FILTER_FLAG_BOTS ? R.drawable.msg_bots : R.drawable.msg_folders;
                     }
                 }
                 bottomSheetCell.setTextAndIcon(dialogFilter.name, i2);

@@ -303,7 +303,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
                     NumberTextView numberTextView = new NumberTextView(createActionMode.getContext());
                     this.selectedMessagesCountTextView = numberTextView;
                     numberTextView.setTextSize(18);
-                    this.selectedMessagesCountTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                    this.selectedMessagesCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                     this.selectedMessagesCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon"));
                     createActionMode.addView(this.selectedMessagesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
                     this.selectedMessagesCountTextView.setOnTouchListener(SearchViewPager$$ExternalSyntheticLambda2.INSTANCE);

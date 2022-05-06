@@ -418,7 +418,7 @@ public class TranslateAlert extends Dialog {
         this.titleView.setLines(1);
         this.titleView.setText(LocaleController.getString("AutomaticTranslation", R.string.AutomaticTranslation));
         this.titleView.setGravity(LocaleController.isRTL ? 5 : 3);
-        this.titleView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.titleView.setTextColor(Theme.getColor("dialogTextBlack"));
         this.titleView.setTextSize(0, AndroidUtilities.dp(19.0f));
         FrameLayout frameLayout3 = this.header;
@@ -629,7 +629,7 @@ public class TranslateAlert extends Dialog {
         this.buttonTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.buttonTextView.setGravity(17);
         this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-        this.buttonTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setText(LocaleController.getString("CloseTranslation", R.string.CloseTranslation));
         FrameLayout frameLayout10 = new FrameLayout(context);

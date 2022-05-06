@@ -12,6 +12,6 @@ public final class MessagesController$$ExternalSyntheticLambda347 implements Req
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        MessagesController.lambda$markMentionMessageAsRead$192(tLObject, tLRPC$TL_error);
+        MessagesController.lambda$blockPeer$69(tLObject, tLRPC$TL_error);
     }
 }

@@ -276,7 +276,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass1());
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
         int i = this.currentStep;
         if (i == 0) {
             this.actionBar.setTitle(LocaleController.getString("NewChannel", R.string.NewChannel));
@@ -1123,7 +1123,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     public final void onClick(View view) {
                         ChannelCreateActivity.this.lambda$loadAdminedChannels$16(view);
                     }
-                });
+                }, false, 0);
                 TLRPC$Chat tLRPC$Chat = tLRPC$TL_messages_chats.chats.get(i2);
                 boolean z = true;
                 if (i2 != tLRPC$TL_messages_chats.chats.size() - 1) {

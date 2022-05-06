@@ -41,7 +41,7 @@ public class StatisticPostInfoCell extends FrameLayout {
         linearLayout2.setOrientation(0);
         TextView textView = new TextView(context);
         this.message = textView;
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.message.setTextSize(1, 15.0f);
         this.message.setTextColor(-16777216);
         this.message.setLines(1);

@@ -27,7 +27,6 @@ public class PremiumLockIconView extends ImageView {
     float[] colorFloat = new float[3];
     Path path = new Path();
     Paint paint = new Paint(1);
-    float shaderCrossfadeProgress = 1.0f;
 
     public PremiumLockIconView(Context context) {
         super(context);
@@ -70,7 +69,6 @@ public class PremiumLockIconView extends ImageView {
                     Paint paint = this.paint;
                     this.oldShaderPaint = paint;
                     paint.setAlpha(255);
-                    this.shaderCrossfadeProgress = 0.0f;
                 }
                 this.paint = new Paint(1);
                 this.color1 = HSVToColor;
@@ -93,25 +91,8 @@ public class PremiumLockIconView extends ImageView {
                 invalidate();
             }
         }
-        if (this.oldShaderPaint == null) {
-            this.shaderCrossfadeProgress = 1.0f;
-        }
-        float f = this.shaderCrossfadeProgress;
-        if (f != 1.0f) {
-            this.paint.setAlpha((int) (f * 255.0f));
-            canvas.drawPath(this.path, this.oldShaderPaint);
-            canvas.drawPath(this.path, this.paint);
-            float f2 = this.shaderCrossfadeProgress + 0.10666667f;
-            this.shaderCrossfadeProgress = f2;
-            if (f2 > 1.0f) {
-                this.shaderCrossfadeProgress = 1.0f;
-                this.oldShaderPaint = null;
-            }
-            invalidate();
-            this.paint.setAlpha(255);
-        } else {
-            canvas.drawPath(this.path, this.paint);
-        }
+        PremiumGradient.getInstance().updateMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawPath(this.path, PremiumGradient.getInstance().paint);
         super.onDraw(canvas);
         this.wasDrawn = true;
     }

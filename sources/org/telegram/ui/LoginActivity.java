@@ -1363,7 +1363,7 @@ public class LoginActivity extends BaseFragment {
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextSize(1, 18.0f);
-            this.titleView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titleView.setText(LocaleController.getString((int) R.string.YourNumber));
             this.titleView.setGravity(17);
             this.titleView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
@@ -3998,7 +3998,7 @@ public class LoginActivity extends BaseFragment {
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextSize(1, 18.0f);
-            this.titleView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titleView.setText(LocaleController.getString((int) R.string.ResetAccount));
             this.titleView.setGravity(17);
             this.titleView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
@@ -4021,14 +4021,14 @@ public class LoginActivity extends BaseFragment {
             this.resetAccountTime = textView4;
             textView4.setGravity(1);
             this.resetAccountTime.setTextSize(1, 20.0f);
-            this.resetAccountTime.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.resetAccountTime.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.resetAccountTime.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             addView(this.resetAccountTime, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
             TextView textView5 = new TextView(context);
             this.resetAccountButton = textView5;
             textView5.setGravity(17);
             this.resetAccountButton.setText(LocaleController.getString((int) R.string.ResetAccount));
-            this.resetAccountButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.resetAccountButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.resetAccountButton.setTextSize(1, 15.0f);
             this.resetAccountButton.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             this.resetAccountButton.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
@@ -4526,7 +4526,7 @@ public class LoginActivity extends BaseFragment {
             this.titleTextView = textView;
             float f = 18.0f;
             textView.setTextSize(1, 18.0f);
-            this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titleTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             this.titleTextView.setGravity(49);
             this.titleTextView.setText(LocaleController.getString((int) R.string.SetNewPassword));
@@ -5189,7 +5189,7 @@ public class LoginActivity extends BaseFragment {
             this.titleTextView = textView;
             textView.setText(LocaleController.getString((int) R.string.RegistrationProfileInfo));
             this.titleTextView.setTextSize(1, 18.0f);
-            this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titleTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             this.titleTextView.setGravity(1);
             addView(this.titleTextView, LayoutHelper.createLinear(-2, -2, 1, 8, 12, 8, 0));
@@ -5325,7 +5325,6 @@ public class LoginActivity extends BaseFragment {
             this.avatarBig = null;
             showAvatarProgress(false, true);
             this.avatarImage.setImage((ImageLocation) null, (String) null, this.avatarDrawable, (Object) null);
-            this.avatarEditor.setImageResource(R.drawable.actions_setphoto);
             this.avatarEditor.setAnimation(this.cameraDrawable);
             this.cameraDrawable.setCurrentFrame(0);
             this.isCameraWaitAnimationAllowed = true;
@@ -6064,7 +6063,7 @@ public class LoginActivity extends BaseFragment {
             this.numberView = textView2;
             textView2.setText(str);
             this.numberView.setTextSize(1, 18.0f);
-            this.numberView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.numberView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.numberView.setSingleLine();
             this.popupLayout.addView(this.numberView, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 24.0f, 48.0f, 24.0f, 0.0f));
             int dp = AndroidUtilities.dp(16.0f);
@@ -6153,6 +6152,10 @@ public class LoginActivity extends BaseFragment {
         }
 
         public void show() {
+            if (Build.VERSION.SDK_INT >= 21) {
+                View view = this.fabContainer;
+                ObjectAnimator.ofFloat(view, View.TRANSLATION_Z, view.getTranslationZ(), 0.0f).setDuration(150L).start();
+            }
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(250L);
             duration.addListener(new AnimatorListenerAdapter() {
                 @Override
@@ -6240,6 +6243,9 @@ public class LoginActivity extends BaseFragment {
                     public void onAnimationEnd(Animator animator) {
                         if (PhoneNumberConfirmView.this.getParent() instanceof ViewGroup) {
                             ((ViewGroup) PhoneNumberConfirmView.this.getParent()).removeView(PhoneNumberConfirmView.this);
+                        }
+                        if (Build.VERSION.SDK_INT >= 21) {
+                            ObjectAnimator.ofFloat(PhoneNumberConfirmView.this.fabContainer, View.TRANSLATION_Z, 0.0f, AndroidUtilities.dp(2.0f)).setDuration(150L).start();
                         }
                         PhoneNumberConfirmView.this.fabContainer.setVisibility(0);
                     }

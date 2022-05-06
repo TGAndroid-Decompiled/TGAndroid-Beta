@@ -161,6 +161,7 @@ public class AndroidUtilities {
     public static final int FLAG_TAG_URL = 8;
     public static final int LIGHT_STATUS_BAR_OVERLAY = 251658240;
     public static final String STICKERS_PLACEHOLDER_PACK_NAME = "tg_placeholders_android";
+    public static final String TYPEFACE_ROBOTO_MEDIUM = "fonts/rmedium.ttf";
     public static Pattern WEB_URL;
     private static AccessibilityManager accessibilityManager;
     private static RectF bitmapRect;
@@ -2184,7 +2185,7 @@ public class AndroidUtilities {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sb);
             for (int i2 = 0; i2 < arrayList.size() / 2; i2++) {
                 int i3 = i2 * 2;
-                spannableStringBuilder.setSpan(new TypefaceSpan(getTypeface("fonts/rmedium.ttf")), ((Integer) arrayList.get(i3)).intValue(), ((Integer) arrayList.get(i3 + 1)).intValue(), 33);
+                spannableStringBuilder.setSpan(new TypefaceSpan(getTypeface(TYPEFACE_ROBOTO_MEDIUM)), ((Integer) arrayList.get(i3)).intValue(), ((Integer) arrayList.get(i3 + 1)).intValue(), 33);
             }
             return spannableStringBuilder;
         } catch (Exception e) {
@@ -2399,6 +2400,10 @@ public class AndroidUtilities {
 
     public static File generatePicturePath(boolean z, String str) {
         try {
+            File directory = FileLoader.getDirectory(100);
+            if (!z && directory != null) {
+                return new File(directory, generateFileName(0, str));
+            }
             return new File(ApplicationLoader.applicationContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), generateFileName(0, str));
         } catch (Exception e) {
             FileLog.e(e);

@@ -72,7 +72,7 @@ public class DrawerProfileCell extends FrameLayout {
         TextView textView = new TextView(context);
         this.nameTextView = textView;
         textView.setTextSize(1, 15.0f);
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setLines(1);
         this.nameTextView.setMaxLines(1);
         this.nameTextView.setSingleLine(true);
@@ -90,7 +90,7 @@ public class DrawerProfileCell extends FrameLayout {
         ImageView imageView2 = new ImageView(context);
         this.arrowView = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        this.arrowView.setImageResource(R.drawable.menu_expand);
+        this.arrowView.setImageResource(R.drawable.msg_expand);
         addView(this.arrowView, LayoutHelper.createFrame(59, 59, 85));
         setArrowState(false);
         if (Theme.isCurrentThemeDay()) {

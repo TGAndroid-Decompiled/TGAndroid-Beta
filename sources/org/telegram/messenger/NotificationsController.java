@@ -2108,23 +2108,25 @@ public class NotificationsController extends BaseController {
     }
 
     public void muteDialog(long j, boolean z) {
-        if (z) {
-            getInstance(this.currentAccount).muteUntil(j, ConnectionsManager.DEFAULT_DATACENTER_ID);
-            return;
-        }
-        boolean isGlobalNotificationsEnabled = getInstance(this.currentAccount).isGlobalNotificationsEnabled(j);
         SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
-        if (isGlobalNotificationsEnabled) {
+        if (getInstance(this.currentAccount).isGlobalNotificationsEnabled(j) != z) {
             edit.remove("notify2_" + j);
+            if (z) {
+                edit.remove("custom_" + j);
+            }
         } else {
             edit.putInt("notify2_" + j, 0);
         }
-        getMessagesStorage().setDialogFlags(j, 0L);
-        edit.apply();
-        TLRPC$Dialog tLRPC$Dialog = getMessagesController().dialogs_dict.get(j);
-        if (tLRPC$Dialog != null) {
-            tLRPC$Dialog.notify_settings = new TLRPC$TL_peerNotifySettings();
+        if (z) {
+            getInstance(this.currentAccount).muteUntil(j, ConnectionsManager.DEFAULT_DATACENTER_ID);
+        } else {
+            getMessagesStorage().setDialogFlags(j, 0L);
+            TLRPC$Dialog tLRPC$Dialog = getMessagesController().dialogs_dict.get(j);
+            if (tLRPC$Dialog != null) {
+                tLRPC$Dialog.notify_settings = new TLRPC$TL_peerNotifySettings();
+            }
+            updateServerNotificationsSettings(j);
         }
-        updateServerNotificationsSettings(j);
+        edit.apply();
     }
 }

@@ -27,7 +27,7 @@ public class ArchiveHintInnerCell extends FrameLayout {
         this.headerTextView = textView;
         textView.setTextColor(Theme.getColor("chats_nameMessage_threeLines"));
         this.headerTextView.setTextSize(1, 20.0f);
-        this.headerTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.headerTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.headerTextView.setGravity(17);
         addView(this.headerTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 75.0f, 52.0f, 0.0f));
         TextView textView2 = new TextView(context);

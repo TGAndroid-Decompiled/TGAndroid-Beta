@@ -1483,7 +1483,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         numberTextView.setVisibility(8);
         this.captionLimitView.setTextSize(15);
         this.captionLimitView.setTextColor(getThemedColor("windowBackgroundWhiteGrayText"));
-        this.captionLimitView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.captionLimitView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.captionLimitView.setCenterAlign(true);
         addView(this.captionLimitView, LayoutHelper.createFrame(48, 20.0f, 85, 3.0f, 0.0f, 0.0f, 48.0f));
         AnonymousClass12 r1 = new AnonymousClass12(activity, resourcesProvider, resourcesProvider, chatActivity, activity);
@@ -3458,6 +3458,16 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
     public void lambda$openWebViewMenu$30() {
         AndroidUtilities.hideKeyboard(this);
+        if (AndroidUtilities.isTablet()) {
+            BotWebViewSheet botWebViewSheet = new BotWebViewSheet(getContext(), this.parentFragment.getResourceProvider());
+            botWebViewSheet.setParentActivity(this.parentActivity);
+            int i = this.currentAccount;
+            long j = this.dialog_id;
+            botWebViewSheet.requestWebView(i, j, j, this.botMenuWebViewTitle, this.botMenuWebViewUrl, 2, 0, false);
+            botWebViewSheet.show();
+            this.botCommandsMenuButton.setOpened(false);
+            return;
+        }
         this.botWebViewMenuContainer.show(this.currentAccount, this.dialog_id, this.botMenuWebViewUrl);
     }
 
@@ -6576,7 +6586,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         String str2 = tLRPC$KeyboardButton2.url;
                         boolean z = tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonSimpleWebView;
                         MessageObject messageObject3 = messageObject;
-                        botWebViewSheet.requestWebView(i, j3, j4, str, str2, z, messageObject3 != null ? messageObject3.messageOwner.id : 0, false);
+                        botWebViewSheet.requestWebView(i, j3, j4, str, str2, z ? 1 : 0, messageObject3 != null ? messageObject3.messageOwner.id : 0, false);
                         botWebViewSheet.show();
                     }
                 };
@@ -8438,7 +8448,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             TextPaint textPaint2 = new TextPaint(1);
             this.bluePaint = textPaint2;
             textPaint2.setTextSize(AndroidUtilities.dp(15.0f));
-            this.bluePaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.bluePaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.arrowPaint.setColor(r5.getThemedColor("chat_messagePanelIcons"));
             this.arrowPaint.setStyle(Paint.Style.STROKE);
             this.arrowPaint.setStrokeWidth(AndroidUtilities.dpf2(this.smallSize ? 1.0f : 1.6f));
@@ -8630,7 +8640,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
             textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-            textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             updateColors();
         }
 

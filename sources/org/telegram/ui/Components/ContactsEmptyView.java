@@ -42,7 +42,7 @@ public class ContactsEmptyView extends LinearLayout implements NotificationCente
         this.titleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.titleTextView.setGravity(1);
         this.titleTextView.setText(LocaleController.getString("NoContactsYet", R.string.NoContactsYet));
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.titleTextView.setMaxWidth(AndroidUtilities.dp(260.0f));
         addView(this.titleTextView, LayoutHelper.createLinear(-2, -2, 49, 0, 18, 0, 14));
         LinearLayout linearLayout = new LinearLayout(context);

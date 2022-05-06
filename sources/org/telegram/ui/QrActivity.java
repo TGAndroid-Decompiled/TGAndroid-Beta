@@ -1158,7 +1158,7 @@ public class QrActivity extends BaseFragment {
             textView.setSingleLine(true);
             textView.setTextColor(baseFragment.getThemedColor("dialogTextBlack"));
             textView.setTextSize(1, 20.0f);
-            textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
             frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 8388659, 0.0f, 0.0f, 62.0f, 0.0f));
             int themedColor = baseFragment.getThemedColor("featuredStickers_addButton");
@@ -1236,7 +1236,7 @@ public class QrActivity extends BaseFragment {
             textView2.setText(LocaleController.getString("ShareQrCode", R.string.ShareQrCode));
             textView2.setTextColor(baseFragment.getThemedColor("featuredStickers_buttonText"));
             textView2.setTextSize(1, 15.0f);
-            textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             frameLayout.addView(textView2);
         }
 

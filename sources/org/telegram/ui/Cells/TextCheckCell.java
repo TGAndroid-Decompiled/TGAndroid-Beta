@@ -191,21 +191,24 @@ public class TextCheckCell extends FrameLayout {
         float f = 1.0f;
         if (arrayList != null) {
             TextView textView = this.textView;
+            Property property = View.ALPHA;
             float[] fArr = new float[1];
             fArr[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, "alpha", fArr));
+            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
             Switch r2 = this.checkBox;
+            Property property2 = View.ALPHA;
             float[] fArr2 = new float[1];
             fArr2[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(r2, "alpha", fArr2));
+            arrayList.add(ObjectAnimator.ofFloat(r2, property2, fArr2));
             if (this.valueTextView.getVisibility() == 0) {
                 TextView textView2 = this.valueTextView;
+                Property property3 = View.ALPHA;
                 float[] fArr3 = new float[1];
                 if (!z) {
                     f = 0.5f;
                 }
                 fArr3[0] = f;
-                arrayList.add(ObjectAnimator.ofFloat(textView2, "alpha", fArr3));
+                arrayList.add(ObjectAnimator.ofFloat(textView2, property3, fArr3));
                 return;
             }
             return;

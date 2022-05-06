@@ -22,9 +22,9 @@ public class FilePathDatabase {
     private File walCacheFile;
 
     public FilePathDatabase(int i) {
-        DispatchQueue dispatchQueue = new DispatchQueue("files_database");
-        this.dispatchQueue = dispatchQueue;
         this.currentAccount = i;
+        DispatchQueue dispatchQueue = new DispatchQueue("files_database_queue_" + i);
+        this.dispatchQueue = dispatchQueue;
         dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -128,24 +128,21 @@ public class FilePathDatabase {
             } catch (Exception unused) {
             }
             return strArr[0];
-        } else if (!BuildVars.DEBUG_VERSION || this.dispatchQueue.getHandler() == null || Thread.currentThread() == this.dispatchQueue.getHandler().getLooper().getThread()) {
-            String str = null;
-            try {
-                SQLiteDatabase sQLiteDatabase = this.database;
-                SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT path FROM paths WHERE document_id = " + j + " AND dc_id = " + i + " AND type = " + i2, new Object[0]);
-                if (queryFinalized.next()) {
-                    str = queryFinalized.stringValue(0);
-                }
-                queryFinalized.dispose();
-            } catch (SQLiteException e) {
-                if (BuildVars.DEBUG_VERSION) {
-                    throw new RuntimeException(e);
-                }
-            }
-            return str;
-        } else {
-            throw new RuntimeException("!!!");
         }
+        String str = null;
+        try {
+            SQLiteDatabase sQLiteDatabase = this.database;
+            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT path FROM paths WHERE document_id = " + j + " AND dc_id = " + i + " AND type = " + i2, new Object[0]);
+            if (queryFinalized.next()) {
+                str = queryFinalized.stringValue(0);
+            }
+            queryFinalized.dispose();
+        } catch (SQLiteException e) {
+            if (BuildVars.DEBUG_VERSION) {
+                throw new RuntimeException(e);
+            }
+        }
+        return str;
     }
 
     public void lambda$getPath$1(long j, int i, int i2, String[] strArr, CountDownLatch countDownLatch) {

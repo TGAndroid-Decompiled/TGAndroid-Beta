@@ -131,8 +131,8 @@ public class MessagesStorage extends BaseController {
     private volatile int pendingMainUnreadCount;
     private File shmCacheFile;
     public boolean showClearDatabaseAlert;
+    private DispatchQueue storageQueue;
     private File walCacheFile;
-    private DispatchQueue storageQueue = new DispatchQueue("storageQueue");
     private AtomicLong lastTaskId = new AtomicLong(System.currentTimeMillis());
     private SparseArray<ArrayList<Runnable>> tasks = new SparseArray<>();
     private int lastDateValue = 0;
@@ -279,7 +279,9 @@ public class MessagesStorage extends BaseController {
 
     public MessagesStorage(int i) {
         super(i);
-        this.storageQueue.postRunnable(new Runnable() {
+        DispatchQueue dispatchQueue = new DispatchQueue("storageQueue_" + i);
+        this.storageQueue = dispatchQueue;
+        dispatchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
                 MessagesStorage.this.lambda$new$0();

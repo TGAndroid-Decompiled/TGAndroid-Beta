@@ -1124,7 +1124,7 @@ public class Bulletin {
             textView.setSingleLine();
             textView.setTextColor(themedColor);
             textView.setTextSize(1, 14.0f);
-            textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             linearLayout.addView(textView);
             TextView textView2 = new TextView(context);
             this.subtitleTextView = textView2;
@@ -1159,7 +1159,7 @@ public class Bulletin {
             textView.setSingleLine();
             textView.setTextColor(themedColor);
             textView.setTextSize(1, 14.0f);
-            textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             linearLayout.addView(textView);
             TextView textView2 = new TextView(context);
             this.subtitleTextView = textView2;
@@ -1301,7 +1301,7 @@ public class Bulletin {
                 });
                 textView.setBackground(Theme.createCircleSelectorDrawable(419430400 | (16777215 & themedColor), LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : 0, !LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : 0));
                 textView.setTextSize(1, 14.0f);
-                textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 textView.setTextColor(themedColor);
                 textView.setText(LocaleController.getString("Undo", R.string.Undo));
                 textView.setGravity(16);

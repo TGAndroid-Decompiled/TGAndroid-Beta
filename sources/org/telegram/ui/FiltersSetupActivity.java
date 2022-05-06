@@ -46,6 +46,7 @@ import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.ProgressButton;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
@@ -428,7 +429,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.filtersStartRow = -1;
             this.filtersEndRow = -1;
         }
-        if (size < 10) {
+        if (size < getMessagesController().dialogFiltersLimitPremium) {
             int i6 = this.rowCount;
             this.rowCount = i6 + 1;
             this.createFilterRow = i6;
@@ -465,7 +466,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     }
 
     @Override
-    public View createView(Context context) {
+    public View createView(final Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString("Filters", R.string.Filters));
@@ -507,17 +508,22 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                FiltersSetupActivity.this.lambda$createView$1(view, i, f, f2);
+                FiltersSetupActivity.this.lambda$createView$1(context, view, i, f, f2);
             }
         });
         return this.fragmentView;
     }
 
-    public void lambda$createView$1(View view, int i, float f, float f2) {
+    public void lambda$createView$1(Context context, View view, int i, float f, float f2) {
         if (i >= this.filtersStartRow && i < this.filtersEndRow) {
             presentFragment(new FilterCreateActivity(getMessagesController().dialogFilters.get(i - this.filtersStartRow)));
-        } else if (i == this.createFilterRow) {
-            presentFragment(new FilterCreateActivity());
+        } else if (i != this.createFilterRow) {
+        } else {
+            if (getMessagesController().dialogFilters.size() < getMessagesController().dialogFiltersLimitDefault || getUserConfig().isPremium()) {
+                presentFragment(new FilterCreateActivity());
+            } else {
+                showDialog(new LimitReachedBottomSheet(context, 3, this.currentAccount));
+            }
         }
     }
 

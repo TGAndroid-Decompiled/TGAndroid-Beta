@@ -27,7 +27,7 @@ public class BrightnessControlCell extends FrameLayout {
         super(context);
         ImageView imageView = new ImageView(context);
         this.leftImageView = imageView;
-        imageView.setImageResource(R.drawable.brightness_low);
+        imageView.setImageResource(R.drawable.msg_brightness_low);
         addView(this.leftImageView, LayoutHelper.createFrame(24, 24.0f, 51, 17.0f, 12.0f, 0.0f, 0.0f));
         SeekBarView seekBarView = new SeekBarView(this, context, true, null) {
             @Override
@@ -64,7 +64,7 @@ public class BrightnessControlCell extends FrameLayout {
         addView(this.seekBarView, LayoutHelper.createFrame(-1, 38.0f, 51, 54.0f, 5.0f, 54.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         this.rightImageView = imageView2;
-        imageView2.setImageResource(R.drawable.brightness_high);
+        imageView2.setImageResource(R.drawable.msg_brightness_high);
         addView(this.rightImageView, LayoutHelper.createFrame(24, 24.0f, 53, 0.0f, 12.0f, 17.0f, 0.0f));
     }
 

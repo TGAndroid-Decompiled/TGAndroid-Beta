@@ -94,7 +94,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         TextPaint textPaint = this.textPaint;
         counterDrawable3.textPaint = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
         this.xRefPaint.setColor(-16777216);
         this.xRefPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));

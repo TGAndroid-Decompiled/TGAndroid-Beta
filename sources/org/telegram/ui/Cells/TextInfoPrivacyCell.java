@@ -8,6 +8,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.AbsoluteSizeSpan;
+import android.util.Property;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
@@ -149,12 +150,13 @@ public class TextInfoPrivacyCell extends FrameLayout {
         float f = 1.0f;
         if (arrayList != null) {
             TextView textView = this.textView;
+            Property property = View.ALPHA;
             float[] fArr = new float[1];
             if (!z) {
                 f = 0.5f;
             }
             fArr[0] = f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, "alpha", fArr));
+            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
             return;
         }
         TextView textView2 = this.textView;

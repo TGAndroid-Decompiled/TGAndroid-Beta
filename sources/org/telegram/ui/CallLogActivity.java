@@ -166,7 +166,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.emptyTextView1.setText(LocaleController.getString("NoRecentCalls", R.string.NoRecentCalls));
             this.emptyTextView1.setTextSize(1, 20.0f);
-            this.emptyTextView1.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.emptyTextView1.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.emptyTextView1.setGravity(17);
             addView(this.emptyTextView1, LayoutHelper.createFrame(-1, -2.0f, 17, 17.0f, 40.0f, 17.0f, 0.0f));
             this.emptyTextView2 = new TextView(context);
@@ -741,7 +741,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             NumberTextView numberTextView = new NumberTextView(createActionMode.getContext());
             this.selectedDialogsCountTextView = numberTextView;
             numberTextView.setTextSize(18);
-            this.selectedDialogsCountTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.selectedDialogsCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.selectedDialogsCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon"));
             createActionMode.addView(this.selectedDialogsCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
             this.selectedDialogsCountTextView.setOnTouchListener(CallLogActivity$$ExternalSyntheticLambda3.INSTANCE);

@@ -10,6 +10,6 @@ public final class StickersAlert$$ExternalSyntheticLambda1 implements DialogInte
 
     @Override
     public final void onClick(DialogInterface dialogInterface, int i) {
-        StickersAlert.lambda$showNameEnterAlert$20(dialogInterface, i);
+        StickersAlert.lambda$showNameEnterAlert$21(dialogInterface, i);
     }
 }

@@ -73,7 +73,7 @@ public class SessionBottomSheet extends BottomSheet {
         linearLayout.addView(this.imageView, LayoutHelper.createLinear(70, 70, 1, 0, 16, 0, 0));
         TextView textView = new TextView(parentActivity);
         textView.setTextSize(2, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         textView.setGravity(17);
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 21, 12, 21, 0));
@@ -119,7 +119,7 @@ public class SessionBottomSheet extends BottomSheet {
         if (tLRPC$TL_authorization.country.length() != 0) {
             ItemView itemView2 = new ItemView(parentActivity, false);
             itemView2.valueText.setText(tLRPC$TL_authorization.country);
-            Drawable mutate2 = ContextCompat.getDrawable(parentActivity, R.drawable.menu_location).mutate();
+            Drawable mutate2 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_location).mutate();
             mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.SRC_IN));
             itemView2.iconView.setImageDrawable(mutate2);
             itemView2.descriptionText.setText(LocaleController.getString("Location", R.string.Location));
@@ -144,7 +144,7 @@ public class SessionBottomSheet extends BottomSheet {
         if (tLRPC$TL_authorization.ip.length() != 0) {
             ItemView itemView3 = new ItemView(parentActivity, false);
             itemView3.valueText.setText(tLRPC$TL_authorization.ip);
-            Drawable mutate3 = ContextCompat.getDrawable(parentActivity, R.drawable.menu_language).mutate();
+            Drawable mutate3 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_language).mutate();
             mutate3.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.SRC_IN));
             itemView3.iconView.setImageDrawable(mutate3);
             itemView3.descriptionText.setText(LocaleController.getString("IpAddress", R.string.IpAddress));
@@ -169,7 +169,7 @@ public class SessionBottomSheet extends BottomSheet {
         if (secretChatsEnabled(tLRPC$TL_authorization)) {
             final ItemView itemView4 = new ItemView(parentActivity, true);
             itemView4.valueText.setText(LocaleController.getString("AcceptSecretChats", R.string.AcceptSecretChats));
-            Drawable mutate4 = ContextCompat.getDrawable(parentActivity, R.drawable.menu_secret).mutate();
+            Drawable mutate4 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_secret).mutate();
             mutate4.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.SRC_IN));
             itemView4.iconView.setImageDrawable(mutate4);
             itemView4.switchView.setChecked(!tLRPC$TL_authorization.encrypted_requests_disabled, false);
@@ -190,7 +190,7 @@ public class SessionBottomSheet extends BottomSheet {
         }
         final ItemView itemView5 = new ItemView(parentActivity, true);
         itemView5.valueText.setText(LocaleController.getString("AcceptCalls", R.string.AcceptCalls));
-        Drawable mutate5 = ContextCompat.getDrawable(parentActivity, R.drawable.menu_calls).mutate();
+        Drawable mutate5 = ContextCompat.getDrawable(parentActivity, R.drawable.msg_calls).mutate();
         mutate5.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.SRC_IN));
         itemView5.iconView.setImageDrawable(mutate5);
         itemView5.switchView.setChecked(!tLRPC$TL_authorization.call_requests_disabled, false);
@@ -212,7 +212,7 @@ public class SessionBottomSheet extends BottomSheet {
             textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             textView3.setGravity(17);
             textView3.setTextSize(1, 14.0f);
-            textView3.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView3.setText(LocaleController.getString("TerminateSession", R.string.TerminateSession));
             textView3.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("chat_attachAudioBackground"), ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), 120)));

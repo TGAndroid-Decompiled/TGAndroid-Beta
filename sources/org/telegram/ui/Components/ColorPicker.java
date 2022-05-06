@@ -358,7 +358,7 @@ public class ColorPicker extends FrameLayout {
         ImageView imageView = new ImageView(getContext());
         this.addButton = imageView;
         imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 1));
-        this.addButton.setImageResource(R.drawable.themes_addcolor);
+        this.addButton.setImageResource(R.drawable.msg_add);
         this.addButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"), PorterDuff.Mode.MULTIPLY));
         this.addButton.setScaleType(ImageView.ScaleType.CENTER);
         this.addButton.setOnClickListener(new View.OnClickListener() {
@@ -378,7 +378,7 @@ public class ColorPicker extends FrameLayout {
         };
         this.clearButton = imageView2;
         imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 1));
-        this.clearButton.setImageResource(R.drawable.themes_deletecolor);
+        this.clearButton.setImageResource(R.drawable.msg_close);
         this.clearButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"), PorterDuff.Mode.MULTIPLY));
         this.clearButton.setAlpha(0.0f);
         this.clearButton.setScaleX(0.0f);
@@ -396,7 +396,7 @@ public class ColorPicker extends FrameLayout {
         TextView textView = new TextView(context);
         this.resetButton = textView;
         textView.setTextSize(1, 15.0f);
-        this.resetButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.resetButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.resetButton.setGravity(17);
         this.resetButton.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         this.resetButton.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));

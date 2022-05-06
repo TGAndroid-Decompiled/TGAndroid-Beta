@@ -55,7 +55,7 @@ public class WallpaperUpdater {
             iArr = null;
         } else {
             charSequenceArr = new CharSequence[]{LocaleController.getString("ChooseTakePhoto", R.string.ChooseTakePhoto), LocaleController.getString("SelectFromGallery", R.string.SelectFromGallery)};
-            iArr = new int[]{R.drawable.menu_camera, R.drawable.profile_photos};
+            iArr = new int[]{R.drawable.msg_camera, R.drawable.msg_photos};
         }
         builder.setItems(charSequenceArr, iArr, new DialogInterface.OnClickListener() {
             @Override

@@ -27,7 +27,7 @@ public class GroupCreateSectionCell extends FrameLayout {
         TextView textView = new TextView(getContext());
         this.textView = textView;
         textView.setTextSize(1, 14.0f);
-        this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setTextColor(Theme.getColor("groupcreate_sectionText"));
         int i = 5;
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);

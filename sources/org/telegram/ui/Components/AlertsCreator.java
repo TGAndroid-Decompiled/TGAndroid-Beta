@@ -164,6 +164,7 @@ import org.telegram.ui.Cells.TextColorCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.NumberPicker;
+import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.LanguageSelectActivity;
 import org.telegram.ui.LaunchActivity;
@@ -407,198 +408,213 @@ public class AlertsCreator {
             }
         } else if (!(tLObject instanceof TLRPC$TL_account_saveSecureValue) && !(tLObject instanceof TLRPC$TL_account_getAuthorizationForm)) {
             boolean z2 = tLObject instanceof TLRPC$TL_channels_joinChannel;
-            if (!z2 && !(tLObject instanceof TLRPC$TL_channels_editAdmin) && !(tLObject instanceof TLRPC$TL_channels_inviteToChannel) && !(tLObject instanceof TLRPC$TL_messages_addChatUser) && !(tLObject instanceof TLRPC$TL_messages_startBot) && !(tLObject instanceof TLRPC$TL_channels_editBanned) && !(tLObject instanceof TLRPC$TL_messages_editChatDefaultBannedRights) && !(tLObject instanceof TLRPC$TL_messages_editChatAdmin) && !(tLObject instanceof TLRPC$TL_messages_migrateChat) && !(tLObject instanceof TLRPC$TL_phone_inviteToGroupCall)) {
-                if (tLObject instanceof TLRPC$TL_messages_createChat) {
-                    if (str.equals("CHANNELS_TOO_MUCH")) {
+            if (z2 || (tLObject instanceof TLRPC$TL_channels_editAdmin) || (tLObject instanceof TLRPC$TL_channels_inviteToChannel) || (tLObject instanceof TLRPC$TL_messages_addChatUser) || (tLObject instanceof TLRPC$TL_messages_startBot) || (tLObject instanceof TLRPC$TL_channels_editBanned) || (tLObject instanceof TLRPC$TL_messages_editChatDefaultBannedRights) || (tLObject instanceof TLRPC$TL_messages_editChatAdmin) || (tLObject instanceof TLRPC$TL_messages_migrateChat) || (tLObject instanceof TLRPC$TL_phone_inviteToGroupCall)) {
+                if (baseFragment == null || !str.equals("CHANNELS_TOO_MUCH")) {
+                    if (baseFragment != null) {
+                        showAddUserAlert(tLRPC$TL_error.text, baseFragment, (objArr == null || objArr.length <= 0) ? false : ((Boolean) objArr[0]).booleanValue(), tLObject);
+                    } else if (tLRPC$TL_error.text.equals("PEER_FLOOD")) {
+                        NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.needShowAlert, 1);
+                    }
+                } else if (baseFragment.getParentActivity() != null && !AccountInstance.getInstance(i).getUserConfig().isPremium()) {
+                    baseFragment.showDialog(new LimitReachedBottomSheet(baseFragment.getParentActivity(), 5, i));
+                    return null;
+                } else if (z2 || (tLObject instanceof TLRPC$TL_channels_inviteToChannel)) {
+                    baseFragment.presentFragment(new TooManyCommunitiesActivity(0));
+                    return null;
+                } else {
+                    baseFragment.presentFragment(new TooManyCommunitiesActivity(1));
+                    return null;
+                }
+            } else if (tLObject instanceof TLRPC$TL_messages_createChat) {
+                if (str.equals("CHANNELS_TOO_MUCH")) {
+                    if (baseFragment.getParentActivity() == null || AccountInstance.getInstance(i).getUserConfig().isPremium()) {
                         baseFragment.presentFragment(new TooManyCommunitiesActivity(2));
                         return null;
-                    } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        showFloodWaitAlert(tLRPC$TL_error.text, baseFragment);
-                    } else {
-                        showAddUserAlert(tLRPC$TL_error.text, baseFragment, false, tLObject);
                     }
-                } else if (tLObject instanceof TLRPC$TL_channels_createChannel) {
-                    if (str.equals("CHANNELS_TOO_MUCH")) {
+                    baseFragment.showDialog(new LimitReachedBottomSheet(baseFragment.getParentActivity(), 5, i));
+                    return null;
+                } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
+                    showFloodWaitAlert(tLRPC$TL_error.text, baseFragment);
+                } else {
+                    showAddUserAlert(tLRPC$TL_error.text, baseFragment, false, tLObject);
+                }
+            } else if (tLObject instanceof TLRPC$TL_channels_createChannel) {
+                if (str.equals("CHANNELS_TOO_MUCH")) {
+                    if (baseFragment.getParentActivity() == null || AccountInstance.getInstance(i).getUserConfig().isPremium()) {
                         baseFragment.presentFragment(new TooManyCommunitiesActivity(2));
                         return null;
-                    } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        showFloodWaitAlert(tLRPC$TL_error.text, baseFragment);
-                    } else {
-                        showAddUserAlert(tLRPC$TL_error.text, baseFragment, false, tLObject);
                     }
-                } else if (tLObject instanceof TLRPC$TL_messages_editMessage) {
-                    if (!str.equals("MESSAGE_NOT_MODIFIED")) {
-                        if (baseFragment != null) {
-                            showSimpleAlert(baseFragment, LocaleController.getString("EditMessageError", R.string.EditMessageError));
-                        } else {
-                            showSimpleToast(null, LocaleController.getString("EditMessageError", R.string.EditMessageError));
+                    baseFragment.showDialog(new LimitReachedBottomSheet(baseFragment.getParentActivity(), 5, i));
+                    return null;
+                } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
+                    showFloodWaitAlert(tLRPC$TL_error.text, baseFragment);
+                } else {
+                    showAddUserAlert(tLRPC$TL_error.text, baseFragment, false, tLObject);
+                }
+            } else if (tLObject instanceof TLRPC$TL_messages_editMessage) {
+                if (!str.equals("MESSAGE_NOT_MODIFIED")) {
+                    if (baseFragment != null) {
+                        showSimpleAlert(baseFragment, LocaleController.getString("EditMessageError", R.string.EditMessageError));
+                    } else {
+                        showSimpleToast(null, LocaleController.getString("EditMessageError", R.string.EditMessageError));
+                        return null;
+                    }
+                }
+            } else if ((tLObject instanceof TLRPC$TL_messages_sendMessage) || (tLObject instanceof TLRPC$TL_messages_sendMedia) || (tLObject instanceof TLRPC$TL_messages_sendInlineBotResult) || (tLObject instanceof TLRPC$TL_messages_forwardMessages) || (tLObject instanceof TLRPC$TL_messages_sendMultiMedia) || (tLObject instanceof TLRPC$TL_messages_sendScheduledMessages)) {
+                str.hashCode();
+                char c = 65535;
+                switch (str.hashCode()) {
+                    case -1809401834:
+                        if (str.equals("USER_BANNED_IN_CHANNEL")) {
+                            c = 0;
+                            break;
                         }
-                    }
-                } else if ((tLObject instanceof TLRPC$TL_messages_sendMessage) || (tLObject instanceof TLRPC$TL_messages_sendMedia) || (tLObject instanceof TLRPC$TL_messages_sendInlineBotResult) || (tLObject instanceof TLRPC$TL_messages_forwardMessages) || (tLObject instanceof TLRPC$TL_messages_sendMultiMedia) || (tLObject instanceof TLRPC$TL_messages_sendScheduledMessages)) {
-                    str.hashCode();
-                    char c = 65535;
-                    switch (str.hashCode()) {
-                        case -1809401834:
-                            if (str.equals("USER_BANNED_IN_CHANNEL")) {
-                                c = 0;
-                                break;
-                            }
+                        break;
+                    case -454039871:
+                        if (str.equals("PEER_FLOOD")) {
+                            c = 1;
                             break;
-                        case -454039871:
-                            if (str.equals("PEER_FLOOD")) {
-                                c = 1;
-                                break;
-                            }
+                        }
+                        break;
+                    case 1169786080:
+                        if (str.equals("SCHEDULE_TOO_MUCH")) {
+                            c = 2;
                             break;
-                        case 1169786080:
-                            if (str.equals("SCHEDULE_TOO_MUCH")) {
-                                c = 2;
-                                break;
-                            }
-                            break;
-                    }
-                    switch (c) {
-                        case 0:
-                            NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.needShowAlert, 5);
-                            break;
-                        case 1:
-                            NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.needShowAlert, 0);
-                            break;
-                        case 2:
-                            showSimpleToast(baseFragment, LocaleController.getString("MessageScheduledLimitReached", R.string.MessageScheduledLimitReached));
-                            break;
-                    }
-                } else if (tLObject instanceof TLRPC$TL_messages_importChatInvite) {
-                    if (str.startsWith("FLOOD_WAIT")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    } else if (tLRPC$TL_error.text.equals("USERS_TOO_MUCH")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("JoinToGroupErrorFull", R.string.JoinToGroupErrorFull));
-                    } else if (tLRPC$TL_error.text.equals("CHANNELS_TOO_MUCH")) {
+                        }
+                        break;
+                }
+                switch (c) {
+                    case 0:
+                        NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.needShowAlert, 5);
+                        break;
+                    case 1:
+                        NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.needShowAlert, 0);
+                        break;
+                    case 2:
+                        showSimpleToast(baseFragment, LocaleController.getString("MessageScheduledLimitReached", R.string.MessageScheduledLimitReached));
+                        break;
+                }
+            } else if (tLObject instanceof TLRPC$TL_messages_importChatInvite) {
+                if (str.startsWith("FLOOD_WAIT")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
+                } else if (tLRPC$TL_error.text.equals("USERS_TOO_MUCH")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("JoinToGroupErrorFull", R.string.JoinToGroupErrorFull));
+                } else if (tLRPC$TL_error.text.equals("CHANNELS_TOO_MUCH")) {
+                    if (baseFragment.getParentActivity() == null || AccountInstance.getInstance(i).getUserConfig().isPremium()) {
                         baseFragment.presentFragment(new TooManyCommunitiesActivity(0));
-                    } else if (tLRPC$TL_error.text.equals("INVITE_HASH_EXPIRED")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("ExpiredLink", R.string.ExpiredLink), LocaleController.getString("InviteExpired", R.string.InviteExpired));
                     } else {
-                        showSimpleAlert(baseFragment, LocaleController.getString("JoinToGroupErrorNotExist", R.string.JoinToGroupErrorNotExist));
+                        baseFragment.showDialog(new LimitReachedBottomSheet(baseFragment.getParentActivity(), 5, i));
                     }
-                } else if (tLObject instanceof TLRPC$TL_messages_getAttachedStickers) {
-                    if (!(baseFragment == null || baseFragment.getParentActivity() == null)) {
-                        Activity parentActivity = baseFragment.getParentActivity();
-                        Toast.makeText(parentActivity, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text, 0).show();
-                    }
-                } else if ((tLObject instanceof TLRPC$TL_account_confirmPhone) || (tLObject instanceof TLRPC$TL_account_verifyPhone) || (tLObject instanceof TLRPC$TL_account_verifyEmail)) {
-                    if (str.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID") || tLRPC$TL_error.text.contains("CODE_INVALID") || tLRPC$TL_error.text.contains("CODE_EMPTY")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("InvalidCode", R.string.InvalidCode));
-                    }
-                    if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED") || tLRPC$TL_error.text.contains("EMAIL_VERIFY_EXPIRED")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("CodeExpired", R.string.CodeExpired));
-                    }
-                    if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    }
-                    return showSimpleAlert(baseFragment, tLRPC$TL_error.text);
-                } else if (tLObject instanceof TLRPC$TL_auth_resendCode) {
-                    if (str.contains("PHONE_NUMBER_INVALID")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
-                    }
-                    if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("InvalidCode", R.string.InvalidCode));
-                    }
-                    if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("CodeExpired", R.string.CodeExpired));
-                    }
-                    if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    }
-                    if (tLRPC$TL_error.code != -1000) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
-                    }
-                } else if (tLObject instanceof TLRPC$TL_account_sendConfirmPhoneCode) {
-                    if (i2 == 400) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("CancelLinkExpired", R.string.CancelLinkExpired));
-                    }
-                    if (str.startsWith("FLOOD_WAIT")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    }
-                    return showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred));
-                } else if (tLObject instanceof TLRPC$TL_account_changePhone) {
-                    if (str.contains("PHONE_NUMBER_INVALID")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
-                    } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("InvalidCode", R.string.InvalidCode));
-                    } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("CodeExpired", R.string.CodeExpired));
-                    } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    } else {
-                        showSimpleAlert(baseFragment, tLRPC$TL_error.text);
-                    }
-                } else if (tLObject instanceof TLRPC$TL_account_sendChangePhoneCode) {
-                    if (str.contains("PHONE_NUMBER_INVALID")) {
-                        LoginActivity.needShowInvalidAlert(baseFragment, (String) objArr[0], false);
-                    } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("InvalidCode", R.string.InvalidCode));
-                    } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("CodeExpired", R.string.CodeExpired));
-                    } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    } else if (tLRPC$TL_error.text.startsWith("PHONE_NUMBER_OCCUPIED")) {
-                        showSimpleAlert(baseFragment, LocaleController.formatString("ChangePhoneNumberOccupied", R.string.ChangePhoneNumberOccupied, objArr[0]));
-                    } else if (tLRPC$TL_error.text.startsWith("PHONE_NUMBER_BANNED")) {
-                        LoginActivity.needShowInvalidAlert(baseFragment, (String) objArr[0], true);
-                    } else {
-                        showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred));
-                    }
-                } else if (tLObject instanceof TLRPC$TL_updateUserName) {
-                    str.hashCode();
-                    if (str.equals("USERNAME_INVALID")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("UsernameInvalid", R.string.UsernameInvalid));
-                    } else if (!str.equals("USERNAME_OCCUPIED")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred));
-                    } else {
-                        showSimpleAlert(baseFragment, LocaleController.getString("UsernameInUse", R.string.UsernameInUse));
-                    }
-                } else if (tLObject instanceof TLRPC$TL_contacts_importContacts) {
-                    if (str.startsWith("FLOOD_WAIT")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    } else {
-                        showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
-                    }
-                } else if ((tLObject instanceof TLRPC$TL_account_getPassword) || (tLObject instanceof TLRPC$TL_account_getTmpPassword)) {
-                    if (str.startsWith("FLOOD_WAIT")) {
-                        showSimpleToast(baseFragment, getFloodWaitString(tLRPC$TL_error.text));
-                    } else {
-                        showSimpleToast(baseFragment, tLRPC$TL_error.text);
-                    }
-                } else if (tLObject instanceof TLRPC$TL_payments_sendPaymentForm) {
-                    str.hashCode();
-                    if (str.equals("BOT_PRECHECKOUT_FAILED")) {
-                        showSimpleToast(baseFragment, LocaleController.getString("PaymentPrecheckoutFailed", R.string.PaymentPrecheckoutFailed));
-                    } else if (!str.equals("PAYMENT_FAILED")) {
-                        showSimpleToast(baseFragment, tLRPC$TL_error.text);
-                    } else {
-                        showSimpleToast(baseFragment, LocaleController.getString("PaymentFailed", R.string.PaymentFailed));
-                    }
-                } else if (tLObject instanceof TLRPC$TL_payments_validateRequestedInfo) {
-                    str.hashCode();
-                    if (!str.equals("SHIPPING_NOT_AVAILABLE")) {
-                        showSimpleToast(baseFragment, tLRPC$TL_error.text);
-                    } else {
-                        showSimpleToast(baseFragment, LocaleController.getString("PaymentNoShippingMethod", R.string.PaymentNoShippingMethod));
-                    }
+                } else if (tLRPC$TL_error.text.equals("INVITE_HASH_EXPIRED")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("ExpiredLink", R.string.ExpiredLink), LocaleController.getString("InviteExpired", R.string.InviteExpired));
+                } else {
+                    showSimpleAlert(baseFragment, LocaleController.getString("JoinToGroupErrorNotExist", R.string.JoinToGroupErrorNotExist));
                 }
-                return null;
-            } else if (baseFragment == null || !str.equals("CHANNELS_TOO_MUCH")) {
-                if (baseFragment != null) {
-                    showAddUserAlert(tLRPC$TL_error.text, baseFragment, (objArr == null || objArr.length <= 0) ? false : ((Boolean) objArr[0]).booleanValue(), tLObject);
-                } else if (tLRPC$TL_error.text.equals("PEER_FLOOD")) {
-                    NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.needShowAlert, 1);
+            } else if (tLObject instanceof TLRPC$TL_messages_getAttachedStickers) {
+                if (!(baseFragment == null || baseFragment.getParentActivity() == null)) {
+                    Activity parentActivity = baseFragment.getParentActivity();
+                    Toast.makeText(parentActivity, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text, 0).show();
                 }
-            } else if (z2 || (tLObject instanceof TLRPC$TL_channels_inviteToChannel)) {
-                baseFragment.presentFragment(new TooManyCommunitiesActivity(0));
-                return null;
-            } else {
-                baseFragment.presentFragment(new TooManyCommunitiesActivity(1));
-                return null;
+            } else if ((tLObject instanceof TLRPC$TL_account_confirmPhone) || (tLObject instanceof TLRPC$TL_account_verifyPhone) || (tLObject instanceof TLRPC$TL_account_verifyEmail)) {
+                if (str.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID") || tLRPC$TL_error.text.contains("CODE_INVALID") || tLRPC$TL_error.text.contains("CODE_EMPTY")) {
+                    return showSimpleAlert(baseFragment, LocaleController.getString("InvalidCode", R.string.InvalidCode));
+                }
+                if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED") || tLRPC$TL_error.text.contains("EMAIL_VERIFY_EXPIRED")) {
+                    return showSimpleAlert(baseFragment, LocaleController.getString("CodeExpired", R.string.CodeExpired));
+                }
+                if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
+                    return showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
+                }
+                return showSimpleAlert(baseFragment, tLRPC$TL_error.text);
+            } else if (tLObject instanceof TLRPC$TL_auth_resendCode) {
+                if (str.contains("PHONE_NUMBER_INVALID")) {
+                    return showSimpleAlert(baseFragment, LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
+                }
+                if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
+                    return showSimpleAlert(baseFragment, LocaleController.getString("InvalidCode", R.string.InvalidCode));
+                }
+                if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
+                    return showSimpleAlert(baseFragment, LocaleController.getString("CodeExpired", R.string.CodeExpired));
+                }
+                if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
+                    return showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
+                }
+                if (tLRPC$TL_error.code != -1000) {
+                    return showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
+                }
+            } else if (tLObject instanceof TLRPC$TL_account_sendConfirmPhoneCode) {
+                if (i2 == 400) {
+                    return showSimpleAlert(baseFragment, LocaleController.getString("CancelLinkExpired", R.string.CancelLinkExpired));
+                }
+                if (str.startsWith("FLOOD_WAIT")) {
+                    return showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
+                }
+                return showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred));
+            } else if (tLObject instanceof TLRPC$TL_account_changePhone) {
+                if (str.contains("PHONE_NUMBER_INVALID")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
+                } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("InvalidCode", R.string.InvalidCode));
+                } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("CodeExpired", R.string.CodeExpired));
+                } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
+                } else {
+                    showSimpleAlert(baseFragment, tLRPC$TL_error.text);
+                }
+            } else if (tLObject instanceof TLRPC$TL_account_sendChangePhoneCode) {
+                if (str.contains("PHONE_NUMBER_INVALID")) {
+                    LoginActivity.needShowInvalidAlert(baseFragment, (String) objArr[0], false);
+                } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("InvalidCode", R.string.InvalidCode));
+                } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("CodeExpired", R.string.CodeExpired));
+                } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
+                } else if (tLRPC$TL_error.text.startsWith("PHONE_NUMBER_OCCUPIED")) {
+                    showSimpleAlert(baseFragment, LocaleController.formatString("ChangePhoneNumberOccupied", R.string.ChangePhoneNumberOccupied, objArr[0]));
+                } else if (tLRPC$TL_error.text.startsWith("PHONE_NUMBER_BANNED")) {
+                    LoginActivity.needShowInvalidAlert(baseFragment, (String) objArr[0], true);
+                } else {
+                    showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred));
+                }
+            } else if (tLObject instanceof TLRPC$TL_updateUserName) {
+                str.hashCode();
+                if (str.equals("USERNAME_INVALID")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("UsernameInvalid", R.string.UsernameInvalid));
+                } else if (!str.equals("USERNAME_OCCUPIED")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred));
+                } else {
+                    showSimpleAlert(baseFragment, LocaleController.getString("UsernameInUse", R.string.UsernameInUse));
+                }
+            } else if (tLObject instanceof TLRPC$TL_contacts_importContacts) {
+                if (str.startsWith("FLOOD_WAIT")) {
+                    showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
+                } else {
+                    showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
+                }
+            } else if ((tLObject instanceof TLRPC$TL_account_getPassword) || (tLObject instanceof TLRPC$TL_account_getTmpPassword)) {
+                if (str.startsWith("FLOOD_WAIT")) {
+                    showSimpleToast(baseFragment, getFloodWaitString(tLRPC$TL_error.text));
+                } else {
+                    showSimpleToast(baseFragment, tLRPC$TL_error.text);
+                }
+            } else if (tLObject instanceof TLRPC$TL_payments_sendPaymentForm) {
+                str.hashCode();
+                if (str.equals("BOT_PRECHECKOUT_FAILED")) {
+                    showSimpleToast(baseFragment, LocaleController.getString("PaymentPrecheckoutFailed", R.string.PaymentPrecheckoutFailed));
+                } else if (!str.equals("PAYMENT_FAILED")) {
+                    showSimpleToast(baseFragment, tLRPC$TL_error.text);
+                } else {
+                    showSimpleToast(baseFragment, LocaleController.getString("PaymentFailed", R.string.PaymentFailed));
+                }
+            } else if (tLObject instanceof TLRPC$TL_payments_validateRequestedInfo) {
+                str.hashCode();
+                if (!str.equals("SHIPPING_NOT_AVAILABLE")) {
+                    showSimpleToast(baseFragment, tLRPC$TL_error.text);
+                } else {
+                    showSimpleToast(baseFragment, LocaleController.getString("PaymentNoShippingMethod", R.string.PaymentNoShippingMethod));
+                }
             }
         } else if (str.contains("PHONE_NUMBER_INVALID")) {
             showSimpleAlert(baseFragment, LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
@@ -722,7 +738,7 @@ public class AlertsCreator {
     }
 
     public static void lambda$createLanguageAlert$7(LaunchActivity launchActivity, DialogInterface dialogInterface, int i) {
-        launchActivity.lambda$runLinkRequest$54(new LanguageSelectActivity());
+        launchActivity.lambda$runLinkRequest$56(new LanguageSelectActivity());
     }
 
     public static void lambda$createLanguageAlert$8(TLRPC$TL_langPackLanguage tLRPC$TL_langPackLanguage, LaunchActivity launchActivity, DialogInterface dialogInterface, int i) {
@@ -1352,7 +1368,7 @@ public class AlertsCreator {
                 TextView textView2 = new TextView(parentActivity);
                 textView2.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
                 textView2.setTextSize(1, 20.0f);
-                textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 textView2.setLines(1);
                 textView2.setMaxLines(1);
                 textView2.setSingleLine(true);
@@ -1479,7 +1495,7 @@ public class AlertsCreator {
                 TextView textView2 = new TextView(parentActivity);
                 textView2.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
                 textView2.setTextSize(1, 20.0f);
-                textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 textView2.setLines(1);
                 textView2.setMaxLines(1);
                 textView2.setSingleLine(true);
@@ -1597,7 +1613,7 @@ public class AlertsCreator {
             TextView textView2 = new TextView(parentActivity);
             textView2.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
             textView2.setTextSize(1, 20.0f);
-            textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView2.setLines(1);
             textView2.setMaxLines(1);
             textView2.setSingleLine(true);
@@ -2000,7 +2016,7 @@ public class AlertsCreator {
             textView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             textView2.setGravity(17);
             textView2.setTextSize(1, 14.0f);
-            textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView2.setText(LocaleController.getString("IUnderstand", R.string.IUnderstand));
             textView2.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
@@ -2440,7 +2456,7 @@ public class AlertsCreator {
         }
         textView.setTextColor(scheduleDatePickerColors.textColor);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         textView.setOnTouchListener(AlertsCreator$$ExternalSyntheticLambda77.INSTANCE);
         if (!DialogObject.isUserDialog(j) || j == clientUserId || (user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j))) == null || user.bot || (tLRPC$UserStatus = user.status) == null || tLRPC$UserStatus.expires <= 0) {
@@ -2543,7 +2559,7 @@ public class AlertsCreator {
         textView2.setGravity(17);
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView2.setBackground(Theme.AdaptiveRipple.filledRect(scheduleDatePickerColors.buttonBackgroundColor, 4.0f));
         linearLayout4.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
         textView2.setOnClickListener(new View.OnClickListener() {
@@ -2687,7 +2703,7 @@ public class AlertsCreator {
         textView.setText(LocaleController.getString("ExpireAfter", R.string.ExpireAfter));
         textView.setTextColor(scheduleDatePickerColors.textColor);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         textView.setOnTouchListener(AlertsCreator$$ExternalSyntheticLambda76.INSTANCE);
         LinearLayout linearLayout3 = new LinearLayout(context);
@@ -2757,7 +2773,7 @@ public class AlertsCreator {
         textView2.setGravity(17);
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         textView2.setText(LocaleController.getString("SetTimeLimit", R.string.SetTimeLimit));
         LinearLayout linearLayout4 = linearLayout;
@@ -2880,7 +2896,7 @@ public class AlertsCreator {
         textView.setText(LocaleController.getString("AutoDeleteAfteTitle", R.string.AutoDeleteAfteTitle));
         textView.setTextColor(scheduleDatePickerColors.textColor);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         textView.setOnTouchListener(AlertsCreator$$ExternalSyntheticLambda79.INSTANCE);
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -2898,7 +2914,7 @@ public class AlertsCreator {
         textView2.setGravity(17);
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         textView2.setText(LocaleController.getString("AutoDeleteConfirm", R.string.AutoDeleteConfirm));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
@@ -3017,7 +3033,7 @@ public class AlertsCreator {
         textView.setText(LocaleController.getString("NotfificationsFrequencyTitle", R.string.NotfificationsFrequencyTitle));
         textView.setTextColor(scheduleDatePickerColors.textColor);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         textView.setOnTouchListener(AlertsCreator$$ExternalSyntheticLambda81.INSTANCE);
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -3037,7 +3053,7 @@ public class AlertsCreator {
         textView2.setGravity(17);
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         textView2.setText(LocaleController.getString("AutoDeleteConfirm", R.string.AutoDeleteConfirm));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
@@ -3153,7 +3169,7 @@ public class AlertsCreator {
         textView.setText(LocaleController.getString("MuteForAlert", R.string.MuteForAlert));
         textView.setTextColor(scheduleDatePickerColors.textColor);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         textView.setOnTouchListener(AlertsCreator$$ExternalSyntheticLambda80.INSTANCE);
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -3177,7 +3193,7 @@ public class AlertsCreator {
         textView2.setGravity(17);
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         textView2.setText(LocaleController.getString("AutoDeleteConfirm", R.string.AutoDeleteConfirm));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
@@ -3277,7 +3293,7 @@ public class AlertsCreator {
         textView.setText(LocaleController.getString("ChooseDate", R.string.ChooseDate));
         textView.setTextColor(Theme.getColor("dialogTextBlack", resourcesProvider));
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         textView.setOnTouchListener(AlertsCreator$$ExternalSyntheticLambda78.INSTANCE);
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -3328,7 +3344,7 @@ public class AlertsCreator {
         textView2.setGravity(17);
         textView2.setTextColor(Theme.getColor("featuredStickers_buttonText", resourcesProvider));
         textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView2.setText(LocaleController.getString("JumpToDate", R.string.JumpToDate));
         textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.getColor("featuredStickers_addButton", resourcesProvider), Theme.getColor("featuredStickers_addButtonPressed", resourcesProvider)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
@@ -3481,13 +3497,13 @@ public class AlertsCreator {
             builder.setTitle(LocaleController.getString("ReportChat", R.string.ReportChat), true);
             if (i != 0) {
                 CharSequence[] charSequenceArr2 = {LocaleController.getString("ReportChatSpam", R.string.ReportChatSpam), LocaleController.getString("ReportChatViolence", R.string.ReportChatViolence), LocaleController.getString("ReportChatChild", R.string.ReportChatChild), LocaleController.getString("ReportChatIllegalDrugs", R.string.ReportChatIllegalDrugs), LocaleController.getString("ReportChatPersonalDetails", R.string.ReportChatPersonalDetails), LocaleController.getString("ReportChatPornography", R.string.ReportChatPornography), LocaleController.getString("ReportChatOther", R.string.ReportChatOther)};
-                iArr = new int[]{R.drawable.msg_report_spam, R.drawable.msg_report_violence, R.drawable.msg_report_abuse, R.drawable.msg_report_drugs, R.drawable.msg_report_personal, R.drawable.msg_report_xxx, R.drawable.msg_report_other};
+                iArr = new int[]{R.drawable.msg_clearcache, R.drawable.msg_report_violence, R.drawable.msg_block2, R.drawable.msg_report_drugs, R.drawable.msg_report_personal, R.drawable.msg_report_xxx, R.drawable.msg_report_other};
                 charSequenceArr = charSequenceArr2;
                 iArr2 = new int[]{0, 1, 2, 3, 4, 5, 100};
             } else {
                 CharSequence[] charSequenceArr3 = {LocaleController.getString("ReportChatSpam", R.string.ReportChatSpam), LocaleController.getString("ReportChatFakeAccount", R.string.ReportChatFakeAccount), LocaleController.getString("ReportChatViolence", R.string.ReportChatViolence), LocaleController.getString("ReportChatChild", R.string.ReportChatChild), LocaleController.getString("ReportChatIllegalDrugs", R.string.ReportChatIllegalDrugs), LocaleController.getString("ReportChatPersonalDetails", R.string.ReportChatPersonalDetails), LocaleController.getString("ReportChatPornography", R.string.ReportChatPornography), LocaleController.getString("ReportChatOther", R.string.ReportChatOther)};
                 iArr2 = new int[]{0, 6, 1, 2, 3, 4, 5, 100};
-                iArr = new int[]{R.drawable.msg_report_spam, R.drawable.msg_report_fake, R.drawable.msg_report_violence, R.drawable.msg_report_abuse, R.drawable.msg_report_drugs, R.drawable.msg_report_personal, R.drawable.msg_report_xxx, R.drawable.msg_report_other};
+                iArr = new int[]{R.drawable.msg_clearcache, R.drawable.msg_report_fake, R.drawable.msg_report_violence, R.drawable.msg_block2, R.drawable.msg_report_drugs, R.drawable.msg_report_personal, R.drawable.msg_report_xxx, R.drawable.msg_report_other};
                 charSequenceArr = charSequenceArr3;
             }
             builder.setItems(charSequenceArr, iArr, new DialogInterface.OnClickListener() {
@@ -4409,7 +4425,7 @@ public class AlertsCreator {
         textView.setText(LocaleController.getString("LowDiskSpaceTitle2", R.string.LowDiskSpaceTitle2));
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
         textView.setTextSize(1, 16.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         if (LocaleController.isRTL) {
             i2 = 5;
@@ -4475,7 +4491,7 @@ public class AlertsCreator {
     }
 
     public static void lambda$createFreeSpaceDialog$103(LaunchActivity launchActivity, DialogInterface dialogInterface, int i) {
-        launchActivity.lambda$runLinkRequest$54(new CacheControlActivity());
+        launchActivity.lambda$runLinkRequest$56(new CacheControlActivity());
     }
 
     public static Dialog createPrioritySelectDialog(Activity activity, final long j, final int i, final Runnable runnable) {

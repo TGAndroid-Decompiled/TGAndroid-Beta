@@ -284,7 +284,7 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
         this.cancelTextView.setBackgroundDrawable(Theme.createSelectorDrawable(-12763843, 0));
         this.cancelTextView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
         this.cancelTextView.setText(LocaleController.getString("Cancel", R.string.Cancel).toUpperCase());
-        this.cancelTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.cancelTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.toolsView.addView(this.cancelTextView, LayoutHelper.createFrame(-2, -1, 51));
         TextView textView2 = new TextView(context);
         this.doneTextView = textView2;
@@ -294,12 +294,12 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
         this.doneTextView.setBackgroundDrawable(Theme.createSelectorDrawable(-12763843, 0));
         this.doneTextView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
         this.doneTextView.setText(LocaleController.getString("Done", R.string.Done).toUpperCase());
-        this.doneTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.doneTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.toolsView.addView(this.doneTextView, LayoutHelper.createFrame(-2, -1, 53));
         ImageView imageView = new ImageView(context);
         this.paintButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.paintButton.setImageResource(R.drawable.photo_paint);
+        this.paintButton.setImageResource(R.drawable.msg_photo_draw);
         this.paintButton.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.toolsView.addView(this.paintButton, LayoutHelper.createFrame(54, -1.0f, 17, 0.0f, 0.0f, 56.0f, 0.0f));
         this.paintButton.setOnClickListener(new View.OnClickListener() {
@@ -310,7 +310,7 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
         });
         ImageView imageView2 = new ImageView(context);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        imageView2.setImageResource(R.drawable.photo_sticker);
+        imageView2.setImageResource(R.drawable.msg_sticker);
         imageView2.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.toolsView.addView(imageView2, LayoutHelper.createFrame(54, -1, 17));
         imageView2.setOnClickListener(new View.OnClickListener() {
@@ -321,7 +321,7 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
         });
         ImageView imageView3 = new ImageView(context);
         imageView3.setScaleType(ImageView.ScaleType.CENTER);
-        imageView3.setImageResource(R.drawable.photo_paint_text);
+        imageView3.setImageResource(R.drawable.msg_photo_text);
         imageView3.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.toolsView.addView(imageView3, LayoutHelper.createFrame(54, -1.0f, 17, 56.0f, 0.0f, 0.0f, 0.0f));
         imageView3.setOnClickListener(new View.OnClickListener() {
@@ -446,11 +446,11 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
         int i = R.drawable.photo_paint_brush;
         if (entityView != null) {
             if (entityView instanceof StickerView) {
-                i = R.drawable.photo_flip;
+                i = R.drawable.msg_photo_flip;
             } else if (entityView instanceof TextPaintView) {
                 i = R.drawable.photo_outline;
             }
-            this.paintButton.setImageResource(R.drawable.photo_paint);
+            this.paintButton.setImageResource(R.drawable.msg_photo_draw);
             this.paintButton.setColorFilter((ColorFilter) null);
         } else {
             Swatch swatch = this.brushSwatch;
@@ -459,7 +459,7 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
                 this.brushSwatch = null;
             }
             this.paintButton.setColorFilter(new PorterDuffColorFilter(getThemedColor("dialogFloatingButton"), PorterDuff.Mode.MULTIPLY));
-            this.paintButton.setImageResource(R.drawable.photo_paint);
+            this.paintButton.setImageResource(R.drawable.msg_photo_draw);
         }
         this.backgroundView.setVisibility(this.currentEntityView instanceof TextPaintView ? 4 : 0);
         this.colorPicker.setSettingsButtonImage(i);

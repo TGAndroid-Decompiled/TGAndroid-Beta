@@ -362,95 +362,93 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        HeaderCell headerCell;
+        ?? r1;
         View view;
         switch (i) {
             case 0:
                 if (this.dialogsType != 2) {
-                    DialogCell dialogCell = new DialogCell(this.parentFragment, this.mContext, true, false, this.currentAccount, null);
-                    dialogCell.setArchivedPullAnimation(this.pullForegroundDrawable);
-                    dialogCell.setPreloader(this.preloader);
-                    headerCell = dialogCell;
+                    r1 = new DialogCell(this.parentFragment, this.mContext, true, false, this.currentAccount, null);
+                    r1.setArchivedPullAnimation(this.pullForegroundDrawable);
+                    r1.setPreloader(this.preloader);
                     break;
                 } else {
-                    headerCell = new ProfileSearchCell(this.mContext);
+                    r1 = new ProfileSearchCell(this.mContext);
                     break;
                 }
             case 1:
             case 13:
-                FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.mContext);
-                flickerLoadingView.setIsSingleCell(true);
-                flickerLoadingView.setViewType(i == 13 ? 18 : 7);
-                headerCell = flickerLoadingView;
+                r1 = new FlickerLoadingView(this.mContext);
+                r1.setIsSingleCell(true);
+                int i2 = i == 13 ? 18 : 7;
+                r1.setViewType(i2);
+                if (i2 == 18) {
+                    r1.setIgnoreHeightCheck(true);
+                }
                 if (i == 13) {
-                    flickerLoadingView.setItemsCount((int) ((AndroidUtilities.displaySize.y * 0.5f) / AndroidUtilities.dp(64.0f)));
-                    headerCell = flickerLoadingView;
+                    r1.setItemsCount((int) ((AndroidUtilities.displaySize.y * 0.5f) / AndroidUtilities.dp(64.0f)));
                     break;
                 }
                 break;
             case 2:
-                HeaderCell headerCell2 = new HeaderCell(this.mContext);
-                headerCell2.setText(LocaleController.getString("RecentlyViewed", R.string.RecentlyViewed));
+                r1 = new HeaderCell(this.mContext);
+                r1.setText(LocaleController.getString("RecentlyViewed", R.string.RecentlyViewed));
                 TextView textView = new TextView(this.mContext);
                 textView.setTextSize(1, 15.0f);
-                textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueHeader"));
                 textView.setText(LocaleController.getString("RecentlyViewedHide", R.string.RecentlyViewedHide));
-                int i2 = 3;
+                int i3 = 3;
                 textView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
                 if (!LocaleController.isRTL) {
-                    i2 = 5;
+                    i3 = 5;
                 }
-                headerCell2.addView(textView, LayoutHelper.createFrame(-1, -1.0f, i2 | 48, 17.0f, 15.0f, 17.0f, 0.0f));
+                r1.addView(textView, LayoutHelper.createFrame(-1, -1.0f, i3 | 48, 17.0f, 15.0f, 17.0f, 0.0f));
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
                         DialogsAdapter.this.lambda$onCreateViewHolder$1(view2);
                     }
                 });
-                headerCell = headerCell2;
                 break;
             case 3:
                 FrameLayout frameLayout = new FrameLayout(this, this.mContext) {
                     @Override
-                    protected void onMeasure(int i3, int i4) {
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824));
+                    protected void onMeasure(int i4, int i5) {
+                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824));
                     }
                 };
                 frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
                 View view2 = new View(this.mContext);
                 view2.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, (int) R.drawable.greydivider, "windowBackgroundGrayShadow"));
                 frameLayout.addView(view2, LayoutHelper.createFrame(-1, -1.0f));
-                headerCell = frameLayout;
+                r1 = frameLayout;
                 break;
             case 4:
-                headerCell = new DialogMeUrlCell(this.mContext);
+                r1 = new DialogMeUrlCell(this.mContext);
                 break;
             case 5:
-                headerCell = new DialogsEmptyCell(this.mContext);
+                r1 = new DialogsEmptyCell(this.mContext);
                 break;
             case 6:
-                headerCell = new UserCell(this.mContext, 8, 0, false);
+                r1 = new UserCell(this.mContext, 8, 0, false);
                 break;
             case 7:
-                HeaderCell headerCell3 = new HeaderCell(this.mContext);
-                headerCell3.setPadding(0, 0, 0, AndroidUtilities.dp(12.0f));
-                headerCell = headerCell3;
+                r1 = new HeaderCell(this.mContext);
+                r1.setPadding(0, 0, 0, AndroidUtilities.dp(12.0f));
                 break;
             case 8:
                 view = new ShadowSectionCell(this.mContext);
                 CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, (int) R.drawable.greydivider, "windowBackgroundGrayShadow"));
                 combinedDrawable.setFullsize(true);
                 view.setBackgroundDrawable(combinedDrawable);
-                headerCell = view;
+                r1 = view;
                 break;
             case 9:
-                ArchiveHintCell archiveHintCell = new ArchiveHintCell(this.mContext);
-                this.archiveHintCell = archiveHintCell;
-                headerCell = archiveHintCell;
+                r1 = new ArchiveHintCell(this.mContext);
+                this.archiveHintCell = r1;
                 break;
             case 10:
-                headerCell = new LastEmptyView(this.mContext);
+                r1 = new LastEmptyView(this.mContext);
                 break;
             case 11:
                 view = new TextInfoPrivacyCell(this.mContext) {
@@ -465,8 +463,8 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                         if (DialogsAdapter.this.arrowDrawable != null) {
                             Rect bounds = DialogsAdapter.this.arrowDrawable.getBounds();
                             Drawable drawable = DialogsAdapter.this.arrowDrawable;
-                            int i3 = this.originalX;
-                            drawable.setBounds(i3, this.originalY, bounds.width() + i3, this.originalY + bounds.height());
+                            int i4 = this.originalX;
+                            drawable.setBounds(i4, this.originalY, bounds.width() + i4, this.originalY + bounds.height());
                         }
                     }
 
@@ -506,21 +504,20 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
                 CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, (int) R.drawable.greydivider, "windowBackgroundGrayShadow"));
                 combinedDrawable2.setFullsize(true);
                 view.setBackgroundDrawable(combinedDrawable2);
-                headerCell = view;
+                r1 = view;
                 break;
             case 12:
             default:
-                headerCell = new TextCell(this.mContext);
+                r1 = new TextCell(this.mContext);
                 break;
             case 14:
-                HeaderCell headerCell4 = new HeaderCell(this.mContext, "key_graySectionText", 16, 0, false);
-                headerCell4.setHeight(32);
-                headerCell4.setClickable(false);
-                headerCell = headerCell4;
+                r1 = new HeaderCell(this.mContext, "key_graySectionText", 16, 0, false);
+                r1.setHeight(32);
+                r1.setClickable(false);
                 break;
         }
-        headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, i == 5 ? -1 : -2));
-        return new RecyclerListView.Holder(headerCell);
+        r1.setLayoutParams(new RecyclerView.LayoutParams(-1, i == 5 ? -1 : -2));
+        return new RecyclerListView.Holder(r1);
     }
 
     public int dialogsEmptyType() {
@@ -694,7 +691,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter {
             if (this.dialogsCount != 0) {
                 z2 = true;
             }
-            textCell.setTextAndIcon(string, R.drawable.groups_create, z2);
+            textCell.setTextAndIcon(string, R.drawable.msg_groups_create, z2);
             textCell.setIsInDialogs();
             textCell.setOffsetFromImage(75);
         }

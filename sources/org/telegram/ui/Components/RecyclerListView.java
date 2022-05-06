@@ -463,7 +463,7 @@ public class RecyclerListView extends RecyclerView {
             } else {
                 this.isRtl = false;
                 this.letterPaint.setTextSize(AndroidUtilities.dp(13.0f));
-                this.letterPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                this.letterPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 this.paint2.setColor(Theme.getColor("windowBackgroundWhite"));
                 Drawable mutate = ContextCompat.getDrawable(context, R.drawable.calendar_date).mutate();
                 this.fastScrollBackgroundDrawable = mutate;

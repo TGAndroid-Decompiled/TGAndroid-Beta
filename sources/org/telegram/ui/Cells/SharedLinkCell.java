@@ -181,7 +181,7 @@ public class SharedLinkCell extends FrameLayout {
         linkPath.setUseRoundRect(true);
         TextPaint textPaint = new TextPaint(1);
         this.titleTextPaint = textPaint;
-        textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.titleTextPaint.setColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.descriptionTextPaint = new TextPaint(1);
         this.titleTextPaint.setTextSize(AndroidUtilities.dp(14.0f));

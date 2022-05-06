@@ -40,7 +40,7 @@ public class ReportAlert extends BottomSheet {
             this.textView.setGravity(17);
             this.textView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             this.textView.setTextSize(1, 14.0f);
-            this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
         }
 
@@ -68,7 +68,7 @@ public class ReportAlert extends BottomSheet {
         rLottieImageView.playAnimation();
         frameLayout.addView(rLottieImageView, LayoutHelper.createFrame(160, 160.0f, 49, 17.0f, 14.0f, 17.0f, 0.0f));
         TextView textView = new TextView(context);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextSize(1, 24.0f);
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
         int i2 = 5;

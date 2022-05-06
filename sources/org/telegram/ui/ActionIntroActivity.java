@@ -520,7 +520,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                 int i9 = i7 + 1;
                 objArr[i2] = Integer.valueOf(i9);
                 textView4.setText(String.format(str2, objArr));
-                this.desctiptionLines[i8].setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                this.desctiptionLines[i8].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 int i10 = i8 + 1;
                 this.desctiptionLines[i10] = new TextView(context);
                 this.desctiptionLines[i10].setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
@@ -603,7 +603,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         this.buttonTextView.setGravity(17);
         this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         this.buttonTextView.setTextSize(1, 14.0f);
-        this.buttonTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         int i11 = this.currentType;
         this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", (i11 == 6 || i11 == 3) ? 6 : 4));
         viewGroup2.addView(this.buttonTextView);

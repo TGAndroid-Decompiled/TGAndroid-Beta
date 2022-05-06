@@ -381,7 +381,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             NumberTextView numberTextView = new NumberTextView(createActionMode.getContext());
             this.selectedMessagesCountTextView = numberTextView;
             numberTextView.setTextSize(18);
-            this.selectedMessagesCountTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+            this.selectedMessagesCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.selectedMessagesCountTextView.setTextColor(Theme.getColor("actionBarDefaultIcon"));
             this.selectedMessagesCountTextView.setOnTouchListener(WallpapersListActivity$$ExternalSyntheticLambda1.INSTANCE);
             createActionMode.addView(this.selectedMessagesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
@@ -1838,9 +1838,9 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             if (itemViewType == 0) {
                 TextCell textCell = (TextCell) viewHolder.itemView;
                 if (i == WallpapersListActivity.this.uploadImageRow) {
-                    textCell.setTextAndIcon(LocaleController.getString("SelectFromGallery", R.string.SelectFromGallery), R.drawable.profile_photos, true);
+                    textCell.setTextAndIcon(LocaleController.getString("SelectFromGallery", R.string.SelectFromGallery), R.drawable.msg_photos, true);
                 } else if (i == WallpapersListActivity.this.setColorRow) {
-                    textCell.setTextAndIcon(LocaleController.getString("SetColor", R.string.SetColor), R.drawable.menu_palette, true);
+                    textCell.setTextAndIcon(LocaleController.getString("SetColor", R.string.SetColor), R.drawable.msg_palette, true);
                 } else if (i == WallpapersListActivity.this.resetRow) {
                     textCell.setText(LocaleController.getString("ResetChatBackgrounds", R.string.ResetChatBackgrounds), false);
                 }

@@ -19,7 +19,7 @@ public class BotSwitchCell extends FrameLayout {
         this.textView = textView;
         textView.setTextSize(1, 15.0f);
         this.textView.setTextColor(Theme.getColor("chat_botSwitchToInlineText"));
-        this.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setSingleLine(true);
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         this.textView.setMaxLines(1);

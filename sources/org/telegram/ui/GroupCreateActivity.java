@@ -1113,7 +1113,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 String format = String.format("%d", Integer.valueOf(this.selectedContacts.size()));
                 int indexOf = TextUtils.indexOf(spannableStringBuilder, format);
                 if (indexOf >= 0) {
-                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface("fonts/rmedium.ttf")), indexOf, format.length() + indexOf, 33);
+                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), indexOf, format.length() + indexOf, 33);
                 }
                 builder.setMessage(spannableStringBuilder);
             } else {
@@ -1530,9 +1530,9 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             } else if (itemViewType == 2) {
                 TextCell textCell = (TextCell) viewHolder.itemView;
                 if (this.inviteViaLink == 2) {
-                    textCell.setTextAndIcon(LocaleController.getString("ChannelInviteViaLink", R.string.ChannelInviteViaLink), R.drawable.profile_link, false);
+                    textCell.setTextAndIcon(LocaleController.getString("ChannelInviteViaLink", R.string.ChannelInviteViaLink), R.drawable.msg_link2, false);
                 } else {
-                    textCell.setTextAndIcon(LocaleController.getString("InviteToGroupByLink", R.string.InviteToGroupByLink), R.drawable.profile_link, false);
+                    textCell.setTextAndIcon(LocaleController.getString("InviteToGroupByLink", R.string.InviteToGroupByLink), R.drawable.msg_link2, false);
                 }
             }
         }

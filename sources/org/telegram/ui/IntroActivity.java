@@ -243,7 +243,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.startMessagingButton = textView;
         textView.setText(LocaleController.getString("StartMessaging", R.string.StartMessaging));
         this.startMessagingButton.setGravity(17);
-        this.startMessagingButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.startMessagingButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.startMessagingButton.setTextSize(1, 15.0f);
         this.startMessagingButton.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         this.frameContainerView.addView(this.startMessagingButton, LayoutHelper.createFrame(-1, 50.0f, 81, 16.0f, 0.0f, 16.0f, 76.0f));

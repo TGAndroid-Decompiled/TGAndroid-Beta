@@ -10,6 +10,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -20,12 +21,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.RLottieImageView;
 
 public class TextSettingsCell extends FrameLayout {
     private boolean canDisable;
     private int changeProgressStartDelay;
     private boolean drawLoading;
     private float drawLoadingProgress;
+    private ImageView imageView;
     private boolean incrementLoadingProgress;
     private float loadingProgress;
     private int loadingSize;
@@ -67,6 +70,12 @@ public class TextSettingsCell extends FrameLayout {
         this.valueTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
         this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteValueText"));
         addView(this.valueTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, f, 0.0f, f, 0.0f));
+        RLottieImageView rLottieImageView = new RLottieImageView(context);
+        this.imageView = rLottieImageView;
+        rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
+        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.MULTIPLY));
+        this.imageView.setVisibility(8);
+        addView(this.imageView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 16, 21.0f, 0.0f, 21.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.valueImageView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -82,6 +91,9 @@ public class TextSettingsCell extends FrameLayout {
         int i3 = measuredWidth / 2;
         if (this.valueImageView.getVisibility() == 0) {
             this.valueImageView.measure(View.MeasureSpec.makeMeasureSpec(i3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        }
+        if (this.imageView.getVisibility() == 0) {
+            this.imageView.measure(View.MeasureSpec.makeMeasureSpec(i3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
         }
         BackupImageView backupImageView = this.valueBackupImageView;
         if (backupImageView != null) {
@@ -142,6 +154,18 @@ public class TextSettingsCell extends FrameLayout {
         this.needDivider = z;
         setWillNotDraw(!z);
         requestLayout();
+    }
+
+    public void setIcon(int i) {
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.textView.getLayoutParams();
+        if (i == 0) {
+            this.imageView.setVisibility(8);
+            marginLayoutParams.leftMargin = 0;
+            return;
+        }
+        this.imageView.setImageResource(i);
+        this.imageView.setVisibility(0);
+        marginLayoutParams.leftMargin = AndroidUtilities.dp(71.0f);
     }
 
     public void setEnabled(boolean z, ArrayList<Animator> arrayList) {

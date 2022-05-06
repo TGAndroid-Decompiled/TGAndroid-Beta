@@ -100,7 +100,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
             addView(textView4, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 56 : 21, 35.0f, z2 ? 21 : i2, 0.0f));
             ImageView imageView = new ImageView(context);
             this.checkImageView = imageView;
-            imageView.setImageResource(R.drawable.profile_info);
+            imageView.setImageResource(R.drawable.msg_info);
             this.checkImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayText3"), PorterDuff.Mode.MULTIPLY));
             this.checkImageView.setScaleType(ImageView.ScaleType.CENTER);
             this.checkImageView.setContentDescription(LocaleController.getString("Edit", R.string.Edit));

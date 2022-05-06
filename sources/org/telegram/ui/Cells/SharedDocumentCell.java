@@ -114,7 +114,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         this.extTextView = textView;
         textView.setTextColor(getThemedColor("files_iconText"));
         this.extTextView.setTextSize(1, 14.0f);
-        this.extTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.extTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.extTextView.setLines(1);
         this.extTextView.setMaxLines(1);
         this.extTextView.setSingleLine(true);
@@ -157,7 +157,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         this.nameTextView = textView2;
         textView2.setTextColor(getThemedColor("windowBackgroundWhiteBlackText"));
         this.nameTextView.setTextSize(1, 16.0f);
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         if (i == 1) {

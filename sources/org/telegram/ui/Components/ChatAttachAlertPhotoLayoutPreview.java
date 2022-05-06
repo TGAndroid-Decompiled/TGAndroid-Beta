@@ -117,7 +117,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.header.setEllipsize(TextUtils.TruncateAt.END);
         this.header.setTextColor(getThemedColor("dialogTextBlack"));
         this.header.setText(LocaleController.getString("AttachMediaPreview", R.string.AttachMediaPreview));
-        this.header.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        this.header.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.header.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
         this.header.setPadding(0, 0, AndroidUtilities.dp(10.0f), 0);
         this.header.setAlpha(0.0f);
@@ -1301,7 +1301,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         if (this.textPaint == null) {
                             TextPaint textPaint = new TextPaint(1);
                             this.textPaint = textPaint;
-                            textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                         }
                         this.textPaint.setColor(ChatAttachAlertPhotoLayoutPreview.this.getThemedColor("chat_attachCheckBoxCheck"));
                         int length = str.length();
@@ -1337,7 +1337,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                             if (this.videoDurationTextPaint == null) {
                                 TextPaint textPaint = new TextPaint(1);
                                 this.videoDurationTextPaint = textPaint;
-                                textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+                                textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                                 this.videoDurationTextPaint.setColor(-1);
                             }
                             float dp = AndroidUtilities.dp(12.0f);

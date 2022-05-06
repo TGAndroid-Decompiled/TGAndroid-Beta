@@ -15,6 +15,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 
@@ -25,6 +26,7 @@ public class TextCell extends FrameLayout {
     private int leftPadding;
     private boolean needDivider;
     private int offsetFromImage;
+    private boolean prioritizeTitleOverValue;
     public final SimpleTextView textView;
     private ImageView valueImageView;
     public final SimpleTextView valueTextView;
@@ -45,7 +47,7 @@ public class TextCell extends FrameLayout {
         int i2 = 5;
         simpleTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         simpleTextView.setImportantForAccessibility(2);
-        addView(simpleTextView);
+        addView(simpleTextView, LayoutHelper.createFrame(-2, -1.0f));
         SimpleTextView simpleTextView2 = new SimpleTextView(context);
         this.valueTextView = simpleTextView2;
         simpleTextView2.setTextColor(Theme.getColor(z ? "dialogTextBlue2" : "windowBackgroundWhiteValueText"));
@@ -85,12 +87,22 @@ public class TextCell extends FrameLayout {
         return this.valueImageView;
     }
 
+    public void setPrioritizeTitleOverValue(boolean z) {
+        this.prioritizeTitleOverValue = z;
+        requestLayout();
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
         int dp = AndroidUtilities.dp(48.0f);
-        this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(this.leftPadding), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.textView.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(this.leftPadding + 71)) - this.valueTextView.getTextWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        if (this.prioritizeTitleOverValue) {
+            this.textView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(this.leftPadding + 71), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+            this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(this.leftPadding + 103)) - this.textView.getTextWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        } else {
+            this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(this.leftPadding), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+            this.textView.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(this.leftPadding + 71)) - this.valueTextView.getTextWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        }
         if (this.imageView.getVisibility() == 0) {
             this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
         }
@@ -107,6 +119,9 @@ public class TextCell extends FrameLayout {
         int i7 = i3 - i;
         int textHeight = (i6 - this.valueTextView.getTextHeight()) / 2;
         int dp = LocaleController.isRTL ? AndroidUtilities.dp(this.leftPadding) : 0;
+        if (this.prioritizeTitleOverValue && !LocaleController.isRTL) {
+            dp = (i7 - this.valueTextView.getMeasuredWidth()) - AndroidUtilities.dp(this.leftPadding);
+        }
         SimpleTextView simpleTextView = this.valueTextView;
         simpleTextView.layout(dp, textHeight, simpleTextView.getMeasuredWidth() + dp, this.valueTextView.getMeasuredHeight() + textHeight);
         int textHeight2 = (i6 - this.textView.getTextHeight()) / 2;
