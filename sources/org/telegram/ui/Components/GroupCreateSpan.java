@@ -47,7 +47,7 @@ public class GroupCreateSpan extends View {
         this(context, null, contact);
     }
 
-    public GroupCreateSpan(android.content.Context r25, java.lang.Object r26, org.telegram.messenger.ContactsController.Contact r27) {
+    public GroupCreateSpan(android.content.Context r26, java.lang.Object r27, org.telegram.messenger.ContactsController.Contact r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCreateSpan.<init>(android.content.Context, java.lang.Object, org.telegram.messenger.ContactsController$Contact):void");
     }
 

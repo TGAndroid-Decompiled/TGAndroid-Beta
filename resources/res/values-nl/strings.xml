@@ -1611,7 +1611,6 @@
     <string name="FilterRemoveExclusionTitle">Uitzondering verwijderen</string>
     <string name="FilterRemoveExclusionUserText">\"%1$s\" echt verwijderen uit de \"nooit inbegrepen\"-lijst?</string>
     <string name="FilterRemoveFrom">Verwijderen van map</string>
-    <string name="FilterRemoveFromAlertFullText">Sorry, je kunt niet meer dan 100 chats aan een map toevoegen.</string>
     <string name="FilterRemoveInclusionChatText">\"%1$s\" echt verwijderen uit de \"altijd inbegrepen\"-lijst?</string>
     <string name="FilterRemoveInclusionText">\"%1$s\" echt verwijderen uit de \"altijd inbegrepen\"-lijst?</string>
     <string name="FilterRemoveInclusionTitle">Uitzondering verwijderen</string>

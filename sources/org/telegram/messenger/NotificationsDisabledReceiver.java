@@ -21,8 +21,8 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                 String[] split = stringExtra.split("_");
                 if (split.length >= 3) {
                     ApplicationLoader.postInitApplication();
-                    int intValue = Utilities.parseInt(split[0]).intValue();
-                    if (intValue >= 0 && intValue < 3) {
+                    int intValue = Utilities.parseInt((CharSequence) split[0]).intValue();
+                    if (intValue >= 0 && intValue < 4) {
                         if (BuildVars.LOGS_ENABLED) {
                             FileLog.d("received disabled notification channel event for " + stringExtra + " state = " + booleanExtra);
                         }

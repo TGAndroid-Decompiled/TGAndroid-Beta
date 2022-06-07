@@ -66,6 +66,10 @@ public class ActionBarMenu extends LinearLayout {
         return addItem(i, i2, null, this.isActionMode ? this.parentActionBar.itemsActionModeBackgroundColor : this.parentActionBar.itemsBackgroundColor, null, i3, null);
     }
 
+    public ActionBarMenuItem addItemWithWidth(int i, Drawable drawable, int i2, CharSequence charSequence) {
+        return addItem(i, 0, null, this.isActionMode ? this.parentActionBar.itemsActionModeBackgroundColor : this.parentActionBar.itemsBackgroundColor, drawable, i2, charSequence);
+    }
+
     public ActionBarMenuItem addItemWithWidth(int i, int i2, int i3, CharSequence charSequence) {
         return addItem(i, i2, null, this.isActionMode ? this.parentActionBar.itemsActionModeBackgroundColor : this.parentActionBar.itemsBackgroundColor, null, i3, charSequence);
     }
@@ -361,12 +365,12 @@ public class ActionBarMenu extends LinearLayout {
         return false;
     }
 
-    public void translateXItems(int i) {
+    public void translateXItems(float f) {
         int childCount = getChildCount();
-        for (int i2 = 0; i2 < childCount; i2++) {
-            View childAt = getChildAt(i2);
+        for (int i = 0; i < childCount; i++) {
+            View childAt = getChildAt(i);
             if (childAt instanceof ActionBarMenuItem) {
-                ((ActionBarMenuItem) childAt).setTransitionOffset(i);
+                ((ActionBarMenuItem) childAt).setTransitionOffset(f);
             }
         }
     }

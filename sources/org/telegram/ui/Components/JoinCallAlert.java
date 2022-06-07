@@ -16,6 +16,7 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -110,6 +111,7 @@ public class JoinCallAlert extends BottomSheet {
     public class BottomSheetCell extends FrameLayout {
         private View background;
         private boolean hasBackground;
+        private CharSequence text;
         private TextView[] textView = new TextView[2];
 
         public BottomSheetCell(Context context, boolean z) {
@@ -124,6 +126,7 @@ public class JoinCallAlert extends BottomSheet {
             addView(this.background, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, z ? 0.0f : 16.0f, 16.0f, 16.0f));
             for (int i = 0; i < 2; i++) {
                 this.textView[i] = new TextView(context);
+                this.textView[i].setFocusable(false);
                 this.textView[i].setLines(1);
                 this.textView[i].setSingleLine(true);
                 this.textView[i].setGravity(1);
@@ -135,6 +138,7 @@ public class JoinCallAlert extends BottomSheet {
                 } else {
                     this.textView[i].setTextColor(Theme.getColor("featuredStickers_addButton"));
                 }
+                this.textView[i].setImportantForAccessibility(2);
                 this.textView[i].setTextSize(1, 14.0f);
                 this.textView[i].setPadding(0, 0, 0, this.hasBackground ? 0 : AndroidUtilities.dp(13.0f));
                 addView(this.textView[i], LayoutHelper.createFrame(-2, -2.0f, 17, 24.0f, 0.0f, 24.0f, 0.0f));
@@ -150,6 +154,7 @@ public class JoinCallAlert extends BottomSheet {
         }
 
         public void setText(CharSequence charSequence, boolean z) {
+            this.text = charSequence;
             if (!z) {
                 this.textView[0].setText(charSequence);
                 return;
@@ -170,6 +175,17 @@ public class JoinCallAlert extends BottomSheet {
                 }
             });
             animatorSet.start();
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.Button");
+            accessibilityNodeInfo.setClickable(true);
+            CharSequence charSequence = this.text;
+            if (charSequence != null) {
+                accessibilityNodeInfo.setContentDescription(charSequence);
+            }
         }
     }
 

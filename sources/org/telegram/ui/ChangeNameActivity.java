@@ -30,6 +30,7 @@ public class ChangeNameActivity extends BaseFragment {
     private View doneButton;
     private EditTextBoldCursor firstNameField;
     private EditTextBoldCursor lastNameField;
+    private Theme.ResourcesProvider resourcesProvider;
 
     public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
         return true;
@@ -38,8 +39,14 @@ public class ChangeNameActivity extends BaseFragment {
     public static void lambda$saveName$3(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
+    public ChangeNameActivity(Theme.ResourcesProvider resourcesProvider) {
+        this.resourcesProvider = resourcesProvider;
+    }
+
     @Override
     public View createView(Context context) {
+        this.actionBar.setItemsBackgroundColor(Theme.getColor("avatar_actionBarSelectorBlue", this.resourcesProvider), false);
+        this.actionBar.setItemsColor(Theme.getColor("actionBarDefaultIcon", this.resourcesProvider), false);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString("EditName", R.string.EditName));
@@ -64,11 +71,16 @@ public class ChangeNameActivity extends BaseFragment {
         linearLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
         ((LinearLayout) this.fragmentView).setOrientation(1);
         this.fragmentView.setOnTouchListener(ChangeNameActivity$$ExternalSyntheticLambda0.INSTANCE);
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
+            @Override
+            protected Theme.ResourcesProvider getResourcesProvider() {
+                return ChangeNameActivity.this.resourcesProvider;
+            }
+        };
         this.firstNameField = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 18.0f);
-        this.firstNameField.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
-        this.firstNameField.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.firstNameField.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText", this.resourcesProvider));
+        this.firstNameField.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
         this.firstNameField.setBackgroundDrawable(null);
         this.firstNameField.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("windowBackgroundWhiteRedText3"));
         this.firstNameField.setMaxLines(1);
@@ -78,7 +90,7 @@ public class ChangeNameActivity extends BaseFragment {
         this.firstNameField.setInputType(49152);
         this.firstNameField.setImeOptions(5);
         this.firstNameField.setHint(LocaleController.getString("FirstName", R.string.FirstName));
-        this.firstNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.firstNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
         this.firstNameField.setCursorSize(AndroidUtilities.dp(20.0f));
         this.firstNameField.setCursorWidth(1.5f);
         linearLayout.addView(this.firstNameField, LayoutHelper.createLinear(-1, 36, 24.0f, 24.0f, 24.0f, 0.0f));
@@ -90,11 +102,16 @@ public class ChangeNameActivity extends BaseFragment {
                 return lambda$createView$1;
             }
         });
-        EditTextBoldCursor editTextBoldCursor2 = new EditTextBoldCursor(context);
+        EditTextBoldCursor editTextBoldCursor2 = new EditTextBoldCursor(context) {
+            @Override
+            protected Theme.ResourcesProvider getResourcesProvider() {
+                return ChangeNameActivity.this.resourcesProvider;
+            }
+        };
         this.lastNameField = editTextBoldCursor2;
         editTextBoldCursor2.setTextSize(1, 18.0f);
-        this.lastNameField.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
-        this.lastNameField.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.lastNameField.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText", this.resourcesProvider));
+        this.lastNameField.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
         this.lastNameField.setBackgroundDrawable(null);
         this.lastNameField.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("windowBackgroundWhiteRedText3"));
         this.lastNameField.setMaxLines(1);
@@ -104,7 +121,7 @@ public class ChangeNameActivity extends BaseFragment {
         this.lastNameField.setInputType(49152);
         this.lastNameField.setImeOptions(6);
         this.lastNameField.setHint(LocaleController.getString("LastName", R.string.LastName));
-        this.lastNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.lastNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
         this.lastNameField.setCursorSize(AndroidUtilities.dp(20.0f));
         this.lastNameField.setCursorWidth(1.5f);
         linearLayout.addView(this.lastNameField, LayoutHelper.createLinear(-1, 36, 24.0f, 16.0f, 24.0f, 0.0f));
@@ -177,6 +194,11 @@ public class ChangeNameActivity extends BaseFragment {
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_updateProfile, ChangeNameActivity$$ExternalSyntheticLambda4.INSTANCE);
             }
         }
+    }
+
+    @Override
+    public Theme.ResourcesProvider getResourceProvider() {
+        return this.resourcesProvider;
     }
 
     @Override

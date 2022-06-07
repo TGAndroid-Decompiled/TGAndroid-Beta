@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
@@ -8,9 +9,11 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.SystemClock;
 import android.text.style.CharacterStyle;
+import android.text.style.ClickableSpan;
 import android.util.Pair;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
@@ -362,6 +365,67 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
             } else if (z && (view = this.mParent) != null) {
                 view.invalidate();
             }
+        }
+    }
+
+    public static class LinksTextView extends TextView {
+        private boolean isCustomLinkCollector;
+        private LinkCollector links;
+        private OnLinkPress onLongPressListener;
+        private OnLinkPress onPressListener;
+        private LinkSpanDrawable<ClickableSpan> pressedLink;
+        private Theme.ResourcesProvider resourcesProvider;
+
+        public interface OnLinkPress {
+            void run(ClickableSpan clickableSpan);
+        }
+
+        public LinksTextView(Context context) {
+            this(context, null);
+        }
+
+        public LinksTextView(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            this.isCustomLinkCollector = false;
+            this.links = new LinkCollector(this);
+            this.resourcesProvider = resourcesProvider;
+        }
+
+        public LinksTextView(Context context, LinkCollector linkCollector, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            this.isCustomLinkCollector = true;
+            this.links = linkCollector;
+            this.resourcesProvider = resourcesProvider;
+        }
+
+        public void setOnLinkPressListener(OnLinkPress onLinkPress) {
+            this.onPressListener = onLinkPress;
+        }
+
+        public void setOnLinkLongPressListener(OnLinkPress onLinkPress) {
+            this.onLongPressListener = onLinkPress;
+        }
+
+        @Override
+        public boolean onTouchEvent(android.view.MotionEvent r11) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.LinkSpanDrawable.LinksTextView.onTouchEvent(android.view.MotionEvent):boolean");
+        }
+
+        public void lambda$onTouchEvent$0(ClickableSpan[] clickableSpanArr) {
+            OnLinkPress onLinkPress = this.onLongPressListener;
+            if (onLinkPress != null) {
+                onLinkPress.run(clickableSpanArr[0]);
+                this.pressedLink = null;
+                this.links.clear();
+            }
+        }
+
+        @Override
+        public void onDraw(Canvas canvas) {
+            if (!this.isCustomLinkCollector && this.links.draw(canvas)) {
+                invalidate();
+            }
+            super.onDraw(canvas);
         }
     }
 }

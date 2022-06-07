@@ -33,7 +33,7 @@ public class ChatThemeController extends BaseController {
     private final LongSparseArray<String> dialogEmoticonsMap = new LongSparseArray<>();
     public static volatile DispatchQueue chatThemeQueue = new DispatchQueue("chatThemeQueue");
     private static final HashMap<Long, Bitmap> themeIdWallpaperThumbMap = new HashMap<>();
-    private static final ChatThemeController[] instances = new ChatThemeController[3];
+    private static final ChatThemeController[] instances = new ChatThemeController[4];
 
     public static void clearWallpaperImages() {
     }

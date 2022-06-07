@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_invoice extends TLObject {
-    public static int constructor = 215516896;
+    public static int constructor = 1048946971;
     public String currency;
     public boolean email_requested;
     public boolean email_to_provider;
@@ -13,6 +13,8 @@ public class TLRPC$TL_invoice extends TLObject {
     public boolean name_requested;
     public boolean phone_requested;
     public boolean phone_to_provider;
+    public boolean recurring;
+    public String recurring_terms_url;
     public boolean shipping_address_requested;
     public boolean test;
     public ArrayList<TLRPC$TL_labeledPrice> prices = new ArrayList<>();
@@ -42,6 +44,7 @@ public class TLRPC$TL_invoice extends TLObject {
         this.flexible = (readInt32 & 32) != 0;
         this.phone_to_provider = (readInt32 & 64) != 0;
         this.email_to_provider = (readInt32 & ConnectionsManager.RequestFlagNeedQuickAck) != 0;
+        this.recurring = (readInt32 & 512) != 0;
         this.currency = abstractSerializedData.readString(z);
         int readInt322 = abstractSerializedData.readInt32(z);
         if (readInt322 == 481674261) {
@@ -66,7 +69,12 @@ public class TLRPC$TL_invoice extends TLObject {
                     }
                 } else if (z) {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                } else {
+                    return;
                 }
+            }
+            if ((this.flags & 512) != 0) {
+                this.recurring_terms_url = abstractSerializedData.readString(z);
             }
         } else if (z) {
             throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
@@ -92,13 +100,15 @@ public class TLRPC$TL_invoice extends TLObject {
         this.flags = i7;
         int i8 = this.email_to_provider ? i7 | ConnectionsManager.RequestFlagNeedQuickAck : i7 & (-129);
         this.flags = i8;
-        abstractSerializedData.writeInt32(i8);
+        int i9 = this.recurring ? i8 | 512 : i8 & (-513);
+        this.flags = i9;
+        abstractSerializedData.writeInt32(i9);
         abstractSerializedData.writeString(this.currency);
         abstractSerializedData.writeInt32(481674261);
         int size = this.prices.size();
         abstractSerializedData.writeInt32(size);
-        for (int i9 = 0; i9 < size; i9++) {
-            this.prices.get(i9).serializeToStream(abstractSerializedData);
+        for (int i10 = 0; i10 < size; i10++) {
+            this.prices.get(i10).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 256) != 0) {
             abstractSerializedData.writeInt64(this.max_tip_amount);
@@ -107,9 +117,12 @@ public class TLRPC$TL_invoice extends TLObject {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.suggested_tip_amounts.size();
             abstractSerializedData.writeInt32(size2);
-            for (int i10 = 0; i10 < size2; i10++) {
-                abstractSerializedData.writeInt64(this.suggested_tip_amounts.get(i10).longValue());
+            for (int i11 = 0; i11 < size2; i11++) {
+                abstractSerializedData.writeInt64(this.suggested_tip_amounts.get(i11).longValue());
             }
+        }
+        if ((this.flags & 512) != 0) {
+            abstractSerializedData.writeString(this.recurring_terms_url);
         }
     }
 }

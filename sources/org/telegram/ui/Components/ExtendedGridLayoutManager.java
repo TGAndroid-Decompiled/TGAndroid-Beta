@@ -49,74 +49,77 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
         float f2 = f == 0.0f ? 100.0f : f;
         this.itemSpans.clear();
         this.itemsToRow.clear();
+        int i2 = 0;
         this.rowsCount = 0;
         this.firstRowMax = 0;
         int flowItemCount = getFlowItemCount();
         if (flowItemCount != 0) {
             int dp = AndroidUtilities.dp(100.0f);
             int spanCount = getSpanCount();
-            int i2 = (this.lastRowFullWidth ? 1 : 0) + flowItemCount;
-            int i3 = spanCount;
-            int i4 = 0;
+            int i3 = (this.lastRowFullWidth ? 1 : 0) + flowItemCount;
+            int i4 = spanCount;
             int i5 = 0;
-            while (i4 < i2) {
-                if (i4 != 0 || !this.firstRowFullWidth) {
-                    if ((i4 < flowItemCount ? sizeForItem(i4) : null) == null) {
-                        z = i5 != 0;
+            int i6 = 0;
+            while (i5 < i3) {
+                if (i5 != 0 || !this.firstRowFullWidth) {
+                    if ((i5 < flowItemCount ? sizeForItem(i5) : null) == null) {
+                        z = i6 != 0;
                         i = spanCount;
                     } else {
                         int min = Math.min(spanCount, (int) Math.floor(spanCount * (((sizeForItem.width / sizeForItem.height) * dp) / f2)));
-                        z = i3 < min || (min > 33 && i3 < min + (-15));
+                        z = i4 < min || (min > 33 && i4 < min + (-15));
                         i = min;
                     }
                     if (z) {
-                        if (i3 != 0) {
-                            int i6 = i3 / i5;
-                            int i7 = i4 - i5;
-                            int i8 = i7;
+                        if (i4 != 0) {
+                            int i7 = i4 / i6;
+                            int i8 = i5 - i6;
+                            int i9 = i8;
                             while (true) {
-                                int i9 = i7 + i5;
-                                if (i8 >= i9) {
+                                int i10 = i8 + i6;
+                                if (i9 >= i10) {
                                     break;
                                 }
-                                if (i8 == i9 - 1) {
+                                if (i9 == i10 - 1) {
                                     SparseIntArray sparseIntArray = this.itemSpans;
-                                    sparseIntArray.put(i8, sparseIntArray.get(i8) + i3);
+                                    sparseIntArray.put(i9, sparseIntArray.get(i9) + i4);
                                 } else {
                                     SparseIntArray sparseIntArray2 = this.itemSpans;
-                                    sparseIntArray2.put(i8, sparseIntArray2.get(i8) + i6);
+                                    sparseIntArray2.put(i9, sparseIntArray2.get(i9) + i7);
                                 }
-                                i3 -= i6;
-                                i8++;
+                                i4 -= i7;
+                                i9++;
                             }
-                            this.itemsToRow.put(i4 - 1, this.rowsCount);
+                            this.itemsToRow.put(i5 - 1, this.rowsCount);
                         }
-                        if (i4 == flowItemCount) {
+                        if (i5 == flowItemCount) {
                             break;
                         }
                         this.rowsCount++;
-                        i3 = spanCount;
-                        i5 = 0;
-                    } else if (i3 < i) {
-                        i = i3;
+                        i4 = spanCount;
+                        i6 = 0;
+                    } else if (i4 < i) {
+                        i = i4;
                     }
                     if (this.rowsCount == 0) {
-                        this.firstRowMax = Math.max(this.firstRowMax, i4);
+                        this.firstRowMax = Math.max(this.firstRowMax, i5);
                     }
-                    if (i4 == flowItemCount - 1 && !this.lastRowFullWidth) {
-                        this.itemsToRow.put(i4, this.rowsCount);
+                    if (i5 == flowItemCount - 1 && !this.lastRowFullWidth) {
+                        this.itemsToRow.put(i5, this.rowsCount);
                     }
-                    i5++;
-                    i3 -= i;
-                    this.itemSpans.put(i4, i);
+                    i6++;
+                    i4 -= i;
+                    this.itemSpans.put(i5, i);
                 } else {
                     SparseIntArray sparseIntArray3 = this.itemSpans;
-                    sparseIntArray3.put(i4, sparseIntArray3.get(i4) + spanCount);
+                    sparseIntArray3.put(i5, sparseIntArray3.get(i5) + spanCount);
+                    this.itemsToRow.put(i2, this.rowsCount);
                     this.rowsCount++;
-                    i3 = spanCount;
-                    i5 = 0;
+                    i4 = spanCount;
+                    i6 = 0;
                 }
-                i4++;
+                i5++;
+                i2 = 0;
             }
             this.rowsCount++;
         }

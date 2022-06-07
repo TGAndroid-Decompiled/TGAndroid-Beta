@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import org.telegram.tgnet.ConnectionsManager;
 
 public class AccountInstance {
-    private static volatile AccountInstance[] Instance = new AccountInstance[3];
+    private static volatile AccountInstance[] Instance = new AccountInstance[4];
     private int currentAccount;
 
     public static AccountInstance getInstance(int i) {

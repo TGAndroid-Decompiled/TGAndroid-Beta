@@ -49,7 +49,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
 
     private int getAccountRowsCount() {
         int size = this.accountNumbers.size() + 1;
-        return this.accountNumbers.size() < 3 ? size + 1 : size;
+        return this.accountNumbers.size() < 4 ? size + 1 : size;
     }
 
     @Override
@@ -148,7 +148,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             if (i2 < this.accountNumbers.size()) {
                 return 4;
             }
-            if (this.accountNumbers.size() < 3) {
+            if (this.accountNumbers.size() < 4) {
                 if (i2 == this.accountNumbers.size()) {
                     return 5;
                 }
@@ -160,7 +160,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             }
             i2 -= getAccountRowsCount();
         }
-        return this.items.get(i2) == null ? 2 : 3;
+        return (i2 < 0 || i2 >= this.items.size() || this.items.get(i2) == null) ? 2 : 3;
     }
 
     public void swapElements(int i, int i2) {
@@ -189,7 +189,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         int i7;
         int i8;
         this.accountNumbers.clear();
-        for (int i9 = 0; i9 < 3; i9++) {
+        for (int i9 = 0; i9 < 4; i9++) {
             if (UserConfig.getInstance(i9).isClientActivated()) {
                 this.accountNumbers.add(Integer.valueOf(i9));
             }

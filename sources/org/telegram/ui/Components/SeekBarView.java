@@ -14,6 +14,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
 public class SeekBarView extends FrameLayout {
+    private AnimatedFloat animatedThumbX;
     private float bufferedProgress;
     boolean captured;
     private float currentRadius;
@@ -29,6 +30,7 @@ public class SeekBarView extends FrameLayout {
     private final Theme.ResourcesProvider resourcesProvider;
     private final SeekBarAccessibilityDelegate seekBarAccessibilityDelegate;
     private int selectorWidth;
+    private int separatorsCount;
     float sx;
     float sy;
     private int thumbDX;
@@ -69,6 +71,7 @@ public class SeekBarView extends FrameLayout {
 
     public SeekBarView(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.animatedThumbX = new AnimatedFloat(this, 150L, CubicBezierInterpolator.DEFAULT);
         this.progressToSet = -100.0f;
         this.pressedState = new int[]{16842910, 16842919};
         this.transitionProgress = 1.0f;
@@ -126,6 +129,10 @@ public class SeekBarView extends FrameLayout {
         };
         this.seekBarAccessibilityDelegate = floatSeekBarAccessibilityDelegate;
         setAccessibilityDelegate(floatSeekBarAccessibilityDelegate);
+    }
+
+    public void setSeparatorsCount(int i) {
+        this.separatorsCount = i;
     }
 
     public void setTwoSided(boolean z) {
@@ -343,7 +350,7 @@ public class SeekBarView extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r12) {
+    protected void onDraw(android.graphics.Canvas r16) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SeekBarView.onDraw(android.graphics.Canvas):void");
     }
 

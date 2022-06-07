@@ -116,7 +116,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
     private boolean scrollUpdated;
     private NumberTextView selectedDialogsCountTextView;
     private Long waitingForCallChatId;
-    private ProgressButton waitingForLoadButton;
     private ArrayList<View> actionModeViews = new ArrayList<>();
     private ArrayList<CallLogRow> calls = new ArrayList<>();
     private ArrayList<Integer> selectedIds = new ArrayList<>();
@@ -284,18 +283,10 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         } else if (i == NotificationCenter.chatInfoDidLoad) {
             Long l2 = this.waitingForCallChatId;
             if (l2 != null && ((TLRPC$ChatFull) objArr[0]).id == l2.longValue() && getMessagesController().getGroupCall(this.waitingForCallChatId.longValue(), true) != null) {
-                ProgressButton progressButton = this.waitingForLoadButton;
-                if (progressButton != null) {
-                    progressButton.setDrawProgress(false, false);
-                }
                 VoIPHelper.startCall(this.lastCallChat, null, null, false, getParentActivity(), this, getAccountInstance());
                 this.waitingForCallChatId = null;
             }
         } else if (i == NotificationCenter.groupCallUpdated && (l = this.waitingForCallChatId) != null && l.equals((Long) objArr[0])) {
-            ProgressButton progressButton2 = this.waitingForLoadButton;
-            if (progressButton2 != null) {
-                progressButton2.setDrawProgress(false, false);
-            }
             VoIPHelper.startCall(this.lastCallChat, null, null, false, getParentActivity(), this, getAccountInstance());
             this.waitingForCallChatId = null;
         }
@@ -376,7 +367,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             this.button.setProgressColor(Theme.getColor("featuredStickers_buttonProgress"));
             this.button.setBackgroundRoundRect(Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed"), 16.0f);
             this.button.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
-            addView(this.button, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
+            addView(this.button, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f));
             this.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -386,9 +377,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$new$0(View view) {
-            if (CallLogActivity.this.waitingForLoadButton != null) {
-                CallLogActivity.this.waitingForLoadButton.setDrawProgress(false, true);
-            }
             Long l = (Long) view.getTag();
             ChatObject.Call groupCall = CallLogActivity.this.getMessagesController().getGroupCall(l.longValue(), false);
             CallLogActivity callLogActivity = CallLogActivity.this;
@@ -402,8 +390,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             }
             CallLogActivity.this.waitingForCallChatId = l;
             CallLogActivity.this.getMessagesController().loadFullChat(l.longValue(), 0, true);
-            this.button.setDrawProgress(true, true);
-            CallLogActivity.this.waitingForLoadButton = this.button;
         }
 
         public void setChat(TLRPC$Chat tLRPC$Chat) {
@@ -1097,7 +1083,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     view = new TextInfoPrivacyCell(this.mContext);
                     view.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, (int) R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
                 } else if (i == 3) {
-                    HeaderCell headerCell2 = new HeaderCell(this.mContext);
+                    HeaderCell headerCell2 = new HeaderCell(this.mContext, "windowBackgroundWhiteBlueHeader", 21, 15, 2, false, CallLogActivity.this.getResourceProvider());
                     headerCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     headerCell = headerCell2;
                 } else if (i != 4) {
@@ -1114,18 +1100,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
 
         @Override
         public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
-            View view = viewHolder.itemView;
-            if (view instanceof CallCell) {
+            if (viewHolder.itemView instanceof CallCell) {
                 ((CallCell) viewHolder.itemView).setChecked(CallLogActivity.this.isSelected(((CallLogRow) CallLogActivity.this.calls.get(viewHolder.getAdapterPosition() - this.callsStartRow)).calls), false);
-            } else if (view instanceof GroupCallCell) {
-                GroupCallCell groupCallCell = (GroupCallCell) view;
-                TLRPC$Chat chat = groupCallCell.profileSearchCell.getChat();
-                if (CallLogActivity.this.waitingForCallChatId == null || chat.id != CallLogActivity.this.waitingForCallChatId.longValue()) {
-                    groupCallCell.button.setDrawProgress(false, false);
-                    return;
-                }
-                CallLogActivity.this.waitingForLoadButton = groupCallCell.button;
-                groupCallCell.button.setDrawProgress(true, false);
             }
         }
 
@@ -1189,12 +1165,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 } else {
                     str = LocaleController.getString("ChannelPublic", R.string.ChannelPublic).toLowerCase();
                 }
-                groupCallCell.profileSearchCell.setData(chat, null, null, str, false, false);
+                String str3 = str;
                 ProfileSearchCell profileSearchCell2 = groupCallCell.profileSearchCell;
-                if (i4 != CallLogActivity.this.activeGroupCalls.size() - 1 || !CallLogActivity.this.endReached) {
+                if (i4 != CallLogActivity.this.activeGroupCalls.size() - 1 && !CallLogActivity.this.endReached) {
                     z = true;
                 }
                 profileSearchCell2.useSeparator = z;
+                groupCallCell.profileSearchCell.setData(chat, null, null, str3, false, false);
             }
         }
 

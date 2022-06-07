@@ -192,7 +192,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             this.detailRow = i4;
             if (!this.isChannel || (this.chats.size() > 0 && this.info.linked_chat_id != 0)) {
                 TLRPC$Chat tLRPC$Chat = this.isChannel ? this.chats.get(0) : this.currentChat;
-                if (tLRPC$Chat != null && (tLRPC$Chat.creator || ((tLRPC$TL_chatAdminRights = tLRPC$Chat.admin_rights) != null && tLRPC$TL_chatAdminRights.ban_users))) {
+                if (tLRPC$Chat != null && ((TextUtils.isEmpty(tLRPC$Chat.username) || this.isChannel) && (tLRPC$Chat.creator || ((tLRPC$TL_chatAdminRights = tLRPC$Chat.admin_rights) != null && tLRPC$TL_chatAdminRights.ban_users)))) {
                     int i5 = this.rowCount;
                     this.rowCount = i5 + 1;
                     this.joinToSendRow = i5;

@@ -140,6 +140,7 @@ public class UndoView extends FrameLayout {
     public UndoView(Context context, BaseFragment baseFragment, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.currentAccount = UserConfig.selectedAccount;
+        this.currentAction = -1;
         this.hideAnimationType = 1;
         this.enterOffsetMargin = AndroidUtilities.dp(8.0f);
         this.timeReplaceProgress = 1.0f;

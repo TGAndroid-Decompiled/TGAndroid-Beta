@@ -14,6 +14,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
     public TLRPC$GeoPoint geo;
     public int heading;
     public String last_name;
+    public boolean nopremium;
     public int period;
     public String phone_number;
     public TLRPC$Photo photo;

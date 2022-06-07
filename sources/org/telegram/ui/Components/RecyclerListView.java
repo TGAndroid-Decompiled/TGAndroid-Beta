@@ -1225,6 +1225,10 @@ public class RecyclerListView extends RecyclerView {
         this.selectorDrawable.setCallback(this);
     }
 
+    public Drawable getSelectorDrawable() {
+        return this.selectorDrawable;
+    }
+
     public void checkSection(boolean z) {
         FastScroll fastScroll;
         RecyclerView.ViewHolder childViewHolder;

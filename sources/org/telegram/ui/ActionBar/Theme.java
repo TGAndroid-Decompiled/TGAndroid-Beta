@@ -125,6 +125,7 @@ import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.MsgClockDrawable;
 import org.telegram.ui.Components.PathAnimator;
 import org.telegram.ui.Components.PlayingGameDrawable;
+import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecordStatusDrawable;
 import org.telegram.ui.Components.RoundStatusDrawable;
@@ -393,9 +394,10 @@ public class Theme {
     private static Drawable themedWallpaper;
     private static int themedWallpaperFileOffset;
     private static String themedWallpaperLink;
+    private static float[] tmpHSV5;
     private static int[] viewPos;
     private static Drawable wallpaper;
-    private static Runnable wallpaperLoadTask;
+    public static Runnable wallpaperLoadTask;
     private static final Object sync = new Object();
     private static Runnable switchDayBrightnessRunnable = new Runnable() {
         @Override
@@ -413,9 +415,9 @@ public class Theme {
     };
     public static int DEFALT_THEME_ACCENT_ID = 99;
     private static Paint maskPaint = new Paint(1);
-    private static boolean[] loadingRemoteThemes = new boolean[3];
-    private static int[] lastLoadingThemesTime = new int[3];
-    private static long[] remoteThemesHash = new long[3];
+    private static boolean[] loadingRemoteThemes = new boolean[4];
+    private static int[] lastLoadingThemesTime = new int[4];
+    private static long[] remoteThemesHash = new long[4];
     public static Drawable[] avatarDrawables = new Drawable[12];
     private static StatusDrawable[] chat_status_drawables = new StatusDrawable[6];
     public static Drawable[] chat_msgInCallDrawable = new Drawable[2];
@@ -460,6 +462,10 @@ public class Theme {
         public Boolean isPatternWallpaper;
         public Boolean isWallpaperMotion;
         public Drawable wallpaper;
+    }
+
+    private static float abs(float f) {
+        return f > 0.0f ? f : -f;
     }
 
     public static void destroyResources() {
@@ -1028,7 +1034,7 @@ public class Theme {
             File pathToWallpaper;
             Drawable drawable;
             int i;
-            Bitmap bitmap3;
+            Bitmap loadScreenSizedBitmap;
             Integer num;
             Integer num2;
             Integer num3;
@@ -1084,12 +1090,16 @@ public class Theme {
                 i = AndroidUtilities.getPatternColor(i3);
             }
             if (bitmap == null) {
+                Point point = AndroidUtilities.displaySize;
+                int min = Math.min(point.x, point.y);
+                Point point2 = AndroidUtilities.displaySize;
+                int max = Math.max(point2.x, point2.y);
                 if (z) {
-                    bitmap3 = SvgHelper.getBitmap(file, AndroidUtilities.dp(360.0f), AndroidUtilities.dp(640.0f), false);
+                    loadScreenSizedBitmap = SvgHelper.getBitmap(file, min, max, false);
                 } else {
-                    bitmap3 = Theme.loadScreenSizedBitmap(new FileInputStream(file), 0);
+                    loadScreenSizedBitmap = Theme.loadScreenSizedBitmap(new FileInputStream(file), 0);
                 }
-                bitmap2 = bitmap3;
+                bitmap2 = loadScreenSizedBitmap;
             } else {
                 bitmap2 = bitmap;
             }
@@ -3067,12 +3077,12 @@ public class Theme {
                     try {
                         String queryParameter4 = parse.getQueryParameter("rotation");
                         if (!TextUtils.isEmpty(queryParameter4)) {
-                            themeInfo.patternBgGradientRotation = Utilities.parseInt(queryParameter4).intValue();
+                            themeInfo.patternBgGradientRotation = Utilities.parseInt((CharSequence) queryParameter4).intValue();
                         }
                     } catch (Exception unused2) {
                     }
                     if (!TextUtils.isEmpty(queryParameter2)) {
-                        themeInfo.patternIntensity = Utilities.parseInt(queryParameter2).intValue();
+                        themeInfo.patternIntensity = Utilities.parseInt((CharSequence) queryParameter2).intValue();
                     }
                     if (themeInfo.patternIntensity == 0) {
                         themeInfo.patternIntensity = 50;
@@ -3258,17 +3268,20 @@ public class Theme {
     }
 
     public static int changeColorAccent(float[] fArr, float[] fArr2, int i, boolean z) {
-        float[] tempHsv = getTempHsv(5);
-        Color.colorToHSV(i, tempHsv);
+        if (tmpHSV5 == null) {
+            tmpHSV5 = new float[3];
+        }
+        float[] fArr3 = tmpHSV5;
+        Color.colorToHSV(i, fArr3);
         boolean z2 = false;
-        if (Math.min(Math.abs(tempHsv[0] - fArr[0]), Math.abs((tempHsv[0] - fArr[0]) - 360.0f)) > 30.0f) {
+        if (Math.min(abs(fArr3[0] - fArr[0]), abs((fArr3[0] - fArr[0]) - 360.0f)) > 30.0f) {
             return i;
         }
-        float min = Math.min((tempHsv[1] * 1.5f) / fArr[1], 1.0f);
-        tempHsv[0] = (tempHsv[0] + fArr2[0]) - fArr[0];
-        tempHsv[1] = (tempHsv[1] * fArr2[1]) / fArr[1];
-        tempHsv[2] = tempHsv[2] * ((1.0f - min) + ((min * fArr2[2]) / fArr[2]));
-        int HSVToColor = Color.HSVToColor(Color.alpha(i), tempHsv);
+        float min = Math.min((fArr3[1] * 1.5f) / fArr[1], 1.0f);
+        fArr3[0] = (fArr3[0] + fArr2[0]) - fArr[0];
+        fArr3[1] = (fArr3[1] * fArr2[1]) / fArr[1];
+        fArr3[2] = fArr3[2] * ((1.0f - min) + ((min * fArr2[2]) / fArr[2]));
+        int HSVToColor = Color.HSVToColor(Color.alpha(i), fArr3);
         float computePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(i);
         float computePerceivedBrightness2 = AndroidUtilities.computePerceivedBrightness(HSVToColor);
         if (!z ? computePerceivedBrightness < computePerceivedBrightness2 : computePerceivedBrightness > computePerceivedBrightness2) {
@@ -3422,7 +3435,7 @@ public class Theme {
             edit.putString("themes2", jSONArray.toString());
         }
         int i3 = 0;
-        while (i3 < 3) {
+        while (i3 < 4) {
             StringBuilder sb = new StringBuilder();
             sb.append("2remoteThemesHash");
             Object obj = "";
@@ -4025,7 +4038,7 @@ public class Theme {
     public static HashMap<String, Integer> getThemeFileValues(File file, String str, String[] strArr) {
         Throwable th;
         int i;
-        HashMap<String, Integer> hashMap = new HashMap<>();
+        HashMap<String, Integer> hashMap = new HashMap<>(500);
         FileInputStream fileInputStream = null;
         try {
             try {
@@ -4066,12 +4079,12 @@ public class Theme {
                                         String substring = str2.substring(i3, indexOf);
                                         String substring2 = str2.substring(indexOf + 1);
                                         if (substring2.length() <= 0 || substring2.charAt(i3) != '#') {
-                                            i = Utilities.parseInt(substring2).intValue();
+                                            i = Utilities.parseInt((CharSequence) substring2).intValue();
                                         } else {
                                             try {
                                                 i = Color.parseColor(substring2);
                                             } catch (Exception unused) {
-                                                i = Utilities.parseInt(substring2).intValue();
+                                                i = Utilities.parseInt((CharSequence) substring2).intValue();
                                             }
                                         }
                                         hashMap.put(substring, Integer.valueOf(i));
@@ -4251,6 +4264,7 @@ public class Theme {
                     dialogs_unarchiveDrawable.setLayerColor("Box2.**", getNonAnimatedColor("chats_archiveIcon"));
                     dialogs_unarchiveDrawable.setLayerColor("Box1.**", getNonAnimatedColor("chats_archiveIcon"));
                     dialogs_unarchiveDrawable.commitApplyLayerColors();
+                    PremiumGradient.getInstance().checkIconColors();
                     return;
                 }
             }
@@ -5760,7 +5774,6 @@ public class Theme {
         try {
             try {
                 BitmapFactory.Options options = new BitmapFactory.Options();
-                int i2 = 1;
                 options.inSampleSize = 1;
                 options.inJustDecodeBounds = true;
                 long j = i;
@@ -5768,20 +5781,23 @@ public class Theme {
                 BitmapFactory.decodeStream(fileInputStream, null, options);
                 float f2 = options.outWidth;
                 float f3 = options.outHeight;
-                int dp = AndroidUtilities.dp(360.0f);
-                int dp2 = AndroidUtilities.dp(640.0f);
-                if (dp < dp2 || f2 <= f3) {
-                    f = Math.min(f2 / dp, f3 / dp2);
+                Point point = AndroidUtilities.displaySize;
+                int min = Math.min(point.x, point.y);
+                Point point2 = AndroidUtilities.displaySize;
+                int max = Math.max(point2.x, point2.y);
+                if (min < max || f2 <= f3) {
+                    f = Math.min(f2 / min, f3 / max);
                 } else {
-                    f = Math.max(f2 / dp, f3 / dp2);
+                    f = Math.max(f2 / min, f3 / max);
                 }
                 if (f < 1.2f) {
                     f = 1.0f;
                 }
                 options.inJustDecodeBounds = false;
-                if (f <= 1.0f || (f2 <= dp && f3 <= dp2)) {
+                if (f <= 1.0f || (f2 <= min && f3 <= max)) {
                     options.inSampleSize = (int) f;
                 } else {
+                    int i2 = 1;
                     do {
                         i2 *= 2;
                     } while (i2 * 2 < f);
@@ -5789,9 +5805,18 @@ public class Theme {
                 }
                 fileInputStream.getChannel().position(j);
                 Bitmap decodeStream = BitmapFactory.decodeStream(fileInputStream, null, options);
+                if ((decodeStream.getWidth() < min || decodeStream.getHeight() < max) && Math.max(min / decodeStream.getWidth(), max / decodeStream.getHeight()) >= 1.02f) {
+                    Bitmap createScaledBitmap = Bitmap.createScaledBitmap(decodeStream, min, max, true);
+                    decodeStream.recycle();
+                    try {
+                        fileInputStream.close();
+                    } catch (Exception unused) {
+                    }
+                    return createScaledBitmap;
+                }
                 try {
                     fileInputStream.close();
-                } catch (Exception unused) {
+                } catch (Exception unused2) {
                 }
                 return decodeStream;
             } catch (Exception e) {
@@ -5799,7 +5824,7 @@ public class Theme {
                 if (fileInputStream != null) {
                     try {
                         fileInputStream.close();
-                    } catch (Exception unused2) {
+                    } catch (Exception unused3) {
                     }
                 }
                 return null;
@@ -5808,7 +5833,7 @@ public class Theme {
             if (fileInputStream != null) {
                 try {
                     fileInputStream.close();
-                } catch (Exception unused3) {
+                } catch (Exception unused4) {
                 }
             }
             throw th;

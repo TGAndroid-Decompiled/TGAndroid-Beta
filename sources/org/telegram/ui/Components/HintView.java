@@ -166,12 +166,12 @@ public class HintView extends FrameLayout {
                 if (num.intValue() == 0) {
                     this.textView.setText(LocaleController.getString("NoVotesQuiz", R.string.NoVotesQuiz));
                 } else {
-                    this.textView.setText(LocaleController.formatPluralString("Answer", num.intValue()));
+                    this.textView.setText(LocaleController.formatPluralString("Answer", num.intValue(), new Object[0]));
                 }
             } else if (num.intValue() == 0) {
                 this.textView.setText(LocaleController.getString("NoVotes", R.string.NoVotes));
             } else {
-                this.textView.setText(LocaleController.formatPluralString("Vote", num.intValue()));
+                this.textView.setText(LocaleController.formatPluralString("Vote", num.intValue(), new Object[0]));
             }
             measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
             i3 = i;

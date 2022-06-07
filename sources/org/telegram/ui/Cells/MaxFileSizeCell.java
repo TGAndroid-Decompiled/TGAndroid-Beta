@@ -92,7 +92,7 @@ public class MaxFileSizeCell extends FrameLayout {
                             f2 = 10485760;
                             f3 = 9.437184E7f;
                         } else {
-                            i2 = (int) (104857600 + (((float) (FileLoader.MAX_FILE_SIZE - 104857600)) * ((f - 0.25f) / 0.25f)));
+                            i2 = (int) (104857600 + (((float) (FileLoader.DEFAULT_MAX_FILE_SIZE - 104857600)) * ((f - 0.25f) / 0.25f)));
                             long j = i2;
                             MaxFileSizeCell.this.sizeTextView.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j)));
                             MaxFileSizeCell.this.currentSize = j;

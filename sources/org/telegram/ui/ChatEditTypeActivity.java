@@ -7,8 +7,10 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Vibrator;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -289,7 +291,19 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         this.editText.setInputType(163840);
         this.editText.setImeOptions(6);
         this.publicContainer.addView(this.editText, LayoutHelper.createLinear(-2, 36));
-        EditTextBoldCursor editTextBoldCursor2 = new EditTextBoldCursor(context);
+        EditTextBoldCursor editTextBoldCursor2 = new EditTextBoldCursor(context) {
+            @Override
+            public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                StringBuilder sb = new StringBuilder();
+                sb.append((CharSequence) getText());
+                if (!(ChatEditTypeActivity.this.checkTextView == null || ChatEditTypeActivity.this.checkTextView.getTextView() == null || TextUtils.isEmpty(ChatEditTypeActivity.this.checkTextView.getTextView().getText()))) {
+                    sb.append("\n");
+                    sb.append(ChatEditTypeActivity.this.checkTextView.getTextView().getText());
+                }
+                accessibilityNodeInfo.setText(sb);
+            }
+        };
         this.usernameTextView = editTextBoldCursor2;
         editTextBoldCursor2.setTextSize(1, 18.0f);
         this.usernameTextView.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
@@ -366,7 +380,8 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         this.linearLayout.addView(this.checkTextView, LayoutHelper.createLinear(-2, -2));
         TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context);
         this.typeInfoCell = textInfoPrivacyCell2;
-        this.linearLayout.addView(textInfoPrivacyCell2, LayoutHelper.createLinear(-1, -2));
+        textInfoPrivacyCell2.setImportantForAccessibility(1);
+        this.linearLayout.addView(this.typeInfoCell, LayoutHelper.createLinear(-1, -2));
         LoadingCell loadingCell = new LoadingCell(context);
         this.loadingAdminedCell = loadingCell;
         this.linearLayout.addView(loadingCell, LayoutHelper.createLinear(-1, -2));
@@ -442,12 +457,12 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
 
     public void lambda$createView$3(View view) {
         if (this.isPrivate) {
-            if (this.canCreatePublic || getUserConfig().isPremium()) {
-                this.isPrivate = false;
-                updatePrivatePublic();
+            if (!this.canCreatePublic) {
+                showPremiumIncreaseLimitDialog();
                 return;
             }
-            showPremiumIncreaseLimitDialog();
+            this.isPrivate = false;
+            updatePrivatePublic();
         }
     }
 
@@ -465,7 +480,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
 
     private void showPremiumIncreaseLimitDialog() {
         if (getParentActivity() != null) {
-            LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(getParentActivity(), 2, this.currentAccount);
+            LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getParentActivity(), 2, this.currentAccount);
             limitReachedBottomSheet.parentIsChannel = this.isChannel;
             limitReachedBottomSheet.onSuccessRunnable = new Runnable() {
                 @Override
@@ -891,11 +906,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                     this.checkTextView.setText(LocaleController.getString("LinkInUse", R.string.LinkInUse));
                 } else {
                     this.canCreatePublic = false;
-                    if (getUserConfig().isPremium()) {
-                        loadAdminedChannels();
-                    } else {
-                        showPremiumIncreaseLimitDialog();
-                    }
+                    showPremiumIncreaseLimitDialog();
                 }
                 this.checkTextView.setTextColor("windowBackgroundWhiteRedText4");
                 this.lastNameAvailable = false;

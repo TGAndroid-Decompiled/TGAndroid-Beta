@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -13,9 +12,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -75,10 +71,10 @@ import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Cells.UserCell2;
 import org.telegram.ui.ChatRightsEditActivity;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
-import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
@@ -89,6 +85,7 @@ public class ChatRightsEditActivity extends BaseFragment {
     private FrameLayout addBotButton;
     private FrameLayout addBotButtonContainer;
     private int addBotButtonRow;
+    private AnimatedTextView addBotButtonText;
     private int addUsersRow;
     private TLRPC$TL_chatAdminRights adminRights;
     private int anonymousRow;
@@ -581,13 +578,13 @@ public class ChatRightsEditActivity extends BaseFragment {
                     if (i3 == 0) {
                         str = LocaleController.getString("UserRestrictionsUntilForever", R.string.UserRestrictionsUntilForever);
                     } else if (i3 == 1) {
-                        str = LocaleController.formatPluralString("Days", 1);
+                        str = LocaleController.formatPluralString("Days", 1, new Object[0]);
                     } else if (i3 == 2) {
-                        str = LocaleController.formatPluralString("Weeks", 1);
+                        str = LocaleController.formatPluralString("Weeks", 1, new Object[0]);
                     } else if (i3 != 3) {
                         str = LocaleController.getString("UserRestrictionsCustom", R.string.UserRestrictionsCustom);
                     } else {
-                        str = LocaleController.formatPluralString("Months", 1);
+                        str = LocaleController.formatPluralString("Months", 1, new Object[0]);
                     }
                     bottomSheetCellArr[i3].setTextAndIcon(str, 0);
                     linearLayout2.addView(bottomSheetCellArr[i3], LayoutHelper.createLinear(-1, -2));
@@ -1059,7 +1056,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                 } else if (getParentActivity() == null || AccountInstance.getInstance(this.currentAccount).getUserConfig().isPremium()) {
                     presentFragment(new TooManyCommunitiesActivity(1));
                 } else {
-                    showDialog(new LimitReachedBottomSheet(getParentActivity(), 5, this.currentAccount));
+                    showDialog(new LimitReachedBottomSheet(this, getParentActivity(), 5, this.currentAccount));
                 }
             }
         } else if (tLRPC$InputCheckPasswordSRP != null) {
@@ -1327,8 +1324,9 @@ public class ChatRightsEditActivity extends BaseFragment {
         }
     }
 
-    public void lambda$onDonePressed$17(TLRPC$TL_error tLRPC$TL_error) {
+    public boolean lambda$onDonePressed$17(TLRPC$TL_error tLRPC$TL_error) {
         setLoading(false);
+        return true;
     }
 
     public void lambda$onDonePressed$21(DialogInterface dialogInterface, int i) {
@@ -1342,15 +1340,19 @@ public class ChatRightsEditActivity extends BaseFragment {
         if (this.asAdmin || this.initialAsAdmin) {
             getMessagesController().setUserAdminRole(this.currentChat.id, this.currentUser, this.asAdmin ? this.adminRights : emptyAdminRights(false), this.currentRank, false, this, this.isAddingNew, this.asAdmin, this.botHash, chatRightsEditActivity$$ExternalSyntheticLambda14, new MessagesController.ErrorDelegate() {
                 @Override
-                public final void run(TLRPC$TL_error tLRPC$TL_error) {
-                    ChatRightsEditActivity.this.lambda$onDonePressed$19(tLRPC$TL_error);
+                public final boolean run(TLRPC$TL_error tLRPC$TL_error) {
+                    boolean lambda$onDonePressed$19;
+                    lambda$onDonePressed$19 = ChatRightsEditActivity.this.lambda$onDonePressed$19(tLRPC$TL_error);
+                    return lambda$onDonePressed$19;
                 }
             });
         } else {
             getMessagesController().addUserToChat(this.currentChat.id, this.currentUser, 0, this.botHash, this, true, chatRightsEditActivity$$ExternalSyntheticLambda14, new MessagesController.ErrorDelegate() {
                 @Override
-                public final void run(TLRPC$TL_error tLRPC$TL_error) {
-                    ChatRightsEditActivity.this.lambda$onDonePressed$20(tLRPC$TL_error);
+                public final boolean run(TLRPC$TL_error tLRPC$TL_error) {
+                    boolean lambda$onDonePressed$20;
+                    lambda$onDonePressed$20 = ChatRightsEditActivity.this.lambda$onDonePressed$20(tLRPC$TL_error);
+                    return lambda$onDonePressed$20;
                 }
             });
         }
@@ -1380,12 +1382,14 @@ public class ChatRightsEditActivity extends BaseFragment {
         }
     }
 
-    public void lambda$onDonePressed$19(TLRPC$TL_error tLRPC$TL_error) {
+    public boolean lambda$onDonePressed$19(TLRPC$TL_error tLRPC$TL_error) {
         setLoading(false);
+        return true;
     }
 
-    public void lambda$onDonePressed$20(TLRPC$TL_error tLRPC$TL_error) {
+    public boolean lambda$onDonePressed$20(TLRPC$TL_error tLRPC$TL_error) {
         setLoading(false);
+        return true;
     }
 
     public void setLoading(boolean z) {
@@ -1646,52 +1650,59 @@ public class ChatRightsEditActivity extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View view;
             TextSettingsCell textSettingsCell;
+            String str;
+            int i2;
             switch (i) {
                 case 0:
                     UserCell2 userCell2 = new UserCell2(this.mContext, 4, 0);
                     userCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     textSettingsCell = userCell2;
+                    view = textSettingsCell;
                     break;
                 case 1:
-                    TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
-                    textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, (int) R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
-                    textSettingsCell = textInfoPrivacyCell;
+                    view = new TextInfoPrivacyCell(this.mContext);
+                    view.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, (int) R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
                     break;
                 case 2:
                 default:
                     TextSettingsCell textSettingsCell2 = new TextSettingsCell(this.mContext);
                     textSettingsCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     textSettingsCell = textSettingsCell2;
+                    view = textSettingsCell;
                     break;
                 case 3:
                     HeaderCell headerCell = new HeaderCell(this.mContext, "windowBackgroundWhiteBlueHeader", 21, 15, true);
                     headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     textSettingsCell = headerCell;
+                    view = textSettingsCell;
                     break;
                 case 4:
                     TextCheckCell2 textCheckCell2 = new TextCheckCell2(this.mContext);
                     textCheckCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     textSettingsCell = textCheckCell2;
+                    view = textSettingsCell;
                     break;
                 case 5:
-                    textSettingsCell = new ShadowSectionCell(this.mContext);
+                    view = new ShadowSectionCell(this.mContext);
                     break;
                 case 6:
                     TextDetailCell textDetailCell = new TextDetailCell(this.mContext);
                     textDetailCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     textSettingsCell = textDetailCell;
+                    view = textSettingsCell;
                     break;
                 case 7:
                     PollEditTextCell pollEditTextCell = ChatRightsEditActivity.this.rankEditTextCell = new PollEditTextCell(this.mContext, null);
                     pollEditTextCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     pollEditTextCell.addTextWatcher(new TextWatcher() {
                         @Override
-                        public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                        public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
                         }
 
                         @Override
-                        public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                        public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
                         }
 
                         @Override
@@ -1706,88 +1717,49 @@ public class ChatRightsEditActivity extends BaseFragment {
                         }
                     });
                     textSettingsCell = pollEditTextCell;
+                    view = textSettingsCell;
                     break;
                 case 8:
                     ChatRightsEditActivity.this.addBotButtonContainer = new FrameLayout(this.mContext);
                     ChatRightsEditActivity.this.addBotButtonContainer.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
-                    ChatRightsEditActivity.this.addBotButton = new FrameLayout(this.mContext) {
-                        private StaticLayout asAdminText;
-                        private StaticLayout asMemberText;
-                        private StaticLayout mainText;
-                        private TextPaint textPaint;
-
-                        {
-                            TextPaint textPaint = new TextPaint(1);
-                            this.textPaint = textPaint;
-                            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-                            this.textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-                            this.textPaint.setColor(-1);
-                            this.mainText = new StaticLayout(LocaleController.getString("AddBotButton", R.string.AddBotButton) + " ", this.textPaint, 9999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                            this.asMemberText = new StaticLayout(LocaleController.getString("AddBotButtonAsMember", R.string.AddBotButtonAsMember), this.textPaint, 9999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                            this.asAdminText = new StaticLayout(LocaleController.getString("AddBotButtonAsAdmin", R.string.AddBotButtonAsAdmin), this.textPaint, 9999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                        }
-
-                        @Override
-                        protected void onDraw(Canvas canvas) {
-                            float f;
-                            super.onDraw(canvas);
-                            float interpolation = CubicBezierInterpolator.EASE_BOTH.getInterpolation(ChatRightsEditActivity.this.asAdminT);
-                            float lineWidth = this.mainText.getLineWidth(0);
-                            if (ChatRightsEditActivity.this.asAdminT <= 0.0f) {
-                                f = this.asMemberText.getLineWidth(0);
-                            } else if (ChatRightsEditActivity.this.asAdminT >= 1.0f) {
-                                f = this.asAdminText.getLineWidth(0);
-                            } else {
-                                f = AndroidUtilities.lerp(this.asMemberText.getLineWidth(0), this.asAdminText.getLineWidth(0), interpolation);
-                            }
-                            canvas.save();
-                            canvas.translate((getWidth() - (f + lineWidth)) / 2.0f, (getHeight() - this.mainText.getHeight()) / 2);
-                            this.textPaint.setAlpha(255);
-                            this.mainText.draw(canvas);
-                            canvas.translate(lineWidth, 0.0f);
-                            if (interpolation <= 0.0f) {
-                                this.asMemberText.draw(canvas);
-                            } else {
-                                canvas.save();
-                                canvas.translate(0.0f, AndroidUtilities.dp(8.0f) * interpolation);
-                                canvas.scale(1.0f, 1.0f - (interpolation * 0.2f));
-                                this.textPaint.setAlpha((int) ((1.0f - interpolation) * 255.0f));
-                                this.asMemberText.draw(canvas);
-                                canvas.restore();
-                            }
-                            if (interpolation >= 1.0f) {
-                                this.textPaint.setAlpha(255);
-                                this.asAdminText.draw(canvas);
-                            } else {
-                                canvas.save();
-                                float f2 = 1.0f - interpolation;
-                                canvas.translate(0.0f, (-AndroidUtilities.dp(8.0f)) * f2);
-                                canvas.scale(1.0f, 1.0f - (f2 * 0.2f));
-                                this.textPaint.setAlpha((int) (interpolation * 255.0f));
-                                this.asAdminText.draw(canvas);
-                                canvas.restore();
-                            }
-                            canvas.restore();
-                        }
-                    };
+                    ChatRightsEditActivity.this.addBotButton = new FrameLayout(this.mContext);
+                    ChatRightsEditActivity.this.addBotButtonText = new AnimatedTextView(this.mContext, true, false, false);
+                    ChatRightsEditActivity.this.addBotButtonText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                    ChatRightsEditActivity.this.addBotButtonText.setTextColor(-1);
+                    ChatRightsEditActivity.this.addBotButtonText.setTextSize(AndroidUtilities.dp(14.0f));
+                    ChatRightsEditActivity.this.addBotButtonText.setGravity(17);
+                    AnimatedTextView animatedTextView = ChatRightsEditActivity.this.addBotButtonText;
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(LocaleController.getString("AddBotButton", R.string.AddBotButton));
+                    sb.append(" ");
+                    if (ChatRightsEditActivity.this.asAdmin) {
+                        i2 = R.string.AddBotButtonAsAdmin;
+                        str = "AddBotButtonAsAdmin";
+                    } else {
+                        i2 = R.string.AddBotButtonAsMember;
+                        str = "AddBotButtonAsMember";
+                    }
+                    sb.append(LocaleController.getString(str, i2));
+                    animatedTextView.setText(sb.toString());
+                    ChatRightsEditActivity.this.addBotButton.addView(ChatRightsEditActivity.this.addBotButtonText, LayoutHelper.createFrame(-2, -2, 17));
                     ChatRightsEditActivity.this.addBotButton.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
                     ChatRightsEditActivity.this.addBotButton.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view) {
-                            ChatRightsEditActivity.ListAdapter.this.lambda$onCreateViewHolder$0(view);
+                        public final void onClick(View view2) {
+                            ChatRightsEditActivity.ListAdapter.this.lambda$onCreateViewHolder$0(view2);
                         }
                     });
                     ChatRightsEditActivity.this.addBotButtonContainer.addView(ChatRightsEditActivity.this.addBotButton, LayoutHelper.createFrame(-1, 48.0f, 119, 14.0f, 28.0f, 14.0f, 14.0f));
                     ChatRightsEditActivity.this.addBotButtonContainer.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    View view = new View(this.mContext);
-                    view.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+                    View view2 = new View(this.mContext);
+                    view2.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
                     ChatRightsEditActivity.this.addBotButtonContainer.setClipChildren(false);
                     ChatRightsEditActivity.this.addBotButtonContainer.setClipToPadding(false);
-                    ChatRightsEditActivity.this.addBotButtonContainer.addView(view, LayoutHelper.createFrame(-1, 800.0f, 87, 0.0f, 0.0f, 0.0f, -800.0f));
-                    textSettingsCell = ChatRightsEditActivity.this.addBotButtonContainer;
+                    ChatRightsEditActivity.this.addBotButtonContainer.addView(view2, LayoutHelper.createFrame(-1, 800.0f, 87, 0.0f, 0.0f, 0.0f, -800.0f));
+                    view = ChatRightsEditActivity.this.addBotButtonContainer;
                     break;
             }
-            return new RecyclerListView.Holder(textSettingsCell);
+            return new RecyclerListView.Holder(view);
         }
 
         public void lambda$onCreateViewHolder$0(View view) {

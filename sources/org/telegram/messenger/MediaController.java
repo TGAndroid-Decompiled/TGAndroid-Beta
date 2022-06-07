@@ -113,6 +113,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private static final String[] projectionPhotos;
     private static final String[] projectionVideo;
     private static Runnable refreshGalleryRunnable;
+    private static long volumeBarLastTimeShown;
     private Sensor accelerometerSensor;
     private boolean accelerometerVertical;
     private boolean allowStartRecord;
@@ -979,7 +980,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public void lambda$new$4() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.fileLoaded);
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.httpFileDidLoad);
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.didReceiveNewMessages);
@@ -1160,7 +1161,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         cleanupPlayer(true, true);
         this.audioInfo = null;
         this.playMusicAgain = false;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             DownloadController.getInstance(i).cleanup();
         }
         this.videoConvertQueue.clear();
@@ -2878,6 +2879,22 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         accountInstance.getFileLoader().loadFile(tLRPC$Document, null, 1, 1);
     }
 
+    public void checkVolumeBarUI() {
+        try {
+            long currentTimeMillis = System.currentTimeMillis();
+            if (Math.abs(currentTimeMillis - volumeBarLastTimeShown) >= 5000) {
+                AudioManager audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+                int i = this.useFrontSpeaker ? 0 : 3;
+                int streamVolume = audioManager.getStreamVolume(i);
+                if (streamVolume == 0) {
+                    audioManager.adjustStreamVolume(i, streamVolume, 1);
+                    volumeBarLastTimeShown = currentTimeMillis;
+                }
+            }
+        } catch (Exception unused) {
+        }
+    }
+
     public boolean playMessage(final MessageObject messageObject) {
         boolean z;
         File file;
@@ -2886,6 +2903,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (messageObject == null) {
             return false;
         }
+        checkVolumeBarUI();
         if (!(this.audioPlayer == null && this.videoPlayer == null) && isSamePlayingMessage(messageObject)) {
             if (this.isPaused) {
                 resumeAudio(messageObject);

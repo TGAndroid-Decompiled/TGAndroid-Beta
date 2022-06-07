@@ -12,7 +12,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.CheckBox2;
@@ -175,19 +174,16 @@ public class TextCheckbox2Cell extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        String str;
-        int i;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.checkbox");
         accessibilityNodeInfo.setCheckable(true);
         accessibilityNodeInfo.setChecked(this.checkbox.isChecked());
-        if (this.checkbox.isChecked()) {
-            i = R.string.NotificationsOn;
-            str = "NotificationsOn";
-        } else {
-            i = R.string.NotificationsOff;
-            str = "NotificationsOff";
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.textView.getText());
+        if (this.valueTextView != null) {
+            sb.append("\n");
+            sb.append(this.valueTextView.getText());
         }
-        accessibilityNodeInfo.setContentDescription(LocaleController.getString(str, i));
+        accessibilityNodeInfo.setText(sb);
     }
 }

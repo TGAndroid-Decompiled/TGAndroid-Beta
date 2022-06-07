@@ -373,13 +373,13 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         } else if (tLObject instanceof TLRPC$TL_account_resetPasswordFailedWait) {
             int currentTime = ((TLRPC$TL_account_resetPasswordFailedWait) tLObject).retry_date - getConnectionsManager().getCurrentTime();
             if (currentTime > 86400) {
-                str = LocaleController.formatPluralString("Days", currentTime / 86400);
+                str = LocaleController.formatPluralString("Days", currentTime / 86400, new Object[0]);
             } else if (currentTime > 3600) {
-                str = LocaleController.formatPluralString("Hours", currentTime / 86400);
+                str = LocaleController.formatPluralString("Hours", currentTime / 86400, new Object[0]);
             } else if (currentTime > 60) {
-                str = LocaleController.formatPluralString("Minutes", currentTime / 60);
+                str = LocaleController.formatPluralString("Minutes", currentTime / 60, new Object[0]);
             } else {
-                str = LocaleController.formatPluralString("Seconds", Math.max(1, currentTime));
+                str = LocaleController.formatPluralString("Seconds", Math.max(1, currentTime), new Object[0]);
             }
             showAlertWithText(LocaleController.getString("ResetPassword", R.string.ResetPassword), LocaleController.formatString("ResetPasswordWait", R.string.ResetPasswordWait, str));
         }
@@ -465,11 +465,11 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             twoStepVerificationSetupActivity.setCurrentPasswordParams(this.currentPasswordHash, this.currentSecretId, this.currentSecret, false);
             presentFragment(twoStepVerificationSetupActivity);
         } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-            int intValue = Utilities.parseInt(tLRPC$TL_error.text).intValue();
+            int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
             if (intValue < 60) {
-                str = LocaleController.formatPluralString("Seconds", intValue);
+                str = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
             } else {
-                str = LocaleController.formatPluralString("Minutes", intValue / 60);
+                str = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
             }
             showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, str));
         } else {
@@ -858,11 +858,11 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             } else if (tLRPC$TL_error == null) {
             } else {
                 if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue = Utilities.parseInt(tLRPC$TL_error.text).intValue();
+                    int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
                     if (intValue < 60) {
-                        str = LocaleController.formatPluralString("Seconds", intValue);
+                        str = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
                     } else {
-                        str = LocaleController.formatPluralString("Minutes", intValue / 60);
+                        str = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
                     }
                     showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, str));
                     return;
@@ -1072,11 +1072,11 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         if ("PASSWORD_HASH_INVALID".equals(tLRPC$TL_error.text)) {
             onFieldError(this.passwordOutlineView, this.passwordEditText, true);
         } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-            int intValue = Utilities.parseInt(tLRPC$TL_error.text).intValue();
+            int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
             if (intValue < 60) {
-                str = LocaleController.formatPluralString("Seconds", intValue);
+                str = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
             } else {
-                str = LocaleController.formatPluralString("Minutes", intValue / 60);
+                str = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
             }
             showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, str));
         } else {
@@ -1238,7 +1238,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     public void showSetForcePasswordAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(LocaleController.getString("Warning", R.string.Warning));
-        builder.setMessage(LocaleController.formatPluralString("ForceSetPasswordAlertMessageShort", this.otherwiseReloginDays));
+        builder.setMessage(LocaleController.formatPluralString("ForceSetPasswordAlertMessageShort", this.otherwiseReloginDays, new Object[0]));
         builder.setPositiveButton(LocaleController.getString("TwoStepVerificationSetPassword", R.string.TwoStepVerificationSetPassword), null);
         builder.setNegativeButton(LocaleController.getString("ForceSetPasswordCancel", R.string.ForceSetPasswordCancel), new DialogInterface.OnClickListener() {
             @Override

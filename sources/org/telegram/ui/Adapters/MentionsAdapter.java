@@ -240,7 +240,10 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         if (tLRPC$Document != null) {
             String str = tLRPC$Document.dc_id + "_" + tLRPC$Document.id;
             HashMap<String, TLRPC$Document> hashMap = this.stickersMap;
-            if (hashMap == null || !hashMap.containsKey(str)) {
+            if (hashMap != null && hashMap.containsKey(str)) {
+                return;
+            }
+            if (UserConfig.getInstance(this.currentAccount).isPremium() || !MessageObject.isPremiumSticker(tLRPC$Document)) {
                 if (this.stickers == null) {
                     this.stickers = new ArrayList<>();
                     this.stickersMap = new HashMap<>();
@@ -262,11 +265,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 TLRPC$Document tLRPC$Document = arrayList.get(i);
                 String str = tLRPC$Document.dc_id + "_" + tLRPC$Document.id;
                 HashMap<String, TLRPC$Document> hashMap = this.stickersMap;
-                if (hashMap == null || !hashMap.containsKey(str)) {
-                    if (this.stickers == null) {
-                        this.stickers = new ArrayList<>();
-                        this.stickersMap = new HashMap<>();
-                    }
+                if ((hashMap == null || !hashMap.containsKey(str)) && (UserConfig.getInstance(this.currentAccount).isPremium() || !MessageObject.isPremiumSticker(tLRPC$Document))) {
                     int size2 = tLRPC$Document.attributes.size();
                     int i2 = 0;
                     while (true) {
@@ -279,6 +278,10 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                             break;
                         }
                         i2++;
+                    }
+                    if (this.stickers == null) {
+                        this.stickers = new ArrayList<>();
+                        this.stickersMap = new HashMap<>();
                     }
                     this.stickers.add(new StickerResult(tLRPC$Document, obj));
                     this.stickersMap.put(str, tLRPC$Document);
@@ -401,20 +404,16 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             for (int i3 = 0; i3 < itemCount; i3++) {
                 objArr2[i3] = getItem(i3);
             }
-            int i4 = 0;
-            while (i4 < min) {
-                if (i4 >= 0) {
+            while (i2 < min) {
+                if (i2 >= 0) {
                     Object[] objArr3 = this.lastData;
-                    if (i4 < objArr3.length && i4 < itemCount && itemsEqual(objArr3[i4], objArr2[i4])) {
-                        if ((i4 == i + (-1)) != (i4 == itemCount + (-1))) {
-                            notifyItemChanged(i4);
-                        }
-                        i4++;
+                    if (i2 < objArr3.length && i2 < itemCount && itemsEqual(objArr3[i2], objArr2[i2])) {
+                        i2++;
                     }
                 }
-                notifyItemChanged(i4);
+                notifyItemChanged(i2);
                 z = true;
-                i4++;
+                i2++;
             }
             notifyItemRangeRemoved(min, i - min);
             notifyItemRangeInserted(min, itemCount - min);
@@ -1348,7 +1347,6 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights;
         int itemViewType = viewHolder.getItemViewType();
-        boolean z = true;
         if (itemViewType == 4) {
             StickerCell stickerCell = (StickerCell) viewHolder.itemView;
             StickerResult stickerResult = this.stickers.get(i);
@@ -1368,13 +1366,13 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 textView.setText(LocaleController.formatString("AttachInlineRestricted", R.string.AttachInlineRestricted, LocaleController.formatDateForBan(currentChat.banned_rights.until_date)));
             }
         } else if (this.searchResultBotContext != null) {
-            boolean z2 = this.searchResultBotContextSwitch != null;
+            boolean z = this.searchResultBotContextSwitch != null;
             if (viewHolder.getItemViewType() != 2) {
-                if (z2) {
+                if (z) {
                     i--;
                 }
-                ((ContextLinkCell) viewHolder.itemView).setLink(this.searchResultBotContext.get(i), this.foundContextBot, this.contextMedia, i != this.searchResultBotContext.size() - 1, z2 && i == 0, "gif".equals(this.searchingContextUsername));
-            } else if (z2) {
+                ((ContextLinkCell) viewHolder.itemView).setLink(this.searchResultBotContext.get(i), this.foundContextBot, this.contextMedia, i != this.searchResultBotContext.size() - 1, z && i == 0, "gif".equals(this.searchingContextUsername));
+            } else if (z) {
                 ((BotSwitchCell) viewHolder.itemView).setText(this.searchResultBotContextSwitch.text);
             }
         } else {
@@ -1406,11 +1404,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     }
                 }
             }
-            MentionCell mentionCell2 = (MentionCell) viewHolder.itemView;
-            if (!this.isReversed ? i >= getItemCount() - 1 : i <= 0) {
-                z = false;
-            }
-            mentionCell2.setDivider(z);
+            ((MentionCell) viewHolder.itemView).setDivider(false);
         }
     }
 

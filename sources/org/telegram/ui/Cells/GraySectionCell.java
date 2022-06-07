@@ -13,12 +13,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
+import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 
 public class GraySectionCell extends FrameLayout {
     private final Theme.ResourcesProvider resourcesProvider;
-    private TextView rightTextView;
+    private AnimatedTextView rightTextView;
     private TextView textView;
 
     public GraySectionCell(Context context) {
@@ -37,16 +39,18 @@ public class GraySectionCell extends FrameLayout {
         int i = 5;
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
-        TextView textView2 = new TextView(this, getContext()) {
+        AnimatedTextView animatedTextView = new AnimatedTextView(this, getContext(), true, true, true) {
             @Override
             public CharSequence getAccessibilityClassName() {
                 return Button.class.getName();
             }
         };
-        this.rightTextView = textView2;
-        textView2.setTextSize(1, 14.0f);
+        this.rightTextView = animatedTextView;
+        animatedTextView.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
+        this.rightTextView.setAnimationProperties(1.0f, 0L, 400L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.rightTextView.setTextSize(AndroidUtilities.dp(14.0f));
         this.rightTextView.setTextColor(getThemedColor("key_graySectionText"));
-        this.rightTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
+        this.rightTextView.setGravity(LocaleController.isRTL ? 3 : 5);
         addView(this.rightTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : i) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
         ViewCompat.setAccessibilityHeading(this, true);
     }
@@ -62,15 +66,29 @@ public class GraySectionCell extends FrameLayout {
         this.rightTextView.setTextColor(themedColor);
     }
 
+    public CharSequence getText() {
+        return this.textView.getText();
+    }
+
     public void setText(String str) {
         this.textView.setText(str);
         this.rightTextView.setVisibility(8);
+        this.rightTextView.setOnClickListener(null);
     }
 
     public void setText(String str, String str2, View.OnClickListener onClickListener) {
         this.textView.setText(str);
-        this.rightTextView.setText(str2);
+        this.rightTextView.setText(str2, false);
         this.rightTextView.setOnClickListener(onClickListener);
+        this.rightTextView.setVisibility(0);
+    }
+
+    public void setRightText(String str) {
+        setRightText(str, true);
+    }
+
+    public void setRightText(String str, boolean z) {
+        this.rightTextView.setText(str, true, z);
         this.rightTextView.setVisibility(0);
     }
 

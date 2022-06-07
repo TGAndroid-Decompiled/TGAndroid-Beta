@@ -9,18 +9,24 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.ui.Cells.ChatMessageCell;
 
 public class Emoji {
     private static final int MAX_RECENT_EMOJI_COUNT = 48;
@@ -183,6 +189,27 @@ public class Emoji {
         return emojiDrawable;
     }
 
+    public static AnimatedEmojiDrawable getAnimatedEmojiDrawable(TLRPC$Document tLRPC$Document, Drawable drawable, AtomicReference<WeakReference<View>> atomicReference) {
+        if (tLRPC$Document == null) {
+            return null;
+        }
+        AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(tLRPC$Document, drawable, atomicReference);
+        int i = drawImgSize;
+        animatedEmojiDrawable.setBounds(0, 0, i, i);
+        return animatedEmojiDrawable;
+    }
+
+    public static Drawable getAnimatedEmojiBigDrawable(TLRPC$Document tLRPC$Document, Drawable drawable, AtomicReference<WeakReference<View>> atomicReference) {
+        AnimatedEmojiDrawable animatedEmojiDrawable = getAnimatedEmojiDrawable(tLRPC$Document, drawable, atomicReference);
+        if (animatedEmojiDrawable == null) {
+            return null;
+        }
+        int i = bigImgSize;
+        animatedEmojiDrawable.setBounds(0, 0, i, i);
+        animatedEmojiDrawable.fullSize = true;
+        return animatedEmojiDrawable;
+    }
+
     private static DrawableInfo getDrawableInfo(CharSequence charSequence) {
         CharSequence charSequence2;
         DrawableInfo drawableInfo = rects.get(charSequence);
@@ -216,11 +243,131 @@ public class Emoji {
         return emojiDrawable;
     }
 
+    public static class AnimatedEmojiDrawable extends Drawable {
+        private WeakReference<View> lastView;
+        private AtomicReference<WeakReference<View>> viewRef;
+        private Rect rect = new Rect();
+        public boolean fullSize = false;
+        private ImageReceiver imageReceiver = new ImageReceiver();
+
+        @Override
+        public int getOpacity() {
+            return -2;
+        }
+
+        @Override
+        public void setAlpha(int i) {
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+        }
+
+        public AnimatedEmojiDrawable(TLRPC$Document tLRPC$Document, Drawable drawable, AtomicReference<WeakReference<View>> atomicReference) {
+            SvgHelper.SvgDrawable svgDrawable = drawable;
+            if (drawable == null) {
+                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document.thumbs, "windowBackgroundWhiteGrayIcon", 0.2f);
+                svgDrawable = svgThumb;
+                if (svgThumb != null) {
+                    svgThumb.overrideWidthAndHeight(512, 512);
+                    svgDrawable = svgThumb;
+                }
+            }
+            this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), "32_32", svgDrawable, "tgs", tLRPC$Document, 1);
+            this.imageReceiver.setInvalidateAll(true);
+            this.imageReceiver.setAllowStartLottieAnimation(true);
+            this.imageReceiver.setAutoRepeat(1);
+            this.imageReceiver.startAnimation();
+            this.viewRef = atomicReference;
+            updateViewRef();
+        }
+
+        public Rect getDrawRect() {
+            Rect bounds = getBounds();
+            int centerX = bounds.centerX();
+            int centerY = bounds.centerY();
+            this.rect.left = centerX - ((this.fullSize ? Emoji.bigImgSize : Emoji.drawImgSize) / 2);
+            this.rect.right = centerX + ((this.fullSize ? Emoji.bigImgSize : Emoji.drawImgSize) / 2);
+            this.rect.top = centerY - ((this.fullSize ? Emoji.bigImgSize : Emoji.drawImgSize) / 2);
+            this.rect.bottom = centerY + ((this.fullSize ? Emoji.bigImgSize : Emoji.drawImgSize) / 2);
+            return this.rect;
+        }
+
+        public View getParentView() {
+            updateViewRef();
+            WeakReference<View> weakReference = this.lastView;
+            if (weakReference != null) {
+                return weakReference.get();
+            }
+            return null;
+        }
+
+        private void updateViewRef() {
+            AtomicReference<WeakReference<View>> atomicReference = this.viewRef;
+            if (!(atomicReference == null || atomicReference.get() == this.lastView)) {
+                WeakReference<View> weakReference = this.viewRef.get();
+                this.lastView = weakReference;
+                if (!(weakReference == null || weakReference.get() == null)) {
+                    this.imageReceiver.setParentView(this.lastView.get());
+                }
+            }
+            if (this.imageReceiver.getLottieAnimation() != null && this.imageReceiver.getLottieAnimation().getCallback() == null) {
+                this.imageReceiver.getLottieAnimation().setCallback(new Drawable.Callback() {
+                    @Override
+                    public void invalidateDrawable(Drawable drawable) {
+                        View parentView = AnimatedEmojiDrawable.this.getParentView();
+                        if (parentView != null) {
+                            if (parentView instanceof ChatMessageCell) {
+                                parentView.invalidate();
+                            }
+                            parentView.invalidateDrawable(drawable);
+                        }
+                    }
+
+                    @Override
+                    public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+                        View parentView = AnimatedEmojiDrawable.this.getParentView();
+                        if (parentView != null) {
+                            parentView.scheduleDrawable(drawable, runnable, j);
+                        }
+                    }
+
+                    @Override
+                    public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+                        View parentView = AnimatedEmojiDrawable.this.getParentView();
+                        if (parentView != null) {
+                            parentView.unscheduleDrawable(drawable, runnable);
+                        }
+                    }
+                });
+            }
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            updateViewRef();
+            Rect drawRect = this.fullSize ? getDrawRect() : getBounds();
+            Rect rect = AndroidUtilities.rectTmp2;
+            rect.set(drawRect);
+            rect.inset(-((int) (rect.width() * 0.1f)), -((int) (rect.height() * 0.1f)));
+            this.imageReceiver.setImageCoords(rect);
+            this.imageReceiver.draw(canvas);
+            View parentView = getParentView();
+            if (parentView != null) {
+                if (parentView instanceof ChatMessageCell) {
+                    parentView.invalidate();
+                }
+                parentView.invalidateDrawable(this);
+            }
+        }
+    }
+
     public static class EmojiDrawable extends Drawable {
         private static Paint paint = new Paint(2);
         private static Rect rect = new Rect();
-        private boolean fullSize = false;
         private DrawableInfo info;
+        private boolean fullSize = false;
+        public int placeholderColor = 536870912;
 
         @Override
         public int getOpacity() {
@@ -256,7 +403,9 @@ public class Emoji {
             if (!isLoaded()) {
                 DrawableInfo drawableInfo = this.info;
                 Emoji.loadEmoji(drawableInfo.page, drawableInfo.page2);
-                canvas.drawRect(getBounds(), Emoji.placeholderPaint);
+                Emoji.placeholderPaint.setColor(this.placeholderColor);
+                Rect bounds = getBounds();
+                canvas.drawCircle(bounds.centerX(), bounds.centerY(), bounds.width() * 0.4f, Emoji.placeholderPaint);
                 return;
             }
             if (this.fullSize) {
@@ -312,19 +461,27 @@ public class Emoji {
     }
 
     public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, int i, boolean z) {
-        return replaceEmoji(charSequence, fontMetricsInt, i, z, null);
+        return replaceEmoji(charSequence, fontMetricsInt, i, z, null, false, null);
     }
 
-    public static java.lang.CharSequence replaceEmoji(java.lang.CharSequence r25, android.graphics.Paint.FontMetricsInt r26, int r27, boolean r28, int[] r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.Emoji.replaceEmoji(java.lang.CharSequence, android.graphics.Paint$FontMetricsInt, int, boolean, int[]):java.lang.CharSequence");
+    public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, int i, boolean z, boolean z2, AtomicReference<WeakReference<View>> atomicReference) {
+        return replaceEmoji(charSequence, fontMetricsInt, i, z, null, z2, atomicReference);
+    }
+
+    public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, int i, boolean z, int[] iArr) {
+        return replaceEmoji(charSequence, fontMetricsInt, i, z, iArr, false, null);
+    }
+
+    public static java.lang.CharSequence replaceEmoji(java.lang.CharSequence r26, android.graphics.Paint.FontMetricsInt r27, int r28, boolean r29, int[] r30, boolean r31, java.util.concurrent.atomic.AtomicReference<java.lang.ref.WeakReference<android.view.View>> r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.Emoji.replaceEmoji(java.lang.CharSequence, android.graphics.Paint$FontMetricsInt, int, boolean, int[], boolean, java.util.concurrent.atomic.AtomicReference):java.lang.CharSequence");
     }
 
     public static class EmojiSpan extends ImageSpan {
         private Paint.FontMetricsInt fontMetrics;
         private int size;
 
-        public EmojiSpan(EmojiDrawable emojiDrawable, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-            super(emojiDrawable, i);
+        public EmojiSpan(Drawable drawable, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+            super(drawable, i);
             this.size = AndroidUtilities.dp(20.0f);
             this.fontMetrics = fontMetricsInt;
             if (fontMetricsInt != null) {
@@ -395,6 +552,14 @@ public class Emoji {
             if (z) {
                 getDrawable().setAlpha(255);
             }
+        }
+
+        @Override
+        public void updateDrawState(TextPaint textPaint) {
+            if (getDrawable() instanceof EmojiDrawable) {
+                ((EmojiDrawable) getDrawable()).placeholderColor = 553648127 & textPaint.getColor();
+            }
+            super.updateDrawState(textPaint);
         }
     }
 
@@ -488,7 +653,7 @@ public class Emoji {
                                 i = 4;
                             }
                             if (sb.length() > 0) {
-                                emojiUseHistory.put(sb.toString(), Utilities.parseInt(split2[1]));
+                                emojiUseHistory.put(sb.toString(), Utilities.parseInt((CharSequence) split2[1]));
                             }
                             i2++;
                             i = 4;
@@ -501,7 +666,7 @@ public class Emoji {
                     if (string2 != null && string2.length() > 0) {
                         for (String str : string2.split(",")) {
                             String[] split3 = str.split("=");
-                            emojiUseHistory.put(split3[0], Utilities.parseInt(split3[1]));
+                            emojiUseHistory.put(split3[0], Utilities.parseInt((CharSequence) split3[1]));
                         }
                     }
                 }

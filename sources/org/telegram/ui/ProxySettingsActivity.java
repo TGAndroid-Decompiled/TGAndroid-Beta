@@ -145,7 +145,7 @@ public class ProxySettingsActivity extends BaseFragment {
                     ProxySettingsActivity.this.finishFragment();
                 } else if (i == 1 && ProxySettingsActivity.this.getParentActivity() != null) {
                     ProxySettingsActivity.this.currentProxyInfo.address = ProxySettingsActivity.this.inputFields[0].getText().toString();
-                    ProxySettingsActivity.this.currentProxyInfo.port = Utilities.parseInt(ProxySettingsActivity.this.inputFields[1].getText().toString()).intValue();
+                    ProxySettingsActivity.this.currentProxyInfo.port = Utilities.parseInt((CharSequence) ProxySettingsActivity.this.inputFields[1].getText().toString()).intValue();
                     if (ProxySettingsActivity.this.currentType == 0) {
                         ProxySettingsActivity.this.currentProxyInfo.secret = "";
                         ProxySettingsActivity.this.currentProxyInfo.username = ProxySettingsActivity.this.inputFields[2].getText().toString();
@@ -291,7 +291,7 @@ public class ProxySettingsActivity extends BaseFragment {
                                 i4 = i5;
                             }
                             ProxySettingsActivity.this.ignoreOnTextChange = true;
-                            int intValue = Utilities.parseInt(sb.toString()).intValue();
+                            int intValue = Utilities.parseInt((CharSequence) sb.toString()).intValue();
                             if (intValue < 0 || intValue > 65535 || !obj.equals(sb.toString())) {
                                 if (intValue < 0) {
                                     editTextBoldCursor.setText("0");
@@ -582,7 +582,7 @@ public class ProxySettingsActivity extends BaseFragment {
             EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
             boolean z2 = false;
             if (editTextBoldCursorArr[0] != null && editTextBoldCursorArr[1] != null) {
-                if (!(editTextBoldCursorArr[0].length() == 0 || Utilities.parseInt(this.inputFields[1].getText().toString()).intValue() == 0)) {
+                if (!(editTextBoldCursorArr[0].length() == 0 || Utilities.parseInt((CharSequence) this.inputFields[1].getText().toString()).intValue() == 0)) {
                     z2 = true;
                 }
                 setShareDoneEnabled(z2, z);

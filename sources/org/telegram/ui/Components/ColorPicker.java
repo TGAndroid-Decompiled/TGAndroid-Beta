@@ -79,6 +79,19 @@ public class ColorPicker extends FrameLayout {
     private Paint valueSliderPaint = new Paint(5);
 
     public interface ColorPickerDelegate {
+
+        public final class CC {
+            public static void $default$deleteTheme(ColorPickerDelegate colorPickerDelegate) {
+            }
+
+            public static int $default$getDefaultColor(ColorPickerDelegate colorPickerDelegate, int i) {
+                return 0;
+            }
+
+            public static void $default$openThemeCreate(ColorPickerDelegate colorPickerDelegate, boolean z) {
+            }
+        }
+
         void deleteTheme();
 
         int getDefaultColor(int i);

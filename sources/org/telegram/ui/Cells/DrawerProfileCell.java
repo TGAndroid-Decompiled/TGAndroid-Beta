@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -38,7 +39,7 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.SnowflakesEffect;
 import org.telegram.ui.ThemeActivity;
 
-public class DrawerProfileCell extends FrameLayout {
+public class DrawerProfileCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static boolean switchingTheme;
     private boolean accountsShown;
     private ImageView arrowView;
@@ -100,19 +101,20 @@ public class DrawerProfileCell extends FrameLayout {
             this.sunDrawable.setCurrentFrame(36);
         }
         this.sunDrawable.setPlayInDirectionOfCustomEndFrame(true);
-        RLottieImageView rLottieImageView = new RLottieImageView(context) {
+        RLottieImageView rLottieImageView = new RLottieImageView(this, context) {
             @Override
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                if (DrawerProfileCell.this.sunDrawable.getCustomEndFrame() != 0) {
-                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToNightTheme", R.string.AccDescrSwitchToNightTheme));
-                } else {
+                if (Theme.isCurrentThemeDark()) {
                     accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToDayTheme", R.string.AccDescrSwitchToDayTheme));
+                } else {
+                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToNightTheme", R.string.AccDescrSwitchToNightTheme));
                 }
             }
         };
         this.darkThemeView = rLottieImageView;
-        rLottieImageView.setBackground(Theme.createCircleSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0, 0));
+        rLottieImageView.setFocusable(true);
+        this.darkThemeView.setBackground(Theme.createCircleSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0, 0));
         this.sunDrawable.beginApplyLayerColors();
         int color = Theme.getColor("chats_menuName");
         this.sunDrawable.setLayerColor("Sunny.**", color);
@@ -173,6 +175,13 @@ public class DrawerProfileCell extends FrameLayout {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         updateColors();
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
     }
 
     @Override
@@ -300,7 +309,12 @@ public class DrawerProfileCell extends FrameLayout {
         if (tLRPC$User != null) {
             this.accountsShown = z;
             setArrowState(false);
-            this.nameTextView.setText(UserObject.getUserName(tLRPC$User));
+            CharSequence userName = UserObject.getUserName(tLRPC$User);
+            try {
+                userName = Emoji.replaceEmoji(userName, this.nameTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(22.0f), false);
+            } catch (Exception unused) {
+            }
+            this.nameTextView.setText(userName);
             TextView textView = this.phoneTextView;
             PhoneFormat phoneFormat = PhoneFormat.getInstance();
             textView.setText(phoneFormat.format("+" + tLRPC$User.phone));
@@ -350,5 +364,12 @@ public class DrawerProfileCell extends FrameLayout {
             str = "AccDescrShowAccounts";
         }
         imageView.setContentDescription(LocaleController.getString(str, i));
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.emojiLoaded) {
+            this.nameTextView.invalidate();
+        }
     }
 }

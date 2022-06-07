@@ -188,9 +188,13 @@ public class PhotoViewerWebView extends FrameLayout {
         return this.progressBar.getVisibility() != 0;
     }
 
+    public boolean isInAppOnly() {
+        return this.isYouTube && "inapp".equals(MessagesController.getInstance(this.currentAccount).youtubePipType);
+    }
+
     public boolean openInPip() {
-        boolean z = this.isYouTube && "inapp".equals(MessagesController.getInstance(this.currentAccount).youtubePipType);
-        if ((!z && !checkInlinePermissions()) || this.progressBar.getVisibility() == 0) {
+        boolean isInAppOnly = isInAppOnly();
+        if ((!isInAppOnly && !checkInlinePermissions()) || this.progressBar.getVisibility() == 0) {
             return false;
         }
         if (PipVideoOverlay.isVisible()) {
@@ -205,7 +209,7 @@ public class PhotoViewerWebView extends FrameLayout {
         }
         WebView webView = this.webView;
         TLRPC$WebPage tLRPC$WebPage = this.currentWebpage;
-        if (PipVideoOverlay.show(z, (Activity) getContext(), webView, tLRPC$WebPage.embed_width, tLRPC$WebPage.embed_height)) {
+        if (PipVideoOverlay.show(isInAppOnly, (Activity) getContext(), webView, tLRPC$WebPage.embed_width, tLRPC$WebPage.embed_height)) {
             PipVideoOverlay.setPhotoViewer(PhotoViewer.getInstance());
         }
         return true;
@@ -250,9 +254,9 @@ public class PhotoViewerWebView extends FrameLayout {
                     if (str2 != null) {
                         if (str2.contains("m")) {
                             String[] split = str2.split("m");
-                            intValue = (Utilities.parseInt(split[0]).intValue() * 60) + Utilities.parseInt(split[1]).intValue();
+                            intValue = (Utilities.parseInt((CharSequence) split[0]).intValue() * 60) + Utilities.parseInt((CharSequence) split[1]).intValue();
                         } else {
-                            intValue = Utilities.parseInt(str2).intValue();
+                            intValue = Utilities.parseInt((CharSequence) str2).intValue();
                         }
                         this.webView.loadDataWithBaseURL("https://messenger.telegram.org/", String.format(Locale.US, "<!DOCTYPE html><html><head><style>body { margin: 0; width:100%%; height:100%%;  background-color:#000; }html { width:100%%; height:100%%; background-color:#000; }.embed-container iframe,.embed-container object,   .embed-container embed {       position: absolute;       top: 0;       left: 0;       width: 100%% !important;       height: 100%% !important;   }   </style></head><body>   <div class=\"embed-container\">       <div id=\"player\"></div>   </div>   <script src=\"https://www.youtube.com/iframe_api\"></script>   <script>   var player;   var posted = false;   YT.ready(function() {       player = new YT.Player(\"player\", {                              \"width\" : \"100%%\",                              \"events\" : {                              \"onReady\" : \"onReady\",                              \"onError\" : \"onError\",                              \"onStateChange\" : \"onStateChange\",                              },                              \"videoId\" : \"%1$s\",                              \"height\" : \"100%%\",                              \"playerVars\" : {                              \"start\" : %2$d,                              \"rel\" : 1,                              \"showinfo\" : 0,                              \"modestbranding\" : 0,                              \"iv_load_policy\" : 3,                              \"autohide\" : 1,                              \"autoplay\" : 1,                              \"cc_load_policy\" : 1,                              \"playsinline\" : 1,                              \"controls\" : 1                              }                            });        player.setSize(window.innerWidth, window.innerHeight);    });    function setPlaybackSpeed(speed) {        player.setPlaybackRate(speed);    }    function onError(event) {       if (!posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onStateChange(event) {       if (event.data == YT.PlayerState.PLAYING && !posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onReady(event) {       player.playVideo();    }    window.onresize = function() {       player.setSize(window.innerWidth, window.innerHeight);       player.playVideo();    }    </script></body></html>", youTubeVideoId, Integer.valueOf(intValue)), "text/html", "UTF-8", "https://youtube.com");
                     }

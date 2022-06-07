@@ -50,6 +50,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
     private float chatActivityEnterViewAnimateFromTop;
     private Drawable checkDrawable;
     private int codePointCount;
+    public int currentAccount;
     private PhotoViewerCaptionEnterViewDelegate delegate;
     private final ImageView doneButton;
     private ImageView emojiButton;
@@ -79,7 +80,6 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
     private SizeNotifierFrameLayoutPhoto sizeNotifierLayout;
     ValueAnimator topBackgroundAnimator;
     private View windowView;
-    private int captionMaxLength = 1024;
     boolean sendButtonEnabled = true;
     private float sendButtonEnabledProgress = 1.0f;
     float offset = 0.0f;
@@ -107,11 +107,12 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
     }
 
     public int getCaptionLimitOffset() {
-        return this.captionMaxLength - this.codePointCount;
+        return MessagesController.getInstance(this.currentAccount).getCaptionMaxLengthLimit() - this.codePointCount;
     }
 
     public PhotoViewerCaptionEnterView(Context context, SizeNotifierFrameLayoutPhoto sizeNotifierFrameLayoutPhoto, View view, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.currentAccount = UserConfig.selectedAccount;
         Paint paint = new Paint();
         this.paint = paint;
         this.resourcesProvider = resourcesProvider;
@@ -265,6 +266,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
         this.captionLimitView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.captionLimitView.setCenterAlign(true);
         addView(this.captionLimitView, LayoutHelper.createFrame(48, 20.0f, 85, 3.0f, 0.0f, 3.0f, 48.0f));
+        this.currentAccount = UserConfig.selectedAccount;
     }
 
     public void lambda$new$0(View view) {
@@ -354,7 +356,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
     }
 
     public void lambda$new$5(View view) {
-        if (this.captionMaxLength - this.codePointCount < 0) {
+        if (MessagesController.getInstance(this.currentAccount).getCaptionMaxLengthLimit() - this.codePointCount < 0) {
             AndroidUtilities.shakeView(this.captionLimitView, 2.0f, 0);
             Vibrator vibrator = (Vibrator) this.captionLimitView.getContext().getSystemService("vibrator");
             if (vibrator != null) {
@@ -470,6 +472,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
 
     public void onCreate() {
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         this.sizeNotifierLayout.setDelegate(this);
     }
 
@@ -480,6 +483,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
         }
         this.keyboardVisible = false;
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         SizeNotifierFrameLayoutPhoto sizeNotifierFrameLayoutPhoto = this.sizeNotifierLayout;
         if (sizeNotifierFrameLayoutPhoto != null) {
             sizeNotifierFrameLayoutPhoto.setDelegate(null);
@@ -500,7 +504,6 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
             if (photoViewerCaptionEnterViewDelegate != null) {
                 photoViewerCaptionEnterViewDelegate.onTextChanged(this.messageEditText.getText());
             }
-            this.captionMaxLength = MessagesController.getInstance(UserConfig.selectedAccount).maxCaptionLength;
         }
     }
 

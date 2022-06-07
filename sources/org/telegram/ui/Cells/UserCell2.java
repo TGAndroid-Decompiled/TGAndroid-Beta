@@ -22,9 +22,11 @@ import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.LayoutHelper;
 
 public class UserCell2 extends FrameLayout {
+    private AvatarDrawable avatarDrawable;
     private BackupImageView avatarImageView;
     private CheckBox checkBox;
     private CheckBoxSquare checkBoxBig;
+    private int currentAccount;
     private int currentDrawable;
     private int currentId;
     private CharSequence currentName;
@@ -35,11 +37,10 @@ public class UserCell2 extends FrameLayout {
     private String lastName;
     private int lastStatus;
     private SimpleTextView nameTextView;
+    private Theme.ResourcesProvider resourcesProvider;
+    private int statusColor;
+    private int statusOnlineColor;
     private SimpleTextView statusTextView;
-    private int currentAccount = UserConfig.selectedAccount;
-    private int statusColor = Theme.getColor("windowBackgroundWhiteGrayText");
-    private int statusOnlineColor = Theme.getColor("windowBackgroundWhiteBlueText");
-    private AvatarDrawable avatarDrawable = new AvatarDrawable();
 
     @Override
     public boolean hasOverlappingRendering() {
@@ -47,25 +48,33 @@ public class UserCell2 extends FrameLayout {
     }
 
     public UserCell2(Context context, int i, int i2) {
+        this(context, i, i2, null);
+    }
+
+    public UserCell2(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         int i3;
         float f;
+        this.currentAccount = UserConfig.selectedAccount;
+        this.resourcesProvider = resourcesProvider;
+        this.statusColor = Theme.getColor("windowBackgroundWhiteGrayText", resourcesProvider);
+        this.statusOnlineColor = Theme.getColor("windowBackgroundWhiteBlueText", resourcesProvider);
+        this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(24.0f));
         View view = this.avatarImageView;
         boolean z = LocaleController.isRTL;
-        int i4 = 5;
         addView(view, LayoutHelper.createFrame(48, 48.0f, (z ? 5 : 3) | 48, z ? 0.0f : i + 7, 11.0f, z ? i + 7 : 0.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
-        simpleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        simpleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
         this.nameTextView.setTextSize(17);
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         View view2 = this.nameTextView;
         boolean z2 = LocaleController.isRTL;
-        int i5 = (z2 ? 5 : 3) | 48;
-        int i6 = 18;
+        int i4 = (z2 ? 5 : 3) | 48;
+        int i5 = 18;
         if (z2) {
             i3 = (i2 == 2 ? 18 : 0) + 28;
         } else {
@@ -75,9 +84,9 @@ public class UserCell2 extends FrameLayout {
         if (z2) {
             f = i + 68;
         } else {
-            f = (i2 != 2 ? 0 : i6) + 28;
+            f = (i2 != 2 ? 0 : i5) + 28;
         }
-        addView(view2, LayoutHelper.createFrame(-1, 20.0f, i5, f2, 14.5f, f, 0.0f));
+        addView(view2, LayoutHelper.createFrame(-1, 20.0f, i4, f2, 14.5f, f, 0.0f));
         SimpleTextView simpleTextView2 = new SimpleTextView(context);
         this.statusTextView = simpleTextView2;
         simpleTextView2.setTextSize(14);
@@ -88,24 +97,24 @@ public class UserCell2 extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.MULTIPLY));
+        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon", resourcesProvider), PorterDuff.Mode.MULTIPLY));
         this.imageView.setVisibility(8);
         View view4 = this.imageView;
         boolean z4 = LocaleController.isRTL;
         addView(view4, LayoutHelper.createFrame(-2, -2.0f, (z4 ? 5 : 3) | 16, z4 ? 0.0f : 16.0f, 0.0f, z4 ? 16.0f : 0.0f, 0.0f));
         if (i2 == 2) {
-            CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, false);
+            CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, false, resourcesProvider);
             this.checkBoxBig = checkBoxSquare;
             boolean z5 = LocaleController.isRTL;
-            addView(checkBoxSquare, LayoutHelper.createFrame(18, 18.0f, (z5 ? 3 : i4) | 16, z5 ? 19.0f : 0.0f, 0.0f, z5 ? 0.0f : 19.0f, 0.0f));
+            addView(checkBoxSquare, LayoutHelper.createFrame(18, 18.0f, (z5 ? 3 : 5) | 16, z5 ? 19.0f : 0.0f, 0.0f, z5 ? 0.0f : 19.0f, 0.0f));
         } else if (i2 == 1) {
             CheckBox checkBox = new CheckBox(context, R.drawable.round_check2);
             this.checkBox = checkBox;
             checkBox.setVisibility(4);
-            this.checkBox.setColor(Theme.getColor("checkbox"), Theme.getColor("checkboxCheck"));
+            this.checkBox.setColor(Theme.getColor("checkbox", resourcesProvider), Theme.getColor("checkboxCheck", resourcesProvider));
             View view5 = this.checkBox;
             boolean z6 = LocaleController.isRTL;
-            addView(view5, LayoutHelper.createFrame(22, 22.0f, (!z6 ? 3 : i4) | 48, z6 ? 0.0f : i + 37, 41.0f, z6 ? i + 37 : 0.0f, 0.0f));
+            addView(view5, LayoutHelper.createFrame(22, 22.0f, (z6 ? 5 : 3) | 48, z6 ? 0.0f : i + 37, 41.0f, z6 ? i + 37 : 0.0f, 0.0f));
         }
     }
 

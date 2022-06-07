@@ -247,9 +247,9 @@ public class PollVotesAlert extends BottomSheet {
             this.middleTextView.setText(spannableStringBuilder);
             if (i3 == 0) {
                 if (PollVotesAlert.this.poll.quiz) {
-                    this.righTextView.setText(LocaleController.formatPluralString("Answer", i2));
+                    this.righTextView.setText(LocaleController.formatPluralString("Answer", i2, new Object[0]));
                 } else {
-                    this.righTextView.setText(LocaleController.formatPluralString("Vote", i2));
+                    this.righTextView.setText(LocaleController.formatPluralString("Vote", i2, new Object[0]));
                 }
             } else if (i3 == 1) {
                 this.righTextView.setText(LocaleController.getString("PollExpand", R.string.PollExpand));
@@ -699,9 +699,9 @@ public class PollVotesAlert extends BottomSheet {
         this.actionBar.setAlpha(0.0f);
         this.actionBar.setTitle(LocaleController.getString("PollResults", R.string.PollResults));
         if (this.poll.quiz) {
-            this.actionBar.setSubtitle(LocaleController.formatPluralString("Answer", tLRPC$TL_messageMediaPoll.results.total_voters));
+            this.actionBar.setSubtitle(LocaleController.formatPluralString("Answer", tLRPC$TL_messageMediaPoll.results.total_voters, new Object[0]));
         } else {
-            this.actionBar.setSubtitle(LocaleController.formatPluralString("Vote", tLRPC$TL_messageMediaPoll.results.total_voters));
+            this.actionBar.setSubtitle(LocaleController.formatPluralString("Vote", tLRPC$TL_messageMediaPoll.results.total_voters, new Object[0]));
         }
         this.containerView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
@@ -1163,7 +1163,7 @@ public class PollVotesAlert extends BottomSheet {
                 }
             } else if (itemViewType == 3) {
                 VotesList votesList2 = (VotesList) PollVotesAlert.this.voters.get(i - 1);
-                ((TextCell) viewHolder.itemView).setTextAndIcon(LocaleController.formatPluralString("ShowVotes", votesList2.count - votesList2.getCount()), R.drawable.arrow_more, false);
+                ((TextCell) viewHolder.itemView).setTextAndIcon(LocaleController.formatPluralString("ShowVotes", votesList2.count - votesList2.getCount(), new Object[0]), R.drawable.arrow_more, false);
             }
         }
 

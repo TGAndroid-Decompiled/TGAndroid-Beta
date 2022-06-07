@@ -490,7 +490,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                                 this.uploadingImage = sendingMediaInfo.searchImage.imageUrl;
                                 NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.httpFileDidLoad);
                                 NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.httpFileDidFailedLoad);
-                                this.imageReceiver.setImage(sendingMediaInfo.searchImage.imageUrl, null, null, "jpg", 1);
+                                this.imageReceiver.setImage(sendingMediaInfo.searchImage.imageUrl, null, null, "jpg", 1L);
                             } else {
                                 loadBitmap = ImageLoader.loadBitmap(file.getAbsolutePath(), null, 800.0f, 800.0f, true);
                             }
@@ -633,7 +633,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 }
                 PhotoCropActivity photoCropActivity = new PhotoCropActivity(bundle);
                 photoCropActivity.setDelegate(this);
-                launchActivity.lambda$runLinkRequest$56(photoCropActivity);
+                launchActivity.lambda$runLinkRequest$59(photoCropActivity);
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -772,6 +772,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                         double d = videoEditedInfo.avatarStartTime - j;
                         Double.isNaN(d);
                         this.videoTimestamp = d / 1000000.0d;
+                        videoEditedInfo.shouldLimitFps = false;
                         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingStarted);
                         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingFailed);
                         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileNewChunkAvailable);

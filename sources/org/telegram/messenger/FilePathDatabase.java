@@ -105,15 +105,22 @@ public class FilePathDatabase {
     }
 
     public String getPath(final long j, final int i, final int i2, boolean z) {
-        if (z) {
-            if (BuildVars.DEBUG_VERSION) {
-                if (Thread.currentThread() == Looper.getMainLooper().getThread() && Thread.currentThread() == Looper.getMainLooper().getThread()) {
-                    FileLog.e(new Exception("Warning, not allowed in main thread"));
+        if (!z) {
+            String str = null;
+            try {
+                SQLiteDatabase sQLiteDatabase = this.database;
+                SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT path FROM paths WHERE document_id = " + j + " AND dc_id = " + i + " AND type = " + i2, new Object[0]);
+                if (queryFinalized.next()) {
+                    str = queryFinalized.stringValue(0);
                 }
-                if (this.dispatchQueue.getHandler() != null && Thread.currentThread() == this.dispatchQueue.getHandler().getLooper().getThread()) {
-                    throw new RuntimeException("Error, lead to infinity loop");
+                queryFinalized.dispose();
+            } catch (SQLiteException e) {
+                if (BuildVars.DEBUG_VERSION) {
+                    throw new RuntimeException(e);
                 }
             }
+            return str;
+        } else if (!BuildVars.DEBUG_VERSION || this.dispatchQueue.getHandler() == null || Thread.currentThread() != this.dispatchQueue.getHandler().getLooper().getThread()) {
             final CountDownLatch countDownLatch = new CountDownLatch(1);
             final String[] strArr = new String[1];
             System.currentTimeMillis();
@@ -128,21 +135,9 @@ public class FilePathDatabase {
             } catch (Exception unused) {
             }
             return strArr[0];
+        } else {
+            throw new RuntimeException("Error, lead to infinity loop");
         }
-        String str = null;
-        try {
-            SQLiteDatabase sQLiteDatabase = this.database;
-            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT path FROM paths WHERE document_id = " + j + " AND dc_id = " + i + " AND type = " + i2, new Object[0]);
-            if (queryFinalized.next()) {
-                str = queryFinalized.stringValue(0);
-            }
-            queryFinalized.dispose();
-        } catch (SQLiteException e) {
-            if (BuildVars.DEBUG_VERSION) {
-                throw new RuntimeException(e);
-            }
-        }
-        return str;
     }
 
     public void lambda$getPath$1(long j, int i, int i2, String[] strArr, CountDownLatch countDownLatch) {

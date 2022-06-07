@@ -2126,7 +2126,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         private void didWriteData(File file, long j, boolean z) {
             long j2 = 0;
             if (this.videoConvertFirstWrite) {
-                FileLoader.getInstance(InstantCameraView.this.currentAccount).uploadFile(file.toString(), InstantCameraView.this.isSecretChat, false, 1, ConnectionsManager.FileTypeVideo, false);
+                FileLoader.getInstance(InstantCameraView.this.currentAccount).uploadFile(file.toString(), InstantCameraView.this.isSecretChat, false, 1L, ConnectionsManager.FileTypeVideo, false);
                 this.videoConvertFirstWrite = false;
                 if (z) {
                     FileLoader fileLoader = FileLoader.getInstance(InstantCameraView.this.currentAccount);

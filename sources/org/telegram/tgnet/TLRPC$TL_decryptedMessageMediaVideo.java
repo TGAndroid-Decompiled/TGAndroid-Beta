@@ -29,7 +29,7 @@ public class TLRPC$TL_decryptedMessageMediaVideo extends TLRPC$DecryptedMessageM
         abstractSerializedData.writeString(this.mime_type);
         abstractSerializedData.writeInt32(this.w);
         abstractSerializedData.writeInt32(this.h);
-        abstractSerializedData.writeInt32(this.size);
+        abstractSerializedData.writeInt32((int) this.size);
         abstractSerializedData.writeByteArray(this.key);
         abstractSerializedData.writeByteArray(this.iv);
         abstractSerializedData.writeString(this.caption);

@@ -210,6 +210,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
     public AudioPlayerAlert(final Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, true, resourcesProvider);
         TLRPC$User user;
+        fixNavigationBar();
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null) {
             this.currentAccount = playingMessageObject.currentAccount;
@@ -587,7 +588,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
 
             @Override
             public CharSequence getContentDescription() {
-                return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, LocaleController.formatPluralString("Minutes", AudioPlayerAlert.this.lastTime / 60) + ' ' + LocaleController.formatPluralString("Seconds", AudioPlayerAlert.this.lastTime % 60), LocaleController.formatPluralString("Minutes", AudioPlayerAlert.this.lastDuration / 60) + ' ' + LocaleController.formatPluralString("Seconds", AudioPlayerAlert.this.lastDuration % 60));
+                return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, LocaleController.formatPluralString("Minutes", AudioPlayerAlert.this.lastTime / 60, new Object[0]) + ' ' + LocaleController.formatPluralString("Seconds", AudioPlayerAlert.this.lastTime % 60, new Object[0]), LocaleController.formatPluralString("Minutes", AudioPlayerAlert.this.lastDuration / 60, new Object[0]) + ' ' + LocaleController.formatPluralString("Seconds", AudioPlayerAlert.this.lastDuration % 60, new Object[0]));
             }
         });
         this.seekBarView.setReportChanges(true);
@@ -1180,6 +1181,29 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
     }
 
+    @Override
+    public int getContainerViewHeight() {
+        if (this.playerLayout == null) {
+            return 0;
+        }
+        if (this.playlist.size() <= 1) {
+            return this.playerLayout.getMeasuredHeight() + this.backgroundPaddingTop;
+        }
+        int dp = AndroidUtilities.dp(13.0f);
+        int i = (this.scrollOffsetY - this.backgroundPaddingTop) - dp;
+        if (this.currentSheetAnimationType == 1) {
+            i = (int) (i + this.listView.getTranslationY());
+        }
+        if (this.backgroundPaddingTop + i < ActionBar.getCurrentActionBarHeight()) {
+            float dp2 = dp + AndroidUtilities.dp(4.0f);
+            i -= (int) ((ActionBar.getCurrentActionBarHeight() - dp2) * Math.min(1.0f, ((ActionBar.getCurrentActionBarHeight() - i) - this.backgroundPaddingTop) / dp2));
+        }
+        if (Build.VERSION.SDK_INT >= 21) {
+            i += AndroidUtilities.statusBarHeight;
+        }
+        return this.container.getMeasuredHeight() - i;
+    }
+
     public void startForwardRewindingSeek() {
         if (this.rewindingState == 1) {
             this.lastRewindingTime = System.currentTimeMillis();
@@ -1742,9 +1766,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             String artworkUrl = messageObject.getArtworkUrl(false);
             ImageLocation artworkThumbImageLocation = getArtworkThumbImageLocation(messageObject);
             if (!TextUtils.isEmpty(artworkUrl)) {
-                nextImageView.setImage(ImageLocation.getForPath(artworkUrl), null, artworkThumbImageLocation, null, null, 0, 1, messageObject);
+                nextImageView.setImage(ImageLocation.getForPath(artworkUrl), null, artworkThumbImageLocation, null, null, 0L, 1, messageObject);
             } else if (artworkThumbImageLocation != null) {
-                nextImageView.setImage(null, null, artworkThumbImageLocation, null, null, 0, 1, messageObject);
+                nextImageView.setImage(null, null, artworkThumbImageLocation, null, null, 0L, 1, messageObject);
             } else {
                 nextImageView.setImageDrawable(null);
             }

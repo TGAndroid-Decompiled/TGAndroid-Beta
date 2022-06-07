@@ -6,11 +6,13 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.LongSparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,10 +26,12 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -40,6 +44,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_messageReactionsList;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$TL_reactionCount;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RecyclerListView;
 
@@ -321,6 +326,7 @@ public class ReactedUsersListView extends FrameLayout {
             this.titleView.setTextSize(1, 16.0f);
             this.titleView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
             this.titleView.setEllipsize(TextUtils.TruncateAt.END);
+            this.titleView.setImportantForAccessibility(2);
             addView(this.titleView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 58.0f, 0.0f, 44.0f, 0.0f));
             BackupImageView backupImageView2 = new BackupImageView(context);
             this.reactView = backupImageView2;
@@ -332,27 +338,41 @@ public class ReactedUsersListView extends FrameLayout {
         }
 
         void setUserReaction(TLRPC$TL_messagePeerReaction tLRPC$TL_messagePeerReaction) {
+            Drawable drawable;
             TLRPC$User user = MessagesController.getInstance(ReactedUsersListView.this.currentAccount).getUser(Long.valueOf(MessageObject.getPeerId(tLRPC$TL_messagePeerReaction.peer_id)));
             if (user != null) {
                 this.avatarDrawable.setInfo(user);
                 this.titleView.setText(UserObject.getUserName(user));
-                this.avatarView.setImage(ImageLocation.getForUser(user, 1), "50_50", this.avatarDrawable, user);
+                Drawable drawable2 = this.avatarDrawable;
+                TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto = user.photo;
+                if (!(tLRPC$UserProfilePhoto == null || (drawable = tLRPC$UserProfilePhoto.strippedBitmap) == null)) {
+                    drawable2 = drawable;
+                }
+                this.avatarView.setImage(ImageLocation.getForUser(user, 1), "50_50", drawable2, user);
                 if (tLRPC$TL_messagePeerReaction.reaction != null) {
                     TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(ReactedUsersListView.this.currentAccount).getReactionsMap().get(tLRPC$TL_messagePeerReaction.reaction);
                     if (tLRPC$TL_availableReaction != null) {
                         this.reactView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.static_icon), "50_50", "webp", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon.thumbs, "windowBackgroundGray", 1.0f), tLRPC$TL_availableReaction);
-                        return;
+                    } else {
+                        this.reactView.setImageDrawable(null);
                     }
-                    this.reactView.setImageDrawable(null);
+                    setContentDescription(LocaleController.formatString("AccDescrReactedWith", R.string.AccDescrReactedWith, UserObject.getUserName(user), tLRPC$TL_messagePeerReaction.reaction));
                     return;
                 }
                 this.reactView.setImageDrawable(null);
+                setContentDescription(LocaleController.formatString("AccDescrPersonHasSeen", R.string.AccDescrPersonHasSeen, UserObject.getUserName(user)));
             }
         }
 
         @Override
         protected void onMeasure(int i, int i2) {
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setEnabled(true);
         }
     }
 

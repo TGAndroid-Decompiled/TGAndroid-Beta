@@ -1611,7 +1611,6 @@
     <string name="FilterRemoveExclusionTitle">Ausnahme entfernen</string>
     <string name="FilterRemoveExclusionUserText">Wirklich \"%1$s\" aus der Liste \'immer ausgeschlossen\' entfernen?</string>
     <string name="FilterRemoveFrom">Aus Ordner entfernen</string>
-    <string name="FilterRemoveFromAlertFullText">Mehr als 100 Chats kann man leider nicht einem Ordner hinzufügen.</string>
     <string name="FilterRemoveInclusionChatText">Wirklich \"%1$s\" aus den \'immer enthaltenen\' Chats entfernen?</string>
     <string name="FilterRemoveInclusionText">Wirklich \"%1$s\" aus der \'immer enthalten\' Liste entfernen?</string>
     <string name="FilterRemoveInclusionTitle">Ausnahme entfernen</string>

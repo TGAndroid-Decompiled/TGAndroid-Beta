@@ -176,7 +176,6 @@ public class TextRadioCell extends FrameLayout {
         String str;
         int i;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
         accessibilityNodeInfo.setCheckable(true);
         accessibilityNodeInfo.setChecked(this.radioButton.isChecked());
         if (this.radioButton.isChecked()) {
@@ -187,5 +186,13 @@ public class TextRadioCell extends FrameLayout {
             str = "NotificationsOff";
         }
         accessibilityNodeInfo.setContentDescription(LocaleController.getString(str, i));
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.textView.getText());
+        if (!TextUtils.isEmpty(this.valueTextView.getText())) {
+            sb.append("\n");
+            sb.append(this.valueTextView.getText());
+        }
+        accessibilityNodeInfo.setContentDescription(sb);
+        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
     }
 }

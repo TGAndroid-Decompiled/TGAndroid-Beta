@@ -79,6 +79,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
     private int ledInfoRow;
     private int ledRow;
     private RecyclerListView listView;
+    private boolean needReset;
     private boolean notificationsEnabled;
     private int popupDisabledRow;
     private int popupEnabledRow;
@@ -87,6 +88,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
     private int previewRow;
     private int priorityInfoRow;
     private int priorityRow;
+    private Theme.ResourcesProvider resourcesProvider;
     private int ringtoneInfoRow;
     private int ringtoneRow;
     private int rowCount;
@@ -107,7 +109,12 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
     }
 
     public ProfileNotificationsActivity(Bundle bundle) {
+        this(bundle, null);
+    }
+
+    public ProfileNotificationsActivity(Bundle bundle, Theme.ResourcesProvider resourcesProvider) {
         super(bundle);
+        this.resourcesProvider = resourcesProvider;
         this.dialogId = bundle.getLong("dialog_id");
         this.addingException = bundle.getBoolean("exception", false);
     }
@@ -120,11 +127,22 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
     @Override
     public void onFragmentDestroy() {
         super.onFragmentDestroy();
+        if (!this.needReset) {
+            SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
+            edit.putBoolean("custom_" + this.dialogId, true).apply();
+        }
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.notificationsSettingsUpdated);
     }
 
     @Override
+    public Theme.ResourcesProvider getResourceProvider() {
+        return this.resourcesProvider;
+    }
+
+    @Override
     public View createView(final Context context) {
+        this.actionBar.setItemsBackgroundColor(Theme.getColor("avatar_actionBarSelectorBlue", this.resourcesProvider), false);
+        this.actionBar.setItemsColor(Theme.getColor("actionBarDefaultIcon", this.resourcesProvider), false);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
@@ -172,7 +190,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                 ProfileNotificationsActivity.this.finishFragment();
             }
         });
-        ChatAvatarContainer chatAvatarContainer = new ChatAvatarContainer(context, null, false);
+        ChatAvatarContainer chatAvatarContainer = new ChatAvatarContainer(context, null, false, this.resourcesProvider);
         this.avatarContainer = chatAvatarContainer;
         chatAvatarContainer.setOccupyStatusBar(!AndroidUtilities.isTablet());
         this.actionBar.addView(this.avatarContainer, 0, LayoutHelper.createFrame(-2, -1.0f, 51, !this.inPreviewMode ? 56.0f : 0.0f, 0.0f, 40.0f, 0.0f));
@@ -197,7 +215,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray", this.resourcesProvider));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         frameLayout2.addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
@@ -226,7 +244,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         if (view.isEnabled()) {
             Parcelable parcelable = null;
             if (i == this.customResetRow) {
-                AlertDialog create = new AlertDialog.Builder(context).setTitle(LocaleController.getString((int) R.string.ResetCustomNotificationsAlertTitle)).setMessage(LocaleController.getString((int) R.string.ResetCustomNotificationsAlert)).setPositiveButton(LocaleController.getString((int) R.string.Reset), new DialogInterface.OnClickListener() {
+                AlertDialog create = new AlertDialog.Builder(context, this.resourcesProvider).setTitle(LocaleController.getString((int) R.string.ResetCustomNotificationsAlertTitle)).setMessage(LocaleController.getString((int) R.string.ResetCustomNotificationsAlert)).setPositiveButton(LocaleController.getString((int) R.string.Reset), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
                         ProfileNotificationsActivity.this.lambda$createView$0(dialogInterface, i2);
@@ -240,7 +258,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
             } else if (i == this.soundRow) {
                 Bundle bundle = new Bundle();
                 bundle.putLong("dialog_id", this.dialogId);
-                presentFragment(new NotificationsSoundActivity(bundle));
+                presentFragment(new NotificationsSoundActivity(bundle, this.resourcesProvider));
             } else if (i == this.ringtoneRow) {
                 try {
                     Intent intent = new Intent("android.intent.action.RINGTONE_PICKER");
@@ -266,7 +284,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                     public final void run() {
                         ProfileNotificationsActivity.this.lambda$createView$1();
                     }
-                }));
+                }, this.resourcesProvider));
             } else if (i == this.enableRow) {
                 TextCheckCell textCheckCell = (TextCheckCell) view;
                 boolean z = !textCheckCell.isChecked();
@@ -283,14 +301,14 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                     public final void run() {
                         ProfileNotificationsActivity.this.lambda$createView$2();
                     }
-                }));
+                }, this.resourcesProvider));
             } else if (i == this.priorityRow) {
                 showDialog(AlertsCreator.createPrioritySelectDialog(getParentActivity(), this.dialogId, -1, new Runnable() {
                     @Override
                     public final void run() {
                         ProfileNotificationsActivity.this.lambda$createView$3();
                     }
-                }));
+                }, this.resourcesProvider));
             } else {
                 int i2 = 2;
                 if (i == this.smartRow) {
@@ -306,7 +324,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                             public final void didSelectValues(int i5, int i6) {
                                 ProfileNotificationsActivity.this.lambda$createView$4(i5, i6);
                             }
-                        });
+                        }, this.resourcesProvider);
                     }
                 } else if (i == this.colorRow) {
                     if (getParentActivity() != null) {
@@ -315,7 +333,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                             public final void run() {
                                 ProfileNotificationsActivity.this.lambda$createView$5();
                             }
-                        }));
+                        }, this.resourcesProvider));
                     }
                 } else if (i == this.popupEnabledRow) {
                     MessagesController.getNotificationsSettings(this.currentAccount).edit().putInt("popup_" + this.dialogId, 1).apply();
@@ -337,6 +355,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
     }
 
     public void lambda$createView$0(DialogInterface dialogInterface, int i) {
+        this.needReset = true;
         SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
         SharedPreferences.Editor putBoolean = edit.putBoolean("custom_" + this.dialogId, false);
         putBoolean.remove("notify2_" + this.dialogId).apply();
@@ -532,39 +551,39 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
             View view2;
             switch (i) {
                 case 0:
-                    view2 = new HeaderCell(this.context);
-                    view2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                    view2 = new HeaderCell(this.context, ProfileNotificationsActivity.this.resourcesProvider);
+                    view2.setBackgroundColor(ProfileNotificationsActivity.this.getThemedColor("windowBackgroundWhite"));
                     view = view2;
                     break;
                 case 1:
-                    view2 = new TextSettingsCell(this.context);
-                    view2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                    view2 = new TextSettingsCell(this.context, ProfileNotificationsActivity.this.resourcesProvider);
+                    view2.setBackgroundColor(ProfileNotificationsActivity.this.getThemedColor("windowBackgroundWhite"));
                     view = view2;
                     break;
                 case 2:
-                    view = new TextInfoPrivacyCell(this.context);
+                    view = new TextInfoPrivacyCell(this.context, ProfileNotificationsActivity.this.resourcesProvider);
                     break;
                 case 3:
-                    view2 = new TextColorCell(this.context);
-                    view2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                    view2 = new TextColorCell(this.context, ProfileNotificationsActivity.this.resourcesProvider);
+                    view2.setBackgroundColor(ProfileNotificationsActivity.this.getThemedColor("windowBackgroundWhite"));
                     view = view2;
                     break;
                 case 4:
-                    view2 = new RadioCell(this.context);
-                    view2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                    view2 = new RadioCell(this.context, ProfileNotificationsActivity.this.resourcesProvider);
+                    view2.setBackgroundColor(ProfileNotificationsActivity.this.getThemedColor("windowBackgroundWhite"));
                     view = view2;
                     break;
                 case 5:
-                    view2 = new UserCell2(this.context, 4, 0);
-                    view2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                    view2 = new UserCell2(this.context, 4, 0, ProfileNotificationsActivity.this.resourcesProvider);
+                    view2.setBackgroundColor(ProfileNotificationsActivity.this.getThemedColor("windowBackgroundWhite"));
                     view = view2;
                     break;
                 case 6:
-                    view = new ShadowSectionCell(this.context);
+                    view = new ShadowSectionCell(this.context, ProfileNotificationsActivity.this.resourcesProvider);
                     break;
                 default:
-                    view2 = new TextCheckCell(this.context);
-                    view2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                    view2 = new TextCheckCell(this.context, ProfileNotificationsActivity.this.resourcesProvider);
+                    view2.setBackgroundColor(ProfileNotificationsActivity.this.getThemedColor("windowBackgroundWhite"));
                     view = view2;
                     break;
             }
@@ -666,7 +685,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                             textSettingsCell.setTextAndValue(string11, string12, z);
                             return;
                         }
-                        String formatPluralString = LocaleController.formatPluralString("Minutes", i6 / 60);
+                        String formatPluralString = LocaleController.formatPluralString("Minutes", i6 / 60, new Object[0]);
                         String string13 = LocaleController.getString("SmartNotifications", R.string.SmartNotifications);
                         String formatString = LocaleController.formatString("SmartNotificationsInfo", R.string.SmartNotificationsInfo, Integer.valueOf(i5), formatPluralString);
                         if (ProfileNotificationsActivity.this.priorityRow != -1) {
@@ -827,6 +846,11 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
             }
             return (i == ProfileNotificationsActivity.this.enableRow || i == ProfileNotificationsActivity.this.previewRow) ? 7 : 0;
         }
+    }
+
+    @Override
+    public int getNavigationBarColor() {
+        return getThemedColor("windowBackgroundGray");
     }
 
     @Override

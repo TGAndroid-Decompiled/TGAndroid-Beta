@@ -97,13 +97,13 @@ public class NumberPicker extends LinearLayout {
         return 0.9f;
     }
 
-    static boolean access$380(NumberPicker numberPicker, int i) {
+    static boolean access$280(NumberPicker numberPicker, int i) {
         ?? r2 = (byte) (i ^ (numberPicker.mIncrementVirtualButtonPressed ? 1 : 0));
         numberPicker.mIncrementVirtualButtonPressed = r2;
         return r2;
     }
 
-    static boolean access$580(NumberPicker numberPicker, int i) {
+    static boolean access$480(NumberPicker numberPicker, int i) {
         ?? r2 = (byte) (i ^ (numberPicker.mDecrementVirtualButtonPressed ? 1 : 0));
         numberPicker.mDecrementVirtualButtonPressed = r2;
         return r2;
@@ -1010,14 +1010,14 @@ public class NumberPicker extends LinearLayout {
                     if (!NumberPicker.this.mIncrementVirtualButtonPressed) {
                         NumberPicker.this.postDelayed(this, ViewConfiguration.getPressedStateDuration());
                     }
-                    NumberPicker.access$380(NumberPicker.this, 1);
+                    NumberPicker.access$280(NumberPicker.this, 1);
                     NumberPicker numberPicker3 = NumberPicker.this;
                     numberPicker3.invalidate(0, numberPicker3.mBottomSelectionDividerBottom, NumberPicker.this.getRight(), NumberPicker.this.getBottom());
                 } else if (i3 == 2) {
                     if (!NumberPicker.this.mDecrementVirtualButtonPressed) {
                         NumberPicker.this.postDelayed(this, ViewConfiguration.getPressedStateDuration());
                     }
-                    NumberPicker.access$580(NumberPicker.this, 1);
+                    NumberPicker.access$480(NumberPicker.this, 1);
                     NumberPicker numberPicker4 = NumberPicker.this;
                     numberPicker4.invalidate(0, 0, numberPicker4.getRight(), NumberPicker.this.mTopSelectionDividerTop);
                 }

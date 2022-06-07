@@ -45,6 +45,7 @@ public class VideoEditedInfo {
     public long avatarStartTime = -1;
     public int framerate = 24;
     public boolean needUpdateProgress = false;
+    public boolean shouldLimitFps = true;
 
     public static class MediaEntity {
         public AnimatedFileDrawable animatedFileDrawable;

@@ -1,21 +1,31 @@
 package org.telegram.messenger;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.SystemClock;
 import android.text.Layout;
 import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.style.CharacterStyle;
+import android.text.style.ImageSpan;
 import android.util.Base64;
+import android.view.View;
 import androidx.collection.LongSparseArray;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.StringReader;
+import java.lang.ref.WeakReference;
 import java.net.URLEncoder;
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -132,6 +142,7 @@ import org.telegram.tgnet.TLRPC$WebDocument;
 import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
+import org.telegram.ui.Components.TranscribeButton;
 import org.telegram.ui.Components.URLSpanNoUnderlineBold;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 
@@ -184,6 +195,7 @@ public class MessageObject {
     public String emojiAnimatedStickerColor;
     private int emojiOnlyCount;
     public long eventId;
+    public boolean forcePlayEffect;
     public float forceSeekTo;
     public boolean forceUpdate;
     private float generatedWithDensity;
@@ -256,6 +268,7 @@ public class MessageObject {
     public boolean useCustomPhoto;
     public CharSequence vCardData;
     public VideoEditedInfo videoEditedInfo;
+    public AtomicReference<WeakReference<View>> viewRef;
     public boolean viewsReloaded;
     public int wantedBotKeyboardWidth;
     public boolean wasJustSent;
@@ -612,6 +625,7 @@ public class MessageObject {
     public MessageObject(int i, TLRPC$Message tLRPC$Message, String str, String str2, String str3, boolean z, boolean z2, boolean z3, boolean z4) {
         this.type = 1000;
         this.forceSeekTo = -1.0f;
+        this.viewRef = new AtomicReference<>(null);
         this.localType = z ? 2 : 1;
         this.currentAccount = i;
         this.localName = str2;
@@ -652,13 +666,14 @@ public class MessageObject {
     }
 
     public MessageObject(int i, TLRPC$Message tLRPC$Message, MessageObject messageObject, AbstractMap<Long, TLRPC$User> abstractMap, AbstractMap<Long, TLRPC$Chat> abstractMap2, LongSparseArray<TLRPC$User> longSparseArray, LongSparseArray<TLRPC$Chat> longSparseArray2, boolean z, boolean z2, long j) {
+        TLRPC$User tLRPC$User;
         LongSparseArray<TLRPC$Chat> longSparseArray3;
         AbstractMap<Long, TLRPC$Chat> abstractMap3;
-        TLRPC$User tLRPC$User;
         TextPaint textPaint;
         int i2;
         this.type = 1000;
         this.forceSeekTo = -1.0f;
+        this.viewRef = new AtomicReference<>(null);
         Theme.createCommonMessageResources();
         this.currentAccount = i;
         this.messageOwner = tLRPC$Message;
@@ -698,7 +713,7 @@ public class MessageObject {
                 textPaint = Theme.chat_msgTextPaint;
             }
             int[] iArr = allowsBigEmoji() ? new int[1] : null;
-            this.messageText = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false, iArr);
+            this.messageText = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false, iArr, this.contentType == 0, this.viewRef);
             checkEmojiOnly(iArr);
             this.emojiAnimatedSticker = null;
             if (this.emojiOnlyCount == 1) {
@@ -844,7 +859,7 @@ public class MessageObject {
         }
     }
 
-    public MessageObject(int r28, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r29, java.util.ArrayList<org.telegram.messenger.MessageObject> r30, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r31, org.telegram.tgnet.TLRPC$Chat r32, int[] r33, boolean r34) {
+    public MessageObject(int r27, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r28, java.util.ArrayList<org.telegram.messenger.MessageObject> r29, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r30, org.telegram.tgnet.TLRPC$Chat r31, int[] r32, boolean r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.<init>(int, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent, java.util.ArrayList, java.util.HashMap, org.telegram.tgnet.TLRPC$Chat, int[], boolean):void");
     }
 
@@ -900,13 +915,16 @@ public class MessageObject {
     }
 
     public void applyNewText() {
+        applyNewText(this.messageOwner.message);
+    }
+
+    public void applyNewText(CharSequence charSequence) {
         TextPaint textPaint;
-        if (!TextUtils.isEmpty(this.messageOwner.message)) {
+        if (!TextUtils.isEmpty(charSequence)) {
             int[] iArr = null;
             TLRPC$User user = isFromUser() ? MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.messageOwner.from_id.user_id)) : null;
-            TLRPC$Message tLRPC$Message = this.messageOwner;
-            this.messageText = tLRPC$Message.message;
-            if (tLRPC$Message.media instanceof TLRPC$TL_messageMediaGame) {
+            this.messageText = charSequence;
+            if (this.messageOwner.media instanceof TLRPC$TL_messageMediaGame) {
                 textPaint = Theme.chat_msgGameTextPaint;
             } else {
                 textPaint = Theme.chat_msgTextPaint;
@@ -914,7 +932,7 @@ public class MessageObject {
             if (allowsBigEmoji()) {
                 iArr = new int[1];
             }
-            this.messageText = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false, iArr);
+            this.messageText = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false, iArr, this.contentType == 0, this.viewRef);
             checkEmojiOnly(iArr);
             generateLayout(user);
         }
@@ -952,15 +970,15 @@ public class MessageObject {
         }
         if (tLRPC$TL_game2 != null) {
             if (tLRPC$User == null || tLRPC$User.id != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                this.messageText = replaceWithLink(LocaleController.formatString("ActionUserScoredInGame", R.string.ActionUserScoredInGame, LocaleController.formatPluralString("Points", this.messageOwner.action.score)), "un1", tLRPC$User);
+                this.messageText = replaceWithLink(LocaleController.formatString("ActionUserScoredInGame", R.string.ActionUserScoredInGame, LocaleController.formatPluralString("Points", this.messageOwner.action.score, new Object[0])), "un1", tLRPC$User);
             } else {
-                this.messageText = LocaleController.formatString("ActionYouScoredInGame", R.string.ActionYouScoredInGame, LocaleController.formatPluralString("Points", this.messageOwner.action.score));
+                this.messageText = LocaleController.formatString("ActionYouScoredInGame", R.string.ActionYouScoredInGame, LocaleController.formatPluralString("Points", this.messageOwner.action.score, new Object[0]));
             }
             this.messageText = replaceWithLink(this.messageText, "un2", tLRPC$TL_game2);
         } else if (tLRPC$User == null || tLRPC$User.id != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-            this.messageText = replaceWithLink(LocaleController.formatString("ActionUserScored", R.string.ActionUserScored, LocaleController.formatPluralString("Points", this.messageOwner.action.score)), "un1", tLRPC$User);
+            this.messageText = replaceWithLink(LocaleController.formatString("ActionUserScored", R.string.ActionUserScored, LocaleController.formatPluralString("Points", this.messageOwner.action.score, new Object[0])), "un1", tLRPC$User);
         } else {
-            this.messageText = LocaleController.formatString("ActionYouScored", R.string.ActionYouScored, LocaleController.formatPluralString("Points", this.messageOwner.action.score));
+            this.messageText = LocaleController.formatString("ActionYouScored", R.string.ActionYouScored, LocaleController.formatPluralString("Points", this.messageOwner.action.score, new Object[0]));
         }
     }
 
@@ -976,175 +994,41 @@ public class MessageObject {
     }
 
     public void generatePaymentSentMessageText(TLRPC$User tLRPC$User) {
+        String str;
         if (tLRPC$User == null) {
             tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(getDialogId()));
         }
         String firstName = tLRPC$User != null ? UserObject.getFirstName(tLRPC$User) : "";
-        MessageObject messageObject = this.replyMessageObject;
-        if (messageObject == null || !(messageObject.messageOwner.media instanceof TLRPC$TL_messageMediaInvoice)) {
+        try {
             LocaleController localeController = LocaleController.getInstance();
             TLRPC$MessageAction tLRPC$MessageAction = this.messageOwner.action;
-            this.messageText = LocaleController.formatString("PaymentSuccessfullyPaidNoItem", R.string.PaymentSuccessfullyPaidNoItem, localeController.formatCurrencyString(tLRPC$MessageAction.total_amount, tLRPC$MessageAction.currency), firstName);
-            return;
-        }
-        LocaleController localeController2 = LocaleController.getInstance();
-        TLRPC$MessageAction tLRPC$MessageAction2 = this.messageOwner.action;
-        this.messageText = LocaleController.formatString("PaymentSuccessfullyPaid", R.string.PaymentSuccessfullyPaid, localeController2.formatCurrencyString(tLRPC$MessageAction2.total_amount, tLRPC$MessageAction2.currency), firstName, this.replyMessageObject.messageOwner.media.title);
-    }
-
-    public void generatePinMessageText(TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat) {
-        if (tLRPC$User == null && tLRPC$Chat == 0) {
-            if (isFromUser()) {
-                tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.messageOwner.from_id.user_id));
-            }
-            if (tLRPC$User == null) {
-                TLRPC$Peer tLRPC$Peer = this.messageOwner.peer_id;
-                if (tLRPC$Peer instanceof TLRPC$TL_peerChannel) {
-                    tLRPC$Chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(this.messageOwner.peer_id.channel_id));
-                } else if (tLRPC$Peer instanceof TLRPC$TL_peerChat) {
-                    tLRPC$Chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(this.messageOwner.peer_id.chat_id));
-                }
-            }
+            str = localeController.formatCurrencyString(tLRPC$MessageAction.total_amount, tLRPC$MessageAction.currency);
+        } catch (Exception e) {
+            FileLog.e(e);
+            str = "<error>";
         }
         MessageObject messageObject = this.replyMessageObject;
         if (messageObject != null) {
-            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            if (!(tLRPC$Message instanceof TLRPC$TL_messageEmpty) && !(tLRPC$Message.action instanceof TLRPC$TL_messageActionHistoryClear)) {
-                if (messageObject.isMusic()) {
-                    String string = LocaleController.getString("ActionPinnedMusic", R.string.ActionPinnedMusic);
-                    if (tLRPC$User == null) {
-                        tLRPC$User = tLRPC$Chat;
-                    }
-                    this.messageText = replaceWithLink(string, "un1", tLRPC$User);
-                    return;
-                } else if (this.replyMessageObject.isVideo()) {
-                    String string2 = LocaleController.getString("ActionPinnedVideo", R.string.ActionPinnedVideo);
-                    if (tLRPC$User == null) {
-                        tLRPC$User = tLRPC$Chat;
-                    }
-                    this.messageText = replaceWithLink(string2, "un1", tLRPC$User);
-                    return;
-                } else if (this.replyMessageObject.isGif()) {
-                    String string3 = LocaleController.getString("ActionPinnedGif", R.string.ActionPinnedGif);
-                    if (tLRPC$User == null) {
-                        tLRPC$User = tLRPC$Chat;
-                    }
-                    this.messageText = replaceWithLink(string3, "un1", tLRPC$User);
-                    return;
-                } else if (this.replyMessageObject.isVoice()) {
-                    String string4 = LocaleController.getString("ActionPinnedVoice", R.string.ActionPinnedVoice);
-                    if (tLRPC$User == null) {
-                        tLRPC$User = tLRPC$Chat;
-                    }
-                    this.messageText = replaceWithLink(string4, "un1", tLRPC$User);
-                    return;
-                } else if (this.replyMessageObject.isRoundVideo()) {
-                    String string5 = LocaleController.getString("ActionPinnedRound", R.string.ActionPinnedRound);
-                    if (tLRPC$User == null) {
-                        tLRPC$User = tLRPC$Chat;
-                    }
-                    this.messageText = replaceWithLink(string5, "un1", tLRPC$User);
-                    return;
-                } else if ((this.replyMessageObject.isSticker() || this.replyMessageObject.isAnimatedSticker()) && !this.replyMessageObject.isAnimatedEmoji()) {
-                    String string6 = LocaleController.getString("ActionPinnedSticker", R.string.ActionPinnedSticker);
-                    if (tLRPC$User == null) {
-                        tLRPC$User = tLRPC$Chat;
-                    }
-                    this.messageText = replaceWithLink(string6, "un1", tLRPC$User);
+            TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.messageOwner.media;
+            if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) {
+                if (this.messageOwner.action.recurring_init) {
+                    this.messageText = LocaleController.formatString(R.string.PaymentSuccessfullyPaidRecurrent, str, firstName, tLRPC$MessageMedia.title);
                     return;
                 } else {
-                    MessageObject messageObject2 = this.replyMessageObject;
-                    TLRPC$MessageMedia tLRPC$MessageMedia = messageObject2.messageOwner.media;
-                    if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
-                        String string7 = LocaleController.getString("ActionPinnedFile", R.string.ActionPinnedFile);
-                        if (tLRPC$User == null) {
-                            tLRPC$User = tLRPC$Chat;
-                        }
-                        this.messageText = replaceWithLink(string7, "un1", tLRPC$User);
-                        return;
-                    } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaGeo) {
-                        String string8 = LocaleController.getString("ActionPinnedGeo", R.string.ActionPinnedGeo);
-                        if (tLRPC$User == null) {
-                            tLRPC$User = tLRPC$Chat;
-                        }
-                        this.messageText = replaceWithLink(string8, "un1", tLRPC$User);
-                        return;
-                    } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaGeoLive) {
-                        String string9 = LocaleController.getString("ActionPinnedGeoLive", R.string.ActionPinnedGeoLive);
-                        if (tLRPC$User == null) {
-                            tLRPC$User = tLRPC$Chat;
-                        }
-                        this.messageText = replaceWithLink(string9, "un1", tLRPC$User);
-                        return;
-                    } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaContact) {
-                        String string10 = LocaleController.getString("ActionPinnedContact", R.string.ActionPinnedContact);
-                        if (tLRPC$User == null) {
-                            tLRPC$User = tLRPC$Chat;
-                        }
-                        this.messageText = replaceWithLink(string10, "un1", tLRPC$User);
-                        return;
-                    } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPoll) {
-                        if (((TLRPC$TL_messageMediaPoll) tLRPC$MessageMedia).poll.quiz) {
-                            String string11 = LocaleController.getString("ActionPinnedQuiz", R.string.ActionPinnedQuiz);
-                            if (tLRPC$User == null) {
-                                tLRPC$User = tLRPC$Chat;
-                            }
-                            this.messageText = replaceWithLink(string11, "un1", tLRPC$User);
-                            return;
-                        }
-                        String string12 = LocaleController.getString("ActionPinnedPoll", R.string.ActionPinnedPoll);
-                        if (tLRPC$User == null) {
-                            tLRPC$User = tLRPC$Chat;
-                        }
-                        this.messageText = replaceWithLink(string12, "un1", tLRPC$User);
-                        return;
-                    } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
-                        String string13 = LocaleController.getString("ActionPinnedPhoto", R.string.ActionPinnedPhoto);
-                        if (tLRPC$User == null) {
-                            tLRPC$User = tLRPC$Chat;
-                        }
-                        this.messageText = replaceWithLink(string13, "un1", tLRPC$User);
-                        return;
-                    } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaGame) {
-                        String formatString = LocaleController.formatString("ActionPinnedGame", R.string.ActionPinnedGame, "🎮 " + this.replyMessageObject.messageOwner.media.game.title);
-                        if (tLRPC$User == null) {
-                            tLRPC$User = tLRPC$Chat;
-                        }
-                        CharSequence replaceWithLink = replaceWithLink(formatString, "un1", tLRPC$User);
-                        this.messageText = replaceWithLink;
-                        this.messageText = Emoji.replaceEmoji(replaceWithLink, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
-                        return;
-                    } else {
-                        CharSequence charSequence = messageObject2.messageText;
-                        if (charSequence == null || charSequence.length() <= 0) {
-                            String string14 = LocaleController.getString("ActionPinnedNoText", R.string.ActionPinnedNoText);
-                            if (tLRPC$User == null) {
-                                tLRPC$User = tLRPC$Chat;
-                            }
-                            this.messageText = replaceWithLink(string14, "un1", tLRPC$User);
-                            return;
-                        }
-                        CharSequence charSequence2 = this.replyMessageObject.messageText;
-                        if (charSequence2.length() > 20) {
-                            charSequence2 = ((Object) charSequence2.subSequence(0, 20)) + "...";
-                        }
-                        CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence2, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
-                        MediaDataController.addTextStyleRuns(this.replyMessageObject, (Spannable) replaceEmoji);
-                        SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString("ActionPinnedText", R.string.ActionPinnedText), replaceEmoji);
-                        if (tLRPC$User == null) {
-                            tLRPC$User = tLRPC$Chat;
-                        }
-                        this.messageText = replaceWithLink(formatSpannable, "un1", tLRPC$User);
-                        return;
-                    }
+                    this.messageText = LocaleController.formatString("PaymentSuccessfullyPaid", R.string.PaymentSuccessfullyPaid, str, firstName, tLRPC$MessageMedia.title);
+                    return;
                 }
             }
         }
-        String string15 = LocaleController.getString("ActionPinnedNoText", R.string.ActionPinnedNoText);
-        if (tLRPC$User == null) {
-            tLRPC$User = tLRPC$Chat;
+        if (this.messageOwner.action.recurring_init) {
+            this.messageText = LocaleController.formatString(R.string.PaymentSuccessfullyPaidNoItemRecurrent, str, firstName);
+        } else {
+            this.messageText = LocaleController.formatString("PaymentSuccessfullyPaidNoItem", R.string.PaymentSuccessfullyPaidNoItem, str, firstName);
         }
-        this.messageText = replaceWithLink(string15, "un1", tLRPC$User);
+    }
+
+    public void generatePinMessageText(org.telegram.tgnet.TLRPC$User r18, org.telegram.tgnet.TLRPC$Chat r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.generatePinMessageText(org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat):void");
     }
 
     public static void updateReactions(TLRPC$Message tLRPC$Message, TLRPC$TL_messageReactions tLRPC$TL_messageReactions) {
@@ -1490,7 +1374,7 @@ public class MessageObject {
 
     public void measureInlineBotButtons() {
         int i;
-        CharSequence charSequence;
+        CharSequence replaceEmoji;
         TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
         if (!this.isRestrictedMessage) {
             this.wantedBotKeyboardWidth = 0;
@@ -1520,11 +1404,11 @@ public class MessageObject {
                             if (str == null) {
                                 str = "";
                             }
-                            charSequence = Emoji.replaceEmoji(str, Theme.chat_msgBotButtonPaint.getFontMetricsInt(), AndroidUtilities.dp(15.0f), false);
+                            replaceEmoji = Emoji.replaceEmoji(str, Theme.chat_msgBotButtonPaint.getFontMetricsInt(), AndroidUtilities.dp(15.0f), false, this.contentType == 0, this.viewRef);
                         } else {
-                            charSequence = LocaleController.getString("PaymentReceipt", R.string.PaymentReceipt);
+                            replaceEmoji = LocaleController.getString("PaymentReceipt", R.string.PaymentReceipt);
                         }
-                        StaticLayout staticLayout = new StaticLayout(charSequence, Theme.chat_msgBotButtonPaint, AndroidUtilities.dp(2000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                        StaticLayout staticLayout = new StaticLayout(replaceEmoji, Theme.chat_msgBotButtonPaint, AndroidUtilities.dp(2000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                         if (staticLayout.getLineCount() > 0) {
                             float lineWidth = staticLayout.getLineWidth(0);
                             float lineLeft = staticLayout.getLineLeft(0);
@@ -1546,7 +1430,7 @@ public class MessageObject {
                     StringBuilder sb3 = this.botButtonsLayout;
                     sb3.append(0);
                     sb3.append(i5);
-                    StaticLayout staticLayout2 = new StaticLayout(Emoji.replaceEmoji(String.format("%d %s", Integer.valueOf(tLRPC$TL_reactionCount.count), tLRPC$TL_reactionCount.reaction), Theme.chat_msgBotButtonPaint.getFontMetricsInt(), AndroidUtilities.dp(15.0f), false), Theme.chat_msgBotButtonPaint, AndroidUtilities.dp(2000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                    StaticLayout staticLayout2 = new StaticLayout(Emoji.replaceEmoji(String.format("%d %s", Integer.valueOf(tLRPC$TL_reactionCount.count), tLRPC$TL_reactionCount.reaction), Theme.chat_msgBotButtonPaint.getFontMetricsInt(), AndroidUtilities.dp(15.0f), false, this.contentType == 0, this.viewRef), Theme.chat_msgBotButtonPaint, AndroidUtilities.dp(2000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                     if (staticLayout2.getLineCount() > 0) {
                         float lineWidth2 = staticLayout2.getLineWidth(0);
                         float lineLeft2 = staticLayout2.getLineLeft(0);
@@ -1732,7 +1616,7 @@ public class MessageObject {
                 if (allowsBigEmoji()) {
                     iArr = new int[1];
                 }
-                this.messageText = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false, iArr);
+                this.messageText = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false, iArr, this.contentType == 0, this.viewRef);
                 checkEmojiOnly(iArr);
                 generateLayout(user);
                 return true;
@@ -2243,6 +2127,113 @@ public class MessageObject {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.generateLinkDescription():void");
     }
 
+    public CharSequence getVoiceTranscription() {
+        String str;
+        TLRPC$Message tLRPC$Message = this.messageOwner;
+        if (tLRPC$Message == null || (str = tLRPC$Message.voiceTranscription) == null) {
+            return null;
+        }
+        if (TextUtils.isEmpty(str)) {
+            SpannableString spannableString = new SpannableString(LocaleController.getString("NoWordsRecognized", R.string.NoWordsRecognized));
+            spannableString.setSpan(new CharacterStyle() {
+                @Override
+                public void updateDrawState(TextPaint textPaint) {
+                    textPaint.setTextSize(textPaint.getTextSize() * 0.8f);
+                    textPaint.setColor(Theme.chat_timePaint.getColor());
+                }
+            }, 0, spannableString.length(), 33);
+            return spannableString;
+        }
+        CharSequence charSequence = this.messageOwner.voiceTranscription;
+        if (!TextUtils.isEmpty(charSequence)) {
+            charSequence = Emoji.replaceEmoji(charSequence, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false, this.contentType == 0, this.viewRef);
+            if (!this.messageOwner.voiceTranscriptionFinal && TranscribeButton.isTranscribing(this)) {
+                String str2 = ((Object) charSequence) + " ";
+                charSequence = !(str2 instanceof Spannable) ? new SpannableString(str2) : str2;
+                ((SpannableString) charSequence).setSpan(new LoadingPointsSpan(), charSequence.length() - 1, charSequence.length(), 33);
+            }
+        }
+        return charSequence;
+    }
+
+    public class LoadingPointsSpan extends ImageSpan {
+        public int color;
+        public float fontSize = SharedConfig.fontSize;
+
+        public LoadingPointsSpan() {
+            super(new LoadingPointsSpanDrawable(), 2);
+            this.color = Theme.getColor(MessageObject.this.isOutOwner() ? "chat_messageTextOut" : "chat_messageTextIn");
+            ((LoadingPointsSpanDrawable) getDrawable()).setSpan(this);
+            Drawable drawable = getDrawable();
+            float f = this.fontSize;
+            drawable.setBounds(0, 0, (int) (4.0f * f), AndroidUtilities.dp(f));
+        }
+
+        @Override
+        public void updateDrawState(TextPaint textPaint) {
+            this.fontSize = textPaint.getTextSize();
+            this.color = textPaint.getColor();
+            Drawable drawable = getDrawable();
+            float f = this.fontSize;
+            drawable.setBounds(0, 0, (int) (4.0f * f), AndroidUtilities.dp(f));
+            super.updateDrawState(textPaint);
+        }
+    }
+
+    private class LoadingPointsSpanDrawable extends Drawable {
+        private Paint RED;
+        private Paint paint = new Paint();
+        LoadingPointsSpan span;
+
+        @Override
+        public int getOpacity() {
+            return -2;
+        }
+
+        @Override
+        public void setAlpha(int i) {
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+        }
+
+        public LoadingPointsSpanDrawable() {
+            Paint paint = new Paint();
+            this.RED = paint;
+            paint.setColor(-65536);
+        }
+
+        public void setSpan(LoadingPointsSpan loadingPointsSpan) {
+            this.span = loadingPointsSpan;
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            float f;
+            AtomicReference<WeakReference<View>> atomicReference = MessageObject.this.viewRef;
+            if (!(atomicReference == null || atomicReference.get() == null || MessageObject.this.viewRef.get().get() == null)) {
+                MessageObject.this.viewRef.get().get().invalidate();
+            }
+            invalidateSelf();
+            Rect bounds = getBounds();
+            LoadingPointsSpan loadingPointsSpan = this.span;
+            float width = loadingPointsSpan == null ? bounds.width() / 5.0f : loadingPointsSpan.fontSize;
+            Paint paint = this.paint;
+            LoadingPointsSpan loadingPointsSpan2 = this.span;
+            paint.setColor(loadingPointsSpan2 == null ? -1 : loadingPointsSpan2.color);
+            for (int i = 0; i < 3; i++) {
+                this.paint.setAlpha((int) (((-Math.pow(((((((float) SystemClock.elapsedRealtime()) / 600.0f) + (0.75f * f)) % 1.0f) * 2.0f) - 1.0f, 2.0d)) + 1.0d) * 255.0d));
+                canvas.drawCircle((i + 1.0f) * width, bounds.top + (bounds.height() * 0.82f), 0.18f * width, this.paint);
+            }
+        }
+    }
+
+    public boolean isVoiceTranscriptionOpen() {
+        TLRPC$Message tLRPC$Message;
+        return isVoice() && (tLRPC$Message = this.messageOwner) != null && tLRPC$Message.voiceTranscriptionOpen && tLRPC$Message.voiceTranscription != null && (tLRPC$Message.voiceTranscriptionFinal || TranscribeButton.isTranscribing(this)) && UserConfig.getInstance(this.currentAccount).isPremium();
+    }
+
     public void generateCaption() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.generateCaption():void");
     }
@@ -2349,6 +2340,9 @@ public class MessageObject {
     }
 
     public boolean addEntitiesToText(CharSequence charSequence, boolean z, boolean z2) {
+        if (charSequence == null) {
+            return false;
+        }
         if (!this.isRestrictedMessage) {
             return addEntitiesToText(charSequence, this.messageOwner.entities, isOutOwner(), true, z, z2);
         }
@@ -2677,7 +2671,7 @@ public class MessageObject {
         return i != 0 ? i : tLRPC$Message.id;
     }
 
-    public static int getMessageSize(TLRPC$Message tLRPC$Message) {
+    public static long getMessageSize(TLRPC$Message tLRPC$Message) {
         TLRPC$Document tLRPC$Document;
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
@@ -2690,10 +2684,10 @@ public class MessageObject {
         if (tLRPC$Document != null) {
             return tLRPC$Document.size;
         }
-        return 0;
+        return 0L;
     }
 
-    public int getSize() {
+    public long getSize() {
         return getMessageSize(this.messageOwner);
     }
 

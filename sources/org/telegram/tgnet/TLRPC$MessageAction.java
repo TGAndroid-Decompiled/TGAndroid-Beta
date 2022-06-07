@@ -14,10 +14,13 @@ public abstract class TLRPC$MessageAction extends TLObject {
     public int flags;
     public long game_id;
     public long inviter_id;
+    public String invoice_slug;
     public String message;
     public TLRPC$UserProfilePhoto newUserPhoto;
     public TLRPC$Photo photo;
     public TLRPC$PhoneCallDiscardReason reason;
+    public boolean recurring_init;
+    public boolean recurring_used;
     public int score;
     public String title;
     public long total_amount;
@@ -63,6 +66,55 @@ public abstract class TLRPC$MessageAction extends TLObject {
                     }
                 };
                 break;
+            case -1892568281:
+                tLRPC$MessageAction = new TLRPC$MessageAction() {
+                    public static int constructor = -1892568281;
+                    public int flags;
+                    public TLRPC$TL_paymentRequestedInfo info;
+                    public byte[] payload;
+                    public String shipping_option_id;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        boolean z3 = false;
+                        this.recurring_init = (readInt32 & 4) != 0;
+                        if ((readInt32 & 8) != 0) {
+                            z3 = true;
+                        }
+                        this.recurring_used = z3;
+                        this.currency = abstractSerializedData2.readString(z2);
+                        this.total_amount = abstractSerializedData2.readInt64(z2);
+                        this.payload = abstractSerializedData2.readByteArray(z2);
+                        if ((this.flags & 1) != 0) {
+                            this.info = TLRPC$TL_paymentRequestedInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            this.shipping_option_id = abstractSerializedData2.readString(z2);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                        int i2 = this.recurring_init ? this.flags | 4 : this.flags & (-5);
+                        this.flags = i2;
+                        int i3 = this.recurring_used ? i2 | 8 : i2 & (-9);
+                        this.flags = i3;
+                        abstractSerializedData2.writeInt32(i3);
+                        abstractSerializedData2.writeString(this.currency);
+                        abstractSerializedData2.writeInt64(this.total_amount);
+                        abstractSerializedData2.writeByteArray(this.payload);
+                        if ((this.flags & 1) != 0) {
+                            this.info.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            abstractSerializedData2.writeString(this.shipping_option_id);
+                        }
+                    }
+                };
+                break;
             case -1834538890:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
                     public static int constructor = -1834538890;
@@ -102,6 +154,9 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1780220945:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatDeletePhoto();
+                break;
+            case -1776926890:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionPaymentSent();
                 break;
             case -1730095465:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionGeoProximityReached();
@@ -285,11 +340,12 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatAddUser();
                 break;
             case 1080663248:
-                tLRPC$MessageAction = new TLRPC$MessageAction() {
+                tLRPC$MessageAction = new TLRPC$TL_messageActionPaymentSent() {
                     public static int constructor = 1080663248;
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.flags = abstractSerializedData2.readInt32(z2);
                         this.currency = abstractSerializedData2.readString(z2);
                         this.total_amount = abstractSerializedData2.readInt64(z2);
                     }

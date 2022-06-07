@@ -88,7 +88,7 @@ public class JoinCallByUrlAlert extends BottomSheet {
             if (i == 0) {
                 textView2.setText(LocaleController.getString("NoOneJoinedYet", R.string.NoOneJoinedYet));
             } else {
-                textView2.setText(LocaleController.formatPluralString("Participants", i));
+                textView2.setText(LocaleController.formatPluralString("Participants", i, new Object[0]));
             }
         } else {
             textView.setText(tLRPC$Chat.title);

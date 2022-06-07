@@ -81,7 +81,7 @@ public class LocationController extends BaseController implements NotificationCe
     private boolean shareMyCurrentLocation;
     private boolean started;
     private boolean wasConnectedToPlayServices;
-    private static volatile LocationController[] Instance = new LocationController[3];
+    private static volatile LocationController[] Instance = new LocationController[4];
     private static HashMap<LocationFetchCallback, Runnable> callbacks = new HashMap<>();
     private LongSparseArray<SharingLocationInfo> sharingLocationsMap = new LongSparseArray<>();
     private ArrayList<SharingLocationInfo> sharingLocations = new ArrayList<>();
@@ -1157,7 +1157,7 @@ public class LocationController extends BaseController implements NotificationCe
 
     public static int getLocationsCount() {
         int i = 0;
-        for (int i2 = 0; i2 < 3; i2++) {
+        for (int i2 = 0; i2 < 4; i2++) {
             i += getInstance(i2).sharingLocationsUI.size();
         }
         return i;

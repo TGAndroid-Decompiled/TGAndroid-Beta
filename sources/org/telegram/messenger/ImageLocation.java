@@ -28,7 +28,7 @@ public class ImageLocation {
     public static final int TYPE_SMALL = 1;
     public static final int TYPE_STRIPPED = 2;
     public long access_hash;
-    public int currentSize;
+    public long currentSize;
     public int dc_id;
     public TLRPC$Document document;
     public long documentId;
@@ -399,27 +399,30 @@ public class ImageLocation {
         return this.key != null;
     }
 
-    public int getSize() {
+    public long getSize() {
+        int i;
         TLRPC$PhotoSize tLRPC$PhotoSize = this.photoSize;
         if (tLRPC$PhotoSize != null) {
-            return tLRPC$PhotoSize.size;
-        }
-        SecureDocument secureDocument = this.secureDocument;
-        if (secureDocument != null) {
-            TLRPC$TL_secureFile tLRPC$TL_secureFile = secureDocument.secureFile;
-            if (tLRPC$TL_secureFile != null) {
-                return tLRPC$TL_secureFile.size;
-            }
+            i = tLRPC$PhotoSize.size;
         } else {
-            TLRPC$Document tLRPC$Document = this.document;
-            if (tLRPC$Document != null) {
-                return tLRPC$Document.size;
+            SecureDocument secureDocument = this.secureDocument;
+            if (secureDocument != null) {
+                TLRPC$TL_secureFile tLRPC$TL_secureFile = secureDocument.secureFile;
+                if (tLRPC$TL_secureFile != null) {
+                    return tLRPC$TL_secureFile.size;
+                }
+            } else {
+                TLRPC$Document tLRPC$Document = this.document;
+                if (tLRPC$Document != null) {
+                    return tLRPC$Document.size;
+                }
+                WebFile webFile = this.webFile;
+                if (webFile != null) {
+                    i = webFile.size;
+                }
             }
-            WebFile webFile = this.webFile;
-            if (webFile != null) {
-                return webFile.size;
-            }
+            return this.currentSize;
         }
-        return this.currentSize;
+        return i;
     }
 }

@@ -74,6 +74,9 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
                 VoiceMessageEnterTransition.this.recordCircle.skipDraw = false;
             }
         });
+        if (chatMessageCell.getSeekBarWaveform() != null) {
+            chatMessageCell.getSeekBarWaveform().setSent();
+        }
     }
 
     public void lambda$new$0(MessageEnterTransitionContainer messageEnterTransitionContainer, ValueAnimator valueAnimator) {

@@ -27,7 +27,7 @@ public class AutoDeletePopupWrapper {
         void setAutoDeleteHistory(int i, int i2);
     }
 
-    public AutoDeletePopupWrapper(final Context context, final PopupSwipeBackLayout popupSwipeBackLayout, final Callback callback, boolean z, Theme.ResourcesProvider resourcesProvider) {
+    public AutoDeletePopupWrapper(final Context context, final PopupSwipeBackLayout popupSwipeBackLayout, final Callback callback, boolean z, final Theme.ResourcesProvider resourcesProvider) {
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context, z ? R.drawable.popup_fixed_alert : 0, resourcesProvider);
         this.windowLayout = actionBarPopupWindowLayout;
         actionBarPopupWindowLayout.setFitItems(true);
@@ -63,7 +63,7 @@ public class AutoDeletePopupWrapper {
         ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_customize, LocaleController.getString("AutoDeleteCustom", R.string.AutoDeleteCustom), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AutoDeletePopupWrapper.this.lambda$new$5(context, callback, view);
+                AutoDeletePopupWrapper.this.lambda$new$5(context, resourcesProvider, callback, view);
             }
         });
         ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_disable, LocaleController.getString("AutoDeleteDisable", R.string.AutoDeleteDisable), false, resourcesProvider);
@@ -76,7 +76,7 @@ public class AutoDeletePopupWrapper {
         });
         addItem2.setColors(Theme.getColor("dialogTextRed2"), Theme.getColor("dialogTextRed2"));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(Theme.getColor("graySection"));
+        frameLayout.setBackgroundColor(Theme.getColor("actionBarDefaultSubmenuSeparator", resourcesProvider));
         frameLayout.setTag(R.id.fit_width_tag, 1);
         this.windowLayout.addView((View) frameLayout, LayoutHelper.createLinear(-1, 8));
         TextView textView = new TextView(context);
@@ -103,9 +103,9 @@ public class AutoDeletePopupWrapper {
         callback.setAutoDeleteHistory(2678400, 70);
     }
 
-    public void lambda$new$5(Context context, final Callback callback, View view) {
+    public void lambda$new$5(Context context, Theme.ResourcesProvider resourcesProvider, final Callback callback, View view) {
         dismiss();
-        AlertsCreator.createAutoDeleteDatePickerDialog(context, new AlertsCreator.ScheduleDatePickerDelegate() {
+        AlertsCreator.createAutoDeleteDatePickerDialog(context, resourcesProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
             public final void didSelectDate(boolean z, int i) {
                 AutoDeletePopupWrapper.lambda$new$4(AutoDeletePopupWrapper.Callback.this, z, i);

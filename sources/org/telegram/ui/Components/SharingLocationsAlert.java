@@ -189,7 +189,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
     }
 
     public void lambda$new$1(View view) {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             LocationController.getInstance(i).removeAllLocationSharings();
         }
         dismiss();
@@ -237,7 +237,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
     }
 
     public LocationController.SharingLocationInfo getLocation(int i) {
-        for (int i2 = 0; i2 < 3; i2++) {
+        for (int i2 = 0; i2 < 4; i2++) {
             ArrayList<LocationController.SharingLocationInfo> arrayList = LocationController.getInstance(i2).sharingLocationsUI;
             if (i < arrayList.size()) {
                 return arrayList.get(i);
@@ -309,7 +309,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
             if (itemViewType == 0) {
                 ((SharingLiveLocationCell) viewHolder.itemView).setDialog(SharingLocationsAlert.this.getLocation(i - 1));
             } else if (itemViewType == 1 && SharingLocationsAlert.this.textView != null) {
-                SharingLocationsAlert.this.textView.setText(LocaleController.formatString("SharingLiveLocationTitle", R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount())));
+                SharingLocationsAlert.this.textView.setText(LocaleController.formatString("SharingLiveLocationTitle", R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
             }
         }
     }

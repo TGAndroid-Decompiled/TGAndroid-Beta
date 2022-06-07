@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -267,9 +268,8 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             @Override
             public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
-                if (((BaseFragment) PhotoPickerSearchActivity.this).parentLayout != null) {
-                    ((BaseFragment) PhotoPickerSearchActivity.this).parentLayout.drawHeaderShadow(canvas, ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getMeasuredHeight() + ((int) ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getTranslationY()));
-                }
+                float measuredHeight = ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getMeasuredHeight() + ((int) ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getTranslationY());
+                canvas.drawLine(0.0f, measuredHeight, getWidth(), measuredHeight, Theme.dividerPaint);
             }
 
             @Override
@@ -520,7 +520,6 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             i2++;
         }
         sizeNotifierFrameLayout.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
-        sizeNotifierFrameLayout.addView(this.imagesSearch.shadow, LayoutHelper.createFrame(-1, 3.0f, 83, 0.0f, 0.0f, 0.0f, 48.0f));
         sizeNotifierFrameLayout.addView(this.imagesSearch.frameLayout2, LayoutHelper.createFrame(-1, 48, 83));
         sizeNotifierFrameLayout.addView(this.imagesSearch.writeButtonContainer, LayoutHelper.createFrame(60, 60.0f, 85, 0.0f, 0.0f, 12.0f, 10.0f));
         sizeNotifierFrameLayout.addView(this.imagesSearch.selectedCountView, LayoutHelper.createFrame(42, 24.0f, 85, 0.0f, 0.0f, -2.0f, 9.0f));
@@ -530,6 +529,11 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             z = true;
         }
         this.swipeBackEnabled = z;
+        int color = Theme.getColor("dialogBackground");
+        if (Build.VERSION.SDK_INT >= 23 && AndroidUtilities.computePerceivedBrightness(color) >= 0.721f) {
+            View view2 = this.fragmentView;
+            view2.setSystemUiVisibility(view2.getSystemUiVisibility() | 8192);
+        }
         return this.fragmentView;
     }
 

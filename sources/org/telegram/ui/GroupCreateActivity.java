@@ -1085,7 +1085,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             if (this.selectedContacts.size() == 1) {
                 builder.setTitle(LocaleController.getString("AddOneMemberAlertTitle", R.string.AddOneMemberAlertTitle));
             } else {
-                builder.setTitle(LocaleController.formatString("AddMembersAlertTitle", R.string.AddMembersAlertTitle, LocaleController.formatPluralString("Members", this.selectedContacts.size())));
+                builder.setTitle(LocaleController.formatString("AddMembersAlertTitle", R.string.AddMembersAlertTitle, LocaleController.formatPluralString("Members", this.selectedContacts.size(), new Object[0])));
             }
             StringBuilder sb = new StringBuilder();
             for (int i4 = 0; i4 < this.selectedContacts.size(); i4++) {
@@ -1107,7 +1107,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             TLRPC$Chat chat = messagesController.getChat(Long.valueOf(j));
             if (this.selectedContacts.size() > 5) {
                 Object[] objArr = new Object[2];
-                objArr[0] = LocaleController.formatPluralString("Members", this.selectedContacts.size());
+                objArr[0] = LocaleController.formatPluralString("Members", this.selectedContacts.size(), new Object[0]);
                 objArr[1] = chat == null ? "" : chat.title;
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, objArr)));
                 String format = String.format("%d", Integer.valueOf(this.selectedContacts.size()));
@@ -1183,9 +1183,9 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     public void updateHint() {
         if (!this.isAlwaysShare && !this.isNeverShare && !this.addToGroup) {
             if (this.chatType == 2) {
-                this.actionBar.setSubtitle(LocaleController.formatPluralString("Members", this.selectedContacts.size()));
+                this.actionBar.setSubtitle(LocaleController.formatPluralString("Members", this.selectedContacts.size(), new Object[0]));
             } else if (this.selectedContacts.size() == 0) {
-                this.actionBar.setSubtitle(LocaleController.formatString("MembersCountZero", R.string.MembersCountZero, LocaleController.formatPluralString("Members", this.maxCount)));
+                this.actionBar.setSubtitle(LocaleController.formatString("MembersCountZero", R.string.MembersCountZero, LocaleController.formatPluralString("Members", this.maxCount, new Object[0])));
             } else {
                 this.actionBar.setSubtitle(String.format(LocaleController.getPluralString("MembersCountSelected", this.selectedContacts.size()), Integer.valueOf(this.selectedContacts.size()), Integer.valueOf(this.maxCount)));
             }

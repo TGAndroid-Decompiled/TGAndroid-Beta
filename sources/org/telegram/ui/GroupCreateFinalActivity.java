@@ -903,7 +903,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             if (itemViewType == 1) {
                 HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                 if (GroupCreateFinalActivity.this.currentGroupCreateAddress == null || i != 1) {
-                    headerCell.setText(LocaleController.formatPluralString("Members", GroupCreateFinalActivity.this.selectedContacts.size()));
+                    headerCell.setText(LocaleController.formatPluralString("Members", GroupCreateFinalActivity.this.selectedContacts.size(), new Object[0]));
                 } else {
                     headerCell.setText(LocaleController.getString("AttachLocation", R.string.AttachLocation));
                 }

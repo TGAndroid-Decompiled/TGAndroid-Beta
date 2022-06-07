@@ -47,7 +47,7 @@ public class LocationSharingService extends Service implements NotificationCente
     }
 
     public static void lambda$onCreate$0() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             LocationController.getInstance(i).update();
         }
     }
@@ -87,7 +87,7 @@ public class LocationSharingService extends Service implements NotificationCente
 
     private ArrayList<LocationController.SharingLocationInfo> getInfos() {
         ArrayList<LocationController.SharingLocationInfo> arrayList = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             ArrayList<LocationController.SharingLocationInfo> arrayList2 = LocationController.getInstance(i).sharingLocationsUI;
             if (!arrayList2.isEmpty()) {
                 arrayList.addAll(arrayList2);
@@ -114,7 +114,7 @@ public class LocationSharingService extends Service implements NotificationCente
                     str = LocaleController.getString("AttachLiveLocationIsSharingChat", R.string.AttachLiveLocationIsSharingChat);
                 }
             } else {
-                str2 = LocaleController.formatPluralString("Chats", infos.size());
+                str2 = LocaleController.formatPluralString("Chats", infos.size(), new Object[0]);
                 str = LocaleController.getString("AttachLiveLocationIsSharingChats", R.string.AttachLiveLocationIsSharingChats);
             }
             String format = String.format(str, LocaleController.getString("AttachLiveLocation", R.string.AttachLiveLocation), str2);

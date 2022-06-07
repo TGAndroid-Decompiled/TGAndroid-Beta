@@ -101,24 +101,20 @@ public class AvatarDrawable extends Drawable {
         return Theme.getColor(Theme.keys_avatar_background[getColorIndex(j)]);
     }
 
-    public static int getButtonColorForId(long j) {
-        return Theme.getColor("avatar_actionBarSelectorBlue");
+    public static int getIconColorForId(long j, Theme.ResourcesProvider resourcesProvider) {
+        return Theme.getColor("avatar_actionBarIconBlue", resourcesProvider);
     }
 
-    public static int getIconColorForId(long j) {
-        return Theme.getColor("avatar_actionBarIconBlue");
+    public static int getProfileColorForId(long j, Theme.ResourcesProvider resourcesProvider) {
+        return Theme.getColor(Theme.keys_avatar_background[getColorIndex(j)], resourcesProvider);
     }
 
-    public static int getProfileColorForId(long j) {
-        return Theme.getColor(Theme.keys_avatar_background[getColorIndex(j)]);
+    public static int getProfileTextColorForId(long j, Theme.ResourcesProvider resourcesProvider) {
+        return Theme.getColor("avatar_subtitleInProfileBlue", resourcesProvider);
     }
 
-    public static int getProfileTextColorForId(long j) {
-        return Theme.getColor("avatar_subtitleInProfileBlue");
-    }
-
-    public static int getProfileBackColorForId(long j) {
-        return Theme.getColor("avatar_backgroundActionBarBlue");
+    public static int getProfileBackColorForId(long j, Theme.ResourcesProvider resourcesProvider) {
+        return Theme.getColor("avatar_backgroundActionBarBlue", resourcesProvider);
     }
 
     public static String getNameColorNameForId(long j) {

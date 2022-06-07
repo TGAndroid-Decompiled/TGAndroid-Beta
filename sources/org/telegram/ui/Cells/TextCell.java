@@ -27,22 +27,32 @@ public class TextCell extends FrameLayout {
     private boolean needDivider;
     private int offsetFromImage;
     private boolean prioritizeTitleOverValue;
+    private Theme.ResourcesProvider resourcesProvider;
     public final SimpleTextView textView;
     private ImageView valueImageView;
     public final SimpleTextView valueTextView;
 
     public TextCell(Context context) {
-        this(context, 23, false);
+        this(context, 23, false, null);
+    }
+
+    public TextCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+        this(context, 23, false, resourcesProvider);
     }
 
     public TextCell(Context context, int i, boolean z) {
+        this(context, i, z, null);
+    }
+
+    public TextCell(Context context, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.offsetFromImage = 71;
         this.imageLeft = 21;
+        this.resourcesProvider = resourcesProvider;
         this.leftPadding = i;
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.textView = simpleTextView;
-        simpleTextView.setTextColor(Theme.getColor(z ? "dialogTextBlack" : "windowBackgroundWhiteBlackText"));
+        simpleTextView.setTextColor(Theme.getColor(z ? "dialogTextBlack" : "windowBackgroundWhiteBlackText", resourcesProvider));
         simpleTextView.setTextSize(16);
         int i2 = 5;
         simpleTextView.setGravity(LocaleController.isRTL ? 5 : 3);
@@ -50,7 +60,7 @@ public class TextCell extends FrameLayout {
         addView(simpleTextView, LayoutHelper.createFrame(-2, -1.0f));
         SimpleTextView simpleTextView2 = new SimpleTextView(context);
         this.valueTextView = simpleTextView2;
-        simpleTextView2.setTextColor(Theme.getColor(z ? "dialogTextBlue2" : "windowBackgroundWhiteValueText"));
+        simpleTextView2.setTextColor(Theme.getColor(z ? "dialogTextBlue2" : "windowBackgroundWhiteValueText", resourcesProvider));
         simpleTextView2.setTextSize(16);
         simpleTextView2.setGravity(LocaleController.isRTL ? 3 : i2);
         simpleTextView2.setImportantForAccessibility(2);
@@ -58,7 +68,7 @@ public class TextCell extends FrameLayout {
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
-        rLottieImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(z ? "dialogIcon" : "windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.MULTIPLY));
+        rLottieImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(z ? "dialogIcon" : "windowBackgroundWhiteGrayIcon", resourcesProvider), PorterDuff.Mode.MULTIPLY));
         addView(rLottieImageView);
         ImageView imageView = new ImageView(context);
         this.valueImageView = imageView;
@@ -113,7 +123,7 @@ public class TextCell extends FrameLayout {
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int i5;
         int i6 = i4 - i2;
         int i7 = i3 - i;
@@ -151,10 +161,10 @@ public class TextCell extends FrameLayout {
     }
 
     public void setColors(String str, String str2) {
-        this.textView.setTextColor(Theme.getColor(str2));
+        this.textView.setTextColor(Theme.getColor(str2, this.resourcesProvider));
         this.textView.setTag(str2);
         if (str != null) {
-            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(str), PorterDuff.Mode.MULTIPLY));
+            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(str, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
             this.imageView.setTag(str);
         }
     }

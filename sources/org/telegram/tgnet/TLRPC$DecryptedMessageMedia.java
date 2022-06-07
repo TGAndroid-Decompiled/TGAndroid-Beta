@@ -22,7 +22,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
     public String mime_type;
     public String phone_number;
     public String provider;
-    public int size;
+    public long size;
     public int thumb_h;
     public int thumb_w;
     public String title;
@@ -65,7 +65,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         abstractSerializedData2.writeInt32(this.thumb_h);
                         abstractSerializedData2.writeString(this.file_name);
                         abstractSerializedData2.writeString(this.mime_type);
-                        abstractSerializedData2.writeInt32(this.size);
+                        abstractSerializedData2.writeInt32((int) this.size);
                         abstractSerializedData2.writeByteArray(this.key);
                         abstractSerializedData2.writeByteArray(this.iv);
                     }
@@ -108,7 +108,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         abstractSerializedData2.writeInt32(this.thumb_h);
                         abstractSerializedData2.writeInt32(this.w);
                         abstractSerializedData2.writeInt32(this.h);
-                        abstractSerializedData2.writeInt32(this.size);
+                        abstractSerializedData2.writeInt32((int) this.size);
                         abstractSerializedData2.writeByteArray(this.key);
                         abstractSerializedData2.writeByteArray(this.iv);
                     }
@@ -144,7 +144,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         abstractSerializedData2.writeInt32(this.duration);
                         abstractSerializedData2.writeInt32(this.w);
                         abstractSerializedData2.writeInt32(this.h);
-                        abstractSerializedData2.writeInt32(this.size);
+                        abstractSerializedData2.writeInt32((int) this.size);
                         abstractSerializedData2.writeByteArray(this.key);
                         abstractSerializedData2.writeByteArray(this.iv);
                     }
@@ -179,7 +179,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                         abstractSerializedData2.writeString(this.mime_type);
                         abstractSerializedData2.writeInt32(this.w);
                         abstractSerializedData2.writeInt32(this.h);
-                        abstractSerializedData2.writeInt32(this.size);
+                        abstractSerializedData2.writeInt32((int) this.size);
                         abstractSerializedData2.writeByteArray(this.key);
                         abstractSerializedData2.writeByteArray(this.iv);
                     }
@@ -207,7 +207,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.duration);
-                        abstractSerializedData2.writeInt32(this.size);
+                        abstractSerializedData2.writeInt32((int) this.size);
                         abstractSerializedData2.writeByteArray(this.key);
                         abstractSerializedData2.writeByteArray(this.iv);
                     }

@@ -276,7 +276,7 @@ public class ReactedHeaderView extends FrameLayout {
         boolean z;
         boolean z2;
         if (this.seenUsers.isEmpty() || this.seenUsers.size() < i) {
-            str = LocaleController.formatPluralString("ReactionsCount", i);
+            str = LocaleController.formatPluralString("ReactionsCount", i, new Object[0]);
         } else {
             str = String.format(LocaleController.getPluralString("Reacted", i), i == this.seenUsers.size() ? String.valueOf(i) : i + "/" + this.seenUsers.size());
         }

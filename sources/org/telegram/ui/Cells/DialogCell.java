@@ -113,6 +113,7 @@ public class DialogCell extends BaseCell {
     private boolean drawPin;
     private boolean drawPinBackground;
     private boolean drawPlay;
+    private boolean drawPremium;
     private boolean drawReactionMention;
     private boolean drawReorder;
     private boolean drawRevealBackground;
@@ -294,7 +295,7 @@ public class DialogCell extends BaseCell {
         this.useForceThreeLines = z2;
         this.currentAccount = i;
         if (z) {
-            CheckBox2 checkBox2 = new CheckBox2(context, 21);
+            CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
             this.checkBox = checkBox2;
             checkBox2.setColor(null, "windowBackgroundWhite", "checkboxCheck");
             this.checkBox.setDrawUnchecked(false);
@@ -520,6 +521,18 @@ public class DialogCell extends BaseCell {
                 }
             }
         }
+    }
+
+    public boolean getHasUnread() {
+        return this.unreadCount != 0 || this.markUnread;
+    }
+
+    public boolean getIsMuted() {
+        return this.dialogMuted;
+    }
+
+    public boolean getIsPinned() {
+        return this.drawPin;
     }
 
     private CharSequence formatArchivedDialogNames() {
@@ -913,9 +926,15 @@ public class DialogCell extends BaseCell {
         if (!isFolderCell() || (pullForegroundDrawable = this.archivedChatsDrawable) == null || !SharedConfig.archiveHidden || pullForegroundDrawable.pullProgress != 0.0f) {
             accessibilityNodeInfo.addAction(16);
             accessibilityNodeInfo.addAction(32);
-            return;
+        } else {
+            accessibilityNodeInfo.setVisibleToUser(false);
         }
-        accessibilityNodeInfo.setVisibleToUser(false);
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null && checkBox2.isChecked()) {
+            accessibilityNodeInfo.setClassName("android.widget.CheckBox");
+            accessibilityNodeInfo.setCheckable(true);
+            accessibilityNodeInfo.setChecked(true);
+        }
     }
 
     @Override
@@ -964,7 +983,16 @@ public class DialogCell extends BaseCell {
         }
         int i = this.unreadCount;
         if (i > 0) {
-            sb.append(LocaleController.formatPluralString("NewMessages", i));
+            sb.append(LocaleController.formatPluralString("NewMessages", i, new Object[0]));
+            sb.append(". ");
+        }
+        int i2 = this.mentionCount;
+        if (i2 > 0) {
+            sb.append(LocaleController.formatPluralString("AccDescrMentionCount", i2, new Object[0]));
+            sb.append(". ");
+        }
+        if (this.reactionMentionCount > 0) {
+            sb.append(LocaleController.getString("AccDescrMentionReaction", R.string.AccDescrMentionReaction));
             sb.append(". ");
         }
         MessageObject messageObject = this.message;
@@ -972,11 +1000,11 @@ public class DialogCell extends BaseCell {
             accessibilityEvent.setContentDescription(sb.toString());
             return;
         }
-        int i2 = this.lastMessageDate;
-        if (i2 == 0) {
-            i2 = messageObject.messageOwner.date;
+        int i3 = this.lastMessageDate;
+        if (i3 == 0) {
+            i3 = messageObject.messageOwner.date;
         }
-        String formatDateAudio = LocaleController.formatDateAudio(i2, true);
+        String formatDateAudio = LocaleController.formatDateAudio(i3, true);
         if (this.message.isOut()) {
             sb.append(LocaleController.formatString("AccDescrSentDate", R.string.AccDescrSentDate, formatDateAudio));
         } else {
@@ -1020,6 +1048,10 @@ public class DialogCell extends BaseCell {
 
     public int getCurrentDialogFolderId() {
         return this.currentDialogFolderId;
+    }
+
+    public boolean isDialogFolder() {
+        return this.currentDialogFolderId > 0;
     }
 
     public MessageObject getMessage() {

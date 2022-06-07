@@ -15,26 +15,34 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.voip.CellFlickerDrawable;
 
 public class PremiumButtonView extends FrameLayout {
     public TextView buttonTextView;
+    CellFlickerDrawable flickerDrawable;
     private boolean inc;
     private int lastW;
     ValueAnimator overlayAnimator;
     private float overlayProgress;
     public TextView overlayTextView;
+    private Paint paint = new Paint(1);
+    private Paint paintOverlayPaint = new Paint(1);
+    Path path = new Path();
     private float progress;
     private Shader shader;
     private boolean showOverlay;
-    private Paint paint = new Paint(1);
-    private Paint paintOverlayPaint = new Paint(1);
-    private Matrix matrix = new Matrix();
-    Path path = new Path();
 
     public PremiumButtonView(Context context, boolean z) {
         super(context);
+        new Matrix();
+        CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
+        this.flickerDrawable = cellFlickerDrawable;
+        cellFlickerDrawable.animationSpeedScale = 1.0f;
+        cellFlickerDrawable.drawFrame = false;
+        cellFlickerDrawable.repeatProgress = 2.0f;
         TextView textView = new TextView(context);
         this.buttonTextView = textView;
         textView.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
@@ -76,13 +84,6 @@ public class PremiumButtonView extends FrameLayout {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             if (this.overlayProgress != 1.0f) {
-                this.shader.setLocalMatrix(this.matrix);
-                Matrix matrix = this.matrix;
-                double measuredWidth = getMeasuredWidth();
-                Double.isNaN(measuredWidth);
-                double d = this.progress;
-                Double.isNaN(d);
-                matrix.setTranslate((float) (measuredWidth * 0.1d * d), 0.0f);
                 if (this.inc) {
                     float f = this.progress + 0.016f;
                     this.progress = f;
@@ -96,8 +97,13 @@ public class PremiumButtonView extends FrameLayout {
                         this.inc = true;
                     }
                 }
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.paint);
+                PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), this.progress * (-getMeasuredWidth()) * 0.1f, 0.0f);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), PremiumGradient.getInstance().getMainGradientPaint());
                 invalidate();
+            }
+            if (!BuildVars.IS_BILLING_UNAVAILABLE) {
+                this.flickerDrawable.setParentWidth(getMeasuredWidth());
+                this.flickerDrawable.draw(canvas, rectF, AndroidUtilities.dp(8.0f));
             }
             float f3 = this.overlayProgress;
             if (f3 != 0.0f) {
@@ -117,21 +123,33 @@ public class PremiumButtonView extends FrameLayout {
         super.dispatchDraw(canvas);
     }
 
-    public void setOverlayText(String str) {
+    public void setOverlayText(String str, boolean z) {
         this.showOverlay = true;
         this.overlayTextView.setText(str);
-        updateOverlay();
+        updateOverlay(z);
     }
 
-    private void updateOverlay() {
+    private void updateOverlay(boolean z) {
         ValueAnimator valueAnimator = this.overlayAnimator;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
             this.overlayAnimator.cancel();
         }
+        float f = 1.0f;
+        if (!z) {
+            if (!this.showOverlay) {
+                f = 0.0f;
+            }
+            this.overlayProgress = f;
+            updateOverlayProgress();
+            return;
+        }
         float[] fArr = new float[2];
         fArr[0] = this.overlayProgress;
-        fArr[1] = this.showOverlay ? 1.0f : 0.0f;
+        if (!this.showOverlay) {
+            f = 0.0f;
+        }
+        fArr[1] = f;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
         this.overlayAnimator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -171,6 +189,6 @@ public class PremiumButtonView extends FrameLayout {
 
     public void clearOverlayText() {
         this.showOverlay = false;
-        updateOverlay();
+        updateOverlay(true);
     }
 }

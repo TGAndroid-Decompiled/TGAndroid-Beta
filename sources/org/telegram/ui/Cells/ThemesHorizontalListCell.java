@@ -703,7 +703,7 @@ public class ThemesHorizontalListCell extends RecyclerListView implements Notifi
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.fileLoaded);
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.fileLoadFailed);
         }
@@ -712,7 +712,7 @@ public class ThemesHorizontalListCell extends RecyclerListView implements Notifi
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.fileLoaded);
             NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.fileLoadFailed);
         }

@@ -10,12 +10,14 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 
 public class CircularProgressDrawable extends Drawable {
+    private final RectF bounds;
+    private final FastOutSlowInInterpolator interpolator;
     private final Paint paint;
     private float segmentFrom;
     private float segmentTo;
-    private long start = -1;
-    private final FastOutSlowInInterpolator interpolator = new FastOutSlowInInterpolator();
-    private final RectF bounds = new RectF();
+    private float size;
+    private long start;
+    private float thickness;
 
     @Override
     public int getOpacity() {
@@ -31,17 +33,41 @@ public class CircularProgressDrawable extends Drawable {
     }
 
     public CircularProgressDrawable(int i) {
+        this.size = AndroidUtilities.dp(18.0f);
+        this.thickness = AndroidUtilities.dp(2.25f);
+        this.start = -1L;
+        this.interpolator = new FastOutSlowInInterpolator();
         Paint paint = new Paint();
         this.paint = paint;
         paint.setStyle(Paint.Style.STROKE);
+        this.bounds = new RectF();
+        setColor(i);
+    }
+
+    public CircularProgressDrawable(float f, float f2, int i) {
+        this.size = AndroidUtilities.dp(18.0f);
+        this.thickness = AndroidUtilities.dp(2.25f);
+        this.start = -1L;
+        this.interpolator = new FastOutSlowInInterpolator();
+        Paint paint = new Paint();
+        this.paint = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        this.bounds = new RectF();
+        this.size = f;
+        this.thickness = f2;
         setColor(i);
     }
 
     private void updateSegment() {
-        float elapsedRealtime = (((float) (SystemClock.elapsedRealtime() - this.start)) % 5400.0f) / 667.0f;
-        float f = 187.74815f * elapsedRealtime;
-        this.segmentFrom = (((((this.interpolator.getInterpolation(elapsedRealtime - 1.0f) + this.interpolator.getInterpolation(elapsedRealtime - 3.024f)) + this.interpolator.getInterpolation(elapsedRealtime - 5.048f)) + this.interpolator.getInterpolation(elapsedRealtime - 7.072f)) * 250.0f) + f) - 20.0f;
-        this.segmentTo = f + ((this.interpolator.getInterpolation(elapsedRealtime) + this.interpolator.getInterpolation(elapsedRealtime - 2.024f) + this.interpolator.getInterpolation(elapsedRealtime - 4.048f) + this.interpolator.getInterpolation(elapsedRealtime - 6.072f)) * 250.0f);
+        int i;
+        long elapsedRealtime = (SystemClock.elapsedRealtime() - this.start) % 5400;
+        float f = ((float) (1520 * elapsedRealtime)) / 5400.0f;
+        this.segmentFrom = f - 20.0f;
+        this.segmentTo = f;
+        for (int i2 = 0; i2 < 4; i2++) {
+            this.segmentTo += this.interpolator.getInterpolation(((float) (elapsedRealtime - (i2 * 1350))) / 667.0f) * 250.0f;
+            this.segmentFrom += this.interpolator.getInterpolation(((float) (elapsedRealtime - (i + 667))) / 667.0f) * 250.0f;
+        }
     }
 
     @Override
@@ -58,16 +84,16 @@ public class CircularProgressDrawable extends Drawable {
 
     @Override
     public void setBounds(int i, int i2, int i3, int i4) {
-        float dp = AndroidUtilities.dp(9.0f);
-        float dp2 = AndroidUtilities.dp(2.25f);
+        RectF rectF = this.bounds;
         float f = i;
         float f2 = i3 - i;
-        float f3 = dp2 / 2.0f;
-        float f4 = i2;
-        float f5 = i4 - i2;
-        this.bounds.set((((f2 - f3) / 2.0f) + f) - dp, (((f5 - f3) / 2.0f) + f4) - dp, f + ((f2 + f3) / 2.0f) + dp, f4 + ((f5 + f3) / 2.0f) + dp);
+        float f3 = this.thickness;
+        float f4 = this.size;
+        float f5 = i2;
+        float f6 = i4 - i2;
+        rectF.set((((f2 - (f3 / 2.0f)) - f4) / 2.0f) + f, (((f6 - (f3 / 2.0f)) - f4) / 2.0f) + f5, f + (((f2 + (f3 / 2.0f)) + f4) / 2.0f), f5 + (((f6 + (f3 / 2.0f)) + f4) / 2.0f));
         super.setBounds(i, i2, i3, i4);
-        this.paint.setStrokeWidth(dp2);
+        this.paint.setStrokeWidth(this.thickness);
     }
 
     public void setColor(int i) {

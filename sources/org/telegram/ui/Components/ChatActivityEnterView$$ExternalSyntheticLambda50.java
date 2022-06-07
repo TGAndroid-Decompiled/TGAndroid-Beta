@@ -8,6 +8,6 @@ public final class ChatActivityEnterView$$ExternalSyntheticLambda50 implements R
 
     @Override
     public final void run() {
-        ChatActivityEnterView.lambda$new$18();
+        ChatActivityEnterView.lambda$new$22();
     }
 }

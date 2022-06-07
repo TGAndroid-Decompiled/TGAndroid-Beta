@@ -14,16 +14,21 @@ import org.telegram.ui.ActionBar.Theme;
 public class CreationTextCell extends FrameLayout {
     boolean divider;
     private ImageView imageView;
-    public int startPadding = 70;
+    public int startPadding;
     private SimpleTextView textView;
 
     public CreationTextCell(Context context) {
+        this(context, null);
+    }
+
+    public CreationTextCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.startPadding = 70;
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.textView = simpleTextView;
         simpleTextView.setTextSize(16);
         this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText2"));
+        this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText2", resourcesProvider));
         this.textView.setTag("windowBackgroundWhiteBlueText2");
         addView(this.textView);
         ImageView imageView = new ImageView(context);

@@ -37,7 +37,7 @@ public class TLRPC$TL_decryptedMessageMediaDocument extends TLRPC$DecryptedMessa
         abstractSerializedData.writeInt32(this.thumb_w);
         abstractSerializedData.writeInt32(this.thumb_h);
         abstractSerializedData.writeString(this.mime_type);
-        abstractSerializedData.writeInt32(this.size);
+        abstractSerializedData.writeInt32((int) this.size);
         abstractSerializedData.writeByteArray(this.key);
         abstractSerializedData.writeByteArray(this.iv);
         abstractSerializedData.writeInt32(481674261);

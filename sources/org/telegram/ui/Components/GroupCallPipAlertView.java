@@ -275,7 +275,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
             if (sharedInstance.isSwitchingStream() || !(callState == 1 || callState == 2 || callState == 6 || callState == 5)) {
                 TextView textView = this.subtitleView;
                 TLRPC$GroupCall tLRPC$GroupCall = sharedInstance.groupCall.call;
-                textView.setText(LocaleController.formatPluralString(tLRPC$GroupCall.rtmp_stream ? "ViewersWatching" : "Participants", tLRPC$GroupCall.participants_count));
+                textView.setText(LocaleController.formatPluralString(tLRPC$GroupCall.rtmp_stream ? "ViewersWatching" : "Participants", tLRPC$GroupCall.participants_count, new Object[0]));
                 return;
             }
             this.subtitleView.setText(LocaleController.getString("VoipGroupConnecting", R.string.VoipGroupConnecting));

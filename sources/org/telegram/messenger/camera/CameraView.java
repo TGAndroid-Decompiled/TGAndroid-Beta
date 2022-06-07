@@ -378,12 +378,11 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     }
 
     private void updateCameraInfoSize() {
-        int i;
         Size size;
         ArrayList<CameraInfo> cameras = CameraController.getInstance().getCameras();
         if (cameras != null) {
-            for (int i2 = 0; i2 < cameras.size(); i2++) {
-                CameraInfo cameraInfo = cameras.get(i2);
+            for (int i = 0; i < cameras.size(); i++) {
+                CameraInfo cameraInfo = cameras.get(i);
                 boolean z = this.isFrontface;
                 if ((z && cameraInfo.frontCamera != 0) || (!z && cameraInfo.frontCamera == 0)) {
                     this.info = cameraInfo;
@@ -394,35 +393,32 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 Point point = AndroidUtilities.displaySize;
                 Point point2 = AndroidUtilities.displaySize;
                 float max = Math.max(point.x, point.y) / Math.min(point2.x, point2.y);
-                int i3 = 1920;
+                int i2 = 1920;
+                int i3 = 720;
                 int i4 = 960;
-                int i5 = 1280;
                 if (this.initialFrontface) {
                     size = new Size(16, 9);
-                    i3 = 480;
-                    i4 = 270;
-                    i = 270;
-                    i5 = 480;
+                    i2 = 1280;
+                    i4 = 720;
                 } else if (Math.abs(max - 1.3333334f) < 0.1f) {
                     size = new Size(4, 3);
                     if (SharedConfig.getDevicePerformanceClass() == 0) {
-                        i = 960;
-                        i3 = 1280;
+                        i2 = 1280;
+                        i3 = 960;
                     } else {
-                        i = 1440;
+                        i3 = 960;
+                        i4 = 1440;
                     }
                 } else {
                     size = new Size(16, 9);
                     if (SharedConfig.getDevicePerformanceClass() == 0) {
-                        i = 960;
-                        i3 = 1280;
+                        i2 = 1280;
                     } else {
-                        i = 1080;
+                        i4 = 1080;
                     }
-                    i4 = 720;
                 }
-                this.previewSize = CameraController.chooseOptimalSize(this.info.getPreviewSizes(), i5, i4, size);
-                this.pictureSize = CameraController.chooseOptimalSize(this.info.getPictureSizes(), i3, i, size);
+                this.previewSize = CameraController.chooseOptimalSize(this.info.getPreviewSizes(), 1280, i3, size);
+                this.pictureSize = CameraController.chooseOptimalSize(this.info.getPictureSizes(), i2, i4, size);
                 requestLayout();
             }
         }

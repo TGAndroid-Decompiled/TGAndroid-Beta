@@ -374,7 +374,7 @@ public class ForwardingPreviewView extends FrameLayout {
                             forwardingMessagesParams.selectedIds.put(id, z);
                         }
                         ((ChatMessageCell) view).setChecked(z, z, true);
-                        ForwardingPreviewView.this.actionBar.setTitle(LocaleController.formatPluralString("PreviewForwardMessagesCount", forwardingMessagesParams.selectedIds.size()));
+                        ForwardingPreviewView.this.actionBar.setTitle(LocaleController.formatPluralString("PreviewForwardMessagesCount", forwardingMessagesParams.selectedIds.size(), new Object[0]));
                     }
                 }
             }
@@ -580,7 +580,7 @@ public class ForwardingPreviewView extends FrameLayout {
         });
         updateMessages();
         updateSubtitle();
-        this.actionBar.setTitle(LocaleController.formatPluralString("PreviewForwardMessagesCount", forwardingMessagesParams.selectedIds.size()));
+        this.actionBar.setTitle(LocaleController.formatPluralString("PreviewForwardMessagesCount", forwardingMessagesParams.selectedIds.size(), new Object[0]));
         this.menuScrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view2, MotionEvent motionEvent) {
@@ -1133,6 +1133,11 @@ public class ForwardingPreviewView extends FrameLayout {
                 }
 
                 @Override
+                public void didLongPressBotButton(ChatMessageCell chatMessageCell2, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell2, tLRPC$KeyboardButton);
+                }
+
+                @Override
                 public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i2, float f, float f2) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i2, f, f2);
                 }
@@ -1285,6 +1290,11 @@ public class ForwardingPreviewView extends FrameLayout {
                 @Override
                 public void needReloadPolls() {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$needReloadPolls(this);
+                }
+
+                @Override
+                public void needShowPremiumFeatures() {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumFeatures(this);
                 }
 
                 @Override

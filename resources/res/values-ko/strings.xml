@@ -1611,7 +1611,6 @@
     <string name="FilterRemoveExclusionTitle">예외 제거</string>
     <string name="FilterRemoveExclusionUserText">정말 \"%1$s\"을(를) 항상 제외 목록에서 제거하시겠습니까??</string>
     <string name="FilterRemoveFrom">폴더에서 제거</string>
-    <string name="FilterRemoveFromAlertFullText">죄송합니다, 폴더에 100 개 이상의 대화를 추가 할 수 없습니다.</string>
     <string name="FilterRemoveInclusionChatText">정말 \"%1$s\"을(를) 항상 포함 목록에서 제거하시겠습니까?</string>
     <string name="FilterRemoveInclusionText">정말 \"%1$s\"을(를) 항상 포함 목록에서 제거하시겠습니까?</string>
     <string name="FilterRemoveInclusionTitle">예외 제거</string>

@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -125,7 +126,17 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         rLottieDrawable.setAllowDecodeSingleFrame(true);
         rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
         rLottieDrawable.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
-        RLottieImageView rLottieImageView = new RLottieImageView(getContext());
+        RLottieImageView rLottieImageView = new RLottieImageView(getContext()) {
+            @Override
+            public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                if (ChatThemeBottomSheet.this.forceDark) {
+                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToDayTheme", R.string.AccDescrSwitchToDayTheme));
+                } else {
+                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToNightTheme", R.string.AccDescrSwitchToNightTheme));
+                }
+            }
+        };
         this.darkThemeView = rLottieImageView;
         rLottieImageView.setAnimation(rLottieDrawable);
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -746,6 +757,9 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             ChatThemeItem chatThemeItem2 = themeSmallPreviewView.chatThemeItem;
             boolean z = false;
             boolean z2 = chatThemeItem2 != null && chatThemeItem2.chatTheme.getEmoticon().equals(chatThemeItem.chatTheme.getEmoticon()) && !DrawerProfileCell.switchingTheme && themeSmallPreviewView.lastThemeIndex == chatThemeItem.themeIndex;
+            themeSmallPreviewView.setFocusable(true);
+            themeSmallPreviewView.setEnabled(true);
+            themeSmallPreviewView.setBackgroundColor(Theme.getColor("dialogBackgroundGray"));
             themeSmallPreviewView.setItem(chatThemeItem, z2);
             if (i == this.selectedItemPosition) {
                 z = true;

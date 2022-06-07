@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 public class TLRPC$TL_dialogFilterSuggested extends TLObject {
     public static int constructor = 2004110666;
     public String description;
-    public TLRPC$TL_dialogFilter filter;
+    public TLRPC$DialogFilter filter;
 
     public static TLRPC$TL_dialogFilterSuggested TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (constructor == i) {
@@ -19,7 +19,7 @@ public class TLRPC$TL_dialogFilterSuggested extends TLObject {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.filter = TLRPC$TL_dialogFilter.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.filter = TLRPC$DialogFilter.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.description = abstractSerializedData.readString(z);
     }
 

@@ -11,8 +11,8 @@ public final class ChatActivityEnterView$$ExternalSyntheticLambda30 implements V
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        boolean lambda$new$16;
-        lambda$new$16 = ChatActivityEnterView.lambda$new$16(view, motionEvent);
-        return lambda$new$16;
+        boolean lambda$new$17;
+        lambda$new$17 = ChatActivityEnterView.lambda$new$17(view, motionEvent);
+        return lambda$new$17;
     }
 }

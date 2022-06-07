@@ -20,19 +20,26 @@ public class TextColorCell extends FrameLayout {
     private static Paint colorPaint;
     public static final int[] colors = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
     public static final int[] colorsToSave = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
-    private float alpha = 1.0f;
+    private float alpha;
     private int currentColor;
     private boolean needDivider;
+    private Theme.ResourcesProvider resourcesProvider;
     private TextView textView;
 
     public TextColorCell(Context context) {
+        this(context, null);
+    }
+
+    public TextColorCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.alpha = 1.0f;
+        this.resourcesProvider = resourcesProvider;
         if (colorPaint == null) {
             colorPaint = new Paint(1);
         }
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
         this.textView.setMaxLines(1);

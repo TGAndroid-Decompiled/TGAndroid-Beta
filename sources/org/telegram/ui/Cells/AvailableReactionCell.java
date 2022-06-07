@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
@@ -37,7 +38,7 @@ public class AvailableReactionCell extends FrameLayout {
         this.textView.setSingleLine(true);
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         this.textView.setGravity(LayoutHelper.getAbsoluteGravityStart() | 16);
-        addView(this.textView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 81.0f, 0.0f, 91.0f, 0.0f));
+        addView(this.textView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 81.0f, 0.0f, 61.0f, 0.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
         backupImageView.setAspectFit(true);
@@ -92,6 +93,18 @@ public class AvailableReactionCell extends FrameLayout {
         }
     }
 
+    public boolean isChecked() {
+        Switch r0 = this.switchView;
+        if (r0 != null) {
+            return r0.isChecked();
+        }
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null) {
+            return checkBox2.isChecked();
+        }
+        return false;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Theme.getColor("windowBackgroundWhite"));
@@ -103,5 +116,20 @@ public class AvailableReactionCell extends FrameLayout {
             dp = 0;
         }
         canvas.drawLine(getPaddingLeft() + dp, getHeight() - strokeWidth, (getWidth() - getPaddingRight()) - i, getHeight() - strokeWidth, Theme.dividerPaint);
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+        accessibilityNodeInfo.setClickable(true);
+        if (this.switchView != null) {
+            accessibilityNodeInfo.setCheckable(true);
+            accessibilityNodeInfo.setChecked(isChecked());
+            accessibilityNodeInfo.setClassName("android.widget.Switch");
+        } else if (isChecked()) {
+            accessibilityNodeInfo.setSelected(true);
+        }
+        accessibilityNodeInfo.setContentDescription(this.textView.getText());
     }
 }

@@ -186,13 +186,13 @@ public class VideoSeekPreviewImage extends View {
     public void lambda$open$3(Uri uri) {
         String str;
         if ("tg".equals(uri.getScheme())) {
-            int intValue = Utilities.parseInt(uri.getQueryParameter("account")).intValue();
-            Object parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt(uri.getQueryParameter("rid")).intValue());
+            int intValue = Utilities.parseInt((CharSequence) uri.getQueryParameter("account")).intValue();
+            Object parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) uri.getQueryParameter("rid")).intValue());
             TLRPC$TL_document tLRPC$TL_document = new TLRPC$TL_document();
             tLRPC$TL_document.access_hash = Utilities.parseLong(uri.getQueryParameter("hash")).longValue();
             tLRPC$TL_document.id = Utilities.parseLong(uri.getQueryParameter("id")).longValue();
-            tLRPC$TL_document.size = Utilities.parseInt(uri.getQueryParameter("size")).intValue();
-            tLRPC$TL_document.dc_id = Utilities.parseInt(uri.getQueryParameter("dc")).intValue();
+            tLRPC$TL_document.size = Utilities.parseInt((CharSequence) uri.getQueryParameter("size")).intValue();
+            tLRPC$TL_document.dc_id = Utilities.parseInt((CharSequence) uri.getQueryParameter("dc")).intValue();
             tLRPC$TL_document.mime_type = uri.getQueryParameter("mime");
             tLRPC$TL_document.file_reference = Utilities.hexToBytes(uri.getQueryParameter("reference"));
             TLRPC$TL_documentAttributeFilename tLRPC$TL_documentAttributeFilename = new TLRPC$TL_documentAttributeFilename();

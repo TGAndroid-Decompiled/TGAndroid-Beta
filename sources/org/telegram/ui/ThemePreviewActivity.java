@@ -54,7 +54,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -397,11 +396,6 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     public void setInitialModes(boolean z, boolean z2) {
         this.isBlurred = z;
         this.isMotion = z2;
-    }
-
-    @Override
-    public int getNavigationBarColor() {
-        return super.getNavigationBarColor();
     }
 
     @Override
@@ -1190,17 +1184,13 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         if (this.screenType == 0 && this.accent == null) {
             this.isMotion = Theme.isWallpaperMotion();
         } else {
-            if (SharedConfig.getDevicePerformanceClass() == 0) {
-                Point point = AndroidUtilities.displaySize;
-                int min = Math.min(point.x, point.y);
-                Point point2 = AndroidUtilities.displaySize;
-                int max = Math.max(point2.x, point2.y);
-                this.imageFilter = ((int) (min / AndroidUtilities.density)) + "_" + ((int) (max / AndroidUtilities.density)) + "_f";
-            } else {
-                this.imageFilter = ((int) (1080.0f / AndroidUtilities.density)) + "_" + ((int) (1920.0f / AndroidUtilities.density)) + "_f";
-            }
+            Point point = AndroidUtilities.displaySize;
+            int min = Math.min(point.x, point.y);
+            Point point2 = AndroidUtilities.displaySize;
+            int max = Math.max(point2.x, point2.y);
+            this.imageFilter = ((int) (min / AndroidUtilities.density)) + "_" + ((int) (max / AndroidUtilities.density)) + "_f";
             Point point3 = AndroidUtilities.displaySize;
-            this.maxWallpaperSize = Math.min(1920, Math.max(point3.x, point3.y));
+            this.maxWallpaperSize = Math.max(point3.x, point3.y);
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.wallpapersNeedReload);
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.wallpapersDidLoad);
             this.TAG = DownloadController.getInstance(this.currentAccount).generateObserverTag();
@@ -1767,12 +1757,13 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     }
 
     private void updateButtonState(boolean z, boolean z2) {
+        long j;
         File file;
         String str;
-        int i;
         FrameLayout frameLayout;
         String str2;
         File file2;
+        int i;
         Object obj = this.selectedPattern;
         if (obj == null) {
             obj = this.currentWallpaper;
@@ -1787,7 +1778,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 str = FileLoader.getAttachFileName(tLRPC$TL_wallPaper.document);
                 if (!TextUtils.isEmpty(str)) {
                     file = FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$TL_wallPaper.document, true);
-                    i = tLRPC$TL_wallPaper.document.size;
+                    j = tLRPC$TL_wallPaper.document.size;
                 } else {
                     return;
                 }
@@ -1804,6 +1795,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     str2 = file2.getName();
                     i = searchImage.size;
                 }
+                j = i;
                 str = str2;
                 file = file2;
                 if (TextUtils.isEmpty(str)) {
@@ -1821,8 +1813,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 }
                 this.backgroundImage.invalidate();
                 if (this.screenType == 2) {
-                    if (i != 0) {
-                        this.actionBar2.setSubtitle(AndroidUtilities.formatFileSize(i));
+                    if (j != 0) {
+                        this.actionBar2.setSubtitle(AndroidUtilities.formatFileSize(j));
                     } else {
                         this.actionBar2.setSubtitle(null);
                     }
@@ -2395,7 +2387,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         MotionBackgroundDrawable motionBackgroundDrawable2;
         int i = this.screenType;
         if (i == 0 && this.accent == null) {
-            this.backgroundImage.setBackground(Theme.getCachedWallpaperNonBlocking());
+            this.backgroundImage.setBackground(Theme.getCachedWallpaper());
         } else {
             TLRPC$PhotoSize tLRPC$PhotoSize = null;
             if (i == 2) {
@@ -2857,7 +2849,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 tLRPC$Document.mime_type = "audio/mp3";
                 tLRPC$Document.file_reference = new byte[0];
                 tLRPC$Document.id = -2147483648L;
-                tLRPC$Document.size = MediaController.VIDEO_BITRATE_720;
+                tLRPC$Document.size = 2621440L;
                 tLRPC$Document.dc_id = Integer.MIN_VALUE;
                 TLRPC$TL_documentAttributeFilename tLRPC$TL_documentAttributeFilename = new TLRPC$TL_documentAttributeFilename();
                 tLRPC$TL_documentAttributeFilename.file_name = LocaleController.getString("NewThemePreviewReply2", R.string.NewThemePreviewReply2) + ".mp3";
@@ -3272,6 +3264,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public void didLongPressBotButton(ChatMessageCell chatMessageCell2, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell2, tLRPC$KeyboardButton);
+                    }
+
+                    @Override
                     public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i2, float f, float f2) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i2, f, f2);
                     }
@@ -3424,6 +3421,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public void needReloadPolls() {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$needReloadPolls(this);
+                    }
+
+                    @Override
+                    public void needShowPremiumFeatures() {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumFeatures(this);
                     }
 
                     @Override

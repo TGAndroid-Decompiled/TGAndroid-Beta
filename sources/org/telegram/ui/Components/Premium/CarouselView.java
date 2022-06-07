@@ -14,22 +14,37 @@ import android.widget.OverScroller;
 import j$.util.Comparator$CC;
 import java.util.ArrayList;
 import java.util.Comparator;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.Components.Premium.CarouselView;
 
-public class CarouselView extends View {
+public class CarouselView extends View implements PagerHeaderView {
     static final Interpolator sQuinticInterpolator = CarouselView$$ExternalSyntheticLambda1.INSTANCE;
     ValueAnimator autoScrollAnimation;
     int cX;
     int cY;
-    private final ArrayList<DrawingObject> drawingObjects;
-    private final ArrayList<DrawingObject> drawingObjectsSorted;
+    private final ArrayList<? extends DrawingObject> drawingObjects;
+    private final ArrayList<? extends DrawingObject> drawingObjectsSorted;
     GestureDetector gestureDetector;
     float lastFlingX;
     float lastFlingY;
+    int lastSelected;
     boolean scrolled;
     float offsetAngle = 0.0f;
     boolean firstScroll = true;
+    boolean firstScroll1 = true;
+    boolean firstScrollEnabled = true;
+    boolean autoPlayEnabled = true;
     Comparator<DrawingObject> comparator = Comparator$CC.comparingInt(CarouselView$$ExternalSyntheticLambda2.INSTANCE);
+    private Runnable autoScrollRunnable = new Runnable() {
+        @Override
+        public void run() {
+            CarouselView carouselView = CarouselView.this;
+            if (carouselView.autoPlayEnabled) {
+                carouselView.scrollToInternal(carouselView.offsetAngle + (360.0f / carouselView.drawingObjects.size()));
+            }
+        }
+    };
     OverScroller overScroller = new OverScroller(getContext(), sQuinticInterpolator);
 
     public static class DrawingObject {
@@ -42,10 +57,13 @@ public class CarouselView extends View {
             return false;
         }
 
-        public void draw(Canvas canvas, float f, float f2) {
+        public void draw(Canvas canvas, float f, float f2, float f3) {
         }
 
-        public void onAttachToWindow(View view) {
+        public void hideAnimation() {
+        }
+
+        public void onAttachToWindow(View view, int i) {
         }
 
         public void onDetachFromWindow() {
@@ -64,7 +82,7 @@ public class CarouselView extends View {
         return (int) (drawingObject.yRelative * 100.0f);
     }
 
-    public CarouselView(Context context, ArrayList<DrawingObject> arrayList) {
+    public CarouselView(Context context, final ArrayList<? extends DrawingObject> arrayList) {
         super(context);
         this.gestureDetector = new GestureDetector(context, new GestureDetector.OnGestureListener() {
             double lastAngle;
@@ -79,14 +97,29 @@ public class CarouselView extends View {
 
             @Override
             public boolean onDown(MotionEvent motionEvent) {
+                double measuredHeight = CarouselView.this.getMeasuredHeight();
+                Double.isNaN(measuredHeight);
+                if (motionEvent.getY() > measuredHeight * 0.2d) {
+                    double measuredHeight2 = CarouselView.this.getMeasuredHeight();
+                    Double.isNaN(measuredHeight2);
+                    if (motionEvent.getY() < measuredHeight2 * 0.9d) {
+                        CarouselView.this.getParent().requestDisallowInterceptTouchEvent(true);
+                    }
+                }
                 ValueAnimator valueAnimator = CarouselView.this.autoScrollAnimation;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
                     CarouselView.this.autoScrollAnimation.cancel();
                     CarouselView.this.autoScrollAnimation = null;
                 }
+                AndroidUtilities.cancelRunOnUIThread(CarouselView.this.autoScrollRunnable);
                 CarouselView.this.overScroller.abortAnimation();
                 this.lastAngle = Math.atan2(motionEvent.getX() - CarouselView.this.cX, motionEvent.getY() - CarouselView.this.cY);
+                CarouselView carouselView = CarouselView.this;
+                carouselView.lastSelected = (int) (carouselView.offsetAngle / (360.0f / arrayList.size()));
+                for (int i = 0; i < arrayList.size(); i++) {
+                    ((DrawingObject) arrayList.get(i)).hideAnimation();
+                }
                 return true;
             }
 
@@ -103,6 +136,7 @@ public class CarouselView extends View {
                             }
                             CarouselView carouselView = CarouselView.this;
                             carouselView.scrollToInternal(carouselView.offsetAngle + ((float) d));
+                            CarouselView.this.performHapticFeedback(3);
                         }
                         return true;
                     }
@@ -120,6 +154,7 @@ public class CarouselView extends View {
                 double degrees = Math.toDegrees(d);
                 Double.isNaN(d2);
                 carouselView.offsetAngle = (float) (d2 + degrees);
+                CarouselView.this.checkSelectedHaptic();
                 CarouselView.this.invalidate();
                 return true;
             }
@@ -137,6 +172,9 @@ public class CarouselView extends View {
                 double sin = Math.sin(atan2);
                 Double.isNaN(f2);
                 CarouselView.this.overScroller.fling(0, 0, (int) ((cos * d) - (sin * d2)), 0, Integer.MIN_VALUE, ConnectionsManager.DEFAULT_DATACENTER_ID, Integer.MIN_VALUE, ConnectionsManager.DEFAULT_DATACENTER_ID);
+                if (CarouselView.this.overScroller.isFinished()) {
+                    CarouselView.this.scheduleAutoscroll();
+                }
                 CarouselView.this.invalidate();
                 return true;
             }
@@ -145,43 +183,37 @@ public class CarouselView extends View {
         this.drawingObjectsSorted = new ArrayList<>(arrayList);
     }
 
-    public void scrollToInternal(final float f) {
-        ValueAnimator valueAnimator = this.autoScrollAnimation;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.autoScrollAnimation.cancel();
-            this.autoScrollAnimation = null;
+    public void checkSelectedHaptic() {
+        int size = (int) (this.offsetAngle / (360.0f / this.drawingObjects.size()));
+        if (this.lastSelected != size) {
+            this.lastSelected = size;
+            performHapticFeedback(3);
         }
-        final float f2 = this.offsetAngle;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.autoScrollAnimation = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                CarouselView.this.lambda$scrollToInternal$2(f2, f, valueAnimator2);
+    }
+
+    public void scrollToInternal(final float f) {
+        if (Math.abs(f - this.offsetAngle) >= 1.0f || this.autoScrollAnimation != null) {
+            AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
+            ValueAnimator valueAnimator = this.autoScrollAnimation;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.autoScrollAnimation.cancel();
+                this.autoScrollAnimation = null;
             }
-        });
-        this.autoScrollAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                CarouselView carouselView = CarouselView.this;
-                carouselView.offsetAngle = f;
-                carouselView.autoScrollAnimation = null;
-                CarouselView carouselView2 = CarouselView.this;
-                int size = (int) (((90.0f - carouselView2.offsetAngle) % 360.0f) / (360.0f / carouselView.drawingObjects.size()));
-                if (size < 0) {
-                    size += carouselView2.drawingObjects.size();
+            final float f2 = this.offsetAngle;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.autoScrollAnimation = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    CarouselView.this.lambda$scrollToInternal$2(f2, f, valueAnimator2);
                 }
-                if (size > CarouselView.this.drawingObjects.size() - 1) {
-                    size = CarouselView.this.drawingObjects.size() - 1;
-                }
-                ((DrawingObject) CarouselView.this.drawingObjects.get(size)).select();
-                CarouselView.this.invalidate();
-            }
-        });
-        this.autoScrollAnimation.setInterpolator(new OvershootInterpolator());
-        this.autoScrollAnimation.setDuration(600L);
-        this.autoScrollAnimation.start();
+            });
+            this.autoScrollAnimation.addListener(new AnonymousClass3(f));
+            this.autoScrollAnimation.setInterpolator(new OvershootInterpolator());
+            this.autoScrollAnimation.setDuration(600L);
+            this.autoScrollAnimation.start();
+        }
     }
 
     public void lambda$scrollToInternal$2(float f, float f2, ValueAnimator valueAnimator) {
@@ -190,12 +222,42 @@ public class CarouselView extends View {
         invalidate();
     }
 
+    public class AnonymousClass3 extends AnimatorListenerAdapter {
+        final float val$scrollTo;
+
+        AnonymousClass3(float f) {
+            this.val$scrollTo = f;
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animator) {
+            CarouselView carouselView = CarouselView.this;
+            carouselView.offsetAngle = this.val$scrollTo;
+            carouselView.autoScrollAnimation = null;
+            carouselView.invalidate();
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    CarouselView.AnonymousClass3.this.lambda$onAnimationEnd$0();
+                }
+            });
+        }
+
+        public void lambda$onAnimationEnd$0() {
+            if (!CarouselView.this.drawingObjectsSorted.isEmpty()) {
+                ((DrawingObject) CarouselView.this.drawingObjectsSorted.get(CarouselView.this.drawingObjectsSorted.size() - 1)).select();
+            }
+            CarouselView.this.scheduleAutoscroll();
+        }
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             this.scrolled = true;
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             this.scrolled = false;
+            getParent().requestDisallowInterceptTouchEvent(false);
             invalidate();
         }
         return this.gestureDetector.onTouchEvent(motionEvent);
@@ -211,8 +273,10 @@ public class CarouselView extends View {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        for (int i = 0; i < this.drawingObjects.size(); i++) {
-            this.drawingObjects.get(i).onAttachToWindow(this);
+        for (int i = 0; i < 2; i++) {
+            for (int i2 = 0; i2 < this.drawingObjects.size(); i2++) {
+                this.drawingObjects.get(i2).onAttachToWindow(this, i);
+            }
         }
     }
 
@@ -225,7 +289,58 @@ public class CarouselView extends View {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r13) {
+    protected void onDraw(android.graphics.Canvas r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.CarouselView.onDraw(android.graphics.Canvas):void");
+    }
+
+    void scheduleAutoscroll() {
+        AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
+        if (this.autoPlayEnabled) {
+            AndroidUtilities.runOnUIThread(this.autoScrollRunnable, 3000L);
+        }
+    }
+
+    @Override
+    public void setOffset(float f) {
+        boolean z = true;
+        if (f >= getMeasuredWidth() || f <= (-getMeasuredWidth())) {
+            this.overScroller.abortAnimation();
+            ValueAnimator valueAnimator = this.autoScrollAnimation;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.autoScrollAnimation.cancel();
+                this.autoScrollAnimation = null;
+            }
+            this.firstScroll = true;
+            this.firstScroll1 = true;
+            this.offsetAngle = 0.0f;
+        }
+        setAutoPlayEnabled(f == 0.0f);
+        if (Math.abs(f) >= getMeasuredWidth() * 0.2f) {
+            z = false;
+        }
+        setFirstScrollEnabled(z);
+        float abs = 1.0f - (Math.abs(f) / getMeasuredWidth());
+        setScaleX(abs);
+        setScaleY(abs);
+    }
+
+    void setAutoPlayEnabled(boolean z) {
+        if (this.autoPlayEnabled != z) {
+            this.autoPlayEnabled = z;
+            if (z) {
+                scheduleAutoscroll();
+            } else {
+                AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
+            }
+            invalidate();
+        }
+    }
+
+    void setFirstScrollEnabled(boolean z) {
+        if (this.firstScrollEnabled != z) {
+            this.firstScrollEnabled = z;
+            invalidate();
+        }
     }
 }

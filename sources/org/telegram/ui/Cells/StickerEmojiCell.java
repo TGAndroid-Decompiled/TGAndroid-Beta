@@ -61,31 +61,18 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
         this.imageView = backupImageView;
         backupImageView.setAspectFit(true);
         this.imageView.setLayerNum(1);
-        this.imageView.getImageReceiver().setDelegate(new ImageReceiver.ImageReceiverDelegate() {
-            @Override
-            public final void didSetImage(ImageReceiver imageReceiver, boolean z2, boolean z3, boolean z4) {
-                StickerEmojiCell.this.lambda$new$0(imageReceiver, z2, z3, z4);
-            }
-
-            @Override
-            public void onAnimationReady(ImageReceiver imageReceiver) {
-                ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
-            }
-        });
         addView(this.imageView, LayoutHelper.createFrame(66, 66, 17));
         TextView textView = new TextView(context);
         this.emojiTextView = textView;
         textView.setTextSize(1, 16.0f);
         new Paint(1).setColor(Theme.getColor("featuredStickers_addButton"));
-        PremiumLockIconView premiumLockIconView = new PremiumLockIconView(context);
+        PremiumLockIconView premiumLockIconView = new PremiumLockIconView(context, PremiumLockIconView.TYPE_STICKERS);
         this.premiumIconView = premiumLockIconView;
         premiumLockIconView.setImageReceiver(this.imageView.getImageReceiver());
-        addView(this.premiumIconView, LayoutHelper.createFrame(24, 24.0f, 85, 0.0f, 0.0f, 4.0f, 4.0f));
+        this.premiumIconView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+        this.premiumIconView.setImageReceiver(this.imageView.getImageReceiver());
+        addView(this.premiumIconView, LayoutHelper.createFrame(24, 24.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
         setFocusable(true);
-    }
-
-    public void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        this.premiumIconView.setWaitingImage();
     }
 
     public TLRPC$Document getSticker() {
@@ -147,6 +134,7 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
         this.isPremiumSticker = isPremiumSticker;
         if (isPremiumSticker) {
             this.premiumIconView.setColor(Theme.getColor("windowBackgroundWhite"));
+            this.premiumIconView.setWaitingImage();
         }
         TLRPC$PhotoSize tLRPC$PhotoSize = null;
         float f = 1.0f;
@@ -231,18 +219,12 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
     }
 
     private void updatePremiumStatus(boolean z) {
-        float f;
         if (!this.isPremiumSticker || UserConfig.getInstance(this.currentAccount).isPremium()) {
-            f = 1.0f;
             this.showPremiumLock = false;
         } else {
-            f = 0.5f;
             this.showPremiumLock = true;
         }
         AndroidUtilities.updateViewVisibilityAnimated(this.premiumIconView, this.showPremiumLock, 0.9f, z);
-        if (!z) {
-            this.premiumAlpha = f;
-        }
         invalidate();
     }
 
@@ -282,33 +264,6 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        boolean z = this.showPremiumLock;
-        if (z) {
-            float f = this.premiumAlpha;
-            if (f > 0.5f) {
-                float f2 = f - 0.10666667f;
-                this.premiumAlpha = f2;
-                if (f2 < 0.5f) {
-                    this.premiumAlpha = 0.5f;
-                }
-                invalidate();
-                this.imageView.invalidate();
-                this.imageView.getImageReceiver().setAlpha(this.alpha * this.premiumAlpha);
-                super.dispatchDraw(canvas);
-            }
-        }
-        if (!z) {
-            float f3 = this.premiumAlpha;
-            if (f3 < 1.0f) {
-                float f4 = f3 + 0.10666667f;
-                this.premiumAlpha = f4;
-                if (f4 > 1.0f) {
-                    this.premiumAlpha = 1.0f;
-                }
-                invalidate();
-                this.imageView.invalidate();
-            }
-        }
         this.imageView.getImageReceiver().setAlpha(this.alpha * this.premiumAlpha);
         super.dispatchDraw(canvas);
     }

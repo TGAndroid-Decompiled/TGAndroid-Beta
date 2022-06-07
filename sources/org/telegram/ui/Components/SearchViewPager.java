@@ -4,13 +4,16 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -38,6 +41,8 @@ import org.telegram.ui.Adapters.DialogsSearchAdapter;
 import org.telegram.ui.Adapters.FiltersView;
 import org.telegram.ui.Cells.ContextLinkCell;
 import org.telegram.ui.Cells.DialogCell;
+import org.telegram.ui.Cells.HashtagSearchCell;
+import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.SharedAudioCell;
 import org.telegram.ui.Cells.SharedDocumentCell;
 import org.telegram.ui.Cells.SharedLinkCell;
@@ -59,6 +64,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
     SizeNotifierFrameLayout fragmentView;
     private ActionBarMenuItem gotoItem;
     private boolean isActionModeShowed;
+    private DefaultItemAnimator itemAnimator;
     private RecyclerItemsEnterAnimator itemsEnterAnimator;
     private int keyboardSize;
     private boolean lastSearchScrolledToTop;
@@ -81,7 +87,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
 
         void move(float f);
 
-        void startChatPreview(DialogCell dialogCell);
+        void startChatPreview(RecyclerListView recyclerListView, DialogCell dialogCell);
     }
 
     public static boolean lambda$showActionMode$0(View view, MotionEvent motionEvent) {
@@ -93,7 +99,15 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         this.folderId = i3;
         this.parent = dialogsActivity;
         this.chatPreviewDelegate = chatPreviewDelegate;
-        this.dialogsSearchAdapter = new DialogsSearchAdapter(context, i, i2) {
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        this.itemAnimator = defaultItemAnimator;
+        defaultItemAnimator.setAddDuration(150L);
+        this.itemAnimator.setMoveDuration(350L);
+        this.itemAnimator.setChangeDuration(0L);
+        this.itemAnimator.setRemoveDuration(0L);
+        this.itemAnimator.setMoveInterpolator(new OvershootInterpolator(1.1f));
+        this.itemAnimator.setTranslationInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.dialogsSearchAdapter = new DialogsSearchAdapter(context, i, i2, this.itemAnimator) {
             @Override
             public void notifyDataSetChanged() {
                 RecyclerListView recyclerListView;
@@ -109,9 +123,44 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             }
         };
         this.fragmentView = (SizeNotifierFrameLayout) dialogsActivity.getFragmentView();
-        BlurredRecyclerView blurredRecyclerView = new BlurredRecyclerView(context);
+        BlurredRecyclerView blurredRecyclerView = new BlurredRecyclerView(context) {
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                SearchViewPager searchViewPager = SearchViewPager.this;
+                if (searchViewPager.dialogsSearchAdapter != null && searchViewPager.itemAnimator != null && SearchViewPager.this.searchLayoutManager != null && SearchViewPager.this.dialogsSearchAdapter.showMoreAnimation) {
+                    canvas.save();
+                    invalidate();
+                    int itemCount = SearchViewPager.this.dialogsSearchAdapter.getItemCount() - 1;
+                    int i4 = 0;
+                    while (true) {
+                        if (i4 >= getChildCount()) {
+                            break;
+                        }
+                        View childAt = getChildAt(i4);
+                        if (getChildAdapterPosition(childAt) == itemCount) {
+                            canvas.clipRect(0.0f, 0.0f, getWidth(), childAt.getBottom() + childAt.getTranslationY());
+                            break;
+                        }
+                        i4++;
+                    }
+                }
+                super.dispatchDraw(canvas);
+                SearchViewPager searchViewPager2 = SearchViewPager.this;
+                if (!(searchViewPager2.dialogsSearchAdapter == null || searchViewPager2.itemAnimator == null || SearchViewPager.this.searchLayoutManager == null || !SearchViewPager.this.dialogsSearchAdapter.showMoreAnimation)) {
+                    canvas.restore();
+                }
+                DialogsSearchAdapter dialogsSearchAdapter = SearchViewPager.this.dialogsSearchAdapter;
+                if (dialogsSearchAdapter != null && dialogsSearchAdapter.showMoreHeader != null) {
+                    canvas.save();
+                    canvas.translate(SearchViewPager.this.dialogsSearchAdapter.showMoreHeader.getLeft(), SearchViewPager.this.dialogsSearchAdapter.showMoreHeader.getTop() + SearchViewPager.this.dialogsSearchAdapter.showMoreHeader.getTranslationY());
+                    SearchViewPager.this.dialogsSearchAdapter.showMoreHeader.draw(canvas);
+                    canvas.restore();
+                }
+            }
+        };
         this.searchListView = blurredRecyclerView;
-        blurredRecyclerView.setPivotY(0.0f);
+        blurredRecyclerView.setItemAnimator(this.itemAnimator);
+        this.searchListView.setPivotY(0.0f);
         this.searchListView.setAdapter(this.dialogsSearchAdapter);
         this.searchListView.setVerticalScrollBarEnabled(true);
         this.searchListView.setInstantClick(true);
@@ -355,9 +404,9 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             if (baseFragment != null && baseFragment.getParentActivity() != null) {
                 final ArrayList arrayList = new ArrayList(this.selectedFiles.values());
                 AlertDialog.Builder builder = new AlertDialog.Builder(this.parent.getParentActivity());
-                builder.setTitle(LocaleController.formatPluralString("RemoveDocumentsTitle", this.selectedFiles.size()));
+                builder.setTitle(LocaleController.formatPluralString("RemoveDocumentsTitle", this.selectedFiles.size(), new Object[0]));
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("RemoveDocumentsMessage", this.selectedFiles.size()))).append((CharSequence) "\n\n").append((CharSequence) LocaleController.getString("RemoveDocumentsAlertMessage", R.string.RemoveDocumentsAlertMessage));
+                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("RemoveDocumentsMessage", this.selectedFiles.size(), new Object[0]))).append((CharSequence) "\n\n").append((CharSequence) LocaleController.getString("RemoveDocumentsAlertMessage", R.string.RemoveDocumentsAlertMessage));
                 builder.setMessage(spannableStringBuilder);
                 builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), SearchViewPager$$ExternalSyntheticLambda1.INSTANCE);
                 builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
@@ -557,15 +606,21 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         this.noMediaFiltersSearchView.setDelegate(null, false);
     }
 
-    public void getThemeDescriptors(ArrayList<ThemeDescription> arrayList) {
-        for (int i = 0; i < getChildCount(); i++) {
-            if (getChildAt(i) instanceof FilteredSearchView) {
-                arrayList.addAll(((FilteredSearchView) getChildAt(i)).getThemeDescriptions());
+    public void getThemeDescriptions(ArrayList<ThemeDescription> arrayList) {
+        for (int i = 0; i < this.searchListView.getChildCount(); i++) {
+            View childAt = this.searchListView.getChildAt(i);
+            if ((childAt instanceof ProfileSearchCell) || (childAt instanceof DialogCell) || (childAt instanceof HashtagSearchCell)) {
+                arrayList.add(new ThemeDescription(childAt, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
+            }
+        }
+        for (int i2 = 0; i2 < getChildCount(); i2++) {
+            if (getChildAt(i2) instanceof FilteredSearchView) {
+                arrayList.addAll(((FilteredSearchView) getChildAt(i2)).getThemeDescriptions());
             }
         }
         int size = this.viewsByType.size();
-        for (int i2 = 0; i2 < size; i2++) {
-            View valueAt = this.viewsByType.valueAt(i2);
+        for (int i3 = 0; i3 < size; i3++) {
+            View valueAt = this.viewsByType.valueAt(i3);
             if (valueAt instanceof FilteredSearchView) {
                 arrayList.addAll(((FilteredSearchView) valueAt).getThemeDescriptions());
             }

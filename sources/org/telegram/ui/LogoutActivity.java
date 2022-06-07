@@ -53,7 +53,7 @@ public class LogoutActivity extends BaseFragment {
         this.rowCount = 0;
         this.rowCount = 0 + 1;
         this.alternativeHeaderRow = 0;
-        if (UserConfig.getActivatedAccountsCount() < 3) {
+        if (UserConfig.getActivatedAccountsCount() < 4) {
             int i = this.rowCount;
             this.rowCount = i + 1;
             this.addAccountRow = i;
@@ -127,18 +127,18 @@ public class LogoutActivity extends BaseFragment {
 
             @Override
             public final void onItemClick(View view, int i, float f, float f2) {
-                LogoutActivity.this.lambda$createView$1(view, i, f, f2);
+                LogoutActivity.this.lambda$createView$0(view, i, f, f2);
             }
         });
         return this.fragmentView;
     }
 
-    public void lambda$createView$1(View view, int i, float f, float f2) {
-        int i2 = -1;
+    public void lambda$createView$0(View view, int i, float f, float f2) {
         if (i == this.addAccountRow) {
+            int i2 = -1;
             int i3 = 0;
             while (true) {
-                if (i3 >= 3) {
+                if (i3 >= 4) {
                     break;
                 } else if (!UserConfig.getInstance(i3).isClientActivated()) {
                     i2 = i3;
@@ -157,30 +157,33 @@ public class LogoutActivity extends BaseFragment {
         } else if (i == this.phoneRow) {
             presentFragment(new ActionIntroActivity(3));
         } else if (i == this.supportRow) {
-            showDialog(AlertsCreator.createSupportAlert(this));
+            showDialog(AlertsCreator.createSupportAlert(this, null));
         } else if (i == this.logoutRow && getParentActivity() != null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            getUserConfig();
-            builder.setMessage(LocaleController.getString("AreYouSureLogout", R.string.AreYouSureLogout));
-            builder.setTitle(LocaleController.getString("LogOut", R.string.LogOut));
-            builder.setPositiveButton(LocaleController.getString("LogOut", R.string.LogOut), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i4) {
-                    LogoutActivity.this.lambda$createView$0(dialogInterface, i4);
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-            AlertDialog create = builder.create();
-            showDialog(create);
-            TextView textView = (TextView) create.getButton(-1);
-            if (textView != null) {
-                textView.setTextColor(Theme.getColor("dialogTextRed2"));
-            }
+            showDialog(makeLogOutDialog(getParentActivity(), this.currentAccount));
         }
     }
 
-    public void lambda$createView$0(DialogInterface dialogInterface, int i) {
-        MessagesController.getInstance(this.currentAccount).performLogout(1);
+    public static AlertDialog makeLogOutDialog(Context context, final int i) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(LocaleController.getString("AreYouSureLogout", R.string.AreYouSureLogout));
+        builder.setTitle(LocaleController.getString("LogOut", R.string.LogOut));
+        builder.setPositiveButton(LocaleController.getString("LogOut", R.string.LogOut), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i2) {
+                LogoutActivity.lambda$makeLogOutDialog$1(i, dialogInterface, i2);
+            }
+        });
+        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        AlertDialog create = builder.create();
+        TextView textView = (TextView) create.getButton(-1);
+        if (textView != null) {
+            textView.setTextColor(Theme.getColor("dialogTextRed2"));
+        }
+        return create;
+    }
+
+    public static void lambda$makeLogOutDialog$1(int i, DialogInterface dialogInterface, int i2) {
+        MessagesController.getInstance(i).performLogout(1);
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -91,6 +92,18 @@ public class ActionBarMenuSubItem extends FrameLayout {
         CheckBox2 checkBox2 = this.checkView;
         if (checkBox2 != null) {
             checkBox2.setChecked(z, true);
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(isEnabled());
+        CheckBox2 checkBox2 = this.checkView;
+        if (checkBox2 != null && checkBox2.isChecked()) {
+            accessibilityNodeInfo.setCheckable(true);
+            accessibilityNodeInfo.setChecked(this.checkView.isChecked());
+            accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         }
     }
 

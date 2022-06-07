@@ -1,5 +1,7 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -441,12 +443,14 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
 
         public TranslateSettings(Context context) {
             super(context);
-            boolean z = true;
+            setFocusable(false);
             setOrientation(1);
             HeaderCell headerCell = new HeaderCell(context);
             this.header = headerCell;
-            headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+            headerCell.setFocusable(true);
+            this.header.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
             this.header.setText(LocaleController.getString("TranslateMessages", R.string.TranslateMessages));
+            this.header.setContentDescription(LocaleController.getString("TranslateMessages", R.string.TranslateMessages));
             addView(this.header, LayoutHelper.createLinear(-1, -2));
             boolean value = getValue();
             TextCheckCell textCheckCell = new TextCheckCell(context);
@@ -469,7 +473,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                     LanguageSelectActivity.TranslateSettings.this.lambda$new$1(view);
                 }
             });
-            this.doNotTranslateCell.setClickable((!value || !LanguageDetector.hasSupport()) ? false : z);
+            this.doNotTranslateCell.setClickable(value && LanguageDetector.hasSupport());
             float f = 1.0f;
             this.doNotTranslateCell.setAlpha((!value || !LanguageDetector.hasSupport()) ? 0.0f : 1.0f);
             addView(this.doNotTranslateCell, LayoutHelper.createLinear(-1, -2));
@@ -477,13 +481,17 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             this.info = textInfoPrivacyCell;
             textInfoPrivacyCell.setTopPadding(11);
             this.info.setBottomPadding(16);
+            this.info.setFocusable(true);
             this.info.setText(LocaleController.getString("TranslateMessagesInfo1", R.string.TranslateMessagesInfo1));
+            this.info.setContentDescription(LocaleController.getString("TranslateMessagesInfo1", R.string.TranslateMessagesInfo1));
             addView(this.info, LayoutHelper.createLinear(-1, -2));
             TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context);
             this.info2 = textInfoPrivacyCell2;
             textInfoPrivacyCell2.setTopPadding(0);
             this.info2.setBottomPadding(16);
+            this.info2.setFocusable(true);
             this.info2.setText(LocaleController.getString("TranslateMessagesInfo2", R.string.TranslateMessagesInfo2));
+            this.info2.setContentDescription(LocaleController.getString("TranslateMessagesInfo2", R.string.TranslateMessagesInfo2));
             this.info2.setAlpha(value ? 0.0f : f);
             addView(this.info2, LayoutHelper.createLinear(-1, -2));
             updateHeight();
@@ -533,6 +541,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             }
             this.doNotTranslateCell.setTextAndValue(LocaleController.getString("DoNotTranslate", R.string.DoNotTranslate), str, false);
             this.doNotTranslateCell.setClickable(z);
+            this.info2.setVisibility(0);
             float[] fArr = new float[2];
             fArr[0] = this.doNotTranslateCell.getAlpha();
             float f = 1.0f;
@@ -544,6 +553,17 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                     LanguageSelectActivity.TranslateSettings.this.lambda$update$2(valueAnimator2);
+                }
+            });
+            this.doNotTranslateCellAnimation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    super.onAnimationEnd(animator);
+                    if (TranslateSettings.this.doNotTranslateCell.getAlpha() > 0.5d) {
+                        TranslateSettings.this.info2.setVisibility(8);
+                    } else {
+                        TranslateSettings.this.info2.setVisibility(0);
+                    }
                 }
             });
             ValueAnimator valueAnimator2 = this.doNotTranslateCellAnimation;

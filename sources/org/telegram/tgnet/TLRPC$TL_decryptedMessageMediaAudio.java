@@ -17,7 +17,7 @@ public class TLRPC$TL_decryptedMessageMediaAudio extends TLRPC$DecryptedMessageM
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.duration);
         abstractSerializedData.writeString(this.mime_type);
-        abstractSerializedData.writeInt32(this.size);
+        abstractSerializedData.writeInt32((int) this.size);
         abstractSerializedData.writeByteArray(this.key);
         abstractSerializedData.writeByteArray(this.iv);
     }

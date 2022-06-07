@@ -9,6 +9,8 @@ import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
+import androidx.core.graphics.ColorUtils;
+import androidx.core.math.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
@@ -22,15 +24,17 @@ public class SlideChooseView extends View {
     private Paint linePaint;
     private int lineSize;
     private boolean moving;
+    private AnimatedFloat movingAnimatedHolder;
     private int[] optionsSizes;
     private String[] optionsStr;
     private Paint paint;
     private final Theme.ResourcesProvider resourcesProvider;
     private int selectedIndex;
+    private AnimatedFloat selectedIndexAnimatedHolder;
+    private float selectedIndexTouch;
     private int sideSide;
     private boolean startMoving;
     private int startMovingPreset;
-    private float startX;
     private TextPaint textPaint;
     private float xTouchDown;
     private float yTouchDown;
@@ -54,6 +58,9 @@ public class SlideChooseView extends View {
     public SlideChooseView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.dashedFrom = -1;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+        this.selectedIndexAnimatedHolder = new AnimatedFloat(this, 120L, cubicBezierInterpolator);
+        this.movingAnimatedHolder = new AnimatedFloat(this, 150L, cubicBezierInterpolator);
         this.resourcesProvider = resourcesProvider;
         this.paint = new Paint(1);
         this.textPaint = new TextPaint(1);
@@ -115,82 +122,47 @@ public class SlideChooseView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
+        int i;
         float x = motionEvent.getX();
         float y = motionEvent.getY();
-        int i = 0;
-        boolean z = false;
+        float clamp = MathUtils.clamp(((x - this.sideSide) + (this.circleSize / 2.0f)) / ((this.lineSize + (this.gapSize * 2)) + i), 0.0f, this.optionsStr.length - 1);
+        boolean z = Math.abs(clamp - ((float) Math.round(clamp))) < 0.35f;
+        if (z) {
+            clamp = Math.round(clamp);
+        }
         if (motionEvent.getAction() == 0) {
             this.xTouchDown = x;
             this.yTouchDown = y;
-            int i2 = 0;
-            while (true) {
-                if (i2 >= this.optionsStr.length) {
-                    break;
-                }
-                int i3 = this.sideSide;
-                int i4 = this.lineSize + (this.gapSize * 2);
-                int i5 = this.circleSize;
-                int i6 = i3 + ((i4 + i5) * i2) + (i5 / 2);
-                if (x <= i6 - AndroidUtilities.dp(15.0f) || x >= i6 + AndroidUtilities.dp(15.0f)) {
-                    i2++;
-                } else {
-                    int i7 = this.selectedIndex;
-                    if (i2 == i7) {
-                        z = true;
-                    }
-                    this.startMoving = z;
-                    this.startX = x;
-                    this.startMovingPreset = i7;
-                }
-            }
+            this.selectedIndexTouch = clamp;
+            this.startMovingPreset = this.selectedIndex;
+            this.startMoving = true;
+            invalidate();
         } else if (motionEvent.getAction() == 2) {
             if (!this.moving && Math.abs(this.xTouchDown - x) > Math.abs(this.yTouchDown - y)) {
                 getParent().requestDisallowInterceptTouchEvent(true);
             }
-            if (this.startMoving) {
-                if (Math.abs(this.startX - x) >= AndroidUtilities.getPixelsInCM(0.5f, true)) {
-                    this.moving = true;
-                    this.startMoving = false;
-                }
-            } else if (this.moving) {
-                while (true) {
-                    if (i >= this.optionsStr.length) {
-                        break;
-                    }
-                    int i8 = this.sideSide;
-                    int i9 = this.lineSize;
-                    int i10 = this.gapSize;
-                    int i11 = this.circleSize;
-                    int i12 = i8 + (((i10 * 2) + i9 + i11) * i) + (i11 / 2);
-                    int i13 = (i9 / 2) + (i11 / 2) + i10;
-                    if (x <= i12 - i13 || x >= i12 + i13) {
-                        i++;
-                    } else if (this.selectedIndex != i) {
-                        setOption(i);
-                    }
+            if (this.startMoving && Math.abs(this.xTouchDown - x) >= AndroidUtilities.dp(2.0f)) {
+                this.moving = true;
+                this.startMoving = false;
+            }
+            if (this.moving) {
+                this.selectedIndexTouch = clamp;
+                invalidate();
+                if (Math.round(this.selectedIndexTouch) != this.selectedIndex && z) {
+                    setOption(Math.round(this.selectedIndexTouch));
                 }
             }
+            invalidate();
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             if (!this.moving) {
-                int i14 = 0;
-                while (true) {
-                    if (i14 >= 5) {
-                        break;
-                    }
-                    int i15 = this.sideSide;
-                    int i16 = this.lineSize + (this.gapSize * 2);
-                    int i17 = this.circleSize;
-                    int i18 = i15 + ((i16 + i17) * i14) + (i17 / 2);
-                    if (x <= i18 - AndroidUtilities.dp(15.0f) || x >= i18 + AndroidUtilities.dp(15.0f)) {
-                        i14++;
-                    } else if (this.selectedIndex != i14) {
-                        setOption(i14);
-                    }
+                this.selectedIndexTouch = clamp;
+                if (Math.round(clamp) != this.selectedIndex) {
+                    setOption(Math.round(this.selectedIndexTouch));
                 }
             } else {
-                int i19 = this.selectedIndex;
-                if (i19 != this.startMovingPreset) {
-                    setOption(i19);
+                int i2 = this.selectedIndex;
+                if (i2 != this.startMovingPreset) {
+                    setOption(i2);
                 }
             }
             Callback callback = this.callback;
@@ -199,12 +171,19 @@ public class SlideChooseView extends View {
             }
             this.startMoving = false;
             this.moving = false;
+            invalidate();
             getParent().requestDisallowInterceptTouchEvent(false);
         }
         return true;
     }
 
     public void setOption(int i) {
+        if (this.selectedIndex != i) {
+            try {
+                performHapticFeedback(9, 1);
+            } catch (Exception unused) {
+            }
+        }
         this.selectedIndex = i;
         Callback callback = this.callback;
         if (callback != null) {
@@ -227,56 +206,85 @@ public class SlideChooseView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        int i;
+        float f;
         int dp;
-        this.textPaint.setColor(getThemedColor("windowBackgroundWhiteGrayText"));
+        int dp2;
+        int i2;
+        float f2;
+        float f3 = this.selectedIndexAnimatedHolder.set(this.selectedIndex);
+        float f4 = 0.0f;
+        float f5 = 1.0f;
+        float f6 = this.movingAnimatedHolder.set(this.moving ? 1.0f : 0.0f);
         int measuredHeight = (getMeasuredHeight() / 2) + AndroidUtilities.dp(11.0f);
-        int i = 0;
-        while (i < this.optionsStr.length) {
-            int i2 = this.sideSide;
-            int i3 = this.lineSize + (this.gapSize * 2);
-            int i4 = this.circleSize;
-            int i5 = i2 + ((i3 + i4) * i) + (i4 / 2);
-            int themedColor = getThemedColor(i <= this.selectedIndex ? "switchTrackChecked" : "switchTrack");
-            this.paint.setColor(themedColor);
-            this.linePaint.setColor(themedColor);
-            float f = measuredHeight;
-            canvas.drawCircle(i5, f, i == this.selectedIndex ? AndroidUtilities.dp(6.0f) : this.circleSize / 2, this.paint);
-            if (i != 0) {
-                int i6 = (i5 - (this.circleSize / 2)) - this.gapSize;
-                int i7 = this.lineSize;
-                int i8 = i6 - i7;
-                int i9 = this.dashedFrom;
-                if (i9 == -1 || i - 1 < i9) {
-                    int i10 = this.selectedIndex;
-                    if (i == i10 || i == i10 + 1) {
-                        i7 -= AndroidUtilities.dp(3.0f);
-                    }
-                    if (i == this.selectedIndex + 1) {
-                        i8 += AndroidUtilities.dp(3.0f);
-                    }
-                    canvas.drawRect(i8, measuredHeight - AndroidUtilities.dp(1.0f), i8 + i7, AndroidUtilities.dp(1.0f) + measuredHeight, this.paint);
+        int i3 = 0;
+        while (i3 < this.optionsStr.length) {
+            int i4 = this.sideSide;
+            int i5 = this.lineSize + (this.gapSize * 2);
+            int i6 = this.circleSize;
+            int i7 = i4 + ((i5 + i6) * i3) + (i6 / 2);
+            float f7 = i3;
+            float f8 = f7 - f3;
+            float max = Math.max(f4, f5 - Math.abs(f8));
+            int blendARGB = ColorUtils.blendARGB(getThemedColor("switchTrack"), getThemedColor("switchTrackChecked"), MathUtils.clamp((f3 - f7) + f5, f4, f5));
+            this.paint.setColor(blendARGB);
+            this.linePaint.setColor(blendARGB);
+            float f9 = measuredHeight;
+            canvas.drawCircle(i7, f9, AndroidUtilities.lerp(this.circleSize / 2, AndroidUtilities.dp(6.0f), max), this.paint);
+            if (i3 != 0) {
+                int i8 = (i7 - (this.circleSize / 2)) - this.gapSize;
+                int i9 = this.lineSize;
+                int i10 = i8 - i9;
+                int i11 = this.dashedFrom;
+                if (i11 == -1 || i3 - 1 < i11) {
+                    f = max;
+                    i = i7;
+                    float f10 = f8 - 1.0f;
+                    float clamp = MathUtils.clamp(1.0f - Math.abs(f10), 0.0f, 1.0f);
+                    float clamp2 = MathUtils.clamp(1.0f - Math.min(Math.abs(f8), Math.abs(f10)), 0.0f, 1.0f);
+                    canvas.drawRect((int) (i10 + (AndroidUtilities.dp(3.0f) * clamp)), measuredHeight - AndroidUtilities.dp(1.0f), dp + ((int) (i9 - (AndroidUtilities.dp(3.0f) * clamp2))), AndroidUtilities.dp(1.0f) + measuredHeight, this.paint);
                 } else {
-                    int dp2 = i8 + AndroidUtilities.dp(3.0f);
-                    int dp3 = (i7 - AndroidUtilities.dp(3.0f)) / AndroidUtilities.dp(13.0f);
-                    if (this.lastDash != dp3) {
-                        this.linePaint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(6.0f), (dp - (AndroidUtilities.dp(8.0f) * dp3)) / (dp3 - 1)}, 0.0f));
-                        this.lastDash = dp3;
+                    int dp3 = i10 + AndroidUtilities.dp(3.0f);
+                    int dp4 = (i9 - AndroidUtilities.dp(3.0f)) / AndroidUtilities.dp(13.0f);
+                    if (this.lastDash != dp4) {
+                        f2 = max;
+                        i2 = i7;
+                        this.linePaint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(6.0f), (dp2 - (AndroidUtilities.dp(8.0f) * dp4)) / (dp4 - 1)}, 0.0f));
+                        this.lastDash = dp4;
+                    } else {
+                        f2 = max;
+                        i2 = i7;
                     }
-                    canvas.drawLine(AndroidUtilities.dp(1.0f) + dp2, f, (dp2 + dp) - AndroidUtilities.dp(1.0f), f, this.linePaint);
+                    f = f2;
+                    i = i2;
+                    canvas.drawLine(AndroidUtilities.dp(1.0f) + dp3, f9, (dp3 + dp2) - AndroidUtilities.dp(1.0f), f9, this.linePaint);
                 }
-            }
-            int i11 = this.optionsSizes[i];
-            String[] strArr = this.optionsStr;
-            String str = strArr[i];
-            if (i == 0) {
-                canvas.drawText(str, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(28.0f), this.textPaint);
-            } else if (i == strArr.length - 1) {
-                canvas.drawText(str, (getMeasuredWidth() - i11) - AndroidUtilities.dp(22.0f), AndroidUtilities.dp(28.0f), this.textPaint);
             } else {
-                canvas.drawText(str, i5 - (i11 / 2), AndroidUtilities.dp(28.0f), this.textPaint);
+                f = max;
+                i = i7;
             }
-            i++;
+            int i12 = this.optionsSizes[i3];
+            String str = this.optionsStr[i3];
+            this.textPaint.setColor(ColorUtils.blendARGB(getThemedColor("windowBackgroundWhiteGrayText"), getThemedColor("windowBackgroundWhiteBlueText"), f));
+            if (i3 == 0) {
+                canvas.drawText(str, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(28.0f), this.textPaint);
+            } else if (i3 == this.optionsStr.length - 1) {
+                canvas.drawText(str, (getMeasuredWidth() - i12) - AndroidUtilities.dp(22.0f), AndroidUtilities.dp(28.0f), this.textPaint);
+            } else {
+                canvas.drawText(str, i - (i12 / 2), AndroidUtilities.dp(28.0f), this.textPaint);
+            }
+            i3++;
+            f4 = 0.0f;
+            f5 = 1.0f;
         }
+        int i13 = this.lineSize + (this.gapSize * 2);
+        int i14 = this.circleSize;
+        float f11 = this.sideSide + ((i13 + i14) * f3) + (i14 / 2);
+        this.paint.setColor(ColorUtils.setAlphaComponent(getThemedColor("switchTrackChecked"), 80));
+        float f12 = measuredHeight;
+        canvas.drawCircle(f11, f12, AndroidUtilities.dp(f6 * 12.0f), this.paint);
+        this.paint.setColor(getThemedColor("switchTrackChecked"));
+        canvas.drawCircle(f11, f12, AndroidUtilities.dp(6.0f), this.paint);
     }
 
     @Override

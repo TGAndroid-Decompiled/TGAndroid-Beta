@@ -931,13 +931,13 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 AndroidUtilities.updateViewVisibilityAnimated(this.showPasswordButton, false, 0.1f, false);
                 RLottieDrawable[] rLottieDrawableArr = new RLottieDrawable[7];
                 this.animationDrawables = rLottieDrawableArr;
-                rLottieDrawableArr[0] = new RLottieDrawable(R.raw.tsv_setup_monkey_idle1, "2131558544", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
-                this.animationDrawables[1] = new RLottieDrawable(R.raw.tsv_setup_monkey_idle2, "2131558545", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
-                this.animationDrawables[2] = new RLottieDrawable(R.raw.tsv_monkey_close, "2131558537", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
-                this.animationDrawables[3] = new RLottieDrawable(R.raw.tsv_setup_monkey_peek, "2131558546", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
-                this.animationDrawables[4] = new RLottieDrawable(R.raw.tsv_setup_monkey_close_and_peek_to_idle, "2131558543", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
-                this.animationDrawables[5] = new RLottieDrawable(R.raw.tsv_setup_monkey_close_and_peek, "2131558542", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
-                this.animationDrawables[6] = new RLottieDrawable(R.raw.tsv_setup_monkey_tracking, "2131558547", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr[0] = new RLottieDrawable(R.raw.tsv_setup_monkey_idle1, "2131558546", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                this.animationDrawables[1] = new RLottieDrawable(R.raw.tsv_setup_monkey_idle2, "2131558547", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                this.animationDrawables[2] = new RLottieDrawable(R.raw.tsv_monkey_close, "2131558539", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                this.animationDrawables[3] = new RLottieDrawable(R.raw.tsv_setup_monkey_peek, "2131558548", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                this.animationDrawables[4] = new RLottieDrawable(R.raw.tsv_setup_monkey_close_and_peek_to_idle, "2131558545", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                this.animationDrawables[5] = new RLottieDrawable(R.raw.tsv_setup_monkey_close_and_peek, "2131558544", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                this.animationDrawables[6] = new RLottieDrawable(R.raw.tsv_setup_monkey_tracking, "2131558549", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 this.animationDrawables[6].setPlayInDirectionOfCustomEndFrame(true);
                 this.animationDrawables[6].setCustomEndFrame(19);
                 this.animationDrawables[2].setOnFinishCallback(this.finishCallback, 97);
@@ -1259,11 +1259,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 showDialog.setCancelable(false);
             }
         } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-            int intValue = Utilities.parseInt(tLRPC$TL_error.text).intValue();
+            int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
             if (intValue < 60) {
-                str = LocaleController.formatPluralString("Seconds", intValue);
+                str = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
             } else {
-                str = LocaleController.formatPluralString("Minutes", intValue / 60);
+                str = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
             }
             showAlertWithText(LocaleController.getString("TwoStepVerificationTitle", R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, str));
         } else {
@@ -1711,11 +1711,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             onFieldError(this.outlineTextFirstRow, this.editTextFirstRow, true);
             showDoneButton(false);
         } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-            int intValue = Utilities.parseInt(tLRPC$TL_error.text).intValue();
+            int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
             if (intValue < 60) {
-                str = LocaleController.formatPluralString("Seconds", intValue);
+                str = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
             } else {
-                str = LocaleController.formatPluralString("Minutes", intValue / 60);
+                str = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
             }
             showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, str));
         } else {
@@ -1763,11 +1763,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         } else if (tLRPC$TL_error == null || tLRPC$TL_error.text.startsWith("CODE_INVALID")) {
             onCodeFieldError(true);
         } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-            int intValue = Utilities.parseInt(tLRPC$TL_error.text).intValue();
+            int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
             if (intValue < 60) {
-                str2 = LocaleController.formatPluralString("Seconds", intValue);
+                str2 = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
             } else {
-                str2 = LocaleController.formatPluralString("Minutes", intValue / 60);
+                str2 = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
             }
             showAlertWithText(LocaleController.getString("TwoStepVerificationTitle", R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, str2));
         } else {
@@ -1809,11 +1809,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         } else if (tLRPC$TL_error.text.startsWith("CODE_INVALID")) {
             onCodeFieldError(true);
         } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-            int intValue = Utilities.parseInt(tLRPC$TL_error.text).intValue();
+            int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
             if (intValue < 60) {
-                str = LocaleController.formatPluralString("Seconds", intValue);
+                str = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
             } else {
-                str = LocaleController.formatPluralString("Minutes", intValue / 60);
+                str = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
             }
             showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, str));
         } else {
@@ -2400,11 +2400,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 } else if ("EMAIL_INVALID".equals(tLRPC$TL_error.text)) {
                     showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.getString("PasswordEmailInvalid", R.string.PasswordEmailInvalid));
                 } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue = Utilities.parseInt(tLRPC$TL_error.text).intValue();
+                    int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
                     if (intValue < 60) {
-                        str2 = LocaleController.formatPluralString("Seconds", intValue);
+                        str2 = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
                     } else {
-                        str2 = LocaleController.formatPluralString("Minutes", intValue / 60);
+                        str2 = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
                     }
                     showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, str2));
                 } else {
@@ -2533,7 +2533,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     public void showSetForcePasswordAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(LocaleController.getString("Warning", R.string.Warning));
-        builder.setMessage(LocaleController.formatPluralString("ForceSetPasswordAlertMessageShort", this.otherwiseReloginDays));
+        builder.setMessage(LocaleController.formatPluralString("ForceSetPasswordAlertMessageShort", this.otherwiseReloginDays, new Object[0]));
         builder.setPositiveButton(LocaleController.getString("TwoStepVerificationSetPassword", R.string.TwoStepVerificationSetPassword), null);
         builder.setNegativeButton(LocaleController.getString("ForceSetPasswordCancel", R.string.ForceSetPasswordCancel), new DialogInterface.OnClickListener() {
             @Override

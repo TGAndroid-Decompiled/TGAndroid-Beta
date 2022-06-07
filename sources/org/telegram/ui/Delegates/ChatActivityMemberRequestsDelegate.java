@@ -174,7 +174,7 @@ public class ChatActivityMemberRequestsDelegate {
                 this.pendingRequestsCount = 0;
             } else if (this.pendingRequestsCount != i) {
                 this.pendingRequestsCount = i;
-                this.requestsCountTextView.setText(LocaleController.formatPluralString("JoinUsersRequests", i));
+                this.requestsCountTextView.setText(LocaleController.formatPluralString("JoinUsersRequests", i, new Object[0]));
                 animatePendingRequests(true, z);
                 if (!(list == null || list.isEmpty())) {
                     int min = Math.min(3, list.size());

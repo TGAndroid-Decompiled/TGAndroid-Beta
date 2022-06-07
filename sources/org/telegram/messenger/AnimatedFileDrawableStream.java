@@ -11,7 +11,7 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
     private String finishedFilePath;
     private boolean finishedLoadingFile;
     private boolean ignored;
-    private int lastOffset;
+    private long lastOffset;
     private FileLoadOperation loadOperation;
     private ImageLocation location;
     private Object parentObject;
@@ -44,38 +44,46 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
             if (i2 == 0) {
                 return 0;
             }
-            int i3 = 0;
-            while (i3 == 0) {
+            long j = 0;
+            while (j == 0) {
                 try {
-                    int[] downloadedLengthFromOffset = this.loadOperation.getDownloadedLengthFromOffset(i, i2);
-                    i3 = downloadedLengthFromOffset[0];
-                    if (!this.finishedLoadingFile && downloadedLengthFromOffset[1] != 0) {
-                        this.finishedLoadingFile = true;
-                        this.finishedFilePath = this.loadOperation.getCacheFileFinal().getAbsolutePath();
-                    }
-                    if (i3 == 0) {
-                        if (this.loadOperation.isPaused() || this.lastOffset != i || this.preview) {
-                            FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, this.location, this.parentObject, i, this.preview);
+                    long[] downloadedLengthFromOffset = this.loadOperation.getDownloadedLengthFromOffset(i, i2);
+                    long j2 = downloadedLengthFromOffset[0];
+                    try {
+                        if (!this.finishedLoadingFile && downloadedLengthFromOffset[1] != 0) {
+                            this.finishedLoadingFile = true;
+                            this.finishedFilePath = this.loadOperation.getCacheFileFinal().getAbsolutePath();
                         }
-                        synchronized (this.sync) {
-                            if (this.canceled) {
-                                return 0;
+                        if (j2 == 0) {
+                            if (this.loadOperation.isPaused() || this.lastOffset != i || this.preview) {
+                                FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, this.location, this.parentObject, i, this.preview);
                             }
-                            this.countDownLatch = new CountDownLatch(1);
+                            synchronized (this.sync) {
+                                if (this.canceled) {
+                                    return 0;
+                                }
+                                this.countDownLatch = new CountDownLatch(1);
+                            }
+                            if (!this.preview) {
+                                FileLoader.getInstance(this.currentAccount).setLoadingVideo(this.document, false, true);
+                            }
+                            this.waitingForLoad = true;
+                            this.countDownLatch.await();
+                            this.waitingForLoad = false;
                         }
-                        if (!this.preview) {
-                            FileLoader.getInstance(this.currentAccount).setLoadingVideo(this.document, false, true);
-                        }
-                        this.waitingForLoad = true;
-                        this.countDownLatch.await();
-                        this.waitingForLoad = false;
+                        j = j2;
+                    } catch (Exception e) {
+                        e = e;
+                        j = j2;
+                        FileLog.e((Throwable) e, false);
+                        return (int) j;
                     }
-                } catch (Exception e) {
-                    FileLog.e((Throwable) e, false);
+                } catch (Exception e2) {
+                    e = e2;
                 }
             }
-            this.lastOffset = i + i3;
-            return i3;
+            this.lastOffset = i + j;
+            return (int) j;
         }
     }
 

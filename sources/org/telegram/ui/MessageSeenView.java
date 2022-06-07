@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -272,7 +273,7 @@ public class MessageSeenView extends FrameLayout {
         } else if (this.peerIds.size() == 0) {
             this.titleView.setText(LocaleController.getString("NobodyViewed", R.string.NobodyViewed));
         } else {
-            this.titleView.setText(LocaleController.formatPluralString(this.isVoice ? "MessagePlayed" : "MessageSeen", this.peerIds.size()));
+            this.titleView.setText(LocaleController.formatPluralString(this.isVoice ? "MessagePlayed" : "MessageSeen", this.peerIds.size(), new Object[0]));
         }
         this.titleView.animate().alpha(1.0f).setDuration(220L).start();
         this.avatarsImageView.animate().alpha(1.0f).setDuration(220L).start();
@@ -346,6 +347,7 @@ public class MessageSeenView extends FrameLayout {
             textView.setTextSize(1, 16.0f);
             this.nameView.setLines(1);
             this.nameView.setEllipsize(TextUtils.TruncateAt.END);
+            this.nameView.setImportantForAccessibility(2);
             addView(this.nameView, LayoutHelper.createFrame(-2, -2.0f, 19, 59.0f, 0.0f, 13.0f, 0.0f));
             this.nameView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
         }
@@ -361,6 +363,12 @@ public class MessageSeenView extends FrameLayout {
                 this.avatarImageView.setImage(ImageLocation.getForUser(tLRPC$User, 1), "50_50", this.avatarDrawable, tLRPC$User);
                 this.nameView.setText(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name));
             }
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setText(LocaleController.formatString("AccDescrPersonHasSeen", R.string.AccDescrPersonHasSeen, this.nameView.getText()));
         }
     }
 }

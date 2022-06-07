@@ -94,7 +94,7 @@ public class ConnectionsManager extends BaseController {
     private static HashMap<String, ResolveHostByNameTask> resolvingHostnameTasks = new HashMap<>();
     private static HashMap<String, ResolvedDomain> dnsCache = new HashMap<>();
     private static int lastClassGuid = 1;
-    private static volatile ConnectionsManager[] Instance = new ConnectionsManager[3];
+    private static final ConnectionsManager[] Instance = new ConnectionsManager[4];
     private long lastPauseTime = System.currentTimeMillis();
     private boolean appPaused = true;
     private AtomicInteger lastRequestToken = new AtomicInteger(1);
@@ -199,15 +199,14 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static ConnectionsManager getInstance(int i) {
-        ConnectionsManager connectionsManager = Instance[i];
+        ConnectionsManager[] connectionsManagerArr = Instance;
+        ConnectionsManager connectionsManager = connectionsManagerArr[i];
         if (connectionsManager == null) {
             synchronized (ConnectionsManager.class) {
-                connectionsManager = Instance[i];
+                connectionsManager = connectionsManagerArr[i];
                 if (connectionsManager == null) {
-                    ConnectionsManager[] connectionsManagerArr = Instance;
-                    ConnectionsManager connectionsManager2 = new ConnectionsManager(i);
-                    connectionsManagerArr[i] = connectionsManager2;
-                    connectionsManager = connectionsManager2;
+                    connectionsManager = new ConnectionsManager(i);
+                    connectionsManagerArr[i] = connectionsManager;
                 }
             }
         }
@@ -253,7 +252,7 @@ public class ConnectionsManager extends BaseController {
         String str8 = str2.trim().length() == 0 ? "App version unknown" : str2;
         String str9 = str4.trim().length() == 0 ? "SDK Unknown" : str4;
         getUserConfig().loadConfig();
-        init(BuildVars.BUILD_VERSION, 142, BuildVars.APP_ID, str7, str9, str8, str, str6, file2, FileLog.getNetworkLogPath(), getRegId(), AndroidUtilities.getCertificateSHA256Fingerprint(), (TimeZone.getDefault().getRawOffset() + TimeZone.getDefault().getDSTSavings()) / 1000, getUserConfig().getClientUserId(), isPushConnectionEnabled);
+        init(BuildVars.BUILD_VERSION, 143, BuildVars.APP_ID, str7, str9, str8, str, str6, file2, FileLog.getNetworkLogPath(), getRegId(), AndroidUtilities.getCertificateSHA256Fingerprint(), (TimeZone.getDefault().getRawOffset() + TimeZone.getDefault().getDSTSavings()) / 1000, getUserConfig().getClientUserId(), isPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -474,7 +473,7 @@ public class ConnectionsManager extends BaseController {
 
     public static void setLangCode(String str) {
         String lowerCase = str.replace('_', '-').toLowerCase();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             native_setLangCode(i, lowerCase);
         }
     }
@@ -487,14 +486,14 @@ public class ConnectionsManager extends BaseController {
             str = "__FIREBASE_GENERATING_SINCE_" + getInstance(0).getCurrentTime() + "__";
             SharedConfig.pushStringStatus = str;
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             native_setRegId(i, str);
         }
     }
 
     public static void setSystemLangCode(String str) {
         String lowerCase = str.replace('_', '-').toLowerCase();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             native_setSystemLangCode(i, lowerCase);
         }
     }
@@ -807,7 +806,7 @@ public class ConnectionsManager extends BaseController {
         if (str4 == null) {
             str4 = "";
         }
-        for (int i2 = 0; i2 < 3; i2++) {
+        for (int i2 = 0; i2 < 4; i2++) {
             if (!z || TextUtils.isEmpty(str)) {
                 native_setProxySettings(i2, "", 1080, "", "", "");
             } else {

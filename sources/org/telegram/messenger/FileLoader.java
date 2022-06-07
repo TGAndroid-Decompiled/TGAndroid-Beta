@@ -43,12 +43,13 @@ import org.telegram.tgnet.TLRPC$WebDocument;
 import org.telegram.tgnet.TLRPC$WebPage;
 
 public class FileLoader extends BaseController {
+    public static final long DEFAULT_MAX_FILE_SIZE = 2097152000;
+    public static final long DEFAULT_MAX_FILE_SIZE_PREMIUM = 4194304000L;
     public static final int IMAGE_TYPE_ANIMATION = 2;
     public static final int IMAGE_TYPE_LOTTIE = 1;
     public static final int IMAGE_TYPE_SVG = 3;
     public static final int IMAGE_TYPE_SVG_WHITE = 4;
     public static final int IMAGE_TYPE_THEME_PREVIEW = 5;
-    public static final long MAX_FILE_SIZE = 2097152000;
     public static final int MEDIA_DIR_AUDIO = 1;
     public static final int MEDIA_DIR_CACHE = 4;
     public static final int MEDIA_DIR_DOCUMENT = 3;
@@ -57,15 +58,17 @@ public class FileLoader extends BaseController {
     public static final int MEDIA_DIR_IMAGE_PUBLIC = 100;
     public static final int MEDIA_DIR_VIDEO = 2;
     public static final int MEDIA_DIR_VIDEO_PUBLIC = 101;
+    public static final int PRELOAD_CACHE_TYPE = 11;
     public static final int QUEUE_TYPE_AUDIO = 2;
     public static final int QUEUE_TYPE_FILE = 0;
     public static final int QUEUE_TYPE_IMAGE = 1;
+    public static final int QUEUE_TYPE_PRELOAD = 3;
     private final FilePathDatabase filePathDatabase;
     private String forceLoadingFile;
     private int lastReferenceId;
     private static volatile DispatchQueue fileLoaderQueue = new DispatchQueue("fileUploadQueue");
     private static SparseArray<File> mediaDirs = null;
-    private static final FileLoader[] Instance = new FileLoader[3];
+    private static final FileLoader[] Instance = new FileLoader[4];
     private LinkedList<FileUploadOperation> uploadOperationQueue = new LinkedList<>();
     private LinkedList<FileUploadOperation> uploadSmallOperationQueue = new LinkedList<>();
     private ConcurrentHashMap<String, FileUploadOperation> uploadOperationPaths = new ConcurrentHashMap<>();
@@ -75,9 +78,11 @@ public class FileLoader extends BaseController {
     private SparseArray<LinkedList<FileLoadOperation>> fileLoadOperationQueues = new SparseArray<>();
     private SparseArray<LinkedList<FileLoadOperation>> audioLoadOperationQueues = new SparseArray<>();
     private SparseArray<LinkedList<FileLoadOperation>> imageLoadOperationQueues = new SparseArray<>();
+    private SparseArray<LinkedList<FileLoadOperation>> preloadingLoadOperationQueues = new SparseArray<>();
     private SparseIntArray fileLoadOperationsCount = new SparseIntArray();
     private SparseIntArray audioLoadOperationsCount = new SparseIntArray();
     private SparseIntArray imageLoadOperationsCount = new SparseIntArray();
+    private SparseIntArray preloadingLoadOperationsCount = new SparseIntArray();
     private ConcurrentHashMap<String, FileLoadOperation> loadOperationPaths = new ConcurrentHashMap<>();
     private ArrayList<FileLoadOperation> activeFileLoadOperation = new ArrayList<>();
     private ConcurrentHashMap<String, Boolean> loadOperationPathsUI = new ConcurrentHashMap<>(10, 1.0f, 2);
@@ -337,22 +342,22 @@ public class FileLoader extends BaseController {
     }
 
     public void uploadFile(String str, boolean z, boolean z2, int i) {
-        uploadFile(str, z, z2, 0, i, false);
+        uploadFile(str, z, z2, 0L, i, false);
     }
 
-    public void uploadFile(final String str, final boolean z, final boolean z2, final int i, final int i2, final boolean z3) {
+    public void uploadFile(final String str, final boolean z, final boolean z2, final long j, final int i, final boolean z3) {
         if (str != null) {
             fileLoaderQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.this.lambda$uploadFile$5(z, str, i, i2, z3, z2);
+                    FileLoader.this.lambda$uploadFile$5(z, str, j, i, z3, z2);
                 }
             });
         }
     }
 
-    public void lambda$uploadFile$5(boolean z, String str, int i, int i2, boolean z2, boolean z3) {
-        int i3;
+    public void lambda$uploadFile$5(boolean z, String str, long j, int i, boolean z2, boolean z3) {
+        long j2;
         if (z) {
             if (this.uploadOperationPathsEnc.containsKey(str)) {
                 return;
@@ -360,16 +365,16 @@ public class FileLoader extends BaseController {
         } else if (this.uploadOperationPaths.containsKey(str)) {
             return;
         }
-        if (i == 0 || this.uploadSizes.get(str) == null) {
-            i3 = i;
+        if (j == 0 || this.uploadSizes.get(str) == null) {
+            j2 = j;
         } else {
             this.uploadSizes.remove(str);
-            i3 = 0;
+            j2 = 0;
         }
-        FileUploadOperation fileUploadOperation = new FileUploadOperation(this.currentAccount, str, z, i3, i2);
+        FileUploadOperation fileUploadOperation = new FileUploadOperation(this.currentAccount, str, z, j2, i);
         FileLoaderDelegate fileLoaderDelegate = this.delegate;
-        if (!(fileLoaderDelegate == null || i == 0)) {
-            fileLoaderDelegate.fileUploadProgressChanged(fileUploadOperation, str, 0L, i, z);
+        if (!(fileLoaderDelegate == null || j == 0)) {
+            fileLoaderDelegate.fileUploadProgressChanged(fileUploadOperation, str, 0L, j, z);
         }
         if (z) {
             this.uploadOperationPathsEnc.put(str, fileUploadOperation);
@@ -381,18 +386,18 @@ public class FileLoader extends BaseController {
         }
         fileUploadOperation.setDelegate(new AnonymousClass1(z, str, z3));
         if (z3) {
-            int i4 = this.currentUploadSmallOperationsCount;
-            if (i4 < 1) {
-                this.currentUploadSmallOperationsCount = i4 + 1;
+            int i2 = this.currentUploadSmallOperationsCount;
+            if (i2 < 1) {
+                this.currentUploadSmallOperationsCount = i2 + 1;
                 fileUploadOperation.start();
                 return;
             }
             this.uploadSmallOperationQueue.add(fileUploadOperation);
             return;
         }
-        int i5 = this.currentUploadOperationsCount;
-        if (i5 < 1) {
-            this.currentUploadOperationsCount = i5 + 1;
+        int i3 = this.currentUploadOperationsCount;
+        if (i3 < 1) {
+            this.currentUploadOperationsCount = i3 + 1;
             fileUploadOperation.start();
             return;
         }
@@ -501,7 +506,9 @@ public class FileLoader extends BaseController {
 
     private LinkedList<FileLoadOperation> getLoadOperationQueue(int i, int i2) {
         SparseArray<LinkedList<FileLoadOperation>> sparseArray;
-        if (i2 == 2) {
+        if (i2 == 3) {
+            sparseArray = this.preloadingLoadOperationQueues;
+        } else if (i2 == 2) {
             sparseArray = this.audioLoadOperationQueues;
         } else if (i2 == 1) {
             sparseArray = this.imageLoadOperationQueues;
@@ -518,6 +525,9 @@ public class FileLoader extends BaseController {
     }
 
     private SparseIntArray getLoadOperationCount(int i) {
+        if (i == 3) {
+            return this.preloadingLoadOperationsCount;
+        }
         if (i == 2) {
             return this.audioLoadOperationsCount;
         }
@@ -684,18 +694,18 @@ public class FileLoader extends BaseController {
 
     public void loadFile(SecureDocument secureDocument, int i) {
         if (secureDocument != null) {
-            loadFile(null, secureDocument, null, null, null, null, null, 0, i, 1);
+            loadFile(null, secureDocument, null, null, null, null, null, 0L, i, 1);
         }
     }
 
     public void loadFile(TLRPC$Document tLRPC$Document, Object obj, int i, int i2) {
         if (tLRPC$Document != null) {
-            loadFile(tLRPC$Document, null, null, null, null, obj, null, 0, i, (i2 != 0 || tLRPC$Document.key == null) ? i2 : 1);
+            loadFile(tLRPC$Document, null, null, null, null, obj, null, 0L, i, (i2 != 0 || tLRPC$Document.key == null) ? i2 : 1);
         }
     }
 
     public void loadFile(WebFile webFile, int i, int i2) {
-        loadFile(null, null, webFile, null, null, null, null, 0, i, i2);
+        loadFile(null, null, webFile, null, null, null, null, 0L, i, i2);
     }
 
     private void pauseCurrentFileLoadOperations(FileLoadOperation fileLoadOperation) {
@@ -719,8 +729,8 @@ public class FileLoader extends BaseController {
         }
     }
 
-    private org.telegram.messenger.FileLoadOperation loadFileInternal(final org.telegram.tgnet.TLRPC$Document r32, org.telegram.messenger.SecureDocument r33, org.telegram.messenger.WebFile r34, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated r35, org.telegram.messenger.ImageLocation r36, final java.lang.Object r37, java.lang.String r38, int r39, int r40, org.telegram.messenger.FileLoadOperationStream r41, int r42, boolean r43, int r44) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.loadFileInternal(org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.SecureDocument, org.telegram.messenger.WebFile, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated, org.telegram.messenger.ImageLocation, java.lang.Object, java.lang.String, int, int, org.telegram.messenger.FileLoadOperationStream, int, boolean, int):org.telegram.messenger.FileLoadOperation");
+    private org.telegram.messenger.FileLoadOperation loadFileInternal(final org.telegram.tgnet.TLRPC$Document r34, org.telegram.messenger.SecureDocument r35, org.telegram.messenger.WebFile r36, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated r37, org.telegram.messenger.ImageLocation r38, final java.lang.Object r39, java.lang.String r40, long r41, int r43, org.telegram.messenger.FileLoadOperationStream r44, int r45, boolean r46, int r47) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.loadFileInternal(org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.SecureDocument, org.telegram.messenger.WebFile, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated, org.telegram.messenger.ImageLocation, java.lang.Object, java.lang.String, long, int, org.telegram.messenger.FileLoadOperationStream, int, boolean, int):org.telegram.messenger.FileLoadOperation");
     }
 
     private boolean canSaveAsFile(Object obj) {
@@ -765,7 +775,7 @@ public class FileLoader extends BaseController {
         linkedList.add(fileLoadOperation);
     }
 
-    private void loadFile(final TLRPC$Document tLRPC$Document, final SecureDocument secureDocument, final WebFile webFile, final TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated, final ImageLocation imageLocation, final Object obj, final String str, final int i, final int i2, final int i3) {
+    private void loadFile(final TLRPC$Document tLRPC$Document, final SecureDocument secureDocument, final WebFile webFile, final TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated, final ImageLocation imageLocation, final Object obj, final String str, final long j, final int i, final int i2) {
         String str2;
         if (tLRPC$TL_fileLocationToBeDeprecated != null) {
             str2 = getAttachFileName(tLRPC$TL_fileLocationToBeDeprecated, str);
@@ -774,19 +784,19 @@ public class FileLoader extends BaseController {
         } else {
             str2 = webFile != null ? getAttachFileName(webFile) : null;
         }
-        if (i3 != 10 && !TextUtils.isEmpty(str2) && !str2.contains("-2147483648")) {
+        if (i2 != 10 && !TextUtils.isEmpty(str2) && !str2.contains("-2147483648")) {
             this.loadOperationPathsUI.put(str2, Boolean.TRUE);
         }
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$loadFile$9(tLRPC$Document, secureDocument, webFile, tLRPC$TL_fileLocationToBeDeprecated, imageLocation, obj, str, i, i2, i3);
+                FileLoader.this.lambda$loadFile$9(tLRPC$Document, secureDocument, webFile, tLRPC$TL_fileLocationToBeDeprecated, imageLocation, obj, str, j, i, i2);
             }
         });
     }
 
-    public void lambda$loadFile$9(TLRPC$Document tLRPC$Document, SecureDocument secureDocument, WebFile webFile, TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated, ImageLocation imageLocation, Object obj, String str, int i, int i2, int i3) {
-        loadFileInternal(tLRPC$Document, secureDocument, webFile, tLRPC$TL_fileLocationToBeDeprecated, imageLocation, obj, str, i, i2, null, 0, false, i3);
+    public void lambda$loadFile$9(TLRPC$Document tLRPC$Document, SecureDocument secureDocument, WebFile webFile, TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated, ImageLocation imageLocation, Object obj, String str, long j, int i, int i2) {
+        loadFileInternal(tLRPC$Document, secureDocument, webFile, tLRPC$TL_fileLocationToBeDeprecated, imageLocation, obj, str, j, i, null, 0, false, i2);
     }
 
     public FileLoadOperation loadStreamFile(final FileLoadOperationStream fileLoadOperationStream, final TLRPC$Document tLRPC$Document, final ImageLocation imageLocation, final Object obj, final int i, final boolean z) {
@@ -812,7 +822,7 @@ public class FileLoader extends BaseController {
         if (tLRPC$Document == null && imageLocation != null) {
             str = "mp4";
         }
-        fileLoadOperationArr[0] = loadFileInternal(tLRPC$Document, null, null, tLRPC$TL_fileLocationToBeDeprecated, imageLocation, obj, str, (tLRPC$Document != null || imageLocation == null) ? 0 : imageLocation.currentSize, 1, fileLoadOperationStream, i, z, tLRPC$Document == null ? 1 : 0);
+        fileLoadOperationArr[0] = loadFileInternal(tLRPC$Document, null, null, tLRPC$TL_fileLocationToBeDeprecated, imageLocation, obj, str, (tLRPC$Document != null || imageLocation == null) ? 0L : imageLocation.currentSize, 1, fileLoadOperationStream, i, z, tLRPC$Document == null ? 1 : 0);
         countDownLatch.countDown();
     }
 
@@ -825,7 +835,7 @@ public class FileLoader extends BaseController {
         });
     }
 
-    public void lambda$checkDownloadQueue$11(java.lang.String r7, int r8, int r9) {
+    public void lambda$checkDownloadQueue$11(java.lang.String r8, int r9, int r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.lambda$checkDownloadQueue$11(java.lang.String, int, int):void");
     }
 
@@ -1375,5 +1385,13 @@ public class FileLoader extends BaseController {
 
     public void clearRecentDownloadedFiles() {
         getDownloadController().clearRecentDownloadedFiles();
+    }
+
+    public static boolean checkUploadFileSize(int i, long j) {
+        boolean isPremium = AccountInstance.getInstance(i).getUserConfig().isPremium();
+        if (j >= DEFAULT_MAX_FILE_SIZE) {
+            return j < DEFAULT_MAX_FILE_SIZE_PREMIUM && isPremium;
+        }
+        return true;
     }
 }

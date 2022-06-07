@@ -24,7 +24,7 @@ public class StatsController extends BaseController {
             return Long.valueOf(System.currentTimeMillis() - 1000);
         }
     };
-    private static volatile StatsController[] Instance = new StatsController[3];
+    private static volatile StatsController[] Instance = new StatsController[4];
     private byte[] buffer = new byte[8];
     private long[][] sentBytes = (long[][]) Array.newInstance(long.class, 3, 7);
     private long[][] receivedBytes = (long[][]) Array.newInstance(long.class, 3, 7);

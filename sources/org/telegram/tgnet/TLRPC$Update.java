@@ -32,6 +32,38 @@ public abstract class TLRPC$Update extends TLObject {
                     }
                 };
                 break;
+            case -2006880112:
+                tLRPC$Update = new TLRPC$Update() {
+                    public static int constructor = -2006880112;
+                    public int flags;
+                    public boolean isFinal;
+                    public String text;
+                    public long transcription_id;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        boolean z3 = true;
+                        if ((readInt32 & 1) == 0) {
+                            z3 = false;
+                        }
+                        this.isFinal = z3;
+                        this.transcription_id = abstractSerializedData2.readInt64(z2);
+                        this.text = abstractSerializedData2.readString(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                        int i2 = this.isFinal ? this.flags | 1 : this.flags & (-2);
+                        this.flags = i2;
+                        abstractSerializedData2.writeInt32(i2);
+                        abstractSerializedData2.writeInt64(this.transcription_id);
+                        abstractSerializedData2.writeString(this.text);
+                    }
+                };
+                break;
             case -1937192669:
                 tLRPC$Update = new TLRPC$TL_updateChannelUserTyping();
                 break;
@@ -286,6 +318,9 @@ public abstract class TLRPC$Update extends TLObject {
             case -99664734:
                 tLRPC$Update = new TLRPC$TL_updatePinnedDialogs();
                 break;
+            case 8703322:
+                tLRPC$Update = new TLRPC$TL_updateTranscribedAudio();
+                break;
             case 88680979:
                 tLRPC$Update = new TLRPC$TL_updateUserPhone();
                 break;
@@ -347,7 +382,7 @@ public abstract class TLRPC$Update extends TLObject {
             case 654302845:
                 tLRPC$Update = new TLRPC$Update() {
                     public static int constructor = 654302845;
-                    public TLRPC$TL_dialogFilter filter;
+                    public TLRPC$DialogFilter filter;
                     public int flags;
                     public int id;
 
@@ -356,7 +391,7 @@ public abstract class TLRPC$Update extends TLObject {
                         this.flags = abstractSerializedData2.readInt32(z2);
                         this.id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 1) != 0) {
-                            this.filter = TLRPC$TL_dialogFilter.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.filter = TLRPC$DialogFilter.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                     }
 

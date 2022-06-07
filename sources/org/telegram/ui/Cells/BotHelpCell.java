@@ -12,11 +12,13 @@ import android.text.TextUtils;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
+import androidx.core.util.ObjectsCompat$$ExternalSyntheticBackport0;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.FileRefController;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -25,6 +27,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$BotInfo;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
@@ -36,8 +39,10 @@ import org.telegram.ui.Components.TypefaceSpan;
 
 public class BotHelpCell extends View {
     private boolean animating;
+    private String currentPhotoKey;
     private BotHelpCellDelegate delegate;
     private int height;
+    private ImageReceiver imageReceiver;
     private boolean isPhotoVisible;
     private boolean isTextVisible;
     private String oldText;
@@ -50,7 +55,6 @@ public class BotHelpCell extends View {
     private int width;
     private LinkPath urlPath = new LinkPath();
     private int imagePadding = AndroidUtilities.dp(4.0f);
-    private ImageReceiver imageReceiver = new ImageReceiver(this);
 
     public interface BotHelpCellDelegate {
         void didPressUrl(String str);
@@ -59,6 +63,11 @@ public class BotHelpCell extends View {
     public BotHelpCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.imageReceiver = imageReceiver;
+        imageReceiver.setInvalidateAll(true);
+        this.imageReceiver.setCrossfadeWithOldImage(true);
+        this.imageReceiver.setCrossfadeDuration(300);
     }
 
     public void setDelegate(BotHelpCellDelegate botHelpCellDelegate) {
@@ -73,12 +82,11 @@ public class BotHelpCell extends View {
     }
 
     public void setText(boolean z, String str) {
-        setText(z, str, null);
+        setText(z, str, null, null);
     }
 
-    public void setText(boolean z, String str, TLObject tLObject) {
+    public void setText(boolean z, String str, TLObject tLObject, TLRPC$BotInfo tLRPC$BotInfo) {
         int i;
-        BitmapDrawable bitmapDrawable;
         boolean z2 = tLObject != null;
         boolean z3 = !TextUtils.isEmpty(str);
         if ((str == null || str.length() == 0) && !z2) {
@@ -90,40 +98,34 @@ public class BotHelpCell extends View {
             this.isPhotoVisible = z2;
             this.isTextVisible = z3;
             if (z2) {
-                if (tLObject instanceof TLRPC$TL_photo) {
-                    TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) tLObject;
-                    this.imageReceiver.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 400), tLRPC$Photo), "400_400", null, "jpg", tLRPC$Photo, 0);
-                } else if (tLObject instanceof TLRPC$Document) {
-                    TLRPC$Document tLRPC$Document = (TLRPC$Document) tLObject;
-                    TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 400);
-                    String str3 = null;
-                    if (SharedConfig.getDevicePerformanceClass() != 0) {
-                        Iterator<TLRPC$PhotoSize> it = tLRPC$Document.thumbs.iterator();
-                        BitmapDrawable bitmapDrawable2 = null;
-                        while (it.hasNext()) {
-                            TLRPC$PhotoSize next = it.next();
-                            if (next instanceof TLRPC$TL_photoStrippedSize) {
-                                bitmapDrawable2 = new BitmapDrawable(getResources(), ImageLoader.getStrippedPhotoBitmap(next.bytes, "b"));
+                String keyForParentObject = FileRefController.getKeyForParentObject(tLRPC$BotInfo);
+                if (!ObjectsCompat$$ExternalSyntheticBackport0.m(this.currentPhotoKey, keyForParentObject)) {
+                    this.currentPhotoKey = keyForParentObject;
+                    if (tLObject instanceof TLRPC$TL_photo) {
+                        TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) tLObject;
+                        this.imageReceiver.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 400), tLRPC$Photo), "400_400", null, "jpg", tLRPC$BotInfo, 0);
+                    } else if (tLObject instanceof TLRPC$Document) {
+                        TLRPC$Document tLRPC$Document = (TLRPC$Document) tLObject;
+                        TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 400);
+                        BitmapDrawable bitmapDrawable = null;
+                        if (SharedConfig.getDevicePerformanceClass() != 0) {
+                            Iterator<TLRPC$PhotoSize> it = tLRPC$Document.thumbs.iterator();
+                            while (it.hasNext()) {
+                                TLRPC$PhotoSize next = it.next();
+                                if (next instanceof TLRPC$TL_photoStrippedSize) {
+                                    bitmapDrawable = new BitmapDrawable(getResources(), ImageLoader.getStrippedPhotoBitmap(next.bytes, "b"));
+                                }
                             }
                         }
-                        bitmapDrawable = bitmapDrawable2;
-                    } else {
-                        bitmapDrawable = null;
+                        this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), ImageLoader.AUTOPLAY_FILTER, ImageLocation.getForDocument(MessageObject.getDocumentVideoThumb(tLRPC$Document), tLRPC$Document), null, ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), "86_86_b", bitmapDrawable, tLRPC$Document.size, "mp4", tLRPC$BotInfo, 0);
                     }
-                    this.imageReceiver.setCrossfadeWithOldImage(true);
-                    ImageReceiver imageReceiver = this.imageReceiver;
-                    ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$Document);
-                    if (tLRPC$Document.size >= 32768) {
-                        str3 = ImageLoader.AUTOPLAY_FILTER;
+                    int dp = AndroidUtilities.dp(SharedConfig.bubbleRadius) - AndroidUtilities.dp(2.0f);
+                    int dp2 = AndroidUtilities.dp(4.0f);
+                    if (!this.isTextVisible) {
+                        dp2 = dp;
                     }
-                    imageReceiver.setImage(forDocument, str3, ImageLocation.getForDocument(MessageObject.getDocumentVideoThumb(tLRPC$Document), tLRPC$Document), null, ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), "200_200", bitmapDrawable, tLRPC$Document.size, null, tLRPC$Document, 1);
+                    this.imageReceiver.setRoundRadius(dp, dp, dp2, dp2);
                 }
-                int dp = AndroidUtilities.dp(SharedConfig.bubbleRadius) - AndroidUtilities.dp(2.0f);
-                int dp2 = AndroidUtilities.dp(4.0f);
-                if (!this.isTextVisible) {
-                    dp2 = dp;
-                }
-                this.imageReceiver.setRoundRadius(dp, dp, dp2, dp2);
             }
             this.oldText = AndroidUtilities.getSafeString(str2);
             setVisibility(0);

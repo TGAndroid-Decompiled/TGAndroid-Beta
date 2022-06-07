@@ -699,6 +699,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
             case 6:
                 this.imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 this.imageView.setAnimation(R.raw.utyan_passcode, 200, 200);
+                this.imageView.setFocusable(false);
                 this.imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -784,7 +785,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
     }
 
     public void lambda$createView$1(DialogInterface dialogInterface, int i) {
-        presentFragment(new ChangePhoneActivity(), true);
+        presentFragment(new LoginActivity().changePhoneNumber(), true);
     }
 
     public void lambda$createView$3(View view) {

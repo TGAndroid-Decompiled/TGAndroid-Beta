@@ -130,10 +130,20 @@ public class ChatListCell extends LinearLayout {
 
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            String str;
+            int i;
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setClassName(RadioButton.class.getName());
             accessibilityNodeInfo.setChecked(this.button.isChecked());
             accessibilityNodeInfo.setCheckable(true);
+            if (this.isThreeLines) {
+                i = R.string.ChatListExpanded;
+                str = "ChatListExpanded";
+            } else {
+                i = R.string.ChatListDefault;
+                str = "ChatListDefault";
+            }
+            accessibilityNodeInfo.setContentDescription(LocaleController.getString(str, i));
         }
     }
 

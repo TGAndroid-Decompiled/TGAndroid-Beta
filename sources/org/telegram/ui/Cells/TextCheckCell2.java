@@ -10,7 +10,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Switch;
@@ -145,19 +144,9 @@ public class TextCheckCell2 extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        String str;
-        int i;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Switch");
         accessibilityNodeInfo.setCheckable(true);
         accessibilityNodeInfo.setChecked(this.checkBox.isChecked());
-        if (this.checkBox.isChecked()) {
-            i = R.string.NotificationsOn;
-            str = "NotificationsOn";
-        } else {
-            i = R.string.NotificationsOff;
-            str = "NotificationsOff";
-        }
-        accessibilityNodeInfo.setContentDescription(LocaleController.getString(str, i));
     }
 }

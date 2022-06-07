@@ -19,7 +19,9 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 
@@ -36,17 +38,27 @@ public class TextSettingsCell extends FrameLayout {
     private boolean needDivider;
     private int padding;
     Paint paint;
+    private Theme.ResourcesProvider resourcesProvider;
     private TextView textView;
     private BackupImageView valueBackupImageView;
     private ImageView valueImageView;
-    private TextView valueTextView;
+    private AnimatedTextView valueTextView;
 
     public TextSettingsCell(Context context) {
         this(context, 21);
     }
 
+    public TextSettingsCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+        this(context, 21, resourcesProvider);
+    }
+
     public TextSettingsCell(Context context, int i) {
+        this(context, i, null);
+    }
+
+    public TextSettingsCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         this.padding = i;
         TextView textView = new TextView(context);
         this.textView = textView;
@@ -57,18 +69,15 @@ public class TextSettingsCell extends FrameLayout {
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         int i2 = 5;
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
         float f = i;
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, f, 0.0f, f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.valueTextView = textView2;
-        textView2.setTextSize(1, 16.0f);
-        this.valueTextView.setLines(1);
-        this.valueTextView.setMaxLines(1);
-        this.valueTextView.setSingleLine(true);
-        this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
+        AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, !LocaleController.isRTL);
+        this.valueTextView = animatedTextView;
+        animatedTextView.setAnimationProperties(0.55f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.valueTextView.setTextSize(AndroidUtilities.dp(16.0f));
         this.valueTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
-        this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteValueText"));
+        this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteValueText", resourcesProvider));
         addView(this.valueTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, f, 0.0f, f, 0.0f));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
@@ -122,7 +131,7 @@ public class TextSettingsCell extends FrameLayout {
         this.canDisable = z;
     }
 
-    public TextView getValueTextView() {
+    public AnimatedTextView getValueTextView() {
         return this.valueTextView;
     }
 
@@ -143,16 +152,20 @@ public class TextSettingsCell extends FrameLayout {
     }
 
     public void setTextAndValue(CharSequence charSequence, CharSequence charSequence2, boolean z) {
+        setTextAndValue(charSequence, charSequence2, false, z);
+    }
+
+    public void setTextAndValue(CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
         this.textView.setText(charSequence);
         this.valueImageView.setVisibility(4);
         if (charSequence2 != null) {
-            this.valueTextView.setText(charSequence2);
+            this.valueTextView.setText(charSequence2, z);
             this.valueTextView.setVisibility(0);
         } else {
             this.valueTextView.setVisibility(4);
         }
-        this.needDivider = z;
-        setWillNotDraw(!z);
+        this.needDivider = z2;
+        setWillNotDraw(!z2);
         requestLayout();
     }
 
@@ -177,10 +190,10 @@ public class TextSettingsCell extends FrameLayout {
             fArr[0] = z ? 1.0f : 0.5f;
             arrayList.add(ObjectAnimator.ofFloat(textView, "alpha", fArr));
             if (this.valueTextView.getVisibility() == 0) {
-                TextView textView2 = this.valueTextView;
+                AnimatedTextView animatedTextView = this.valueTextView;
                 float[] fArr2 = new float[1];
                 fArr2[0] = z ? 1.0f : 0.5f;
-                arrayList.add(ObjectAnimator.ofFloat(textView2, "alpha", fArr2));
+                arrayList.add(ObjectAnimator.ofFloat(animatedTextView, "alpha", fArr2));
             }
             if (this.valueImageView.getVisibility() == 0) {
                 ImageView imageView = this.valueImageView;
@@ -231,7 +244,7 @@ public class TextSettingsCell extends FrameLayout {
             if (this.paint == null) {
                 Paint paint = new Paint(1);
                 this.paint = paint;
-                paint.setColor(Theme.getColor("dialogSearchBackground"));
+                paint.setColor(Theme.getColor("dialogSearchBackground", this.resourcesProvider));
             }
             if (this.incrementLoadingProgress) {
                 float f = this.loadingProgress + 0.016f;
@@ -300,7 +313,18 @@ public class TextSettingsCell extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        StringBuilder sb = new StringBuilder();
+        sb.append((Object) this.textView.getText());
+        AnimatedTextView animatedTextView = this.valueTextView;
+        if (animatedTextView == null || animatedTextView.getVisibility() != 0) {
+            str = "";
+        } else {
+            str = "\n" + ((Object) this.valueTextView.getText());
+        }
+        sb.append(str);
+        accessibilityNodeInfo.setText(sb.toString());
         accessibilityNodeInfo.setEnabled(isEnabled());
     }
 

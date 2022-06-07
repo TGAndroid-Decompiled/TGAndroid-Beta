@@ -8,6 +8,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -36,6 +37,7 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
+import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
@@ -794,8 +796,30 @@ public class EditTextBoldCursor extends EditTextEffects {
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.EditText");
-        if (this.hintLayout != null) {
+        if (this.hintLayout == null) {
+            return;
+        }
+        if (getText().length() <= 0) {
+            accessibilityNodeInfo.setText(this.hintLayout.getText());
+        } else {
             AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo).setHintText(this.hintLayout.getText());
+        }
+    }
+
+    public void setHandlesColor(int i) {
+        if (Build.VERSION.SDK_INT >= 29 && !XiaomiUtilities.isMIUI()) {
+            try {
+                Drawable textSelectHandleLeft = getTextSelectHandleLeft();
+                textSelectHandleLeft.setColorFilter(i, PorterDuff.Mode.SRC_IN);
+                setTextSelectHandleLeft(textSelectHandleLeft);
+                Drawable textSelectHandle = getTextSelectHandle();
+                textSelectHandle.setColorFilter(i, PorterDuff.Mode.SRC_IN);
+                setTextSelectHandle(textSelectHandle);
+                Drawable textSelectHandleRight = getTextSelectHandleRight();
+                textSelectHandleRight.setColorFilter(i, PorterDuff.Mode.SRC_IN);
+                setTextSelectHandleRight(textSelectHandleRight);
+            } catch (Exception unused) {
+            }
         }
     }
 }

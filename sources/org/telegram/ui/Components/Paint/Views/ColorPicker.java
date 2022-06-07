@@ -18,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Swatch;
@@ -31,7 +32,7 @@ public class ColorPicker extends FrameLayout {
     private float draggingFactor;
     private boolean interacting;
     private float location;
-    private ImageView settingsButton;
+    public ImageView settingsButton;
     private ImageView undoButton;
     private boolean wasChangingWeight;
     private OvershootInterpolator interpolator = new OvershootInterpolator(1.02f);
@@ -63,7 +64,8 @@ public class ColorPicker extends FrameLayout {
         this.swatchStrokePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         ImageView imageView = new ImageView(context);
         this.settingsButton = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setContentDescription(LocaleController.getString("AccDescrBrushType", R.string.AccDescrBrushType));
+        this.settingsButton.setScaleType(ImageView.ScaleType.CENTER);
         this.settingsButton.setImageResource(R.drawable.photo_paint_brush);
         addView(this.settingsButton, LayoutHelper.createFrame(46, 52.0f));
         this.settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +76,8 @@ public class ColorPicker extends FrameLayout {
         });
         ImageView imageView2 = new ImageView(context);
         this.undoButton = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setContentDescription(LocaleController.getString("Undo", R.string.Undo));
+        this.undoButton.setScaleType(ImageView.ScaleType.CENTER);
         this.undoButton.setImageResource(R.drawable.photo_undo);
         addView(this.undoButton, LayoutHelper.createFrame(46, 52.0f));
         this.undoButton.setOnClickListener(new View.OnClickListener() {

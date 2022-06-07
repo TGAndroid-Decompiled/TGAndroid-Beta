@@ -696,11 +696,11 @@ public class LinkEditActivity extends BaseFragment {
             if (i4 == size - 1) {
                 strArr[i4] = LocaleController.getString("NoLimit", R.string.NoLimit);
             } else if (this.dispalyedDates.get(i4).intValue() == this.defaultDates[0]) {
-                strArr[i4] = LocaleController.formatPluralString("Hours", 1);
+                strArr[i4] = LocaleController.formatPluralString("Hours", 1, new Object[0]);
             } else if (this.dispalyedDates.get(i4).intValue() == this.defaultDates[1]) {
-                strArr[i4] = LocaleController.formatPluralString("Days", 1);
+                strArr[i4] = LocaleController.formatPluralString("Days", 1, new Object[0]);
             } else if (this.dispalyedDates.get(i4).intValue() == this.defaultDates[2]) {
-                strArr[i4] = LocaleController.formatPluralString("Weeks", 1);
+                strArr[i4] = LocaleController.formatPluralString("Weeks", 1, new Object[0]);
             } else {
                 long j2 = currentTime;
                 if (j2 < 86400) {
@@ -724,7 +724,7 @@ public class LinkEditActivity extends BaseFragment {
                 this.dispalyedDates.add(Integer.valueOf(iArr[i]));
                 i++;
             } else {
-                this.timeChooseView.setOptions(3, LocaleController.formatPluralString("Hours", 1), LocaleController.formatPluralString("Days", 1), LocaleController.formatPluralString("Weeks", 1), LocaleController.getString("NoLimit", R.string.NoLimit));
+                this.timeChooseView.setOptions(3, LocaleController.formatPluralString("Hours", 1, new Object[0]), LocaleController.formatPluralString("Days", 1, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.getString("NoLimit", R.string.NoLimit));
                 return;
             }
         }

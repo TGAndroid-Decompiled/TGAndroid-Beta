@@ -83,10 +83,6 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
     public void onProgressUpload(String str, long j, long j2, boolean z) {
     }
 
-    public SharedDocumentCell(Context context) {
-        this(context, 0);
-    }
-
     public SharedDocumentCell(Context context, int i) {
         this(context, i, null);
     }
@@ -437,7 +433,11 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
                         documentFileName = LocaleController.getString("AttachVideo", R.string.AttachVideo);
                     }
                 } else if (document.mime_type.startsWith("image")) {
-                    documentFileName = LocaleController.getString("AttachPhoto", R.string.AttachPhoto);
+                    if (MessageObject.isGifDocument(document)) {
+                        documentFileName = LocaleController.getString("AttachGif", R.string.AttachGif);
+                    } else {
+                        documentFileName = LocaleController.getString("AttachPhoto", R.string.AttachPhoto);
+                    }
                 } else if (document.mime_type.startsWith(MediaStreamTrack.AUDIO_TRACK_KIND)) {
                     documentFileName = LocaleController.getString("AttachAudio", R.string.AttachAudio);
                 } else {
@@ -479,7 +479,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
                 if (messageObject.strippedThumb != null) {
                     this.thumbImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "40_40", null, null, messageObject.strippedThumb, null, null, 1, messageObject);
                 } else {
-                    this.thumbImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "40_40", ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), "40_40_b", null, 0, 1, messageObject);
+                    this.thumbImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "40_40", ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), "40_40_b", null, 0L, 1, messageObject);
                 }
             }
             updateDateView();
@@ -728,7 +728,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (this.checkBox.isChecked()) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(true);
+            accessibilityNodeInfo.setChecked(this.checkBox.isChecked());
         }
     }
 

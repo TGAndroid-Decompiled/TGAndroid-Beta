@@ -36,7 +36,7 @@ public class TLRPC$TL_document_layer82 extends TLRPC$TL_document {
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeString(this.mime_type);
-        abstractSerializedData.writeInt32(this.size);
+        abstractSerializedData.writeInt32((int) this.size);
         this.thumbs.get(0).serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.dc_id);
         abstractSerializedData.writeInt32(0);

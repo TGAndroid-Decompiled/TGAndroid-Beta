@@ -13,9 +13,11 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,10 +30,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$DialogFilter;
 import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$TL_dialogFilter;
 import org.telegram.tgnet.TLRPC$TL_dialogFilterSuggested;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_updateDialogFilter;
@@ -69,6 +72,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     private int recommendedSectionRow;
     private int recommendedStartRow;
     private int rowCount = 0;
+    private boolean showAllChats;
 
     public static void lambda$onFragmentDestroy$0(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
@@ -200,6 +204,14 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, Theme.dividerPaint);
             }
         }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setEnabled(true);
+            accessibilityNodeInfo.setText(this.addButton.getText());
+            accessibilityNodeInfo.setClassName("android.widget.Button");
+        }
     }
 
     public static class HintInnerCell extends FrameLayout {
@@ -213,6 +225,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             rLottieImageView.setAnimation(R.raw.filters, 90, 90);
             this.imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.imageView.playAnimation();
+            this.imageView.setImportantForAccessibility(2);
             addView(this.imageView, LayoutHelper.createFrame(90, 90.0f, 49, 0.0f, 14.0f, 0.0f, 0.0f));
             this.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -247,7 +260,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         private ImageView moveImageView;
         private boolean needDivider;
         private ImageView optionsImageView;
-        private TextView textView;
+        float progressToLock;
+        private SimpleTextView textView;
         private TextView valueTextView;
 
         public FilterCell(Context context) {
@@ -263,21 +277,21 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.moveImageView.setClickable(true);
             int i = 5;
             addView(this.moveImageView, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 5 : 3) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
-            TextView textView = new TextView(context);
-            this.textView = textView;
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            this.textView.setTextSize(1, 16.0f);
-            this.textView.setLines(1);
+            SimpleTextView simpleTextView = new SimpleTextView(context);
+            this.textView = simpleTextView;
+            simpleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.textView.setTextSize(16);
             this.textView.setMaxLines(1);
-            this.textView.setSingleLine(true);
             this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            this.textView.setEllipsize(TextUtils.TruncateAt.END);
-            TextView textView2 = this.textView;
+            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.other_lockedfolders2);
+            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu"), PorterDuff.Mode.MULTIPLY));
+            this.textView.setRightDrawable(drawable);
+            SimpleTextView simpleTextView2 = this.textView;
             boolean z = LocaleController.isRTL;
-            addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 80.0f : 64.0f, 14.0f, z ? 64.0f : 80.0f, 0.0f));
-            TextView textView3 = new TextView(context);
-            this.valueTextView = textView3;
-            textView3.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
+            addView(simpleTextView2, LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 80.0f : 64.0f, 14.0f, z ? 64.0f : 80.0f, 0.0f));
+            TextView textView = new TextView(context);
+            this.valueTextView = textView;
+            textView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
             this.valueTextView.setTextSize(1, 13.0f);
             this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
             this.valueTextView.setLines(1);
@@ -285,9 +299,9 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.valueTextView.setSingleLine(true);
             this.valueTextView.setPadding(0, 0, 0, 0);
             this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
-            TextView textView4 = this.valueTextView;
+            TextView textView2 = this.valueTextView;
             boolean z2 = LocaleController.isRTL;
-            addView(textView4, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 80.0f : 64.0f, 35.0f, z2 ? 64.0f : 80.0f, 0.0f));
+            addView(textView2, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 80.0f : 64.0f, 35.0f, z2 ? 64.0f : 80.0f, 0.0f));
             this.valueTextView.setVisibility(8);
             ImageView imageView2 = new ImageView(context);
             this.optionsImageView = imageView2;
@@ -305,58 +319,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         }
 
-        public void setFilter(MessagesController.DialogFilter dialogFilter, boolean z) {
-            this.currentFilter = dialogFilter;
-            StringBuilder sb = new StringBuilder();
-            int i = dialogFilter.flags;
-            int i2 = MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS;
-            if ((i & i2) == i2) {
-                sb.append(LocaleController.getString("FilterAllChats", R.string.FilterAllChats));
-            } else {
-                if ((i & MessagesController.DIALOG_FILTER_FLAG_CONTACTS) != 0) {
-                    if (sb.length() != 0) {
-                        sb.append(", ");
-                    }
-                    sb.append(LocaleController.getString("FilterContacts", R.string.FilterContacts));
-                }
-                if ((dialogFilter.flags & MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS) != 0) {
-                    if (sb.length() != 0) {
-                        sb.append(", ");
-                    }
-                    sb.append(LocaleController.getString("FilterNonContacts", R.string.FilterNonContacts));
-                }
-                if ((dialogFilter.flags & MessagesController.DIALOG_FILTER_FLAG_GROUPS) != 0) {
-                    if (sb.length() != 0) {
-                        sb.append(", ");
-                    }
-                    sb.append(LocaleController.getString("FilterGroups", R.string.FilterGroups));
-                }
-                if ((dialogFilter.flags & MessagesController.DIALOG_FILTER_FLAG_CHANNELS) != 0) {
-                    if (sb.length() != 0) {
-                        sb.append(", ");
-                    }
-                    sb.append(LocaleController.getString("FilterChannels", R.string.FilterChannels));
-                }
-                if ((dialogFilter.flags & MessagesController.DIALOG_FILTER_FLAG_BOTS) != 0) {
-                    if (sb.length() != 0) {
-                        sb.append(", ");
-                    }
-                    sb.append(LocaleController.getString("FilterBots", R.string.FilterBots));
-                }
-            }
-            if (!dialogFilter.alwaysShow.isEmpty() || !dialogFilter.neverShow.isEmpty()) {
-                if (sb.length() != 0) {
-                    sb.append(", ");
-                }
-                sb.append(LocaleController.formatPluralString("Exception", dialogFilter.alwaysShow.size() + dialogFilter.neverShow.size()));
-            }
-            if (sb.length() == 0) {
-                sb.append(LocaleController.getString("FilterNoChats", R.string.FilterNoChats));
-            }
-            TextView textView = this.textView;
-            textView.setText(Emoji.replaceEmoji(dialogFilter.name, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false));
-            this.valueTextView.setText(sb);
-            this.needDivider = z;
+        public void setFilter(org.telegram.messenger.MessagesController.DialogFilter r10, boolean r11) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.FiltersSetupActivity.FilterCell.setFilter(org.telegram.messenger.MessagesController$DialogFilter, boolean):void");
         }
 
         public MessagesController.DialogFilter getCurrentFilter() {
@@ -372,6 +336,28 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             if (this.needDivider) {
                 canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(62.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
+            MessagesController.DialogFilter dialogFilter = this.currentFilter;
+            if (dialogFilter != null) {
+                boolean z = dialogFilter.locked;
+                if (z) {
+                    float f = this.progressToLock;
+                    if (f != 1.0f) {
+                        this.progressToLock = f + 0.10666667f;
+                        invalidate();
+                    }
+                }
+                if (!z) {
+                    float f2 = this.progressToLock;
+                    if (f2 != 0.0f) {
+                        this.progressToLock = f2 - 0.10666667f;
+                        invalidate();
+                    }
+                }
+            }
+            float clamp = Utilities.clamp(this.progressToLock, 1.0f, 0.0f);
+            this.progressToLock = clamp;
+            this.textView.setRightDrawableScale(clamp);
+            this.textView.invalidate();
         }
 
         @SuppressLint({"ClickableViewAccessibility"})
@@ -403,6 +389,12 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         this.rowCount = 0 + 1;
         this.filterHelpRow = 0;
         int size = getMessagesController().dialogFilters.size();
+        if (!getUserConfig().isPremium()) {
+            size--;
+            this.showAllChats = false;
+        } else {
+            this.showAllChats = true;
+        }
         if (!arrayList.isEmpty() && size < 10) {
             int i = this.rowCount;
             int i2 = i + 1;
@@ -457,7 +449,6 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             ArrayList<MessagesController.DialogFilter> arrayList = getMessagesController().dialogFilters;
             int size = arrayList.size();
             for (int i2 = 0; i2 < size; i2++) {
-                arrayList.get(i2);
                 tLRPC$TL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(arrayList.get(i2).id));
             }
             getConnectionsManager().sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, FiltersSetupActivity$$ExternalSyntheticLambda0.INSTANCE);
@@ -482,19 +473,19 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
         frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
-        RecyclerListView recyclerListView = new RecyclerListView(context);
-        this.listView = recyclerListView;
-        ((DefaultItemAnimator) recyclerListView.getItemAnimator()).setDelayAnimations(false);
+        AnonymousClass2 r2 = new AnonymousClass2(context);
+        this.listView = r2;
+        ((DefaultItemAnimator) r2.getItemAnimator()).setDelayAnimations(false);
         this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setVerticalScrollBarEnabled(false);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
         this.itemTouchHelper = itemTouchHelper;
         itemTouchHelper.attachToRecyclerView(this.listView);
         frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-        RecyclerListView recyclerListView2 = this.listView;
+        RecyclerListView recyclerListView = this.listView;
         ListAdapter listAdapter = new ListAdapter(context);
         this.adapter = listAdapter;
-        recyclerListView2.setAdapter(listAdapter);
+        recyclerListView.setAdapter(listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
             public boolean hasDoubleTap(View view, int i) {
@@ -514,15 +505,49 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         return this.fragmentView;
     }
 
+    public class AnonymousClass2 extends RecyclerListView {
+        AnonymousClass2(Context context) {
+            super(context);
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        FiltersSetupActivity.AnonymousClass2.this.lambda$onTouchEvent$0();
+                    }
+                }, 250L);
+            }
+            return super.onTouchEvent(motionEvent);
+        }
+
+        public void lambda$onTouchEvent$0() {
+            FiltersSetupActivity.this.getMessagesController().lockFiltersInternal();
+        }
+    }
+
     public void lambda$createView$1(Context context, View view, int i, float f, float f2) {
-        if (i >= this.filtersStartRow && i < this.filtersEndRow) {
-            presentFragment(new FilterCreateActivity(getMessagesController().dialogFilters.get(i - this.filtersStartRow)));
+        int i2 = this.filtersStartRow;
+        if (i >= i2 && i < this.filtersEndRow) {
+            int i3 = i - i2;
+            if (!this.showAllChats) {
+                i3++;
+            }
+            if (!getMessagesController().dialogFilters.get(i3).isDefault()) {
+                if (getMessagesController().dialogFilters.get(i3).locked) {
+                    showDialog(new LimitReachedBottomSheet(this, context, 3, this.currentAccount));
+                } else {
+                    presentFragment(new FilterCreateActivity(getMessagesController().dialogFilters.get(i3)));
+                }
+            }
         } else if (i != this.createFilterRow) {
         } else {
-            if (getMessagesController().dialogFilters.size() < getMessagesController().dialogFiltersLimitDefault || getUserConfig().isPremium()) {
+            if ((getMessagesController().dialogFilters.size() < getMessagesController().dialogFiltersLimitDefault || getUserConfig().isPremium()) && getMessagesController().dialogFilters.size() < getMessagesController().dialogFiltersLimitPremium) {
                 presentFragment(new FilterCreateActivity());
             } else {
-                showDialog(new LimitReachedBottomSheet(context, 3, this.currentAccount));
+                showDialog(new LimitReachedBottomSheet(this, context, 3, this.currentAccount));
             }
         }
     }
@@ -540,7 +565,13 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.dialogFiltersUpdated) {
             if (!this.ignoreUpdates) {
-                updateRows(true);
+                int i3 = this.rowCount;
+                updateRows(false);
+                if (i3 != this.rowCount) {
+                    this.adapter.notifyDataSetChanged();
+                } else {
+                    this.adapter.notifyItemRangeChanged(0, i3);
+                }
             }
         } else if (i == NotificationCenter.suggestedFiltersLoaded) {
             updateRows(true);
@@ -592,6 +623,12 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
         public void lambda$onCreateViewHolder$4(final MessagesController.DialogFilter dialogFilter, DialogInterface dialogInterface, int i) {
             if (i == 0) {
+                if (dialogFilter.locked) {
+                    FiltersSetupActivity filtersSetupActivity = FiltersSetupActivity.this;
+                    FiltersSetupActivity filtersSetupActivity2 = FiltersSetupActivity.this;
+                    filtersSetupActivity.showDialog(new LimitReachedBottomSheet(filtersSetupActivity2, this.mContext, 3, ((BaseFragment) filtersSetupActivity2).currentAccount));
+                    return;
+                }
                 FiltersSetupActivity.this.presentFragment(new FilterCreateActivity(dialogFilter));
             } else if (i == 1) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(FiltersSetupActivity.this.getParentActivity());
@@ -741,8 +778,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             dialogFilter.pendingUnreadCount = -1;
             int i = 0;
             while (i < 2) {
-                TLRPC$TL_dialogFilter tLRPC$TL_dialogFilter = suggestedFilter.filter;
-                ArrayList<TLRPC$InputPeer> arrayList = i == 0 ? tLRPC$TL_dialogFilter.include_peers : tLRPC$TL_dialogFilter.exclude_peers;
+                TLRPC$DialogFilter tLRPC$DialogFilter = suggestedFilter.filter;
+                ArrayList<TLRPC$InputPeer> arrayList = i == 0 ? tLRPC$DialogFilter.include_peers : tLRPC$DialogFilter.exclude_peers;
                 ArrayList<Long> arrayList2 = i == 0 ? dialogFilter.alwaysShow : dialogFilter.neverShow;
                 int size = arrayList.size();
                 for (int i2 = 0; i2 < size; i2++) {
@@ -756,29 +793,29 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 }
                 i++;
             }
-            TLRPC$TL_dialogFilter tLRPC$TL_dialogFilter2 = suggestedFilter.filter;
-            if (tLRPC$TL_dialogFilter2.groups) {
+            TLRPC$DialogFilter tLRPC$DialogFilter2 = suggestedFilter.filter;
+            if (tLRPC$DialogFilter2.groups) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_GROUPS;
             }
-            if (tLRPC$TL_dialogFilter2.bots) {
+            if (tLRPC$DialogFilter2.bots) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_BOTS;
             }
-            if (tLRPC$TL_dialogFilter2.contacts) {
+            if (tLRPC$DialogFilter2.contacts) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_CONTACTS;
             }
-            if (tLRPC$TL_dialogFilter2.non_contacts) {
+            if (tLRPC$DialogFilter2.non_contacts) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS;
             }
-            if (tLRPC$TL_dialogFilter2.broadcasts) {
+            if (tLRPC$DialogFilter2.broadcasts) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_CHANNELS;
             }
-            if (tLRPC$TL_dialogFilter2.exclude_archived) {
+            if (tLRPC$DialogFilter2.exclude_archived) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED;
             }
-            if (tLRPC$TL_dialogFilter2.exclude_read) {
+            if (tLRPC$DialogFilter2.exclude_read) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ;
             }
-            if (tLRPC$TL_dialogFilter2.exclude_muted) {
+            if (tLRPC$DialogFilter2.exclude_muted) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED;
             }
             FiltersSetupActivity.this.ignoreUpdates = true;
@@ -826,7 +863,12 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             if (itemViewType != 0) {
                 boolean z = true;
                 if (itemViewType == 2) {
-                    ((FilterCell) viewHolder.itemView).setFilter(FiltersSetupActivity.this.getMessagesController().dialogFilters.get(i - FiltersSetupActivity.this.filtersStartRow), true);
+                    FilterCell filterCell = (FilterCell) viewHolder.itemView;
+                    int i2 = i - FiltersSetupActivity.this.filtersStartRow;
+                    if (!FiltersSetupActivity.this.showAllChats) {
+                        i2++;
+                    }
+                    filterCell.setFilter(FiltersSetupActivity.this.getMessagesController().dialogFilters.get(i2), true);
                 } else if (itemViewType != 3) {
                     if (itemViewType == 4) {
                         TextCell textCell = (TextCell) viewHolder.itemView;
@@ -882,6 +924,11 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             int i3 = i - FiltersSetupActivity.this.filtersStartRow;
             int i4 = i2 - FiltersSetupActivity.this.filtersStartRow;
             int i5 = FiltersSetupActivity.this.filtersEndRow - FiltersSetupActivity.this.filtersStartRow;
+            if (!FiltersSetupActivity.this.showAllChats) {
+                i3++;
+                i4++;
+                i5++;
+            }
             if (i3 >= 0 && i4 >= 0 && i3 < i5 && i4 < i5) {
                 ArrayList<MessagesController.DialogFilter> arrayList = FiltersSetupActivity.this.getMessagesController().dialogFilters;
                 MessagesController.DialogFilter dialogFilter = arrayList.get(i3);
@@ -912,19 +959,41 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
         @Override
         public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            if (viewHolder.getItemViewType() != 2) {
-                return ItemTouchHelper.Callback.makeMovementFlags(0, 0);
+            boolean z;
+            if (!FiltersSetupActivity.this.getUserConfig().isPremium()) {
+                View view = viewHolder.itemView;
+                if ((view instanceof FilterCell) && ((FilterCell) view).currentFilter.isDefault()) {
+                    z = false;
+                    if (viewHolder.getItemViewType() == 2 || !z) {
+                        return ItemTouchHelper.Callback.makeMovementFlags(0, 0);
+                    }
+                    return ItemTouchHelper.Callback.makeMovementFlags(3, 0);
+                }
             }
-            return ItemTouchHelper.Callback.makeMovementFlags(3, 0);
+            z = true;
+            if (viewHolder.getItemViewType() == 2) {
+            }
+            return ItemTouchHelper.Callback.makeMovementFlags(0, 0);
         }
 
         @Override
         public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-            if (viewHolder.getItemViewType() != viewHolder2.getItemViewType()) {
-                return false;
+            boolean z;
+            if (!FiltersSetupActivity.this.getUserConfig().isPremium()) {
+                View view = viewHolder2.itemView;
+                if ((view instanceof FilterCell) && ((FilterCell) view).currentFilter.isDefault()) {
+                    z = false;
+                    if (viewHolder.getItemViewType() == viewHolder2.getItemViewType() || !z) {
+                        return false;
+                    }
+                    FiltersSetupActivity.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
+                    return true;
+                }
             }
-            FiltersSetupActivity.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
-            return true;
+            z = true;
+            if (viewHolder.getItemViewType() == viewHolder2.getItemViewType()) {
+            }
+            return false;
         }
 
         @Override

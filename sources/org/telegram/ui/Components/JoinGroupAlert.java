@@ -138,9 +138,9 @@ public class JoinGroupAlert extends BottomSheet {
             textView2.setSingleLine(true);
             textView2.setEllipsize(TextUtils.TruncateAt.END);
             if (z) {
-                textView2.setText(LocaleController.formatPluralString("Subscribers", i));
+                textView2.setText(LocaleController.formatPluralString("Subscribers", i, new Object[0]));
             } else {
-                textView2.setText(LocaleController.formatPluralString("Members", i));
+                textView2.setText(LocaleController.formatPluralString("Members", i, new Object[0]));
             }
             linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 49, 10, 3, 10, z2 ? 0 : 20));
         }
@@ -275,8 +275,10 @@ public class JoinGroupAlert extends BottomSheet {
             }
         }, new MessagesController.ErrorDelegate() {
             @Override
-            public final void run(TLRPC$TL_error tLRPC$TL_error) {
-                JoinGroupAlert.this.lambda$new$3(z, tLRPC$TL_error);
+            public final boolean run(TLRPC$TL_error tLRPC$TL_error) {
+                boolean lambda$new$3;
+                lambda$new$3 = JoinGroupAlert.this.lambda$new$3(z, tLRPC$TL_error);
+                return lambda$new$3;
             }
         });
     }
@@ -288,7 +290,7 @@ public class JoinGroupAlert extends BottomSheet {
         }
     }
 
-    public void lambda$new$3(final boolean z, TLRPC$TL_error tLRPC$TL_error) {
+    public boolean lambda$new$3(final boolean z, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error != null && "INVITE_REQUEST_SENT".equals(tLRPC$TL_error.text)) {
             setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
@@ -298,6 +300,7 @@ public class JoinGroupAlert extends BottomSheet {
             });
         }
         dismiss();
+        return false;
     }
 
     public void lambda$new$2(boolean z, DialogInterface dialogInterface) {

@@ -39,6 +39,7 @@ public class MotionBackgroundDrawable extends Drawable {
     private BitmapShader bitmapShader;
     private int[] colors;
     private Bitmap currentBitmap;
+    private boolean disableGradientShaderScaling;
     private boolean fastAnimation;
     private Canvas gradientCanvas;
     private GradientDrawable gradientDrawable;
@@ -66,7 +67,6 @@ public class MotionBackgroundDrawable extends Drawable {
     private WeakReference<View> parentView;
     private float patternAlpha;
     private Bitmap patternBitmap;
-    private float patternBitmapScale;
     private Rect patternBounds;
     private ColorFilter patternColorFilter;
     private int phase;
@@ -76,7 +76,6 @@ public class MotionBackgroundDrawable extends Drawable {
     private boolean rotatingPreview;
     private boolean rotationBack;
     private int roundRadius;
-    private Bitmap scaledPatternBitmap;
     private int translationY;
     private Runnable updateAnimationRunnable;
 
@@ -417,11 +416,15 @@ public class MotionBackgroundDrawable extends Drawable {
     }
 
     public void setPatternBitmap(int i) {
-        setPatternBitmap(i, this.patternBitmap);
+        setPatternBitmap(i, this.patternBitmap, true);
+    }
+
+    public void setPatternBitmap(int i, Bitmap bitmap) {
+        setPatternBitmap(i, bitmap, true);
     }
 
     @SuppressLint({"NewApi"})
-    public void setPatternBitmap(int i, Bitmap bitmap) {
+    public void setPatternBitmap(int i, Bitmap bitmap, boolean z) {
         this.intensity = i;
         this.patternBitmap = bitmap;
         this.invalidateLegacy = true;
@@ -438,15 +441,10 @@ public class MotionBackgroundDrawable extends Drawable {
                     Bitmap bitmap2 = this.currentBitmap;
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                     this.bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-                    this.patternBitmapScale = 1.0f;
-                    Bitmap bitmap3 = this.scaledPatternBitmap;
-                    if (!(bitmap3 == null || bitmap3 == this.patternBitmap)) {
-                        bitmap3.recycle();
-                    }
-                    this.scaledPatternBitmap = this.patternBitmap;
-                    Bitmap bitmap4 = this.patternBitmap;
+                    Bitmap bitmap3 = this.patternBitmap;
                     Shader.TileMode tileMode2 = Shader.TileMode.REPEAT;
-                    this.gradientShader = new BitmapShader(bitmap4, tileMode2, tileMode2);
+                    this.gradientShader = new BitmapShader(bitmap3, tileMode2, tileMode2);
+                    this.disableGradientShaderScaling = z;
                     this.paint2.setShader(new ComposeShader(this.bitmapShader, this.gradientShader, PorterDuff.Mode.DST_IN));
                     this.paint2.setFilterBitmap(true);
                     this.matrix = new Matrix();
@@ -461,22 +459,6 @@ public class MotionBackgroundDrawable extends Drawable {
             } else if (useLegacyBitmap) {
                 this.paint2.setXfermode(null);
             }
-        }
-    }
-
-    private void scalePatternBitmap(float f) {
-        if (!useLegacyBitmap && Math.abs(this.patternBitmapScale - f) > 0.001f) {
-            Bitmap bitmap = this.scaledPatternBitmap;
-            if (!(bitmap == null || bitmap == this.patternBitmap)) {
-                bitmap.recycle();
-            }
-            Bitmap bitmap2 = this.patternBitmap;
-            this.scaledPatternBitmap = Bitmap.createScaledBitmap(bitmap2, (int) (bitmap2.getWidth() * f), (int) (this.patternBitmap.getHeight() * f), true);
-            Bitmap bitmap3 = this.scaledPatternBitmap;
-            Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-            this.gradientShader = new BitmapShader(bitmap3, tileMode, tileMode);
-            this.paint2.setShader(new ComposeShader(this.bitmapShader, this.gradientShader, PorterDuff.Mode.DST_IN));
-            this.patternBitmapScale = f;
         }
     }
 
@@ -635,7 +617,9 @@ public class MotionBackgroundDrawable extends Drawable {
                     this.matrix.reset();
                     float max2 = Math.max(width2 / this.patternBitmap.getWidth(), height2 / this.patternBitmap.getHeight());
                     this.matrix.setTranslate((int) ((width2 - (f * max2)) / 2.0f), (int) (((height2 - (f2 * max2)) / 2.0f) + f3));
-                    scalePatternBitmap(max2);
+                    if (!this.disableGradientShaderScaling || max2 > 1.4f || max2 < 0.8f) {
+                        this.matrix.preScale(max2, max2);
+                    }
                     this.gradientShader.setLocalMatrix(this.matrix);
                     this.paint2.setColorFilter(null);
                     this.paint2.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * this.alpha * this.patternAlpha));
@@ -769,7 +753,9 @@ public class MotionBackgroundDrawable extends Drawable {
                     this.matrix.reset();
                     float max2 = Math.max(width2 / this.patternBitmap.getWidth(), height2 / this.patternBitmap.getHeight());
                     this.matrix.setTranslate((int) ((width2 - (f * max2)) / 2.0f), (int) (((height2 - (f2 * max2)) / 2.0f) + f3));
-                    scalePatternBitmap(max2);
+                    if (!this.disableGradientShaderScaling || max2 > 1.4f || max2 < 0.8f) {
+                        this.matrix.preScale(max2, max2);
+                    }
                     this.gradientShader.setLocalMatrix(this.matrix);
                     this.paint2.setColorFilter(null);
                     this.paint2.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * this.alpha * this.patternAlpha));

@@ -331,7 +331,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                     if (!FilteredSearchView.this.uiCallback.actionModeShowing()) {
                         DialogCell dialogCell = (DialogCell) view;
                         if (dialogCell.isPointInsideAvatar(f, f2)) {
-                            FilteredSearchView.this.chatPreviewDelegate.startChatPreview(dialogCell);
+                            FilteredSearchView.this.chatPreviewDelegate.startChatPreview(FilteredSearchView.this.recyclerListView, dialogCell);
                             return true;
                         }
                     }

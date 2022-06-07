@@ -468,7 +468,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                 if (chat != null) {
                     int i2 = chat.participants_count;
                     if (i2 != 0) {
-                        str = LocaleController.formatPluralString("Members", i2);
+                        str = LocaleController.formatPluralString("Members", i2, new Object[0]);
                     } else if (chat.has_geo) {
                         str = LocaleController.getString("MegaLocation", R.string.MegaLocation);
                     } else if (TextUtils.isEmpty(chat.username)) {
@@ -512,7 +512,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                     return;
                 }
                 if (PrivacyUsersActivity.this.currentType == 1) {
-                    headerCell.setText(LocaleController.formatPluralString("BlockedUsersCount", PrivacyUsersActivity.this.getMessagesController().totalBlockedCount));
+                    headerCell.setText(LocaleController.formatPluralString("BlockedUsersCount", PrivacyUsersActivity.this.getMessagesController().totalBlockedCount, new Object[0]));
                 } else {
                     headerCell.setText(LocaleController.getString("PrivacyExceptions", R.string.PrivacyExceptions));
                 }

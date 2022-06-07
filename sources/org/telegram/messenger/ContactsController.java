@@ -62,7 +62,7 @@ import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.tgnet.TLRPC$contacts_Contacts;
 
 public class ContactsController extends BaseController {
-    private static volatile ContactsController[] Instance = new ContactsController[3];
+    private static volatile ContactsController[] Instance = new ContactsController[4];
     public static final int PRIVACY_RULES_TYPE_ADDED_BY_PHONE = 7;
     public static final int PRIVACY_RULES_TYPE_CALLS = 2;
     public static final int PRIVACY_RULES_TYPE_COUNT = 8;
@@ -129,7 +129,7 @@ public class ContactsController extends BaseController {
         }
 
         public static void lambda$new$0() {
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 if (UserConfig.getInstance(i).isClientActivated()) {
                     ConnectionsManager.getInstance(i).resumeNetworkMaybe();
                     ContactsController.getInstance(i).checkContacts();
@@ -365,7 +365,7 @@ public class ContactsController extends BaseController {
                 Account account = accountsByType[i];
                 int i2 = 0;
                 while (true) {
-                    if (i2 >= 3) {
+                    if (i2 >= 4) {
                         z = false;
                         break;
                     }
@@ -413,7 +413,7 @@ public class ContactsController extends BaseController {
                 Account account = accountsByType[i];
                 int i2 = 0;
                 while (true) {
-                    if (i2 >= 3) {
+                    if (i2 >= 4) {
                         z = false;
                         break;
                     }
@@ -535,7 +535,7 @@ public class ContactsController extends BaseController {
             for (Account account : accountsByType) {
                 int i = 0;
                 while (true) {
-                    if (i >= 3) {
+                    if (i >= 4) {
                         break;
                     }
                     if (UserConfig.getInstance(i).getCurrentUser() != null) {

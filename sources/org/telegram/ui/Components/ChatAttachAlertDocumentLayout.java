@@ -78,6 +78,7 @@ import org.telegram.ui.Cells.SharedDocumentCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertDocumentLayout;
+import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.FilteredSearchView;
 import org.telegram.ui.PhotoPickerActivity;
@@ -836,15 +837,12 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             } else if (this.canSelectOnlyImageFiles && listItem.thumb == null) {
                 showErrorBox(LocaleController.formatString("PassportUploadNotImage", R.string.PassportUploadNotImage, new Object[0]));
                 return false;
-            } else if (listItem.file.length() > FileLoader.MAX_FILE_SIZE) {
-                showErrorBox(LocaleController.formatString("FileUploadLimit", R.string.FileUploadLimit, AndroidUtilities.formatFileSize(FileLoader.MAX_FILE_SIZE)));
-                return false;
-            } else {
+            } else if ((listItem.file.length() <= FileLoader.DEFAULT_MAX_FILE_SIZE || UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) && listItem.file.length() <= FileLoader.DEFAULT_MAX_FILE_SIZE_PREMIUM) {
                 if (this.maxSelectedFiles >= 0) {
                     int size = this.selectedFiles.size();
                     int i = this.maxSelectedFiles;
                     if (size >= i) {
-                        showErrorBox(LocaleController.formatString("PassportUploadMaxReached", R.string.PassportUploadMaxReached, LocaleController.formatPluralString("Files", i)));
+                        showErrorBox(LocaleController.formatString("PassportUploadMaxReached", R.string.PassportUploadMaxReached, LocaleController.formatPluralString("Files", i, new Object[0])));
                         return false;
                     }
                 }
@@ -854,6 +852,10 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 this.selectedFiles.put(absolutePath, listItem);
                 this.selectedFilesOrder.add(absolutePath);
                 z = true;
+            } else {
+                ChatAttachAlert chatAttachAlert = this.parentAlert;
+                new LimitReachedBottomSheet(chatAttachAlert.baseFragment, chatAttachAlert.getContainer().getContext(), 6, UserConfig.selectedAccount).show();
+                return false;
             }
             this.scrolling = false;
         } else if (!(obj instanceof MessageObject)) {

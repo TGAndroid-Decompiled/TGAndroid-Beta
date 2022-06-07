@@ -170,7 +170,7 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
         } else {
             this.nameTextView.setText(tLRPC$StickerSetCovered.set.title);
         }
-        this.infoTextView.setText(LocaleController.formatPluralString("Stickers", tLRPC$StickerSetCovered.set.count));
+        this.infoTextView.setText(LocaleController.formatPluralString("Stickers", tLRPC$StickerSetCovered.set.count, new Object[0]));
         this.isUnread = z;
         if (!this.canAddRemove) {
             return;

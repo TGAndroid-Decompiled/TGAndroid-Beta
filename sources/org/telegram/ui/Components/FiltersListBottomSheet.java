@@ -295,7 +295,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         int size = arrayList3.size();
         for (int i = 0; i < size; i++) {
             MessagesController.DialogFilter dialogFilter = arrayList3.get(i);
-            if (!getDialogsCount(baseFragment, dialogFilter, arrayList, true, true).isEmpty()) {
+            if (!getDialogsCount(baseFragment, dialogFilter, arrayList, true, true).isEmpty() && !dialogFilter.isDefault()) {
                 arrayList2.add(dialogFilter);
             }
         }

@@ -39,7 +39,7 @@ public class BackupImageView extends View {
     }
 
     public void setImage(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Drawable drawable, Object obj) {
-        this.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, null, null, drawable, 0, null, obj, 1);
+        this.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, null, null, drawable, 0L, null, obj, 1);
     }
 
     public void setImage(ImageLocation imageLocation, String str, Drawable drawable, int i, Object obj) {
@@ -92,8 +92,8 @@ public class BackupImageView extends View {
         backupImageView.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, bitmapDrawable, i, str3, obj, 0);
     }
 
-    public void setImage(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, String str3, int i, int i2, Object obj) {
-        this.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, null, i, str3, obj, i2);
+    public void setImage(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, String str3, long j, int i, Object obj) {
+        this.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, null, j, str3, obj, i);
     }
 
     public void setImageMedia(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, ImageLocation imageLocation3, String str3, String str4, int i, int i2, Object obj) {

@@ -39,6 +39,7 @@ import org.telegram.tgnet.TLRPC$TL_contacts_search;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.ui.Adapters.DialogsSearchAdapter;
 import org.telegram.ui.Components.ShareAlert;
 
 public class SearchAdapterHelper {
@@ -47,6 +48,7 @@ public class SearchAdapterHelper {
     private ArrayList<HashtagObject> hashtags;
     private HashMap<String, HashtagObject> hashtagsByText;
     private String lastFoundChannel;
+    private ArrayList<DialogsSearchAdapter.RecentSearchObject> localRecentResults;
     private ArrayList<Object> localSearchResults;
     private ArrayList<Integer> pendingRequestIds = new ArrayList<>();
     private String lastFoundUsername = null;
@@ -383,7 +385,7 @@ public class SearchAdapterHelper {
                 removeGroupSearchFromGlobal();
                 ArrayList<Object> arrayList3 = this.localSearchResults;
                 if (arrayList3 != null) {
-                    mergeResults(arrayList3);
+                    mergeResults(arrayList3, this.localRecentResults);
                 }
                 mergeExcludeResults();
                 this.delegate.onDataSetChanged(i2);
@@ -481,12 +483,25 @@ public class SearchAdapterHelper {
     }
 
     public void mergeResults(ArrayList<Object> arrayList) {
+        mergeResults(arrayList, null);
+    }
+
+    public void mergeResults(ArrayList<Object> arrayList, ArrayList<DialogsSearchAdapter.RecentSearchObject> arrayList2) {
         TLRPC$Chat tLRPC$Chat;
         this.localSearchResults = arrayList;
-        if (!(this.globalSearchMap.size() == 0 || arrayList == null)) {
-            int size = arrayList.size();
-            for (int i = 0; i < size; i++) {
-                Object obj = arrayList.get(i);
+        this.localRecentResults = arrayList2;
+        if (this.globalSearchMap.size() == 0) {
+            return;
+        }
+        if (arrayList != null || arrayList2 != null) {
+            int i = 0;
+            int size = arrayList == null ? 0 : arrayList.size();
+            int size2 = (arrayList2 == null ? 0 : arrayList2.size()) + size;
+            while (i < size2) {
+                Object obj = i < size ? arrayList.get(i) : arrayList2.get(i - size);
+                if (obj instanceof DialogsSearchAdapter.RecentSearchObject) {
+                    obj = ((DialogsSearchAdapter.RecentSearchObject) obj).object;
+                }
                 if (obj instanceof ShareAlert.DialogSearchResult) {
                     obj = ((ShareAlert.DialogSearchResult) obj).object;
                 }
@@ -513,6 +528,7 @@ public class SearchAdapterHelper {
                     this.localServerSearch.remove(tLRPC$Chat);
                     this.globalSearchMap.remove(-tLRPC$Chat.id);
                 }
+                i++;
             }
         }
     }

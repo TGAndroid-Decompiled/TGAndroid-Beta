@@ -20,7 +20,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Property;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -120,7 +119,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     private int currentSelectedCount;
     private boolean deviceHasGoodCamera;
     private boolean dragging;
-    private TextView dropDown;
+    public TextView dropDown;
     private ArrayList<MediaController.AlbumEntry> dropDownAlbums;
     private ActionBarMenuItem dropDownContainer;
     private Drawable dropDownDrawable;
@@ -317,13 +316,13 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         return 1;
     }
 
-    static int access$2508(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
+    static int access$2408(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
         int i = chatAttachAlertPhotoLayout.videoRecordTime;
         chatAttachAlertPhotoLayout.videoRecordTime = i + 1;
         return i;
     }
 
-    static int access$3110() {
+    static int access$3010() {
         int i = lastImageId;
         lastImageId = i - 1;
         return i;
@@ -1039,7 +1038,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
         public void lambda$shutterLongPressed$0() {
             if (ChatAttachAlertPhotoLayout.this.videoRecordRunnable != null) {
-                ChatAttachAlertPhotoLayout.access$2508(ChatAttachAlertPhotoLayout.this);
+                ChatAttachAlertPhotoLayout.access$2408(ChatAttachAlertPhotoLayout.this);
                 ChatAttachAlertPhotoLayout.this.recordTime.setText(AndroidUtilities.formatLongDuration(ChatAttachAlertPhotoLayout.this.videoRecordTime));
                 AndroidUtilities.runOnUIThread(ChatAttachAlertPhotoLayout.this.videoRecordRunnable, 1000L);
             }
@@ -1066,7 +1065,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                         } catch (Exception unused2) {
                             i2 = i3;
                             i = 0;
-                            photoEntry = new MediaController.PhotoEntry(0, ChatAttachAlertPhotoLayout.access$3110(), 0L, this.outputFile.getAbsolutePath(), 0, true, i2, i, 0L);
+                            photoEntry = new MediaController.PhotoEntry(0, ChatAttachAlertPhotoLayout.access$3010(), 0L, this.outputFile.getAbsolutePath(), 0, true, i2, i, 0L);
                             photoEntry.duration = (int) j;
                             photoEntry.thumbPath = str;
                             chatAttachAlertPhotoLayout = ChatAttachAlertPhotoLayout.this;
@@ -1082,7 +1081,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     } catch (Exception unused3) {
                         i3 = 0;
                     }
-                    photoEntry = new MediaController.PhotoEntry(0, ChatAttachAlertPhotoLayout.access$3110(), 0L, this.outputFile.getAbsolutePath(), 0, true, i2, i, 0L);
+                    photoEntry = new MediaController.PhotoEntry(0, ChatAttachAlertPhotoLayout.access$3010(), 0L, this.outputFile.getAbsolutePath(), 0, true, i2, i, 0L);
                     photoEntry.duration = (int) j;
                     photoEntry.thumbPath = str;
                     chatAttachAlertPhotoLayout = ChatAttachAlertPhotoLayout.this;
@@ -1173,11 +1172,11 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 } catch (Exception unused3) {
                     i3 = i4;
                     i2 = 0;
-                    MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, ChatAttachAlertPhotoLayout.access$3110(), 0L, file.getAbsolutePath(), i, false, i3, i2, 0L);
+                    MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, ChatAttachAlertPhotoLayout.access$3010(), 0L, file.getAbsolutePath(), i, false, i3, i2, 0L);
                     photoEntry.canDeleteAfter = true;
                     ChatAttachAlertPhotoLayout.this.openPhotoViewer(photoEntry, z, false);
                 }
-                MediaController.PhotoEntry photoEntry2 = new MediaController.PhotoEntry(0, ChatAttachAlertPhotoLayout.access$3110(), 0L, file.getAbsolutePath(), i, false, i3, i2, 0L);
+                MediaController.PhotoEntry photoEntry2 = new MediaController.PhotoEntry(0, ChatAttachAlertPhotoLayout.access$3010(), 0L, file.getAbsolutePath(), i, false, i3, i2, 0L);
                 photoEntry2.canDeleteAfter = true;
                 ChatAttachAlertPhotoLayout.this.openPhotoViewer(photoEntry2, z, false);
             }
@@ -1755,19 +1754,19 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
             int max = Math.max(1, selectedPhotos.size());
             if (z3 && z4) {
-                this.counterTextView.setText(LocaleController.formatPluralString("Media", selectedPhotos.size()).toUpperCase());
+                this.counterTextView.setText(LocaleController.formatPluralString("Media", selectedPhotos.size(), new Object[0]).toUpperCase());
                 if (max != this.currentSelectedCount || z) {
-                    this.parentAlert.selectedTextView.setText(LocaleController.formatPluralString("MediaSelected", max));
+                    this.parentAlert.selectedTextView.setText(LocaleController.formatPluralString("MediaSelected", max, new Object[0]));
                 }
             } else if (z3) {
-                this.counterTextView.setText(LocaleController.formatPluralString("Videos", selectedPhotos.size()).toUpperCase());
+                this.counterTextView.setText(LocaleController.formatPluralString("Videos", selectedPhotos.size(), new Object[0]).toUpperCase());
                 if (max != this.currentSelectedCount || z) {
-                    this.parentAlert.selectedTextView.setText(LocaleController.formatPluralString("VideosSelected", max));
+                    this.parentAlert.selectedTextView.setText(LocaleController.formatPluralString("VideosSelected", max, new Object[0]));
                 }
             } else {
-                this.counterTextView.setText(LocaleController.formatPluralString("Photos", selectedPhotos.size()).toUpperCase());
+                this.counterTextView.setText(LocaleController.formatPluralString("Photos", selectedPhotos.size(), new Object[0]).toUpperCase());
                 if (max != this.currentSelectedCount || z) {
-                    this.parentAlert.selectedTextView.setText(LocaleController.formatPluralString("PhotosSelected", max));
+                    this.parentAlert.selectedTextView.setText(LocaleController.formatPluralString("PhotosSelected", max, new Object[0]));
                 }
             }
             ChatAttachAlert chatAttachAlert = this.parentAlert;
@@ -2411,7 +2410,6 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             } else {
                 this.cameraIcon.setAlpha(0.0f);
             }
-            Log.i("caapl", "cameraViewH=" + i2 + " (endHeight=" + height + ") value=" + f);
             if (!(layoutParams.width == i && layoutParams.height == i2)) {
                 layoutParams.width = i;
                 layoutParams.height = i2;
@@ -2708,7 +2706,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 Intent intent2 = new Intent();
                 intent2.setType("video/*");
                 intent2.setAction("android.intent.action.GET_CONTENT");
-                intent2.putExtra("android.intent.extra.sizeLimit", FileLoader.MAX_FILE_SIZE);
+                intent2.putExtra("android.intent.extra.sizeLimit", FileLoader.DEFAULT_MAX_FILE_SIZE);
                 Intent intent3 = new Intent("android.intent.action.PICK");
                 intent3.setType("image/*");
                 Intent createChooser = Intent.createChooser(intent3, null);
@@ -2777,7 +2775,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    private boolean captionForAllMedia() {
+    public boolean captionForAllMedia() {
         int i = 0;
         for (int i2 = 0; i2 < selectedPhotosOrder.size(); i2++) {
             Object obj = selectedPhotos.get(selectedPhotosOrder.get(i2));

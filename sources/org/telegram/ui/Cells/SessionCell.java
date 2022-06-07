@@ -24,6 +24,7 @@ import org.telegram.tgnet.TLRPC$TL_authorization;
 import org.telegram.tgnet.TLRPC$TL_webAuthorization;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CombinedDrawable;
@@ -32,7 +33,6 @@ import org.telegram.ui.Components.FlickerLoadingView;
 
 public class SessionCell extends FrameLayout {
     private AvatarDrawable avatarDrawable;
-    private int currentAccount = UserConfig.selectedAccount;
     private TextView detailExTextView;
     private TextView detailTextView;
     FlickerLoadingView globalGradient;
@@ -41,10 +41,44 @@ public class SessionCell extends FrameLayout {
     private TextView nameTextView;
     private boolean needDivider;
     private TextView onlineTextView;
+    private BackupImageView placeholderImageView;
     private boolean showStub;
+    private AnimatedFloat showStubValue = new AnimatedFloat(this);
+    private int currentAccount = UserConfig.selectedAccount;
 
     public SessionCell(android.content.Context r22, int r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SessionCell.<init>(android.content.Context, int):void");
+    }
+
+    private void setContentAlpha(float f) {
+        TextView textView = this.detailExTextView;
+        if (textView != null) {
+            textView.setAlpha(f);
+        }
+        TextView textView2 = this.detailTextView;
+        if (textView2 != null) {
+            textView2.setAlpha(f);
+        }
+        TextView textView3 = this.nameTextView;
+        if (textView3 != null) {
+            textView3.setAlpha(f);
+        }
+        TextView textView4 = this.onlineTextView;
+        if (textView4 != null) {
+            textView4.setAlpha(f);
+        }
+        BackupImageView backupImageView = this.imageView;
+        if (backupImageView != null) {
+            backupImageView.setAlpha(f);
+        }
+        BackupImageView backupImageView2 = this.placeholderImageView;
+        if (backupImageView2 != null) {
+            backupImageView2.setAlpha(1.0f - f);
+        }
+        LinearLayout linearLayout = this.linearLayout;
+        if (linearLayout != null) {
+            linearLayout.setAlpha(f);
+        }
     }
 
     @Override
@@ -193,9 +227,15 @@ public class SessionCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        FlickerLoadingView flickerLoadingView;
-        if (this.showStub && (flickerLoadingView = this.globalGradient) != null) {
-            flickerLoadingView.updateColors();
+        float f = this.showStubValue.set(this.showStub ? 1.0f : 0.0f);
+        setContentAlpha(1.0f - f);
+        if (f > 0.0f && this.globalGradient != null) {
+            if (f < 1.0f) {
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                canvas.saveLayerAlpha(rectF, (int) (255.0f * f), 31);
+            }
+            this.globalGradient.updateColors();
             this.globalGradient.updateGradient();
             if (getParent() != null) {
                 View view = (View) getParent();
@@ -203,18 +243,21 @@ public class SessionCell extends FrameLayout {
             }
             float top = this.linearLayout.getTop() + this.nameTextView.getTop() + AndroidUtilities.dp(12.0f);
             float x = this.linearLayout.getX();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(x, top - AndroidUtilities.dp(4.0f), (getMeasuredWidth() * 0.2f) + x, top + AndroidUtilities.dp(4.0f));
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.globalGradient.getPaint());
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            rectF2.set(x, top - AndroidUtilities.dp(4.0f), (getMeasuredWidth() * 0.2f) + x, top + AndroidUtilities.dp(4.0f));
+            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.globalGradient.getPaint());
             float top2 = (this.linearLayout.getTop() + this.detailTextView.getTop()) - AndroidUtilities.dp(1.0f);
             float x2 = this.linearLayout.getX();
-            rectF.set(x2, top2 - AndroidUtilities.dp(4.0f), (getMeasuredWidth() * 0.4f) + x2, top2 + AndroidUtilities.dp(4.0f));
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.globalGradient.getPaint());
+            rectF2.set(x2, top2 - AndroidUtilities.dp(4.0f), (getMeasuredWidth() * 0.4f) + x2, top2 + AndroidUtilities.dp(4.0f));
+            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.globalGradient.getPaint());
             float top3 = (this.linearLayout.getTop() + this.detailExTextView.getTop()) - AndroidUtilities.dp(1.0f);
             float x3 = this.linearLayout.getX();
-            rectF.set(x3, top3 - AndroidUtilities.dp(4.0f), (getMeasuredWidth() * 0.3f) + x3, top3 + AndroidUtilities.dp(4.0f));
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.globalGradient.getPaint());
+            rectF2.set(x3, top3 - AndroidUtilities.dp(4.0f), (getMeasuredWidth() * 0.3f) + x3, top3 + AndroidUtilities.dp(4.0f));
+            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.globalGradient.getPaint());
             invalidate();
+            if (f < 1.0f) {
+                canvas.restore();
+            }
         }
         if (this.needDivider) {
             canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
@@ -226,11 +269,13 @@ public class SessionCell extends FrameLayout {
         this.showStub = true;
         Drawable mutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, AndroidUtilities.isTablet() ? R.drawable.device_tablet_android : R.drawable.device_phone_android).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("avatar_text"), PorterDuff.Mode.SRC_IN));
-        this.imageView.setImageDrawable(new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), Theme.getColor("avatar_backgroundGreen")), mutate));
+        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), Theme.getColor("avatar_backgroundGreen")), mutate);
+        BackupImageView backupImageView = this.placeholderImageView;
+        if (backupImageView != null) {
+            backupImageView.setImageDrawable(combinedDrawable);
+        } else {
+            this.imageView.setImageDrawable(combinedDrawable);
+        }
         invalidate();
-    }
-
-    public boolean isStub() {
-        return this.showStub;
     }
 }

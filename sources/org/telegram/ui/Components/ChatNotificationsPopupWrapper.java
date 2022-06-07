@@ -47,7 +47,7 @@ public class ChatNotificationsPopupWrapper {
         void toggleSound();
     }
 
-    public ChatNotificationsPopupWrapper(final Context context, final int i, final PopupSwipeBackLayout popupSwipeBackLayout, boolean z, boolean z2, final Callback callback, Theme.ResourcesProvider resourcesProvider) {
+    public ChatNotificationsPopupWrapper(final Context context, final int i, final PopupSwipeBackLayout popupSwipeBackLayout, boolean z, boolean z2, final Callback callback, final Theme.ResourcesProvider resourcesProvider) {
         this.currentAccount = i;
         this.callback = callback;
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context, z ? R.drawable.popup_fixed_alert : 0, resourcesProvider);
@@ -90,7 +90,7 @@ public class ChatNotificationsPopupWrapper {
         ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_mute_period, LocaleController.getString("MuteForPopup", R.string.MuteForPopup), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatNotificationsPopupWrapper.this.lambda$new$6(context, i, callback, view);
+                ChatNotificationsPopupWrapper.this.lambda$new$6(context, resourcesProvider, i, callback, view);
             }
         });
         ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_customize, LocaleController.getString("NotificationsCustomize", R.string.NotificationsCustomize), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
@@ -124,9 +124,9 @@ public class ChatNotificationsPopupWrapper {
         callback.muteFor(this.muteForLastSelected2Time);
     }
 
-    public void lambda$new$6(Context context, final int i, final Callback callback, View view) {
+    public void lambda$new$6(Context context, Theme.ResourcesProvider resourcesProvider, final int i, final Callback callback, View view) {
         dismiss();
-        AlertsCreator.createMuteForPickerDialog(context, new AlertsCreator.ScheduleDatePickerDelegate() {
+        AlertsCreator.createMuteForPickerDialog(context, resourcesProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
             public final void didSelectDate(boolean z, int i2) {
                 ChatNotificationsPopupWrapper.lambda$new$5(i, callback, z, i2);

@@ -104,7 +104,7 @@ public class InviteUserCell extends FrameLayout {
             ContactsController.Contact contact3 = this.currentContact;
             int i2 = contact3.imported;
             if (i2 > 0) {
-                this.statusTextView.setText(LocaleController.formatPluralString("TelegramContacts", i2));
+                this.statusTextView.setText(LocaleController.formatPluralString("TelegramContacts", i2, new Object[0]));
             } else {
                 this.statusTextView.setText(contact3.phones.get(0));
             }

@@ -61,6 +61,7 @@ public class ActionBar extends FrameLayout {
     private boolean addToContainer;
     private SimpleTextView additionalSubtitleTextView;
     private boolean allowOverlayTitle;
+    private Drawable backButtonDrawable;
     private ImageView backButtonImageView;
     public Paint blurScrimPaint;
     boolean blurredBackground;
@@ -72,10 +73,12 @@ public class ActionBar extends FrameLayout {
     private int extraHeight;
     private FireworksEffect fireworksEffect;
     private Paint.FontMetricsInt fontMetricsInt;
+    private boolean forceSkipTouches;
     private boolean fromBottom;
     private boolean ignoreLayoutRequest;
     private View.OnTouchListener interceptTouchEventListener;
     private boolean interceptTouches;
+    private boolean isMenuOffsetSuppressed;
     protected boolean isSearchFieldVisible;
     protected int itemsActionModeBackgroundColor;
     protected int itemsActionModeColor;
@@ -134,9 +137,9 @@ public class ActionBar extends FrameLayout {
         this.overlayTitleToSet = new Object[3];
         this.castShadows = true;
         this.titleColorToSet = 0;
-        this.ellipsizeSpanAnimator = new EllipsizeSpanAnimator(this);
         this.blurScrimPaint = new Paint();
         this.rectTmp = new Rect();
+        this.ellipsizeSpanAnimator = new EllipsizeSpanAnimator(this);
         this.resourcesProvider = resourcesProvider;
         setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,12 +189,18 @@ public class ActionBar extends FrameLayout {
         closeSearchField();
     }
 
+    public Drawable getBackButtonDrawable() {
+        return this.backButtonDrawable;
+    }
+
     public void setBackButtonDrawable(Drawable drawable) {
         if (this.backButtonImageView == null) {
             createBackButtonImage();
         }
         this.backButtonImageView.setVisibility(drawable == null ? 8 : 0);
-        this.backButtonImageView.setImageDrawable(drawable);
+        ImageView imageView = this.backButtonImageView;
+        this.backButtonDrawable = drawable;
+        imageView.setImageDrawable(drawable);
         if (drawable instanceof BackDrawable) {
             BackDrawable backDrawable = (BackDrawable) drawable;
             backDrawable.setRotation(isActionModeShowed() ? 1.0f : 0.0f, false);
@@ -1138,16 +1147,22 @@ public class ActionBar extends FrameLayout {
                     f = 66.0f;
                 }
                 i4 = View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(f)) + this.menu.getItemsMeasuredWidth(), 1073741824);
-                this.menu.translateXItems(-itemsMeasuredWidth);
+                if (!this.isMenuOffsetSuppressed) {
+                    this.menu.translateXItems(-itemsMeasuredWidth);
+                }
             } else if (this.isSearchFieldVisible) {
                 if (!AndroidUtilities.isTablet()) {
                     f = 66.0f;
                 }
                 i4 = View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(f), 1073741824);
-                this.menu.translateXItems(0);
+                if (!this.isMenuOffsetSuppressed) {
+                    this.menu.translateXItems(0.0f);
+                }
             } else {
                 i4 = View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE);
-                this.menu.translateXItems(0);
+                if (!this.isMenuOffsetSuppressed) {
+                    this.menu.translateXItems(0.0f);
+                }
             }
             this.menu.measure(i4, makeMeasureSpec);
         }
@@ -1160,7 +1175,6 @@ public class ActionBar extends FrameLayout {
                 int i6 = 18;
                 if (((!z || i5 != 0) && (z || i5 != 1)) || !this.overlayTitleAnimation || !this.titleAnimationRunning) {
                     SimpleTextView[] simpleTextViewArr2 = this.titleTextView;
-                    int i7 = 14;
                     if (simpleTextViewArr2[0] == null || simpleTextViewArr2[0].getVisibility() == 8 || (simpleTextView = this.subtitleTextView) == null || simpleTextView.getVisibility() == 8) {
                         SimpleTextView[] simpleTextViewArr3 = this.titleTextView;
                         if (!(simpleTextViewArr3[i5] == null || simpleTextViewArr3[i5].getVisibility() == 8)) {
@@ -1176,10 +1190,7 @@ public class ActionBar extends FrameLayout {
                         }
                         SimpleTextView simpleTextView5 = this.additionalSubtitleTextView;
                         if (simpleTextView5 != null) {
-                            if (AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) {
-                                i7 = 16;
-                            }
-                            simpleTextView5.setTextSize(i7);
+                            simpleTextView5.setTextSize((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 16 : 14);
                         }
                     } else {
                         SimpleTextView[] simpleTextViewArr4 = this.titleTextView;
@@ -1193,10 +1204,7 @@ public class ActionBar extends FrameLayout {
                         this.subtitleTextView.setTextSize(AndroidUtilities.isTablet() ? 16 : 14);
                         SimpleTextView simpleTextView7 = this.additionalSubtitleTextView;
                         if (simpleTextView7 != null) {
-                            if (AndroidUtilities.isTablet()) {
-                                i7 = 16;
-                            }
-                            simpleTextView7.setTextSize(i7);
+                            simpleTextView7.setTextSize(AndroidUtilities.isTablet() ? 16 : 14);
                         }
                     }
                 } else {
@@ -1230,8 +1238,8 @@ public class ActionBar extends FrameLayout {
             }
         }
         int childCount = getChildCount();
-        for (int i8 = 0; i8 < childCount; i8++) {
-            View childAt = getChildAt(i8);
+        for (int i7 = 0; i7 < childCount; i7++) {
+            View childAt = getChildAt(i7);
             if (childAt.getVisibility() != 8) {
                 SimpleTextView[] simpleTextViewArr7 = this.titleTextView;
                 if (!(childAt == simpleTextViewArr7[0] || childAt == simpleTextViewArr7[1] || childAt == this.subtitleTextView || childAt == this.menu || childAt == this.backButtonImageView || childAt == this.additionalSubtitleTextView)) {
@@ -1239,6 +1247,10 @@ public class ActionBar extends FrameLayout {
                 }
             }
         }
+    }
+
+    public void setMenuOffsetSuppressed(boolean z) {
+        this.isMenuOffsetSuppressed = z;
     }
 
     @Override
@@ -1359,6 +1371,9 @@ public class ActionBar extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.forceSkipTouches) {
+            return false;
+        }
         return super.onTouchEvent(motionEvent) || this.interceptTouches;
     }
 
@@ -1564,5 +1579,9 @@ public class ActionBar extends FrameLayout {
             this.contentView.drawBlurRect(canvas, getY(), this.rectTmp, this.blurScrimPaint, true);
         }
         super.dispatchDraw(canvas);
+    }
+
+    public void setForceSkipTouches(boolean z) {
+        this.forceSkipTouches = z;
     }
 }

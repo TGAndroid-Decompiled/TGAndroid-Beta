@@ -36,7 +36,7 @@ public class DownloadController extends BaseController implements NotificationCe
     public static final int AUTODOWNLOAD_TYPE_DOCUMENT = 8;
     public static final int AUTODOWNLOAD_TYPE_PHOTO = 1;
     public static final int AUTODOWNLOAD_TYPE_VIDEO = 4;
-    private static volatile DownloadController[] Instance = new DownloadController[3];
+    private static volatile DownloadController[] Instance = new DownloadController[4];
     public static final int PRESET_NUM_CHANNEL = 3;
     public static final int PRESET_NUM_CONTACT = 0;
     public static final int PRESET_NUM_GROUP = 2;
@@ -116,54 +116,54 @@ public class DownloadController extends BaseController implements NotificationCe
         public int maxVideoBitrate;
         public boolean preloadMusic;
         public boolean preloadVideo;
-        public int[] sizes;
+        public long[] sizes;
 
-        public Preset(int[] iArr, int i, int i2, int i3, boolean z, boolean z2, boolean z3, boolean z4, int i4) {
+        public Preset(int[] iArr, long j, long j2, long j3, boolean z, boolean z2, boolean z3, boolean z4, int i) {
             int[] iArr2 = new int[4];
             this.mask = iArr2;
-            this.sizes = new int[4];
+            this.sizes = new long[4];
             System.arraycopy(iArr, 0, iArr2, 0, iArr2.length);
-            int[] iArr3 = this.sizes;
-            iArr3[0] = i;
-            iArr3[1] = i2;
-            iArr3[2] = i3;
-            iArr3[3] = 524288;
+            long[] jArr = this.sizes;
+            jArr[0] = j;
+            jArr[1] = j2;
+            jArr[2] = j3;
+            jArr[3] = 524288;
             this.preloadVideo = z;
             this.preloadMusic = z2;
             this.lessCallData = z4;
-            this.maxVideoBitrate = i4;
+            this.maxVideoBitrate = i;
             this.enabled = z3;
         }
 
         public Preset(String str, String str2) {
             String[] strArr;
             this.mask = new int[4];
-            this.sizes = new int[4];
+            this.sizes = new long[4];
             String[] split = str.split("_");
             if (split.length >= 11) {
                 boolean z = false;
-                this.mask[0] = Utilities.parseInt(split[0]).intValue();
-                this.mask[1] = Utilities.parseInt(split[1]).intValue();
-                this.mask[2] = Utilities.parseInt(split[2]).intValue();
-                this.mask[3] = Utilities.parseInt(split[3]).intValue();
-                this.sizes[0] = Utilities.parseInt(split[4]).intValue();
-                this.sizes[1] = Utilities.parseInt(split[5]).intValue();
-                this.sizes[2] = Utilities.parseInt(split[6]).intValue();
-                this.sizes[3] = Utilities.parseInt(split[7]).intValue();
-                this.preloadVideo = Utilities.parseInt(split[8]).intValue() == 1;
-                this.preloadMusic = Utilities.parseInt(split[9]).intValue() == 1;
-                this.enabled = Utilities.parseInt(split[10]).intValue() == 1;
+                this.mask[0] = Utilities.parseInt((CharSequence) split[0]).intValue();
+                this.mask[1] = Utilities.parseInt((CharSequence) split[1]).intValue();
+                this.mask[2] = Utilities.parseInt((CharSequence) split[2]).intValue();
+                this.mask[3] = Utilities.parseInt((CharSequence) split[3]).intValue();
+                this.sizes[0] = Utilities.parseInt((CharSequence) split[4]).intValue();
+                this.sizes[1] = Utilities.parseInt((CharSequence) split[5]).intValue();
+                this.sizes[2] = Utilities.parseInt((CharSequence) split[6]).intValue();
+                this.sizes[3] = Utilities.parseInt((CharSequence) split[7]).intValue();
+                this.preloadVideo = Utilities.parseInt((CharSequence) split[8]).intValue() == 1;
+                this.preloadMusic = Utilities.parseInt((CharSequence) split[9]).intValue() == 1;
+                this.enabled = Utilities.parseInt((CharSequence) split[10]).intValue() == 1;
                 if (split.length >= 12) {
-                    this.lessCallData = Utilities.parseInt(split[11]).intValue() == 1 ? true : z;
+                    this.lessCallData = Utilities.parseInt((CharSequence) split[11]).intValue() == 1 ? true : z;
                     strArr = null;
                 } else {
                     strArr = str2.split("_");
-                    this.lessCallData = Utilities.parseInt(strArr[11]).intValue() == 1 ? true : z;
+                    this.lessCallData = Utilities.parseInt((CharSequence) strArr[11]).intValue() == 1 ? true : z;
                 }
                 if (split.length >= 13) {
-                    this.maxVideoBitrate = Utilities.parseInt(split[12]).intValue();
+                    this.maxVideoBitrate = Utilities.parseInt((CharSequence) split[12]).intValue();
                 } else {
-                    this.maxVideoBitrate = Utilities.parseInt((strArr == null ? str2.split("_") : strArr)[12]).intValue();
+                    this.maxVideoBitrate = Utilities.parseInt((CharSequence) (strArr == null ? str2.split("_") : strArr)[12]).intValue();
                 }
             }
         }
@@ -172,9 +172,9 @@ public class DownloadController extends BaseController implements NotificationCe
             int[] iArr = preset.mask;
             int[] iArr2 = this.mask;
             System.arraycopy(iArr, 0, iArr2, 0, iArr2.length);
-            int[] iArr3 = preset.sizes;
-            int[] iArr4 = this.sizes;
-            System.arraycopy(iArr3, 0, iArr4, 0, iArr4.length);
+            long[] jArr = preset.sizes;
+            long[] jArr2 = this.sizes;
+            System.arraycopy(jArr, 0, jArr2, 0, jArr2.length);
             this.preloadVideo = preset.preloadVideo;
             this.preloadMusic = preset.preloadMusic;
             this.lessCallData = preset.lessCallData;
@@ -188,8 +188,8 @@ public class DownloadController extends BaseController implements NotificationCe
             this.maxVideoBitrate = tLRPC$TL_autoDownloadSettings.video_upload_maxbitrate;
             int i = 0;
             this.sizes[0] = Math.max(512000, tLRPC$TL_autoDownloadSettings.photo_size_max);
-            this.sizes[1] = Math.max(512000, tLRPC$TL_autoDownloadSettings.video_size_max);
-            this.sizes[2] = Math.max(512000, tLRPC$TL_autoDownloadSettings.file_size_max);
+            this.sizes[1] = Math.max(512000L, tLRPC$TL_autoDownloadSettings.video_size_max);
+            this.sizes[2] = Math.max(512000L, tLRPC$TL_autoDownloadSettings.file_size_max);
             while (true) {
                 int[] iArr = this.mask;
                 if (i < iArr.length) {
@@ -226,10 +226,10 @@ public class DownloadController extends BaseController implements NotificationCe
             if (i != iArr2[0] || iArr[1] != iArr2[1] || iArr[2] != iArr2[2] || iArr[3] != iArr2[3]) {
                 return false;
             }
-            int[] iArr3 = this.sizes;
-            int i2 = iArr3[0];
-            int[] iArr4 = preset.sizes;
-            return i2 == iArr4[0] && iArr3[1] == iArr4[1] && iArr3[2] == iArr4[2] && iArr3[3] == iArr4[3] && this.preloadVideo == preset.preloadVideo && this.preloadMusic == preset.preloadMusic && this.maxVideoBitrate == preset.maxVideoBitrate;
+            long[] jArr = this.sizes;
+            long j = jArr[0];
+            long[] jArr2 = preset.sizes;
+            return j == jArr2[0] && jArr[1] == jArr2[1] && jArr[2] == jArr2[2] && jArr[3] == jArr2[3] && this.preloadVideo == preset.preloadVideo && this.preloadMusic == preset.preloadMusic && this.maxVideoBitrate == preset.maxVideoBitrate;
         }
 
         public boolean isEnabled() {
@@ -286,9 +286,9 @@ public class DownloadController extends BaseController implements NotificationCe
             int[] iArr = new int[4];
             int[] iArr2 = new int[4];
             int[] iArr3 = new int[4];
-            int[] iArr4 = new int[7];
-            int[] iArr5 = new int[7];
-            int[] iArr6 = new int[7];
+            long[] jArr = new long[7];
+            long[] jArr2 = new long[7];
+            long[] jArr3 = new long[7];
             int i2 = 0;
             for (int i3 = 4; i2 < i3; i3 = 4) {
                 StringBuilder sb = new StringBuilder();
@@ -320,16 +320,16 @@ public class DownloadController extends BaseController implements NotificationCe
                 }
                 i2++;
             }
-            iArr4[2] = mainSettings.getInt("mobileMaxDownloadSize2", this.mediumPreset.sizes[1]);
-            iArr4[3] = mainSettings.getInt("mobileMaxDownloadSize3", this.mediumPreset.sizes[2]);
-            iArr5[2] = mainSettings.getInt("wifiMaxDownloadSize2", this.highPreset.sizes[1]);
-            iArr5[3] = mainSettings.getInt("wifiMaxDownloadSize3", this.highPreset.sizes[2]);
-            iArr6[2] = mainSettings.getInt("roamingMaxDownloadSize2", this.lowPreset.sizes[1]);
-            iArr6[3] = mainSettings.getInt("roamingMaxDownloadSize3", this.lowPreset.sizes[2]);
+            jArr[2] = mainSettings.getLong("mobileMaxDownloadSize2", this.mediumPreset.sizes[1]);
+            jArr[3] = mainSettings.getLong("mobileMaxDownloadSize3", this.mediumPreset.sizes[2]);
+            jArr2[2] = mainSettings.getLong("wifiMaxDownloadSize2", this.highPreset.sizes[1]);
+            jArr2[3] = mainSettings.getLong("wifiMaxDownloadSize3", this.highPreset.sizes[2]);
+            jArr3[2] = mainSettings.getLong("roamingMaxDownloadSize2", this.lowPreset.sizes[1]);
+            jArr3[3] = mainSettings.getLong("roamingMaxDownloadSize3", this.lowPreset.sizes[2]);
             boolean z = mainSettings.getBoolean("globalAutodownloadEnabled", true);
-            this.mobilePreset = new Preset(iArr, this.mediumPreset.sizes[0], iArr4[2], iArr4[3], true, true, z, false, 100);
-            this.wifiPreset = new Preset(iArr2, this.highPreset.sizes[0], iArr5[2], iArr5[3], true, true, z, false, 100);
-            this.roamingPreset = new Preset(iArr3, this.lowPreset.sizes[0], iArr6[2], iArr6[3], false, false, z, true, 50);
+            this.mobilePreset = new Preset(iArr, this.mediumPreset.sizes[0], jArr[2], jArr[3], true, true, z, false, 100);
+            this.wifiPreset = new Preset(iArr2, this.highPreset.sizes[0], jArr2[2], jArr2[3], true, true, z, false, 100);
+            this.roamingPreset = new Preset(iArr3, this.lowPreset.sizes[0], jArr3[2], jArr3[3], false, false, z, true, 50);
             SharedPreferences.Editor edit = mainSettings.edit();
             edit.putBoolean("newConfig", true);
             edit.putString("mobilePreset", this.mobilePreset.toString());
@@ -633,7 +633,7 @@ public class DownloadController extends BaseController implements NotificationCe
         return canDownloadMedia(messageObject.messageOwner) == 1;
     }
 
-    public boolean canDownloadMedia(int i, int i2) {
+    public boolean canDownloadMedia(int i, long j) {
         Preset preset;
         int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
         if (autodownloadNetworkType == 1) {
@@ -651,15 +651,15 @@ public class DownloadController extends BaseController implements NotificationCe
         } else {
             preset = getCurrentMobilePreset();
         }
-        int i3 = preset.mask[1];
-        int i4 = preset.sizes[typeToIndex(i)];
-        if (i == 1 || (i2 != 0 && i2 <= i4)) {
-            return i == 2 || (i & i3) != 0;
+        int i2 = preset.mask[1];
+        long j2 = preset.sizes[typeToIndex(i)];
+        if (i == 1 || (j != 0 && j <= j2)) {
+            return i == 2 || (i & i2) != 0;
         }
         return false;
     }
 
-    public int canDownloadMedia(org.telegram.tgnet.TLRPC$Message r12) {
+    public int canDownloadMedia(org.telegram.tgnet.TLRPC$Message r18) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMedia(org.telegram.tgnet.TLRPC$Message):int");
     }
 
@@ -750,12 +750,16 @@ public class DownloadController extends BaseController implements NotificationCe
             }
         }
         TLRPC$TL_autoDownloadSettings tLRPC$TL_autoDownloadSettings2 = tLRPC$TL_account_saveAutoDownloadSettings.settings;
-        tLRPC$TL_autoDownloadSettings2.photo_size_max = z2 ? preset.sizes[0] : 0;
-        tLRPC$TL_autoDownloadSettings2.video_size_max = z3 ? preset.sizes[1] : 0;
-        if (z4) {
-            i2 = preset.sizes[2];
+        if (z2) {
+            i2 = (int) preset.sizes[0];
         }
-        tLRPC$TL_autoDownloadSettings2.file_size_max = i2;
+        tLRPC$TL_autoDownloadSettings2.photo_size_max = i2;
+        long j = 0;
+        tLRPC$TL_autoDownloadSettings2.video_size_max = z3 ? preset.sizes[1] : 0L;
+        if (z4) {
+            j = preset.sizes[2];
+        }
+        tLRPC$TL_autoDownloadSettings2.file_size_max = j;
         getConnectionsManager().sendRequest(tLRPC$TL_account_saveAutoDownloadSettings, DownloadController$$ExternalSyntheticLambda13.INSTANCE);
     }
 

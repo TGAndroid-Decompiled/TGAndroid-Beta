@@ -82,7 +82,7 @@ import org.telegram.ui.ActionBar.AlertDialog;
 
 public class SecretChatHelper extends BaseController {
     public static int CURRENT_SECRET_CHAT_LAYER = 101;
-    private static volatile SecretChatHelper[] Instance = new SecretChatHelper[3];
+    private static volatile SecretChatHelper[] Instance = new SecretChatHelper[4];
     private ArrayList<Integer> sendingNotifyLayer = new ArrayList<>();
     private SparseArray<ArrayList<TL_decryptedMessageHolder>> secretHolesQueue = new SparseArray<>();
     private SparseArray<ArrayList<TLRPC$Update>> pendingSecretMessages = new SparseArray<>();

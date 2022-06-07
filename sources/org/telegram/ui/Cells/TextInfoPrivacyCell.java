@@ -18,11 +18,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
 
 public class TextInfoPrivacyCell extends FrameLayout {
     private int bottomPadding;
     private int fixedSize;
     private String linkTextColorKey;
+    private LinkSpanDrawable.LinkCollector links;
     private final Theme.ResourcesProvider resourcesProvider;
     private CharSequence text;
     private TextView textView;
@@ -42,17 +44,15 @@ public class TextInfoPrivacyCell extends FrameLayout {
         this(context, 21, resourcesProvider);
     }
 
-    public TextInfoPrivacyCell(Context context, int i) {
-        this(context, i, null);
-    }
-
     public TextInfoPrivacyCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.linkTextColorKey = "windowBackgroundWhiteLinkText";
         this.topPadding = 10;
         this.bottomPadding = 17;
         this.resourcesProvider = resourcesProvider;
-        TextView textView = new TextView(context) {
+        LinkSpanDrawable.LinkCollector linkCollector = new LinkSpanDrawable.LinkCollector(this);
+        this.links = linkCollector;
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, linkCollector, resourcesProvider) {
             @Override
             protected void onDraw(Canvas canvas) {
                 TextInfoPrivacyCell.this.onTextDraw();
@@ -60,8 +60,8 @@ public class TextInfoPrivacyCell extends FrameLayout {
                 TextInfoPrivacyCell.this.afterTextDraw();
             }
         };
-        this.textView = textView;
-        textView.setTextSize(1, 14.0f);
+        this.textView = linksTextView;
+        linksTextView.setTextSize(1, 14.0f);
         int i2 = 5;
         this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.textView.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(17.0f));
@@ -71,6 +71,19 @@ public class TextInfoPrivacyCell extends FrameLayout {
         this.textView.setImportantForAccessibility(2);
         float f = i;
         addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, (!LocaleController.isRTL ? 3 : i2) | 48, f, 0.0f, f, 0.0f));
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        if (this.links != null) {
+            canvas.save();
+            canvas.translate(this.textView.getLeft(), this.textView.getTop());
+            if (this.links.draw(canvas)) {
+                invalidate();
+            }
+            canvas.restore();
+        }
+        super.onDraw(canvas);
     }
 
     public void setLinkTextColorKey(String str) {

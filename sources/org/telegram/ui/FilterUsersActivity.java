@@ -803,10 +803,10 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
                 GroupCreateSpan groupCreateSpan = new GroupCreateSpan(this.editText.getContext(), object);
                 this.spansContainer.addSpan(groupCreateSpan, true);
                 groupCreateSpan.setOnClickListener(this);
-            } else if (!getUserConfig().isPremium()) {
-                showDialog(new LimitReachedBottomSheet(context, 4, this.currentAccount));
-                return;
             } else {
+                LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, context, 4, this.currentAccount);
+                limitReachedBottomSheet.setCurrentValue(this.selectedCount);
+                showDialog(limitReachedBottomSheet);
                 return;
             }
             updateHint();
@@ -1004,11 +1004,12 @@ public class FilterUsersActivity extends BaseFragment implements NotificationCen
     }
 
     public void updateHint() {
-        int i = this.selectedCount;
-        if (i == 0) {
-            this.actionBar.setSubtitle(LocaleController.formatString("MembersCountZero", R.string.MembersCountZero, LocaleController.formatPluralString("Chats", 100)));
+        int i = getUserConfig().isPremium() ? getMessagesController().dialogFiltersChatsLimitPremium : getMessagesController().dialogFiltersChatsLimitDefault;
+        int i2 = this.selectedCount;
+        if (i2 == 0) {
+            this.actionBar.setSubtitle(LocaleController.formatString("MembersCountZero", R.string.MembersCountZero, LocaleController.formatPluralString("Chats", i, new Object[0])));
         } else {
-            this.actionBar.setSubtitle(String.format(LocaleController.getPluralString("MembersCountSelected", i), Integer.valueOf(this.selectedCount), 100));
+            this.actionBar.setSubtitle(String.format(LocaleController.getPluralString("MembersCountSelected", i2), Integer.valueOf(this.selectedCount), Integer.valueOf(i)));
         }
     }
 

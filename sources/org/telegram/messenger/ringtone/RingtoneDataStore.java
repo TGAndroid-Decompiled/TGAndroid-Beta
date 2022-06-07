@@ -127,8 +127,17 @@ public class RingtoneDataStore {
             }
         }
         if (z) {
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    RingtoneDataStore.this.lambda$loadFromPrefs$3();
+                }
+            });
         }
+    }
+
+    public void lambda$loadFromPrefs$3() {
+        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
     }
 
     private void saveTones(ArrayList<TLRPC$Document> arrayList) {
@@ -277,12 +286,12 @@ public class RingtoneDataStore {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                RingtoneDataStore.this.lambda$checkRingtoneSoundsLoaded$4(arrayList);
+                RingtoneDataStore.this.lambda$checkRingtoneSoundsLoaded$5(arrayList);
             }
         });
     }
 
-    public void lambda$checkRingtoneSoundsLoaded$4(ArrayList arrayList) {
+    public void lambda$checkRingtoneSoundsLoaded$5(ArrayList arrayList) {
         final TLRPC$Document tLRPC$Document;
         File pathToAttach;
         for (int i = 0; i < arrayList.size(); i++) {
@@ -291,14 +300,14 @@ public class RingtoneDataStore {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        RingtoneDataStore.this.lambda$checkRingtoneSoundsLoaded$3(tLRPC$Document);
+                        RingtoneDataStore.this.lambda$checkRingtoneSoundsLoaded$4(tLRPC$Document);
                     }
                 });
             }
         }
     }
 
-    public void lambda$checkRingtoneSoundsLoaded$3(TLRPC$Document tLRPC$Document) {
+    public void lambda$checkRingtoneSoundsLoaded$4(TLRPC$Document tLRPC$Document) {
         FileLoader.getInstance(this.currentAccount).loadFile(tLRPC$Document, tLRPC$Document, 0, 0);
     }
 

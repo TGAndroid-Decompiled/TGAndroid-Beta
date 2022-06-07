@@ -6,7 +6,10 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
+import android.os.Build;
 import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
@@ -94,6 +97,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
                 SwipeGestureSettingsView.this.lambda$new$1(numberPicker2, i2, i3);
             }
         });
+        this.picker.setImportantForAccessibility(2);
         this.picker.setValue(SharedConfig.getChatSwipeAction(i));
         addView(this.picker, LayoutHelper.createFrame(132, -1.0f, 5, 21.0f, 0.0f, 21.0f, 0.0f));
         setWillNotDraw(false);
@@ -204,5 +208,28 @@ public class SwipeGestureSettingsView extends FrameLayout {
         updateColors();
         this.picker.setTextColor(Theme.getColor("dialogTextBlack"));
         this.picker.invalidate();
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+        accessibilityNodeInfo.setContentDescription(this.strings[this.picker.getValue()]);
+        if (Build.VERSION.SDK_INT >= 21) {
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, null));
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        super.onInitializeAccessibilityEvent(accessibilityEvent);
+        if (accessibilityEvent.getEventType() == 1) {
+            int value = this.picker.getValue() + 1;
+            if (value > this.picker.getMaxValue() || value < 0) {
+                value = 0;
+            }
+            setContentDescription(this.strings[value]);
+            this.picker.changeValueByOne(true);
+        }
     }
 }

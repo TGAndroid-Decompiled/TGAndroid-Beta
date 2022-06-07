@@ -133,7 +133,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         Theme.createDialogsResources(this);
         Theme.createChatResources(this, false);
         AndroidUtilities.fillStatusBarHeight(this);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.appDidLogout);
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.updateInterfaces);
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
@@ -902,7 +902,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                 return;
             }
         } else {
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 if (UserConfig.getInstance(i).isClientActivated()) {
                     this.popupMessages.addAll(NotificationsController.getInstance(i).popupMessages);
                 }
@@ -1174,7 +1174,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             if (i == NotificationCenter.pushMessagesUpdated) {
                 if (!this.isReply) {
                     this.popupMessages.clear();
-                    for (int i4 = 0; i4 < 3; i4++) {
+                    for (int i4 = 0; i4 < 4; i4++) {
                         if (UserConfig.getInstance(i4).isClientActivated()) {
                             this.popupMessages.addAll(NotificationsController.getInstance(i4).popupMessages);
                         }
@@ -1285,7 +1285,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             if (this.isReply) {
                 this.popupMessages.clear();
             }
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.appDidLogout);
                 NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.updateInterfaces);
                 NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.messagePlayingProgressDidChanged);

@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_document extends TLRPC$Document {
-    public static int constructor = 512177195;
+    public static int constructor = -1881881384;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -11,7 +11,7 @@ public class TLRPC$TL_document extends TLRPC$Document {
         this.file_reference = abstractSerializedData.readByteArray(z);
         this.date = abstractSerializedData.readInt32(z);
         this.mime_type = abstractSerializedData.readString(z);
-        this.size = abstractSerializedData.readInt32(z);
+        this.size = abstractSerializedData.readInt64(z);
         if ((this.flags & 1) != 0) {
             int readInt32 = abstractSerializedData.readInt32(z);
             if (readInt32 == 481674261) {
@@ -77,7 +77,7 @@ public class TLRPC$TL_document extends TLRPC$Document {
         abstractSerializedData.writeByteArray(this.file_reference);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeString(this.mime_type);
-        abstractSerializedData.writeInt32(this.size);
+        abstractSerializedData.writeInt64(this.size);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size = this.thumbs.size();

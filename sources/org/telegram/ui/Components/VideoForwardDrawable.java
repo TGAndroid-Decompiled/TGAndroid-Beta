@@ -42,7 +42,7 @@ public class VideoForwardDrawable extends Drawable {
     public void setTime(long j) {
         this.time = j;
         if (j >= 1000) {
-            this.timeStr = LocaleController.formatPluralString("Seconds", (int) (j / 1000));
+            this.timeStr = LocaleController.formatPluralString("Seconds", (int) (j / 1000), new Object[0]);
         } else {
             this.timeStr = null;
         }
@@ -167,6 +167,6 @@ public class VideoForwardDrawable extends Drawable {
     public void addTime(long j) {
         long j2 = this.time + j;
         this.time = j2;
-        this.timeStr = LocaleController.formatPluralString("Seconds", (int) (j2 / 1000));
+        this.timeStr = LocaleController.formatPluralString("Seconds", (int) (j2 / 1000), new Object[0]);
     }
 }

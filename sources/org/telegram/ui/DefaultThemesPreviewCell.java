@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -38,16 +39,18 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     int currentType;
     RLottieDrawable darkThemeDrawable;
     TextCell dayNightCell;
-    private final LinearLayoutManager layoutManager;
     private ValueAnimator navBarAnimator;
     private int navBarColor;
     private final FlickerLoadingView progressView;
     private final RecyclerListView recyclerView;
-    private int selectedPosition = -1;
     int themeIndex;
+    private LinearLayoutManager layoutManager = null;
+    private int selectedPosition = -1;
+    private Boolean wasPortrait = null;
 
     public DefaultThemesPreviewCell(final Context context, final BaseFragment baseFragment, int i) {
         super(context);
+        LinearLayoutManager linearLayoutManager;
         this.currentType = i;
         setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -58,27 +61,13 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         RecyclerListView recyclerListView = new RecyclerListView(getContext());
         this.recyclerView = recyclerListView;
         recyclerListView.setAdapter(adapter);
+        recyclerListView.setSelectorDrawableColor(0);
         recyclerListView.setClipChildren(false);
         recyclerListView.setClipToPadding(false);
         recyclerListView.setHasFixedSize(true);
         recyclerListView.setItemAnimator(null);
         recyclerListView.setNestedScrollingEnabled(false);
-        if (this.currentType == 0) {
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), 0, false);
-            this.layoutManager = linearLayoutManager;
-            recyclerListView.setLayoutManager(linearLayoutManager);
-        } else {
-            recyclerListView.setHasFixedSize(false);
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
-            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup(this) {
-                @Override
-                public int getSpanSize(int i3) {
-                    return 1;
-                }
-            });
-            this.layoutManager = gridLayoutManager;
-            recyclerListView.setLayoutManager(gridLayoutManager);
-        }
+        updateLayoutManager();
         recyclerListView.setFocusable(false);
         recyclerListView.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
@@ -118,7 +107,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
                 @Override
                 @android.annotation.SuppressLint({"NotifyDataSetChanged"})
                 public void onClick(android.view.View r14) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DefaultThemesPreviewCell.AnonymousClass2.onClick(android.view.View):void");
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DefaultThemesPreviewCell.AnonymousClass1.onClick(android.view.View):void");
                 }
             });
             this.darkThemeDrawable.setPlayInDirectionOfCustomEndFrame(true);
@@ -151,8 +140,8 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         updateSelectedPosition();
         updateColors();
         int i3 = this.selectedPosition;
-        if (i3 >= 0) {
-            this.layoutManager.scrollToPositionWithOffset(i3, AndroidUtilities.dp(16.0f));
+        if (i3 >= 0 && (linearLayoutManager = this.layoutManager) != null) {
+            linearLayoutManager.scrollToPositionWithOffset(i3, AndroidUtilities.dp(16.0f));
         }
     }
 
@@ -197,6 +186,45 @@ public class DefaultThemesPreviewCell extends LinearLayout {
 
     public static void lambda$new$1(BaseFragment baseFragment, View view) {
         baseFragment.presentFragment(new ThemeActivity(3));
+    }
+
+    public void updateLayoutManager() {
+        Point point = AndroidUtilities.displaySize;
+        boolean z = point.y > point.x;
+        Boolean bool = this.wasPortrait;
+        if (bool == null || bool.booleanValue() != z) {
+            if (this.currentType != 0) {
+                int i = z ? 3 : 9;
+                LinearLayoutManager linearLayoutManager = this.layoutManager;
+                if (linearLayoutManager instanceof GridLayoutManager) {
+                    ((GridLayoutManager) linearLayoutManager).setSpanCount(i);
+                } else {
+                    this.recyclerView.setHasFixedSize(false);
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), i);
+                    gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup(this) {
+                        @Override
+                        public int getSpanSize(int i2) {
+                            return 1;
+                        }
+                    });
+                    RecyclerListView recyclerListView = this.recyclerView;
+                    this.layoutManager = gridLayoutManager;
+                    recyclerListView.setLayoutManager(gridLayoutManager);
+                }
+            } else if (this.layoutManager == null) {
+                RecyclerListView recyclerListView2 = this.recyclerView;
+                LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), 0, false);
+                this.layoutManager = linearLayoutManager2;
+                recyclerListView2.setLayoutManager(linearLayoutManager2);
+            }
+            this.wasPortrait = Boolean.valueOf(z);
+        }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        updateLayoutManager();
+        super.onMeasure(i, i2);
     }
 
     public void updateDayNightMode() {

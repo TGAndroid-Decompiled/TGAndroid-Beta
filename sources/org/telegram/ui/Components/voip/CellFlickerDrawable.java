@@ -1,11 +1,14 @@
 package org.telegram.ui.Components.voip;
 
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 
@@ -18,6 +21,7 @@ public class CellFlickerDrawable {
     Matrix matrix;
     private Paint paint;
     private Paint paintOutline;
+    View parentView;
     int parentWidth;
     float progress;
     public boolean repeatEnabled;
@@ -131,5 +135,41 @@ public class CellFlickerDrawable {
 
     public void setParentWidth(int i) {
         this.parentWidth = i;
+    }
+
+    public DrawableInterface getDrawableInterface(View view) {
+        this.parentView = view;
+        return new DrawableInterface();
+    }
+
+    public class DrawableInterface extends Drawable {
+        public float radius;
+
+        @Override
+        public int getOpacity() {
+            return -3;
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+        }
+
+        public DrawableInterface() {
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            CellFlickerDrawable.this.setParentWidth(getBounds().width());
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(getBounds());
+            CellFlickerDrawable.this.draw(canvas, rectF, this.radius);
+            CellFlickerDrawable.this.parentView.invalidate();
+        }
+
+        @Override
+        public void setAlpha(int i) {
+            CellFlickerDrawable.this.paint.setAlpha(i);
+            CellFlickerDrawable.this.paintOutline.setAlpha(i);
+        }
     }
 }

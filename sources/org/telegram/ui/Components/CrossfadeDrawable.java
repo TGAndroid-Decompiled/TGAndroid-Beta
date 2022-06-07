@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 
 public class CrossfadeDrawable extends Drawable {
     private final Drawable bottomDrawable;
+    float globalAlpha = 255.0f;
     private float progress;
     private final Drawable topDrawable;
 
@@ -15,27 +16,29 @@ public class CrossfadeDrawable extends Drawable {
         return -3;
     }
 
-    @Override
-    public void setAlpha(int i) {
-    }
-
     public CrossfadeDrawable(Drawable drawable, Drawable drawable2) {
         this.topDrawable = drawable;
         this.bottomDrawable = drawable2;
         if (drawable != null) {
             drawable.setCallback(new Drawable.Callback() {
                 @Override
+                public void invalidateDrawable(Drawable drawable3) {
+                    if (CrossfadeDrawable.this.progress < 1.0f) {
+                        CrossfadeDrawable.this.invalidateSelf();
+                    }
+                }
+
+                @Override
                 public void scheduleDrawable(Drawable drawable3, Runnable runnable, long j) {
+                    if (CrossfadeDrawable.this.progress < 1.0f) {
+                        CrossfadeDrawable.this.scheduleSelf(runnable, j);
+                    }
                 }
 
                 @Override
                 public void unscheduleDrawable(Drawable drawable3, Runnable runnable) {
-                }
-
-                @Override
-                public void invalidateDrawable(Drawable drawable3) {
                     if (CrossfadeDrawable.this.progress < 1.0f) {
-                        CrossfadeDrawable.this.invalidateSelf();
+                        CrossfadeDrawable.this.unscheduleSelf(runnable);
                     }
                 }
             });
@@ -70,14 +73,19 @@ public class CrossfadeDrawable extends Drawable {
     public void draw(Canvas canvas) {
         float f = this.progress;
         if (f < 1.0f) {
-            this.topDrawable.setAlpha((int) ((1.0f - f) * 255.0f));
+            this.topDrawable.setAlpha((int) (this.globalAlpha * (1.0f - f)));
             this.topDrawable.draw(canvas);
         }
         float f2 = this.progress;
         if (f2 > 0.0f) {
-            this.bottomDrawable.setAlpha((int) (f2 * 255.0f));
+            this.bottomDrawable.setAlpha((int) (this.globalAlpha * f2));
             this.bottomDrawable.draw(canvas);
         }
+    }
+
+    @Override
+    public void setAlpha(int i) {
+        this.globalAlpha = i;
     }
 
     @Override
@@ -101,5 +109,6 @@ public class CrossfadeDrawable extends Drawable {
 
     public void setProgress(float f) {
         this.progress = f;
+        invalidateSelf();
     }
 }

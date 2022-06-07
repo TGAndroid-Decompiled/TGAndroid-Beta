@@ -75,7 +75,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
     @Override
     public void onCreate() {
         this.audioManager = (AudioManager) getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.messagePlayingDidSeek);
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.httpFileDidLoad);
@@ -209,7 +209,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         if (z2) {
             this.loadingFilePath = httpFilePath.getAbsolutePath();
             if (!z) {
-                this.imageReceiver.setImage(str, "48_48", null, null, 0);
+                this.imageReceiver.setImage(str, "48_48", null, null, 0L);
             }
         } else {
             this.loadingFilePath = null;
@@ -491,7 +491,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         if (Build.VERSION.SDK_INT >= 21) {
             this.mediaSession.release();
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.messagePlayingDidSeek);
             NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
             NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.httpFileDidLoad);

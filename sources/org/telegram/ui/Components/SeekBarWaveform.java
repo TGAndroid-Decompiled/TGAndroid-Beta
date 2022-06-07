@@ -3,7 +3,12 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.os.SystemClock;
 import android.view.View;
+import androidx.core.math.MathUtils;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Components.SeekBar;
@@ -11,17 +16,31 @@ import org.telegram.ui.Components.SeekBar;
 public class SeekBarWaveform {
     private static Paint paintInner;
     private static Paint paintOuter;
-    private int clearFromX;
+    private Path alphaPath;
+    private ArrayList<Float> animatedValues;
     private SeekBar.SeekBarDelegate delegate;
+    private float[] fromHeights;
+    private int fromWidth;
     private int height;
+    private float[] heights;
     private int innerColor;
     private boolean isUnread;
+    private boolean loading;
+    private Paint loadingPaint;
+    private int loadingPaintColor1;
+    private int loadingPaintColor2;
+    private float loadingPaintWidth;
+    private long loadingStart;
     private MessageObject messageObject;
     private int outerColor;
     private View parentView;
+    private Path path;
+    private float progress;
     private boolean selected;
     private int selectedColor;
     private float startX;
+    private float[] toHeights;
+    private int toWidth;
     private byte[] waveformBytes;
     private int width;
     private int thumbX = 0;
@@ -29,18 +48,16 @@ public class SeekBarWaveform {
     private boolean startDraging = false;
     private boolean pressed = false;
     private float clearProgress = 1.0f;
+    private AnimatedFloat appearFloat = new AnimatedFloat(125, 450, CubicBezierInterpolator.EASE_OUT_QUINT);
     private float waveScaling = 1.0f;
+    private AnimatedFloat loadingFloat = new AnimatedFloat(150, CubicBezierInterpolator.DEFAULT);
 
     public SeekBarWaveform(Context context) {
         if (paintInner == null) {
             paintInner = new Paint(1);
             paintOuter = new Paint(1);
-            paintInner.setStyle(Paint.Style.STROKE);
-            paintOuter.setStyle(Paint.Style.STROKE);
-            paintInner.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-            paintOuter.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-            paintInner.setStrokeCap(Paint.Cap.ROUND);
-            paintOuter.setStrokeCap(Paint.Cap.ROUND);
+            paintInner.setStyle(Paint.Style.FILL);
+            paintOuter.setStyle(Paint.Style.FILL);
         }
     }
 
@@ -63,11 +80,17 @@ public class SeekBarWaveform {
     }
 
     public void setMessageObject(MessageObject messageObject) {
+        MessageObject messageObject2;
+        if (!(this.animatedValues == null || (messageObject2 = this.messageObject) == null || messageObject == null || messageObject2.getId() == messageObject.getId())) {
+            this.animatedValues.clear();
+        }
         this.messageObject = messageObject;
     }
 
     public void setParentView(View view) {
         this.parentView = view;
+        this.loadingFloat.setParent(view);
+        this.appearFloat.setParent(view);
     }
 
     public boolean isStartDraging() {
@@ -104,6 +127,7 @@ public class SeekBarWaveform {
                         this.thumbX = i3;
                     }
                 }
+                this.progress = this.thumbX / this.width;
             }
             float f3 = this.startX;
             if (f3 != -1.0f && Math.abs(f - f3) > AndroidUtilities.getPixelsInCM(0.2f, true)) {
@@ -128,9 +152,10 @@ public class SeekBarWaveform {
     }
 
     public void setProgress(float f, boolean z) {
-        int i = this.isUnread ? this.width : this.thumbX;
+        boolean z2 = this.isUnread;
+        this.progress = z2 ? 1.0f : f;
+        int i = z2 ? this.width : this.thumbX;
         if (z && i != 0 && f == 0.0f) {
-            this.clearFromX = i;
             this.clearProgress = 0.0f;
         } else if (!z) {
             this.clearProgress = 1.0f;
@@ -152,24 +177,198 @@ public class SeekBarWaveform {
     }
 
     public void setSize(int i, int i2) {
+        setSize(i, i2, i, i);
+    }
+
+    public void setSize(int i, int i2, int i3, int i4) {
         this.width = i;
         this.height = i2;
-    }
-
-    public void draw(android.graphics.Canvas r29, android.view.View r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SeekBarWaveform.draw(android.graphics.Canvas, android.view.View):void");
-    }
-
-    private void drawLine(Canvas canvas, float f, int i, float f2, Paint paint) {
-        float f3 = f2 * this.waveScaling;
-        if (f3 == 0.0f) {
-            canvas.drawPoint(f + AndroidUtilities.dpf2(1.0f), i + AndroidUtilities.dp(7.0f), paint);
-        } else {
-            canvas.drawLine(f + AndroidUtilities.dpf2(1.0f), (AndroidUtilities.dp(7.0f) + i) - f3, f + AndroidUtilities.dpf2(1.0f), i + AndroidUtilities.dp(7.0f) + f3, paint);
+        float[] fArr = this.heights;
+        if (fArr == null || fArr.length != ((int) (i / AndroidUtilities.dpf2(3.0f)))) {
+            this.heights = calculateHeights((int) (this.width / AndroidUtilities.dpf2(3.0f)));
         }
+        if (i3 != i4 && (this.fromWidth != i3 || this.toWidth != i4)) {
+            this.fromWidth = i3;
+            this.toWidth = i4;
+            this.fromHeights = calculateHeights((int) (i3 / AndroidUtilities.dpf2(3.0f)));
+            this.toHeights = calculateHeights((int) (this.toWidth / AndroidUtilities.dpf2(3.0f)));
+        } else if (i3 == i4) {
+            this.toHeights = null;
+            this.fromHeights = null;
+        }
+    }
+
+    public void setSent() {
+        this.appearFloat.set(0.0f, true);
+        View view = this.parentView;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    private float[] calculateHeights(int i) {
+        byte[] bArr = this.waveformBytes;
+        if (bArr == null || i <= 0) {
+            return null;
+        }
+        float[] fArr = new float[i];
+        int i2 = 5;
+        int length = (bArr.length * 8) / 5;
+        float f = length / i;
+        int i3 = 0;
+        int i4 = 0;
+        float f2 = 0.0f;
+        int i5 = 0;
+        while (i3 < length) {
+            if (i3 == i4) {
+                int i6 = i4;
+                int i7 = 0;
+                while (i4 == i6) {
+                    f2 += f;
+                    i6 = (int) f2;
+                    i7++;
+                }
+                int i8 = i3 * 5;
+                int i9 = i8 / 8;
+                int i10 = i8 - (i9 * 8);
+                int i11 = 8 - i10;
+                int i12 = 5 - i11;
+                byte min = (byte) ((this.waveformBytes[i9] >> i10) & ((2 << (Math.min(i2, i11) - 1)) - 1));
+                if (i12 > 0) {
+                    int i13 = i9 + 1;
+                    byte[] bArr2 = this.waveformBytes;
+                    if (i13 < bArr2.length) {
+                        min = (byte) (((byte) (min << i12)) | (bArr2[i13] & ((2 << (i12 - 1)) - 1)));
+                    }
+                }
+                for (int i14 = 0; i14 < i7; i14++) {
+                    if (i5 >= i) {
+                        return fArr;
+                    }
+                    i5++;
+                    fArr[i5] = Math.max(0.0f, (min * 7) / 31.0f);
+                }
+                i4 = i6;
+            }
+            i3++;
+            i2 = 5;
+        }
+        return fArr;
+    }
+
+    public void draw(Canvas canvas, View view) {
+        int i;
+        float f;
+        float[] fArr;
+        if (!(this.waveformBytes == null || (i = this.width) == 0)) {
+            float dpf2 = i / AndroidUtilities.dpf2(3.0f);
+            if (dpf2 > 0.1f) {
+                float f2 = this.clearProgress;
+                if (f2 != 1.0f) {
+                    float f3 = f2 + 0.10666667f;
+                    this.clearProgress = f3;
+                    if (f3 > 1.0f) {
+                        this.clearProgress = 1.0f;
+                    } else {
+                        view.invalidate();
+                    }
+                }
+                float f4 = this.appearFloat.set(1.0f);
+                Path path = this.path;
+                if (path == null) {
+                    this.path = new Path();
+                } else {
+                    path.reset();
+                }
+                Path path2 = this.alphaPath;
+                if (path2 == null) {
+                    this.alphaPath = new Path();
+                } else {
+                    path2.reset();
+                }
+                float[] fArr2 = this.fromHeights;
+                int i2 = 0;
+                if (fArr2 == null || (fArr = this.toHeights) == null) {
+                    if (this.heights != null) {
+                        while (true) {
+                            float f5 = i2;
+                            if (f5 >= dpf2 || i2 >= this.heights.length) {
+                                break;
+                            }
+                            addBar(this.path, AndroidUtilities.dpf2(3.0f) * f5, AndroidUtilities.dpf2(this.heights[i2]) * MathUtils.clamp((f4 * dpf2) - f5, 0.0f, 1.0f));
+                            i2++;
+                        }
+                    }
+                    f = 0.0f;
+                } else {
+                    int i3 = this.width;
+                    int i4 = this.fromWidth;
+                    float f6 = (i3 - i4) / (this.toWidth - i4);
+                    int max = Math.max(fArr2.length, fArr.length);
+                    int min = Math.min(this.fromHeights.length, this.toHeights.length);
+                    float[] fArr3 = this.fromHeights;
+                    int length = fArr3.length;
+                    float[] fArr4 = this.toHeights;
+                    float[] fArr5 = length < fArr4.length ? fArr3 : fArr4;
+                    float[] fArr6 = fArr3.length < fArr4.length ? fArr4 : fArr3;
+                    if (fArr3.length >= fArr4.length) {
+                        f6 = 1.0f - f6;
+                    }
+                    int i5 = -1;
+                    f = 0.0f;
+                    for (int i6 = 0; i6 < max; i6++) {
+                        float f7 = i6;
+                        max = max;
+                        int clamp = MathUtils.clamp((int) Math.floor((f7 / max) * min), 0, min - 1);
+                        if (i5 < clamp) {
+                            addBar(this.path, AndroidUtilities.lerp(clamp, f7, f6) * AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(AndroidUtilities.lerp(fArr5[clamp], fArr6[i6], f6)));
+                            i5 = clamp;
+                        } else {
+                            addBar(this.alphaPath, AndroidUtilities.lerp(clamp, f7, f6) * AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(AndroidUtilities.lerp(fArr5[clamp], fArr6[i6], f6)));
+                            f = f6;
+                        }
+                    }
+                }
+                if (f > 0.0f) {
+                    canvas.save();
+                    canvas.clipPath(this.alphaPath);
+                    drawFill(canvas, f);
+                    canvas.restore();
+                }
+                canvas.save();
+                canvas.clipPath(this.path);
+                drawFill(canvas, 1.0f);
+                canvas.restore();
+            }
+        }
+    }
+
+    private void drawFill(android.graphics.Canvas r17, float r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SeekBarWaveform.drawFill(android.graphics.Canvas, float):void");
+    }
+
+    private void addBar(Path path, float f, float f2) {
+        float dpf2 = AndroidUtilities.dpf2(2.0f);
+        int dp = (this.height - AndroidUtilities.dp(14.0f)) / 2;
+        float f3 = f2 * this.waveScaling;
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f4 = dpf2 / 2.0f;
+        rectF.set((AndroidUtilities.dpf2(1.0f) + f) - f4, AndroidUtilities.dp(7.0f) + dp + ((-f3) - f4), f + AndroidUtilities.dpf2(1.0f) + f4, dp + AndroidUtilities.dp(7.0f) + f3 + f4);
+        path.addRoundRect(rectF, dpf2, dpf2, Path.Direction.CW);
     }
 
     public void setWaveScaling(float f) {
         this.waveScaling = f;
+    }
+
+    public void setLoading(boolean z) {
+        if (!this.loading && z && this.loadingFloat.get() <= 0.0f) {
+            this.loadingStart = SystemClock.elapsedRealtime();
+        }
+        this.loading = z;
+        View view = this.parentView;
+        if (view != null) {
+            view.invalidate();
+        }
     }
 }

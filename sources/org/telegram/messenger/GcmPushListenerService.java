@@ -339,7 +339,7 @@ public class GcmPushListenerService extends FirebaseMessagingService {
     }
 
     private void onDecryptError() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             if (UserConfig.getInstance(i).isClientActivated()) {
                 ConnectionsManager.onInternalPushReceived(i);
                 ConnectionsManager.getInstance(i).resumeNetworkMaybe();
@@ -386,7 +386,7 @@ public class GcmPushListenerService extends FirebaseMessagingService {
                 z = true;
             }
             SharedConfig.pushString = str;
-            for (final int i = 0; i < 3; i++) {
+            for (final int i = 0; i < 4; i++) {
                 UserConfig userConfig = UserConfig.getInstance(i);
                 userConfig.registeredForPush = false;
                 userConfig.saveConfig(false);

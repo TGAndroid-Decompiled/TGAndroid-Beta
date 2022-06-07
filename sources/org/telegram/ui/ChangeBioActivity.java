@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -77,7 +78,15 @@ public class ChangeBioActivity extends BaseFragment {
         this.fragmentView.setOnTouchListener(ChangeBioActivity$$ExternalSyntheticLambda1.INSTANCE);
         FrameLayout frameLayout = new FrameLayout(context);
         linearLayout2.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 24.0f, 24.0f, 20.0f, 0.0f));
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
+            @Override
+            public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                Editable editableText = getEditableText();
+                int aboutLimit = ChangeBioActivity.this.getMessagesController().getAboutLimit() - Character.codePointCount(editableText, 0, editableText.length());
+                accessibilityNodeInfo.setText(((Object) getText()) + ", " + LocaleController.formatPluralString("PeopleJoinedRemaining", aboutLimit, new Object[0]));
+            }
+        };
         this.firstNameField = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 18.0f);
         this.firstNameField.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
@@ -96,7 +105,7 @@ public class ChangeBioActivity extends BaseFragment {
         this.firstNameField.setImeOptions(268435456);
         this.firstNameField.setInputType(147457);
         this.firstNameField.setImeOptions(6);
-        this.firstNameField.setFilters(new InputFilter[]{new CodepointsLengthInputFilter(70) {
+        this.firstNameField.setFilters(new InputFilter[]{new CodepointsLengthInputFilter(getMessagesController().getAboutLimit()) {
             @Override
             public CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
                 if (charSequence == null || charSequence.length() <= 0 || TextUtils.indexOf(charSequence, '\n') != charSequence.length() - 1) {
@@ -138,7 +147,7 @@ public class ChangeBioActivity extends BaseFragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                ChangeBioActivity.this.checkTextView.setNumber(70 - Character.codePointCount(editable, 0, editable.length()), true);
+                ChangeBioActivity.this.checkTextView.setNumber(ChangeBioActivity.this.getMessagesController().getAboutLimit() - Character.codePointCount(editable, 0, editable.length()), true);
             }
         });
         frameLayout.addView(this.firstNameField, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 0.0f, 4.0f, 0.0f));
@@ -146,10 +155,10 @@ public class ChangeBioActivity extends BaseFragment {
         this.checkTextView = numberTextView;
         numberTextView.setCenterAlign(true);
         this.checkTextView.setTextSize(15);
-        this.checkTextView.setNumber(70, false);
+        this.checkTextView.setNumber(getMessagesController().getAboutLimit(), false);
         this.checkTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText4"));
         this.checkTextView.setImportantForAccessibility(2);
-        frameLayout.addView(this.checkTextView, LayoutHelper.createFrame(20, 20.0f, LocaleController.isRTL ? 3 : 5, 0.0f, 4.0f, 4.0f, 0.0f));
+        frameLayout.addView(this.checkTextView, LayoutHelper.createFrame(26, 20.0f, LocaleController.isRTL ? 3 : 5, 0.0f, 4.0f, 4.0f, 0.0f));
         TextView textView = new TextView(context);
         this.helpTextView = textView;
         textView.setFocusable(true);

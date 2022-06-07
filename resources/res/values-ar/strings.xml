@@ -1611,7 +1611,6 @@
     <string name="FilterRemoveExclusionTitle">إزالة الاستثناء</string>
     <string name="FilterRemoveExclusionUserText">هل ترغب حقًا في إزالة «%1$s» من قائمة المستثناة دائمًا؟</string>
     <string name="FilterRemoveFrom">إزالة من المجلد</string>
-    <string name="FilterRemoveFromAlertFullText">عذرًا، لايمكنك إضافة أكثر من 100 محادثة إلى مجلد.</string>
     <string name="FilterRemoveInclusionChatText">هل ترغب حقًا في إزالة «%1$s» من قائمة المضمّنة دائمًا؟</string>
     <string name="FilterRemoveInclusionText">هل ترغب حقًا في إزالة «%1$s» من قائمة المضمّنة دائمًا؟</string>
     <string name="FilterRemoveInclusionTitle">إزالة الاستثناء</string>

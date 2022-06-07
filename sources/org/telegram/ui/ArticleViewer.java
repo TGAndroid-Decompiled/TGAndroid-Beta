@@ -1390,7 +1390,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         ArticleViewer.this.lambda$showPopup$3(keyEvent);
                     }
                 });
-                this.popupLayout.setShownFromBotton(false);
+                this.popupLayout.setShownFromBottom(false);
                 TextView textView = new TextView(this.parentActivity);
                 this.deleteView = textView;
                 textView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 2));
@@ -5469,7 +5469,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         @android.annotation.SuppressLint({"NewApi"})
-        protected void onMeasure(int r31, int r32) {
+        protected void onMeasure(int r32, int r33) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.BlockVideoCell.onMeasure(int, int):void");
         }
 
@@ -6128,7 +6128,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         this.avatarVisible = z2;
                         if (z2) {
                             this.avatarDrawable.setInfo(0L, this.currentBlock.author, null);
-                            this.avatarImageView.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photoWithId.sizes, AndroidUtilities.dp(40.0f), true), photoWithId), "40_40", this.avatarDrawable, 0, (String) null, this.parentAdapter.currentPage, 1);
+                            this.avatarImageView.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photoWithId.sizes, AndroidUtilities.dp(40.0f), true), photoWithId), "40_40", this.avatarDrawable, 0L, (String) null, this.parentAdapter.currentPage, 1);
                         }
                     }
                     DrawingText createLayoutForText3 = ArticleViewer.this.createLayoutForText(this, this.currentBlock.author, null, size - AndroidUtilities.dp((this.avatarVisible ? 54 : 0) + 50), 0, this.currentBlock, Layout.Alignment.ALIGN_NORMAL, 1, this.parentAdapter);
@@ -6400,7 +6400,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 if ("resize_frame".equals(str)) {
                     try {
                         JSONObject jSONObject = new JSONObject(str2);
-                        BlockEmbedCell.this.exactWebViewHeight = Utilities.parseInt(jSONObject.getString("height")).intValue();
+                        BlockEmbedCell.this.exactWebViewHeight = Utilities.parseInt((CharSequence) jSONObject.getString("height")).intValue();
                         BlockEmbedCell.this.requestLayout();
                     } catch (Throwable unused) {
                     }
@@ -8739,7 +8739,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         @android.annotation.SuppressLint({"NewApi"})
-        protected void onMeasure(int r28, int r29) {
+        protected void onMeasure(int r29, int r30) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.BlockPhotoCell.onMeasure(int, int):void");
         }
 
@@ -8960,7 +8960,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         @android.annotation.SuppressLint({"NewApi"})
-        protected void onMeasure(int r25, int r26) {
+        protected void onMeasure(int r32, int r33) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.BlockMapCell.onMeasure(int, int):void");
         }
 

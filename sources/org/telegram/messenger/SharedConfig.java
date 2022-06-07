@@ -974,7 +974,7 @@ public class SharedConfig {
                     RandomAccessFile randomAccessFile = new RandomAccessFile(String.format(Locale.ENGLISH, "/sys/devices/system/cpu/cpu%d/cpufreq/cpuinfo_max_freq", Integer.valueOf(i5)), "r");
                     String readLine = randomAccessFile.readLine();
                     if (readLine != null) {
-                        i4 += Utilities.parseInt(readLine).intValue() / 1000;
+                        i4 += Utilities.parseInt((CharSequence) readLine).intValue() / 1000;
                         i3++;
                     }
                     randomAccessFile.close();

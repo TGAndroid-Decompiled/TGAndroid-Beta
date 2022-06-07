@@ -2,9 +2,11 @@ package org.telegram.ui.Components;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -486,35 +488,30 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            String str;
-            int i2;
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 0) {
                 GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
                 SearchDownloadsContainer searchDownloadsContainer = SearchDownloadsContainer.this;
                 if (i == searchDownloadsContainer.downloadingFilesHeader) {
                     String string = LocaleController.getString("Downloading", R.string.Downloading);
-                    if (SearchDownloadsContainer.this.hasCurrentDownload) {
-                        i2 = R.string.PauseAll;
-                        str = "PauseAll";
+                    if (graySectionCell.getText().equals(string)) {
+                        graySectionCell.setRightText(SearchDownloadsContainer.this.hasCurrentDownload ? LocaleController.getString("PauseAll", R.string.PauseAll) : LocaleController.getString("ResumeAll", R.string.ResumeAll), SearchDownloadsContainer.this.hasCurrentDownload);
                     } else {
-                        i2 = R.string.ResumeAll;
-                        str = "ResumeAll";
-                    }
-                    graySectionCell.setText(string, LocaleController.getString(str, i2), new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            for (int i3 = 0; i3 < SearchDownloadsContainer.this.currentLoadingFiles.size(); i3++) {
-                                MessageObject messageObject = SearchDownloadsContainer.this.currentLoadingFiles.get(i3);
-                                if (SearchDownloadsContainer.this.hasCurrentDownload) {
-                                    AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(messageObject.getDocument());
-                                } else {
-                                    AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().loadFile(messageObject.getDocument(), messageObject, 0, 0);
+                        graySectionCell.setText(string, SearchDownloadsContainer.this.hasCurrentDownload ? LocaleController.getString("PauseAll", R.string.PauseAll) : LocaleController.getString("ResumeAll", R.string.ResumeAll), new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                for (int i2 = 0; i2 < SearchDownloadsContainer.this.currentLoadingFiles.size(); i2++) {
+                                    MessageObject messageObject = SearchDownloadsContainer.this.currentLoadingFiles.get(i2);
+                                    if (SearchDownloadsContainer.this.hasCurrentDownload) {
+                                        AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(messageObject.getDocument());
+                                    } else {
+                                        AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().loadFile(messageObject.getDocument(), messageObject, 0, 0);
+                                    }
                                 }
+                                SearchDownloadsContainer.this.update(true);
                             }
-                            SearchDownloadsContainer.this.update(true);
-                        }
-                    });
+                        });
+                    }
                 } else if (i == searchDownloadsContainer.recentFilesHeader) {
                     graySectionCell.setText(LocaleController.getString("RecentlyDownloaded", R.string.RecentlyDownloaded), LocaleController.getString("Settings", R.string.Settings), new View.OnClickListener() {
                         @Override
@@ -633,6 +630,9 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
             nestedScrollView.addView(linearLayout);
             bottomSheet.setCustomView(nestedScrollView);
             bottomSheet.show();
+            if (Build.VERSION.SDK_INT >= 23) {
+                AndroidUtilities.setLightStatusBar(bottomSheet.getWindow(), !Theme.isCurrentThemeDark());
+            }
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -697,6 +697,12 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
             this.sharedDocumentCell = sharedDocumentCell;
             sharedDocumentCell.rightDateTextView.setVisibility(8);
             addView(this.sharedDocumentCell);
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            this.sharedDocumentCell.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         }
     }
 

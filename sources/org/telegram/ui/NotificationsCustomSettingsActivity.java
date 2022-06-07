@@ -502,7 +502,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     try {
                         Bundle bundle2 = new Bundle();
                         bundle2.putInt("type", this.currentType);
-                        presentFragment(new NotificationsSoundActivity(bundle2));
+                        presentFragment(new NotificationsSoundActivity(bundle2, getResourceProvider()));
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
@@ -565,7 +565,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         Bundle bundle = new Bundle();
         bundle.putLong("dialog_id", ((Long) arrayList.get(0)).longValue());
         bundle.putBoolean("exception", true);
-        ProfileNotificationsActivity profileNotificationsActivity = new ProfileNotificationsActivity(bundle);
+        ProfileNotificationsActivity profileNotificationsActivity = new ProfileNotificationsActivity(bundle, getResourceProvider());
         profileNotificationsActivity.setDelegate(new ProfileNotificationsActivity.ProfileNotificationsActivityDelegate() {
             @Override
             public final void didCreateNewException(NotificationsSettingsActivity.NotificationException notificationException) {

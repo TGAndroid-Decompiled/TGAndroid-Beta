@@ -14,70 +14,56 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.Theme;
 
 public class PremiumLockIconView extends ImageView {
+    public static int TYPE_REACTIONS = 0;
+    public static int TYPE_STICKERS = 1;
     int color1;
     int color2;
     ImageReceiver imageReceiver;
     Paint oldShaderPaint;
+    private final int type;
     boolean waitingImage;
     boolean wasDrawn;
+    private float[] colorFloat = new float[3];
     int currentColor = -1;
     Shader shader = null;
-    float[] colorFloat = new float[3];
     Path path = new Path();
     Paint paint = new Paint(1);
+    float shaderCrossfadeProgress = 1.0f;
 
-    public PremiumLockIconView(Context context) {
+    public PremiumLockIconView(Context context, int i) {
         super(context);
-        setImageResource(R.drawable.msg_premium_lock);
+        this.type = i;
+        setImageResource(i == TYPE_REACTIONS ? R.drawable.msg_premium_lock2 : R.drawable.msg_mini_premiumlock);
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        this.path.rewind();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        this.path.addCircle(rectF.width() / 2.0f, rectF.centerY(), rectF.width() / 2.0f, Path.Direction.CW);
-        rectF.set((getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(1.5f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(4.7f), getMeasuredWidth() - AndroidUtilities.dpf2(0.2f), getMeasuredHeight());
-        this.path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Path.Direction.CW);
-        this.path.close();
+        if (this.type == TYPE_REACTIONS) {
+            this.path.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            this.path.addCircle(rectF.width() / 2.0f, rectF.centerY(), rectF.width() / 2.0f, Path.Direction.CW);
+            rectF.set((getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(2.5f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(5.7f), getMeasuredWidth() - AndroidUtilities.dpf2(0.2f), getMeasuredHeight());
+            this.path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Path.Direction.CW);
+            this.path.close();
+            return;
+        }
         updateGradient();
     }
 
     public void setColor(int i) {
         if (this.currentColor != i) {
             this.currentColor = i;
-            updateGradient();
+            if (this.type == TYPE_REACTIONS) {
+                this.paint.setColor(i);
+            } else {
+                updateGradient();
+            }
             invalidate();
-        }
-    }
-
-    private void updateGradient() {
-        if (getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
-            Color.colorToHSV(this.currentColor, this.colorFloat);
-            float[] fArr = this.colorFloat;
-            fArr[1] = fArr[1] * 2.0f;
-            if (fArr[2] > 0.7f) {
-                fArr[2] = 0.7f;
-            }
-            int HSVToColor = Color.HSVToColor(fArr);
-            int blendARGB = ColorUtils.blendARGB(HSVToColor, -1, 0.5f);
-            if (this.shader == null || this.color1 != HSVToColor || this.color2 != blendARGB) {
-                if (this.wasDrawn) {
-                    Paint paint = this.paint;
-                    this.oldShaderPaint = paint;
-                    paint.setAlpha(255);
-                }
-                this.paint = new Paint(1);
-                this.color1 = HSVToColor;
-                this.color2 = blendARGB;
-                LinearGradient linearGradient = new LinearGradient(0.0f, getMeasuredHeight(), getMeasuredWidth(), 0.0f, new int[]{HSVToColor, blendARGB}, (float[]) null, Shader.TileMode.CLAMP);
-                this.shader = linearGradient;
-                this.paint.setShader(linearGradient);
-                invalidate();
-            }
         }
     }
 
@@ -91,14 +77,41 @@ public class PremiumLockIconView extends ImageView {
                 invalidate();
             }
         }
-        PremiumGradient.getInstance().updateMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawPath(this.path, PremiumGradient.getInstance().paint);
+        if (this.type != TYPE_REACTIONS) {
+            float measuredWidth = getMeasuredWidth() / 2.0f;
+            float measuredHeight = getMeasuredHeight() / 2.0f;
+            if (this.oldShaderPaint == null) {
+                this.shaderCrossfadeProgress = 1.0f;
+            }
+            float f = this.shaderCrossfadeProgress;
+            if (f != 1.0f) {
+                this.paint.setAlpha((int) (f * 255.0f));
+                canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.oldShaderPaint);
+                canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.paint);
+                float f2 = this.shaderCrossfadeProgress + 0.10666667f;
+                this.shaderCrossfadeProgress = f2;
+                if (f2 > 1.0f) {
+                    this.shaderCrossfadeProgress = 1.0f;
+                    this.oldShaderPaint = null;
+                }
+                invalidate();
+                this.paint.setAlpha(255);
+            } else {
+                canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.paint);
+            }
+        } else if (this.currentColor != 0) {
+            canvas.drawPath(this.path, this.paint);
+        } else {
+            PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), -AndroidUtilities.dp(24.0f), 0.0f);
+            canvas.drawPath(this.path, PremiumGradient.getInstance().getMainGradientPaint());
+        }
         super.onDraw(canvas);
         this.wasDrawn = true;
     }
 
     public void setImageReceiver(ImageReceiver imageReceiver) {
         this.imageReceiver = imageReceiver;
+        this.waitingImage = true;
     }
 
     public static int getDominantColor(Bitmap bitmap) {
@@ -126,6 +139,35 @@ public class PremiumLockIconView extends ImageView {
             return 0;
         }
         return Color.argb(255, i2 / i, i3 / i, i4 / i);
+    }
+
+    private void updateGradient() {
+        if (getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
+            Color.colorToHSV(this.currentColor, this.colorFloat);
+            float[] fArr = this.colorFloat;
+            fArr[1] = fArr[1] * 2.0f;
+            if (fArr[2] > 0.7f) {
+                fArr[2] = 0.7f;
+            }
+            int HSVToColor = Color.HSVToColor(fArr);
+            int blendARGB = ColorUtils.blendARGB(HSVToColor, Theme.getColor("windowBackgroundWhite"), 0.5f);
+            int blendARGB2 = ColorUtils.blendARGB(HSVToColor, Theme.getColor("windowBackgroundWhite"), 0.4f);
+            if (this.shader == null || this.color1 != blendARGB2 || this.color2 != blendARGB) {
+                if (this.wasDrawn) {
+                    Paint paint = this.paint;
+                    this.oldShaderPaint = paint;
+                    paint.setAlpha(255);
+                    this.shaderCrossfadeProgress = 0.0f;
+                }
+                this.paint = new Paint(1);
+                this.color1 = blendARGB2;
+                this.color2 = blendARGB;
+                LinearGradient linearGradient = new LinearGradient(0.0f, getMeasuredHeight(), 0.0f, 0.0f, new int[]{blendARGB2, blendARGB}, (float[]) null, Shader.TileMode.CLAMP);
+                this.shader = linearGradient;
+                this.paint.setShader(linearGradient);
+                invalidate();
+            }
+        }
     }
 
     public void setWaitingImage() {

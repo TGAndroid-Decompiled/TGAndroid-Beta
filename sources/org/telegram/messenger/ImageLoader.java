@@ -85,6 +85,7 @@ public class ImageLoader {
     private static byte[] headerThumb = new byte[12];
     private static volatile ImageLoader Instance = null;
     private HashMap<String, Integer> bitmapUseCounts = new HashMap<>();
+    ArrayList<AnimatedFileDrawable> cachedAnimatedFileDrawables = new ArrayList<>();
     private HashMap<String, CacheImage> imageLoadingByUrl = new HashMap<>();
     private HashMap<String, CacheImage> imageLoadingByKeys = new HashMap<>();
     private SparseArray<CacheImage> imageLoadingByTag = new SparseArray<>();
@@ -431,16 +432,16 @@ public class ImageLoader {
         private boolean canRetry = true;
         private RandomAccessFile fileOutputStream;
         private HttpURLConnection httpConnection;
-        private int imageSize;
+        private long imageSize;
         private long lastProgressTime;
         private String overrideUrl;
 
         public static void lambda$doInBackground$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         }
 
-        public HttpImageTask(CacheImage cacheImage, int i) {
+        public HttpImageTask(CacheImage cacheImage, long j) {
             this.cacheImage = cacheImage;
-            this.imageSize = i;
+            this.imageSize = j;
         }
 
         public HttpImageTask(CacheImage cacheImage, int i, String str) {
@@ -480,7 +481,7 @@ public class ImageLoader {
             NotificationCenter.getInstance(this.cacheImage.currentAccount).postNotificationName(NotificationCenter.fileLoadProgressChanged, this.cacheImage.url, Long.valueOf(j), Long.valueOf(j2));
         }
 
-        public java.lang.Boolean doInBackground(java.lang.Void... r12) {
+        public java.lang.Boolean doInBackground(java.lang.Void... r13) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.HttpImageTask.doInBackground(java.lang.Void[]):java.lang.Boolean");
         }
 
@@ -808,13 +809,13 @@ public class ImageLoader {
             } else if (drawable instanceof AnimatedFileDrawable) {
                 AnimatedFileDrawable animatedFileDrawable = (AnimatedFileDrawable) drawable;
                 if (animatedFileDrawable.isWebmSticker) {
-                    BitmapDrawable fromLottieCahce = ImageLoader.this.getFromLottieCahce(this.cacheImage.key);
-                    if (fromLottieCahce == null) {
+                    BitmapDrawable fromLottieCache = ImageLoader.this.getFromLottieCache(this.cacheImage.key);
+                    if (fromLottieCache == null) {
                         ImageLoader.this.lottieMemCache.put(this.cacheImage.key, animatedFileDrawable);
                         drawable = animatedFileDrawable;
                     } else {
                         animatedFileDrawable.recycle();
-                        drawable = fromLottieCahce;
+                        drawable = fromLottieCache;
                     }
                     ImageLoader.this.incrementUseCount(this.cacheImage.key);
                     str2 = this.cacheImage.key;
@@ -878,6 +879,10 @@ public class ImageLoader {
         }
     }
 
+    public boolean isAnimatedAvatar(String str) {
+        return str != null && str.endsWith("avatar");
+    }
+
     public BitmapDrawable getFromMemCache(String str) {
         BitmapDrawable bitmapDrawable = this.memCache.get(str);
         if (bitmapDrawable == null) {
@@ -886,7 +891,7 @@ public class ImageLoader {
         if (bitmapDrawable == null) {
             bitmapDrawable = this.wallpaperMemCache.get(str);
         }
-        return bitmapDrawable == null ? getFromLottieCahce(str) : bitmapDrawable;
+        return bitmapDrawable == null ? getFromLottieCache(str) : bitmapDrawable;
     }
 
     public static Bitmap getStrippedPhotoBitmap(byte[] bArr, String str) {
@@ -930,7 +935,7 @@ public class ImageLoader {
         protected ArrayList<String> keys;
         protected Object parentObject;
         protected SecureDocument secureDocument;
-        protected int size;
+        protected long size;
         protected File tempFilePath;
         protected int type;
         protected ArrayList<Integer> types;
@@ -1070,14 +1075,8 @@ public class ImageLoader {
                 AnimatedFileDrawable animatedFileDrawable = (AnimatedFileDrawable) drawable;
                 boolean z = false;
                 while (i < arrayList.size()) {
-                    ImageReceiver imageReceiver = (ImageReceiver) arrayList.get(i);
-                    AnimatedFileDrawable makeCopy = i == 0 ? animatedFileDrawable : animatedFileDrawable.makeCopy();
-                    if (imageReceiver.setImageBitmapByKey(makeCopy, this.key, this.type, false, ((Integer) arrayList2.get(i)).intValue())) {
-                        if (makeCopy == animatedFileDrawable) {
-                            z = true;
-                        }
-                    } else if (makeCopy != animatedFileDrawable) {
-                        makeCopy.recycle();
+                    if (((ImageReceiver) arrayList.get(i)).setImageBitmapByKey(animatedFileDrawable, this.key, this.type, false, ((Integer) arrayList2.get(i)).intValue())) {
+                        z = true;
                     }
                     i++;
                 }
@@ -1166,10 +1165,21 @@ public class ImageLoader {
                 return bitmapDrawable.getIntrinsicWidth() * bitmapDrawable.getIntrinsicHeight() * 4 * 2;
             }
 
+            public BitmapDrawable put(String str, BitmapDrawable bitmapDrawable) {
+                if (bitmapDrawable instanceof AnimatedFileDrawable) {
+                    ImageLoader.this.cachedAnimatedFileDrawables.add((AnimatedFileDrawable) bitmapDrawable);
+                }
+                return (BitmapDrawable) super.put(str, (String) bitmapDrawable);
+            }
+
             public void entryRemoved(boolean z2, String str, BitmapDrawable bitmapDrawable, BitmapDrawable bitmapDrawable2) {
                 Integer num = (Integer) ImageLoader.this.bitmapUseCounts.get(str);
+                boolean z3 = bitmapDrawable instanceof AnimatedFileDrawable;
+                if (z3) {
+                    ImageLoader.this.cachedAnimatedFileDrawables.remove((AnimatedFileDrawable) bitmapDrawable);
+                }
                 if (num == null || num.intValue() == 0) {
-                    if (bitmapDrawable instanceof AnimatedFileDrawable) {
+                    if (z3) {
                         ((AnimatedFileDrawable) bitmapDrawable).recycle();
                     }
                     if (bitmapDrawable instanceof RLottieDrawable) {
@@ -1189,7 +1199,7 @@ public class ImageLoader {
         }
         AndroidUtilities.createEmptyFile(new File(cacheDir, ".nomedia"));
         sparseArray.put(4, cacheDir);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             FileLoader.getInstance(i).setDelegate(new AnonymousClass5(i));
         }
         FileLoader.setMediaDirs(sparseArray);
@@ -1622,7 +1632,7 @@ public class ImageLoader {
     }
 
     public boolean isInMemCache(String str, boolean z) {
-        return z ? getFromLottieCahce(str) != null : getFromMemCache(str) != null;
+        return z ? getFromLottieCache(str) != null : getFromMemCache(str) != null;
     }
 
     public void clearMemory() {
@@ -1791,29 +1801,29 @@ public class ImageLoader {
         this.forceLoadingImages.remove(str);
     }
 
-    private void createLoadOperationForImageReceiver(final ImageReceiver imageReceiver, final String str, final String str2, final String str3, final ImageLocation imageLocation, final String str4, final int i, final int i2, final int i3, final int i4, final int i5) {
+    private void createLoadOperationForImageReceiver(final ImageReceiver imageReceiver, final String str, final String str2, final String str3, final ImageLocation imageLocation, final String str4, final long j, final int i, final int i2, final int i3, final int i4) {
         if (imageReceiver != null && str2 != null && str != null && imageLocation != null) {
-            int tag = imageReceiver.getTag(i3);
+            int tag = imageReceiver.getTag(i2);
             if (tag == 0) {
                 tag = this.lastImageNum;
-                imageReceiver.setTag(tag, i3);
-                int i6 = this.lastImageNum + 1;
-                this.lastImageNum = i6;
-                if (i6 == Integer.MAX_VALUE) {
+                imageReceiver.setTag(tag, i2);
+                int i5 = this.lastImageNum + 1;
+                this.lastImageNum = i5;
+                if (i5 == Integer.MAX_VALUE) {
                     this.lastImageNum = 0;
                 }
             }
-            final int i7 = tag;
+            final int i6 = tag;
             final boolean isNeedsQualityThumb = imageReceiver.isNeedsQualityThumb();
             final Object parentObject = imageReceiver.getParentObject();
-            final TLRPC$Document qulityThumbDocument = imageReceiver.getQulityThumbDocument();
+            final TLRPC$Document qualityThumbDocument = imageReceiver.getQualityThumbDocument();
             final boolean isShouldGenerateQualityThumb = imageReceiver.isShouldGenerateQualityThumb();
             final int currentAccount = imageReceiver.getCurrentAccount();
-            final boolean z = i3 == 0 && imageReceiver.isCurrentKeyQuality();
+            final boolean z = i2 == 0 && imageReceiver.isCurrentKeyQuality();
             Runnable imageLoader$$ExternalSyntheticLambda2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.this.lambda$createLoadOperationForImageReceiver$6(i4, str2, str, i7, imageReceiver, i5, str4, i3, imageLocation, z, parentObject, currentAccount, qulityThumbDocument, isNeedsQualityThumb, isShouldGenerateQualityThumb, str3, i2, i);
+                    ImageLoader.this.lambda$createLoadOperationForImageReceiver$6(i3, str2, str, i6, imageReceiver, i4, str4, i2, imageLocation, z, parentObject, currentAccount, qualityThumbDocument, isNeedsQualityThumb, isShouldGenerateQualityThumb, str3, i, j);
                 }
             };
             this.imageLoadQueue.postRunnable(imageLoader$$ExternalSyntheticLambda2);
@@ -1821,8 +1831,8 @@ public class ImageLoader {
         }
     }
 
-    public void lambda$createLoadOperationForImageReceiver$6(int r21, java.lang.String r22, java.lang.String r23, int r24, org.telegram.messenger.ImageReceiver r25, int r26, java.lang.String r27, int r28, org.telegram.messenger.ImageLocation r29, boolean r30, java.lang.Object r31, int r32, org.telegram.tgnet.TLRPC$Document r33, boolean r34, boolean r35, java.lang.String r36, int r37, int r38) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.lambda$createLoadOperationForImageReceiver$6(int, java.lang.String, java.lang.String, int, org.telegram.messenger.ImageReceiver, int, java.lang.String, int, org.telegram.messenger.ImageLocation, boolean, java.lang.Object, int, org.telegram.tgnet.TLRPC$Document, boolean, boolean, java.lang.String, int, int):void");
+    public void lambda$createLoadOperationForImageReceiver$6(int r24, java.lang.String r25, java.lang.String r26, int r27, org.telegram.messenger.ImageReceiver r28, int r29, java.lang.String r30, int r31, org.telegram.messenger.ImageLocation r32, boolean r33, java.lang.Object r34, int r35, org.telegram.tgnet.TLRPC$Document r36, boolean r37, boolean r38, java.lang.String r39, int r40, long r41) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.lambda$createLoadOperationForImageReceiver$6(int, java.lang.String, java.lang.String, int, org.telegram.messenger.ImageReceiver, int, java.lang.String, int, org.telegram.messenger.ImageLocation, boolean, java.lang.Object, int, org.telegram.tgnet.TLRPC$Document, boolean, boolean, java.lang.String, int, long):void");
     }
 
     public void preloadArtwork(final String str) {
@@ -1863,11 +1873,11 @@ public class ImageLoader {
         }
     }
 
-    public void loadImageForImageReceiver(org.telegram.messenger.ImageReceiver r36) {
+    public void loadImageForImageReceiver(org.telegram.messenger.ImageReceiver r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.loadImageForImageReceiver(org.telegram.messenger.ImageReceiver):void");
     }
 
-    public BitmapDrawable getFromLottieCahce(String str) {
+    public BitmapDrawable getFromLottieCache(String str) {
         BitmapDrawable bitmapDrawable = this.lottieMemCache.get(str);
         if (!(bitmapDrawable instanceof AnimatedFileDrawable) || !((AnimatedFileDrawable) bitmapDrawable).isRecycled()) {
             return bitmapDrawable;
@@ -1876,8 +1886,8 @@ public class ImageLoader {
         return null;
     }
 
-    private boolean useLottieMemChache(ImageLocation imageLocation) {
-        return imageLocation != null && (MessageObject.isAnimatedStickerDocument(imageLocation.document, true) || imageLocation.imageType == 1 || MessageObject.isVideoSticker(imageLocation.document));
+    private boolean useLottieMemCache(ImageLocation imageLocation, String str) {
+        return (imageLocation != null && (MessageObject.isAnimatedStickerDocument(imageLocation.document, true) || imageLocation.imageType == 1 || MessageObject.isVideoSticker(imageLocation.document))) || isAnimatedAvatar(str);
     }
 
     public void httpFileLoadError(final String str) {
@@ -2168,7 +2178,7 @@ public class ImageLoader {
         }
     }
 
-    private static org.telegram.tgnet.TLRPC$PhotoSize scaleAndSaveImageInternal(org.telegram.tgnet.TLRPC$PhotoSize r13, android.graphics.Bitmap r14, android.graphics.Bitmap.CompressFormat r15, boolean r16, int r17, int r18, float r19, float r20, float r21, int r22, boolean r23, boolean r24, boolean r25) throws java.lang.Exception {
+    private static org.telegram.tgnet.TLRPC$PhotoSize scaleAndSaveImageInternal(org.telegram.tgnet.TLRPC$PhotoSize r2, android.graphics.Bitmap r3, android.graphics.Bitmap.CompressFormat r4, boolean r5, int r6, int r7, float r8, float r9, float r10, int r11, boolean r12, boolean r13, boolean r14) throws java.lang.Exception {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.scaleAndSaveImageInternal(org.telegram.tgnet.TLRPC$PhotoSize, android.graphics.Bitmap, android.graphics.Bitmap$CompressFormat, boolean, int, int, float, float, float, int, boolean, boolean, boolean):org.telegram.tgnet.TLRPC$PhotoSize");
     }
 
@@ -2472,6 +2482,12 @@ public class ImageLoader {
             }
         }
         return null;
+    }
+
+    public void onFragmentStackChanged() {
+        for (int i = 0; i < this.cachedAnimatedFileDrawables.size(); i++) {
+            this.cachedAnimatedFileDrawables.get(i).repeatCount = 0;
+        }
     }
 
     public DispatchQueue getCacheOutQueue() {

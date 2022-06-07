@@ -62,6 +62,8 @@ public class AboutLinkCell extends FrameLayout {
     private String oldText;
     private BaseFragment parentFragment;
     private LinkSpanDrawable pressedLink;
+    private Theme.ResourcesProvider resourcesProvider;
+    private Drawable rippleBackground;
     private Drawable showMoreBackgroundDrawable;
     private FrameLayout showMoreTextBackgroundView;
     private TextView showMoreTextView;
@@ -79,7 +81,6 @@ public class AboutLinkCell extends FrameLayout {
     private int lastInlineLine = -1;
     private boolean needSpace = false;
     private boolean shouldExpand = false;
-    private Drawable rippleBackground = Theme.createRadSelectorDrawable(Theme.getColor("listSelectorSDK21"), 0, 0);
 
     protected void didExtend() {
     }
@@ -98,10 +99,11 @@ public class AboutLinkCell extends FrameLayout {
         return false;
     }
 
-    public AboutLinkCell(Context context, BaseFragment baseFragment) {
+    public AboutLinkCell(Context context, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         new Point();
         new LinkPath(true);
+        this.resourcesProvider = resourcesProvider;
         this.parentFragment = baseFragment;
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
@@ -110,12 +112,14 @@ public class AboutLinkCell extends FrameLayout {
             }
         };
         this.container = frameLayout;
-        this.links = new LinkSpanDrawable.LinkCollector(frameLayout);
+        frameLayout.setImportantForAccessibility(2);
+        this.links = new LinkSpanDrawable.LinkCollector(this.container);
         this.container.setClickable(true);
+        this.rippleBackground = Theme.createRadSelectorDrawable(Theme.getColor("listSelectorSDK21", resourcesProvider), 0, 0);
         TextView textView = new TextView(context);
         this.valueTextView = textView;
         textView.setVisibility(8);
-        this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
+        this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2", resourcesProvider));
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
@@ -123,10 +127,11 @@ public class AboutLinkCell extends FrameLayout {
         int i = 5;
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.valueTextView.setImportantForAccessibility(2);
+        this.valueTextView.setFocusable(false);
         this.container.addView(this.valueTextView, LayoutHelper.createFrame(-2, -2.0f, (!LocaleController.isRTL ? 3 : i) | 80, 23.0f, 0.0f, 23.0f, 10.0f));
         this.bottomShadow = new FrameLayout(context);
         Drawable mutate = context.getResources().getDrawable(R.drawable.gradient_bottom).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhite"), PorterDuff.Mode.SRC_ATOP));
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhite", resourcesProvider), PorterDuff.Mode.SRC_ATOP));
         this.bottomShadow.setBackground(mutate);
         addView(this.bottomShadow, LayoutHelper.createFrame(-1, 12.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         addView(this.container, LayoutHelper.createFrame(-1, -1, 55));
@@ -158,7 +163,7 @@ public class AboutLinkCell extends FrameLayout {
             }
         };
         this.showMoreTextView = textView2;
-        textView2.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText"));
+        textView2.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText", resourcesProvider));
         this.showMoreTextView.setTextSize(1, 16.0f);
         this.showMoreTextView.setLines(1);
         this.showMoreTextView.setMaxLines(1);
@@ -174,14 +179,14 @@ public class AboutLinkCell extends FrameLayout {
         this.showMoreTextBackgroundView = new FrameLayout(context);
         Drawable mutate2 = context.getResources().getDrawable(R.drawable.gradient_left).mutate();
         this.showMoreBackgroundDrawable = mutate2;
-        mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhite"), PorterDuff.Mode.MULTIPLY));
+        mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhite", resourcesProvider), PorterDuff.Mode.MULTIPLY));
         this.showMoreTextBackgroundView.setBackground(this.showMoreBackgroundDrawable);
         FrameLayout frameLayout2 = this.showMoreTextBackgroundView;
         frameLayout2.setPadding(frameLayout2.getPaddingLeft() + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(3.0f));
         this.showMoreTextBackgroundView.addView(this.showMoreTextView, LayoutHelper.createFrame(-2, -2.0f));
         FrameLayout frameLayout3 = this.showMoreTextBackgroundView;
         addView(frameLayout3, LayoutHelper.createFrame(-2, -2.0f, 85, 22.0f - (frameLayout3.getPaddingLeft() / AndroidUtilities.density), 0.0f, 22.0f - (this.showMoreTextBackgroundView.getPaddingRight() / AndroidUtilities.density), 6.0f));
-        this.backgroundPaint.setColor(Theme.getColor("windowBackgroundWhite"));
+        this.backgroundPaint.setColor(Theme.getColor("windowBackgroundWhite", resourcesProvider));
         setWillNotDraw(false);
     }
 
@@ -413,7 +418,7 @@ public class AboutLinkCell extends FrameLayout {
             if (lineLeft <= f && lineLeft + staticLayout.getLineWidth(lineForVertical) >= f && i6 >= 0 && i6 <= staticLayout.getHeight()) {
                 Spannable spannable = (Spannable) staticLayout.getText();
                 ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
-                if (clickableSpanArr.length != 0) {
+                if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
                     resetPressedLink();
                     LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(clickableSpanArr[0], this.parentFragment.getResourceProvider(), i3, i4);
                     this.pressedLink = linkSpanDrawable;
@@ -678,15 +683,15 @@ public class AboutLinkCell extends FrameLayout {
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        StaticLayout staticLayout = this.textLayout;
-        if (staticLayout != null) {
-            CharSequence text = staticLayout.getText();
-            CharSequence text2 = this.valueTextView.getText();
-            if (TextUtils.isEmpty(text2)) {
-                accessibilityNodeInfo.setText(text);
+        if (this.textLayout != null) {
+            SpannableStringBuilder spannableStringBuilder = this.stringBuilder;
+            CharSequence text = this.valueTextView.getText();
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
+            if (TextUtils.isEmpty(text)) {
+                accessibilityNodeInfo.setText(spannableStringBuilder);
                 return;
             }
-            accessibilityNodeInfo.setText(((Object) text2) + ": " + ((Object) text));
+            accessibilityNodeInfo.setText(((Object) text) + ": " + ((Object) spannableStringBuilder));
         }
     }
 }

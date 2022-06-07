@@ -12,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
@@ -30,7 +32,7 @@ import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.NotificationsSettingsActivity;
 
-public class UserCell extends FrameLayout {
+public class UserCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private TextView addButton;
     private TextView adminTextView;
     private AvatarDrawable avatarDrawable;
@@ -49,6 +51,7 @@ public class UserCell extends FrameLayout {
     private int lastStatus;
     private SimpleTextView nameTextView;
     private boolean needDivider;
+    private Theme.ResourcesProvider resourcesProvider;
     private boolean selfAsSavedMessages;
     private int statusColor;
     private int statusOnlineColor;
@@ -60,20 +63,29 @@ public class UserCell extends FrameLayout {
     }
 
     public UserCell(Context context, int i, int i2, boolean z) {
-        this(context, i, i2, z, false);
+        this(context, i, i2, z, false, null);
+    }
+
+    public UserCell(Context context, int i, int i2, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        this(context, i, i2, z, false, resourcesProvider);
     }
 
     public UserCell(Context context, int i, int i2, boolean z, boolean z2) {
+        this(context, i, i2, z, z2, null);
+    }
+
+    public UserCell(Context context, int i, int i2, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         int i3;
         int i4;
-        float f;
+        int i5;
         this.currentAccount = UserConfig.selectedAccount;
+        this.resourcesProvider = resourcesProvider;
         if (z2) {
             TextView textView = new TextView(context);
             this.addButton = textView;
             textView.setGravity(17);
-            this.addButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+            this.addButton.setTextColor(Theme.getColor("featuredStickers_buttonText", resourcesProvider));
             this.addButton.setTextSize(1, 14.0f);
             this.addButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.addButton.setBackgroundDrawable(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
@@ -86,8 +98,8 @@ public class UserCell extends FrameLayout {
         } else {
             i3 = 0;
         }
-        this.statusColor = Theme.getColor("windowBackgroundWhiteGrayText");
-        this.statusOnlineColor = Theme.getColor("windowBackgroundWhiteBlueText");
+        this.statusColor = Theme.getColor("windowBackgroundWhiteGrayText", resourcesProvider);
+        this.statusOnlineColor = Theme.getColor("windowBackgroundWhiteBlueText", resourcesProvider);
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
@@ -97,26 +109,26 @@ public class UserCell extends FrameLayout {
         addView(view2, LayoutHelper.createFrame(46, 46.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : i + 7, 6.0f, z4 ? i + 7 : 0.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
-        simpleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        simpleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
         this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setTextSize(16);
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         View view3 = this.nameTextView;
         boolean z5 = LocaleController.isRTL;
-        int i5 = (z5 ? 5 : 3) | 48;
-        int i6 = 18;
+        int i6 = (z5 ? 5 : 3) | 48;
+        int i7 = 18;
         if (z5) {
             i4 = (i2 == 2 ? 18 : 0) + 28 + i3;
         } else {
             i4 = i + 64;
         }
-        float f2 = i4;
+        float f = i4;
         if (z5) {
-            f = i + 64;
+            i5 = i + 64;
         } else {
-            f = (i2 != 2 ? 0 : i6) + 28 + i3;
+            i5 = (i2 != 2 ? 0 : i7) + 28 + i3;
         }
-        addView(view3, LayoutHelper.createFrame(-1, 20.0f, i5, f2, 10.0f, f, 0.0f));
+        addView(view3, LayoutHelper.createFrame(-1, 20.0f, i6, f, 10.0f, i5, 0.0f));
         SimpleTextView simpleTextView2 = new SimpleTextView(context);
         this.statusTextView = simpleTextView2;
         simpleTextView2.setTextSize(15);
@@ -127,7 +139,7 @@ public class UserCell extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.MULTIPLY));
+        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon", resourcesProvider), PorterDuff.Mode.MULTIPLY));
         this.imageView.setVisibility(8);
         View view5 = this.imageView;
         boolean z7 = LocaleController.isRTL;
@@ -141,7 +153,7 @@ public class UserCell extends FrameLayout {
             CheckBox checkBox = new CheckBox(context, R.drawable.round_check2);
             this.checkBox = checkBox;
             checkBox.setVisibility(4);
-            this.checkBox.setColor(Theme.getColor("checkbox"), Theme.getColor("checkboxCheck"));
+            this.checkBox.setColor(Theme.getColor("checkbox", resourcesProvider), Theme.getColor("checkboxCheck", resourcesProvider));
             View view6 = this.checkBox;
             boolean z9 = LocaleController.isRTL;
             addView(view6, LayoutHelper.createFrame(22, 22.0f, (z9 ? 5 : 3) | 48, z9 ? 0.0f : i + 37, 40.0f, z9 ? i + 37 : 0.0f, 0.0f));
@@ -150,7 +162,7 @@ public class UserCell extends FrameLayout {
             TextView textView2 = new TextView(context);
             this.adminTextView = textView2;
             textView2.setTextSize(1, 14.0f);
-            this.adminTextView.setTextColor(Theme.getColor("profile_creatorIcon"));
+            this.adminTextView.setTextColor(Theme.getColor("profile_creatorIcon", resourcesProvider));
             View view7 = this.adminTextView;
             boolean z10 = LocaleController.isRTL;
             addView(view7, LayoutHelper.createFrame(-2, -2.0f, (z10 ? 3 : 5) | 48, z10 ? 23.0f : 0.0f, 10.0f, z10 ? 0.0f : 23.0f, 0.0f));
@@ -246,6 +258,15 @@ public class UserCell extends FrameLayout {
             return;
         }
         this.currentStatus = charSequence2;
+        if (charSequence != null) {
+            try {
+                SimpleTextView simpleTextView = this.nameTextView;
+                if (simpleTextView != null) {
+                    charSequence = Emoji.replaceEmoji(charSequence, simpleTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(18.0f), false);
+                }
+            } catch (Exception unused) {
+            }
+        }
         this.currentName = charSequence;
         this.currentObject = obj;
         this.currentDrawable = i;
@@ -264,10 +285,10 @@ public class UserCell extends FrameLayout {
         boolean z2 = notificationException.hasCustom;
         int i = notificationException.notify;
         int i2 = notificationException.muteUntil;
-        boolean z3 = false;
+        boolean z3 = true;
         if (i != 3 || i2 == Integer.MAX_VALUE) {
-            if (i == 0 || i == 1) {
-                z3 = true;
+            if (!(i == 0 || i == 1)) {
+                z3 = false;
             }
             if (!z3 || !z2) {
                 str = z3 ? LocaleController.getString("NotificationsUnmuted", R.string.NotificationsUnmuted) : LocaleController.getString("NotificationsMuted", R.string.NotificationsMuted);
@@ -283,11 +304,11 @@ public class UserCell extends FrameLayout {
                     str = LocaleController.getString("NotificationsUnmuted", R.string.NotificationsUnmuted);
                 }
             } else if (currentTime < 3600) {
-                str = LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Minutes", currentTime / 60));
+                str = LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Minutes", currentTime / 60, new Object[0]));
             } else if (currentTime < 86400) {
-                str = LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Hours", (int) Math.ceil((currentTime / 60.0f) / 60.0f)));
+                str = LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Hours", (int) Math.ceil((currentTime / 60.0f) / 60.0f), new Object[0]));
             } else {
-                str = currentTime < 31536000 ? LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Days", (int) Math.ceil(((currentTime / 60.0f) / 60.0f) / 24.0f))) : null;
+                str = currentTime < 31536000 ? LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Days", (int) Math.ceil(((currentTime / 60.0f) / 60.0f) / 24.0f), new Object[0])) : null;
             }
         }
         if (str == null) {
@@ -391,5 +412,24 @@ public class UserCell extends FrameLayout {
         accessibilityNodeInfo.setCheckable(true);
         accessibilityNodeInfo.setChecked(this.checkBoxBig.isChecked());
         accessibilityNodeInfo.setClassName("android.widget.CheckBox");
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.emojiLoaded) {
+            this.nameTextView.invalidate();
+        }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
     }
 }

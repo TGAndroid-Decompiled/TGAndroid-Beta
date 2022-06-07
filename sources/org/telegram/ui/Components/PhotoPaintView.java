@@ -299,6 +299,7 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
         ImageView imageView = new ImageView(context);
         this.paintButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
+        this.paintButton.setContentDescription(LocaleController.getString("AccDescrPaint", R.string.AccDescrPaint));
         this.paintButton.setImageResource(R.drawable.msg_photo_draw);
         this.paintButton.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.toolsView.addView(this.paintButton, LayoutHelper.createFrame(54, -1.0f, 17, 0.0f, 0.0f, 56.0f, 0.0f));
@@ -321,6 +322,7 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
         });
         ImageView imageView3 = new ImageView(context);
         imageView3.setScaleType(ImageView.ScaleType.CENTER);
+        imageView3.setContentDescription(LocaleController.getString("AccDescrPlaceText", R.string.AccDescrPlaceText));
         imageView3.setImageResource(R.drawable.msg_photo_text);
         imageView3.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.toolsView.addView(imageView3, LayoutHelper.createFrame(54, -1.0f, 17, 56.0f, 0.0f, 0.0f, 0.0f));
@@ -442,13 +444,16 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
     }
 
     private void updateSettingsButton() {
+        this.colorPicker.settingsButton.setContentDescription(LocaleController.getString("AccDescrBrushType", R.string.AccDescrBrushType));
         EntityView entityView = this.currentEntityView;
         int i = R.drawable.photo_paint_brush;
         if (entityView != null) {
             if (entityView instanceof StickerView) {
                 i = R.drawable.msg_photo_flip;
+                this.colorPicker.settingsButton.setContentDescription(LocaleController.getString("AccDescrMirror", R.string.AccDescrMirror));
             } else if (entityView instanceof TextPaintView) {
                 i = R.drawable.photo_outline;
+                this.colorPicker.settingsButton.setContentDescription(LocaleController.getString("PaintOutlined", R.string.PaintOutlined));
             }
             this.paintButton.setImageResource(R.drawable.msg_photo_draw);
             this.paintButton.setColorFilter((ColorFilter) null);
@@ -1603,7 +1608,7 @@ public class PhotoPaintView extends FrameLayout implements EntityView.EntityView
                         PhotoPaintView.this.lambda$showPopup$19(keyEvent);
                     }
                 });
-                this.popupLayout.setShownFromBotton(true);
+                this.popupLayout.setShownFromBottom(true);
             }
             this.popupLayout.removeInnerViews();
             runnable.run();

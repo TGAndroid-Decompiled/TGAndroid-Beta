@@ -10,6 +10,7 @@ import org.telegram.ui.Components.TextStyleSpan;
 
 public class URLSpanNoUnderline extends URLSpan {
     private boolean forceNoUnderline;
+    public String label;
     private TLObject object;
     private TextStyleSpan.TextStyleRun style;
 

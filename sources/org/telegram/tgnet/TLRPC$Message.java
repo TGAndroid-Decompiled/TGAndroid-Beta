@@ -34,6 +34,7 @@ public abstract class TLRPC$Message extends TLObject {
     public boolean pinned;
     public boolean post;
     public String post_author;
+    public boolean premiumEffectWasPlayed;
     public long random_id;
     public TLRPC$TL_messageReactions reactions;
     public int realId;
@@ -51,6 +52,11 @@ public abstract class TLRPC$Message extends TLObject {
     public long via_bot_id;
     public String via_bot_name;
     public int views;
+    public String voiceTranscription;
+    public boolean voiceTranscriptionFinal;
+    public long voiceTranscriptionId;
+    public boolean voiceTranscriptionOpen;
+    public boolean voiceTranscriptionRated;
     public boolean with_my_score;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public ArrayList<TLRPC$TL_restrictionReason> restriction_reason = new ArrayList<>();
@@ -2815,8 +2821,8 @@ public abstract class TLRPC$Message extends TLObject {
             if (this.params == null) {
                 this.params = new HashMap<>();
             }
-            this.layer = 142;
-            this.params.put("legacy_layer", "142");
+            this.layer = 143;
+            this.params.put("legacy_layer", "143");
         }
         if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
             for (Map.Entry<String, String> entry2 : this.params.entrySet()) {

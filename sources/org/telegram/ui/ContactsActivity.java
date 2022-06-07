@@ -414,7 +414,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                         try {
                             String obj = editable.toString();
                             if (obj.length() != 0) {
-                                int intValue = Utilities.parseInt(obj).intValue();
+                                int intValue = Utilities.parseInt((CharSequence) obj).intValue();
                                 if (intValue < 0) {
                                     editTextBoldCursor.setText("0");
                                     EditText editText = editTextBoldCursor;

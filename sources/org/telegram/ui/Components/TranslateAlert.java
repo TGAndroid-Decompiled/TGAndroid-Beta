@@ -63,6 +63,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
+import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputPeer;
@@ -586,15 +587,18 @@ public class TranslateAlert extends Dialog {
         int color = Theme.getColor("chat_TextSelectionCursor");
         if (i5 >= 29) {
             try {
-                Drawable textSelectHandleLeft = this.allTextsView.getTextSelectHandleLeft();
-                textSelectHandleLeft.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-                this.allTextsView.setTextSelectHandleLeft(textSelectHandleLeft);
-                Drawable textSelectHandleRight = this.allTextsView.getTextSelectHandleRight();
-                textSelectHandleRight.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-                this.allTextsView.setTextSelectHandleRight(textSelectHandleRight);
+                if (!XiaomiUtilities.isMIUI()) {
+                    Drawable textSelectHandleLeft = this.allTextsView.getTextSelectHandleLeft();
+                    textSelectHandleLeft.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                    this.allTextsView.setTextSelectHandleLeft(textSelectHandleLeft);
+                    Drawable textSelectHandleRight = this.allTextsView.getTextSelectHandleRight();
+                    textSelectHandleRight.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                    this.allTextsView.setTextSelectHandleRight(textSelectHandleRight);
+                }
             } catch (Exception unused) {
             }
         }
+        this.allTextsView.setFocusable(true);
         this.allTextsView.setMovementMethod(new LinkMovementMethod());
         TextBlocksLayout textBlocksLayout = new TextBlocksLayout(context, AndroidUtilities.dp(16.0f), Theme.getColor("dialogTextBlack"), this.allTextsView);
         this.textsView = textBlocksLayout;
@@ -1041,6 +1045,7 @@ public class TranslateAlert extends Dialog {
     }
 
     public void lambda$fetchNext$7(String str, String str2) {
+        TextView textView;
         URLSpan[] uRLSpanArr;
         URLSpan[] uRLSpanArr2;
         this.loaded = true;
@@ -1134,6 +1139,9 @@ public class TranslateAlert extends Dialog {
         if (str2 != null) {
             this.fromLanguage = str2;
             updateSourceLanguage();
+        }
+        if (this.blockIndex == 0 && AndroidUtilities.isAccessibilityScreenReaderEnabled() && (textView = this.allTextsView) != null) {
+            textView.requestFocus();
         }
         this.blockIndex++;
         this.loading = false;
@@ -1343,6 +1351,7 @@ public class TranslateAlert extends Dialog {
 
         public LoadingTextView2 addBlock(CharSequence charSequence) {
             LoadingTextView2 loadingTextView2 = new LoadingTextView2(getContext(), charSequence, getBlocksCount() > 0, this.fontSize, this.textColor);
+            loadingTextView2.setFocusable(false);
             addView(loadingTextView2);
             TextView textView = this.wholeTextView;
             if (textView != null) {
@@ -1484,6 +1493,8 @@ public class TranslateAlert extends Dialog {
             textView.setMaxLines(1);
             textView.setSingleLine(true);
             textView.setEllipsize(null);
+            textView.setFocusable(false);
+            textView.setImportantForAccessibility(2);
             addView(textView);
             TextView textView2 = new TextView(this, context) {
                 @Override
@@ -1498,6 +1509,7 @@ public class TranslateAlert extends Dialog {
             textView2.setMaxLines(1);
             textView2.setSingleLine(true);
             textView2.setEllipsize(null);
+            textView2.setFocusable(true);
             addView(textView2);
             int color = Theme.getColor("dialogBackground");
             paint.setShader(new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{color, Theme.getColor("dialogBackgroundGray"), color}, new float[]{0.0f, 0.67f, 1.0f}, Shader.TileMode.REPEAT));
@@ -1704,6 +1716,7 @@ public class TranslateAlert extends Dialog {
             setPadding(i3, i4, i3, i4);
             setClipChildren(false);
             setWillNotDraw(false);
+            setFocusable(false);
             TextView textView = new TextView(this, context) {
                 @Override
                 protected void onMeasure(int i5, int i6) {
@@ -1719,6 +1732,8 @@ public class TranslateAlert extends Dialog {
             textView.setMaxLines(0);
             textView.setSingleLine(false);
             textView.setEllipsize(null);
+            textView.setFocusable(false);
+            textView.setImportantForAccessibility(2);
             addView(textView);
             TextView textView2 = new TextView(this, context) {
                 @Override
@@ -1733,6 +1748,8 @@ public class TranslateAlert extends Dialog {
             textView2.setMaxLines(0);
             textView2.setSingleLine(false);
             textView2.setEllipsize(null);
+            textView2.setFocusable(false);
+            textView2.setImportantForAccessibility(2);
             addView(textView2);
             int color = Theme.getColor("dialogBackground");
             paint.setShader(new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{color, Theme.getColor("dialogBackgroundGray"), color}, new float[]{0.0f, 0.67f, 1.0f}, Shader.TileMode.REPEAT));

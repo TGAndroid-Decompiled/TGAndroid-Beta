@@ -79,6 +79,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     int dividerRow2;
     Ringtone lastPlayedRingtone;
     RecyclerListView listView;
+    Theme.ResourcesProvider resourcesProvider;
     int rowCount;
     Tone selectedTone;
     boolean selectedToneChanged;
@@ -112,8 +113,9 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate.CC.$default$startMusicSelectActivity(this);
     }
 
-    public NotificationsSoundActivity(Bundle bundle) {
+    public NotificationsSoundActivity(Bundle bundle, Theme.ResourcesProvider resourcesProvider) {
         super(bundle);
+        this.resourcesProvider = resourcesProvider;
     }
 
     @Override
@@ -157,7 +159,14 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     }
 
     @Override
+    public Theme.ResourcesProvider getResourceProvider() {
+        return this.resourcesProvider;
+    }
+
+    @Override
     public View createView(final Context context) {
+        this.actionBar.setItemsBackgroundColor(Theme.getColor("avatar_actionBarSelectorBlue", this.resourcesProvider), false);
+        this.actionBar.setItemsColor(Theme.getColor("actionBarDefaultIcon", this.resourcesProvider), false);
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setAllowOverlayTitle(false);
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass1(context));
@@ -171,7 +180,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 this.actionBar.setTitle(LocaleController.getString("NotificationsSoundChannels", R.string.NotificationsSoundChannels));
             }
         } else {
-            ChatAvatarContainer chatAvatarContainer = new ChatAvatarContainer(context, null, false);
+            ChatAvatarContainer chatAvatarContainer = new ChatAvatarContainer(context, null, false, this.resourcesProvider);
             this.avatarContainer = chatAvatarContainer;
             chatAvatarContainer.setOccupyStatusBar(!AndroidUtilities.isTablet());
             this.actionBar.addView(this.avatarContainer, 0, LayoutHelper.createFrame(-2, -1.0f, 51, !this.inPreviewMode ? 56.0f : 0.0f, 0.0f, 40.0f, 0.0f));
@@ -193,7 +202,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.selectedTonesCountTextView = numberTextView;
         numberTextView.setTextSize(18);
         this.selectedTonesCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.selectedTonesCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon"));
+        this.selectedTonesCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon", this.resourcesProvider));
         createActionMode.addView(this.selectedTonesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
         this.selectedTonesCountTextView.setOnTouchListener(NotificationsSoundActivity$$ExternalSyntheticLambda0.INSTANCE);
         createActionMode.addItemWithWidth(2, R.drawable.msg_forward, AndroidUtilities.dp(54.0f), LocaleController.getString("ShareFile", R.string.ShareFile));
@@ -201,7 +210,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray", this.resourcesProvider));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         frameLayout2.addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
@@ -243,54 +252,54 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
 
         @Override
         public void onItemClick(int i) {
-            if (i == -1) {
-                if (((BaseFragment) NotificationsSoundActivity.this).actionBar.isActionModeShowed()) {
-                    NotificationsSoundActivity.this.hideActionMode();
-                } else {
-                    NotificationsSoundActivity.this.finishFragment();
-                }
-            } else if (i == 1) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(NotificationsSoundActivity.this.getParentActivity());
-                builder.setTitle(LocaleController.formatPluralString("DeleteTones", NotificationsSoundActivity.this.selectedTones.size()));
-                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatPluralString("DeleteTonesMessage", NotificationsSoundActivity.this.selectedTones.size())));
-                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), NotificationsSoundActivity$1$$ExternalSyntheticLambda1.INSTANCE);
-                builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface, int i2) {
-                        NotificationsSoundActivity.AnonymousClass1.this.lambda$onItemClick$1(dialogInterface, i2);
+            if (i != -1) {
+                if (i == 1) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(NotificationsSoundActivity.this.getParentActivity(), NotificationsSoundActivity.this.resourcesProvider);
+                    builder.setTitle(LocaleController.formatPluralString("DeleteTones", NotificationsSoundActivity.this.selectedTones.size(), new Object[0]));
+                    builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatPluralString("DeleteTonesMessage", NotificationsSoundActivity.this.selectedTones.size(), new Object[0])));
+                    builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), NotificationsSoundActivity$1$$ExternalSyntheticLambda1.INSTANCE);
+                    builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
+                        @Override
+                        public final void onClick(DialogInterface dialogInterface, int i2) {
+                            NotificationsSoundActivity.AnonymousClass1.this.lambda$onItemClick$1(dialogInterface, i2);
+                        }
+                    });
+                    TextView textView = (TextView) builder.show().getButton(-1);
+                    if (textView != null) {
+                        textView.setTextColor(Theme.getColor("dialogTextRed2", NotificationsSoundActivity.this.resourcesProvider));
                     }
-                });
-                TextView textView = (TextView) builder.show().getButton(-1);
-                if (textView != null) {
-                    textView.setTextColor(Theme.getColor("dialogTextRed2"));
-                }
-            } else if (i == 2) {
-                if (NotificationsSoundActivity.this.selectedTones.size() == 1) {
-                    Intent intent = new Intent(this.val$context, LaunchActivity.class);
-                    intent.setAction("android.intent.action.SEND");
-                    Uri uriForShare = NotificationsSoundActivity.this.selectedTones.valueAt(0).getUriForShare(((BaseFragment) NotificationsSoundActivity.this).currentAccount);
-                    if (uriForShare != null) {
-                        intent.putExtra("android.intent.extra.STREAM", uriForShare);
-                        this.val$context.startActivity(intent);
-                    }
-                } else {
-                    Intent intent2 = new Intent(this.val$context, LaunchActivity.class);
-                    intent2.setAction("android.intent.action.SEND_MULTIPLE");
-                    ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
-                    for (int i2 = 0; i2 < NotificationsSoundActivity.this.selectedTones.size(); i2++) {
-                        Uri uriForShare2 = NotificationsSoundActivity.this.selectedTones.valueAt(i2).getUriForShare(((BaseFragment) NotificationsSoundActivity.this).currentAccount);
-                        if (uriForShare2 != null) {
-                            arrayList.add(uriForShare2);
+                } else if (i == 2) {
+                    if (NotificationsSoundActivity.this.selectedTones.size() == 1) {
+                        Intent intent = new Intent(this.val$context, LaunchActivity.class);
+                        intent.setAction("android.intent.action.SEND");
+                        Uri uriForShare = NotificationsSoundActivity.this.selectedTones.valueAt(0).getUriForShare(((BaseFragment) NotificationsSoundActivity.this).currentAccount);
+                        if (uriForShare != null) {
+                            intent.putExtra("android.intent.extra.STREAM", uriForShare);
+                            this.val$context.startActivity(intent);
+                        }
+                    } else {
+                        Intent intent2 = new Intent(this.val$context, LaunchActivity.class);
+                        intent2.setAction("android.intent.action.SEND_MULTIPLE");
+                        ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
+                        for (int i2 = 0; i2 < NotificationsSoundActivity.this.selectedTones.size(); i2++) {
+                            Uri uriForShare2 = NotificationsSoundActivity.this.selectedTones.valueAt(i2).getUriForShare(((BaseFragment) NotificationsSoundActivity.this).currentAccount);
+                            if (uriForShare2 != null) {
+                                arrayList.add(uriForShare2);
+                            }
+                        }
+                        if (!arrayList.isEmpty()) {
+                            intent2.putParcelableArrayListExtra("android.intent.extra.STREAM", arrayList);
+                            this.val$context.startActivity(intent2);
                         }
                     }
-                    if (!arrayList.isEmpty()) {
-                        intent2.putParcelableArrayListExtra("android.intent.extra.STREAM", arrayList);
-                        this.val$context.startActivity(intent2);
-                    }
+                    NotificationsSoundActivity.this.hideActionMode();
+                    NotificationsSoundActivity.this.updateRows();
+                    NotificationsSoundActivity.this.adapter.notifyDataSetChanged();
                 }
+            } else if (((BaseFragment) NotificationsSoundActivity.this).actionBar.isActionModeShowed()) {
                 NotificationsSoundActivity.this.hideActionMode();
-                NotificationsSoundActivity.this.updateRows();
-                NotificationsSoundActivity.this.adapter.notifyDataSetChanged();
+            } else {
+                NotificationsSoundActivity.this.finishFragment();
             }
         }
 
@@ -344,7 +353,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         }
     }
 
-    public void lambda$createView$1(android.content.Context r7, android.view.View r8, int r9) {
+    public void lambda$createView$1(android.content.Context r8, android.view.View r9, int r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsSoundActivity.lambda$createView$1(android.content.Context, android.view.View, int):void");
     }
 
@@ -563,20 +572,20 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             HeaderCell headerCell;
             Context context = viewGroup.getContext();
             if (i == 0) {
-                ToneCell toneCell = new ToneCell(context);
-                toneCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                ToneCell toneCell = new ToneCell(context, NotificationsSoundActivity.this.resourcesProvider);
+                toneCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite", NotificationsSoundActivity.this.resourcesProvider));
                 headerCell = toneCell;
             } else if (i == 2) {
-                CreationTextCell creationTextCell = new CreationTextCell(context);
+                CreationTextCell creationTextCell = new CreationTextCell(context, NotificationsSoundActivity.this.resourcesProvider);
                 creationTextCell.startPadding = 61;
-                creationTextCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                creationTextCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite", NotificationsSoundActivity.this.resourcesProvider));
                 headerCell = creationTextCell;
             } else if (i != 3) {
-                HeaderCell headerCell2 = new HeaderCell(context);
-                headerCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                HeaderCell headerCell2 = new HeaderCell(context, NotificationsSoundActivity.this.resourcesProvider);
+                headerCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite", NotificationsSoundActivity.this.resourcesProvider));
                 headerCell = headerCell2;
             } else {
-                headerCell = new ShadowSectionCell(context);
+                headerCell = new ShadowSectionCell(context, NotificationsSoundActivity.this.resourcesProvider);
             }
             headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             return new RecyclerListView.Holder(headerCell);
@@ -625,8 +634,8 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 CreationTextCell creationTextCell = (CreationTextCell) viewHolder.itemView;
                 Drawable drawable = creationTextCell.getContext().getResources().getDrawable(R.drawable.poll_add_circle);
                 Drawable drawable2 = creationTextCell.getContext().getResources().getDrawable(R.drawable.poll_add_plus);
-                drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("switchTrackChecked"), PorterDuff.Mode.MULTIPLY));
-                drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("checkboxCheck"), PorterDuff.Mode.MULTIPLY));
+                drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("switchTrackChecked", NotificationsSoundActivity.this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+                drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("checkboxCheck", NotificationsSoundActivity.this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
                 creationTextCell.setTextAndIcon(LocaleController.getString("UploadSound", R.string.UploadSound), new CombinedDrawable(drawable, drawable2), false);
             }
         }
@@ -667,17 +676,17 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         private TextView textView;
         Tone tone;
 
-        public ToneCell(Context context) {
+        public ToneCell(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             RadioButton radioButton = new RadioButton(context);
             this.radioButton = radioButton;
             radioButton.setSize(AndroidUtilities.dp(20.0f));
-            this.radioButton.setColor(Theme.getColor("radioBackground"), Theme.getColor("radioBackgroundChecked"));
+            this.radioButton.setColor(Theme.getColor("radioBackground", resourcesProvider), Theme.getColor("radioBackgroundChecked", resourcesProvider));
             RadioButton radioButton2 = this.radioButton;
             boolean z = LocaleController.isRTL;
             int i = 5;
             addView(radioButton2, LayoutHelper.createFrame(22, 22.0f, (z ? 5 : 3) | 16, z ? 0 : 20, 0.0f, !z ? 0 : 20, 0.0f));
-            CheckBox2 checkBox2 = new CheckBox2(context, 24);
+            CheckBox2 checkBox2 = new CheckBox2(context, 24, resourcesProvider);
             this.checkBox = checkBox2;
             checkBox2.setColor(null, "windowBackgroundWhite", "checkboxCheck");
             this.checkBox.setDrawUnchecked(false);
@@ -688,7 +697,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             this.checkBox.setChecked(true, false);
             TextView textView = new TextView(context);
             this.textView = textView;
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
             this.textView.setTextSize(1, 16.0f);
             this.textView.setLines(1);
             this.textView.setMaxLines(1);
@@ -738,6 +747,11 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     public void onPause() {
         super.onPause();
         getNotificationCenter().removeObserver(this, NotificationCenter.onUserRingtonesUpdated);
+    }
+
+    @Override
+    public int getNavigationBarColor() {
+        return getThemedColor("windowBackgroundGray");
     }
 
     @Override

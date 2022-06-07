@@ -10,6 +10,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -340,6 +341,32 @@ public class SessionBottomSheet extends BottomSheet {
             super.dispatchDraw(canvas);
             if (this.needDivider) {
                 canvas.drawRect(AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
+            }
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            String str;
+            int i;
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            if (this.switchView != null) {
+                accessibilityNodeInfo.setClassName("android.widget.Switch");
+                accessibilityNodeInfo.setCheckable(true);
+                accessibilityNodeInfo.setChecked(this.switchView.isChecked());
+                StringBuilder sb = new StringBuilder();
+                sb.append((Object) this.valueText.getText());
+                sb.append("\n");
+                sb.append((Object) this.descriptionText.getText());
+                sb.append("\n");
+                if (this.switchView.isChecked()) {
+                    i = R.string.NotificationsOn;
+                    str = "NotificationsOn";
+                } else {
+                    i = R.string.NotificationsOff;
+                    str = "NotificationsOff";
+                }
+                sb.append(LocaleController.getString(str, i));
+                accessibilityNodeInfo.setText(sb.toString());
             }
         }
     }

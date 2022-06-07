@@ -887,7 +887,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     overviewCell.setData(StatisticActivity.this.overviewChannelData);
                 }
             } else if (itemViewType == 15) {
-                ((ManageChatTextCell) viewHolder.itemView).setText(LocaleController.formatPluralString("ShowVotes", StatisticActivity.this.topMembersAll.size() - StatisticActivity.this.topMembersVisible.size()), null, R.drawable.arrow_more, false);
+                ((ManageChatTextCell) viewHolder.itemView).setText(LocaleController.formatPluralString("ShowVotes", StatisticActivity.this.topMembersAll.size() - StatisticActivity.this.topMembersVisible.size(), new Object[0]), null, R.drawable.arrow_more, false);
             }
         }
 
@@ -2810,13 +2810,13 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             StringBuilder sb = new StringBuilder();
             int i = tLRPC$TL_statsGroupTopPoster.messages;
             if (i > 0) {
-                sb.append(LocaleController.formatPluralString("messages", i));
+                sb.append(LocaleController.formatPluralString("messages", i, new Object[0]));
             }
             if (tLRPC$TL_statsGroupTopPoster.avg_chars > 0) {
                 if (sb.length() > 0) {
                     sb.append(", ");
                 }
-                sb.append(LocaleController.formatString("CharactersPerMessage", R.string.CharactersPerMessage, LocaleController.formatPluralString("Characters", tLRPC$TL_statsGroupTopPoster.avg_chars)));
+                sb.append(LocaleController.formatString("CharactersPerMessage", R.string.CharactersPerMessage, LocaleController.formatPluralString("Characters", tLRPC$TL_statsGroupTopPoster.avg_chars, new Object[0])));
             }
             memberData.description = sb.toString();
             return memberData;
@@ -2830,19 +2830,19 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             StringBuilder sb = new StringBuilder();
             int i = tLRPC$TL_statsGroupTopAdmin.deleted;
             if (i > 0) {
-                sb.append(LocaleController.formatPluralString("Deletions", i));
+                sb.append(LocaleController.formatPluralString("Deletions", i, new Object[0]));
             }
             if (tLRPC$TL_statsGroupTopAdmin.banned > 0) {
                 if (sb.length() > 0) {
                     sb.append(", ");
                 }
-                sb.append(LocaleController.formatPluralString("Bans", tLRPC$TL_statsGroupTopAdmin.banned));
+                sb.append(LocaleController.formatPluralString("Bans", tLRPC$TL_statsGroupTopAdmin.banned, new Object[0]));
             }
             if (tLRPC$TL_statsGroupTopAdmin.kicked > 0) {
                 if (sb.length() > 0) {
                     sb.append(", ");
                 }
-                sb.append(LocaleController.formatPluralString("Restrictions", tLRPC$TL_statsGroupTopAdmin.kicked));
+                sb.append(LocaleController.formatPluralString("Restrictions", tLRPC$TL_statsGroupTopAdmin.kicked, new Object[0]));
             }
             memberData.description = sb.toString();
             return memberData;
@@ -2855,7 +2855,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             memberData.user = find(j, arrayList);
             int i = tLRPC$TL_statsGroupTopInviter.invitations;
             if (i > 0) {
-                memberData.description = LocaleController.formatPluralString("Invitations", i);
+                memberData.description = LocaleController.formatPluralString("Invitations", i, new Object[0]);
             } else {
                 memberData.description = "";
             }

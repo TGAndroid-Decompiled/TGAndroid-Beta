@@ -1151,17 +1151,17 @@ public class ManageLinksActivity extends BaseFragment {
                 } else {
                     int i5 = tLRPC$TL_chatInviteExported.usage_limit;
                     if (i5 > 0 && i4 == 0 && !tLRPC$TL_chatInviteExported.expired && !tLRPC$TL_chatInviteExported.revoked) {
-                        str = LocaleController.formatPluralString("CanJoin", i5);
+                        str = LocaleController.formatPluralString("CanJoin", i5, new Object[0]);
                     } else if (i5 <= 0 || !tLRPC$TL_chatInviteExported.expired || !tLRPC$TL_chatInviteExported.revoked) {
-                        str = i4 > 0 ? LocaleController.formatPluralString("PeopleJoined", i4) : "";
+                        str = i4 > 0 ? LocaleController.formatPluralString("PeopleJoined", i4, new Object[0]) : "";
                         if (tLRPC$TL_chatInviteExported.requested > 0) {
                             if (tLRPC$TL_chatInviteExported.usage > 0) {
                                 str = str + ", ";
                             }
-                            str = str + LocaleController.formatPluralString("JoinRequests", tLRPC$TL_chatInviteExported.requested);
+                            str = str + LocaleController.formatPluralString("JoinRequests", tLRPC$TL_chatInviteExported.requested, new Object[0]);
                         }
                     } else {
-                        str = LocaleController.formatPluralString("PeopleJoined", tLRPC$TL_chatInviteExported.usage) + ", " + LocaleController.formatPluralString("PeopleJoinedRemaining", tLRPC$TL_chatInviteExported.usage_limit - tLRPC$TL_chatInviteExported.usage);
+                        str = LocaleController.formatPluralString("PeopleJoined", tLRPC$TL_chatInviteExported.usage, new Object[0]) + ", " + LocaleController.formatPluralString("PeopleJoinedRemaining", tLRPC$TL_chatInviteExported.usage_limit - tLRPC$TL_chatInviteExported.usage, new Object[0]);
                     }
                 }
                 if (tLRPC$TL_chatInviteExported.permanent && !tLRPC$TL_chatInviteExported.revoked) {
@@ -1203,7 +1203,7 @@ public class ManageLinksActivity extends BaseFragment {
                         currentTimeMillis = 0;
                     }
                     if (currentTimeMillis > 86400000) {
-                        spannableStringBuilder4.append((CharSequence) LocaleController.formatPluralString("DaysLeft", (int) (currentTimeMillis / 86400000)));
+                        spannableStringBuilder4.append((CharSequence) LocaleController.formatPluralString("DaysLeft", (int) (currentTimeMillis / 86400000), new Object[0]));
                     } else {
                         long j = currentTimeMillis / 1000;
                         int i6 = (int) (j % 60);

@@ -292,7 +292,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             @Override
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendPhotos", PhotoAlbumPickerActivity.this.selectedPhotos.size()));
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendPhotos", PhotoAlbumPickerActivity.this.selectedPhotos.size(), new Object[0]));
                 accessibilityNodeInfo.setClassName(Button.class.getName());
                 accessibilityNodeInfo.setLongClickable(true);
                 accessibilityNodeInfo.setClickable(true);
@@ -443,7 +443,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                         PhotoAlbumPickerActivity.this.lambda$createView$4(keyEvent);
                     }
                 });
-                this.sendPopupLayout.setShownFromBotton(false);
+                this.sendPopupLayout.setShownFromBottom(false);
                 this.itemCells = new ActionBarMenuSubItem[2];
                 final int i = 0;
                 while (i < 2) {

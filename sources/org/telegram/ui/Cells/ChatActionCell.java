@@ -6,18 +6,24 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.os.Build;
 import android.text.Layout;
 import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.style.CharacterStyle;
+import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
@@ -31,6 +37,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.browser.Browser;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Photo;
@@ -43,11 +51,13 @@ import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
+import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.PhotoViewer;
 
 public class ChatActionCell extends BaseCell implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
     private int TAG;
+    private SpannableStringBuilder accessibilityText;
     private AvatarDrawable avatarDrawable;
     private int backgroundHeight;
     private Path backgroundPath;
@@ -194,6 +204,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             CharSequence charSequence = this.customText;
             if (charSequence == null || !TextUtils.equals(str, charSequence)) {
                 this.customText = str;
+                this.accessibilityText = null;
                 updateTextInternal(z2);
             }
         }
@@ -232,13 +243,18 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
     public void setMessageObject(MessageObject messageObject) {
         TLRPC$PhotoSize tLRPC$PhotoSize;
+        AtomicReference<WeakReference<View>> atomicReference;
         StaticLayout staticLayout;
         if (this.currentMessageObject != messageObject || (((staticLayout = this.textLayout) != null && !TextUtils.equals(staticLayout.getText(), messageObject.messageText)) || (!this.hasReplyMessage && messageObject.replyMessageObject != null))) {
+            TLRPC$VideoSize tLRPC$VideoSize = null;
+            this.accessibilityText = null;
             this.currentMessageObject = messageObject;
+            if (!(messageObject == null || (atomicReference = messageObject.viewRef) == null || (atomicReference.get() != null && this.currentMessageObject.viewRef.get().get() == this))) {
+                this.currentMessageObject.viewRef.set(new WeakReference<>(this));
+            }
             this.hasReplyMessage = messageObject.replyMessageObject != null;
             DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
             this.previousWidth = 0;
-            TLRPC$VideoSize tLRPC$VideoSize = null;
             if (this.currentMessageObject.type == 11) {
                 this.avatarDrawable.setInfo(messageObject.getDialogId(), null, null);
                 MessageObject messageObject2 = this.currentMessageObject;
@@ -271,9 +287,9 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                             }
                         }
                         if (tLRPC$VideoSize != null) {
-                            this.imageReceiver.setImage(ImageLocation.getForPhoto(tLRPC$VideoSize, tLRPC$Photo), ImageLoader.AUTOPLAY_FILTER, ImageLocation.getForObject(tLRPC$PhotoSize, this.currentMessageObject.photoThumbsObject), "50_50_b", this.avatarDrawable, 0, null, this.currentMessageObject, 1);
+                            this.imageReceiver.setImage(ImageLocation.getForPhoto(tLRPC$VideoSize, tLRPC$Photo), ImageLoader.AUTOPLAY_FILTER, ImageLocation.getForObject(tLRPC$PhotoSize, this.currentMessageObject.photoThumbsObject), "50_50_b", this.avatarDrawable, 0L, null, this.currentMessageObject, 1);
                         } else {
-                            this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize, this.currentMessageObject.photoThumbsObject), "150_150", ImageLocation.getForObject(tLRPC$PhotoSize, this.currentMessageObject.photoThumbsObject), "50_50_b", this.avatarDrawable, 0, null, this.currentMessageObject, 1);
+                            this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize, this.currentMessageObject.photoThumbsObject), "150_150", ImageLocation.getForObject(tLRPC$PhotoSize, this.currentMessageObject.photoThumbsObject), "50_50_b", this.avatarDrawable, 0L, null, this.currentMessageObject, 1);
                         }
                     } else {
                         this.imageReceiver.setImageBitmap(this.avatarDrawable);
@@ -327,6 +343,30 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     @Override
     public boolean onTouchEvent(android.view.MotionEvent r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    public void openLink(CharacterStyle characterStyle) {
+        if (this.delegate != null && (characterStyle instanceof URLSpan)) {
+            String url = ((URLSpan) characterStyle).getURL();
+            if (url.startsWith("invite")) {
+                URLSpan uRLSpan = this.pressedLink;
+                if (uRLSpan instanceof URLSpanNoUnderline) {
+                    TLObject object = ((URLSpanNoUnderline) uRLSpan).getObject();
+                    if (object instanceof TLRPC$TL_chatInviteExported) {
+                        this.delegate.needOpenInviteLink((TLRPC$TL_chatInviteExported) object);
+                        return;
+                    }
+                    return;
+                }
+            }
+            if (url.startsWith("game")) {
+                this.delegate.didPressReplyMessage(this, this.currentMessageObject.getReplyMsgId());
+            } else if (url.startsWith("http")) {
+                Browser.openUrl(getContext(), url);
+            } else {
+                this.delegate.needOpenUserProfile(Long.parseLong(url));
+            }
+        }
     }
 
     private void createLayout(CharSequence charSequence, int i) {
@@ -686,7 +726,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 }
                 i++;
             }
-            this.imageReceiver.setImage(this.currentVideoLocation, ImageLoader.AUTOPLAY_FILTER, ImageLocation.getForObject(tLRPC$PhotoSize, this.currentMessageObject.photoThumbsObject), "50_50_b", this.avatarDrawable, 0, null, this.currentMessageObject, 1);
+            this.imageReceiver.setImage(this.currentVideoLocation, ImageLoader.AUTOPLAY_FILTER, ImageLocation.getForObject(tLRPC$PhotoSize, this.currentMessageObject.photoThumbsObject), "50_50_b", this.avatarDrawable, 0L, null, this.currentMessageObject, 1);
             DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
         }
     }
@@ -698,9 +738,35 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        CharacterStyle[] characterStyleArr;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (!TextUtils.isEmpty(this.customText) || this.currentMessageObject != null) {
-            accessibilityNodeInfo.setText(!TextUtils.isEmpty(this.customText) ? this.customText : this.currentMessageObject.messageText);
+            if (this.accessibilityText == null) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(!TextUtils.isEmpty(this.customText) ? this.customText : this.currentMessageObject.messageText);
+                for (final CharacterStyle characterStyle : (CharacterStyle[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), ClickableSpan.class)) {
+                    int spanStart = spannableStringBuilder.getSpanStart(characterStyle);
+                    int spanEnd = spannableStringBuilder.getSpanEnd(characterStyle);
+                    spannableStringBuilder.removeSpan(characterStyle);
+                    spannableStringBuilder.setSpan(new ClickableSpan() {
+                        {
+                            ChatActionCell.this = this;
+                        }
+
+                        @Override
+                        public void onClick(View view) {
+                            if (ChatActionCell.this.delegate != null) {
+                                ChatActionCell.this.openLink(characterStyle);
+                            }
+                        }
+                    }, spanStart, spanEnd, 33);
+                }
+                this.accessibilityText = spannableStringBuilder;
+            }
+            if (Build.VERSION.SDK_INT < 24) {
+                accessibilityNodeInfo.setContentDescription(this.accessibilityText.toString());
+            } else {
+                accessibilityNodeInfo.setText(this.accessibilityText);
+            }
             accessibilityNodeInfo.setEnabled(true);
         }
     }

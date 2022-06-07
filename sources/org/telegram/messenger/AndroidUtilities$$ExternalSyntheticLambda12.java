@@ -8,8 +8,8 @@ public final class AndroidUtilities$$ExternalSyntheticLambda12 implements Generi
 
     @Override
     public final Object provide(Object obj) {
-        String lambda$formatSpannableSimple$7;
-        lambda$formatSpannableSimple$7 = AndroidUtilities.lambda$formatSpannableSimple$7((Integer) obj);
-        return lambda$formatSpannableSimple$7;
+        String lambda$formatSpannable$8;
+        lambda$formatSpannable$8 = AndroidUtilities.lambda$formatSpannable$8((Integer) obj);
+        return lambda$formatSpannable$8;
     }
 }

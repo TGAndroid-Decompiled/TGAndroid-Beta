@@ -21,6 +21,7 @@ public class TLRPC$TL_config extends TLObject {
     public int edit_time_limit;
     public int expires;
     public int flags;
+    public boolean force_try_ipv6;
     public int forwarded_count_max;
     public String gif_search_username;
     public boolean ignore_phone_entities;
@@ -80,6 +81,7 @@ public class TLRPC$TL_config extends TLObject {
         this.revoke_pm_inbox = (readInt32 & 64) != 0;
         this.blocked_mode = (readInt32 & 256) != 0;
         this.pfs_enabled = (readInt32 & 8192) != 0;
+        this.force_try_ipv6 = (readInt32 & 16384) != 0;
         this.date = abstractSerializedData.readInt32(z);
         this.expires = abstractSerializedData.readInt32(z);
         this.test_mode = abstractSerializedData.readBool(z);
@@ -174,7 +176,9 @@ public class TLRPC$TL_config extends TLObject {
         this.flags = i6;
         int i7 = this.pfs_enabled ? i6 | 8192 : i6 & (-8193);
         this.flags = i7;
-        abstractSerializedData.writeInt32(i7);
+        int i8 = this.force_try_ipv6 ? i7 | 16384 : i7 & (-16385);
+        this.flags = i8;
+        abstractSerializedData.writeInt32(i8);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeInt32(this.expires);
         abstractSerializedData.writeBool(this.test_mode);
@@ -182,8 +186,8 @@ public class TLRPC$TL_config extends TLObject {
         abstractSerializedData.writeInt32(481674261);
         int size = this.dc_options.size();
         abstractSerializedData.writeInt32(size);
-        for (int i8 = 0; i8 < size; i8++) {
-            this.dc_options.get(i8).serializeToStream(abstractSerializedData);
+        for (int i9 = 0; i9 < size; i9++) {
+            this.dc_options.get(i9).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeString(this.dc_txt_domain_name);
         abstractSerializedData.writeInt32(this.chat_size_max);

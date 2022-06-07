@@ -266,21 +266,21 @@ public class LocaleController {
                     localeInfo.shortName = split[2].toLowerCase();
                     localeInfo.pathToFile = split[3];
                     if (split.length >= 5) {
-                        localeInfo.version = Utilities.parseInt(split[4]).intValue();
+                        localeInfo.version = Utilities.parseInt((CharSequence) split[4]).intValue();
                     }
                     localeInfo.baseLangCode = split.length >= 6 ? split[5] : "";
                     localeInfo.pluralLangCode = split.length >= 7 ? split[6] : localeInfo.shortName;
                     if (split.length >= 8) {
-                        if (Utilities.parseInt(split[7]).intValue() == 1) {
+                        if (Utilities.parseInt((CharSequence) split[7]).intValue() == 1) {
                             z = true;
                         }
                         localeInfo.isRtl = z;
                     }
                     if (split.length >= 9) {
-                        localeInfo.baseVersion = Utilities.parseInt(split[8]).intValue();
+                        localeInfo.baseVersion = Utilities.parseInt((CharSequence) split[8]).intValue();
                     }
                     if (split.length >= 10) {
-                        localeInfo.serverIndex = Utilities.parseInt(split[9]).intValue();
+                        localeInfo.serverIndex = Utilities.parseInt((CharSequence) split[9]).intValue();
                     } else {
                         localeInfo.serverIndex = ConnectionsManager.DEFAULT_DATACENTER_ID;
                     }
@@ -1261,12 +1261,16 @@ public class LocaleController {
         return getString(str2, str + "_other", ApplicationLoader.applicationContext.getResources().getIdentifier(str2, "string", ApplicationLoader.applicationContext.getPackageName()));
     }
 
-    public static String formatPluralString(String str, int i) {
+    public static String formatPluralString(String str, int i, Object... objArr) {
         if (str == null || str.length() == 0 || getInstance().currentPluralRules == null) {
             return "LOC_ERR:" + str;
         }
         String str2 = str + "_" + getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForNumber(i));
-        return formatString(str2, str + "_other", ApplicationLoader.applicationContext.getResources().getIdentifier(str2, "string", ApplicationLoader.applicationContext.getPackageName()), Integer.valueOf(i));
+        int identifier = ApplicationLoader.applicationContext.getResources().getIdentifier(str2, "string", ApplicationLoader.applicationContext.getPackageName());
+        Object[] objArr2 = new Object[objArr.length + 1];
+        objArr2[0] = Integer.valueOf(i);
+        System.arraycopy(objArr, 0, objArr2, 1, objArr.length);
+        return formatString(str2, str + "_other", identifier, objArr2);
     }
 
     public static String formatPluralStringComma(String str, int i) {
@@ -1339,22 +1343,22 @@ public class LocaleController {
 
     public static String formatTTLString(int i) {
         if (i < 60) {
-            return formatPluralString("Seconds", i);
+            return formatPluralString("Seconds", i, new Object[0]);
         }
         if (i < 3600) {
-            return formatPluralString("Minutes", i / 60);
+            return formatPluralString("Minutes", i / 60, new Object[0]);
         }
         if (i < 86400) {
-            return formatPluralString("Hours", (i / 60) / 60);
+            return formatPluralString("Hours", (i / 60) / 60, new Object[0]);
         }
         if (i < 604800) {
-            return formatPluralString("Days", ((i / 60) / 60) / 24);
+            return formatPluralString("Days", ((i / 60) / 60) / 24, new Object[0]);
         }
         if (i >= 2678400) {
-            return formatPluralString("Months", (((i / 60) / 60) / 24) / 30);
+            return formatPluralString("Months", (((i / 60) / 60) / 24) / 30, new Object[0]);
         }
         int i2 = ((i / 60) / 60) / 24;
-        return i % 7 == 0 ? formatPluralString("Weeks", i2 / 7) : String.format("%s %s", formatPluralString("Weeks", i2 / 7), formatPluralString("Days", i2 % 7));
+        return i % 7 == 0 ? formatPluralString("Weeks", i2 / 7, new Object[0]) : String.format("%s %s", formatPluralString("Weeks", i2 / 7, new Object[0]), formatPluralString("Days", i2 % 7, new Object[0]));
     }
 
     public static String fixNumbers(CharSequence charSequence) {
@@ -2169,42 +2173,42 @@ public class LocaleController {
 
     public static String formatDuration(int i) {
         if (i <= 0) {
-            return formatPluralString("Seconds", 0);
+            return formatPluralString("Seconds", 0, new Object[0]);
         }
         int i2 = i / 3600;
         int i3 = (i / 60) % 60;
         int i4 = i % 60;
         StringBuilder sb = new StringBuilder();
         if (i2 > 0) {
-            sb.append(formatPluralString("Hours", i2));
+            sb.append(formatPluralString("Hours", i2, new Object[0]));
         }
         if (i3 > 0) {
             if (sb.length() > 0) {
                 sb.append(' ');
             }
-            sb.append(formatPluralString("Minutes", i3));
+            sb.append(formatPluralString("Minutes", i3, new Object[0]));
         }
         if (i4 > 0) {
             if (sb.length() > 0) {
                 sb.append(' ');
             }
-            sb.append(formatPluralString("Seconds", i4));
+            sb.append(formatPluralString("Seconds", i4, new Object[0]));
         }
         return sb.toString();
     }
 
     public static String formatCallDuration(int i) {
         if (i > 3600) {
-            String formatPluralString = formatPluralString("Hours", i / 3600);
+            String formatPluralString = formatPluralString("Hours", i / 3600, new Object[0]);
             int i2 = (i % 3600) / 60;
             if (i2 <= 0) {
                 return formatPluralString;
             }
-            return formatPluralString + ", " + formatPluralString("Minutes", i2);
+            return formatPluralString + ", " + formatPluralString("Minutes", i2, new Object[0]);
         } else if (i > 60) {
-            return formatPluralString("Minutes", i / 60);
+            return formatPluralString("Minutes", i / 60, new Object[0]);
         } else {
-            return formatPluralString("Seconds", i);
+            return formatPluralString("Seconds", i, new Object[0]);
         }
     }
 
@@ -2356,7 +2360,7 @@ public class LocaleController {
                 if (currentTime < 1) {
                     return getString("LocationUpdatedJustNow", R.string.LocationUpdatedJustNow);
                 }
-                return currentTime < 60 ? formatPluralString("UpdatedMinutes", currentTime) : formatString("LocationUpdatedFormatted", R.string.LocationUpdatedFormatted, formatString("TodayAtFormatted", R.string.TodayAtFormatted, getInstance().formatterDay.format(new Date(j2))));
+                return currentTime < 60 ? formatPluralString("UpdatedMinutes", currentTime, new Object[0]) : formatString("LocationUpdatedFormatted", R.string.LocationUpdatedFormatted, formatString("TodayAtFormatted", R.string.TodayAtFormatted, getInstance().formatterDay.format(new Date(j2))));
             } else if (i3 + 1 == i && i2 == i4) {
                 return formatString("LocationUpdatedFormatted", R.string.LocationUpdatedFormatted, formatString("YesterdayAtFormatted", R.string.YesterdayAtFormatted, getInstance().formatterDay.format(new Date(j2))));
             } else {
@@ -3004,7 +3008,7 @@ public class LocaleController {
                 return;
             }
             if (localeInfo.version == 0 || z) {
-                for (int i2 = 0; i2 < 3; i2++) {
+                for (int i2 = 0; i2 < 4; i2++) {
                     ConnectionsManager.setLangCode(localeInfo.getLangCode());
                 }
                 TLRPC$TL_langpack_getLangPack tLRPC$TL_langpack_getLangPack2 = new TLRPC$TL_langpack_getLangPack();

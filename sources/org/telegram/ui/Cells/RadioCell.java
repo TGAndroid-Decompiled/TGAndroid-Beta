@@ -20,20 +20,30 @@ import org.telegram.ui.Components.RadioButton;
 public class RadioCell extends FrameLayout {
     private boolean needDivider;
     private RadioButton radioButton;
+    private Theme.ResourcesProvider resourcesProvider;
     private TextView textView;
 
     public RadioCell(Context context) {
         this(context, false, 21);
     }
 
+    public RadioCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+        this(context, false, 21, resourcesProvider);
+    }
+
     public RadioCell(Context context, boolean z, int i) {
+        this(context, z, i, null);
+    }
+
+    public RadioCell(Context context, boolean z, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         TextView textView = new TextView(context);
         this.textView = textView;
         if (z) {
-            textView.setTextColor(Theme.getColor("dialogTextBlack"));
+            textView.setTextColor(Theme.getColor("dialogTextBlack", resourcesProvider));
         } else {
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
         }
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
@@ -48,9 +58,9 @@ public class RadioCell extends FrameLayout {
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
         if (z) {
-            this.radioButton.setColor(Theme.getColor("dialogRadioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
+            this.radioButton.setColor(Theme.getColor("dialogRadioBackground", resourcesProvider), Theme.getColor("dialogRadioBackgroundChecked", resourcesProvider));
         } else {
-            this.radioButton.setColor(Theme.getColor("radioBackground"), Theme.getColor("radioBackgroundChecked"));
+            this.radioButton.setColor(Theme.getColor("radioBackground", resourcesProvider), Theme.getColor("radioBackgroundChecked", resourcesProvider));
         }
         RadioButton radioButton2 = this.radioButton;
         boolean z2 = LocaleController.isRTL;

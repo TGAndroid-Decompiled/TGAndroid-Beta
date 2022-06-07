@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLRPC$TL_updatePendingJoinRequests;
 import org.telegram.tgnet.TLRPC$User;
 
 public class MemberRequestsController extends BaseController {
-    private static final MemberRequestsController[] instances = new MemberRequestsController[3];
+    private static final MemberRequestsController[] instances = new MemberRequestsController[4];
     private final LongSparseArray<TLRPC$TL_messages_chatInviteImporters> firstImportersCache = new LongSparseArray<>();
 
     public static MemberRequestsController getInstance(int i) {

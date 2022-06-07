@@ -217,7 +217,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                     } else {
                         obj2 = "avatar_" + this.delegate.getAvatarsDialogId();
                     }
-                    freeReceiver.setImage(null, null, imageLocation, "80_80", 0, null, obj2, 1);
+                    freeReceiver.setImage(null, null, imageLocation, "80_80", 0L, null, obj2, 1);
                     freeReceiver.setParam(i3);
                     i3++;
                 }
@@ -239,7 +239,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                     } else {
                         obj = "avatar_" + this.delegate.getAvatarsDialogId();
                     }
-                    freeReceiver2.setImage(null, null, imageLocation2, "80_80", 0, null, obj, 1);
+                    freeReceiver2.setImage(null, null, imageLocation2, "80_80", 0L, null, obj, 1);
                     freeReceiver2.setParam(i2);
                     i2--;
                 }

@@ -69,7 +69,7 @@ public final class BulletinFactory {
 
         public String getText(int i) {
             if (this.plural) {
-                return LocaleController.formatPluralString(this.localeKey, i);
+                return LocaleController.formatPluralString(this.localeKey, i, new Object[0]);
             }
             return LocaleController.getString(this.localeKey, this.localeRes);
         }
@@ -178,6 +178,10 @@ public final class BulletinFactory {
     }
 
     public Bulletin createCopyBulletin(String str) {
+        return createCopyBulletin(str, null);
+    }
+
+    public Bulletin createCopyBulletin(String str, Theme.ResourcesProvider resourcesProvider) {
         if (!AndroidUtilities.shouldShowClipboardToast()) {
             return new Bulletin.EmptyBulletin();
         }
@@ -204,6 +208,16 @@ public final class BulletinFactory {
         return create(lottieLayout, 1500);
     }
 
+    public Bulletin createCopyLinkBulletin(String str, Theme.ResourcesProvider resourcesProvider) {
+        if (!AndroidUtilities.shouldShowClipboardToast()) {
+            return new Bulletin.EmptyBulletin();
+        }
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), resourcesProvider);
+        lottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
+        lottieLayout.textView.setText(str);
+        return create(lottieLayout, 1500);
+    }
+
     private Bulletin create(Bulletin.Layout layout, int i) {
         BaseFragment baseFragment = this.fragment;
         if (baseFragment != null) {
@@ -221,7 +235,7 @@ public final class BulletinFactory {
         return createMuteBulletin(baseFragment, i, 0, null);
     }
 
-    public static org.telegram.ui.Components.Bulletin createMuteBulletin(org.telegram.ui.ActionBar.BaseFragment r9, int r10, int r11, org.telegram.ui.ActionBar.Theme.ResourcesProvider r12) {
+    public static org.telegram.ui.Components.Bulletin createMuteBulletin(org.telegram.ui.ActionBar.BaseFragment r10, int r11, int r12, org.telegram.ui.ActionBar.Theme.ResourcesProvider r13) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BulletinFactory.createMuteBulletin(org.telegram.ui.ActionBar.BaseFragment, int, int, org.telegram.ui.ActionBar.Theme$ResourcesProvider):org.telegram.ui.Components.Bulletin");
     }
 
@@ -241,7 +255,7 @@ public final class BulletinFactory {
             } else {
                 Bulletin.LottieLayout lottieLayout2 = new Bulletin.LottieLayout(baseFragment.getParentActivity(), resourcesProvider);
                 lottieLayout2.setAnimation(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                lottieLayout2.textView.setText(LocaleController.formatPluralString("MessagesUnpinned", i));
+                lottieLayout2.textView.setText(LocaleController.formatPluralString("MessagesUnpinned", i, new Object[0]));
                 lottieLayout = lottieLayout2;
             }
             lottieLayout.setButton(new Bulletin.UndoButton(baseFragment.getParentActivity(), true, resourcesProvider).setUndoAction(runnable).setDelayedAction(runnable2));
@@ -263,14 +277,14 @@ public final class BulletinFactory {
     }
 
     public static Bulletin createPromoteToAdminBulletin(BaseFragment baseFragment, String str) {
-        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), null);
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
         lottieLayout.setAnimation(R.raw.ic_admin, "Shield");
         lottieLayout.textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("UserSetAsAdminHint", R.string.UserSetAsAdminHint, str)));
         return Bulletin.make(baseFragment, lottieLayout, 1500);
     }
 
     public static Bulletin createAddedAsAdminBulletin(BaseFragment baseFragment, String str) {
-        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), null);
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
         lottieLayout.setAnimation(R.raw.ic_admin, "Shield");
         lottieLayout.textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("UserAddedAsAdminHint", R.string.UserAddedAsAdminHint, str)));
         return Bulletin.make(baseFragment, lottieLayout, 1500);
@@ -282,7 +296,7 @@ public final class BulletinFactory {
 
     public static Bulletin createRemoveFromChatBulletin(BaseFragment baseFragment, TLRPC$User tLRPC$User, String str) {
         String str2;
-        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), null);
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
         lottieLayout.setAnimation(R.raw.ic_ban, "Hand");
         if (tLRPC$User.deleted) {
             str2 = LocaleController.formatString("HiddenName", R.string.HiddenName, new Object[0]);
@@ -295,7 +309,7 @@ public final class BulletinFactory {
 
     public static Bulletin createBanBulletin(BaseFragment baseFragment, boolean z) {
         String str;
-        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), null);
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
         if (z) {
             lottieLayout.setAnimation(R.raw.ic_ban, "Hand");
             str = LocaleController.getString("UserBlocked", R.string.UserBlocked);

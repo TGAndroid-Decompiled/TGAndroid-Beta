@@ -152,7 +152,7 @@ public class NotificationsController extends BaseController {
             checkOtherNotificationsChannel();
         }
         audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
-        Instance = new NotificationsController[3];
+        Instance = new NotificationsController[4];
     }
 
     public static NotificationsController getInstance(int i) {
@@ -1182,7 +1182,7 @@ public class NotificationsController extends BaseController {
         int i;
         int i2;
         int i3 = 0;
-        for (int i4 = 0; i4 < 3; i4++) {
+        for (int i4 = 0; i4 < 4; i4++) {
             if (UserConfig.getInstance(i4).isClientActivated()) {
                 NotificationsController notificationsController = getInstance(i4);
                 if (notificationsController.showBadgeNumber) {
@@ -2108,25 +2108,23 @@ public class NotificationsController extends BaseController {
     }
 
     public void muteDialog(long j, boolean z) {
+        if (z) {
+            getInstance(this.currentAccount).muteUntil(j, ConnectionsManager.DEFAULT_DATACENTER_ID);
+            return;
+        }
+        boolean isGlobalNotificationsEnabled = getInstance(this.currentAccount).isGlobalNotificationsEnabled(j);
         SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
-        if (getInstance(this.currentAccount).isGlobalNotificationsEnabled(j) != z) {
+        if (isGlobalNotificationsEnabled) {
             edit.remove("notify2_" + j);
-            if (z) {
-                edit.remove("custom_" + j);
-            }
         } else {
             edit.putInt("notify2_" + j, 0);
         }
-        if (z) {
-            getInstance(this.currentAccount).muteUntil(j, ConnectionsManager.DEFAULT_DATACENTER_ID);
-        } else {
-            getMessagesStorage().setDialogFlags(j, 0L);
-            TLRPC$Dialog tLRPC$Dialog = getMessagesController().dialogs_dict.get(j);
-            if (tLRPC$Dialog != null) {
-                tLRPC$Dialog.notify_settings = new TLRPC$TL_peerNotifySettings();
-            }
-            updateServerNotificationsSettings(j);
-        }
+        getMessagesStorage().setDialogFlags(j, 0L);
         edit.apply();
+        TLRPC$Dialog tLRPC$Dialog = getMessagesController().dialogs_dict.get(j);
+        if (tLRPC$Dialog != null) {
+            tLRPC$Dialog.notify_settings = new TLRPC$TL_peerNotifySettings();
+        }
+        updateServerNotificationsSettings(j);
     }
 }

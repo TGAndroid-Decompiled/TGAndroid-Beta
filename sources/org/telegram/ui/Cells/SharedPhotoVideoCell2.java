@@ -52,7 +52,7 @@ public class SharedPhotoVideoCell2 extends View {
         this.imageReceiver.setParentView(this);
     }
 
-    public void setMessageObject(org.telegram.messenger.MessageObject r16, int r17) {
+    public void setMessageObject(org.telegram.messenger.MessageObject r17, int r18) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedPhotoVideoCell2.setMessageObject(org.telegram.messenger.MessageObject, int):void");
     }
 
@@ -228,14 +228,14 @@ public class SharedPhotoVideoCell2 extends View {
         Paint highlightPaint = new Paint();
         SparseArray<String> imageFilters = new SparseArray<>();
 
-        public SharedResources(Context context) {
+        public SharedResources(Context context, Theme.ResourcesProvider resourcesProvider) {
             this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
             this.textPaint.setColor(-1);
             this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             Drawable drawable = ContextCompat.getDrawable(context, R.drawable.play_mini_video);
             this.playDrawable = drawable;
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), this.playDrawable.getIntrinsicHeight());
-            this.backgroundPaint.setColor(Theme.getColor("sharedMedia_photoPlaceholder"));
+            this.backgroundPaint.setColor(Theme.getColor("sharedMedia_photoPlaceholder", resourcesProvider));
         }
 
         public String getFilterString(int i) {

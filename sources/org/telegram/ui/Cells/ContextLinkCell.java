@@ -91,6 +91,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     private RadialProgress2 radialProgress;
     int resolveFileNameId;
     boolean resolvingFileName;
+    private Theme.ResourcesProvider resourcesProvider;
     private float scale;
     private boolean scaled;
     private StaticLayout titleLayout;
@@ -109,10 +110,10 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     }
 
     public ContextLinkCell(Context context) {
-        this(context, false);
+        this(context, false, null);
     }
 
-    public ContextLinkCell(Context context, boolean z) {
+    public ContextLinkCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.currentAccount = UserConfig.selectedAccount;
         this.titleY = AndroidUtilities.dp(7.0f);
@@ -128,19 +129,20 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 return Float.valueOf(ContextLinkCell.this.imageScale);
             }
         };
+        this.resourcesProvider = resourcesProvider;
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.linkImageView = imageReceiver;
         imageReceiver.setLayerNum(1);
         this.linkImageView.setUseSharedAnimationQueue(true);
-        this.letterDrawable = new LetterDrawable();
+        this.letterDrawable = new LetterDrawable(resourcesProvider);
         this.radialProgress = new RadialProgress2(this);
         this.TAG = DownloadController.getInstance(this.currentAccount).generateObserverTag();
         setFocusable(true);
         if (z) {
             Paint paint = new Paint();
             this.backgroundPaint = paint;
-            paint.setColor(Theme.getColor("sharedMedia_photoPlaceholder"));
-            CheckBox2 checkBox2 = new CheckBox2(context, 21);
+            paint.setColor(Theme.getColor("sharedMedia_photoPlaceholder", resourcesProvider));
+            CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
             this.checkBox = checkBox2;
             checkBox2.setVisibility(4);
             this.checkBox.setColor(null, "sharedMedia_photoPlaceholder", "checkboxCheck");
@@ -153,7 +155,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
 
     @Override
     @android.annotation.SuppressLint({"DrawAllocation"})
-    protected void onMeasure(int r40, int r41) {
+    protected void onMeasure(int r41, int r42) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ContextLinkCell.onMeasure(int, int):void");
     }
 
@@ -216,7 +218,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 tLRPC$Document3.date = tLRPC$TL_message.date;
                 tLRPC$Document3.mime_type = "audio/" + httpUrlExtension;
                 TLRPC$Document tLRPC$Document4 = tLRPC$TL_message.media.document;
-                tLRPC$Document4.size = 0;
+                tLRPC$Document4.size = 0L;
                 tLRPC$Document4.dc_id = 0;
                 TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio = new TLRPC$TL_documentAttributeAudio();
                 tLRPC$TL_documentAttributeAudio.duration = MessageObject.getInlineResultDuration(this.inlineResult);
@@ -434,14 +436,14 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             canvas.restore();
         }
         if (this.descriptionLayout != null) {
-            Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
+            Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor("windowBackgroundWhiteGrayText2", this.resourcesProvider));
             canvas.save();
             canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
             this.descriptionLayout.draw(canvas);
             canvas.restore();
         }
         if (this.linkLayout != null) {
-            Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor("windowBackgroundWhiteLinkText"));
+            Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor("windowBackgroundWhiteLinkText", this.resourcesProvider));
             canvas.save();
             if (!LocaleController.isRTL) {
                 f = AndroidUtilities.leftBaseline;
@@ -458,7 +460,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             }
             int i2 = this.documentAttachType;
             if (i2 == 3 || i2 == 5) {
-                this.radialProgress.setProgressColor(Theme.getColor(this.buttonPressed ? "chat_inAudioSelectedProgress" : "chat_inAudioProgress"));
+                this.radialProgress.setProgressColor(Theme.getColor(this.buttonPressed ? "chat_inAudioSelectedProgress" : "chat_inAudioProgress", this.resourcesProvider));
                 this.radialProgress.draw(canvas);
             } else {
                 TLRPC$BotInlineResult tLRPC$BotInlineResult2 = this.inlineResult;

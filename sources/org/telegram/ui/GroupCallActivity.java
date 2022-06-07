@@ -370,6 +370,12 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     public final ArrayList<GroupCallStatusIcon> statusIconPool = new ArrayList<>();
     private HashMap<View, Float> buttonsAnimationParamsX = new HashMap<>();
     private HashMap<View, Float> buttonsAnimationParamsY = new HashMap<>();
+    private Runnable onUserLeaveHintListener = new Runnable() {
+        @Override
+        public final void run() {
+            GroupCallActivity.this.onUserLeaveHint();
+        }
+    };
     private Runnable updateSchedeulRunnable = new Runnable() {
         @Override
         public void run() {
@@ -385,7 +391,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 if (i != 0) {
                     int currentTime = i - GroupCallActivity.this.accountInstance.getConnectionsManager().getCurrentTime();
                     if (currentTime >= 86400) {
-                        GroupCallActivity.this.scheduleTimeTextView.setText(LocaleController.formatPluralString("Days", Math.round(currentTime / 86400.0f)));
+                        GroupCallActivity.this.scheduleTimeTextView.setText(LocaleController.formatPluralString("Days", Math.round(currentTime / 86400.0f), new Object[0]));
                     } else {
                         GroupCallActivity.this.scheduleTimeTextView.setText(AndroidUtilities.formatFullDuration(Math.abs(currentTime)));
                         if (currentTime < 0 && GroupCallActivity.this.scheduleStartInTextView.getTag() == null) {
@@ -399,7 +405,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }
         }
     };
-    private Runnable unmuteRunnable = GroupCallActivity$$ExternalSyntheticLambda46.INSTANCE;
+    private Runnable unmuteRunnable = GroupCallActivity$$ExternalSyntheticLambda48.INSTANCE;
     private Runnable pressRunnable = new Runnable() {
         @Override
         public final void run() {
@@ -1172,6 +1178,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
     @Override
     public void dismiss() {
+        this.parentActivity.removeOnUserLeaveHintListener(this.onUserLeaveHintListener);
         this.parentActivity.setRequestedOrientation(-1);
         groupCallUiVisible = false;
         GroupVoipInviteAlert groupVoipInviteAlert = this.groupVoipInviteAlert;
@@ -1774,7 +1781,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.webRtcMicAmplitudeEvent);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didEndCall);
         this.shadowDrawable = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.bigMicDrawable = new RLottieDrawable(R.raw.voip_filled, "2131558569", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
+        this.bigMicDrawable = new RLottieDrawable(R.raw.voip_filled, "2131558571", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
         this.handDrawables = new RLottieDrawable(R.raw.hand_2, "2131558456", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
         FrameLayout frameLayout = new FrameLayout(context) {
             private int lastSize;
@@ -3358,7 +3365,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             final NumberPicker numberPicker2 = new NumberPicker(this, context) {
                 @Override
                 protected CharSequence getContentDescription(int i6) {
-                    return LocaleController.formatPluralString("Hours", i6);
+                    return LocaleController.formatPluralString("Hours", i6, new Object[0]);
                 }
             };
             numberPicker2.setItemCount(5);
@@ -3368,7 +3375,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             final NumberPicker numberPicker3 = new NumberPicker(this, context) {
                 @Override
                 protected CharSequence getContentDescription(int i6) {
-                    return LocaleController.formatPluralString("Minutes", i6);
+                    return LocaleController.formatPluralString("Minutes", i6, new Object[0]);
                 }
             };
             numberPicker3.setItemCount(5);
@@ -3438,24 +3445,24 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     return lambda$new$30;
                 }
             });
-            NumberPicker.OnValueChangeListener groupCallActivity$$ExternalSyntheticLambda58 = new NumberPicker.OnValueChangeListener() {
+            NumberPicker.OnValueChangeListener groupCallActivity$$ExternalSyntheticLambda60 = new NumberPicker.OnValueChangeListener() {
                 @Override
                 public final void onValueChange(NumberPicker numberPicker4, int i9, int i10) {
                     GroupCallActivity.this.lambda$new$31(numberPicker, numberPicker2, numberPicker3, numberPicker4, i9, i10);
                 }
             };
-            numberPicker.setOnValueChangedListener(groupCallActivity$$ExternalSyntheticLambda58);
+            numberPicker.setOnValueChangedListener(groupCallActivity$$ExternalSyntheticLambda60);
             numberPicker2.setMinValue(0);
             numberPicker2.setMaxValue(23);
             this.scheduleTimerContainer.addView(numberPicker2, LayoutHelper.createLinear(0, 270, 0.2f));
-            numberPicker2.setFormatter(GroupCallActivity$$ExternalSyntheticLambda56.INSTANCE);
-            numberPicker2.setOnValueChangedListener(groupCallActivity$$ExternalSyntheticLambda58);
+            numberPicker2.setFormatter(GroupCallActivity$$ExternalSyntheticLambda58.INSTANCE);
+            numberPicker2.setOnValueChangedListener(groupCallActivity$$ExternalSyntheticLambda60);
             numberPicker3.setMinValue(0);
             numberPicker3.setMaxValue(59);
             numberPicker3.setValue(0);
-            numberPicker3.setFormatter(GroupCallActivity$$ExternalSyntheticLambda57.INSTANCE);
+            numberPicker3.setFormatter(GroupCallActivity$$ExternalSyntheticLambda59.INSTANCE);
             this.scheduleTimerContainer.addView(numberPicker3, LayoutHelper.createLinear(0, 270, 0.3f));
-            numberPicker3.setOnValueChangedListener(groupCallActivity$$ExternalSyntheticLambda58);
+            numberPicker3.setOnValueChangedListener(groupCallActivity$$ExternalSyntheticLambda60);
             calendar.setTimeInMillis(currentTimeMillis + 10800000);
             calendar.set(12, 0);
             calendar.set(13, 0);
@@ -3551,13 +3558,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         public void onItemClick(int i) {
             final VoIPService sharedInstance;
             int i2;
-            String str;
             int i3;
+            String str;
+            int i4;
             if (i == -1) {
                 GroupCallActivity.this.onBackPressed();
                 return;
             }
-            int i4 = 1;
             if (i == 1) {
                 GroupCallActivity groupCallActivity = GroupCallActivity.this;
                 groupCallActivity.call.call.join_muted = false;
@@ -3761,13 +3768,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 arrayList3.add(0);
                 if (sharedInstance.hasEarpiece()) {
                     if (sharedInstance.isHeadsetPlugged()) {
-                        i3 = R.string.VoipAudioRoutingHeadset;
+                        i4 = R.string.VoipAudioRoutingHeadset;
                         str = "VoipAudioRoutingHeadset";
                     } else {
-                        i3 = R.string.VoipAudioRoutingPhone;
+                        i4 = R.string.VoipAudioRoutingPhone;
                         str = "VoipAudioRoutingPhone";
                     }
-                    arrayList.add(LocaleController.getString(str, i3));
+                    arrayList.add(LocaleController.getString(str, i4));
                     arrayList2.add(Integer.valueOf(sharedInstance.isHeadsetPlugged() ? R.drawable.msg_voice_headphones : R.drawable.msg_voice_phone));
                     arrayList3.add(1);
                 }
@@ -3795,22 +3802,24 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 });
                 BottomSheet create4 = items.create();
                 create4.setBackgroundColor(Theme.getColor("voipgroup_listViewBackgroundUnscrolled"));
+                create4.fixNavigationBar(Theme.getColor("voipgroup_listViewBackgroundUnscrolled"));
                 if (sharedInstance.getCurrentAudioRoute() == 1) {
-                    i4 = 0;
-                } else if (sharedInstance.getCurrentAudioRoute() != 0) {
-                    i4 = 2;
+                    i2 = 0;
+                } else {
+                    i2 = sharedInstance.getCurrentAudioRoute() == 0 ? 1 : 2;
                 }
                 items.show();
                 create4.setTitleColor(Theme.getColor("voipgroup_nameText"));
                 for (int i6 = 0; i6 < create4.getItemViews().size(); i6++) {
                     BottomSheet.BottomSheetCell bottomSheetCell = create4.getItemViews().get(i6);
-                    if (i6 == i4) {
-                        i2 = Theme.getColor("voipgroup_listeningText");
+                    if (i6 == i2) {
+                        i3 = Theme.getColor("voipgroup_listeningText");
+                        bottomSheetCell.isSelected = true;
                     } else {
-                        i2 = Theme.getColor("voipgroup_nameText");
+                        i3 = Theme.getColor("voipgroup_nameText");
                     }
-                    bottomSheetCell.setTextColor(i2);
-                    bottomSheetCell.setIconColor(i2);
+                    bottomSheetCell.setTextColor(i3);
+                    bottomSheetCell.setIconColor(i3);
                     bottomSheetCell.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_actionBarItems"), 12), 2));
                 }
             }
@@ -4067,7 +4076,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 if (groupCallInvitedCell.hasAvatarSet()) {
                     bundle.putBoolean("expandPhoto", true);
                 }
-                this.parentActivity.lambda$runLinkRequest$56(new ProfileActivity(bundle));
+                this.parentActivity.lambda$runLinkRequest$59(new ProfileActivity(bundle));
                 dismiss();
             }
         } else if (i == this.listAdapter.addMemberRow) {
@@ -5424,8 +5433,8 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     }
 
     public void updateSubtitle() {
+        boolean z;
         if (!(this.actionBar == null || this.call == null)) {
-            boolean z = false;
             SpannableStringBuilder spannableStringBuilder = null;
             int i = 0;
             for (int i2 = 0; i2 < this.call.currentSpeakingPeers.size(); i2++) {
@@ -5469,8 +5478,10 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 spannableStringBuilder2.replace(indexOf, indexOf + 3, (CharSequence) spannableStringBuilder);
                 this.actionBar.getAdditionalSubtitleTextView().setText(spannableStringBuilder2);
                 z = true;
+            } else {
+                z = false;
             }
-            this.actionBar.getSubtitleTextView().setText(LocaleController.formatPluralString(isRtmpStream() ? "ViewersWatching" : "Participants", this.call.call.participants_count + (this.listAdapter.addSelfToCounter() ? 1 : 0)));
+            this.actionBar.getSubtitleTextView().setText(LocaleController.formatPluralString(isRtmpStream() ? "ViewersWatching" : "Participants", this.call.call.participants_count + (this.listAdapter.addSelfToCounter() ? 1 : 0), new Object[0]));
             if (z != this.drawSpeakingSubtitle) {
                 this.drawSpeakingSubtitle = z;
                 this.actionBar.invalidate();
@@ -6482,7 +6493,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 } else {
                     bundle.putLong("chat_id", -j);
                 }
-                this.parentActivity.lambda$runLinkRequest$56(new ChatActivity(bundle));
+                this.parentActivity.lambda$runLinkRequest$59(new ChatActivity(bundle));
                 dismiss();
             } else if (i == 8) {
                 this.parentActivity.switchToAccount(this.currentAccount, true);
@@ -6494,7 +6505,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     } else {
                         bundle2.putLong("chat_id", -j);
                     }
-                    this.parentActivity.lambda$runLinkRequest$56(new ChatActivity(bundle2));
+                    this.parentActivity.lambda$runLinkRequest$59(new ChatActivity(bundle2));
                     dismiss();
                     return;
                 }
@@ -6830,12 +6841,12 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else if (i == 1) {
                 view = new GroupCallUserCell(this.mContext) {
                     @Override
-                    protected void onMuteClick(GroupCallUserCell groupCallUserCell) {
+                    public void onMuteClick(GroupCallUserCell groupCallUserCell) {
                         GroupCallActivity.this.showMenuForCell(groupCallUserCell);
                     }
 
                     @Override
-                    protected void onMeasure(int i2, int i3) {
+                    public void onMeasure(int i2, int i3) {
                         if (AndroidUtilities.isTablet()) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(420.0f), View.MeasureSpec.getSize(i2)), 1073741824), i3);
                         } else {
@@ -6886,9 +6897,9 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 textView.setGravity(1);
                 textView.setPadding(0, 0, 0, AndroidUtilities.dp(10.0f));
                 if (ChatObject.isChannelOrGiga(GroupCallActivity.this.currentChat)) {
-                    textView.setText(LocaleController.formatString("VoipChannelVideoNotAvailableAdmin", R.string.VoipChannelVideoNotAvailableAdmin, LocaleController.formatPluralString("Participants", GroupCallActivity.this.accountInstance.getMessagesController().groupCallVideoMaxParticipants)));
+                    textView.setText(LocaleController.formatString("VoipChannelVideoNotAvailableAdmin", R.string.VoipChannelVideoNotAvailableAdmin, LocaleController.formatPluralString("Participants", GroupCallActivity.this.accountInstance.getMessagesController().groupCallVideoMaxParticipants, new Object[0])));
                 } else {
-                    textView.setText(LocaleController.formatString("VoipVideoNotAvailableAdmin", R.string.VoipVideoNotAvailableAdmin, LocaleController.formatPluralString("Members", GroupCallActivity.this.accountInstance.getMessagesController().groupCallVideoMaxParticipants)));
+                    textView.setText(LocaleController.formatString("VoipVideoNotAvailableAdmin", R.string.VoipVideoNotAvailableAdmin, LocaleController.formatPluralString("Members", GroupCallActivity.this.accountInstance.getMessagesController().groupCallVideoMaxParticipants, new Object[0])));
                 }
                 view = textView;
             }
@@ -7304,6 +7315,19 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     @Override
     protected boolean canDismissWithTouchOutside() {
         return !this.renderersContainer.inFullscreenMode;
+    }
+
+    public void onUserLeaveHint() {
+        if (isRtmpStream() && AndroidUtilities.checkInlinePermissions(this.parentActivity) && !RTMPStreamPipOverlay.isVisible()) {
+            dismiss();
+            AndroidUtilities.runOnUIThread(GroupCallActivity$$ExternalSyntheticLambda47.INSTANCE, 100L);
+        }
+    }
+
+    @Override
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        this.parentActivity.addOnUserLeaveHintListener(this.onUserLeaveHintListener);
     }
 
     public void onResume() {

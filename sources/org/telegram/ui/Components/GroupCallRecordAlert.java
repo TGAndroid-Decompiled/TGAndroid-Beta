@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,6 +27,7 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.GroupCallRecordAlert;
 
 public class GroupCallRecordAlert extends BottomSheet {
     private int currentPage;
@@ -280,7 +282,7 @@ public class GroupCallRecordAlert extends BottomSheet {
         }
     }
 
-    private class Adapter extends PagerAdapter {
+    public class Adapter extends PagerAdapter {
         @Override
         public void restoreState(Parcelable parcelable, ClassLoader classLoader) {
         }
@@ -299,12 +301,34 @@ public class GroupCallRecordAlert extends BottomSheet {
         }
 
         @Override
-        public Object instantiateItem(ViewGroup viewGroup, int i) {
-            ImageView imageView = new ImageView(GroupCallRecordAlert.this.getContext());
+        public Object instantiateItem(ViewGroup viewGroup, final int i) {
+            ImageView imageView = new ImageView(GroupCallRecordAlert.this.getContext()) {
+                @Override
+                public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+                    super.onInitializeAccessibilityEvent(accessibilityEvent);
+                    if (accessibilityEvent.getEventType() == 32768) {
+                        GroupCallRecordAlert.this.viewPager.setCurrentItem(i, true);
+                    }
+                }
+            };
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    GroupCallRecordAlert.Adapter.this.lambda$instantiateItem$0(i, view);
+                }
+            });
+            imageView.setFocusable(true);
             imageView.setTag(Integer.valueOf(i));
             imageView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             imageView.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(200.0f), -1));
+            if (i == 0) {
+                imageView.setContentDescription(LocaleController.getString("VoipRecordAudio", R.string.VoipRecordAudio));
+            } else if (i == 1) {
+                imageView.setContentDescription(LocaleController.getString("VoipRecordPortrait", R.string.VoipRecordPortrait));
+            } else {
+                imageView.setContentDescription(LocaleController.getString("VoipRecordLandscape", R.string.VoipRecordLandscape));
+            }
             SvgHelper.SvgDrawable drawable = SvgHelper.getDrawable(RLottieDrawable.readRes(null, i == 0 ? R.raw.record_audio : i == 1 ? R.raw.record_video_p : R.raw.record_video_l));
             drawable.setAspectFill(false);
             imageView.setImageDrawable(drawable);
@@ -313,6 +337,11 @@ public class GroupCallRecordAlert extends BottomSheet {
             }
             viewGroup.addView(imageView, 0);
             return imageView;
+        }
+
+        public void lambda$instantiateItem$0(int i, View view) {
+            GroupCallRecordAlert.this.onStartRecord(i);
+            GroupCallRecordAlert.this.dismiss();
         }
 
         @Override

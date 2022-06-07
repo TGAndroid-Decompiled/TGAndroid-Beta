@@ -58,10 +58,12 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.StickersAlert;
 import org.telegram.ui.Components.URLSpanNoUnderline;
+import org.telegram.ui.Components.VerticalPositionAutoAnimator;
 import org.telegram.ui.GroupStickersActivity;
 
 public class GroupStickersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private long chatId;
+    private FrameLayout emptyFrameView;
     private StickerEmptyView emptyView;
     private int headerRow;
     private TLRPC$ChatFull info;
@@ -119,28 +121,33 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
                 }
             }
         });
-        ActionBarMenuItem addItem = this.actionBar.createMenu().addItem(0, R.drawable.msg_search);
+        ActionBarMenuItem addItem = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search);
         this.searchItem = addItem;
         addItem.setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
-                GroupStickersActivity.this.searching = true;
-                if (GroupStickersActivity.this.listView != null) {
-                    GroupStickersActivity.this.listView.setAdapter(GroupStickersActivity.this.searchAdapter);
-                }
-                GroupStickersActivity.this.emptyView.setVisibility(8);
             }
 
             @Override
             public void onSearchCollapse() {
-                GroupStickersActivity.this.searchAdapter.onSearchStickers(null);
-                GroupStickersActivity.this.searching = false;
-                GroupStickersActivity.this.listView.setAdapter(GroupStickersActivity.this.listAdapter);
+                if (GroupStickersActivity.this.searching) {
+                    GroupStickersActivity.this.searchAdapter.onSearchStickers(null);
+                    GroupStickersActivity.this.searching = false;
+                    GroupStickersActivity.this.listView.setAdapter(GroupStickersActivity.this.listAdapter);
+                }
             }
 
             @Override
             public void onTextChanged(EditText editText) {
-                GroupStickersActivity.this.searchAdapter.onSearchStickers(editText.getText().toString());
+                String obj = editText.getText().toString();
+                GroupStickersActivity.this.searchAdapter.onSearchStickers(obj);
+                boolean z = !TextUtils.isEmpty(obj);
+                if (z != GroupStickersActivity.this.searching) {
+                    GroupStickersActivity.this.searching = z;
+                    if (GroupStickersActivity.this.listView != null) {
+                        GroupStickersActivity.this.listView.setAdapter(GroupStickersActivity.this.searching ? GroupStickersActivity.this.searchAdapter : GroupStickersActivity.this.listAdapter);
+                    }
+                }
             }
         });
         this.searchItem.setSearchFieldHint(LocaleController.getString((int) R.string.Search));
@@ -158,18 +165,22 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         this.layoutManager = linearLayoutManager;
         linearLayoutManager.setOrientation(1);
         this.listView.setLayoutManager(this.layoutManager);
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        this.emptyFrameView = frameLayout3;
+        frameLayout3.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, getResourceProvider());
         this.loadingView = flickerLoadingView;
         flickerLoadingView.setViewType(19);
         this.loadingView.setIsSingleCell(true);
-        this.loadingView.setItemsCount(5);
-        this.loadingView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-        frameLayout2.addView(this.loadingView, LayoutHelper.createFrame(-1, -1.0f));
+        this.loadingView.setItemsCount((int) Math.ceil(AndroidUtilities.displaySize.y / AndroidUtilities.dpf2(58.0f)));
+        this.emptyFrameView.addView(this.loadingView, LayoutHelper.createFrame(-1, -1.0f));
         StickerEmptyView stickerEmptyView = new StickerEmptyView(context, this.loadingView, 1);
         this.emptyView = stickerEmptyView;
-        stickerEmptyView.setVisibility(8);
-        frameLayout2.addView(this.emptyView);
-        this.listView.setEmptyView(this.emptyView);
+        VerticalPositionAutoAnimator.attach(stickerEmptyView);
+        this.emptyFrameView.addView(this.emptyView);
+        frameLayout2.addView(this.emptyFrameView);
+        this.emptyFrameView.setVisibility(8);
+        this.listView.setEmptyView(this.emptyFrameView);
         frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {

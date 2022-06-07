@@ -5,11 +5,34 @@ public abstract class TLRPC$EncryptedFile extends TLObject {
     public int dc_id;
     public long id;
     public int key_fingerprint;
-    public int size;
+    public long size;
 
     public static TLRPC$EncryptedFile TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$EncryptedFile tLRPC$EncryptedFile;
-        if (i != -1038136962) {
+        if (i == -1476358952) {
+            tLRPC$EncryptedFile = new TLRPC$EncryptedFile() {
+                public static int constructor = -1476358952;
+
+                @Override
+                public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                    this.id = abstractSerializedData2.readInt64(z2);
+                    this.access_hash = abstractSerializedData2.readInt64(z2);
+                    this.size = abstractSerializedData2.readInt64(z2);
+                    this.dc_id = abstractSerializedData2.readInt32(z2);
+                    this.key_fingerprint = abstractSerializedData2.readInt32(z2);
+                }
+
+                @Override
+                public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt64(this.id);
+                    abstractSerializedData2.writeInt64(this.access_hash);
+                    abstractSerializedData2.writeInt64(this.size);
+                    abstractSerializedData2.writeInt32(this.dc_id);
+                    abstractSerializedData2.writeInt32(this.key_fingerprint);
+                }
+            };
+        } else if (i != -1038136962) {
             tLRPC$EncryptedFile = i != 1248893260 ? null : new TLRPC$EncryptedFile() {
                 public static int constructor = 1248893260;
 
@@ -27,7 +50,7 @@ public abstract class TLRPC$EncryptedFile extends TLObject {
                     abstractSerializedData2.writeInt32(constructor);
                     abstractSerializedData2.writeInt64(this.id);
                     abstractSerializedData2.writeInt64(this.access_hash);
-                    abstractSerializedData2.writeInt32(this.size);
+                    abstractSerializedData2.writeInt32((int) this.size);
                     abstractSerializedData2.writeInt32(this.dc_id);
                     abstractSerializedData2.writeInt32(this.key_fingerprint);
                 }

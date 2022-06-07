@@ -41,6 +41,7 @@ import org.telegram.messenger.SecretChatHelper;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
 
 public abstract class BaseFragment {
@@ -153,6 +154,9 @@ public abstract class BaseFragment {
     }
 
     public void onTransitionAnimationProgress(boolean z, float f) {
+    }
+
+    public void onUserLeaveHint() {
     }
 
     public void prepareFragmentToSlide(boolean z, boolean z2) {
@@ -314,13 +318,15 @@ public abstract class BaseFragment {
             if (actionBarLayout4 != null && this.actionBar == null) {
                 ActionBar createActionBar = createActionBar(actionBarLayout4.getContext());
                 this.actionBar = createActionBar;
-                createActionBar.parentFragment = this;
+                if (createActionBar != null) {
+                    createActionBar.parentFragment = this;
+                }
             }
         }
     }
 
     public ActionBar createActionBar(Context context) {
-        ActionBar actionBar = new ActionBar(context);
+        ActionBar actionBar = new ActionBar(context, getResourceProvider());
         actionBar.setBackgroundColor(getThemedColor("actionBarDefault"));
         actionBar.setItemsBackgroundColor(getThemedColor("actionBarDefaultSelector"), false);
         actionBar.setItemsBackgroundColor(getThemedColor("actionBarActionModeDefaultSelector"), true);
@@ -460,9 +466,9 @@ public abstract class BaseFragment {
         return allowPresentFragment() && (actionBarLayout = this.parentLayout) != null && actionBarLayout.presentFragmentAsPreview(baseFragment);
     }
 
-    public boolean presentFragmentAsPreviewWithMenu(BaseFragment baseFragment, View view) {
+    public boolean presentFragmentAsPreviewWithMenu(BaseFragment baseFragment, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
         ActionBarLayout actionBarLayout;
-        return allowPresentFragment() && (actionBarLayout = this.parentLayout) != null && actionBarLayout.presentFragmentAsPreviewWithMenu(baseFragment, view);
+        return allowPresentFragment() && (actionBarLayout = this.parentLayout) != null && actionBarLayout.presentFragmentAsPreviewWithMenu(baseFragment, actionBarPopupWindowLayout);
     }
 
     public boolean presentFragment(BaseFragment baseFragment) {

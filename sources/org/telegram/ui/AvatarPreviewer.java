@@ -545,7 +545,7 @@ public class AvatarPreviewer {
                 });
             }
             this.imageReceiver.setCurrentAccount(UserConfig.selectedAccount);
-            this.imageReceiver.setImage(data.videoLocation, data.videoFilter, data.imageLocation, data.imageFilter, data.thumbImageLocation, data.thumbImageFilter, null, 0, null, data.parentObject, 1);
+            this.imageReceiver.setImage(data.videoLocation, data.videoFilter, data.imageLocation, data.imageFilter, data.thumbImageLocation, data.thumbImageFilter, null, 0L, null, data.parentObject, 1);
             setShowing(true);
         }
 

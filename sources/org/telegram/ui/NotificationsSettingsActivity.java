@@ -489,7 +489,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
                     edit13.putBoolean("AllAccounts", !z3);
                     edit13.commit();
                     SharedConfig.showNotificationsForAllAccounts = !z3;
-                    for (int i4 = 0; i4 < 3; i4++) {
+                    for (int i4 = 0; i4 < 4; i4++) {
                         if (SharedConfig.showNotificationsForAllAccounts) {
                             NotificationsController.getInstance(i4).showNotifications();
                         } else if (i4 == this.currentAccount) {
@@ -523,7 +523,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
                 } else if (i == this.repeatRow) {
                     AlertDialog.Builder builder2 = new AlertDialog.Builder(getParentActivity());
                     builder2.setTitle(LocaleController.getString("RepeatNotifications", R.string.RepeatNotifications));
-                    builder2.setItems(new CharSequence[]{LocaleController.getString("RepeatDisabled", R.string.RepeatDisabled), LocaleController.formatPluralString("Minutes", 5), LocaleController.formatPluralString("Minutes", 10), LocaleController.formatPluralString("Minutes", 30), LocaleController.formatPluralString("Hours", 1), LocaleController.formatPluralString("Hours", 2), LocaleController.formatPluralString("Hours", 4)}, new DialogInterface.OnClickListener() {
+                    builder2.setItems(new CharSequence[]{LocaleController.getString("RepeatDisabled", R.string.RepeatDisabled), LocaleController.formatPluralString("Minutes", 5, new Object[0]), LocaleController.formatPluralString("Minutes", 10, new Object[0]), LocaleController.formatPluralString("Minutes", 30, new Object[0]), LocaleController.formatPluralString("Hours", 1, new Object[0]), LocaleController.formatPluralString("Hours", 2, new Object[0]), LocaleController.formatPluralString("Hours", 4, new Object[0])}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i5) {
                             NotificationsSettingsActivity.this.lambda$createView$7(i, dialogInterface, i5);
@@ -649,19 +649,19 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         if (i == this.privateRow) {
             arrayList = this.exceptionUsers;
             if (arrayList != null && !arrayList.isEmpty()) {
-                str = LocaleController.formatPluralString("ChatsException", arrayList.size());
+                str = LocaleController.formatPluralString("ChatsException", arrayList.size(), new Object[0]);
             }
             str = null;
         } else if (i == this.groupRow) {
             arrayList = this.exceptionChats;
             if (arrayList != null && !arrayList.isEmpty()) {
-                str = LocaleController.formatPluralString("Groups", arrayList.size());
+                str = LocaleController.formatPluralString("Groups", arrayList.size(), new Object[0]);
             }
             str = null;
         } else {
             arrayList = this.exceptionChannels;
             if (arrayList != null && !arrayList.isEmpty()) {
-                str = LocaleController.formatPluralString("Channels", arrayList.size());
+                str = LocaleController.formatPluralString("Channels", arrayList.size(), new Object[0]);
             }
             str = null;
         }
@@ -884,7 +884,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
                         if (sb.length() != 0) {
                             sb.append(", ");
                         }
-                        sb.append(LocaleController.formatPluralString("Exception", arrayList.size()));
+                        sb.append(LocaleController.formatPluralString("Exception", arrayList.size(), new Object[0]));
                     }
                     notificationsCheckCell.setTextAndValueAndCheck(str2, sb, z, i3, i != NotificationsSettingsActivity.this.channelsRow);
                     return;
@@ -931,9 +931,9 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
                         if (i5 == 0) {
                             str = LocaleController.getString("RepeatNotificationsNever", R.string.RepeatNotificationsNever);
                         } else if (i5 < 60) {
-                            str = LocaleController.formatPluralString("Minutes", i5);
+                            str = LocaleController.formatPluralString("Minutes", i5, new Object[0]);
                         } else {
-                            str = LocaleController.formatPluralString("Hours", i5 / 60);
+                            str = LocaleController.formatPluralString("Hours", i5 / 60, new Object[0]);
                         }
                         textSettingsCell.setTextAndValue(LocaleController.getString("RepeatNotifications", R.string.RepeatNotifications), str, false);
                         return;

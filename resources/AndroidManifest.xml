@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="26499" android:versionName="8.7.2" android:installLocation="auto" android:compileSdkVersion="31" android:compileSdkVersionCodename="12" package="org.telegram.messenger.beta" platformBuildVersionCode="31" platformBuildVersionName="12">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="26809" android:versionName="8.7.2" android:installLocation="auto" android:compileSdkVersion="31" android:compileSdkVersionCodename="12" package="org.telegram.messenger.beta" platformBuildVersionCode="31" platformBuildVersionName="12">
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="30"/>
     <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
     <uses-feature android:name="android.hardware.location.network" android:required="false"/>
@@ -66,6 +66,7 @@
     <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ"/>
     <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE"/>
+    <uses-permission android:name="com.android.vending.BILLING"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
     <queries>
@@ -91,8 +92,6 @@
         <activity android:theme="@style/Theme_TMessages_Start" android:name="org.telegram.ui.LaunchActivity" android:launchMode="singleTask" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustResize" android:hardwareAccelerated="@bool/useHardwareAcceleration">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
@@ -160,6 +159,48 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:mimeType="vnd.android.cursor.item/vnd.org.telegram.messenger.android.call"/>
                 <data android:mimeType="vnd.android.cursor.item/vnd.org.telegram.messenger.android.call.video"/>
+            </intent-filter>
+        </activity-alias>
+        <activity-alias android:icon="@mipmap/icon_2_launcher" android:name="org.telegram.messenger.NoxIcon" android:enabled="false" android:exported="true" android:targetActivity="org.telegram.ui.LaunchActivity" android:roundIcon="@mipmap/icon_2_launcher_round">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+            </intent-filter>
+        </activity-alias>
+        <activity-alias android:icon="@mipmap/icon_5_launcher" android:name="org.telegram.messenger.TurboIcon" android:enabled="false" android:exported="true" android:targetActivity="org.telegram.ui.LaunchActivity" android:roundIcon="@mipmap/icon_5_launcher_round">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+            </intent-filter>
+        </activity-alias>
+        <activity-alias android:icon="@mipmap/icon_3_launcher" android:name="org.telegram.messenger.PremiumIcon" android:enabled="false" android:exported="true" android:targetActivity="org.telegram.ui.LaunchActivity" android:roundIcon="@mipmap/icon_3_launcher_round">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+            </intent-filter>
+        </activity-alias>
+        <activity-alias android:icon="@mipmap/icon_4_launcher" android:name="org.telegram.messenger.AquaIcon" android:enabled="false" android:exported="true" android:targetActivity="org.telegram.ui.LaunchActivity" android:roundIcon="@mipmap/icon_4_launcher_round">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+            </intent-filter>
+        </activity-alias>
+        <activity-alias android:icon="@mipmap/icon_6_launcher" android:name="org.telegram.messenger.VintageIcon" android:enabled="false" android:exported="true" android:targetActivity="org.telegram.ui.LaunchActivity" android:roundIcon="@mipmap/icon_6_launcher_round">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+            </intent-filter>
+        </activity-alias>
+        <activity-alias android:name="org.telegram.messenger.DefaultIcon" android:enabled="true" android:exported="true" android:targetActivity="org.telegram.ui.LaunchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
             </intent-filter>
         </activity-alias>
         <activity android:name="org.telegram.ui.BubbleActivity" android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard" android:windowSoftInputMode="adjustResize" android:hardwareAccelerated="@bool/useHardwareAcceleration" android:allowEmbedded="true" android:documentLaunchMode="always" android:resizeableActivity="true"/>
@@ -370,6 +411,8 @@
                 <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED"/>
             </intent-filter>
         </receiver>
+        <meta-data android:name="com.google.android.play.billingclient.version" android:value="5.0.0"/>
+        <activity android:theme="@android:style/Theme.Translucent.NoTitleBar" android:name="com.android.billingclient.api.ProxyBillingActivity" android:exported="false" android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard"/>
         <service android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery" android:exported="false">
             <meta-data android:name="backend:com.google.android.datatransport.cct.CctBackendFactory" android:value="cct"/>
         </service>

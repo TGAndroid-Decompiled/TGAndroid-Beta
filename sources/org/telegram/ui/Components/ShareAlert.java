@@ -111,6 +111,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     private float captionEditTextTopOffset;
     private float chatActivityEnterViewAnimateFromTop;
     private EditTextEmoji commentTextView;
+    private int containerViewTop;
     private boolean copyLinkOnEnd;
     private float currentPanTranslationY;
     private boolean darkTheme;
@@ -145,9 +146,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     private FillLastGridLayoutManager searchLayoutManager;
     SearchField searchView;
     private View selectedCountView;
-    private LongSparseArray<TLRPC$Dialog> selectedDialogs;
+    protected LongSparseArray<TLRPC$Dialog> selectedDialogs;
     private ActionBarPopupWindow sendPopupWindow;
-    private ArrayList<MessageObject> sendingMessageObjects;
+    protected ArrayList<MessageObject> sendingMessageObjects;
     private String[] sendingText;
     private View[] shadow;
     private AnimatorSet[] shadowAnimation;
@@ -509,6 +510,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.shadow = new View[2];
         this.shadowAnimation = new AnimatorSet[2];
         this.selectedDialogs = new LongSparseArray<>();
+        this.containerViewTop = -1;
         this.rect = new RectF();
         this.paint = new Paint(1);
         this.textPaint = new TextPaint(1);
@@ -571,6 +573,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             private int fromOffsetTop;
             private int fromScrollY;
             private boolean fullHeight;
+            private boolean lightStatusBar;
             private int previousTopOffset;
             private int toOffsetTop;
             private int toScrollY;
@@ -687,6 +690,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
             {
                 ShareAlert.this = this;
+                boolean z4 = false;
+                this.lightStatusBar = AndroidUtilities.computePerceivedBrightness(this.getThemedColor(this.darkTheme ? "voipgroup_inviteMembersBackground" : "dialogBackground")) > 0.721f ? true : z4;
             }
 
             static int access$3312(AnonymousClass1 r1, int i3) {
@@ -834,7 +839,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
 
             @Override
-            protected void onDraw(android.graphics.Canvas r14) {
+            protected void onDraw(android.graphics.Canvas r11) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ShareAlert.AnonymousClass1.onDraw(android.graphics.Canvas):void");
             }
 
@@ -1144,7 +1149,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             @Override
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ShareAlert.this.selectedDialogs.size()));
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ShareAlert.this.selectedDialogs.size(), new Object[0]));
                 accessibilityNodeInfo.setClassName(Button.class.getName());
                 accessibilityNodeInfo.setLongClickable(true);
                 accessibilityNodeInfo.setClickable(true);
@@ -1550,12 +1555,14 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
+    @Override
+    public int getContainerViewHeight() {
+        return this.containerView.getMeasuredHeight() - this.containerViewTop;
+    }
+
     private boolean onSendLongClick(View view) {
         int i;
         ChatActivity chatActivity;
-        if (this.parentFragment == null) {
-            return false;
-        }
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(1);
         String str = "voipgroup_listSelector";
@@ -1591,7 +1598,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     ShareAlert.this.lambda$onSendLongClick$9(keyEvent);
                 }
             });
-            actionBarPopupWindowLayout.setShownFromBotton(false);
+            actionBarPopupWindowLayout.setShownFromBottom(false);
             final ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getContext(), true, true, false, this.resourcesProvider);
             if (this.darkTheme) {
                 actionBarMenuSubItem.setTextColor(getThemedColor("voipgroup_nameText"));
@@ -1653,7 +1660,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 ShareAlert.this.lambda$onSendLongClick$12(keyEvent);
             }
         });
-        actionBarPopupWindowLayout2.setShownFromBotton(false);
+        actionBarPopupWindowLayout2.setShownFromBottom(false);
         ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(getContext(), true, true, this.resourcesProvider);
         if (this.darkTheme) {
             actionBarMenuSubItem3.setTextColor(getThemedColor("voipgroup_nameText"));
@@ -1754,7 +1761,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         sendInternal(true);
     }
 
-    private void sendInternal(boolean z) {
+    public void sendInternal(boolean z) {
         int i = 0;
         int i2 = 0;
         while (true) {
@@ -2243,8 +2250,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             if (viewHolder.getItemViewType() == 0) {
                 ShareDialogCell shareDialogCell = (ShareDialogCell) viewHolder.itemView;
-                TLRPC$Dialog item = getItem(i);
-                shareDialogCell.setDialog(item.id, ShareAlert.this.selectedDialogs.indexOfKey(item.id) >= 0, null);
+                long j = getItem(i).id;
+                shareDialogCell.setDialog(j, ShareAlert.this.selectedDialogs.indexOfKey(j) >= 0, null);
             }
         }
     }
@@ -2383,7 +2390,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     shareAlert2.topBeforeSwitch = shareAlert2.getCurrentTop();
                 }
                 this.searchResult = arrayList;
-                this.searchAdapterHelper.mergeResults(arrayList);
+                this.searchAdapterHelper.mergeResults(arrayList, null);
                 int i3 = this.lastItemCont;
                 if (getItemCount() != 0 || this.searchAdapterHelper.isSearchInProgress() || this.internalDialogsIsSearching) {
                     ShareAlert.this.recyclerItemsEnterAnimator.showItemsAnimated(i3);

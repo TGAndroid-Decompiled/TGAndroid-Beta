@@ -1611,7 +1611,6 @@
     <string name="FilterRemoveExclusionTitle">Eliminar excepción</string>
     <string name="FilterRemoveExclusionUserText">¿Quieres eliminar a “%1$s” de la lista de siempre excluidos?</string>
     <string name="FilterRemoveFrom">Quitar de la carpeta</string>
-    <string name="FilterRemoveFromAlertFullText">No puedes añadir más de 100 chats a una carpeta.</string>
     <string name="FilterRemoveInclusionChatText">¿Quieres eliminar “%1$s” de la lista de siempre incluidos?</string>
     <string name="FilterRemoveInclusionText">¿Quieres eliminar los “%1$s” de la lista de siempre incluidos?</string>
     <string name="FilterRemoveInclusionTitle">Eliminar excepción</string>

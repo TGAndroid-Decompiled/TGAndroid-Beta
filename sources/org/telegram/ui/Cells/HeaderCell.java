@@ -36,6 +36,10 @@ public class HeaderCell extends FrameLayout {
         this(context, "windowBackgroundWhiteBlueHeader", i, 15, false, null);
     }
 
+    public HeaderCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+        this(context, "windowBackgroundWhiteBlueHeader", i, 15, false, resourcesProvider);
+    }
+
     public HeaderCell(Context context, String str, int i, int i2, boolean z) {
         this(context, str, i, i2, z, null);
     }
@@ -132,9 +136,13 @@ public class HeaderCell extends FrameLayout {
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (Build.VERSION.SDK_INT >= 19 && (collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo()) != null) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 28) {
+            accessibilityNodeInfo.setHeading(true);
+        } else if (i >= 19 && (collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo()) != null) {
             accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(collectionItemInfo.getRowIndex(), collectionItemInfo.getRowSpan(), collectionItemInfo.getColumnIndex(), collectionItemInfo.getColumnSpan(), true));
         }
+        accessibilityNodeInfo.setEnabled(true);
     }
 
     private int getThemedColor(String str) {

@@ -10,10 +10,17 @@ import org.telegram.ui.ActionBar.Theme;
 
 public class DividerCell extends View {
     private boolean forceDarkTheme;
-    private Paint paint = new Paint();
+    private Paint paint;
+    private Theme.ResourcesProvider resourcesProvider;
 
     public DividerCell(Context context) {
+        this(context, null);
+    }
+
+    public DividerCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.paint = new Paint();
+        this.resourcesProvider = resourcesProvider;
         setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
     }
 
@@ -25,9 +32,9 @@ public class DividerCell extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         if (this.forceDarkTheme) {
-            this.paint.setColor(ColorUtils.blendARGB(-16777216, Theme.getColor("voipgroup_dialogBackground"), 0.2f));
+            this.paint.setColor(ColorUtils.blendARGB(-16777216, Theme.getColor("voipgroup_dialogBackground", this.resourcesProvider), 0.2f));
         } else {
-            this.paint.setColor(Theme.getColor("divider"));
+            this.paint.setColor(Theme.getColor("divider", this.resourcesProvider));
         }
         canvas.drawLine(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop(), this.paint);
     }

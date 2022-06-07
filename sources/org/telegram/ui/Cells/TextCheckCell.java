@@ -18,7 +18,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -47,6 +46,7 @@ public class TextCheckCell extends FrameLayout {
     private boolean isMultiline;
     private float lastTouchX;
     private boolean needDivider;
+    private Theme.ResourcesProvider resourcesProvider;
     private TextView textView;
     private TextView valueTextView;
 
@@ -55,15 +55,24 @@ public class TextCheckCell extends FrameLayout {
     }
 
     public TextCheckCell(Context context, int i) {
-        this(context, i, false);
+        this(context, i, false, null);
+    }
+
+    public TextCheckCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+        this(context, 21, false, resourcesProvider);
     }
 
     public TextCheckCell(Context context, int i, boolean z) {
+        this(context, i, z, null);
+    }
+
+    public TextCheckCell(Context context, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.height = 50;
+        this.resourcesProvider = resourcesProvider;
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor(z ? "dialogTextBlack" : "windowBackgroundWhiteBlackText"));
+        textView.setTextColor(Theme.getColor(z ? "dialogTextBlack" : "windowBackgroundWhiteBlackText", resourcesProvider));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
@@ -76,7 +85,7 @@ public class TextCheckCell extends FrameLayout {
         addView(textView2, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? 70.0f : i, 0.0f, z2 ? i : 70.0f, 0.0f));
         TextView textView3 = new TextView(context);
         this.valueTextView = textView3;
-        textView3.setTextColor(Theme.getColor(z ? "dialogIcon" : "windowBackgroundWhiteGrayText2"));
+        textView3.setTextColor(Theme.getColor(z ? "dialogIcon" : "windowBackgroundWhiteGrayText2", resourcesProvider));
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.valueTextView.setLines(1);
@@ -87,9 +96,9 @@ public class TextCheckCell extends FrameLayout {
         TextView textView4 = this.valueTextView;
         boolean z3 = LocaleController.isRTL;
         addView(textView4, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 64.0f : i, 36.0f, z3 ? i : 64.0f, 0.0f));
-        Switch r14 = new Switch(context);
-        this.checkBox = r14;
-        r14.setColors("switchTrack", "switchTrackChecked", "windowBackgroundWhite", "windowBackgroundWhite");
+        Switch r2 = new Switch(context, resourcesProvider);
+        this.checkBox = r2;
+        r2.setColors("switchTrack", "switchTrackChecked", "windowBackgroundWhite", "windowBackgroundWhite");
         addView(this.checkBox, LayoutHelper.createFrame(37, 20.0f, (LocaleController.isRTL ? 3 : i2) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         setClipChildren(false);
     }
@@ -134,7 +143,7 @@ public class TextCheckCell extends FrameLayout {
     }
 
     public void setColors(String str, String str2, String str3, String str4, String str5) {
-        this.textView.setTextColor(Theme.getColor(str));
+        this.textView.setTextColor(Theme.getColor(str, this.resourcesProvider));
         this.checkBox.setColors(str2, str3, str4, str5);
         this.textView.setTag(str);
     }
@@ -337,19 +346,16 @@ public class TextCheckCell extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        String str;
-        int i;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Switch");
         accessibilityNodeInfo.setCheckable(true);
         accessibilityNodeInfo.setChecked(this.checkBox.isChecked());
-        if (this.checkBox.isChecked()) {
-            i = R.string.NotificationsOn;
-            str = "NotificationsOn";
-        } else {
-            i = R.string.NotificationsOff;
-            str = "NotificationsOff";
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.textView.getText());
+        if (!TextUtils.isEmpty(this.valueTextView.getText())) {
+            sb.append('\n');
+            sb.append(this.valueTextView.getText());
         }
-        accessibilityNodeInfo.setContentDescription(LocaleController.getString(str, i));
+        accessibilityNodeInfo.setContentDescription(sb);
     }
 }

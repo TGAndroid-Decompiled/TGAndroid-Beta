@@ -232,7 +232,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     }
 
     @Override
-    public android.view.View createView(android.content.Context r21) {
+    public android.view.View createView(android.content.Context r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageStatisticActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -616,7 +616,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r9, int r10) {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r10, int r11) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageStatisticActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 

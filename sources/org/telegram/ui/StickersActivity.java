@@ -236,7 +236,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         createActionMode.addItemWithWidth(2, R.drawable.msg_share, AndroidUtilities.dp(54.0f));
         createActionMode.addItemWithWidth(0, R.drawable.msg_archive, AndroidUtilities.dp(54.0f));
         this.deleteMenuItem = createActionMode.addItemWithWidth(1, R.drawable.msg_delete, AndroidUtilities.dp(54.0f));
-        this.listAdapter = new ListAdapter(context, MediaDataController.getInstance(this.currentAccount).getStickerSets(this.currentType), MediaDataController.getInstance(this.currentAccount).getFeaturedStickerSets());
+        this.listAdapter = new ListAdapter(context, MessagesController.getInstance(this.currentAccount).filterPremiumStickers(MediaDataController.getInstance(this.currentAccount).getStickerSets(this.currentType)), MediaDataController.getInstance(this.currentAccount).getFeaturedStickerSets());
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
@@ -434,7 +434,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         boolean z;
         DiffUtil.DiffResult diffResult;
         MediaDataController mediaDataController = MediaDataController.getInstance(this.currentAccount);
-        final ArrayList<TLRPC$TL_messages_stickerSet> stickerSets = mediaDataController.getStickerSets(this.currentType);
+        final ArrayList<TLRPC$TL_messages_stickerSet> filterPremiumStickers = MessagesController.getInstance(this.currentAccount).filterPremiumStickers(mediaDataController.getStickerSets(this.currentType));
         final List<TLRPC$StickerSetCovered> featuredStickerSets = mediaDataController.getFeaturedStickerSets();
         if (featuredStickerSets.size() > 3) {
             featuredStickerSets = featuredStickerSets.subList(0, 3);
@@ -459,18 +459,18 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
 
                     @Override
                     public int getNewListSize() {
-                        return stickerSets.size();
+                        return filterPremiumStickers.size();
                     }
 
                     @Override
                     public boolean areItemsTheSame(int i, int i2) {
-                        return this.oldList.get(i).set.id == ((TLRPC$TL_messages_stickerSet) stickerSets.get(i2)).set.id;
+                        return this.oldList.get(i).set.id == ((TLRPC$TL_messages_stickerSet) filterPremiumStickers.get(i2)).set.id;
                     }
 
                     @Override
                     public boolean areContentsTheSame(int i, int i2) {
                         TLRPC$StickerSet tLRPC$StickerSet = this.oldList.get(i).set;
-                        TLRPC$StickerSet tLRPC$StickerSet2 = ((TLRPC$TL_messages_stickerSet) stickerSets.get(i2)).set;
+                        TLRPC$StickerSet tLRPC$StickerSet2 = ((TLRPC$TL_messages_stickerSet) filterPremiumStickers.get(i2)).set;
                         return TextUtils.equals(tLRPC$StickerSet.title, tLRPC$StickerSet2.title) && tLRPC$StickerSet.count == tLRPC$StickerSet2.count;
                     }
                 });
@@ -506,7 +506,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             } else {
                 diffResult = null;
             }
-            this.listAdapter.setStickerSets(stickerSets);
+            this.listAdapter.setStickerSets(filterPremiumStickers);
             this.listAdapter.setFeaturedStickerSets(featuredStickerSets);
         } else {
             diffResult = null;
@@ -608,7 +608,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             this.rowCount = i15 + 1;
             this.featuredStickersShadowRow = i15;
         }
-        int size2 = stickerSets.size();
+        int size2 = filterPremiumStickers.size();
         if (size2 > 0) {
             if (this.featuredStickersHeaderRow != -1) {
                 int i16 = this.rowCount;
@@ -804,11 +804,11 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                 if (size3 != 1) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(StickersActivity.this.getParentActivity());
                     if (i == 1) {
-                        builder.setTitle(LocaleController.formatString("DeleteStickerSetsAlertTitle", R.string.DeleteStickerSetsAlertTitle, LocaleController.formatPluralString("StickerSets", size3)));
+                        builder.setTitle(LocaleController.formatString("DeleteStickerSetsAlertTitle", R.string.DeleteStickerSetsAlertTitle, LocaleController.formatPluralString("StickerSets", size3, new Object[0])));
                         builder.setMessage(LocaleController.formatString("DeleteStickersAlertMessage", R.string.DeleteStickersAlertMessage, Integer.valueOf(size3)));
                         str = LocaleController.getString("Delete", R.string.Delete);
                     } else {
-                        builder.setTitle(LocaleController.formatString("ArchiveStickerSetsAlertTitle", R.string.ArchiveStickerSetsAlertTitle, LocaleController.formatPluralString("StickerSets", size3)));
+                        builder.setTitle(LocaleController.formatString("ArchiveStickerSetsAlertTitle", R.string.ArchiveStickerSetsAlertTitle, LocaleController.formatPluralString("StickerSets", size3, new Object[0])));
                         builder.setMessage(LocaleController.formatString("ArchiveStickersAlertMessage", R.string.ArchiveStickersAlertMessage, Integer.valueOf(size3)));
                         str = LocaleController.getString("Archive", R.string.Archive);
                     }
@@ -939,7 +939,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                         }
                     } else if (i == StickersActivity.this.masksRow) {
                         MediaDataController mediaDataController = MediaDataController.getInstance(((BaseFragment) StickersActivity.this).currentAccount);
-                        int size = mediaDataController.getStickerSets(1).size() + mediaDataController.getArchivedStickersCount(1);
+                        int size = MessagesController.getInstance(((BaseFragment) StickersActivity.this).currentAccount).filterPremiumStickers(mediaDataController.getStickerSets(1)).size() + mediaDataController.getArchivedStickersCount(1);
                         String string = LocaleController.getString("Masks", R.string.Masks);
                         if (size > 0) {
                             str2 = Integer.toString(size);

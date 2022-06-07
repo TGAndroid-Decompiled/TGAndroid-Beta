@@ -53,15 +53,15 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     public long open(DataSpec dataSpec) throws IOException {
         Uri uri = dataSpec.uri;
         this.uri = uri;
-        int intValue = Utilities.parseInt(uri.getQueryParameter("account")).intValue();
+        int intValue = Utilities.parseInt((CharSequence) uri.getQueryParameter("account")).intValue();
         this.currentAccount = intValue;
-        this.parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt(this.uri.getQueryParameter("rid")).intValue());
+        this.parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) this.uri.getQueryParameter("rid")).intValue());
         TLRPC$TL_document tLRPC$TL_document = new TLRPC$TL_document();
         this.document = tLRPC$TL_document;
         tLRPC$TL_document.access_hash = Utilities.parseLong(this.uri.getQueryParameter("hash")).longValue();
         this.document.id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
-        this.document.size = Utilities.parseInt(this.uri.getQueryParameter("size")).intValue();
-        this.document.dc_id = Utilities.parseInt(this.uri.getQueryParameter("dc")).intValue();
+        this.document.size = Utilities.parseLong(this.uri.getQueryParameter("size")).longValue();
+        this.document.dc_id = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("dc")).intValue();
         this.document.mime_type = this.uri.getQueryParameter("mime");
         this.document.file_reference = Utilities.hexToBytes(this.uri.getQueryParameter("reference"));
         TLRPC$TL_documentAttributeFilename tLRPC$TL_documentAttributeFilename = new TLRPC$TL_documentAttributeFilename();
@@ -114,7 +114,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
                 if (!this.opened) {
                     break;
                 }
-                i3 = this.loadOperation.getDownloadedLengthFromOffset(this.currentOffset, i2)[0];
+                i3 = (int) this.loadOperation.getDownloadedLengthFromOffset(this.currentOffset, i2)[0];
                 if (i3 == 0) {
                     FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, null, this.parentObject, this.currentOffset, false);
                     CountDownLatch countDownLatch = new CountDownLatch(1);

@@ -544,11 +544,11 @@ public class FlickerLoadingView extends View {
                         }
                     } else if (i28 == 22) {
                         while (i <= getMeasuredHeight()) {
-                            canvas.drawCircle(checkRtl(AndroidUtilities.dp(20.0f) + dp3), AndroidUtilities.dp(12.0f) + i, AndroidUtilities.dp(48.0f) >> 1, paint2);
+                            canvas.drawCircle(checkRtl(AndroidUtilities.dp(20.0f) + dp3), AndroidUtilities.dp(6.0f) + i + dp3, AndroidUtilities.dp(48.0f) >> 1, paint2);
                             this.rectF.set(AndroidUtilities.dp(76.0f), AndroidUtilities.dp(16.0f) + i, AndroidUtilities.dp(140.0f), AndroidUtilities.dp(24.0f) + i);
                             checkRtl(this.rectF);
                             canvas.drawRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint2);
-                            this.rectF.set(AndroidUtilities.dp(76.0f), AndroidUtilities.dp(38.0f) + i, AndroidUtilities.dp(260.0f), i + AndroidUtilities.dp(46.0f));
+                            this.rectF.set(AndroidUtilities.dp(76.0f), AndroidUtilities.dp(38.0f) + i, AndroidUtilities.dp(260.0f), AndroidUtilities.dp(46.0f) + i);
                             checkRtl(this.rectF);
                             canvas.drawRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint2);
                             i += getCellHeight(getMeasuredWidth());

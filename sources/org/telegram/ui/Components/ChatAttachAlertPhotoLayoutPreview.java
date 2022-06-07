@@ -11,6 +11,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.SystemClock;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
@@ -35,7 +37,9 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC$FileLocation;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -45,12 +49,13 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.PhotoViewer;
 
 public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAlertLayout {
     private static HashMap<MediaController.PhotoEntry, Boolean> photoRotate = new HashMap<>();
     private ValueAnimator draggingAnimator;
     private PreviewGroupsView groupsView;
-    private TextView header;
+    public TextView header;
     private ViewPropertyAnimator headerAnimator;
     private boolean isPortrait;
     private LinearLayoutManager layoutManager;
@@ -82,7 +87,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         return true;
     }
 
-    static float access$1516(ChatAttachAlertPhotoLayoutPreview chatAttachAlertPhotoLayoutPreview, float f) {
+    static float access$1416(ChatAttachAlertPhotoLayoutPreview chatAttachAlertPhotoLayoutPreview, float f) {
         float f2 = chatAttachAlertPhotoLayoutPreview.draggingCellTouchY + f;
         chatAttachAlertPhotoLayoutPreview.draggingCellTouchY = f2;
         return f2;
@@ -181,7 +186,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.photoLayout = this.parentAlert.getPhotoLayout();
         this.groupsView.deletedPhotos.clear();
         this.groupsView.fromPhotoLayout(this.photoLayout);
-        UndoView undoView = new UndoView(context);
+        UndoView undoView = new UndoView(context, null, false, this.parentAlert.parentThemeDelegate);
         this.undoView = undoView;
         undoView.setEnterOffsetMargin(AndroidUtilities.dp(32.0f));
         addView(this.undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 52.0f));
@@ -217,7 +222,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
         }
-        ViewPropertyAnimator interpolator = this.header.animate().alpha(1.0f).setDuration(150L).setInterpolator(CubicBezierInterpolator.EASE_BOTH);
+        ViewPropertyAnimator interpolator = this.header.animate().alpha(1.0f).setDuration(150L).setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.headerAnimator = interpolator;
         interpolator.start();
     }
@@ -526,9 +531,13 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
 
     public class PreviewGroupsView extends ViewGroup {
         private ChatActionCell hintView;
+        HashMap<Object, Object> photosMap;
+        List<Map.Entry<Object, Object>> photosMapKeys;
+        ArrayList<Object> photosOrder;
         private float savedDragFromX;
         private float savedDragFromY;
         private float savedDraggingT;
+        HashMap<Object, Object> selectedPhotos;
         float viewBottom;
         float viewTop;
         private ArrayList<PreviewGroupCell> groupCells = new ArrayList<>();
@@ -560,7 +569,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     }
                     int i = (int) f;
                     if (Math.abs(i) > 0 && ChatAttachAlertPhotoLayoutPreview.this.listView.canScrollVertically(i) && (f <= 0.0f || !z)) {
-                        ChatAttachAlertPhotoLayoutPreview.access$1516(ChatAttachAlertPhotoLayoutPreview.this, f);
+                        ChatAttachAlertPhotoLayoutPreview.access$1416(ChatAttachAlertPhotoLayoutPreview.this, f);
                         ChatAttachAlertPhotoLayoutPreview.this.listView.scrollBy(0, i);
                         PreviewGroupsView.this.invalidate();
                     }
@@ -569,6 +578,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 }
             }
         };
+        GroupingPhotoViewerProvider photoViewerProvider = new GroupingPhotoViewerProvider();
         private int undoViewId = 0;
 
         @Override
@@ -606,14 +616,18 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         public void fromPhotoLayout(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
+            this.photosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
+            this.photosMap = chatAttachAlertPhotoLayout.getSelectedPhotos();
+            fromPhotoArrays();
+        }
+
+        public void fromPhotoArrays() {
             this.groupCells.clear();
             ArrayList arrayList = new ArrayList();
-            int size = selectedPhotosOrder.size();
+            int size = this.photosOrder.size();
             int i = size - 1;
             for (int i2 = 0; i2 < size; i2++) {
-                arrayList.add((MediaController.PhotoEntry) selectedPhotos.get(Integer.valueOf(((Integer) selectedPhotosOrder.get(i2)).intValue())));
+                arrayList.add((MediaController.PhotoEntry) this.photosMap.get(Integer.valueOf(((Integer) this.photosOrder.get(i2)).intValue())));
                 if (i2 % 10 == 9 || i2 == i) {
                     PreviewGroupCell previewGroupCell = new PreviewGroupCell();
                     previewGroupCell.setGroup(new GroupCalculator(arrayList), false);
@@ -623,52 +637,52 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             }
         }
 
-        public void toPhotoLayout(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, boolean z) {
-            boolean z2;
+        public void calcPhotoArrays() {
+            boolean z;
             String str;
-            int size = chatAttachAlertPhotoLayout.getSelectedPhotosOrder().size();
-            ArrayList arrayList = new ArrayList(chatAttachAlertPhotoLayout.getSelectedPhotos().entrySet());
-            HashMap<Object, Object> hashMap = new HashMap<>();
-            ArrayList<Object> arrayList2 = new ArrayList<>();
-            int size2 = this.groupCells.size();
-            for (int i = 0; i < size2; i++) {
+            this.photosMap = ChatAttachAlertPhotoLayoutPreview.this.photoLayout.getSelectedPhotos();
+            this.photosMapKeys = new ArrayList(this.photosMap.entrySet());
+            this.selectedPhotos = new HashMap<>();
+            this.photosOrder = new ArrayList<>();
+            int size = this.groupCells.size();
+            for (int i = 0; i < size; i++) {
                 GroupCalculator groupCalculator = this.groupCells.get(i).group;
                 if (groupCalculator.photos.size() != 0) {
-                    int size3 = groupCalculator.photos.size();
-                    for (int i2 = 0; i2 < size3; i2++) {
+                    int size2 = groupCalculator.photos.size();
+                    for (int i2 = 0; i2 < size2; i2++) {
                         MediaController.PhotoEntry photoEntry = groupCalculator.photos.get(i2);
                         if (this.deletedPhotos.containsKey(photoEntry)) {
                             Object obj = this.deletedPhotos.get(photoEntry);
-                            hashMap.put(obj, photoEntry);
-                            arrayList2.add(obj);
+                            this.selectedPhotos.put(obj, photoEntry);
+                            this.photosOrder.add(obj);
                         } else {
                             int i3 = 0;
                             while (true) {
-                                if (i3 >= arrayList.size()) {
-                                    z2 = false;
+                                if (i3 >= this.photosMapKeys.size()) {
+                                    z = false;
                                     break;
                                 }
-                                Map.Entry entry = (Map.Entry) arrayList.get(i3);
+                                Map.Entry<Object, Object> entry = this.photosMapKeys.get(i3);
                                 Object value = entry.getValue();
                                 if (value == photoEntry) {
                                     Object key = entry.getKey();
-                                    hashMap.put(key, value);
-                                    arrayList2.add(key);
-                                    z2 = true;
+                                    this.selectedPhotos.put(key, value);
+                                    this.photosOrder.add(key);
+                                    z = true;
                                     break;
                                 }
                                 i3++;
                             }
-                            if (!z2) {
+                            if (!z) {
                                 int i4 = 0;
                                 while (true) {
-                                    if (i4 < arrayList.size()) {
-                                        Map.Entry entry2 = (Map.Entry) arrayList.get(i4);
+                                    if (i4 < this.photosMapKeys.size()) {
+                                        Map.Entry<Object, Object> entry2 = this.photosMapKeys.get(i4);
                                         Object value2 = entry2.getValue();
                                         if ((value2 instanceof MediaController.PhotoEntry) && (str = ((MediaController.PhotoEntry) value2).path) != null && photoEntry != null && str.equals(photoEntry.path)) {
                                             Object key2 = entry2.getKey();
-                                            hashMap.put(key2, value2);
-                                            arrayList2.add(key2);
+                                            this.selectedPhotos.put(key2, value2);
+                                            this.photosOrder.add(key2);
                                             break;
                                         }
                                         i4++;
@@ -679,8 +693,13 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     }
                 }
             }
-            chatAttachAlertPhotoLayout.updateSelected(hashMap, arrayList2, z);
-            if (size != arrayList2.size()) {
+        }
+
+        public void toPhotoLayout(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, boolean z) {
+            int size = chatAttachAlertPhotoLayout.getSelectedPhotosOrder().size();
+            calcPhotoArrays();
+            chatAttachAlertPhotoLayout.updateSelected(this.selectedPhotos, this.photosOrder, z);
+            if (size != this.photosOrder.size()) {
                 ChatAttachAlertPhotoLayoutPreview.this.parentAlert.updateCountButton(1);
             }
         }
@@ -695,6 +714,18 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 }
             }
             return i;
+        }
+
+        public ArrayList<MediaController.PhotoEntry> getPhotos() {
+            ArrayList<MediaController.PhotoEntry> arrayList = new ArrayList<>();
+            int size = this.groupCells.size();
+            for (int i = 0; i < size; i++) {
+                PreviewGroupCell previewGroupCell = this.groupCells.get(i);
+                if (!(previewGroupCell == null || previewGroupCell.group == null || previewGroupCell.group.photos == null)) {
+                    arrayList.addAll(previewGroupCell.group.photos);
+                }
+            }
+            return arrayList;
         }
 
         public int measurePureHeight() {
@@ -930,6 +961,184 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             invalidate();
         }
 
+        class GroupingPhotoViewerProvider extends PhotoViewer.EmptyPhotoViewerProvider {
+            private ArrayList<MediaController.PhotoEntry> photos = new ArrayList<>();
+
+            @Override
+            public boolean cancelButtonPressed() {
+                return false;
+            }
+
+            GroupingPhotoViewerProvider() {
+            }
+
+            public void init(ArrayList<MediaController.PhotoEntry> arrayList) {
+                this.photos = arrayList;
+            }
+
+            @Override
+            public void onClose() {
+                PreviewGroupsView.this.fromPhotoArrays();
+                PreviewGroupsView previewGroupsView = PreviewGroupsView.this;
+                previewGroupsView.toPhotoLayout(ChatAttachAlertPhotoLayoutPreview.this.photoLayout, false);
+            }
+
+            @Override
+            public boolean isPhotoChecked(int i) {
+                if (i < 0 || i >= this.photos.size()) {
+                    return false;
+                }
+                return PreviewGroupsView.this.photosOrder.contains(Integer.valueOf(this.photos.get(i).imageId));
+            }
+
+            @Override
+            public int setPhotoChecked(int i, VideoEditedInfo videoEditedInfo) {
+                if (i < 0 || i >= this.photos.size()) {
+                    return -1;
+                }
+                Integer valueOf = Integer.valueOf(this.photos.get(i).imageId);
+                int indexOf = PreviewGroupsView.this.photosOrder.indexOf(valueOf);
+                if (indexOf < 0) {
+                    PreviewGroupsView.this.photosOrder.add(valueOf);
+                    PreviewGroupsView.this.fromPhotoArrays();
+                    return PreviewGroupsView.this.photosOrder.size() - 1;
+                } else if (PreviewGroupsView.this.photosOrder.size() <= 1) {
+                    return -1;
+                } else {
+                    PreviewGroupsView.this.photosOrder.remove(indexOf);
+                    PreviewGroupsView.this.fromPhotoArrays();
+                    return indexOf;
+                }
+            }
+
+            @Override
+            public int setPhotoUnchecked(Object obj) {
+                int indexOf;
+                Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) obj).imageId);
+                if (PreviewGroupsView.this.photosOrder.size() <= 1 || (indexOf = PreviewGroupsView.this.photosOrder.indexOf(valueOf)) < 0) {
+                    return -1;
+                }
+                PreviewGroupsView.this.photosOrder.remove(indexOf);
+                PreviewGroupsView.this.fromPhotoArrays();
+                return indexOf;
+            }
+
+            @Override
+            public int getSelectedCount() {
+                return PreviewGroupsView.this.photosOrder.size();
+            }
+
+            @Override
+            public ArrayList<Object> getSelectedPhotosOrder() {
+                return PreviewGroupsView.this.photosOrder;
+            }
+
+            @Override
+            public HashMap<Object, Object> getSelectedPhotos() {
+                return PreviewGroupsView.this.photosMap;
+            }
+
+            @Override
+            public int getPhotoIndex(int i) {
+                MediaController.PhotoEntry photoEntry;
+                if (i < 0 || i >= this.photos.size() || (photoEntry = this.photos.get(i)) == null) {
+                    return -1;
+                }
+                return PreviewGroupsView.this.photosOrder.indexOf(Integer.valueOf(photoEntry.imageId));
+            }
+
+            @Override
+            public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, int i, boolean z) {
+                MediaController.PhotoEntry photoEntry;
+                ArrayList<PreviewGroupCell.MediaCell> arrayList;
+                PhotoViewer.PlaceProviderObject placeProviderObject = null;
+                if (i >= 0 && i < this.photos.size() && isPhotoChecked(i) && (photoEntry = this.photos.get(i)) != null) {
+                    int size = PreviewGroupsView.this.groupCells.size();
+                    PreviewGroupCell previewGroupCell = null;
+                    PreviewGroupCell.MediaCell mediaCell = null;
+                    for (int i2 = 0; i2 < size; i2++) {
+                        previewGroupCell = (PreviewGroupCell) PreviewGroupsView.this.groupCells.get(i2);
+                        if (!(previewGroupCell == null || (arrayList = previewGroupCell.media) == null)) {
+                            int size2 = arrayList.size();
+                            int i3 = 0;
+                            while (true) {
+                                if (i3 >= size2) {
+                                    break;
+                                }
+                                PreviewGroupCell.MediaCell mediaCell2 = previewGroupCell.media.get(i3);
+                                if (mediaCell2 != null && mediaCell2.photoEntry == photoEntry && mediaCell2.scale > 0.5d) {
+                                    mediaCell = previewGroupCell.media.get(i3);
+                                    break;
+                                }
+                                i3++;
+                            }
+                            if (mediaCell != null) {
+                                break;
+                            }
+                        }
+                    }
+                    if (!(previewGroupCell == null || mediaCell == null)) {
+                        placeProviderObject = new PhotoViewer.PlaceProviderObject();
+                        int[] iArr = new int[2];
+                        PreviewGroupsView.this.getLocationInWindow(iArr);
+                        if (Build.VERSION.SDK_INT < 26) {
+                            iArr[0] = iArr[0] - ChatAttachAlertPhotoLayoutPreview.this.parentAlert.getLeftInset();
+                        }
+                        placeProviderObject.viewX = iArr[0];
+                        placeProviderObject.viewY = iArr[1] + ((int) previewGroupCell.y);
+                        placeProviderObject.scale = 1.0f;
+                        placeProviderObject.parentView = PreviewGroupsView.this;
+                        ImageReceiver imageReceiver = mediaCell.image;
+                        placeProviderObject.imageReceiver = imageReceiver;
+                        placeProviderObject.thumb = imageReceiver.getBitmapSafe();
+                        placeProviderObject.radius = r13;
+                        RectF rectF = mediaCell.roundRadiuses;
+                        int[] iArr2 = {(int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom};
+                        placeProviderObject.clipTopAddition = (int) (-PreviewGroupsView.this.getY());
+                        placeProviderObject.clipBottomAddition = PreviewGroupsView.this.getHeight() - ((int) (((-PreviewGroupsView.this.getY()) + ChatAttachAlertPhotoLayoutPreview.this.listView.getHeight()) - ChatAttachAlertPhotoLayoutPreview.this.parentAlert.getClipLayoutBottom()));
+                    }
+                }
+                return placeProviderObject;
+            }
+
+            @Override
+            public void updatePhotoAtIndex(int i) {
+                MediaController.PhotoEntry photoEntry;
+                boolean z;
+                if (i >= 0 && i < this.photos.size() && (photoEntry = this.photos.get(i)) != null) {
+                    int i2 = photoEntry.imageId;
+                    PreviewGroupsView.this.invalidate();
+                    for (int i3 = 0; i3 < PreviewGroupsView.this.groupCells.size(); i3++) {
+                        PreviewGroupCell previewGroupCell = (PreviewGroupCell) PreviewGroupsView.this.groupCells.get(i3);
+                        if (!(previewGroupCell == null || previewGroupCell.media == null)) {
+                            for (int i4 = 0; i4 < previewGroupCell.media.size(); i4++) {
+                                PreviewGroupCell.MediaCell mediaCell = previewGroupCell.media.get(i4);
+                                if (mediaCell != null && mediaCell.photoEntry.imageId == i2) {
+                                    mediaCell.setImage(photoEntry);
+                                }
+                            }
+                            if (previewGroupCell.group == null || previewGroupCell.group.photos == null) {
+                                z = false;
+                            } else {
+                                z = false;
+                                for (int i5 = 0; i5 < previewGroupCell.group.photos.size(); i5++) {
+                                    if (previewGroupCell.group.photos.get(i5).imageId == i2) {
+                                        previewGroupCell.group.photos.set(i5, photoEntry);
+                                        z = true;
+                                    }
+                                }
+                            }
+                            if (z) {
+                                previewGroupCell.setGroup(previewGroupCell.group, true);
+                            }
+                        }
+                    }
+                    PreviewGroupsView.this.remeasure();
+                    PreviewGroupsView.this.invalidate();
+                }
+            }
+        }
+
         @Override
         public boolean onTouchEvent(android.view.MotionEvent r20) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.onTouchEvent(android.view.MotionEvent):boolean");
@@ -1068,6 +1277,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 private Rect indexIn;
                 private Rect indexOut;
                 private long lastUpdate;
+                private long lastVisibleTUpdate;
                 private Paint paint;
                 public MediaController.PhotoEntry photoEntry;
                 private int positionFlags;
@@ -1081,6 +1291,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 private String videoDurationBitmapText;
                 private String videoDurationText;
                 private TextPaint videoDurationTextPaint;
+                private float visibleT;
 
                 private MediaCell() {
                     this.groupCell = PreviewGroupCell.this;
@@ -1105,6 +1316,8 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     this.indexOut = new Rect();
                     this.durationIn = new Rect();
                     this.durationOut = new Rect();
+                    this.visibleT = 1.0f;
+                    this.lastVisibleTUpdate = 0L;
                 }
 
                 public void setImage(MediaController.PhotoEntry photoEntry) {
@@ -1114,21 +1327,23 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     } else {
                         this.videoDurationText = AndroidUtilities.formatShortDuration(photoEntry.duration);
                     }
-                    ImageReceiver imageReceiver = new ImageReceiver(PreviewGroupsView.this);
-                    this.image = imageReceiver;
+                    if (this.image == null) {
+                        this.image = new ImageReceiver(PreviewGroupsView.this);
+                    }
                     if (photoEntry != null) {
                         String str = photoEntry.thumbPath;
                         if (str != null) {
-                            imageReceiver.setImage(ImageLocation.getForPath(str), null, null, null, Theme.chat_attachEmptyDrawable, 0, null, null, 0);
+                            this.image.setImage(ImageLocation.getForPath(str), null, null, null, Theme.chat_attachEmptyDrawable, 0L, null, null, 0);
                         } else if (photoEntry.path == null) {
-                            imageReceiver.setImageBitmap(Theme.chat_attachEmptyDrawable);
+                            this.image.setImageBitmap(Theme.chat_attachEmptyDrawable);
                         } else if (photoEntry.isVideo) {
-                            imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, Theme.chat_attachEmptyDrawable, 0, null, null, 0);
+                            ImageReceiver imageReceiver = this.image;
+                            imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, Theme.chat_attachEmptyDrawable, 0L, null, null, 0);
                             this.image.setAllowStartAnimation(true);
                         } else {
-                            imageReceiver.setOrientation(photoEntry.orientation, true);
+                            this.image.setOrientation(photoEntry.orientation, true);
                             ImageReceiver imageReceiver2 = this.image;
-                            imageReceiver2.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, Theme.chat_attachEmptyDrawable, 0, null, null, 0);
+                            imageReceiver2.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, Theme.chat_attachEmptyDrawable, 0L, null, null, 0);
                         }
                     }
                 }
@@ -1286,7 +1501,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     return rect;
                 }
 
-                private void drawPhotoIndex(Canvas canvas, float f, float f2, String str, float f3) {
+                private void drawPhotoIndex(Canvas canvas, float f, float f2, String str, float f3, float f4) {
                     String str2;
                     int dp = AndroidUtilities.dp(12.0f);
                     int dp2 = AndroidUtilities.dp(1.2f);
@@ -1305,32 +1520,32 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         }
                         this.textPaint.setColor(ChatAttachAlertPhotoLayoutPreview.this.getThemedColor("chat_attachCheckBoxCheck"));
                         int length = str.length();
-                        float f4 = (length == 0 || length == 1 || length == 2) ? 14.0f : length != 3 ? 8.0f : 10.0f;
-                        this.textPaint.setTextSize(AndroidUtilities.dp(f4));
-                        float f5 = i / 2.0f;
+                        float f5 = (length == 0 || length == 1 || length == 2) ? 14.0f : length != 3 ? 8.0f : 10.0f;
+                        this.textPaint.setTextSize(AndroidUtilities.dp(f5));
+                        float f6 = i / 2.0f;
                         this.paint.setColor(ChatAttachAlertPhotoLayoutPreview.this.getThemedColor("chat_attachCheckBoxBackground"));
-                        float f6 = (int) f5;
-                        float f7 = dp;
-                        canvas2.drawCircle(f6, f6, f7, this.paint);
+                        float f7 = (int) f6;
+                        float f8 = dp;
+                        canvas2.drawCircle(f7, f7, f8, this.paint);
                         this.strokePaint.setColor(AndroidUtilities.getOffsetColor(-1, ChatAttachAlertPhotoLayoutPreview.this.getThemedColor("chat_attachCheckBoxCheck"), 1.0f, 1.0f));
                         this.strokePaint.setStyle(Paint.Style.STROKE);
                         this.strokePaint.setStrokeWidth(dp2);
-                        canvas2.drawCircle(f6, f6, f7, this.strokePaint);
-                        canvas2.drawText(str, f5 - (this.textPaint.measureText(str) / 2.0f), f5 + AndroidUtilities.dp(1.0f) + AndroidUtilities.dp(f4 / 4.0f), this.textPaint);
+                        canvas2.drawCircle(f7, f7, f8, this.strokePaint);
+                        canvas2.drawText(str, f6 - (this.textPaint.measureText(str) / 2.0f), f6 + AndroidUtilities.dp(1.0f) + AndroidUtilities.dp(f5 / 4.0f), this.textPaint);
                         this.indexIn.set(0, 0, i, i);
                         this.indexBitmapText = str;
                     }
                     if (this.indexBitmap != null) {
-                        float f8 = i * f3;
-                        float f9 = i2;
-                        float f10 = f - f9;
-                        this.indexOut.set((int) ((f2 - f8) + f9), (int) f10, (int) (f2 + f9), (int) (f10 + f8));
-                        this.bitmapPaint.setAlpha((int) (255.0f * f3));
+                        float f9 = i * f3;
+                        float f10 = i2;
+                        float f11 = f - f10;
+                        this.indexOut.set((int) ((f2 - f9) + f10), (int) f11, (int) (f2 + f10), (int) (f11 + f9));
+                        this.bitmapPaint.setAlpha((int) (255.0f * f4));
                         canvas.drawBitmap(this.indexBitmap, this.indexIn, this.indexOut, this.bitmapPaint);
                     }
                 }
 
-                private void drawDuration(Canvas canvas, float f, float f2, String str, float f3) {
+                private void drawDuration(Canvas canvas, float f, float f2, String str, float f3, float f4) {
                     String str2;
                     if (str != null) {
                         if (this.videoDurationBitmap == null || (str2 = this.videoDurationBitmapText) == null || !str2.equals(str)) {
@@ -1367,7 +1582,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                             this.videoDurationBitmapText = str;
                         }
                         this.durationOut.set((int) f, (int) (f2 - (this.videoDurationBitmap.getHeight() * f3)), (int) (f + (this.videoDurationBitmap.getWidth() * f3)), (int) f2);
-                        this.bitmapPaint.setAlpha((int) (f3 * 255.0f));
+                        this.bitmapPaint.setAlpha((int) (f4 * 255.0f));
                         canvas.drawBitmap(this.videoDurationBitmap, this.durationIn, this.durationOut, this.bitmapPaint);
                     }
                 }
@@ -1383,11 +1598,12 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 public boolean draw(Canvas canvas, float f, boolean z) {
                     int indexOf;
                     String str;
+                    float f2;
                     RectF rectF;
                     if (this.rect == null || this.image == null) {
                         return false;
                     }
-                    float f2 = ChatAttachAlertPhotoLayoutPreview.this.draggingCell == this ? PreviewGroupsView.this.draggingT : 0.0f;
+                    float f3 = ChatAttachAlertPhotoLayoutPreview.this.draggingCell == this ? PreviewGroupsView.this.draggingT : 0.0f;
                     float lerp = AndroidUtilities.lerp(this.fromScale, this.scale, f);
                     if (lerp <= 0.0f) {
                         return false;
@@ -1395,20 +1611,20 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     RectF drawingRect = drawingRect();
                     float dp = AndroidUtilities.dp(SharedConfig.bubbleRadius - 1);
                     RectF rectF2 = this.roundRadiuses;
-                    float f3 = rectF2.left;
-                    float f4 = rectF2.top;
-                    float f5 = rectF2.right;
-                    float f6 = rectF2.bottom;
+                    float f4 = rectF2.left;
+                    float f5 = rectF2.top;
+                    float f6 = rectF2.right;
+                    float f7 = rectF2.bottom;
                     if (f < 1.0f && (rectF = this.fromRoundRadiuses) != null) {
-                        f3 = AndroidUtilities.lerp(rectF.left, f3, f);
-                        f4 = AndroidUtilities.lerp(this.fromRoundRadiuses.top, f4, f);
-                        f5 = AndroidUtilities.lerp(this.fromRoundRadiuses.right, f5, f);
-                        f6 = AndroidUtilities.lerp(this.fromRoundRadiuses.bottom, f6, f);
+                        f4 = AndroidUtilities.lerp(rectF.left, f4, f);
+                        f5 = AndroidUtilities.lerp(this.fromRoundRadiuses.top, f5, f);
+                        f6 = AndroidUtilities.lerp(this.fromRoundRadiuses.right, f6, f);
+                        f7 = AndroidUtilities.lerp(this.fromRoundRadiuses.bottom, f7, f);
                     }
-                    float lerp2 = AndroidUtilities.lerp(f3, dp, f2);
-                    float lerp3 = AndroidUtilities.lerp(f4, dp, f2);
-                    float lerp4 = AndroidUtilities.lerp(f5, dp, f2);
-                    float lerp5 = AndroidUtilities.lerp(f6, dp, f2);
+                    float lerp2 = AndroidUtilities.lerp(f4, dp, f3);
+                    float lerp3 = AndroidUtilities.lerp(f5, dp, f3);
+                    float lerp4 = AndroidUtilities.lerp(f6, dp, f3);
+                    float lerp5 = AndroidUtilities.lerp(f7, dp, f3);
                     if (z) {
                         canvas.save();
                         canvas.translate(-drawingRect.centerX(), -drawingRect.centerY());
@@ -1423,12 +1639,30 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     } else {
                         str = null;
                     }
-                    drawPhotoIndex(canvas, AndroidUtilities.dp(10.0f) + drawingRect.top, drawingRect.right - AndroidUtilities.dp(10.0f), str, lerp);
-                    drawDuration(canvas, AndroidUtilities.dp(4.0f) + drawingRect.left, drawingRect.bottom - AndroidUtilities.dp(4.0f), this.videoDurationText, lerp);
+                    String str2 = str;
+                    float f8 = this.image.getVisible() ? 1.0f : 0.0f;
+                    boolean z2 = Math.abs(this.visibleT - f8) > 0.01f;
+                    if (z2) {
+                        f2 = lerp;
+                        long min = Math.min(17L, SystemClock.elapsedRealtime() - this.lastVisibleTUpdate);
+                        this.lastVisibleTUpdate = SystemClock.elapsedRealtime();
+                        float f9 = ((float) min) / 100.0f;
+                        float f10 = this.visibleT;
+                        if (f8 < f10) {
+                            this.visibleT = Math.max(0.0f, f10 - f9);
+                        } else {
+                            this.visibleT = Math.min(1.0f, f10 + f9);
+                        }
+                    } else {
+                        f2 = lerp;
+                    }
+                    float f11 = f2;
+                    drawPhotoIndex(canvas, AndroidUtilities.dp(10.0f) + drawingRect.top, drawingRect.right - AndroidUtilities.dp(10.0f), str2, f11, f2 * this.visibleT);
+                    drawDuration(canvas, AndroidUtilities.dp(4.0f) + drawingRect.left, drawingRect.bottom - AndroidUtilities.dp(4.0f), this.videoDurationText, f11, f2 * this.visibleT);
                     if (z) {
                         canvas.restore();
                     }
-                    return f < 1.0f;
+                    return f < 1.0f || z2;
                 }
             }
 

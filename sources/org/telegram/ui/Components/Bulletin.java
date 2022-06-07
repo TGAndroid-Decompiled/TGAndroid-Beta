@@ -16,6 +16,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.util.Property;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -54,6 +55,7 @@ public class Bulletin {
     public int currentBottomOffset;
     private Delegate currentDelegate;
     private int duration;
+    public int hash;
     private final Runnable hideRunnable;
     private final Layout layout;
     private Layout.Transition layoutTransition;
@@ -1006,7 +1008,7 @@ public class Bulletin {
             invalidate();
         }
 
-        protected int getThemedColor(String str) {
+        public int getThemedColor(String str) {
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
             return color != null ? color.intValue() : Theme.getColor(str);
@@ -1130,6 +1132,8 @@ public class Bulletin {
             this.subtitleTextView = textView2;
             textView2.setMaxLines(2);
             textView2.setTextColor(themedColor);
+            textView2.setLinkTextColor(getThemedColor("undo_cancelColor"));
+            textView2.setMovementMethod(new LinkMovementMethod());
             textView2.setTypeface(Typeface.SANS_SERIF);
             textView2.setTextSize(1, 13.0f);
             linearLayout.addView(textView2);
@@ -1282,6 +1286,7 @@ public class Bulletin {
         private boolean isUndone;
         private final Theme.ResourcesProvider resourcesProvider;
         private Runnable undoAction;
+        private TextView undoTextView;
 
         public UndoButton(Context context, boolean z) {
             this(context, z, null);
@@ -1293,20 +1298,21 @@ public class Bulletin {
             int themedColor = getThemedColor("undo_cancelColor");
             if (z) {
                 TextView textView = new TextView(context);
+                this.undoTextView = textView;
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         Bulletin.UndoButton.this.lambda$new$0(view);
                     }
                 });
-                textView.setBackground(Theme.createCircleSelectorDrawable(419430400 | (16777215 & themedColor), LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : 0, !LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : 0));
-                textView.setTextSize(1, 14.0f);
-                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-                textView.setTextColor(themedColor);
-                textView.setText(LocaleController.getString("Undo", R.string.Undo));
-                textView.setGravity(16);
-                ViewHelper.setPaddingRelative(textView, 16.0f, 0.0f, 16.0f, 0.0f);
-                addView(textView, LayoutHelper.createFrameRelatively(-2.0f, 48.0f, 16, 8.0f, 0.0f, 0.0f, 0.0f));
+                this.undoTextView.setBackground(Theme.createCircleSelectorDrawable(419430400 | (16777215 & themedColor), LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : 0, !LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : 0));
+                this.undoTextView.setTextSize(1, 14.0f);
+                this.undoTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.undoTextView.setTextColor(themedColor);
+                this.undoTextView.setText(LocaleController.getString("Undo", R.string.Undo));
+                this.undoTextView.setGravity(16);
+                ViewHelper.setPaddingRelative(this.undoTextView, 16.0f, 0.0f, 16.0f, 0.0f);
+                addView(this.undoTextView, LayoutHelper.createFrameRelatively(-2.0f, 48.0f, 16, 8.0f, 0.0f, 0.0f, 0.0f));
                 return;
             }
             ImageView imageView = new ImageView(getContext());
@@ -1329,6 +1335,14 @@ public class Bulletin {
 
         public void lambda$new$1(View view) {
             undo();
+        }
+
+        public UndoButton setText(CharSequence charSequence) {
+            TextView textView = this.undoTextView;
+            if (textView != null) {
+                textView.setText(charSequence);
+            }
+            return this;
         }
 
         public void undo() {

@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -105,6 +106,7 @@ public class StickerSetCell extends FrameLayout {
             if (i == 1) {
                 this.optionsButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu"), PorterDuff.Mode.MULTIPLY));
                 this.optionsButton.setImageResource(R.drawable.msg_actions);
+                this.optionsButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
                 addView(this.optionsButton, LayoutHelper.createFrame(40, 40, (LocaleController.isRTL ? 3 : i2) | 16));
                 ImageView imageView2 = new ImageView(context);
                 this.reorderButton = imageView2;
@@ -185,10 +187,10 @@ public class StickerSetCell extends FrameLayout {
         }
         ArrayList<TLRPC$Document> arrayList = tLRPC$TL_messages_stickerSet.documents;
         if (arrayList == null || arrayList.isEmpty()) {
-            this.valueTextView.setText(LocaleController.formatPluralString("Stickers", 0));
+            this.valueTextView.setText(LocaleController.formatPluralString("Stickers", 0, new Object[0]));
             this.imageView.setImageDrawable(null);
         } else {
-            this.valueTextView.setText(LocaleController.formatPluralString("Stickers", arrayList.size()));
+            this.valueTextView.setText(LocaleController.formatPluralString("Stickers", arrayList.size(), new Object[0]));
             TLRPC$Document tLRPC$Document = arrayList.get(0);
             TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messages_stickerSet.set.thumbs, 90);
             if (closestPhotoSizeWithSize == null) {
@@ -364,6 +366,16 @@ public class StickerSetCell extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         if (this.needDivider) {
             canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(71.0f), getHeight() - 1, (getWidth() - getPaddingRight()) - (LocaleController.isRTL ? AndroidUtilities.dp(71.0f) : 0), getHeight() - 1, Theme.dividerPaint);
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null && checkBox2.isChecked()) {
+            accessibilityNodeInfo.setCheckable(true);
+            accessibilityNodeInfo.setChecked(true);
         }
     }
 }

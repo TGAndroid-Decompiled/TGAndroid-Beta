@@ -16,8 +16,8 @@ import org.telegram.ui.ActionBar.Theme;
 public class LetterDrawable extends Drawable {
     private static TextPaint namePaint;
     public static Paint paint = new Paint();
-    private RectF rect = new RectF();
-    private StringBuilder stringBuilder = new StringBuilder(5);
+    private RectF rect;
+    private StringBuilder stringBuilder;
     private float textHeight;
     private StaticLayout textLayout;
     private float textLeft;
@@ -43,12 +43,18 @@ public class LetterDrawable extends Drawable {
     }
 
     public LetterDrawable() {
+        this(null);
+    }
+
+    public LetterDrawable(Theme.ResourcesProvider resourcesProvider) {
+        this.rect = new RectF();
+        this.stringBuilder = new StringBuilder(5);
         if (namePaint == null) {
             namePaint = new TextPaint(1);
         }
         namePaint.setTextSize(AndroidUtilities.dp(28.0f));
-        paint.setColor(Theme.getColor("sharedMedia_linkPlaceholder"));
-        namePaint.setColor(Theme.getColor("sharedMedia_linkPlaceholderText"));
+        paint.setColor(Theme.getColor("sharedMedia_linkPlaceholder", resourcesProvider));
+        namePaint.setColor(Theme.getColor("sharedMedia_linkPlaceholderText", resourcesProvider));
     }
 
     public void setBackgroundColor(int i) {

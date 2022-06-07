@@ -104,6 +104,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SeekBarAccessibilityDelegate;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.UndoView;
+import org.telegram.ui.GroupCreateActivity;
 
 public class ChatUsersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private int addNew2Row;
@@ -484,7 +485,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     @Override
-    public View createView(Context context) {
+    public View createView(final Context context) {
         int i;
         this.searching = false;
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
@@ -698,7 +699,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i5) {
-                ChatUsersActivity.this.lambda$createView$1(view, i5);
+                ChatUsersActivity.this.lambda$createView$1(context, view, i5);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
@@ -735,8 +736,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return this.fragmentView;
     }
 
-    public void lambda$createView$1(android.view.View r32, int r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.lambda$createView$1(android.view.View, int):void");
+    public void lambda$createView$1(android.content.Context r32, android.view.View r33, int r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.lambda$createView$1(android.content.Context, android.view.View, int):void");
     }
 
     public class AnonymousClass8 implements ChatUsersActivityDelegate {
@@ -796,6 +797,118 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (BulletinFactory.canShowBulletin(ChatUsersActivity.this)) {
                 BulletinFactory.createPromoteToAdminBulletin(ChatUsersActivity.this, tLRPC$User.first_name).show();
             }
+        }
+    }
+
+    public class AnonymousClass9 implements GroupCreateActivity.ContactsAddActivityDelegate {
+        final Context val$context;
+
+        AnonymousClass9(Context context) {
+            this.val$context = context;
+        }
+
+        @Override
+        public void didSelectUsers(ArrayList<TLRPC$User> arrayList, int i) {
+            final int size = arrayList.size();
+            final ArrayList arrayList2 = new ArrayList();
+            final int[] iArr = {0};
+            final Context context = this.val$context;
+            final Runnable chatUsersActivity$9$$ExternalSyntheticLambda0 = new Runnable() {
+                @Override
+                public final void run() {
+                    ChatUsersActivity.AnonymousClass9.lambda$didSelectUsers$0(arrayList2, size, context);
+                }
+            };
+            for (int i2 = 0; i2 < size; i2++) {
+                final TLRPC$User tLRPC$User = arrayList.get(i2);
+                ChatUsersActivity.this.getMessagesController().addUserToChat(ChatUsersActivity.this.chatId, tLRPC$User, i, null, ChatUsersActivity.this, false, new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChatUsersActivity.AnonymousClass9.this.lambda$didSelectUsers$1(iArr, size, arrayList2, chatUsersActivity$9$$ExternalSyntheticLambda0, tLRPC$User);
+                    }
+                }, new MessagesController.ErrorDelegate() {
+                    @Override
+                    public final boolean run(TLRPC$TL_error tLRPC$TL_error) {
+                        boolean lambda$didSelectUsers$2;
+                        lambda$didSelectUsers$2 = ChatUsersActivity.AnonymousClass9.lambda$didSelectUsers$2(iArr, arrayList2, tLRPC$User, size, chatUsersActivity$9$$ExternalSyntheticLambda0, tLRPC$TL_error);
+                        return lambda$didSelectUsers$2;
+                    }
+                });
+                ChatUsersActivity.this.getMessagesController().putUser(tLRPC$User, false);
+            }
+        }
+
+        public static void lambda$didSelectUsers$0(ArrayList arrayList, int i, Context context) {
+            String str;
+            CharSequence charSequence;
+            if (arrayList.size() == 1) {
+                if (i > 1) {
+                    str = LocaleController.getString("InviteToGroupErrorTitleAUser", R.string.InviteToGroupErrorTitleAUser);
+                } else {
+                    str = LocaleController.getString("InviteToGroupErrorTitleThisUser", R.string.InviteToGroupErrorTitleThisUser);
+                }
+                charSequence = AndroidUtilities.replaceTags(LocaleController.formatString("InviteToGroupErrorMessageSingle", R.string.InviteToGroupErrorMessageSingle, UserObject.getFirstName((TLRPC$User) arrayList.get(0))));
+            } else if (arrayList.size() == 2) {
+                str = LocaleController.getString("InviteToGroupErrorTitleSomeUsers", R.string.InviteToGroupErrorTitleSomeUsers);
+                charSequence = AndroidUtilities.replaceTags(LocaleController.formatString("InviteToGroupErrorMessageDouble", R.string.InviteToGroupErrorMessageDouble, UserObject.getFirstName((TLRPC$User) arrayList.get(0)), UserObject.getFirstName((TLRPC$User) arrayList.get(1))));
+            } else if (arrayList.size() == i) {
+                str = LocaleController.getString("InviteToGroupErrorTitleTheseUsers", R.string.InviteToGroupErrorTitleTheseUsers);
+                charSequence = LocaleController.getString("InviteToGroupErrorMessageMultipleAll", R.string.InviteToGroupErrorMessageMultipleAll);
+            } else {
+                str = LocaleController.getString("InviteToGroupErrorTitleSomeUsers", R.string.InviteToGroupErrorTitleSomeUsers);
+                charSequence = LocaleController.getString("InviteToGroupErrorMessageMultipleSome", R.string.InviteToGroupErrorMessageMultipleSome);
+            }
+            new AlertDialog.Builder(context).setTitle(str).setMessage(charSequence).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).show();
+        }
+
+        public void lambda$didSelectUsers$1(int[] iArr, int i, ArrayList arrayList, Runnable runnable, TLRPC$User tLRPC$User) {
+            iArr[0] = iArr[0] + 1;
+            if (iArr[0] >= i && arrayList.size() > 0) {
+                runnable.run();
+            }
+            DiffCallback saveState = ChatUsersActivity.this.saveState();
+            ArrayList arrayList2 = (ChatUsersActivity.this.contactsMap == null || ChatUsersActivity.this.contactsMap.size() == 0) ? ChatUsersActivity.this.participants : ChatUsersActivity.this.contacts;
+            LongSparseArray longSparseArray = (ChatUsersActivity.this.contactsMap == null || ChatUsersActivity.this.contactsMap.size() == 0) ? ChatUsersActivity.this.participantsMap : ChatUsersActivity.this.contactsMap;
+            if (longSparseArray.get(tLRPC$User.id) == null) {
+                if (ChatObject.isChannel(ChatUsersActivity.this.currentChat)) {
+                    TLRPC$TL_channelParticipant tLRPC$TL_channelParticipant = new TLRPC$TL_channelParticipant();
+                    tLRPC$TL_channelParticipant.inviter_id = ChatUsersActivity.this.getUserConfig().getClientUserId();
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
+                    tLRPC$TL_channelParticipant.peer = tLRPC$TL_peerUser;
+                    tLRPC$TL_peerUser.user_id = tLRPC$User.id;
+                    tLRPC$TL_channelParticipant.date = ChatUsersActivity.this.getConnectionsManager().getCurrentTime();
+                    arrayList2.add(0, tLRPC$TL_channelParticipant);
+                    longSparseArray.put(tLRPC$User.id, tLRPC$TL_channelParticipant);
+                } else {
+                    TLRPC$TL_chatParticipant tLRPC$TL_chatParticipant = new TLRPC$TL_chatParticipant();
+                    tLRPC$TL_chatParticipant.user_id = tLRPC$User.id;
+                    tLRPC$TL_chatParticipant.inviter_id = ChatUsersActivity.this.getUserConfig().getClientUserId();
+                    arrayList2.add(0, tLRPC$TL_chatParticipant);
+                    longSparseArray.put(tLRPC$User.id, tLRPC$TL_chatParticipant);
+                }
+            }
+            if (arrayList2 == ChatUsersActivity.this.participants) {
+                ChatUsersActivity chatUsersActivity = ChatUsersActivity.this;
+                chatUsersActivity.sortAdmins(chatUsersActivity.participants);
+            }
+            ChatUsersActivity.this.updateListAnimated(saveState);
+        }
+
+        public static boolean lambda$didSelectUsers$2(int[] iArr, ArrayList arrayList, TLRPC$User tLRPC$User, int i, Runnable runnable, TLRPC$TL_error tLRPC$TL_error) {
+            iArr[0] = iArr[0] + 1;
+            boolean z = tLRPC$TL_error != null && "USER_PRIVACY_RESTRICTED".equals(tLRPC$TL_error.text);
+            if (z) {
+                arrayList.add(tLRPC$User);
+            }
+            if (iArr[0] >= i && arrayList.size() > 0) {
+                runnable.run();
+            }
+            return !z;
+        }
+
+        @Override
+        public void needAddBot(TLRPC$User tLRPC$User) {
+            ChatUsersActivity.this.openRightsEdit(tLRPC$User.id, null, null, null, "", true, 0, false);
         }
     }
 
@@ -1471,12 +1584,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
     public String formatSeconds(int i) {
         if (i < 60) {
-            return LocaleController.formatPluralString("Seconds", i);
+            return LocaleController.formatPluralString("Seconds", i, new Object[0]);
         }
-        if (i < 3600) {
-            return LocaleController.formatPluralString("Minutes", i / 60);
-        }
-        return LocaleController.formatPluralString("Hours", (i / 60) / 60);
+        return i < 3600 ? LocaleController.formatPluralString("Minutes", i / 60, new Object[0]) : LocaleController.formatPluralString("Hours", (i / 60) / 60, new Object[0]);
     }
 
     public boolean checkDiscard() {
@@ -2045,6 +2155,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         if (z && !z2 && this.needOpenSearch) {
             this.searchItem.getSearchField().requestFocus();
             AndroidUtilities.showKeyboard(this.searchItem.getSearchField());
+            this.searchItem.setVisibility(8);
         }
     }
 

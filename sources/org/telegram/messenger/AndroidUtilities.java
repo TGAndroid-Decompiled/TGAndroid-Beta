@@ -37,6 +37,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.provider.CallLog;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -59,6 +60,7 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowInsets;
@@ -72,10 +74,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.MimeTypeMap;
 import android.widget.EdgeEffect;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
@@ -114,6 +118,7 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.PhoneFormat.PhoneFormat;
@@ -188,8 +193,10 @@ public class AndroidUtilities {
     private static Paint roundPaint;
     public static int roundPlayingMessageSize;
     public static final Linkify.MatchFilter sUrlMatchFilter;
+    public static float touchSlop;
     private static Runnable unregisterRunnable;
     public static boolean usingHardwareInput;
+    private static Vibrator vibrator;
     private static final Hashtable<String, Typeface> typefaceCache = new Hashtable<>();
     private static int prevOrientation = -10;
     private static boolean waitingForSms = false;
@@ -288,7 +295,7 @@ public class AndroidUtilities {
         checkDisplaySize(ApplicationLoader.applicationContext, null);
         documentIcons = new int[]{R.drawable.media_doc_blue, R.drawable.media_doc_green, R.drawable.media_doc_red, R.drawable.media_doc_yellow};
         documentMediaIcons = new int[]{R.drawable.media_doc_blue_b, R.drawable.media_doc_green_b, R.drawable.media_doc_red_b, R.drawable.media_doc_yellow_b};
-        sUrlMatchFilter = AndroidUtilities$$ExternalSyntheticLambda2.INSTANCE;
+        sUrlMatchFilter = AndroidUtilities$$ExternalSyntheticLambda3.INSTANCE;
         hasCallPermissions = Build.VERSION.SDK_INT >= 23;
         numbersSignatureArray = new String[]{"", "K", "M", "G", "T", "P"};
         flagSecureReasons = new HashMap<>();
@@ -566,7 +573,7 @@ public class AndroidUtilities {
             Linkify.addLinks(spannable, 4);
         }
         if ((i & 1) != 0) {
-            gatherLinks(arrayList, spannable, LinkifyPort.WEB_URL, new String[]{"http://", "https://", "ton://", "tg://"}, sUrlMatchFilter, z);
+            gatherLinks(arrayList, spannable, LinkifyPort.WEB_URL, new String[]{"http://", "https://", "tg://"}, sUrlMatchFilter, z);
         }
         pruneOverlaps(arrayList);
         if (arrayList.size() == 0) {
@@ -588,7 +595,7 @@ public class AndroidUtilities {
 
     private static void pruneOverlaps(ArrayList<LinkSpec> arrayList) {
         int i;
-        Collections.sort(arrayList, AndroidUtilities$$ExternalSyntheticLambda10.INSTANCE);
+        Collections.sort(arrayList, AndroidUtilities$$ExternalSyntheticLambda11.INSTANCE);
         int size = arrayList.size();
         int i2 = 0;
         while (i2 < size - 1) {
@@ -1194,9 +1201,9 @@ public class AndroidUtilities {
                         String[] split4 = split3[0].split("-");
                         if (split4.length == 3) {
                             Calendar calendar = Calendar.getInstance();
-                            calendar.set(1, Utilities.parseInt(split4[0]).intValue());
-                            calendar.set(2, Utilities.parseInt(split4[1]).intValue() - 1);
-                            calendar.set(5, Utilities.parseInt(split4[2]).intValue());
+                            calendar.set(1, Utilities.parseInt((CharSequence) split4[0]).intValue());
+                            calendar.set(2, Utilities.parseInt((CharSequence) split4[1]).intValue() - 1);
+                            calendar.set(5, Utilities.parseInt((CharSequence) split4[2]).intValue());
                             return LocaleController.getInstance().formatterYearMax.format(calendar.getTime());
                         }
                     }
@@ -1500,7 +1507,7 @@ public class AndroidUtilities {
         synchronized (smsLock) {
             waitingForSms = z;
             if (z) {
-                SmsRetriever.getClient(ApplicationLoader.applicationContext).startSmsRetriever().addOnSuccessListener(AndroidUtilities$$ExternalSyntheticLambda6.INSTANCE);
+                SmsRetriever.getClient(ApplicationLoader.applicationContext).startSmsRetriever().addOnSuccessListener(AndroidUtilities$$ExternalSyntheticLambda7.INSTANCE);
             }
         }
     }
@@ -1757,6 +1764,7 @@ public class AndroidUtilities {
                 }
                 FileLog.e("density = " + density + " display size = " + displaySize.x + " " + displaySize.y + " " + displayMetrics.xdpi + "x" + displayMetrics.ydpi + ", screen layout: " + configuration.screenLayout + ", statusbar height: " + statusBarHeight + ", navbar height: " + navigationBarHeight);
             }
+            touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -2278,7 +2286,7 @@ public class AndroidUtilities {
         try {
             if (BuildVars.DEBUG_VERSION) {
                 Distribute.setEnabledForDebuggableBuild(true);
-                AppCenter.start(activity.getApplication(), BuildVars.DEBUG_VERSION ? BuildVars.APPCENTER_HASH_DEBUG : BuildVars.APPCENTER_HASH, Distribute.class, Crashes.class);
+                AppCenter.start(activity.getApplication(), BuildVars.APPCENTER_HASH, Distribute.class, Crashes.class);
                 AppCenter.setUserId("uid=" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId);
             }
         } catch (Throwable th) {
@@ -2536,14 +2544,14 @@ public class AndroidUtilities {
             }
             return String.format("%.1f MB", Float.valueOf(f2));
         } else {
-            float f3 = ((((float) j) / 1024.0f) / 1024.0f) / 1024.0f;
+            float f3 = ((int) ((j / 1024) / 1024)) / 1000.0f;
             if (z) {
                 int i3 = (int) f3;
                 if ((f3 - i3) * 10.0f == 0.0f) {
                     return String.format("%d GB", Integer.valueOf(i3));
                 }
             }
-            return String.format("%.1f GB", Float.valueOf(f3));
+            return String.format("%.2f GB", Float.valueOf(f3));
         }
     }
 
@@ -2819,14 +2827,14 @@ public class AndroidUtilities {
     }
 
     public static SpannableStringBuilder formatSpannableSimple(String str, CharSequence... charSequenceArr) {
-        return formatSpannable(str, AndroidUtilities$$ExternalSyntheticLambda12.INSTANCE, charSequenceArr);
+        return formatSpannable(str, AndroidUtilities$$ExternalSyntheticLambda13.INSTANCE, charSequenceArr);
     }
 
     public static SpannableStringBuilder formatSpannable(String str, CharSequence... charSequenceArr) {
         if (str.contains("%s")) {
             return formatSpannableSimple(str, charSequenceArr);
         }
-        return formatSpannable(str, AndroidUtilities$$ExternalSyntheticLambda11.INSTANCE, charSequenceArr);
+        return formatSpannable(str, AndroidUtilities$$ExternalSyntheticLambda12.INSTANCE, charSequenceArr);
     }
 
     public static String lambda$formatSpannable$8(Integer num) {
@@ -2982,6 +2990,13 @@ public class AndroidUtilities {
         }
     }
 
+    public static Vibrator getVibrator() {
+        if (vibrator == null) {
+            vibrator = (Vibrator) ApplicationLoader.applicationContext.getSystemService("vibrator");
+        }
+        return vibrator;
+    }
+
     public static boolean isAccessibilityTouchExplorationEnabled() {
         if (accessibilityManager == null) {
             accessibilityManager = (AccessibilityManager) ApplicationLoader.applicationContext.getSystemService("accessibility");
@@ -3079,7 +3094,7 @@ public class AndroidUtilities {
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("proxy_enabled", true);
         edit.putString("proxy_ip", str);
-        int intValue = Utilities.parseInt(str2).intValue();
+        int intValue = Utilities.parseInt((CharSequence) str2).intValue();
         edit.putInt("proxy_port", intValue);
         if (TextUtils.isEmpty(str3)) {
             edit.remove("proxy_secret");
@@ -3699,6 +3714,33 @@ public class AndroidUtilities {
         }
     }
 
+    public static void updateImageViewImageAnimated(ImageView imageView, int i) {
+        updateImageViewImageAnimated(imageView, ContextCompat.getDrawable(imageView.getContext(), i));
+    }
+
+    public static void updateImageViewImageAnimated(final ImageView imageView, final Drawable drawable) {
+        ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
+        final AtomicBoolean atomicBoolean = new AtomicBoolean();
+        duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                AndroidUtilities.lambda$updateImageViewImageAnimated$14(imageView, atomicBoolean, drawable, valueAnimator);
+            }
+        });
+        duration.start();
+    }
+
+    public static void lambda$updateImageViewImageAnimated$14(ImageView imageView, AtomicBoolean atomicBoolean, Drawable drawable, ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        float abs = Math.abs(floatValue - 0.5f) + 0.5f;
+        imageView.setScaleX(abs);
+        imageView.setScaleY(abs);
+        if (floatValue >= 0.5f && !atomicBoolean.get()) {
+            atomicBoolean.set(true);
+            imageView.setImageDrawable(drawable);
+        }
+    }
+
     public static void updateViewVisibilityAnimated(View view, boolean z) {
         updateViewVisibilityAnimated(view, z, 1.0f, true);
     }
@@ -3782,6 +3824,18 @@ public class AndroidUtilities {
             Double.parseDouble(str);
             return true;
         } catch (NumberFormatException unused) {
+            return false;
+        }
+    }
+
+    public static boolean isAccessibilityScreenReaderEnabled() {
+        try {
+            AccessibilityManager accessibilityManager2 = (AccessibilityManager) ApplicationLoader.applicationContext.getSystemService("accessibility");
+            if (accessibilityManager2 == null || !accessibilityManager2.isEnabled()) {
+                return false;
+            }
+            return !accessibilityManager2.getEnabledAccessibilityServiceList(1).isEmpty();
+        } catch (Exception unused) {
             return false;
         }
     }

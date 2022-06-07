@@ -9,7 +9,9 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.dynamicanimation.animation.DynamicAnimation;
+import androidx.dynamicanimation.animation.FloatValueHolder;
 import androidx.dynamicanimation.animation.SpringAnimation;
+import androidx.dynamicanimation.animation.SpringForce;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,7 +35,9 @@ import org.telegram.ui.ContentPreviewViewer;
 public class MentionsContainerView extends BlurredFrameLayout {
     private MentionsAdapter adapter;
     private Integer color;
+    private float containerBottom;
     private float containerPadding;
+    private float containerTop;
     private ExtendedGridLayoutManager gridLayoutManager;
     private LinearLayoutManager linearLayoutManager;
     private MentionsListView listView;
@@ -57,7 +61,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
     private boolean listViewHiding = false;
     private float hideT = 0.0f;
     private boolean switchLayoutManagerOnEnd = false;
-    private float listViewPadding = (int) Math.min(AndroidUtilities.dp(162.0f), AndroidUtilities.displaySize.y * 0.22f);
+    private float listViewPadding = (int) Math.min(AndroidUtilities.dp(126.0f), AndroidUtilities.displaySize.y * 0.22f);
 
     protected boolean canOpen() {
         return true;
@@ -103,7 +107,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
         };
         this.linearLayoutManager = linearLayoutManager;
         linearLayoutManager.setOrientation(1);
-        ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(context, 100, false, true) {
+        ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(context, 100, false, false) {
             private Size size = new Size();
 
             @Override
@@ -209,10 +213,11 @@ public class MentionsContainerView extends BlurredFrameLayout {
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
-        defaultItemAnimator.setAddDuration(75L);
-        defaultItemAnimator.setMoveDuration(0L);
-        defaultItemAnimator.setChangeDuration(75L);
-        defaultItemAnimator.setRemoveDuration(75L);
+        defaultItemAnimator.setAddDuration(150L);
+        defaultItemAnimator.setMoveDuration(150L);
+        defaultItemAnimator.setChangeDuration(150L);
+        defaultItemAnimator.setRemoveDuration(150L);
+        defaultItemAnimator.setTranslationInterpolator(CubicBezierInterpolator.DEFAULT);
         defaultItemAnimator.setDelayAnimations(false);
         this.listView.setItemAnimator(defaultItemAnimator);
         this.listView.setClipToPadding(false);
@@ -301,33 +306,63 @@ public class MentionsContainerView extends BlurredFrameLayout {
         return ((this.adapter.isStickers() || this.adapter.isBotContext()) && this.adapter.isMediaLayout()) ? this.gridLayoutManager : this.linearLayoutManager;
     }
 
+    public float clipBottom() {
+        if (getVisibility() == 0 && !isReversed()) {
+            return getMeasuredHeight() - this.containerTop;
+        }
+        return 0.0f;
+    }
+
+    public float clipTop() {
+        if (getVisibility() == 0 && isReversed()) {
+            return this.containerBottom;
+        }
+        return 0.0f;
+    }
+
     @Override
     public void dispatchDraw(Canvas canvas) {
+        float f;
         PaddedListAdapter paddedListAdapter;
         PaddedListAdapter paddedListAdapter2;
         boolean isReversed = isReversed();
         this.containerPadding = AndroidUtilities.dp(((this.adapter.isStickers() || this.adapter.isBotContext()) && this.adapter.isMediaLayout() && this.adapter.getBotContextSwitch() == null ? 2 : 0) + 2);
         float dp = AndroidUtilities.dp(4.0f);
         if (isReversed) {
-            this.rect.set(0, 0, getMeasuredWidth(), (int) Math.min(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? paddedListAdapter2.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight()));
-            if (dp > 0.0f) {
-                this.rect.top -= (int) dp;
+            float min = Math.min(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? paddedListAdapter2.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
+            Rect rect = this.rect;
+            this.containerTop = 0.0f;
+            int measuredWidth = getMeasuredWidth();
+            this.containerBottom = min;
+            rect.set(0, (int) 0.0f, measuredWidth, (int) min);
+            f = Math.min(dp, Math.abs(getMeasuredHeight() - this.containerBottom));
+            if (f > 0.0f) {
+                this.rect.top -= (int) f;
             }
         } else {
             if (this.listView.getLayoutManager() == this.gridLayoutManager) {
                 this.containerPadding += AndroidUtilities.dp(2.0f);
                 dp += AndroidUtilities.dp(2.0f);
             }
-            this.rect.set(0, (int) Math.max(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? paddedListAdapter.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding, this.hideT * getHeight()), getMeasuredWidth(), getMeasuredHeight());
-            if (dp > 0.0f) {
-                this.rect.bottom += (int) dp;
+            float max = Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? paddedListAdapter.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding;
+            this.containerTop = max;
+            float max2 = Math.max(max, this.hideT * getHeight());
+            Rect rect2 = this.rect;
+            this.containerTop = max2;
+            int measuredWidth2 = getMeasuredWidth();
+            float measuredHeight = getMeasuredHeight();
+            this.containerBottom = measuredHeight;
+            rect2.set(0, (int) max2, measuredWidth2, (int) measuredHeight);
+            f = Math.min(dp, Math.abs(this.containerTop));
+            if (f > 0.0f) {
+                this.rect.bottom += (int) f;
             }
         }
-        float f = dp;
+        float f2 = f;
         if (this.paint == null) {
             Paint paint = new Paint(1);
             this.paint = paint;
-            paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, 0.0f, 503316480);
+            paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, 0.0f, 503316480);
         }
         Paint paint2 = this.paint;
         Integer num = this.color;
@@ -335,9 +370,9 @@ public class MentionsContainerView extends BlurredFrameLayout {
         if (!SharedConfig.chatBlurEnabled() || this.sizeNotifierFrameLayout == null) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(this.rect);
-            canvas.drawRoundRect(rectF, f, f, this.paint);
+            canvas.drawRoundRect(rectF, f2, f2, this.paint);
         } else {
-            if (f > 0.0f) {
+            if (f2 > 0.0f) {
                 canvas.save();
                 Path path = this.path;
                 if (path == null) {
@@ -347,11 +382,11 @@ public class MentionsContainerView extends BlurredFrameLayout {
                 }
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 rectF2.set(this.rect);
-                this.path.addRoundRect(rectF2, f, f, Path.Direction.CW);
+                this.path.addRoundRect(rectF2, f2, f2, Path.Direction.CW);
                 canvas.clipPath(this.path);
             }
             this.sizeNotifierFrameLayout.drawBlurRect(canvas, getY(), this.rect, this.paint, isReversed);
-            if (f > 0.0f) {
+            if (f2 > 0.0f) {
                 canvas.restore();
             }
         }
@@ -460,11 +495,9 @@ public class MentionsContainerView extends BlurredFrameLayout {
                         }
                         return;
                     }
-                    SpringAnimation springAnimation3 = new SpringAnimation(this.listView, DynamicAnimation.TRANSLATION_Y, f4);
-                    this.listViewTranslationAnimator = springAnimation3;
-                    springAnimation3.getSpring().setStiffness(800.0f);
-                    this.listViewTranslationAnimator.getSpring().setDampingRatio(AndroidUtilities.computeDampingRatio(800.0f, 500.0f, AndroidUtilities.density * 25.0f));
-                    this.listViewTranslationAnimator.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
+                    SpringAnimation spring = new SpringAnimation(new FloatValueHolder(translationY)).setSpring(new SpringForce(f4).setDampingRatio(1.0f).setStiffness(550.0f));
+                    this.listViewTranslationAnimator = spring;
+                    spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f7, float f8) {
                             MentionsContainerView.this.lambda$updateListViewTranslation$1(f5, f6, translationY, f4, dynamicAnimation, f7, f8);
@@ -494,6 +527,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
     }
 
     public void lambda$updateListViewTranslation$1(float f, float f2, float f3, float f4, DynamicAnimation dynamicAnimation, float f5, float f6) {
+        this.listView.setTranslationY(f5);
         this.hideT = AndroidUtilities.lerp(f, f2, (f5 - f3) / (f4 - f3));
     }
 
@@ -541,25 +575,26 @@ public class MentionsContainerView extends BlurredFrameLayout {
             addItemDecoration(new RecyclerView.ItemDecoration(MentionsContainerView.this) {
                 @Override
                 public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+                    int childAdapterPosition;
                     int i = 0;
                     rect.left = 0;
                     rect.right = 0;
                     rect.top = 0;
                     rect.bottom = 0;
-                    if (recyclerView.getLayoutManager() == MentionsContainerView.this.gridLayoutManager) {
-                        int childAdapterPosition = recyclerView.getChildAdapterPosition(view);
+                    if (recyclerView.getLayoutManager() == MentionsContainerView.this.gridLayoutManager && (childAdapterPosition = recyclerView.getChildAdapterPosition(view)) != 0) {
+                        int i2 = childAdapterPosition - 1;
                         if (!MentionsContainerView.this.adapter.isStickers()) {
                             if (MentionsContainerView.this.adapter.getBotContextSwitch() == null) {
                                 rect.top = AndroidUtilities.dp(2.0f);
-                            } else if (childAdapterPosition != 0) {
-                                childAdapterPosition--;
-                                if (!MentionsContainerView.this.gridLayoutManager.isFirstRow(childAdapterPosition)) {
+                            } else if (i2 != 0) {
+                                i2--;
+                                if (!MentionsContainerView.this.gridLayoutManager.isFirstRow(i2)) {
                                     rect.top = AndroidUtilities.dp(2.0f);
                                 }
                             } else {
                                 return;
                             }
-                            if (!MentionsContainerView.this.gridLayoutManager.isLastInRow(childAdapterPosition)) {
+                            if (!MentionsContainerView.this.gridLayoutManager.isLastInRow(i2)) {
                                 i = AndroidUtilities.dp(2.0f);
                             }
                             rect.right = i;
@@ -647,7 +682,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
             if (MentionsContainerView.this.paddedAdapter != null) {
                 MentionsContainerView.this.paddedAdapter.setPadding(size);
             }
-            MentionsContainerView.this.listViewPadding = (int) Math.min(AndroidUtilities.dp(162.0f), AndroidUtilities.displaySize.y * 0.22f);
+            MentionsContainerView.this.listViewPadding = (int) Math.min(AndroidUtilities.dp(126.0f), AndroidUtilities.displaySize.y * 0.22f);
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size + ((int) MentionsContainerView.this.listViewPadding), 1073741824));
         }
 

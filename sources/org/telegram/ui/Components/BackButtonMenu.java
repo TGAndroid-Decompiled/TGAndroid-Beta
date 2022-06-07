@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.app.Activity;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,7 +18,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$ChatPhoto;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -37,9 +40,13 @@ public class BackButtonMenu {
         TLRPC$User user;
     }
 
-    public static ActionBarPopupWindow show(final BaseFragment baseFragment, View view, long j) {
-        ArrayList<PulledDialog> arrayList;
+    public static ActionBarPopupWindow show(final BaseFragment baseFragment, View view, long j, Theme.ResourcesProvider resourcesProvider) {
+        View view2;
+        Rect rect;
+        View view3;
+        Drawable drawable;
         String str;
+        ?? r14;
         if (baseFragment == null) {
             return null;
         }
@@ -53,36 +60,46 @@ public class BackButtonMenu {
         if (stackedHistoryDialogs.size() <= 0) {
             return null;
         }
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(parentActivity);
-        Rect rect = new Rect();
-        baseFragment.getParentActivity().getResources().getDrawable(R.drawable.popup_fixed_alert).mutate().getPadding(rect);
-        actionBarPopupWindowLayout.setBackgroundColor(Theme.getColor("actionBarDefaultSubmenuBackground"));
+        ?? actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(parentActivity, resourcesProvider);
+        Rect rect2 = new Rect();
+        baseFragment.getParentActivity().getResources().getDrawable(R.drawable.popup_fixed_alert).mutate().getPadding(rect2);
+        actionBarPopupWindowLayout.setBackgroundColor(Theme.getColor("actionBarDefaultSubmenuBackground", resourcesProvider));
         final AtomicReference atomicReference = new AtomicReference();
         int i = 0;
         while (i < stackedHistoryDialogs.size()) {
             final PulledDialog pulledDialog = stackedHistoryDialogs.get(i);
             TLRPC$Chat tLRPC$Chat = pulledDialog.chat;
             TLRPC$User tLRPC$User = pulledDialog.user;
-            FrameLayout frameLayout = new FrameLayout(parentActivity);
+            ?? frameLayout = new FrameLayout(parentActivity);
             frameLayout.setMinimumWidth(AndroidUtilities.dp(200.0f));
             BackupImageView backupImageView = new BackupImageView(parentActivity);
             backupImageView.setRoundRadius(AndroidUtilities.dp(32.0f));
             frameLayout.addView(backupImageView, LayoutHelper.createFrameRelatively(32.0f, 32.0f, 8388627, 13.0f, 0.0f, 0.0f, 0.0f));
             TextView textView = new TextView(parentActivity);
-            textView.setLines(1);
             parentActivity = parentActivity;
+            textView.setLines(1);
+            stackedHistoryDialogs = stackedHistoryDialogs;
             textView.setTextSize(1, 16.0f);
-            textView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
+            textView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem", resourcesProvider));
             textView.setEllipsize(TextUtils.TruncateAt.END);
             frameLayout.addView(textView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 59.0f, 0.0f, 12.0f, 0.0f));
             AvatarDrawable avatarDrawable = new AvatarDrawable();
             avatarDrawable.setSmallSize(true);
             if (tLRPC$Chat != null) {
                 avatarDrawable.setInfo(tLRPC$Chat);
+                TLRPC$ChatPhoto tLRPC$ChatPhoto = tLRPC$Chat.photo;
+                if (!(tLRPC$ChatPhoto == null || (r14 = tLRPC$ChatPhoto.strippedBitmap) == 0)) {
+                    avatarDrawable = r14;
+                }
                 backupImageView.setImage(ImageLocation.getForChat(tLRPC$Chat, 1), "50_50", avatarDrawable, tLRPC$Chat);
                 textView.setText(tLRPC$Chat.title);
             } else if (tLRPC$User != null) {
-                arrayList = stackedHistoryDialogs;
+                TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto = tLRPC$User.photo;
+                if (tLRPC$UserProfilePhoto == null || (drawable = tLRPC$UserProfilePhoto.strippedBitmap) == null) {
+                    drawable = avatarDrawable;
+                }
+                view3 = fragmentView;
+                rect = rect2;
                 if (pulledDialog.activity == ChatActivity.class && UserObject.isUserSelf(tLRPC$User)) {
                     str = LocaleController.getString("SavedMessages", R.string.SavedMessages);
                     avatarDrawable.setAvatarType(1);
@@ -98,32 +115,37 @@ public class BackButtonMenu {
                 } else {
                     str = UserObject.getUserName(tLRPC$User);
                     avatarDrawable.setInfo(tLRPC$User);
-                    backupImageView.setImage(ImageLocation.getForUser(tLRPC$User, 1), "50_50", avatarDrawable, tLRPC$User);
+                    backupImageView.setImage(ImageLocation.getForUser(tLRPC$User, 1), "50_50", drawable, tLRPC$User);
                 }
                 textView.setText(str);
-                frameLayout.setBackground(Theme.getSelectorDrawable(Theme.getColor("listSelectorSDK21"), false));
+                frameLayout.setBackground(Theme.getSelectorDrawable(Theme.getColor("listSelectorSDK21", resourcesProvider), false));
                 frameLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view2) {
-                        BackButtonMenu.lambda$show$0(atomicReference, pulledDialog, parentLayout, baseFragment, view2);
+                    public final void onClick(View view4) {
+                        BackButtonMenu.lambda$show$0(atomicReference, pulledDialog, parentLayout, baseFragment, view4);
                     }
                 });
-                actionBarPopupWindowLayout.addView((View) frameLayout, LayoutHelper.createLinear(-1, 48));
+                actionBarPopupWindowLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 48));
                 i++;
-                stackedHistoryDialogs = arrayList;
+                fragmentView = view3;
+                rect2 = rect;
             }
-            arrayList = stackedHistoryDialogs;
-            frameLayout.setBackground(Theme.getSelectorDrawable(Theme.getColor("listSelectorSDK21"), false));
+            view3 = fragmentView;
+            rect = rect2;
+            frameLayout.setBackground(Theme.getSelectorDrawable(Theme.getColor("listSelectorSDK21", resourcesProvider), false));
             frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) {
-                    BackButtonMenu.lambda$show$0(atomicReference, pulledDialog, parentLayout, baseFragment, view2);
+                public final void onClick(View view4) {
+                    BackButtonMenu.lambda$show$0(atomicReference, pulledDialog, parentLayout, baseFragment, view4);
                 }
             });
-            actionBarPopupWindowLayout.addView((View) frameLayout, LayoutHelper.createLinear(-1, 48));
+            actionBarPopupWindowLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 48));
             i++;
-            stackedHistoryDialogs = arrayList;
+            fragmentView = view3;
+            rect2 = rect;
         }
+        View view4 = fragmentView;
+        Rect rect3 = rect2;
         ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
         atomicReference.set(actionBarPopupWindow);
         actionBarPopupWindow.setPauseNotifications(true);
@@ -137,17 +159,16 @@ public class BackButtonMenu {
         actionBarPopupWindow.setSoftInputMode(0);
         actionBarPopupWindow.getContentView().setFocusableInTouchMode(true);
         actionBarPopupWindowLayout.setFitItems(true);
-        int dp = AndroidUtilities.dp(8.0f) - rect.left;
+        int dp = AndroidUtilities.dp(8.0f) - rect3.left;
         if (AndroidUtilities.isTablet()) {
             int[] iArr = new int[2];
-            fragmentView.getLocationInWindow(iArr);
+            view2 = view4;
+            view2.getLocationInWindow(iArr);
             dp += iArr[0];
+        } else {
+            view2 = view4;
         }
-        actionBarPopupWindow.showAtLocation(fragmentView, 51, dp, (view.getBottom() - rect.top) - AndroidUtilities.dp(8.0f));
-        try {
-            fragmentView.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
+        actionBarPopupWindow.showAtLocation(view2, 51, dp, (view.getBottom() - rect3.top) - AndroidUtilities.dp(8.0f));
         return actionBarPopupWindow;
     }
 

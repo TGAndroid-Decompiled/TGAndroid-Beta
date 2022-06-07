@@ -19,7 +19,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
-import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.GeolocationPermissions;
@@ -66,6 +66,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_getAttachMenuBot;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BotWebViewContainer;
@@ -76,12 +77,17 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
     private static final List<String> WHITELISTED_SCHEMES = Arrays.asList("http", "https");
     private TLRPC$User botUser;
     private String buttonData;
+    private int currentAccount;
+    private String currentPaymentSlug;
     private Delegate delegate;
     private BackupImageView flickerView;
     private boolean hasUserPermissions;
+    private boolean isBackButtonVisible;
     private boolean isFlickeringCenter;
     private boolean isPageLoaded;
+    private boolean isRequestingPageOpen;
     private boolean isViewPortByMeasureSuppressed;
+    private long lastClickMs;
     private boolean lastExpanded;
     private ValueCallback<Uri[]> mFilePathCallback;
     private String mUrl;
@@ -112,22 +118,26 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
 
         void onSendWebViewData(String str);
 
+        void onSetBackButtonVisible(boolean z);
+
         void onSetupMainButton(boolean z, boolean z2, String str, int i, int i2, boolean z3);
 
         void onWebAppExpand();
 
+        void onWebAppOpenInvoice(String str, TLObject tLObject);
+
         void onWebAppReady();
+
+        void onWebAppSetActionBarColor(String str);
+
+        void onWebAppSetBackgroundColor(int i);
     }
 
     public interface WebViewScrollListener {
         void onWebViewScrolled(WebView webView, int i, int i2);
     }
 
-    public static void lambda$evaluateJs$3(String str) {
-    }
-
-    public boolean onBackPressed() {
-        return false;
+    public static void lambda$evaluateJs$6(String str) {
     }
 
     public BotWebViewContainer(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
@@ -261,6 +271,15 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
             }
+
+            @Override
+            @SuppressLint({"ClickableViewAccessibility"})
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() == 0) {
+                    BotWebViewContainer.this.lastClickMs = System.currentTimeMillis();
+                }
+                return super.onTouchEvent(motionEvent);
+            }
         };
         this.webView = webView2;
         webView2.setBackgroundColor(getColor("windowBackgroundWhite"));
@@ -275,68 +294,31 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         }
         GeolocationPermissions.getInstance().clearAll();
         this.webView.setVerticalScrollBarEnabled(false);
-        this.webView.setWebViewClient(new AnonymousClass3());
+        this.webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView webView3, String str) {
+                Uri parse = Uri.parse(BotWebViewContainer.this.mUrl);
+                Uri parse2 = Uri.parse(str);
+                if (!BotWebViewContainer.this.isPageLoaded || (ObjectsCompat$$ExternalSyntheticBackport0.m(parse.getHost(), parse2.getHost()) && ObjectsCompat$$ExternalSyntheticBackport0.m(parse.getPath(), parse2.getPath()))) {
+                    return false;
+                }
+                if (!BotWebViewContainer.WHITELISTED_SCHEMES.contains(parse2.getScheme())) {
+                    return true;
+                }
+                BotWebViewContainer.this.onOpenUri(parse2);
+                return true;
+            }
+
+            @Override
+            public void onPageFinished(WebView webView3, String str) {
+                BotWebViewContainer.this.setPageLoaded(str);
+            }
+        });
         this.webView.setWebChromeClient(new AnonymousClass4());
         this.webView.setAlpha(0.0f);
         addView(this.webView);
         if (Build.VERSION.SDK_INT >= 17) {
             this.webView.addJavascriptInterface(new WebViewProxy(), "TelegramWebviewProxy");
-        }
-    }
-
-    public class AnonymousClass3 extends WebViewClient {
-        AnonymousClass3() {
-        }
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView webView, String str) {
-            Uri parse = Uri.parse(BotWebViewContainer.this.mUrl);
-            final Uri parse2 = Uri.parse(str);
-            if (!BotWebViewContainer.this.isPageLoaded || (ObjectsCompat$$ExternalSyntheticBackport0.m(parse.getHost(), parse2.getHost()) && ObjectsCompat$$ExternalSyntheticBackport0.m(parse.getPath(), parse2.getPath()))) {
-                return false;
-            }
-            if (!BotWebViewContainer.WHITELISTED_SCHEMES.contains(parse2.getScheme())) {
-                return true;
-            }
-            if (!Browser.isInternalUri(parse2, new boolean[]{false})) {
-                new AlertDialog.Builder(BotWebViewContainer.this.getContext(), BotWebViewContainer.this.resourcesProvider).setTitle(LocaleController.getString((int) R.string.OpenUrlTitle)).setMessage(LocaleController.formatString(R.string.OpenUrlAlert2, parse2.toString())).setPositiveButton(LocaleController.getString((int) R.string.Open), new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface, int i) {
-                        BotWebViewContainer.AnonymousClass3.this.lambda$shouldOverrideUrlLoading$1(parse2, dialogInterface, i);
-                    }
-                }).setNegativeButton(LocaleController.getString((int) R.string.Cancel), null).show();
-                return true;
-            } else if (BotWebViewContainer.this.delegate != null) {
-                BotWebViewContainer.this.setDescendantFocusability(393216);
-                BotWebViewContainer.this.setFocusable(false);
-                BotWebViewContainer.this.webView.setFocusable(false);
-                BotWebViewContainer.this.webView.setDescendantFocusability(393216);
-                BotWebViewContainer.this.webView.clearFocus();
-                ((InputMethodManager) BotWebViewContainer.this.getContext().getSystemService("input_method")).hideSoftInputFromWindow(BotWebViewContainer.this.getWindowToken(), 2);
-                BotWebViewContainer.this.delegate.onCloseRequested(new Runnable() {
-                    @Override
-                    public final void run() {
-                        BotWebViewContainer.AnonymousClass3.this.lambda$shouldOverrideUrlLoading$0(parse2);
-                    }
-                });
-                return true;
-            } else {
-                Browser.openUrl(BotWebViewContainer.this.getContext(), parse2, true, false);
-                return true;
-            }
-        }
-
-        public void lambda$shouldOverrideUrlLoading$0(Uri uri) {
-            Browser.openUrl(BotWebViewContainer.this.getContext(), uri, true, false);
-        }
-
-        public void lambda$shouldOverrideUrlLoading$1(Uri uri, DialogInterface dialogInterface, int i) {
-            Browser.openUrl(BotWebViewContainer.this.getContext(), uri, true, false);
-        }
-
-        @Override
-        public void onPageFinished(WebView webView, String str) {
-            BotWebViewContainer.this.setPageLoaded(str);
         }
     }
 
@@ -520,6 +502,65 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         }
     }
 
+    public void onOpenUri(Uri uri) {
+        onOpenUri(uri, false);
+    }
+
+    private void onOpenUri(final Uri uri, boolean z) {
+        if (this.isRequestingPageOpen) {
+            return;
+        }
+        if (System.currentTimeMillis() - this.lastClickMs <= 10000 || !z) {
+            this.lastClickMs = 0L;
+            boolean[] zArr = {false};
+            if (!Browser.isInternalUri(uri, zArr) || zArr[0]) {
+                if (z) {
+                    Browser.openUrl(getContext(), uri, true, false);
+                    return;
+                }
+                this.isRequestingPageOpen = true;
+                new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString((int) R.string.OpenUrlTitle)).setMessage(LocaleController.formatString(R.string.OpenUrlAlert2, uri.toString())).setPositiveButton(LocaleController.getString((int) R.string.Open), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i) {
+                        BotWebViewContainer.this.lambda$onOpenUri$1(uri, dialogInterface, i);
+                    }
+                }).setNegativeButton(LocaleController.getString((int) R.string.Cancel), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public final void onDismiss(DialogInterface dialogInterface) {
+                        BotWebViewContainer.this.lambda$onOpenUri$2(dialogInterface);
+                    }
+                }).show();
+            } else if (this.delegate != null) {
+                setDescendantFocusability(393216);
+                setFocusable(false);
+                this.webView.setFocusable(false);
+                this.webView.setDescendantFocusability(393216);
+                this.webView.clearFocus();
+                ((InputMethodManager) getContext().getSystemService("input_method")).hideSoftInputFromWindow(getWindowToken(), 2);
+                this.delegate.onCloseRequested(new Runnable() {
+                    @Override
+                    public final void run() {
+                        BotWebViewContainer.this.lambda$onOpenUri$0(uri);
+                    }
+                });
+            } else {
+                Browser.openUrl(getContext(), uri, true, false);
+            }
+        }
+    }
+
+    public void lambda$onOpenUri$0(Uri uri) {
+        Browser.openUrl(getContext(), uri, true, false);
+    }
+
+    public void lambda$onOpenUri$1(Uri uri, DialogInterface dialogInterface, int i) {
+        Browser.openUrl(getContext(), uri, true, false);
+    }
+
+    public void lambda$onOpenUri$2(DialogInterface dialogInterface) {
+        this.isRequestingPageOpen = false;
+    }
+
     public static int getMainButtonRippleColor(int i) {
         return ColorUtils.calculateLuminance(i) >= 0.30000001192092896d ? 301989888 : 385875967;
     }
@@ -530,6 +571,14 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
 
     public void updateFlickerBackgroundColor(int i) {
         this.flickerDrawable.setColors(i, 153, 204);
+    }
+
+    public boolean onBackPressed() {
+        if (this.webView == null || !this.isBackButtonVisible) {
+            return false;
+        }
+        notifyEvent("back_button_pressed", null);
+        return true;
     }
 
     public void setPageLoaded(String str) {
@@ -567,7 +616,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
             this.onPermissionsRequestResultCallback = new Runnable() {
                 @Override
                 public final void run() {
-                    BotWebViewContainer.this.lambda$runWithPermissions$0(consumer, strArr);
+                    BotWebViewContainer.this.lambda$runWithPermissions$3(consumer, strArr);
                 }
             };
             Activity activity = this.parentActivity;
@@ -577,7 +626,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         }
     }
 
-    public void lambda$runWithPermissions$0(Consumer consumer, String[] strArr) {
+    public void lambda$runWithPermissions$3(Consumer consumer, String[] strArr) {
         consumer.accept(Boolean.valueOf(checkPermissions(strArr)));
     }
 
@@ -605,8 +654,32 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         }
     }
 
+    public void onInvoiceStatusUpdate(String str, String str2) {
+        onInvoiceStatusUpdate(str, str2, false);
+    }
+
+    public void onInvoiceStatusUpdate(String str, String str2, boolean z) {
+        try {
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put("slug", str);
+            jSONObject.put("status", str2);
+            notifyEvent("invoice_closed", jSONObject);
+            if (!z && ObjectsCompat$$ExternalSyntheticBackport0.m(this.currentPaymentSlug, str)) {
+                this.currentPaymentSlug = null;
+            }
+        } catch (JSONException e) {
+            FileLog.e(e);
+        }
+    }
+
+    public void onSettingsButtonPressed() {
+        this.lastClickMs = System.currentTimeMillis();
+        notifyEvent("settings_button_pressed", null);
+    }
+
     public void onMainButtonPressed() {
-        evaluateJs("window.Telegram.WebView.receiveEvent('main_button_pressed', null);");
+        this.lastClickMs = System.currentTimeMillis();
+        notifyEvent("main_button_pressed", null);
     }
 
     public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
@@ -653,7 +726,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                 jSONObject.put("height", measuredHeight / AndroidUtilities.density);
                 jSONObject.put("is_state_stable", z);
                 jSONObject.put("is_expanded", this.lastExpanded);
-                evaluateJs("window.Telegram.WebView.receiveEvent('viewport_changed', " + jSONObject + ");");
+                notifyEvent("viewport_changed", jSONObject);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -701,10 +774,11 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         return this.webView;
     }
 
-    public void loadFlicker(int i, long j) {
+    public void loadFlickerAndSettingsItem(int i, long j, final ActionBarMenuSubItem actionBarMenuSubItem) {
         TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot;
         boolean z;
         String str = MessagesController.getInstance(i).getUser(Long.valueOf(j)).username;
+        int i2 = 0;
         if (str == null || !ObjectsCompat$$ExternalSyntheticBackport0.m(str, "DurgerKingBot")) {
             Iterator<TLRPC$TL_attachMenuBot> it = MediaDataController.getInstance(i).getAttachMenuBots().bots.iterator();
             while (true) {
@@ -730,6 +804,12 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                     this.flickerView.setAlpha(1.0f);
                     this.flickerView.setImage(ImageLocation.getForDocument(placeholderStaticAttachMenuBotIcon.icon), (String) null, (Drawable) null, tLRPC$TL_attachMenuBot);
                     setupFlickerParams(z);
+                }
+                if (actionBarMenuSubItem != null) {
+                    if (!tLRPC$TL_attachMenuBot.has_settings) {
+                        i2 = 8;
+                    }
+                    actionBarMenuSubItem.setVisibility(i2);
                     return;
                 }
                 return;
@@ -739,7 +819,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
             ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_getAttachMenuBot, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BotWebViewContainer.this.lambda$loadFlicker$2(tLObject, tLRPC$TL_error);
+                    BotWebViewContainer.this.lambda$loadFlickerAndSettingsItem$5(actionBarMenuSubItem, tLObject, tLRPC$TL_error);
                 }
             });
             return;
@@ -750,17 +830,18 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         setupFlickerParams(false);
     }
 
-    public void lambda$loadFlicker$2(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadFlickerAndSettingsItem$5(final ActionBarMenuSubItem actionBarMenuSubItem, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$loadFlicker$1(tLObject);
+                BotWebViewContainer.this.lambda$loadFlickerAndSettingsItem$4(tLObject, actionBarMenuSubItem);
             }
         });
     }
 
-    public void lambda$loadFlicker$1(TLObject tLObject) {
+    public void lambda$loadFlickerAndSettingsItem$4(TLObject tLObject, ActionBarMenuSubItem actionBarMenuSubItem) {
         boolean z;
+        int i = 8;
         if (tLObject instanceof TLRPC$TL_attachMenuBotsBot) {
             TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = ((TLRPC$TL_attachMenuBotsBot) tLObject).bot;
             TLRPC$TL_attachMenuBotIcon placeholderStaticAttachMenuBotIcon = MediaDataController.getPlaceholderStaticAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
@@ -776,6 +857,14 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                 this.flickerView.setImage(ImageLocation.getForDocument(placeholderStaticAttachMenuBotIcon.icon), (String) null, (Drawable) null, tLRPC$TL_attachMenuBot);
                 setupFlickerParams(z);
             }
+            if (actionBarMenuSubItem != null) {
+                if (tLRPC$TL_attachMenuBot.has_settings) {
+                    i = 0;
+                }
+                actionBarMenuSubItem.setVisibility(i);
+            }
+        } else if (actionBarMenuSubItem != null) {
+            actionBarMenuSubItem.setVisibility(8);
         }
     }
 
@@ -797,6 +886,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
     public void reload() {
         checkCreateWebView();
         this.isPageLoaded = false;
+        this.lastClickMs = 0L;
         this.hasUserPermissions = false;
         WebView webView = this.webView;
         if (webView != null) {
@@ -804,9 +894,11 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         }
     }
 
-    public void loadUrl(String str) {
+    public void loadUrl(int i, String str) {
         checkCreateWebView();
+        this.currentAccount = i;
         this.isPageLoaded = false;
+        this.lastClickMs = 0L;
         this.hasUserPermissions = false;
         this.mUrl = str;
         WebView webView = this.webView;
@@ -834,8 +926,15 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
     public void destroyWebView() {
         WebView webView = this.webView;
         if (webView != null) {
-            webView.destroy();
+            if (webView.getParent() != null) {
+                removeView(this.webView);
+            }
+            this.webView.destroy();
         }
+    }
+
+    public boolean isBackButtonVisible() {
+        return this.isBackButtonVisible;
     }
 
     public void evaluateJs(String str) {
@@ -843,7 +942,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         WebView webView = this.webView;
         if (webView != null) {
             if (Build.VERSION.SDK_INT >= 19) {
-                webView.evaluateJavascript(str, BotWebViewContainer$$ExternalSyntheticLambda0.INSTANCE);
+                webView.evaluateJavascript(str, BotWebViewContainer$$ExternalSyntheticLambda2.INSTANCE);
                 return;
             }
             try {
@@ -872,7 +971,11 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
     }
 
     private void notifyThemeChanged() {
-        evaluateJs("window.Telegram.WebView.receiveEvent('theme_changed', {theme_params: " + buildThemeParams() + "});");
+        notifyEvent("theme_changed", buildThemeParams());
+    }
+
+    private void notifyEvent(String str, JSONObject jSONObject) {
+        evaluateJs("window.Telegram.WebView.receiveEvent('" + str + "', " + jSONObject + ");");
     }
 
     public void setWebViewScrollListener(WebViewScrollListener webViewScrollListener) {
@@ -883,120 +986,41 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         this.delegate = delegate;
     }
 
-    public void onEventReceived(String str, String str2) {
-        if (this.webView != null && this.delegate != null) {
-            str.hashCode();
-            char c = 65535;
-            boolean z = false;
-            switch (str.hashCode()) {
-                case -1259935152:
-                    if (str.equals("web_app_request_theme")) {
-                        c = 0;
-                        break;
-                    }
-                    break;
-                case -921083201:
-                    if (str.equals("web_app_request_viewport")) {
-                        c = 1;
-                        break;
-                    }
-                    break;
-                case -71726289:
-                    if (str.equals("web_app_close")) {
-                        c = 2;
-                        break;
-                    }
-                    break;
-                case -58095910:
-                    if (str.equals("web_app_ready")) {
-                        c = 3;
-                        break;
-                    }
-                    break;
-                case 668142772:
-                    if (str.equals("web_app_data_send")) {
-                        c = 4;
-                        break;
-                    }
-                    break;
-                case 1398490221:
-                    if (str.equals("web_app_setup_main_button")) {
-                        c = 5;
-                        break;
-                    }
-                    break;
-                case 2139805763:
-                    if (str.equals("web_app_expand")) {
-                        c = 6;
-                        break;
-                    }
-                    break;
+    public void onEventReceived(java.lang.String r20, java.lang.String r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BotWebViewContainer.onEventReceived(java.lang.String, java.lang.String):void");
+    }
+
+    public void lambda$onEventReceived$8(final String str, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BotWebViewContainer.this.lambda$onEventReceived$7(tLRPC$TL_error, str, tLObject);
             }
-            switch (c) {
-                case 0:
-                    notifyThemeChanged();
-                    return;
-                case 1:
-                    if ((getParent() instanceof ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) && ((ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) getParent()).isSwipeInProgress()) {
-                        z = true;
-                    }
-                    invalidateViewPortHeight(!z, true);
-                    return;
-                case 2:
-                    this.delegate.onCloseRequested(null);
-                    return;
-                case 3:
-                    setPageLoaded(this.webView.getUrl());
-                    return;
-                case 4:
-                    try {
-                        this.delegate.onSendWebViewData(new JSONObject(str2).optString("data"));
-                        return;
-                    } catch (JSONException e) {
-                        FileLog.e(e);
-                        return;
-                    }
-                case 5:
-                    try {
-                        JSONObject jSONObject = new JSONObject(str2);
-                        boolean optBoolean = jSONObject.optBoolean("is_active", false);
-                        String trim = jSONObject.optString("text", this.lastButtonText).trim();
-                        boolean z2 = jSONObject.optBoolean("is_visible", false) && !TextUtils.isEmpty(trim);
-                        int parseColor = jSONObject.has("color") ? Color.parseColor(jSONObject.optString("color")) : this.lastButtonColor;
-                        int parseColor2 = jSONObject.has("text_color") ? Color.parseColor(jSONObject.optString("text_color")) : this.lastButtonTextColor;
-                        boolean z3 = jSONObject.optBoolean("is_progress_visible", false) && z2;
-                        this.lastButtonColor = parseColor;
-                        this.lastButtonTextColor = parseColor2;
-                        this.lastButtonText = trim;
-                        this.buttonData = str2;
-                        this.delegate.onSetupMainButton(z2, optBoolean, trim, parseColor, parseColor2, z3);
-                        return;
-                    } catch (IllegalArgumentException | JSONException e2) {
-                        FileLog.e(e2);
-                        return;
-                    }
-                case 6:
-                    this.delegate.onWebAppExpand();
-                    return;
-                default:
-                    return;
-            }
+        });
+    }
+
+    public void lambda$onEventReceived$7(TLRPC$TL_error tLRPC$TL_error, String str, TLObject tLObject) {
+        if (tLRPC$TL_error != null) {
+            onInvoiceStatusUpdate(str, "failed");
+        } else {
+            this.delegate.onWebAppOpenInvoice(str, tLObject);
         }
     }
 
-    private String buildThemeParams() {
+    private JSONObject buildThemeParams() {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("bg_color", formatColor("windowBackgroundWhite"));
+            jSONObject.put("secondary_bg_color", formatColor("windowBackgroundGray"));
             jSONObject.put("text_color", formatColor("windowBackgroundWhiteBlackText"));
             jSONObject.put("hint_color", formatColor("windowBackgroundWhiteHintText"));
             jSONObject.put("link_color", formatColor("windowBackgroundWhiteLinkText"));
             jSONObject.put("button_color", formatColor("featuredStickers_addButton"));
             jSONObject.put("button_text_color", formatColor("featuredStickers_buttonText"));
-            return jSONObject.toString();
+            return new JSONObject().put("theme_params", jSONObject);
         } catch (Exception e) {
             FileLog.e(e);
-            return "{}";
+            return new JSONObject();
         }
     }
 

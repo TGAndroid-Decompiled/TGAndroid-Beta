@@ -29,6 +29,7 @@ import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.Components.ForegroundDetector;
+import org.telegram.ui.LauncherIconController;
 
 public class ApplicationLoader extends Application {
     @SuppressLint({"StaticFieldLeak"})
@@ -91,7 +92,7 @@ public class ApplicationLoader extends Application {
                         } catch (Throwable unused) {
                         }
                         boolean isConnectionSlow = ApplicationLoader.isConnectionSlow();
-                        for (int i = 0; i < 3; i++) {
+                        for (int i = 0; i < 4; i++) {
                             ConnectionsManager.getInstance(i).checkConnection();
                             FileLoader.getInstance(i).onNetworkChanged(isConnectionSlow);
                         }
@@ -117,7 +118,7 @@ public class ApplicationLoader extends Application {
             }
             SharedConfig.loadConfig();
             SharedPrefsHelper.init(applicationContext);
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 UserConfig.getInstance(i).loadConfig();
                 MessagesController.getInstance(i);
                 if (i == 0) {
@@ -136,11 +137,12 @@ public class ApplicationLoader extends Application {
                 FileLog.d("app initied");
             }
             MediaController.getInstance();
-            for (int i2 = 0; i2 < 3; i2++) {
+            for (int i2 = 0; i2 < 4; i2++) {
                 ContactsController.getInstance(i2).checkAppAccount();
                 DownloadController.getInstance(i2);
             }
             ChatThemeController.init();
+            BillingController.getInstance().startConnection();
         }
     }
 
@@ -179,6 +181,7 @@ public class ApplicationLoader extends Application {
         }
         applicationHandler = new Handler(applicationContext.getMainLooper());
         AndroidUtilities.runOnUIThread(ApplicationLoader$$ExternalSyntheticLambda3.INSTANCE);
+        LauncherIconController.tryFixLauncherIconIfNeeded();
     }
 
     public static void startPushService() {

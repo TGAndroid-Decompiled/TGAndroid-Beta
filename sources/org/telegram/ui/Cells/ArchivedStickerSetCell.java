@@ -157,7 +157,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
         this.stickersSet = tLRPC$StickerSetCovered;
         setWillNotDraw(!z);
         this.textView.setText(this.stickersSet.set.title);
-        this.valueTextView.setText(LocaleController.formatPluralString("Stickers", tLRPC$StickerSetCovered.set.count));
+        this.valueTextView.setText(LocaleController.formatPluralString("Stickers", tLRPC$StickerSetCovered.set.count, new Object[0]));
         TLRPC$Document tLRPC$Document = tLRPC$StickerSetCovered.cover;
         if (tLRPC$Document == null) {
             tLRPC$Document = !tLRPC$StickerSetCovered.covers.isEmpty() ? tLRPC$StickerSetCovered.covers.get(0) : null;

@@ -6,6 +6,7 @@ public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
     public static int constructor = -928371502;
     public long bot_id;
     public int flags;
+    public boolean has_settings;
     public boolean inactive;
     public String short_name;
     public ArrayList<TLRPC$AttachMenuPeerType> peer_types = new ArrayList<>();
@@ -16,6 +17,7 @@ public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.inactive = (readInt32 & 1) != 0;
+        this.has_settings = (readInt32 & 2) != 0;
         this.bot_id = abstractSerializedData.readInt64(z);
         this.short_name = abstractSerializedData.readString(z);
         int readInt322 = abstractSerializedData.readInt32(z);
@@ -53,20 +55,22 @@ public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
         abstractSerializedData.writeInt32(constructor);
         int i = this.inactive ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
-        abstractSerializedData.writeInt32(i);
+        int i2 = this.has_settings ? i | 2 : i & (-3);
+        this.flags = i2;
+        abstractSerializedData.writeInt32(i2);
         abstractSerializedData.writeInt64(this.bot_id);
         abstractSerializedData.writeString(this.short_name);
         abstractSerializedData.writeInt32(481674261);
         int size = this.peer_types.size();
         abstractSerializedData.writeInt32(size);
-        for (int i2 = 0; i2 < size; i2++) {
-            this.peer_types.get(i2).serializeToStream(abstractSerializedData);
+        for (int i3 = 0; i3 < size; i3++) {
+            this.peer_types.get(i3).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.icons.size();
         abstractSerializedData.writeInt32(size2);
-        for (int i3 = 0; i3 < size2; i3++) {
-            this.icons.get(i3).serializeToStream(abstractSerializedData);
+        for (int i4 = 0; i4 < size2; i4++) {
+            this.icons.get(i4).serializeToStream(abstractSerializedData);
         }
     }
 }

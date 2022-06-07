@@ -11,8 +11,9 @@ import org.telegram.tgnet.TLRPC$TL_help_termsOfService;
 import org.telegram.tgnet.TLRPC$User;
 
 public class UserConfig extends BaseController {
-    private static volatile UserConfig[] Instance = new UserConfig[3];
-    public static final int MAX_ACCOUNT_COUNT = 3;
+    private static volatile UserConfig[] Instance = new UserConfig[4];
+    public static final int MAX_ACCOUNT_COUNT = 4;
+    public static final int MAX_ACCOUNT_DEFAULT_COUNT = 3;
     public static final int i_dialogsLoadOffsetAccess = 5;
     public static final int i_dialogsLoadOffsetChannelId = 4;
     public static final int i_dialogsLoadOffsetChatId = 3;
@@ -76,7 +77,7 @@ public class UserConfig extends BaseController {
 
     public static int getActivatedAccountsCount() {
         int i = 0;
-        for (int i2 = 0; i2 < 3; i2++) {
+        for (int i2 = 0; i2 < 4; i2++) {
             if (AccountInstance.getInstance(i2).getUserConfig().isClientActivated()) {
                 i++;
             }
@@ -86,6 +87,19 @@ public class UserConfig extends BaseController {
 
     public UserConfig(int i) {
         super(i);
+    }
+
+    public static boolean hasPremiumOnAccounts() {
+        for (int i = 0; i < 4; i++) {
+            if (AccountInstance.getInstance(i).getUserConfig().isClientActivated() && AccountInstance.getInstance(i).getUserConfig().getUserConfig().isPremium()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int getMaxAccountCount() {
+        return hasPremiumOnAccounts() ? 5 : 3;
     }
 
     public int getNewMessageId() {
@@ -180,7 +194,7 @@ public class UserConfig extends BaseController {
     }
 
     public static boolean isValidAccount(int i) {
-        return i >= 0 && i < 3 && getInstance(i).isClientActivated();
+        return i >= 0 && i < 4 && getInstance(i).isClientActivated();
     }
 
     public boolean isClientActivated() {
@@ -228,10 +242,22 @@ public class UserConfig extends BaseController {
         }
     }
 
-    private void checkPremium(TLRPC$User tLRPC$User, TLRPC$User tLRPC$User2) {
-        if (tLRPC$User != null && tLRPC$User2 != null && tLRPC$User.premium != tLRPC$User2.premium) {
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.currentUserPremiumStatusChanged, new Object[0]);
+    private void checkPremium(TLRPC$User tLRPC$User, final TLRPC$User tLRPC$User2) {
+        if (tLRPC$User == null || !(tLRPC$User2 == null || tLRPC$User.premium == tLRPC$User2.premium)) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    UserConfig.this.lambda$checkPremium$1(tLRPC$User2);
+                }
+            });
         }
+    }
+
+    public void lambda$checkPremium$1(TLRPC$User tLRPC$User) {
+        getMessagesController().updatePremium(tLRPC$User.premium);
+        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.currentUserPremiumStatusChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.premiumStatusChangedGlobal, new Object[0]);
+        getMediaDataController().loadPremiumPromo(false);
     }
 
     public void loadConfig() {
@@ -310,7 +336,7 @@ public class UserConfig extends BaseController {
         resetSavedPassword();
         int i = 0;
         while (true) {
-            if (i >= 3) {
+            if (i >= 4) {
                 break;
             } else if (AccountInstance.getInstance(i).getUserConfig().isClientActivated()) {
                 z = true;
@@ -428,6 +454,10 @@ public class UserConfig extends BaseController {
     }
 
     public boolean isPremium() {
-        return this.currentUser.premium;
+        TLRPC$User tLRPC$User = this.currentUser;
+        if (tLRPC$User == null) {
+            return false;
+        }
+        return tLRPC$User.premium;
     }
 }

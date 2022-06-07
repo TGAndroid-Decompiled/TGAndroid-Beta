@@ -662,12 +662,14 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     this.adapter.notifyDataSetChanged();
                 }
                 mediaDataController.preloadStickerSetThumb(this.stickerSet);
+                checkPremiumStickers();
             }
         }
         TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = this.stickerSet;
         if (tLRPC$TL_messages_stickerSet != null) {
             this.showEmoji = !tLRPC$TL_messages_stickerSet.set.masks;
         }
+        checkPremiumStickers();
     }
 
     public void lambda$loadStickerSet$6(final MediaDataController mediaDataController, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -691,7 +693,8 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = (TLRPC$TL_messages_stickerSet) tLObject;
             this.stickerSet = tLRPC$TL_messages_stickerSet;
             this.showEmoji = !tLRPC$TL_messages_stickerSet.set.masks;
-            mediaDataController.preloadStickerSetThumb(tLRPC$TL_messages_stickerSet);
+            checkPremiumStickers();
+            mediaDataController.preloadStickerSetThumb(this.stickerSet);
             updateSendButton();
             updateFields();
             this.adapter.notifyDataSetChanged();
@@ -740,6 +743,16 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 int i3 = (int) (i * (1.0f - animatedFraction));
                 StickersAlert.this.setScrollOffsetY(i2 + i3);
                 StickersAlert.this.gridView.setTranslationY(i3);
+            }
+        }
+    }
+
+    private void checkPremiumStickers() {
+        if (this.stickerSet != null) {
+            TLRPC$TL_messages_stickerSet filterPremiumStickers = MessagesController.getInstance(this.currentAccount).filterPremiumStickers(this.stickerSet);
+            this.stickerSet = filterPremiumStickers;
+            if (filterPremiumStickers == null) {
+                dismiss();
             }
         }
     }
@@ -1762,10 +1775,6 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     this.gridView.getChildAt(i3).invalidate();
                 }
             }
-            if (ContentPreviewViewer.getInstance().isVisible()) {
-                ContentPreviewViewer.getInstance().close();
-            }
-            ContentPreviewViewer.getInstance().reset();
         } else if (i == NotificationCenter.fileUploaded) {
             HashMap<String, SendMessagesHelper.ImportingSticker> hashMap2 = this.uploadImportStickers;
             if (!(hashMap2 == null || (importingSticker = hashMap2.get((str = (String) objArr[0]))) == null)) {

@@ -21,7 +21,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC$Document;
@@ -328,20 +327,14 @@ public class EmojiThemes {
     }
 
     public static void lambda$loadWallpaper$1(final ResultCallback resultCallback, final long j, TLRPC$WallPaper tLRPC$WallPaper, Bitmap bitmap) {
-        String str;
         if (bitmap == null || resultCallback == null) {
             ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$WallPaper.document);
             ImageReceiver imageReceiver = new ImageReceiver();
-            if (SharedConfig.getDevicePerformanceClass() == 0) {
-                Point point = AndroidUtilities.displaySize;
-                int min = Math.min(point.x, point.y);
-                Point point2 = AndroidUtilities.displaySize;
-                int max = Math.max(point2.x, point2.y);
-                str = ((int) (min / AndroidUtilities.density)) + "_" + ((int) (max / AndroidUtilities.density)) + "_f";
-            } else {
-                str = ((int) (1080.0f / AndroidUtilities.density)) + "_" + ((int) (1920.0f / AndroidUtilities.density)) + "_f";
-            }
-            imageReceiver.setImage(forDocument, str, null, ".jpg", tLRPC$WallPaper, 1);
+            Point point = AndroidUtilities.displaySize;
+            int min = Math.min(point.x, point.y);
+            Point point2 = AndroidUtilities.displaySize;
+            int max = Math.max(point2.x, point2.y);
+            imageReceiver.setImage(forDocument, ((int) (min / AndroidUtilities.density)) + "_" + ((int) (max / AndroidUtilities.density)) + "_f", null, ".jpg", tLRPC$WallPaper, 1);
             imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                 @Override
                 public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
@@ -392,9 +385,9 @@ public class EmojiThemes {
             if (wallpaperThumbBitmap == null) {
                 TLRPC$Document tLRPC$Document = wallpaper.document;
                 if (tLRPC$Document != null) {
-                    ImageLocation forDocument = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 120), wallpaper.document);
+                    ImageLocation forDocument = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 140), wallpaper.document);
                     ImageReceiver imageReceiver = new ImageReceiver();
-                    imageReceiver.setImage(forDocument, "120_80", null, null, null, 1);
+                    imageReceiver.setImage(forDocument, "120_140", null, null, null, 1);
                     imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                         @Override
                         public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
@@ -420,7 +413,7 @@ public class EmojiThemes {
 
     public static void lambda$loadWallpaperThumb$3(ResultCallback resultCallback, long j, final File file, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
-        if (z && bitmapSafe != null) {
+        if (z && bitmapSafe != null && !bitmapSafe.bitmap.isRecycled()) {
             final Bitmap bitmap = bitmapSafe.bitmap;
             if (bitmap == null) {
                 Drawable drawable = bitmapSafe.drawable;

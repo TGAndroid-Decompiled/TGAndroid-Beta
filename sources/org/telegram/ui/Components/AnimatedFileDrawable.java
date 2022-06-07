@@ -26,7 +26,7 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC$Document;
 
 public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
@@ -40,7 +40,6 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
     private boolean decodeSingleFrame;
     private boolean decoderCreated;
     private boolean destroyWhenDone;
-    private final TLRPC$Document document;
     private final Rect dstRect;
     private float endTime;
     private boolean forceDecodeAfterNextFrame;
@@ -48,8 +47,9 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
     private boolean invalidateParentViewWithSecond;
     private boolean invalidatePath;
     private volatile boolean isRecycled;
+    private boolean isRestarted;
     private volatile boolean isRunning;
-    public final boolean isWebmSticker;
+    public boolean isWebmSticker;
     private long lastFrameDecodeTime;
     private long lastFrameTime;
     private int lastTimeStamp;
@@ -63,7 +63,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
     private int nextRenderingBitmapTime;
     private BitmapShader nextRenderingShader;
     private View parentView;
-    private ArrayList<View> parents;
+    private ArrayList<ImageReceiver> parents;
     private File path;
     private boolean pendingRemoveLoading;
     private int pendingRemoveLoadingFramesReset;
@@ -75,6 +75,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
     private int renderingHeight;
     private BitmapShader renderingShader;
     private int renderingWidth;
+    public int repeatCount;
     private Path roundPath;
     private int[] roundRadius;
     private int[] roundRadiusBackup;
@@ -124,7 +125,31 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
 
     public void invalidateInternal() {
         for (int i = 0; i < this.parents.size(); i++) {
-            this.parents.get(i).invalidate();
+            if (this.parents.get(i).getParentView() != null) {
+                this.parents.get(i).getParentView().invalidate();
+            }
+        }
+    }
+
+    public void checkRepeat() {
+        int i = 0;
+        int i2 = 0;
+        while (i < this.parents.size()) {
+            ImageReceiver imageReceiver = this.parents.get(i);
+            if (!imageReceiver.isAttachedToWindow()) {
+                this.parents.remove(i);
+                i--;
+            }
+            int i3 = imageReceiver.animatedFileDrawableRepeatMaxCount;
+            if (i3 > 0 && this.repeatCount >= i3) {
+                i2++;
+            }
+            i++;
+        }
+        if (this.parents.size() == i2) {
+            stop();
+        } else {
+            start();
         }
     }
 
@@ -252,13 +277,19 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
                 animatedFileDrawable2.nextRenderingBitmapTime = animatedFileDrawable2.backgroundBitmapTime;
                 AnimatedFileDrawable animatedFileDrawable3 = AnimatedFileDrawable.this;
                 animatedFileDrawable3.nextRenderingShader = animatedFileDrawable3.backgroundShader;
-                if (AnimatedFileDrawable.this.metaData[3] < AnimatedFileDrawable.this.lastTimeStamp) {
+                if (AnimatedFileDrawable.this.isRestarted) {
+                    AnimatedFileDrawable.this.isRestarted = false;
                     AnimatedFileDrawable animatedFileDrawable4 = AnimatedFileDrawable.this;
-                    animatedFileDrawable4.lastTimeStamp = animatedFileDrawable4.startTime > 0.0f ? (int) (AnimatedFileDrawable.this.startTime * 1000.0f) : 0;
+                    animatedFileDrawable4.repeatCount++;
+                    animatedFileDrawable4.checkRepeat();
+                }
+                if (AnimatedFileDrawable.this.metaData[3] < AnimatedFileDrawable.this.lastTimeStamp) {
+                    AnimatedFileDrawable animatedFileDrawable5 = AnimatedFileDrawable.this;
+                    animatedFileDrawable5.lastTimeStamp = animatedFileDrawable5.startTime > 0.0f ? (int) (AnimatedFileDrawable.this.startTime * 1000.0f) : 0;
                 }
                 if (AnimatedFileDrawable.this.metaData[3] - AnimatedFileDrawable.this.lastTimeStamp != 0) {
-                    AnimatedFileDrawable animatedFileDrawable5 = AnimatedFileDrawable.this;
-                    animatedFileDrawable5.invalidateAfter = animatedFileDrawable5.metaData[3] - AnimatedFileDrawable.this.lastTimeStamp;
+                    AnimatedFileDrawable animatedFileDrawable6 = AnimatedFileDrawable.this;
+                    animatedFileDrawable6.invalidateAfter = animatedFileDrawable6.metaData[3] - AnimatedFileDrawable.this.lastTimeStamp;
                     if (AnimatedFileDrawable.this.limitFps && AnimatedFileDrawable.this.invalidateAfter < 32) {
                         AnimatedFileDrawable.this.invalidateAfter = 32;
                     }
@@ -267,8 +298,8 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
                     AnimatedFileDrawable.this.pendingSeekToUI = -1L;
                     AnimatedFileDrawable.this.invalidateAfter = 0;
                 }
-                AnimatedFileDrawable animatedFileDrawable6 = AnimatedFileDrawable.this;
-                animatedFileDrawable6.lastTimeStamp = animatedFileDrawable6.metaData[3];
+                AnimatedFileDrawable animatedFileDrawable7 = AnimatedFileDrawable.this;
+                animatedFileDrawable7.lastTimeStamp = animatedFileDrawable7.metaData[3];
                 if (!AnimatedFileDrawable.this.secondParentViews.isEmpty()) {
                     int size = AnimatedFileDrawable.this.secondParentViews.size();
                     for (int i4 = 0; i4 < size; i4++) {
@@ -327,6 +358,9 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
                                 AndroidUtilities.runOnUIThread(AnimatedFileDrawable.this.uiRunnableNoFrame);
                                 return;
                             }
+                            if (AnimatedFileDrawable.this.lastTimeStamp != 0 && AnimatedFileDrawable.this.metaData[3] == 0) {
+                                AnimatedFileDrawable.this.isRestarted = true;
+                            }
                             if (z3) {
                                 AnimatedFileDrawable animatedFileDrawable4 = AnimatedFileDrawable.this;
                                 animatedFileDrawable4.lastTimeStamp = animatedFileDrawable4.metaData[3];
@@ -352,12 +386,6 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
         this.currentAccount = i;
         this.renderingHeight = i3;
         this.renderingWidth = i2;
-        this.document = tLRPC$Document;
-        boolean z3 = MessageObject.isWebM(tLRPC$Document) || MessageObject.isVideoSticker(tLRPC$Document);
-        this.isWebmSticker = z3;
-        if (z3) {
-            this.useSharedQueue = true;
-        }
         getPaint().setFlags(3);
         if (!(j == 0 || (tLRPC$Document == null && imageLocation == null))) {
             this.stream = new AnimatedFileDrawableStream(tLRPC$Document, imageLocation, obj, i, z2);
@@ -373,6 +401,13 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
         }
         if (j2 != 0) {
             seekTo(j2, false);
+        }
+    }
+
+    public void setIsWebmSticker(boolean z) {
+        this.isWebmSticker = z;
+        if (z) {
+            this.useSharedQueue = true;
         }
     }
 
@@ -419,17 +454,20 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
         }
     }
 
-    public void addParent(View view) {
-        if (view != null && !this.parents.contains(view)) {
-            this.parents.add(view);
+    public void addParent(ImageReceiver imageReceiver) {
+        if (imageReceiver != null && !this.parents.contains(imageReceiver)) {
+            this.parents.add(imageReceiver);
             if (this.isRunning) {
                 scheduleNextGetFrame();
             }
         }
     }
 
-    public void removeParent(View view) {
-        this.parents.remove(view);
+    public void removeParent(ImageReceiver imageReceiver) {
+        this.parents.remove(imageReceiver);
+        if (this.parents.size() == 0) {
+            this.repeatCount = 0;
+        }
     }
 
     public void setInvalidateParentViewWithSecond(boolean z) {
@@ -875,36 +913,6 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
 
     public int getOrientation() {
         return this.metaData[2];
-    }
-
-    public AnimatedFileDrawable makeCopy() {
-        AnimatedFileDrawable animatedFileDrawable;
-        AnimatedFileDrawableStream animatedFileDrawableStream = this.stream;
-        if (animatedFileDrawableStream != null) {
-            File file = this.path;
-            long j = this.streamFileSize;
-            TLRPC$Document document = animatedFileDrawableStream.getDocument();
-            ImageLocation location = this.stream.getLocation();
-            Object parentObject = this.stream.getParentObject();
-            long j2 = this.pendingSeekToUI;
-            int i = this.currentAccount;
-            AnimatedFileDrawableStream animatedFileDrawableStream2 = this.stream;
-            animatedFileDrawable = new AnimatedFileDrawable(file, false, j, document, location, parentObject, j2, i, animatedFileDrawableStream2 != null && animatedFileDrawableStream2.isPreview());
-        } else {
-            File file2 = this.path;
-            long j3 = this.streamFileSize;
-            TLRPC$Document tLRPC$Document = this.document;
-            long j4 = this.pendingSeekToUI;
-            int i2 = this.currentAccount;
-            AnimatedFileDrawableStream animatedFileDrawableStream3 = this.stream;
-            animatedFileDrawable = new AnimatedFileDrawable(file2, false, j3, tLRPC$Document, null, null, j4, i2, animatedFileDrawableStream3 != null && animatedFileDrawableStream3.isPreview());
-        }
-        AnimatedFileDrawable animatedFileDrawable2 = animatedFileDrawable;
-        int[] iArr = animatedFileDrawable2.metaData;
-        int[] iArr2 = this.metaData;
-        iArr[0] = iArr2[0];
-        iArr[1] = iArr2[1];
-        return animatedFileDrawable2;
     }
 
     public static void getVideoInfo(String str, int[] iArr) {

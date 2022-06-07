@@ -267,7 +267,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         this.titleTextView.setSingleLine(true);
         this.titleTextView.setTextSize(1, 20.0f);
         this.titleTextView.setEllipsize(TextUtils.TruncateAt.END);
-        this.titleTextView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        this.titleTextView.setPadding(AndroidUtilities.dp(23.0f), 0, AndroidUtilities.dp(23.0f), 0);
         this.titleTextView.setGravity(16);
         this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         if (!z) {
@@ -290,8 +290,8 @@ public class InviteLinkBottomSheet extends BottomSheet {
             Emoji.replaceEmoji(spannableStringBuilder, this.titleTextView.getPaint().getFontMetricsInt(), (int) this.titleTextView.getPaint().getTextSize(), false);
             this.titleTextView.setText(spannableStringBuilder);
         }
-        this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, !this.titleVisible ? 0.0f : 48.0f, 0.0f, 0.0f));
-        this.containerView.addView(this.titleTextView, LayoutHelper.createFrame(-1, !this.titleVisible ? 48.0f : 50.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
+        this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, !this.titleVisible ? 0.0f : 44.0f, 0.0f, 0.0f));
+        this.containerView.addView(this.titleTextView, LayoutHelper.createFrame(-1, !this.titleVisible ? 44.0f : 50.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
         updateRows();
         loadUsers();
         if (hashMap == null || hashMap.get(Long.valueOf(tLRPC$TL_chatInviteExported.admin_id)) == null) {
@@ -428,92 +428,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
     }
 
     private void updateRows() {
-        boolean z = false;
-        this.rowCount = 0;
-        this.dividerRow = -1;
-        this.divider2Row = -1;
-        this.divider3Row = -1;
-        this.joinedHeaderRow = -1;
-        this.joinedStartRow = -1;
-        this.joinedEndRow = -1;
-        this.emptyView2 = -1;
-        this.emptyView3 = -1;
-        this.linkActionRow = -1;
-        this.linkInfoRow = -1;
-        this.emptyHintRow = -1;
-        this.requestedHeaderRow = -1;
-        this.requestedStartRow = -1;
-        this.requestedEndRow = -1;
-        this.loadingRow = -1;
-        boolean z2 = true;
-        if (!this.permanent) {
-            int i = 0 + 1;
-            this.rowCount = i;
-            this.linkActionRow = 0;
-            this.rowCount = i + 1;
-            this.linkInfoRow = i;
-        }
-        int i2 = this.rowCount;
-        int i3 = i2 + 1;
-        this.rowCount = i3;
-        this.creatorHeaderRow = i2;
-        int i4 = i3 + 1;
-        this.rowCount = i4;
-        this.creatorRow = i3;
-        this.rowCount = i4 + 1;
-        this.emptyView = i4;
-        TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported = this.invite;
-        boolean z3 = tLRPC$TL_chatInviteExported.usage > 0 || tLRPC$TL_chatInviteExported.usage_limit > 0 || tLRPC$TL_chatInviteExported.requested > 0;
-        if (!this.joinedUsers.isEmpty()) {
-            int i5 = this.rowCount;
-            int i6 = i5 + 1;
-            this.rowCount = i6;
-            this.dividerRow = i5;
-            int i7 = i6 + 1;
-            this.rowCount = i7;
-            this.joinedHeaderRow = i6;
-            this.joinedStartRow = i7;
-            int size = i7 + this.joinedUsers.size();
-            this.rowCount = size;
-            this.joinedEndRow = size;
-            this.rowCount = size + 1;
-            this.emptyView2 = size;
-            z = true;
-        }
-        if (!this.requestedUsers.isEmpty()) {
-            int i8 = this.rowCount;
-            int i9 = i8 + 1;
-            this.rowCount = i9;
-            this.divider2Row = i8;
-            int i10 = i9 + 1;
-            this.rowCount = i10;
-            this.requestedHeaderRow = i9;
-            this.requestedStartRow = i10;
-            int size2 = i10 + this.requestedUsers.size();
-            this.rowCount = size2;
-            this.requestedEndRow = size2;
-            this.rowCount = size2 + 1;
-            this.emptyView3 = size2;
-        } else {
-            z2 = z;
-        }
-        if (z3 && !z2) {
-            int i11 = this.rowCount;
-            int i12 = i11 + 1;
-            this.rowCount = i12;
-            this.dividerRow = i11;
-            int i13 = i12 + 1;
-            this.rowCount = i13;
-            this.loadingRow = i12;
-            this.rowCount = i13 + 1;
-            this.emptyView2 = i13;
-        }
-        if (this.emptyHintRow == -1) {
-            int i14 = this.rowCount;
-            this.rowCount = i14 + 1;
-            this.divider3Row = i14;
-        }
-        this.adapter.notifyDataSetChanged();
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.InviteLinkBottomSheet.updateRows():void");
     }
 
     public class Adapter extends RecyclerListView.SelectionAdapter {
@@ -778,146 +693,144 @@ public class InviteLinkBottomSheet extends BottomSheet {
             String string;
             int itemViewType = viewHolder.getItemViewType();
             String str2 = null;
-            if (itemViewType != 0) {
-                int i4 = 0;
-                if (itemViewType == 1) {
-                    UserCell userCell = (UserCell) viewHolder.itemView;
-                    InviteLinkBottomSheet inviteLinkBottomSheet = InviteLinkBottomSheet.this;
-                    if (i == inviteLinkBottomSheet.creatorRow) {
-                        TLRPC$User tLRPC$User2 = inviteLinkBottomSheet.users.get(Long.valueOf(inviteLinkBottomSheet.invite.admin_id));
-                        if (tLRPC$User2 == null) {
-                            tLRPC$User2 = MessagesController.getInstance(((BottomSheet) InviteLinkBottomSheet.this).currentAccount).getUser(Long.valueOf(InviteLinkBottomSheet.this.invite.admin_id));
-                        }
-                        String formatDateAudio = tLRPC$User2 != null ? LocaleController.formatDateAudio(InviteLinkBottomSheet.this.invite.date, false) : null;
-                        TLRPC$ChatFull tLRPC$ChatFull = InviteLinkBottomSheet.this.info;
-                        if (tLRPC$ChatFull != null && tLRPC$User2 != null && tLRPC$ChatFull.participants != null) {
-                            while (true) {
-                                if (i4 >= InviteLinkBottomSheet.this.info.participants.participants.size()) {
-                                    break;
-                                } else if (InviteLinkBottomSheet.this.info.participants.participants.get(i4).user_id == tLRPC$User2.id) {
-                                    TLRPC$ChatParticipant tLRPC$ChatParticipant = InviteLinkBottomSheet.this.info.participants.participants.get(i4);
-                                    if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatChannelParticipant) {
-                                        TLRPC$ChannelParticipant tLRPC$ChannelParticipant = ((TLRPC$TL_chatChannelParticipant) tLRPC$ChatParticipant).channelParticipant;
-                                        if (!TextUtils.isEmpty(tLRPC$ChannelParticipant.rank)) {
-                                            str2 = tLRPC$ChannelParticipant.rank;
-                                        } else if (tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantCreator) {
-                                            str2 = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
-                                        } else if (tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantAdmin) {
-                                            str2 = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
-                                        }
-                                    } else {
-                                        if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantCreator) {
-                                            string = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
-                                        } else if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantAdmin) {
-                                            string = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
-                                        }
-                                        str2 = string;
-                                    }
-                                } else {
-                                    i4++;
-                                }
-                            }
-                        }
-                        tLRPC$User = tLRPC$User2;
-                        str = formatDateAudio;
-                    } else {
-                        int i5 = inviteLinkBottomSheet.joinedStartRow;
-                        ArrayList<TLRPC$TL_chatInviteImporter> arrayList = inviteLinkBottomSheet.joinedUsers;
-                        int i6 = inviteLinkBottomSheet.requestedStartRow;
-                        if (i6 != -1 && i >= i6) {
-                            arrayList = inviteLinkBottomSheet.requestedUsers;
-                            i5 = i6;
-                        }
-                        tLRPC$User = InviteLinkBottomSheet.this.users.get(Long.valueOf(arrayList.get(i - i5).user_id));
-                        str = null;
-                    }
-                    userCell.setAdminRole(str2);
-                    userCell.setData(tLRPC$User, null, str, 0, false);
-                } else if (itemViewType == 3) {
-                    LinkActionView linkActionView = (LinkActionView) viewHolder.itemView;
-                    linkActionView.setUsers(0, null);
-                    linkActionView.setLink(InviteLinkBottomSheet.this.invite.link);
-                    linkActionView.setRevoke(InviteLinkBottomSheet.this.invite.revoked);
-                    linkActionView.setPermanent(InviteLinkBottomSheet.this.invite.permanent);
-                    linkActionView.setCanEdit(InviteLinkBottomSheet.this.canEdit);
-                    linkActionView.hideRevokeOption(!InviteLinkBottomSheet.this.canEdit);
-                } else if (itemViewType == 4) {
-                    TimerPrivacyCell timerPrivacyCell = (TimerPrivacyCell) viewHolder.itemView;
-                    timerPrivacyCell.cancelTimer();
-                    timerPrivacyCell.timer = false;
-                    timerPrivacyCell.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText4"));
-                    timerPrivacyCell.setFixedSize(0);
-                    TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported = InviteLinkBottomSheet.this.invite;
-                    if (tLRPC$TL_chatInviteExported.revoked) {
-                        timerPrivacyCell.setText(LocaleController.getString("LinkIsNoActive", R.string.LinkIsNoActive));
-                    } else if (tLRPC$TL_chatInviteExported.expired) {
-                        int i7 = tLRPC$TL_chatInviteExported.usage_limit;
-                        if (i7 <= 0 || i7 != tLRPC$TL_chatInviteExported.usage) {
-                            timerPrivacyCell.setText(LocaleController.getString("LinkIsExpired", R.string.LinkIsExpired));
-                            timerPrivacyCell.setTextColor(Theme.getColor("windowBackgroundWhiteRedText"));
-                            return;
-                        }
-                        timerPrivacyCell.setText(LocaleController.getString("LinkIsExpiredLimitReached", R.string.LinkIsExpiredLimitReached));
-                    } else if (tLRPC$TL_chatInviteExported.expire_date > 0) {
-                        long currentTimeMillis = System.currentTimeMillis() + (InviteLinkBottomSheet.this.timeDif * 1000);
-                        int i8 = InviteLinkBottomSheet.this.invite.expire_date;
-                        long j = (i8 * 1000) - currentTimeMillis;
-                        if (j < 0) {
-                            j = 0;
-                        }
-                        if (j > 86400000) {
-                            timerPrivacyCell.setText(LocaleController.formatString("LinkExpiresIn", R.string.LinkExpiresIn, LocaleController.formatDateAudio(i8, false)));
-                            return;
-                        }
-                        long j2 = j / 1000;
-                        int i9 = (int) (j2 % 60);
-                        long j3 = j2 / 60;
-                        int i10 = (int) (j3 / 60);
-                        StringBuilder sb = new StringBuilder();
-                        Locale locale = Locale.ENGLISH;
-                        sb.append(String.format(locale, "%02d", Integer.valueOf(i10)));
-                        sb.append(String.format(locale, ":%02d", Integer.valueOf((int) (j3 % 60))));
-                        sb.append(String.format(locale, ":%02d", Integer.valueOf(i9)));
-                        String sb2 = sb.toString();
-                        timerPrivacyCell.timer = true;
-                        timerPrivacyCell.runTimer();
-                        timerPrivacyCell.setText(LocaleController.formatString("LinkExpiresInTime", R.string.LinkExpiresInTime, sb2));
-                    } else {
-                        timerPrivacyCell.setFixedSize(12);
-                        timerPrivacyCell.setText(null);
-                    }
-                } else if (itemViewType == 8) {
-                    EmptyHintRow emptyHintRow = (EmptyHintRow) viewHolder.itemView;
-                    int i11 = InviteLinkBottomSheet.this.invite.usage_limit;
-                    if (i11 > 0) {
-                        emptyHintRow.textView.setText(LocaleController.formatPluralString("PeopleCanJoinViaLinkCount", i11));
-                        emptyHintRow.textView.setVisibility(0);
-                        return;
-                    }
-                    emptyHintRow.textView.setVisibility(8);
-                }
-            } else {
+            int i4 = 0;
+            if (itemViewType == 0) {
                 HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
-                InviteLinkBottomSheet inviteLinkBottomSheet2 = InviteLinkBottomSheet.this;
-                if (i == inviteLinkBottomSheet2.creatorHeaderRow) {
+                InviteLinkBottomSheet inviteLinkBottomSheet = InviteLinkBottomSheet.this;
+                if (i == inviteLinkBottomSheet.creatorHeaderRow) {
                     headerCell.setText(LocaleController.getString("LinkCreatedeBy", R.string.LinkCreatedeBy));
                     headerCell.setText2(null);
-                } else if (i == inviteLinkBottomSheet2.joinedHeaderRow) {
-                    int i12 = inviteLinkBottomSheet2.invite.usage;
-                    if (i12 > 0) {
-                        headerCell.setText(LocaleController.formatPluralString("PeopleJoined", i12));
+                } else if (i == inviteLinkBottomSheet.joinedHeaderRow) {
+                    int i5 = inviteLinkBottomSheet.invite.usage;
+                    if (i5 > 0) {
+                        headerCell.setText(LocaleController.formatPluralString("PeopleJoined", i5, new Object[0]));
                     } else {
                         headerCell.setText(LocaleController.getString("NoOneJoined", R.string.NoOneJoined));
                     }
-                    TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported2 = InviteLinkBottomSheet.this.invite;
-                    if (tLRPC$TL_chatInviteExported2.expired || tLRPC$TL_chatInviteExported2.revoked || (i2 = tLRPC$TL_chatInviteExported2.usage_limit) <= 0 || (i3 = tLRPC$TL_chatInviteExported2.usage) <= 0) {
+                    TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported = InviteLinkBottomSheet.this.invite;
+                    if (tLRPC$TL_chatInviteExported.expired || tLRPC$TL_chatInviteExported.revoked || (i2 = tLRPC$TL_chatInviteExported.usage_limit) <= 0 || (i3 = tLRPC$TL_chatInviteExported.usage) <= 0) {
                         headerCell.setText2(null);
                     } else {
-                        headerCell.setText2(LocaleController.formatPluralString("PeopleJoinedRemaining", i2 - i3));
+                        headerCell.setText2(LocaleController.formatPluralString("PeopleJoinedRemaining", i2 - i3, new Object[0]));
                     }
-                } else if (i == inviteLinkBottomSheet2.requestedHeaderRow) {
-                    headerCell.setText(LocaleController.formatPluralString("JoinRequests", inviteLinkBottomSheet2.invite.requested));
+                } else if (i == inviteLinkBottomSheet.requestedHeaderRow) {
+                    headerCell.setText(LocaleController.formatPluralString("JoinRequests", inviteLinkBottomSheet.invite.requested, new Object[0]));
                 }
+            } else if (itemViewType == 1) {
+                UserCell userCell = (UserCell) viewHolder.itemView;
+                InviteLinkBottomSheet inviteLinkBottomSheet2 = InviteLinkBottomSheet.this;
+                if (i == inviteLinkBottomSheet2.creatorRow) {
+                    TLRPC$User tLRPC$User2 = inviteLinkBottomSheet2.users.get(Long.valueOf(inviteLinkBottomSheet2.invite.admin_id));
+                    if (tLRPC$User2 == null) {
+                        tLRPC$User2 = MessagesController.getInstance(((BottomSheet) InviteLinkBottomSheet.this).currentAccount).getUser(Long.valueOf(InviteLinkBottomSheet.this.invite.admin_id));
+                    }
+                    String formatDateAudio = tLRPC$User2 != null ? LocaleController.formatDateAudio(InviteLinkBottomSheet.this.invite.date, false) : null;
+                    TLRPC$ChatFull tLRPC$ChatFull = InviteLinkBottomSheet.this.info;
+                    if (tLRPC$ChatFull != null && tLRPC$User2 != null && tLRPC$ChatFull.participants != null) {
+                        while (true) {
+                            if (i4 >= InviteLinkBottomSheet.this.info.participants.participants.size()) {
+                                break;
+                            } else if (InviteLinkBottomSheet.this.info.participants.participants.get(i4).user_id == tLRPC$User2.id) {
+                                TLRPC$ChatParticipant tLRPC$ChatParticipant = InviteLinkBottomSheet.this.info.participants.participants.get(i4);
+                                if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatChannelParticipant) {
+                                    TLRPC$ChannelParticipant tLRPC$ChannelParticipant = ((TLRPC$TL_chatChannelParticipant) tLRPC$ChatParticipant).channelParticipant;
+                                    if (!TextUtils.isEmpty(tLRPC$ChannelParticipant.rank)) {
+                                        str2 = tLRPC$ChannelParticipant.rank;
+                                    } else if (tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantCreator) {
+                                        str2 = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
+                                    } else if (tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantAdmin) {
+                                        str2 = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
+                                    }
+                                } else {
+                                    if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantCreator) {
+                                        string = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
+                                    } else if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantAdmin) {
+                                        string = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
+                                    }
+                                    str2 = string;
+                                }
+                            } else {
+                                i4++;
+                            }
+                        }
+                    }
+                    tLRPC$User = tLRPC$User2;
+                    str = formatDateAudio;
+                } else {
+                    int i6 = inviteLinkBottomSheet2.joinedStartRow;
+                    ArrayList<TLRPC$TL_chatInviteImporter> arrayList = inviteLinkBottomSheet2.joinedUsers;
+                    int i7 = inviteLinkBottomSheet2.requestedStartRow;
+                    if (i7 != -1 && i >= i7) {
+                        arrayList = inviteLinkBottomSheet2.requestedUsers;
+                        i6 = i7;
+                    }
+                    tLRPC$User = InviteLinkBottomSheet.this.users.get(Long.valueOf(arrayList.get(i - i6).user_id));
+                    str = null;
+                }
+                userCell.setAdminRole(str2);
+                userCell.setData(tLRPC$User, null, str, 0, false);
+            } else if (itemViewType == 3) {
+                LinkActionView linkActionView = (LinkActionView) viewHolder.itemView;
+                linkActionView.setUsers(0, null);
+                linkActionView.setLink(InviteLinkBottomSheet.this.invite.link);
+                linkActionView.setRevoke(InviteLinkBottomSheet.this.invite.revoked);
+                linkActionView.setPermanent(InviteLinkBottomSheet.this.invite.permanent);
+                linkActionView.setCanEdit(InviteLinkBottomSheet.this.canEdit);
+                linkActionView.hideRevokeOption(!InviteLinkBottomSheet.this.canEdit);
+            } else if (itemViewType == 4) {
+                TimerPrivacyCell timerPrivacyCell = (TimerPrivacyCell) viewHolder.itemView;
+                timerPrivacyCell.cancelTimer();
+                timerPrivacyCell.timer = false;
+                timerPrivacyCell.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText4"));
+                timerPrivacyCell.setFixedSize(0);
+                TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported2 = InviteLinkBottomSheet.this.invite;
+                if (tLRPC$TL_chatInviteExported2.revoked) {
+                    timerPrivacyCell.setText(LocaleController.getString("LinkIsNoActive", R.string.LinkIsNoActive));
+                } else if (tLRPC$TL_chatInviteExported2.expired) {
+                    int i8 = tLRPC$TL_chatInviteExported2.usage_limit;
+                    if (i8 <= 0 || i8 != tLRPC$TL_chatInviteExported2.usage) {
+                        timerPrivacyCell.setText(LocaleController.getString("LinkIsExpired", R.string.LinkIsExpired));
+                        timerPrivacyCell.setTextColor(Theme.getColor("windowBackgroundWhiteRedText"));
+                        return;
+                    }
+                    timerPrivacyCell.setText(LocaleController.getString("LinkIsExpiredLimitReached", R.string.LinkIsExpiredLimitReached));
+                } else if (tLRPC$TL_chatInviteExported2.expire_date > 0) {
+                    long currentTimeMillis = System.currentTimeMillis() + (InviteLinkBottomSheet.this.timeDif * 1000);
+                    int i9 = InviteLinkBottomSheet.this.invite.expire_date;
+                    long j = (i9 * 1000) - currentTimeMillis;
+                    if (j < 0) {
+                        j = 0;
+                    }
+                    if (j > 86400000) {
+                        timerPrivacyCell.setText(LocaleController.formatString("LinkExpiresIn", R.string.LinkExpiresIn, LocaleController.formatDateAudio(i9, false)));
+                        return;
+                    }
+                    long j2 = j / 1000;
+                    int i10 = (int) (j2 % 60);
+                    long j3 = j2 / 60;
+                    int i11 = (int) (j3 / 60);
+                    StringBuilder sb = new StringBuilder();
+                    Locale locale = Locale.ENGLISH;
+                    sb.append(String.format(locale, "%02d", Integer.valueOf(i11)));
+                    sb.append(String.format(locale, ":%02d", Integer.valueOf((int) (j3 % 60))));
+                    sb.append(String.format(locale, ":%02d", Integer.valueOf(i10)));
+                    String sb2 = sb.toString();
+                    timerPrivacyCell.timer = true;
+                    timerPrivacyCell.runTimer();
+                    timerPrivacyCell.setText(LocaleController.formatString("LinkExpiresInTime", R.string.LinkExpiresInTime, sb2));
+                } else {
+                    timerPrivacyCell.setFixedSize(12);
+                    timerPrivacyCell.setText(null);
+                }
+            } else if (itemViewType == 8) {
+                EmptyHintRow emptyHintRow = (EmptyHintRow) viewHolder.itemView;
+                int i12 = InviteLinkBottomSheet.this.invite.usage_limit;
+                if (i12 > 0) {
+                    emptyHintRow.textView.setText(LocaleController.formatPluralString("PeopleCanJoinViaLinkCount", i12, new Object[0]));
+                    emptyHintRow.textView.setVisibility(0);
+                    return;
+                }
+                emptyHintRow.textView.setVisibility(8);
             }
         }
 

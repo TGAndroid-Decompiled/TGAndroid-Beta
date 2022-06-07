@@ -128,6 +128,26 @@ public abstract class TLRPC$MessageEntity extends TLObject {
                     }
                 };
                 break;
+            case 1592721940:
+                tLRPC$MessageEntity = new TLRPC$MessageEntity() {
+                    public static int constructor = 1592721940;
+                    public int length;
+                    public int offset;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.offset = abstractSerializedData2.readInt32(z2);
+                        this.length = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(this.offset);
+                        abstractSerializedData2.writeInt32(this.length);
+                    }
+                };
+                break;
             case 1692693954:
                 tLRPC$MessageEntity = new TLRPC$MessageEntity() {
                     public static int constructor = 1692693954;

@@ -173,8 +173,14 @@ public class PipVideoOverlay {
         this.videoForwardDrawable.setTime(0L);
         if (z) {
             this.videoProgress = f;
-            this.videoProgressView.invalidate();
-            this.controlsView.invalidate();
+            VideoProgressView videoProgressView = this.videoProgressView;
+            if (videoProgressView != null) {
+                videoProgressView.invalidate();
+            }
+            FrameLayout frameLayout = this.controlsView;
+            if (frameLayout != null) {
+                frameLayout.invalidate();
+            }
         }
     }
 
@@ -938,6 +944,14 @@ public class PipVideoOverlay {
         @Override
         public boolean onDoubleTap(android.view.MotionEvent r15) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PipVideoOverlay.AnonymousClass4.onDoubleTap(android.view.MotionEvent):boolean");
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent motionEvent) {
+            if (!hasDoubleTap()) {
+                return onSingleTapConfirmed(motionEvent);
+            }
+            return super.onSingleTapUp(motionEvent);
         }
 
         @Override
