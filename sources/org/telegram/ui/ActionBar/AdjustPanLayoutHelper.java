@@ -26,7 +26,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 
 public class AdjustPanLayoutHelper {
-    public static boolean USE_ANDROID11_INSET_ANIMATOR = true;
+    public static boolean USE_ANDROID11_INSET_ANIMATOR = false;
     public static final Interpolator keyboardInterpolator = ChatListItemAnimator.DEFAULT_INTERPOLATOR;
     private boolean animationInProgress;
     ValueAnimator animator;

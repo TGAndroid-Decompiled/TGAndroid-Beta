@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
@@ -10,14 +11,18 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.os.SystemClock;
+import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.style.ImageSpan;
 import android.util.StateSet;
+import android.widget.Toast;
 import androidx.core.graphics.ColorUtils;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import java.util.Arrays;
 import java.util.HashMap;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -302,10 +307,8 @@ public class TranscribeButton {
         canvas.save();
         canvas.translate(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
         if (this.isOpen) {
-            this.outIconDrawable.updateCurrentFrame();
             this.inIconDrawable.draw(canvas);
         } else {
-            this.inIconDrawable.updateCurrentFrame();
             this.outIconDrawable.draw(canvas);
         }
         canvas.restore();
@@ -328,6 +331,75 @@ public class TranscribeButton {
             fArr3[0] = fArr3[0] + (this.interpolator.getInterpolation(((float) (j2 - (i2 + 667))) / 667.0f) * 250.0f);
         }
         return this.segments;
+    }
+
+    public static class LoadingPointsSpan extends ImageSpan {
+        private static LoadingPointsDrawable drawable;
+
+        public LoadingPointsSpan() {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TranscribeButton.LoadingPointsSpan.<init>():void");
+        }
+
+        @Override
+        public void updateDrawState(TextPaint textPaint) {
+            float textSize = textPaint.getTextSize() * 0.89f;
+            int i = (int) (0.02f * textSize);
+            getDrawable().setBounds(0, i, (int) textSize, ((int) (textSize * 1.25f)) + i);
+            super.updateDrawState(textPaint);
+        }
+    }
+
+    private static class LoadingPointsDrawable extends Drawable {
+        private int lastColor;
+        private RLottieDrawable lottie;
+        private Paint paint;
+
+        @Override
+        public int getOpacity() {
+            return -2;
+        }
+
+        @Override
+        public void setAlpha(int i) {
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+        }
+
+        public LoadingPointsDrawable(TextPaint textPaint) {
+            this.paint = textPaint;
+            float textSize = textPaint.getTextSize() * 0.89f;
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(this, R.raw.dots_loading, "dots_loading", (int) textSize, (int) (textSize * 1.25f)) {
+                @Override
+                public boolean hasParentView() {
+                    return true;
+                }
+            };
+            this.lottie = rLottieDrawable;
+            rLottieDrawable.setAutoRepeat(1);
+            this.lottie.setCurrentFrame((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
+            this.lottie.setAllowDecodeSingleFrame(true);
+            this.lottie.start();
+        }
+
+        public void setColor(int i) {
+            this.lottie.beginApplyLayerColors();
+            this.lottie.setLayerColor("Comp 1.**", i);
+            this.lottie.commitApplyLayerColors();
+            this.lottie.setAllowDecodeSingleFrame(true);
+            this.lottie.updateCurrentFrame();
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            int color = this.paint.getColor();
+            if (color != this.lastColor) {
+                setColor(color);
+                this.lastColor = color;
+            }
+            this.lottie.draw(canvas);
+        }
     }
 
     private static int reqInfoHash(MessageObject messageObject) {
@@ -420,6 +492,9 @@ public class TranscribeButton {
             messageObject.messageOwner.voiceTranscriptionId = j4;
             j3 = j4;
         } else {
+            if (tLRPC$TL_error != null) {
+                Toast.makeText(ApplicationLoader.applicationContext, tLRPC$TL_error.text, 0).show();
+            }
             j3 = 0;
             z = true;
         }

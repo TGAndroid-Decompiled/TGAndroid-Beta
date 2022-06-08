@@ -29,6 +29,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FilesMigrationService;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
@@ -306,6 +307,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         getMediaDataController().ringtoneDataStore.checkRingtoneSoundsLoaded();
         this.cacheRemovedTooltip.setInfoText(LocaleController.formatString("CacheWasCleared", R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j)));
         this.cacheRemovedTooltip.showWithAction(0L, 19, null, null);
+        MediaDataController.getInstance(this.currentAccount).chekAllMedia();
     }
 
     @Override

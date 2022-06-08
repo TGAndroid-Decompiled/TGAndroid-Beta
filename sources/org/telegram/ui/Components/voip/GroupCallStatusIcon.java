@@ -43,8 +43,8 @@ public class GroupCallStatusIcon {
             GroupCallStatusIcon.this.lambda$new$3();
         }
     };
-    RLottieDrawable micDrawable = new RLottieDrawable(R.raw.voice_mini, "2131558559", AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
-    RLottieDrawable shakeHandDrawable = new RLottieDrawable(R.raw.hand_2, "2131558456", AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), true, null);
+    RLottieDrawable micDrawable = new RLottieDrawable(R.raw.voice_mini, "2131558561", AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
+    RLottieDrawable shakeHandDrawable = new RLottieDrawable(R.raw.hand_2, "2131558457", AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), true, null);
 
     public interface Callback {
         void onStatusChanged();

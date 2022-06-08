@@ -14,7 +14,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.os.Build;
 import android.os.SystemClock;
-import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.BubbleActivity;
 
 public class CropAreaView extends ViewGroup {
-    private TextPaint RED;
     private Control activeControl;
     private Animator animator;
     private Paint bitmapPaint;
@@ -103,10 +101,6 @@ public class CropAreaView extends ViewGroup {
 
     public CropAreaView(Context context) {
         super(context);
-        TextPaint textPaint = new TextPaint();
-        this.RED = textPaint;
-        textPaint.setColor(-65536);
-        this.RED.setTextSize(AndroidUtilities.dp(16.0f));
         this.inBubbleMode = context instanceof BubbleActivity;
         Paint paint = new Paint();
         this.dimPaint = paint;

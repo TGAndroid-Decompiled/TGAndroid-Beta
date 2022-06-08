@@ -1,15 +1,10 @@
 package org.telegram.messenger;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
-import android.os.SystemClock;
 import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -18,7 +13,6 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
-import android.text.style.ImageSpan;
 import android.util.Base64;
 import android.view.View;
 import androidx.collection.LongSparseArray;
@@ -2144,89 +2138,26 @@ public class MessageObject {
             }, 0, spannableString.length(), 33);
             return spannableString;
         }
-        CharSequence charSequence = this.messageOwner.voiceTranscription;
-        if (!TextUtils.isEmpty(charSequence)) {
-            charSequence = Emoji.replaceEmoji(charSequence, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false, this.contentType == 0, this.viewRef);
-            if (!this.messageOwner.voiceTranscriptionFinal && TranscribeButton.isTranscribing(this)) {
-                String str2 = ((Object) charSequence) + " ";
-                charSequence = !(str2 instanceof Spannable) ? new SpannableString(str2) : str2;
-                ((SpannableString) charSequence).setSpan(new LoadingPointsSpan(), charSequence.length() - 1, charSequence.length(), 33);
-            }
+        String str2 = this.messageOwner.voiceTranscription;
+        if (TextUtils.isEmpty(str2)) {
+            return str2;
         }
-        return charSequence;
+        return Emoji.replaceEmoji(str2, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false, this.contentType == 0, this.viewRef);
     }
 
-    public class LoadingPointsSpan extends ImageSpan {
-        public int color;
-        public float fontSize = SharedConfig.fontSize;
-
-        public LoadingPointsSpan() {
-            super(new LoadingPointsSpanDrawable(), 2);
-            this.color = Theme.getColor(MessageObject.this.isOutOwner() ? "chat_messageTextOut" : "chat_messageTextIn");
-            ((LoadingPointsSpanDrawable) getDrawable()).setSpan(this);
-            Drawable drawable = getDrawable();
-            float f = this.fontSize;
-            drawable.setBounds(0, 0, (int) (4.0f * f), AndroidUtilities.dp(f));
+    public float measureVoiceTranscriptionHeight() {
+        StaticLayout staticLayout;
+        CharSequence voiceTranscription = getVoiceTranscription();
+        if (voiceTranscription == null) {
+            return 0.0f;
         }
-
-        @Override
-        public void updateDrawState(TextPaint textPaint) {
-            this.fontSize = textPaint.getTextSize();
-            this.color = textPaint.getColor();
-            Drawable drawable = getDrawable();
-            float f = this.fontSize;
-            drawable.setBounds(0, 0, (int) (4.0f * f), AndroidUtilities.dp(f));
-            super.updateDrawState(textPaint);
+        int dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(needDrawAvatar() ? 147.0f : 95.0f);
+        if (Build.VERSION.SDK_INT >= 24) {
+            staticLayout = StaticLayout.Builder.obtain(voiceTranscription, 0, voiceTranscription.length(), Theme.chat_msgTextPaint, dp).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
+        } else {
+            staticLayout = new StaticLayout(voiceTranscription, Theme.chat_msgTextPaint, dp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
-    }
-
-    private class LoadingPointsSpanDrawable extends Drawable {
-        private Paint RED;
-        private Paint paint = new Paint();
-        LoadingPointsSpan span;
-
-        @Override
-        public int getOpacity() {
-            return -2;
-        }
-
-        @Override
-        public void setAlpha(int i) {
-        }
-
-        @Override
-        public void setColorFilter(ColorFilter colorFilter) {
-        }
-
-        public LoadingPointsSpanDrawable() {
-            Paint paint = new Paint();
-            this.RED = paint;
-            paint.setColor(-65536);
-        }
-
-        public void setSpan(LoadingPointsSpan loadingPointsSpan) {
-            this.span = loadingPointsSpan;
-        }
-
-        @Override
-        public void draw(Canvas canvas) {
-            float f;
-            AtomicReference<WeakReference<View>> atomicReference = MessageObject.this.viewRef;
-            if (!(atomicReference == null || atomicReference.get() == null || MessageObject.this.viewRef.get().get() == null)) {
-                MessageObject.this.viewRef.get().get().invalidate();
-            }
-            invalidateSelf();
-            Rect bounds = getBounds();
-            LoadingPointsSpan loadingPointsSpan = this.span;
-            float width = loadingPointsSpan == null ? bounds.width() / 5.0f : loadingPointsSpan.fontSize;
-            Paint paint = this.paint;
-            LoadingPointsSpan loadingPointsSpan2 = this.span;
-            paint.setColor(loadingPointsSpan2 == null ? -1 : loadingPointsSpan2.color);
-            for (int i = 0; i < 3; i++) {
-                this.paint.setAlpha((int) (((-Math.pow(((((((float) SystemClock.elapsedRealtime()) / 600.0f) + (0.75f * f)) % 1.0f) * 2.0f) - 1.0f, 2.0d)) + 1.0d) * 255.0d));
-                canvas.drawCircle((i + 1.0f) * width, bounds.top + (bounds.height() * 0.82f), 0.18f * width, this.paint);
-            }
-        }
+        return staticLayout.getHeight();
     }
 
     public boolean isVoiceTranscriptionOpen() {

@@ -181,15 +181,17 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public void lambda$setStatus$3() {
-            PhoneFormat phoneFormat = PhoneFormat.getInstance();
-            this.formattedPhoneNumber = phoneFormat.format("+" + this.currentUser.phone);
-            this.formattedPhoneNumberUser = this.currentUser;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatAttachAlertContactsLayout.UserCell.this.lambda$setStatus$2();
-                }
-            });
+            if (this.currentUser != null) {
+                PhoneFormat phoneFormat = PhoneFormat.getInstance();
+                this.formattedPhoneNumber = phoneFormat.format("+" + this.currentUser.phone);
+                this.formattedPhoneNumberUser = this.currentUser;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChatAttachAlertContactsLayout.UserCell.this.lambda$setStatus$2();
+                    }
+                });
+            }
         }
 
         public void lambda$setStatus$2() {

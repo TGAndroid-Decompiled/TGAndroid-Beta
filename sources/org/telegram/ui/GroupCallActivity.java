@@ -202,6 +202,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     private AnimatorSet actionBarAnimation;
     private View actionBarBackground;
     private View actionBarShadow;
+    ObjectAnimator additionalSubtitleYAnimator;
     private ActionBarMenuSubItem adminItem;
     private float amplitude;
     private float animateAmplitudeDiff;
@@ -752,7 +753,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         private RectF rect = new RectF();
         private float[] volumeAlphas = new float[3];
         private float colorChangeProgress = 1.0f;
-        private RLottieDrawable speakerDrawable = new RLottieDrawable(R.raw.speaker, "2131558522", AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
+        private RLottieDrawable speakerDrawable = new RLottieDrawable(R.raw.speaker, "2131558523", AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
 
         public VolumeSlider(Context context, TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant) {
             super(context);
@@ -1781,8 +1782,8 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.webRtcMicAmplitudeEvent);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didEndCall);
         this.shadowDrawable = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.bigMicDrawable = new RLottieDrawable(R.raw.voip_filled, "2131558571", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
-        this.handDrawables = new RLottieDrawable(R.raw.hand_2, "2131558456", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
+        this.bigMicDrawable = new RLottieDrawable(R.raw.voip_filled, "2131558573", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
+        this.handDrawables = new RLottieDrawable(R.raw.hand_2, "2131558457", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
         FrameLayout frameLayout = new FrameLayout(context) {
             private int lastSize;
             boolean localHasVideo;
@@ -5972,30 +5973,42 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
             });
             this.subtitleYAnimator.start();
-            this.actionBar.getAdditionalSubtitleTextView().animate().translationY(z3 ? 0.0f : AndroidUtilities.dp(20.0f)).setDuration(300L).setInterpolator(cubicBezierInterpolator).start();
+            ObjectAnimator objectAnimator2 = this.additionalSubtitleYAnimator;
+            if (objectAnimator2 != null) {
+                objectAnimator2.cancel();
+            }
+            SimpleTextView additionalSubtitleTextView = this.actionBar.getAdditionalSubtitleTextView();
+            Property property2 = View.TRANSLATION_Y;
+            float[] fArr2 = new float[1];
+            fArr2[0] = z3 ? 0.0f : AndroidUtilities.dp(20.0f);
+            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(additionalSubtitleTextView, property2, fArr2);
+            this.additionalSubtitleYAnimator = ofFloat2;
+            ofFloat2.setDuration(300L);
+            this.additionalSubtitleYAnimator.setInterpolator(cubicBezierInterpolator);
+            this.additionalSubtitleYAnimator.start();
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.actionBarAnimation = animatorSet2;
             animatorSet2.setDuration(140L);
             AnimatorSet animatorSet3 = this.actionBarAnimation;
             Animator[] animatorArr = new Animator[3];
             ActionBar actionBar = this.actionBar;
-            Property property2 = View.ALPHA;
-            float[] fArr2 = new float[1];
-            fArr2[0] = z3 ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(actionBar, property2, fArr2);
-            View view = this.actionBarBackground;
             Property property3 = View.ALPHA;
             float[] fArr3 = new float[1];
             fArr3[0] = z3 ? 1.0f : 0.0f;
-            animatorArr[1] = ObjectAnimator.ofFloat(view, property3, fArr3);
-            View view2 = this.actionBarShadow;
+            animatorArr[0] = ObjectAnimator.ofFloat(actionBar, property3, fArr3);
+            View view = this.actionBarBackground;
             Property property4 = View.ALPHA;
             float[] fArr4 = new float[1];
+            fArr4[0] = z3 ? 1.0f : 0.0f;
+            animatorArr[1] = ObjectAnimator.ofFloat(view, property4, fArr4);
+            View view2 = this.actionBarShadow;
+            Property property5 = View.ALPHA;
+            float[] fArr5 = new float[1];
             if (z3) {
                 f2 = 1.0f;
             }
-            fArr4[0] = f2;
-            animatorArr[2] = ObjectAnimator.ofFloat(view2, property4, fArr4);
+            fArr5[0] = f2;
+            animatorArr[2] = ObjectAnimator.ofFloat(view2, property5, fArr5);
             animatorSet3.playTogether(animatorArr);
             this.actionBarAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override

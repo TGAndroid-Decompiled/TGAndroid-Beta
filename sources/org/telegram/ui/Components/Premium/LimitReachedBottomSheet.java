@@ -521,6 +521,8 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
             limitParams.premiumLimit = 4;
             limitParams.icon = R.drawable.msg_limit_accounts;
             limitParams.descriptionStr = LocaleController.formatString("LimitReachedAccounts", R.string.LimitReachedAccounts, 3, Integer.valueOf(limitParams.premiumLimit));
+            limitParams.descriptionStrPremium = LocaleController.formatString("LimitReachedAccountsPremium", R.string.LimitReachedAccountsPremium, new Object[0]);
+            limitParams.descriptionStrLocked = LocaleController.formatString("LimitReachedAccountsPremium", R.string.LimitReachedAccountsPremium, new Object[0]);
         }
         return limitParams;
     }

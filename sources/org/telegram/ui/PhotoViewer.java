@@ -13115,8 +13115,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     private void showQualityView(final boolean z) {
-        if (z && this.textureUploaded && this.videoSizeSet && !this.changingTextureView) {
-            this.videoFrameBitmap = this.videoTextureView.getBitmap();
+        TextureView textureView;
+        if (z && this.textureUploaded && this.videoSizeSet && !this.changingTextureView && (textureView = this.videoTextureView) != null) {
+            this.videoFrameBitmap = textureView.getBitmap();
         }
         if (z) {
             this.previousCompression = this.selectedCompression;
@@ -13585,9 +13586,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 setAlpha(0.0f);
                 return;
             }
-            long duration = PhotoViewer.this.videoPlayer.getDuration() - PhotoViewer.this.videoPlayer.getCurrentPosition();
-            float max = 1.0f - Math.max(Math.min(((float) duration) / 250.0f, 1.0f), 0.0f);
-            if (max <= 0.0f) {
+            long max = Math.max(0L, PhotoViewer.this.videoPlayer.getDuration() - PhotoViewer.this.videoPlayer.getCurrentPosition());
+            float max2 = 1.0f - Math.max(Math.min(((float) max) / 250.0f, 1.0f), 0.0f);
+            if (max2 <= 0.0f) {
                 ValueAnimator valueAnimator2 = this.fadeAnimator;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
@@ -13600,9 +13601,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     valueAnimator3.cancel();
                     this.fadeAnimator = null;
                 }
-                setAlpha(max);
+                setAlpha(max2);
             } else if (this.fadeAnimator == null) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(max, 1.0f);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(max2, 1.0f);
                 this.fadeAnimator = ofFloat;
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -13610,10 +13611,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         PhotoViewer.FirstFrameView.this.lambda$updateAlpha$3(valueAnimator4);
                     }
                 });
-                this.fadeAnimator.setDuration(duration);
+                this.fadeAnimator.setDuration(max);
                 this.fadeAnimator.setInterpolator(this.fadeInterpolator);
                 this.fadeAnimator.start();
-                setAlpha(max);
+                setAlpha(max2);
             }
         }
 

@@ -2867,18 +2867,22 @@ public class LocaleController {
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.reloadInterface, new Object[0]);
     }
 
-    public void loadRemoteLanguages(final int i) {
+    public void loadRemoteLanguages(int i) {
+        loadRemoteLanguages(i, true);
+    }
+
+    public void loadRemoteLanguages(final int i, final boolean z) {
         if (!this.loadingRemoteLanguages) {
             this.loadingRemoteLanguages = true;
             ConnectionsManager.getInstance(i).sendRequest(new TLObject() {
                 public static int constructor = -2146445955;
 
                 @Override
-                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z) {
+                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z2) {
                     TLRPC$Vector tLRPC$Vector = new TLRPC$Vector();
-                    int readInt32 = abstractSerializedData.readInt32(z);
+                    int readInt32 = abstractSerializedData.readInt32(z2);
                     for (int i3 = 0; i3 < readInt32; i3++) {
-                        TLRPC$TL_langPackLanguage TLdeserialize = TLRPC$TL_langPackLanguage.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                        TLRPC$TL_langPackLanguage TLdeserialize = TLRPC$TL_langPackLanguage.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z2), z2);
                         if (TLdeserialize == null) {
                             return tLRPC$Vector;
                         }
@@ -2894,24 +2898,24 @@ public class LocaleController {
             }, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    LocaleController.this.lambda$loadRemoteLanguages$7(i, tLObject, tLRPC$TL_error);
+                    LocaleController.this.lambda$loadRemoteLanguages$7(z, i, tLObject, tLRPC$TL_error);
                 }
             }, 8);
         }
     }
 
-    public void lambda$loadRemoteLanguages$7(final int i, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadRemoteLanguages$7(final boolean z, final int i, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LocaleController.this.lambda$loadRemoteLanguages$6(tLObject, i);
+                    LocaleController.this.lambda$loadRemoteLanguages$6(tLObject, z, i);
                 }
             });
         }
     }
 
-    public void lambda$loadRemoteLanguages$6(TLObject tLObject, int i) {
+    public void lambda$loadRemoteLanguages$6(TLObject tLObject, boolean z, int i) {
         this.loadingRemoteLanguages = false;
         TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
         int size = this.remoteLanguages.size();
@@ -2973,7 +2977,9 @@ public class LocaleController {
         }
         saveOtherLanguages();
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.suggestedLangpack, new Object[0]);
-        applyLanguage(this.currentLocaleInfo, true, false, i);
+        if (z) {
+            applyLanguage(this.currentLocaleInfo, true, false, i);
+        }
     }
 
     private void applyRemoteLanguage(final LocaleInfo localeInfo, String str, boolean z, final int i) {

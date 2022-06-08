@@ -1810,12 +1810,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             messagesController.loadHintDialogs();
             messagesController.loadUserInfo(accountInstance.getUserConfig().getCurrentUser(), false, 0);
             accountInstance.getContactsController().checkInviteText();
-            accountInstance.getMediaDataController().loadRecents(2, false, true, false);
-            accountInstance.getMediaDataController().loadRecents(3, false, true, false);
-            accountInstance.getMediaDataController().checkFeaturedStickers();
-            accountInstance.getMediaDataController().checkReactions();
-            accountInstance.getMediaDataController().checkMenuBots();
-            accountInstance.getMediaDataController().checkPremiumPromo();
+            accountInstance.getMediaDataController().chekAllMedia();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -3047,6 +3042,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 boolean isEmpty = this.filterTabsView.isEmpty();
                 updateFilterTabsVisibility(z2);
                 int currentTabId = this.filterTabsView.getCurrentTabId();
+                int currentTabStableId = this.filterTabsView.getCurrentTabStableId();
                 if (currentTabId != this.filterTabsView.getDefaultTabId() && currentTabId >= arrayList.size()) {
                     this.filterTabsView.resetTabId();
                 }
@@ -3059,9 +3055,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         this.filterTabsView.addTab(i2, arrayList.get(i2).localId, arrayList.get(i2).name, false, arrayList.get(i2).locked);
                     }
                 }
-                int currentTabId2 = this.filterTabsView.getCurrentTabId();
-                if (currentTabId2 >= 0 && this.viewPages[0].selectedType != currentTabId2) {
-                    this.viewPages[0].selectedType = currentTabId2;
+                if (currentTabStableId >= 0 && this.filterTabsView.getStableId(this.viewPages[0].selectedType) != currentTabStableId) {
+                    this.viewPages[0].selectedType = currentTabId;
                     isEmpty = true;
                 }
                 int i3 = 0;
@@ -3083,7 +3078,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 ActionBarLayout actionBarLayout2 = this.parentLayout;
                 if (actionBarLayout2 != null) {
                     DrawerLayoutContainer drawerLayoutContainer = actionBarLayout2.getDrawerLayoutContainer();
-                    if (currentTabId2 != this.filterTabsView.getFirstTabId() && SharedConfig.getChatSwipeAction(this.currentAccount) == 5) {
+                    if (currentTabId != this.filterTabsView.getFirstTabId() && SharedConfig.getChatSwipeAction(this.currentAccount) == 5) {
                         z3 = false;
                     }
                     drawerLayoutContainer.setAllowOpenDrawerBySwipe(z3);

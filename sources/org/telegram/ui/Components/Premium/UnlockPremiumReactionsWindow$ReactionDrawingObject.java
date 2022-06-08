@@ -10,6 +10,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.ui.Components.Premium.CarouselView;
+import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
 
 public class UnlockPremiumReactionsWindow$ReactionDrawingObject extends CarouselView.DrawingObject {
     private View parentView;
@@ -46,7 +47,10 @@ public class UnlockPremiumReactionsWindow$ReactionDrawingObject extends Carousel
         this.actionReceiver.onAttachedToWindow();
         this.actionReceiver.setLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
         this.effectImageReceiver.setAllowStartLottieAnimation(false);
-        this.effectImageReceiver.setImage(ImageLocation.getForDocument(this.reaction.around_animation), "200_200", null, null, null, 0L, "tgs", this.reaction, 0);
+        int sizeForBigReaction = ReactionsEffectOverlay.sizeForBigReaction();
+        ImageReceiver imageReceiver = this.effectImageReceiver;
+        ImageLocation forDocument = ImageLocation.getForDocument(this.reaction.around_animation);
+        imageReceiver.setImage(forDocument, sizeForBigReaction + "_" + sizeForBigReaction + "_pcache", null, null, null, 0L, "tgs", this.reaction, 0);
         this.effectImageReceiver.setAutoRepeat(0);
         if (this.effectImageReceiver.getLottieAnimation() != null) {
             this.effectImageReceiver.getLottieAnimation().setCurrentFrame(0, false);

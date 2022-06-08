@@ -3,6 +3,7 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.DialogInterface;
@@ -220,6 +221,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
     private ArrayList<SendMessagesHelper.SendingMediaInfo> photoPathsArray;
     private AlertDialog proxyErrorDialog;
     private ActionBarLayout rightActionBarLayout;
+    private View rippleAbove;
     private String sendingText;
     private FrameLayout shadowTablet;
     private FrameLayout shadowTabletSide;
@@ -227,6 +229,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
     private FrameLayout sideMenuContainer;
     private HashMap<String, String> systemLocaleStrings;
     private boolean tabletFullSize;
+    private int[] tempLocation;
     private TermsOfServiceView termsOfServiceView;
     private ImageView themeSwitchImageView;
     private RLottieDrawable themeSwitchSunDrawable;
@@ -313,7 +316,13 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                 }
             }
         };
-        FrameLayout frameLayout = new FrameLayout(this);
+        FrameLayout frameLayout = new FrameLayout(this) {
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                LaunchActivity.this.drawRippleAbove(canvas, this);
+            }
+        };
         this.frameLayout = frameLayout;
         char c = 65535;
         setContentView(frameLayout, new ViewGroup.LayoutParams(-1, -1));
@@ -444,7 +453,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                     return lambda$onCreate$0;
                 }
             });
-            this.shadowTablet.setOnClickListener(LaunchActivity$$ExternalSyntheticLambda17.INSTANCE);
+            this.shadowTablet.setOnClickListener(LaunchActivity$$ExternalSyntheticLambda18.INSTANCE);
             ActionBarLayout actionBarLayout2 = new ActionBarLayout(this);
             this.layersActionBarLayout = actionBarLayout2;
             actionBarLayout2.setRemoveActionBarExtraHeight(true);
@@ -765,14 +774,14 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                 AndroidUtilities.incorrectDisplaySizeFix = true;
                 final View rootView = getWindow().getDecorView().getRootView();
                 ViewTreeObserver viewTreeObserver = rootView.getViewTreeObserver();
-                ViewTreeObserver.OnGlobalLayoutListener launchActivity$$ExternalSyntheticLambda19 = new ViewTreeObserver.OnGlobalLayoutListener() {
+                ViewTreeObserver.OnGlobalLayoutListener launchActivity$$ExternalSyntheticLambda20 = new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public final void onGlobalLayout() {
                         LaunchActivity.lambda$onCreate$6(rootView);
                     }
                 };
-                this.onGlobalLayoutListener = launchActivity$$ExternalSyntheticLambda19;
-                viewTreeObserver.addOnGlobalLayoutListener(launchActivity$$ExternalSyntheticLambda19);
+                this.onGlobalLayoutListener = launchActivity$$ExternalSyntheticLambda20;
+                viewTreeObserver.addOnGlobalLayoutListener(launchActivity$$ExternalSyntheticLambda20);
             }
         } catch (Exception e3) {
             FileLog.e(e3);
@@ -1082,7 +1091,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
     }
 
     public void switchToAccount(int i, boolean z) {
-        switchToAccount(i, z, LaunchActivity$$ExternalSyntheticLambda64.INSTANCE);
+        switchToAccount(i, z, LaunchActivity$$ExternalSyntheticLambda65.INSTANCE);
     }
 
     public void switchToAccount(int i, boolean z, GenericProvider<Void, DialogsActivity> genericProvider) {
@@ -1304,7 +1313,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             this.termsOfServiceView = termsOfServiceView;
             termsOfServiceView.setAlpha(0.0f);
             this.drawerLayoutContainer.addView(this.termsOfServiceView, LayoutHelper.createFrame(-1, -1.0f));
-            this.termsOfServiceView.setDelegate(new AnonymousClass10());
+            this.termsOfServiceView.setDelegate(new AnonymousClass11());
         }
         TLRPC$TL_help_termsOfService tLRPC$TL_help_termsOfService2 = UserConfig.getInstance(i).unacceptedTermsOfService;
         if (tLRPC$TL_help_termsOfService2 != tLRPC$TL_help_termsOfService && (tLRPC$TL_help_termsOfService2 == null || !tLRPC$TL_help_termsOfService2.id.data.equals(tLRPC$TL_help_termsOfService.id.data))) {
@@ -1316,8 +1325,8 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         this.termsOfServiceView.animate().alpha(1.0f).setDuration(150L).setInterpolator(AndroidUtilities.decelerateInterpolator).setListener(null).start();
     }
 
-    public class AnonymousClass10 implements TermsOfServiceView.TermsOfServiceViewDelegate {
-        AnonymousClass10() {
+    public class AnonymousClass11 implements TermsOfServiceView.TermsOfServiceViewDelegate {
+        AnonymousClass11() {
         }
 
         @Override
@@ -1331,7 +1340,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             LaunchActivity.this.termsOfServiceView.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.AnonymousClass10.this.lambda$onAcceptTerms$0();
+                    LaunchActivity.AnonymousClass11.this.lambda$onAcceptTerms$0();
                 }
             }).start();
         }
@@ -2130,14 +2139,14 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         this.actionBarLayout.presentFragment(chatActivity, true, false, true, false);
     }
 
-    public class AnonymousClass13 implements MessagesController.MessagesLoadedCallback {
+    public class AnonymousClass14 implements MessagesController.MessagesLoadedCallback {
         final Bundle val$args;
         final long val$dialog_id;
         final BaseFragment val$lastFragment;
         final String val$livestream;
         final AlertDialog val$progressDialog;
 
-        AnonymousClass13(AlertDialog alertDialog, String str, BaseFragment baseFragment, long j, Bundle bundle) {
+        AnonymousClass14(AlertDialog alertDialog, String str, BaseFragment baseFragment, long j, Bundle bundle) {
             this.val$progressDialog = alertDialog;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -2164,7 +2173,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                LaunchActivity.AnonymousClass13.this.lambda$onMessagesLoaded$2(str, j, baseFragment3);
+                                LaunchActivity.AnonymousClass14.this.lambda$onMessagesLoaded$2(str, j, baseFragment3);
                             }
                         }, 150L);
                     }
@@ -2177,7 +2186,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LaunchActivity.AnonymousClass13.this.lambda$onMessagesLoaded$2(str2, j2, baseFragment32);
+                        LaunchActivity.AnonymousClass14.this.lambda$onMessagesLoaded$2(str2, j2, baseFragment32);
                     }
                 }, 150L);
             }
@@ -2206,7 +2215,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                     accountInstance.getMessagesController().getGroupCall(j2, true, new Runnable() {
                         @Override
                         public final void run() {
-                            LaunchActivity.AnonymousClass13.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
+                            LaunchActivity.AnonymousClass14.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
                         }
                     });
                 } else if (baseFragment.getParentActivity() != null) {
@@ -2219,7 +2228,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.AnonymousClass13.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
+                    LaunchActivity.AnonymousClass14.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
                 }
             });
         }
@@ -3337,7 +3346,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         MediaController.getInstance().setFeedbackView(this.actionBarLayout, true);
         ApplicationLoader.mainInterfacePaused = false;
         showLanguageAlert(false);
-        Utilities.stageQueue.postRunnable(LaunchActivity$$ExternalSyntheticLambda62.INSTANCE);
+        Utilities.stageQueue.postRunnable(LaunchActivity$$ExternalSyntheticLambda63.INSTANCE);
         checkFreeDiscSpace();
         MediaController.checkGallery();
         onPasscodeResume();
@@ -3471,23 +3480,27 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         ContactsController.getInstance(i).syncPhoneBookByAlert(hashMap, z, z2, true);
     }
 
-    public void lambda$didReceivedNotification$88() {
+    public void lambda$didReceivedNotification$88(ValueAnimator valueAnimator) {
+        this.frameLayout.invalidate();
+    }
+
+    public void lambda$didReceivedNotification$89() {
         if (this.isNavigationBarColorFrozen) {
             this.isNavigationBarColorFrozen = false;
             checkSystemBarColors(false, true);
         }
     }
 
-    public void lambda$didReceivedNotification$90(final Theme.ThemeInfo themeInfo, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$didReceivedNotification$91(final Theme.ThemeInfo themeInfo, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$didReceivedNotification$89(tLObject, themeInfo);
+                LaunchActivity.this.lambda$didReceivedNotification$90(tLObject, themeInfo);
             }
         });
     }
 
-    public void lambda$didReceivedNotification$89(TLObject tLObject, Theme.ThemeInfo themeInfo) {
+    public void lambda$didReceivedNotification$90(TLObject tLObject, Theme.ThemeInfo themeInfo) {
         if (tLObject instanceof TLRPC$TL_wallPaper) {
             TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) tLObject;
             this.loadingThemeInfo = themeInfo;
@@ -3499,17 +3512,17 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         onThemeLoadFinish();
     }
 
-    public void lambda$didReceivedNotification$92(Theme.ThemeInfo themeInfo, File file) {
+    public void lambda$didReceivedNotification$93(Theme.ThemeInfo themeInfo, File file) {
         themeInfo.createBackground(file, themeInfo.pathToWallpaper);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$didReceivedNotification$91();
+                LaunchActivity.this.lambda$didReceivedNotification$92();
             }
         });
     }
 
-    public void lambda$didReceivedNotification$91() {
+    public void lambda$didReceivedNotification$92() {
         if (this.loadingTheme != null) {
             File filesDirFixed = ApplicationLoader.getFilesDirFixed();
             File file = new File(filesDirFixed, "remote" + this.loadingTheme.id + ".attheme");
@@ -3628,13 +3641,13 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.this.lambda$checkFreeDiscSpace$94();
+                    LaunchActivity.this.lambda$checkFreeDiscSpace$95();
                 }
             }, 2000L);
         }
     }
 
-    public void lambda$checkFreeDiscSpace$94() {
+    public void lambda$checkFreeDiscSpace$95() {
         File directory;
         long j;
         if (UserConfig.getInstance(this.currentAccount).isClientActivated()) {
@@ -3652,7 +3665,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                LaunchActivity.this.lambda$checkFreeDiscSpace$93();
+                                LaunchActivity.this.lambda$checkFreeDiscSpace$94();
                             }
                         });
                     }
@@ -3662,7 +3675,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         }
     }
 
-    public void lambda$checkFreeDiscSpace$93() {
+    public void lambda$checkFreeDiscSpace$94() {
         try {
             AlertsCreator.createFreeSpaceDialog(this).show();
         } catch (Throwable unused) {
@@ -3673,7 +3686,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.showLanguageAlertInternal(org.telegram.messenger.LocaleController$LocaleInfo, org.telegram.messenger.LocaleController$LocaleInfo, java.lang.String):void");
     }
 
-    public static void lambda$showLanguageAlertInternal$95(LocaleController.LocaleInfo[] localeInfoArr, LanguageCell[] languageCellArr, View view) {
+    public static void lambda$showLanguageAlertInternal$96(LocaleController.LocaleInfo[] localeInfoArr, LanguageCell[] languageCellArr, View view) {
         Integer num = (Integer) view.getTag();
         localeInfoArr[0] = ((LanguageCell) view).getCurrentLocale();
         int i = 0;
@@ -3683,7 +3696,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         }
     }
 
-    public void lambda$showLanguageAlertInternal$96(View view) {
+    public void lambda$showLanguageAlertInternal$97(View view) {
         this.localeDialog = null;
         this.drawerLayoutContainer.closeDrawer(true);
         lambda$runLinkRequest$59(new LanguageSelectActivity());
@@ -3694,9 +3707,29 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         }
     }
 
-    public void lambda$showLanguageAlertInternal$97(LocaleController.LocaleInfo[] localeInfoArr, DialogInterface dialogInterface, int i) {
+    public void lambda$showLanguageAlertInternal$98(LocaleController.LocaleInfo[] localeInfoArr, DialogInterface dialogInterface, int i) {
         LocaleController.getInstance().applyLanguage(localeInfoArr[0], true, false, this.currentAccount);
         rebuildAllFragments(true);
+    }
+
+    public void drawRippleAbove(Canvas canvas, View view) {
+        View view2;
+        if (view != null && (view2 = this.rippleAbove) != null && view2.getBackground() != null) {
+            if (this.tempLocation == null) {
+                this.tempLocation = new int[2];
+            }
+            this.rippleAbove.getLocationInWindow(this.tempLocation);
+            int[] iArr = this.tempLocation;
+            int i = iArr[0];
+            int i2 = iArr[1];
+            view.getLocationInWindow(iArr);
+            int[] iArr2 = this.tempLocation;
+            int i3 = i2 - iArr2[1];
+            canvas.save();
+            canvas.translate(i - iArr2[0], i3);
+            this.rippleAbove.getBackground().draw(canvas);
+            canvas.restore();
+        }
     }
 
     private void showLanguageAlert(boolean z) {
@@ -3744,7 +3777,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_langpack_getStrings, new RequestDelegate() {
                                 @Override
                                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    LaunchActivity.this.lambda$showLanguageAlert$99(localeInfoArr, str2, tLObject, tLRPC$TL_error);
+                                    LaunchActivity.this.lambda$showLanguageAlert$100(localeInfoArr, str2, tLObject, tLRPC$TL_error);
                                 }
                             }, 8);
                             TLRPC$TL_langpack_getStrings tLRPC$TL_langpack_getStrings2 = new TLRPC$TL_langpack_getStrings();
@@ -3756,7 +3789,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_langpack_getStrings2, new RequestDelegate() {
                                 @Override
                                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    LaunchActivity.this.lambda$showLanguageAlert$101(localeInfoArr, str2, tLObject, tLRPC$TL_error);
+                                    LaunchActivity.this.lambda$showLanguageAlert$102(localeInfoArr, str2, tLObject, tLRPC$TL_error);
                                 }
                             }, 8);
                         }
@@ -3770,7 +3803,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         }
     }
 
-    public void lambda$showLanguageAlert$99(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$showLanguageAlert$100(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         final HashMap hashMap = new HashMap();
         if (tLObject != null) {
             TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
@@ -3782,19 +3815,19 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$showLanguageAlert$98(hashMap, localeInfoArr, str);
+                LaunchActivity.this.lambda$showLanguageAlert$99(hashMap, localeInfoArr, str);
             }
         });
     }
 
-    public void lambda$showLanguageAlert$98(HashMap hashMap, LocaleController.LocaleInfo[] localeInfoArr, String str) {
+    public void lambda$showLanguageAlert$99(HashMap hashMap, LocaleController.LocaleInfo[] localeInfoArr, String str) {
         this.systemLocaleStrings = hashMap;
         if (this.englishLocaleStrings != null && hashMap != null) {
             showLanguageAlertInternal(localeInfoArr[1], localeInfoArr[0], str);
         }
     }
 
-    public void lambda$showLanguageAlert$101(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$showLanguageAlert$102(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         final HashMap hashMap = new HashMap();
         if (tLObject != null) {
             TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
@@ -3806,12 +3839,12 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$showLanguageAlert$100(hashMap, localeInfoArr, str);
+                LaunchActivity.this.lambda$showLanguageAlert$101(hashMap, localeInfoArr, str);
             }
         });
     }
 
-    public void lambda$showLanguageAlert$100(HashMap hashMap, LocaleController.LocaleInfo[] localeInfoArr, String str) {
+    public void lambda$showLanguageAlert$101(HashMap hashMap, LocaleController.LocaleInfo[] localeInfoArr, String str) {
         this.englishLocaleStrings = hashMap;
         if (hashMap != null && this.systemLocaleStrings != null) {
             showLanguageAlertInternal(localeInfoArr[1], localeInfoArr[0], str);
@@ -3908,7 +3941,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
                 runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        LaunchActivity.this.lambda$updateCurrentConnectionState$102();
+                        LaunchActivity.this.lambda$updateCurrentConnectionState$103();
                     }
                 };
             }
@@ -3916,7 +3949,7 @@ public class LaunchActivity extends BasePermissionsActivity implements ActionBar
         }
     }
 
-    public void lambda$updateCurrentConnectionState$102() {
+    public void lambda$updateCurrentConnectionState$103() {
         BaseFragment baseFragment;
         if (AndroidUtilities.isTablet()) {
             if (!layerFragmentsStack.isEmpty()) {

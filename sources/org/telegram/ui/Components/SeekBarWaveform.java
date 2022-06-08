@@ -2,14 +2,18 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.os.SystemClock;
 import android.view.View;
+import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Components.SeekBar;
 
@@ -73,6 +77,7 @@ public class SeekBarWaveform {
 
     public void setWaveform(byte[] bArr) {
         this.waveformBytes = bArr;
+        this.heights = calculateHeights((int) (this.width / AndroidUtilities.dpf2(3.0f)));
     }
 
     public void setSelected(boolean z) {
@@ -343,8 +348,50 @@ public class SeekBarWaveform {
         }
     }
 
-    private void drawFill(android.graphics.Canvas r17, float r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SeekBarWaveform.drawFill(android.graphics.Canvas, float):void");
+    private void drawFill(Canvas canvas, float f) {
+        Paint paint;
+        Paint paint2;
+        float dpf2 = AndroidUtilities.dpf2(2.0f);
+        MessageObject messageObject = this.messageObject;
+        boolean z = messageObject != null && messageObject.isContentUnread() && !this.messageObject.isOut() && this.progress <= 0.0f;
+        this.isUnread = z;
+        paintInner.setColor(z ? this.outerColor : this.selected ? this.selectedColor : this.innerColor);
+        paintOuter.setColor(this.outerColor);
+        this.loadingFloat.setParent(this.parentView);
+        float f2 = this.loadingFloat.set((!this.loading || MediaController.getInstance().isPlayingMessage(this.messageObject)) ? 0.0f : 1.0f);
+        Paint paint3 = paintInner;
+        paint3.setColor(ColorUtils.blendARGB(paint3.getColor(), this.innerColor, f2));
+        float f3 = 1.0f - f2;
+        paintOuter.setAlpha((int) (paint.getAlpha() * f3 * f));
+        paintInner.setAlpha((int) (paint2.getAlpha() * f));
+        canvas.drawRect(0.0f, 0.0f, this.width + dpf2, this.height, paintInner);
+        if (f2 < 1.0f) {
+            canvas.drawRect(0.0f, 0.0f, this.progress * (this.width + dpf2) * f3, this.height, paintOuter);
+        }
+        if (f2 > 0.0f) {
+            if (this.loadingPaint == null || Math.abs(this.loadingPaintWidth - this.width) > AndroidUtilities.dp(8.0f) || this.loadingPaintColor1 != this.innerColor || this.loadingPaintColor2 != this.outerColor) {
+                if (this.loadingPaint == null) {
+                    this.loadingPaint = new Paint(1);
+                }
+                this.loadingPaintColor1 = this.innerColor;
+                this.loadingPaintColor2 = this.outerColor;
+                Paint paint4 = this.loadingPaint;
+                float f4 = this.width;
+                this.loadingPaintWidth = f4;
+                int i = this.loadingPaintColor1;
+                paint4.setShader(new LinearGradient(0.0f, 0.0f, f4, 0.0f, new int[]{i, this.loadingPaintColor2, i}, new float[]{0.0f, 0.2f, 0.4f}, Shader.TileMode.CLAMP));
+            }
+            this.loadingPaint.setAlpha((int) (f2 * 255.0f * f));
+            canvas.save();
+            float pow = ((((float) Math.pow(((float) (SystemClock.elapsedRealtime() - this.loadingStart)) / 270.0f, 0.75d)) % 1.6f) - 0.6f) * this.loadingPaintWidth;
+            canvas.translate(pow, 0.0f);
+            canvas.drawRect(-pow, 0.0f, (this.width + 5) - pow, this.height, this.loadingPaint);
+            canvas.restore();
+            View view = this.parentView;
+            if (view != null) {
+                view.invalidate();
+            }
+        }
     }
 
     private void addBar(Path path, float f, float f2) {

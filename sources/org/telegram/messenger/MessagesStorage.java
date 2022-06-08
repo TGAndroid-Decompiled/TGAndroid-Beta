@@ -463,66 +463,55 @@ public class MessagesStorage extends BaseController {
                 this.database.executeFast("PRAGMA user_version = 97").stepThis().dispose();
             } else {
                 int intValue = this.database.executeInt("PRAGMA user_version", new Object[0]).intValue();
-                if (!BuildVars.DEBUG_PRIVATE_VERSION || !(intValue == 94 || intValue == 95)) {
-                    if (BuildVars.LOGS_ENABLED) {
-                        FileLog.d("current db version = " + intValue);
-                    }
-                    if (intValue != 0) {
-                        try {
-                            SQLiteCursor queryFinalized = this.database.queryFinalized("SELECT seq, pts, date, qts, lsv, sg, pbytes FROM params WHERE id = 1", new Object[0]);
-                            if (queryFinalized.next()) {
-                                this.lastSeqValue = queryFinalized.intValue(0);
-                                this.lastPtsValue = queryFinalized.intValue(1);
-                                this.lastDateValue = queryFinalized.intValue(2);
-                                this.lastQtsValue = queryFinalized.intValue(3);
-                                this.lastSecretVersion = queryFinalized.intValue(4);
-                                this.secretG = queryFinalized.intValue(5);
-                                if (queryFinalized.isNull(6)) {
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("current db version = " + intValue);
+                }
+                if (intValue != 0) {
+                    try {
+                        SQLiteCursor queryFinalized = this.database.queryFinalized("SELECT seq, pts, date, qts, lsv, sg, pbytes FROM params WHERE id = 1", new Object[0]);
+                        if (queryFinalized.next()) {
+                            this.lastSeqValue = queryFinalized.intValue(0);
+                            this.lastPtsValue = queryFinalized.intValue(1);
+                            this.lastDateValue = queryFinalized.intValue(2);
+                            this.lastQtsValue = queryFinalized.intValue(3);
+                            this.lastSecretVersion = queryFinalized.intValue(4);
+                            this.secretG = queryFinalized.intValue(5);
+                            if (queryFinalized.isNull(6)) {
+                                this.secretPBytes = null;
+                            } else {
+                                byte[] byteArrayValue = queryFinalized.byteArrayValue(6);
+                                this.secretPBytes = byteArrayValue;
+                                if (byteArrayValue != null && byteArrayValue.length == 1) {
                                     this.secretPBytes = null;
-                                } else {
-                                    byte[] byteArrayValue = queryFinalized.byteArrayValue(6);
-                                    this.secretPBytes = byteArrayValue;
-                                    if (byteArrayValue != null && byteArrayValue.length == 1) {
-                                        this.secretPBytes = null;
-                                    }
                                 }
                             }
-                            queryFinalized.dispose();
-                        } catch (Exception e) {
-                            if (e.getMessage() != null && e.getMessage().contains("malformed")) {
-                                throw new RuntimeException("malformed");
-                            }
-                            FileLog.e(e);
-                            try {
-                                this.database.executeFast("CREATE TABLE IF NOT EXISTS params(id INTEGER PRIMARY KEY, seq INTEGER, pts INTEGER, date INTEGER, qts INTEGER, lsv INTEGER, sg INTEGER, pbytes BLOB)").stepThis().dispose();
-                                this.database.executeFast("INSERT INTO params VALUES(1, 0, 0, 0, 0, 0, 0, NULL)").stepThis().dispose();
-                            } catch (Exception e2) {
-                                FileLog.e(e2);
-                            }
                         }
-                        if (intValue < LAST_DB_VERSION) {
-                            try {
-                                updateDbToLastVersion(intValue);
-                            } catch (Exception e3) {
-                                if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                                    throw e3;
-                                }
-                                FileLog.e(e3);
-                                throw new RuntimeException("malformed");
-                            }
+                        queryFinalized.dispose();
+                    } catch (Exception e) {
+                        if (e.getMessage() != null && e.getMessage().contains("malformed")) {
+                            throw new RuntimeException("malformed");
                         }
-                    } else {
-                        throw new Exception("malformed");
+                        FileLog.e(e);
+                        try {
+                            this.database.executeFast("CREATE TABLE IF NOT EXISTS params(id INTEGER PRIMARY KEY, seq INTEGER, pts INTEGER, date INTEGER, qts INTEGER, lsv INTEGER, sg INTEGER, pbytes BLOB)").stepThis().dispose();
+                            this.database.executeFast("INSERT INTO params VALUES(1, 0, 0, 0, 0, 0, 0, NULL)").stepThis().dispose();
+                        } catch (Exception e2) {
+                            FileLog.e(e2);
+                        }
+                    }
+                    if (intValue < LAST_DB_VERSION) {
+                        try {
+                            updateDbToLastVersion(intValue);
+                        } catch (Exception e3) {
+                            if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                                throw e3;
+                            }
+                            FileLog.e(e3);
+                            throw new RuntimeException("malformed");
+                        }
                     }
                 } else {
-                    cleanupInternal(true);
-                    for (int i3 = 0; i3 < 2; i3++) {
-                        getUserConfig().setDialogsLoadOffset(i3, 0, 0, 0L, 0L, 0L, 0L);
-                        getUserConfig().setTotalDialogsCount(i3, 0);
-                    }
-                    getUserConfig().saveConfig(false);
-                    openDatabase(i);
-                    return;
+                    throw new Exception("malformed");
                 }
             }
         } catch (Exception e4) {
@@ -532,9 +521,9 @@ public class MessagesStorage extends BaseController {
             } else if (i < 3 && e4.getMessage() != null && e4.getMessage().contains("malformed")) {
                 if (i == 2) {
                     cleanupInternal(true);
-                    for (int i4 = 0; i4 < 2; i4++) {
-                        getUserConfig().setDialogsLoadOffset(i4, 0, 0, 0L, 0L, 0L, 0L);
-                        getUserConfig().setTotalDialogsCount(i4, 0);
+                    for (int i3 = 0; i3 < 2; i3++) {
+                        getUserConfig().setDialogsLoadOffset(i3, 0, 0, 0L, 0L, 0L, 0L);
+                        getUserConfig().setTotalDialogsCount(i3, 0);
                     }
                     getUserConfig().saveConfig(false);
                 } else {
@@ -1607,7 +1596,7 @@ public class MessagesStorage extends BaseController {
             messagesStorage.database.executeFast("PRAGMA user_version = 93").stepThis().dispose();
             i4 = 95;
         }
-        if (i4 == 95) {
+        if (i4 == 95 || i4 == 93) {
             messagesStorage.executeNoException("ALTER TABLE messages_v2 ADD COLUMN custom_params BLOB default NULL");
             messagesStorage.database.executeFast("PRAGMA user_version = 96").stepThis().dispose();
             i4 = 96;

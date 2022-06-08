@@ -5930,6 +5930,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     this.scheduledButton.setVisibility(0);
                 }
                 this.messageEditText.setText(this.draftMessage);
+                this.draftMessage = null;
                 this.messageWebPageSearch = this.draftSearchWebpage;
                 EditTextCaption editTextCaption = this.messageEditText;
                 editTextCaption.setSelection(editTextCaption.length());

@@ -864,7 +864,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lockFiltersInternal() {
         boolean z;
-        if (getUserConfig().isPremium() || this.dialogFilters.size() <= this.dialogFiltersLimitDefault - 1) {
+        if (getUserConfig().isPremium() || this.dialogFilters.size() - 1 <= this.dialogFiltersLimitDefault) {
             z = false;
         } else {
             int size = (this.dialogFilters.size() - 1) - this.dialogFiltersLimitDefault;
@@ -872,7 +872,7 @@ public class MessagesController extends BaseController implements NotificationCe
             Collections.reverse(arrayList);
             z = false;
             for (int i = 0; i < arrayList.size(); i++) {
-                if (i <= size) {
+                if (i < size) {
                     if (!((DialogFilter) arrayList.get(i)).locked) {
                         z = true;
                     }

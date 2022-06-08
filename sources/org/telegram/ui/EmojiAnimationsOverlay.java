@@ -354,7 +354,6 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         TLRPC$Document tLRPC$Document;
         boolean z3;
         Runnable runnable;
-        String str;
         int i2 = i;
         if (this.drawingObjects.size() > 12 || !chatMessageCell.getPhotoImage().hasNotThumb() || (stickerEmoji = (messageObject = chatMessageCell.getMessageObject()).getStickerEmoji()) == null) {
             return false;
@@ -408,8 +407,8 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
             drawingObject.document = tLRPC$Document;
             drawingObject.isOut = chatMessageCell.getMessageObject().isOutOwner();
             drawingObject.imageReceiver.setAllowStartAnimation(true);
-            int i6 = (int) ((imageWidth * 2.0f) / AndroidUtilities.density);
             if (tLRPC$Document != null) {
+                int i6 = (int) ((imageWidth * 2.0f) / AndroidUtilities.density);
                 Integer num = this.lastAnimationIndex.get(Long.valueOf(tLRPC$Document.id));
                 int intValue = num == null ? 0 : num.intValue();
                 z3 = isPremiumSticker;
@@ -419,17 +418,15 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                 drawingObject.imageReceiver.setImage(forDocument, i6 + "_" + i6 + "_pcache", null, "tgs", this.set, 1);
             } else {
                 z3 = isPremiumSticker;
+                int i7 = (int) ((imageWidth * 1.5f) / AndroidUtilities.density);
                 if (i4 > 0) {
                     Integer num2 = this.lastAnimationIndex.get(Long.valueOf(messageObject.getDocument().id));
                     int intValue2 = num2 == null ? 0 : num2.intValue();
-                    str = "_";
                     this.lastAnimationIndex.put(Long.valueOf(messageObject.getDocument().id), Integer.valueOf((intValue2 + 1) % 4));
-                    drawingObject.imageReceiver.setUniqKeyPrefix(intValue2 + str + drawingObject.messageId + str);
-                } else {
-                    str = "_";
+                    drawingObject.imageReceiver.setUniqKeyPrefix(intValue2 + "_" + drawingObject.messageId + "_");
                 }
                 drawingObject.document = messageObject.getDocument();
-                drawingObject.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$VideoSize, messageObject.getDocument()), i6 + str + i6 + "_pcache", null, "tgs", this.set, 1);
+                drawingObject.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$VideoSize, messageObject.getDocument()), i7 + "_" + i7 + "_pcache", null, "tgs", this.set, 1);
             }
             drawingObject.imageReceiver.setLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
             drawingObject.imageReceiver.setAutoRepeat(0);
@@ -444,8 +441,8 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
             drawingObject.imageReceiver.setParentView(this.contentLayout);
             this.contentLayout.invalidate();
             if (z && !z3) {
-                int i7 = this.lastTappedMsgId;
-                if (!(i7 == 0 || i7 == chatMessageCell.getMessageObject().getId() || (runnable = this.sentInteractionsRunnable) == null)) {
+                int i8 = this.lastTappedMsgId;
+                if (!(i8 == 0 || i8 == chatMessageCell.getMessageObject().getId() || (runnable = this.sentInteractionsRunnable) == null)) {
                     AndroidUtilities.cancelRunOnUIThread(runnable);
                     this.sentInteractionsRunnable.run();
                 }

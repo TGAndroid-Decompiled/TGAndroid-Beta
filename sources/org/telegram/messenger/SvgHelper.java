@@ -96,6 +96,7 @@ public class SvgHelper {
         private int currentColor;
         private String currentColorKey;
         protected int height;
+        private Paint overridePaint;
         private ImageReceiver parentImageReceiver;
         private LinearGradient placeholderGradient;
         private Matrix placeholderMatrix;
@@ -140,15 +141,13 @@ public class SvgHelper {
                 setupGradient(str, this.colorAlpha);
             }
             Rect bounds = getBounds();
-            float width = bounds.width() / this.width;
-            float height = bounds.height() / this.height;
-            float max = this.aspectFill ? Math.max(width, height) : Math.min(width, height);
+            float scale = getScale();
             canvas.save();
             canvas.translate(bounds.left, bounds.top);
             if (!this.aspectFill) {
-                canvas.translate((bounds.width() - (this.width * max)) / 2.0f, (bounds.height() - (this.height * max)) / 2.0f);
+                canvas.translate((bounds.width() - (this.width * scale)) / 2.0f, (bounds.height() - (this.height * scale)) / 2.0f);
             }
-            canvas.scale(max, max);
+            canvas.scale(scale, scale);
             int size = this.commands.size();
             for (int i = 0; i < size; i++) {
                 Object obj = this.commands.get(i);
@@ -158,30 +157,34 @@ public class SvgHelper {
                 } else if (obj == null) {
                     canvas.restore();
                 } else {
-                    Paint paint = this.paints.get(obj);
-                    int alpha = paint.getAlpha();
-                    paint.setAlpha((int) (this.crossfadeAlpha * alpha));
+                    Paint paint = this.overridePaint;
+                    if (paint == null) {
+                        paint = this.paints.get(obj);
+                    }
+                    Paint paint2 = paint;
+                    int alpha = paint2.getAlpha();
+                    paint2.setAlpha((int) (this.crossfadeAlpha * alpha));
                     if (obj instanceof Path) {
-                        canvas.drawPath((Path) obj, paint);
+                        canvas.drawPath((Path) obj, paint2);
                     } else if (obj instanceof Rect) {
-                        canvas.drawRect((Rect) obj, paint);
+                        canvas.drawRect((Rect) obj, paint2);
                     } else if (obj instanceof RectF) {
-                        canvas.drawRect((RectF) obj, paint);
+                        canvas.drawRect((RectF) obj, paint2);
                     } else if (obj instanceof Line) {
                         Line line = (Line) obj;
-                        canvas.drawLine(line.x1, line.y1, line.x2, line.y2, paint);
+                        canvas.drawLine(line.x1, line.y1, line.x2, line.y2, paint2);
                     } else if (obj instanceof Circle) {
                         Circle circle = (Circle) obj;
-                        canvas.drawCircle(circle.x1, circle.y1, circle.rad, paint);
+                        canvas.drawCircle(circle.x1, circle.y1, circle.rad, paint2);
                     } else if (obj instanceof Oval) {
-                        canvas.drawOval(((Oval) obj).rect, paint);
+                        canvas.drawOval(((Oval) obj).rect, paint2);
                     } else if (obj instanceof RoundRect) {
                         RoundRect roundRect = (RoundRect) obj;
                         RectF rectF = roundRect.rect;
                         float f = roundRect.rx;
-                        canvas.drawRoundRect(rectF, f, f, paint);
+                        canvas.drawRoundRect(rectF, f, f, paint2);
                     }
-                    paint.setAlpha(alpha);
+                    paint2.setAlpha(alpha);
                 }
             }
             canvas.restore();
@@ -217,7 +220,7 @@ public class SvgHelper {
                 }
                 this.placeholderMatrix.reset();
                 this.placeholderMatrix.postTranslate(((-parentPosition[0]) + totalTranslation) - bounds.left, 0.0f);
-                float f4 = 1.0f / max;
+                float f4 = 1.0f / scale;
                 this.placeholderMatrix.postScale(f4, f4);
                 this.placeholderGradient.setLocalMatrix(this.placeholderMatrix);
                 ImageReceiver imageReceiver2 = this.parentImageReceiver;
@@ -225,6 +228,13 @@ public class SvgHelper {
                     imageReceiver2.invalidate();
                 }
             }
+        }
+
+        public float getScale() {
+            Rect bounds = getBounds();
+            float width = bounds.width() / this.width;
+            float height = bounds.height() / this.height;
+            return this.aspectFill ? Math.max(width, height) : Math.min(width, height);
         }
 
         @Override
@@ -281,6 +291,10 @@ public class SvgHelper {
                     }
                 }
             }
+        }
+
+        public void setPaint(Paint paint) {
+            this.overridePaint = paint;
         }
     }
 

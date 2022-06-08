@@ -90,18 +90,20 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         recyclerListView.setEmptyView(flickerLoadingView);
         recyclerListView.setAnimateEmptyView(true, 0);
         if (this.currentType == 0) {
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.sun_outline, "2131558525", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.sun_outline, "2131558527", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
             this.darkThemeDrawable = rLottieDrawable;
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
             this.darkThemeDrawable.beginApplyLayerColors();
             this.darkThemeDrawable.commitApplyLayerColors();
             TextCell textCell = new TextCell(context);
             this.dayNightCell = textCell;
-            textCell.imageLeft = 21;
-            addView(textCell, LayoutHelper.createFrame(-1, -2.0f));
-            TextCell textCell2 = new TextCell(context);
-            this.browseThemesCell = textCell2;
-            textCell2.setTextAndIcon(LocaleController.getString("SettingsBrowseThemes", R.string.SettingsBrowseThemes), R.drawable.msg_colors, false);
+            textCell.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 2));
+            TextCell textCell2 = this.dayNightCell;
+            textCell2.imageLeft = 21;
+            addView(textCell2, LayoutHelper.createFrame(-1, -2.0f));
+            TextCell textCell3 = new TextCell(context);
+            this.browseThemesCell = textCell3;
+            textCell3.setTextAndIcon(LocaleController.getString("SettingsBrowseThemes", R.string.SettingsBrowseThemes), R.drawable.msg_colors, false);
             addView(this.browseThemesCell, LayoutHelper.createFrame(-1, -2.0f));
             this.dayNightCell.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -315,7 +317,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     public void updateColors() {
         if (this.currentType == 0) {
             this.darkThemeDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteBlueText4"), PorterDuff.Mode.SRC_IN));
-            this.dayNightCell.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.getColor("windowBackgroundWhite"), Theme.getColor("listSelectorSDK21")));
+            Theme.setSelectorDrawableColor(this.dayNightCell.getBackground(), Theme.getColor("listSelectorSDK21"), true);
             this.browseThemesCell.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.getColor("windowBackgroundWhite"), Theme.getColor("listSelectorSDK21")));
             this.dayNightCell.setColors(null, "windowBackgroundWhiteBlueText4");
             this.browseThemesCell.setColors("windowBackgroundWhiteBlueText4", "windowBackgroundWhiteBlueText4");

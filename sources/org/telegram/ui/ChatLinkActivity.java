@@ -232,6 +232,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         JoinToSendSettingsView joinToSendSettingsView;
         TLRPC$Chat chat;
+        TLRPC$Chat tLRPC$Chat = null;
         if (i == NotificationCenter.chatInfoDidLoad) {
             TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
             long j = tLRPC$ChatFull.id;
@@ -241,8 +242,8 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 updateRows();
                 return;
             }
-            TLRPC$Chat tLRPC$Chat = this.waitingForFullChat;
-            if (tLRPC$Chat != null && tLRPC$Chat.id == j) {
+            TLRPC$Chat tLRPC$Chat2 = this.waitingForFullChat;
+            if (tLRPC$Chat2 != null && tLRPC$Chat2.id == j) {
                 try {
                     this.waitingForFullChatProgressAlert.dismiss();
                 } catch (Throwable unused) {
@@ -259,13 +260,17 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             if (this.chats.size() > 0 && (chat = getMessagesController().getChat(Long.valueOf(this.chats.get(0).id))) != null) {
                 this.chats.set(0, chat);
             }
-            TLRPC$Chat tLRPC$Chat2 = this.isChannel ? this.chats.get(0) : this.currentChat;
-            if (tLRPC$Chat2 != null && (joinToSendSettingsView = this.joinToSendSettings) != null) {
+            if (!this.isChannel) {
+                tLRPC$Chat = this.currentChat;
+            } else if (this.chats.size() > 0) {
+                tLRPC$Chat = this.chats.get(0);
+            }
+            if (tLRPC$Chat != null && (joinToSendSettingsView = this.joinToSendSettings) != null) {
                 if (!this.joinRequestProgress) {
-                    joinToSendSettingsView.lambda$new$3(tLRPC$Chat2.join_request);
+                    joinToSendSettingsView.lambda$new$3(tLRPC$Chat.join_request);
                 }
                 if (!this.joinToSendProgress) {
-                    this.joinToSendSettings.setJoinToSend(tLRPC$Chat2.join_to_send);
+                    this.joinToSendSettings.setJoinToSend(tLRPC$Chat.join_to_send);
                 }
             }
         }

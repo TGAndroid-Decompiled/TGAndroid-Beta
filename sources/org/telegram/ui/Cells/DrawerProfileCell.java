@@ -56,7 +56,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     private Rect destRect = new Rect();
     private Paint paint = new Paint();
     private Paint backPaint = new Paint(1);
-    private RLottieDrawable sunDrawable = new RLottieDrawable(R.raw.sun, "2131558524", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+    private RLottieDrawable sunDrawable = new RLottieDrawable(R.raw.sun, "2131558526", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
 
     public DrawerProfileCell(Context context, final DrawerLayoutContainer drawerLayoutContainer) {
         super(context);

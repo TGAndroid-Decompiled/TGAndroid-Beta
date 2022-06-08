@@ -2455,6 +2455,7 @@
     <string name="LimitPremium">Premium</string>
     <string name="LimitReached">Limit Reached</string>
     <string name="LimitReachedAccounts">Sorry, you can\'t add more than **%1$d** accounts. You can increase this limit to **%2$d** by upgrading to **Telegram Premium**.</string>
+    <string name="LimitReachedAccountsPremium">Sorry, you can\'t add more than **%1$d** accounts.</string>
     <string name="LimitReachedChatInFolders">Sorry, you can\'t add more than **%1$d** chats to a folder. You can increase this limit to **%2$d** by upgrading to **Telegram Premium**.</string>
     <string name="LimitReachedChatInFoldersLocked">Sorry, you can\'t add more than **%1$d** chats to a folder. Please create a new one. We are working to let you increase this limit in the future.</string>
     <string name="LimitReachedChatInFoldersPremium">Sorry, you can\'t add more than **%1$d** chats to a folder. Please create a new one.</string>

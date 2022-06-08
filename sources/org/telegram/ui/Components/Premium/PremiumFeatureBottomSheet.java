@@ -30,6 +30,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$TL_availableReaction;
@@ -41,6 +42,7 @@ import org.telegram.ui.Components.BottomPagesView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
+import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.PremiumPreviewFragment;
 
 public class PremiumFeatureBottomSheet extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
@@ -52,11 +54,11 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
     boolean enterAnimationIsRunning;
     private PremiumButtonView premiumButtonView;
     ArrayList<PremiumPreviewFragment.PremiumFeatureData> premiumFeatures = new ArrayList<>();
+    SvgHelper.SvgDrawable svgIcon = SvgHelper.getDrawable(RLottieDrawable.readRes(null, R.raw.star_loader));
     ViewPager viewPager;
 
     public PremiumFeatureBottomSheet(final BaseFragment baseFragment, int i) {
         super(baseFragment.getParentActivity(), false);
-        setCanDismissWithSwipe(false);
         final Activity parentActivity = baseFragment.getParentActivity();
         FrameLayout frameLayout = new FrameLayout(parentActivity) {
             @Override
@@ -350,6 +352,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             textView2.setGravity(1);
             this.description.setTextSize(1, 15.0f);
             this.description.setTextColor(Theme.getColor("dialogTextBlack"));
+            this.description.setLines(2);
             addView(this.description, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 10.0f, 21.0f, 16.0f));
             setClipChildren(false);
         }
@@ -426,7 +429,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             if (i2 == 10) {
                 return new PremiumAppIconsPreviewView(context);
             }
-            VideoScreenPreview videoScreenPreview = new VideoScreenPreview(context, this.currentAccount, premiumFeatureData.type);
+            VideoScreenPreview videoScreenPreview = new VideoScreenPreview(context, this.svgIcon, this.currentAccount, premiumFeatureData.type);
             if (premiumFeatureData.type == 1) {
                 videoScreenPreview.fromTop = true;
             }
@@ -468,9 +471,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                         super.onAnimationEnd(animator);
                     }
                 });
-                ofFloat.setDuration(300L);
+                ofFloat.setDuration(500L);
                 ofFloat.setStartDelay(100L);
-                ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+                ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 ofFloat.start();
             }
         }

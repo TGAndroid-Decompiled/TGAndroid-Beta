@@ -3,11 +3,13 @@ package org.telegram.ui.Components.Reactions;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -56,7 +58,7 @@ public class ReactionsEffectOverlay {
         return f2;
     }
 
-    private ReactionsEffectOverlay(android.content.Context r33, org.telegram.ui.ActionBar.BaseFragment r34, org.telegram.ui.Components.ReactionsContainerLayout r35, org.telegram.ui.Cells.ChatMessageCell r36, float r37, float r38, java.lang.String r39, int r40, int r41) {
+    private ReactionsEffectOverlay(android.content.Context r32, org.telegram.ui.ActionBar.BaseFragment r33, org.telegram.ui.Components.ReactionsContainerLayout r34, org.telegram.ui.Cells.ChatMessageCell r35, float r36, float r37, java.lang.String r38, int r39, int r40) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsEffectOverlay.<init>(android.content.Context, org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.Components.ReactionsContainerLayout, org.telegram.ui.Cells.ChatMessageCell, float, float, java.lang.String, int, int):void");
     }
 
@@ -259,6 +261,12 @@ public class ReactionsEffectOverlay {
                 reactionsEffectOverlay.wasScrolled = true;
             }
         }
+    }
+
+    public static int sizeForBigReaction() {
+        int dp = AndroidUtilities.dp(350.0f);
+        Point point = AndroidUtilities.displaySize;
+        return Math.round(Math.min(dp, Math.min(point.x, point.y)) * 0.8f);
     }
 
     private class AvatarParticle {

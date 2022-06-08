@@ -1071,7 +1071,7 @@ public class DownloadController extends BaseController implements NotificationCe
         }
         if (!z2) {
             for (int i2 = 0; i2 < this.downloadingFiles.size(); i2++) {
-                if (this.downloadingFiles.get(i2).getDocument().id == messageObject.getDocument().id) {
+                if (this.downloadingFiles.get(i2).getDocument() != null && this.downloadingFiles.get(i2).getDocument().id == messageObject.getDocument().id) {
                     break;
                 }
             }

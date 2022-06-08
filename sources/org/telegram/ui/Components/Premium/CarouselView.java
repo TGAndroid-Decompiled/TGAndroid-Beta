@@ -15,6 +15,7 @@ import j$.util.Comparator$CC;
 import java.util.ArrayList;
 import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.Premium.CarouselView;
 
@@ -320,9 +321,9 @@ public class CarouselView extends View implements PagerHeaderView {
             z = false;
         }
         setFirstScrollEnabled(z);
-        float abs = 1.0f - (Math.abs(f) / getMeasuredWidth());
-        setScaleX(abs);
-        setScaleY(abs);
+        float clamp = 1.0f - Utilities.clamp(Math.abs(f) / getMeasuredWidth(), 1.0f, 0.0f);
+        setScaleX(clamp);
+        setScaleY(clamp);
     }
 
     void setAutoPlayEnabled(boolean z) {

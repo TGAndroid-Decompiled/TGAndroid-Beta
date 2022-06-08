@@ -98,6 +98,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     int paddingRow;
     StarParticlesView particlesView;
     private PremiumButtonView premiumButtonView;
+    int privacyRow;
     float progress;
     int rowCount;
     int sectionRow;
@@ -734,6 +735,9 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     private void updateRows() {
         int i = 0;
         this.rowCount = 0;
+        this.sectionRow = -1;
+        this.statusRow = -1;
+        this.privacyRow = -1;
         int i2 = 0 + 1;
         this.rowCount = i2;
         this.paddingRow = 0;
@@ -746,16 +750,14 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             int i4 = i3 + 1;
             this.rowCount = i4;
             this.statusRow = i3;
-            this.sectionRow = -1;
             this.rowCount = i4 + 1;
             this.lastPaddingRow = i4;
             this.buttonContainer.setVisibility(8);
         } else {
-            this.statusRow = -1;
             int i5 = this.rowCount;
             int i6 = i5 + 1;
             this.rowCount = i6;
-            this.sectionRow = i5;
+            this.privacyRow = i5;
             this.rowCount = i6 + 1;
             this.lastPaddingRow = i6;
             this.buttonContainer.setVisibility(0);
@@ -879,7 +881,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             if (i == premiumPreviewFragment.helpUsRow) {
                 return 4;
             }
-            if (i == premiumPreviewFragment.statusRow) {
+            if (i == premiumPreviewFragment.statusRow || i == premiumPreviewFragment.privacyRow) {
                 return 5;
             }
             return i == premiumPreviewFragment.lastPaddingRow ? 6 : 0;

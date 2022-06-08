@@ -3081,8 +3081,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private void updateSeekBarWaveformWidth() {
         if (this.seekBarWaveform != null) {
             int dp = (-AndroidUtilities.dp((this.hasLinkPreview ? 10 : 0) + 92)) - AndroidUtilities.dp(this.useTranscribeButton ? 34.0f : 0.0f);
-            int i = this.backgroundWidth;
             TransitionParams transitionParams = this.transitionParams;
+            if (!transitionParams.animateBackgroundBoundsInner || this.documentAttachType != 3) {
+                this.seekBarWaveform.setSize(this.backgroundWidth + dp, AndroidUtilities.dp(30.0f));
+                return;
+            }
+            int i = this.backgroundWidth;
             this.seekBarWaveform.setSize(((int) ((i - transitionParams.deltaLeft) + transitionParams.deltaRight)) + dp, AndroidUtilities.dp(30.0f), i + dp, ((int) ((i - transitionParams.toDeltaLeft) + transitionParams.toDeltaRight)) + dp);
         }
     }
@@ -6293,6 +6297,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             drawCaptionLayout(canvas, transitionParams.animateOutCaptionLayout, z, (1.0f - this.transitionParams.animateChangeProgress) * f);
             drawCaptionLayout(canvas, this.captionLayout, z, f * this.transitionParams.animateChangeProgress);
         }
+        MessageObject messageObject = this.currentMessageObject;
+        if (!(messageObject == null || messageObject.messageOwner == null || !messageObject.isVoiceTranscriptionOpen())) {
+            MessageObject messageObject2 = this.currentMessageObject;
+            if (!messageObject2.messageOwner.voiceTranscriptionFinal && TranscribeButton.isTranscribing(messageObject2)) {
+                invalidate();
+            }
+        }
         if (!z) {
             MessageObject.GroupedMessagePosition groupedMessagePosition = this.currentPosition;
             if (groupedMessagePosition != null) {
@@ -6328,7 +6339,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void drawCaptionLayout(android.graphics.Canvas r26, android.text.StaticLayout r27, boolean r28, float r29) {
+    private void drawCaptionLayout(android.graphics.Canvas r27, android.text.StaticLayout r28, boolean r29, float r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawCaptionLayout(android.graphics.Canvas, android.text.StaticLayout, boolean, float):void");
     }
 
