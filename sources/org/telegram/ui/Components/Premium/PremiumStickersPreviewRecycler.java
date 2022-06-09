@@ -17,6 +17,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Document;
@@ -276,10 +277,12 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
         boolean animateImage = true;
         private float animateImageProgress;
         ImageReceiver centerImage;
+        TLRPC$Document document;
         boolean drawEffect;
         ImageReceiver effectImage;
         private float effectProgress;
         public float progress;
+        boolean update;
         View view;
 
         static float access$416(StickerView stickerView, float f) {
@@ -313,8 +316,18 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
                 public void draw(Canvas canvas) {
                     super.draw(canvas);
                     StickerView stickerView = StickerView.this;
-                    if (stickerView.drawEffect) {
-                        if (stickerView.effectProgress == 0.0f) {
+                    if (stickerView.update) {
+                        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerView.document, "windowBackgroundGray", 0.5f);
+                        StickerView stickerView2 = StickerView.this;
+                        stickerView2.centerImage.setImage(ImageLocation.getForDocument(stickerView2.document), null, svgThumb, "webp", null, 1);
+                        if (MessageObject.isPremiumSticker(StickerView.this.document)) {
+                            StickerView stickerView3 = StickerView.this;
+                            stickerView3.effectImage.setImage(ImageLocation.getForDocument(MessageObject.getPremiumStickerAnimation(stickerView3.document), StickerView.this.document), "140_140", (ImageLocation) null, (String) null, "tgs", (Object) null, 1);
+                        }
+                    }
+                    StickerView stickerView4 = StickerView.this;
+                    if (stickerView4.drawEffect) {
+                        if (stickerView4.effectProgress == 0.0f) {
                             StickerView.this.effectProgress = 1.0f;
                             if (StickerView.this.effectImage.getLottieAnimation() != null) {
                                 StickerView.this.effectImage.getLottieAnimation().setCurrentFrame(0, false);
@@ -323,21 +336,21 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
                         if (StickerView.this.effectImage.getLottieAnimation() != null) {
                             StickerView.this.effectImage.getLottieAnimation().start();
                         }
-                    } else if (stickerView.effectImage.getLottieAnimation() != null) {
+                    } else if (stickerView4.effectImage.getLottieAnimation() != null) {
                         StickerView.this.effectImage.getLottieAnimation().stop();
                     }
-                    StickerView stickerView2 = StickerView.this;
-                    if (stickerView2.animateImage) {
-                        if (stickerView2.centerImage.getLottieAnimation() != null) {
+                    StickerView stickerView5 = StickerView.this;
+                    if (stickerView5.animateImage) {
+                        if (stickerView5.centerImage.getLottieAnimation() != null) {
                             StickerView.this.centerImage.getLottieAnimation().start();
                         }
-                    } else if (stickerView2.centerImage.getLottieAnimation() != null) {
+                    } else if (stickerView5.centerImage.getLottieAnimation() != null) {
                         StickerView.this.centerImage.getLottieAnimation().stop();
                     }
-                    StickerView stickerView3 = StickerView.this;
-                    if (!stickerView3.animateImage || stickerView3.animateImageProgress == 1.0f) {
-                        StickerView stickerView4 = StickerView.this;
-                        if (!stickerView4.animateImage && stickerView4.animateImageProgress != 0.0f) {
+                    StickerView stickerView6 = StickerView.this;
+                    if (!stickerView6.animateImage || stickerView6.animateImageProgress == 1.0f) {
+                        StickerView stickerView7 = StickerView.this;
+                        if (!stickerView7.animateImage && stickerView7.animateImageProgress != 0.0f) {
                             StickerView.access$524(StickerView.this, 0.10666667f);
                             invalidate();
                         }
@@ -345,12 +358,12 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
                         StickerView.access$516(StickerView.this, 0.10666667f);
                         invalidate();
                     }
-                    StickerView stickerView5 = StickerView.this;
-                    stickerView5.animateImageProgress = Utilities.clamp(stickerView5.animateImageProgress, 1.0f, 0.0f);
-                    StickerView stickerView6 = StickerView.this;
-                    if (!stickerView6.drawEffect || stickerView6.effectProgress == 1.0f) {
-                        StickerView stickerView7 = StickerView.this;
-                        if (!stickerView7.drawEffect && stickerView7.effectProgress != 0.0f) {
+                    StickerView stickerView8 = StickerView.this;
+                    stickerView8.animateImageProgress = Utilities.clamp(stickerView8.animateImageProgress, 1.0f, 0.0f);
+                    StickerView stickerView9 = StickerView.this;
+                    if (!stickerView9.drawEffect || stickerView9.effectProgress == 1.0f) {
+                        StickerView stickerView10 = StickerView.this;
+                        if (!stickerView10.drawEffect && stickerView10.effectProgress != 0.0f) {
                             StickerView.access$424(StickerView.this, 0.10666667f);
                             invalidate();
                         }
@@ -358,37 +371,23 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
                         StickerView.access$416(StickerView.this, 0.10666667f);
                         invalidate();
                     }
-                    StickerView stickerView8 = StickerView.this;
-                    stickerView8.effectProgress = Utilities.clamp(stickerView8.effectProgress, 1.0f, 0.0f);
+                    StickerView stickerView11 = StickerView.this;
+                    stickerView11.effectProgress = Utilities.clamp(stickerView11.effectProgress, 1.0f, 0.0f);
                     float measuredWidth = StickerView.this.getMeasuredWidth() * 0.45f;
                     float f = 1.499267f * measuredWidth;
                     float measuredWidth2 = getMeasuredWidth() - f;
                     float measuredHeight = (getMeasuredHeight() - f) / 2.0f;
                     float f2 = f - measuredWidth;
                     StickerView.this.centerImage.setImageCoords((f2 - (0.02f * f)) + measuredWidth2, (f2 / 2.0f) + measuredHeight, measuredWidth, measuredWidth);
-                    StickerView stickerView9 = StickerView.this;
-                    stickerView9.centerImage.setAlpha((stickerView9.animateImageProgress * 0.7f) + 0.3f);
+                    StickerView stickerView12 = StickerView.this;
+                    stickerView12.centerImage.setAlpha((stickerView12.animateImageProgress * 0.7f) + 0.3f);
                     StickerView.this.centerImage.draw(canvas);
                     if (StickerView.this.effectProgress != 0.0f) {
                         StickerView.this.effectImage.setImageCoords(measuredWidth2, measuredHeight, f, f);
-                        StickerView stickerView10 = StickerView.this;
-                        stickerView10.effectImage.setAlpha(stickerView10.effectProgress);
+                        StickerView stickerView13 = StickerView.this;
+                        stickerView13.effectImage.setAlpha(stickerView13.effectProgress);
                         StickerView.this.effectImage.draw(canvas);
                     }
-                }
-
-                @Override
-                protected void onAttachedToWindow() {
-                    super.onAttachedToWindow();
-                    StickerView.this.effectImage.onAttachedToWindow();
-                    StickerView.this.centerImage.onAttachedToWindow();
-                }
-
-                @Override
-                protected void onDetachedFromWindow() {
-                    super.onDetachedFromWindow();
-                    StickerView.this.effectImage.onDetachedFromWindow();
-                    StickerView.this.centerImage.onDetachedFromWindow();
                 }
             };
             this.centerImage = new ImageReceiver(this.view);
@@ -411,10 +410,8 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
         }
 
         public void setSticker(TLRPC$Document tLRPC$Document) {
-            this.centerImage.setImage(ImageLocation.getForDocument(tLRPC$Document), null, DocumentObject.getSvgThumb(tLRPC$Document, "windowBackgroundGray", 0.5f), "webp", null, 1);
-            if (MessageObject.isPremiumSticker(tLRPC$Document)) {
-                this.effectImage.setImage(ImageLocation.getForDocument(MessageObject.getPremiumStickerAnimation(tLRPC$Document), tLRPC$Document), "180_180_pcache", (ImageLocation) null, (String) null, "tgs", (Object) null, 1);
-            }
+            this.document = tLRPC$Document;
+            this.update = true;
         }
 
         public void setDrawImage(boolean z, boolean z2, boolean z3) {
@@ -436,6 +433,20 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
                 }
                 this.view.invalidate();
             }
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            this.centerImage.onAttachedToWindow();
+            this.effectImage.onAttachedToWindow();
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            this.centerImage.onDetachedFromWindow();
+            this.effectImage.onDetachedFromWindow();
         }
     }
 

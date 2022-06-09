@@ -52,7 +52,7 @@ public class DoubledLimitsBottomSheet extends BottomSheetWithRecyclerListView im
     public void setParentFragment(PremiumPreviewFragment premiumPreviewFragment) {
     }
 
-    public DoubledLimitsBottomSheet(final BaseFragment baseFragment, int i) {
+    public DoubledLimitsBottomSheet(final BaseFragment baseFragment, final int i) {
         super(baseFragment, false, false);
         ArrayList<Limit> arrayList = new ArrayList<>();
         this.limits = arrayList;
@@ -109,26 +109,33 @@ public class DoubledLimitsBottomSheet extends BottomSheetWithRecyclerListView im
         this.premiumButtonView.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                DoubledLimitsBottomSheet.this.lambda$new$0(baseFragment, view2);
+                DoubledLimitsBottomSheet.this.lambda$new$0(i, baseFragment, view2);
+            }
+        });
+        this.premiumButtonView.overlayTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                DoubledLimitsBottomSheet.this.lambda$new$1(view2);
             }
         });
         bindPremium(UserConfig.getInstance(getCurrentAccount()).isPremium());
     }
 
-    public void lambda$new$0(BaseFragment baseFragment, View view) {
-        PremiumPreviewFragment.buyPremium(baseFragment, "double_limits");
+    public void lambda$new$0(int i, BaseFragment baseFragment, View view) {
+        if (!UserConfig.getInstance(i).isPremium()) {
+            PremiumPreviewFragment.buyPremium(baseFragment, "double_limits");
+        }
+        dismiss();
+    }
+
+    public void lambda$new$1(View view) {
         dismiss();
     }
 
     private void bindPremium(boolean z) {
-        int i = 8;
-        this.divider.setVisibility(z ? 8 : 0);
-        this.recyclerListView.setPadding(0, 0, 0, z ? 0 : AndroidUtilities.dp(72.0f));
-        PremiumButtonView premiumButtonView = this.premiumButtonView;
-        if (!z) {
-            i = 0;
+        if (z) {
+            this.premiumButtonView.setOverlayText(LocaleController.getString("OK", R.string.OK), false);
         }
-        premiumButtonView.setVisibility(i);
     }
 
     @Override

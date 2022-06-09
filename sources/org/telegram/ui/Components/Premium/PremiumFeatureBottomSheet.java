@@ -397,9 +397,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 }
             }
             for (int i4 = 0; i4 < arrayList2.size(); i4++) {
-                UnlockPremiumReactionsWindow$ReactionDrawingObject unlockPremiumReactionsWindow$ReactionDrawingObject = new UnlockPremiumReactionsWindow$ReactionDrawingObject(i4);
-                unlockPremiumReactionsWindow$ReactionDrawingObject.set((TLRPC$TL_availableReaction) arrayList2.get(i4));
-                arrayList.add(unlockPremiumReactionsWindow$ReactionDrawingObject);
+                ReactionDrawingObject reactionDrawingObject = new ReactionDrawingObject(i4);
+                reactionDrawingObject.set((TLRPC$TL_availableReaction) arrayList2.get(i4));
+                arrayList.add(reactionDrawingObject);
             }
             final HashMap hashMap = new HashMap();
             hashMap.put("👌", 1);
@@ -413,7 +413,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 @Override
                 public final int compare(Object obj, Object obj2) {
                     int lambda$getViewForPosition$3;
-                    lambda$getViewForPosition$3 = PremiumFeatureBottomSheet.lambda$getViewForPosition$3(hashMap, (UnlockPremiumReactionsWindow$ReactionDrawingObject) obj, (UnlockPremiumReactionsWindow$ReactionDrawingObject) obj2);
+                    lambda$getViewForPosition$3 = PremiumFeatureBottomSheet.lambda$getViewForPosition$3(hashMap, (ReactionDrawingObject) obj, (ReactionDrawingObject) obj2);
                     return lambda$getViewForPosition$3;
                 }
             });
@@ -437,12 +437,12 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         }
     }
 
-    public static int lambda$getViewForPosition$3(HashMap hashMap, UnlockPremiumReactionsWindow$ReactionDrawingObject unlockPremiumReactionsWindow$ReactionDrawingObject, UnlockPremiumReactionsWindow$ReactionDrawingObject unlockPremiumReactionsWindow$ReactionDrawingObject2) {
-        boolean containsKey = hashMap.containsKey(unlockPremiumReactionsWindow$ReactionDrawingObject.reaction.reaction);
+    public static int lambda$getViewForPosition$3(HashMap hashMap, ReactionDrawingObject reactionDrawingObject, ReactionDrawingObject reactionDrawingObject2) {
+        boolean containsKey = hashMap.containsKey(reactionDrawingObject.reaction.reaction);
         int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
-        int intValue = containsKey ? ((Integer) hashMap.get(unlockPremiumReactionsWindow$ReactionDrawingObject.reaction.reaction)).intValue() : ConnectionsManager.DEFAULT_DATACENTER_ID;
-        if (hashMap.containsKey(unlockPremiumReactionsWindow$ReactionDrawingObject2.reaction.reaction)) {
-            i = ((Integer) hashMap.get(unlockPremiumReactionsWindow$ReactionDrawingObject2.reaction.reaction)).intValue();
+        int intValue = containsKey ? ((Integer) hashMap.get(reactionDrawingObject.reaction.reaction)).intValue() : ConnectionsManager.DEFAULT_DATACENTER_ID;
+        if (hashMap.containsKey(reactionDrawingObject2.reaction.reaction)) {
+            i = ((Integer) hashMap.get(reactionDrawingObject2.reaction.reaction)).intValue();
         }
         return i - intValue;
     }

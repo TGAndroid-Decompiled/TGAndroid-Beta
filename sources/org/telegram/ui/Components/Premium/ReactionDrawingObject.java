@@ -12,7 +12,7 @@ import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.ui.Components.Premium.CarouselView;
 import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
 
-public class UnlockPremiumReactionsWindow$ReactionDrawingObject extends CarouselView.DrawingObject {
+public class ReactionDrawingObject extends CarouselView.DrawingObject {
     private View parentView;
     TLRPC$TL_availableReaction reaction;
     private boolean selected;
@@ -22,7 +22,7 @@ public class UnlockPremiumReactionsWindow$ReactionDrawingObject extends Carousel
     ImageReceiver effectImageReceiver = new ImageReceiver();
     Rect rect = new Rect();
 
-    public UnlockPremiumReactionsWindow$ReactionDrawingObject(int i) {
+    public ReactionDrawingObject(int i) {
     }
 
     @Override
@@ -50,7 +50,7 @@ public class UnlockPremiumReactionsWindow$ReactionDrawingObject extends Carousel
         int sizeForBigReaction = ReactionsEffectOverlay.sizeForBigReaction();
         ImageReceiver imageReceiver = this.effectImageReceiver;
         ImageLocation forDocument = ImageLocation.getForDocument(this.reaction.around_animation);
-        imageReceiver.setImage(forDocument, sizeForBigReaction + "_" + sizeForBigReaction + "_pcache", null, null, null, 0L, "tgs", this.reaction, 0);
+        imageReceiver.setImage(forDocument, sizeForBigReaction + "_" + sizeForBigReaction, null, null, null, 0L, "tgs", this.reaction, 0);
         this.effectImageReceiver.setAutoRepeat(0);
         if (this.effectImageReceiver.getLottieAnimation() != null) {
             this.effectImageReceiver.getLottieAnimation().setCurrentFrame(0, false);

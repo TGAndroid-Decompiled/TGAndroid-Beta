@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +44,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
     private int currentAccount;
     private LinearLayoutManager linearLayoutManager;
 
-    public AppIconsSelectorCell(Context context, final BaseFragment baseFragment, int i) {
+    public AppIconsSelectorCell(final Context context, final BaseFragment baseFragment, int i) {
         super(context);
         this.currentAccount = i;
         setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
@@ -96,29 +97,35 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                AppIconsSelectorCell.this.lambda$new$0(baseFragment, view, i2);
+                AppIconsSelectorCell.this.lambda$new$0(baseFragment, context, view, i2);
             }
         });
         updateIconsVisibility();
     }
 
-    public void lambda$new$0(BaseFragment baseFragment, View view, int i) {
+    public void lambda$new$0(BaseFragment baseFragment, Context context, View view, int i) {
         IconHolderView iconHolderView = (IconHolderView) view;
         LauncherIconController.LauncherIcon launcherIcon = this.availableIcons.get(i);
-        if (!LauncherIconController.isEnabled(launcherIcon)) {
-            if (!launcherIcon.premium || UserConfig.hasPremiumOnAccounts()) {
-                LauncherIconController.setIcon(launcherIcon);
-                iconHolderView.setSelected(true, true);
-                for (int i2 = 0; i2 < getChildCount(); i2++) {
-                    IconHolderView iconHolderView2 = (IconHolderView) getChildAt(i2);
-                    if (iconHolderView2 != iconHolderView) {
-                        iconHolderView2.setSelected(false, true);
-                    }
-                }
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 5, launcherIcon);
-                return;
-            }
+        if (launcherIcon.premium && !UserConfig.hasPremiumOnAccounts()) {
             baseFragment.showDialog(new PremiumFeatureBottomSheet(baseFragment, 10));
+        } else if (!LauncherIconController.isEnabled(launcherIcon)) {
+            LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(this, context) {
+                @Override
+                public int calculateDtToFit(int i2, int i3, int i4, int i5, int i6) {
+                    return (i4 - i2) + AndroidUtilities.dp(16.0f);
+                }
+            };
+            linearSmoothScroller.setTargetPosition(i);
+            this.linearLayoutManager.startSmoothScroll(linearSmoothScroller);
+            LauncherIconController.setIcon(launcherIcon);
+            iconHolderView.setSelected(true, true);
+            for (int i2 = 0; i2 < getChildCount(); i2++) {
+                IconHolderView iconHolderView2 = (IconHolderView) getChildAt(i2);
+                if (iconHolderView2 != iconHolderView) {
+                    iconHolderView2.setSelected(false, true);
+                }
+            }
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 5, launcherIcon);
         }
     }
 

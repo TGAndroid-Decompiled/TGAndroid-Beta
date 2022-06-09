@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -37,6 +38,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     protected int autoRepeat;
     protected int autoRepeatPlayCount;
     protected volatile Bitmap backgroundBitmap;
+    File cacheFile;
     protected Runnable cacheGenerateTask;
     protected int currentFrame;
     private View currentParentView;
@@ -83,6 +85,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     protected volatile boolean setLastFrame;
     private boolean shouldLimitFps;
     private boolean singleFrameDecoded;
+    long startTime;
     protected int timeBetweenFrames;
     protected Runnable uiRunnable;
     private Runnable uiRunnableCacheFinished;
@@ -95,6 +98,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     private static ThreadLocal<byte[]> readBufferLocal = new ThreadLocal<>();
     private static ThreadLocal<byte[]> bufferLocal = new ThreadLocal<>();
     private static DispatchQueuePool loadFrameRunnableQueue = new DispatchQueuePool(4);
+    private static HashSet<String> generatingCacheFiles = new HashSet<>();
 
     public static native long create(String str, String str2, int i, int i2, int[] iArr, boolean z, int[] iArr2, boolean z2, int i3);
 
@@ -103,6 +107,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     public static native long createWithJson(String str, String str2, int[] iArr, int[] iArr2);
 
     public static native void destroy(long j);
+
+    private static native String getCacheFile(long j);
 
     public static native int getFrame(long j, int i, Bitmap bitmap, int i2, int i3, int i4, boolean z);
 
@@ -115,8 +121,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         return -2;
     }
 
-    public class AnonymousClass5 implements Runnable {
-        AnonymousClass5() {
+    public class AnonymousClass4 implements Runnable {
+        AnonymousClass4() {
         }
 
         @Override
@@ -124,29 +130,26 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
             if (!RLottieDrawable.this.isRecycled) {
                 RLottieDrawable rLottieDrawable = RLottieDrawable.this;
                 if (!rLottieDrawable.destroyWhenDone && rLottieDrawable.nativePtr != 0) {
+                    RLottieDrawable.this.startTime = System.currentTimeMillis();
                     ThreadPoolExecutor threadPoolExecutor = RLottieDrawable.lottieCacheGenerateQueue;
                     RLottieDrawable rLottieDrawable2 = RLottieDrawable.this;
-                    Runnable rLottieDrawable$5$$ExternalSyntheticLambda0 = new Runnable() {
+                    Runnable rLottieDrawable$4$$ExternalSyntheticLambda0 = new Runnable() {
                         @Override
                         public final void run() {
-                            RLottieDrawable.AnonymousClass5.this.lambda$run$0();
+                            RLottieDrawable.AnonymousClass4.this.lambda$run$0();
                         }
                     };
-                    rLottieDrawable2.cacheGenerateTask = rLottieDrawable$5$$ExternalSyntheticLambda0;
-                    threadPoolExecutor.execute(rLottieDrawable$5$$ExternalSyntheticLambda0);
+                    rLottieDrawable2.cacheGenerateTask = rLottieDrawable$4$$ExternalSyntheticLambda0;
+                    threadPoolExecutor.execute(rLottieDrawable$4$$ExternalSyntheticLambda0);
                 }
             }
-            RLottieDrawable.this.decodeFrameFinishedInternal();
         }
 
         public void lambda$run$0() {
+            long j = RLottieDrawable.this.nativePtr;
             RLottieDrawable rLottieDrawable = RLottieDrawable.this;
-            if (rLottieDrawable.cacheGenerateTask != null) {
-                long j = rLottieDrawable.nativePtr;
-                RLottieDrawable rLottieDrawable2 = RLottieDrawable.this;
-                RLottieDrawable.createCache(j, rLottieDrawable2.width, rLottieDrawable2.height);
-                RLottieDrawable.uiHandler.post(RLottieDrawable.this.uiRunnableCacheFinished);
-            }
+            RLottieDrawable.createCache(j, rLottieDrawable.width, rLottieDrawable.height);
+            RLottieDrawable.uiHandler.post(RLottieDrawable.this.uiRunnableCacheFinished);
         }
     }
 
@@ -229,14 +232,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 }
             }
         };
-        this.uiRunnableCacheFinished = new Runnable() {
-            @Override
-            public void run() {
-                RLottieDrawable rLottieDrawable = RLottieDrawable.this;
-                rLottieDrawable.cacheGenerateTask = null;
-                rLottieDrawable.decodeFrameFinishedInternal();
-            }
-        };
         this.uiRunnable = new Runnable() {
             @Override
             public void run() {
@@ -257,7 +252,15 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 RLottieDrawable.this.decodeFrameFinishedInternal();
             }
         };
-        this.uiRunnableGenerateCache = new AnonymousClass5();
+        this.uiRunnableGenerateCache = new AnonymousClass4();
+        this.uiRunnableCacheFinished = new Runnable() {
+            @Override
+            public void run() {
+                RLottieDrawable.this.cacheGenerateTask = null;
+                RLottieDrawable.generatingCacheFiles.remove(RLottieDrawable.this.cacheFile.getPath());
+                RLottieDrawable.this.decodeFrameFinishedInternal();
+            }
+        };
         this.loadFrameRunnable = new Runnable() {
             @Override
             public void run() {
@@ -429,6 +432,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         if (this.nativePtr == 0) {
             file.delete();
         }
+        String cacheFile = getCacheFile(this.nativePtr);
+        if (cacheFile != null) {
+            this.cacheFile = new File(cacheFile);
+        }
         if (this.shouldLimitFps && iArr2[1] < 60) {
             this.shouldLimitFps = false;
         }
@@ -458,14 +465,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 }
             }
         };
-        this.uiRunnableCacheFinished = new Runnable() {
-            @Override
-            public void run() {
-                RLottieDrawable rLottieDrawable = RLottieDrawable.this;
-                rLottieDrawable.cacheGenerateTask = null;
-                rLottieDrawable.decodeFrameFinishedInternal();
-            }
-        };
         this.uiRunnable = new Runnable() {
             @Override
             public void run() {
@@ -486,7 +485,15 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 RLottieDrawable.this.decodeFrameFinishedInternal();
             }
         };
-        this.uiRunnableGenerateCache = new AnonymousClass5();
+        this.uiRunnableGenerateCache = new AnonymousClass4();
+        this.uiRunnableCacheFinished = new Runnable() {
+            @Override
+            public void run() {
+                RLottieDrawable.this.cacheGenerateTask = null;
+                RLottieDrawable.generatingCacheFiles.remove(RLottieDrawable.this.cacheFile.getPath());
+                RLottieDrawable.this.decodeFrameFinishedInternal();
+            }
+        };
         this.loadFrameRunnable = new Runnable() {
             @Override
             public void run() {
@@ -692,14 +699,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 }
             }
         };
-        this.uiRunnableCacheFinished = new Runnable() {
-            @Override
-            public void run() {
-                RLottieDrawable rLottieDrawable = RLottieDrawable.this;
-                rLottieDrawable.cacheGenerateTask = null;
-                rLottieDrawable.decodeFrameFinishedInternal();
-            }
-        };
         this.uiRunnable = new Runnable() {
             @Override
             public void run() {
@@ -720,7 +719,15 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 RLottieDrawable.this.decodeFrameFinishedInternal();
             }
         };
-        this.uiRunnableGenerateCache = new AnonymousClass5();
+        this.uiRunnableGenerateCache = new AnonymousClass4();
+        this.uiRunnableCacheFinished = new Runnable() {
+            @Override
+            public void run() {
+                RLottieDrawable.this.cacheGenerateTask = null;
+                RLottieDrawable.generatingCacheFiles.remove(RLottieDrawable.this.cacheFile.getPath());
+                RLottieDrawable.this.decodeFrameFinishedInternal();
+            }
+        };
         this.loadFrameRunnable = new Runnable() {
             @Override
             public void run() {
@@ -1036,14 +1043,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 }
             }
         };
-        this.uiRunnableCacheFinished = new Runnable() {
-            @Override
-            public void run() {
-                RLottieDrawable rLottieDrawable = RLottieDrawable.this;
-                rLottieDrawable.cacheGenerateTask = null;
-                rLottieDrawable.decodeFrameFinishedInternal();
-            }
-        };
         this.uiRunnable = new Runnable() {
             @Override
             public void run() {
@@ -1064,7 +1063,15 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
                 RLottieDrawable.this.decodeFrameFinishedInternal();
             }
         };
-        this.uiRunnableGenerateCache = new AnonymousClass5();
+        this.uiRunnableGenerateCache = new AnonymousClass4();
+        this.uiRunnableCacheFinished = new Runnable() {
+            @Override
+            public void run() {
+                RLottieDrawable.this.cacheGenerateTask = null;
+                RLottieDrawable.generatingCacheFiles.remove(RLottieDrawable.this.cacheFile.getPath());
+                RLottieDrawable.this.decodeFrameFinishedInternal();
+            }
+        };
         this.loadFrameRunnable = new Runnable() {
             @Override
             public void run() {

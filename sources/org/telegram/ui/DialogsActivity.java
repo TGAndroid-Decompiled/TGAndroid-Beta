@@ -1810,7 +1810,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             messagesController.loadHintDialogs();
             messagesController.loadUserInfo(accountInstance.getUserConfig().getCurrentUser(), false, 0);
             accountInstance.getContactsController().checkInviteText();
-            accountInstance.getMediaDataController().chekAllMedia();
+            accountInstance.getMediaDataController().chekAllMedia(false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -186,7 +185,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ChatThemeBottomSheet;
-import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
 import org.telegram.ui.Components.StickerSetBulletinLayout;
 import org.telegram.ui.Components.StickersArchiveAlert;
@@ -721,6 +719,7 @@ public class MediaDataController extends BaseController {
     private void processLoadedPremiumPromo(TLRPC$TL_help_premiumPromo tLRPC$TL_help_premiumPromo, int i, boolean z) {
         this.premiumPromo = tLRPC$TL_help_premiumPromo;
         this.premiumPromoUpdateDate = i;
+        getMessagesController().putUsers(tLRPC$TL_help_premiumPromo.users, z);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -831,10 +830,11 @@ public class MediaDataController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.this.lambda$processLoadedReactions$12(list);
+                    MediaDataController.lambda$processLoadedReactions$12(list);
                 }
             });
         }
+        this.isLoadingReactions = false;
         if (!z) {
             putReactionsToCache(list, i, i2);
         } else if (Math.abs((System.currentTimeMillis() / 1000) - i2) >= 3600) {
@@ -842,7 +842,7 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void lambda$processLoadedReactions$12(List list) {
+    public static void lambda$processLoadedReactions$12(List list) {
         for (int i = 0; i < list.size(); i++) {
             ImageReceiver imageReceiver = new ImageReceiver();
             TLRPC$TL_availableReaction tLRPC$TL_availableReaction = (TLRPC$TL_availableReaction) list.get(i);
@@ -852,17 +852,9 @@ public class MediaDataController extends BaseController {
             imageReceiver2.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.appear_animation), "60_60_nolimit", null, null, 0, 11);
             ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver2);
             int sizeForBigReaction = ReactionsEffectOverlay.sizeForBigReaction();
-            ImageReceiver imageReceiver3 = new ImageReceiver() {
-                @Override
-                public boolean setImageBitmapByKey(Drawable drawable, String str, int i2, boolean z, int i3) {
-                    if (drawable instanceof RLottieDrawable) {
-                        ((RLottieDrawable) drawable).start();
-                    }
-                    return super.setImageBitmapByKey(drawable, str, i2, z, i3);
-                }
-            };
+            ImageReceiver imageReceiver3 = new ImageReceiver();
             ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$TL_availableReaction.around_animation);
-            imageReceiver3.setImage(forDocument, sizeForBigReaction + "_" + sizeForBigReaction + "_pcache", null, null, 0, 11);
+            imageReceiver3.setImage(forDocument, sizeForBigReaction + "_" + sizeForBigReaction, null, null, 0, 11);
             ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver3);
             ImageReceiver imageReceiver4 = new ImageReceiver();
             imageReceiver4.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), null, null, null, 0, 11);
@@ -2071,7 +2063,7 @@ public class MediaDataController extends BaseController {
     public void lambda$processLoadedFeaturedStickers$45(boolean z, final ArrayList arrayList, final int i, final long j, final ArrayList arrayList2) {
         long j2 = 0;
         if ((z && (arrayList == null || Math.abs((System.currentTimeMillis() / 1000) - i) >= 3600)) || (!z && arrayList == null && j == 0)) {
-            Runnable mediaDataController$$ExternalSyntheticLambda67 = new Runnable() {
+            Runnable mediaDataController$$ExternalSyntheticLambda68 = new Runnable() {
                 @Override
                 public final void run() {
                     MediaDataController.this.lambda$processLoadedFeaturedStickers$42(arrayList, j);
@@ -2080,7 +2072,7 @@ public class MediaDataController extends BaseController {
             if (arrayList == null && !z) {
                 j2 = 1000;
             }
-            AndroidUtilities.runOnUIThread(mediaDataController$$ExternalSyntheticLambda67, j2);
+            AndroidUtilities.runOnUIThread(mediaDataController$$ExternalSyntheticLambda68, j2);
             if (arrayList == null) {
                 return;
             }
@@ -2585,7 +2577,7 @@ public class MediaDataController extends BaseController {
     public void lambda$processLoadedDiceStickers$63(boolean z, final TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, int i, final String str, final boolean z2) {
         long j = 1000;
         if ((z && (tLRPC$TL_messages_stickerSet == null || Math.abs((System.currentTimeMillis() / 1000) - i) >= 86400)) || (!z && tLRPC$TL_messages_stickerSet == null)) {
-            Runnable mediaDataController$$ExternalSyntheticLambda61 = new Runnable() {
+            Runnable mediaDataController$$ExternalSyntheticLambda62 = new Runnable() {
                 @Override
                 public final void run() {
                     MediaDataController.this.lambda$processLoadedDiceStickers$61(str, z2);
@@ -2594,7 +2586,7 @@ public class MediaDataController extends BaseController {
             if (tLRPC$TL_messages_stickerSet != null || z) {
                 j = 0;
             }
-            AndroidUtilities.runOnUIThread(mediaDataController$$ExternalSyntheticLambda61, j);
+            AndroidUtilities.runOnUIThread(mediaDataController$$ExternalSyntheticLambda62, j);
             if (tLRPC$TL_messages_stickerSet == null) {
                 return;
             }
@@ -2949,7 +2941,7 @@ public class MediaDataController extends BaseController {
         ArrayList arrayList2 = arrayList;
         long j2 = 1000;
         if ((z && (arrayList2 == null || BuildVars.DEBUG_PRIVATE_VERSION || Math.abs((System.currentTimeMillis() / 1000) - i) >= 3600)) || (!z && arrayList2 == null && j == 0)) {
-            Runnable mediaDataController$$ExternalSyntheticLambda70 = new Runnable() {
+            Runnable mediaDataController$$ExternalSyntheticLambda71 = new Runnable() {
                 @Override
                 public final void run() {
                     MediaDataController.this.lambda$processLoadedStickers$72(arrayList, j, i2);
@@ -2958,7 +2950,7 @@ public class MediaDataController extends BaseController {
             if (arrayList2 != null || z) {
                 j2 = 0;
             }
-            AndroidUtilities.runOnUIThread(mediaDataController$$ExternalSyntheticLambda70, j2);
+            AndroidUtilities.runOnUIThread(mediaDataController$$ExternalSyntheticLambda71, j2);
             if (arrayList2 == null) {
                 return;
             }
@@ -4199,7 +4191,7 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public class AnonymousClass2 implements Runnable {
+    public class AnonymousClass1 implements Runnable {
         final int val$classGuid;
         final int val$count;
         final int val$fromCache;
@@ -4210,7 +4202,7 @@ public class MediaDataController extends BaseController {
         final int val$type;
         final long val$uid;
 
-        AnonymousClass2(int i, long j, int i2, int i3, int i4, int i5, int i6, boolean z, int i7) {
+        AnonymousClass1(int i, long j, int i2, int i3, int i4, int i5, int i6, boolean z, int i7) {
             this.val$count = i;
             this.val$uid = j;
             this.val$min_id = i2;
@@ -4224,7 +4216,7 @@ public class MediaDataController extends BaseController {
 
         @Override
         public void run() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.AnonymousClass2.run():void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.AnonymousClass1.run():void");
         }
 
         public void lambda$run$0(Runnable runnable, int i) {
@@ -4233,7 +4225,7 @@ public class MediaDataController extends BaseController {
     }
 
     private void loadMediaDatabase(long j, int i, int i2, int i3, int i4, int i5, boolean z, int i6, int i7) {
-        AnonymousClass2 r12 = new AnonymousClass2(i, j, i3, i4, i2, i5, i6, z, i7);
+        AnonymousClass1 r12 = new AnonymousClass1(i, j, i3, i4, i2, i5, i6, z, i7);
         MessagesStorage messagesStorage = getMessagesStorage();
         messagesStorage.getStorageQueue().postRunnable(r12);
         messagesStorage.bindTaskToGuid(r12, i5);
@@ -6419,18 +6411,33 @@ public class MediaDataController extends BaseController {
     }
 
     public void preloadPremiumPreviewStickers() {
-        if (!this.previewStickersLoading && this.premiumPreviewStickers.isEmpty()) {
-            TLRPC$TL_messages_getStickers tLRPC$TL_messages_getStickers = new TLRPC$TL_messages_getStickers();
-            tLRPC$TL_messages_getStickers.emoticon = Emoji.fixEmoji("⭐") + Emoji.fixEmoji("⭐");
-            tLRPC$TL_messages_getStickers.hash = 0L;
-            this.previewStickersLoading = true;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getStickers, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MediaDataController.this.lambda$preloadPremiumPreviewStickers$162(tLObject, tLRPC$TL_error);
+        if (this.previewStickersLoading || !this.premiumPreviewStickers.isEmpty()) {
+            int i = 0;
+            while (i < Math.min(this.premiumPreviewStickers.size(), 3)) {
+                ArrayList<TLRPC$Document> arrayList = this.premiumPreviewStickers;
+                TLRPC$Document tLRPC$Document = arrayList.get(i == 2 ? arrayList.size() - 1 : i);
+                if (MessageObject.isPremiumSticker(tLRPC$Document)) {
+                    ImageReceiver imageReceiver = new ImageReceiver();
+                    imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), null, null, "webp", null, 1);
+                    ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
+                    ImageReceiver imageReceiver2 = new ImageReceiver();
+                    imageReceiver2.setImage(ImageLocation.getForDocument(MessageObject.getPremiumStickerAnimation(tLRPC$Document), tLRPC$Document), "140_140", (ImageLocation) null, (String) null, "tgs", (Object) null, 1);
+                    ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver2);
                 }
-            });
+                i++;
+            }
+            return;
         }
+        TLRPC$TL_messages_getStickers tLRPC$TL_messages_getStickers = new TLRPC$TL_messages_getStickers();
+        tLRPC$TL_messages_getStickers.emoticon = Emoji.fixEmoji("⭐") + Emoji.fixEmoji("⭐");
+        tLRPC$TL_messages_getStickers.hash = 0L;
+        this.previewStickersLoading = true;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getStickers, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                MediaDataController.this.lambda$preloadPremiumPreviewStickers$162(tLObject, tLRPC$TL_error);
+            }
+        });
     }
 
     public void lambda$preloadPremiumPreviewStickers$162(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -6451,7 +6458,11 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void chekAllMedia() {
+    public void chekAllMedia(boolean z) {
+        if (z) {
+            this.reactionsUpdateDate = 0;
+            this.loadFeaturedDate = 0;
+        }
         loadRecents(2, false, true, false);
         loadRecents(3, false, true, false);
         checkFeaturedStickers();
@@ -6682,17 +6693,17 @@ public class MediaDataController extends BaseController {
                 if (createPreviewFullTheme.items.size() >= 4) {
                     arrayList.add(new ChatThemeBottomSheet.ChatThemeItem(createPreviewFullTheme));
                 }
-                ChatThemeController.chatThemeQueue.postRunnable(new AnonymousClass3(arrayList));
+                ChatThemeController.chatThemeQueue.postRunnable(new AnonymousClass2(arrayList));
             } catch (Throwable th) {
                 FileLog.e(th);
             }
         }
     }
 
-    public class AnonymousClass3 implements Runnable {
+    public class AnonymousClass2 implements Runnable {
         final ArrayList val$previewItems;
 
-        AnonymousClass3(ArrayList arrayList) {
+        AnonymousClass2(ArrayList arrayList) {
             this.val$previewItems = arrayList;
         }
 
@@ -6705,7 +6716,7 @@ public class MediaDataController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.AnonymousClass3.this.lambda$run$0(arrayList);
+                    MediaDataController.AnonymousClass2.this.lambda$run$0(arrayList);
                 }
             });
         }
@@ -6737,18 +6748,18 @@ public class MediaDataController extends BaseController {
                     arrayList2.add(chatThemeItem);
                 }
             }
-            ChatThemeController.chatThemeQueue.postRunnable(new AnonymousClass4(arrayList2, i));
+            ChatThemeController.chatThemeQueue.postRunnable(new AnonymousClass3(arrayList2, i));
             return;
         }
         this.defaultEmojiThemes.clear();
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.emojiPreviewThemesChanged, new Object[0]);
     }
 
-    public class AnonymousClass4 implements Runnable {
+    public class AnonymousClass3 implements Runnable {
         final int val$currentAccount;
         final ArrayList val$previewItems;
 
-        AnonymousClass4(ArrayList arrayList, int i) {
+        AnonymousClass3(ArrayList arrayList, int i) {
             this.val$previewItems = arrayList;
             this.val$currentAccount = i;
         }
@@ -6762,7 +6773,7 @@ public class MediaDataController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.AnonymousClass4.this.lambda$run$0(arrayList);
+                    MediaDataController.AnonymousClass3.this.lambda$run$0(arrayList);
                 }
             });
         }

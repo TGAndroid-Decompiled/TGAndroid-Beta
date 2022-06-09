@@ -6,8 +6,10 @@ import android.text.style.URLSpan;
 import android.view.View;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.ui.Components.TextStyleSpan;
+import org.telegram.ui.LaunchActivity;
 
 public class URLSpanReplacement extends URLSpan {
+    private boolean navigateToPremiumBot;
     private TextStyleSpan.TextStyleRun style;
 
     public URLSpanReplacement(String str) {
@@ -19,12 +21,19 @@ public class URLSpanReplacement extends URLSpan {
         this.style = textStyleRun;
     }
 
+    public void setNavigateToPremiumBot(boolean z) {
+        this.navigateToPremiumBot = z;
+    }
+
     public TextStyleSpan.TextStyleRun getTextStyleRun() {
         return this.style;
     }
 
     @Override
     public void onClick(View view) {
+        if (this.navigateToPremiumBot && (view.getContext() instanceof LaunchActivity)) {
+            ((LaunchActivity) view.getContext()).setNavigateToPremiumBot(true);
+        }
         Browser.openUrl(view.getContext(), Uri.parse(getURL()));
     }
 

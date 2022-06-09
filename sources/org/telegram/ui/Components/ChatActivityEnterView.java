@@ -5709,11 +5709,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
     public void setEditingMessageObject(MessageObject messageObject, boolean z) {
         MessageObject messageObject2;
+        boolean z2;
         CharSequence charSequence;
         ArrayList<TLRPC$MessageEntity> arrayList;
         if (this.audioToSend == null && this.videoToSendMessageObject == null && (messageObject2 = this.editingMessageObject) != messageObject) {
             int i = 1;
-            boolean z2 = messageObject2 != null;
+            boolean z3 = messageObject2 != null;
             this.editingMessageObject = messageObject;
             this.editingCaption = z;
             if (messageObject != null) {
@@ -5828,7 +5829,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     }
                     str2 = Emoji.replaceEmoji(new SpannableStringBuilder(spannableStringBuilder), this.messageEditText.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
                 }
-                if (this.draftMessage == null && !z2) {
+                if (this.draftMessage == null && !z3) {
                     this.draftMessage = this.messageEditText.length() > 0 ? this.messageEditText.getText() : null;
                     this.draftSearchWebpage = this.messageWebPageSearch;
                 }
@@ -5865,6 +5866,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 if (imageView != null) {
                     imageView.setVisibility(8);
                 }
+                z2 = true;
             } else {
                 Runnable runnable2 = this.setTextFieldRunnable;
                 if (runnable2 != null) {
@@ -5937,10 +5939,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 if (getVisibility() == 0) {
                     this.delegate.onAttachButtonShow();
                 }
+                z2 = true;
                 updateFieldRight(1);
             }
-            updateFieldHint(false);
-            updateSendAsButton(false);
+            updateFieldHint(z2);
+            updateSendAsButton(z2);
         }
     }
 
@@ -6359,9 +6362,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             float f2 = z3 ? 0.0f : 1.0f;
             float f3 = z3 ? ((-this.senderSelectView.getLayoutParams().width) - marginLayoutParams.leftMargin) - dp : 0.0f;
             float f4 = z3 ? 1.0f : 0.0f;
-            if (!z3) {
-                f = ((-this.senderSelectView.getLayoutParams().width) - marginLayoutParams.leftMargin) - dp;
-            }
+            float f5 = z3 ? 0.0f : ((-this.senderSelectView.getLayoutParams().width) - marginLayoutParams.leftMargin) - dp;
             if (z2 != z3) {
                 ValueAnimator valueAnimator = (ValueAnimator) this.senderSelectView.getTag();
                 if (valueAnimator != null) {
@@ -6370,7 +6371,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 }
                 if (this.parentFragment.getOtherSameChatsDiff() != 0 || !this.parentFragment.fragmentOpened || !z) {
                     this.senderSelectView.setVisibility(z3 ? 0 : 8);
-                    this.senderSelectView.setTranslationX(f);
+                    this.senderSelectView.setTranslationX(f5);
+                    if (z3) {
+                        f = f5;
+                    }
                     for (ImageView imageView : this.emojiButton) {
                         imageView.setTranslationX(f);
                     }
@@ -6382,20 +6386,20 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 this.senderSelectView.setTranslationX(f3);
                 this.messageEditText.setTranslationX(this.senderSelectView.getTranslationX());
-                final float f5 = f2;
-                final float f6 = f4;
-                final float f7 = f3;
-                final float f8 = f;
+                final float f6 = f2;
+                final float f7 = f4;
+                final float f8 = f3;
+                final float f9 = f5;
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ChatActivityEnterView.this.lambda$updateSendAsButton$45(f5, f6, f7, f8, valueAnimator2);
+                        ChatActivityEnterView.this.lambda$updateSendAsButton$45(f6, f7, f8, f9, valueAnimator2);
                     }
                 });
                 final boolean z4 = z3;
-                final float f9 = f2;
-                final float f10 = f4;
-                final float f11 = f;
+                final float f10 = f2;
+                final float f11 = f4;
+                final float f12 = f5;
                 duration.addListener(new AnimatorListenerAdapter() {
                     {
                         ChatActivityEnterView.this = this;
@@ -6406,8 +6410,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         if (z4) {
                             ChatActivityEnterView.this.senderSelectView.setVisibility(0);
                         }
-                        ChatActivityEnterView.this.senderSelectView.setAlpha(f9);
-                        ChatActivityEnterView.this.senderSelectView.setTranslationX(f7);
+                        ChatActivityEnterView.this.senderSelectView.setAlpha(f10);
+                        ChatActivityEnterView.this.senderSelectView.setTranslationX(f8);
                         for (ImageView imageView2 : ChatActivityEnterView.this.emojiButton) {
                             imageView2.setTranslationX(ChatActivityEnterView.this.senderSelectView.getTranslationX());
                         }
@@ -6436,8 +6440,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         } else {
                             ChatActivityEnterView.this.senderSelectView.setVisibility(8);
                         }
-                        ChatActivityEnterView.this.senderSelectView.setAlpha(f10);
-                        ChatActivityEnterView.this.senderSelectView.setTranslationX(f11);
+                        ChatActivityEnterView.this.senderSelectView.setAlpha(f11);
+                        ChatActivityEnterView.this.senderSelectView.setTranslationX(f12);
                         for (ImageView imageView2 : ChatActivityEnterView.this.emojiButton) {
                             imageView2.setTranslationX(ChatActivityEnterView.this.senderSelectView.getTranslationX());
                         }
