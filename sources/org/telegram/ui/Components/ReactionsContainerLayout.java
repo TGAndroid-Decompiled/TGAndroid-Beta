@@ -29,6 +29,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.exoplayer2.util.Log;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -79,6 +80,8 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     private RecyclerView.Adapter listAdapter;
     private MessageObject messageObject;
     private float otherViewsScale;
+    FrameLayout premiumLockContainer;
+    private PremiumLockIconView premiumLockIconView;
     private float pressedProgress;
     private String pressedReaction;
     private int pressedReactionPosition;
@@ -230,28 +233,30 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout frameLayout;
+            View view;
             if (i != 1) {
-                frameLayout = new ReactionHolderView(this.val$context);
+                view = new ReactionHolderView(this.val$context);
             } else {
-                frameLayout = new FrameLayout(this.val$context);
-                PremiumLockIconView premiumLockIconView = new PremiumLockIconView(this.val$context, PremiumLockIconView.TYPE_REACTIONS);
-                premiumLockIconView.setColor(ColorUtils.blendARGB(Theme.getColor("actionBarDefaultSubmenuItemIcon"), Theme.getColor("dialogBackground"), 0.7f));
-                premiumLockIconView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
-                premiumLockIconView.setScaleX(1.1f);
-                premiumLockIconView.setScaleY(1.1f);
-                premiumLockIconView.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-                frameLayout.addView(premiumLockIconView, LayoutHelper.createFrame(26, 26, 17));
-                premiumLockIconView.setOnClickListener(new View.OnClickListener() {
+                ReactionsContainerLayout.this.premiumLockContainer = new FrameLayout(this.val$context);
+                ReactionsContainerLayout.this.premiumLockIconView = new PremiumLockIconView(this.val$context, PremiumLockIconView.TYPE_REACTIONS);
+                ReactionsContainerLayout.this.premiumLockIconView.setColor(ColorUtils.blendARGB(Theme.getColor("actionBarDefaultSubmenuItemIcon"), Theme.getColor("dialogBackground"), 0.7f));
+                ReactionsContainerLayout.this.premiumLockIconView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
+                ReactionsContainerLayout.this.premiumLockIconView.setScaleX(0.0f);
+                ReactionsContainerLayout.this.premiumLockIconView.setScaleY(0.0f);
+                ReactionsContainerLayout.this.premiumLockIconView.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
+                ReactionsContainerLayout reactionsContainerLayout = ReactionsContainerLayout.this;
+                reactionsContainerLayout.premiumLockContainer.addView(reactionsContainerLayout.premiumLockIconView, LayoutHelper.createFrame(26, 26, 17));
+                ReactionsContainerLayout.this.premiumLockIconView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) {
-                        ReactionsContainerLayout.AnonymousClass4.this.lambda$onCreateViewHolder$0(view);
+                    public final void onClick(View view2) {
+                        ReactionsContainerLayout.AnonymousClass4.this.lambda$onCreateViewHolder$0(view2);
                     }
                 });
+                view = ReactionsContainerLayout.this.premiumLockContainer;
             }
             int paddingTop = (ReactionsContainerLayout.this.getLayoutParams().height - ReactionsContainerLayout.this.getPaddingTop()) - ReactionsContainerLayout.this.getPaddingBottom();
-            frameLayout.setLayoutParams(new RecyclerView.LayoutParams(paddingTop - AndroidUtilities.dp(12.0f), paddingTop));
-            return new RecyclerListView.Holder(frameLayout);
+            view.setLayoutParams(new RecyclerView.LayoutParams(paddingTop - AndroidUtilities.dp(12.0f), paddingTop));
+            return new RecyclerListView.Holder(view);
         }
 
         public void lambda$onCreateViewHolder$0(View view) {
@@ -302,7 +307,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     }
 
     public void showUnlockPremium(float f, float f2) {
-        new PremiumFeatureBottomSheet(this.fragment, 4).show();
+        new PremiumFeatureBottomSheet(this.fragment, 4, true).show();
     }
 
     public void setChildScale(View view, float f) {
@@ -423,8 +428,16 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                             reactionHolderView.resetAnimation();
                         }
                     }
-                } else {
-                    checkPressedProgressForOtherViews(childAt);
+                } else if (childAt == this.premiumLockContainer) {
+                    if (childAt.getX() + (childAt.getMeasuredWidth() / 2.0f) <= 0.0f || childAt.getX() + (childAt.getMeasuredWidth() / 2.0f) >= this.recyclerListView.getWidth()) {
+                        this.premiumLockIconView.resetAnimation();
+                    } else {
+                        if (!this.lastVisibleViewsTmp.contains(childAt)) {
+                            this.premiumLockIconView.play(i);
+                            i += 30;
+                        }
+                        this.lastVisibleViews.add(childAt);
+                    }
                 }
             }
         }
@@ -456,20 +469,6 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         this.shadow.draw(canvas);
         canvas.drawCircle(width3, height2, f8, this.bgPaint);
         canvas.restore();
-    }
-
-    private void checkPressedProgressForOtherViews(View view) {
-        int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(view);
-        float measuredWidth = ((view.getMeasuredWidth() * (this.pressedViewScale - 1.0f)) / 3.0f) - ((view.getMeasuredWidth() * (1.0f - this.otherViewsScale)) * (Math.abs(this.pressedReactionPosition - childAdapterPosition) - 1));
-        if (childAdapterPosition < this.pressedReactionPosition) {
-            view.setPivotX(0.0f);
-            view.setTranslationX(-measuredWidth);
-        } else {
-            view.setPivotX(view.getMeasuredWidth());
-            view.setTranslationX(measuredWidth);
-        }
-        view.setScaleX(this.otherViewsScale);
-        view.setScaleY(this.otherViewsScale);
     }
 
     private void checkPressedProgress(Canvas canvas, ReactionHolderView reactionHolderView) {
@@ -931,5 +930,19 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             }
         }
         super.setAlpha(f);
+    }
+
+    @Override
+    public void setTranslationX(float f) {
+        if (f != getTranslationX()) {
+            super.setTranslationX(f);
+            Log.d("kek", "translationX " + f);
+        }
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        Log.d("kek", "left " + i);
     }
 }

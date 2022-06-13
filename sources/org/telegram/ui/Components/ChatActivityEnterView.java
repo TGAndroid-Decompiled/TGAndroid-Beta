@@ -6962,14 +6962,14 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 if (obj instanceof TLRPC$Document) {
                     TLRPC$Document tLRPC$Document = (TLRPC$Document) obj;
                     SendMessagesHelper.getInstance(ChatActivityEnterView.this.currentAccount).sendSticker(tLRPC$Document, str, ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.replyingMessageObject, ChatActivityEnterView.this.getThreadMessage(), obj2, null, z, i);
-                    MediaDataController.getInstance(ChatActivityEnterView.this.currentAccount).addRecentGif(tLRPC$Document, (int) (System.currentTimeMillis() / 1000));
+                    MediaDataController.getInstance(ChatActivityEnterView.this.currentAccount).addRecentGif(tLRPC$Document, (int) (System.currentTimeMillis() / 1000), true);
                     if (DialogObject.isEncryptedDialog(ChatActivityEnterView.this.dialog_id)) {
                         ChatActivityEnterView.this.accountInstance.getMessagesController().saveGif(obj2, tLRPC$Document);
                     }
                 } else if (obj instanceof TLRPC$BotInlineResult) {
                     TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) obj;
                     if (tLRPC$BotInlineResult.document != null) {
-                        MediaDataController.getInstance(ChatActivityEnterView.this.currentAccount).addRecentGif(tLRPC$BotInlineResult.document, (int) (System.currentTimeMillis() / 1000));
+                        MediaDataController.getInstance(ChatActivityEnterView.this.currentAccount).addRecentGif(tLRPC$BotInlineResult.document, (int) (System.currentTimeMillis() / 1000), false);
                         if (DialogObject.isEncryptedDialog(ChatActivityEnterView.this.dialog_id)) {
                             ChatActivityEnterView.this.accountInstance.getMessagesController().saveGif(obj2, tLRPC$BotInlineResult.document);
                         }
@@ -7691,7 +7691,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     }
 
     public void addRecentGif(TLRPC$Document tLRPC$Document) {
-        MediaDataController.getInstance(this.currentAccount).addRecentGif(tLRPC$Document, (int) (System.currentTimeMillis() / 1000));
+        MediaDataController.getInstance(this.currentAccount).addRecentGif(tLRPC$Document, (int) (System.currentTimeMillis() / 1000), true);
         EmojiView emojiView = this.emojiView;
         if (emojiView != null) {
             emojiView.addRecentGif(tLRPC$Document);

@@ -931,13 +931,13 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 AndroidUtilities.updateViewVisibilityAnimated(this.showPasswordButton, false, 0.1f, false);
                 RLottieDrawable[] rLottieDrawableArr = new RLottieDrawable[7];
                 this.animationDrawables = rLottieDrawableArr;
-                rLottieDrawableArr[0] = new RLottieDrawable(R.raw.tsv_setup_monkey_idle1, "2131558548", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
-                this.animationDrawables[1] = new RLottieDrawable(R.raw.tsv_setup_monkey_idle2, "2131558549", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
-                this.animationDrawables[2] = new RLottieDrawable(R.raw.tsv_monkey_close, "2131558541", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
-                this.animationDrawables[3] = new RLottieDrawable(R.raw.tsv_setup_monkey_peek, "2131558550", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
-                this.animationDrawables[4] = new RLottieDrawable(R.raw.tsv_setup_monkey_close_and_peek_to_idle, "2131558547", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
-                this.animationDrawables[5] = new RLottieDrawable(R.raw.tsv_setup_monkey_close_and_peek, "2131558546", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
-                this.animationDrawables[6] = new RLottieDrawable(R.raw.tsv_setup_monkey_tracking, "2131558551", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr[0] = new RLottieDrawable(R.raw.tsv_setup_monkey_idle1, "2131558550", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                this.animationDrawables[1] = new RLottieDrawable(R.raw.tsv_setup_monkey_idle2, "2131558551", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                this.animationDrawables[2] = new RLottieDrawable(R.raw.tsv_monkey_close, "2131558543", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                this.animationDrawables[3] = new RLottieDrawable(R.raw.tsv_setup_monkey_peek, "2131558552", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                this.animationDrawables[4] = new RLottieDrawable(R.raw.tsv_setup_monkey_close_and_peek_to_idle, "2131558549", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                this.animationDrawables[5] = new RLottieDrawable(R.raw.tsv_setup_monkey_close_and_peek, "2131558548", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                this.animationDrawables[6] = new RLottieDrawable(R.raw.tsv_setup_monkey_tracking, "2131558553", AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 this.animationDrawables[6].setPlayInDirectionOfCustomEndFrame(true);
                 this.animationDrawables[6].setCustomEndFrame(19);
                 this.animationDrawables[2].setOnFinishCallback(this.finishCallback, 97);
@@ -1406,16 +1406,20 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     public void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
         int i = 0;
-        if (this.currentType == 2 && AndroidUtilities.isSmallScreen()) {
-            this.imageView.setVisibility(8);
-        } else if (!isIntro()) {
-            this.imageView.setVisibility(isLandscape() ? 8 : 0);
+        if (this.imageView != null) {
+            if (this.currentType == 2 && AndroidUtilities.isSmallScreen()) {
+                this.imageView.setVisibility(8);
+            } else if (!isIntro()) {
+                this.imageView.setVisibility(isLandscape() ? 8 : 0);
+            }
         }
         CustomPhoneKeyboardView customPhoneKeyboardView = this.keyboardView;
-        if (!isCustomKeyboardVisible()) {
-            i = 8;
+        if (customPhoneKeyboardView != null) {
+            if (!isCustomKeyboardVisible()) {
+                i = 8;
+            }
+            customPhoneKeyboardView.setVisibility(i);
         }
-        customPhoneKeyboardView.setVisibility(i);
     }
 
     private void animateSuccess(final Runnable runnable) {

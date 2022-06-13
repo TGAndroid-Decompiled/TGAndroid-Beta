@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableString;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -87,7 +88,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
                     return;
                 }
                 int itemCount = AppIconsSelectorCell.this.getAdapter().getItemCount();
-                if (itemCount <= 4) {
+                if (itemCount == 4) {
                     rect.right = ((AppIconsSelectorCell.this.getWidth() - AndroidUtilities.dp(36.0f)) - (AndroidUtilities.dp(58.0f) * itemCount)) / (itemCount - 1);
                 } else {
                     rect.right = AndroidUtilities.dp(24.0f);
@@ -107,12 +108,17 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         IconHolderView iconHolderView = (IconHolderView) view;
         LauncherIconController.LauncherIcon launcherIcon = this.availableIcons.get(i);
         if (launcherIcon.premium && !UserConfig.hasPremiumOnAccounts()) {
-            baseFragment.showDialog(new PremiumFeatureBottomSheet(baseFragment, 10));
+            baseFragment.showDialog(new PremiumFeatureBottomSheet(baseFragment, 10, true));
         } else if (!LauncherIconController.isEnabled(launcherIcon)) {
             LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(this, context) {
                 @Override
                 public int calculateDtToFit(int i2, int i3, int i4, int i5, int i6) {
                     return (i4 - i2) + AndroidUtilities.dp(16.0f);
+                }
+
+                @Override
+                public float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
+                    return super.calculateSpeedPerPixel(displayMetrics) * 3.0f;
                 }
             };
             linearSmoothScroller.setTargetPosition(i);

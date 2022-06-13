@@ -285,7 +285,7 @@ public class ReactedHeaderView extends FrameLayout {
         if (tLRPC$TL_messageReactions != null && tLRPC$TL_messageReactions.results.size() == 1 && !tLRPC$TL_messages_messageReactionsList.reactions.isEmpty()) {
             for (TLRPC$TL_availableReaction tLRPC$TL_availableReaction : MediaDataController.getInstance(this.currentAccount).getReactionsList()) {
                 if (tLRPC$TL_availableReaction.reaction.equals(tLRPC$TL_messages_messageReactionsList.reactions.get(0).reaction)) {
-                    this.reactView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.static_icon), "50_50", "webp", (Drawable) null, tLRPC$TL_availableReaction);
+                    this.reactView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastframe", "webp", (Drawable) null, tLRPC$TL_availableReaction);
                     this.reactView.setVisibility(0);
                     this.reactView.setAlpha(0.0f);
                     this.reactView.animate().alpha(1.0f).start();

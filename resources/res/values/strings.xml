@@ -8,6 +8,7 @@
     <string name="AboutPremiumDescription">While the free version of Telegram already gives its users more than any other messaging application, **Telegram Premium** pushes its capabilities even further.</string>
     <string name="AboutPremiumDescription2">**Telegram Premium** is a paid option, because most Premium Features require additional expenses from Telegram to third parties such as data center providers and server manufacturers. Contributions from **Telegram Premium** users allow us to cover such costs and also help Telegram stay free for everyone.</string>
     <string name="AboutPremiumTitle">About Telegram Premium</string>
+    <string name="AboutTelegramPremium">About Telegram Premium</string>
     <string name="AccActionCancelDownload">Cancel download</string>
     <string name="AccActionDownload">Download</string>
     <string name="AccActionEnterSelectionMode">Enter selection mode</string>
@@ -365,6 +366,8 @@
     <string name="AddUserErrorBlacklisted">Sorry, you can\'t add this user because they are in the Removed Users list and you can\'t unban them.</string>
     <string name="AddedBy">added by %1$s %2$s</string>
     <string name="AddedToFavorites">Sticker was added to Favorites</string>
+    <string name="AdditionalReactions">Additional Reactions</string>
+    <string name="AdditionalReactionsDescription">Unlock a wider range of reactions on messages by subscribing to Telegram Premium.</string>
     <string name="AdminWillBeRemoved">%1$s will be removed from admins if you restrict them.</string>
     <string name="Agree">Agree</string>
     <string name="Alert">Show notifications</string>
@@ -3645,13 +3648,16 @@
     <string name="PremiumPreviewAnimatedProfiles">Animated Profile Pictures</string>
     <string name="PremiumPreviewAnimatedProfilesDescription">Video avatars animated in chat lists and chats to allow for additional self-expression.</string>
     <string name="PremiumPreviewAppIcon">Premium App Icon</string>
+    <string name="PremiumPreviewAppIcon2">Additional App Icons</string>
     <string name="PremiumPreviewAppIconDescription">Choose from a selection of Telegram app icons for your homescreen.</string>
+    <string name="PremiumPreviewAppIconDescription2">Unlock a wider range of app icons by subscribing to Telegram Premium.</string>
     <string name="PremiumPreviewDownloadSpeed">Faster Download Speed</string>
     <string name="PremiumPreviewDownloadSpeedDescription">No more limits on the speed with which media and documents are downloaded.</string>
     <string name="PremiumPreviewLimits">Doubled limits</string>
     <string name="PremiumPreviewLimitsDescription">Up to %1$d channels, %2$d folders, %3$d pins, %4$d public links, %5$d accounts and more.</string>
     <string name="PremiumPreviewNoAds">No Ads</string>
     <string name="PremiumPreviewNoAdsDescription">No more ads in public channels where Telegram sometimes shows ads.</string>
+    <string name="PremiumPreviewNoAdsDescription2">Remove ads such as this by subscribing to Telegram Premium.</string>
     <string name="PremiumPreviewProfileBadge">Profile Badge</string>
     <string name="PremiumPreviewProfileBadgeDescription">A badge next to your name showing that you are helping support Telegram.</string>
     <string name="PremiumPreviewReactions">Unique Reactions</string>
@@ -4775,6 +4781,7 @@
     <string name="UnhideFromTop">Pin</string>
     <string name="UnknownError">Unknown error</string>
     <string name="UnlockFingerprint">Unlock with Fingerprint</string>
+    <string name="UnlockPremiumIcons">Unlock Premium Icons</string>
     <string name="UnlockPremiumReactions">Unlock Premium Reactions</string>
     <string name="UnlockPremiumReactionsDescription">Unlock additional reactions by subscribing to Telegram Premium.</string>
     <string name="UnlockPremiumStickers">Unlock Premium Stickers</string>

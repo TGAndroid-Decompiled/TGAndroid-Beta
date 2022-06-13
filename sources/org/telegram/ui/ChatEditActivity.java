@@ -575,7 +575,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                     this.setAvatarCell.setTextAndIcon(LocaleController.getString("ChatSetPhotoOrVideo", R.string.ChatSetPhotoOrVideo), R.drawable.msg_addphoto, true);
                 }
                 if (this.cameraDrawable == null) {
-                    this.cameraDrawable = new RLottieDrawable(R.raw.camera_outline, "2131558414", AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+                    this.cameraDrawable = new RLottieDrawable(R.raw.camera_outline, "2131558415", AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
                 }
                 this.setAvatarCell.imageView.setTranslationY(-AndroidUtilities.dp(9.0f));
                 this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));
@@ -658,7 +658,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             this.avatarImage.setImage(ImageLocation.getForLocal(tLRPC$FileLocation), "50_50", this.avatarDrawable, this.currentChat);
             this.setAvatarCell.setTextAndIcon(LocaleController.getString("ChatSetNewPhoto", R.string.ChatSetNewPhoto), R.drawable.msg_addphoto, true);
             if (this.cameraDrawable == null) {
-                this.cameraDrawable = new RLottieDrawable(R.raw.camera_outline, "2131558414", AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+                this.cameraDrawable = new RLottieDrawable(R.raw.camera_outline, "2131558415", AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
             }
             this.setAvatarCell.imageView.setTranslationY(-AndroidUtilities.dp(9.0f));
             this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));

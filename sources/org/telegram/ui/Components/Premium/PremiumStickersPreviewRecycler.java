@@ -33,6 +33,7 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
     boolean hasSelectedView;
     LinearLayoutManager layoutManager;
     View oldSelectedView;
+    private int size;
     private final ArrayList<TLRPC$Document> premiumStickers = new ArrayList<>();
     boolean firstMeasure = true;
     boolean firstDraw = true;
@@ -134,6 +135,16 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
             this.haptic = false;
             smoothScrollBy(0, view.getTop() - ((getMeasuredHeight() - view.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
         }
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        if (View.MeasureSpec.getSize(i2) > View.MeasureSpec.getSize(i)) {
+            this.size = View.MeasureSpec.getSize(i);
+        } else {
+            this.size = View.MeasureSpec.getSize(i2);
+        }
+        super.onMeasure(i, i2);
     }
 
     public void scheduleAutoScroll() {
@@ -273,7 +284,7 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
         invalidate();
     }
 
-    public static class StickerView extends FrameLayout {
+    public class StickerView extends FrameLayout {
         boolean animateImage = true;
         private float animateImageProgress;
         ImageReceiver centerImage;
@@ -311,7 +322,7 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
 
         public StickerView(Context context) {
             super(context);
-            this.view = new View(context) {
+            this.view = new View(context, PremiumStickersPreviewRecycler.this) {
                 @Override
                 public void draw(Canvas canvas) {
                     super.draw(canvas);
@@ -335,6 +346,13 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
                         }
                         if (StickerView.this.effectImage.getLottieAnimation() != null) {
                             StickerView.this.effectImage.getLottieAnimation().start();
+                        }
+                        if (StickerView.this.effectImage.getLottieAnimation() != null && StickerView.this.effectImage.getLottieAnimation().isLastFrame()) {
+                            PremiumStickersPreviewRecycler premiumStickersPreviewRecycler = PremiumStickersPreviewRecycler.this;
+                            if (premiumStickersPreviewRecycler.autoPlayEnabled) {
+                                AndroidUtilities.cancelRunOnUIThread(premiumStickersPreviewRecycler.autoScrollRunnable);
+                                AndroidUtilities.runOnUIThread(PremiumStickersPreviewRecycler.this.autoScrollRunnable, 0L);
+                            }
                         }
                     } else if (stickerView4.effectImage.getLottieAnimation() != null) {
                         StickerView.this.effectImage.getLottieAnimation().stop();
@@ -373,17 +391,17 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
                     }
                     StickerView stickerView11 = StickerView.this;
                     stickerView11.effectProgress = Utilities.clamp(stickerView11.effectProgress, 1.0f, 0.0f);
-                    float measuredWidth = StickerView.this.getMeasuredWidth() * 0.45f;
-                    float f = 1.499267f * measuredWidth;
-                    float measuredWidth2 = getMeasuredWidth() - f;
-                    float measuredHeight = (getMeasuredHeight() - f) / 2.0f;
-                    float f2 = f - measuredWidth;
-                    StickerView.this.centerImage.setImageCoords((f2 - (0.02f * f)) + measuredWidth2, (f2 / 2.0f) + measuredHeight, measuredWidth, measuredWidth);
+                    float f = PremiumStickersPreviewRecycler.this.size * 0.45f;
+                    float f2 = 1.499267f * f;
+                    float measuredWidth = getMeasuredWidth() - f2;
+                    float measuredHeight = (getMeasuredHeight() - f2) / 2.0f;
+                    float f3 = f2 - f;
+                    StickerView.this.centerImage.setImageCoords((f3 - (0.02f * f2)) + measuredWidth, (f3 / 2.0f) + measuredHeight, f, f);
                     StickerView stickerView12 = StickerView.this;
                     stickerView12.centerImage.setAlpha((stickerView12.animateImageProgress * 0.7f) + 0.3f);
                     StickerView.this.centerImage.draw(canvas);
                     if (StickerView.this.effectProgress != 0.0f) {
-                        StickerView.this.effectImage.setImageCoords(measuredWidth2, measuredHeight, f, f);
+                        StickerView.this.effectImage.setImageCoords(measuredWidth, measuredHeight, f2, f2);
                         StickerView stickerView13 = StickerView.this;
                         stickerView13.effectImage.setAlpha(stickerView13.effectProgress);
                         StickerView.this.effectImage.draw(canvas);
@@ -400,13 +418,13 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
 
         @Override
         protected void onMeasure(int i, int i2) {
-            int size = (int) (View.MeasureSpec.getSize(i) * 0.6f);
+            int i3 = (int) (PremiumStickersPreviewRecycler.this.size * 0.6f);
             ViewGroup.LayoutParams layoutParams = this.view.getLayoutParams();
             ViewGroup.LayoutParams layoutParams2 = this.view.getLayoutParams();
-            int dp = size - AndroidUtilities.dp(16.0f);
+            int dp = i3 - AndroidUtilities.dp(16.0f);
             layoutParams2.height = dp;
             layoutParams.width = dp;
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size * 0.7f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (i3 * 0.7f), 1073741824));
         }
 
         public void setSticker(TLRPC$Document tLRPC$Document) {

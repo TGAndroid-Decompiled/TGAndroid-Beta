@@ -388,7 +388,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         }
         int width = (int) (bitmap.getWidth() * max);
         int height = (int) (bitmap.getHeight() * max);
-        return (height <= 0 || width <= 0) ? bitmap : Bitmap.createScaledBitmap(bitmap, height, width, true);
+        return (height <= 0 || width <= 0) ? bitmap : Bitmap.createScaledBitmap(bitmap, width, height, true);
     }
 
     @Override

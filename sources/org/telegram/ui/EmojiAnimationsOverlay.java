@@ -1,5 +1,6 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -303,7 +304,10 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
     }
 
     public boolean onTapItem(ChatMessageCell chatMessageCell, ChatActivity chatActivity) {
-        if (chatActivity.currentUser == null || chatActivity.isSecretChat() || chatMessageCell.getMessageObject() == null || chatMessageCell.getMessageObject().getId() < 0) {
+        if (chatActivity.isSecretChat() || chatMessageCell.getMessageObject() == null || chatMessageCell.getMessageObject().getId() < 0) {
+            return false;
+        }
+        if (!chatMessageCell.getMessageObject().isPremiumSticker() && chatActivity.currentUser == null) {
             return false;
         }
         boolean showAnimationForCell = showAnimationForCell(chatMessageCell, -1, true, false);
@@ -311,8 +315,9 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
             chatMessageCell.performHapticFeedback(3);
         }
         if (chatMessageCell.getMessageObject().isPremiumSticker()) {
-            chatMessageCell.getMessageObject().wasPlayedPremiumAnimation = true;
             chatMessageCell.getMessageObject().forcePlayEffect = false;
+            chatMessageCell.getMessageObject().messageOwner.premiumEffectWasPlayed = true;
+            chatActivity.getMessagesStorage().updateMessageCustomParams(this.dialogId, chatMessageCell.getMessageObject().messageOwner);
             return showAnimationForCell;
         }
         Integer printingStringType = MessagesController.getInstance(this.currentAccount).getPrintingStringType(this.dialogId, this.threadMsgId);
@@ -349,7 +354,6 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
     private boolean showAnimationForCell(ChatMessageCell chatMessageCell, int i, boolean z, boolean z2) {
         final MessageObject messageObject;
         String stickerEmoji;
-        ArrayList<TLRPC$Document> arrayList;
         TLRPC$VideoSize tLRPC$VideoSize;
         TLRPC$Document tLRPC$Document;
         boolean z3;
@@ -365,7 +369,11 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         }
         String unwrapEmoji = unwrapEmoji(stickerEmoji);
         boolean isPremiumSticker = messageObject.isPremiumSticker();
-        if (!(supportedEmoji.contains(unwrapEmoji) || isPremiumSticker) || (((arrayList = this.emojiInteractionsStickersMap.get(unwrapEmoji)) == null || arrayList.isEmpty()) && !isPremiumSticker)) {
+        if (!(supportedEmoji.contains(unwrapEmoji) || isPremiumSticker)) {
+            return false;
+        }
+        ArrayList<TLRPC$Document> arrayList = this.emojiInteractionsStickersMap.get(unwrapEmoji);
+        if ((arrayList == null || arrayList.isEmpty()) && !isPremiumSticker) {
             return false;
         }
         int i3 = 0;
@@ -411,22 +419,24 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                 int i6 = (int) ((imageWidth * 2.0f) / AndroidUtilities.density);
                 Integer num = this.lastAnimationIndex.get(Long.valueOf(tLRPC$Document.id));
                 int intValue = num == null ? 0 : num.intValue();
-                z3 = isPremiumSticker;
                 this.lastAnimationIndex.put(Long.valueOf(tLRPC$Document.id), Integer.valueOf((intValue + 1) % 4));
                 ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$Document);
                 drawingObject.imageReceiver.setUniqKeyPrefix(intValue + "_" + drawingObject.messageId + "_");
                 drawingObject.imageReceiver.setImage(forDocument, i6 + "_" + i6 + "_pcache", null, "tgs", this.set, 1);
-            } else {
                 z3 = isPremiumSticker;
+            } else {
                 int i7 = (int) ((imageWidth * 1.5f) / AndroidUtilities.density);
                 if (i4 > 0) {
+                    z3 = isPremiumSticker;
                     Integer num2 = this.lastAnimationIndex.get(Long.valueOf(messageObject.getDocument().id));
                     int intValue2 = num2 == null ? 0 : num2.intValue();
                     this.lastAnimationIndex.put(Long.valueOf(messageObject.getDocument().id), Integer.valueOf((intValue2 + 1) % 4));
                     drawingObject.imageReceiver.setUniqKeyPrefix(intValue2 + "_" + drawingObject.messageId + "_");
+                } else {
+                    z3 = isPremiumSticker;
                 }
                 drawingObject.document = messageObject.getDocument();
-                drawingObject.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$VideoSize, messageObject.getDocument()), i7 + "_" + i7 + "_pcache", null, "tgs", this.set, 1);
+                drawingObject.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$VideoSize, messageObject.getDocument()), i7 + "_" + i7, null, "tgs", this.set, 1);
             }
             drawingObject.imageReceiver.setLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
             drawingObject.imageReceiver.setAutoRepeat(0);
@@ -537,7 +547,11 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
     }
 
     public void lambda$showStickerSetBulletin$3(MessageObject messageObject) {
-        StickersAlert stickersAlert = new StickersAlert(this.chatActivity.getParentActivity(), this.chatActivity, messageObject.getInputStickerSet(), null, null, this.chatActivity.getResourceProvider());
+        Activity parentActivity = this.chatActivity.getParentActivity();
+        ChatActivity chatActivity = this.chatActivity;
+        TLRPC$InputStickerSet inputStickerSet = messageObject.getInputStickerSet();
+        ChatActivity chatActivity2 = this.chatActivity;
+        StickersAlert stickersAlert = new StickersAlert(parentActivity, chatActivity, inputStickerSet, null, chatActivity2.chatActivityEnterView, chatActivity2.getResourceProvider());
         stickersAlert.setCalcMandatoryInsets(this.chatActivity.isKeyboardVisible());
         this.chatActivity.showDialog(stickersAlert);
     }

@@ -99,7 +99,7 @@ public class ReactionTabHolderView extends FrameLayout {
             if (tLRPC$TL_availableReaction.reaction.equals(str)) {
                 SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, "windowBackgroundGray", 1.0f);
                 this.reaction = tLRPC$TL_availableReaction.reaction;
-                this.reactView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.static_icon), "50_50", "webp", svgThumb, tLRPC$TL_availableReaction);
+                this.reactView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastframe", "webp", svgThumb, tLRPC$TL_availableReaction);
                 this.reactView.setVisibility(0);
                 this.iconView.setVisibility(8);
                 return;

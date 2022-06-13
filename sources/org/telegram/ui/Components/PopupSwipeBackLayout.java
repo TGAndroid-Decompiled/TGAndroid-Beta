@@ -31,6 +31,8 @@ public class PopupSwipeBackLayout extends FrameLayout {
     private boolean isProcessingSwipe;
     private boolean isSwipeBackDisallowed;
     private boolean isSwipeDisallowed;
+    float lastToProgress;
+    float lastTransitionProgress;
     private int notificationIndex;
     private IntCallback onHeightUpdateListener;
     private float overrideForegroundHeight;
@@ -139,10 +141,14 @@ public class PopupSwipeBackLayout extends FrameLayout {
     public void invalidateTransforms(boolean z) {
         float f;
         float f2;
-        if (!this.onSwipeBackProgressListeners.isEmpty()) {
-            for (int i = 0; i < this.onSwipeBackProgressListeners.size(); i++) {
-                this.onSwipeBackProgressListeners.get(i).onSwipeBackProgress(this, this.toProgress, this.transitionProgress);
+        if (!(this.lastToProgress == this.toProgress && this.lastTransitionProgress == this.transitionProgress)) {
+            if (!this.onSwipeBackProgressListeners.isEmpty()) {
+                for (int i = 0; i < this.onSwipeBackProgressListeners.size(); i++) {
+                    this.onSwipeBackProgressListeners.get(i).onSwipeBackProgress(this, this.toProgress, this.transitionProgress);
+                }
             }
+            this.lastToProgress = this.toProgress;
+            this.lastTransitionProgress = this.transitionProgress;
         }
         View childAt = getChildAt(0);
         View view = null;

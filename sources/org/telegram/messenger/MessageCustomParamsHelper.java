@@ -7,7 +7,16 @@ import org.telegram.tgnet.TLRPC$Message;
 
 public class MessageCustomParamsHelper {
     public static boolean isEmpty(TLRPC$Message tLRPC$Message) {
-        return tLRPC$Message.voiceTranscription == null && !tLRPC$Message.voiceTranscriptionOpen && !tLRPC$Message.voiceTranscriptionFinal && !tLRPC$Message.voiceTranscriptionRated && tLRPC$Message.voiceTranscriptionId == 0 && tLRPC$Message.premiumEffectWasPlayed;
+        return tLRPC$Message.voiceTranscription == null && !tLRPC$Message.voiceTranscriptionOpen && !tLRPC$Message.voiceTranscriptionFinal && !tLRPC$Message.voiceTranscriptionRated && tLRPC$Message.voiceTranscriptionId == 0 && !tLRPC$Message.premiumEffectWasPlayed;
+    }
+
+    public static void copyParams(TLRPC$Message tLRPC$Message, TLRPC$Message tLRPC$Message2) {
+        tLRPC$Message2.voiceTranscription = tLRPC$Message.voiceTranscription;
+        tLRPC$Message2.voiceTranscriptionOpen = tLRPC$Message.voiceTranscriptionOpen;
+        tLRPC$Message2.voiceTranscriptionFinal = tLRPC$Message.voiceTranscriptionFinal;
+        tLRPC$Message2.voiceTranscriptionRated = tLRPC$Message.voiceTranscriptionRated;
+        tLRPC$Message2.voiceTranscriptionId = tLRPC$Message.voiceTranscriptionId;
+        tLRPC$Message2.premiumEffectWasPlayed = tLRPC$Message.premiumEffectWasPlayed;
     }
 
     public static void readLocalParams(TLRPC$Message tLRPC$Message, NativeByteBuffer nativeByteBuffer) {

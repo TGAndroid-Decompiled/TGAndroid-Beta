@@ -4620,7 +4620,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (i == 0) {
             this.miniButtonState = 1;
             this.radialProgress.setProgress(0.0f, false);
-            this.currentMessageObject.putInDownloadsStore = true;
+            MessageObject messageObject = this.currentMessageObject;
+            if (messageObject != null && !messageObject.isAnyKindOfSticker()) {
+                this.currentMessageObject.putInDownloadsStore = true;
+            }
             int i2 = this.documentAttachType;
             if (i2 == 3 || i2 == 5) {
                 FileLoader.getInstance(this.currentAccount).loadFile(this.documentAttach, this.currentMessageObject, 1, 0);
@@ -4629,8 +4632,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 createLoadingProgressLayout(this.documentAttach);
                 FileLoader fileLoader = FileLoader.getInstance(this.currentAccount);
                 TLRPC$Document tLRPC$Document = this.documentAttach;
-                MessageObject messageObject = this.currentMessageObject;
-                fileLoader.loadFile(tLRPC$Document, messageObject, 1, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 0);
+                MessageObject messageObject2 = this.currentMessageObject;
+                fileLoader.loadFile(tLRPC$Document, messageObject2, 1, messageObject2.shouldEncryptPhotoOrVideo() ? 2 : 0);
                 this.currentMessageObject.loadingCancelled = false;
             }
             this.radialProgress.setMiniIcon(getMiniIconForCurrentState(), false, true);
@@ -4652,8 +4655,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         String str;
         TLRPC$PhotoSize tLRPC$PhotoSize;
         MessageObject messageObject = this.currentMessageObject;
-        if (messageObject != null) {
-            messageObject.putInDownloadsStore = true;
+        if (messageObject != null && !messageObject.isAnyKindOfSticker()) {
+            this.currentMessageObject.putInDownloadsStore = true;
         }
         int i = this.buttonState;
         int i2 = 2;
@@ -4833,7 +4836,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             if (i10 != 3 && i10 != 5) {
                 return;
             }
-            if ((!messageObject.isOut() || (!this.currentMessageObject.isSending() && !this.currentMessageObject.isEditing())) && !this.currentMessageObject.isSendError()) {
+            if ((!this.currentMessageObject.isOut() || (!this.currentMessageObject.isSending() && !this.currentMessageObject.isEditing())) && !this.currentMessageObject.isSendError()) {
                 this.currentMessageObject.loadingCancelled = true;
                 FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.documentAttach);
                 this.buttonState = 2;

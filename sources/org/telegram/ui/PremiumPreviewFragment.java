@@ -52,13 +52,19 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$TL_boolTrue;
+import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_help_premiumPromo;
+import org.telegram.tgnet.TLRPC$TL_payments_canPurchasePremium;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
+import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FillLastLinearLayoutManager;
@@ -511,8 +517,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.contentView.addView(this.listView);
         PremiumButtonView premiumButtonView = new PremiumButtonView(context, false);
         this.premiumButtonView = premiumButtonView;
-        premiumButtonView.buttonTextView.setText(getPremiumButtonText(this.currentAccount));
-        this.premiumButtonView.buttonTextView.setOnClickListener(new View.OnClickListener() {
+        premiumButtonView.setButton(getPremiumButtonText(this.currentAccount), new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 PremiumPreviewFragment.this.lambda$createView$1(view);
@@ -565,7 +570,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 showDialog(doubledLimitsBottomSheet);
                 return;
             }
-            showDialog(new PremiumFeatureBottomSheet(this, premiumFeatureCell.data.type));
+            showDialog(new PremiumFeatureBottomSheet(this, premiumFeatureCell.data.type, false));
         }
     }
 
@@ -650,7 +655,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         } else {
             ProductDetails productDetails = BillingController.PREMIUM_PRODUCT_DETAILS;
             if (productDetails != null) {
-                List<ProductDetails.SubscriptionOfferDetails> subscriptionOfferDetails = productDetails.getSubscriptionOfferDetails();
+                final List<ProductDetails.SubscriptionOfferDetails> subscriptionOfferDetails = productDetails.getSubscriptionOfferDetails();
                 if (!subscriptionOfferDetails.isEmpty()) {
                     BillingController.getInstance().addResultListener(BillingController.PREMIUM_PRODUCT_ID, new Consumer() {
                         @Override
@@ -658,7 +663,25 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                             PremiumPreviewFragment.lambda$buyPremium$4(BaseFragment.this, (BillingResult) obj);
                         }
                     });
-                    BillingController.getInstance().launchBillingFlow(baseFragment.getParentActivity(), Collections.singletonList(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(BillingController.PREMIUM_PRODUCT_DETAILS).setOfferToken(subscriptionOfferDetails.get(0).getOfferToken()).build()));
+                    final ?? tLRPC$TL_payments_canPurchasePremium = new TLObject() {
+                        public static int constructor = -1435856696;
+
+                        @Override
+                        public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
+                            return TLRPC$Bool.TLdeserialize(abstractSerializedData, i, z);
+                        }
+
+                        @Override
+                        public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+                            abstractSerializedData.writeInt32(constructor);
+                        }
+                    };
+                    baseFragment.getConnectionsManager().sendRequest(tLRPC$TL_payments_canPurchasePremium, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                            PremiumPreviewFragment.lambda$buyPremium$6(BaseFragment.this, subscriptionOfferDetails, tLRPC$TL_payments_canPurchasePremium, tLObject, tLRPC$TL_error);
+                        }
+                    });
                 }
             }
         }
@@ -680,6 +703,23 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 }
                 ((LaunchActivity) baseFragment.getParentActivity()).getFireworksOverlay().start();
             }
+        }
+    }
+
+    public static void lambda$buyPremium$6(final BaseFragment baseFragment, final List list, final TLRPC$TL_payments_canPurchasePremium tLRPC$TL_payments_canPurchasePremium, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                PremiumPreviewFragment.lambda$buyPremium$5(TLObject.this, baseFragment, list, tLRPC$TL_error, tLRPC$TL_payments_canPurchasePremium);
+            }
+        });
+    }
+
+    public static void lambda$buyPremium$5(TLObject tLObject, BaseFragment baseFragment, List list, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_payments_canPurchasePremium tLRPC$TL_payments_canPurchasePremium) {
+        if (tLObject instanceof TLRPC$TL_boolTrue) {
+            BillingController.getInstance().launchBillingFlow(baseFragment.getParentActivity(), Collections.singletonList(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(BillingController.PREMIUM_PRODUCT_DETAILS).setOfferToken(((ProductDetails.SubscriptionOfferDetails) list.get(0)).getOfferToken()).build()));
+        } else {
+            AlertsCreator.processError(baseFragment.getCurrentAccount(), tLRPC$TL_error, baseFragment, tLRPC$TL_payments_canPurchasePremium, new Object[0]);
         }
     }
 
@@ -927,7 +967,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 public void onLongPress() {
                     super.onLongPress();
                     PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
-                    if (premiumPreviewFragment.settingsView == null) {
+                    if (premiumPreviewFragment.settingsView == null || BuildVars.DEBUG_PRIVATE_VERSION) {
                         premiumPreviewFragment.settingsView = new FrameLayout(this.val$context);
                         ScrollView scrollView = new ScrollView(this.val$context);
                         scrollView.addView(new GLIconSettingsView(this.val$context, BackgroundView.this.imageView.mRenderer));

@@ -387,7 +387,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                 GroupCreateFinalActivity.this.lambda$createView$4(view2);
             }
         });
-        this.cameraDrawable = new RLottieDrawable(R.raw.camera, "2131558412", AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null);
+        this.cameraDrawable = new RLottieDrawable(R.raw.camera, "2131558413", AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null);
         RLottieImageView rLottieImageView = new RLottieImageView(context) {
             @Override
             public void invalidate(int i3, int i4, int i5, int i6) {

@@ -61,7 +61,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     public long nextDialogId;
     Runnable onAnimationFinishRunnable;
     View parentView;
-    float progressToBottomPannel;
+    float progressToBottomPanel;
     private final Theme.ResourcesProvider resourcesProvider;
     boolean showBottomPanel;
     AnimatorSet showReleaseAnimator;
@@ -603,7 +603,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     }
 
     public boolean needDrawBottomPanel() {
-        return (this.showBottomPanel || this.progressToBottomPannel > 0.0f) && !this.emptyStub;
+        return (this.showBottomPanel || this.progressToBottomPanel > 0.0f) && !this.emptyStub;
     }
 
     public boolean animationIsRunning() {

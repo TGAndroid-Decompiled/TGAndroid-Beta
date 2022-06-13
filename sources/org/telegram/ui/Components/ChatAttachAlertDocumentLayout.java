@@ -854,7 +854,9 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 z = true;
             } else {
                 ChatAttachAlert chatAttachAlert = this.parentAlert;
-                new LimitReachedBottomSheet(chatAttachAlert.baseFragment, chatAttachAlert.getContainer().getContext(), 6, UserConfig.selectedAccount).show();
+                LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(chatAttachAlert.baseFragment, chatAttachAlert.getContainer().getContext(), 6, UserConfig.selectedAccount);
+                limitReachedBottomSheet.setVeryLargeFile(true);
+                limitReachedBottomSheet.show();
                 return false;
             }
             this.scrolling = false;

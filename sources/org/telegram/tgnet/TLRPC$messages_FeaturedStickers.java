@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 public abstract class TLRPC$messages_FeaturedStickers extends TLObject {
     public static TLRPC$messages_FeaturedStickers TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$messages_FeaturedStickers tLRPC$messages_FeaturedStickers;
-        if (i != -2067782896) {
+        if (i != -1103615738) {
             tLRPC$messages_FeaturedStickers = i != -958657434 ? null : new TLRPC$messages_FeaturedStickers() {
                 public static int constructor = -958657434;
                 public int count;

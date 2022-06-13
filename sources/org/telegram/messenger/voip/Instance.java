@@ -183,11 +183,12 @@ public final class Instance {
         public final byte[] peerTag;
         public final int port;
         public final boolean stun;
+        public final boolean tcp;
         public final boolean turn;
         public final int type;
         public final String username;
 
-        public Endpoint(boolean z, long j, String str, String str2, int i, int i2, byte[] bArr, boolean z2, boolean z3, String str3, String str4) {
+        public Endpoint(boolean z, long j, String str, String str2, int i, int i2, byte[] bArr, boolean z2, boolean z3, String str3, String str4, boolean z4) {
             this.isRtc = z;
             this.id = j;
             this.ipv4 = str;
@@ -199,10 +200,11 @@ public final class Instance {
             this.stun = z3;
             this.username = str3;
             this.password = str4;
+            this.tcp = z4;
         }
 
         public String toString() {
-            return "Endpoint{id=" + this.id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + '}';
+            return "Endpoint{id=" + this.id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
         }
     }
 

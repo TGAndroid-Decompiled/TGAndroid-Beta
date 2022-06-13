@@ -859,9 +859,6 @@ public class MediaDataController extends BaseController {
             ImageReceiver imageReceiver4 = new ImageReceiver();
             imageReceiver4.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), null, null, null, 0, 11);
             ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver4);
-            ImageReceiver imageReceiver5 = new ImageReceiver();
-            imageReceiver5.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.static_icon), null, null, null, 0, 11);
-            ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver5);
         }
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.reactionsDidLoad, new Object[0]);
     }
@@ -1205,25 +1202,25 @@ public class MediaDataController extends BaseController {
         return false;
     }
 
-    public void addRecentGif(final TLRPC$Document tLRPC$Document, int i) {
-        boolean z;
+    public void addRecentGif(final TLRPC$Document tLRPC$Document, int i, boolean z) {
+        boolean z2;
         if (tLRPC$Document != null) {
             int i2 = 0;
             while (true) {
                 if (i2 >= this.recentGifs.size()) {
-                    z = false;
+                    z2 = false;
                     break;
                 }
                 TLRPC$Document tLRPC$Document2 = this.recentGifs.get(i2);
                 if (tLRPC$Document2.id == tLRPC$Document.id) {
                     this.recentGifs.remove(i2);
                     this.recentGifs.add(0, tLRPC$Document2);
-                    z = true;
+                    z2 = true;
                     break;
                 }
                 i2++;
             }
-            if (!z) {
+            if (!z2) {
                 this.recentGifs.add(0, tLRPC$Document);
             }
             if ((this.recentGifs.size() > getMessagesController().savedGifsLimitDefault && !UserConfig.getInstance(this.currentAccount).isPremium()) || this.recentGifs.size() > getMessagesController().savedGifsLimitPremium) {
@@ -1235,12 +1232,14 @@ public class MediaDataController extends BaseController {
                         MediaDataController.this.lambda$addRecentGif$23(remove);
                     }
                 });
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        MediaDataController.lambda$addRecentGif$24(TLRPC$Document.this);
-                    }
-                });
+                if (z) {
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            MediaDataController.lambda$addRecentGif$24(TLRPC$Document.this);
+                        }
+                    });
+                }
             }
             ArrayList<TLRPC$Document> arrayList2 = new ArrayList<>();
             arrayList2.add(tLRPC$Document);

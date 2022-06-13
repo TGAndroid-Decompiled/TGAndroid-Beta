@@ -72,6 +72,7 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.EditTextEmoji;
 import org.telegram.ui.Components.ImageUpdater;
@@ -330,7 +331,8 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             if (!z) {
                 f = 0.0f;
             }
-            valueAnimator2.setDuration(Math.abs(progress - f) * 150.0f);
+            valueAnimator2.setDuration(Math.abs(progress - f) * 200.0f);
+            this.doneButtonDrawableAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.doneButtonDrawableAnimator.start();
         }
     }
@@ -518,7 +520,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     ChannelCreateActivity.this.lambda$createView$7(view3);
                 }
             });
-            this.cameraDrawable = new RLottieDrawable(R.raw.camera, "2131558412", AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null);
+            this.cameraDrawable = new RLottieDrawable(R.raw.camera, "2131558413", AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null);
             RLottieImageView rLottieImageView = new RLottieImageView(context) {
                 @Override
                 public void invalidate(int i2, int i3, int i4, int i5) {

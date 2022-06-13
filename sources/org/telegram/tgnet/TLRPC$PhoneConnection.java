@@ -9,12 +9,13 @@ public abstract class TLRPC$PhoneConnection extends TLObject {
     public byte[] peer_tag;
     public int port;
     public boolean stun;
+    public boolean tcp;
     public boolean turn;
     public String username;
 
     public static TLRPC$PhoneConnection TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$PhoneConnection tLRPC$PhoneConnection;
-        if (i != -1655957568) {
+        if (i != -1665063993) {
             tLRPC$PhoneConnection = i != 1667228533 ? null : new TLRPC$PhoneConnection() {
                 public static int constructor = 1667228533;
 
@@ -54,10 +55,17 @@ public abstract class TLRPC$PhoneConnection extends TLObject {
             };
         } else {
             tLRPC$PhoneConnection = new TLRPC$PhoneConnection() {
-                public static int constructor = -1655957568;
+                public static int constructor = -1665063993;
 
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                    int readInt32 = abstractSerializedData2.readInt32(z2);
+                    this.flags = readInt32;
+                    boolean z3 = true;
+                    if ((readInt32 & 1) == 0) {
+                        z3 = false;
+                    }
+                    this.tcp = z3;
                     this.id = abstractSerializedData2.readInt64(z2);
                     this.ip = abstractSerializedData2.readString(z2);
                     this.ipv6 = abstractSerializedData2.readString(z2);
@@ -68,6 +76,9 @@ public abstract class TLRPC$PhoneConnection extends TLObject {
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                     abstractSerializedData2.writeInt32(constructor);
+                    int i2 = this.tcp ? this.flags | 1 : this.flags & (-2);
+                    this.flags = i2;
+                    abstractSerializedData2.writeInt32(i2);
                     abstractSerializedData2.writeInt64(this.id);
                     abstractSerializedData2.writeString(this.ip);
                     abstractSerializedData2.writeString(this.ipv6);

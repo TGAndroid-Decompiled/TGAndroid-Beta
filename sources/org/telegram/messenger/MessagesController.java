@@ -903,6 +903,9 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public ArrayList<TLRPC$TL_messages_stickerSet> filterPremiumStickers(ArrayList<TLRPC$TL_messages_stickerSet> arrayList) {
+        if (!this.premiumLocked) {
+            return arrayList;
+        }
         int i = 0;
         while (i < arrayList.size()) {
             TLRPC$TL_messages_stickerSet filterPremiumStickers = getInstance(this.currentAccount).filterPremiumStickers(arrayList.get(i));
@@ -1418,8 +1421,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.dialogFiltersChatsLimitPremium = this.mainPreferences.getInt("dialogFiltersChatsLimitPremium", 200);
         this.dialogFiltersPinnedLimitDefault = this.mainPreferences.getInt("dialogFiltersPinnedLimitDefault", 5);
         this.dialogFiltersPinnedLimitPremium = this.mainPreferences.getInt("dialogFiltersPinnedLimitPremium", 10);
-        this.publicLinksLimitDefault = this.mainPreferences.getInt("publicLinksLimitDefault", 5);
-        this.publicLinksLimitPremium = this.mainPreferences.getInt("publicLinksLimitPremium", 10);
+        this.publicLinksLimitDefault = this.mainPreferences.getInt("publicLinksLimitDefault", 10);
+        this.publicLinksLimitPremium = this.mainPreferences.getInt("publicLinksLimitPremium", 20);
         this.captionLengthLimitDefault = this.mainPreferences.getInt("captionLengthLimitDefault", 1024);
         this.captionLengthLimitPremium = this.mainPreferences.getInt("captionLengthLimitPremium", 4096);
         this.aboutLengthLimitDefault = this.mainPreferences.getInt("aboutLengthLimitDefault", 70);

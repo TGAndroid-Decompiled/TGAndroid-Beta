@@ -30,6 +30,7 @@ public class ChooseSpeedLayout {
             }
         });
         addItem.setColors(-328966, -328966);
+        addItem.setSelectorColor(268435455);
         ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_0_2, LocaleController.getString("SpeedVerySlow", R.string.SpeedVerySlow), false, null);
         addItem2.setColors(-328966, -328966);
         addItem2.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +39,7 @@ public class ChooseSpeedLayout {
                 ChooseSpeedLayout.Callback.this.onSpeedSelected(0.25f);
             }
         });
+        addItem2.setSelectorColor(268435455);
         this.speedItems[0] = addItem2;
         ActionBarMenuSubItem addItem3 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_0_5, LocaleController.getString("SpeedSlow", R.string.SpeedSlow), false, null);
         addItem3.setColors(-328966, -328966);
@@ -47,6 +49,7 @@ public class ChooseSpeedLayout {
                 ChooseSpeedLayout.Callback.this.onSpeedSelected(0.5f);
             }
         });
+        addItem3.setSelectorColor(268435455);
         this.speedItems[1] = addItem3;
         ActionBarMenuSubItem addItem4 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_1, LocaleController.getString("SpeedNormal", R.string.SpeedNormal), false, null);
         addItem4.setColors(-328966, -328966);
@@ -56,6 +59,7 @@ public class ChooseSpeedLayout {
                 ChooseSpeedLayout.Callback.this.onSpeedSelected(1.0f);
             }
         });
+        addItem4.setSelectorColor(268435455);
         this.speedItems[2] = addItem4;
         ActionBarMenuSubItem addItem5 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_1_5, LocaleController.getString("SpeedFast", R.string.SpeedFast), false, null);
         addItem5.setColors(-328966, -328966);
@@ -65,6 +69,7 @@ public class ChooseSpeedLayout {
                 ChooseSpeedLayout.Callback.this.onSpeedSelected(1.5f);
             }
         });
+        addItem5.setSelectorColor(268435455);
         this.speedItems[3] = addItem5;
         ActionBarMenuSubItem addItem6 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_2, LocaleController.getString("SpeedVeryFast", R.string.SpeedVeryFast), false, null);
         addItem6.setColors(-328966, -328966);
@@ -74,6 +79,7 @@ public class ChooseSpeedLayout {
                 ChooseSpeedLayout.Callback.this.onSpeedSelected(2.0f);
             }
         });
+        addItem6.setSelectorColor(268435455);
         this.speedItems[4] = addItem6;
     }
 

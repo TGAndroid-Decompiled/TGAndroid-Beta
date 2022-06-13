@@ -155,6 +155,7 @@ public class ActionBarLayout extends FrameLayout {
         private boolean isKeyboardVisible;
         private float pressX;
         private float pressY;
+        private boolean wasPortrait;
         private Rect rect = new Rect();
         private Paint backgroundPaint = new Paint();
 
@@ -205,6 +206,11 @@ public class ActionBarLayout extends FrameLayout {
             int i3;
             int size = View.MeasureSpec.getSize(i);
             int size2 = View.MeasureSpec.getSize(i2);
+            boolean z = size2 > size;
+            if (this.wasPortrait != z && ActionBarLayout.this.isInPreviewMode()) {
+                ActionBarLayout.this.finishPreviewFragment();
+            }
+            this.wasPortrait = z;
             int childCount = getChildCount();
             int i4 = 0;
             while (true) {
@@ -1111,7 +1117,8 @@ public class ActionBarLayout extends FrameLayout {
                     }
                     float interpolation = z3 ? z ? ActionBarLayout.this.overshootInterpolator.getInterpolation(ActionBarLayout.this.animationProgress) : CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(ActionBarLayout.this.animationProgress) : ActionBarLayout.this.decelerateInterpolator.getInterpolation(ActionBarLayout.this.animationProgress);
                     if (z) {
-                        ActionBarLayout.this.containerView.setAlpha(interpolation);
+                        float clamp = MathUtils.clamp(interpolation, 0.0f, 1.0f);
+                        ActionBarLayout.this.containerView.setAlpha(clamp);
                         if (z3) {
                             float f = (0.3f * interpolation) + 0.7f;
                             ActionBarLayout.this.containerView.setScaleX(f);
@@ -1120,12 +1127,12 @@ public class ActionBarLayout extends FrameLayout {
                                 float f2 = 1.0f - interpolation;
                                 ActionBarLayout.this.containerView.setTranslationY(AndroidUtilities.dp(40.0f) * f2);
                                 ActionBarLayout.this.previewMenu.setTranslationY((-AndroidUtilities.dp(70.0f)) * f2);
-                                float f3 = (0.05f * interpolation) + 0.95f;
+                                float f3 = (interpolation * 0.05f) + 0.95f;
                                 ActionBarLayout.this.previewMenu.setScaleX(f3);
                                 ActionBarLayout.this.previewMenu.setScaleY(f3);
                             }
-                            ActionBarLayout.this.previewBackgroundDrawable.setAlpha((int) (46.0f * interpolation));
-                            Theme.moveUpDrawable.setAlpha((int) (interpolation * 255.0f));
+                            ActionBarLayout.this.previewBackgroundDrawable.setAlpha((int) (46.0f * clamp));
+                            Theme.moveUpDrawable.setAlpha((int) (clamp * 255.0f));
                             ActionBarLayout.this.containerView.invalidate();
                             ActionBarLayout.this.invalidate();
                         } else {
@@ -1133,14 +1140,15 @@ public class ActionBarLayout extends FrameLayout {
                         }
                     } else {
                         float f4 = 1.0f - interpolation;
-                        ActionBarLayout.this.containerViewBack.setAlpha(f4);
+                        float clamp2 = MathUtils.clamp(f4, 0.0f, 1.0f);
+                        ActionBarLayout.this.containerViewBack.setAlpha(clamp2);
                         if (z3) {
-                            float f5 = (0.1f * f4) + 0.9f;
+                            float f5 = (f4 * 0.1f) + 0.9f;
                             ActionBarLayout.this.containerViewBack.setScaleX(f5);
                             ActionBarLayout.this.containerViewBack.setScaleY(f5);
-                            ActionBarLayout.this.previewBackgroundDrawable.setAlpha((int) (46.0f * f4));
+                            ActionBarLayout.this.previewBackgroundDrawable.setAlpha((int) (46.0f * clamp2));
                             if (ActionBarLayout.this.previewMenu == null) {
-                                Theme.moveUpDrawable.setAlpha((int) (f4 * 255.0f));
+                                Theme.moveUpDrawable.setAlpha((int) (clamp2 * 255.0f));
                             }
                             ActionBarLayout.this.containerView.invalidate();
                             ActionBarLayout.this.invalidate();

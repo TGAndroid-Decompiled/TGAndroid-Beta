@@ -318,7 +318,7 @@ public class StroageUsageView extends FrameLayout {
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(17.0f), getMeasuredWidth() - AndroidUtilities.dp(24.0f), AndroidUtilities.dp(23.0f));
                 StroageUsageView.this.cellFlickerDrawable.setParentWidth(getMeasuredWidth());
-                StroageUsageView.this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.dp(3.0f));
+                StroageUsageView.this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.dp(3.0f), null);
             }
             int dp = AndroidUtilities.dp(24.0f);
             if (!StroageUsageView.this.calculating) {

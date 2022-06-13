@@ -5,53 +5,63 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.Shader;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 
 public class PremiumButtonView extends FrameLayout {
+    public FrameLayout buttonLayout;
     public TextView buttonTextView;
+    private boolean drawOverlayColor;
     CellFlickerDrawable flickerDrawable;
+    RLottieImageView iconView;
     private boolean inc;
-    private int lastW;
     ValueAnimator overlayAnimator;
     private float overlayProgress;
     public TextView overlayTextView;
-    private Paint paint = new Paint(1);
     private Paint paintOverlayPaint = new Paint(1);
     Path path = new Path();
     private float progress;
-    private Shader shader;
     private boolean showOverlay;
 
     public PremiumButtonView(Context context, boolean z) {
         super(context);
-        new Matrix();
         CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
         this.flickerDrawable = cellFlickerDrawable;
-        cellFlickerDrawable.animationSpeedScale = 1.0f;
+        cellFlickerDrawable.animationSpeedScale = 1.2f;
         cellFlickerDrawable.drawFrame = false;
-        cellFlickerDrawable.repeatProgress = 2.0f;
+        cellFlickerDrawable.repeatProgress = 4.0f;
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
         TextView textView = new TextView(context);
         this.buttonTextView = textView;
-        textView.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        this.buttonTextView.setGravity(17);
+        textView.setGravity(17);
         this.buttonTextView.setTextColor(-1);
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.buttonTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(-1, 120)));
-        addView(this.buttonTextView);
+        RLottieImageView rLottieImageView = new RLottieImageView(context);
+        this.iconView = rLottieImageView;
+        rLottieImageView.setColorFilter(-1);
+        this.iconView.setVisibility(8);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.buttonLayout = frameLayout;
+        frameLayout.addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
+        this.buttonLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(-1, 120)));
+        linearLayout.addView(this.buttonTextView, LayoutHelper.createLinear(-2, -2, 16));
+        linearLayout.addView(this.iconView, LayoutHelper.createLinear(24, 24, 0.0f, 16, 4, 0, 0, 0));
+        addView(this.buttonLayout);
         if (z) {
             TextView textView2 = new TextView(context);
             this.overlayTextView = textView2;
@@ -70,63 +80,56 @@ public class PremiumButtonView extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        if (this.lastW != getMeasuredWidth()) {
-            this.lastW = getMeasuredWidth();
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9015575, -1026983, -1792170}, (float[]) null, Shader.TileMode.CLAMP);
-            this.shader = linearGradient;
-            this.paint.setShader(linearGradient);
-        }
     }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        if (this.shader != null) {
+        if (this.overlayProgress != 1.0f || !this.drawOverlayColor) {
+            if (this.inc) {
+                float f = this.progress + 0.016f;
+                this.progress = f;
+                if (f > 3.0f) {
+                    this.inc = false;
+                }
+            } else {
+                float f2 = this.progress - 0.016f;
+                this.progress = f2;
+                if (f2 < 1.0f) {
+                    this.inc = true;
+                }
+            }
+            PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), this.progress * (-getMeasuredWidth()) * 0.1f, 0.0f);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), PremiumGradient.getInstance().getMainGradientPaint());
+            invalidate();
+        }
+        if (!BuildVars.IS_BILLING_UNAVAILABLE) {
+            this.flickerDrawable.setParentWidth(getMeasuredWidth());
+            this.flickerDrawable.draw(canvas, AndroidUtilities.rectTmp, AndroidUtilities.dp(8.0f), null);
+        }
+        float f3 = this.overlayProgress;
+        if (f3 != 0.0f && this.drawOverlayColor) {
+            this.paintOverlayPaint.setAlpha((int) (f3 * 255.0f));
             if (this.overlayProgress != 1.0f) {
-                if (this.inc) {
-                    float f = this.progress + 0.016f;
-                    this.progress = f;
-                    if (f > 3.0f) {
-                        this.inc = false;
-                    }
-                } else {
-                    float f2 = this.progress - 0.016f;
-                    this.progress = f2;
-                    if (f2 < 1.0f) {
-                        this.inc = true;
-                    }
-                }
-                PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), this.progress * (-getMeasuredWidth()) * 0.1f, 0.0f);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), PremiumGradient.getInstance().getMainGradientPaint());
-                invalidate();
-            }
-            if (!BuildVars.IS_BILLING_UNAVAILABLE) {
-                this.flickerDrawable.setParentWidth(getMeasuredWidth());
-                this.flickerDrawable.draw(canvas, rectF, AndroidUtilities.dp(8.0f));
-            }
-            float f3 = this.overlayProgress;
-            if (f3 != 0.0f) {
-                this.paintOverlayPaint.setAlpha((int) (f3 * 255.0f));
-                if (this.overlayProgress != 1.0f) {
-                    this.path.rewind();
-                    this.path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, Math.max(getMeasuredWidth(), getMeasuredHeight()) * 1.4f * this.overlayProgress, Path.Direction.CW);
-                    canvas.save();
-                    canvas.clipPath(this.path);
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.paintOverlayPaint);
-                    canvas.restore();
-                } else {
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.paintOverlayPaint);
-                }
+                this.path.rewind();
+                this.path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, Math.max(getMeasuredWidth(), getMeasuredHeight()) * 1.4f * this.overlayProgress, Path.Direction.CW);
+                canvas.save();
+                canvas.clipPath(this.path);
+                canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.paintOverlayPaint);
+                canvas.restore();
+            } else {
+                canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.paintOverlayPaint);
             }
         }
         super.dispatchDraw(canvas);
     }
 
-    public void setOverlayText(String str, boolean z) {
+    public void setOverlayText(String str, boolean z, boolean z2) {
         this.showOverlay = true;
+        this.drawOverlayColor = z;
         this.overlayTextView.setText(str);
-        updateOverlay(z);
+        updateOverlay(z2);
     }
 
     private void updateOverlay(boolean z) {
@@ -190,5 +193,34 @@ public class PremiumButtonView extends FrameLayout {
     public void clearOverlayText() {
         this.showOverlay = false;
         updateOverlay(true);
+    }
+
+    public void setIcon(int i) {
+        this.iconView.setAnimation(i, 24, 24);
+        CellFlickerDrawable cellFlickerDrawable = this.flickerDrawable;
+        cellFlickerDrawable.progress = 2.0f;
+        cellFlickerDrawable.setOnRestartCallback(new Runnable() {
+            @Override
+            public final void run() {
+                PremiumButtonView.this.lambda$setIcon$0();
+            }
+        });
+        invalidate();
+        this.iconView.setVisibility(0);
+    }
+
+    public void lambda$setIcon$0() {
+        this.iconView.getAnimatedDrawable().setCurrentFrame(0, true);
+        this.iconView.playAnimation();
+    }
+
+    public void hideIcon() {
+        this.flickerDrawable.setOnRestartCallback(null);
+        this.iconView.setVisibility(8);
+    }
+
+    public void setButton(String str, View.OnClickListener onClickListener) {
+        this.buttonTextView.setText(str);
+        this.buttonLayout.setOnClickListener(onClickListener);
     }
 }

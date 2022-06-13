@@ -47,7 +47,7 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
             this.reactionsLayout.getLayoutParams().width = -2;
         }
         int measuredWidth2 = this.popupWindowLayout.getSwipeBack() != null ? this.popupWindowLayout.getSwipeBack().getMeasuredWidth() - this.popupWindowLayout.getSwipeBack().getChildAt(0).getMeasuredWidth() : 0;
-        if (this.reactionsLayout.getLayoutParams().width != -2 && this.reactionsLayout.getLayoutParams().width + measuredWidth2 > getMeasuredWidth()) {
+        if (this.reactionsLayout.getLayoutParams().width != -2 && this.reactionsLayout.getLayoutParams().width + measuredWidth2 > getMeasuredWidth() && this.popupWindowLayout.getSwipeBack() != null && this.popupWindowLayout.getSwipeBack().getMeasuredWidth() > getMeasuredWidth()) {
             measuredWidth2 = (getMeasuredWidth() - this.reactionsLayout.getLayoutParams().width) + AndroidUtilities.dp(8.0f);
         }
         if (measuredWidth2 >= 0) {

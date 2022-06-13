@@ -71,14 +71,16 @@ public class CrossfadeDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        float f = this.progress;
-        if (f < 1.0f) {
-            this.topDrawable.setAlpha((int) (this.globalAlpha * (1.0f - f)));
+        Drawable drawable = this.topDrawable;
+        int i = (int) (this.globalAlpha * (1.0f - this.progress));
+        drawable.setAlpha(i);
+        Drawable drawable2 = this.bottomDrawable;
+        int i2 = (int) (this.globalAlpha * this.progress);
+        drawable2.setAlpha(i2);
+        if (i > 0) {
             this.topDrawable.draw(canvas);
         }
-        float f2 = this.progress;
-        if (f2 > 0.0f) {
-            this.bottomDrawable.setAlpha((int) (this.globalAlpha * f2));
+        if (i2 > 0) {
             this.bottomDrawable.draw(canvas);
         }
     }

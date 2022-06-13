@@ -120,7 +120,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         this.rootLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 8388659, 0.0f, 0.0f, 62.0f, 0.0f));
         int themedColor = getThemedColor("featuredStickers_addButton");
         int dp = AndroidUtilities.dp(28.0f);
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.sun_outline, "2131558527", dp, dp, false, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.sun_outline, "2131558529", dp, dp, false, null);
         this.darkThemeDrawable = rLottieDrawable;
         setForceDark(Theme.getActiveTheme().isDark(), false);
         rLottieDrawable.setAllowDecodeSingleFrame(true);

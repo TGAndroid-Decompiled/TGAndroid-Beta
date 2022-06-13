@@ -5,6 +5,7 @@ import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -20,11 +21,12 @@ public class CellFlickerDrawable {
     private Shader gradientShader2;
     long lastUpdateTime;
     Matrix matrix;
+    Runnable onRestartCallback;
     private Paint paint;
     private Paint paintOutline;
     View parentView;
     int parentWidth;
-    float progress;
+    public float progress;
     public boolean repeatEnabled;
     public float repeatProgress;
     int size;
@@ -65,35 +67,53 @@ public class CellFlickerDrawable {
         this.progress = f;
     }
 
-    public void draw(Canvas canvas, RectF rectF, float f) {
+    public void draw(Canvas canvas, RectF rectF, float f, View view) {
+        update(view);
+        canvas.drawRoundRect(rectF, f, f, this.paint);
+        if (this.drawFrame) {
+            canvas.drawRoundRect(rectF, f, f, this.paintOutline);
+        }
+    }
+
+    public void draw(Canvas canvas, Path path, View view) {
+        update(view);
+        canvas.drawPath(path, this.paint);
+        if (this.drawFrame) {
+            canvas.drawPath(path, this.paintOutline);
+        }
+    }
+
+    private void update(View view) {
         if (this.progress <= 1.0f || this.repeatEnabled) {
+            if (view != null) {
+                view.invalidate();
+            }
             long currentTimeMillis = System.currentTimeMillis();
             long j = this.lastUpdateTime;
             if (j != 0) {
                 long j2 = currentTimeMillis - j;
                 if (j2 > 10) {
-                    float f2 = this.progress + ((((float) j2) / 1200.0f) * this.animationSpeedScale);
-                    this.progress = f2;
-                    if (f2 > this.repeatProgress) {
+                    float f = this.progress + ((((float) j2) / 1200.0f) * this.animationSpeedScale);
+                    this.progress = f;
+                    if (f > this.repeatProgress) {
                         this.progress = 0.0f;
+                        Runnable runnable = this.onRestartCallback;
+                        if (runnable != null) {
+                            runnable.run();
+                        }
                     }
                     this.lastUpdateTime = currentTimeMillis;
                 }
             } else {
                 this.lastUpdateTime = currentTimeMillis;
             }
-            float f3 = this.progress;
-            if (f3 <= 1.0f) {
-                int i = this.parentWidth;
-                int i2 = this.size;
-                this.matrix.setTranslate(((i + (i2 * 2)) * f3) - i2, 0.0f);
-                this.gradientShader.setLocalMatrix(this.matrix);
-                this.gradientShader2.setLocalMatrix(this.matrix);
-                canvas.drawRoundRect(rectF, f, f, this.paint);
-                if (this.drawFrame) {
-                    canvas.drawRoundRect(rectF, f, f, this.paintOutline);
-                }
-            }
+            int i = this.parentWidth;
+            int i2 = this.size;
+            float f2 = ((i + (i2 * 2)) * this.progress) - i2;
+            this.matrix.reset();
+            this.matrix.setTranslate(f2, 0.0f);
+            this.gradientShader.setLocalMatrix(this.matrix);
+            this.gradientShader2.setLocalMatrix(this.matrix);
         }
     }
 
@@ -107,6 +127,10 @@ public class CellFlickerDrawable {
                 this.progress = f;
                 if (f > 4.0f) {
                     this.progress = 0.0f;
+                    Runnable runnable = this.onRestartCallback;
+                    if (runnable != null) {
+                        runnable.run();
+                    }
                 }
                 this.lastUpdateTime = currentTimeMillis;
             }
@@ -143,6 +167,10 @@ public class CellFlickerDrawable {
         return new DrawableInterface(svgDrawable);
     }
 
+    public void setOnRestartCallback(Runnable runnable) {
+        this.onRestartCallback = runnable;
+    }
+
     public class DrawableInterface extends Drawable {
         public float radius;
         SvgHelper.SvgDrawable svgDrawable;
@@ -165,7 +193,7 @@ public class CellFlickerDrawable {
             CellFlickerDrawable.this.setParentWidth(getBounds().width());
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getBounds());
-            CellFlickerDrawable.this.draw(canvas, rectF, this.radius);
+            CellFlickerDrawable.this.draw(canvas, rectF, this.radius, null);
             SvgHelper.SvgDrawable svgDrawable = this.svgDrawable;
             if (svgDrawable != null) {
                 svgDrawable.setPaint(CellFlickerDrawable.this.paint);
@@ -173,12 +201,14 @@ public class CellFlickerDrawable {
                 int i = cellFlickerDrawable.parentWidth;
                 int i2 = cellFlickerDrawable.size;
                 float f = (((i2 * 2) + i) * cellFlickerDrawable.progress) - i2;
-                int i3 = (int) (i * 0.5f);
-                CellFlickerDrawable.this.matrix.setScale(1.0f / this.svgDrawable.getScale(), 0.0f);
-                CellFlickerDrawable.this.matrix.setTranslate(f - (getBounds().centerX() - (i3 / 2.0f)), 0.0f);
+                float scale = this.svgDrawable.getScale();
+                CellFlickerDrawable.this.matrix.reset();
+                CellFlickerDrawable cellFlickerDrawable2 = CellFlickerDrawable.this;
+                cellFlickerDrawable2.matrix.setScale(1.0f / scale, 0.0f, cellFlickerDrawable2.size / 2.0f, 0.0f);
+                CellFlickerDrawable.this.matrix.setTranslate((f - this.svgDrawable.getBounds().left) - (CellFlickerDrawable.this.size / scale), 0.0f);
                 CellFlickerDrawable.this.gradientShader.setLocalMatrix(CellFlickerDrawable.this.matrix);
-                int i4 = i3 / 2;
-                this.svgDrawable.setBounds(getBounds().centerX() - i4, getBounds().centerY() - i4, getBounds().centerX() + i4, getBounds().centerY() + i4);
+                int i3 = ((int) (i * 0.5f)) / 2;
+                this.svgDrawable.setBounds(getBounds().centerX() - i3, getBounds().centerY() - i3, getBounds().centerX() + i3, getBounds().centerY() + i3);
                 this.svgDrawable.draw(canvas);
             }
             CellFlickerDrawable.this.parentView.invalidate();

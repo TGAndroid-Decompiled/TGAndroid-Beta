@@ -273,7 +273,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
             @Override
             public boolean needSend() {
-                return StickersAlert.this.previewSendButton.getVisibility() == 0 && StickersAlert.this.importingStickers == null;
+                return StickersAlert.this.delegate != null;
             }
 
             @Override
@@ -441,7 +441,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
             @Override
             public boolean needSend() {
-                return StickersAlert.this.previewSendButton.getVisibility() == 0 && StickersAlert.this.importingStickers == null;
+                return StickersAlert.this.delegate != null;
             }
 
             @Override
@@ -612,7 +612,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
             @Override
             public boolean needSend() {
-                return StickersAlert.this.previewSendButton.getVisibility() == 0 && StickersAlert.this.importingStickers == null;
+                return StickersAlert.this.delegate != null;
             }
 
             @Override
@@ -816,7 +816,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 }
                 if (StickersAlert.this.gridView.getPaddingTop() != i6) {
                     StickersAlert.this.ignoreLayout = true;
-                    StickersAlert.this.gridView.setPadding(AndroidUtilities.dp(10.0f), i6, AndroidUtilities.dp(10.0f), 0);
+                    StickersAlert.this.gridView.setPadding(AndroidUtilities.dp(10.0f), i6, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(8.0f));
                     StickersAlert.this.emptyView.setPadding(0, i6, 0, 0);
                     StickersAlert.this.ignoreLayout = false;
                 }

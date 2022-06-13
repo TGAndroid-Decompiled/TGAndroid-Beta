@@ -2217,7 +2217,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.writeButton.setContentDescription(LocaleController.getString("ViewDiscussion", R.string.ViewDiscussion));
         } else if (this.imageUpdater != null) {
             this.cameraDrawable = new RLottieDrawable(R.raw.camera_outline, String.valueOf((int) R.raw.camera_outline), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), false, null);
-            this.cellCameraDrawable = new RLottieDrawable(R.raw.camera_outline, "2131558414_cell", AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), false, null);
+            this.cellCameraDrawable = new RLottieDrawable(R.raw.camera_outline, "2131558415_cell", AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), false, null);
             this.writeButton.setAnimation(this.cameraDrawable);
             this.writeButton.setContentDescription(LocaleController.getString("AccDescrChangeProfilePicture", R.string.AccDescrChangeProfilePicture));
             this.writeButton.setPadding(AndroidUtilities.dp(2.0f), 0, 0, AndroidUtilities.dp(2.0f));

@@ -106,7 +106,7 @@ public class DoubledLimitsBottomSheet extends BottomSheetWithRecyclerListView im
         this.premiumButtonView = premiumButtonView;
         premiumButtonView.buttonTextView.setText(PremiumPreviewFragment.getPremiumButtonText(i));
         this.containerView.addView(this.premiumButtonView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
-        this.premiumButtonView.buttonTextView.setOnClickListener(new View.OnClickListener() {
+        this.premiumButtonView.buttonLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
                 DoubledLimitsBottomSheet.this.lambda$new$0(i, baseFragment, view2);
@@ -118,6 +118,7 @@ public class DoubledLimitsBottomSheet extends BottomSheetWithRecyclerListView im
                 DoubledLimitsBottomSheet.this.lambda$new$1(view2);
             }
         });
+        this.recyclerListView.setPadding(0, 0, 0, AndroidUtilities.dp(72.0f));
         bindPremium(UserConfig.getInstance(getCurrentAccount()).isPremium());
     }
 
@@ -134,7 +135,7 @@ public class DoubledLimitsBottomSheet extends BottomSheetWithRecyclerListView im
 
     private void bindPremium(boolean z) {
         if (z) {
-            this.premiumButtonView.setOverlayText(LocaleController.getString("OK", R.string.OK), false);
+            this.premiumButtonView.setOverlayText(LocaleController.getString("OK", R.string.OK), false, false);
         }
     }
 

@@ -13,6 +13,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.OverScroller;
 import j$.util.Comparator$CC;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
@@ -50,6 +51,7 @@ public class CarouselView extends View implements PagerHeaderView {
 
     public static class DrawingObject {
         public double angle;
+        CarouselView carouselView;
         public float x;
         public float y;
         float yRelative;
@@ -182,6 +184,15 @@ public class CarouselView extends View implements PagerHeaderView {
         });
         this.drawingObjects = arrayList;
         this.drawingObjectsSorted = new ArrayList<>(arrayList);
+        for (int i = 0; i < arrayList.size() / 2; i++) {
+            float f = i;
+            arrayList.get(i).y = arrayList.size() / f;
+            arrayList.get((arrayList.size() - 1) - i).y = arrayList.size() / f;
+        }
+        Collections.sort(arrayList, this.comparator);
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            arrayList.get(i2).carouselView = this;
+        }
     }
 
     public void checkSelectedHaptic() {
@@ -275,8 +286,8 @@ public class CarouselView extends View implements PagerHeaderView {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         for (int i = 0; i < 2; i++) {
-            for (int i2 = 0; i2 < this.drawingObjects.size(); i2++) {
-                this.drawingObjects.get(i2).onAttachToWindow(this, i);
+            for (int i2 = 0; i2 < this.drawingObjectsSorted.size(); i2++) {
+                this.drawingObjectsSorted.get(i2).onAttachToWindow(this, i);
             }
         }
     }
@@ -324,6 +335,19 @@ public class CarouselView extends View implements PagerHeaderView {
         float clamp = 1.0f - Utilities.clamp(Math.abs(f) / getMeasuredWidth(), 1.0f, 0.0f);
         setScaleX(clamp);
         setScaleY(clamp);
+    }
+
+    public void autoplayToNext() {
+        ArrayList<? extends DrawingObject> arrayList;
+        AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
+        if (this.autoPlayEnabled) {
+            int indexOf = this.drawingObjects.indexOf(this.drawingObjectsSorted.get(arrayList.size() - 1)) - 1;
+            if (indexOf < 0) {
+                indexOf = this.drawingObjects.size() - 1;
+            }
+            this.drawingObjects.get(indexOf).select();
+            AndroidUtilities.runOnUIThread(this.autoScrollRunnable, 16L);
+        }
     }
 
     void setAutoPlayEnabled(boolean z) {

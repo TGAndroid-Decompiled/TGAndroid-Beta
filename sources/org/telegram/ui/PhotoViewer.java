@@ -3123,6 +3123,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.menuItem.addSubItem(7, R.drawable.msg_cancel, LocaleController.getString("StopDownload", R.string.StopDownload)).setColors(-328966, -328966);
         this.menuItem.redrawPopup(-115203550);
         setMenuItemIcon();
+        this.menuItem.setPopupItemsSelectorColor(268435455);
         this.menuItem.setSubMenuDelegate(new ActionBarMenuItem.ActionBarSubMenuItemDelegate() {
             @Override
             public void onShowSubMenu() {
@@ -5818,14 +5819,18 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public void lambda$switchToPip$45(CubicBezierInterpolator cubicBezierInterpolator, float f, float f2, float f3, float f4, float f5, float f6, float f7, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float interpolation = cubicBezierInterpolator == null ? floatValue : cubicBezierInterpolator.getInterpolation(floatValue);
-        float f8 = f * (1.0f - floatValue);
-        this.textureImageView.setTranslationX((f2 * floatValue) + f8);
-        float f9 = 1.0f - interpolation;
-        this.textureImageView.setTranslationY((f3 * f9) + (f4 * interpolation));
-        this.textureImageView.invalidateOutline();
-        this.videoTextureView.setTranslationX(f8 + (f5 * floatValue));
-        this.videoTextureView.setTranslationY((f6 * f9) + (f7 * interpolation));
-        this.videoTextureView.invalidateOutline();
+        ImageView imageView = this.textureImageView;
+        if (imageView != null) {
+            imageView.setTranslationX(((1.0f - floatValue) * f) + (f2 * floatValue));
+            this.textureImageView.setTranslationY((f3 * (1.0f - interpolation)) + (f4 * interpolation));
+            this.textureImageView.invalidateOutline();
+        }
+        TextureView textureView = this.videoTextureView;
+        if (textureView != null) {
+            textureView.setTranslationX((f * (1.0f - floatValue)) + (f5 * floatValue));
+            this.videoTextureView.setTranslationY((f6 * (1.0f - interpolation)) + (f7 * interpolation));
+            this.videoTextureView.invalidateOutline();
+        }
         FirstFrameView firstFrameView = this.firstFrameView;
         if (firstFrameView != null) {
             firstFrameView.setTranslationX(this.videoTextureView.getTranslationX());
@@ -6098,11 +6103,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void onUserLeaveHint() {
-        if (this.pipItem.getAlpha() == 1.0f && AndroidUtilities.checkInlinePermissions(this.parentActivity) && !PipVideoOverlay.isVisible()) {
+        PhotoViewerWebView photoViewerWebView;
+        if (this.pipItem.getAlpha() == 1.0f && AndroidUtilities.checkInlinePermissions(this.parentActivity) && !PipVideoOverlay.isVisible() && (photoViewerWebView = this.photoViewerWebView) != null) {
             if (!this.isEmbedVideo) {
                 this.pipVideoOverlayAnimateFlag = false;
                 switchToPip(false);
-            } else if (!this.photoViewerWebView.isInAppOnly() && this.photoViewerWebView.openInPip()) {
+            } else if (photoViewerWebView != null && !photoViewerWebView.isInAppOnly() && this.photoViewerWebView.openInPip()) {
                 this.pipVideoOverlayAnimateFlag = false;
                 if (PipInstance != null) {
                     PipInstance.destroyPhotoViewer();
@@ -12015,7 +12021,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                         }
                                     }
                                     if (chatActivity2 != null) {
-                                        chatActivity2.lambda$openDiscussionMessageChat$225(PhotoViewer.this.animationEndRunnable);
+                                        chatActivity2.lambda$openDiscussionMessageChat$224(PhotoViewer.this.animationEndRunnable);
                                         return;
                                     }
                                     PhotoViewer.this.animationEndRunnable.run();

@@ -4430,7 +4430,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     public void lambda$showChatPreview$26(MessagesController.DialogFilter dialogFilter, TLRPC$Dialog tLRPC$Dialog, long j) {
         int i;
-        long j2;
+        boolean z;
         int i2 = ConnectionsManager.DEFAULT_DATACENTER_ID;
         if (dialogFilter == null || !isDialogPinned(tLRPC$Dialog)) {
             i = ConnectionsManager.DEFAULT_DATACENTER_ID;
@@ -4444,7 +4444,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         TLRPC$EncryptedChat encryptedChat = DialogObject.isEncryptedDialog(j) ? getMessagesController().getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(j))) : null;
         if (!isDialogPinned(tLRPC$Dialog)) {
             pinDialog(j, true, dialogFilter, i, true);
-            getUndoView().showWithAction(0L, 78, (Object) 1);
+            getUndoView().showWithAction(0L, 78, (Object) 1, (Object) 1600, (Runnable) null, (Runnable) null);
             if (dialogFilter != null) {
                 if (encryptedChat != null) {
                     if (!dialogFilter.alwaysShow.contains(Long.valueOf(encryptedChat.user_id))) {
@@ -4456,16 +4456,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
         } else {
             pinDialog(j, false, dialogFilter, i, true);
-            getUndoView().showWithAction(0L, 79, (Object) 1);
+            getUndoView().showWithAction(0L, 79, (Object) 1, (Object) 1600, (Runnable) null, (Runnable) null);
         }
         if (dialogFilter != null) {
-            j2 = 0;
+            z = true;
             FilterCreateActivity.saveFilterToServer(dialogFilter, dialogFilter.flags, dialogFilter.name, dialogFilter.alwaysShow, dialogFilter.neverShow, dialogFilter.pinnedDialogs, false, false, true, true, false, this, null);
         } else {
-            j2 = 0;
+            z = true;
         }
-        getMessagesController().reorderPinnedDialogs(this.folderId, null, j2);
-        updateCounters(true);
+        getMessagesController().reorderPinnedDialogs(this.folderId, null, 0L);
+        updateCounters(z);
         if (this.viewPages != null) {
             int i4 = 0;
             while (true) {

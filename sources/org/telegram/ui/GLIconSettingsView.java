@@ -14,7 +14,7 @@ import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
 import org.telegram.ui.Components.SeekBarView;
 
 public class GLIconSettingsView extends LinearLayout {
-    public static float smallStarsSize = 1.3f;
+    public static float smallStarsSize = 1.0f;
 
     public GLIconSettingsView(final Context context, final GLIconRenderer gLIconRenderer) {
         super(context);

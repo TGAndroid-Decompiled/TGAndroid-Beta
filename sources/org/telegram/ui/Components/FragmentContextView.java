@@ -399,7 +399,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f2 = dp;
                 rectF.set(f2, f2, getWidth() - dp, getHeight() - dp);
-                FragmentContextView.this.joinButtonFlicker.draw(canvas, rectF, AndroidUtilities.dp(16.0f));
+                FragmentContextView.this.joinButtonFlicker.draw(canvas, rectF, AndroidUtilities.dp(16.0f), this);
                 if (FragmentContextView.this.joinButtonFlicker.getProgress() < 1.0f && !FragmentContextView.this.joinButtonFlicker.repeatEnabled) {
                     invalidate();
                 }
@@ -478,7 +478,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         });
         this.avatars.setVisibility(8);
         addView(this.avatars, LayoutHelper.createFrame(108, i, 51));
-        this.muteDrawable = new RLottieDrawable(R.raw.voice_muted, "2131558562", AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), true, null);
+        this.muteDrawable = new RLottieDrawable(R.raw.voice_muted, "2131558565", AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), true, null);
         AnonymousClass7 r1 = new AnonymousClass7(context);
         this.muteButton = r1;
         r1.setColorFilter(new PorterDuffColorFilter(getThemedColor("returnToCallText"), PorterDuff.Mode.MULTIPLY));

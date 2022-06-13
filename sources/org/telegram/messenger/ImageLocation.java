@@ -310,7 +310,7 @@ public class ImageLocation {
         return imageLocation;
     }
 
-    public static String getStippedKey(Object obj, Object obj2, Object obj3) {
+    public static String getStrippedKey(Object obj, Object obj2, Object obj3) {
         if (obj instanceof TLRPC$WebPage) {
             if (obj2 instanceof ImageLocation) {
                 ImageLocation imageLocation = (ImageLocation) obj2;
@@ -351,7 +351,7 @@ public class ImageLocation {
         TLRPC$PhotoSize tLRPC$PhotoSize = this.photoSize;
         if ((tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) || (tLRPC$PhotoSize instanceof TLRPC$TL_photoPathSize)) {
             if (tLRPC$PhotoSize.bytes.length > 0) {
-                return getStippedKey(obj, obj2, tLRPC$PhotoSize);
+                return getStrippedKey(obj, obj2, tLRPC$PhotoSize);
             }
             return null;
         } else if (this.location != null) {

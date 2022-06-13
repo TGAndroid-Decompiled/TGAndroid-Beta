@@ -87,6 +87,7 @@ public class BottomSheet extends Dialog {
     protected boolean fullWidth;
     private float hideSystemVerticalInsetsProgress;
     protected boolean isFullscreen;
+    protected boolean isPortrait;
     private int[] itemIcons;
     private ArrayList<BottomSheetCell> itemViews;
     private CharSequence[] items;
@@ -558,6 +559,10 @@ public class BottomSheet extends Dialog {
                 }
             }
         }
+    }
+
+    protected int getBottomSheetWidth(boolean z, int i, int i2) {
+        return z ? i : (int) Math.max(i * 0.8f, Math.min(AndroidUtilities.dp(480.0f), i));
     }
 
     public void setHideSystemVerticalInsets(boolean z) {

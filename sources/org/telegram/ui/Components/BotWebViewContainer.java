@@ -746,7 +746,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
             }
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            this.flickerDrawable.draw(canvas, rectF, 0.0f);
+            this.flickerDrawable.draw(canvas, rectF, 0.0f, this);
             invalidate();
             return drawChild;
         } else if (view != this.webViewNotAvailableText) {

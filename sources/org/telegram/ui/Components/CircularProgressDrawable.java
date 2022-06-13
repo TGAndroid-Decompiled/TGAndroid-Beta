@@ -25,10 +25,6 @@ public class CircularProgressDrawable extends Drawable {
     }
 
     @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
     public void setColorFilter(ColorFilter colorFilter) {
     }
 
@@ -98,5 +94,10 @@ public class CircularProgressDrawable extends Drawable {
 
     public void setColor(int i) {
         this.paint.setColor(i);
+    }
+
+    @Override
+    public void setAlpha(int i) {
+        this.paint.setAlpha(i);
     }
 }

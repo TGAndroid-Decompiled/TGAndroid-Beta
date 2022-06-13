@@ -15,14 +15,12 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.util.StateSet;
-import android.widget.Toast;
 import androidx.core.graphics.ColorUtils;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import java.util.Arrays;
 import java.util.HashMap;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -492,9 +490,6 @@ public class TranscribeButton {
             messageObject.messageOwner.voiceTranscriptionId = j4;
             j3 = j4;
         } else {
-            if (tLRPC$TL_error != null) {
-                Toast.makeText(ApplicationLoader.applicationContext, tLRPC$TL_error.text, 0).show();
-            }
             j3 = 0;
             z = true;
         }
