@@ -40,6 +40,7 @@ import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -971,6 +972,12 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         @Override
         public void onMeasure(int i, int i2) {
             setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i));
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.view.View");
         }
     }
 
@@ -3479,7 +3486,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 int i9 = this.stickersTabOffset;
                 this.premiumTabNum = i9;
                 this.stickersTabOffset = i9 + 1;
-                StickerTabView addStickerIconTab4 = this.stickersTab.addStickerIconTab(4, PremiumGradient.getInstance().premiumStarMenuDrawable);
+                StickerTabView addStickerIconTab4 = this.stickersTab.addStickerIconTab(4, PremiumGradient.getInstance().premiumStarMenuDrawable2);
                 addStickerIconTab4.textView.setText(LocaleController.getString("PremiumStickersShort", R.string.PremiumStickersShort));
                 addStickerIconTab4.setContentDescription(LocaleController.getString("PremiumStickers", R.string.PremiumStickers));
             }

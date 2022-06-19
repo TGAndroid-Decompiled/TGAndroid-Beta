@@ -109,7 +109,7 @@ public class MatrixParticlesDrawable {
                             i = max;
                             i2 = min;
                             particle = particle3;
-                            this.matrixTextParticles[i7][max].draw(canvas, f, f2, currentTimeMillis, ((1.0f - ((particle3.y - max) / (particle3.len - i9))) * 0.8f) + 0.2f);
+                            this.matrixTextParticles[i7][max].draw(canvas, f, f2, currentTimeMillis, Utilities.clamp(((1.0f - ((particle3.y - max) / (particle3.len - i9))) * 0.8f) + 0.2f, 1.0f, 0.0f));
                         } else {
                             i = max;
                             i2 = min;

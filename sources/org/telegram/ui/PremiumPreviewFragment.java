@@ -693,6 +693,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) baseFragment;
                 premiumPreviewFragment.setForcePremium();
                 premiumPreviewFragment.getMediaDataController().loadPremiumPromo(false);
+                premiumPreviewFragment.listView.smoothScrollToPosition(0);
             } else {
                 baseFragment.presentFragment(new PremiumPreviewFragment().setForcePremium());
             }
@@ -785,21 +786,14 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         int size = i2 + this.premiumFeatures.size();
         this.rowCount = size;
         this.featuresEndRow = size;
+        int i3 = size + 1;
+        this.rowCount = i3;
+        this.statusRow = size;
+        this.rowCount = i3 + 1;
+        this.lastPaddingRow = i3;
         if (getUserConfig().isPremium() || this.forcePremium) {
-            int i3 = this.rowCount;
-            int i4 = i3 + 1;
-            this.rowCount = i4;
-            this.statusRow = i3;
-            this.rowCount = i4 + 1;
-            this.lastPaddingRow = i4;
             this.buttonContainer.setVisibility(8);
         } else {
-            int i5 = this.rowCount;
-            int i6 = i5 + 1;
-            this.rowCount = i6;
-            this.privacyRow = i5;
-            this.rowCount = i6 + 1;
-            this.lastPaddingRow = i6;
             this.buttonContainer.setVisibility(0);
         }
         if (this.buttonContainer.getVisibility() == 0) {
@@ -811,6 +805,9 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
 
     @Override
     public boolean onFragmentCreate() {
+        if (getMessagesController().premiumLocked) {
+            return false;
+        }
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.billingProductDetailsUpdated);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         getNotificationCenter().addObserver(this, NotificationCenter.premiumPromoUpdated);

@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Point;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -30,6 +31,7 @@ public class ChatGreetingsView extends LinearLayout {
     private final Theme.ResourcesProvider resourcesProvider;
     public BackupImageView stickerToSendView;
     private TextView titleView;
+    boolean wasDraw;
 
     public interface Listener {
         void onGreetings(TLRPC$Document tLRPC$Document);
@@ -66,7 +68,6 @@ public class ChatGreetingsView extends LinearLayout {
         if (tLRPC$Document == null) {
             this.preloadedGreetingsSticker = MediaDataController.getInstance(i2).getGreetingsSticker();
         }
-        setSticker(this.preloadedGreetingsSticker);
     }
 
     private void setSticker(final TLRPC$Document tLRPC$Document) {
@@ -169,6 +170,15 @@ public class ChatGreetingsView extends LinearLayout {
     }
 
     @Override
+    protected void dispatchDraw(Canvas canvas) {
+        if (!this.wasDraw) {
+            this.wasDraw = true;
+            setSticker(this.preloadedGreetingsSticker);
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
     public void requestLayout() {
         if (!this.ignoreLayot) {
             super.requestLayout();
@@ -190,7 +200,9 @@ public class ChatGreetingsView extends LinearLayout {
         if (this.preloadedGreetingsSticker == null) {
             TLRPC$Document greetingsSticker = MediaDataController.getInstance(this.currentAccount).getGreetingsSticker();
             this.preloadedGreetingsSticker = greetingsSticker;
-            setSticker(greetingsSticker);
+            if (this.wasDraw) {
+                setSticker(greetingsSticker);
+            }
         }
     }
 

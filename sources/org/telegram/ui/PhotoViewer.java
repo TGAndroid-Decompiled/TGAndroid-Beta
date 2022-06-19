@@ -183,6 +183,7 @@ import org.telegram.tgnet.TLRPC$TL_photos_photo;
 import org.telegram.tgnet.TLRPC$TL_webDocument;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$WebDocument;
+import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -6103,26 +6104,29 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void onUserLeaveHint() {
-        PhotoViewerWebView photoViewerWebView;
-        if (this.pipItem.getAlpha() == 1.0f && AndroidUtilities.checkInlinePermissions(this.parentActivity) && !PipVideoOverlay.isVisible() && (photoViewerWebView = this.photoViewerWebView) != null) {
-            if (!this.isEmbedVideo) {
-                this.pipVideoOverlayAnimateFlag = false;
-                switchToPip(false);
-            } else if (photoViewerWebView != null && !photoViewerWebView.isInAppOnly() && this.photoViewerWebView.openInPip()) {
-                this.pipVideoOverlayAnimateFlag = false;
-                if (PipInstance != null) {
-                    PipInstance.destroyPhotoViewer();
+        if (this.pipItem.getAlpha() == 1.0f && AndroidUtilities.checkInlinePermissions(this.parentActivity) && !PipVideoOverlay.isVisible()) {
+            if (this.isEmbedVideo) {
+                PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
+                if (photoViewerWebView != null && !photoViewerWebView.isInAppOnly() && this.photoViewerWebView.openInPip()) {
+                    this.pipVideoOverlayAnimateFlag = false;
+                    if (PipInstance != null) {
+                        PipInstance.destroyPhotoViewer();
+                    }
+                    this.isInline = true;
+                    PipInstance = Instance;
+                    Instance = null;
+                    this.isVisible = false;
+                    PlaceProviderObject placeProviderObject = this.currentPlaceObject;
+                    if (placeProviderObject != null && !placeProviderObject.imageReceiver.getVisible()) {
+                        this.currentPlaceObject.imageReceiver.setVisible(true, true);
+                    }
+                    dismissInternal();
+                    return;
                 }
-                this.isInline = true;
-                PipInstance = Instance;
-                Instance = null;
-                this.isVisible = false;
-                PlaceProviderObject placeProviderObject = this.currentPlaceObject;
-                if (placeProviderObject != null && !placeProviderObject.imageReceiver.getVisible()) {
-                    this.currentPlaceObject.imageReceiver.setVisible(true, true);
-                }
-                dismissInternal();
+                return;
             }
+            this.pipVideoOverlayAnimateFlag = false;
+            switchToPip(false);
         }
     }
 
@@ -10580,8 +10584,175 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void checkProgress(final int r17, boolean r18, final boolean r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.checkProgress(int, boolean, boolean):void");
+    public void checkProgress(final int i, boolean z, final boolean z2) {
+        boolean z3;
+        boolean z4;
+        MessageObject messageObject;
+        File file;
+        final File file2;
+        boolean z5;
+        File file3;
+        boolean z6;
+        File file4;
+        FileLoader.FileResolver fileResolver;
+        TLRPC$WebPage tLRPC$WebPage;
+        AnimatedFileDrawable animatedFileDrawable;
+        int i2 = this.currentIndex;
+        int i3 = i == 1 ? i2 + 1 : i == 2 ? i2 - 1 : i2;
+        boolean z7 = false;
+        if (this.currentFileNames[i] != null) {
+            boolean hasBitmap = (i == 0 && i2 == 0 && (animatedFileDrawable = this.currentAnimation) != null) ? animatedFileDrawable.hasBitmap() : false;
+            FileLoader.FileResolver fileResolver2 = null;
+            if (this.currentMessageObject == null) {
+                if (this.currentBotInlineResult == null) {
+                    if (this.currentFileLocation != null) {
+                        if (i3 < 0 || i3 >= this.imagesArrLocationsVideo.size()) {
+                            this.photoProgressViews[i].setBackgroundState(-1, z2, true);
+                            return;
+                        } else {
+                            ImageLocation imageLocation = this.imagesArrLocationsVideo.get(i3);
+                            file3 = FileLoader.getInstance(this.currentAccount).getPathToAttach(imageLocation.location, getFileLocationExt(imageLocation), this.avatarsDialogId != 0 || this.isEvent);
+                        }
+                    } else if (this.currentSecureDocument == null) {
+                        if (this.currentPathObject != null) {
+                            file = new File(FileLoader.getDirectory(3), this.currentFileNames[i]);
+                            file2 = new File(FileLoader.getDirectory(4), this.currentFileNames[i]);
+                            messageObject = null;
+                        } else {
+                            PageBlocksAdapter pageBlocksAdapter = this.pageBlocksAdapter;
+                            if (pageBlocksAdapter != null) {
+                                File file5 = pageBlocksAdapter.getFile(i3);
+                                z3 = this.pageBlocksAdapter.isVideo(i3);
+                                z5 = shouldIndexAutoPlayed(i3);
+                                file = file5;
+                                file2 = null;
+                                messageObject = null;
+                            } else {
+                                file2 = null;
+                                file = null;
+                                messageObject = null;
+                            }
+                        }
+                        z5 = false;
+                        z4 = false;
+                        z3 = false;
+                    } else if (i3 < 0 || i3 >= this.secureDocuments.size()) {
+                        this.photoProgressViews[i].setBackgroundState(-1, z2, true);
+                        return;
+                    } else {
+                        file3 = FileLoader.getInstance(this.currentAccount).getPathToAttach(this.secureDocuments.get(i3), true);
+                    }
+                    file = file3;
+                    file2 = null;
+                    messageObject = null;
+                    z5 = false;
+                    z4 = false;
+                    z3 = false;
+                } else if (i3 < 0 || i3 >= this.imagesArrLocals.size()) {
+                    this.photoProgressViews[i].setBackgroundState(-1, z2, true);
+                    return;
+                } else {
+                    TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) this.imagesArrLocals.get(i3);
+                    if (tLRPC$BotInlineResult.type.equals(MediaStreamTrack.VIDEO_TRACK_KIND) || MessageObject.isVideoDocument(tLRPC$BotInlineResult.document)) {
+                        if (tLRPC$BotInlineResult.document != null) {
+                            file4 = FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$BotInlineResult.document);
+                        } else if (tLRPC$BotInlineResult.content instanceof TLRPC$TL_webDocument) {
+                            file4 = new File(FileLoader.getDirectory(4), Utilities.MD5(tLRPC$BotInlineResult.content.url) + "." + ImageLoader.getHttpUrlExtension(tLRPC$BotInlineResult.content.url, "mp4"));
+                        } else {
+                            file4 = null;
+                        }
+                        z6 = true;
+                    } else {
+                        if (tLRPC$BotInlineResult.document != null) {
+                            file4 = new File(FileLoader.getDirectory(3), this.currentFileNames[i]);
+                        } else {
+                            file4 = tLRPC$BotInlineResult.photo != null ? new File(FileLoader.getDirectory(0), this.currentFileNames[i]) : null;
+                        }
+                        z6 = false;
+                    }
+                    file2 = new File(FileLoader.getDirectory(4), this.currentFileNames[i]);
+                    file = file4;
+                    z3 = z6;
+                    messageObject = null;
+                    z5 = false;
+                }
+                z4 = false;
+            } else if (i3 < 0 || i3 >= this.imagesArr.size()) {
+                this.photoProgressViews[i].setBackgroundState(-1, z2, true);
+                return;
+            } else {
+                MessageObject messageObject2 = this.imagesArr.get(i3);
+                boolean shouldMessageObjectAutoPlayed = shouldMessageObjectAutoPlayed(messageObject2);
+                if (this.sharedMediaType != 1 || messageObject2.canPreviewDocument()) {
+                    file = !TextUtils.isEmpty(messageObject2.messageOwner.attachPath) ? new File(messageObject2.messageOwner.attachPath) : null;
+                    final TLRPC$Message tLRPC$Message = messageObject2.messageOwner;
+                    TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
+                    if (!(tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) || (tLRPC$WebPage = tLRPC$MessageMedia.webpage) == null || tLRPC$WebPage.document != null) {
+                        fileResolver = new FileLoader.FileResolver() {
+                            @Override
+                            public final File getFile() {
+                                File lambda$checkProgress$67;
+                                lambda$checkProgress$67 = PhotoViewer.this.lambda$checkProgress$67(tLRPC$Message);
+                                return lambda$checkProgress$67;
+                            }
+                        };
+                    } else {
+                        final TLObject fileLocation = getFileLocation(i3, null);
+                        fileResolver = new FileLoader.FileResolver() {
+                            @Override
+                            public final File getFile() {
+                                File lambda$checkProgress$66;
+                                lambda$checkProgress$66 = PhotoViewer.this.lambda$checkProgress$66(fileLocation);
+                                return lambda$checkProgress$66;
+                            }
+                        };
+                    }
+                    if (messageObject2.isVideo()) {
+                        z4 = SharedConfig.streamMedia && messageObject2.canStreamVideo() && !DialogObject.isEncryptedDialog(messageObject2.getDialogId());
+                        z5 = shouldMessageObjectAutoPlayed;
+                        file2 = null;
+                        fileResolver2 = fileResolver;
+                        z3 = true;
+                    } else {
+                        z5 = shouldMessageObjectAutoPlayed;
+                        file2 = null;
+                        fileResolver2 = fileResolver;
+                        z4 = false;
+                        z3 = false;
+                    }
+                    messageObject = messageObject2;
+                } else {
+                    this.photoProgressViews[i].setBackgroundState(-1, z2, true);
+                    return;
+                }
+            }
+            boolean z8 = (i != 0 || !this.dontAutoPlay) && z5;
+            final boolean z9 = hasBitmap;
+            final File file6 = file;
+            final FileLoader.FileResolver fileResolver3 = fileResolver2;
+            final MessageObject messageObject3 = messageObject;
+            final boolean z10 = z4;
+            final boolean z11 = z3;
+            final boolean z12 = z8;
+            Utilities.globalQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    PhotoViewer.this.lambda$checkProgress$69(z9, file6, file2, fileResolver3, i, messageObject3, z10, z11, z12, z2);
+                }
+            });
+            return;
+        }
+        if (!this.imagesArrLocals.isEmpty() && i3 >= 0 && i3 < this.imagesArrLocals.size()) {
+            Object obj = this.imagesArrLocals.get(i3);
+            if (obj instanceof MediaController.PhotoEntry) {
+                z7 = ((MediaController.PhotoEntry) obj).isVideo;
+            }
+        }
+        if (z7) {
+            this.photoProgressViews[i].setBackgroundState(3, z2, true);
+        } else {
+            this.photoProgressViews[i].setBackgroundState(-1, z2, true);
+        }
     }
 
     public File lambda$checkProgress$66(TLObject tLObject) {
@@ -10592,22 +10763,22 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return FileLoader.getInstance(this.currentAccount).getPathToMessage(tLRPC$Message);
     }
 
-    public void lambda$checkProgress$69(final File file, File file2, FileLoader.FileResolver fileResolver, final int i, MessageObject messageObject, final boolean z, final boolean z2, final boolean z3, final boolean z4) {
+    public void lambda$checkProgress$69(boolean z, final File file, File file2, FileLoader.FileResolver fileResolver, final int i, MessageObject messageObject, final boolean z2, final boolean z3, final boolean z4, final boolean z5) {
         ChatActivity chatActivity;
         TLRPC$Document document;
-        boolean exists = file != null ? file.exists() : false;
+        boolean exists = (z || file == null) ? z : file.exists();
         final File file3 = (file2 != null || fileResolver == null) ? file2 : fileResolver.getFile();
         if (!exists && file3 != null) {
             exists = file3.exists();
         }
-        final boolean z5 = exists;
-        if (!z5 && i != 0 && messageObject != null && z && DownloadController.getInstance(this.currentAccount).canDownloadMedia(messageObject.messageOwner) != 0 && (((chatActivity = this.parentChatActivity) == null || chatActivity.getCurrentEncryptedChat() == null) && !messageObject.shouldEncryptPhotoOrVideo() && (document = messageObject.getDocument()) != null)) {
+        final boolean z6 = exists;
+        if (!z6 && i != 0 && messageObject != null && z2 && DownloadController.getInstance(this.currentAccount).canDownloadMedia(messageObject.messageOwner) != 0 && (((chatActivity = this.parentChatActivity) == null || chatActivity.getCurrentEncryptedChat() == null) && !messageObject.shouldEncryptPhotoOrVideo() && (document = messageObject.getDocument()) != null)) {
             FileLoader.getInstance(this.currentAccount).loadFile(document, messageObject, 0, 10);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PhotoViewer.this.lambda$checkProgress$68(i, file, file3, z5, z, z2, z3, z4);
+                PhotoViewer.this.lambda$checkProgress$68(i, file, file3, z6, z2, z3, z4, z5);
             }
         });
     }
@@ -12021,7 +12192,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                         }
                                     }
                                     if (chatActivity2 != null) {
-                                        chatActivity2.lambda$openDiscussionMessageChat$224(PhotoViewer.this.animationEndRunnable);
+                                        chatActivity2.lambda$openDiscussionMessageChat$227(PhotoViewer.this.animationEndRunnable);
                                         return;
                                     }
                                     PhotoViewer.this.animationEndRunnable.run();

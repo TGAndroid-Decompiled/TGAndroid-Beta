@@ -17,6 +17,7 @@ import org.telegram.messenger.SvgHelper;
 public class CellFlickerDrawable {
     public float animationSpeedScale;
     public boolean drawFrame;
+    public boolean frameInside;
     private Shader gradientShader;
     private Shader gradientShader2;
     long lastUpdateTime;
@@ -41,6 +42,7 @@ public class CellFlickerDrawable {
         this.matrix = new Matrix();
         this.repeatEnabled = true;
         this.drawFrame = true;
+        this.frameInside = false;
         this.repeatProgress = 1.2f;
         this.animationSpeedScale = 1.0f;
         this.size = AndroidUtilities.dp(160.0f);
@@ -71,6 +73,9 @@ public class CellFlickerDrawable {
         update(view);
         canvas.drawRoundRect(rectF, f, f, this.paint);
         if (this.drawFrame) {
+            if (this.frameInside) {
+                rectF.inset(this.paintOutline.getStrokeWidth() / 2.0f, this.paintOutline.getStrokeWidth() / 2.0f);
+            }
             canvas.drawRoundRect(rectF, f, f, this.paintOutline);
         }
     }
@@ -152,6 +157,9 @@ public class CellFlickerDrawable {
             rectF.set(f3, f4, voIPTextureView.getMeasuredWidth() - voIPTextureView2.currentClipHorizontal, voIPTextureView2.getMeasuredHeight() - groupCallMiniTextureView.textureView.currentClipVertical);
             canvas.drawRect(rectF, this.paint);
             if (this.drawFrame) {
+                if (this.frameInside) {
+                    rectF.inset(this.paintOutline.getStrokeWidth() / 2.0f, this.paintOutline.getStrokeWidth() / 2.0f);
+                }
                 float f5 = groupCallMiniTextureView.textureView.roundRadius;
                 canvas.drawRoundRect(rectF, f5, f5, this.paintOutline);
             }

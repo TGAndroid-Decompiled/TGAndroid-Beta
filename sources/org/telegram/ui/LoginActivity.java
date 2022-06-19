@@ -1927,6 +1927,7 @@ public class LoginActivity extends BaseFragment {
         }
 
         public void lambda$new$12(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+            boolean z;
             if (tLRPC$TL_error == null) {
                 this.countriesArray.clear();
                 this.codesMap.clear();
@@ -1943,6 +1944,30 @@ public class LoginActivity extends BaseFragment {
                         this.codesMap.put(tLRPC$TL_help_country.country_codes.get(i2).country_code, country);
                         if (tLRPC$TL_help_country.country_codes.get(i2).patterns.size() > 0) {
                             this.phoneFormatMap.put(tLRPC$TL_help_country.country_codes.get(i2).country_code, tLRPC$TL_help_country.country_codes.get(i2).patterns);
+                        }
+                    }
+                }
+                if (LoginActivity.this.activityMode == 2) {
+                    String stripExceptNumbers = PhoneFormat.stripExceptNumbers(UserConfig.getInstance(((BaseFragment) LoginActivity.this).currentAccount).getClientPhone());
+                    if (!TextUtils.isEmpty(stripExceptNumbers)) {
+                        int i3 = 4;
+                        if (stripExceptNumbers.length() > 4) {
+                            while (true) {
+                                if (i3 < 1) {
+                                    z = false;
+                                    break;
+                                }
+                                String substring = stripExceptNumbers.substring(0, i3);
+                                if (this.codesMap.get(substring) != null) {
+                                    this.codeField.setText(substring);
+                                    z = true;
+                                    break;
+                                }
+                                i3--;
+                            }
+                            if (!z) {
+                                this.codeField.setText(stripExceptNumbers.substring(0, 1));
+                            }
                         }
                     }
                 }
@@ -2209,16 +2234,16 @@ public class LoginActivity extends BaseFragment {
             LoginActivity.this.finishFragment();
         }
 
-        public void lambda$onNextPressed$20(final Bundle bundle, final String str, final PhoneInputData phoneInputData, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$onNextPressed$20(final Bundle bundle, final String str, final PhoneInputData phoneInputData, final TLObject tLObject, final TLObject tLObject2, final TLRPC$TL_error tLRPC$TL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.PhoneView.this.lambda$onNextPressed$19(tLRPC$TL_error, bundle, tLObject, str, phoneInputData);
+                    LoginActivity.PhoneView.this.lambda$onNextPressed$19(tLRPC$TL_error, bundle, tLObject2, str, phoneInputData, tLObject);
                 }
             });
         }
 
-        public void lambda$onNextPressed$19(TLRPC$TL_error tLRPC$TL_error, Bundle bundle, TLObject tLObject, final String str, PhoneInputData phoneInputData) {
+        public void lambda$onNextPressed$19(TLRPC$TL_error tLRPC$TL_error, Bundle bundle, TLObject tLObject, final String str, PhoneInputData phoneInputData, TLObject tLObject2) {
             this.nextPressed = false;
             if (tLRPC$TL_error == null) {
                 LoginActivity.this.fillNextCodeParams(bundle, (TLRPC$TL_auth_sentCode) tLObject);
@@ -2228,8 +2253,8 @@ public class LoginActivity extends BaseFragment {
                     if (str2.contains("SESSION_PASSWORD_NEEDED")) {
                         ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(new TLRPC$TL_account_getPassword(), new RequestDelegate() {
                             @Override
-                            public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                                LoginActivity.PhoneView.this.lambda$onNextPressed$18(str, tLObject2, tLRPC$TL_error2);
+                            public final void run(TLObject tLObject3, TLRPC$TL_error tLRPC$TL_error2) {
+                                LoginActivity.PhoneView.this.lambda$onNextPressed$18(str, tLObject3, tLRPC$TL_error2);
                             }
                         }, 10);
                     } else if (tLRPC$TL_error.text.contains("PHONE_NUMBER_INVALID")) {
@@ -2247,7 +2272,7 @@ public class LoginActivity extends BaseFragment {
                     } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
                         LoginActivity.this.needShowAlert(LocaleController.getString((int) R.string.RestorePasswordNoEmailTitle), LocaleController.getString("FloodWait", R.string.FloodWait));
                     } else if (tLRPC$TL_error.code != -1000) {
-                        LoginActivity.this.needShowAlert(LocaleController.getString((int) R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
+                        AlertsCreator.processError(((BaseFragment) LoginActivity.this).currentAccount, tLRPC$TL_error, LoginActivity.this, tLObject2, phoneInputData.phoneNumber);
                     }
                 }
             }
@@ -2427,7 +2452,7 @@ public class LoginActivity extends BaseFragment {
             }
         };
 
-        public static void lambda$onBackPressed$37(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public static void lambda$onBackPressed$39(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         }
 
         @Override
@@ -2435,7 +2460,7 @@ public class LoginActivity extends BaseFragment {
             return true;
         }
 
-        static int access$7926(LoginActivitySmsView loginActivitySmsView, double d) {
+        static int access$8126(LoginActivitySmsView loginActivitySmsView, double d) {
             double d2 = loginActivitySmsView.codeTime;
             Double.isNaN(d2);
             int i = (int) (d2 - d);
@@ -2443,7 +2468,7 @@ public class LoginActivity extends BaseFragment {
             return i;
         }
 
-        static int access$8526(LoginActivitySmsView loginActivitySmsView, double d) {
+        static int access$8726(LoginActivitySmsView loginActivitySmsView, double d) {
             double d2 = loginActivitySmsView.time;
             Double.isNaN(d2);
             int i = (int) (d2 - d);
@@ -2669,6 +2694,20 @@ public class LoginActivity extends BaseFragment {
             tryHideProgress(false);
         }
 
+        @Override
+        protected void onConfigurationChanged(Configuration configuration) {
+            CodeNumberField[] codeNumberFieldArr;
+            super.onConfigurationChanged(configuration);
+            CodeFieldContainer codeFieldContainer = this.codeFieldContainer;
+            if (!(codeFieldContainer == null || (codeNumberFieldArr = codeFieldContainer.codeField) == null)) {
+                for (CodeNumberField codeNumberField : codeNumberFieldArr) {
+                    if (Build.VERSION.SDK_INT >= 21) {
+                        codeNumberField.setShowSoftInputOnFocusCompat(!hasCustomKeyboard() || LoginActivity.this.isCustomKeyboardForceDisabled());
+                    }
+                }
+            }
+        }
+
         private void tryShowProgress(int i) {
             lambda$tryShowProgress$10(i, true);
         }
@@ -2839,7 +2878,7 @@ public class LoginActivity extends BaseFragment {
                 double d = LoginActivitySmsView.this.lastCodeTime;
                 Double.isNaN(currentTimeMillis);
                 LoginActivitySmsView.this.lastCodeTime = currentTimeMillis;
-                LoginActivitySmsView.access$7926(LoginActivitySmsView.this, currentTimeMillis - d);
+                LoginActivitySmsView.access$8126(LoginActivitySmsView.this, currentTimeMillis - d);
                 if (LoginActivitySmsView.this.codeTime <= 1000) {
                     LoginActivitySmsView.this.setProblemTextVisible(true);
                     LoginActivitySmsView.this.timeText.setVisibility(8);
@@ -2893,7 +2932,7 @@ public class LoginActivity extends BaseFragment {
                 double d = LoginActivitySmsView.this.lastCurrentTime;
                 Double.isNaN(currentTimeMillis);
                 LoginActivitySmsView.this.lastCurrentTime = currentTimeMillis;
-                LoginActivitySmsView.access$8526(LoginActivitySmsView.this, currentTimeMillis - d);
+                LoginActivitySmsView.access$8726(LoginActivitySmsView.this, currentTimeMillis - d);
                 if (LoginActivitySmsView.this.time >= 1000) {
                     int i = (LoginActivitySmsView.this.time / 1000) / 60;
                     int i2 = (LoginActivitySmsView.this.time / 1000) - (i * 60);
@@ -2980,7 +3019,7 @@ public class LoginActivity extends BaseFragment {
                     tryShowProgress(ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(tLRPC$TL_account_confirmPhone, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$24(tLRPC$TL_account_confirmPhone, tLObject, tLRPC$TL_error);
+                            LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$26(tLRPC$TL_account_confirmPhone, tLObject, tLRPC$TL_error);
                         }
                     }, 2));
                 } else if (i3 != 2) {
@@ -3000,7 +3039,7 @@ public class LoginActivity extends BaseFragment {
                     lambda$tryShowProgress$10(ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(tLRPC$TL_auth_signIn, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$31(tLRPC$TL_auth_signIn, tLObject, tLRPC$TL_error);
+                            LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$33(tLRPC$TL_auth_signIn, tLObject, tLRPC$TL_error);
                         }
                     }, 10), true);
                     LoginActivity.this.showDoneButton(true, true);
@@ -3021,7 +3060,7 @@ public class LoginActivity extends BaseFragment {
                     lambda$tryShowProgress$10(ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(tLRPC$TL_account_changePhone, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$20(tLObject, tLRPC$TL_error);
+                            LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$22(tLObject, tLRPC$TL_error);
                         }
                     }, 2), true);
                     LoginActivity.this.showDoneButton(true, true);
@@ -3029,29 +3068,46 @@ public class LoginActivity extends BaseFragment {
             }
         }
 
-        public void lambda$onNextPressed$20(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$onNextPressed$22(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$19(tLRPC$TL_error, tLObject);
+                    LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$21(tLRPC$TL_error, tLObject);
                 }
             });
         }
 
-        public void lambda$onNextPressed$19(org.telegram.tgnet.TLRPC$TL_error r8, org.telegram.tgnet.TLObject r9) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.LoginActivitySmsView.lambda$onNextPressed$19(org.telegram.tgnet.TLRPC$TL_error, org.telegram.tgnet.TLObject):void");
+        public void lambda$onNextPressed$21(org.telegram.tgnet.TLRPC$TL_error r8, org.telegram.tgnet.TLObject r9) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.LoginActivitySmsView.lambda$onNextPressed$21(org.telegram.tgnet.TLRPC$TL_error, org.telegram.tgnet.TLObject):void");
         }
 
-        public void lambda$onNextPressed$24(final TLRPC$TL_account_confirmPhone tLRPC$TL_account_confirmPhone, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$onNextPressed$20() {
+            try {
+                ((BaseFragment) LoginActivity.this).fragmentView.performHapticFeedback(3, 2);
+            } catch (Exception unused) {
+            }
+            new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString((int) R.string.YourPasswordSuccess)).setMessage(LocaleController.getString((int) R.string.ChangePhoneNumberSuccess)).setPositiveButton(LocaleController.getString((int) R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public final void onDismiss(DialogInterface dialogInterface) {
+                    LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$19(dialogInterface);
+                }
+            }).show();
+        }
+
+        public void lambda$onNextPressed$19(DialogInterface dialogInterface) {
+            LoginActivity.this.finishFragment();
+        }
+
+        public void lambda$onNextPressed$26(final TLRPC$TL_account_confirmPhone tLRPC$TL_account_confirmPhone, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$23(tLRPC$TL_error, tLRPC$TL_account_confirmPhone);
+                    LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$25(tLRPC$TL_error, tLRPC$TL_account_confirmPhone);
                 }
             });
         }
 
-        public void lambda$onNextPressed$23(TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_account_confirmPhone tLRPC$TL_account_confirmPhone) {
+        public void lambda$onNextPressed$25(TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_account_confirmPhone tLRPC$TL_account_confirmPhone) {
             int i;
             int i2;
             tryHideProgress(false);
@@ -3060,7 +3116,7 @@ public class LoginActivity extends BaseFragment {
                 animateSuccess(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$22();
+                        LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$24();
                     }
                 });
                 return;
@@ -3090,19 +3146,40 @@ public class LoginActivity extends BaseFragment {
             }
         }
 
-        public void lambda$onNextPressed$22() {
+        public void lambda$onNextPressed$24() {
             AlertDialog.Builder title = new AlertDialog.Builder(LoginActivity.this.getParentActivity()).setTitle(LocaleController.getString((int) R.string.CancelLinkSuccessTitle));
             PhoneFormat phoneFormat = PhoneFormat.getInstance();
             title.setMessage(LocaleController.formatString("CancelLinkSuccess", R.string.CancelLinkSuccess, phoneFormat.format("+" + this.phone))).setPositiveButton(LocaleController.getString((int) R.string.Close), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$21(dialogInterface);
+                    LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$23(dialogInterface);
                 }
             }).show();
         }
 
-        public void lambda$onNextPressed$21(DialogInterface dialogInterface) {
+        public void lambda$onNextPressed$23(DialogInterface dialogInterface) {
             LoginActivity.this.finishFragment();
+        }
+
+        public void lambda$onNextPressed$33(final TLRPC$TL_auth_signIn tLRPC$TL_auth_signIn, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$32(tLRPC$TL_error, tLObject, tLRPC$TL_auth_signIn);
+                }
+            });
+        }
+
+        public void lambda$onNextPressed$32(org.telegram.tgnet.TLRPC$TL_error r6, final org.telegram.tgnet.TLObject r7, final org.telegram.tgnet.TLRPC$TL_auth_signIn r8) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.LoginActivitySmsView.lambda$onNextPressed$32(org.telegram.tgnet.TLRPC$TL_error, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_auth_signIn):void");
+        }
+
+        public void lambda$onNextPressed$27(Bundle bundle) {
+            LoginActivity.this.setPage(5, true, bundle, false);
+        }
+
+        public void lambda$onNextPressed$28(TLObject tLObject) {
+            LoginActivity.this.onAuthSuccess((TLRPC$TL_auth_authorization) tLObject);
         }
 
         public void lambda$onNextPressed$31(final TLRPC$TL_auth_signIn tLRPC$TL_auth_signIn, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -3114,28 +3191,7 @@ public class LoginActivity extends BaseFragment {
             });
         }
 
-        public void lambda$onNextPressed$30(org.telegram.tgnet.TLRPC$TL_error r6, final org.telegram.tgnet.TLObject r7, final org.telegram.tgnet.TLRPC$TL_auth_signIn r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.LoginActivitySmsView.lambda$onNextPressed$30(org.telegram.tgnet.TLRPC$TL_error, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_auth_signIn):void");
-        }
-
-        public void lambda$onNextPressed$25(Bundle bundle) {
-            LoginActivity.this.setPage(5, true, bundle, false);
-        }
-
-        public void lambda$onNextPressed$26(TLObject tLObject) {
-            LoginActivity.this.onAuthSuccess((TLRPC$TL_auth_authorization) tLObject);
-        }
-
-        public void lambda$onNextPressed$29(final TLRPC$TL_auth_signIn tLRPC$TL_auth_signIn, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$28(tLRPC$TL_error, tLObject, tLRPC$TL_auth_signIn);
-                }
-            });
-        }
-
-        public void lambda$onNextPressed$28(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, TLRPC$TL_auth_signIn tLRPC$TL_auth_signIn) {
+        public void lambda$onNextPressed$30(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, TLRPC$TL_auth_signIn tLRPC$TL_auth_signIn) {
             this.nextPressed = false;
             LoginActivity.this.showDoneButton(false, true);
             if (tLRPC$TL_error == null) {
@@ -3154,7 +3210,7 @@ public class LoginActivity extends BaseFragment {
                 animateSuccess(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$27(bundle);
+                        LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$29(bundle);
                     }
                 });
                 return;
@@ -3162,7 +3218,7 @@ public class LoginActivity extends BaseFragment {
             LoginActivity.this.needShowAlert(LocaleController.getString((int) R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
         }
 
-        public void lambda$onNextPressed$27(Bundle bundle) {
+        public void lambda$onNextPressed$29(Bundle bundle) {
             LoginActivity.this.setPage(6, true, bundle, false);
         }
 
@@ -3174,7 +3230,7 @@ public class LoginActivity extends BaseFragment {
                     codeFieldContainer.postDelayed(new Runnable() {
                         @Override
                         public final void run() {
-                            LoginActivity.LoginActivitySmsView.this.lambda$animateSuccess$32(i);
+                            LoginActivity.LoginActivitySmsView.this.lambda$animateSuccess$34(i);
                         }
                     }, i * 75);
                     i++;
@@ -3182,7 +3238,7 @@ public class LoginActivity extends BaseFragment {
                     codeFieldContainer.postDelayed(new Runnable() {
                         @Override
                         public final void run() {
-                            LoginActivity.LoginActivitySmsView.this.lambda$animateSuccess$33(runnable);
+                            LoginActivity.LoginActivitySmsView.this.lambda$animateSuccess$35(runnable);
                         }
                     }, (this.codeFieldContainer.codeField.length * 75) + 400);
                     return;
@@ -3190,11 +3246,11 @@ public class LoginActivity extends BaseFragment {
             }
         }
 
-        public void lambda$animateSuccess$32(int i) {
+        public void lambda$animateSuccess$34(int i) {
             this.codeFieldContainer.codeField[i].animateSuccessProgress(1.0f);
         }
 
-        public void lambda$animateSuccess$33(Runnable runnable) {
+        public void lambda$animateSuccess$35(Runnable runnable) {
             int i = 0;
             while (true) {
                 CodeNumberField[] codeNumberFieldArr = this.codeFieldContainer.codeField;
@@ -3231,7 +3287,7 @@ public class LoginActivity extends BaseFragment {
             AndroidUtilities.shakeViewSpring(this.codeFieldContainer, this.currentType == 11 ? 3.5f : 10.0f, new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginActivitySmsView.this.lambda$shakeWrongCode$35();
+                    LoginActivity.LoginActivitySmsView.this.lambda$shakeWrongCode$37();
                 }
             });
             removeCallbacks(this.errorColorTimeout);
@@ -3239,16 +3295,16 @@ public class LoginActivity extends BaseFragment {
             this.postedErrorColorTimeout = true;
         }
 
-        public void lambda$shakeWrongCode$35() {
+        public void lambda$shakeWrongCode$37() {
             postDelayed(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginActivitySmsView.this.lambda$shakeWrongCode$34();
+                    LoginActivity.LoginActivitySmsView.this.lambda$shakeWrongCode$36();
                 }
             }, 150L);
         }
 
-        public void lambda$shakeWrongCode$34() {
+        public void lambda$shakeWrongCode$36() {
             CodeFieldContainer codeFieldContainer = this.codeFieldContainer;
             int i = 0;
             codeFieldContainer.isFocusSuppressed = false;
@@ -3280,7 +3336,7 @@ public class LoginActivity extends BaseFragment {
                 loginActivity.showDialog(new AlertDialog.Builder(loginActivity.getParentActivity()).setTitle(LocaleController.getString((int) R.string.EditNumber)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("EditNumberInfo", R.string.EditNumberInfo, this.phone))).setPositiveButton(LocaleController.getString((int) R.string.Close), null).setNegativeButton(LocaleController.getString((int) R.string.Edit), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        LoginActivity.LoginActivitySmsView.this.lambda$onBackPressed$36(dialogInterface, i);
+                        LoginActivity.LoginActivitySmsView.this.lambda$onBackPressed$38(dialogInterface, i);
                     }
                 }).create());
                 return false;
@@ -3290,7 +3346,7 @@ public class LoginActivity extends BaseFragment {
                 TLRPC$TL_auth_cancelCode tLRPC$TL_auth_cancelCode = new TLRPC$TL_auth_cancelCode();
                 tLRPC$TL_auth_cancelCode.phone_number = this.requestPhone;
                 tLRPC$TL_auth_cancelCode.phone_code_hash = this.phoneHash;
-                ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(tLRPC$TL_auth_cancelCode, LoginActivity$LoginActivitySmsView$$ExternalSyntheticLambda38.INSTANCE, 10);
+                ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(tLRPC$TL_auth_cancelCode, LoginActivity$LoginActivitySmsView$$ExternalSyntheticLambda40.INSTANCE, 10);
                 destroyTimer();
                 destroyCodeTimer();
                 this.currentParams = null;
@@ -3307,7 +3363,7 @@ public class LoginActivity extends BaseFragment {
             }
         }
 
-        public void lambda$onBackPressed$36(DialogInterface dialogInterface, int i) {
+        public void lambda$onBackPressed$38(DialogInterface dialogInterface, int i) {
             onBackPressed(true);
             LoginActivity.this.setPage(0, true, null, true);
         }
@@ -3338,12 +3394,12 @@ public class LoginActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginActivitySmsView.this.lambda$onShow$38();
+                    LoginActivity.LoginActivitySmsView.this.lambda$onShow$40();
                 }
             }, LoginActivity.SHOW_DELAY);
         }
 
-        public void lambda$onShow$38() {
+        public void lambda$onShow$40() {
             CodeNumberField[] codeNumberFieldArr;
             if (this.currentType != 3 && (codeNumberFieldArr = this.codeFieldContainer.codeField) != null) {
                 for (int length = codeNumberFieldArr.length - 1; length >= 0; length--) {

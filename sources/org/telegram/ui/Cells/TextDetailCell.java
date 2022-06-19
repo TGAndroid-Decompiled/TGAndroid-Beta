@@ -11,7 +11,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
@@ -102,14 +101,6 @@ public class TextDetailCell extends FrameLayout {
 
     public void setImageClickListener(View.OnClickListener onClickListener) {
         this.imageView.setOnClickListener(onClickListener);
-    }
-
-    public void setTextWithEmojiAndValue(String str, CharSequence charSequence, boolean z) {
-        TextView textView = this.textView;
-        textView.setText(Emoji.replaceEmoji(str, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false));
-        this.valueTextView.setText(charSequence);
-        this.needDivider = z;
-        setWillNotDraw(!z);
     }
 
     public void setContentDescriptionValueFirst(boolean z) {

@@ -1,19 +1,33 @@
 package org.telegram.ui.Components.Premium;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.SurfaceTexture;
+import android.media.MediaMetadataRetriever;
+import android.net.Uri;
+import android.os.Build;
+import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
+import com.google.android.exoplayer2.analytics.AnalyticsListener;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
@@ -24,16 +38,23 @@ import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.Premium.StarParticlesView;
+import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.PremiumPreviewFragment;
 
-public class VideoScreenPreview extends View implements PagerHeaderView {
+public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, NotificationCenter.NotificationCenterDelegate {
     private static final float[] speedScaleVideoTimestamps = {0.02f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.02f};
     boolean allowPlay;
+    float aspectRatio;
+    AspectRatioFrameLayout aspectRatioFrameLayout;
+    String attachFileName;
     boolean attached;
     CellFlickerDrawable.DrawableInterface cellFlickerDrawable;
     int currentAccount;
+    File file;
+    boolean firstFrameRendered;
     boolean fromTop;
+    long lastFrameTime;
     private MatrixParticlesDrawable matrixParticlesDrawable;
     boolean play;
     float progress;
@@ -43,11 +64,28 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
     SpeedLineParticles$Drawable speedLinesDrawable;
     StarParticlesView.Drawable starDrawable;
     private final SvgHelper.SvgDrawable svgIcon;
+    TextureView textureView;
     int type;
+    VideoPlayer videoPlayer;
     boolean visible;
     Paint phoneFrame1 = new Paint(1);
     Paint phoneFrame2 = new Paint(1);
     ImageReceiver imageReceiver = new ImageReceiver(this);
+
+    private void checkVideo() {
+        File file = this.file;
+        if (file != null && file.exists()) {
+            MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+            mediaMetadataRetriever.setDataSource(ApplicationLoader.applicationContext, Uri.fromFile(this.file));
+            int intValue = Integer.valueOf(mediaMetadataRetriever.extractMetadata(18)).intValue();
+            int intValue2 = Integer.valueOf(mediaMetadataRetriever.extractMetadata(19)).intValue();
+            mediaMetadataRetriever.release();
+            this.aspectRatio = intValue / intValue2;
+            if (this.allowPlay) {
+                runVideoPlayer();
+            }
+        }
+    }
 
     public VideoScreenPreview(Context context, SvgHelper.SvgDrawable svgDrawable, int i, int i2) {
         super(context);
@@ -64,11 +102,24 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
             MatrixParticlesDrawable matrixParticlesDrawable = new MatrixParticlesDrawable();
             this.matrixParticlesDrawable = matrixParticlesDrawable;
             matrixParticlesDrawable.init();
-        } else if (i2 == 6) {
-            StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(30);
+        } else if (i2 == 6 || i2 == 9 || i2 == 3 || i2 == 7) {
+            StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(40);
             this.starDrawable = drawable;
             drawable.speedScale = 3.0f;
-            drawable.useProfileBadge = true;
+            drawable.type = i2;
+            if (i2 == 3) {
+                drawable.size1 = 14;
+                drawable.size2 = 18;
+                drawable.size3 = 18;
+            } else {
+                drawable.size1 = 14;
+                drawable.size2 = 16;
+                drawable.size3 = 15;
+            }
+            drawable.k3 = 0.98f;
+            drawable.k2 = 0.98f;
+            drawable.k1 = 0.98f;
+            drawable.speedScale = 4.0f;
             drawable.init();
         } else if (i2 == 2) {
             SpeedLineParticles$Drawable speedLineParticles$Drawable = new SpeedLineParticles$Drawable(200);
@@ -90,18 +141,48 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
             drawable2.k2 = 0.98f;
             drawable2.k1 = 0.98f;
             drawable2.useRotate = true;
-            setLayerType(2, null);
-            StarParticlesView.Drawable drawable3 = this.starDrawable;
-            drawable3.speedScale = 4.0f;
-            drawable3.checkBounds = true;
-            drawable3.checkTime = true;
-            drawable3.useBlur = true;
-            drawable3.roundEffect = false;
-            drawable3.init();
+            drawable2.speedScale = 4.0f;
+            drawable2.checkBounds = true;
+            drawable2.checkTime = true;
+            drawable2.useBlur = true;
+            drawable2.roundEffect = false;
+            drawable2.init();
         }
         if (i2 == 1 || i2 == 3) {
             this.fromTop = true;
         }
+        AspectRatioFrameLayout aspectRatioFrameLayout = new AspectRatioFrameLayout(context) {
+            Path clipPath = new Path();
+
+            @Override
+            public void onMeasure(int i4, int i5) {
+                super.onMeasure(i4, i5);
+                this.clipPath.reset();
+                VideoScreenPreview videoScreenPreview = VideoScreenPreview.this;
+                if (videoScreenPreview.fromTop) {
+                    AndroidUtilities.rectTmp.set(0.0f, -videoScreenPreview.roundRadius, getMeasuredWidth(), getMeasuredHeight());
+                } else {
+                    AndroidUtilities.rectTmp.set(0.0f, 0.0f, getMeasuredWidth(), (int) (getMeasuredHeight() + VideoScreenPreview.this.roundRadius));
+                }
+                float dp = VideoScreenPreview.this.roundRadius - AndroidUtilities.dp(3.0f);
+                this.clipPath.addRoundRect(AndroidUtilities.rectTmp, new float[]{dp, dp, dp, dp, dp, dp, dp, dp}, Path.Direction.CW);
+            }
+
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                canvas.save();
+                canvas.clipPath(this.clipPath);
+                super.dispatchDraw(canvas);
+                canvas.restore();
+            }
+        };
+        this.aspectRatioFrameLayout = aspectRatioFrameLayout;
+        aspectRatioFrameLayout.setResizeMode(0);
+        TextureView textureView = new TextureView(context);
+        this.textureView = textureView;
+        this.aspectRatioFrameLayout.addView(textureView);
+        setWillNotDraw(false);
+        addView(this.aspectRatioFrameLayout);
     }
 
     private void setVideo() {
@@ -121,7 +202,7 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
                 }
             }
             if (i >= 0) {
-                TLRPC$Document tLRPC$Document = premiumPromo.videos.get(i);
+                final TLRPC$Document tLRPC$Document = premiumPromo.videos.get(i);
                 CombinedDrawable combinedDrawable = null;
                 for (int i3 = 0; i3 < tLRPC$Document.thumbs.size(); i3++) {
                     if (tLRPC$Document.thumbs.get(i3) instanceof TLRPC$TL_photoStrippedSize) {
@@ -129,8 +210,9 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
                         CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
                         cellFlickerDrawable.repeatProgress = 4.0f;
                         cellFlickerDrawable.progress = 3.5f;
+                        cellFlickerDrawable.frameInside = true;
                         this.cellFlickerDrawable = cellFlickerDrawable.getDrawableInterface(this, this.svgIcon);
-                        CombinedDrawable combinedDrawable2 = new CombinedDrawable(this.roundedBitmapDrawable, this.cellFlickerDrawable) {
+                        combinedDrawable = new CombinedDrawable(this.roundedBitmapDrawable, this.cellFlickerDrawable) {
                             @Override
                             public void setBounds(int i4, int i5, int i6, int i7) {
                                 VideoScreenPreview videoScreenPreview = VideoScreenPreview.this;
@@ -141,13 +223,61 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
                                 }
                             }
                         };
-                        combinedDrawable2.setFullsize(true);
-                        combinedDrawable = combinedDrawable2;
+                        combinedDrawable.setFullsize(true);
                     }
                 }
-                this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), ImageLoader.AUTOPLAY_FILTER, combinedDrawable, null, null, 1);
+                this.attachFileName = FileLoader.getAttachFileName(tLRPC$Document);
+                this.imageReceiver.setImage(null, null, combinedDrawable, null, null, 1);
+                FileLoader.getInstance(this.currentAccount).loadFile(tLRPC$Document, null, 1, 0);
+                Utilities.globalQueue.postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        VideoScreenPreview.this.lambda$setVideo$1(tLRPC$Document);
+                    }
+                });
             }
         }
+    }
+
+    public void lambda$setVideo$1(TLRPC$Document tLRPC$Document) {
+        final File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$Document);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VideoScreenPreview.this.lambda$setVideo$0(pathToAttach);
+            }
+        });
+    }
+
+    public void lambda$setVideo$0(File file) {
+        this.file = file;
+        checkVideo();
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
+        float size3 = (int) (View.MeasureSpec.getSize(i2) * 0.9f);
+        float f = size;
+        float f2 = (f - (0.671f * size3)) / 2.0f;
+        this.roundRadius = 0.0671f * size3;
+        if (Build.VERSION.SDK_INT >= 21) {
+            this.aspectRatioFrameLayout.invalidateOutline();
+        }
+        if (this.fromTop) {
+            AndroidUtilities.rectTmp.set(f2, 0.0f, f - f2, size3);
+        } else {
+            float f3 = size2;
+            AndroidUtilities.rectTmp.set(f2, f3 - size3, f - f2, f3);
+        }
+        ViewGroup.LayoutParams layoutParams = this.aspectRatioFrameLayout.getLayoutParams();
+        RectF rectF = AndroidUtilities.rectTmp;
+        layoutParams.width = (int) rectF.width();
+        this.aspectRatioFrameLayout.getLayoutParams().height = (int) rectF.height();
+        ((ViewGroup.MarginLayoutParams) this.aspectRatioFrameLayout.getLayoutParams()).leftMargin = (int) rectF.left;
+        ((ViewGroup.MarginLayoutParams) this.aspectRatioFrameLayout.getLayoutParams()).topMargin = (int) rectF.top;
+        super.onMeasure(i, i2);
     }
 
     @Override
@@ -171,7 +301,8 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
             }
             StarParticlesView.Drawable drawable = this.starDrawable;
             if (drawable != null) {
-                if (this.type == 6) {
+                int i5 = this.type;
+                if (i5 == 6 || i5 == 9 || i5 == 3 || i5 == 7) {
                     drawable.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     this.starDrawable.rect.inset(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
                 } else {
@@ -196,9 +327,8 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) {
         float f;
-        super.onDraw(canvas);
         if (!(this.starDrawable == null && this.speedLinesDrawable == null && this.matrixParticlesDrawable == null)) {
             if (this.progress < 0.5f) {
                 float pow = (float) Math.pow(1.0f - f, 2.0d);
@@ -213,8 +343,9 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
                         drawable.onDraw(canvas);
                     } else if (this.speedLinesDrawable != null) {
                         float f2 = 0.2f;
-                        if (this.imageReceiver.getAnimation() != null) {
-                            float clamp = Utilities.clamp(((float) this.imageReceiver.getAnimation().getLastFrameTimestamp()) / this.imageReceiver.getAnimation().getDurationMs(), 1.0f, 0.0f);
+                        VideoPlayer videoPlayer = this.videoPlayer;
+                        if (videoPlayer != null) {
+                            float clamp = Utilities.clamp(((float) videoPlayer.getCurrentPosition()) / ((float) this.videoPlayer.getDuration()), 1.0f, 0.0f);
                             float[] fArr = speedScaleVideoTimestamps;
                             float length = 1.0f / (fArr.length - 1);
                             int i = (int) (clamp / length);
@@ -275,8 +406,11 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
             float f7 = this.roundRadius;
             imageReceiver2.setRoundRadius((int) f7, (int) f7, 0, 0);
         }
-        this.imageReceiver.setImageCoords(rectF.left, rectF.top, rectF.width(), rectF.height());
-        this.imageReceiver.draw(canvas);
+        if (!this.firstFrameRendered) {
+            this.imageReceiver.setImageCoords(rectF.left, rectF.top, rectF.width(), rectF.height());
+            this.imageReceiver.draw(canvas);
+        }
+        super.dispatchDraw(canvas);
         if (!this.fromTop) {
             canvas.drawCircle(this.imageReceiver.getCenterX(), this.imageReceiver.getImageY() + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), this.phoneFrame1);
         }
@@ -326,9 +460,11 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
             this.imageReceiver.setAllowStartAnimation(z2);
             if (this.allowPlay) {
                 this.imageReceiver.startAnimation();
-            } else {
-                this.imageReceiver.stopAnimation();
+                runVideoPlayer();
+                return;
             }
+            stopVideoPlayer();
+            this.imageReceiver.stopAnimation();
         }
     }
 
@@ -337,6 +473,10 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
         super.onAttachedToWindow();
         this.attached = true;
         updateAttachState();
+        if (!this.firstFrameRendered) {
+            checkVideo();
+        }
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoaded);
     }
 
     @Override
@@ -344,6 +484,19 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
         super.onDetachedFromWindow();
         this.attached = false;
         updateAttachState();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoaded);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.fileLoaded) {
+            String str = (String) objArr[0];
+            String str2 = this.attachFileName;
+            if (str2 != null && str2.equals(str)) {
+                this.file = (File) objArr[1];
+                checkVideo();
+            }
+        }
     }
 
     private void updateAttachState() {
@@ -352,12 +505,95 @@ public class VideoScreenPreview extends View implements PagerHeaderView {
             this.play = z;
             if (z) {
                 this.imageReceiver.onAttachedToWindow();
-                return;
+            } else {
+                this.imageReceiver.onDetachedFromWindow();
             }
-            if (this.imageReceiver.getAnimation() != null) {
-                this.imageReceiver.getAnimation().seekTo(0L, true);
+        }
+    }
+
+    private void runVideoPlayer() {
+        if (this.file != null && this.videoPlayer == null) {
+            this.aspectRatioFrameLayout.setAspectRatio(this.aspectRatio, 0);
+            VideoPlayer videoPlayer = new VideoPlayer();
+            this.videoPlayer = videoPlayer;
+            videoPlayer.setTextureView(this.textureView);
+            this.videoPlayer.setDelegate(new VideoPlayer.VideoPlayerDelegate() {
+                @Override
+                public void onError(VideoPlayer videoPlayer2, Exception exc) {
+                }
+
+                @Override
+                public void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
+                    VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
+                }
+
+                @Override
+                public void onSeekFinished(AnalyticsListener.EventTime eventTime) {
+                    VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
+                }
+
+                @Override
+                public void onSeekStarted(AnalyticsListener.EventTime eventTime) {
+                    VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
+                }
+
+                @Override
+                public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+                    return false;
+                }
+
+                @Override
+                public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+                }
+
+                @Override
+                public void onVideoSizeChanged(int i, int i2, int i3, float f) {
+                }
+
+                @Override
+                public void onStateChanged(boolean z, int i) {
+                    if (i == 4) {
+                        VideoScreenPreview.this.videoPlayer.seekTo(0L);
+                        VideoScreenPreview.this.videoPlayer.play();
+                    } else if (i == 1) {
+                        VideoScreenPreview.this.videoPlayer.play();
+                    }
+                }
+
+                @Override
+                public void onRenderedFirstFrame() {
+                    VideoScreenPreview videoScreenPreview = VideoScreenPreview.this;
+                    if (!videoScreenPreview.firstFrameRendered) {
+                        videoScreenPreview.textureView.setAlpha(0.0f);
+                        VideoScreenPreview.this.textureView.animate().alpha(1.0f).setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                VideoScreenPreview videoScreenPreview2 = VideoScreenPreview.this;
+                                videoScreenPreview2.firstFrameRendered = true;
+                                videoScreenPreview2.invalidate();
+                            }
+                        }).setDuration(200L);
+                    }
+                }
+            });
+            this.videoPlayer.preparePlayer(Uri.fromFile(this.file), "other");
+            this.videoPlayer.setPlayWhenReady(true);
+            if (!this.firstFrameRendered) {
+                this.imageReceiver.stopAnimation();
+                this.textureView.setAlpha(0.0f);
             }
-            this.imageReceiver.onDetachedFromWindow();
+            this.videoPlayer.seekTo(this.lastFrameTime + 60);
+            this.videoPlayer.play();
+        }
+    }
+
+    private void stopVideoPlayer() {
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer != null) {
+            this.lastFrameTime = videoPlayer.getCurrentPosition();
+            this.videoPlayer.setTextureView(null);
+            this.videoPlayer.releasePlayer(true);
+            this.videoPlayer = null;
         }
     }
 }

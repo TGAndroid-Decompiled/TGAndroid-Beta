@@ -233,6 +233,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     private boolean canWriteToChannel;
     private ImageView cancelBotButton;
     private NumberTextView captionLimitView;
+    private float chatSearchExpandOffset;
     private boolean clearBotButtonsOnKeyboardOpen;
     private boolean closeAnimationInProgress;
     private int codePointCount;
@@ -3593,7 +3594,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (z) {
             canvas.save();
             if (view == this.textFieldContainer) {
-                int dp = this.animatedTop + AndroidUtilities.dp(2.0f);
+                int dp = (int) (this.animatedTop + AndroidUtilities.dp(2.0f) + this.chatSearchExpandOffset);
                 View view2 = this.topView;
                 if (view2 != null && view2.getVisibility() == 0) {
                     dp += this.topView.getHeight();
@@ -3621,18 +3622,19 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         Theme.chat_composeShadowDrawable.setAlpha((int) (this.composeShadowAlpha * 255.0f));
         Theme.chat_composeShadowDrawable.setBounds(0, intrinsicHeight, getMeasuredWidth(), intrinsicHeight2);
         Theme.chat_composeShadowDrawable.draw(canvas);
+        int i = (int) (intrinsicHeight2 + this.chatSearchExpandOffset);
         if (this.allowBlur) {
             this.backgroundPaint.setColor(getThemedColor("chat_messagePanelBackground"));
             if (!SharedConfig.chatBlurEnabled() || this.sizeNotifierLayout == null) {
-                canvas.drawRect(0.0f, intrinsicHeight2, getWidth(), getHeight(), this.backgroundPaint);
+                canvas.drawRect(0.0f, i, getWidth(), getHeight(), this.backgroundPaint);
                 return;
             }
             Rect rect = AndroidUtilities.rectTmp2;
-            rect.set(0, intrinsicHeight2, getWidth(), getHeight());
+            rect.set(0, i, getWidth(), getHeight());
             this.sizeNotifierLayout.drawBlurRect(canvas, getTop(), rect, this.backgroundPaint, false);
             return;
         }
-        canvas.drawRect(0.0f, intrinsicHeight2, getWidth(), getHeight(), getThemedPaint("paintChatComposeBackground"));
+        canvas.drawRect(0.0f, i, getWidth(), getHeight(), getThemedPaint("paintChatComposeBackground"));
     }
 
     public boolean onSendLongClick(android.view.View r14) {
@@ -9071,5 +9073,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         Paint paint = resourcesProvider != null ? resourcesProvider.getPaint(str) : null;
         return paint != null ? paint : Theme.getThemePaint(str);
+    }
+
+    public void setChatSearchExpandOffset(float f) {
+        this.chatSearchExpandOffset = f;
+        invalidate();
     }
 }

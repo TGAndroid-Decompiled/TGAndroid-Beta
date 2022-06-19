@@ -1,16 +1,8 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.text.TextUtils;
@@ -34,6 +26,8 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.PremiumGradient;
+import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.SnowflakesEffect;
@@ -46,20 +40,23 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     private BackupImageView avatarImageView;
     private Integer currentColor;
     private Integer currentMoonColor;
-    private int darkThemeBackgroundColor;
     private RLottieImageView darkThemeView;
+    public boolean drawPremium;
+    public float drawPremiumProgress;
+    PremiumGradient.GradientTools gradientTools;
     private TextView nameTextView;
     private TextView phoneTextView;
     private ImageView shadowView;
     private SnowflakesEffect snowflakesEffect;
+    StarParticlesView.Drawable starParticlesDrawable;
     private Rect srcRect = new Rect();
     private Rect destRect = new Rect();
     private Paint paint = new Paint();
-    private Paint backPaint = new Paint(1);
-    private RLottieDrawable sunDrawable = new RLottieDrawable(R.raw.sun, "2131558528", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+    private RLottieDrawable sunDrawable = new RLottieDrawable(R.raw.sun, "2131558537", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
 
     public DrawerProfileCell(Context context, final DrawerLayoutContainer drawerLayoutContainer) {
         super(context);
+        new Paint(1);
         ImageView imageView = new ImageView(context);
         this.shadowView = imageView;
         imageView.setVisibility(4);
@@ -125,10 +122,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         this.darkThemeView.setScaleType(ImageView.ScaleType.CENTER);
         this.darkThemeView.setAnimation(this.sunDrawable);
         if (Build.VERSION.SDK_INT >= 21) {
-            RLottieImageView rLottieImageView2 = this.darkThemeView;
-            int color2 = Theme.getColor("listSelectorSDK21");
-            this.darkThemeBackgroundColor = color2;
-            rLottieImageView2.setBackgroundDrawable(Theme.createSelectorDrawable(color2, 1, AndroidUtilities.dp(17.0f)));
+            this.darkThemeView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 1, AndroidUtilities.dp(17.0f)));
             Theme.setRippleDrawableForceSoftware((RippleDrawable) this.darkThemeView.getBackground());
         }
         this.darkThemeView.setOnClickListener(new View.OnClickListener() {
@@ -199,95 +193,26 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        boolean z;
-        int i;
-        Drawable cachedWallpaper = Theme.getCachedWallpaper();
-        int i2 = 0;
-        boolean z2 = !applyBackground(false).equals("chats_menuTopBackground") && Theme.isCustomTheme() && !Theme.isPatternWallpaper() && cachedWallpaper != null && !(cachedWallpaper instanceof ColorDrawable) && !(cachedWallpaper instanceof GradientDrawable);
-        if (z2 || !Theme.hasThemeKey("chats_menuTopShadowCats")) {
-            if (Theme.hasThemeKey("chats_menuTopShadow")) {
-                i = Theme.getColor("chats_menuTopShadow");
-            } else {
-                i = Theme.getServiceMessageColor() | (-16777216);
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        if (this.drawPremium) {
+            if (this.starParticlesDrawable == null) {
+                StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(15);
+                this.starParticlesDrawable = drawable;
+                drawable.init();
+                StarParticlesView.Drawable drawable2 = this.starParticlesDrawable;
+                drawable2.speedScale = 0.8f;
+                drawable2.minLifeTime = 3000L;
             }
-            z = false;
-        } else {
-            i = Theme.getColor("chats_menuTopShadowCats");
-            z = true;
+            this.starParticlesDrawable.rect.set(this.avatarImageView.getLeft(), this.avatarImageView.getTop(), this.avatarImageView.getRight(), this.avatarImageView.getBottom());
+            this.starParticlesDrawable.rect.inset(-AndroidUtilities.dp(20.0f), -AndroidUtilities.dp(20.0f));
+            this.starParticlesDrawable.resetPositions();
         }
-        Integer num = this.currentColor;
-        if (num == null || num.intValue() != i) {
-            this.currentColor = Integer.valueOf(i);
-            this.shadowView.getDrawable().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-        }
-        int color = Theme.getColor("chats_menuName");
-        Integer num2 = this.currentMoonColor;
-        if (num2 == null || num2.intValue() != color) {
-            this.currentMoonColor = Integer.valueOf(color);
-            this.sunDrawable.beginApplyLayerColors();
-            this.sunDrawable.setLayerColor("Sunny.**", this.currentMoonColor.intValue());
-            this.sunDrawable.setLayerColor("Path 6.**", this.currentMoonColor.intValue());
-            this.sunDrawable.setLayerColor("Path.**", this.currentMoonColor.intValue());
-            this.sunDrawable.setLayerColor("Path 5.**", this.currentMoonColor.intValue());
-            this.sunDrawable.commitApplyLayerColors();
-        }
-        this.nameTextView.setTextColor(Theme.getColor("chats_menuName"));
-        if (z2) {
-            this.phoneTextView.setTextColor(Theme.getColor("chats_menuPhone"));
-            if (this.shadowView.getVisibility() != 0) {
-                this.shadowView.setVisibility(0);
-            }
-            if ((cachedWallpaper instanceof ColorDrawable) || (cachedWallpaper instanceof GradientDrawable)) {
-                cachedWallpaper.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                cachedWallpaper.draw(canvas);
-                i2 = Theme.getColor("listSelectorSDK21");
-            } else if (cachedWallpaper instanceof BitmapDrawable) {
-                Bitmap bitmap = ((BitmapDrawable) cachedWallpaper).getBitmap();
-                float max = Math.max(getMeasuredWidth() / bitmap.getWidth(), getMeasuredHeight() / bitmap.getHeight());
-                int measuredWidth = (int) (getMeasuredWidth() / max);
-                int measuredHeight = (int) (getMeasuredHeight() / max);
-                int width = (bitmap.getWidth() - measuredWidth) / 2;
-                int height = (bitmap.getHeight() - measuredHeight) / 2;
-                this.srcRect.set(width, height, measuredWidth + width, measuredHeight + height);
-                this.destRect.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                try {
-                    canvas.drawBitmap(bitmap, this.srcRect, this.destRect, this.paint);
-                } catch (Throwable th) {
-                    FileLog.e(th);
-                }
-                i2 = (Theme.getServiceMessageColor() & 16777215) | 1342177280;
-            }
-        } else {
-            if (!z) {
-                i2 = 4;
-            }
-            if (this.shadowView.getVisibility() != i2) {
-                this.shadowView.setVisibility(i2);
-            }
-            this.phoneTextView.setTextColor(Theme.getColor("chats_menuPhoneCats"));
-            super.onDraw(canvas);
-            i2 = Theme.getColor("listSelectorSDK21");
-        }
-        if (i2 != 0) {
-            if (i2 != this.darkThemeBackgroundColor) {
-                Paint paint = this.backPaint;
-                this.darkThemeBackgroundColor = i2;
-                paint.setColor(i2);
-                if (Build.VERSION.SDK_INT >= 21) {
-                    Drawable background = this.darkThemeView.getBackground();
-                    this.darkThemeBackgroundColor = i2;
-                    Theme.setSelectorDrawableColor(background, i2, true);
-                }
-            }
-            if (z2 && (cachedWallpaper instanceof BitmapDrawable)) {
-                canvas.drawCircle(this.darkThemeView.getX() + (this.darkThemeView.getMeasuredWidth() / 2), this.darkThemeView.getY() + (this.darkThemeView.getMeasuredHeight() / 2), AndroidUtilities.dp(17.0f), this.backPaint);
-            }
-        }
-        SnowflakesEffect snowflakesEffect = this.snowflakesEffect;
-        if (snowflakesEffect != null) {
-            snowflakesEffect.onDraw(this, canvas);
-        }
+    }
+
+    @Override
+    protected void onDraw(android.graphics.Canvas r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DrawerProfileCell.onDraw(android.graphics.Canvas):void");
     }
 
     public boolean isInAvatar(float f, float f2) {
@@ -314,6 +239,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
                 userName = Emoji.replaceEmoji(userName, this.nameTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(22.0f), false);
             } catch (Exception unused) {
             }
+            this.drawPremium = false;
             this.nameTextView.setText(userName);
             TextView textView = this.phoneTextView;
             PhoneFormat phoneFormat = PhoneFormat.getInstance();

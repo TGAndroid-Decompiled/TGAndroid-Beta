@@ -753,7 +753,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         private RectF rect = new RectF();
         private float[] volumeAlphas = new float[3];
         private float colorChangeProgress = 1.0f;
-        private RLottieDrawable speakerDrawable = new RLottieDrawable(R.raw.speaker, "2131558525", AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
+        private RLottieDrawable speakerDrawable = new RLottieDrawable(R.raw.speaker, "2131558534", AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
 
         public VolumeSlider(Context context, TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant) {
             super(context);
@@ -1782,7 +1782,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.webRtcMicAmplitudeEvent);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didEndCall);
         this.shadowDrawable = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.bigMicDrawable = new RLottieDrawable(R.raw.voip_filled, "2131558576", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
+        this.bigMicDrawable = new RLottieDrawable(R.raw.voip_filled, "2131558585", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
         this.handDrawables = new RLottieDrawable(R.raw.hand_2, "2131558459", AndroidUtilities.dp(72.0f), AndroidUtilities.dp(72.0f), true, null);
         FrameLayout frameLayout = new FrameLayout(context) {
             private int lastSize;

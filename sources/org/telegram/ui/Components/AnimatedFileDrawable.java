@@ -830,10 +830,6 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable {
         }
     }
 
-    public long getLastFrameTimestamp() {
-        return this.lastTimeStamp;
-    }
-
     @Override
     public int getMinimumHeight() {
         int i = 0;

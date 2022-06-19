@@ -442,13 +442,16 @@ public class MentionsContainerView extends BlurredFrameLayout {
         if (springAnimation != null) {
             springAnimation.cancel();
         }
-        if (z) {
-            AndroidUtilities.runOnUIThread(this.updateVisibilityRunnable);
-            onOpen();
-            return;
-        }
         AndroidUtilities.runOnUIThread(this.updateVisibilityRunnable);
-        onClose();
+        if (z) {
+            onOpen();
+        } else {
+            onClose();
+        }
+    }
+
+    public boolean isOpen() {
+        return this.shown;
     }
 
     private void updateListViewTranslation(final boolean z, boolean z2) {

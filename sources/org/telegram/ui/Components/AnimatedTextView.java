@@ -17,6 +17,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import j$.util.stream.IntStream;
 import j$.wrappers.C$r8$wrapper$java$util$stream$IntStream$VWRP;
 import java.util.ArrayList;
@@ -802,5 +803,12 @@ public class AnimatedTextView extends View {
     public void invalidateDrawable(Drawable drawable) {
         super.invalidateDrawable(drawable);
         invalidate();
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.TextView");
+        accessibilityNodeInfo.setText(getText());
     }
 }

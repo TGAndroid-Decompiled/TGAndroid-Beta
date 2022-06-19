@@ -300,7 +300,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private int clearLogsRow;
     private NestedFrameLayout contentView;
     private boolean creatingChat;
-    private String currentBio;
+    private CharSequence currentBio;
     private TLRPC$ChannelParticipant currentChannelParticipant;
     private TLRPC$Chat currentChat;
     private TLRPC$EncryptedChat currentEncryptedChat;
@@ -6072,6 +6072,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return Theme.getColor(str, this.resourcesProvider);
     }
 
+    @Override
+    public Drawable getThemedDrawable(String str) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        Drawable drawable = resourcesProvider != null ? resourcesProvider.getDrawable(str) : null;
+        return drawable != null ? drawable : super.getThemedDrawable(str);
+    }
+
     public void setAutoDeleteHistory(int i, int i2) {
         long dialogId = getDialogId();
         getMessagesController().setDialogHistoryTTL(dialogId, i);
@@ -6924,11 +6931,17 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r22, final int r23) {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r20, final int r21) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
-        public void lambda$onBindViewHolder$1(int i, AboutLinkCell aboutLinkCell, View view) {
+        public void lambda$onBindViewHolder$1(View view) {
+            if (ProfileActivity.this.userInfo != null) {
+                ProfileActivity.this.presentFragment(new ChangeBioActivity());
+            }
+        }
+
+        public void lambda$onBindViewHolder$2(int i, AboutLinkCell aboutLinkCell, View view) {
             ProfileActivity.this.processOnClickOrPress(i, aboutLinkCell);
         }
 
@@ -6966,10 +6979,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (i == ProfileActivity.this.infoHeaderRow || i == ProfileActivity.this.membersHeaderRow || i == ProfileActivity.this.settingsSectionRow2 || i == ProfileActivity.this.numberSectionRow || i == ProfileActivity.this.helpHeaderRow || i == ProfileActivity.this.debugHeaderRow) {
                 return 1;
             }
-            if (i == ProfileActivity.this.phoneRow || i == ProfileActivity.this.usernameRow || i == ProfileActivity.this.locationRow || i == ProfileActivity.this.numberRow || i == ProfileActivity.this.setUsernameRow || i == ProfileActivity.this.bioRow) {
+            if (i == ProfileActivity.this.phoneRow || i == ProfileActivity.this.usernameRow || i == ProfileActivity.this.locationRow || i == ProfileActivity.this.numberRow || i == ProfileActivity.this.setUsernameRow) {
                 return 2;
             }
-            if (i == ProfileActivity.this.userInfoRow || i == ProfileActivity.this.channelInfoRow) {
+            if (i == ProfileActivity.this.userInfoRow || i == ProfileActivity.this.channelInfoRow || i == ProfileActivity.this.bioRow) {
                 return 3;
             }
             if (i == ProfileActivity.this.settingsTimerRow || i == ProfileActivity.this.settingsKeyRow || i == ProfileActivity.this.reportRow || i == ProfileActivity.this.subscribersRow || i == ProfileActivity.this.subscribersRequestsRow || i == ProfileActivity.this.administratorsRow || i == ProfileActivity.this.blockedUsersRow || i == ProfileActivity.this.addMemberRow || i == ProfileActivity.this.joinRow || i == ProfileActivity.this.unblockRow || i == ProfileActivity.this.sendMessageRow || i == ProfileActivity.this.notificationRow || i == ProfileActivity.this.privacyRow || i == ProfileActivity.this.languageRow || i == ProfileActivity.this.dataRow || i == ProfileActivity.this.chatRow || i == ProfileActivity.this.questionRow || i == ProfileActivity.this.devicesRow || i == ProfileActivity.this.filtersRow || i == ProfileActivity.this.stickersRow || i == ProfileActivity.this.faqRow || i == ProfileActivity.this.policyRow || i == ProfileActivity.this.sendLogsRow || i == ProfileActivity.this.sendLastLogsRow || i == ProfileActivity.this.clearLogsRow || i == ProfileActivity.this.switchBackendRow || i == ProfileActivity.this.setAvatarRow || i == ProfileActivity.this.addToGroupButtonRow) {

@@ -266,7 +266,7 @@ public class ReactionsEffectOverlay {
     public static int sizeForBigReaction() {
         int dp = AndroidUtilities.dp(350.0f);
         Point point = AndroidUtilities.displaySize;
-        return (int) (Math.round(Math.min(dp, Math.min(point.x, point.y)) * 0.5f) / AndroidUtilities.density);
+        return (int) (Math.round(Math.min(dp, Math.min(point.x, point.y)) * 0.7f) / AndroidUtilities.density);
     }
 
     private class AvatarParticle {

@@ -4000,12 +4000,12 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     public static void prepareSendingDocuments(final AccountInstance accountInstance, final ArrayList<String> arrayList, final ArrayList<String> arrayList2, final ArrayList<Uri> arrayList3, final String str, final String str2, final long j, final MessageObject messageObject, final MessageObject messageObject2, final InputContentInfoCompat inputContentInfoCompat, final MessageObject messageObject3, final boolean z, final int i) {
         if (arrayList != null || arrayList2 != null || arrayList3 != null) {
             if (arrayList == null || arrayList2 == null || arrayList.size() == arrayList2.size()) {
-                new Thread(new Runnable() {
+                Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
                         SendMessagesHelper.lambda$prepareSendingDocuments$77(j, arrayList, str, accountInstance, i, arrayList2, str2, messageObject, messageObject2, messageObject3, inputContentInfoCompat, z, arrayList3);
                     }
-                }).start();
+                });
             }
         }
     }

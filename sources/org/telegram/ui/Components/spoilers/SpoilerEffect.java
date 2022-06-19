@@ -653,7 +653,7 @@ public class SpoilerEffect extends Drawable {
     }
 
     @SuppressLint({"WrongConstant"})
-    public static void renderWithRipple(View view, boolean z, int i, int i2, AtomicReference<Layout> atomicReference, Layout layout, List<SpoilerEffect> list, Canvas canvas) {
+    public static void renderWithRipple(View view, boolean z, int i, int i2, AtomicReference<Layout> atomicReference, Layout layout, List<SpoilerEffect> list, Canvas canvas, boolean z2) {
         int i3;
         TextStyleSpan[] textStyleSpanArr;
         if (list.isEmpty()) {
@@ -736,9 +736,13 @@ public class SpoilerEffect extends Drawable {
                 layout.draw(canvas);
                 canvas.restore();
             }
-            boolean z2 = list.get(0).rippleProgress != -1.0f;
-            if (z2) {
-                canvas.saveLayer(0.0f, 0.0f, view.getMeasuredWidth(), view.getMeasuredHeight(), null, 31);
+            boolean z3 = list.get(0).rippleProgress != -1.0f;
+            if (z3) {
+                int measuredWidth = view.getMeasuredWidth();
+                if (z2 && (view.getParent() instanceof View)) {
+                    measuredWidth = ((View) view.getParent()).getMeasuredWidth();
+                }
+                canvas.saveLayer(0.0f, 0.0f, measuredWidth, view.getMeasuredHeight(), null, 31);
             } else {
                 canvas.save();
             }
@@ -755,7 +759,7 @@ public class SpoilerEffect extends Drawable {
                 }
                 spoilerEffect2.draw(canvas);
             }
-            if (z2) {
+            if (z3) {
                 tempPath.rewind();
                 list.get(0).getRipplePath(tempPath);
                 if (xRefPaint == null) {

@@ -90,6 +90,7 @@ public class ConnectionsManager extends BaseController {
     private static final BlockingQueue<Runnable> sPoolWorkQueue;
     private static final ThreadFactory sThreadFactory;
     private int appResumeCount;
+    private boolean forceTryIpV6;
     private boolean isUpdating;
     private static HashMap<String, ResolveHostByNameTask> resolvingHostnameTasks = new HashMap<>();
     private static HashMap<String, ResolvedDomain> dnsCache = new HashMap<>();
@@ -183,6 +184,13 @@ public class ConnectionsManager extends BaseController {
         DNS_THREAD_POOL_EXECUTOR = threadPoolExecutor;
     }
 
+    public void setForceTryIpV6(boolean z) {
+        if (this.forceTryIpV6 != z) {
+            this.forceTryIpV6 = z;
+            checkConnection();
+        }
+    }
+
     public static class ResolvedDomain {
         public ArrayList<String> addresses;
         long ttl;
@@ -220,6 +228,7 @@ public class ConnectionsManager extends BaseController {
         String str3;
         String str4;
         String str5;
+        SharedPreferences sharedPreferences;
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (i != 0) {
             File file = new File(filesDirFixed, "account" + i);
@@ -229,30 +238,40 @@ public class ConnectionsManager extends BaseController {
         String file2 = filesDirFixed.toString();
         boolean isPushConnectionEnabled = isPushConnectionEnabled();
         try {
-            str5 = LocaleController.getSystemLocaleStringIso639().toLowerCase();
+            str4 = LocaleController.getSystemLocaleStringIso639().toLowerCase();
             str = LocaleController.getLocaleStringIso639().toLowerCase();
-            str3 = Build.MANUFACTURER + Build.MODEL;
+            str2 = Build.MANUFACTURER + Build.MODEL;
             PackageInfo packageInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
-            str2 = packageInfo.versionName + " (" + packageInfo.versionCode + ")";
+            String str6 = packageInfo.versionName + " (" + packageInfo.versionCode + ")";
             if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                str2 = str2 + " pbeta";
+                str6 = str6 + " pbeta";
             } else if (BuildVars.DEBUG_VERSION) {
-                str2 = str2 + " beta";
+                str6 = str6 + " beta";
             }
-            str4 = "SDK " + Build.VERSION.SDK_INT;
+            str5 = "SDK " + Build.VERSION.SDK_INT;
+            str3 = str6;
         } catch (Exception unused) {
-            str4 = "SDK " + Build.VERSION.SDK_INT;
+            str5 = "SDK " + Build.VERSION.SDK_INT;
             str = "";
-            str2 = "App version unknown";
-            str3 = "Android unknown";
-            str5 = "en";
+            str3 = "App version unknown";
+            str2 = "Android unknown";
+            str4 = "en";
         }
-        String str6 = str5.trim().length() == 0 ? "en" : str5;
-        String str7 = str3.trim().length() == 0 ? "Android unknown" : str3;
-        String str8 = str2.trim().length() == 0 ? "App version unknown" : str2;
-        String str9 = str4.trim().length() == 0 ? "SDK Unknown" : str4;
+        String str7 = str4.trim().length() == 0 ? "en" : str4;
+        String str8 = str2.trim().length() == 0 ? "Android unknown" : str2;
+        str3 = str3.trim().length() == 0 ? "App version unknown" : str3;
+        String str9 = str5.trim().length() == 0 ? "SDK Unknown" : str5;
         getUserConfig().loadConfig();
-        init(BuildVars.BUILD_VERSION, 143, BuildVars.APP_ID, str7, str9, str8, str, str6, file2, FileLog.getNetworkLogPath(), getRegId(), AndroidUtilities.getCertificateSHA256Fingerprint(), (TimeZone.getDefault().getRawOffset() + TimeZone.getDefault().getDSTSavings()) / 1000, getUserConfig().getClientUserId(), isPushConnectionEnabled);
+        String regId = getRegId();
+        String certificateSHA256Fingerprint = AndroidUtilities.getCertificateSHA256Fingerprint();
+        int rawOffset = (TimeZone.getDefault().getRawOffset() + TimeZone.getDefault().getDSTSavings()) / 1000;
+        if (this.currentAccount == 0) {
+            sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
+        } else {
+            sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
+        }
+        this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
+        init(BuildVars.BUILD_VERSION, 143, BuildVars.APP_ID, str8, str9, str3, str, str7, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), isPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -844,7 +863,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     @SuppressLint({"NewApi"})
-    protected static byte getIpStrategy() {
+    protected byte getIpStrategy() {
         if (Build.VERSION.SDK_INT < 19) {
             return (byte) 0;
         }
@@ -899,6 +918,9 @@ public class ConnectionsManager extends BaseController {
                 }
             }
             if (z) {
+                if (this.forceTryIpV6) {
+                    return (byte) 1;
+                }
                 if (z2) {
                     return (byte) 2;
                 }

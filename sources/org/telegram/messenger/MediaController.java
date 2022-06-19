@@ -4448,7 +4448,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     @android.annotation.SuppressLint({"DiscouragedPrivateApi"})
-    public static java.lang.String copyFileToCache(android.net.Uri r11, java.lang.String r12, long r13) {
+    public static java.lang.String copyFileToCache(android.net.Uri r13, java.lang.String r14, long r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.copyFileToCache(android.net.Uri, java.lang.String, long):java.lang.String");
     }
 

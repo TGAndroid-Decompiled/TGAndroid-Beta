@@ -749,7 +749,7 @@ public class MediaDataController extends BaseController {
     public void lambda$putPremiumPromoToCache$9(TLRPC$TL_help_premiumPromo tLRPC$TL_help_premiumPromo, int i) {
         try {
             if (tLRPC$TL_help_premiumPromo != null) {
-                getMessagesStorage().getDatabase().executeFast("DELETE FROM attach_menu_bots").stepThis().dispose();
+                getMessagesStorage().getDatabase().executeFast("DELETE FROM premium_promo").stepThis().dispose();
                 SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("REPLACE INTO premium_promo VALUES(?, ?)");
                 executeFast.requery();
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$TL_help_premiumPromo.getObjectSize());
@@ -6420,7 +6420,7 @@ public class MediaDataController extends BaseController {
                     imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), null, null, "webp", null, 1);
                     ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
                     ImageReceiver imageReceiver2 = new ImageReceiver();
-                    imageReceiver2.setImage(ImageLocation.getForDocument(MessageObject.getPremiumStickerAnimation(tLRPC$Document), tLRPC$Document), "140_140", (ImageLocation) null, (String) null, "tgs", (Object) null, 1);
+                    imageReceiver2.setImage(ImageLocation.getForDocument(MessageObject.getPremiumStickerAnimation(tLRPC$Document), tLRPC$Document), (String) null, (ImageLocation) null, (String) null, "tgs", (Object) null, 1);
                     ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver2);
                 }
                 i++;

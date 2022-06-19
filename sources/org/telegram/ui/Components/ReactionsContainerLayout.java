@@ -29,7 +29,6 @@ import androidx.core.graphics.ColorUtils;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.exoplayer2.util.Log;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -936,13 +935,6 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     public void setTranslationX(float f) {
         if (f != getTranslationX()) {
             super.setTranslationX(f);
-            Log.d("kek", "translationX " + f);
         }
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        Log.d("kek", "left " + i);
     }
 }

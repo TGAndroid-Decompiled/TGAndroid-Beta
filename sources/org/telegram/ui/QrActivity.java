@@ -1070,7 +1070,7 @@ public class QrActivity extends BaseFragment {
             frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 8388659, 0.0f, 0.0f, 62.0f, 0.0f));
             int themedColor = baseFragment.getThemedColor("featuredStickers_addButton");
             int dp = AndroidUtilities.dp(28.0f);
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.sun_outline, "2131558529", dp, dp, false, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.sun_outline, "2131558538", dp, dp, false, null);
             this.darkThemeDrawable = rLottieDrawable;
             setForceDark(Theme.getActiveTheme().isDark(), false);
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);

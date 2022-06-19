@@ -3711,6 +3711,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.canRevokePmInbox = tLRPC$TL_config.revoke_pm_inbox;
         String str = tLRPC$TL_config.me_url_prefix;
         this.linkPrefix = str;
+        boolean z = tLRPC$TL_config.force_try_ipv6;
         if (str.endsWith("/")) {
             String str2 = this.linkPrefix;
             this.linkPrefix = str2.substring(0, str2.length() - 1);
@@ -3746,9 +3747,9 @@ public class MessagesController extends BaseController implements NotificationCe
         String str5 = tLRPC$TL_config.suggested_lang_code;
         if (str5 != null) {
             String str6 = this.suggestedLangCode;
-            boolean z = str6 == null || !str6.equals(str5);
+            boolean z2 = str6 == null || !str6.equals(str5);
             this.suggestedLangCode = tLRPC$TL_config.suggested_lang_code;
-            if (z) {
+            if (z2) {
                 LocaleController.getInstance().loadRemoteLanguages(this.currentAccount);
             }
         }
@@ -3829,7 +3830,9 @@ public class MessagesController extends BaseController implements NotificationCe
         edit.putString("dcDomainName2", this.dcDomainName);
         edit.putInt("webFileDatacenterId", this.webFileDatacenterId);
         edit.putString("suggestedLangCode", this.suggestedLangCode);
+        edit.putBoolean("forceTryIpV6", z);
         edit.commit();
+        getConnectionsManager().setForceTryIpV6(z);
         LocaleController.getInstance().checkUpdateForCurrentRemoteLocale(this.currentAccount, tLRPC$TL_config.lang_pack_version, tLRPC$TL_config.base_lang_pack_version);
         getNotificationCenter().postNotificationName(NotificationCenter.configLoaded, new Object[0]);
     }

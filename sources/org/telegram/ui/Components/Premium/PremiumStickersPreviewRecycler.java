@@ -31,6 +31,7 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
     private final int currentAccount;
     boolean haptic;
     boolean hasSelectedView;
+    boolean isVisible;
     LinearLayoutManager layoutManager;
     View oldSelectedView;
     private int size;
@@ -62,13 +63,11 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
     CubicBezierInterpolator interpolator = new CubicBezierInterpolator(0.0f, 0.5f, 0.5f, 1.0f);
     ArrayList<StickerView> sortedView = new ArrayList<>();
     Comparator<StickerView> comparator = PremiumStickersPreviewRecycler$$ExternalSyntheticLambda1.INSTANCE;
+    int selectStickerOnNextLayout = -1;
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j) {
         return true;
-    }
-
-    public void setOffset(float f) {
     }
 
     public static int lambda$new$0(StickerView stickerView, StickerView stickerView2) {
@@ -178,51 +177,72 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
                 }
             });
         }
+        int i5 = this.selectStickerOnNextLayout;
+        if (i5 > 0) {
+            RecyclerView.ViewHolder findViewHolderForAdapterPosition = findViewHolderForAdapterPosition(i5);
+            if (findViewHolderForAdapterPosition != null) {
+                drawEffectForView(findViewHolderForAdapterPosition.itemView, false);
+            }
+            this.selectStickerOnNextLayout = -1;
+        }
     }
 
     public void lambda$onLayout$2() {
-        this.layoutManager.scrollToPositionWithOffset(1073741823 - (1073741823 % this.premiumStickers.size()), (getMeasuredHeight() - getChildAt(0).getMeasuredHeight()) >> 1);
+        int size = 1073741823 - (1073741823 % this.premiumStickers.size());
+        LinearLayoutManager linearLayoutManager = this.layoutManager;
+        this.selectStickerOnNextLayout = size;
+        linearLayoutManager.scrollToPositionWithOffset(size, (getMeasuredHeight() - getChildAt(0).getMeasuredHeight()) >> 1);
         drawEffectForView(null, false);
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        this.sortedView.clear();
-        for (int i = 0; i < getChildCount(); i++) {
-            StickerView stickerView = (StickerView) getChildAt(i);
-            float top = ((stickerView.getTop() + stickerView.getMeasuredHeight()) + (stickerView.getMeasuredHeight() >> 1)) / ((getMeasuredHeight() >> 1) + stickerView.getMeasuredHeight());
-            if (top > 1.0f) {
-                top = 2.0f - top;
+        if (this.isVisible) {
+            this.sortedView.clear();
+            for (int i = 0; i < getChildCount(); i++) {
+                StickerView stickerView = (StickerView) getChildAt(i);
+                float top = ((stickerView.getTop() + stickerView.getMeasuredHeight()) + (stickerView.getMeasuredHeight() >> 1)) / ((getMeasuredHeight() >> 1) + stickerView.getMeasuredHeight());
+                if (top > 1.0f) {
+                    top = 2.0f - top;
+                }
+                float clamp = Utilities.clamp(top, 1.0f, 0.0f);
+                stickerView.progress = clamp;
+                stickerView.view.setTranslationX((-getMeasuredWidth()) * 2.0f * (1.0f - this.interpolator.getInterpolation(clamp)));
+                this.sortedView.add(stickerView);
             }
-            float clamp = Utilities.clamp(top, 1.0f, 0.0f);
-            stickerView.progress = clamp;
-            stickerView.view.setTranslationX((-getMeasuredWidth()) * 2.0f * (1.0f - this.interpolator.getInterpolation(clamp)));
-            this.sortedView.add(stickerView);
-        }
-        Collections.sort(this.sortedView, this.comparator);
-        if ((this.firstDraw || this.checkEffect) && this.sortedView.size() > 0 && !this.premiumStickers.isEmpty()) {
-            ArrayList<StickerView> arrayList = this.sortedView;
-            StickerView stickerView2 = arrayList.get(arrayList.size() - 1);
-            this.oldSelectedView = stickerView2;
-            drawEffectForView(stickerView2, !this.firstDraw);
-            this.firstDraw = false;
-            this.checkEffect = false;
-        } else {
-            View view = this.oldSelectedView;
-            ArrayList<StickerView> arrayList2 = this.sortedView;
-            if (view != arrayList2.get(arrayList2.size() - 1)) {
-                ArrayList<StickerView> arrayList3 = this.sortedView;
-                this.oldSelectedView = arrayList3.get(arrayList3.size() - 1);
-                if (this.haptic) {
-                    performHapticFeedback(3);
+            Collections.sort(this.sortedView, this.comparator);
+            if ((this.firstDraw || this.checkEffect) && this.sortedView.size() > 0 && !this.premiumStickers.isEmpty()) {
+                ArrayList<StickerView> arrayList = this.sortedView;
+                StickerView stickerView2 = arrayList.get(arrayList.size() - 1);
+                this.oldSelectedView = stickerView2;
+                drawEffectForView(stickerView2, !this.firstDraw);
+                this.firstDraw = false;
+                this.checkEffect = false;
+            } else {
+                View view = this.oldSelectedView;
+                ArrayList<StickerView> arrayList2 = this.sortedView;
+                if (view != arrayList2.get(arrayList2.size() - 1)) {
+                    ArrayList<StickerView> arrayList3 = this.sortedView;
+                    this.oldSelectedView = arrayList3.get(arrayList3.size() - 1);
+                    if (this.haptic) {
+                        performHapticFeedback(3);
+                    }
                 }
             }
+            for (int i2 = 0; i2 < this.sortedView.size(); i2++) {
+                canvas.save();
+                canvas.translate(this.sortedView.get(i2).getX(), this.sortedView.get(i2).getY());
+                this.sortedView.get(i2).draw(canvas);
+                canvas.restore();
+            }
         }
-        for (int i2 = 0; i2 < this.sortedView.size(); i2++) {
-            canvas.save();
-            canvas.translate(this.sortedView.get(i2).getX(), this.sortedView.get(i2).getY());
-            this.sortedView.get(i2).draw(canvas);
-            canvas.restore();
+    }
+
+    public void setOffset(float f) {
+        boolean z = Math.abs(f / ((float) getMeasuredWidth())) < 1.0f;
+        if (this.isVisible != z) {
+            this.isVisible = z;
+            invalidate();
         }
     }
 

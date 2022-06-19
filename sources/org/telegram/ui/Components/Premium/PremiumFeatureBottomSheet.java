@@ -477,6 +477,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 @Override
                 public void setOffset(float f) {
                     setAutoPlayEnabled(f == 0.0f);
+                    super.setOffset(f);
                 }
             };
         } else {

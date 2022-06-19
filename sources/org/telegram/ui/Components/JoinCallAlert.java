@@ -182,10 +182,6 @@ public class JoinCallAlert extends BottomSheet {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setClassName("android.widget.Button");
             accessibilityNodeInfo.setClickable(true);
-            CharSequence charSequence = this.text;
-            if (charSequence != null) {
-                accessibilityNodeInfo.setContentDescription(charSequence);
-            }
         }
     }
 
