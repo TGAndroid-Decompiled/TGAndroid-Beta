@@ -18,6 +18,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
@@ -3426,6 +3427,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public void needShowPremiumFeatures() {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumFeatures(this);
+                    }
+
+                    @Override
+                    public boolean onAccessibilityAction(int i2, Bundle bundle) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i2, bundle);
                     }
 
                     @Override

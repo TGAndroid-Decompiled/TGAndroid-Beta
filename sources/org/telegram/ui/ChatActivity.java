@@ -13453,6 +13453,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void selectReaction(MessageObject messageObject, ReactionsContainerLayout reactionsContainerLayout, float f, float f2, TLRPC$TL_availableReaction tLRPC$TL_availableReaction, boolean z, boolean z2) {
+        int i;
         if (!isInScheduleMode()) {
             ReactionsEffectOverlay.removeCurrent(false);
             boolean selectReaction = messageObject.selectReaction(tLRPC$TL_availableReaction.reaction, z2, z);
@@ -13463,13 +13464,21 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     id = findMessageWithFlags.getId();
                 }
             }
-            int i = id;
-            if (selectReaction && !z) {
-                ReactionsEffectOverlay.show(this, reactionsContainerLayout, findMessageCell(i, true), f, f2, tLRPC$TL_availableReaction.reaction, this.currentAccount, reactionsContainerLayout != null ? z2 ? 0 : 2 : 1);
+            int i2 = id;
+            if (!selectReaction || z) {
+                i = 1;
+            } else {
+                i = 1;
+                ReactionsEffectOverlay.show(this, reactionsContainerLayout, findMessageCell(i2, true), f, f2, tLRPC$TL_availableReaction.reaction, this.currentAccount, reactionsContainerLayout != null ? z2 ? 0 : 2 : 1);
+            }
+            if (selectReaction) {
+                Object[] objArr = new Object[i];
+                objArr[0] = tLRPC$TL_availableReaction.reaction;
+                AndroidUtilities.makeAccessibilityAnnouncement(LocaleController.formatString("AccDescrYouReactedWith", R.string.AccDescrYouReactedWith, objArr));
             }
             SendMessagesHelper sendMessagesHelper = getSendMessagesHelper();
             String str = selectReaction ? tLRPC$TL_availableReaction.reaction : null;
-            AnonymousClass111 r7 = new AnonymousClass111(z, i, selectReaction, reactionsContainerLayout, f, f2, tLRPC$TL_availableReaction, messageObject);
+            AnonymousClass111 r7 = new AnonymousClass111(z, i2, selectReaction, reactionsContainerLayout, f, f2, tLRPC$TL_availableReaction, messageObject);
             this.updateReactionRunnable = r7;
             sendMessagesHelper.sendReaction(messageObject, str, z2, this, r7);
             if (z) {
@@ -16557,6 +16566,23 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             @Override
             public void invalidateBlur() {
                 ChatActivity.this.contentView.invalidateBlur();
+            }
+
+            @Override
+            public boolean onAccessibilityAction(int i, Bundle bundle) {
+                if (i != 16 && i != R.id.acc_action_small_button && i != R.id.acc_action_msg_options) {
+                    return false;
+                }
+                if (((BaseFragment) ChatActivity.this).inPreviewMode) {
+                    ChatActivity chatActivity = ChatActivity.this;
+                    if (chatActivity.allowExpandPreviewByClick) {
+                        if (((BaseFragment) chatActivity).parentLayout != null) {
+                            ((BaseFragment) ChatActivity.this).parentLayout.expandPreviewFragment();
+                        }
+                        return true;
+                    }
+                }
+                return !canPerformActions();
             }
         }
 

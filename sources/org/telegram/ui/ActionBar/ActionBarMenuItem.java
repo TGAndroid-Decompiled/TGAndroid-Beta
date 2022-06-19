@@ -895,15 +895,12 @@ public class ActionBarMenuItem extends FrameLayout {
                 this.searchContainerAnimator.start();
                 this.searchField.clearFocus();
                 setVisibility(0);
-                if (!this.currentSearchFilters.isEmpty()) {
-                    if (this.listener != null) {
-                        for (int i3 = 0; i3 < this.currentSearchFilters.size(); i3++) {
-                            if (this.currentSearchFilters.get(i3).removable) {
-                                this.listener.onSearchFilterCleared(this.currentSearchFilters.get(i3));
-                            }
+                if (!this.currentSearchFilters.isEmpty() && this.listener != null) {
+                    for (int i3 = 0; i3 < this.currentSearchFilters.size(); i3++) {
+                        if (this.currentSearchFilters.get(i3).removable) {
+                            this.listener.onSearchFilterCleared(this.currentSearchFilters.get(i3));
                         }
                     }
-                    clearSearchFilters();
                 }
                 ActionBarMenuItemSearchListener actionBarMenuItemSearchListener3 = this.listener;
                 if (actionBarMenuItemSearchListener3 != null) {

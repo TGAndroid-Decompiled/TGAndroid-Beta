@@ -8,6 +8,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextUtils;
@@ -920,12 +922,25 @@ public class DialogCell extends BaseCell {
     }
 
     @Override
+    public boolean performAccessibilityAction(int i, Bundle bundle) {
+        DialogsActivity dialogsActivity;
+        if (i != R.id.acc_action_chat_preview || (dialogsActivity = this.parentFragment) == null) {
+            return super.performAccessibilityAction(i, bundle);
+        }
+        dialogsActivity.showChatPreview(this);
+        return true;
+    }
+
+    @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         PullForegroundDrawable pullForegroundDrawable;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (!isFolderCell() || (pullForegroundDrawable = this.archivedChatsDrawable) == null || !SharedConfig.archiveHidden || pullForegroundDrawable.pullProgress != 0.0f) {
             accessibilityNodeInfo.addAction(16);
             accessibilityNodeInfo.addAction(32);
+            if (!isFolderCell() && this.parentFragment != null && Build.VERSION.SDK_INT >= 21) {
+                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_chat_preview, LocaleController.getString("AccActionChatPreview", R.string.AccActionChatPreview)));
+            }
         } else {
             accessibilityNodeInfo.setVisibleToUser(false);
         }
@@ -981,6 +996,10 @@ public class DialogCell extends BaseCell {
                 }
             }
         }
+        if (this.drawVerified) {
+            sb.append(LocaleController.getString("AccDescrVerified", R.string.AccDescrVerified));
+            sb.append(". ");
+        }
         int i = this.unreadCount;
         if (i > 0) {
             sb.append(LocaleController.formatPluralString("NewMessages", i, new Object[0]));
@@ -1016,10 +1035,31 @@ public class DialogCell extends BaseCell {
             sb.append(". ");
         }
         if (this.encryptedChat == null) {
-            sb.append(this.message.messageText);
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(this.message.messageText);
             if (!this.message.isMediaEmpty() && !TextUtils.isEmpty(this.message.caption)) {
-                sb.append(". ");
-                sb.append(this.message.caption);
+                sb2.append(". ");
+                sb2.append(this.message.caption);
+            }
+            StaticLayout staticLayout = this.messageLayout;
+            int length = staticLayout == null ? -1 : staticLayout.getText().length();
+            if (length > 0) {
+                int length2 = sb2.length();
+                int indexOf = sb2.indexOf("\n", length);
+                if (indexOf < length2 && indexOf >= 0) {
+                    length2 = indexOf;
+                }
+                int indexOf2 = sb2.indexOf("\t", length);
+                if (indexOf2 < length2 && indexOf2 >= 0) {
+                    length2 = indexOf2;
+                }
+                int indexOf3 = sb2.indexOf(" ", length);
+                if (indexOf3 < length2 && indexOf3 >= 0) {
+                    length2 = indexOf3;
+                }
+                sb.append(sb2.substring(0, length2));
+            } else {
+                sb.append((CharSequence) sb2);
             }
         }
         accessibilityEvent.setContentDescription(sb.toString());

@@ -4662,7 +4662,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                                 stickerSetNameCell.setText(tLRPC$StickerSet.title, 0);
                             }
                         } else if (obj == EmojiView.this.recentStickers) {
-                            stickerSetNameCell.setText(LocaleController.getString("RecentStickers", R.string.RecentStickers), R.drawable.msg_close);
+                            stickerSetNameCell.setText(LocaleController.getString("RecentStickers", R.string.RecentStickers), R.drawable.msg_close, LocaleController.getString((int) R.string.ClearRecentStickersAlertTitle));
                         } else if (obj == EmojiView.this.favouriteStickers) {
                             stickerSetNameCell.setText(LocaleController.getString("FavoriteStickers", R.string.FavoriteStickers), 0);
                         } else if (obj == EmojiView.this.premiumStickers) {

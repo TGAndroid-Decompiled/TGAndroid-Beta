@@ -618,6 +618,11 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         if (staticLayout != null) {
             sb.append(staticLayout.getText());
         }
+        if (this.drawCheck) {
+            sb.append(", ");
+            sb.append(LocaleController.getString("AccDescrVerified", R.string.AccDescrVerified));
+            sb.append("\n");
+        }
         if (this.statusLayout != null) {
             if (sb.length() > 0) {
                 sb.append(", ");

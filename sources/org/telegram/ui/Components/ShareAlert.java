@@ -1761,7 +1761,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         sendInternal(true);
     }
 
-    public void sendInternal(boolean z) {
+    protected void sendInternal(boolean z) {
         int i = 0;
         int i2 = 0;
         while (true) {

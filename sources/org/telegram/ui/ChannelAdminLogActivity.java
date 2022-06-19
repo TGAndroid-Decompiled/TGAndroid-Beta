@@ -1947,6 +1947,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public boolean onAccessibilityAction(int i, Bundle bundle) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i, bundle);
+            }
+
+            @Override
             public void onDiceFinished() {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$onDiceFinished(this);
             }

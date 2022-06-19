@@ -510,7 +510,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     @Override
     @android.annotation.SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
-    public android.view.View createView(android.content.Context r33) {
+    public android.view.View createView(android.content.Context r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -997,26 +997,35 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public void setAddressFields(TLRPC$TL_paymentRequestedInfo tLRPC$TL_paymentRequestedInfo) {
         TLRPC$TL_postAddress tLRPC$TL_postAddress = tLRPC$TL_paymentRequestedInfo.shipping_address;
-        boolean z = false;
+        boolean z = true;
+        int i = 0;
         if (tLRPC$TL_postAddress != null) {
             this.detailSettingsCell[2].setTextAndValueAndIcon(String.format("%s %s, %s, %s, %s, %s", tLRPC$TL_postAddress.street_line1, tLRPC$TL_postAddress.street_line2, tLRPC$TL_postAddress.city, tLRPC$TL_postAddress.state, tLRPC$TL_postAddress.country_iso2, tLRPC$TL_postAddress.post_code), LocaleController.getString("PaymentShippingAddress", R.string.PaymentShippingAddress), R.drawable.msg_payment_address, true);
         }
+        this.detailSettingsCell[2].setVisibility(tLRPC$TL_paymentRequestedInfo.shipping_address != null ? 0 : 8);
         String str = tLRPC$TL_paymentRequestedInfo.name;
         if (str != null) {
             this.detailSettingsCell[3].setTextAndValueAndIcon(str, LocaleController.getString("PaymentCheckoutName", R.string.PaymentCheckoutName), R.drawable.msg_contacts, true);
         }
+        this.detailSettingsCell[3].setVisibility(tLRPC$TL_paymentRequestedInfo.name != null ? 0 : 8);
         if (tLRPC$TL_paymentRequestedInfo.phone != null) {
             this.detailSettingsCell[4].setTextAndValueAndIcon(PhoneFormat.getInstance().format(tLRPC$TL_paymentRequestedInfo.phone), LocaleController.getString("PaymentCheckoutPhoneNumber", R.string.PaymentCheckoutPhoneNumber), R.drawable.msg_calls, (tLRPC$TL_paymentRequestedInfo.email == null && this.shippingOption == null) ? false : true);
         }
+        this.detailSettingsCell[4].setVisibility(tLRPC$TL_paymentRequestedInfo.phone != null ? 0 : 8);
         String str2 = tLRPC$TL_paymentRequestedInfo.email;
         if (str2 != null) {
             TextDetailSettingsCell textDetailSettingsCell = this.detailSettingsCell[5];
             String string = LocaleController.getString("PaymentCheckoutEmail", R.string.PaymentCheckoutEmail);
-            if (this.shippingOption != null) {
-                z = true;
+            if (this.shippingOption == null) {
+                z = false;
             }
             textDetailSettingsCell.setTextAndValueAndIcon(str2, string, R.drawable.msg_mention, z);
         }
+        TextDetailSettingsCell textDetailSettingsCell2 = this.detailSettingsCell[5];
+        if (tLRPC$TL_paymentRequestedInfo.email == null) {
+            i = 8;
+        }
+        textDetailSettingsCell2.setVisibility(i);
     }
 
     public void updateTotalPrice() {

@@ -104,7 +104,11 @@ public class StickerSetNameCell extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence, int i) {
-        setText(charSequence, i, 0, 0);
+        setText(charSequence, i, null, 0, 0);
+    }
+
+    public void setText(CharSequence charSequence, int i, CharSequence charSequence2) {
+        setText(charSequence, i, charSequence2, 0, 0);
     }
 
     public void setTitleColor(int i) {
@@ -112,6 +116,10 @@ public class StickerSetNameCell extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence, int i, int i2, int i3) {
+        setText(charSequence, i, null, i2, i3);
+    }
+
+    public void setText(CharSequence charSequence, int i, CharSequence charSequence2, int i2, int i3) {
         this.stickerSetName = charSequence;
         this.stickerSetNameSearchIndex = i2;
         this.stickerSetNameSearchLength = i3;
@@ -129,6 +137,7 @@ public class StickerSetNameCell extends FrameLayout {
         }
         if (i != 0) {
             this.buttonView.setImageResource(i);
+            this.buttonView.setContentDescription(charSequence2);
             this.buttonView.setVisibility(0);
             return;
         }

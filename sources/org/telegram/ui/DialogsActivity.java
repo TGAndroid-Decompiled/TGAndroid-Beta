@@ -232,7 +232,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     boolean isDrawerTransition;
     boolean isSlideBackTransition;
     private int lastMeasuredTopPadding;
-    private RecyclerListView listViewAfterChatPreview;
     private int maximumVelocity;
     private boolean maybeStartTracking;
     private MenuDrawable menuDrawable;
@@ -4012,7 +4011,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (!this.actionBar.isActionModeShowed() && !AndroidUtilities.isTablet() && !this.onlySelect && (view instanceof DialogCell)) {
             DialogCell dialogCell = (DialogCell) view;
             if (dialogCell.isPointInsideAvatar(f, f2)) {
-                return showChatPreview(recyclerListView, dialogCell);
+                return showChatPreview(dialogCell);
             }
         }
         DialogsSearchAdapter dialogsSearchAdapter = this.searchViewPager.dialogsSearchAdapter;
@@ -4153,19 +4152,19 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public boolean showChatPreview(RecyclerListView recyclerListView, final DialogCell dialogCell) {
+    public boolean showChatPreview(final DialogCell dialogCell) {
         final MessagesController.DialogFilter dialogFilter;
-        ArrayList arrayList;
-        Bundle bundle;
+        ChatActivity[] chatActivityArr;
         boolean z;
-        int i;
+        Bundle bundle;
         boolean z2;
+        int i;
         int i2;
         int i3;
         int i4;
-        int i5;
         boolean z3;
-        int i6;
+        int i5;
+        ArrayList<TLRPC$Dialog> arrayList;
         long j;
         TLRPC$Chat chat;
         if (dialogCell.isDialogFolder()) {
@@ -4194,9 +4193,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (messageId != 0) {
             bundle2.putInt("message_id", messageId);
         }
-        ArrayList arrayList2 = new ArrayList();
+        final ArrayList arrayList2 = new ArrayList();
         arrayList2.add(Long.valueOf(dialogId));
-        ChatActivity[] chatActivityArr = new ChatActivity[1];
+        ChatActivity[] chatActivityArr2 = new ChatActivity[1];
         ActionBarPopupWindow.ActionBarPopupWindowLayout[] actionBarPopupWindowLayoutArr = {new ActionBarPopupWindow.ActionBarPopupWindowLayout(getParentActivity(), R.drawable.popup_fixed_alert, getResourceProvider(), 2)};
         ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getParentActivity(), true, false);
         if (dialogCell.getHasUnread()) {
@@ -4224,70 +4223,69 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (!isDialogPinned(tLRPC$Dialog)) {
             ArrayList<TLRPC$Dialog> dialogs = getMessagesController().getDialogs(this.folderId);
             int size = dialogs.size();
+            int i6 = 0;
             int i7 = 0;
             int i8 = 0;
-            int i9 = 0;
             while (true) {
-                if (i7 >= size) {
-                    bundle = bundle2;
-                    arrayList = arrayList2;
+                if (i6 >= size) {
+                    chatActivityArr = chatActivityArr2;
                     break;
                 }
-                TLRPC$Dialog tLRPC$Dialog2 = dialogs.get(i7);
-                dialogs = dialogs;
+                TLRPC$Dialog tLRPC$Dialog2 = dialogs.get(i6);
                 if (tLRPC$Dialog2 instanceof TLRPC$TL_dialogFolder) {
-                    i6 = size;
+                    arrayList = dialogs;
+                    i5 = size;
                 } else if (isDialogPinned(tLRPC$Dialog2)) {
-                    i6 = size;
+                    arrayList = dialogs;
+                    i5 = size;
                     if (DialogObject.isEncryptedDialog(tLRPC$Dialog2.id)) {
-                        i9++;
-                    } else {
                         i8++;
+                    } else {
+                        i7++;
                     }
                 } else {
-                    i6 = size;
-                    bundle = bundle2;
-                    arrayList = arrayList2;
+                    arrayList = dialogs;
+                    i5 = size;
+                    chatActivityArr = chatActivityArr2;
                     if (!getMessagesController().isPromoDialog(tLRPC$Dialog2.id, false)) {
                         break;
                     }
-                    i7++;
-                    size = i6;
-                    bundle2 = bundle;
-                    arrayList2 = arrayList;
+                    i6++;
+                    dialogs = arrayList;
+                    size = i5;
+                    chatActivityArr2 = chatActivityArr;
                 }
-                bundle = bundle2;
-                arrayList = arrayList2;
-                i7++;
-                size = i6;
-                bundle2 = bundle;
-                arrayList2 = arrayList;
+                chatActivityArr = chatActivityArr2;
+                i6++;
+                dialogs = arrayList;
+                size = i5;
+                chatActivityArr2 = chatActivityArr;
             }
             if (tLRPC$Dialog == null || isDialogPinned(tLRPC$Dialog)) {
-                i4 = 0;
                 i3 = 0;
                 i2 = 0;
+                i = 0;
             } else {
                 boolean isEncryptedDialog = DialogObject.isEncryptedDialog(dialogId);
-                int i10 = !isEncryptedDialog ? 1 : 0;
+                int i9 = !isEncryptedDialog ? 1 : 0;
                 if (dialogFilter == null || !dialogFilter.alwaysShow.contains(Long.valueOf(dialogId))) {
-                    i2 = i10;
-                    i3 = isEncryptedDialog ? 1 : 0;
-                    i4 = 0;
+                    i = i9;
+                    i2 = isEncryptedDialog ? 1 : 0;
+                    i3 = 0;
                 } else {
-                    i2 = i10;
-                    i3 = isEncryptedDialog;
-                    i4 = 1;
+                    i = i9;
+                    i2 = isEncryptedDialog;
+                    i3 = 1;
                 }
             }
             if (z4 && dialogFilter != null) {
-                i5 = 100 - dialogFilter.alwaysShow.size();
+                i4 = 100 - dialogFilter.alwaysShow.size();
             } else if (this.folderId == 0 && dialogFilter == null) {
-                i5 = getMessagesController().maxPinnedDialogsCount;
+                i4 = getMessagesController().maxPinnedDialogsCount;
             } else {
-                i5 = getMessagesController().maxFolderPinnedDialogsCount;
+                i4 = getMessagesController().maxFolderPinnedDialogsCount;
             }
-            if (i3 + i9 > i5 || (i2 + i8) - i4 > i5) {
+            if (i2 + i8 > i4 || (i + i7) - i3 > i4) {
                 z = false;
                 z3 = false;
             } else {
@@ -4299,8 +4297,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             char c3 = z ? 1 : 0;
             zArr[c] = z3;
         } else {
-            bundle = bundle2;
-            arrayList = arrayList2;
+            chatActivityArr = chatActivityArr2;
             z = false;
         }
         if (zArr[z ? 1 : 0]) {
@@ -4311,7 +4308,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString("PinMessage", R.string.PinMessage), R.drawable.msg_pin);
             }
             actionBarMenuSubItem2.setMinimumWidth(160);
-            i = 160;
+            bundle = null;
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -4320,7 +4317,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             });
             actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem2);
         } else {
-            i = 160;
+            bundle = null;
         }
         if (!DialogObject.isUserDialog(dialogId) || !UserObject.isUserSelf(getMessagesController().getUser(Long.valueOf(dialogId)))) {
             ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(getParentActivity(), false, false);
@@ -4329,7 +4326,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else {
                 actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("Unmute", R.string.Unmute), R.drawable.msg_unmute);
             }
-            actionBarMenuSubItem3.setMinimumWidth(i);
+            actionBarMenuSubItem3.setMinimumWidth(160);
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -4345,68 +4342,42 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         actionBarMenuSubItem4.setIconColor(getThemedColor("dialogRedIcon"));
         actionBarMenuSubItem4.setTextColor(getThemedColor("dialogTextRed"));
         actionBarMenuSubItem4.setTextAndIcon(LocaleController.getString("Delete", R.string.Delete), R.drawable.msg_delete);
-        actionBarMenuSubItem4.setMinimumWidth(i);
-        final ArrayList arrayList3 = arrayList;
+        actionBarMenuSubItem4.setMinimumWidth(160);
         actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DialogsActivity.this.lambda$showChatPreview$29(arrayList3, view);
+                DialogsActivity.this.lambda$showChatPreview$29(arrayList2, view);
             }
         });
         actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem4);
-        if (this.searchString != null) {
-            Bundle bundle3 = bundle;
-            if (!getMessagesController().checkCanOpenChat(bundle3, this)) {
-                return false;
-            }
-            getNotificationCenter().postNotificationName(NotificationCenter.closeChats, new Object[0]);
-            prepareBlurBitmap();
-            this.listViewAfterChatPreview = recyclerListView;
-            if (recyclerListView != null) {
-                recyclerListView.fling(0, 0);
-            }
-            this.parentLayout.highlightActionButtons = true;
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                BaseFragment chatActivity = new ChatActivity(bundle3);
-                chatActivityArr[0] = chatActivity;
-                presentFragmentAsPreview(chatActivity);
-            } else {
-                BaseFragment chatActivity2 = new ChatActivity(bundle3);
-                chatActivityArr[0] = chatActivity2;
-                presentFragmentAsPreviewWithMenu(chatActivity2, actionBarPopupWindowLayoutArr[0]);
-                if (chatActivityArr[0] != null) {
-                    chatActivityArr[0].allowExpandPreviewByClick = true;
-                    return true;
-                }
-            }
-            return true;
-        }
-        Bundle bundle4 = bundle;
-        if (!getMessagesController().checkCanOpenChat(bundle4, this)) {
+        if (!getMessagesController().checkCanOpenChat(bundle2, this)) {
             return false;
         }
+        if (this.searchString != null) {
+            getNotificationCenter().postNotificationName(NotificationCenter.closeChats, new Object[0]);
+        }
         prepareBlurBitmap();
-        this.listViewAfterChatPreview = recyclerListView;
-        if (recyclerListView != null) {
-            recyclerListView.fling(0, 0);
-        }
         this.parentLayout.highlightActionButtons = true;
-        Point point2 = AndroidUtilities.displaySize;
-        if (point2.x > point2.y) {
-            BaseFragment chatActivity3 = new ChatActivity(bundle4);
-            chatActivityArr[0] = chatActivity3;
-            presentFragmentAsPreview(chatActivity3);
-        } else {
-            BaseFragment chatActivity4 = new ChatActivity(bundle4);
-            chatActivityArr[0] = chatActivity4;
-            presentFragmentAsPreviewWithMenu(chatActivity4, actionBarPopupWindowLayoutArr[0]);
-            if (chatActivityArr[0] != null) {
-                chatActivityArr[0].allowExpandPreviewByClick = true;
-                return true;
-            }
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            BaseFragment chatActivity = new ChatActivity(bundle2);
+            chatActivityArr[0] = chatActivity;
+            presentFragmentAsPreview(chatActivity);
+            return true;
         }
-        return true;
+        BaseFragment chatActivity2 = new ChatActivity(bundle2);
+        chatActivityArr[0] = chatActivity2;
+        presentFragmentAsPreviewWithMenu(chatActivity2, actionBarPopupWindowLayoutArr[0]);
+        if (chatActivityArr[0] == null) {
+            return true;
+        }
+        chatActivityArr[0].allowExpandPreviewByClick = true;
+        try {
+            chatActivityArr[0].getAvatarContainer().getAvatarImageView().performAccessibilityAction(64, bundle);
+            return true;
+        } catch (Exception unused) {
+            return true;
+        }
     }
 
     public void lambda$showChatPreview$25(DialogCell dialogCell, long j, View view) {

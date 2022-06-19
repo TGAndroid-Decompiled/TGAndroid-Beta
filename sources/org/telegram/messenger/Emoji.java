@@ -358,28 +358,30 @@ public class Emoji {
     }
 
     public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, int i, boolean z, int[] iArr, boolean z2, AtomicReference<WeakReference<View>> atomicReference) {
-        Spannable spannable;
-        if (SharedConfig.useSystemEmoji || charSequence == null || charSequence.length() == 0) {
-            return charSequence;
-        }
-        if (z || !(charSequence instanceof Spannable)) {
-            spannable = Spannable.Factory.getInstance().newSpannable(charSequence.toString());
-        } else {
-            spannable = (Spannable) charSequence;
-        }
-        ArrayList<EmojiSpanRange> parseEmojis = parseEmojis(charSequence, iArr);
-        for (int i2 = 0; i2 < parseEmojis.size(); i2++) {
-            EmojiSpanRange emojiSpanRange = parseEmojis.get(i2);
-            EmojiDrawable emojiDrawable = getEmojiDrawable(emojiSpanRange.code);
-            if (emojiDrawable != null) {
-                spannable.setSpan(new EmojiSpan(emojiDrawable, 0, i, fontMetricsInt), emojiSpanRange.start, emojiSpanRange.end, 33);
+        if (!SharedConfig.useSystemEmoji && charSequence != 0 && charSequence.length() != 0) {
+            if (z || !(charSequence instanceof Spannable)) {
+                charSequence = Spannable.Factory.getInstance().newSpannable(charSequence.toString());
+            } else {
+                charSequence = (Spannable) charSequence;
             }
-            int i3 = Build.VERSION.SDK_INT;
-            if ((i3 < 23 || i3 >= 29) && !BuildVars.DEBUG_PRIVATE_VERSION && i2 + 1 >= 50) {
-                break;
+            ArrayList<EmojiSpanRange> parseEmojis = parseEmojis(charSequence, iArr);
+            for (int i2 = 0; i2 < parseEmojis.size(); i2++) {
+                EmojiSpanRange emojiSpanRange = parseEmojis.get(i2);
+                try {
+                    EmojiDrawable emojiDrawable = getEmojiDrawable(emojiSpanRange.code);
+                    if (emojiDrawable != null) {
+                        charSequence.setSpan(new EmojiSpan(emojiDrawable, 0, i, fontMetricsInt), emojiSpanRange.start, emojiSpanRange.end, 33);
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                int i3 = Build.VERSION.SDK_INT;
+                if ((i3 < 23 || i3 >= 29) && !BuildVars.DEBUG_PRIVATE_VERSION && i2 + 1 >= 50) {
+                    break;
+                }
             }
         }
-        return spannable;
+        return charSequence;
     }
 
     public static class EmojiSpan extends ImageSpan {

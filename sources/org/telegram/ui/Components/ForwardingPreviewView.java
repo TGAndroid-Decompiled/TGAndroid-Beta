@@ -14,6 +14,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.text.style.CharacterStyle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -1295,6 +1296,11 @@ public class ForwardingPreviewView extends FrameLayout {
                 @Override
                 public void needShowPremiumFeatures() {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumFeatures(this);
+                }
+
+                @Override
+                public boolean onAccessibilityAction(int i2, Bundle bundle) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i2, bundle);
                 }
 
                 @Override

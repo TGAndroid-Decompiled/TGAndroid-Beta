@@ -10,10 +10,12 @@
     <string name="AboutPremiumTitle">About Telegram Premium</string>
     <string name="AboutTelegramPremium">About Telegram Premium</string>
     <string name="AccActionCancelDownload">Cancel download</string>
+    <string name="AccActionChatPreview">Chat Preview</string>
     <string name="AccActionDownload">Download</string>
     <string name="AccActionEnterSelectionMode">Enter selection mode</string>
     <string name="AccActionMessageOptions">Message options</string>
     <string name="AccActionOpenFile">Open file</string>
+    <string name="AccActionOpenForwardedOrigin">Forwarded origin</string>
     <string name="AccActionPause">Pause</string>
     <string name="AccActionPlay">Play</string>
     <string name="AccActionRecordVideo">Record video</string>
@@ -370,6 +372,9 @@
     <string name="AlertClearHistory">Clear History</string>
     <string name="AllAccounts">All Accounts</string>
     <string name="AllMedia">All media</string>
+    <string name="AllNMedia_few">All %1$d media</string>
+    <string name="AllNMedia_many">All %1$d media</string>
+    <string name="AllNMedia_other">All %1$d media</string>
     <string name="AllNPhotos_few">All %1$d photos</string>
     <string name="AllNPhotos_many">All %1$d photos</string>
     <string name="AllNPhotos_other">All %1$d photos</string>
@@ -4111,8 +4116,6 @@
     <string name="SaveChangesAlertText">Do you want to apply the new colors you chose?</string>
     <string name="SaveChangesAlertTitle">Save changes?</string>
     <string name="SaveForNotifications">Save for notifications</string>
-    <string name="SaveGroupMedia">Save media</string>
-    <string name="SaveGroupMediaMessage">Would you like to save...</string>
     <string name="SaveLink">Save Link</string>
     <string name="SaveLinkHeader">SAVE</string>
     <string name="SaveTheme">SAVE THEME</string>

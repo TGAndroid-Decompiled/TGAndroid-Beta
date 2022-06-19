@@ -367,6 +367,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
 
                 @Override
+                public boolean onAccessibilityAction(int i, Bundle bundle) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i, bundle);
+                }
+
+                @Override
                 public void onDiceFinished() {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$onDiceFinished(this);
                 }
