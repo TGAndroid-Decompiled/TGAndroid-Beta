@@ -536,15 +536,19 @@ public class FileLoadOperation {
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                ArrayList<FileLoadOperationStream> arrayList2 = this.streamListeners;
-                if (arrayList2 != null) {
-                    int size3 = arrayList2.size();
-                    for (int i3 = 0; i3 < size3; i3++) {
-                        this.streamListeners.get(i3).newDataAvailable();
-                    }
-                }
+                notifyStreamListeners();
             } else if (BuildVars.LOGS_ENABLED) {
                 FileLog.e(this.cacheFileFinal + " downloaded duplicate file part " + j + " - " + j2);
+            }
+        }
+    }
+
+    private void notifyStreamListeners() {
+        ArrayList<FileLoadOperationStream> arrayList = this.streamListeners;
+        if (arrayList != null) {
+            int size = arrayList.size();
+            for (int i = 0; i < size; i++) {
+                this.streamListeners.get(i).newDataAvailable();
             }
         }
     }
@@ -581,35 +585,41 @@ public class FileLoadOperation {
 
     private long getDownloadedLengthFromOffsetInternal(ArrayList<Range> arrayList, long j, long j2) {
         long j3;
-        if (arrayList == null || this.state == 3 || arrayList.isEmpty()) {
+        if (arrayList != null && this.state != 3 && !arrayList.isEmpty()) {
+            int size = arrayList.size();
+            Range range = null;
+            int i = 0;
+            while (true) {
+                if (i >= size) {
+                    j3 = j2;
+                    break;
+                }
+                Range range2 = arrayList.get(i);
+                if (j <= range2.start && (range == null || range2.start < range.start)) {
+                    range = range2;
+                }
+                if (range2.start <= j && range2.end > j) {
+                    j3 = 0;
+                    break;
+                }
+                i++;
+            }
+            if (j3 == 0) {
+                return 0L;
+            }
+            if (range != null) {
+                return Math.min(j2, range.start - j);
+            }
+            return Math.min(j2, Math.max(this.totalBytesCount - j, 0L));
+        } else if (this.state == 3) {
+            return j2;
+        } else {
             long j4 = this.downloadedBytes;
-            return j4 == 0 ? j2 : Math.min(j2, Math.max(j4 - j, 0L));
-        }
-        int size = arrayList.size();
-        Range range = null;
-        int i = 0;
-        while (true) {
-            if (i >= size) {
-                j3 = j2;
-                break;
+            if (j4 == 0) {
+                return 0L;
             }
-            Range range2 = arrayList.get(i);
-            if (j <= range2.start && (range == null || range2.start < range.start)) {
-                range = range2;
-            }
-            if (range2.start <= j && range2.end > j) {
-                j3 = 0;
-                break;
-            }
-            i++;
+            return Math.min(j2, Math.max(j4 - j, 0L));
         }
-        if (j3 == 0) {
-            return 0L;
-        }
-        if (range != null) {
-            return Math.min(j2, range.start - j);
-        }
-        return Math.min(j2, Math.max(this.totalBytesCount - j, 0L));
     }
 
     public float getDownloadedLengthFromOffset(float f) {
@@ -961,6 +971,7 @@ public class FileLoadOperation {
         String str;
         if (this.state == 1) {
             this.state = 3;
+            notifyStreamListeners();
             cleanup();
             if (this.isPreloadVideoOperation) {
                 this.preloadFinished = true;
@@ -1293,7 +1304,6 @@ public class FileLoadOperation {
     public void startDownloadRequest() {
         int i;
         long j;
-        int i2;
         final TLRPC$TL_upload_getFile tLRPC$TL_upload_getFile;
         long j2;
         HashMap<Long, PreloadRange> hashMap;
@@ -1301,8 +1311,8 @@ public class FileLoadOperation {
         ArrayList<Range> arrayList;
         long j3;
         boolean z;
-        if (!(this.paused || this.reuploadingCdn)) {
-            int i3 = 1;
+        if (!this.paused && !this.reuploadingCdn) {
+            int i2 = 1;
             if (this.state == 1) {
                 long j4 = 0;
                 if (this.streamPriorityStartOffset == 0) {
@@ -1320,8 +1330,9 @@ public class FileLoadOperation {
                 }
                 boolean z2 = false;
                 int max = (this.streamPriorityStartOffset != 0 || this.nextPartWasPreloaded || (this.isPreloadVideoOperation && this.moovFound == 0) || this.totalBytesCount <= 0) ? 1 : Math.max(0, this.currentMaxDownloadRequests - this.requestInfos.size());
-                int i4 = 0;
-                while (i4 < max) {
+                int i3 = 0;
+                while (i3 < max) {
+                    int i4 = 2;
                     if (!this.isPreloadVideoOperation) {
                         ArrayList<Range> arrayList2 = this.notRequestedBytesRanges;
                         if (arrayList2 != null) {
@@ -1342,7 +1353,7 @@ public class FileLoadOperation {
                                 Range range = this.notRequestedBytesRanges.get(i5);
                                 if (j5 != j4) {
                                     if (range.start <= j5 && range.end > j5) {
-                                        j7 = 2147483647L;
+                                        j7 = Long.MAX_VALUE;
                                         break;
                                     } else if (j5 < range.start && range.start < j6) {
                                         j6 = range.start;
@@ -1367,8 +1378,9 @@ public class FileLoadOperation {
                     } else if (this.moovFound == 0 || this.preloadNotRequestedBytesCount > j4) {
                         long j8 = this.nextPreloadDownloadOffset;
                         if (j8 == -1) {
+                            int i6 = (preloadMaxBytes / this.currentDownloadChunkSize) + 2;
                             long j9 = j4;
-                            for (int i6 = (preloadMaxBytes / this.currentDownloadChunkSize) + 2; i6 != 0; i6--) {
+                            while (i6 != 0) {
                                 if (!this.requestedPreloadedBytesRanges.containsKey(Long.valueOf(j9))) {
                                     j8 = j9;
                                     z = true;
@@ -1380,9 +1392,11 @@ public class FileLoadOperation {
                                 if (j9 > j10) {
                                     break;
                                 }
-                                if (this.moovFound == 2 && j9 == i7 * 8) {
+                                if (this.moovFound == i4 && j9 == i7 * 8) {
                                     j9 = ((j10 - 1048576) / i7) * i7;
                                 }
+                                i6--;
+                                i4 = 2;
                             }
                             j8 = j9;
                             z = false;
@@ -1393,7 +1407,7 @@ public class FileLoadOperation {
                         if (this.requestedPreloadedBytesRanges == null) {
                             this.requestedPreloadedBytesRanges = new HashMap<>();
                         }
-                        this.requestedPreloadedBytesRanges.put(Long.valueOf(j8), Integer.valueOf(i3));
+                        this.requestedPreloadedBytesRanges.put(Long.valueOf(j8), Integer.valueOf(i2));
                         if (BuildVars.DEBUG_VERSION) {
                             FileLog.d("start next preload from " + j8 + " size " + this.totalBytesCount + " for " + this.cacheFilePreload);
                         }
@@ -1403,16 +1417,13 @@ public class FileLoadOperation {
                     } else {
                         return;
                     }
-                    if (this.isPreloadVideoOperation || (arrayList = this.notRequestedBytesRanges) == null) {
-                        i2 = 2;
-                    } else {
-                        i2 = 2;
+                    if (!this.isPreloadVideoOperation && (arrayList = this.notRequestedBytesRanges) != null) {
                         addPart(arrayList, j, j + this.currentDownloadChunkSize, false);
                     }
                     long j11 = this.totalBytesCount;
                     if (j11 <= 0 || j < j11) {
-                        boolean z3 = j11 <= 0 || i4 == i + (-1) || (j11 > 0 && ((long) this.currentDownloadChunkSize) + j >= j11);
-                        int i8 = this.requestsCount % i2 == 0 ? 2 : ConnectionsManager.ConnectionTypeDownload2;
+                        boolean z3 = j11 <= 0 || i3 == i + (-1) || (j11 > 0 && ((long) this.currentDownloadChunkSize) + j >= j11);
+                        int i8 = this.requestsCount % 2 == 0 ? 2 : ConnectionsManager.ConnectionTypeDownload2;
                         int i9 = this.isForceRequest ? 32 : 0;
                         if (this.isCdn) {
                             TLRPC$TL_upload_getCdnFile tLRPC$TL_upload_getCdnFile = new TLRPC$TL_upload_getCdnFile();
@@ -1464,10 +1475,10 @@ public class FileLoadOperation {
                                 }
                             } catch (Exception unused2) {
                             }
-                            i4++;
+                            i3++;
                             j4 = j2;
                             max = i;
-                            i3 = 1;
+                            i2 = 1;
                             z2 = false;
                         }
                         if (this.streamPriorityStartOffset != 0) {
@@ -1492,10 +1503,10 @@ public class FileLoadOperation {
                         } else {
                             requestReference(requestInfo);
                         }
-                        i4++;
+                        i3++;
                         j4 = j2;
                         max = i;
-                        i3 = 1;
+                        i2 = 1;
                         z2 = false;
                     } else {
                         return;

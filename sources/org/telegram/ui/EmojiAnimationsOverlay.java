@@ -530,7 +530,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         if (!MessagesController.getInstance(this.currentAccount).premiumLocked) {
             StickerSetBulletinLayout stickerSetBulletinLayout = new StickerSetBulletinLayout(this.contentLayout.getContext(), null, -1, messageObject.getDocument(), this.chatActivity.getResourceProvider());
             stickerSetBulletinLayout.titleTextView.setText(tLRPC$TL_messages_stickerSet.set.title);
-            stickerSetBulletinLayout.subtitleTextView.setText(LocaleController.getString("PremiumStickerToolteip", R.string.PremiumStickerTooltip));
+            stickerSetBulletinLayout.subtitleTextView.setText(LocaleController.getString("PremiumStickerTooltip", R.string.PremiumStickerTooltip));
             Bulletin.UndoButton undoButton = new Bulletin.UndoButton(this.chatActivity.getParentActivity(), true, this.chatActivity.getResourceProvider());
             stickerSetBulletinLayout.setButton(undoButton);
             undoButton.setUndoAction(new Runnable() {

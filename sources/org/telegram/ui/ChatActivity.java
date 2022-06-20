@@ -7002,7 +7002,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     if (findFirstVisibleItemPosition > findLastVisibleItemPosition) {
                         i2 = -1;
                         break;
-                    } else if (findFirstVisibleItemPosition < this.chatAdapter.messagesStartRow || findFirstVisibleItemPosition > this.chatAdapter.messagesEndRow || (tLRPC$Message = this.messages.get(findFirstVisibleItemPosition - this.chatAdapter.messagesStartRow).messageOwner) == null) {
+                    } else if (findFirstVisibleItemPosition < this.chatAdapter.messagesStartRow || findFirstVisibleItemPosition >= this.chatAdapter.messagesEndRow || (tLRPC$Message = this.messages.get(findFirstVisibleItemPosition - this.chatAdapter.messagesStartRow).messageOwner) == null) {
                         findFirstVisibleItemPosition++;
                     } else {
                         int i4 = tLRPC$Message.date < i ? 1 : 0;
@@ -11997,7 +11997,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public boolean createLayout(int i) {
+        protected boolean createLayout(int i) {
             boolean createLayout = super.createLayout(i);
             if (this.trackWidth && getVisibility() == 0) {
                 ChatActivity.this.pinnedCounterTextViewX = getTextWidth() + AndroidUtilities.dp(4.0f);
@@ -16130,8 +16130,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public void needShowPremiumFeatures() {
-                ChatActivity.this.presentFragment(new PremiumPreviewFragment());
+            public void needShowPremiumFeatures(String str) {
+                ChatActivity.this.presentFragment(new PremiumPreviewFragment(str));
             }
 
             @Override

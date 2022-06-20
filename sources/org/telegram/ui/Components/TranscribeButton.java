@@ -39,6 +39,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_transcribeAudio;
 import org.telegram.tgnet.TLRPC$TL_messages_transcribedAudio;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
+import org.telegram.ui.PremiumPreviewFragment;
 
 public class TranscribeButton {
     private static final int[] pressedState = {16842910, 16842919};
@@ -195,7 +196,7 @@ public class TranscribeButton {
                 if (this.premium || !z3) {
                     transcribePressed(this.parent.getMessageObject(), z3);
                 } else if (this.parent.getDelegate() != null) {
-                    this.parent.getDelegate().needShowPremiumFeatures();
+                    this.parent.getDelegate().needShowPremiumFeatures(PremiumPreviewFragment.featureTypeToServerString(8));
                 }
             }
             return true;

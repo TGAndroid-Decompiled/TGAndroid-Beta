@@ -31,9 +31,10 @@ public class PremiumFeatureCell extends FrameLayout {
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
         TextView textView2 = new TextView(context);
         this.description = textView2;
-        textView2.setTextSize(1, 13.0f);
+        textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 2, 0, 0));
+        textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 1, 0, 0));
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 0, 62.0f, 8.0f, 48.0f, 9.0f));
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;

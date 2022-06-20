@@ -1687,7 +1687,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     baseFragment.removeSelfFromStack();
                 }
             }
-            presentFragment(new PremiumPreviewFragment().setForcePremium(), true);
+            presentFragment(new PremiumPreviewFragment(null).setForcePremium(), true);
             if (getParentActivity() instanceof LaunchActivity) {
                 try {
                     this.fragmentView.performHapticFeedback(3, 2);

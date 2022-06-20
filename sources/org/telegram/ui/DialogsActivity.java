@@ -2891,7 +2891,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             DialogsActivity dialogsActivity = DialogsActivity.this;
             ArrayList<Long> dialogsCount = FiltersListBottomSheet.getDialogsCount(dialogsActivity, dialogFilter, dialogsActivity.selectedDialogs, true, false);
             int size = (dialogFilter != null ? dialogFilter.alwaysShow.size() : 0) + dialogsCount.size();
-            if ((size <= DialogsActivity.this.getMessagesController().dialogFiltersPinnedLimitDefault || DialogsActivity.this.getUserConfig().isPremium()) && size <= DialogsActivity.this.getMessagesController().dialogFiltersPinnedLimitPremium) {
+            if ((size <= DialogsActivity.this.getMessagesController().dialogFiltersChatsLimitDefault || DialogsActivity.this.getUserConfig().isPremium()) && size <= DialogsActivity.this.getMessagesController().dialogFiltersChatsLimitPremium) {
                 if (dialogFilter != null) {
                     if (!dialogsCount.isEmpty()) {
                         for (int i = 0; i < dialogsCount.size(); i++) {

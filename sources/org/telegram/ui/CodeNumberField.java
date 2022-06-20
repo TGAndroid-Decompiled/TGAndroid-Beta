@@ -149,7 +149,7 @@ public class CodeNumberField extends EditTextBoldCursor {
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.focusedSpringAnimation.cancel();
         this.errorSpringAnimation.cancel();
@@ -312,7 +312,7 @@ public class CodeNumberField extends EditTextBoldCursor {
     }
 
     @Override
-    public void onFocusChanged(boolean z, int i, Rect rect) {
+    protected void onFocusChanged(boolean z, int i, Rect rect) {
         super.onFocusChanged(z, i, rect);
         if (!isFocused()) {
             hideActionMode();

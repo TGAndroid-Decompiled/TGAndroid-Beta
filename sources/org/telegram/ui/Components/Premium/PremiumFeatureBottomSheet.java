@@ -298,7 +298,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             ((ChatActivity) baseFragment).closeMenu();
         }
         if (z) {
-            baseFragment.presentFragment(new PremiumPreviewFragment());
+            baseFragment.presentFragment(new PremiumPreviewFragment(PremiumPreviewFragment.featureTypeToServerString(premiumFeatureData.type)));
         } else {
             PremiumPreviewFragment.buyPremium(baseFragment, PremiumPreviewFragment.featureTypeToServerString(premiumFeatureData.type));
         }

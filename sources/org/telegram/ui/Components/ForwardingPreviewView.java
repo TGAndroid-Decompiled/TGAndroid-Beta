@@ -1294,8 +1294,8 @@ public class ForwardingPreviewView extends FrameLayout {
                 }
 
                 @Override
-                public void needShowPremiumFeatures() {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumFeatures(this);
+                public void needShowPremiumFeatures(String str) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumFeatures(this, str);
                 }
 
                 @Override

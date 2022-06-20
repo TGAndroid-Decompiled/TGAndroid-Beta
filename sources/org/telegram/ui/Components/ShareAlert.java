@@ -1563,6 +1563,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     private boolean onSendLongClick(View view) {
         int i;
         ChatActivity chatActivity;
+        if (this.parentActivity == null) {
+            return false;
+        }
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(1);
         String str = "voipgroup_listSelector";

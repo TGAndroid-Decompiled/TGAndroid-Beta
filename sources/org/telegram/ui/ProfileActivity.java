@@ -3386,7 +3386,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             } else if (i == this.setAvatarRow) {
                 onWriteButtonClick();
             } else if (i == this.premiumRow) {
-                presentFragment(new PremiumPreviewFragment());
+                presentFragment(new PremiumPreviewFragment("settings"));
             } else {
                 processOnClickOrPress(i, view);
             }
@@ -4377,14 +4377,16 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$processOnClickOrPress$22(boolean[] zArr, final String str, final int i, final String[] strArr, final String str2) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), this.resourcesProvider);
-        builder.setItems(zArr[0] ? new CharSequence[]{LocaleController.getString("Copy", R.string.Copy), LocaleController.getString("TranslateMessage", R.string.TranslateMessage)} : new CharSequence[]{LocaleController.getString("Copy", R.string.Copy)}, new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i2) {
-                ProfileActivity.this.lambda$processOnClickOrPress$21(str, i, strArr, str2, dialogInterface, i2);
-            }
-        });
-        showDialog(builder.create());
+        if (getParentActivity() != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), this.resourcesProvider);
+            builder.setItems(zArr[0] ? new CharSequence[]{LocaleController.getString("Copy", R.string.Copy), LocaleController.getString("TranslateMessage", R.string.TranslateMessage)} : new CharSequence[]{LocaleController.getString("Copy", R.string.Copy)}, new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i2) {
+                    ProfileActivity.this.lambda$processOnClickOrPress$21(str, i, strArr, str2, dialogInterface, i2);
+                }
+            });
+            showDialog(builder.create());
+        }
     }
 
     public void lambda$processOnClickOrPress$21(String str, int i, String[] strArr, String str2, DialogInterface dialogInterface, int i2) {
@@ -6721,6 +6723,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View view;
+            String str;
             switch (i) {
                 case 1:
                     view = new HeaderCell(this.mContext, 23, ProfileActivity.this.resourcesProvider);
@@ -6743,8 +6746,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity profileActivity3 = ProfileActivity.this;
                     view = profileActivity2.aboutLinkCell = new AboutLinkCell(context, profileActivity3, profileActivity3.resourcesProvider) {
                         @Override
-                        protected void didPressUrl(String str) {
-                            ProfileActivity.this.openUrl(str);
+                        protected void didPressUrl(String str2) {
+                            ProfileActivity.this.openUrl(str2);
                         }
 
                         @Override
@@ -6787,33 +6790,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         PackageInfo packageInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
                         int i2 = packageInfo.versionCode;
                         int i3 = i2 / 10;
-                        String str = "";
-                        switch (i2 % 10) {
-                            case 0:
-                            case 9:
-                                if (!BuildVars.isStandaloneApp()) {
-                                    str = "universal " + Build.CPU_ABI + " " + Build.CPU_ABI2;
-                                    break;
-                                } else {
-                                    str = "direct " + Build.CPU_ABI + " " + Build.CPU_ABI2;
-                                    break;
-                                }
-                            case 1:
-                            case 3:
-                                str = "arm-v7a";
-                                break;
-                            case 2:
-                            case 4:
-                                str = "x86";
-                                break;
-                            case 5:
-                            case 7:
-                                str = "arm64-v8a";
-                                break;
-                            case 6:
-                            case 8:
-                                str = "x86_64";
-                                break;
+                        int i4 = i2 % 10;
+                        if (i4 == 1 || i4 == 2) {
+                            str = "store bundled " + Build.CPU_ABI + " " + Build.CPU_ABI2;
+                        } else if (BuildVars.isStandaloneApp()) {
+                            str = "direct " + Build.CPU_ABI + " " + Build.CPU_ABI2;
+                        } else {
+                            str = "universal " + Build.CPU_ABI + " " + Build.CPU_ABI2;
                         }
                         textInfoPrivacyCell.setText(LocaleController.formatString("TelegramVersion", R.string.TelegramVersion, String.format(Locale.US, "v%s (%d) %s", packageInfo.versionName, Integer.valueOf(i3), str)));
                     } catch (Exception e) {
@@ -6826,8 +6809,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 case 11:
                     view = new View(this, this.mContext) {
                         @Override
-                        protected void onMeasure(int i4, int i5) {
-                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+                        protected void onMeasure(int i5, int i6) {
+                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i5), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
                         }
                     };
                     break;
@@ -6837,31 +6820,31 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         private int lastListViewHeight = 0;
 
                         @Override
-                        protected void onMeasure(int i4, int i5) {
-                            int i6 = 0;
+                        protected void onMeasure(int i5, int i6) {
+                            int i7 = 0;
                             if (this.lastListViewHeight != ProfileActivity.this.listView.getMeasuredHeight()) {
                                 this.lastPaddingHeight = 0;
                             }
                             this.lastListViewHeight = ProfileActivity.this.listView.getMeasuredHeight();
                             int childCount = ProfileActivity.this.listView.getChildCount();
                             if (childCount == ProfileActivity.this.listAdapter.getItemCount()) {
-                                int i7 = 0;
-                                for (int i8 = 0; i8 < childCount; i8++) {
-                                    int childAdapterPosition = ProfileActivity.this.listView.getChildAdapterPosition(ProfileActivity.this.listView.getChildAt(i8));
+                                int i8 = 0;
+                                for (int i9 = 0; i9 < childCount; i9++) {
+                                    int childAdapterPosition = ProfileActivity.this.listView.getChildAdapterPosition(ProfileActivity.this.listView.getChildAt(i9));
                                     if (childAdapterPosition >= 0 && childAdapterPosition != ProfileActivity.this.bottomPaddingRow) {
-                                        i7 += ProfileActivity.this.listView.getChildAt(i8).getMeasuredHeight();
+                                        i8 += ProfileActivity.this.listView.getChildAt(i9).getMeasuredHeight();
                                     }
                                 }
-                                int measuredHeight = ((((BaseFragment) ProfileActivity.this).fragmentView.getMeasuredHeight() - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight) - i7;
+                                int measuredHeight = ((((BaseFragment) ProfileActivity.this).fragmentView.getMeasuredHeight() - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight) - i8;
                                 if (measuredHeight > AndroidUtilities.dp(88.0f)) {
                                     measuredHeight = 0;
                                 }
                                 if (measuredHeight > 0) {
-                                    i6 = measuredHeight;
+                                    i7 = measuredHeight;
                                 }
                                 int measuredWidth = ProfileActivity.this.listView.getMeasuredWidth();
-                                this.lastPaddingHeight = i6;
-                                setMeasuredDimension(measuredWidth, i6);
+                                this.lastPaddingHeight = i7;
+                                setMeasuredDimension(measuredWidth, i7);
                                 return;
                             }
                             setMeasuredDimension(ProfileActivity.this.listView.getMeasuredWidth(), this.lastPaddingHeight);
@@ -6878,14 +6861,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 case 15:
                     view = new SettingsSuggestionCell(this.mContext, ProfileActivity.this.resourcesProvider) {
                         @Override
-                        protected void onYesClick(int i4) {
+                        protected void onYesClick(int i5) {
                             NotificationCenter notificationCenter = ProfileActivity.this.getNotificationCenter();
                             ProfileActivity profileActivity4 = ProfileActivity.this;
-                            int i5 = NotificationCenter.newSuggestionsAvailable;
-                            notificationCenter.removeObserver(profileActivity4, i5);
-                            ProfileActivity.this.getMessagesController().removeSuggestion(0L, i4 == 0 ? "VALIDATE_PHONE_NUMBER" : "VALIDATE_PASSWORD");
-                            ProfileActivity.this.getNotificationCenter().addObserver(ProfileActivity.this, i5);
-                            if (i4 == 0) {
+                            int i6 = NotificationCenter.newSuggestionsAvailable;
+                            notificationCenter.removeObserver(profileActivity4, i6);
+                            ProfileActivity.this.getMessagesController().removeSuggestion(0L, i5 == 0 ? "VALIDATE_PHONE_NUMBER" : "VALIDATE_PASSWORD");
+                            ProfileActivity.this.getNotificationCenter().addObserver(ProfileActivity.this, i6);
+                            if (i5 == 0) {
                                 int unused = ProfileActivity.this.phoneSuggestionRow;
                             } else {
                                 int unused2 = ProfileActivity.this.passwordSuggestionRow;
@@ -6894,8 +6877,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         }
 
                         @Override
-                        protected void onNoClick(int i4) {
-                            if (i4 == 0) {
+                        protected void onNoClick(int i5) {
+                            if (i5 == 0) {
                                 ProfileActivity.this.presentFragment(new ActionIntroActivity(3));
                             } else {
                                 ProfileActivity.this.presentFragment(new TwoStepVerificationSetupActivity(8, null));

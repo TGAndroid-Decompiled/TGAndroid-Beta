@@ -26,7 +26,7 @@ public class MatrixParticlesDrawable {
         TextPaint textPaint = new TextPaint(65);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         textPaint.setTextSize(this.size);
-        textPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor("premiumStartSmallStarsColor"), 30));
+        textPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor("premiumStartSmallStarsColor2"), 30));
         textPaint.setTextAlign(Paint.Align.CENTER);
         int i = 0;
         while (i < 16) {

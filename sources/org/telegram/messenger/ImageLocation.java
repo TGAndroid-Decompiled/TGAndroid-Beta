@@ -18,6 +18,7 @@ import org.telegram.tgnet.TLRPC$TL_photoPathSize;
 import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
 import org.telegram.tgnet.TLRPC$TL_secureFile;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.tgnet.TLRPC$WebPage;
@@ -27,6 +28,7 @@ public class ImageLocation {
     public static final int TYPE_BIG = 0;
     public static final int TYPE_SMALL = 1;
     public static final int TYPE_STRIPPED = 2;
+    public static final int TYPE_VIDEO_THUMB = 3;
     public long access_hash;
     public long currentSize;
     public int dc_id;
@@ -128,10 +130,29 @@ public class ImageLocation {
 
     public static ImageLocation getForUser(TLRPC$User tLRPC$User, int i) {
         TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto;
+        TLRPC$UserFull userFull;
         if (tLRPC$User == null || tLRPC$User.access_hash == 0 || (tLRPC$UserProfilePhoto = tLRPC$User.photo) == null) {
             return null;
         }
-        if (i != 2) {
+        if (i == 3) {
+            int i2 = UserConfig.selectedAccount;
+            if (!MessagesController.getInstance(i2).isPremiumUser(tLRPC$User) || !tLRPC$User.photo.has_video || (userFull = MessagesController.getInstance(i2).getUserFull(tLRPC$User.id)) == null || userFull.profile_photo.video_sizes.isEmpty()) {
+                return null;
+            }
+            int i3 = 0;
+            TLRPC$VideoSize tLRPC$VideoSize = userFull.profile_photo.video_sizes.get(0);
+            while (true) {
+                if (i3 >= userFull.profile_photo.video_sizes.size()) {
+                    break;
+                } else if ("p".equals(userFull.profile_photo.video_sizes.get(i3).type)) {
+                    tLRPC$VideoSize = userFull.profile_photo.video_sizes.get(i3);
+                    break;
+                } else {
+                    i3++;
+                }
+            }
+            return getForPhoto(tLRPC$VideoSize, userFull.profile_photo);
+        } else if (i != 2) {
             TLRPC$FileLocation tLRPC$FileLocation = i == 0 ? tLRPC$UserProfilePhoto.photo_big : tLRPC$UserProfilePhoto.photo_small;
             if (tLRPC$FileLocation == null) {
                 return null;
@@ -139,11 +160,11 @@ public class ImageLocation {
             TLRPC$TL_inputPeerUser tLRPC$TL_inputPeerUser = new TLRPC$TL_inputPeerUser();
             tLRPC$TL_inputPeerUser.user_id = tLRPC$User.id;
             tLRPC$TL_inputPeerUser.access_hash = tLRPC$User.access_hash;
-            int i2 = tLRPC$User.photo.dc_id;
-            if (i2 == 0) {
-                i2 = tLRPC$FileLocation.dc_id;
+            int i4 = tLRPC$User.photo.dc_id;
+            if (i4 == 0) {
+                i4 = tLRPC$FileLocation.dc_id;
             }
-            ImageLocation forPhoto = getForPhoto(tLRPC$FileLocation, 0, null, null, tLRPC$TL_inputPeerUser, i, i2, null, null);
+            ImageLocation forPhoto = getForPhoto(tLRPC$FileLocation, 0, null, null, tLRPC$TL_inputPeerUser, i, i4, null, null);
             forPhoto.photoId = tLRPC$User.photo.photo_id;
             return forPhoto;
         } else if (tLRPC$UserProfilePhoto.stripped_thumb == null) {

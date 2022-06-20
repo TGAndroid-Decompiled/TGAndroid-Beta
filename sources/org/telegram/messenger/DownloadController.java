@@ -1062,12 +1062,12 @@ public class DownloadController extends BaseController implements NotificationCe
             if (i >= this.recentDownloadingFiles.size()) {
                 z2 = false;
                 break;
-            } else if (this.recentDownloadingFiles.get(i).getDocument().id == messageObject.getDocument().id) {
+            }
+            if (this.recentDownloadingFiles.get(i).getDocument() != null && this.recentDownloadingFiles.get(i).getDocument().id == messageObject.getDocument().id) {
                 z2 = true;
                 break;
-            } else {
-                i++;
             }
+            i++;
         }
         if (!z2) {
             for (int i2 = 0; i2 < this.downloadingFiles.size(); i2++) {

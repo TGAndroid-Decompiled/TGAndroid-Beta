@@ -586,11 +586,15 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         if (!UserConfig.getInstance(this.currentAccount).isPremium()) {
             int i = 0;
             while (i < list.size()) {
-                if (list.get(i).premium) {
-                    this.premiumLockedReactions.add(list.remove(i));
-                    i--;
+                try {
+                    if (list.get(i).premium) {
+                        this.premiumLockedReactions.add(list.remove(i));
+                        i--;
+                    }
+                    i++;
+                } catch (Exception unused) {
+                    return;
                 }
-                i++;
             }
         }
     }

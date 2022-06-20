@@ -90,7 +90,6 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
     public VideoScreenPreview(Context context, SvgHelper.SvgDrawable svgDrawable, int i, int i2) {
         super(context);
         this.fromTop = false;
-        new Path();
         this.currentAccount = i;
         this.type = i2;
         this.svgIcon = svgDrawable;
@@ -120,6 +119,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             drawable.k2 = 0.98f;
             drawable.k1 = 0.98f;
             drawable.speedScale = 4.0f;
+            drawable.colorKey = "premiumStartSmallStarsColor2";
             drawable.init();
         } else if (i2 == 2) {
             SpeedLineParticles$Drawable speedLineParticles$Drawable = new SpeedLineParticles$Drawable(200);
@@ -134,6 +134,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             }
             StarParticlesView.Drawable drawable2 = new StarParticlesView.Drawable(i3);
             this.starDrawable = drawable2;
+            drawable2.colorKey = "premiumStartSmallStarsColor2";
             drawable2.size1 = 8;
             drawable2.size1 = 6;
             drawable2.size1 = 4;
@@ -437,7 +438,6 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             }
         } else {
             float measuredWidth2 = (-f) / getMeasuredWidth();
-            Utilities.clamp(measuredWidth2 + 1.0f, 1.0f, 0.0f);
             invalidate();
             setRotationY(50.0f * measuredWidth2);
             if (this.fromTop) {

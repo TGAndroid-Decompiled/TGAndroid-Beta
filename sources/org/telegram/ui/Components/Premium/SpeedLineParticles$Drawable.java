@@ -38,7 +38,7 @@ public class SpeedLineParticles$Drawable {
     }
 
     public void updateColors() {
-        int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor("premiumStartSmallStarsColor"), 80);
+        int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor("premiumStartSmallStarsColor2"), 80);
         if (this.lastColor != alphaComponent) {
             this.lastColor = alphaComponent;
             this.paint.setColor(alphaComponent);

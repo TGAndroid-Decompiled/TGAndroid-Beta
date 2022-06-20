@@ -348,7 +348,11 @@ public class MessageObject {
     }
 
     public boolean isPremiumSticker() {
-        return isPremiumSticker(getDocument());
+        TLRPC$MessageMedia tLRPC$MessageMedia = this.messageOwner.media;
+        if (tLRPC$MessageMedia == null || !tLRPC$MessageMedia.nopremium) {
+            return isPremiumSticker(getDocument());
+        }
+        return false;
     }
 
     public TLRPC$VideoSize getPremiumStickerAnimation() {

@@ -141,6 +141,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private String uniqKeyPrefix;
     private boolean useRoundForThumb;
     private boolean useSharedAnimationQueue;
+    private boolean videoThumbIsSame;
     private static PorterDuffColorFilter selectedColorFilter = new PorterDuffColorFilter(-2236963, PorterDuff.Mode.MULTIPLY);
     private static PorterDuffColorFilter selectedGroupColorFilter = new PorterDuffColorFilter(-4473925, PorterDuff.Mode.MULTIPLY);
     private static float[] radii = new float[8];
@@ -2295,7 +2296,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                     } else if (decrementUseCount2) {
                         animatedFileDrawable.stop();
                     }
-                } else {
+                } else if (animatedFileDrawable.getParents().isEmpty()) {
                     animatedFileDrawable.recycle();
                 }
             } else if (obj instanceof BitmapDrawable) {
@@ -2437,5 +2438,9 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
 
     public boolean isAttachedToWindow() {
         return this.attachedToWindow;
+    }
+
+    public void setVideoThumbIsSame(boolean z) {
+        this.videoThumbIsSame = z;
     }
 }

@@ -86,6 +86,33 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
         return i == 0 || i == 3 || i == 4 || i == 6 || i == 7;
     }
 
+    public static String limitTypeToServerString(int i) {
+        switch (i) {
+            case 0:
+                return "double_limits__dialog_pinned";
+            case 1:
+            case 7:
+            default:
+                return null;
+            case 2:
+                return "double_limits__channels_public";
+            case 3:
+                return "double_limits__dialog_filters";
+            case 4:
+                return "double_limits__dialog_filters_chats";
+            case 5:
+                return "double_limits__channels";
+            case 6:
+                return "double_limits__upload_max_fileparts";
+            case 8:
+                return "double_limits__caption_length";
+            case 9:
+                return "double_limits__saved_gifs";
+            case 10:
+                return "double_limits__stickers_faved";
+        }
+    }
+
     public LimitReachedBottomSheet(BaseFragment baseFragment, Context context, int i, int i2) {
         super(baseFragment, false, hasFixedSize(i));
         fixNavigationBar();
@@ -189,7 +216,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
             if (baseFragment.getVisibleDialog() != null) {
                 this.parentFragment.getVisibleDialog().dismiss();
             }
-            this.parentFragment.presentFragment(new PremiumPreviewFragment());
+            this.parentFragment.presentFragment(new PremiumPreviewFragment(limitTypeToServerString(this.type)));
             Runnable runnable = this.onShowPremiumScreenRunnable;
             if (runnable != null) {
                 runnable.run();

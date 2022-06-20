@@ -301,8 +301,8 @@ public class DoubledLimitsBottomSheet extends BottomSheetWithRecyclerListView im
             TextView textView2 = new TextView(context);
             this.subtitle = textView2;
             textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
-            this.subtitle.setTextSize(1, 12.0f);
-            addView(this.subtitle, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 16, 2, 16, 0));
+            this.subtitle.setTextSize(1, 14.0f);
+            addView(this.subtitle, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 16, 1, 16, 0));
             LimitPreviewView limitPreviewView = new LimitPreviewView(context, 0, 10, 20);
             this.previewView = limitPreviewView;
             addView(limitPreviewView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 8, 0, 21));
