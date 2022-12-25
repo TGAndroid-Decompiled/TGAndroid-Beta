@@ -1568,6 +1568,16 @@ public class MediaDataController extends BaseController {
         this.groupStickerSets.put(tLRPC$TL_messages_stickerSet.set.f890id, tLRPC$TL_messages_stickerSet);
     }
 
+    public static TLRPC$InputStickerSet getInputStickerSet(TLRPC$StickerSet tLRPC$StickerSet) {
+        if (tLRPC$StickerSet != null) {
+            TLRPC$TL_inputStickerSetID tLRPC$TL_inputStickerSetID = new TLRPC$TL_inputStickerSetID();
+            tLRPC$TL_inputStickerSetID.f880id = tLRPC$StickerSet.f890id;
+            tLRPC$TL_inputStickerSetID.access_hash = tLRPC$StickerSet.access_hash;
+            return tLRPC$TL_inputStickerSetID;
+        }
+        return null;
+    }
+
     public TLRPC$TL_messages_stickerSet getStickerSet(TLRPC$InputStickerSet tLRPC$InputStickerSet, boolean z) {
         return getStickerSet(tLRPC$InputStickerSet, z, null);
     }

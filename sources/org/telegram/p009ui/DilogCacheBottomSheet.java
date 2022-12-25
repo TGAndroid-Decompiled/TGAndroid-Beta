@@ -133,25 +133,25 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         for (int i = 0; i < 7; i++) {
             if (i == 0) {
                 string = LocaleController.getString("LocalPhotoCache", C1072R.string.LocalPhotoCache);
-                str = "statisticChartLine_blue";
+                str = "statisticChartLine_lightblue";
             } else if (i == 1) {
                 string = LocaleController.getString("LocalVideoCache", C1072R.string.LocalVideoCache);
-                str = "statisticChartLine_golden";
+                str = "statisticChartLine_blue";
             } else if (i == 2) {
                 string = LocaleController.getString("LocalDocumentCache", C1072R.string.LocalDocumentCache);
                 str = "statisticChartLine_green";
             } else if (i == 3) {
                 string = LocaleController.getString("LocalMusicCache", C1072R.string.LocalMusicCache);
-                str = "statisticChartLine_indigo";
+                str = "statisticChartLine_red";
             } else if (i == 4) {
                 string = LocaleController.getString("LocalAudioCache", C1072R.string.LocalAudioCache);
-                str = "statisticChartLine_red";
-            } else if (i == 5) {
-                string = LocaleController.getString("AnimatedStickers", C1072R.string.AnimatedStickers);
                 str = "statisticChartLine_lightgreen";
+            } else if (i == 5) {
+                string = LocaleController.getString("LocalStickersCache", C1072R.string.LocalStickersCache);
+                str = "statisticChartLine_orange";
             } else {
-                string = LocaleController.getString("LocalCache", C1072R.string.LocalCache);
-                str = "statisticChartLine_lightblue";
+                string = LocaleController.getString("LocalMiscellaneousCache", C1072R.string.LocalMiscellaneousCache);
+                str = "statisticChartLine_purple";
             }
             CacheControlActivity.FileEntities fileEntities = dialogFileEntities.entitiesByType.get(i);
             if (fileEntities != null) {

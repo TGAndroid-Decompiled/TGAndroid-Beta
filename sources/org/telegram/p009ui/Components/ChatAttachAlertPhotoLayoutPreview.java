@@ -1402,7 +1402,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
 
                 public void startCrossfade() {
                     RectF drawingRect = drawingRect();
-                    Bitmap createBitmap = Bitmap.createBitmap(Math.round(drawingRect.width()), Math.round(drawingRect.height()), Bitmap.Config.ARGB_8888);
+                    Bitmap createBitmap = Bitmap.createBitmap(Math.max(1, Math.round(drawingRect.width())), Math.max(1, Math.round(drawingRect.height())), Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(createBitmap);
                     canvas.save();
                     canvas.translate(-drawingRect.left, -drawingRect.top);

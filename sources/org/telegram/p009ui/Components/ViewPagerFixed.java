@@ -483,13 +483,22 @@ public class ViewPagerFixed extends FrameLayout {
         fillTabs(z);
         if (z) {
             this.tabsAnimation = new AnimatorSet();
-            this.viewPages[1].setTranslationX(0.0f);
-            this.viewPages[0].setTranslationX(-getMeasuredWidth());
             View[] viewArr5 = this.viewPages;
             if (viewArr5[1] != null) {
-                this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(viewArr5[1], View.TRANSLATION_X, getMeasuredWidth()));
+                viewArr5[1].setTranslationX(0.0f);
             }
-            this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(this.viewPages[0], View.TRANSLATION_X, 0.0f));
+            View[] viewArr6 = this.viewPages;
+            if (viewArr6[0] != null) {
+                viewArr6[0].setTranslationX(-getMeasuredWidth());
+            }
+            View[] viewArr7 = this.viewPages;
+            if (viewArr7[1] != null) {
+                this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(viewArr7[1], View.TRANSLATION_X, getMeasuredWidth()));
+            }
+            View[] viewArr8 = this.viewPages;
+            if (viewArr8[0] != null) {
+                this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(viewArr8[0], View.TRANSLATION_X, 0.0f));
+            }
             this.tabsView.indicatorProgress2 = 0.0f;
             this.tabsView.listView.invalidateViews();
             this.tabsView.invalidate();
@@ -508,9 +517,9 @@ public class ViewPagerFixed extends FrameLayout {
                 public void onAnimationEnd(Animator animator) {
                     ViewPagerFixed.this.tabsAnimation = null;
                     ViewPagerFixed viewPagerFixed = ViewPagerFixed.this;
-                    View[] viewArr6 = viewPagerFixed.viewPages;
-                    if (viewArr6[1] != null) {
-                        viewPagerFixed.removeView(viewArr6[1]);
+                    View[] viewArr9 = viewPagerFixed.viewPages;
+                    if (viewArr9[1] != null) {
+                        viewPagerFixed.removeView(viewArr9[1]);
                         ViewPagerFixed.this.viewPages[1] = null;
                     }
                     ViewPagerFixed.this.tabsAnimationInProgress = false;
@@ -529,9 +538,9 @@ public class ViewPagerFixed extends FrameLayout {
             this.tabsAnimation.start();
             return;
         }
-        View[] viewArr6 = this.viewPages;
-        if (viewArr6[1] != null) {
-            removeView(viewArr6[1]);
+        View[] viewArr9 = this.viewPages;
+        if (viewArr9[1] != null) {
+            removeView(viewArr9[1]);
             this.viewPages[1] = null;
         }
     }

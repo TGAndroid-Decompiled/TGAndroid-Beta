@@ -241,6 +241,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             @Override
             public void set(float f) {
                 PersistColorPalette.getInstance(LPhotoPaintView.this.currentAccount).setWeight(String.valueOf(Brush.BRUSHES_LIST.indexOf(LPhotoPaintView.this.renderView.getCurrentBrush())), f);
+                LPhotoPaintView.this.colorSwatch.brushWeight = f;
+                LPhotoPaintView lPhotoPaintView = LPhotoPaintView.this;
+                lPhotoPaintView.setCurrentSwatch(lPhotoPaintView.colorSwatch, true);
             }
         };
         this.typefaceMenuOutlinePaint = new Paint(1);
@@ -835,6 +838,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         paintWeightChooserView.setColorSwatch(this.colorSwatch);
         this.weightChooserView.setRenderView(this.renderView);
         this.weightChooserView.setValueOverride(this.weightDefaultValueOverride);
+        this.colorSwatch.brushWeight = this.weightDefaultValueOverride.get();
         this.weightChooserView.setOnUpdate(new Runnable() {
             @Override
             public final void run() {
@@ -1283,7 +1287,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         } else if (entityView2 == entityView) {
             if (!this.editingText) {
                 showMenuForEntity(entityView2);
-            } else {
+            } else if (entityView2 instanceof TextPaintView) {
                 AndroidUtilities.showKeyboard(((TextPaintView) entityView2).getFocusedView());
                 hideEmojiPopup(false);
             }
@@ -1332,6 +1336,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             }
             this.weightChooserView.setValueOverride(this.weightDefaultValueOverride);
             this.weightChooserView.setShowPreview(true);
+            this.colorSwatch.brushWeight = this.weightDefaultValueOverride.get();
+            setCurrentSwatch(this.colorSwatch, true);
             return true;
         }
         ValueAnimator valueAnimator2 = this.tabsSelectionAnimator;
@@ -1344,6 +1350,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         switchTab(0);
         this.weightChooserView.setValueOverride(this.weightDefaultValueOverride);
         this.weightChooserView.setShowPreview(true);
+        this.colorSwatch.brushWeight = this.weightDefaultValueOverride.get();
+        setCurrentSwatch(this.colorSwatch, true);
         return z2;
     }
 
@@ -2282,6 +2290,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
         this.weightChooserView.setDrawCenter(!(brush instanceof Brush.Shape));
         this.renderView.setBrush(brush);
+        this.colorSwatch.brushWeight = this.weightDefaultValueOverride.get();
+        setCurrentSwatch(this.colorSwatch, true);
         this.renderInputView.invalidate();
     }
 
@@ -2407,7 +2417,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
     }
 
-    private void setCurrentSwatch(Swatch swatch, boolean z) {
+    public void setCurrentSwatch(Swatch swatch, boolean z) {
         FrameLayout frameLayout;
         Swatch swatch2 = this.colorSwatch;
         if (swatch2 != swatch) {
@@ -3137,7 +3147,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             }
         }
         this.entitiesView.removeView(entityView);
-        this.undoStore.unregisterUndo(entityView.getUUID());
+        if (entityView != null) {
+            this.undoStore.unregisterUndo(entityView.getUUID());
+        }
     }
 
     private void registerRemovalUndo(final EntityView entityView) {

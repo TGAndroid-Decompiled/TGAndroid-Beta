@@ -185,16 +185,22 @@ public class CacheModel {
         while (it2.hasNext()) {
             CacheControlActivity.DialogFileEntities dialogFileEntities = this.entitiesByDialogId.get(it2.next().longValue());
             if (dialogFileEntities != null) {
-                for (int i = 0; i < dialogFileEntities.entitiesByType.size(); i++) {
-                    Iterator<FileInfo> it3 = dialogFileEntities.entitiesByType.valueAt(i).files.iterator();
-                    while (it3.hasNext()) {
-                        if (!this.selectedFiles.contains(it3.next())) {
-                            break;
+                int i = 0;
+                while (true) {
+                    if (i < dialogFileEntities.entitiesByType.size()) {
+                        Iterator<FileInfo> it3 = dialogFileEntities.entitiesByType.valueAt(i).files.iterator();
+                        while (it3.hasNext()) {
+                            if (!this.selectedFiles.contains(it3.next())) {
+                                break;
+                            }
                         }
+                        i++;
+                    } else {
+                        this.selectedDialogs.add(Long.valueOf(dialogFileEntities.dialogId));
+                        break;
                     }
                 }
             }
-            this.selectedDialogs.add(Long.valueOf(dialogFileEntities.dialogId));
         }
     }
 

@@ -13,6 +13,7 @@ import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
@@ -547,8 +548,18 @@ public final class BulletinFactory {
     }
 
     private Context getContext() {
+        Context context;
         BaseFragment baseFragment = this.fragment;
-        return baseFragment != null ? baseFragment.getParentActivity() : this.containerLayout.getContext();
+        if (baseFragment != null) {
+            context = baseFragment.getParentActivity();
+            if (context == null && this.fragment.getLayoutContainer() != null) {
+                context = this.fragment.getLayoutContainer().getContext();
+            }
+        } else {
+            FrameLayout frameLayout = this.containerLayout;
+            context = frameLayout != null ? frameLayout.getContext() : null;
+        }
+        return context == null ? ApplicationLoader.applicationContext : context;
     }
 
     public static Bulletin createMuteBulletin(BaseFragment baseFragment, int i) {

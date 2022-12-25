@@ -391,6 +391,9 @@ public abstract class TLRPC$Update extends TLObject {
             case 522914557:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateNewMessage();
                 break;
+            case 542282808:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateUser();
+                break;
             case 610945826:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updatePeerBlocked();
                 break;

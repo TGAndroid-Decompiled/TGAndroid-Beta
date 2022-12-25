@@ -164,16 +164,9 @@ public class PaintWeightChooserView extends View {
     public void setMinMax(float f, float f2, boolean z) {
         Swatch swatch = this.colorSwatch;
         if (swatch != null && this.minMaxSet && z) {
-            ValueOverride valueOverride = this.valueOverride;
-            float f3 = valueOverride != null ? valueOverride.get() : swatch.brushWeight;
+            float f3 = swatch.brushWeight;
             float f4 = this.min;
-            float clamp = MathUtils.clamp((((f3 - f4) / (this.max - f4)) * (f2 - f)) + f, f, f2);
-            ValueOverride valueOverride2 = this.valueOverride;
-            if (valueOverride2 != null) {
-                valueOverride2.set(clamp);
-            } else {
-                this.colorSwatch.brushWeight = clamp;
-            }
+            this.colorSwatch.brushWeight = MathUtils.clamp((((f3 - f4) / (this.max - f4)) * (f2 - f)) + f, f, f2);
             Runnable runnable = this.onUpdate;
             if (runnable != null) {
                 runnable.run();

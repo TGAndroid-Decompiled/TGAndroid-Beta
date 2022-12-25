@@ -123,7 +123,9 @@ public class RenderView extends TextureView {
         }
 
         public void lambda$onSurfaceTextureAvailable$0() {
-            RenderView.this.internal.requestRender();
+            if (RenderView.this.internal != null) {
+                RenderView.this.internal.requestRender();
+            }
         }
 
         @Override

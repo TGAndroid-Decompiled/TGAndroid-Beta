@@ -3,8 +3,6 @@ package org.telegram.p009ui;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaMetadataRetriever;
-import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -21,13 +19,11 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.ActionBarMenu;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
@@ -53,15 +49,7 @@ import org.telegram.p009ui.PhotoViewer;
 import org.telegram.p009ui.Storage.CacheModel;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$TL_document;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
-import org.telegram.tgnet.TLRPC$TL_message;
-import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
-import org.telegram.tgnet.TLRPC$TL_peerUser;
 
 public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifierLayout.ChildLayout {
     private final LinearLayout actionModeLayout;
@@ -814,63 +802,8 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         }
     }
 
-    public void checkMessageObjectForAudio(CacheModel.FileInfo fileInfo, int i) {
-        if (fileInfo.messageObject == null) {
-            TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-            tLRPC$TL_message.out = true;
-            tLRPC$TL_message.f881id = i;
-            tLRPC$TL_message.peer_id = new TLRPC$TL_peerUser();
-            TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
-            tLRPC$TL_message.from_id = tLRPC$TL_peerUser;
-            TLRPC$Peer tLRPC$Peer = tLRPC$TL_message.peer_id;
-            long clientUserId = UserConfig.getInstance(this.parentFragment.getCurrentAccount()).getClientUserId();
-            tLRPC$TL_peerUser.user_id = clientUserId;
-            tLRPC$Peer.user_id = clientUserId;
-            tLRPC$TL_message.date = (int) (System.currentTimeMillis() / 1000);
-            tLRPC$TL_message.message = "";
-            tLRPC$TL_message.attachPath = fileInfo.file.getPath();
-            TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = new TLRPC$TL_messageMediaDocument();
-            tLRPC$TL_message.media = tLRPC$TL_messageMediaDocument;
-            tLRPC$TL_messageMediaDocument.flags |= 3;
-            tLRPC$TL_messageMediaDocument.document = new TLRPC$TL_document();
-            tLRPC$TL_message.flags |= 768;
-            String fileExtension = FileLoader.getFileExtension(fileInfo.file);
-            TLRPC$Document tLRPC$Document = tLRPC$TL_message.media.document;
-            tLRPC$Document.f865id = 0L;
-            tLRPC$Document.access_hash = 0L;
-            tLRPC$Document.file_reference = new byte[0];
-            tLRPC$Document.date = tLRPC$TL_message.date;
-            StringBuilder sb = new StringBuilder();
-            sb.append("audio/");
-            if (fileExtension.length() <= 0) {
-                fileExtension = "mp3";
-            }
-            sb.append(fileExtension);
-            tLRPC$Document.mime_type = sb.toString();
-            TLRPC$Document tLRPC$Document2 = tLRPC$TL_message.media.document;
-            tLRPC$Document2.size = fileInfo.size;
-            tLRPC$Document2.dc_id = 0;
-            TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio = new TLRPC$TL_documentAttributeAudio();
-            if (fileInfo.metadata == null) {
-                fileInfo.metadata = new CacheModel.FileInfo.FileMetadata();
-                MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-                mediaMetadataRetriever.setDataSource(getContext(), Uri.fromFile(fileInfo.file));
-                fileInfo.metadata.title = mediaMetadataRetriever.extractMetadata(7);
-                fileInfo.metadata.author = mediaMetadataRetriever.extractMetadata(2);
-                mediaMetadataRetriever.close();
-            }
-            CacheModel.FileInfo.FileMetadata fileMetadata = fileInfo.metadata;
-            tLRPC$TL_documentAttributeAudio.title = fileMetadata.title;
-            tLRPC$TL_documentAttributeAudio.performer = fileMetadata.author;
-            tLRPC$TL_documentAttributeAudio.flags |= 3;
-            tLRPC$TL_message.media.document.attributes.add(tLRPC$TL_documentAttributeAudio);
-            TLRPC$TL_documentAttributeFilename tLRPC$TL_documentAttributeFilename = new TLRPC$TL_documentAttributeFilename();
-            tLRPC$TL_documentAttributeFilename.file_name = fileInfo.file.getName();
-            tLRPC$TL_message.media.document.attributes.add(tLRPC$TL_documentAttributeFilename);
-            MessageObject messageObject = new MessageObject(this.parentFragment.getCurrentAccount(), tLRPC$TL_message, false, false);
-            fileInfo.messageObject = messageObject;
-            messageObject.mediaExists = true;
-        }
+    public void checkMessageObjectForAudio(org.telegram.p009ui.Storage.CacheModel.FileInfo r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.CachedMediaLayout.checkMessageObjectForAudio(org.telegram.ui.Storage.CacheModel$FileInfo, int):void");
     }
 
     public void setDelegate(Delegate delegate) {

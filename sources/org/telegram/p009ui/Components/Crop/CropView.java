@@ -243,11 +243,15 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
 
     public float getStateFullOrientation() {
         CropState cropState = this.state;
-        return cropState.baseRotation + cropState.orientation;
+        if (cropState == null) {
+            return 0.0f;
+        }
+        return cropState.orientation + cropState.baseRotation;
     }
 
     public boolean getStateMirror() {
-        return this.state.mirrored;
+        CropState cropState = this.state;
+        return cropState != null && cropState.mirrored;
     }
 
     public CropView(Context context) {

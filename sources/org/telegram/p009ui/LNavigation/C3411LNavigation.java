@@ -687,15 +687,17 @@ public class C3411LNavigation extends FrameLayout implements INavigationLayout, 
                 if (!navigationParams.isFromDelay) {
                     if (navigationParams.preview) {
                         FragmentHolderView foregroundView = getForegroundView();
-                        int measuredWidth = (int) (foregroundView.getMeasuredWidth() / 8.0f);
-                        int measuredHeight = (int) (foregroundView.getMeasuredHeight() / 8.0f);
-                        Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
-                        Canvas canvas = new Canvas(createBitmap);
-                        canvas.scale(0.125f, 0.125f);
-                        canvas.drawColor(Theme.getColor("windowBackgroundWhite"));
-                        foregroundView.draw(canvas);
-                        Utilities.stackBlurBitmap(createBitmap, Math.max(8, Math.max(measuredWidth, measuredHeight) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));
-                        this.blurredBackFragmentForPreview = createBitmap;
+                        if (foregroundView != null) {
+                            int measuredWidth = (int) (foregroundView.getMeasuredWidth() / 8.0f);
+                            int measuredHeight = (int) (foregroundView.getMeasuredHeight() / 8.0f);
+                            Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
+                            Canvas canvas = new Canvas(createBitmap);
+                            canvas.scale(0.125f, 0.125f);
+                            canvas.drawColor(Theme.getColor("windowBackgroundWhite"));
+                            foregroundView.draw(canvas);
+                            Utilities.stackBlurBitmap(createBitmap, Math.max(8, Math.max(measuredWidth, measuredHeight) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));
+                            this.blurredBackFragmentForPreview = createBitmap;
+                        }
                         if (getParent() != null) {
                             getParent().requestDisallowInterceptTouchEvent(true);
                         }

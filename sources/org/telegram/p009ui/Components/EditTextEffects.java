@@ -13,7 +13,6 @@ import android.view.MotionEvent;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
@@ -204,33 +203,8 @@ public class EditTextEffects extends EditText {
     }
 
     @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        super.onTextChanged(charSequence, i, i2, i3);
-        if (!this.suppressOnTextChanged) {
-            invalidateEffects();
-            Layout layout = getLayout();
-            if ((charSequence instanceof Spannable) && layout != null) {
-                int lineForOffset = layout.getLineForOffset(i);
-                int primaryHorizontal = (int) layout.getPrimaryHorizontal(i);
-                int lineTop = (int) ((layout.getLineTop(lineForOffset) + layout.getLineBottom(lineForOffset)) / 2.0f);
-                Iterator<SpoilerEffect> it = this.spoilers.iterator();
-                while (true) {
-                    if (!it.hasNext()) {
-                        break;
-                    }
-                    SpoilerEffect next = it.next();
-                    if (next.getBounds().contains(primaryHorizontal, lineTop)) {
-                        int i4 = i3 - i2;
-                        this.selStart += i4;
-                        this.selEnd += i4;
-                        onSpoilerClicked(next, primaryHorizontal, lineTop);
-                        break;
-                    }
-                }
-            }
-        }
-        updateAnimatedEmoji(true);
-        invalidate();
+    public void onTextChanged(java.lang.CharSequence r4, int r5, int r6, int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.EditTextEffects.onTextChanged(java.lang.CharSequence, int, int, int):void");
     }
 
     @Override

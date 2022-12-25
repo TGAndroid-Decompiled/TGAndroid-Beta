@@ -5471,31 +5471,34 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             TLRPC$ChatParticipant tLRPC$ChatParticipant;
             String string;
-            UserCell userCell = (UserCell) viewHolder.itemView;
-            if (!this.sortedUsers.isEmpty()) {
-                tLRPC$ChatParticipant = this.chatInfo.participants.participants.get(this.sortedUsers.get(i).intValue());
-            } else {
-                tLRPC$ChatParticipant = this.chatInfo.participants.participants.get(i);
-            }
-            if (tLRPC$ChatParticipant != null) {
-                String str = null;
-                if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatChannelParticipant) {
-                    TLRPC$ChannelParticipant tLRPC$ChannelParticipant = ((TLRPC$TL_chatChannelParticipant) tLRPC$ChatParticipant).channelParticipant;
-                    if (!TextUtils.isEmpty(tLRPC$ChannelParticipant.rank)) {
-                        string = tLRPC$ChannelParticipant.rank;
-                    } else if (tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantCreator) {
-                        string = LocaleController.getString("ChannelCreator", C1072R.string.ChannelCreator);
-                    } else if (tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantAdmin) {
-                        string = LocaleController.getString("ChannelAdmin", C1072R.string.ChannelAdmin);
-                    }
-                    str = string;
-                } else if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantCreator) {
-                    str = LocaleController.getString("ChannelCreator", C1072R.string.ChannelCreator);
-                } else if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantAdmin) {
-                    str = LocaleController.getString("ChannelAdmin", C1072R.string.ChannelAdmin);
+            View view = viewHolder.itemView;
+            if (view instanceof UserCell) {
+                UserCell userCell = (UserCell) view;
+                if (!this.sortedUsers.isEmpty()) {
+                    tLRPC$ChatParticipant = this.chatInfo.participants.participants.get(this.sortedUsers.get(i).intValue());
+                } else {
+                    tLRPC$ChatParticipant = this.chatInfo.participants.participants.get(i);
                 }
-                userCell.setAdminRole(str);
-                userCell.setData(SharedMediaLayout.this.profileActivity.getMessagesController().getUser(Long.valueOf(tLRPC$ChatParticipant.user_id)), null, null, 0, i != this.chatInfo.participants.participants.size() - 1);
+                if (tLRPC$ChatParticipant != null) {
+                    String str = null;
+                    if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatChannelParticipant) {
+                        TLRPC$ChannelParticipant tLRPC$ChannelParticipant = ((TLRPC$TL_chatChannelParticipant) tLRPC$ChatParticipant).channelParticipant;
+                        if (!TextUtils.isEmpty(tLRPC$ChannelParticipant.rank)) {
+                            string = tLRPC$ChannelParticipant.rank;
+                        } else if (tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantCreator) {
+                            string = LocaleController.getString("ChannelCreator", C1072R.string.ChannelCreator);
+                        } else if (tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantAdmin) {
+                            string = LocaleController.getString("ChannelAdmin", C1072R.string.ChannelAdmin);
+                        }
+                        str = string;
+                    } else if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantCreator) {
+                        str = LocaleController.getString("ChannelCreator", C1072R.string.ChannelCreator);
+                    } else if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantAdmin) {
+                        str = LocaleController.getString("ChannelAdmin", C1072R.string.ChannelAdmin);
+                    }
+                    userCell.setAdminRole(str);
+                    userCell.setData(SharedMediaLayout.this.profileActivity.getMessagesController().getUser(Long.valueOf(tLRPC$ChatParticipant.user_id)), null, null, 0, i != this.chatInfo.participants.participants.size() - 1);
+                }
             }
         }
 

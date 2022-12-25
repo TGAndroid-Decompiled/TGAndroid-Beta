@@ -672,7 +672,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         public void onDraw(Canvas canvas) {
             AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
             ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : this.imageReceiver;
-            if (this.foregroundAlpha < 1.0f) {
+            if (imageReceiver != null && this.foregroundAlpha < 1.0f) {
                 imageReceiver.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 imageReceiver.draw(canvas);
             }

@@ -57,7 +57,7 @@ public class PaintTypeface {
     }
 
     PaintTypeface(Font font, String str) {
-        this.key = "" + font.hashCode();
+        this.key = str;
         this.name = str;
         this.nameKey = null;
         this.typeface = Typeface.createFromFile(font.getFile());
