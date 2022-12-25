@@ -6,15 +6,15 @@ public class TLRPC$TL_inputFolderPeer extends TLObject {
     public TLRPC$InputPeer peer;
 
     public static TLRPC$TL_inputFolderPeer TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_inputFolderPeer tLRPC$TL_inputFolderPeer = new TLRPC$TL_inputFolderPeer();
-            tLRPC$TL_inputFolderPeer.readParams(abstractSerializedData, z);
-            return tLRPC$TL_inputFolderPeer;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_inputFolderPeer", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_inputFolderPeer", Integer.valueOf(i)));
         }
+        TLRPC$TL_inputFolderPeer tLRPC$TL_inputFolderPeer = new TLRPC$TL_inputFolderPeer();
+        tLRPC$TL_inputFolderPeer.readParams(abstractSerializedData, z);
+        return tLRPC$TL_inputFolderPeer;
     }
 
     @Override

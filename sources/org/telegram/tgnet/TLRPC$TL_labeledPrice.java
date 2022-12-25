@@ -6,15 +6,15 @@ public class TLRPC$TL_labeledPrice extends TLObject {
     public String label;
 
     public static TLRPC$TL_labeledPrice TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_labeledPrice tLRPC$TL_labeledPrice = new TLRPC$TL_labeledPrice();
-            tLRPC$TL_labeledPrice.readParams(abstractSerializedData, z);
-            return tLRPC$TL_labeledPrice;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_labeledPrice", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_labeledPrice", Integer.valueOf(i)));
         }
+        TLRPC$TL_labeledPrice tLRPC$TL_labeledPrice = new TLRPC$TL_labeledPrice();
+        tLRPC$TL_labeledPrice.readParams(abstractSerializedData, z);
+        return tLRPC$TL_labeledPrice;
     }
 
     @Override

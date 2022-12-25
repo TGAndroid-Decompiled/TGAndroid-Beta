@@ -9,55 +9,59 @@ public class TLRPC$TL_messages_inactiveChats extends TLObject {
     public ArrayList<TLRPC$User> users = new ArrayList<>();
 
     public static TLRPC$TL_messages_inactiveChats TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_messages_inactiveChats tLRPC$TL_messages_inactiveChats = new TLRPC$TL_messages_inactiveChats();
-            tLRPC$TL_messages_inactiveChats.readParams(abstractSerializedData, z);
-            return tLRPC$TL_messages_inactiveChats;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_messages_inactiveChats", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_messages_inactiveChats", Integer.valueOf(i)));
         }
+        TLRPC$TL_messages_inactiveChats tLRPC$TL_messages_inactiveChats = new TLRPC$TL_messages_inactiveChats();
+        tLRPC$TL_messages_inactiveChats.readParams(abstractSerializedData, z);
+        return tLRPC$TL_messages_inactiveChats;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
-        if (readInt32 == 481674261) {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                this.dates.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+        if (readInt32 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
-            int readInt323 = abstractSerializedData.readInt32(z);
-            if (readInt323 == 481674261) {
-                int readInt324 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt324; i2++) {
-                    TLRPC$Chat TLdeserialize = TLRPC$Chat.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize != null) {
-                        this.chats.add(TLdeserialize);
-                    } else {
-                        return;
-                    }
-                }
-                int readInt325 = abstractSerializedData.readInt32(z);
-                if (readInt325 == 481674261) {
-                    int readInt326 = abstractSerializedData.readInt32(z);
-                    for (int i3 = 0; i3 < readInt326; i3++) {
-                        TLRPC$User TLdeserialize2 = TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                        if (TLdeserialize2 != null) {
-                            this.users.add(TLdeserialize2);
-                        } else {
-                            return;
-                        }
-                    }
-                } else if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
-                }
-            } else if (z) {
+            return;
+        }
+        int readInt322 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt322; i++) {
+            this.dates.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        if (readInt323 != 481674261) {
+            if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
             }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+            return;
+        }
+        int readInt324 = abstractSerializedData.readInt32(z);
+        for (int i2 = 0; i2 < readInt324; i2++) {
+            TLRPC$Chat TLdeserialize = TLRPC$Chat.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
+            }
+            this.chats.add(TLdeserialize);
+        }
+        int readInt325 = abstractSerializedData.readInt32(z);
+        if (readInt325 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
+            }
+            return;
+        }
+        int readInt326 = abstractSerializedData.readInt32(z);
+        for (int i3 = 0; i3 < readInt326; i3++) {
+            TLRPC$User TLdeserialize2 = TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize2 == null) {
+                return;
+            }
+            this.users.add(TLdeserialize2);
         }
     }
 

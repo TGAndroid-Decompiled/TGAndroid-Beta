@@ -7,12 +7,8 @@ public class TLRPC$TL_messageActionPaymentSent extends TLRPC$MessageAction {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.recurring_init = (readInt32 & 4) != 0;
-        if ((readInt32 & 8) != 0) {
-            z2 = true;
-        }
-        this.recurring_used = z2;
+        this.recurring_used = (readInt32 & 8) != 0;
         this.currency = abstractSerializedData.readString(z);
         this.total_amount = abstractSerializedData.readInt64(z);
         if ((this.flags & 1) != 0) {

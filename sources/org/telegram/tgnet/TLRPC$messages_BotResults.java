@@ -31,20 +31,21 @@ public abstract class TLRPC$messages_BotResults extends TLObject {
                         this.switch_pm = TLRPC$TL_inlineBotSwitchPM.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                     }
                     int readInt322 = abstractSerializedData2.readInt32(z2);
-                    if (readInt322 == 481674261) {
-                        int readInt323 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInlineResult TLdeserialize = TLRPC$BotInlineResult.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                            if (TLdeserialize != null) {
-                                this.results.add(TLdeserialize);
-                            } else {
-                                return;
-                            }
+                    if (readInt322 != 481674261) {
+                        if (z2) {
+                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                         }
-                        this.cache_time = abstractSerializedData2.readInt32(z2);
-                    } else if (z2) {
-                        throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                        return;
                     }
+                    int readInt323 = abstractSerializedData2.readInt32(z2);
+                    for (int i2 = 0; i2 < readInt323; i2++) {
+                        TLRPC$BotInlineResult TLdeserialize = TLRPC$BotInlineResult.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if (TLdeserialize == null) {
+                            return;
+                        }
+                        this.results.add(TLdeserialize);
+                    }
+                    this.cache_time = abstractSerializedData2.readInt32(z2);
                 }
 
                 @Override
@@ -72,12 +73,12 @@ public abstract class TLRPC$messages_BotResults extends TLObject {
         } else {
             tLRPC$TL_messages_botResults = new TLRPC$TL_messages_botResults();
         }
-        if (tLRPC$TL_messages_botResults != null || !z) {
-            if (tLRPC$TL_messages_botResults != null) {
-                tLRPC$TL_messages_botResults.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$TL_messages_botResults;
+        if (tLRPC$TL_messages_botResults == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in messages_BotResults", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in messages_BotResults", Integer.valueOf(i)));
+        if (tLRPC$TL_messages_botResults != null) {
+            tLRPC$TL_messages_botResults.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_messages_botResults;
     }
 }

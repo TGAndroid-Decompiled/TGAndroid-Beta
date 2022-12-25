@@ -978,7 +978,7 @@
     <string name="ClearMediaCache">Cache opschonen</string>
     <string name="ClearOtherSessionsHelp">Logt alle apparaten behalve deze uit.</string>
     <string name="ClearOtherWebSessionsHelp">Je kunt inloggen op websites die authenticatie via Telegram ondersteunen.</string>
-    <string name="ClearRecentEmoji">Recente emoji\'s wissen?</string>
+    <string name="ClearRecentEmojiTitle">Recente emoji\'s wissen</string>
     <string name="ClearRecentHistory">Geschiedenis wissen</string>
     <string name="ClearSearch">Zoekgeschiedenis wissen?</string>
     <string name="ClearSearchAlert">Zoekgeschiedenis echt wissen?</string>
@@ -4382,9 +4382,9 @@
     <string name="ZoomOut">Uitzoomen</string>
     <string name="chatDate">d MMMM</string>
     <string name="chatFullDate">d MMMM yyyy</string>
-    <string name="common_google_play_services_enable_button">Inschakelen</string>
-    <string name="common_google_play_services_enable_text">%1$s werkt niet, tenzij je Google Play-services inschakelt.</string>
-    <string name="common_google_play_services_enable_title">Google Play-services inschakelen</string>
+    <string name="common_google_play_services_enable_button">Aanzetten</string>
+    <string name="common_google_play_services_enable_text">%1$s werkt niet, tenzij je Google Play-services aanzet.</string>
+    <string name="common_google_play_services_enable_title">Google Play-services aanzetten</string>
     <string name="common_google_play_services_install_button">Installeren</string>
     <string name="common_google_play_services_install_text">%1$s kan niet worden uitgevoerd zonder Google Play-services, die je nog niet op je apparaat hebt.</string>
     <string name="common_google_play_services_install_title">Google Play-services ophalen</string>

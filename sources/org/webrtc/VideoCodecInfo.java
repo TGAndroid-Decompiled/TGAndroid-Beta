@@ -39,11 +39,11 @@ public class VideoCodecInfo {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof VideoCodecInfo)) {
-            return false;
+        if (obj instanceof VideoCodecInfo) {
+            VideoCodecInfo videoCodecInfo = (VideoCodecInfo) obj;
+            return this.name.equalsIgnoreCase(videoCodecInfo.name) && this.params.equals(videoCodecInfo.params);
         }
-        VideoCodecInfo videoCodecInfo = (VideoCodecInfo) obj;
-        return this.name.equalsIgnoreCase(videoCodecInfo.name) && this.params.equals(videoCodecInfo.params);
+        return false;
     }
 
     public int hashCode() {

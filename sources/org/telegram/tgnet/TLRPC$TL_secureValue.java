@@ -16,15 +16,15 @@ public class TLRPC$TL_secureValue extends TLObject {
     public ArrayList<TLRPC$SecureFile> files = new ArrayList<>();
 
     public static TLRPC$TL_secureValue TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_secureValue tLRPC$TL_secureValue = new TLRPC$TL_secureValue();
-            tLRPC$TL_secureValue.readParams(abstractSerializedData, z);
-            return tLRPC$TL_secureValue;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_secureValue", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_secureValue", Integer.valueOf(i)));
         }
+        TLRPC$TL_secureValue tLRPC$TL_secureValue = new TLRPC$TL_secureValue();
+        tLRPC$TL_secureValue.readParams(abstractSerializedData, z);
+        return tLRPC$TL_secureValue;
     }
 
     @Override
@@ -45,38 +45,36 @@ public class TLRPC$TL_secureValue extends TLObject {
         }
         if ((this.flags & 64) != 0) {
             int readInt32 = abstractSerializedData.readInt32(z);
-            if (readInt32 == 481674261) {
-                int readInt322 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt322; i++) {
-                    TLRPC$SecureFile TLdeserialize = TLRPC$SecureFile.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize != null) {
-                        this.translation.add(TLdeserialize);
-                    } else {
-                        return;
-                    }
+            if (readInt32 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
-            } else {
                 return;
+            }
+            int readInt322 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt322; i++) {
+                TLRPC$SecureFile TLdeserialize = TLRPC$SecureFile.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize == null) {
+                    return;
+                }
+                this.translation.add(TLdeserialize);
             }
         }
         if ((this.flags & 16) != 0) {
             int readInt323 = abstractSerializedData.readInt32(z);
-            if (readInt323 == 481674261) {
-                int readInt324 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt324; i2++) {
-                    TLRPC$SecureFile TLdeserialize2 = TLRPC$SecureFile.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize2 != null) {
-                        this.files.add(TLdeserialize2);
-                    } else {
-                        return;
-                    }
+            if (readInt323 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
-            } else {
                 return;
+            }
+            int readInt324 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt324; i2++) {
+                TLRPC$SecureFile TLdeserialize2 = TLRPC$SecureFile.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize2 == null) {
+                    return;
+                }
+                this.files.add(TLdeserialize2);
             }
         }
         if ((this.flags & 32) != 0) {

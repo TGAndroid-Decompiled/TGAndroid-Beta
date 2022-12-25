@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public abstract class TLRPC$MessageAction extends TLObject {
     public String address;
+    public long amount;
     public TLRPC$TL_inputGroupCall call;
     public long call_id;
     public long channel_id;
@@ -16,6 +17,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
     public long inviter_id;
     public String invoice_slug;
     public String message;
+    public int months;
     public TLRPC$UserProfilePhoto newUserPhoto;
     public TLRPC$Photo photo;
     public TLRPC$PhoneCallDiscardReason reason;
@@ -78,12 +80,8 @@ public abstract class TLRPC$MessageAction extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.recurring_init = (readInt32 & 4) != 0;
-                        if ((readInt32 & 8) != 0) {
-                            z3 = true;
-                        }
-                        this.recurring_used = z3;
+                        this.recurring_used = (readInt32 & 8) != 0;
                         this.currency = abstractSerializedData2.readString(z2);
                         this.total_amount = abstractSerializedData2.readInt64(z2);
                         this.payload = abstractSerializedData2.readByteArray(z2);
@@ -175,13 +173,15 @@ public abstract class TLRPC$MessageAction extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.title = abstractSerializedData2.readString(z2);
                         int readInt32 = abstractSerializedData2.readInt32(z2);
-                        if (readInt32 == 481674261) {
-                            int readInt322 = abstractSerializedData2.readInt32(z2);
-                            for (int i2 = 0; i2 < readInt322; i2++) {
-                                this.users.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
+                        if (readInt32 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                             }
-                        } else if (z2) {
-                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                            return;
+                        }
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt322; i2++) {
+                            this.users.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
                         }
                     }
 
@@ -199,10 +199,43 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 };
                 break;
             case -1441072131:
-                tLRPC$MessageAction = new TLRPC$TL_messageActionSetMessagesTTL();
+                tLRPC$MessageAction = new TLRPC$TL_messageActionSetMessagesTTL() {
+                    public static int constructor = -1441072131;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.period = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(this.period);
+                    }
+                };
                 break;
             case -1434950843:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionSetChatTheme();
+                break;
+            case -1415514682:
+                tLRPC$MessageAction = new TLRPC$MessageAction() {
+                    public static int constructor = -1415514682;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.currency = abstractSerializedData2.readString(z2);
+                        this.amount = abstractSerializedData2.readInt64(z2);
+                        this.months = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeString(this.currency);
+                        abstractSerializedData2.writeInt64(this.amount);
+                        abstractSerializedData2.writeInt32(this.months);
+                    }
+                };
                 break;
             case -1410748418:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionBotAllowed();
@@ -222,6 +255,41 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeInt32((int) this.chat_id);
+                    }
+                };
+                break;
+            case -1316338916:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionTopicEdit() {
+                    public static int constructor = -1316338916;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        if ((readInt32 & 1) != 0) {
+                            this.title = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            this.icon_emoji_id = abstractSerializedData2.readInt64(z2);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            this.closed = abstractSerializedData2.readBool(z2);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(this.flags);
+                        if ((this.flags & 1) != 0) {
+                            abstractSerializedData2.writeString(this.title);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            abstractSerializedData2.writeInt64(this.icon_emoji_id);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            abstractSerializedData2.writeBool(this.closed);
+                        }
                     }
                 };
                 break;
@@ -268,6 +336,9 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1119368275:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatCreate();
+                break;
+            case -1064024032:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionTopicEdit();
                 break;
             case -648257196:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionSecureValuesSent();
@@ -336,8 +407,14 @@ public abstract class TLRPC$MessageAction extends TLObject {
             case 51520707:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatJoinedByLink();
                 break;
+            case 228168278:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionTopicCreate();
+                break;
             case 365886720:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatAddUser();
+                break;
+            case 1007897979:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionSetMessagesTTL();
                 break;
             case 1080663248:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionPaymentSent() {
@@ -345,7 +422,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.flags = abstractSerializedData2.readInt32(z2);
                         this.currency = abstractSerializedData2.readString(z2);
                         this.total_amount = abstractSerializedData2.readInt64(z2);
                     }
@@ -388,13 +464,15 @@ public abstract class TLRPC$MessageAction extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
-                        if (readInt32 == 481674261) {
-                            int readInt322 = abstractSerializedData2.readInt32(z2);
-                            for (int i2 = 0; i2 < readInt322; i2++) {
-                                this.users.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
+                        if (readInt32 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                             }
-                        } else if (z2) {
-                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                            return;
+                        }
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt322; i2++) {
+                            this.users.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
                         }
                     }
 
@@ -526,13 +604,15 @@ public abstract class TLRPC$MessageAction extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.call = TLRPC$TL_inputGroupCall.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         int readInt32 = abstractSerializedData2.readInt32(z2);
-                        if (readInt32 == 481674261) {
-                            int readInt322 = abstractSerializedData2.readInt32(z2);
-                            for (int i2 = 0; i2 < readInt322; i2++) {
-                                this.users.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
+                        if (readInt32 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                             }
-                        } else if (z2) {
-                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                            return;
+                        }
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt322; i2++) {
+                            this.users.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
                         }
                     }
 
@@ -580,12 +660,12 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 tLRPC$MessageAction = null;
                 break;
         }
-        if (tLRPC$MessageAction != null || !z) {
-            if (tLRPC$MessageAction != null) {
-                tLRPC$MessageAction.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$MessageAction;
+        if (tLRPC$MessageAction == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in MessageAction", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in MessageAction", Integer.valueOf(i)));
+        if (tLRPC$MessageAction != null) {
+            tLRPC$MessageAction.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$MessageAction;
     }
 }

@@ -108,12 +108,12 @@ public abstract class TLRPC$storage_FileType extends TLObject {
                 tLRPC$storage_FileType = null;
                 break;
         }
-        if (tLRPC$storage_FileType != null || !z) {
-            if (tLRPC$storage_FileType != null) {
-                tLRPC$storage_FileType.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$storage_FileType;
+        if (tLRPC$storage_FileType == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in storage_FileType", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in storage_FileType", Integer.valueOf(i)));
+        if (tLRPC$storage_FileType != null) {
+            tLRPC$storage_FileType.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$storage_FileType;
     }
 }

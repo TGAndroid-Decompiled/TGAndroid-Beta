@@ -6,7 +6,7 @@ public class NativeLoader {
     private static final int LIB_VERSION = 42;
     private static final String LOCALE_LIB_SO_NAME = "libtmessages.42loc.so";
     private static volatile boolean nativeLoaded = false;
-    private String crashPath = "";
+    private String crashPath = BuildConfig.APP_CENTER_HASH;
 
     private static native void init(String str, boolean z);
 

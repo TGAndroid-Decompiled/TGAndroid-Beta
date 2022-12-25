@@ -3,6 +3,7 @@ package org.telegram.messenger.audioinfo.mp3;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.tgnet.ConnectionsManager;
 
@@ -41,9 +42,10 @@ public class ID3v1Info extends AudioInfo {
             if (genre != null) {
                 this.genre = genre.getDescription();
             }
-            if (readBytes[125] == 0 && readBytes[126] != 0) {
-                this.track = (short) (readBytes[126] & 255);
+            if (readBytes[125] != 0 || readBytes[126] == 0) {
+                return;
             }
+            this.track = (short) (readBytes[126] & 255);
         }
     }
 
@@ -52,11 +54,10 @@ public class ID3v1Info extends AudioInfo {
         int i2 = 0;
         while (i2 < i) {
             int read = inputStream.read(bArr, i2, i - i2);
-            if (read > 0) {
-                i2 += read;
-            } else {
+            if (read <= 0) {
                 throw new EOFException();
             }
+            i2 += read;
         }
         return bArr;
     }
@@ -67,7 +68,7 @@ public class ID3v1Info extends AudioInfo {
             int indexOf = str.indexOf(0);
             return indexOf < 0 ? str : str.substring(0, indexOf);
         } catch (Exception unused) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
     }
 }

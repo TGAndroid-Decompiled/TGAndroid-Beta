@@ -5,7 +5,7 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
     public int duration;
     public String file_name;
     public int flags;
-    public int h;
+    public int f858h;
     public boolean mask;
     public TLRPC$TL_maskCoords mask_coords;
     public String performer;
@@ -14,20 +14,20 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
     public boolean supports_streaming;
     public String title;
     public boolean voice;
-    public int w;
+    public int f859w;
     public byte[] waveform;
 
     public static TLRPC$DocumentAttribute TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$DocumentAttribute tLRPC$DocumentAttribute;
+        TLRPC$DocumentAttribute tLRPC$TL_documentAttributeHasStickers;
         switch (i) {
             case -1744710921:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeHasStickers();
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeHasStickers();
                 break;
             case -1739392570:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeAudio();
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeAudio();
                 break;
             case -1723033470:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeSticker() {
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeSticker() {
                     public static int constructor = -1723033470;
 
                     @Override
@@ -43,7 +43,7 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                 };
                 break;
             case -556656416:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeAudio() {
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeAudio() {
                     public static int constructor = -556656416;
 
                     @Override
@@ -63,7 +63,7 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                 };
                 break;
             case -83208409:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeSticker() {
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeSticker() {
                     public static int constructor = -83208409;
 
                     @Override
@@ -76,8 +76,11 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                     }
                 };
                 break;
+            case -48981863:
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeCustomEmoji();
+                break;
             case 85215461:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeAudio() {
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeAudio() {
                     public static int constructor = 85215461;
 
                     @Override
@@ -93,53 +96,53 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                 };
                 break;
             case 250621158:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeVideo();
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeVideo();
                 break;
             case 297109817:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeAnimated();
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeAnimated();
                 break;
             case 358154344:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeFilename();
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeFilename();
                 break;
             case 978674434:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeSticker_layer55();
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeSticker_layer55();
                 break;
             case 1494273227:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeVideo() {
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeVideo() {
                     public static int constructor = 1494273227;
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.duration = abstractSerializedData2.readInt32(z2);
-                        this.w = abstractSerializedData2.readInt32(z2);
-                        this.h = abstractSerializedData2.readInt32(z2);
+                        this.f859w = abstractSerializedData2.readInt32(z2);
+                        this.f858h = abstractSerializedData2.readInt32(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.duration);
-                        abstractSerializedData2.writeInt32(this.w);
-                        abstractSerializedData2.writeInt32(this.h);
+                        abstractSerializedData2.writeInt32(this.f859w);
+                        abstractSerializedData2.writeInt32(this.f858h);
                     }
                 };
                 break;
             case 1662637586:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeSticker();
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeSticker();
                 break;
             case 1815593308:
-                tLRPC$DocumentAttribute = new TLRPC$TL_documentAttributeImageSize();
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeImageSize();
                 break;
             default:
-                tLRPC$DocumentAttribute = null;
+                tLRPC$TL_documentAttributeHasStickers = null;
                 break;
         }
-        if (tLRPC$DocumentAttribute != null || !z) {
-            if (tLRPC$DocumentAttribute != null) {
-                tLRPC$DocumentAttribute.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$DocumentAttribute;
+        if (tLRPC$TL_documentAttributeHasStickers == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in DocumentAttribute", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in DocumentAttribute", Integer.valueOf(i)));
+        if (tLRPC$TL_documentAttributeHasStickers != null) {
+            tLRPC$TL_documentAttributeHasStickers.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_documentAttributeHasStickers;
     }
 }

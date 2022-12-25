@@ -15,39 +15,39 @@ public class TLRPC$TL_inputMediaUploadedDocument extends TLRPC$InputMedia {
         }
         this.mime_type = abstractSerializedData.readString(z);
         int readInt322 = abstractSerializedData.readInt32(z);
-        if (readInt322 == 481674261) {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                TLRPC$DocumentAttribute TLdeserialize = TLRPC$DocumentAttribute.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize != null) {
-                    this.attributes.add(TLdeserialize);
-                } else {
-                    return;
-                }
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            if ((this.flags & 1) != 0) {
-                int readInt324 = abstractSerializedData.readInt32(z);
-                if (readInt324 == 481674261) {
-                    int readInt325 = abstractSerializedData.readInt32(z);
-                    for (int i2 = 0; i2 < readInt325; i2++) {
-                        TLRPC$InputDocument TLdeserialize2 = TLRPC$InputDocument.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                        if (TLdeserialize2 != null) {
-                            this.stickers.add(TLdeserialize2);
-                        } else {
-                            return;
-                        }
-                    }
-                } else if (z) {
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            TLRPC$DocumentAttribute TLdeserialize = TLRPC$DocumentAttribute.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
+            }
+            this.attributes.add(TLdeserialize);
+        }
+        if ((this.flags & 1) != 0) {
+            int readInt324 = abstractSerializedData.readInt32(z);
+            if (readInt324 != 481674261) {
+                if (z) {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
-                } else {
+                }
+                return;
+            }
+            int readInt325 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt325; i2++) {
+                TLRPC$InputDocument TLdeserialize2 = TLRPC$InputDocument.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize2 == null) {
                     return;
                 }
+                this.stickers.add(TLdeserialize2);
             }
-            if ((this.flags & 2) != 0) {
-                this.ttl_seconds = abstractSerializedData.readInt32(z);
-            }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+        }
+        if ((this.flags & 2) != 0) {
+            this.ttl_seconds = abstractSerializedData.readInt32(z);
         }
     }
 

@@ -10,15 +10,15 @@ public class TLRPC$TL_attachMenuBotIcon extends TLObject {
     public String name;
 
     public static TLRPC$TL_attachMenuBotIcon TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_attachMenuBotIcon tLRPC$TL_attachMenuBotIcon = new TLRPC$TL_attachMenuBotIcon();
-            tLRPC$TL_attachMenuBotIcon.readParams(abstractSerializedData, z);
-            return tLRPC$TL_attachMenuBotIcon;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_attachMenuBotIcon", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_attachMenuBotIcon", Integer.valueOf(i)));
         }
+        TLRPC$TL_attachMenuBotIcon tLRPC$TL_attachMenuBotIcon = new TLRPC$TL_attachMenuBotIcon();
+        tLRPC$TL_attachMenuBotIcon.readParams(abstractSerializedData, z);
+        return tLRPC$TL_attachMenuBotIcon;
     }
 
     @Override
@@ -28,18 +28,19 @@ public class TLRPC$TL_attachMenuBotIcon extends TLObject {
         this.icon = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         if ((this.flags & 1) != 0) {
             int readInt32 = abstractSerializedData.readInt32(z);
-            if (readInt32 == 481674261) {
-                int readInt322 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt322; i++) {
-                    TLRPC$TL_attachMenuBotIconColor TLdeserialize = TLRPC$TL_attachMenuBotIconColor.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize != null) {
-                        this.colors.add(TLdeserialize);
-                    } else {
-                        return;
-                    }
+            if (readInt32 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                return;
+            }
+            int readInt322 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt322; i++) {
+                TLRPC$TL_attachMenuBotIconColor TLdeserialize = TLRPC$TL_attachMenuBotIconColor.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize == null) {
+                    return;
+                }
+                this.colors.add(TLdeserialize);
             }
         }
     }

@@ -36,20 +36,22 @@ public class DispatchQueueMainThreadSync extends Thread {
 
     public void sendMessage(Message message, int i) {
         checkThread();
-        if (!this.isRecycled) {
-            if (!this.isRunning) {
-                this.postponedTasks.add(new PostponedTask(message, i));
-            } else if (i <= 0) {
-                this.handler.sendMessage(message);
-            } else {
-                this.handler.sendMessageDelayed(message, i);
-            }
+        if (this.isRecycled) {
+            return;
+        }
+        if (!this.isRunning) {
+            this.postponedTasks.add(new PostponedTask(message, i));
+        } else if (i <= 0) {
+            this.handler.sendMessage(message);
+        } else {
+            this.handler.sendMessageDelayed(message, i);
         }
     }
 
     private void checkThread() {
-        if (BuildVars.DEBUG_PRIVATE_VERSION && Thread.currentThread() != ApplicationLoader.applicationHandler.getLooper().getThread()) {
-            throw new IllegalStateException("Disaptch thread");
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            Thread.currentThread();
+            ApplicationLoader.applicationHandler.getLooper().getThread();
         }
     }
 

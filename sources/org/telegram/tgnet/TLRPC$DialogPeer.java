@@ -2,9 +2,11 @@ package org.telegram.tgnet;
 
 public abstract class TLRPC$DialogPeer extends TLObject {
     public static TLRPC$DialogPeer TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$DialogPeer tLRPC$DialogPeer;
-        if (i != -445792507) {
-            tLRPC$DialogPeer = i != 1363483106 ? null : new TLRPC$DialogPeer() {
+        TLRPC$DialogPeer tLRPC$TL_dialogPeer;
+        if (i == -445792507) {
+            tLRPC$TL_dialogPeer = new TLRPC$TL_dialogPeer();
+        } else {
+            tLRPC$TL_dialogPeer = i != 1363483106 ? null : new TLRPC$DialogPeer() {
                 public static int constructor = 1363483106;
                 public int folder_id;
 
@@ -19,15 +21,13 @@ public abstract class TLRPC$DialogPeer extends TLObject {
                     abstractSerializedData2.writeInt32(this.folder_id);
                 }
             };
-        } else {
-            tLRPC$DialogPeer = new TLRPC$TL_dialogPeer();
         }
-        if (tLRPC$DialogPeer != null || !z) {
-            if (tLRPC$DialogPeer != null) {
-                tLRPC$DialogPeer.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$DialogPeer;
+        if (tLRPC$TL_dialogPeer == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in DialogPeer", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in DialogPeer", Integer.valueOf(i)));
+        if (tLRPC$TL_dialogPeer != null) {
+            tLRPC$TL_dialogPeer.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_dialogPeer;
     }
 }

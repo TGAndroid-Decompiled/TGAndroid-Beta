@@ -13,16 +13,18 @@ public class TLRPC$TL_updateDeleteChannelMessages extends TLRPC$Update {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.channel_id = abstractSerializedData.readInt64(z);
         int readInt32 = abstractSerializedData.readInt32(z);
-        if (readInt32 == 481674261) {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                this.messages.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+        if (readInt32 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
-            this.pts = abstractSerializedData.readInt32(z);
-            this.pts_count = abstractSerializedData.readInt32(z);
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+            return;
         }
+        int readInt322 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt322; i++) {
+            this.messages.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+        }
+        this.pts = abstractSerializedData.readInt32(z);
+        this.pts_count = abstractSerializedData.readInt32(z);
     }
 
     @Override

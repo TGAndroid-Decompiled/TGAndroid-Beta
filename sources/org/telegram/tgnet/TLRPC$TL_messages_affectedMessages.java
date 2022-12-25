@@ -6,15 +6,15 @@ public class TLRPC$TL_messages_affectedMessages extends TLObject {
     public int pts_count;
 
     public static TLRPC$TL_messages_affectedMessages TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_messages_affectedMessages tLRPC$TL_messages_affectedMessages = new TLRPC$TL_messages_affectedMessages();
-            tLRPC$TL_messages_affectedMessages.readParams(abstractSerializedData, z);
-            return tLRPC$TL_messages_affectedMessages;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_messages_affectedMessages", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_messages_affectedMessages", Integer.valueOf(i)));
         }
+        TLRPC$TL_messages_affectedMessages tLRPC$TL_messages_affectedMessages = new TLRPC$TL_messages_affectedMessages();
+        tLRPC$TL_messages_affectedMessages.readParams(abstractSerializedData, z);
+        return tLRPC$TL_messages_affectedMessages;
     }
 
     @Override

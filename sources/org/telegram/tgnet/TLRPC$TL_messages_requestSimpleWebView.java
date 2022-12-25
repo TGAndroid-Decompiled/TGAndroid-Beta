@@ -1,9 +1,10 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_messages_requestSimpleWebView extends TLObject {
-    public static int constructor = 1790652275;
+    public static int constructor = 698084494;
     public TLRPC$InputUser bot;
     public int flags;
+    public String platform;
     public TLRPC$TL_dataJSON theme_params;
     public String url;
 
@@ -21,5 +22,6 @@ public class TLRPC$TL_messages_requestSimpleWebView extends TLObject {
         if ((this.flags & 1) != 0) {
             this.theme_params.serializeToStream(abstractSerializedData);
         }
+        abstractSerializedData.writeString(this.platform);
     }
 }

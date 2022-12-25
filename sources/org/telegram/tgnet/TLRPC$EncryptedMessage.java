@@ -54,12 +54,12 @@ public abstract class TLRPC$EncryptedMessage extends TLObject {
                 }
             };
         }
-        if (tLRPC$EncryptedMessage != null || !z) {
-            if (tLRPC$EncryptedMessage != null) {
-                tLRPC$EncryptedMessage.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$EncryptedMessage;
+        if (tLRPC$EncryptedMessage == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in EncryptedMessage", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in EncryptedMessage", Integer.valueOf(i)));
+        if (tLRPC$EncryptedMessage != null) {
+            tLRPC$EncryptedMessage.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$EncryptedMessage;
     }
 }

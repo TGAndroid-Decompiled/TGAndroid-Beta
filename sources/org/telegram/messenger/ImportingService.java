@@ -35,15 +35,16 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.stickersImportProgressChanged);
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("destroy import service");
+            FileLog.m34d("destroy import service");
         }
     }
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if ((i == NotificationCenter.historyImportProgressChanged || i == NotificationCenter.stickersImportProgressChanged) && !hasImportingStickers() && !hasImportingStickers()) {
-            stopSelf();
+        if ((i != NotificationCenter.historyImportProgressChanged && i != NotificationCenter.stickersImportProgressChanged) || hasImportingStickers() || hasImportingStickers()) {
+            return;
         }
+        stopSelf();
     }
 
     private boolean hasImportingHistory() {
@@ -66,32 +67,36 @@ public class ImportingService extends Service implements NotificationCenter.Noti
 
     @Override
     public int onStartCommand(Intent intent, int i, int i2) {
-        if (hasImportingStickers() || hasImportingHistory()) {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("start import service");
-            }
-            if (this.builder == null) {
-                NotificationsController.checkOtherNotificationsChannel();
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(ApplicationLoader.applicationContext);
-                this.builder = builder;
-                builder.setSmallIcon(17301640);
-                this.builder.setWhen(System.currentTimeMillis());
-                this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
-                this.builder.setContentTitle(LocaleController.getString("AppName", R.string.AppName));
-                if (hasImportingHistory()) {
-                    this.builder.setTicker(LocaleController.getString("ImporImportingService", R.string.ImporImportingService));
-                    this.builder.setContentText(LocaleController.getString("ImporImportingService", R.string.ImporImportingService));
-                } else {
-                    this.builder.setTicker(LocaleController.getString("ImporImportingStickersService", R.string.ImporImportingStickersService));
-                    this.builder.setContentText(LocaleController.getString("ImporImportingStickersService", R.string.ImporImportingStickersService));
-                }
-            }
-            this.builder.setProgress(100, 0, true);
-            startForeground(5, this.builder.build());
-            NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(5, this.builder.build());
+        if (!hasImportingStickers() && !hasImportingHistory()) {
+            stopSelf();
             return 2;
         }
-        stopSelf();
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.m34d("start import service");
+        }
+        if (this.builder == null) {
+            NotificationsController.checkOtherNotificationsChannel();
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(ApplicationLoader.applicationContext);
+            this.builder = builder;
+            builder.setSmallIcon(17301640);
+            this.builder.setWhen(System.currentTimeMillis());
+            this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
+            this.builder.setContentTitle(LocaleController.getString("AppName", C1010R.string.AppName));
+            if (hasImportingHistory()) {
+                NotificationCompat.Builder builder2 = this.builder;
+                int i3 = C1010R.string.ImporImportingService;
+                builder2.setTicker(LocaleController.getString("ImporImportingService", i3));
+                this.builder.setContentText(LocaleController.getString("ImporImportingService", i3));
+            } else {
+                NotificationCompat.Builder builder3 = this.builder;
+                int i4 = C1010R.string.ImporImportingStickersService;
+                builder3.setTicker(LocaleController.getString("ImporImportingStickersService", i4));
+                this.builder.setContentText(LocaleController.getString("ImporImportingStickersService", i4));
+            }
+        }
+        this.builder.setProgress(100, 0, true);
+        startForeground(5, this.builder.build());
+        NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(5, this.builder.build());
         return 2;
     }
 }

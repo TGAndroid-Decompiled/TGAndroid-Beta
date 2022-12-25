@@ -11,31 +11,27 @@ public abstract class TLRPC$ReplyMarkup extends TLObject {
     public boolean single_use;
 
     public static TLRPC$ReplyMarkup TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$ReplyMarkup tLRPC$ReplyMarkup;
+        TLRPC$ReplyMarkup tLRPC$TL_replyKeyboardMarkup;
         switch (i) {
             case -2049074735:
-                tLRPC$ReplyMarkup = new TLRPC$TL_replyKeyboardMarkup();
+                tLRPC$TL_replyKeyboardMarkup = new TLRPC$TL_replyKeyboardMarkup();
                 break;
             case -2035021048:
-                tLRPC$ReplyMarkup = new TLRPC$TL_replyKeyboardForceReply();
+                tLRPC$TL_replyKeyboardMarkup = new TLRPC$TL_replyKeyboardForceReply();
                 break;
             case -1606526075:
-                tLRPC$ReplyMarkup = new TLRPC$TL_replyKeyboardHide();
+                tLRPC$TL_replyKeyboardMarkup = new TLRPC$TL_replyKeyboardHide();
                 break;
             case -200242528:
-                tLRPC$ReplyMarkup = new TLRPC$TL_replyKeyboardForceReply() {
+                tLRPC$TL_replyKeyboardMarkup = new TLRPC$TL_replyKeyboardForceReply() {
                     public static int constructor = -200242528;
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = true;
                         this.single_use = (readInt32 & 2) != 0;
-                        if ((readInt32 & 4) == 0) {
-                            z3 = false;
-                        }
-                        this.selective = z3;
+                        this.selective = (readInt32 & 4) != 0;
                     }
 
                     @Override
@@ -50,7 +46,7 @@ public abstract class TLRPC$ReplyMarkup extends TLObject {
                 };
                 break;
             case 889353612:
-                tLRPC$ReplyMarkup = new TLRPC$TL_replyKeyboardMarkup() {
+                tLRPC$TL_replyKeyboardMarkup = new TLRPC$TL_replyKeyboardMarkup() {
                     public static int constructor = 889353612;
 
                     @Override
@@ -61,18 +57,19 @@ public abstract class TLRPC$ReplyMarkup extends TLObject {
                         this.single_use = (readInt32 & 2) != 0;
                         this.selective = (readInt32 & 4) != 0;
                         int readInt322 = abstractSerializedData2.readInt32(z2);
-                        if (readInt322 == 481674261) {
-                            int readInt323 = abstractSerializedData2.readInt32(z2);
-                            for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$TL_keyboardButtonRow TLdeserialize = TLRPC$TL_keyboardButtonRow.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                if (TLdeserialize != null) {
-                                    this.rows.add(TLdeserialize);
-                                } else {
-                                    return;
-                                }
+                        if (readInt322 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                             }
-                        } else if (z2) {
-                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                            return;
+                        }
+                        int readInt323 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt323; i2++) {
+                            TLRPC$TL_keyboardButtonRow TLdeserialize = TLRPC$TL_keyboardButtonRow.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize == null) {
+                                return;
+                            }
+                            this.rows.add(TLdeserialize);
                         }
                     }
 
@@ -96,18 +93,18 @@ public abstract class TLRPC$ReplyMarkup extends TLObject {
                 };
                 break;
             case 1218642516:
-                tLRPC$ReplyMarkup = new TLRPC$TL_replyInlineMarkup();
+                tLRPC$TL_replyKeyboardMarkup = new TLRPC$TL_replyInlineMarkup();
                 break;
             default:
-                tLRPC$ReplyMarkup = null;
+                tLRPC$TL_replyKeyboardMarkup = null;
                 break;
         }
-        if (tLRPC$ReplyMarkup != null || !z) {
-            if (tLRPC$ReplyMarkup != null) {
-                tLRPC$ReplyMarkup.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$ReplyMarkup;
+        if (tLRPC$TL_replyKeyboardMarkup == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in ReplyMarkup", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in ReplyMarkup", Integer.valueOf(i)));
+        if (tLRPC$TL_replyKeyboardMarkup != null) {
+            tLRPC$TL_replyKeyboardMarkup.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_replyKeyboardMarkup;
     }
 }

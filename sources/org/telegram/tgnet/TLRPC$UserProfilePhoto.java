@@ -16,13 +16,13 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
     public byte[] stripped_thumb;
 
     public static TLRPC$UserProfilePhoto TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto;
+        TLRPC$UserProfilePhoto tLRPC$TL_userProfilePhoto;
         switch (i) {
             case -2100168954:
-                tLRPC$UserProfilePhoto = new TLRPC$TL_userProfilePhoto();
+                tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto();
                 break;
             case -1727196013:
-                tLRPC$UserProfilePhoto = new TLRPC$TL_userProfilePhoto() {
+                tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto() {
                     public static int constructor = -1727196013;
 
                     @Override
@@ -40,18 +40,14 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
                 };
                 break;
             case -865771401:
-                tLRPC$UserProfilePhoto = new TLRPC$TL_userProfilePhoto() {
+                tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto() {
                     public static int constructor = -865771401;
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = true;
-                        if ((readInt32 & 1) == 0) {
-                            z3 = false;
-                        }
-                        this.has_video = z3;
+                        this.has_video = (readInt32 & 1) != 0;
                         this.photo_id = abstractSerializedData2.readInt64(z2);
                         this.photo_small = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         this.photo_big = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -61,7 +57,7 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
                                 try {
                                     this.strippedBitmap = new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(this.stripped_thumb, "b"));
                                 } catch (Throwable th) {
-                                    FileLog.e(th);
+                                    FileLog.m31e(th);
                                 }
                             }
                         }
@@ -85,7 +81,7 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
                 };
                 break;
             case -715532088:
-                tLRPC$UserProfilePhoto = new TLRPC$TL_userProfilePhoto() {
+                tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto() {
                     public static int constructor = -715532088;
 
                     @Override
@@ -105,7 +101,7 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
                 };
                 break;
             case -321430132:
-                tLRPC$UserProfilePhoto = new TLRPC$TL_userProfilePhoto() {
+                tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto() {
                     public static int constructor = -321430132;
 
                     @Override
@@ -127,21 +123,17 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
                 };
                 break;
             case 1326562017:
-                tLRPC$UserProfilePhoto = new TLRPC$TL_userProfilePhotoEmpty();
+                tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhotoEmpty();
                 break;
             case 1775479590:
-                tLRPC$UserProfilePhoto = new TLRPC$TL_userProfilePhoto() {
+                tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto() {
                     public static int constructor = 1775479590;
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = true;
-                        if ((readInt32 & 1) == 0) {
-                            z3 = false;
-                        }
-                        this.has_video = z3;
+                        this.has_video = (readInt32 & 1) != 0;
                         this.photo_id = abstractSerializedData2.readInt64(z2);
                         this.photo_small = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         this.photo_big = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -162,15 +154,15 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
                 };
                 break;
             default:
-                tLRPC$UserProfilePhoto = null;
+                tLRPC$TL_userProfilePhoto = null;
                 break;
         }
-        if (tLRPC$UserProfilePhoto != null || !z) {
-            if (tLRPC$UserProfilePhoto != null) {
-                tLRPC$UserProfilePhoto.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$UserProfilePhoto;
+        if (tLRPC$TL_userProfilePhoto == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in UserProfilePhoto", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in UserProfilePhoto", Integer.valueOf(i)));
+        if (tLRPC$TL_userProfilePhoto != null) {
+            tLRPC$TL_userProfilePhoto.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_userProfilePhoto;
     }
 }

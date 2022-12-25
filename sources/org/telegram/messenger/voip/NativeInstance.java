@@ -139,7 +139,7 @@ public class NativeInstance {
 
     public static NativeInstance make(String str, Instance.Config config, String str2, Instance.Endpoint[] endpointArr, Instance.Proxy proxy, int i, Instance.EncryptionKey encryptionKey, VideoSink videoSink, long j, AudioLevelsCallback audioLevelsCallback) {
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("create new tgvoip instance, version " + str);
+            FileLog.m34d("create new tgvoip instance, version " + str);
         }
         NativeInstance nativeInstance = new NativeInstance();
         nativeInstance.persistentStateFilePath = str2;
@@ -228,14 +228,15 @@ public class NativeInstance {
     }
 
     private void onAudioLevelsUpdated(final int[] iArr, final float[] fArr, final boolean[] zArr) {
-        if (!this.isGroup || iArr == null || iArr.length != 0) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    NativeInstance.this.lambda$onAudioLevelsUpdated$1(iArr, fArr, zArr);
-                }
-            });
+        if (this.isGroup && iArr != null && iArr.length == 0) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                NativeInstance.this.lambda$onAudioLevelsUpdated$1(iArr, fArr, zArr);
+            }
+        });
     }
 
     public void lambda$onAudioLevelsUpdated$1(int[] iArr, float[] fArr, boolean[] zArr) {
@@ -243,14 +244,15 @@ public class NativeInstance {
     }
 
     private void onParticipantDescriptionsRequired(final long j, final int[] iArr) {
-        if (this.unknownParticipantsCallback != null) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    NativeInstance.this.lambda$onParticipantDescriptionsRequired$2(j, iArr);
-                }
-            });
+        if (this.unknownParticipantsCallback == null) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                NativeInstance.this.lambda$onParticipantDescriptionsRequired$2(j, iArr);
+            }
+        });
     }
 
     public void lambda$onParticipantDescriptionsRequired$2(long j, int[] iArr) {
@@ -270,7 +272,7 @@ public class NativeInstance {
                 }
             });
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
         }
     }
 
@@ -300,7 +302,7 @@ public class NativeInstance {
         try {
             this.stopBarrier.await();
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
         }
         return this.finalState;
     }

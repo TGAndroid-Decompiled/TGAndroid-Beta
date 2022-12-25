@@ -17,18 +17,19 @@ public class LongSparseLongArray implements Cloneable {
     }
 
     public LongSparseLongArray clone() {
-        LongSparseLongArray longSparseLongArray = null;
+        LongSparseLongArray longSparseLongArray;
+        LongSparseLongArray longSparseLongArray2 = null;
         try {
-            LongSparseLongArray longSparseLongArray2 = (LongSparseLongArray) super.clone();
-            try {
-                longSparseLongArray2.mKeys = (long[]) this.mKeys.clone();
-                longSparseLongArray2.mValues = (long[]) this.mValues.clone();
-                return longSparseLongArray2;
-            } catch (CloneNotSupportedException unused) {
-                longSparseLongArray = longSparseLongArray2;
-                return longSparseLongArray;
-            }
+            longSparseLongArray = (LongSparseLongArray) super.clone();
+        } catch (CloneNotSupportedException unused) {
+        }
+        try {
+            longSparseLongArray.mKeys = (long[]) this.mKeys.clone();
+            longSparseLongArray.mValues = (long[]) this.mValues.clone();
+            return longSparseLongArray;
         } catch (CloneNotSupportedException unused2) {
+            longSparseLongArray2 = longSparseLongArray;
+            return longSparseLongArray2;
         }
     }
 
@@ -112,16 +113,16 @@ public class LongSparseLongArray implements Cloneable {
 
     public void append(long j, long j2) {
         int i = this.mSize;
-        if (i == 0 || j > this.mKeys[i - 1]) {
-            if (i >= this.mKeys.length) {
-                growKeyAndValueArrays(i + 1);
-            }
-            this.mKeys[i] = j;
-            this.mValues[i] = j2;
-            this.mSize = i + 1;
+        if (i != 0 && j <= this.mKeys[i - 1]) {
+            put(j, j2);
             return;
         }
-        put(j, j2);
+        if (i >= this.mKeys.length) {
+            growKeyAndValueArrays(i + 1);
+        }
+        this.mKeys[i] = j;
+        this.mValues[i] = j2;
+        this.mSize = i + 1;
     }
 
     private void growKeyAndValueArrays(int i) {

@@ -7,15 +7,15 @@ public class TLRPC$TL_secureData extends TLObject {
     public byte[] secret;
 
     public static TLRPC$TL_secureData TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_secureData tLRPC$TL_secureData = new TLRPC$TL_secureData();
-            tLRPC$TL_secureData.readParams(abstractSerializedData, z);
-            return tLRPC$TL_secureData;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_secureData", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_secureData", Integer.valueOf(i)));
         }
+        TLRPC$TL_secureData tLRPC$TL_secureData = new TLRPC$TL_secureData();
+        tLRPC$TL_secureData.readParams(abstractSerializedData, z);
+        return tLRPC$TL_secureData;
     }
 
     @Override

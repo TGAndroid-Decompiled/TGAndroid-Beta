@@ -15,12 +15,12 @@ public abstract class TLRPC$account_SavedRingtone extends TLObject {
                 }
             };
         }
-        if (tLRPC$account_SavedRingtone != null || !z) {
-            if (tLRPC$account_SavedRingtone != null) {
-                tLRPC$account_SavedRingtone.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$account_SavedRingtone;
+        if (tLRPC$account_SavedRingtone == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in account_SavedRingtone", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in account_SavedRingtone", Integer.valueOf(i)));
+        if (tLRPC$account_SavedRingtone != null) {
+            tLRPC$account_SavedRingtone.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$account_SavedRingtone;
     }
 }

@@ -58,12 +58,12 @@ public abstract class TLRPC$InputChannel extends TLObject {
                 tLRPC$InputChannel = null;
                 break;
         }
-        if (tLRPC$InputChannel != null || !z) {
-            if (tLRPC$InputChannel != null) {
-                tLRPC$InputChannel.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$InputChannel;
+        if (tLRPC$InputChannel == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in InputChannel", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in InputChannel", Integer.valueOf(i)));
+        if (tLRPC$InputChannel != null) {
+            tLRPC$InputChannel.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$InputChannel;
     }
 }

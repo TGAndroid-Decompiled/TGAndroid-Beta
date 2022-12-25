@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.telegram.messenger.R;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.messenger.audioinfo.mp3.ID3v1Genre;
 
@@ -188,11 +187,13 @@ public class M4AInfo extends AudioInfo {
             if (logger2.isLoggable(this.debugLevel)) {
                 logger2.log(this.debugLevel, nextChild.toString());
             }
-            if (nextChild.getRemaining() != 0) {
+            if (nextChild.getRemaining() == 0) {
+                if (logger2.isLoggable(this.debugLevel)) {
+                    Level level = this.debugLevel;
+                    logger2.log(level, nextChild.getPath() + ": contains no value");
+                }
+            } else {
                 data(nextChild.nextChildUpTo("data"));
-            } else if (logger2.isLoggable(this.debugLevel)) {
-                Level level = this.debugLevel;
-                logger2.log(level, nextChild.getPath() + ": contains no value");
             }
         }
     }
@@ -386,18 +387,18 @@ public class M4AInfo extends AudioInfo {
                 return;
             case 5:
                 String str2 = this.genre;
-                if (!(str2 == null || str2.trim().length() == 0)) {
-                    return;
-                }
-                if (mP4Atom.getRemaining() == 2) {
-                    ID3v1Genre genre = ID3v1Genre.getGenre(mP4Atom.readShort() - 1);
-                    if (genre != null) {
-                        this.genre = genre.getDescription();
+                if (str2 == null || str2.trim().length() == 0) {
+                    if (mP4Atom.getRemaining() == 2) {
+                        ID3v1Genre genre = ID3v1Genre.getGenre(mP4Atom.readShort() - 1);
+                        if (genre != null) {
+                            this.genre = genre.getDescription();
+                            return;
+                        }
                         return;
                     }
+                    this.genre = mP4Atom.readString("UTF-8");
                     return;
                 }
-                this.genre = mP4Atom.readString("UTF-8");
                 return;
             case 6:
                 mP4Atom.readByte();
@@ -420,7 +421,7 @@ public class M4AInfo extends AudioInfo {
                 this.comment = mP4Atom.readString("UTF-8");
                 return;
             case '\f':
-            case R.styleable.MapAttrs_uiTiltGestures:
+            case 19:
                 String str3 = this.composer;
                 if (str3 == null || str3.trim().length() == 0) {
                     this.composer = mP4Atom.readString("UTF-8");
@@ -436,9 +437,8 @@ public class M4AInfo extends AudioInfo {
                     } catch (NumberFormatException unused) {
                         return;
                     }
-                } else {
-                    return;
                 }
+                return;
             case 15:
                 String str4 = this.genre;
                 if (str4 == null || str4.trim().length() == 0) {
@@ -452,7 +452,7 @@ public class M4AInfo extends AudioInfo {
             case 17:
                 this.lyrics = mP4Atom.readString("UTF-8");
                 return;
-            case R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
+            case 18:
                 this.title = mP4Atom.readString("UTF-8");
                 return;
             default:

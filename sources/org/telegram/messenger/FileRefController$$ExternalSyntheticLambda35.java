@@ -12,6 +12,6 @@ public final class FileRefController$$ExternalSyntheticLambda35 implements Reque
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        FileRefController.lambda$onUpdateObjectReference$28(tLObject, tLRPC$TL_error);
+        FileRefController.lambda$onUpdateObjectReference$30(tLObject, tLRPC$TL_error);
     }
 }

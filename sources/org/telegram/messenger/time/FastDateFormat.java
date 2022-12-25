@@ -171,10 +171,10 @@ public class FastDateFormat extends Format implements DateParser, DatePrinter {
     }
 
     public boolean equals(Object obj) {
-        if (!(obj instanceof FastDateFormat)) {
-            return false;
+        if (obj instanceof FastDateFormat) {
+            return this.printer.equals(((FastDateFormat) obj).printer);
         }
-        return this.printer.equals(((FastDateFormat) obj).printer);
+        return false;
     }
 
     public int hashCode() {

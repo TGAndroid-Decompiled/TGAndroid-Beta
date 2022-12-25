@@ -13,12 +13,8 @@ public class TLRPC$TL_botInlineMessageMediaInvoice extends TLRPC$BotInlineMessag
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.shipping_address_requested = (readInt32 & 2) != 0;
-        if ((readInt32 & 8) != 0) {
-            z2 = true;
-        }
-        this.test = z2;
+        this.test = (readInt32 & 8) != 0;
         this.title = abstractSerializedData.readString(z);
         this.description = abstractSerializedData.readString(z);
         if ((this.flags & 1) != 0) {

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Base_Theme_TMessages_AppWidget" parent="@android:style/Theme.DeviceDefault.DayNight">
+    <style name="Base.Theme.TMessages.AppWidget" parent="@android:style/Theme.DeviceDefault.DayNight">
     </style>
-    <style name="TMessages_AppWidget_Background" parent="@style/Base_TMessages_AppWidget_Background">
+    <style name="TMessages.AppWidget.Background" parent="@style/Base.TMessages.AppWidget.Background">
         <item name="android:background">@drawable/widget_background</item>
         <item name="?0x1010628">true</item>
     </style>
-    <style name="TMessages_AppWidget_Badge" parent="@style/Base_TMessages_AppWidget_Badge">
+    <style name="TMessages.AppWidget.Badge" parent="@style/Base.TMessages.AppWidget.Badge">
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
     </style>
-    <style name="Theme_TMessages_Start" parent="@android:style/Theme.Material">
+    <style name="Theme.TMessages.Start" parent="@android:style/Theme.Material">
         <item name="android:colorBackground">@android:color/white</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:textViewStyle">@style/MyTextViewStyle</item>
-        <item name="android:actionBarStyle">@style/ActionBar_Transparent_TMessages_Start</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Transparent.TMessages.Start</item>
         <item name="android:colorPrimary">#527da3</item>
         <item name="android:colorPrimaryDark">#426482</item>
         <item name="android:navigationBarColor">#000000</item>

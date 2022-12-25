@@ -15,12 +15,12 @@ public abstract class TLRPC$help_AppUpdate extends TLObject {
                 }
             };
         }
-        if (tLRPC$help_AppUpdate != null || !z) {
-            if (tLRPC$help_AppUpdate != null) {
-                tLRPC$help_AppUpdate.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$help_AppUpdate;
+        if (tLRPC$help_AppUpdate == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in help_AppUpdate", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in help_AppUpdate", Integer.valueOf(i)));
+        if (tLRPC$help_AppUpdate != null) {
+            tLRPC$help_AppUpdate.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$help_AppUpdate;
     }
 }

@@ -124,12 +124,12 @@ public abstract class TLRPC$SecureValueType extends TLObject {
                 tLRPC$SecureValueType = null;
                 break;
         }
-        if (tLRPC$SecureValueType != null || !z) {
-            if (tLRPC$SecureValueType != null) {
-                tLRPC$SecureValueType.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$SecureValueType;
+        if (tLRPC$SecureValueType == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in SecureValueType", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in SecureValueType", Integer.valueOf(i)));
+        if (tLRPC$SecureValueType != null) {
+            tLRPC$SecureValueType.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$SecureValueType;
     }
 }

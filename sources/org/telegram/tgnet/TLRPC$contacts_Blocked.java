@@ -17,46 +17,49 @@ public abstract class TLRPC$contacts_Blocked extends TLObject {
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     int readInt32 = abstractSerializedData2.readInt32(z2);
-                    if (readInt32 == 481674261) {
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            TLRPC$TL_peerBlocked TLdeserialize = TLRPC$TL_peerBlocked.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                            if (TLdeserialize != null) {
-                                this.blocked.add(TLdeserialize);
-                            } else {
-                                return;
-                            }
+                    if (readInt32 != 481674261) {
+                        if (z2) {
+                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                         }
-                        int readInt323 = abstractSerializedData2.readInt32(z2);
-                        if (readInt323 == 481674261) {
-                            int readInt324 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt324; i3++) {
-                                TLRPC$Chat TLdeserialize2 = TLRPC$Chat.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                if (TLdeserialize2 != null) {
-                                    this.chats.add(TLdeserialize2);
-                                } else {
-                                    return;
-                                }
-                            }
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            if (readInt325 == 481674261) {
-                                int readInt326 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt326; i4++) {
-                                    TLRPC$User TLdeserialize3 = TLRPC$User.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize3 != null) {
-                                        this.users.add(TLdeserialize3);
-                                    } else {
-                                        return;
-                                    }
-                                }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
-                            }
-                        } else if (z2) {
+                        return;
+                    }
+                    int readInt322 = abstractSerializedData2.readInt32(z2);
+                    for (int i2 = 0; i2 < readInt322; i2++) {
+                        TLRPC$TL_peerBlocked TLdeserialize = TLRPC$TL_peerBlocked.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if (TLdeserialize == null) {
+                            return;
+                        }
+                        this.blocked.add(TLdeserialize);
+                    }
+                    int readInt323 = abstractSerializedData2.readInt32(z2);
+                    if (readInt323 != 481674261) {
+                        if (z2) {
                             throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                         }
-                    } else if (z2) {
-                        throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                        return;
+                    }
+                    int readInt324 = abstractSerializedData2.readInt32(z2);
+                    for (int i3 = 0; i3 < readInt324; i3++) {
+                        TLRPC$Chat TLdeserialize2 = TLRPC$Chat.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if (TLdeserialize2 == null) {
+                            return;
+                        }
+                        this.chats.add(TLdeserialize2);
+                    }
+                    int readInt325 = abstractSerializedData2.readInt32(z2);
+                    if (readInt325 != 481674261) {
+                        if (z2) {
+                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
+                        }
+                        return;
+                    }
+                    int readInt326 = abstractSerializedData2.readInt32(z2);
+                    for (int i4 = 0; i4 < readInt326; i4++) {
+                        TLRPC$User TLdeserialize3 = TLRPC$User.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if (TLdeserialize3 == null) {
+                            return;
+                        }
+                        this.users.add(TLdeserialize3);
                     }
                 }
 
@@ -91,46 +94,49 @@ public abstract class TLRPC$contacts_Blocked extends TLObject {
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.count = abstractSerializedData2.readInt32(z2);
                     int readInt32 = abstractSerializedData2.readInt32(z2);
-                    if (readInt32 == 481674261) {
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            TLRPC$TL_peerBlocked TLdeserialize = TLRPC$TL_peerBlocked.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                            if (TLdeserialize != null) {
-                                this.blocked.add(TLdeserialize);
-                            } else {
-                                return;
-                            }
+                    if (readInt32 != 481674261) {
+                        if (z2) {
+                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                         }
-                        int readInt323 = abstractSerializedData2.readInt32(z2);
-                        if (readInt323 == 481674261) {
-                            int readInt324 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt324; i3++) {
-                                TLRPC$Chat TLdeserialize2 = TLRPC$Chat.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                if (TLdeserialize2 != null) {
-                                    this.chats.add(TLdeserialize2);
-                                } else {
-                                    return;
-                                }
-                            }
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            if (readInt325 == 481674261) {
-                                int readInt326 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt326; i4++) {
-                                    TLRPC$User TLdeserialize3 = TLRPC$User.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize3 != null) {
-                                        this.users.add(TLdeserialize3);
-                                    } else {
-                                        return;
-                                    }
-                                }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
-                            }
-                        } else if (z2) {
+                        return;
+                    }
+                    int readInt322 = abstractSerializedData2.readInt32(z2);
+                    for (int i2 = 0; i2 < readInt322; i2++) {
+                        TLRPC$TL_peerBlocked TLdeserialize = TLRPC$TL_peerBlocked.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if (TLdeserialize == null) {
+                            return;
+                        }
+                        this.blocked.add(TLdeserialize);
+                    }
+                    int readInt323 = abstractSerializedData2.readInt32(z2);
+                    if (readInt323 != 481674261) {
+                        if (z2) {
                             throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                         }
-                    } else if (z2) {
-                        throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                        return;
+                    }
+                    int readInt324 = abstractSerializedData2.readInt32(z2);
+                    for (int i3 = 0; i3 < readInt324; i3++) {
+                        TLRPC$Chat TLdeserialize2 = TLRPC$Chat.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if (TLdeserialize2 == null) {
+                            return;
+                        }
+                        this.chats.add(TLdeserialize2);
+                    }
+                    int readInt325 = abstractSerializedData2.readInt32(z2);
+                    if (readInt325 != 481674261) {
+                        if (z2) {
+                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
+                        }
+                        return;
+                    }
+                    int readInt326 = abstractSerializedData2.readInt32(z2);
+                    for (int i4 = 0; i4 < readInt326; i4++) {
+                        TLRPC$User TLdeserialize3 = TLRPC$User.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if (TLdeserialize3 == null) {
+                            return;
+                        }
+                        this.users.add(TLdeserialize3);
                     }
                 }
 
@@ -159,12 +165,12 @@ public abstract class TLRPC$contacts_Blocked extends TLObject {
                 }
             };
         }
-        if (tLRPC$contacts_Blocked != null || !z) {
-            if (tLRPC$contacts_Blocked != null) {
-                tLRPC$contacts_Blocked.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$contacts_Blocked;
+        if (tLRPC$contacts_Blocked == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in contacts_Blocked", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in contacts_Blocked", Integer.valueOf(i)));
+        if (tLRPC$contacts_Blocked != null) {
+            tLRPC$contacts_Blocked.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$contacts_Blocked;
     }
 }

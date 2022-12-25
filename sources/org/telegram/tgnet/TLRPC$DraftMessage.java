@@ -26,12 +26,12 @@ public abstract class TLRPC$DraftMessage extends TLObject {
         } else {
             tLRPC$DraftMessage = new TLRPC$TL_draftMessage();
         }
-        if (tLRPC$DraftMessage != null || !z) {
-            if (tLRPC$DraftMessage != null) {
-                tLRPC$DraftMessage.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$DraftMessage;
+        if (tLRPC$DraftMessage == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in DraftMessage", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in DraftMessage", Integer.valueOf(i)));
+        if (tLRPC$DraftMessage != null) {
+            tLRPC$DraftMessage.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$DraftMessage;
     }
 }

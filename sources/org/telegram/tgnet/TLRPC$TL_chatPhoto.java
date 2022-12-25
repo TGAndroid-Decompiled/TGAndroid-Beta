@@ -12,11 +12,7 @@ public class TLRPC$TL_chatPhoto extends TLRPC$ChatPhoto {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = true;
-        if ((readInt32 & 1) == 0) {
-            z2 = false;
-        }
-        this.has_video = z2;
+        this.has_video = (readInt32 & 1) != 0;
         this.photo_id = abstractSerializedData.readInt64(z);
         if ((this.flags & 2) != 0) {
             this.stripped_thumb = abstractSerializedData.readByteArray(z);
@@ -30,12 +26,13 @@ public class TLRPC$TL_chatPhoto extends TLRPC$ChatPhoto {
         this.photo_big = tLRPC$TL_fileLocationToBeDeprecated2;
         tLRPC$TL_fileLocationToBeDeprecated2.volume_id = -this.photo_id;
         tLRPC$TL_fileLocationToBeDeprecated2.local_id = 99;
-        if (this.stripped_thumb != null && Build.VERSION.SDK_INT >= 21) {
-            try {
-                this.strippedBitmap = new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(this.stripped_thumb, "b"));
-            } catch (Throwable th) {
-                FileLog.e(th);
-            }
+        if (this.stripped_thumb == null || Build.VERSION.SDK_INT < 21) {
+            return;
+        }
+        try {
+            this.strippedBitmap = new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(this.stripped_thumb, "b"));
+        } catch (Throwable th) {
+            FileLog.m31e(th);
         }
     }
 

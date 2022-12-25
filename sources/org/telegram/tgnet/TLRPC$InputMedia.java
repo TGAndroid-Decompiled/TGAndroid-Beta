@@ -127,12 +127,12 @@ public abstract class TLRPC$InputMedia extends TLObject {
                 tLRPC$InputMedia = null;
                 break;
         }
-        if (tLRPC$InputMedia != null || !z) {
-            if (tLRPC$InputMedia != null) {
-                tLRPC$InputMedia.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$InputMedia;
+        if (tLRPC$InputMedia == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in InputMedia", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in InputMedia", Integer.valueOf(i)));
+        if (tLRPC$InputMedia != null) {
+            tLRPC$InputMedia.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$InputMedia;
     }
 }

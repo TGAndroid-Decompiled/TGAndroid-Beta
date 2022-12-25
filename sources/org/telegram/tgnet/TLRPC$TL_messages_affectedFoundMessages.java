@@ -10,15 +10,15 @@ public class TLRPC$TL_messages_affectedFoundMessages extends TLObject {
     public int pts_count;
 
     public static TLRPC$TL_messages_affectedFoundMessages TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_messages_affectedFoundMessages tLRPC$TL_messages_affectedFoundMessages = new TLRPC$TL_messages_affectedFoundMessages();
-            tLRPC$TL_messages_affectedFoundMessages.readParams(abstractSerializedData, z);
-            return tLRPC$TL_messages_affectedFoundMessages;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_messages_affectedFoundMessages", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_messages_affectedFoundMessages", Integer.valueOf(i)));
         }
+        TLRPC$TL_messages_affectedFoundMessages tLRPC$TL_messages_affectedFoundMessages = new TLRPC$TL_messages_affectedFoundMessages();
+        tLRPC$TL_messages_affectedFoundMessages.readParams(abstractSerializedData, z);
+        return tLRPC$TL_messages_affectedFoundMessages;
     }
 
     @Override
@@ -27,13 +27,15 @@ public class TLRPC$TL_messages_affectedFoundMessages extends TLObject {
         this.pts_count = abstractSerializedData.readInt32(z);
         this.offset = abstractSerializedData.readInt32(z);
         int readInt32 = abstractSerializedData.readInt32(z);
-        if (readInt32 == 481674261) {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                this.messages.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+        if (readInt32 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+            return;
+        }
+        int readInt322 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt322; i++) {
+            this.messages.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
         }
     }
 

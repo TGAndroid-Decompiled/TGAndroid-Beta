@@ -1,10 +1,11 @@
 package org.telegram.messenger;
 
 public final class BuildConfig {
-    public static final String APPLICATION_ID = "org.telegram.messenger.beta";
-    public static final String BUILD_TYPE = "HA";
+    public static final String APP_CENTER_HASH = "";
+    public static final boolean BUILD_HOST_IS_WINDOWS = false;
+    public static final String BUILD_TYPE = "standalone";
     public static final boolean DEBUG = false;
-    public static final String FLAVOR = "afat";
-    public static final int VERSION_CODE = 27019;
-    public static final String VERSION_NAME = "8.8.2";
+    public static final boolean DEBUG_PRIVATE_VERSION = false;
+    public static final boolean DEBUG_VERSION = false;
+    public static final String LIBRARY_PACKAGE_NAME = "org.telegram.messenger";
 }

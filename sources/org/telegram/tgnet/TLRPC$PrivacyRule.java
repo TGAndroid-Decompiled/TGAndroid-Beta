@@ -60,12 +60,12 @@ public abstract class TLRPC$PrivacyRule extends TLObject {
                 tLRPC$PrivacyRule = null;
                 break;
         }
-        if (tLRPC$PrivacyRule != null || !z) {
-            if (tLRPC$PrivacyRule != null) {
-                tLRPC$PrivacyRule.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$PrivacyRule;
+        if (tLRPC$PrivacyRule == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in PrivacyRule", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in PrivacyRule", Integer.valueOf(i)));
+        if (tLRPC$PrivacyRule != null) {
+            tLRPC$PrivacyRule.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$PrivacyRule;
     }
 }

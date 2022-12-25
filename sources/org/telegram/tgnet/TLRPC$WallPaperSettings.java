@@ -21,12 +21,8 @@ public abstract class TLRPC$WallPaperSettings extends TLObject {
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     int readInt32 = abstractSerializedData2.readInt32(z2);
                     this.flags = readInt32;
-                    boolean z3 = false;
                     this.blur = (readInt32 & 2) != 0;
-                    if ((readInt32 & 4) != 0) {
-                        z3 = true;
-                    }
-                    this.motion = z3;
+                    this.motion = (readInt32 & 4) != 0;
                     if ((readInt32 & 1) != 0) {
                         this.background_color = abstractSerializedData2.readInt32(z2);
                     }
@@ -51,9 +47,7 @@ public abstract class TLRPC$WallPaperSettings extends TLObject {
                     }
                 }
             };
-        } else if (i != 84438264) {
-            tLRPC$TL_wallPaperSettings = i != 499236004 ? null : new TLRPC$TL_wallPaperSettings();
-        } else {
+        } else if (i == 84438264) {
             tLRPC$TL_wallPaperSettings = new TLRPC$TL_wallPaperSettings() {
                 public static int constructor = 84438264;
 
@@ -61,12 +55,8 @@ public abstract class TLRPC$WallPaperSettings extends TLObject {
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     int readInt32 = abstractSerializedData2.readInt32(z2);
                     this.flags = readInt32;
-                    boolean z3 = false;
                     this.blur = (readInt32 & 2) != 0;
-                    if ((readInt32 & 4) != 0) {
-                        z3 = true;
-                    }
-                    this.motion = z3;
+                    this.motion = (readInt32 & 4) != 0;
                     if ((readInt32 & 1) != 0) {
                         this.background_color = abstractSerializedData2.readInt32(z2);
                     }
@@ -103,13 +93,15 @@ public abstract class TLRPC$WallPaperSettings extends TLObject {
                     }
                 }
             };
+        } else {
+            tLRPC$TL_wallPaperSettings = i != 499236004 ? null : new TLRPC$TL_wallPaperSettings();
         }
-        if (tLRPC$TL_wallPaperSettings != null || !z) {
-            if (tLRPC$TL_wallPaperSettings != null) {
-                tLRPC$TL_wallPaperSettings.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$TL_wallPaperSettings;
+        if (tLRPC$TL_wallPaperSettings == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in WallPaperSettings", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in WallPaperSettings", Integer.valueOf(i)));
+        if (tLRPC$TL_wallPaperSettings != null) {
+            tLRPC$TL_wallPaperSettings.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_wallPaperSettings;
     }
 }

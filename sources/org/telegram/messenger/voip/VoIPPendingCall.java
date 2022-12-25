@@ -8,9 +8,9 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
+import org.telegram.p009ui.Components.voip.VoIPHelper;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
-import org.telegram.ui.Components.voip.VoIPHelper;
 
 public final class VoIPPendingCall {
     private AccountInstance accountInstance;
@@ -38,42 +38,43 @@ public final class VoIPPendingCall {
     }
 
     private VoIPPendingCall(Activity activity, long j, boolean z, long j2, AccountInstance accountInstance) {
-        NotificationCenter.NotificationCenterDelegate voIPPendingCall$$ExternalSyntheticLambda1 = new NotificationCenter.NotificationCenterDelegate() {
+        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i, int i2, Object[] objArr) {
                 VoIPPendingCall.this.lambda$new$0(i, i2, objArr);
             }
         };
-        this.observer = voIPPendingCall$$ExternalSyntheticLambda1;
-        Runnable voIPPendingCall$$ExternalSyntheticLambda0 = new Runnable() {
+        this.observer = notificationCenterDelegate;
+        Runnable runnable = new Runnable() {
             @Override
             public final void run() {
                 VoIPPendingCall.this.lambda$new$1();
             }
         };
-        this.releaseRunnable = voIPPendingCall$$ExternalSyntheticLambda0;
+        this.releaseRunnable = runnable;
         this.activity = activity;
         this.userId = j;
         this.video = z;
         this.accountInstance = accountInstance;
-        if (!onConnectionStateUpdated(false)) {
-            NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
-            this.notificationCenter = notificationCenter;
-            notificationCenter.addObserver(voIPPendingCall$$ExternalSyntheticLambda1, NotificationCenter.didUpdateConnectionState);
-            Handler handler = new Handler(Looper.myLooper());
-            this.handler = handler;
-            handler.postDelayed(voIPPendingCall$$ExternalSyntheticLambda0, j2);
+        if (onConnectionStateUpdated(false)) {
+            return;
         }
+        NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
+        this.notificationCenter = notificationCenter;
+        notificationCenter.addObserver(notificationCenterDelegate, NotificationCenter.didUpdateConnectionState);
+        Handler handler = new Handler(Looper.myLooper());
+        this.handler = handler;
+        handler.postDelayed(runnable, j2);
     }
 
     private boolean onConnectionStateUpdated(boolean z) {
-        if (this.released || (!z && !isConnected(this.accountInstance) && !isAirplaneMode())) {
+        if (this.released || !(z || isConnected(this.accountInstance) || isAirplaneMode())) {
             return false;
         }
         MessagesController messagesController = this.accountInstance.getMessagesController();
         TLRPC$User user = messagesController.getUser(Long.valueOf(this.userId));
         if (user != null) {
-            TLRPC$UserFull userFull = messagesController.getUserFull(user.id);
+            TLRPC$UserFull userFull = messagesController.getUserFull(user.f986id);
             VoIPHelper.startCall(user, this.video, userFull != null && userFull.video_calls_available, this.activity, userFull, this.accountInstance);
         } else if (isAirplaneMode()) {
             VoIPHelper.startCall(null, this.video, false, this.activity, null, this.accountInstance);
@@ -91,16 +92,17 @@ public final class VoIPPendingCall {
     }
 
     public void release() {
-        if (!this.released) {
-            NotificationCenter notificationCenter = this.notificationCenter;
-            if (notificationCenter != null) {
-                notificationCenter.removeObserver(this.observer, NotificationCenter.didUpdateConnectionState);
-            }
-            Handler handler = this.handler;
-            if (handler != null) {
-                handler.removeCallbacks(this.releaseRunnable);
-            }
-            this.released = true;
+        if (this.released) {
+            return;
         }
+        NotificationCenter notificationCenter = this.notificationCenter;
+        if (notificationCenter != null) {
+            notificationCenter.removeObserver(this.observer, NotificationCenter.didUpdateConnectionState);
+        }
+        Handler handler = this.handler;
+        if (handler != null) {
+            handler.removeCallbacks(this.releaseRunnable);
+        }
+        this.released = true;
     }
 }

@@ -2,18 +2,18 @@ package org.telegram.tgnet;
 
 public abstract class TLRPC$payments_PaymentResult extends TLObject {
     public static TLRPC$payments_PaymentResult TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$payments_PaymentResult tLRPC$payments_PaymentResult;
-        if (i != -666824391) {
-            tLRPC$payments_PaymentResult = i != 1314881805 ? null : new TLRPC$TL_payments_paymentResult();
+        TLRPC$payments_PaymentResult tLRPC$TL_payments_paymentVerificationNeeded;
+        if (i == -666824391) {
+            tLRPC$TL_payments_paymentVerificationNeeded = new TLRPC$TL_payments_paymentVerificationNeeded();
         } else {
-            tLRPC$payments_PaymentResult = new TLRPC$TL_payments_paymentVerificationNeeded();
+            tLRPC$TL_payments_paymentVerificationNeeded = i != 1314881805 ? null : new TLRPC$TL_payments_paymentResult();
         }
-        if (tLRPC$payments_PaymentResult != null || !z) {
-            if (tLRPC$payments_PaymentResult != null) {
-                tLRPC$payments_PaymentResult.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$payments_PaymentResult;
+        if (tLRPC$TL_payments_paymentVerificationNeeded == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in payments_PaymentResult", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in payments_PaymentResult", Integer.valueOf(i)));
+        if (tLRPC$TL_payments_paymentVerificationNeeded != null) {
+            tLRPC$TL_payments_paymentVerificationNeeded.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_payments_paymentVerificationNeeded;
     }
 }

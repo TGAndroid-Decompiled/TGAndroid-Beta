@@ -38,22 +38,21 @@ public class TLRPC$TL_groupCallParticipant extends TLObject {
     public boolean volume_by_admin;
 
     public static TLRPC$TL_groupCallParticipant TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = new TLRPC$TL_groupCallParticipant();
-            tLRPC$TL_groupCallParticipant.readParams(abstractSerializedData, z);
-            return tLRPC$TL_groupCallParticipant;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_groupCallParticipant", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_groupCallParticipant", Integer.valueOf(i)));
         }
+        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = new TLRPC$TL_groupCallParticipant();
+        tLRPC$TL_groupCallParticipant.readParams(abstractSerializedData, z);
+        return tLRPC$TL_groupCallParticipant;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.muted = (readInt32 & 1) != 0;
         this.left = (readInt32 & 2) != 0;
         this.can_self_unmute = (readInt32 & 4) != 0;
@@ -61,12 +60,9 @@ public class TLRPC$TL_groupCallParticipant extends TLObject {
         this.versioned = (readInt32 & 32) != 0;
         this.min = (readInt32 & 256) != 0;
         this.muted_by_you = (readInt32 & 512) != 0;
-        this.volume_by_admin = (readInt32 & 1024) != 0;
+        this.volume_by_admin = (readInt32 & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0;
         this.self = (readInt32 & 4096) != 0;
-        if ((readInt32 & 32768) != 0) {
-            z2 = true;
-        }
-        this.video_joined = z2;
+        this.video_joined = (readInt32 & 32768) != 0;
         this.peer = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.date = abstractSerializedData.readInt32(z);
         if ((this.flags & 8) != 0) {
@@ -107,7 +103,7 @@ public class TLRPC$TL_groupCallParticipant extends TLObject {
         this.flags = i6;
         int i7 = this.muted_by_you ? i6 | 512 : i6 & (-513);
         this.flags = i7;
-        int i8 = this.volume_by_admin ? i7 | 1024 : i7 & (-1025);
+        int i8 = this.volume_by_admin ? i7 | ConnectionsManager.RequestFlagDoNotWaitFloodWait : i7 & (-1025);
         this.flags = i8;
         int i9 = this.self ? i8 | 4096 : i8 & (-4097);
         this.flags = i9;

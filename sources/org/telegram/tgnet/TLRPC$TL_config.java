@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_config extends TLObject {
-    public static int constructor = 856375399;
+    public static int constructor = 589653676;
     public String autoupdate_url_prefix;
     public int base_lang_pack_version;
     public boolean blocked_mode;
@@ -44,6 +44,7 @@ public class TLRPC$TL_config extends TLObject {
     public int push_chat_limit;
     public int push_chat_period_ms;
     public int rating_e_decay;
+    public TLRPC$Reaction reactions_default;
     public boolean revoke_pm_inbox;
     public int revoke_pm_time_limit;
     public int revoke_time_limit;
@@ -59,15 +60,15 @@ public class TLRPC$TL_config extends TLObject {
     public int webfile_dc_id;
 
     public static TLRPC$TL_config TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_config tLRPC$TL_config = new TLRPC$TL_config();
-            tLRPC$TL_config.readParams(abstractSerializedData, z);
-            return tLRPC$TL_config;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_config", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_config", Integer.valueOf(i)));
         }
+        TLRPC$TL_config tLRPC$TL_config = new TLRPC$TL_config();
+        tLRPC$TL_config.readParams(abstractSerializedData, z);
+        return tLRPC$TL_config;
     }
 
     @Override
@@ -87,75 +88,79 @@ public class TLRPC$TL_config extends TLObject {
         this.test_mode = abstractSerializedData.readBool(z);
         this.this_dc = abstractSerializedData.readInt32(z);
         int readInt322 = abstractSerializedData.readInt32(z);
-        if (readInt322 == 481674261) {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                TLRPC$TL_dcOption TLdeserialize = TLRPC$TL_dcOption.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize != null) {
-                    this.dc_options.add(TLdeserialize);
-                } else {
-                    return;
-                }
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            this.dc_txt_domain_name = abstractSerializedData.readString(z);
-            this.chat_size_max = abstractSerializedData.readInt32(z);
-            this.megagroup_size_max = abstractSerializedData.readInt32(z);
-            this.forwarded_count_max = abstractSerializedData.readInt32(z);
-            this.online_update_period_ms = abstractSerializedData.readInt32(z);
-            this.offline_blur_timeout_ms = abstractSerializedData.readInt32(z);
-            this.offline_idle_timeout_ms = abstractSerializedData.readInt32(z);
-            this.online_cloud_timeout_ms = abstractSerializedData.readInt32(z);
-            this.notify_cloud_delay_ms = abstractSerializedData.readInt32(z);
-            this.notify_default_delay_ms = abstractSerializedData.readInt32(z);
-            this.push_chat_period_ms = abstractSerializedData.readInt32(z);
-            this.push_chat_limit = abstractSerializedData.readInt32(z);
-            this.saved_gifs_limit = abstractSerializedData.readInt32(z);
-            this.edit_time_limit = abstractSerializedData.readInt32(z);
-            this.revoke_time_limit = abstractSerializedData.readInt32(z);
-            this.revoke_pm_time_limit = abstractSerializedData.readInt32(z);
-            this.rating_e_decay = abstractSerializedData.readInt32(z);
-            this.stickers_recent_limit = abstractSerializedData.readInt32(z);
-            this.stickers_faved_limit = abstractSerializedData.readInt32(z);
-            this.channels_read_media_period = abstractSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
-                this.tmp_sessions = abstractSerializedData.readInt32(z);
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            TLRPC$TL_dcOption TLdeserialize = TLRPC$TL_dcOption.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
             }
-            this.pinned_dialogs_count_max = abstractSerializedData.readInt32(z);
-            this.pinned_infolder_count_max = abstractSerializedData.readInt32(z);
-            this.call_receive_timeout_ms = abstractSerializedData.readInt32(z);
-            this.call_ring_timeout_ms = abstractSerializedData.readInt32(z);
-            this.call_connect_timeout_ms = abstractSerializedData.readInt32(z);
-            this.call_packet_timeout_ms = abstractSerializedData.readInt32(z);
-            this.me_url_prefix = abstractSerializedData.readString(z);
-            if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
-                this.autoupdate_url_prefix = abstractSerializedData.readString(z);
-            }
-            if ((this.flags & 512) != 0) {
-                this.gif_search_username = abstractSerializedData.readString(z);
-            }
-            if ((this.flags & 1024) != 0) {
-                this.venue_search_username = abstractSerializedData.readString(z);
-            }
-            if ((this.flags & 2048) != 0) {
-                this.img_search_username = abstractSerializedData.readString(z);
-            }
-            if ((this.flags & 4096) != 0) {
-                this.static_maps_provider = abstractSerializedData.readString(z);
-            }
-            this.caption_length_max = abstractSerializedData.readInt32(z);
-            this.message_length_max = abstractSerializedData.readInt32(z);
-            this.webfile_dc_id = abstractSerializedData.readInt32(z);
-            if ((this.flags & 4) != 0) {
-                this.suggested_lang_code = abstractSerializedData.readString(z);
-            }
-            if ((this.flags & 4) != 0) {
-                this.lang_pack_version = abstractSerializedData.readInt32(z);
-            }
-            if ((this.flags & 4) != 0) {
-                this.base_lang_pack_version = abstractSerializedData.readInt32(z);
-            }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+            this.dc_options.add(TLdeserialize);
+        }
+        this.dc_txt_domain_name = abstractSerializedData.readString(z);
+        this.chat_size_max = abstractSerializedData.readInt32(z);
+        this.megagroup_size_max = abstractSerializedData.readInt32(z);
+        this.forwarded_count_max = abstractSerializedData.readInt32(z);
+        this.online_update_period_ms = abstractSerializedData.readInt32(z);
+        this.offline_blur_timeout_ms = abstractSerializedData.readInt32(z);
+        this.offline_idle_timeout_ms = abstractSerializedData.readInt32(z);
+        this.online_cloud_timeout_ms = abstractSerializedData.readInt32(z);
+        this.notify_cloud_delay_ms = abstractSerializedData.readInt32(z);
+        this.notify_default_delay_ms = abstractSerializedData.readInt32(z);
+        this.push_chat_period_ms = abstractSerializedData.readInt32(z);
+        this.push_chat_limit = abstractSerializedData.readInt32(z);
+        this.saved_gifs_limit = abstractSerializedData.readInt32(z);
+        this.edit_time_limit = abstractSerializedData.readInt32(z);
+        this.revoke_time_limit = abstractSerializedData.readInt32(z);
+        this.revoke_pm_time_limit = abstractSerializedData.readInt32(z);
+        this.rating_e_decay = abstractSerializedData.readInt32(z);
+        this.stickers_recent_limit = abstractSerializedData.readInt32(z);
+        this.stickers_faved_limit = abstractSerializedData.readInt32(z);
+        this.channels_read_media_period = abstractSerializedData.readInt32(z);
+        if ((this.flags & 1) != 0) {
+            this.tmp_sessions = abstractSerializedData.readInt32(z);
+        }
+        this.pinned_dialogs_count_max = abstractSerializedData.readInt32(z);
+        this.pinned_infolder_count_max = abstractSerializedData.readInt32(z);
+        this.call_receive_timeout_ms = abstractSerializedData.readInt32(z);
+        this.call_ring_timeout_ms = abstractSerializedData.readInt32(z);
+        this.call_connect_timeout_ms = abstractSerializedData.readInt32(z);
+        this.call_packet_timeout_ms = abstractSerializedData.readInt32(z);
+        this.me_url_prefix = abstractSerializedData.readString(z);
+        if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
+            this.autoupdate_url_prefix = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & 512) != 0) {
+            this.gif_search_username = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
+            this.venue_search_username = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & 2048) != 0) {
+            this.img_search_username = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & 4096) != 0) {
+            this.static_maps_provider = abstractSerializedData.readString(z);
+        }
+        this.caption_length_max = abstractSerializedData.readInt32(z);
+        this.message_length_max = abstractSerializedData.readInt32(z);
+        this.webfile_dc_id = abstractSerializedData.readInt32(z);
+        if ((this.flags & 4) != 0) {
+            this.suggested_lang_code = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & 4) != 0) {
+            this.lang_pack_version = abstractSerializedData.readInt32(z);
+        }
+        if ((this.flags & 4) != 0) {
+            this.base_lang_pack_version = abstractSerializedData.readInt32(z);
+        }
+        if ((this.flags & 32768) != 0) {
+            this.reactions_default = TLRPC$Reaction.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
 
@@ -225,7 +230,7 @@ public class TLRPC$TL_config extends TLObject {
         if ((this.flags & 512) != 0) {
             abstractSerializedData.writeString(this.gif_search_username);
         }
-        if ((this.flags & 1024) != 0) {
+        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
             abstractSerializedData.writeString(this.venue_search_username);
         }
         if ((this.flags & 2048) != 0) {
@@ -245,6 +250,9 @@ public class TLRPC$TL_config extends TLObject {
         }
         if ((this.flags & 4) != 0) {
             abstractSerializedData.writeInt32(this.base_lang_pack_version);
+        }
+        if ((this.flags & 32768) != 0) {
+            this.reactions_default.serializeToStream(abstractSerializedData);
         }
     }
 }

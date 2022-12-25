@@ -17,7 +17,7 @@ import org.telegram.tgnet.TLRPC$WebDocument;
 public class WebFile extends TLObject {
     public ArrayList<TLRPC$DocumentAttribute> attributes;
     public TLRPC$InputGeoPoint geo_point;
-    public int h;
+    public int f827h;
     public TLRPC$InputWebFileLocation location;
     public String mime_type;
     public int msg_id;
@@ -25,7 +25,7 @@ public class WebFile extends TLObject {
     public int scale;
     public int size;
     public String url;
-    public int w;
+    public int f828w;
     public int zoom;
 
     public static WebFile createWithGeoPoint(TLRPC$GeoPoint tLRPC$GeoPoint, int i, int i2, int i3, int i4) {
@@ -42,10 +42,10 @@ public class WebFile extends TLObject {
         tLRPC$TL_inputWebFileGeoPointLocation.access_hash = j;
         tLRPC$TL_inputGeoPoint.lat = d;
         tLRPC$TL_inputGeoPoint._long = d2;
-        webFile.w = i;
-        tLRPC$TL_inputWebFileGeoPointLocation.w = i;
-        webFile.h = i2;
-        tLRPC$TL_inputWebFileGeoPointLocation.h = i2;
+        webFile.f828w = i;
+        tLRPC$TL_inputWebFileGeoPointLocation.f923w = i;
+        webFile.f827h = i2;
+        tLRPC$TL_inputWebFileGeoPointLocation.f922h = i2;
         webFile.zoom = i3;
         tLRPC$TL_inputWebFileGeoPointLocation.zoom = i3;
         webFile.scale = i4;
@@ -57,20 +57,20 @@ public class WebFile extends TLObject {
     }
 
     public static WebFile createWithWebDocument(TLRPC$WebDocument tLRPC$WebDocument) {
-        if (!(tLRPC$WebDocument instanceof TLRPC$TL_webDocument)) {
-            return null;
+        if (tLRPC$WebDocument instanceof TLRPC$TL_webDocument) {
+            WebFile webFile = new WebFile();
+            TLRPC$TL_webDocument tLRPC$TL_webDocument = (TLRPC$TL_webDocument) tLRPC$WebDocument;
+            TLRPC$TL_inputWebFileLocation tLRPC$TL_inputWebFileLocation = new TLRPC$TL_inputWebFileLocation();
+            webFile.location = tLRPC$TL_inputWebFileLocation;
+            String str = tLRPC$WebDocument.url;
+            webFile.url = str;
+            tLRPC$TL_inputWebFileLocation.url = str;
+            tLRPC$TL_inputWebFileLocation.access_hash = tLRPC$TL_webDocument.access_hash;
+            webFile.size = tLRPC$TL_webDocument.size;
+            webFile.mime_type = tLRPC$TL_webDocument.mime_type;
+            webFile.attributes = tLRPC$TL_webDocument.attributes;
+            return webFile;
         }
-        WebFile webFile = new WebFile();
-        TLRPC$TL_webDocument tLRPC$TL_webDocument = (TLRPC$TL_webDocument) tLRPC$WebDocument;
-        TLRPC$TL_inputWebFileLocation tLRPC$TL_inputWebFileLocation = new TLRPC$TL_inputWebFileLocation();
-        webFile.location = tLRPC$TL_inputWebFileLocation;
-        String str = tLRPC$WebDocument.url;
-        webFile.url = str;
-        tLRPC$TL_inputWebFileLocation.url = str;
-        tLRPC$TL_inputWebFileLocation.access_hash = tLRPC$TL_webDocument.access_hash;
-        webFile.size = tLRPC$TL_webDocument.size;
-        webFile.mime_type = tLRPC$TL_webDocument.mime_type;
-        webFile.attributes = tLRPC$TL_webDocument.attributes;
-        return webFile;
+        return null;
     }
 }

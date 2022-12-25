@@ -12,7 +12,7 @@ public abstract class TLRPC$DialogFilter extends TLObject {
     public boolean exclude_read;
     public int flags;
     public boolean groups;
-    public int id;
+    public int f855id;
     public boolean non_contacts;
     public String title;
     public ArrayList<TLRPC$InputPeer> pinned_peers = new ArrayList<>();
@@ -21,9 +21,7 @@ public abstract class TLRPC$DialogFilter extends TLObject {
 
     public static TLRPC$DialogFilter TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$DialogFilter tLRPC$DialogFilter;
-        if (i != 909284270) {
-            tLRPC$DialogFilter = i != 1949890536 ? null : new TLRPC$TL_dialogFilter();
-        } else {
+        if (i == 909284270) {
             tLRPC$DialogFilter = new TLRPC$DialogFilter() {
                 public static int constructor = 909284270;
 
@@ -32,13 +30,15 @@ public abstract class TLRPC$DialogFilter extends TLObject {
                     abstractSerializedData2.writeInt32(constructor);
                 }
             };
+        } else {
+            tLRPC$DialogFilter = i != 1949890536 ? null : new TLRPC$TL_dialogFilter();
         }
-        if (tLRPC$DialogFilter != null || !z) {
-            if (tLRPC$DialogFilter != null) {
-                tLRPC$DialogFilter.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$DialogFilter;
+        if (tLRPC$DialogFilter == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in DialogFilter", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in DialogFilter", Integer.valueOf(i)));
+        if (tLRPC$DialogFilter != null) {
+            tLRPC$DialogFilter.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$DialogFilter;
     }
 }

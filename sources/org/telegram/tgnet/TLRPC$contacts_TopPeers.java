@@ -24,12 +24,12 @@ public abstract class TLRPC$contacts_TopPeers extends TLObject {
                 }
             };
         }
-        if (tLRPC$contacts_TopPeers != null || !z) {
-            if (tLRPC$contacts_TopPeers != null) {
-                tLRPC$contacts_TopPeers.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$contacts_TopPeers;
+        if (tLRPC$contacts_TopPeers == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in contacts_TopPeers", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in contacts_TopPeers", Integer.valueOf(i)));
+        if (tLRPC$contacts_TopPeers != null) {
+            tLRPC$contacts_TopPeers.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$contacts_TopPeers;
     }
 }

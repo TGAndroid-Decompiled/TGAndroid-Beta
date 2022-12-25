@@ -6,15 +6,15 @@ public class TLRPC$TL_jsonObjectValue extends TLObject {
     public TLRPC$JSONValue value;
 
     public static TLRPC$TL_jsonObjectValue TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue = new TLRPC$TL_jsonObjectValue();
-            tLRPC$TL_jsonObjectValue.readParams(abstractSerializedData, z);
-            return tLRPC$TL_jsonObjectValue;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_jsonObjectValue", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_jsonObjectValue", Integer.valueOf(i)));
         }
+        TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue = new TLRPC$TL_jsonObjectValue();
+        tLRPC$TL_jsonObjectValue.readParams(abstractSerializedData, z);
+        return tLRPC$TL_jsonObjectValue;
     }
 
     @Override

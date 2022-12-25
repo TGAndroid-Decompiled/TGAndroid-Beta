@@ -8,15 +8,15 @@ public class TLRPC$TL_searchResultsCalendarPeriod extends TLObject {
     public int min_msg_id;
 
     public static TLRPC$TL_searchResultsCalendarPeriod TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_searchResultsCalendarPeriod tLRPC$TL_searchResultsCalendarPeriod = new TLRPC$TL_searchResultsCalendarPeriod();
-            tLRPC$TL_searchResultsCalendarPeriod.readParams(abstractSerializedData, z);
-            return tLRPC$TL_searchResultsCalendarPeriod;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_searchResultsCalendarPeriod", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_searchResultsCalendarPeriod", Integer.valueOf(i)));
         }
+        TLRPC$TL_searchResultsCalendarPeriod tLRPC$TL_searchResultsCalendarPeriod = new TLRPC$TL_searchResultsCalendarPeriod();
+        tLRPC$TL_searchResultsCalendarPeriod.readParams(abstractSerializedData, z);
+        return tLRPC$TL_searchResultsCalendarPeriod;
     }
 
     @Override

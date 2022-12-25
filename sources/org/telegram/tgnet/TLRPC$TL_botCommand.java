@@ -6,15 +6,15 @@ public class TLRPC$TL_botCommand extends TLObject {
     public String description;
 
     public static TLRPC$TL_botCommand TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_botCommand tLRPC$TL_botCommand = new TLRPC$TL_botCommand();
-            tLRPC$TL_botCommand.readParams(abstractSerializedData, z);
-            return tLRPC$TL_botCommand;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_botCommand", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_botCommand", Integer.valueOf(i)));
         }
+        TLRPC$TL_botCommand tLRPC$TL_botCommand = new TLRPC$TL_botCommand();
+        tLRPC$TL_botCommand.readParams(abstractSerializedData, z);
+        return tLRPC$TL_botCommand;
     }
 
     @Override

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_messages_readFeaturedStickers extends TLObject {
     public static int constructor = 1527873830;
-    public ArrayList<Long> id = new ArrayList<>();
+    public ArrayList<Long> f946id = new ArrayList<>();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -15,10 +15,10 @@ public class TLRPC$TL_messages_readFeaturedStickers extends TLObject {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(481674261);
-        int size = this.id.size();
+        int size = this.f946id.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt64(this.id.get(i).longValue());
+            abstractSerializedData.writeInt64(this.f946id.get(i).longValue());
         }
     }
 }

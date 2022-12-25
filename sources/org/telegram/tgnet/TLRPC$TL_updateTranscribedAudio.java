@@ -13,11 +13,7 @@ public class TLRPC$TL_updateTranscribedAudio extends TLRPC$Update {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = true;
-        if ((readInt32 & 1) == 0) {
-            z2 = false;
-        }
-        this.pending = z2;
+        this.pending = (readInt32 & 1) != 0;
         this.peer = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.msg_id = abstractSerializedData.readInt32(z);
         this.transcription_id = abstractSerializedData.readInt64(z);

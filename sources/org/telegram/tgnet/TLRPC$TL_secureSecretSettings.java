@@ -7,15 +7,15 @@ public class TLRPC$TL_secureSecretSettings extends TLObject {
     public long secure_secret_id;
 
     public static TLRPC$TL_secureSecretSettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_secureSecretSettings tLRPC$TL_secureSecretSettings = new TLRPC$TL_secureSecretSettings();
-            tLRPC$TL_secureSecretSettings.readParams(abstractSerializedData, z);
-            return tLRPC$TL_secureSecretSettings;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_secureSecretSettings", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_secureSecretSettings", Integer.valueOf(i)));
         }
+        TLRPC$TL_secureSecretSettings tLRPC$TL_secureSecretSettings = new TLRPC$TL_secureSecretSettings();
+        tLRPC$TL_secureSecretSettings.readParams(abstractSerializedData, z);
+        return tLRPC$TL_secureSecretSettings;
     }
 
     @Override

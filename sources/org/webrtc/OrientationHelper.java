@@ -10,13 +10,14 @@ public class OrientationHelper {
     private OrientationEventListener orientationEventListener = new OrientationEventListener(ApplicationLoader.applicationContext) {
         @Override
         public void onOrientationChanged(int i) {
-            if (OrientationHelper.this.orientationEventListener != null && i != -1) {
-                OrientationHelper orientationHelper = OrientationHelper.this;
-                int roundOrientation = orientationHelper.roundOrientation(i, orientationHelper.rotation);
-                if (roundOrientation != OrientationHelper.this.rotation) {
-                    OrientationHelper orientationHelper2 = OrientationHelper.this;
-                    orientationHelper2.onOrientationUpdate(orientationHelper2.rotation = roundOrientation);
-                }
+            if (OrientationHelper.this.orientationEventListener == null || i == -1) {
+                return;
+            }
+            OrientationHelper orientationHelper = OrientationHelper.this;
+            int roundOrientation = orientationHelper.roundOrientation(i, orientationHelper.rotation);
+            if (roundOrientation != OrientationHelper.this.rotation) {
+                OrientationHelper orientationHelper2 = OrientationHelper.this;
+                orientationHelper2.onOrientationUpdate(orientationHelper2.rotation = roundOrientation);
             }
         }
     };

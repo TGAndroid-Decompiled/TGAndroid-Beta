@@ -53,16 +53,17 @@ final class AlignmentPatternFinder {
                     iArr[i8] = iArr[i8] + 1;
                 } else if (i8 == 1) {
                     iArr[1] = iArr[1] + 1;
-                } else if (i8 != 2) {
-                    i8++;
-                    iArr[i8] = iArr[i8] + 1;
-                } else if (foundPatternCross(iArr) && (handlePossibleCenter2 = handlePossibleCenter(iArr, i6, i7)) != null) {
-                    return handlePossibleCenter2;
-                } else {
+                } else if (i8 == 2) {
+                    if (foundPatternCross(iArr) && (handlePossibleCenter2 = handlePossibleCenter(iArr, i6, i7)) != null) {
+                        return handlePossibleCenter2;
+                    }
                     iArr[0] = iArr[2];
                     iArr[1] = 1;
                     iArr[2] = 0;
                     i8 = 1;
+                } else {
+                    i8++;
+                    iArr[i8] = iArr[i8] + 1;
                 }
                 i7++;
             }
@@ -111,10 +112,10 @@ final class AlignmentPatternFinder {
         AlignmentPattern alignmentPattern2 = new AlignmentPattern(centerFromEnd, crossCheckVertical, f);
         this.possibleCenters.add(alignmentPattern2);
         ResultPointCallback resultPointCallback = this.resultPointCallback;
-        if (resultPointCallback == null) {
+        if (resultPointCallback != null) {
+            resultPointCallback.foundPossibleResultPoint(alignmentPattern2);
             return null;
         }
-        resultPointCallback.foundPossibleResultPoint(alignmentPattern2);
         return null;
     }
 }

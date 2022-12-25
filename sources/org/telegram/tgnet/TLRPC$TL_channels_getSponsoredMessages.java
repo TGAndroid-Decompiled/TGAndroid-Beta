@@ -6,7 +6,7 @@ public class TLRPC$TL_channels_getSponsoredMessages extends TLObject {
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        return TLRPC$TL_messages_sponsoredMessages.TLdeserialize(abstractSerializedData, i, z);
+        return TLRPC$messages_SponsoredMessages.TLdeserialize(abstractSerializedData, i, z);
     }
 
     @Override

@@ -6,15 +6,15 @@ public class TLRPC$TL_account_tmpPassword extends TLObject {
     public int valid_until;
 
     public static TLRPC$TL_account_tmpPassword TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_account_tmpPassword tLRPC$TL_account_tmpPassword = new TLRPC$TL_account_tmpPassword();
-            tLRPC$TL_account_tmpPassword.readParams(abstractSerializedData, z);
-            return tLRPC$TL_account_tmpPassword;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_account_tmpPassword", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_account_tmpPassword", Integer.valueOf(i)));
         }
+        TLRPC$TL_account_tmpPassword tLRPC$TL_account_tmpPassword = new TLRPC$TL_account_tmpPassword();
+        tLRPC$TL_account_tmpPassword.readParams(abstractSerializedData, z);
+        return tLRPC$TL_account_tmpPassword;
     }
 
     @Override

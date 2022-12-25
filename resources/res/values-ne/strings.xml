@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="common_google_play_services_enable_button">सक्रिय गर्नुहोस्</string>
+    <string name="common_google_play_services_enable_button">अन गर्नुहोस्</string>
     <string name="common_google_play_services_enable_text">%1$s ले तपाईँले Google Play सेवाहरू सक्षम नगरेसम्म काम गर्दैन।</string>
     <string name="common_google_play_services_enable_title">Google Play सेवाहरू सक्षम पार्नुहोस्</string>
     <string name="common_google_play_services_install_button">स्थापना गर्नुहोस्</string>

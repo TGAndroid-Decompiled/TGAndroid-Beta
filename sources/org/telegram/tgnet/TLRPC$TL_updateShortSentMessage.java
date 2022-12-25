@@ -8,7 +8,7 @@ public class TLRPC$TL_updateShortSentMessage extends TLRPC$Updates {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.out = (readInt32 & 2) != 0;
-        this.id = abstractSerializedData.readInt32(z);
+        this.f985id = abstractSerializedData.readInt32(z);
         this.pts = abstractSerializedData.readInt32(z);
         this.pts_count = abstractSerializedData.readInt32(z);
         this.date = abstractSerializedData.readInt32(z);
@@ -17,20 +17,19 @@ public class TLRPC$TL_updateShortSentMessage extends TLRPC$Updates {
         }
         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
             int readInt322 = abstractSerializedData.readInt32(z);
-            if (readInt322 == 481674261) {
-                int readInt323 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt323; i++) {
-                    TLRPC$MessageEntity TLdeserialize = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize != null) {
-                        this.entities.add(TLdeserialize);
-                    } else {
-                        return;
-                    }
+            if (readInt322 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-            } else {
                 return;
+            }
+            int readInt323 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt323; i++) {
+                TLRPC$MessageEntity TLdeserialize = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize == null) {
+                    return;
+                }
+                this.entities.add(TLdeserialize);
             }
         }
         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {

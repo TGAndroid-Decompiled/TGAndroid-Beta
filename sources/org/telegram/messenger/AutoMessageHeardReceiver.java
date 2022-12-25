@@ -13,29 +13,30 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
         final long longExtra = intent.getLongExtra("dialog_id", 0L);
         final int intExtra = intent.getIntExtra("max_id", 0);
         final int intExtra2 = intent.getIntExtra("currentAccount", 0);
-        if (longExtra != 0 && intExtra != 0 && UserConfig.isValidAccount(intExtra2)) {
-            final AccountInstance accountInstance = AccountInstance.getInstance(intExtra2);
-            if (DialogObject.isUserDialog(longExtra)) {
-                if (accountInstance.getMessagesController().getUser(Long.valueOf(longExtra)) == null) {
-                    Utilities.globalQueue.postRunnable(new Runnable() {
-                        @Override
-                        public final void run() {
-                            AutoMessageHeardReceiver.lambda$onReceive$1(AccountInstance.this, longExtra, intExtra2, intExtra);
-                        }
-                    });
-                    return;
-                }
-            } else if (DialogObject.isChatDialog(longExtra) && accountInstance.getMessagesController().getChat(Long.valueOf(-longExtra)) == null) {
+        if (longExtra == 0 || intExtra == 0 || !UserConfig.isValidAccount(intExtra2)) {
+            return;
+        }
+        final AccountInstance accountInstance = AccountInstance.getInstance(intExtra2);
+        if (DialogObject.isUserDialog(longExtra)) {
+            if (accountInstance.getMessagesController().getUser(Long.valueOf(longExtra)) == null) {
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        AutoMessageHeardReceiver.lambda$onReceive$3(AccountInstance.this, longExtra, intExtra2, intExtra);
+                        AutoMessageHeardReceiver.lambda$onReceive$1(AccountInstance.this, longExtra, intExtra2, intExtra);
                     }
                 });
                 return;
             }
-            MessagesController.getInstance(intExtra2).markDialogAsRead(longExtra, intExtra, intExtra, 0, false, 0, 0, true, 0);
+        } else if (DialogObject.isChatDialog(longExtra) && accountInstance.getMessagesController().getChat(Long.valueOf(-longExtra)) == null) {
+            Utilities.globalQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    AutoMessageHeardReceiver.lambda$onReceive$3(AccountInstance.this, longExtra, intExtra2, intExtra);
+                }
+            });
+            return;
         }
+        MessagesController.getInstance(intExtra2).markDialogAsRead(longExtra, intExtra, intExtra, 0, false, 0, 0, true, 0);
     }
 
     public static void lambda$onReceive$1(final AccountInstance accountInstance, final long j, final int i, final int i2) {

@@ -35,7 +35,7 @@ public class TLRPC$TL_contacts_getTopPeers extends TLObject {
         this.flags = i5;
         int i6 = this.forward_chats ? i5 | 32 : i5 & (-33);
         this.flags = i6;
-        int i7 = this.groups ? i6 | 1024 : i6 & (-1025);
+        int i7 = this.groups ? i6 | ConnectionsManager.RequestFlagDoNotWaitFloodWait : i6 & (-1025);
         this.flags = i7;
         int i8 = this.channels ? i7 | 32768 : i7 & (-32769);
         this.flags = i8;

@@ -15,8 +15,8 @@ import java.util.List;
 import org.telegram.messenger.NotificationCenter;
 
 public class NotificationImageProvider extends ContentProvider implements NotificationCenter.NotificationCenterDelegate {
-    public static final String AUTHORITY = "org.telegram.messenger.beta.notification_image_provider";
-    private static final UriMatcher matcher;
+    private static String authority;
+    private static UriMatcher matcher;
     private HashSet<String> waitingForFiles = new HashSet<>();
     private final Object sync = new Object();
     private HashMap<String, Long> fileStartTimes = new HashMap<>();
@@ -46,10 +46,20 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
         return 0;
     }
 
-    static {
-        UriMatcher uriMatcher = new UriMatcher(-1);
-        matcher = uriMatcher;
-        uriMatcher.addURI(AUTHORITY, "msg_media_raw/#/*", 1);
+    public static String getAuthority() {
+        if (authority == null) {
+            authority = ApplicationLoader.getApplicationId() + ".notification_image_provider";
+        }
+        return authority;
+    }
+
+    private static UriMatcher getUriMatcher() {
+        if (matcher == null) {
+            UriMatcher uriMatcher = new UriMatcher(-1);
+            matcher = uriMatcher;
+            uriMatcher.addURI(getAuthority(), "msg_media_raw/#/*", 1);
+        }
+        return matcher;
     }
 
     @Override
@@ -79,7 +89,8 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
     public ParcelFileDescriptor openFile(Uri uri, String str) throws FileNotFoundException {
         if (!"r".equals(str)) {
             throw new SecurityException("Can only open files for read");
-        } else if (matcher.match(uri) == 1) {
+        }
+        if (getUriMatcher().match(uri) == 1) {
             List<String> pathSegments = uri.getPathSegments();
             Integer.parseInt(pathSegments.get(1));
             String str2 = pathSegments.get(2);
@@ -87,45 +98,44 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
             String queryParameter2 = uri.getQueryParameter("fallback");
             File file = new File(queryParameter);
             ApplicationLoader.postInitApplication();
-            if (!AndroidUtilities.isInternalUri(Uri.fromFile(file))) {
-                if (!file.exists()) {
-                    Long l = this.fileStartTimes.get(str2);
-                    long longValue = l != null ? l.longValue() : System.currentTimeMillis();
-                    if (l == null) {
-                        this.fileStartTimes.put(str2, Long.valueOf(longValue));
-                    }
-                    while (!file.exists()) {
-                        if (System.currentTimeMillis() - longValue >= 3000) {
-                            if (BuildVars.LOGS_ENABLED) {
-                                FileLog.w("Waiting for " + str2 + " to download timed out");
-                            }
-                            if (!TextUtils.isEmpty(queryParameter2)) {
-                                File file2 = new File(queryParameter2);
-                                if (!AndroidUtilities.isInternalUri(Uri.fromFile(file2))) {
-                                    return ParcelFileDescriptor.open(file2, 268435456);
-                                }
-                                throw new SecurityException("trying to read internal file");
-                            }
+            if (AndroidUtilities.isInternalUri(Uri.fromFile(file))) {
+                throw new SecurityException("trying to read internal file");
+            }
+            if (!file.exists()) {
+                Long l = this.fileStartTimes.get(str2);
+                long longValue = l != null ? l.longValue() : System.currentTimeMillis();
+                if (l == null) {
+                    this.fileStartTimes.put(str2, Long.valueOf(longValue));
+                }
+                while (!file.exists()) {
+                    if (System.currentTimeMillis() - longValue >= 3000) {
+                        if (BuildVars.LOGS_ENABLED) {
+                            FileLog.m29w("Waiting for " + str2 + " to download timed out");
+                        }
+                        if (TextUtils.isEmpty(queryParameter2)) {
                             throw new FileNotFoundException("Download timed out");
                         }
-                        synchronized (this.sync) {
-                            this.waitingForFiles.add(str2);
-                            try {
-                                this.sync.wait(1000L);
-                            } catch (InterruptedException unused) {
-                            }
+                        File file2 = new File(queryParameter2);
+                        if (AndroidUtilities.isInternalUri(Uri.fromFile(file2))) {
+                            throw new SecurityException("trying to read internal file");
+                        }
+                        return ParcelFileDescriptor.open(file2, 268435456);
+                    }
+                    synchronized (this.sync) {
+                        this.waitingForFiles.add(str2);
+                        try {
+                            this.sync.wait(1000L);
+                        } catch (InterruptedException unused) {
                         }
                     }
-                    if (AndroidUtilities.isInternalUri(Uri.fromFile(file))) {
-                        throw new SecurityException("trying to read internal file");
-                    }
                 }
-                return ParcelFileDescriptor.open(file, 268435456);
+                if (AndroidUtilities.isInternalUri(Uri.fromFile(file))) {
+                    throw new SecurityException("trying to read internal file");
+                }
             }
-            throw new SecurityException("trying to read internal file");
-        } else {
-            throw new FileNotFoundException("Invalid URI");
+            return ParcelFileDescriptor.open(file, 268435456);
         }
+        throw new FileNotFoundException("Invalid URI");
     }
 
     @Override

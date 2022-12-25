@@ -29,7 +29,7 @@ public class FingerprintController {
             keyStore3.load(null);
             return keyStore;
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
             return null;
         }
     }
@@ -44,7 +44,7 @@ public class FingerprintController {
             keyPairGenerator = keyPairGenerator3;
             return keyPairGenerator3;
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
             return null;
         }
     }
@@ -65,11 +65,12 @@ public class FingerprintController {
                     }
                 });
             } catch (InvalidAlgorithmParameterException e) {
-                FileLog.e(e);
+                FileLog.m31e(e);
             } catch (Exception e2) {
-                if (!e2.getClass().getName().equals("android.security.KeyStoreException")) {
-                    FileLog.e(e2);
+                if (e2.getClass().getName().equals("android.security.KeyStoreException")) {
+                    return;
                 }
+                FileLog.m31e(e2);
             }
         }
     }
@@ -82,7 +83,7 @@ public class FingerprintController {
         try {
             getKeyStore().deleteEntry(KEY_ALIAS);
         } catch (KeyStoreException e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
         }
         hasChangedFingerprints = null;
         checkKeyReady(false);
@@ -107,7 +108,7 @@ public class FingerprintController {
         try {
             return getKeyStore().containsAlias(KEY_ALIAS);
         } catch (KeyStoreException e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
             return false;
         }
     }
@@ -125,7 +126,7 @@ public class FingerprintController {
             hasChangedFingerprints = Boolean.TRUE;
             return true;
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
             hasChangedFingerprints = Boolean.FALSE;
             return false;
         }

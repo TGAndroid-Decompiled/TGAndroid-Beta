@@ -45,29 +45,29 @@ public class SQLitePreparedStatement {
     }
 
     public SQLiteCursor query(Object[] objArr) throws SQLiteException {
-        if (objArr != null) {
-            checkFinalized();
-            reset(this.sqliteStatementHandle);
-            int i = 1;
-            for (Object obj : objArr) {
-                if (obj == null) {
-                    bindNull(this.sqliteStatementHandle, i);
-                } else if (obj instanceof Integer) {
-                    bindInt(this.sqliteStatementHandle, i, ((Integer) obj).intValue());
-                } else if (obj instanceof Double) {
-                    bindDouble(this.sqliteStatementHandle, i, ((Double) obj).doubleValue());
-                } else if (obj instanceof String) {
-                    bindString(this.sqliteStatementHandle, i, (String) obj);
-                } else if (obj instanceof Long) {
-                    bindLong(this.sqliteStatementHandle, i, ((Long) obj).longValue());
-                } else {
-                    throw new IllegalArgumentException();
-                }
-                i++;
-            }
-            return new SQLiteCursor(this);
+        if (objArr == null) {
+            throw new IllegalArgumentException();
         }
-        throw new IllegalArgumentException();
+        checkFinalized();
+        reset(this.sqliteStatementHandle);
+        int i = 1;
+        for (Object obj : objArr) {
+            if (obj == null) {
+                bindNull(this.sqliteStatementHandle, i);
+            } else if (obj instanceof Integer) {
+                bindInt(this.sqliteStatementHandle, i, ((Integer) obj).intValue());
+            } else if (obj instanceof Double) {
+                bindDouble(this.sqliteStatementHandle, i, ((Double) obj).doubleValue());
+            } else if (obj instanceof String) {
+                bindString(this.sqliteStatementHandle, i, (String) obj);
+            } else if (obj instanceof Long) {
+                bindLong(this.sqliteStatementHandle, i, ((Long) obj).longValue());
+            } else {
+                throw new IllegalArgumentException();
+            }
+            i++;
+        }
+        return new SQLiteCursor(this);
     }
 
     public int step() throws SQLiteException {
@@ -95,20 +95,21 @@ public class SQLitePreparedStatement {
     }
 
     public void finalizeQuery() {
-        if (!this.isFinalized) {
-            if (BuildVars.LOGS_ENABLED) {
-                long elapsedRealtime = SystemClock.elapsedRealtime() - this.startTime;
-                if (elapsedRealtime > 500) {
-                    FileLog.d("sqlite query " + this.query + " took " + elapsedRealtime + "ms");
-                }
+        if (this.isFinalized) {
+            return;
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            long elapsedRealtime = SystemClock.elapsedRealtime() - this.startTime;
+            if (elapsedRealtime > 500) {
+                FileLog.m34d("sqlite query " + this.query + " took " + elapsedRealtime + "ms");
             }
-            try {
-                this.isFinalized = true;
-                finalize(this.sqliteStatementHandle);
-            } catch (SQLiteException e) {
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e.getMessage(), e);
-                }
+        }
+        try {
+            this.isFinalized = true;
+            finalize(this.sqliteStatementHandle);
+        } catch (SQLiteException e) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.m32e(e.getMessage(), e);
             }
         }
     }

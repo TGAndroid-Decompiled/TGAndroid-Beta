@@ -23,9 +23,11 @@ class RefCountDelegate implements RefCounted {
         int decrementAndGet = this.refCount.decrementAndGet();
         if (decrementAndGet < 0) {
             throw new IllegalStateException("release() called on an object with refcount < 1");
-        } else if (decrementAndGet == 0 && (runnable = this.releaseCallback) != null) {
-            runnable.run();
         }
+        if (decrementAndGet != 0 || (runnable = this.releaseCallback) == null) {
+            return;
+        }
+        runnable.run();
     }
 
     public boolean safeRetain() {

@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import org.telegram.messenger.CharacterCompat;
 
 public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
-    public static int constructor = -779165146;
+    public static int constructor = -908914376;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -11,7 +11,7 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
         this.flags = readInt32;
         this.can_set_username = (readInt32 & ConnectionsManager.RequestFlagNeedQuickAck) != 0;
         this.has_scheduled = (readInt32 & 256) != 0;
-        this.id = abstractSerializedData.readInt64(z);
+        this.f849id = abstractSerializedData.readInt64(z);
         this.about = abstractSerializedData.readString(z);
         this.participants = TLRPC$ChatParticipants.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         if ((this.flags & 4) != 0) {
@@ -23,20 +23,19 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
         }
         if ((this.flags & 8) != 0) {
             int readInt322 = abstractSerializedData.readInt32(z);
-            if (readInt322 == 481674261) {
-                int readInt323 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt323; i++) {
-                    TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize != null) {
-                        this.bot_info.add(TLdeserialize);
-                    } else {
-                        return;
-                    }
+            if (readInt322 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-            } else {
                 return;
+            }
+            int readInt323 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt323; i++) {
+                TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize == null) {
+                    return;
+                }
+                this.bot_info.add(TLdeserialize);
             }
         }
         if ((this.flags & 64) != 0) {
@@ -62,27 +61,19 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
         }
         if ((this.flags & 131072) != 0) {
             int readInt324 = abstractSerializedData.readInt32(z);
-            if (readInt324 == 481674261) {
-                int readInt325 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt325; i2++) {
-                    this.recent_requesters.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+            if (readInt324 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
-            } else {
                 return;
+            }
+            int readInt325 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt325; i2++) {
+                this.recent_requesters.add(Long.valueOf(abstractSerializedData.readInt64(z)));
             }
         }
         if ((this.flags & 262144) != 0) {
-            int readInt326 = abstractSerializedData.readInt32(z);
-            if (readInt326 == 481674261) {
-                int readInt327 = abstractSerializedData.readInt32(z);
-                for (int i3 = 0; i3 < readInt327; i3++) {
-                    this.available_reactions.add(abstractSerializedData.readString(z));
-                }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
-            }
+            this.available_reactions = TLRPC$ChatReactions.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
 
@@ -94,7 +85,7 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
         int i2 = this.has_scheduled ? i | 256 : i & (-257);
         this.flags = i2;
         abstractSerializedData.writeInt32(i2);
-        abstractSerializedData.writeInt64(this.id);
+        abstractSerializedData.writeInt64(this.f849id);
         abstractSerializedData.writeString(this.about);
         this.participants.serializeToStream(abstractSerializedData);
         if ((this.flags & 4) != 0) {
@@ -142,12 +133,7 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
             }
         }
         if ((this.flags & 262144) != 0) {
-            abstractSerializedData.writeInt32(481674261);
-            int size3 = this.available_reactions.size();
-            abstractSerializedData.writeInt32(size3);
-            for (int i5 = 0; i5 < size3; i5++) {
-                abstractSerializedData.writeString(this.available_reactions.get(i5));
-            }
+            this.available_reactions.serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -39,13 +39,9 @@ public interface ICustomTabsService extends IInterface {
                 try {
                     obtain.writeInterfaceToken("android.support.customtabs.ICustomTabsService");
                     obtain.writeLong(j);
-                    boolean z = false;
                     this.mRemote.transact(2, obtain, obtain2, 0);
                     obtain2.readException();
-                    if (obtain2.readInt() != 0) {
-                        z = true;
-                    }
-                    return z;
+                    return obtain2.readInt() != 0;
                 } finally {
                     obtain2.recycle();
                     obtain.recycle();
@@ -59,13 +55,9 @@ public interface ICustomTabsService extends IInterface {
                 try {
                     obtain.writeInterfaceToken("android.support.customtabs.ICustomTabsService");
                     obtain.writeStrongBinder(iCustomTabsCallback != null ? iCustomTabsCallback.asBinder() : null);
-                    boolean z = false;
                     this.mRemote.transact(3, obtain, obtain2, 0);
                     obtain2.readException();
-                    if (obtain2.readInt() != 0) {
-                        z = true;
-                    }
-                    return z;
+                    return obtain2.readInt() != 0;
                 } finally {
                     obtain2.recycle();
                     obtain.recycle();

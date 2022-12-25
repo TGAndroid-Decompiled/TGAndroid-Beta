@@ -15,15 +15,15 @@ public class TLRPC$TL_inputMediaPoll extends TLRPC$InputMedia {
         this.poll = TLRPC$Poll.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         if ((this.flags & 1) != 0) {
             int readInt32 = abstractSerializedData.readInt32(z);
-            if (readInt32 == 481674261) {
-                int readInt322 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt322; i++) {
-                    this.correct_answers.add(abstractSerializedData.readByteArray(z));
+            if (readInt32 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
-            } else {
                 return;
+            }
+            int readInt322 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt322; i++) {
+                this.correct_answers.add(abstractSerializedData.readByteArray(z));
             }
         }
         if ((this.flags & 2) != 0) {
@@ -31,18 +31,19 @@ public class TLRPC$TL_inputMediaPoll extends TLRPC$InputMedia {
         }
         if ((this.flags & 2) != 0) {
             int readInt323 = abstractSerializedData.readInt32(z);
-            if (readInt323 == 481674261) {
-                int readInt324 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt324; i2++) {
-                    TLRPC$MessageEntity TLdeserialize = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize != null) {
-                        this.solution_entities.add(TLdeserialize);
-                    } else {
-                        return;
-                    }
+            if (readInt323 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
+                return;
+            }
+            int readInt324 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt324; i2++) {
+                TLRPC$MessageEntity TLdeserialize = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize == null) {
+                    return;
+                }
+                this.solution_entities.add(TLdeserialize);
             }
         }
     }

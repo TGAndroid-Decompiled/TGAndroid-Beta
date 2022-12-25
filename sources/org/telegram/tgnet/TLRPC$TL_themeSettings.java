@@ -4,15 +4,15 @@ public class TLRPC$TL_themeSettings extends TLRPC$ThemeSettings {
     public static int constructor = -94849324;
 
     public static TLRPC$TL_themeSettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_themeSettings tLRPC$TL_themeSettings = new TLRPC$TL_themeSettings();
-            tLRPC$TL_themeSettings.readParams(abstractSerializedData, z);
-            return tLRPC$TL_themeSettings;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_themeSettings", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_themeSettings", Integer.valueOf(i)));
         }
+        TLRPC$TL_themeSettings tLRPC$TL_themeSettings = new TLRPC$TL_themeSettings();
+        tLRPC$TL_themeSettings.readParams(abstractSerializedData, z);
+        return tLRPC$TL_themeSettings;
     }
 
     @Override
@@ -27,15 +27,15 @@ public class TLRPC$TL_themeSettings extends TLRPC$ThemeSettings {
         }
         if ((this.flags & 1) != 0) {
             int readInt322 = abstractSerializedData.readInt32(z);
-            if (readInt322 == 481674261) {
-                int readInt323 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt323; i++) {
-                    this.message_colors.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+            if (readInt322 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-            } else {
                 return;
+            }
+            int readInt323 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt323; i++) {
+                this.message_colors.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
             }
         }
         if ((this.flags & 2) != 0) {

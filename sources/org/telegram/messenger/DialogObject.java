@@ -1,11 +1,16 @@
 package org.telegram.messenger;
 
+import org.telegram.p009ui.Components.AvatarDrawable;
+import org.telegram.p009ui.Components.BackupImageView;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$DraftMessage;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$TL_dialog;
 import org.telegram.tgnet.TLRPC$TL_dialogFolder;
+import org.telegram.tgnet.TLRPC$User;
 
 public class DialogObject {
     public static int getEncryptedChatId(long j) {
@@ -37,25 +42,27 @@ public class DialogObject {
     }
 
     public static void initDialog(TLRPC$Dialog tLRPC$Dialog) {
-        if (tLRPC$Dialog != null && tLRPC$Dialog.id == 0) {
-            if (tLRPC$Dialog instanceof TLRPC$TL_dialog) {
-                TLRPC$Peer tLRPC$Peer = tLRPC$Dialog.peer;
-                if (tLRPC$Peer != null) {
-                    long j = tLRPC$Peer.user_id;
-                    if (j != 0) {
-                        tLRPC$Dialog.id = j;
-                        return;
-                    }
-                    long j2 = tLRPC$Peer.chat_id;
-                    if (j2 != 0) {
-                        tLRPC$Dialog.id = -j2;
-                    } else {
-                        tLRPC$Dialog.id = -tLRPC$Peer.channel_id;
-                    }
-                }
-            } else if (tLRPC$Dialog instanceof TLRPC$TL_dialogFolder) {
-                tLRPC$Dialog.id = makeFolderDialogId(((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.id);
+        if (tLRPC$Dialog == null || tLRPC$Dialog.f854id != 0) {
+            return;
+        }
+        if (tLRPC$Dialog instanceof TLRPC$TL_dialog) {
+            TLRPC$Peer tLRPC$Peer = tLRPC$Dialog.peer;
+            if (tLRPC$Peer == null) {
+                return;
             }
+            long j = tLRPC$Peer.user_id;
+            if (j != 0) {
+                tLRPC$Dialog.f854id = j;
+                return;
+            }
+            long j2 = tLRPC$Peer.chat_id;
+            if (j2 != 0) {
+                tLRPC$Dialog.f854id = -j2;
+            } else {
+                tLRPC$Dialog.f854id = -tLRPC$Peer.channel_id;
+            }
+        } else if (tLRPC$Dialog instanceof TLRPC$TL_dialogFolder) {
+            tLRPC$Dialog.f854id = makeFolderDialogId(((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.f900id);
         }
     }
 
@@ -89,10 +96,79 @@ public class DialogObject {
     }
 
     public static boolean isChatDialog(long j) {
-        return !isEncryptedDialog(j) && !isFolderDialogId(j) && j < 0;
+        return (isEncryptedDialog(j) || isFolderDialogId(j) || j >= 0) ? false : true;
     }
 
     public static boolean isUserDialog(long j) {
-        return !isEncryptedDialog(j) && !isFolderDialogId(j) && j > 0;
+        return (isEncryptedDialog(j) || isFolderDialogId(j) || j <= 0) ? false : true;
+    }
+
+    public static String getDialogTitle(TLObject tLObject) {
+        return setDialogPhotoTitle(null, null, tLObject);
+    }
+
+    public static String setDialogPhotoTitle(ImageReceiver imageReceiver, AvatarDrawable avatarDrawable, TLObject tLObject) {
+        String str;
+        if (tLObject instanceof TLRPC$User) {
+            TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
+            if (UserObject.isReplyUser(tLRPC$User)) {
+                String string = LocaleController.getString("RepliesTitle", C1010R.string.RepliesTitle);
+                if (avatarDrawable != null) {
+                    avatarDrawable.setAvatarType(12);
+                }
+                if (imageReceiver != null) {
+                    imageReceiver.setForUserOrChat(null, avatarDrawable);
+                    return string;
+                }
+                return string;
+            } else if (UserObject.isUserSelf(tLRPC$User)) {
+                String string2 = LocaleController.getString("SavedMessages", C1010R.string.SavedMessages);
+                if (avatarDrawable != null) {
+                    avatarDrawable.setAvatarType(1);
+                }
+                if (imageReceiver != null) {
+                    imageReceiver.setForUserOrChat(null, avatarDrawable);
+                    return string2;
+                }
+                return string2;
+            } else {
+                str = UserObject.getUserName(tLRPC$User);
+                if (avatarDrawable != null) {
+                    avatarDrawable.setInfo(tLRPC$User);
+                }
+                if (imageReceiver != null) {
+                    imageReceiver.setForUserOrChat(tLObject, avatarDrawable);
+                }
+            }
+        } else if (!(tLObject instanceof TLRPC$Chat)) {
+            return BuildConfig.APP_CENTER_HASH;
+        } else {
+            TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
+            str = tLRPC$Chat.title;
+            if (avatarDrawable != null) {
+                avatarDrawable.setInfo(tLRPC$Chat);
+            }
+            if (imageReceiver != null) {
+                imageReceiver.setForUserOrChat(tLObject, avatarDrawable);
+            }
+        }
+        return str;
+    }
+
+    public static String setDialogPhotoTitle(BackupImageView backupImageView, TLObject tLObject) {
+        if (backupImageView != null) {
+            return setDialogPhotoTitle(backupImageView.getImageReceiver(), backupImageView.getAvatarDrawable(), tLObject);
+        }
+        return setDialogPhotoTitle(null, null, tLObject);
+    }
+
+    public static String getPublicUsername(TLObject tLObject) {
+        if (tLObject instanceof TLRPC$Chat) {
+            return ChatObject.getPublicUsername((TLRPC$Chat) tLObject);
+        }
+        if (tLObject instanceof TLRPC$User) {
+            return UserObject.getPublicUsername((TLRPC$User) tLObject);
+        }
+        return null;
     }
 }

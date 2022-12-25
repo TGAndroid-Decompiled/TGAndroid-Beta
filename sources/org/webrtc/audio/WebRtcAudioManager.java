@@ -50,11 +50,11 @@ class WebRtcAudioManager {
     @CalledByNative
     public static int getSampleRate(AudioManager audioManager) {
         if (WebRtcAudioUtils.runningOnEmulator()) {
-            Logging.d(TAG, "Running emulator, overriding sample rate to 8 kHz.");
+            Logging.m9d(TAG, "Running emulator, overriding sample rate to 8 kHz.");
             return 8000;
         }
         int sampleRateForApiLevel = getSampleRateForApiLevel(audioManager);
-        Logging.d(TAG, "Sample rate is set to " + sampleRateForApiLevel + " Hz");
+        Logging.m9d(TAG, "Sample rate is set to " + sampleRateForApiLevel + " Hz");
         return sampleRateForApiLevel;
     }
 

@@ -19,27 +19,30 @@ public class TLRPC$TL_messages_featuredStickers extends TLRPC$messages_FeaturedS
         this.hash = abstractSerializedData.readInt64(z);
         this.count = abstractSerializedData.readInt32(z);
         int readInt322 = abstractSerializedData.readInt32(z);
-        if (readInt322 == 481674261) {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                TLRPC$StickerSetCovered TLdeserialize = TLRPC$StickerSetCovered.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize != null) {
-                    this.sets.add(TLdeserialize);
-                } else {
-                    return;
-                }
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            int readInt324 = abstractSerializedData.readInt32(z);
-            if (readInt324 == 481674261) {
-                int readInt325 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt325; i2++) {
-                    this.unread.add(Long.valueOf(abstractSerializedData.readInt64(z)));
-                }
-            } else if (z) {
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            TLRPC$StickerSetCovered TLdeserialize = TLRPC$StickerSetCovered.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
+            }
+            this.sets.add(TLdeserialize);
+        }
+        int readInt324 = abstractSerializedData.readInt32(z);
+        if (readInt324 != 481674261) {
+            if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
             }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+            return;
+        }
+        int readInt325 = abstractSerializedData.readInt32(z);
+        for (int i2 = 0; i2 < readInt325; i2++) {
+            this.unread.add(Long.valueOf(abstractSerializedData.readInt64(z)));
         }
     }
 

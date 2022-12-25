@@ -8,13 +8,13 @@ public abstract class TLRPC$GeoPoint extends TLObject {
     public double lat;
 
     public static TLRPC$GeoPoint TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$GeoPoint tLRPC$GeoPoint;
+        TLRPC$GeoPoint tLRPC$TL_geoPoint;
         switch (i) {
             case -1297942941:
-                tLRPC$GeoPoint = new TLRPC$TL_geoPoint();
+                tLRPC$TL_geoPoint = new TLRPC$TL_geoPoint();
                 break;
             case 43446532:
-                tLRPC$GeoPoint = new TLRPC$TL_geoPoint() {
+                tLRPC$TL_geoPoint = new TLRPC$TL_geoPoint() {
                     public static int constructor = 43446532;
 
                     @Override
@@ -34,7 +34,7 @@ public abstract class TLRPC$GeoPoint extends TLObject {
                 };
                 break;
             case 286776671:
-                tLRPC$GeoPoint = new TLRPC$GeoPoint() {
+                tLRPC$TL_geoPoint = new TLRPC$GeoPoint() {
                     public static int constructor = 286776671;
 
                     @Override
@@ -44,7 +44,7 @@ public abstract class TLRPC$GeoPoint extends TLObject {
                 };
                 break;
             case 541710092:
-                tLRPC$GeoPoint = new TLRPC$TL_geoPoint() {
+                tLRPC$TL_geoPoint = new TLRPC$TL_geoPoint() {
                     public static int constructor = 541710092;
 
                     @Override
@@ -62,15 +62,15 @@ public abstract class TLRPC$GeoPoint extends TLObject {
                 };
                 break;
             default:
-                tLRPC$GeoPoint = null;
+                tLRPC$TL_geoPoint = null;
                 break;
         }
-        if (tLRPC$GeoPoint != null || !z) {
-            if (tLRPC$GeoPoint != null) {
-                tLRPC$GeoPoint.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$GeoPoint;
+        if (tLRPC$TL_geoPoint == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in GeoPoint", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in GeoPoint", Integer.valueOf(i)));
+        if (tLRPC$TL_geoPoint != null) {
+            tLRPC$TL_geoPoint.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_geoPoint;
     }
 }

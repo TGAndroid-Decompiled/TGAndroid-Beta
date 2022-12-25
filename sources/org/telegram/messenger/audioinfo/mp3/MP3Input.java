@@ -14,11 +14,10 @@ public class MP3Input extends PositionInputStream {
         int i3 = 0;
         while (i3 < i2) {
             int read = read(bArr, i + i3, i2 - i3);
-            if (read > 0) {
-                i3 += read;
-            } else {
+            if (read <= 0) {
                 throw new EOFException();
             }
+            i3 += read;
         }
     }
 
@@ -26,11 +25,10 @@ public class MP3Input extends PositionInputStream {
         long j2 = 0;
         while (j2 < j) {
             long skip = skip(j - j2);
-            if (skip > 0) {
-                j2 += skip;
-            } else {
+            if (skip <= 0) {
                 throw new EOFException();
             }
+            j2 += skip;
         }
     }
 

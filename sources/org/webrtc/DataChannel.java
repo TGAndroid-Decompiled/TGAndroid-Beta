@@ -1,6 +1,7 @@
 package org.webrtc;
 
 import java.nio.ByteBuffer;
+import org.telegram.messenger.BuildConfig;
 
 public class DataChannel {
     private long nativeDataChannel;
@@ -38,8 +39,8 @@ public class DataChannel {
         public boolean ordered = true;
         public int maxRetransmitTimeMs = -1;
         public int maxRetransmits = -1;
-        public String protocol = "";
-        public int id = -1;
+        public String protocol = BuildConfig.APP_CENTER_HASH;
+        public int f1152id = -1;
 
         @CalledByNative("Init")
         boolean getOrdered() {
@@ -68,7 +69,7 @@ public class DataChannel {
 
         @CalledByNative("Init")
         int getId() {
-            return this.id;
+            return this.f1152id;
         }
     }
 
@@ -119,7 +120,7 @@ public class DataChannel {
         return nativeLabel();
     }
 
-    public int id() {
+    public int m10id() {
         checkDataChannelExists();
         return nativeId();
     }

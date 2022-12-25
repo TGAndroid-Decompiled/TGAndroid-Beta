@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import java.io.RandomAccessFile;
-import java.lang.reflect.Array;
 
 public class StatsController extends BaseController {
     private static final int TYPES_COUNT = 7;
@@ -15,7 +14,15 @@ public class StatsController extends BaseController {
     public static final int TYPE_TOTAL = 6;
     public static final int TYPE_VIDEOS = 2;
     public static final int TYPE_WIFI = 1;
+    private byte[] buffer;
+    private int[] callsTotalTime;
     private long lastInternalStatsSaveTime;
+    private long[][] receivedBytes;
+    private int[][] receivedItems;
+    private long[] resetStatsDate;
+    private Runnable saveRunnable;
+    private long[][] sentBytes;
+    private int[][] sentItems;
     private RandomAccessFile statsFile;
     private static DispatchQueue statsSaveQueue = new DispatchQueue("statsSaveQueue");
     private static final ThreadLocal<Long> lastStatsSaveTime = new ThreadLocal<Long>() {
@@ -25,49 +32,6 @@ public class StatsController extends BaseController {
         }
     };
     private static volatile StatsController[] Instance = new StatsController[4];
-    private byte[] buffer = new byte[8];
-    private long[][] sentBytes = (long[][]) Array.newInstance(long.class, 3, 7);
-    private long[][] receivedBytes = (long[][]) Array.newInstance(long.class, 3, 7);
-    private int[][] sentItems = (int[][]) Array.newInstance(int.class, 3, 7);
-    private int[][] receivedItems = (int[][]) Array.newInstance(int.class, 3, 7);
-    private long[] resetStatsDate = new long[3];
-    private int[] callsTotalTime = new int[3];
-    private Runnable saveRunnable = new Runnable() {
-        @Override
-        public void run() {
-            long currentTimeMillis = System.currentTimeMillis();
-            if (Math.abs(currentTimeMillis - StatsController.this.lastInternalStatsSaveTime) >= 2000) {
-                StatsController.this.lastInternalStatsSaveTime = currentTimeMillis;
-                try {
-                    StatsController.this.statsFile.seek(0L);
-                    for (int i = 0; i < 3; i++) {
-                        for (int i2 = 0; i2 < 7; i2++) {
-                            RandomAccessFile randomAccessFile = StatsController.this.statsFile;
-                            StatsController statsController = StatsController.this;
-                            randomAccessFile.write(statsController.longToBytes(statsController.sentBytes[i][i2]), 0, 8);
-                            RandomAccessFile randomAccessFile2 = StatsController.this.statsFile;
-                            StatsController statsController2 = StatsController.this;
-                            randomAccessFile2.write(statsController2.longToBytes(statsController2.receivedBytes[i][i2]), 0, 8);
-                            RandomAccessFile randomAccessFile3 = StatsController.this.statsFile;
-                            StatsController statsController3 = StatsController.this;
-                            randomAccessFile3.write(statsController3.intToBytes(statsController3.sentItems[i][i2]), 0, 4);
-                            RandomAccessFile randomAccessFile4 = StatsController.this.statsFile;
-                            StatsController statsController4 = StatsController.this;
-                            randomAccessFile4.write(statsController4.intToBytes(statsController4.receivedItems[i][i2]), 0, 4);
-                        }
-                        RandomAccessFile randomAccessFile5 = StatsController.this.statsFile;
-                        StatsController statsController5 = StatsController.this;
-                        randomAccessFile5.write(statsController5.intToBytes(statsController5.callsTotalTime[i]), 0, 4);
-                        RandomAccessFile randomAccessFile6 = StatsController.this.statsFile;
-                        StatsController statsController6 = StatsController.this;
-                        randomAccessFile6.write(statsController6.longToBytes(statsController6.resetStatsDate[i]), 0, 8);
-                    }
-                    StatsController.this.statsFile.getFD().sync();
-                } catch (Exception unused) {
-                }
-            }
-        }
-    };
 
     public byte[] intToBytes(int i) {
         byte[] bArr = this.buffer;
@@ -158,19 +122,19 @@ public class StatsController extends BaseController {
     }
 
     public long getSentBytesCount(int i, int i2) {
-        if (i2 != 1) {
-            return this.sentBytes[i][i2];
+        if (i2 == 1) {
+            long[][] jArr = this.sentBytes;
+            return (((jArr[i][6] - jArr[i][5]) - jArr[i][3]) - jArr[i][2]) - jArr[i][4];
         }
-        long[][] jArr = this.sentBytes;
-        return (((jArr[i][6] - jArr[i][5]) - jArr[i][3]) - jArr[i][2]) - jArr[i][4];
+        return this.sentBytes[i][i2];
     }
 
     public long getReceivedBytesCount(int i, int i2) {
-        if (i2 != 1) {
-            return this.receivedBytes[i][i2];
+        if (i2 == 1) {
+            long[][] jArr = this.receivedBytes;
+            return (((jArr[i][6] - jArr[i][5]) - jArr[i][3]) - jArr[i][2]) - jArr[i][4];
         }
-        long[][] jArr = this.receivedBytes;
-        return (((jArr[i][6] - jArr[i][5]) - jArr[i][3]) - jArr[i][2]) - jArr[i][4];
+        return this.receivedBytes[i][i2];
     }
 
     public int getCallsTotalTime(int i) {

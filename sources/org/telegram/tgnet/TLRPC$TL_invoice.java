@@ -21,15 +21,15 @@ public class TLRPC$TL_invoice extends TLObject {
     public ArrayList<Long> suggested_tip_amounts = new ArrayList<>();
 
     public static TLRPC$TL_invoice TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_invoice tLRPC$TL_invoice = new TLRPC$TL_invoice();
-            tLRPC$TL_invoice.readParams(abstractSerializedData, z);
-            return tLRPC$TL_invoice;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_invoice", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_invoice", Integer.valueOf(i)));
         }
+        TLRPC$TL_invoice tLRPC$TL_invoice = new TLRPC$TL_invoice();
+        tLRPC$TL_invoice.readParams(abstractSerializedData, z);
+        return tLRPC$TL_invoice;
     }
 
     @Override
@@ -47,37 +47,38 @@ public class TLRPC$TL_invoice extends TLObject {
         this.recurring = (readInt32 & 512) != 0;
         this.currency = abstractSerializedData.readString(z);
         int readInt322 = abstractSerializedData.readInt32(z);
-        if (readInt322 == 481674261) {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                TLRPC$TL_labeledPrice TLdeserialize = TLRPC$TL_labeledPrice.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize != null) {
-                    this.prices.add(TLdeserialize);
-                } else {
-                    return;
-                }
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            if ((this.flags & 256) != 0) {
-                this.max_tip_amount = abstractSerializedData.readInt64(z);
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            TLRPC$TL_labeledPrice TLdeserialize = TLRPC$TL_labeledPrice.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
             }
-            if ((this.flags & 256) != 0) {
-                int readInt324 = abstractSerializedData.readInt32(z);
-                if (readInt324 == 481674261) {
-                    int readInt325 = abstractSerializedData.readInt32(z);
-                    for (int i2 = 0; i2 < readInt325; i2++) {
-                        this.suggested_tip_amounts.add(Long.valueOf(abstractSerializedData.readInt64(z)));
-                    }
-                } else if (z) {
+            this.prices.add(TLdeserialize);
+        }
+        if ((this.flags & 256) != 0) {
+            this.max_tip_amount = abstractSerializedData.readInt64(z);
+        }
+        if ((this.flags & 256) != 0) {
+            int readInt324 = abstractSerializedData.readInt32(z);
+            if (readInt324 != 481674261) {
+                if (z) {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
-                } else {
-                    return;
                 }
+                return;
             }
-            if ((this.flags & 512) != 0) {
-                this.recurring_terms_url = abstractSerializedData.readString(z);
+            int readInt325 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt325; i2++) {
+                this.suggested_tip_amounts.add(Long.valueOf(abstractSerializedData.readInt64(z)));
             }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+        }
+        if ((this.flags & 512) != 0) {
+            this.recurring_terms_url = abstractSerializedData.readString(z);
         }
     }
 

@@ -8,15 +8,15 @@ public class TLRPC$TL_messages_searchCounter extends TLObject {
     public boolean inexact;
 
     public static TLRPC$TL_messages_searchCounter TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_messages_searchCounter tLRPC$TL_messages_searchCounter = new TLRPC$TL_messages_searchCounter();
-            tLRPC$TL_messages_searchCounter.readParams(abstractSerializedData, z);
-            return tLRPC$TL_messages_searchCounter;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_messages_searchCounter", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_messages_searchCounter", Integer.valueOf(i)));
         }
+        TLRPC$TL_messages_searchCounter tLRPC$TL_messages_searchCounter = new TLRPC$TL_messages_searchCounter();
+        tLRPC$TL_messages_searchCounter.readParams(abstractSerializedData, z);
+        return tLRPC$TL_messages_searchCounter;
     }
 
     @Override

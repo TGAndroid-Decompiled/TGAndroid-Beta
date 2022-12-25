@@ -9,15 +9,15 @@ public class TLRPC$TL_updates_state extends TLObject {
     public int unread_count;
 
     public static TLRPC$TL_updates_state TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_updates_state tLRPC$TL_updates_state = new TLRPC$TL_updates_state();
-            tLRPC$TL_updates_state.readParams(abstractSerializedData, z);
-            return tLRPC$TL_updates_state;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_updates_state", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_updates_state", Integer.valueOf(i)));
         }
+        TLRPC$TL_updates_state tLRPC$TL_updates_state = new TLRPC$TL_updates_state();
+        tLRPC$TL_updates_state.readParams(abstractSerializedData, z);
+        return tLRPC$TL_updates_state;
     }
 
     @Override

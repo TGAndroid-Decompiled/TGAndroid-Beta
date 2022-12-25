@@ -5,7 +5,7 @@ public class TLRPC$TL_channels_exportMessageLink extends TLObject {
     public TLRPC$InputChannel channel;
     public int flags;
     public boolean grouped;
-    public int id;
+    public int f886id;
     public boolean thread;
 
     @Override
@@ -22,6 +22,6 @@ public class TLRPC$TL_channels_exportMessageLink extends TLObject {
         this.flags = i2;
         abstractSerializedData.writeInt32(i2);
         this.channel.serializeToStream(abstractSerializedData);
-        abstractSerializedData.writeInt32(this.id);
+        abstractSerializedData.writeInt32(this.f886id);
     }
 }

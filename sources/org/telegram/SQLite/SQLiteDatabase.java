@@ -57,7 +57,7 @@ public class SQLiteDatabase {
                 sb.append(query.stringValue(i));
                 sb.append(", ");
             }
-            FileLog.d("EXPLAIN QUERY PLAN " + sb.toString());
+            FileLog.m34d("EXPLAIN QUERY PLAN " + sb.toString());
         }
         query.dispose();
     }
@@ -74,7 +74,7 @@ public class SQLiteDatabase {
                 closedb(this.sqliteHandle);
             } catch (SQLiteException e) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e.getMessage(), e);
+                    FileLog.m32e(e.getMessage(), e);
                 }
             }
             this.isOpen = false;
@@ -93,12 +93,11 @@ public class SQLiteDatabase {
     }
 
     public void beginTransaction() throws SQLiteException {
-        if (!this.inTransaction) {
-            this.inTransaction = true;
-            beginTransaction(this.sqliteHandle);
-            return;
+        if (this.inTransaction) {
+            throw new SQLiteException("database already in transaction");
         }
-        throw new SQLiteException("database already in transaction");
+        this.inTransaction = true;
+        beginTransaction(this.sqliteHandle);
     }
 
     public void commitTransaction() {

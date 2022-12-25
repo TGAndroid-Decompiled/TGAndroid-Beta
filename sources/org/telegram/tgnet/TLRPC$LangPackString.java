@@ -95,12 +95,12 @@ public abstract class TLRPC$LangPackString extends TLObject {
                 }
             };
         }
-        if (tLRPC$LangPackString != null || !z) {
-            if (tLRPC$LangPackString != null) {
-                tLRPC$LangPackString.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$LangPackString;
+        if (tLRPC$LangPackString == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in LangPackString", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in LangPackString", Integer.valueOf(i)));
+        if (tLRPC$LangPackString != null) {
+            tLRPC$LangPackString.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$LangPackString;
     }
 }

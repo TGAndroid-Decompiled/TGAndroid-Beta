@@ -17,9 +17,10 @@ public class TLRPC$TL_upload_cdnFile extends TLRPC$upload_CdnFile {
     @Override
     public void freeResources() {
         NativeByteBuffer nativeByteBuffer;
-        if (!this.disableFree && (nativeByteBuffer = this.bytes) != null) {
-            nativeByteBuffer.reuse();
-            this.bytes = null;
+        if (this.disableFree || (nativeByteBuffer = this.bytes) == null) {
+            return;
         }
+        nativeByteBuffer.reuse();
+        this.bytes = null;
     }
 }

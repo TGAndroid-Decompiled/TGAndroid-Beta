@@ -115,7 +115,7 @@ public class EglRenderer implements VideoSink {
             try {
                 super.dispatchMessage(message);
             } catch (Exception e) {
-                Logging.e(EglRenderer.TAG, "Exception on EglRenderer thread", e);
+                Logging.m7e(EglRenderer.TAG, "Exception on EglRenderer thread", e);
                 this.exceptionCallback.run();
                 throw e;
             }
@@ -142,32 +142,31 @@ public class EglRenderer implements VideoSink {
 
     public void init(final EglBase.Context context, final int[] iArr, RendererCommon.GlDrawer glDrawer, boolean z) {
         synchronized (this.handlerLock) {
-            if (this.renderThreadHandler == null) {
-                logD("Initializing EglRenderer");
-                this.drawer = glDrawer;
-                this.usePresentationTimeStamp = z;
-                this.firstFrameRendered = false;
-                HandlerThread handlerThread = new HandlerThread(this.name + TAG);
-                handlerThread.start();
-                HandlerWithExceptionCallback handlerWithExceptionCallback = new HandlerWithExceptionCallback(handlerThread.getLooper(), new Runnable() {
-                    @Override
-                    public void run() {
-                        synchronized (EglRenderer.this.handlerLock) {
-                            EglRenderer.this.renderThreadHandler = null;
-                        }
-                    }
-                });
-                this.renderThreadHandler = handlerWithExceptionCallback;
-                handlerWithExceptionCallback.post(new Runnable() {
-                    @Override
-                    public final void run() {
-                        EglRenderer.this.lambda$init$0(context, iArr);
-                    }
-                });
-                this.renderThreadHandler.post(this.eglSurfaceCreationRunnable);
-            } else {
+            if (this.renderThreadHandler != null) {
                 throw new IllegalStateException(this.name + "Already initialized");
             }
+            logD("Initializing EglRenderer");
+            this.drawer = glDrawer;
+            this.usePresentationTimeStamp = z;
+            this.firstFrameRendered = false;
+            HandlerThread handlerThread = new HandlerThread(this.name + TAG);
+            handlerThread.start();
+            HandlerWithExceptionCallback handlerWithExceptionCallback = new HandlerWithExceptionCallback(handlerThread.getLooper(), new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (EglRenderer.this.handlerLock) {
+                        EglRenderer.this.renderThreadHandler = null;
+                    }
+                }
+            });
+            this.renderThreadHandler = handlerWithExceptionCallback;
+            handlerWithExceptionCallback.post(new Runnable() {
+                @Override
+                public final void run() {
+                    EglRenderer.this.lambda$init$0(context, iArr);
+                }
+            });
+            this.renderThreadHandler.post(this.eglSurfaceCreationRunnable);
         }
     }
 
@@ -205,7 +204,7 @@ public class EglRenderer implements VideoSink {
                 if (handler != null) {
                     handler.post(this.eglSurfaceBackgroundCreationRunnable);
                 } else {
-                    FileLog.d("can't create background surface. render thread is null");
+                    FileLog.m34d("can't create background surface. render thread is null");
                 }
             }
             return;
@@ -363,19 +362,19 @@ public class EglRenderer implements VideoSink {
     public void removeFrameListener(final FrameListener frameListener) {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         synchronized (this.handlerLock) {
-            if (this.renderThreadHandler != null) {
-                if (Thread.currentThread() != this.renderThreadHandler.getLooper().getThread()) {
-                    postToRenderThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            EglRenderer.this.lambda$removeFrameListener$4(countDownLatch, frameListener);
-                        }
-                    });
-                    ThreadUtils.awaitUninterruptibly(countDownLatch);
-                    return;
-                }
+            if (this.renderThreadHandler == null) {
+                return;
+            }
+            if (Thread.currentThread() == this.renderThreadHandler.getLooper().getThread()) {
                 throw new RuntimeException("removeFrameListener must not be called on the render thread.");
             }
+            postToRenderThread(new Runnable() {
+                @Override
+                public final void run() {
+                    EglRenderer.this.lambda$removeFrameListener$4(countDownLatch, frameListener);
+                }
+            });
+            ThreadUtils.awaitUninterruptibly(countDownLatch);
         }
     }
 
@@ -463,12 +462,13 @@ public class EglRenderer implements VideoSink {
 
     public void lambda$clearImage$6(float f, float f2, float f3, float f4) {
         EglBase eglBase = this.eglBase;
-        if (eglBase != null && eglBase.hasSurface()) {
-            logD("clearSurface");
-            GLES20.glClearColor(f, f2, f3, f4);
-            GLES20.glClear(16384);
-            this.eglBase.swapBuffers(false);
+        if (eglBase == null || !eglBase.hasSurface()) {
+            return;
         }
+        logD("clearSurface");
+        GLES20.glClearColor(f, f2, f3, f4);
+        GLES20.glClear(16384);
+        this.eglBase.swapBuffers(false);
     }
 
     public void clearImage() {
@@ -479,14 +479,15 @@ public class EglRenderer implements VideoSink {
     public void clearImage(final float f, final float f2, final float f3, final float f4) {
         synchronized (this.handlerLock) {
             Handler handler = this.renderThreadHandler;
-            if (handler != null) {
-                handler.postAtFrontOfQueue(new Runnable() {
-                    @Override
-                    public final void run() {
-                        EglRenderer.this.lambda$clearImage$6(f, f2, f3, f4);
-                    }
-                });
+            if (handler == null) {
+                return;
             }
+            handler.postAtFrontOfQueue(new Runnable() {
+                @Override
+                public final void run() {
+                    EglRenderer.this.lambda$clearImage$6(f, f2, f3, f4);
+                }
+            });
         }
     }
 
@@ -503,7 +504,7 @@ public class EglRenderer implements VideoSink {
                     });
                 }
             } catch (Exception e) {
-                FileLog.e(e);
+                FileLog.m31e(e);
             }
         }
     }
@@ -519,147 +520,143 @@ public class EglRenderer implements VideoSink {
         float f3;
         synchronized (this.frameLock) {
             VideoFrame videoFrame = this.pendingFrame;
-            if (videoFrame != null) {
-                this.pendingFrame = null;
-                EglBase eglBase = this.eglBase;
-                if (eglBase == null || !eglBase.hasSurface()) {
-                    logD("Dropping frame - No surface");
-                    return;
-                }
-                synchronized (this.fpsReductionLock) {
-                    long j = this.minRenderPeriodNs;
-                    if (j != Long.MAX_VALUE) {
-                        if (j > 0) {
-                            long nanoTime = System.nanoTime();
-                            long j2 = this.nextFrameTimeNs;
-                            if (nanoTime >= j2) {
-                                long j3 = j2 + this.minRenderPeriodNs;
-                                this.nextFrameTimeNs = j3;
-                                this.nextFrameTimeNs = Math.max(j3, nanoTime);
-                            }
+            if (videoFrame == null) {
+                return;
+            }
+            this.pendingFrame = null;
+            EglBase eglBase = this.eglBase;
+            if (eglBase == null || !eglBase.hasSurface()) {
+                logD("Dropping frame - No surface");
+                return;
+            }
+            synchronized (this.fpsReductionLock) {
+                long j = this.minRenderPeriodNs;
+                if (j != Long.MAX_VALUE) {
+                    if (j > 0) {
+                        long nanoTime = System.nanoTime();
+                        long j2 = this.nextFrameTimeNs;
+                        if (nanoTime >= j2) {
+                            long j3 = j2 + this.minRenderPeriodNs;
+                            this.nextFrameTimeNs = j3;
+                            this.nextFrameTimeNs = Math.max(j3, nanoTime);
                         }
-                        z = true;
                     }
-                    z = false;
+                    z = true;
                 }
-                System.nanoTime();
-                boolean z2 = Math.abs(this.rotation) == 90 || Math.abs(this.rotation) == 270;
-                float rotatedHeight = (z2 ? videoFrame.getRotatedHeight() : videoFrame.getRotatedWidth()) / (z2 ? videoFrame.getRotatedWidth() : videoFrame.getRotatedHeight());
-                synchronized (this.layoutLock) {
-                    f = this.layoutAspectRatio;
-                    if (f == 0.0f) {
-                        f = rotatedHeight;
-                    }
+                z = false;
+            }
+            System.nanoTime();
+            boolean z2 = Math.abs(this.rotation) == 90 || Math.abs(this.rotation) == 270;
+            float rotatedHeight = (z2 ? videoFrame.getRotatedHeight() : videoFrame.getRotatedWidth()) / (z2 ? videoFrame.getRotatedWidth() : videoFrame.getRotatedHeight());
+            synchronized (this.layoutLock) {
+                f = this.layoutAspectRatio;
+                if (f == 0.0f) {
+                    f = rotatedHeight;
                 }
-                float f4 = 1.0f;
-                if (rotatedHeight > f) {
-                    f2 = f / rotatedHeight;
-                    f3 = 1.0f;
-                } else {
-                    f3 = rotatedHeight / f;
-                    f2 = 1.0f;
-                }
-                this.drawMatrix.reset();
-                this.drawMatrix.preTranslate(0.5f, 0.5f);
-                this.drawMatrix.preRotate(this.rotation);
-                Matrix matrix = this.drawMatrix;
-                float f5 = this.mirrorHorizontally ? -1.0f : 1.0f;
-                if (this.mirrorVertically) {
-                    f4 = -1.0f;
-                }
-                matrix.preScale(f5, f4);
-                this.drawMatrix.preScale(f2, f3);
-                this.drawMatrix.preTranslate(-0.5f, -0.5f);
-                try {
-                    if (z) {
-                        try {
-                            this.frameDrawer.drawFrame(videoFrame, this.drawer, this.drawMatrix, 0, 0, this.eglBase.surfaceWidth(), this.eglBase.surfaceHeight(), z2, false);
-                            if (this.eglBase.hasBackgroundSurface()) {
-                                this.eglBase.makeBackgroundCurrent();
-                                this.frameDrawer.drawFrame(videoFrame, this.drawer, this.drawMatrix, 0, 0, this.eglBase.surfaceWidth(), this.eglBase.surfaceHeight(), z2, true);
-                                if (this.usePresentationTimeStamp) {
-                                    this.eglBase.swapBuffers(videoFrame.getTimestampNs(), true);
-                                } else {
-                                    this.eglBase.swapBuffers(true);
-                                }
-                                this.eglBase.makeCurrent();
-                            }
-                            System.nanoTime();
+            }
+            if (rotatedHeight > f) {
+                f3 = f / rotatedHeight;
+                f2 = 1.0f;
+            } else {
+                f2 = rotatedHeight / f;
+                f3 = 1.0f;
+            }
+            this.drawMatrix.reset();
+            this.drawMatrix.preTranslate(0.5f, 0.5f);
+            this.drawMatrix.preRotate(this.rotation);
+            this.drawMatrix.preScale(this.mirrorHorizontally ? -1.0f : 1.0f, this.mirrorVertically ? -1.0f : 1.0f);
+            this.drawMatrix.preScale(f3, f2);
+            this.drawMatrix.preTranslate(-0.5f, -0.5f);
+            try {
+                if (z) {
+                    try {
+                        this.frameDrawer.drawFrame(videoFrame, this.drawer, this.drawMatrix, 0, 0, this.eglBase.surfaceWidth(), this.eglBase.surfaceHeight(), z2, false);
+                        if (this.eglBase.hasBackgroundSurface()) {
+                            this.eglBase.makeBackgroundCurrent();
+                            this.frameDrawer.drawFrame(videoFrame, this.drawer, this.drawMatrix, 0, 0, this.eglBase.surfaceWidth(), this.eglBase.surfaceHeight(), z2, true);
                             if (this.usePresentationTimeStamp) {
-                                this.eglBase.swapBuffers(videoFrame.getTimestampNs(), false);
+                                this.eglBase.swapBuffers(videoFrame.getTimestampNs(), true);
                             } else {
-                                this.eglBase.swapBuffers(false);
+                                this.eglBase.swapBuffers(true);
                             }
-                            if (!this.firstFrameRendered) {
-                                this.firstFrameRendered = true;
-                                onFirstFrameRendered();
-                            }
-                        } catch (GlUtil.GlOutOfMemoryException e) {
-                            logE("Error while drawing frame", e);
-                            ErrorCallback errorCallback = this.errorCallback;
-                            if (errorCallback != null) {
-                                errorCallback.onGlOutOfMemory();
-                            }
-                            this.drawer.release();
-                            this.frameDrawer.release();
-                            this.bitmapTextureFramebuffer.release();
+                            this.eglBase.makeCurrent();
                         }
+                        System.nanoTime();
+                        if (this.usePresentationTimeStamp) {
+                            this.eglBase.swapBuffers(videoFrame.getTimestampNs(), false);
+                        } else {
+                            this.eglBase.swapBuffers(false);
+                        }
+                        if (!this.firstFrameRendered) {
+                            this.firstFrameRendered = true;
+                            onFirstFrameRendered();
+                        }
+                    } catch (GlUtil.GlOutOfMemoryException e) {
+                        logE("Error while drawing frame", e);
+                        ErrorCallback errorCallback = this.errorCallback;
+                        if (errorCallback != null) {
+                            errorCallback.onGlOutOfMemory();
+                        }
+                        this.drawer.release();
+                        this.frameDrawer.release();
+                        this.bitmapTextureFramebuffer.release();
                     }
-                    notifyCallbacks(videoFrame, z);
-                } finally {
-                    videoFrame.release();
                 }
+                notifyCallbacks(videoFrame, z);
+            } finally {
+                videoFrame.release();
             }
         }
     }
 
     private void notifyCallbacks(VideoFrame videoFrame, boolean z) {
-        if (!this.frameListeners.isEmpty()) {
-            this.drawMatrix.reset();
-            this.drawMatrix.preTranslate(0.5f, 0.5f);
-            this.drawMatrix.preRotate(this.rotation);
-            this.drawMatrix.preScale(this.mirrorHorizontally ? -1.0f : 1.0f, this.mirrorVertically ? -1.0f : 1.0f);
-            this.drawMatrix.preScale(1.0f, -1.0f);
-            this.drawMatrix.preTranslate(-0.5f, -0.5f);
-            Iterator<FrameListenerAndParams> it = this.frameListeners.iterator();
-            while (it.hasNext()) {
-                FrameListenerAndParams next = it.next();
-                if (z || !next.applyFpsReduction) {
-                    it.remove();
-                    int rotatedWidth = (int) (next.scale * videoFrame.getRotatedWidth());
-                    int rotatedHeight = (int) (next.scale * videoFrame.getRotatedHeight());
-                    if (rotatedWidth == 0 || rotatedHeight == 0) {
-                        next.listener.onFrame(null);
-                    } else {
-                        this.bitmapTextureFramebuffer.setSize(rotatedWidth, rotatedHeight);
-                        GLES20.glBindFramebuffer(36160, this.bitmapTextureFramebuffer.getFrameBufferId());
-                        GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.bitmapTextureFramebuffer.getTextureId(), 0);
-                        GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-                        GLES20.glClear(16384);
-                        this.frameDrawer.drawFrame(videoFrame, next.drawer, this.drawMatrix, 0, 0, rotatedWidth, rotatedHeight, false, false);
-                        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(rotatedWidth * rotatedHeight * 4);
-                        GLES20.glViewport(0, 0, rotatedWidth, rotatedHeight);
-                        GLES20.glReadPixels(0, 0, rotatedWidth, rotatedHeight, 6408, 5121, allocateDirect);
-                        GLES20.glBindFramebuffer(36160, 0);
-                        GlUtil.checkNoGLES2Error("EglRenderer.notifyCallbacks");
-                        Bitmap createBitmap = Bitmap.createBitmap(rotatedWidth, rotatedHeight, Bitmap.Config.ARGB_8888);
-                        createBitmap.copyPixelsFromBuffer(allocateDirect);
-                        next.listener.onFrame(createBitmap);
-                    }
+        if (this.frameListeners.isEmpty()) {
+            return;
+        }
+        this.drawMatrix.reset();
+        this.drawMatrix.preTranslate(0.5f, 0.5f);
+        this.drawMatrix.preRotate(this.rotation);
+        this.drawMatrix.preScale(this.mirrorHorizontally ? -1.0f : 1.0f, this.mirrorVertically ? -1.0f : 1.0f);
+        this.drawMatrix.preScale(1.0f, -1.0f);
+        this.drawMatrix.preTranslate(-0.5f, -0.5f);
+        Iterator<FrameListenerAndParams> it = this.frameListeners.iterator();
+        while (it.hasNext()) {
+            FrameListenerAndParams next = it.next();
+            if (z || !next.applyFpsReduction) {
+                it.remove();
+                int rotatedWidth = (int) (next.scale * videoFrame.getRotatedWidth());
+                int rotatedHeight = (int) (next.scale * videoFrame.getRotatedHeight());
+                if (rotatedWidth == 0 || rotatedHeight == 0) {
+                    next.listener.onFrame(null);
+                } else {
+                    this.bitmapTextureFramebuffer.setSize(rotatedWidth, rotatedHeight);
+                    GLES20.glBindFramebuffer(36160, this.bitmapTextureFramebuffer.getFrameBufferId());
+                    GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.bitmapTextureFramebuffer.getTextureId(), 0);
+                    GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+                    GLES20.glClear(16384);
+                    this.frameDrawer.drawFrame(videoFrame, next.drawer, this.drawMatrix, 0, 0, rotatedWidth, rotatedHeight, false, false);
+                    ByteBuffer allocateDirect = ByteBuffer.allocateDirect(rotatedWidth * rotatedHeight * 4);
+                    GLES20.glViewport(0, 0, rotatedWidth, rotatedHeight);
+                    GLES20.glReadPixels(0, 0, rotatedWidth, rotatedHeight, 6408, 5121, allocateDirect);
+                    GLES20.glBindFramebuffer(36160, 0);
+                    GlUtil.checkNoGLES2Error("EglRenderer.notifyCallbacks");
+                    Bitmap createBitmap = Bitmap.createBitmap(rotatedWidth, rotatedHeight, Bitmap.Config.ARGB_8888);
+                    createBitmap.copyPixelsFromBuffer(allocateDirect);
+                    next.listener.onFrame(createBitmap);
                 }
             }
         }
     }
 
     private void logE(String str, Throwable th) {
-        Logging.e(TAG, this.name + str, th);
+        Logging.m7e(TAG, this.name + str, th);
     }
 
     private void logD(String str) {
-        Logging.d(TAG, this.name + str);
+        Logging.m9d(TAG, this.name + str);
     }
 
     private void logW(String str) {
-        Logging.w(TAG, this.name + str);
+        Logging.m5w(TAG, this.name + str);
     }
 }

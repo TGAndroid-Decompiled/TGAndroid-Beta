@@ -6,15 +6,15 @@ public class TLRPC$TL_statsAbsValueAndPrev extends TLObject {
     public double previous;
 
     public static TLRPC$TL_statsAbsValueAndPrev TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_statsAbsValueAndPrev tLRPC$TL_statsAbsValueAndPrev = new TLRPC$TL_statsAbsValueAndPrev();
-            tLRPC$TL_statsAbsValueAndPrev.readParams(abstractSerializedData, z);
-            return tLRPC$TL_statsAbsValueAndPrev;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_statsAbsValueAndPrev", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_statsAbsValueAndPrev", Integer.valueOf(i)));
         }
+        TLRPC$TL_statsAbsValueAndPrev tLRPC$TL_statsAbsValueAndPrev = new TLRPC$TL_statsAbsValueAndPrev();
+        tLRPC$TL_statsAbsValueAndPrev.readParams(abstractSerializedData, z);
+        return tLRPC$TL_statsAbsValueAndPrev;
     }
 
     @Override

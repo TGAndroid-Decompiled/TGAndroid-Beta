@@ -8,10 +8,9 @@ import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.view.Surface;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
 import org.webrtc.VideoSink;
 
-@TargetApi(R.styleable.MapAttrs_uiZoomGestures)
+@TargetApi(21)
 public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     private static final int DISPLAY_FLAGS = 3;
     private static final int VIRTUAL_DISPLAY_DPI = 400;
@@ -55,32 +54,31 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     @Override
     public synchronized void initialize(SurfaceTextureHelper surfaceTextureHelper, Context context, CapturerObserver capturerObserver) {
         checkNotDisposed();
-        if (capturerObserver != null) {
-            this.capturerObserver = capturerObserver;
-            if (surfaceTextureHelper != null) {
-                this.surfaceTextureHelper = surfaceTextureHelper;
-                this.mediaProjectionManager = (MediaProjectionManager) context.getSystemService("media_projection");
-            } else {
-                throw new RuntimeException("surfaceTextureHelper not set.");
-            }
-        } else {
+        if (capturerObserver == null) {
             throw new RuntimeException("capturerObserver not set.");
         }
+        this.capturerObserver = capturerObserver;
+        if (surfaceTextureHelper == null) {
+            throw new RuntimeException("surfaceTextureHelper not set.");
+        }
+        this.surfaceTextureHelper = surfaceTextureHelper;
+        this.mediaProjectionManager = (MediaProjectionManager) context.getSystemService("media_projection");
     }
 
     @Override
     public synchronized void startCapture(int i, int i2, int i3) {
-        if (this.mediaProjection == null && this.mediaProjectionManager != null) {
-            checkNotDisposed();
-            this.width = i;
-            this.height = i2;
-            MediaProjection mediaProjection = this.mediaProjectionManager.getMediaProjection(-1, this.mediaProjectionPermissionResultData);
-            this.mediaProjection = mediaProjection;
-            mediaProjection.registerCallback(this.mediaProjectionCallback, this.surfaceTextureHelper.getHandler());
-            createVirtualDisplay();
-            this.capturerObserver.onCapturerStarted(true);
-            this.surfaceTextureHelper.startListening(this);
+        if (this.mediaProjection != null || this.mediaProjectionManager == null) {
+            return;
         }
+        checkNotDisposed();
+        this.width = i;
+        this.height = i2;
+        MediaProjection mediaProjection = this.mediaProjectionManager.getMediaProjection(-1, this.mediaProjectionPermissionResultData);
+        this.mediaProjection = mediaProjection;
+        mediaProjection.registerCallback(this.mediaProjectionCallback, this.surfaceTextureHelper.getHandler());
+        createVirtualDisplay();
+        this.capturerObserver.onCapturerStarted(true);
+        this.surfaceTextureHelper.startListening(this);
     }
 
     @Override
@@ -120,14 +118,15 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         checkNotDisposed();
         this.width = i;
         this.height = i2;
-        if (this.virtualDisplay != null) {
-            ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new Runnable() {
-                @Override
-                public final void run() {
-                    ScreenCapturerAndroid.this.lambda$changeCaptureFormat$1();
-                }
-            });
+        if (this.virtualDisplay == null) {
+            return;
         }
+        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new Runnable() {
+            @Override
+            public final void run() {
+                ScreenCapturerAndroid.this.lambda$changeCaptureFormat$1();
+            }
+        });
     }
 
     public void lambda$changeCaptureFormat$1() {
@@ -140,7 +139,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         try {
             this.virtualDisplay = this.mediaProjection.createVirtualDisplay("WebRTC_ScreenCapture", this.width, this.height, VIRTUAL_DISPLAY_DPI, 3, new Surface(this.surfaceTextureHelper.getSurfaceTexture()), null, null);
         } catch (Throwable th) {
-            FileLog.e(th);
+            FileLog.m31e(th);
         }
     }
 

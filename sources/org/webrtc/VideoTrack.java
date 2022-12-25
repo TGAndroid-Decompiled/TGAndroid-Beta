@@ -3,7 +3,7 @@ package org.webrtc;
 import java.util.IdentityHashMap;
 
 public class VideoTrack extends MediaStreamTrack {
-    private final IdentityHashMap<VideoSink, Long> sinks = new IdentityHashMap<>();
+    private final IdentityHashMap<VideoSink, Long> sinks;
 
     private static native void nativeAddSink(long j, long j2);
 
@@ -15,16 +15,19 @@ public class VideoTrack extends MediaStreamTrack {
 
     public VideoTrack(long j) {
         super(j);
+        this.sinks = new IdentityHashMap<>();
     }
 
     public void addSink(VideoSink videoSink) {
         if (videoSink == null) {
             throw new IllegalArgumentException("The VideoSink is not allowed to be null");
-        } else if (!this.sinks.containsKey(videoSink)) {
-            long nativeWrapSink = nativeWrapSink(videoSink);
-            this.sinks.put(videoSink, Long.valueOf(nativeWrapSink));
-            nativeAddSink(getNativeMediaStreamTrack(), nativeWrapSink);
         }
+        if (this.sinks.containsKey(videoSink)) {
+            return;
+        }
+        long nativeWrapSink = nativeWrapSink(videoSink);
+        this.sinks.put(videoSink, Long.valueOf(nativeWrapSink));
+        nativeAddSink(getNativeMediaStreamTrack(), nativeWrapSink);
     }
 
     public void removeSink(VideoSink videoSink) {

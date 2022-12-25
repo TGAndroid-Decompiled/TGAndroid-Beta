@@ -8,20 +8,20 @@ public class TLRPC$TL_webAuthorization extends TLObject {
     public int date_created;
     public String domain;
     public long hash;
-    public String ip;
+    public String f984ip;
     public String platform;
     public String region;
 
     public static TLRPC$TL_webAuthorization TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_webAuthorization tLRPC$TL_webAuthorization = new TLRPC$TL_webAuthorization();
-            tLRPC$TL_webAuthorization.readParams(abstractSerializedData, z);
-            return tLRPC$TL_webAuthorization;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_webAuthorization", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_webAuthorization", Integer.valueOf(i)));
         }
+        TLRPC$TL_webAuthorization tLRPC$TL_webAuthorization = new TLRPC$TL_webAuthorization();
+        tLRPC$TL_webAuthorization.readParams(abstractSerializedData, z);
+        return tLRPC$TL_webAuthorization;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class TLRPC$TL_webAuthorization extends TLObject {
         this.platform = abstractSerializedData.readString(z);
         this.date_created = abstractSerializedData.readInt32(z);
         this.date_active = abstractSerializedData.readInt32(z);
-        this.ip = abstractSerializedData.readString(z);
+        this.f984ip = abstractSerializedData.readString(z);
         this.region = abstractSerializedData.readString(z);
     }
 
@@ -47,7 +47,7 @@ public class TLRPC$TL_webAuthorization extends TLObject {
         abstractSerializedData.writeString(this.platform);
         abstractSerializedData.writeInt32(this.date_created);
         abstractSerializedData.writeInt32(this.date_active);
-        abstractSerializedData.writeString(this.ip);
+        abstractSerializedData.writeString(this.f984ip);
         abstractSerializedData.writeString(this.region);
     }
 }

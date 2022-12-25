@@ -9,7 +9,7 @@ import org.aspectj.lang.reflect.SourceLocation;
 import org.aspectj.runtime.reflect.JoinPointImpl;
 
 public final class Factory {
-    private static Object[] NO_ARGS = new Object[0];
+    private static Object[] NO_ARGS;
     static Class class$java$lang$ClassNotFoundException;
     static Hashtable prims;
     int count = 0;
@@ -29,6 +29,7 @@ public final class Factory {
         prims.put("long", Long.TYPE);
         prims.put("float", Float.TYPE);
         prims.put("double", Double.TYPE);
+        NO_ARGS = new Object[0];
     }
 
     public static Class makeClass(String str, ClassLoader classLoader) {
@@ -46,12 +47,12 @@ public final class Factory {
             return Class.forName(str, false, classLoader);
         } catch (ClassNotFoundException unused) {
             Class cls2 = class$java$lang$ClassNotFoundException;
-            if (cls2 != null) {
-                return cls2;
+            if (cls2 == null) {
+                Class class$ = class$("java.lang.ClassNotFoundException");
+                class$java$lang$ClassNotFoundException = class$;
+                return class$;
             }
-            Class class$ = class$("java.lang.ClassNotFoundException");
-            class$java$lang$ClassNotFoundException = class$;
-            return class$;
+            return cls2;
         }
     }
 

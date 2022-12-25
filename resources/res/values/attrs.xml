@@ -10,6 +10,8 @@
         <enum name="holo_dark" value="0" />
         <enum name="holo_light" value="1" />
     </attr>
+    <attr name="backgroundColor" format="color">
+    </attr>
     <attr name="buttonSize" format="reference">
         <enum name="standard" value="0" />
         <enum name="wide" value="1" />
@@ -194,6 +196,8 @@
     <attr name="layout_keyline" format="integer">
     </attr>
     <attr name="liteMode" format="boolean">
+    </attr>
+    <attr name="mapId" format="string">
     </attr>
     <attr name="mapType">
         <enum name="none" value="0" />

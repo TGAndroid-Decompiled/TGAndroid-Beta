@@ -13,7 +13,7 @@ import javax.microedition.khronos.egl.EGLSurface;
 import org.webrtc.EglBase;
 import org.webrtc.EglBase10;
 
-class EglBase10Impl implements EglBase10 {
+public class EglBase10Impl implements EglBase10 {
     private static final int EGL_CONTEXT_CLIENT_VERSION = 12440;
     private static final String TAG = "EglBase10Impl";
     private final EGL10 egl;
@@ -78,7 +78,7 @@ class EglBase10Impl implements EglBase10 {
         this.eglDisplay = eglDisplay;
         this.eglConfig = getEglConfig(egl10, eglDisplay, iArr);
         int openGlesVersionFromConfig = EglBase.CC.getOpenGlesVersionFromConfig(iArr);
-        Logging.d(TAG, "Using OpenGL ES version " + openGlesVersionFromConfig);
+        Logging.m9d(TAG, "Using OpenGL ES version " + openGlesVersionFromConfig);
         this.eglContext = createEglContext(eGLContext, this.eglDisplay, this.eglConfig, openGlesVersionFromConfig);
     }
 
@@ -93,29 +93,29 @@ class EglBase10Impl implements EglBase10 {
     }
 
     private void createSurfaceInternal(Object obj, boolean z) {
-        if ((obj instanceof SurfaceHolder) || (obj instanceof SurfaceTexture)) {
-            checkIsNotReleased();
-            if (z) {
-                if (this.eglBackgroundSurface == EGL10.EGL_NO_SURFACE) {
-                    EGLSurface eglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
-                    this.eglBackgroundSurface = eglCreateWindowSurface;
-                    if (eglCreateWindowSurface == EGL10.EGL_NO_SURFACE) {
-                        throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(this.egl.eglGetError()));
-                    }
-                    return;
-                }
-                throw new RuntimeException("Already has an EGLSurface");
-            } else if (this.eglSurface == EGL10.EGL_NO_SURFACE) {
-                EGLSurface eglCreateWindowSurface2 = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
-                this.eglSurface = eglCreateWindowSurface2;
-                if (eglCreateWindowSurface2 == EGL10.EGL_NO_SURFACE) {
-                    throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(this.egl.eglGetError()));
-                }
-            } else {
+        if (!(obj instanceof SurfaceHolder) && !(obj instanceof SurfaceTexture)) {
+            throw new IllegalStateException("Input must be either a SurfaceHolder or SurfaceTexture");
+        }
+        checkIsNotReleased();
+        if (z) {
+            if (this.eglBackgroundSurface != EGL10.EGL_NO_SURFACE) {
                 throw new RuntimeException("Already has an EGLSurface");
             }
+            EGLSurface eglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
+            this.eglBackgroundSurface = eglCreateWindowSurface;
+            if (eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
+                return;
+            }
+            throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(this.egl.eglGetError()));
+        } else if (this.eglSurface != EGL10.EGL_NO_SURFACE) {
+            throw new RuntimeException("Already has an EGLSurface");
         } else {
-            throw new IllegalStateException("Input must be either a SurfaceHolder or SurfaceTexture");
+            EGLSurface eglCreateWindowSurface2 = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
+            this.eglSurface = eglCreateWindowSurface2;
+            if (eglCreateWindowSurface2 != EGL10.EGL_NO_SURFACE) {
+                return;
+            }
+            throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(this.egl.eglGetError()));
         }
     }
 
@@ -127,15 +127,15 @@ class EglBase10Impl implements EglBase10 {
     @Override
     public void createPbufferSurface(int i, int i2) {
         checkIsNotReleased();
-        if (this.eglSurface == EGL10.EGL_NO_SURFACE) {
-            EGLSurface eglCreatePbufferSurface = this.egl.eglCreatePbufferSurface(this.eglDisplay, this.eglConfig, new int[]{12375, i, 12374, i2, 12344});
-            this.eglSurface = eglCreatePbufferSurface;
-            if (eglCreatePbufferSurface == EGL10.EGL_NO_SURFACE) {
-                throw new RuntimeException("Failed to create pixel buffer surface with size " + i + "x" + i2 + ": 0x" + Integer.toHexString(this.egl.eglGetError()));
-            }
+        if (this.eglSurface != EGL10.EGL_NO_SURFACE) {
+            throw new RuntimeException("Already has an EGLSurface");
+        }
+        EGLSurface eglCreatePbufferSurface = this.egl.eglCreatePbufferSurface(this.eglDisplay, this.eglConfig, new int[]{12375, i, 12374, i2, 12344});
+        this.eglSurface = eglCreatePbufferSurface;
+        if (eglCreatePbufferSurface != EGL10.EGL_NO_SURFACE) {
             return;
         }
-        throw new RuntimeException("Already has an EGLSurface");
+        throw new RuntimeException("Failed to create pixel buffer surface with size " + i + "x" + i2 + ": 0x" + Integer.toHexString(this.egl.eglGetError()));
     }
 
     @Override
@@ -202,18 +202,17 @@ class EglBase10Impl implements EglBase10 {
     @Override
     public void makeCurrent() {
         checkIsNotReleased();
-        if (this.eglSurface != EGL10.EGL_NO_SURFACE) {
-            synchronized (EglBase.lock) {
-                EGL10 egl10 = this.egl;
-                EGLDisplay eGLDisplay = this.eglDisplay;
-                EGLSurface eGLSurface = this.eglSurface;
-                if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
-                    throw new RuntimeException("eglMakeCurrent failed: 0x" + Integer.toHexString(this.egl.eglGetError()));
-                }
-            }
-            return;
+        if (this.eglSurface == EGL10.EGL_NO_SURFACE) {
+            throw new RuntimeException("No EGLSurface - can't make current");
         }
-        throw new RuntimeException("No EGLSurface - can't make current");
+        synchronized (EglBase.lock) {
+            EGL10 egl10 = this.egl;
+            EGLDisplay eGLDisplay = this.eglDisplay;
+            EGLSurface eGLSurface = this.eglSurface;
+            if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
+                throw new RuntimeException("eglMakeCurrent failed: 0x" + Integer.toHexString(this.egl.eglGetError()));
+            }
+        }
     }
 
     @Override
@@ -232,13 +231,12 @@ class EglBase10Impl implements EglBase10 {
     public void swapBuffers(boolean z) {
         EGLSurface eGLSurface = z ? this.eglBackgroundSurface : this.eglSurface;
         checkIsNotReleased();
-        if (eGLSurface != EGL10.EGL_NO_SURFACE) {
-            synchronized (EglBase.lock) {
-                this.egl.eglSwapBuffers(this.eglDisplay, eGLSurface);
-            }
-            return;
+        if (eGLSurface == EGL10.EGL_NO_SURFACE) {
+            throw new RuntimeException("No EGLSurface - can't swap buffers");
         }
-        throw new RuntimeException("No EGLSurface - can't swap buffers");
+        synchronized (EglBase.lock) {
+            this.egl.eglSwapBuffers(this.eglDisplay, eGLSurface);
+        }
     }
 
     @Override
@@ -254,18 +252,17 @@ class EglBase10Impl implements EglBase10 {
     @Override
     public void makeBackgroundCurrent() {
         checkIsNotReleased();
-        if (this.eglBackgroundSurface != EGL10.EGL_NO_SURFACE) {
-            synchronized (EglBase.lock) {
-                EGL10 egl10 = this.egl;
-                EGLDisplay eGLDisplay = this.eglDisplay;
-                EGLSurface eGLSurface = this.eglBackgroundSurface;
-                if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
-                    throw new RuntimeException("eglMakeCurrent failed: 0x" + Integer.toHexString(this.egl.eglGetError()));
-                }
-            }
-            return;
+        if (this.eglBackgroundSurface == EGL10.EGL_NO_SURFACE) {
+            throw new RuntimeException("No EGLSurface - can't make current");
         }
-        throw new RuntimeException("No EGLSurface - can't make current");
+        synchronized (EglBase.lock) {
+            EGL10 egl10 = this.egl;
+            EGLDisplay eGLDisplay = this.eglDisplay;
+            EGLSurface eGLSurface = this.eglBackgroundSurface;
+            if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
+                throw new RuntimeException("eglMakeCurrent failed: 0x" + Integer.toHexString(this.egl.eglGetError()));
+            }
+        }
     }
 
     @Override
@@ -275,13 +272,13 @@ class EglBase10Impl implements EglBase10 {
 
     private EGLDisplay getEglDisplay() {
         EGLDisplay eglGetDisplay = this.egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
-        if (eglGetDisplay != EGL10.EGL_NO_DISPLAY) {
-            if (this.egl.eglInitialize(eglGetDisplay, new int[2])) {
-                return eglGetDisplay;
-            }
-            throw new RuntimeException("Unable to initialize EGL10: 0x" + Integer.toHexString(this.egl.eglGetError()));
+        if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+            throw new RuntimeException("Unable to get EGL10 display: 0x" + Integer.toHexString(this.egl.eglGetError()));
         }
-        throw new RuntimeException("Unable to get EGL10 display: 0x" + Integer.toHexString(this.egl.eglGetError()));
+        if (this.egl.eglInitialize(eglGetDisplay, new int[2])) {
+            return eglGetDisplay;
+        }
+        throw new RuntimeException("Unable to initialize EGL10: 0x" + Integer.toHexString(this.egl.eglGetError()));
     }
 
     private static EGLConfig getEglConfig(EGL10 egl10, EGLDisplay eGLDisplay, int[] iArr) {
@@ -289,33 +286,33 @@ class EglBase10Impl implements EglBase10 {
         int[] iArr2 = new int[1];
         if (!egl10.eglChooseConfig(eGLDisplay, iArr, eGLConfigArr, 1, iArr2)) {
             throw new RuntimeException("eglChooseConfig failed: 0x" + Integer.toHexString(egl10.eglGetError()));
-        } else if (iArr2[0] > 0) {
+        } else if (iArr2[0] <= 0) {
+            throw new RuntimeException("Unable to find any matching EGL config");
+        } else {
             EGLConfig eGLConfig = eGLConfigArr[0];
             if (eGLConfig != null) {
                 return eGLConfig;
             }
             throw new RuntimeException("eglChooseConfig returned null");
-        } else {
-            throw new RuntimeException("Unable to find any matching EGL config");
         }
     }
 
     private EGLContext createEglContext(EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i) {
         EGLContext eglCreateContext;
-        if (eGLContext == null || eGLContext != EGL10.EGL_NO_CONTEXT) {
-            int[] iArr = {EGL_CONTEXT_CLIENT_VERSION, i, 12344};
-            if (eGLContext == null) {
-                eGLContext = EGL10.EGL_NO_CONTEXT;
-            }
-            synchronized (EglBase.lock) {
-                eglCreateContext = this.egl.eglCreateContext(eGLDisplay, eGLConfig, eGLContext, iArr);
-            }
-            if (eglCreateContext != EGL10.EGL_NO_CONTEXT) {
-                return eglCreateContext;
-            }
-            throw new RuntimeException("Failed to create EGL context: 0x" + Integer.toHexString(this.egl.eglGetError()));
+        if (eGLContext != null && eGLContext == EGL10.EGL_NO_CONTEXT) {
+            throw new RuntimeException("Invalid sharedContext");
         }
-        throw new RuntimeException("Invalid sharedContext");
+        int[] iArr = {EGL_CONTEXT_CLIENT_VERSION, i, 12344};
+        if (eGLContext == null) {
+            eGLContext = EGL10.EGL_NO_CONTEXT;
+        }
+        synchronized (EglBase.lock) {
+            eglCreateContext = this.egl.eglCreateContext(eGLDisplay, eGLConfig, eGLContext, iArr);
+        }
+        if (eglCreateContext != EGL10.EGL_NO_CONTEXT) {
+            return eglCreateContext;
+        }
+        throw new RuntimeException("Failed to create EGL context: 0x" + Integer.toHexString(this.egl.eglGetError()));
     }
 
     private class FakeSurfaceHolder implements SurfaceHolder {

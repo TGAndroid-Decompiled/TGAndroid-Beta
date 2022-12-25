@@ -45,7 +45,7 @@ public class MP4Builder {
     private InterleaveChunkMdat mdat = null;
     private Mp4Movie currentMp4Movie = null;
     private FileOutputStream fos = null;
-    private FileChannel fc = null;
+    private FileChannel f837fc = null;
     private long dataOffset = 0;
     private long wroteSinceLastMdat = 0;
     private boolean writeNewMdat = true;
@@ -59,9 +59,9 @@ public class MP4Builder {
         this.currentMp4Movie = mp4Movie;
         FileOutputStream fileOutputStream = new FileOutputStream(mp4Movie.getCacheFile());
         this.fos = fileOutputStream;
-        this.fc = fileOutputStream.getChannel();
+        this.f837fc = fileOutputStream.getChannel();
         FileTypeBox createFileTypeBox = createFileTypeBox();
-        createFileTypeBox.getBox(this.fc);
+        createFileTypeBox.getBox(this.f837fc);
         long size = this.dataOffset + createFileTypeBox.getSize();
         this.dataOffset = size;
         this.wroteSinceLastMdat += size;
@@ -72,10 +72,10 @@ public class MP4Builder {
     }
 
     private void flushCurrentMdat() throws Exception {
-        long position = this.fc.position();
-        this.fc.position(this.mdat.getOffset());
-        this.mdat.getBox(this.fc);
-        this.fc.position(position);
+        long position = this.f837fc.position();
+        this.f837fc.position(this.mdat.getOffset());
+        this.mdat.getBox(this.f837fc);
+        this.f837fc.position(position);
         this.mdat.setDataOffset(0L);
         this.mdat.setContentSize(0L);
         this.fos.flush();
@@ -85,7 +85,7 @@ public class MP4Builder {
     public long writeSampleData(int i, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo, boolean z) throws Exception {
         if (this.writeNewMdat) {
             this.mdat.setContentSize(0L);
-            this.mdat.getBox(this.fc);
+            this.mdat.getBox(this.f837fc);
             this.mdat.setDataOffset(this.dataOffset);
             this.dataOffset += 16;
             this.wroteSinceLastMdat += 16;
@@ -110,20 +110,20 @@ public class MP4Builder {
             this.sizeBuffer.position(0);
             this.sizeBuffer.putInt(bufferInfo.size - 4);
             this.sizeBuffer.position(0);
-            this.fc.write(this.sizeBuffer);
+            this.f837fc.write(this.sizeBuffer);
             byteBuffer.position(bufferInfo.offset + 4);
         } else {
             byteBuffer.position(bufferInfo.offset);
         }
         byteBuffer.limit(bufferInfo.offset + bufferInfo.size);
-        this.fc.write(byteBuffer);
+        this.f837fc.write(byteBuffer);
         this.dataOffset += bufferInfo.size;
-        if (!z2) {
-            return 0L;
+        if (z2) {
+            this.fos.flush();
+            this.fos.getFD().sync();
+            return this.f837fc.position();
         }
-        this.fos.flush();
-        this.fos.getFD().sync();
-        return this.fc.position();
+        return 0L;
     }
 
     public long getLastFrameTimestamp(int i) {
@@ -149,10 +149,10 @@ public class MP4Builder {
             }
             this.track2SampleSizes.put(next, jArr);
         }
-        createMovieBox(this.currentMp4Movie).getBox(this.fc);
+        createMovieBox(this.currentMp4Movie).getBox(this.f837fc);
         this.fos.flush();
         this.fos.getFD().sync();
-        this.fc.close();
+        this.f837fc.close();
         this.fos.close();
     }
 
@@ -342,21 +342,22 @@ public class MP4Builder {
 
     protected void createCtts(Track track, SampleTableBox sampleTableBox) {
         int[] sampleCompositions = track.getSampleCompositions();
-        if (sampleCompositions != null) {
-            CompositionTimeToSample.Entry entry = null;
-            ArrayList arrayList = new ArrayList();
-            for (int i : sampleCompositions) {
-                if (entry == null || entry.getOffset() != i) {
-                    entry = new CompositionTimeToSample.Entry(1, i);
-                    arrayList.add(entry);
-                } else {
-                    entry.setCount(entry.getCount() + 1);
-                }
-            }
-            CompositionTimeToSample compositionTimeToSample = new CompositionTimeToSample();
-            compositionTimeToSample.setEntries(arrayList);
-            sampleTableBox.addBox(compositionTimeToSample);
+        if (sampleCompositions == null) {
+            return;
         }
+        CompositionTimeToSample.Entry entry = null;
+        ArrayList arrayList = new ArrayList();
+        for (int i : sampleCompositions) {
+            if (entry != null && entry.getOffset() == i) {
+                entry.setCount(entry.getCount() + 1);
+            } else {
+                entry = new CompositionTimeToSample.Entry(1, i);
+                arrayList.add(entry);
+            }
+        }
+        CompositionTimeToSample compositionTimeToSample = new CompositionTimeToSample();
+        compositionTimeToSample.setEntries(arrayList);
+        sampleTableBox.addBox(compositionTimeToSample);
     }
 
     protected void createStts(Track track, SampleTableBox sampleTableBox) {
@@ -364,11 +365,11 @@ public class MP4Builder {
         ArrayList arrayList = new ArrayList();
         TimeToSampleBox.Entry entry = null;
         for (long j : track.getSampleDurations()) {
-            if (entry == null || entry.getDelta() != j) {
+            if (entry != null && entry.getDelta() == j) {
+                entry.setCount(entry.getCount() + 1);
+            } else {
                 entry = new TimeToSampleBox.Entry(1L, j);
                 arrayList.add(entry);
-            } else {
-                entry.setCount(entry.getCount() + 1);
             }
         }
         TimeToSampleBox timeToSampleBox = new TimeToSampleBox();
@@ -378,11 +379,12 @@ public class MP4Builder {
 
     protected void createStss(Track track, SampleTableBox sampleTableBox) {
         long[] syncSamples = track.getSyncSamples();
-        if (syncSamples != null && syncSamples.length > 0) {
-            SyncSampleBox syncSampleBox = new SyncSampleBox();
-            syncSampleBox.setSampleNumber(syncSamples);
-            sampleTableBox.addBox(syncSampleBox);
+        if (syncSamples == null || syncSamples.length <= 0) {
+            return;
         }
+        SyncSampleBox syncSampleBox = new SyncSampleBox();
+        syncSampleBox.setSampleNumber(syncSamples);
+        sampleTableBox.addBox(syncSampleBox);
     }
 
     protected void createStsc(Track track, SampleTableBox sampleTableBox) {
@@ -422,7 +424,7 @@ public class MP4Builder {
         while (it.hasNext()) {
             Sample next = it.next();
             long offset = next.getOffset();
-            if (!(j == -1 || j == offset)) {
+            if (j != -1 && j != offset) {
                 j = -1;
             }
             if (j == -1) {

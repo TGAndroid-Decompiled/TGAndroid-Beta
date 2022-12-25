@@ -26,15 +26,15 @@ public abstract class TLRPC$ThemeSettings extends TLObject {
                     this.accent_color = abstractSerializedData2.readInt32(z2);
                     if ((this.flags & 1) != 0) {
                         int readInt322 = abstractSerializedData2.readInt32(z2);
-                        if (readInt322 == 481674261) {
-                            int readInt323 = abstractSerializedData2.readInt32(z2);
-                            for (int i2 = 0; i2 < readInt323; i2++) {
-                                this.message_colors.add(Integer.valueOf(abstractSerializedData2.readInt32(z2)));
+                        if (readInt322 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                             }
-                        } else if (z2) {
-                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                        } else {
                             return;
+                        }
+                        int readInt323 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt323; i2++) {
+                            this.message_colors.add(Integer.valueOf(abstractSerializedData2.readInt32(z2)));
                         }
                     }
                     if ((this.flags & 2) != 0) {
@@ -76,10 +76,10 @@ public abstract class TLRPC$ThemeSettings extends TLObject {
                     this.flags = abstractSerializedData2.readInt32(z2);
                     this.base_theme = TLRPC$BaseTheme.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                     this.accent_color = abstractSerializedData2.readInt32(z2);
-                    if (!((this.flags & 1) == 0 || (readInt322 = abstractSerializedData2.readInt32(z2)) == 0)) {
+                    if ((this.flags & 1) != 0 && (readInt322 = abstractSerializedData2.readInt32(z2)) != 0) {
                         this.message_colors.add(Integer.valueOf(readInt322));
                     }
-                    if (!((this.flags & 1) == 0 || (readInt32 = abstractSerializedData2.readInt32(z2)) == 0)) {
+                    if ((this.flags & 1) != 0 && (readInt32 = abstractSerializedData2.readInt32(z2)) != 0) {
                         this.message_colors.add(0, Integer.valueOf(readInt32));
                     }
                     if ((this.flags & 2) != 0) {
@@ -93,15 +93,11 @@ public abstract class TLRPC$ThemeSettings extends TLObject {
                     abstractSerializedData2.writeInt32(this.flags);
                     this.base_theme.serializeToStream(abstractSerializedData2);
                     abstractSerializedData2.writeInt32(this.accent_color);
-                    int i2 = 0;
                     if ((this.flags & 1) != 0) {
                         abstractSerializedData2.writeInt32(this.message_colors.size() > 1 ? this.message_colors.get(1).intValue() : 0);
                     }
                     if ((this.flags & 1) != 0) {
-                        if (this.message_colors.size() > 0) {
-                            i2 = this.message_colors.get(0).intValue();
-                        }
-                        abstractSerializedData2.writeInt32(i2);
+                        abstractSerializedData2.writeInt32(this.message_colors.size() > 0 ? this.message_colors.get(0).intValue() : 0);
                     }
                     if ((this.flags & 2) != 0) {
                         this.wallpaper.serializeToStream(abstractSerializedData2);
@@ -109,12 +105,12 @@ public abstract class TLRPC$ThemeSettings extends TLObject {
                 }
             };
         }
-        if (tLRPC$ThemeSettings != null || !z) {
-            if (tLRPC$ThemeSettings != null) {
-                tLRPC$ThemeSettings.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$ThemeSettings;
+        if (tLRPC$ThemeSettings == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in ThemeSettings", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in ThemeSettings", Integer.valueOf(i)));
+        if (tLRPC$ThemeSettings != null) {
+            tLRPC$ThemeSettings.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$ThemeSettings;
     }
 }

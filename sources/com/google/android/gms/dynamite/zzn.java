@@ -1,11 +1,13 @@
 package com.google.android.gms.dynamite;
 
-import android.os.IInterface;
-import android.os.RemoteException;
-import com.google.android.gms.dynamic.IObjectWrapper;
+import android.database.Cursor;
 
-public interface zzn extends IInterface {
-    IObjectWrapper zza(IObjectWrapper iObjectWrapper, String str, int i, IObjectWrapper iObjectWrapper2) throws RemoteException;
+final class zzn {
+    public Cursor zza;
 
-    IObjectWrapper zzb(IObjectWrapper iObjectWrapper, String str, int i, IObjectWrapper iObjectWrapper2) throws RemoteException;
+    private zzn() {
+    }
+
+    public zzn(zzm zzmVar) {
+    }
 }

@@ -7,15 +7,11 @@ public class TLRPC$TL_documentAttributeVideo extends TLRPC$DocumentAttribute {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.round_message = (readInt32 & 1) != 0;
-        if ((readInt32 & 2) != 0) {
-            z2 = true;
-        }
-        this.supports_streaming = z2;
+        this.supports_streaming = (readInt32 & 2) != 0;
         this.duration = abstractSerializedData.readInt32(z);
-        this.w = abstractSerializedData.readInt32(z);
-        this.h = abstractSerializedData.readInt32(z);
+        this.f859w = abstractSerializedData.readInt32(z);
+        this.f858h = abstractSerializedData.readInt32(z);
     }
 
     @Override
@@ -27,7 +23,7 @@ public class TLRPC$TL_documentAttributeVideo extends TLRPC$DocumentAttribute {
         this.flags = i2;
         abstractSerializedData.writeInt32(i2);
         abstractSerializedData.writeInt32(this.duration);
-        abstractSerializedData.writeInt32(this.w);
-        abstractSerializedData.writeInt32(this.h);
+        abstractSerializedData.writeInt32(this.f859w);
+        abstractSerializedData.writeInt32(this.f858h);
     }
 }

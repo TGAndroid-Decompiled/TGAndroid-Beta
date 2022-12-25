@@ -10,11 +10,7 @@ public class TLRPC$TL_updateGroupCallConnection extends TLRPC$Update {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = true;
-        if ((readInt32 & 1) == 0) {
-            z2 = false;
-        }
-        this.presentation = z2;
+        this.presentation = (readInt32 & 1) != 0;
         this.params = TLRPC$TL_dataJSON.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
     }
 

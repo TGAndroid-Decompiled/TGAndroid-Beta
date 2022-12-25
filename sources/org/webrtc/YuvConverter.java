@@ -77,7 +77,6 @@ public class YuvConverter {
     public VideoFrame.I420Buffer convert(VideoFrame.TextureBuffer textureBuffer) {
         ByteBuffer byteBuffer;
         int i;
-        Exception e;
         this.threadChecker.checkIsOnValidThread();
         VideoFrame.TextureBuffer textureBuffer2 = (VideoFrame.TextureBuffer) this.videoFrameDrawer.prepareBufferForViewportSize(textureBuffer, textureBuffer.getWidth(), textureBuffer.getHeight());
         int width = textureBuffer2.getWidth();
@@ -97,24 +96,19 @@ public class YuvConverter {
             GlUtil.checkNoGLES2Error("glBindFramebuffer");
             this.shaderCallbacks.setPlaneY();
             byteBuffer = nativeAllocateByteBuffer;
-        } catch (Exception e2) {
-            e = e2;
-            byteBuffer = nativeAllocateByteBuffer;
-        }
-        try {
-            VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, 0, i5, height, false);
-            this.shaderCallbacks.setPlaneU();
-            VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, height, i5 / 2, i3, false);
-            this.shaderCallbacks.setPlaneV();
-            VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, i5 / 2, height, i5 / 2, i3, false);
-            GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
-            GlUtil.checkNoGLES2Error("YuvConverter.convert");
-            i = 0;
             try {
-                GLES20.glBindFramebuffer(36160, 0);
-            } catch (Exception e3) {
-                e = e3;
-                FileLog.e(e);
+                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, 0, i5, height, false);
+                this.shaderCallbacks.setPlaneU();
+                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, height, i5 / 2, i3, false);
+                this.shaderCallbacks.setPlaneV();
+                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, i5 / 2, height, i5 / 2, i3, false);
+                GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
+                GlUtil.checkNoGLES2Error("YuvConverter.convert");
+                i = 0;
+            } catch (Exception e) {
+                e = e;
+                i = 0;
+                FileLog.m31e(e);
                 int i6 = (i2 * height) + i;
                 int i7 = i2 / 2;
                 int i8 = i6 + i7;
@@ -137,10 +131,15 @@ public class YuvConverter {
                     }
                 });
             }
-        } catch (Exception e4) {
-            e = e4;
-            i = 0;
-            FileLog.e(e);
+        } catch (Exception e2) {
+            e = e2;
+            byteBuffer = nativeAllocateByteBuffer;
+        }
+        try {
+            GLES20.glBindFramebuffer(36160, 0);
+        } catch (Exception e3) {
+            e = e3;
+            FileLog.m31e(e);
             int i62 = (i2 * height) + i;
             int i72 = i2 / 2;
             int i82 = i62 + i72;

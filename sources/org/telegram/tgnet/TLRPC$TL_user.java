@@ -3,13 +3,13 @@ package org.telegram.tgnet;
 import org.telegram.messenger.CharacterCompat;
 
 public class TLRPC$TL_user extends TLRPC$User {
-    public static int constructor = 1073147056;
+    public static int constructor = -1885878744;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        this.self = (readInt32 & 1024) != 0;
+        this.self = (readInt32 & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0;
         this.contact = (readInt32 & 2048) != 0;
         this.mutual_contact = (readInt32 & 4096) != 0;
         this.deleted = (readInt32 & 8192) != 0;
@@ -25,8 +25,10 @@ public class TLRPC$TL_user extends TLRPC$User {
         this.apply_min_photo = (33554432 & readInt32) != 0;
         this.fake = (67108864 & readInt32) != 0;
         this.bot_attach_menu = (134217728 & readInt32) != 0;
-        this.premium = (readInt32 & 268435456) != 0;
-        this.id = abstractSerializedData.readInt64(z);
+        this.premium = (268435456 & readInt32) != 0;
+        this.attach_menu_enabled = (readInt32 & 536870912) != 0;
+        this.flags2 = abstractSerializedData.readInt32(z);
+        this.f986id = abstractSerializedData.readInt64(z);
         if ((this.flags & 1) != 0) {
             this.access_hash = abstractSerializedData.readInt64(z);
         }
@@ -53,20 +55,19 @@ public class TLRPC$TL_user extends TLRPC$User {
         }
         if ((this.flags & 262144) != 0) {
             int readInt322 = abstractSerializedData.readInt32(z);
-            if (readInt322 == 481674261) {
-                int readInt323 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt323; i++) {
-                    TLRPC$TL_restrictionReason TLdeserialize = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize != null) {
-                        this.restriction_reason.add(TLdeserialize);
-                    } else {
-                        return;
-                    }
+            if (readInt322 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-            } else {
                 return;
+            }
+            int readInt323 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt323; i++) {
+                TLRPC$TL_restrictionReason TLdeserialize = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize == null) {
+                    return;
+                }
+                this.restriction_reason.add(TLdeserialize);
             }
         }
         if ((this.flags & 524288) != 0) {
@@ -75,12 +76,35 @@ public class TLRPC$TL_user extends TLRPC$User {
         if ((this.flags & 4194304) != 0) {
             this.lang_code = abstractSerializedData.readString(z);
         }
+        if ((this.flags & 1073741824) != 0) {
+            this.emoji_status = TLRPC$EmojiStatus.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
+        if ((this.flags2 & 1) != 0) {
+            int readInt324 = abstractSerializedData.readInt32(z);
+            if (readInt324 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                }
+                return;
+            }
+            int readInt325 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt325; i2++) {
+                TLRPC$TL_username TLdeserialize2 = TLRPC$TL_username.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize2 == null) {
+                    return;
+                }
+                this.usernames.add(TLdeserialize2);
+            }
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+        if (this.username == null) {
+            this.flags &= -9;
+        }
         abstractSerializedData.writeInt32(constructor);
-        int i = this.self ? this.flags | 1024 : this.flags & (-1025);
+        int i = this.self ? this.flags | ConnectionsManager.RequestFlagDoNotWaitFloodWait : this.flags & (-1025);
         this.flags = i;
         int i2 = this.contact ? i | 2048 : i & (-2049);
         this.flags = i2;
@@ -114,8 +138,11 @@ public class TLRPC$TL_user extends TLRPC$User {
         this.flags = i16;
         int i17 = this.premium ? i16 | 268435456 : i16 & (-268435457);
         this.flags = i17;
-        abstractSerializedData.writeInt32(i17);
-        abstractSerializedData.writeInt64(this.id);
+        int i18 = this.attach_menu_enabled ? i17 | 536870912 : i17 & (-536870913);
+        this.flags = i18;
+        abstractSerializedData.writeInt32(i18);
+        abstractSerializedData.writeInt32(this.flags2);
+        abstractSerializedData.writeInt64(this.f986id);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt64(this.access_hash);
         }
@@ -144,8 +171,8 @@ public class TLRPC$TL_user extends TLRPC$User {
             abstractSerializedData.writeInt32(481674261);
             int size = this.restriction_reason.size();
             abstractSerializedData.writeInt32(size);
-            for (int i18 = 0; i18 < size; i18++) {
-                this.restriction_reason.get(i18).serializeToStream(abstractSerializedData);
+            for (int i19 = 0; i19 < size; i19++) {
+                this.restriction_reason.get(i19).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 524288) != 0) {
@@ -153,6 +180,17 @@ public class TLRPC$TL_user extends TLRPC$User {
         }
         if ((this.flags & 4194304) != 0) {
             abstractSerializedData.writeString(this.lang_code);
+        }
+        if ((this.flags & 1073741824) != 0) {
+            this.emoji_status.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags2 & 1) != 0) {
+            abstractSerializedData.writeInt32(481674261);
+            int size2 = this.usernames.size();
+            abstractSerializedData.writeInt32(size2);
+            for (int i20 = 0; i20 < size2; i20++) {
+                this.usernames.get(i20).serializeToStream(abstractSerializedData);
+            }
         }
     }
 }

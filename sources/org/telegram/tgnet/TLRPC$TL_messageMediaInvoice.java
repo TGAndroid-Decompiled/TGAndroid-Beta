@@ -1,23 +1,19 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_messageMediaInvoice extends TLRPC$MessageMedia {
-    public static int constructor = -2074799289;
-    public TLRPC$WebDocument photo;
+    public static int constructor = -156940077;
+    public TLRPC$WebDocument webPhoto;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.shipping_address_requested = (readInt32 & 2) != 0;
-        if ((readInt32 & 8) != 0) {
-            z2 = true;
-        }
-        this.test = z2;
+        this.test = (readInt32 & 8) != 0;
         this.title = abstractSerializedData.readString(z);
         this.description = abstractSerializedData.readString(z);
         if ((this.flags & 1) != 0) {
-            this.photo = TLRPC$WebDocument.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.webPhoto = TLRPC$WebDocument.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 4) != 0) {
             this.receipt_msg_id = abstractSerializedData.readInt32(z);
@@ -25,6 +21,9 @@ public class TLRPC$TL_messageMediaInvoice extends TLRPC$MessageMedia {
         this.currency = abstractSerializedData.readString(z);
         this.total_amount = abstractSerializedData.readInt64(z);
         this.start_param = abstractSerializedData.readString(z);
+        if ((this.flags & 16) != 0) {
+            this.extended_media = TLRPC$MessageExtendedMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
     }
 
     @Override
@@ -38,7 +37,7 @@ public class TLRPC$TL_messageMediaInvoice extends TLRPC$MessageMedia {
         abstractSerializedData.writeString(this.title);
         abstractSerializedData.writeString(this.description);
         if ((this.flags & 1) != 0) {
-            this.photo.serializeToStream(abstractSerializedData);
+            this.webPhoto.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 4) != 0) {
             abstractSerializedData.writeInt32(this.receipt_msg_id);
@@ -46,5 +45,8 @@ public class TLRPC$TL_messageMediaInvoice extends TLRPC$MessageMedia {
         abstractSerializedData.writeString(this.currency);
         abstractSerializedData.writeInt64(this.total_amount);
         abstractSerializedData.writeString(this.start_param);
+        if ((this.flags & 16) != 0) {
+            this.extended_media.serializeToStream(abstractSerializedData);
+        }
     }
 }

@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.webrtc.DataChannel;
 import org.webrtc.MediaStreamTrack;
@@ -277,7 +279,7 @@ public class PeerConnection {
 
         @Deprecated
         public IceServer(String str) {
-            this(str, "", "");
+            this(str, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
         }
 
         @Deprecated
@@ -287,7 +289,7 @@ public class PeerConnection {
 
         @Deprecated
         public IceServer(String str, String str2, String str3, TlsCertPolicy tlsCertPolicy) {
-            this(str, str2, str3, tlsCertPolicy, "");
+            this(str, str2, str3, tlsCertPolicy, BuildConfig.APP_CENTER_HASH);
         }
 
         @Deprecated
@@ -306,20 +308,21 @@ public class PeerConnection {
             }
             if (str2 == null) {
                 throw new IllegalArgumentException("username == null");
-            } else if (str3 == null) {
+            }
+            if (str3 == null) {
                 throw new IllegalArgumentException("password == null");
-            } else if (str4 != null) {
-                this.uri = str;
-                this.urls = list;
-                this.username = str2;
-                this.password = str3;
-                this.tlsCertPolicy = tlsCertPolicy;
-                this.hostname = str4;
-                this.tlsAlpnProtocols = list2;
-                this.tlsEllipticCurves = list3;
-            } else {
+            }
+            if (str4 == null) {
                 throw new IllegalArgumentException("hostname == null");
             }
+            this.uri = str;
+            this.urls = list;
+            this.username = str2;
+            this.password = str3;
+            this.tlsCertPolicy = tlsCertPolicy;
+            this.hostname = str4;
+            this.tlsAlpnProtocols = list2;
+            this.tlsEllipticCurves = list3;
         }
 
         public String toString() {
@@ -333,11 +336,11 @@ public class PeerConnection {
             if (obj == this) {
                 return true;
             }
-            if (!(obj instanceof IceServer)) {
-                return false;
+            if (obj instanceof IceServer) {
+                IceServer iceServer = (IceServer) obj;
+                return this.uri.equals(iceServer.uri) && this.urls.equals(iceServer.urls) && this.username.equals(iceServer.username) && this.password.equals(iceServer.password) && this.tlsCertPolicy.equals(iceServer.tlsCertPolicy) && this.hostname.equals(iceServer.hostname) && this.tlsAlpnProtocols.equals(iceServer.tlsAlpnProtocols) && this.tlsEllipticCurves.equals(iceServer.tlsEllipticCurves);
             }
-            IceServer iceServer = (IceServer) obj;
-            return this.uri.equals(iceServer.uri) && this.urls.equals(iceServer.urls) && this.username.equals(iceServer.username) && this.password.equals(iceServer.password) && this.tlsCertPolicy.equals(iceServer.tlsCertPolicy) && this.hostname.equals(iceServer.hostname) && this.tlsAlpnProtocols.equals(iceServer.tlsAlpnProtocols) && this.tlsEllipticCurves.equals(iceServer.tlsEllipticCurves);
+            return false;
         }
 
         public int hashCode() {
@@ -362,10 +365,10 @@ public class PeerConnection {
             private String username;
 
             private Builder(List<String> list) {
-                this.username = "";
-                this.password = "";
+                this.username = BuildConfig.APP_CENTER_HASH;
+                this.password = BuildConfig.APP_CENTER_HASH;
                 this.tlsCertPolicy = TlsCertPolicy.TLS_CERT_POLICY_SECURE;
-                this.hostname = "";
+                this.hostname = BuildConfig.APP_CENTER_HASH;
                 if (list == null || list.isEmpty()) {
                     throw new IllegalArgumentException("urls == null || urls.isEmpty(): " + list);
                 }
@@ -795,11 +798,11 @@ public class PeerConnection {
     }
 
     public boolean addStream(MediaStream mediaStream) {
-        if (!nativeAddLocalStream(mediaStream.getNativeMediaStream())) {
-            return false;
+        if (nativeAddLocalStream(mediaStream.getNativeMediaStream())) {
+            this.localStreams.add(mediaStream);
+            return true;
         }
-        this.localStreams.add(mediaStream);
-        return true;
+        return false;
     }
 
     public void removeStream(MediaStream mediaStream) {
@@ -851,18 +854,16 @@ public class PeerConnection {
             throw new NullPointerException("No MediaStreamTrack specified in addTrack.");
         }
         RtpSender nativeAddTrack = nativeAddTrack(mediaStreamTrack.getNativeMediaStreamTrack(), list);
-        if (nativeAddTrack != null) {
-            this.senders.add(nativeAddTrack);
-            return nativeAddTrack;
+        if (nativeAddTrack == null) {
+            throw new IllegalStateException("C++ addTrack failed.");
         }
-        throw new IllegalStateException("C++ addTrack failed.");
+        this.senders.add(nativeAddTrack);
+        return nativeAddTrack;
     }
 
     public boolean removeTrack(RtpSender rtpSender) {
-        if (rtpSender != null) {
-            return nativeRemoveTrack(rtpSender.getNativeRtpSender());
-        }
-        throw new NullPointerException("No RtpSender specified for removeTrack.");
+        Objects.requireNonNull(rtpSender, "No RtpSender specified for removeTrack.");
+        return nativeRemoveTrack(rtpSender.getNativeRtpSender());
     }
 
     public RtpTransceiver addTransceiver(MediaStreamTrack mediaStreamTrack) {
@@ -870,18 +871,16 @@ public class PeerConnection {
     }
 
     public RtpTransceiver addTransceiver(MediaStreamTrack mediaStreamTrack, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit) {
-        if (mediaStreamTrack != null) {
-            if (rtpTransceiverInit == null) {
-                rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
-            }
-            RtpTransceiver nativeAddTransceiverWithTrack = nativeAddTransceiverWithTrack(mediaStreamTrack.getNativeMediaStreamTrack(), rtpTransceiverInit);
-            if (nativeAddTransceiverWithTrack != null) {
-                this.transceivers.add(nativeAddTransceiverWithTrack);
-                return nativeAddTransceiverWithTrack;
-            }
+        Objects.requireNonNull(mediaStreamTrack, "No MediaStreamTrack specified for addTransceiver.");
+        if (rtpTransceiverInit == null) {
+            rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
+        }
+        RtpTransceiver nativeAddTransceiverWithTrack = nativeAddTransceiverWithTrack(mediaStreamTrack.getNativeMediaStreamTrack(), rtpTransceiverInit);
+        if (nativeAddTransceiverWithTrack == null) {
             throw new IllegalStateException("C++ addTransceiver failed.");
         }
-        throw new NullPointerException("No MediaStreamTrack specified for addTransceiver.");
+        this.transceivers.add(nativeAddTransceiverWithTrack);
+        return nativeAddTransceiverWithTrack;
     }
 
     public RtpTransceiver addTransceiver(MediaStreamTrack.MediaType mediaType) {
@@ -889,18 +888,16 @@ public class PeerConnection {
     }
 
     public RtpTransceiver addTransceiver(MediaStreamTrack.MediaType mediaType, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit) {
-        if (mediaType != null) {
-            if (rtpTransceiverInit == null) {
-                rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
-            }
-            RtpTransceiver nativeAddTransceiverOfType = nativeAddTransceiverOfType(mediaType, rtpTransceiverInit);
-            if (nativeAddTransceiverOfType != null) {
-                this.transceivers.add(nativeAddTransceiverOfType);
-                return nativeAddTransceiverOfType;
-            }
+        Objects.requireNonNull(mediaType, "No MediaType specified for addTransceiver.");
+        if (rtpTransceiverInit == null) {
+            rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
+        }
+        RtpTransceiver nativeAddTransceiverOfType = nativeAddTransceiverOfType(mediaType, rtpTransceiverInit);
+        if (nativeAddTransceiverOfType == null) {
             throw new IllegalStateException("C++ addTransceiver failed.");
         }
-        throw new NullPointerException("No MediaType specified for addTransceiver.");
+        this.transceivers.add(nativeAddTransceiverOfType);
+        return nativeAddTransceiverOfType;
     }
 
     @Deprecated

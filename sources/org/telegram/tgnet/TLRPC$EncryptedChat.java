@@ -14,7 +14,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
     public byte[] g_a;
     public byte[] g_a_or_b;
     public boolean history_deleted;
-    public int id;
+    public int f860id;
     public int in_seq_no;
     public int key_create_date;
     public long key_fingerprint;
@@ -39,13 +39,13 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f860id = abstractSerializedData2.readInt32(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f860id);
                     }
                 };
                 break;
@@ -55,7 +55,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f860id = abstractSerializedData2.readInt32(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         this.admin_id = abstractSerializedData2.readInt32(z2);
@@ -66,7 +66,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f860id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32((int) this.admin_id);
@@ -81,7 +81,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f860id = abstractSerializedData2.readInt32(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         this.admin_id = abstractSerializedData2.readInt32(z2);
@@ -93,7 +93,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f860id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32((int) this.admin_id);
@@ -109,7 +109,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f860id = abstractSerializedData2.readInt32(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         this.admin_id = abstractSerializedData2.readInt32(z2);
@@ -121,7 +121,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f860id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32((int) this.admin_id);
@@ -137,13 +137,13 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f860id = abstractSerializedData2.readInt32(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f860id);
                     }
                 };
                 break;
@@ -156,7 +156,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f860id = abstractSerializedData2.readInt32(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         this.admin_id = abstractSerializedData2.readInt32(z2);
@@ -166,7 +166,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f860id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32((int) this.admin_id);
@@ -191,7 +191,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                         if ((readInt32 & 1) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f860id = abstractSerializedData2.readInt32(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         this.admin_id = abstractSerializedData2.readInt32(z2);
@@ -206,7 +206,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f860id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32((int) this.admin_id);
@@ -221,7 +221,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f860id = abstractSerializedData2.readInt32(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         this.admin_id = abstractSerializedData2.readInt32(z2);
@@ -234,7 +234,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f860id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt32((int) this.admin_id);
@@ -252,12 +252,12 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                 tLRPC$EncryptedChat = null;
                 break;
         }
-        if (tLRPC$EncryptedChat != null || !z) {
-            if (tLRPC$EncryptedChat != null) {
-                tLRPC$EncryptedChat.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$EncryptedChat;
+        if (tLRPC$EncryptedChat == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in EncryptedChat", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in EncryptedChat", Integer.valueOf(i)));
+        if (tLRPC$EncryptedChat != null) {
+            tLRPC$EncryptedChat.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$EncryptedChat;
     }
 }

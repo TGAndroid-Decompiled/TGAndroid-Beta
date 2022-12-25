@@ -9,15 +9,15 @@ public class TLRPC$TL_upload_webFile extends TLObject {
     public int size;
 
     public static TLRPC$TL_upload_webFile TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_upload_webFile tLRPC$TL_upload_webFile = new TLRPC$TL_upload_webFile();
-            tLRPC$TL_upload_webFile.readParams(abstractSerializedData, z);
-            return tLRPC$TL_upload_webFile;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_upload_webFile", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_upload_webFile", Integer.valueOf(i)));
         }
+        TLRPC$TL_upload_webFile tLRPC$TL_upload_webFile = new TLRPC$TL_upload_webFile();
+        tLRPC$TL_upload_webFile.readParams(abstractSerializedData, z);
+        return tLRPC$TL_upload_webFile;
     }
 
     @Override
@@ -42,9 +42,10 @@ public class TLRPC$TL_upload_webFile extends TLObject {
     @Override
     public void freeResources() {
         NativeByteBuffer nativeByteBuffer;
-        if (!this.disableFree && (nativeByteBuffer = this.bytes) != null) {
-            nativeByteBuffer.reuse();
-            this.bytes = null;
+        if (this.disableFree || (nativeByteBuffer = this.bytes) == null) {
+            return;
         }
+        nativeByteBuffer.reuse();
+        this.bytes = null;
     }
 }

@@ -16,17 +16,18 @@ public class SegmentTree {
 
     public SegmentTree(int[] iArr) {
         this.array = iArr;
-        if (iArr.length >= 30) {
-            this.heap = new Node[(int) (Math.pow(2.0d, Math.floor((Math.log(iArr.length) / Math.log(2.0d)) + 1.0d)) * 2.0d)];
-            build(1, 0, iArr.length);
+        if (iArr.length < 30) {
+            return;
         }
+        this.heap = new Node[(int) (Math.pow(2.0d, Math.floor((Math.log(iArr.length) / Math.log(2.0d)) + 1.0d)) * 2.0d)];
+        build(1, 0, iArr.length);
     }
 
     private void build(int i, int i2, int i3) {
         this.heap[i] = new Node();
         Node[] nodeArr = this.heap;
         nodeArr[i].from = i2;
-        nodeArr[i].to = (i2 + i3) - 1;
+        nodeArr[i].f814to = (i2 + i3) - 1;
         if (i3 == 1) {
             Node node = nodeArr[i];
             int[] iArr = this.array;
@@ -49,78 +50,78 @@ public class SegmentTree {
 
     public int rMaxQ(int i, int i2) {
         int[] iArr = this.array;
-        if (iArr.length >= 30) {
-            return rMaxQ(1, i, i2);
-        }
-        int i3 = Integer.MIN_VALUE;
-        if (i < 0) {
-            i = 0;
-        }
-        if (i2 > iArr.length - 1) {
-            i2 = iArr.length - 1;
-        }
-        while (i <= i2) {
-            int[] iArr2 = this.array;
-            if (iArr2[i] > i3) {
-                i3 = iArr2[i];
+        if (iArr.length < 30) {
+            int i3 = Integer.MIN_VALUE;
+            if (i < 0) {
+                i = 0;
             }
-            i++;
+            if (i2 > iArr.length - 1) {
+                i2 = iArr.length - 1;
+            }
+            while (i <= i2) {
+                int[] iArr2 = this.array;
+                if (iArr2[i] > i3) {
+                    i3 = iArr2[i];
+                }
+                i++;
+            }
+            return i3;
         }
-        return i3;
+        return rMaxQ(1, i, i2);
     }
 
     private int rMaxQ(int i, int i2, int i3) {
         Node node = this.heap[i];
-        if (node.pendingVal != null && contains(node.from, node.to, i2, i3)) {
+        if (node.pendingVal != null && contains(node.from, node.f814to, i2, i3)) {
             return node.pendingVal.intValue();
         }
-        if (contains(i2, i3, node.from, node.to)) {
+        if (contains(i2, i3, node.from, node.f814to)) {
             return this.heap[i].max;
         }
-        if (!intersects(i2, i3, node.from, node.to)) {
-            return 0;
+        if (intersects(i2, i3, node.from, node.f814to)) {
+            propagate(i);
+            int i4 = i * 2;
+            return Math.max(rMaxQ(i4, i2, i3), rMaxQ(i4 + 1, i2, i3));
         }
-        propagate(i);
-        int i4 = i * 2;
-        return Math.max(rMaxQ(i4, i2, i3), rMaxQ(i4 + 1, i2, i3));
+        return 0;
     }
 
     public int rMinQ(int i, int i2) {
         int[] iArr = this.array;
-        if (iArr.length >= 30) {
-            return rMinQ(1, i, i2);
-        }
-        int i3 = ConnectionsManager.DEFAULT_DATACENTER_ID;
-        if (i < 0) {
-            i = 0;
-        }
-        if (i2 > iArr.length - 1) {
-            i2 = iArr.length - 1;
-        }
-        while (i <= i2) {
-            int[] iArr2 = this.array;
-            if (iArr2[i] < i3) {
-                i3 = iArr2[i];
+        if (iArr.length < 30) {
+            int i3 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            if (i < 0) {
+                i = 0;
             }
-            i++;
+            if (i2 > iArr.length - 1) {
+                i2 = iArr.length - 1;
+            }
+            while (i <= i2) {
+                int[] iArr2 = this.array;
+                if (iArr2[i] < i3) {
+                    i3 = iArr2[i];
+                }
+                i++;
+            }
+            return i3;
         }
-        return i3;
+        return rMinQ(1, i, i2);
     }
 
     private int rMinQ(int i, int i2, int i3) {
         Node node = this.heap[i];
-        if (node.pendingVal != null && contains(node.from, node.to, i2, i3)) {
+        if (node.pendingVal != null && contains(node.from, node.f814to, i2, i3)) {
             return node.pendingVal.intValue();
         }
-        if (contains(i2, i3, node.from, node.to)) {
+        if (contains(i2, i3, node.from, node.f814to)) {
             return this.heap[i].min;
         }
-        if (!intersects(i2, i3, node.from, node.to)) {
-            return ConnectionsManager.DEFAULT_DATACENTER_ID;
+        if (intersects(i2, i3, node.from, node.f814to)) {
+            propagate(i);
+            int i4 = i * 2;
+            return Math.min(rMinQ(i4, i2, i3), rMinQ(i4 + 1, i2, i3));
         }
-        propagate(i);
-        int i4 = i * 2;
-        return Math.min(rMinQ(i4, i2, i3), rMinQ(i4 + 1, i2, i3));
+        return ConnectionsManager.DEFAULT_DATACENTER_ID;
     }
 
     private void propagate(int i) {
@@ -149,13 +150,13 @@ public class SegmentTree {
         int min;
         Integer pendingVal = null;
         int sum;
-        int to;
+        int f814to;
 
         Node() {
         }
 
         int size() {
-            return (this.to - this.from) + 1;
+            return (this.f814to - this.from) + 1;
         }
     }
 }

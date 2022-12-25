@@ -6,15 +6,15 @@ public class TLRPC$TL_pageCaption extends TLObject {
     public TLRPC$RichText text;
 
     public static TLRPC$TL_pageCaption TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_pageCaption tLRPC$TL_pageCaption = new TLRPC$TL_pageCaption();
-            tLRPC$TL_pageCaption.readParams(abstractSerializedData, z);
-            return tLRPC$TL_pageCaption;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_pageCaption", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_pageCaption", Integer.valueOf(i)));
         }
+        TLRPC$TL_pageCaption tLRPC$TL_pageCaption = new TLRPC$TL_pageCaption();
+        tLRPC$TL_pageCaption.readParams(abstractSerializedData, z);
+        return tLRPC$TL_pageCaption;
     }
 
     @Override

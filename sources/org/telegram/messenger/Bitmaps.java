@@ -21,7 +21,7 @@ public class Bitmaps {
     protected static byte[] footer = {-1, -39};
 
     public static Bitmap createBitmap(int i, int i2, Bitmap.Config config) {
-        Bitmap bitmap;
+        Bitmap createBitmap;
         if (Build.VERSION.SDK_INT < 21) {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inDither = true;
@@ -34,23 +34,24 @@ public class Bitmaps {
             bArr[77] = (byte) (i2 & 255);
             bArr[78] = (byte) (i >> 8);
             bArr[79] = (byte) (i & 255);
-            bitmap = BitmapFactory.decodeByteArray(bArr, 0, bArr.length, options);
-            Utilities.pinBitmap(bitmap);
-            bitmap.setHasAlpha(true);
-            bitmap.eraseColor(0);
+            createBitmap = BitmapFactory.decodeByteArray(bArr, 0, bArr.length, options);
+            Utilities.pinBitmap(createBitmap);
+            createBitmap.setHasAlpha(true);
+            createBitmap.eraseColor(0);
         } else {
-            bitmap = Bitmap.createBitmap(i, i2, config);
+            createBitmap = Bitmap.createBitmap(i, i2, config);
         }
         if (config == Bitmap.Config.ARGB_8888 || config == Bitmap.Config.ARGB_4444) {
-            bitmap.eraseColor(0);
+            createBitmap.eraseColor(0);
         }
-        return bitmap;
+        return createBitmap;
     }
 
     private static void checkXYSign(int i, int i2) {
         if (i < 0) {
             throw new IllegalArgumentException("x must be >= 0");
-        } else if (i2 < 0) {
+        }
+        if (i2 < 0) {
             throw new IllegalArgumentException("y must be >= 0");
         }
     }
@@ -58,14 +59,15 @@ public class Bitmaps {
     private static void checkWidthHeight(int i, int i2) {
         if (i <= 0) {
             throw new IllegalArgumentException("width must be > 0");
-        } else if (i2 <= 0) {
+        }
+        if (i2 <= 0) {
             throw new IllegalArgumentException("height must be > 0");
         }
     }
 
     public static Bitmap createBitmap(Bitmap bitmap, int i, int i2, int i3, int i4, Matrix matrix, boolean z) {
+        Bitmap createBitmap;
         Paint paint;
-        Bitmap bitmap2;
         int i5 = Build.VERSION.SDK_INT;
         if (i5 >= 21) {
             return Bitmap.createBitmap(bitmap, i, i2, i3, i4, matrix, z);
@@ -73,68 +75,67 @@ public class Bitmaps {
         checkXYSign(i, i2);
         checkWidthHeight(i3, i4);
         int i6 = i + i3;
-        if (i6 <= bitmap.getWidth()) {
-            int i7 = i2 + i4;
-            if (i7 > bitmap.getHeight()) {
-                throw new IllegalArgumentException("y + height must be <= bitmap.height()");
-            } else if (!bitmap.isMutable() && i == 0 && i2 == 0 && i3 == bitmap.getWidth() && i4 == bitmap.getHeight() && (matrix == null || matrix.isIdentity())) {
-                return bitmap;
-            } else {
-                Canvas canvas = new Canvas();
-                Rect rect = new Rect(i, i2, i6, i7);
-                RectF rectF = new RectF(0.0f, 0.0f, i3, i4);
-                Bitmap.Config config = Bitmap.Config.ARGB_8888;
-                Bitmap.Config config2 = bitmap.getConfig();
-                if (config2 != null) {
-                    int i8 = AnonymousClass2.$SwitchMap$android$graphics$Bitmap$Config[config2.ordinal()];
-                    if (i8 == 1) {
-                        config = Bitmap.Config.ARGB_8888;
-                    } else if (i8 != 2) {
-                        config = Bitmap.Config.ARGB_8888;
-                    } else {
-                        config = Bitmap.Config.ALPHA_8;
-                    }
-                }
-                if (matrix == null || matrix.isIdentity()) {
-                    bitmap2 = createBitmap(i3, i4, config);
-                    paint = null;
-                } else {
-                    boolean z2 = !matrix.rectStaysRect();
-                    RectF rectF2 = new RectF();
-                    matrix.mapRect(rectF2, rectF);
-                    int round = Math.round(rectF2.width());
-                    int round2 = Math.round(rectF2.height());
-                    if (z2) {
-                        config = Bitmap.Config.ARGB_8888;
-                    }
-                    bitmap2 = createBitmap(round, round2, config);
-                    canvas.translate(-rectF2.left, -rectF2.top);
-                    canvas.concat(matrix);
-                    paint = new Paint();
-                    paint.setFilterBitmap(z);
-                    if (z2) {
-                        paint.setAntiAlias(true);
-                    }
-                }
-                bitmap2.setDensity(bitmap.getDensity());
-                bitmap2.setHasAlpha(bitmap.hasAlpha());
-                if (i5 >= 19) {
-                    bitmap2.setPremultiplied(bitmap.isPremultiplied());
-                }
-                canvas.setBitmap(bitmap2);
-                canvas.drawBitmap(bitmap, rect, rectF, paint);
-                try {
-                    canvas.setBitmap(null);
-                } catch (Exception unused) {
-                }
-                return bitmap2;
-            }
-        } else {
+        if (i6 > bitmap.getWidth()) {
             throw new IllegalArgumentException("x + width must be <= bitmap.width()");
         }
+        int i7 = i2 + i4;
+        if (i7 > bitmap.getHeight()) {
+            throw new IllegalArgumentException("y + height must be <= bitmap.height()");
+        }
+        if (!bitmap.isMutable() && i == 0 && i2 == 0 && i3 == bitmap.getWidth() && i4 == bitmap.getHeight() && (matrix == null || matrix.isIdentity())) {
+            return bitmap;
+        }
+        Canvas canvas = new Canvas();
+        Rect rect = new Rect(i, i2, i6, i7);
+        RectF rectF = new RectF(0.0f, 0.0f, i3, i4);
+        Bitmap.Config config = Bitmap.Config.ARGB_8888;
+        Bitmap.Config config2 = bitmap.getConfig();
+        if (config2 != null) {
+            int i8 = C09422.$SwitchMap$android$graphics$Bitmap$Config[config2.ordinal()];
+            if (i8 == 1) {
+                config = Bitmap.Config.ARGB_8888;
+            } else if (i8 == 2) {
+                config = Bitmap.Config.ALPHA_8;
+            } else {
+                config = Bitmap.Config.ARGB_8888;
+            }
+        }
+        if (matrix == null || matrix.isIdentity()) {
+            createBitmap = createBitmap(i3, i4, config);
+            paint = null;
+        } else {
+            boolean z2 = !matrix.rectStaysRect();
+            RectF rectF2 = new RectF();
+            matrix.mapRect(rectF2, rectF);
+            int round = Math.round(rectF2.width());
+            int round2 = Math.round(rectF2.height());
+            if (z2) {
+                config = Bitmap.Config.ARGB_8888;
+            }
+            createBitmap = createBitmap(round, round2, config);
+            canvas.translate(-rectF2.left, -rectF2.top);
+            canvas.concat(matrix);
+            paint = new Paint();
+            paint.setFilterBitmap(z);
+            if (z2) {
+                paint.setAntiAlias(true);
+            }
+        }
+        createBitmap.setDensity(bitmap.getDensity());
+        createBitmap.setHasAlpha(bitmap.hasAlpha());
+        if (i5 >= 19) {
+            createBitmap.setPremultiplied(bitmap.isPremultiplied());
+        }
+        canvas.setBitmap(createBitmap);
+        canvas.drawBitmap(bitmap, rect, rectF, paint);
+        try {
+            canvas.setBitmap(null);
+        } catch (Exception unused) {
+        }
+        return createBitmap;
     }
 
-    public static class AnonymousClass2 {
+    public static class C09422 {
         static final int[] $SwitchMap$android$graphics$Bitmap$Config;
 
         static {

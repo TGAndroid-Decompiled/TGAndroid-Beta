@@ -5,15 +5,15 @@ public class TLRPC$TL_accountDaysTTL extends TLObject {
     public int days;
 
     public static TLRPC$TL_accountDaysTTL TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_accountDaysTTL tLRPC$TL_accountDaysTTL = new TLRPC$TL_accountDaysTTL();
-            tLRPC$TL_accountDaysTTL.readParams(abstractSerializedData, z);
-            return tLRPC$TL_accountDaysTTL;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_accountDaysTTL", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_accountDaysTTL", Integer.valueOf(i)));
         }
+        TLRPC$TL_accountDaysTTL tLRPC$TL_accountDaysTTL = new TLRPC$TL_accountDaysTTL();
+        tLRPC$TL_accountDaysTTL.readParams(abstractSerializedData, z);
+        return tLRPC$TL_accountDaysTTL;
     }
 
     @Override

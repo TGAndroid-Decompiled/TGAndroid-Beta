@@ -15,14 +15,10 @@ public abstract class TLRPC$Theme extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.creator = (readInt32 & 1) != 0;
                         this.isDefault = (readInt32 & 2) != 0;
-                        if ((readInt32 & 32) != 0) {
-                            z3 = true;
-                        }
-                        this.for_chat = z3;
-                        this.id = abstractSerializedData2.readInt64(z2);
+                        this.for_chat = (readInt32 & 32) != 0;
+                        this.f977id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.slug = abstractSerializedData2.readString(z2);
                         this.title = abstractSerializedData2.readString(z2);
@@ -47,7 +43,7 @@ public abstract class TLRPC$Theme extends TLObject {
                         int i4 = this.for_chat ? i3 | 32 : i3 & (-33);
                         this.flags = i4;
                         abstractSerializedData2.writeInt32(i4);
-                        abstractSerializedData2.writeInt64(this.id);
+                        abstractSerializedData2.writeInt64(this.f977id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.slug);
                         abstractSerializedData2.writeString(this.title);
@@ -71,13 +67,9 @@ public abstract class TLRPC$Theme extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.creator = (readInt32 & 1) != 0;
-                        if ((readInt32 & 2) != 0) {
-                            z3 = true;
-                        }
-                        this.isDefault = z3;
-                        this.id = abstractSerializedData2.readInt64(z2);
+                        this.isDefault = (readInt32 & 2) != 0;
+                        this.f977id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.slug = abstractSerializedData2.readString(z2);
                         this.title = abstractSerializedData2.readString(z2);
@@ -95,7 +87,7 @@ public abstract class TLRPC$Theme extends TLObject {
                         int i3 = this.isDefault ? i2 | 2 : i2 & (-3);
                         this.flags = i3;
                         abstractSerializedData2.writeInt32(i3);
-                        abstractSerializedData2.writeInt64(this.id);
+                        abstractSerializedData2.writeInt64(this.f977id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.slug);
                         abstractSerializedData2.writeString(this.title);
@@ -114,13 +106,9 @@ public abstract class TLRPC$Theme extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.creator = (readInt32 & 1) != 0;
-                        if ((readInt32 & 2) != 0) {
-                            z3 = true;
-                        }
-                        this.isDefault = z3;
-                        this.id = abstractSerializedData2.readInt64(z2);
+                        this.isDefault = (readInt32 & 2) != 0;
+                        this.f977id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.slug = abstractSerializedData2.readString(z2);
                         this.title = abstractSerializedData2.readString(z2);
@@ -141,7 +129,7 @@ public abstract class TLRPC$Theme extends TLObject {
                         int i3 = this.isDefault ? i2 | 2 : i2 & (-3);
                         this.flags = i3;
                         abstractSerializedData2.writeInt32(i3);
-                        abstractSerializedData2.writeInt64(this.id);
+                        abstractSerializedData2.writeInt64(this.f977id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.slug);
                         abstractSerializedData2.writeString(this.title);
@@ -169,12 +157,12 @@ public abstract class TLRPC$Theme extends TLObject {
                 tLRPC$TL_theme = null;
                 break;
         }
-        if (tLRPC$TL_theme != null || !z) {
-            if (tLRPC$TL_theme != null) {
-                tLRPC$TL_theme.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$TL_theme;
+        if (tLRPC$TL_theme == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in Theme", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in Theme", Integer.valueOf(i)));
+        if (tLRPC$TL_theme != null) {
+            tLRPC$TL_theme.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_theme;
     }
 }

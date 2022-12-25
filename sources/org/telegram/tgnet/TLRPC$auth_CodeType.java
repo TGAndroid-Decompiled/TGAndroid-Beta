@@ -14,6 +14,16 @@ public abstract class TLRPC$auth_CodeType extends TLObject {
                     }
                 };
                 break;
+            case 116234636:
+                tLRPC$auth_CodeType = new TLRPC$auth_CodeType() {
+                    public static int constructor = 116234636;
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                    }
+                };
+                break;
             case 577556219:
                 tLRPC$auth_CodeType = new TLRPC$auth_CodeType() {
                     public static int constructor = 577556219;
@@ -48,12 +58,12 @@ public abstract class TLRPC$auth_CodeType extends TLObject {
                 tLRPC$auth_CodeType = null;
                 break;
         }
-        if (tLRPC$auth_CodeType != null || !z) {
-            if (tLRPC$auth_CodeType != null) {
-                tLRPC$auth_CodeType.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$auth_CodeType;
+        if (tLRPC$auth_CodeType == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in auth_CodeType", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in auth_CodeType", Integer.valueOf(i)));
+        if (tLRPC$auth_CodeType != null) {
+            tLRPC$auth_CodeType.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$auth_CodeType;
     }
 }

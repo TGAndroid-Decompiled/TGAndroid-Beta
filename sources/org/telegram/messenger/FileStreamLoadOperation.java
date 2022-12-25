@@ -22,7 +22,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     private long bytesRemaining;
     private CountDownLatch countDownLatch;
     private int currentAccount;
-    private int currentOffset;
+    private long currentOffset;
     private TLRPC$Document document;
     private RandomAccessFile file;
     private FileLoadOperation loadOperation;
@@ -59,7 +59,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         TLRPC$TL_document tLRPC$TL_document = new TLRPC$TL_document();
         this.document = tLRPC$TL_document;
         tLRPC$TL_document.access_hash = Utilities.parseLong(this.uri.getQueryParameter("hash")).longValue();
-        this.document.id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
+        this.document.f856id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
         this.document.size = Utilities.parseLong(this.uri.getQueryParameter("size")).longValue();
         this.document.dc_id = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("dc")).intValue();
         this.document.mime_type = this.uri.getQueryParameter("mime");
@@ -75,25 +75,25 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         FileLoader fileLoader = FileLoader.getInstance(this.currentAccount);
         TLRPC$Document tLRPC$Document = this.document;
         Object obj = this.parentObject;
-        int i = (int) dataSpec.position;
-        this.currentOffset = i;
-        this.loadOperation = fileLoader.loadStreamFile(this, tLRPC$Document, null, obj, i, false);
-        long j = dataSpec.length;
-        if (j == -1) {
-            j = this.document.size - dataSpec.position;
+        long j = dataSpec.position;
+        this.currentOffset = j;
+        this.loadOperation = fileLoader.loadStreamFile(this, tLRPC$Document, null, obj, j, false);
+        long j2 = dataSpec.length;
+        if (j2 == -1) {
+            j2 = this.document.size - dataSpec.position;
         }
-        this.bytesRemaining = j;
-        if (j >= 0) {
-            this.opened = true;
-            transferStarted(dataSpec);
-            if (this.loadOperation != null) {
-                RandomAccessFile randomAccessFile = new RandomAccessFile(this.loadOperation.getCurrentFile(), "r");
-                this.file = randomAccessFile;
-                randomAccessFile.seek(this.currentOffset);
-            }
-            return this.bytesRemaining;
+        this.bytesRemaining = j2;
+        if (j2 < 0) {
+            throw new EOFException();
         }
-        throw new EOFException();
+        this.opened = true;
+        transferStarted(dataSpec);
+        if (this.loadOperation != null) {
+            RandomAccessFile randomAccessFile = new RandomAccessFile(this.loadOperation.getCurrentFile(), "r");
+            this.file = randomAccessFile;
+            randomAccessFile.seek(this.currentOffset);
+        }
+        return this.bytesRemaining;
     }
 
     @Override
@@ -125,14 +125,15 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
                 throw new IOException(e);
             }
         }
-        if (!this.opened) {
-            return 0;
+        if (this.opened) {
+            this.file.readFully(bArr, i, i3);
+            long j2 = i3;
+            this.currentOffset += j2;
+            this.bytesRemaining -= j2;
+            bytesTransferred(i3);
+            return i3;
         }
-        this.file.readFully(bArr, i, i3);
-        this.currentOffset += i3;
-        this.bytesRemaining -= i3;
-        bytesTransferred(i3);
-        return i3;
+        return 0;
     }
 
     @Override
@@ -151,7 +152,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
             try {
                 randomAccessFile.close();
             } catch (Exception e) {
-                FileLog.e(e);
+                FileLog.m31e(e);
             }
             this.file = null;
         }

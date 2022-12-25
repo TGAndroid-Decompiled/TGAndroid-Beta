@@ -12,7 +12,6 @@ import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Enumerator;
@@ -26,7 +25,7 @@ import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.VideoCapturer;
 import org.webrtc.voiceengine.WebRtcAudioRecord;
 
-@TargetApi(R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom)
+@TargetApi(18)
 public class VideoCapturerDevice {
     private static final int CAPTURE_FPS = 30;
     private static final int CAPTURE_HEIGHT;
@@ -56,16 +55,17 @@ public class VideoCapturerDevice {
     }
 
     public VideoCapturerDevice(final boolean z) {
-        if (Build.VERSION.SDK_INT >= 18) {
-            Logging.enableLogToDebugOutput(Logging.Severity.LS_INFO);
-            Logging.d("VideoCapturerDevice", "device model = " + Build.MANUFACTURER + Build.MODEL);
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    VideoCapturerDevice.this.lambda$new$0(z);
-                }
-            });
+        if (Build.VERSION.SDK_INT < 18) {
+            return;
         }
+        Logging.enableLogToDebugOutput(Logging.Severity.LS_INFO);
+        Logging.m9d("VideoCapturerDevice", "device model = " + Build.MANUFACTURER + Build.MODEL);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VideoCapturerDevice.this.lambda$new$0(z);
+            }
+        });
     }
 
     public void lambda$new$0(boolean z) {
@@ -80,23 +80,25 @@ public class VideoCapturerDevice {
     }
 
     public static void checkScreenCapturerSize() {
-        if (instance[1] != null) {
-            final Point screenCaptureSize = getScreenCaptureSize();
-            VideoCapturerDevice[] videoCapturerDeviceArr = instance;
-            int i = videoCapturerDeviceArr[1].currentWidth;
-            int i2 = screenCaptureSize.x;
-            if (i != i2 || videoCapturerDeviceArr[1].currentHeight != screenCaptureSize.y) {
-                videoCapturerDeviceArr[1].currentWidth = i2;
-                videoCapturerDeviceArr[1].currentHeight = screenCaptureSize.y;
-                final VideoCapturerDevice videoCapturerDevice = videoCapturerDeviceArr[1];
-                videoCapturerDeviceArr[1].handler.post(new Runnable() {
-                    @Override
-                    public final void run() {
-                        VideoCapturerDevice.lambda$checkScreenCapturerSize$1(VideoCapturerDevice.this, screenCaptureSize);
-                    }
-                });
-            }
+        if (instance[1] == null) {
+            return;
         }
+        final Point screenCaptureSize = getScreenCaptureSize();
+        VideoCapturerDevice[] videoCapturerDeviceArr = instance;
+        int i = videoCapturerDeviceArr[1].currentWidth;
+        int i2 = screenCaptureSize.x;
+        if (i == i2 && videoCapturerDeviceArr[1].currentHeight == screenCaptureSize.y) {
+            return;
+        }
+        videoCapturerDeviceArr[1].currentWidth = i2;
+        videoCapturerDeviceArr[1].currentHeight = screenCaptureSize.y;
+        final VideoCapturerDevice videoCapturerDevice = videoCapturerDeviceArr[1];
+        videoCapturerDeviceArr[1].handler.post(new Runnable() {
+            @Override
+            public final void run() {
+                VideoCapturerDevice.lambda$checkScreenCapturerSize$1(VideoCapturerDevice.this, screenCaptureSize);
+            }
+        });
     }
 
     public static void lambda$checkScreenCapturerSize$1(VideoCapturerDevice videoCapturerDevice, Point point) {
@@ -156,55 +158,25 @@ public class VideoCapturerDevice {
     }
 
     private void init(final long j, final String str) {
-        if (Build.VERSION.SDK_INT >= 18) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    VideoCapturerDevice.this.lambda$init$5(j, str);
-                }
-            });
+        if (Build.VERSION.SDK_INT < 18) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VideoCapturerDevice.this.lambda$init$5(j, str);
+            }
+        });
     }
 
     public void lambda$init$5(long j, String str) {
-        if (eglBase != null) {
-            this.nativePtr = j;
-            if (!"screen".equals(str)) {
-                CameraEnumerator camera2Enumerator = Camera2Enumerator.isSupported(ApplicationLoader.applicationContext) ? new Camera2Enumerator(ApplicationLoader.applicationContext) : new Camera1Enumerator();
-                String[] deviceNames = camera2Enumerator.getDeviceNames();
-                int i = 0;
-                while (true) {
-                    if (i >= deviceNames.length) {
-                        i = -1;
-                        break;
-                    } else if (camera2Enumerator.isFrontFacing(deviceNames[i]) == "front".equals(str)) {
-                        break;
-                    } else {
-                        i++;
-                    }
-                }
-                if (i != -1) {
-                    final String str2 = deviceNames[i];
-                    if (this.videoCapturer == null) {
-                        this.videoCapturer = camera2Enumerator.createCapturer(str2, new AnonymousClass2());
-                        this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("VideoCapturerThread", eglBase.getEglBaseContext());
-                        this.handler.post(new Runnable() {
-                            @Override
-                            public final void run() {
-                                VideoCapturerDevice.this.lambda$init$3();
-                            }
-                        });
-                        return;
-                    }
-                    this.handler.post(new Runnable() {
-                        @Override
-                        public final void run() {
-                            VideoCapturerDevice.this.lambda$init$4(str2);
-                        }
-                    });
-                }
-            } else if (Build.VERSION.SDK_INT >= 21 && this.videoCapturer == null) {
-                this.videoCapturer = new ScreenCapturerAndroid(mediaProjectionPermissionResultData, new AnonymousClass1());
+        if (eglBase == null) {
+            return;
+        }
+        this.nativePtr = j;
+        if ("screen".equals(str)) {
+            if (Build.VERSION.SDK_INT >= 21 && this.videoCapturer == null) {
+                this.videoCapturer = new ScreenCapturerAndroid(mediaProjectionPermissionResultData, new C10531());
                 final Point screenCaptureSize = getScreenCaptureSize();
                 this.currentWidth = screenCaptureSize.x;
                 this.currentHeight = screenCaptureSize.y;
@@ -215,12 +187,48 @@ public class VideoCapturerDevice {
                         VideoCapturerDevice.this.lambda$init$2(screenCaptureSize);
                     }
                 });
+                return;
+            }
+            return;
+        }
+        CameraEnumerator camera2Enumerator = Camera2Enumerator.isSupported(ApplicationLoader.applicationContext) ? new Camera2Enumerator(ApplicationLoader.applicationContext) : new Camera1Enumerator();
+        String[] deviceNames = camera2Enumerator.getDeviceNames();
+        int i = 0;
+        while (true) {
+            if (i >= deviceNames.length) {
+                i = -1;
+                break;
+            } else if (camera2Enumerator.isFrontFacing(deviceNames[i]) == "front".equals(str)) {
+                break;
+            } else {
+                i++;
             }
         }
+        if (i == -1) {
+            return;
+        }
+        final String str2 = deviceNames[i];
+        if (this.videoCapturer == null) {
+            this.videoCapturer = camera2Enumerator.createCapturer(str2, new C10542());
+            this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("VideoCapturerThread", eglBase.getEglBaseContext());
+            this.handler.post(new Runnable() {
+                @Override
+                public final void run() {
+                    VideoCapturerDevice.this.lambda$init$3();
+                }
+            });
+            return;
+        }
+        this.handler.post(new Runnable() {
+            @Override
+            public final void run() {
+                VideoCapturerDevice.this.lambda$init$4(str2);
+            }
+        });
     }
 
-    public class AnonymousClass1 extends MediaProjection.Callback {
-        AnonymousClass1() {
+    public class C10531 extends MediaProjection.Callback {
+        C10531() {
         }
 
         @Override
@@ -238,19 +246,20 @@ public class VideoCapturerDevice {
     public void lambda$init$2(Point point) {
         if (this.videoCapturerSurfaceTextureHelper != null) {
             long j = this.nativePtr;
-            if (j != 0) {
-                this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(j);
-                this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, ApplicationLoader.applicationContext, this.nativeCapturerObserver);
-                this.videoCapturer.startCapture(point.x, point.y, CAPTURE_FPS);
-                WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.Instance;
-                if (webRtcAudioRecord != null) {
-                    webRtcAudioRecord.initDeviceAudioRecord(((ScreenCapturerAndroid) this.videoCapturer).getMediaProjection());
-                }
+            if (j == 0) {
+                return;
+            }
+            this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(j);
+            this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, ApplicationLoader.applicationContext, this.nativeCapturerObserver);
+            this.videoCapturer.startCapture(point.x, point.y, CAPTURE_FPS);
+            WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.Instance;
+            if (webRtcAudioRecord != null) {
+                webRtcAudioRecord.initDeviceAudioRecord(((ScreenCapturerAndroid) this.videoCapturer).getMediaProjection());
             }
         }
     }
 
-    public class AnonymousClass2 implements CameraVideoCapturer.CameraEventsHandler {
+    public class C10542 implements CameraVideoCapturer.CameraEventsHandler {
         @Override
         public void onCameraClosed() {
         }
@@ -271,7 +280,7 @@ public class VideoCapturerDevice {
         public void onCameraOpening(String str) {
         }
 
-        AnonymousClass2() {
+        C10542() {
         }
 
         @Override
@@ -287,19 +296,20 @@ public class VideoCapturerDevice {
     }
 
     public void lambda$init$3() {
-        if (this.videoCapturerSurfaceTextureHelper != null) {
-            this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(this.nativePtr);
-            this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, ApplicationLoader.applicationContext, this.nativeCapturerObserver);
-            this.videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, CAPTURE_FPS);
+        if (this.videoCapturerSurfaceTextureHelper == null) {
+            return;
         }
+        this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(this.nativePtr);
+        this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, ApplicationLoader.applicationContext, this.nativeCapturerObserver);
+        this.videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, CAPTURE_FPS);
     }
 
-    public class AnonymousClass3 implements CameraVideoCapturer.CameraSwitchHandler {
+    public class C10553 implements CameraVideoCapturer.CameraSwitchHandler {
         @Override
         public void onCameraSwitchError(String str) {
         }
 
-        AnonymousClass3() {
+        C10553() {
         }
 
         @Override
@@ -307,7 +317,7 @@ public class VideoCapturerDevice {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoCapturerDevice.AnonymousClass3.lambda$onCameraSwitchDone$0(z);
+                    VideoCapturerDevice.C10553.lambda$onCameraSwitchDone$0(z);
                 }
             });
         }
@@ -320,7 +330,7 @@ public class VideoCapturerDevice {
     }
 
     public void lambda$init$4(String str) {
-        ((CameraVideoCapturer) this.videoCapturer).switchCamera(new AnonymousClass3(), str);
+        ((CameraVideoCapturer) this.videoCapturer).switchCamera(new C10553(), str);
     }
 
     public static MediaProjection getMediaProjection() {
@@ -332,52 +342,56 @@ public class VideoCapturerDevice {
     }
 
     private void onStateChanged(final long j, final int i) {
-        if (Build.VERSION.SDK_INT >= 18) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    VideoCapturerDevice.this.lambda$onStateChanged$7(j, i);
-                }
-            });
+        if (Build.VERSION.SDK_INT < 18) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VideoCapturerDevice.this.lambda$onStateChanged$7(j, i);
+            }
+        });
     }
 
     public void lambda$onStateChanged$7(long j, final int i) {
-        if (this.nativePtr == j) {
-            this.handler.post(new Runnable() {
-                @Override
-                public final void run() {
-                    VideoCapturerDevice.this.lambda$onStateChanged$6(i);
-                }
-            });
+        if (this.nativePtr != j) {
+            return;
         }
+        this.handler.post(new Runnable() {
+            @Override
+            public final void run() {
+                VideoCapturerDevice.this.lambda$onStateChanged$6(i);
+            }
+        });
     }
 
     public void lambda$onStateChanged$6(int i) {
         VideoCapturer videoCapturer = this.videoCapturer;
-        if (videoCapturer != null) {
-            if (i == 2) {
-                videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, CAPTURE_FPS);
-                return;
-            }
-            try {
-                videoCapturer.stopCapture();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        if (videoCapturer == null) {
+            return;
+        }
+        if (i == 2) {
+            videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, CAPTURE_FPS);
+            return;
+        }
+        try {
+            videoCapturer.stopCapture();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
     private void onDestroy() {
-        if (Build.VERSION.SDK_INT >= 18) {
-            this.nativePtr = 0L;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    VideoCapturerDevice.this.lambda$onDestroy$9();
-                }
-            });
+        if (Build.VERSION.SDK_INT < 18) {
+            return;
         }
+        this.nativePtr = 0L;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VideoCapturerDevice.this.lambda$onDestroy$9();
+            }
+        });
     }
 
     public void lambda$onDestroy$9() {
@@ -402,7 +416,7 @@ public class VideoCapturerDevice {
         try {
             this.thread.quitSafely();
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
         }
     }
 

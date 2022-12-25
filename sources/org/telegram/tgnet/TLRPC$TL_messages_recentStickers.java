@@ -13,41 +13,45 @@ public class TLRPC$TL_messages_recentStickers extends TLRPC$messages_RecentStick
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.hash = abstractSerializedData.readInt64(z);
         int readInt32 = abstractSerializedData.readInt32(z);
-        if (readInt32 == 481674261) {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                TLRPC$TL_stickerPack TLdeserialize = TLRPC$TL_stickerPack.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize != null) {
-                    this.packs.add(TLdeserialize);
-                } else {
-                    return;
-                }
+        if (readInt32 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
-            int readInt323 = abstractSerializedData.readInt32(z);
-            if (readInt323 == 481674261) {
-                int readInt324 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt324; i2++) {
-                    TLRPC$Document TLdeserialize2 = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize2 != null) {
-                        this.stickers.add(TLdeserialize2);
-                    } else {
-                        return;
-                    }
-                }
-                int readInt325 = abstractSerializedData.readInt32(z);
-                if (readInt325 == 481674261) {
-                    int readInt326 = abstractSerializedData.readInt32(z);
-                    for (int i3 = 0; i3 < readInt326; i3++) {
-                        this.dates.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
-                    }
-                } else if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
-                }
-            } else if (z) {
+            return;
+        }
+        int readInt322 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt322; i++) {
+            TLRPC$TL_stickerPack TLdeserialize = TLRPC$TL_stickerPack.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
+            }
+            this.packs.add(TLdeserialize);
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        if (readInt323 != 481674261) {
+            if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
             }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+            return;
+        }
+        int readInt324 = abstractSerializedData.readInt32(z);
+        for (int i2 = 0; i2 < readInt324; i2++) {
+            TLRPC$Document TLdeserialize2 = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize2 == null) {
+                return;
+            }
+            this.stickers.add(TLdeserialize2);
+        }
+        int readInt325 = abstractSerializedData.readInt32(z);
+        if (readInt325 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
+            }
+            return;
+        }
+        int readInt326 = abstractSerializedData.readInt32(z);
+        for (int i3 = 0; i3 < readInt326; i3++) {
+            this.dates.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
         }
     }
 

@@ -9,15 +9,15 @@ public class TLRPC$TL_decryptedMessageLayer extends TLObject {
     public byte[] random_bytes;
 
     public static TLRPC$TL_decryptedMessageLayer TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_decryptedMessageLayer tLRPC$TL_decryptedMessageLayer = new TLRPC$TL_decryptedMessageLayer();
-            tLRPC$TL_decryptedMessageLayer.readParams(abstractSerializedData, z);
-            return tLRPC$TL_decryptedMessageLayer;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_decryptedMessageLayer", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_decryptedMessageLayer", Integer.valueOf(i)));
         }
+        TLRPC$TL_decryptedMessageLayer tLRPC$TL_decryptedMessageLayer = new TLRPC$TL_decryptedMessageLayer();
+        tLRPC$TL_decryptedMessageLayer.readParams(abstractSerializedData, z);
+        return tLRPC$TL_decryptedMessageLayer;
     }
 
     @Override

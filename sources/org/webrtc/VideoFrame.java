@@ -96,13 +96,13 @@ public class VideoFrame implements RefCounted {
     public VideoFrame(Buffer buffer, int i, long j) {
         if (buffer == null) {
             throw new IllegalArgumentException("buffer not allowed to be null");
-        } else if (i % 90 == 0) {
-            this.buffer = buffer;
-            this.rotation = i;
-            this.timestampNs = j;
-        } else {
+        }
+        if (i % 90 != 0) {
             throw new IllegalArgumentException("rotation must be a multiple of 90");
         }
+        this.buffer = buffer;
+        this.rotation = i;
+        this.timestampNs = j;
     }
 
     @CalledByNative

@@ -12,17 +12,20 @@ public class AutoMessageReplyReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         ApplicationLoader.postInitApplication();
         Bundle resultsFromIntent = RemoteInput.getResultsFromIntent(intent);
-        if (resultsFromIntent != null) {
-            CharSequence charSequence = resultsFromIntent.getCharSequence(NotificationsController.EXTRA_VOICE_REPLY);
-            if (!TextUtils.isEmpty(charSequence)) {
-                long longExtra = intent.getLongExtra("dialog_id", 0L);
-                int intExtra = intent.getIntExtra("max_id", 0);
-                int intExtra2 = intent.getIntExtra("currentAccount", 0);
-                if (longExtra != 0 && intExtra != 0 && UserConfig.isValidAccount(intExtra2)) {
-                    SendMessagesHelper.getInstance(intExtra2).sendMessage(charSequence.toString(), longExtra, null, null, null, true, null, null, null, true, 0, null);
-                    MessagesController.getInstance(intExtra2).markDialogAsRead(longExtra, intExtra, intExtra, 0, false, 0, 0, true, 0);
-                }
-            }
+        if (resultsFromIntent == null) {
+            return;
         }
+        CharSequence charSequence = resultsFromIntent.getCharSequence(NotificationsController.EXTRA_VOICE_REPLY);
+        if (TextUtils.isEmpty(charSequence)) {
+            return;
+        }
+        long longExtra = intent.getLongExtra("dialog_id", 0L);
+        int intExtra = intent.getIntExtra("max_id", 0);
+        int intExtra2 = intent.getIntExtra("currentAccount", 0);
+        if (longExtra == 0 || intExtra == 0 || !UserConfig.isValidAccount(intExtra2)) {
+            return;
+        }
+        SendMessagesHelper.getInstance(intExtra2).sendMessage(charSequence.toString(), longExtra, null, null, null, true, null, null, null, true, 0, null, false);
+        MessagesController.getInstance(intExtra2).markDialogAsRead(longExtra, intExtra, intExtra, 0, false, 0, 0, true, 0);
     }
 }

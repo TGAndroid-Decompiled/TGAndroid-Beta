@@ -7,11 +7,7 @@ public class TLRPC$TL_inputMediaGeoLive extends TLRPC$InputMedia {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = true;
-        if ((readInt32 & 1) == 0) {
-            z2 = false;
-        }
-        this.stopped = z2;
+        this.stopped = (readInt32 & 1) != 0;
         this.geo_point = TLRPC$InputGeoPoint.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         if ((this.flags & 4) != 0) {
             this.heading = abstractSerializedData.readInt32(z);

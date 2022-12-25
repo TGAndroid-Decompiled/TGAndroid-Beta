@@ -5,17 +5,18 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.MediaController;
+import org.telegram.p009ui.Components.AnimatedFileDrawable;
+import org.telegram.p009ui.Components.PhotoFilterView;
+import org.telegram.p009ui.Components.Point;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$InputEncryptedFile;
 import org.telegram.tgnet.TLRPC$InputFile;
-import org.telegram.ui.Components.AnimatedFileDrawable;
-import org.telegram.ui.Components.PhotoFilterView;
-import org.telegram.ui.Components.Point;
 
 public class VideoEditedInfo {
     public int bitrate;
     public boolean canceled;
+    public int compressQuality;
     public MediaController.CropState cropState;
     public TLRPC$InputEncryptedFile encryptedFile;
     public float end;
@@ -25,7 +26,7 @@ public class VideoEditedInfo {
     public TLRPC$InputFile file;
     public MediaController.SavedFilterState filterState;
     public boolean isPhoto;
-    public byte[] iv;
+    public byte[] f824iv;
     public byte[] key;
     public ArrayList<MediaEntity> mediaEntities;
     public boolean muted;
@@ -72,8 +73,8 @@ public class VideoEditedInfo {
         public int viewHeight;
         public int viewWidth;
         public float width;
-        public float x;
-        public float y;
+        public float f825x;
+        public float f826y;
 
         public MediaEntity() {
         }
@@ -81,8 +82,8 @@ public class VideoEditedInfo {
         private MediaEntity(SerializedData serializedData) {
             this.type = serializedData.readByte(false);
             this.subType = serializedData.readByte(false);
-            this.x = serializedData.readFloat(false);
-            this.y = serializedData.readFloat(false);
+            this.f825x = serializedData.readFloat(false);
+            this.f826y = serializedData.readFloat(false);
             this.rotation = serializedData.readFloat(false);
             this.width = serializedData.readFloat(false);
             this.height = serializedData.readFloat(false);
@@ -96,8 +97,8 @@ public class VideoEditedInfo {
         public void serializeTo(SerializedData serializedData) {
             serializedData.writeByte(this.type);
             serializedData.writeByte(this.subType);
-            serializedData.writeFloat(this.x);
-            serializedData.writeFloat(this.y);
+            serializedData.writeFloat(this.f825x);
+            serializedData.writeFloat(this.f826y);
             serializedData.writeFloat(this.rotation);
             serializedData.writeFloat(this.width);
             serializedData.writeFloat(this.height);
@@ -112,8 +113,8 @@ public class VideoEditedInfo {
             MediaEntity mediaEntity = new MediaEntity();
             mediaEntity.type = this.type;
             mediaEntity.subType = this.subType;
-            mediaEntity.x = this.x;
-            mediaEntity.y = this.y;
+            mediaEntity.f825x = this.f825x;
+            mediaEntity.f826y = this.f826y;
             mediaEntity.rotation = this.rotation;
             mediaEntity.width = this.width;
             mediaEntity.height = this.height;
@@ -132,17 +133,17 @@ public class VideoEditedInfo {
     }
 
     public String getString() {
-        String str;
         byte[] bArr;
+        String bytesToHex;
         PhotoFilterView.CurvesValue curvesValue;
         ArrayList<MediaEntity> arrayList;
         if (this.avatarStartTime == -1 && this.filterState == null && this.paintPath == null && (((arrayList = this.mediaEntities) == null || arrayList.isEmpty()) && this.cropState == null)) {
-            str = "";
+            bytesToHex = BuildConfig.APP_CENTER_HASH;
         } else {
             int i = this.filterState != null ? 170 : 10;
-            String str2 = this.paintPath;
-            if (str2 != null) {
-                bArr = str2.getBytes();
+            String str = this.paintPath;
+            if (str != null) {
+                bArr = str.getBytes();
                 i += bArr.length;
             } else {
                 bArr = null;
@@ -171,8 +172,8 @@ public class VideoEditedInfo {
                 serializedData.writeFloat(this.filterState.blurExcludeSize);
                 Point point = this.filterState.blurExcludePoint;
                 if (point != null) {
-                    serializedData.writeFloat(point.x);
-                    serializedData.writeFloat(this.filterState.blurExcludePoint.y);
+                    serializedData.writeFloat(point.f1087x);
+                    serializedData.writeFloat(this.filterState.blurExcludePoint.f1088y);
                 } else {
                     serializedData.writeFloat(0.0f);
                     serializedData.writeFloat(0.0f);
@@ -205,9 +206,7 @@ public class VideoEditedInfo {
                 serializedData.writeByte(0);
             }
             ArrayList<MediaEntity> arrayList2 = this.mediaEntities;
-            if (arrayList2 == null || arrayList2.isEmpty()) {
-                serializedData.writeByte(0);
-            } else {
+            if (arrayList2 != null && !arrayList2.isEmpty()) {
                 serializedData.writeByte(1);
                 serializedData.writeInt32(this.mediaEntities.size());
                 int size = this.mediaEntities.size();
@@ -215,6 +214,8 @@ public class VideoEditedInfo {
                     this.mediaEntities.get(i3).serializeTo(serializedData);
                 }
                 serializedData.writeByte(this.isPhoto ? 1 : 0);
+            } else {
+                serializedData.writeByte(0);
             }
             if (this.cropState != null) {
                 serializedData.writeByte(1);
@@ -231,10 +232,10 @@ public class VideoEditedInfo {
             } else {
                 serializedData.writeByte(0);
             }
-            str = Utilities.bytesToHex(serializedData.toByteArray());
+            bytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
             serializedData.cleanup();
         }
-        return String.format(Locale.US, "-1_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_-%s_%s", Long.valueOf(this.startTime), Long.valueOf(this.endTime), Integer.valueOf(this.rotationValue), Integer.valueOf(this.originalWidth), Integer.valueOf(this.originalHeight), Integer.valueOf(this.bitrate), Integer.valueOf(this.resultWidth), Integer.valueOf(this.resultHeight), Long.valueOf(this.originalDuration), Integer.valueOf(this.framerate), str, this.originalPath);
+        return String.format(Locale.US, "-1_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_-%s_%s", Long.valueOf(this.startTime), Long.valueOf(this.endTime), Integer.valueOf(this.rotationValue), Integer.valueOf(this.originalWidth), Integer.valueOf(this.originalHeight), Integer.valueOf(this.bitrate), Integer.valueOf(this.resultWidth), Integer.valueOf(this.resultHeight), Long.valueOf(this.originalDuration), Integer.valueOf(this.framerate), bytesToHex, this.originalPath);
     }
 
     public boolean parseString(String str) {
@@ -349,7 +350,7 @@ public class VideoEditedInfo {
             }
             return true;
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
             return false;
         }
     }

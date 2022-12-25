@@ -3,23 +3,20 @@ package org.telegram.tgnet;
 import org.telegram.messenger.CharacterCompat;
 
 public class TLRPC$TL_userFull extends TLRPC$UserFull {
-    public static int constructor = -1938625919;
+    public static int constructor = -994968513;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.blocked = (readInt32 & 1) != 0;
         this.phone_calls_available = (readInt32 & 16) != 0;
         this.phone_calls_private = (readInt32 & 32) != 0;
         this.can_pin_message = (readInt32 & ConnectionsManager.RequestFlagNeedQuickAck) != 0;
         this.has_scheduled = (readInt32 & 4096) != 0;
-        if ((readInt32 & 8192) != 0) {
-            z2 = true;
-        }
-        this.video_calls_available = z2;
-        this.id = abstractSerializedData.readInt64(z);
+        this.video_calls_available = (readInt32 & 8192) != 0;
+        this.voice_messages_forbidden = (readInt32 & 1048576) != 0;
+        this.f987id = abstractSerializedData.readInt64(z);
         if ((this.flags & 2) != 0) {
             this.about = abstractSerializedData.readString(z);
         }
@@ -53,6 +50,23 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         if ((this.flags & 262144) != 0) {
             this.bot_broadcast_admin_rights = TLRPC$TL_chatAdminRights.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
+        if ((this.flags & 524288) != 0) {
+            int readInt322 = abstractSerializedData.readInt32(z);
+            if (readInt322 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                }
+                return;
+            }
+            int readInt323 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt323; i++) {
+                TLRPC$TL_premiumGiftOption TLdeserialize = TLRPC$TL_premiumGiftOption.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize == null) {
+                    return;
+                }
+                this.premium_gifts.add(TLdeserialize);
+            }
+        }
     }
 
     @Override
@@ -70,8 +84,10 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         this.flags = i5;
         int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
         this.flags = i6;
-        abstractSerializedData.writeInt32(i6);
-        abstractSerializedData.writeInt64(this.id);
+        int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+        this.flags = i7;
+        abstractSerializedData.writeInt32(i7);
+        abstractSerializedData.writeInt64(this.f987id);
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeString(this.about);
         }
@@ -104,6 +120,14 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         }
         if ((this.flags & 262144) != 0) {
             this.bot_broadcast_admin_rights.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & 524288) != 0) {
+            abstractSerializedData.writeInt32(481674261);
+            int size = this.premium_gifts.size();
+            abstractSerializedData.writeInt32(size);
+            for (int i8 = 0; i8 < size; i8++) {
+                this.premium_gifts.get(i8).serializeToStream(abstractSerializedData);
+            }
         }
     }
 }

@@ -21,15 +21,15 @@ public class TLRPC$TL_stats_broadcastStats extends TLObject {
     public TLRPC$TL_statsAbsValueAndPrev views_per_post;
 
     public static TLRPC$TL_stats_broadcastStats TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_stats_broadcastStats tLRPC$TL_stats_broadcastStats = new TLRPC$TL_stats_broadcastStats();
-            tLRPC$TL_stats_broadcastStats.readParams(abstractSerializedData, z);
-            return tLRPC$TL_stats_broadcastStats;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastStats", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastStats", Integer.valueOf(i)));
         }
+        TLRPC$TL_stats_broadcastStats tLRPC$TL_stats_broadcastStats = new TLRPC$TL_stats_broadcastStats();
+        tLRPC$TL_stats_broadcastStats.readParams(abstractSerializedData, z);
+        return tLRPC$TL_stats_broadcastStats;
     }
 
     @Override
@@ -49,18 +49,19 @@ public class TLRPC$TL_stats_broadcastStats extends TLObject {
         this.new_followers_by_source_graph = TLRPC$StatsGraph.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.languages_graph = TLRPC$StatsGraph.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         int readInt32 = abstractSerializedData.readInt32(z);
-        if (readInt32 == 481674261) {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                TLRPC$TL_messageInteractionCounters TLdeserialize = TLRPC$TL_messageInteractionCounters.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize != null) {
-                    this.recent_message_interactions.add(TLdeserialize);
-                } else {
-                    return;
-                }
+        if (readInt32 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+            return;
+        }
+        int readInt322 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt322; i++) {
+            TLRPC$TL_messageInteractionCounters TLdeserialize = TLRPC$TL_messageInteractionCounters.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
+            }
+            this.recent_message_interactions.add(TLdeserialize);
         }
     }
 

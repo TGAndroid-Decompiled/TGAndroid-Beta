@@ -17,18 +17,19 @@ public class LongSparseIntArray implements Cloneable {
     }
 
     public LongSparseIntArray clone() {
-        LongSparseIntArray longSparseIntArray = null;
+        LongSparseIntArray longSparseIntArray;
+        LongSparseIntArray longSparseIntArray2 = null;
         try {
-            LongSparseIntArray longSparseIntArray2 = (LongSparseIntArray) super.clone();
-            try {
-                longSparseIntArray2.mKeys = (long[]) this.mKeys.clone();
-                longSparseIntArray2.mValues = (int[]) this.mValues.clone();
-                return longSparseIntArray2;
-            } catch (CloneNotSupportedException unused) {
-                longSparseIntArray = longSparseIntArray2;
-                return longSparseIntArray;
-            }
+            longSparseIntArray = (LongSparseIntArray) super.clone();
+        } catch (CloneNotSupportedException unused) {
+        }
+        try {
+            longSparseIntArray.mKeys = (long[]) this.mKeys.clone();
+            longSparseIntArray.mValues = (int[]) this.mValues.clone();
+            return longSparseIntArray;
         } catch (CloneNotSupportedException unused2) {
+            longSparseIntArray2 = longSparseIntArray;
+            return longSparseIntArray2;
         }
     }
 
@@ -112,16 +113,16 @@ public class LongSparseIntArray implements Cloneable {
 
     public void append(long j, int i) {
         int i2 = this.mSize;
-        if (i2 == 0 || j > this.mKeys[i2 - 1]) {
-            if (i2 >= this.mKeys.length) {
-                growKeyAndValueArrays(i2 + 1);
-            }
-            this.mKeys[i2] = j;
-            this.mValues[i2] = i;
-            this.mSize = i2 + 1;
+        if (i2 != 0 && j <= this.mKeys[i2 - 1]) {
+            put(j, i);
             return;
         }
-        put(j, i);
+        if (i2 >= this.mKeys.length) {
+            growKeyAndValueArrays(i2 + 1);
+        }
+        this.mKeys[i2] = j;
+        this.mValues[i2] = i;
+        this.mSize = i2 + 1;
     }
 
     private void growKeyAndValueArrays(int i) {

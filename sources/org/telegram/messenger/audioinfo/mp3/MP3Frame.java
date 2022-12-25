@@ -16,12 +16,7 @@ public class MP3Frame {
             int i3 = 1 << (i2 - 1);
             do {
                 short s = this.crc;
-                boolean z = false;
-                boolean z2 = (32768 & s) == 0;
-                if ((i & i3) == 0) {
-                    z = true;
-                }
-                if (z2 ^ z) {
+                if (((32768 & s) == 0) ^ ((i & i3) == 0)) {
                     short s2 = (short) (s << 1);
                     this.crc = s2;
                     this.crc = (short) (s2 ^ 32773);
@@ -63,40 +58,37 @@ public class MP3Frame {
         public Header(int i, int i2, int i3) throws MP3Exception {
             int i4 = (i >> 3) & 3;
             this.version = i4;
-            if (i4 != 1) {
-                int i5 = (i >> 1) & 3;
-                this.layer = i5;
-                if (i5 != 0) {
-                    int i6 = (i2 >> 4) & 15;
-                    this.bitrate = i6;
-                    if (i6 == 15) {
-                        throw new MP3Exception("Reserved bitrate");
-                    } else if (i6 != 0) {
-                        int i7 = (i2 >> 2) & 3;
-                        this.frequency = i7;
-                        if (i7 != 3) {
-                            int i8 = 6;
-                            this.channelMode = (i3 >> 6) & 3;
-                            this.padding = (i2 >> 1) & 1;
-                            int i9 = i & 1;
-                            this.protection = i9;
-                            i8 = i9 != 0 ? 4 : i8;
-                            i8 = i5 == 1 ? i8 + getSideInfoSize() : i8;
-                            if (getFrameSize() < i8) {
-                                throw new MP3Exception("Frame size must be at least " + i8);
-                            }
-                            return;
-                        }
-                        throw new MP3Exception("Reserved frequency");
-                    } else {
-                        throw new MP3Exception("Free bitrate");
-                    }
-                } else {
-                    throw new MP3Exception("Reserved layer");
-                }
-            } else {
+            if (i4 == 1) {
                 throw new MP3Exception("Reserved version");
             }
+            int i5 = (i >> 1) & 3;
+            this.layer = i5;
+            if (i5 == 0) {
+                throw new MP3Exception("Reserved layer");
+            }
+            int i6 = (i2 >> 4) & 15;
+            this.bitrate = i6;
+            if (i6 == 15) {
+                throw new MP3Exception("Reserved bitrate");
+            }
+            if (i6 == 0) {
+                throw new MP3Exception("Free bitrate");
+            }
+            int i7 = (i2 >> 2) & 3;
+            this.frequency = i7;
+            if (i7 == 3) {
+                throw new MP3Exception("Reserved frequency");
+            }
+            this.channelMode = (i3 >> 6) & 3;
+            this.padding = (i2 >> 1) & 1;
+            int i8 = i & 1;
+            this.protection = i8;
+            int i9 = i8 != 0 ? 4 : 6;
+            i9 = i5 == 1 ? i9 + getSideInfoSize() : i9;
+            if (getFrameSize() >= i9) {
+                return;
+            }
+            throw new MP3Exception("Frame size must be at least " + i9);
         }
 
         public int getVersion() {
@@ -159,18 +151,18 @@ public class MP3Frame {
     }
 
     public boolean isChecksumError() {
-        if (!(this.header.getProtection() == 0 && this.header.getLayer() == 1)) {
-            return false;
+        if (this.header.getProtection() == 0 && this.header.getLayer() == 1) {
+            CRC16 crc16 = new CRC16();
+            crc16.update(this.bytes[2]);
+            crc16.update(this.bytes[3]);
+            int sideInfoSize = this.header.getSideInfoSize();
+            for (int i = 0; i < sideInfoSize; i++) {
+                crc16.update(this.bytes[i + 6]);
+            }
+            byte[] bArr = this.bytes;
+            return ((bArr[5] & 255) | ((bArr[4] & 255) << 8)) != crc16.getValue();
         }
-        CRC16 crc16 = new CRC16();
-        crc16.update(this.bytes[2]);
-        crc16.update(this.bytes[3]);
-        int sideInfoSize = this.header.getSideInfoSize();
-        for (int i = 0; i < sideInfoSize; i++) {
-            crc16.update(this.bytes[i + 6]);
-        }
-        byte[] bArr = this.bytes;
-        return ((bArr[5] & 255) | ((bArr[4] & 255) << 8)) != crc16.getValue();
+        return false;
     }
 
     public int getSize() {

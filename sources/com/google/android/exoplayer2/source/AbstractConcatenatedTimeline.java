@@ -43,7 +43,6 @@ abstract class AbstractConcatenatedTimeline extends Timeline {
 
     @Override
     public int getNextWindowIndex(int i, int i2, boolean z) {
-        int i3 = 0;
         if (this.isAtomic) {
             if (i2 == 1) {
                 i2 = 2;
@@ -52,12 +51,7 @@ abstract class AbstractConcatenatedTimeline extends Timeline {
         }
         int childIndexByWindowIndex = getChildIndexByWindowIndex(i);
         int firstWindowIndexByChildIndex = getFirstWindowIndexByChildIndex(childIndexByWindowIndex);
-        Timeline timelineByChildIndex = getTimelineByChildIndex(childIndexByWindowIndex);
-        int i4 = i - firstWindowIndexByChildIndex;
-        if (i2 != 2) {
-            i3 = i2;
-        }
-        int nextWindowIndex = timelineByChildIndex.getNextWindowIndex(i4, i3, z);
+        int nextWindowIndex = getTimelineByChildIndex(childIndexByWindowIndex).getNextWindowIndex(i - firstWindowIndexByChildIndex, i2 != 2 ? i2 : 0, z);
         if (nextWindowIndex != -1) {
             return firstWindowIndexByChildIndex + nextWindowIndex;
         }
@@ -98,20 +92,17 @@ abstract class AbstractConcatenatedTimeline extends Timeline {
         if (this.childCount == 0) {
             return -1;
         }
-        int i = 0;
         if (this.isAtomic) {
             z = false;
         }
-        if (z) {
-            i = this.shuffleOrder.getFirstIndex();
-        }
-        while (getTimelineByChildIndex(i).isEmpty()) {
-            i = getNextChildIndex(i, z);
-            if (i == -1) {
+        int firstIndex = z ? this.shuffleOrder.getFirstIndex() : 0;
+        while (getTimelineByChildIndex(firstIndex).isEmpty()) {
+            firstIndex = getNextChildIndex(firstIndex, z);
+            if (firstIndex == -1) {
                 return -1;
             }
         }
-        return getFirstWindowIndexByChildIndex(i) + getTimelineByChildIndex(i).getFirstWindowIndex(z);
+        return getFirstWindowIndexByChildIndex(firstIndex) + getTimelineByChildIndex(firstIndex).getFirstWindowIndex(z);
     }
 
     @Override
@@ -157,16 +148,16 @@ abstract class AbstractConcatenatedTimeline extends Timeline {
     @Override
     public final int getIndexOfPeriod(Object obj) {
         int indexOfPeriod;
-        if (!(obj instanceof Pair)) {
-            return -1;
+        if (obj instanceof Pair) {
+            Object childTimelineUidFromConcatenatedUid = getChildTimelineUidFromConcatenatedUid(obj);
+            Object childPeriodUidFromConcatenatedUid = getChildPeriodUidFromConcatenatedUid(obj);
+            int childIndexByChildUid = getChildIndexByChildUid(childTimelineUidFromConcatenatedUid);
+            if (childIndexByChildUid == -1 || (indexOfPeriod = getTimelineByChildIndex(childIndexByChildUid).getIndexOfPeriod(childPeriodUidFromConcatenatedUid)) == -1) {
+                return -1;
+            }
+            return getFirstPeriodIndexByChildIndex(childIndexByChildUid) + indexOfPeriod;
         }
-        Object childTimelineUidFromConcatenatedUid = getChildTimelineUidFromConcatenatedUid(obj);
-        Object childPeriodUidFromConcatenatedUid = getChildPeriodUidFromConcatenatedUid(obj);
-        int childIndexByChildUid = getChildIndexByChildUid(childTimelineUidFromConcatenatedUid);
-        if (childIndexByChildUid == -1 || (indexOfPeriod = getTimelineByChildIndex(childIndexByChildUid).getIndexOfPeriod(childPeriodUidFromConcatenatedUid)) == -1) {
-            return -1;
-        }
-        return getFirstPeriodIndexByChildIndex(childIndexByChildUid) + indexOfPeriod;
+        return -1;
     }
 
     @Override

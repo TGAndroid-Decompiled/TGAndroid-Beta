@@ -14,11 +14,11 @@ public class Size {
     }
 
     public boolean equals(Object obj) {
-        if (!(obj instanceof Size)) {
-            return false;
+        if (obj instanceof Size) {
+            Size size = (Size) obj;
+            return this.width == size.width && this.height == size.height;
         }
-        Size size = (Size) obj;
-        return this.width == size.width && this.height == size.height;
+        return false;
     }
 
     public int hashCode() {

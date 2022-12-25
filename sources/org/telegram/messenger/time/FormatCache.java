@@ -1,13 +1,14 @@
 package org.telegram.messenger.time;
 
-import j$.util.concurrent.ConcurrentHashMap;
 import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentMap;
+import p008j$.util.concurrent.ConcurrentHashMap;
 
 public abstract class FormatCache<F extends Format> {
     static final int NONE = -1;
@@ -21,23 +22,21 @@ public abstract class FormatCache<F extends Format> {
     }
 
     public F getInstance(String str, TimeZone timeZone, Locale locale) {
-        if (str != null) {
-            if (timeZone == null) {
-                timeZone = TimeZone.getDefault();
-            }
-            if (locale == null) {
-                locale = Locale.getDefault();
-            }
-            MultipartKey multipartKey = new MultipartKey(str, timeZone, locale);
-            F f = this.cInstanceCache.get(multipartKey);
-            if (f != null) {
-                return f;
-            }
+        Objects.requireNonNull(str, "pattern must not be null");
+        if (timeZone == null) {
+            timeZone = TimeZone.getDefault();
+        }
+        if (locale == null) {
+            locale = Locale.getDefault();
+        }
+        MultipartKey multipartKey = new MultipartKey(str, timeZone, locale);
+        F f = this.cInstanceCache.get(multipartKey);
+        if (f == null) {
             F createInstance = createInstance(str, timeZone, locale);
             F putIfAbsent = this.cInstanceCache.putIfAbsent(multipartKey, createInstance);
             return putIfAbsent != null ? putIfAbsent : createInstance;
         }
-        throw new NullPointerException("pattern must not be null");
+        return f;
     }
 
     private F getDateTimeInstance(Integer num, Integer num2, TimeZone timeZone, Locale locale) {
@@ -60,27 +59,27 @@ public abstract class FormatCache<F extends Format> {
     }
 
     static String getPatternForStyle(Integer num, Integer num2, Locale locale) {
-        DateFormat dateFormat;
+        DateFormat dateTimeInstance;
         MultipartKey multipartKey = new MultipartKey(num, num2, locale);
         ConcurrentMap<MultipartKey, String> concurrentMap = cDateTimeInstanceCache;
         String str = concurrentMap.get(multipartKey);
-        if (str != null) {
-            return str;
-        }
-        try {
-            if (num == null) {
-                dateFormat = DateFormat.getTimeInstance(num2.intValue(), locale);
-            } else if (num2 == null) {
-                dateFormat = DateFormat.getDateInstance(num.intValue(), locale);
-            } else {
-                dateFormat = DateFormat.getDateTimeInstance(num.intValue(), num2.intValue(), locale);
+        if (str == null) {
+            try {
+                if (num == null) {
+                    dateTimeInstance = DateFormat.getTimeInstance(num2.intValue(), locale);
+                } else if (num2 == null) {
+                    dateTimeInstance = DateFormat.getDateInstance(num.intValue(), locale);
+                } else {
+                    dateTimeInstance = DateFormat.getDateTimeInstance(num.intValue(), num2.intValue(), locale);
+                }
+                String pattern = ((SimpleDateFormat) dateTimeInstance).toPattern();
+                String putIfAbsent = concurrentMap.putIfAbsent(multipartKey, pattern);
+                return putIfAbsent != null ? putIfAbsent : pattern;
+            } catch (ClassCastException unused) {
+                throw new IllegalArgumentException("No date time pattern for locale: " + locale);
             }
-            String pattern = ((SimpleDateFormat) dateFormat).toPattern();
-            String putIfAbsent = concurrentMap.putIfAbsent(multipartKey, pattern);
-            return putIfAbsent != null ? putIfAbsent : pattern;
-        } catch (ClassCastException unused) {
-            throw new IllegalArgumentException("No date time pattern for locale: " + locale);
         }
+        return str;
     }
 
     public static class MultipartKey {

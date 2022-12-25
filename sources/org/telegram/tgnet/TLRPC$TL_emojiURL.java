@@ -5,15 +5,15 @@ public class TLRPC$TL_emojiURL extends TLObject {
     public String url;
 
     public static TLRPC$TL_emojiURL TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_emojiURL tLRPC$TL_emojiURL = new TLRPC$TL_emojiURL();
-            tLRPC$TL_emojiURL.readParams(abstractSerializedData, z);
-            return tLRPC$TL_emojiURL;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_emojiURL", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_emojiURL", Integer.valueOf(i)));
         }
+        TLRPC$TL_emojiURL tLRPC$TL_emojiURL = new TLRPC$TL_emojiURL();
+        tLRPC$TL_emojiURL.readParams(abstractSerializedData, z);
+        return tLRPC$TL_emojiURL;
     }
 
     @Override

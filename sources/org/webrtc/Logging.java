@@ -5,6 +5,8 @@ import java.io.StringWriter;
 import java.util.EnumSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.telegram.messenger.BuildConfig;
+import org.telegram.tgnet.ConnectionsManager;
 
 public class Logging {
     private static final Logger fallbackLogger = createFallbackLogger();
@@ -61,7 +63,7 @@ public class Logging {
         TRACE_MODULECALL(32),
         TRACE_MEMORY(256),
         TRACE_TIMER(512),
-        TRACE_STREAM(1024),
+        TRACE_STREAM(ConnectionsManager.RequestFlagDoNotWaitFloodWait),
         TRACE_DEBUG(2048),
         TRACE_INFO(4096),
         TRACE_TERSEINFO(8192),
@@ -84,12 +86,11 @@ public class Logging {
 
     public static synchronized void enableLogToDebugOutput(Severity severity) {
         synchronized (Logging.class) {
-            if (loggable == null) {
-                nativeEnableLogToDebugOutput(severity.ordinal());
-                loggingEnabled = true;
-            } else {
+            if (loggable != null) {
                 throw new IllegalStateException("Logging to native debug output not supported while Loggable is injected. Delete the Loggable before calling this method.");
             }
+            nativeEnableLogToDebugOutput(severity.ordinal());
+            loggingEnabled = true;
         }
     }
 
@@ -97,29 +98,31 @@ public class Logging {
         Level level;
         if (str == null || str2 == null) {
             throw new IllegalArgumentException("Logging tag or message may not be null.");
-        } else if (loggable != null) {
-            if (severity.ordinal() >= loggableSeverity.ordinal()) {
-                loggable.onLogMessage(str2, severity, str);
+        }
+        if (loggable != null) {
+            if (severity.ordinal() < loggableSeverity.ordinal()) {
+                return;
             }
+            loggable.onLogMessage(str2, severity, str);
         } else if (loggingEnabled) {
             nativeLog(severity.ordinal(), str, str2);
         } else {
-            int i = AnonymousClass1.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
+            int i = C41471.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
             if (i == 1) {
                 level = Level.SEVERE;
             } else if (i == 2) {
                 level = Level.WARNING;
-            } else if (i != 3) {
-                level = Level.FINE;
-            } else {
+            } else if (i == 3) {
                 level = Level.INFO;
+            } else {
+                level = Level.FINE;
             }
             Logger logger = fallbackLogger;
             logger.log(level, str + ": " + str2);
         }
     }
 
-    public static class AnonymousClass1 {
+    public static class C41471 {
         static final int[] $SwitchMap$org$webrtc$Logging$Severity;
 
         static {
@@ -140,39 +143,39 @@ public class Logging {
         }
     }
 
-    public static void d(String str, String str2) {
+    public static void m9d(String str, String str2) {
         log(Severity.LS_INFO, str, str2);
     }
 
-    public static void e(String str, String str2) {
+    public static void m8e(String str, String str2) {
         log(Severity.LS_ERROR, str, str2);
     }
 
-    public static void w(String str, String str2) {
+    public static void m5w(String str, String str2) {
         log(Severity.LS_WARNING, str, str2);
     }
 
-    public static void e(String str, String str2, Throwable th) {
+    public static void m7e(String str, String str2, Throwable th) {
         Severity severity = Severity.LS_ERROR;
         log(severity, str, str2);
         log(severity, str, th.toString());
         log(severity, str, getStackTraceString(th));
     }
 
-    public static void w(String str, String str2, Throwable th) {
+    public static void m4w(String str, String str2, Throwable th) {
         Severity severity = Severity.LS_WARNING;
         log(severity, str, str2);
         log(severity, str, th.toString());
         log(severity, str, getStackTraceString(th));
     }
 
-    public static void v(String str, String str2) {
+    public static void m6v(String str, String str2) {
         log(Severity.LS_VERBOSE, str, str2);
     }
 
     private static String getStackTraceString(Throwable th) {
         if (th == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         StringWriter stringWriter = new StringWriter();
         th.printStackTrace(new PrintWriter(stringWriter));

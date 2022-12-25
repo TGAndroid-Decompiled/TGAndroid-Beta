@@ -35,16 +35,16 @@ public final class zzhp {
     public static int zzc(byte[] bArr, int i, int i2) {
         byte b = bArr[i - 1];
         int i3 = i2 - i;
-        if (i3 == 0) {
-            return zzb(b);
-        }
-        if (i3 == 1) {
+        if (i3 != 0) {
+            if (i3 != 1) {
+                if (i3 == 2) {
+                    return zzb(b, bArr[i], bArr[i + 1]);
+                }
+                throw new AssertionError();
+            }
             return zzb(b, bArr[i]);
         }
-        if (i3 == 2) {
-            return zzb(b, bArr[i], bArr[i + 1]);
-        }
-        throw new AssertionError();
+        return zzb(b);
     }
 
     public static int zza(CharSequence charSequence) {
@@ -72,11 +72,10 @@ public final class zzhp {
                     } else {
                         i += 2;
                         if (55296 <= charAt2 && charAt2 <= 57343) {
-                            if (Character.codePointAt(charSequence, i2) >= 65536) {
-                                i2++;
-                            } else {
+                            if (Character.codePointAt(charSequence, i2) < 65536) {
                                 throw new zzhq(i2, length2);
                             }
+                            i2++;
                         }
                     }
                     i2++;
@@ -98,12 +97,12 @@ public final class zzhp {
     }
 
     static {
-        zzho zzhoVar;
-        if (!(zzhn.zza() && zzhn.zzb()) || zzdl.zza()) {
-            zzhoVar = new zzhr();
+        zzho zzhrVar;
+        if ((zzhn.zza() && zzhn.zzb()) && !zzdl.zza()) {
+            zzhrVar = new zzht();
         } else {
-            zzhoVar = new zzht();
+            zzhrVar = new zzhr();
         }
-        zza = zzhoVar;
+        zza = zzhrVar;
     }
 }

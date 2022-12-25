@@ -14,7 +14,7 @@ public class TLRPC$TL_authorization extends TLObject {
     public boolean encrypted_requests_disabled;
     public int flags;
     public long hash;
-    public String ip;
+    public String f883ip;
     public boolean official_app;
     public boolean password_pending;
     public String platform;
@@ -22,30 +22,26 @@ public class TLRPC$TL_authorization extends TLObject {
     public String system_version;
 
     public static TLRPC$TL_authorization TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_authorization tLRPC$TL_authorization = new TLRPC$TL_authorization();
-            tLRPC$TL_authorization.readParams(abstractSerializedData, z);
-            return tLRPC$TL_authorization;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_authorization", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_authorization", Integer.valueOf(i)));
         }
+        TLRPC$TL_authorization tLRPC$TL_authorization = new TLRPC$TL_authorization();
+        tLRPC$TL_authorization.readParams(abstractSerializedData, z);
+        return tLRPC$TL_authorization;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.current = (readInt32 & 1) != 0;
         this.official_app = (readInt32 & 2) != 0;
         this.password_pending = (readInt32 & 4) != 0;
         this.encrypted_requests_disabled = (readInt32 & 8) != 0;
-        if ((readInt32 & 16) != 0) {
-            z2 = true;
-        }
-        this.call_requests_disabled = z2;
+        this.call_requests_disabled = (readInt32 & 16) != 0;
         this.hash = abstractSerializedData.readInt64(z);
         this.device_model = abstractSerializedData.readString(z);
         this.platform = abstractSerializedData.readString(z);
@@ -55,7 +51,7 @@ public class TLRPC$TL_authorization extends TLObject {
         this.app_version = abstractSerializedData.readString(z);
         this.date_created = abstractSerializedData.readInt32(z);
         this.date_active = abstractSerializedData.readInt32(z);
-        this.ip = abstractSerializedData.readString(z);
+        this.f883ip = abstractSerializedData.readString(z);
         this.country = abstractSerializedData.readString(z);
         this.region = abstractSerializedData.readString(z);
     }
@@ -83,7 +79,7 @@ public class TLRPC$TL_authorization extends TLObject {
         abstractSerializedData.writeString(this.app_version);
         abstractSerializedData.writeInt32(this.date_created);
         abstractSerializedData.writeInt32(this.date_active);
-        abstractSerializedData.writeString(this.ip);
+        abstractSerializedData.writeString(this.f883ip);
         abstractSerializedData.writeString(this.country);
         abstractSerializedData.writeString(this.region);
     }

@@ -24,7 +24,8 @@ final class AudioBecomingNoisyManager {
         if (z && !this.receiverRegistered) {
             this.context.registerReceiver(this.receiver, new IntentFilter("android.media.AUDIO_BECOMING_NOISY"));
             this.receiverRegistered = true;
-        } else if (!z && this.receiverRegistered) {
+        } else if (z || !this.receiverRegistered) {
+        } else {
             this.context.unregisterReceiver(this.receiver);
             this.receiverRegistered = false;
         }

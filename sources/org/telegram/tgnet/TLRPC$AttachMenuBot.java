@@ -15,18 +15,19 @@ public abstract class TLRPC$AttachMenuBot extends TLObject {
                     this.bot_id = abstractSerializedData2.readInt64(z2);
                     this.short_name = abstractSerializedData2.readString(z2);
                     int readInt322 = abstractSerializedData2.readInt32(z2);
-                    if (readInt322 == 481674261) {
-                        int readInt323 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$TL_attachMenuBotIcon TLdeserialize = TLRPC$TL_attachMenuBotIcon.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                            if (TLdeserialize != null) {
-                                this.icons.add(TLdeserialize);
-                            } else {
-                                return;
-                            }
+                    if (readInt322 != 481674261) {
+                        if (z2) {
+                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                         }
-                    } else if (z2) {
-                        throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                        return;
+                    }
+                    int readInt323 = abstractSerializedData2.readInt32(z2);
+                    for (int i2 = 0; i2 < readInt323; i2++) {
+                        TLRPC$TL_attachMenuBotIcon TLdeserialize = TLRPC$TL_attachMenuBotIcon.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if (TLdeserialize == null) {
+                            return;
+                        }
+                        this.icons.add(TLdeserialize);
                     }
                 }
 
@@ -49,12 +50,12 @@ public abstract class TLRPC$AttachMenuBot extends TLObject {
         } else {
             tLRPC$TL_attachMenuBot = new TLRPC$TL_attachMenuBot();
         }
-        if (tLRPC$TL_attachMenuBot != null || !z) {
-            if (tLRPC$TL_attachMenuBot != null) {
-                tLRPC$TL_attachMenuBot.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$TL_attachMenuBot;
+        if (tLRPC$TL_attachMenuBot == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in AttachMenuBot", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in AttachMenuBot", Integer.valueOf(i)));
+        if (tLRPC$TL_attachMenuBot != null) {
+            tLRPC$TL_attachMenuBot.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_attachMenuBot;
     }
 }

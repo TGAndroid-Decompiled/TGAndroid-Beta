@@ -6,16 +6,16 @@ public abstract class TLRPC$ChatParticipant extends TLObject {
     public long user_id;
 
     public static TLRPC$ChatParticipant TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$ChatParticipant tLRPC$ChatParticipant;
+        TLRPC$ChatParticipant tLRPC$TL_chatParticipantAdmin;
         switch (i) {
             case -1600962725:
-                tLRPC$ChatParticipant = new TLRPC$TL_chatParticipantAdmin();
+                tLRPC$TL_chatParticipantAdmin = new TLRPC$TL_chatParticipantAdmin();
                 break;
             case -1070776313:
-                tLRPC$ChatParticipant = new TLRPC$TL_chatParticipant();
+                tLRPC$TL_chatParticipantAdmin = new TLRPC$TL_chatParticipant();
                 break;
             case -925415106:
-                tLRPC$ChatParticipant = new TLRPC$TL_chatParticipant() {
+                tLRPC$TL_chatParticipantAdmin = new TLRPC$TL_chatParticipant() {
                     public static int constructor = -925415106;
 
                     @Override
@@ -35,7 +35,7 @@ public abstract class TLRPC$ChatParticipant extends TLObject {
                 };
                 break;
             case -636267638:
-                tLRPC$ChatParticipant = new TLRPC$TL_chatParticipantCreator() {
+                tLRPC$TL_chatParticipantAdmin = new TLRPC$TL_chatParticipantCreator() {
                     public static int constructor = -636267638;
 
                     @Override
@@ -51,7 +51,7 @@ public abstract class TLRPC$ChatParticipant extends TLObject {
                 };
                 break;
             case -489233354:
-                tLRPC$ChatParticipant = new TLRPC$TL_chatParticipantAdmin() {
+                tLRPC$TL_chatParticipantAdmin = new TLRPC$TL_chatParticipantAdmin() {
                     public static int constructor = -489233354;
 
                     @Override
@@ -71,18 +71,18 @@ public abstract class TLRPC$ChatParticipant extends TLObject {
                 };
                 break;
             case -462696732:
-                tLRPC$ChatParticipant = new TLRPC$TL_chatParticipantCreator();
+                tLRPC$TL_chatParticipantAdmin = new TLRPC$TL_chatParticipantCreator();
                 break;
             default:
-                tLRPC$ChatParticipant = null;
+                tLRPC$TL_chatParticipantAdmin = null;
                 break;
         }
-        if (tLRPC$ChatParticipant != null || !z) {
-            if (tLRPC$ChatParticipant != null) {
-                tLRPC$ChatParticipant.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$ChatParticipant;
+        if (tLRPC$TL_chatParticipantAdmin == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in ChatParticipant", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in ChatParticipant", Integer.valueOf(i)));
+        if (tLRPC$TL_chatParticipantAdmin != null) {
+            tLRPC$TL_chatParticipantAdmin.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_chatParticipantAdmin;
     }
 }

@@ -6,27 +6,27 @@ public class TLRPC$TL_game extends TLObject {
     public String description;
     public TLRPC$Document document;
     public int flags;
-    public long id;
+    public long f903id;
     public TLRPC$Photo photo;
     public String short_name;
     public String title;
 
     public static TLRPC$TL_game TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_game tLRPC$TL_game = new TLRPC$TL_game();
-            tLRPC$TL_game.readParams(abstractSerializedData, z);
-            return tLRPC$TL_game;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_game", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_game", Integer.valueOf(i)));
         }
+        TLRPC$TL_game tLRPC$TL_game = new TLRPC$TL_game();
+        tLRPC$TL_game.readParams(abstractSerializedData, z);
+        return tLRPC$TL_game;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.flags = abstractSerializedData.readInt32(z);
-        this.id = abstractSerializedData.readInt64(z);
+        this.f903id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.short_name = abstractSerializedData.readString(z);
         this.title = abstractSerializedData.readString(z);
@@ -41,7 +41,7 @@ public class TLRPC$TL_game extends TLObject {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
-        abstractSerializedData.writeInt64(this.id);
+        abstractSerializedData.writeInt64(this.f903id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeString(this.short_name);
         abstractSerializedData.writeString(this.title);

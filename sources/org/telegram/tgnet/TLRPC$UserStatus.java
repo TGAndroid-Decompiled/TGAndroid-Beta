@@ -82,12 +82,12 @@ public abstract class TLRPC$UserStatus extends TLObject {
                 tLRPC$UserStatus = null;
                 break;
         }
-        if (tLRPC$UserStatus != null || !z) {
-            if (tLRPC$UserStatus != null) {
-                tLRPC$UserStatus.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$UserStatus;
+        if (tLRPC$UserStatus == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in UserStatus", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in UserStatus", Integer.valueOf(i)));
+        if (tLRPC$UserStatus != null) {
+            tLRPC$UserStatus.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$UserStatus;
     }
 }

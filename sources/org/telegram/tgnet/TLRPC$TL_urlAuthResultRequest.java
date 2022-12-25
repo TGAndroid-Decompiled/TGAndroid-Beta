@@ -11,11 +11,7 @@ public class TLRPC$TL_urlAuthResultRequest extends TLRPC$UrlAuthResult {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = true;
-        if ((readInt32 & 1) == 0) {
-            z2 = false;
-        }
-        this.request_write_access = z2;
+        this.request_write_access = (readInt32 & 1) != 0;
         this.bot = TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.domain = abstractSerializedData.readString(z);
     }

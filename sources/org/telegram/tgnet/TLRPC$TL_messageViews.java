@@ -8,15 +8,15 @@ public class TLRPC$TL_messageViews extends TLObject {
     public int views;
 
     public static TLRPC$TL_messageViews TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_messageViews tLRPC$TL_messageViews = new TLRPC$TL_messageViews();
-            tLRPC$TL_messageViews.readParams(abstractSerializedData, z);
-            return tLRPC$TL_messageViews;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_messageViews", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_messageViews", Integer.valueOf(i)));
         }
+        TLRPC$TL_messageViews tLRPC$TL_messageViews = new TLRPC$TL_messageViews();
+        tLRPC$TL_messageViews.readParams(abstractSerializedData, z);
+        return tLRPC$TL_messageViews;
     }
 
     @Override

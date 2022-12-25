@@ -6,15 +6,15 @@ public class TLRPC$TL_attachMenuBotIconColor extends TLObject {
     public String name;
 
     public static TLRPC$TL_attachMenuBotIconColor TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_attachMenuBotIconColor tLRPC$TL_attachMenuBotIconColor = new TLRPC$TL_attachMenuBotIconColor();
-            tLRPC$TL_attachMenuBotIconColor.readParams(abstractSerializedData, z);
-            return tLRPC$TL_attachMenuBotIconColor;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_attachMenuBotIconColor", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_attachMenuBotIconColor", Integer.valueOf(i)));
         }
+        TLRPC$TL_attachMenuBotIconColor tLRPC$TL_attachMenuBotIconColor = new TLRPC$TL_attachMenuBotIconColor();
+        tLRPC$TL_attachMenuBotIconColor.readParams(abstractSerializedData, z);
+        return tLRPC$TL_attachMenuBotIconColor;
     }
 
     @Override

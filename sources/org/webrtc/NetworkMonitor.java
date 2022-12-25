@@ -88,7 +88,7 @@ public class NetworkMonitor {
 
     @CalledByNative
     private void startMonitoring(Context context, long j) {
-        Logging.d(TAG, "Start monitoring with native observer " + j);
+        Logging.m9d(TAG, "Start monitoring with native observer " + j);
         if (context == null) {
             context = ContextUtils.getApplicationContext();
         }
@@ -113,7 +113,7 @@ public class NetworkMonitor {
 
     @CalledByNative
     private void stopMonitoring(long j) {
-        Logging.d(TAG, "Stop monitoring with native observer " + j);
+        Logging.m9d(TAG, "Stop monitoring with native observer " + j);
         stopMonitoring();
         synchronized (this.nativeNetworkObservers) {
             this.nativeNetworkObservers.remove(Long.valueOf(j));
@@ -208,9 +208,10 @@ public class NetworkMonitor {
             NetworkChangeDetector networkChangeDetector = this.networkChangeDetector;
             activeNetworkList = networkChangeDetector == null ? null : networkChangeDetector.getActiveNetworkList();
         }
-        if (activeNetworkList != null && activeNetworkList.size() != 0) {
-            nativeNotifyOfActiveNetworkList(j, (NetworkChangeDetector.NetworkInformation[]) activeNetworkList.toArray(new NetworkChangeDetector.NetworkInformation[activeNetworkList.size()]));
+        if (activeNetworkList == null || activeNetworkList.size() == 0) {
+            return;
         }
+        nativeNotifyOfActiveNetworkList(j, (NetworkChangeDetector.NetworkInformation[]) activeNetworkList.toArray(new NetworkChangeDetector.NetworkInformation[activeNetworkList.size()]));
     }
 
     private List<Long> getNativeNetworkObserversSync() {

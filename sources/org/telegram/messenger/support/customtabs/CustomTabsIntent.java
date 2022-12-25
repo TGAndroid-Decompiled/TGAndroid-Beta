@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.IBinder;
 import androidx.core.app.BundleCompat;
 import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
@@ -26,21 +25,24 @@ public final class CustomTabsIntent {
     }
 
     public static final class Builder {
+        private ArrayList<Bundle> mActionButtons;
+        private boolean mInstantAppsEnabled;
         private final Intent mIntent;
-        private ArrayList<Bundle> mMenuItems = null;
-        private Bundle mStartAnimationBundle = null;
-        private ArrayList<Bundle> mActionButtons = null;
-        private boolean mInstantAppsEnabled = true;
+        private ArrayList<Bundle> mMenuItems;
+        private Bundle mStartAnimationBundle;
 
         public Builder(CustomTabsSession customTabsSession) {
             Intent intent = new Intent("android.intent.action.VIEW");
             this.mIntent = intent;
-            IBinder iBinder = null;
+            this.mMenuItems = null;
+            this.mStartAnimationBundle = null;
+            this.mActionButtons = null;
+            this.mInstantAppsEnabled = true;
             if (customTabsSession != null) {
                 intent.setPackage(customTabsSession.getComponentName().getPackageName());
             }
             Bundle bundle = new Bundle();
-            BundleCompat.putBinder(bundle, "android.support.customtabs.extra.SESSION", customTabsSession != null ? customTabsSession.getBinder() : iBinder);
+            BundleCompat.putBinder(bundle, "android.support.customtabs.extra.SESSION", customTabsSession != null ? customTabsSession.getBinder() : null);
             intent.putExtras(bundle);
         }
 

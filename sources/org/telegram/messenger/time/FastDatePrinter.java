@@ -1,6 +1,5 @@
 package org.telegram.messenger.time;
 
-import j$.util.concurrent.ConcurrentHashMap;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -15,6 +14,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentMap;
 import org.telegram.messenger.FileLoader;
+import p008j$.util.concurrent.ConcurrentHashMap;
 
 public class FastDatePrinter implements DatePrinter, Serializable {
     public static final int FULL = 0;
@@ -64,7 +64,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     }
 
     protected List<Rule> parsePattern() {
-        NumberRule numberRule;
+        NumberRule selectNumberRule;
         TwoDigitYearField twoDigitYearField;
         ?? timeZoneNameRule;
         DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(this.mLocale);
@@ -93,25 +93,25 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                     switch (charAt) {
                         case '\'':
                             String substring = parseToken.substring(1);
-                            if (substring.length() != 1) {
-                                timeZoneNameRule = new StringLiteral(substring);
+                            if (substring.length() == 1) {
+                                timeZoneNameRule = new CharacterLiteral(substring.charAt(0));
                                 break;
                             } else {
-                                timeZoneNameRule = new CharacterLiteral(substring.charAt(0));
+                                timeZoneNameRule = new StringLiteral(substring);
                                 break;
                             }
                         case 'S':
-                            numberRule = selectNumberRule(14, length2);
+                            selectNumberRule = selectNumberRule(14, length2);
                             break;
                         case 'W':
-                            numberRule = selectNumberRule(4, length2);
+                            selectNumberRule = selectNumberRule(4, length2);
                             break;
                         case 'Z':
-                            if (length2 != 1) {
-                                numberRule = TimeZoneNumberRule.INSTANCE_COLON;
+                            if (length2 == 1) {
+                                selectNumberRule = TimeZoneNumberRule.INSTANCE_NO_COLON;
                                 break;
                             } else {
-                                numberRule = TimeZoneNumberRule.INSTANCE_NO_COLON;
+                                selectNumberRule = TimeZoneNumberRule.INSTANCE_COLON;
                                 break;
                             }
                         case 'a':
@@ -160,11 +160,11 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                         case 'L':
                                             if (length2 < 4) {
                                                 if (length2 != 3) {
-                                                    if (length2 != 2) {
-                                                        timeZoneNameRule = UnpaddedMonthField.INSTANCE;
+                                                    if (length2 == 2) {
+                                                        timeZoneNameRule = TwoDigitMonthField.INSTANCE;
                                                         break;
                                                     } else {
-                                                        timeZoneNameRule = TwoDigitMonthField.INSTANCE;
+                                                        timeZoneNameRule = UnpaddedMonthField.INSTANCE;
                                                         break;
                                                     }
                                                 } else {
@@ -178,11 +178,11 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                         case 'M':
                                             if (length2 < 4) {
                                                 if (length2 != 3) {
-                                                    if (length2 != 2) {
-                                                        timeZoneNameRule = UnpaddedMonthField.INSTANCE;
+                                                    if (length2 == 2) {
+                                                        timeZoneNameRule = TwoDigitMonthField.INSTANCE;
                                                         break;
                                                     } else {
-                                                        timeZoneNameRule = TwoDigitMonthField.INSTANCE;
+                                                        timeZoneNameRule = UnpaddedMonthField.INSTANCE;
                                                         break;
                                                     }
                                                 } else {
@@ -198,37 +198,25 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                     }
                             }
                     }
-                    arrayList.add(numberRule);
-                    i2 = i3 + 1;
-                    i = 0;
                 } else if (length2 >= 4) {
                     timeZoneNameRule = new TimeZoneNameRule(this.mTimeZone, this.mLocale, 1);
                 } else {
                     twoDigitYearField = new TimeZoneNameRule(this.mTimeZone, this.mLocale, 0);
-                    numberRule = twoDigitYearField;
-                    arrayList.add(numberRule);
-                    i2 = i3 + 1;
-                    i = 0;
+                    selectNumberRule = twoDigitYearField;
                 }
-                numberRule = timeZoneNameRule;
-                arrayList.add(numberRule);
-                i2 = i3 + 1;
-                i = 0;
+                selectNumberRule = timeZoneNameRule;
             } else if (length2 == 2) {
                 twoDigitYearField = TwoDigitYearField.INSTANCE;
-                numberRule = twoDigitYearField;
-                arrayList.add(numberRule);
-                i2 = i3 + 1;
-                i = 0;
+                selectNumberRule = twoDigitYearField;
             } else {
                 if (length2 < 4) {
                     length2 = 4;
                 }
-                numberRule = selectNumberRule(1, length2);
-                arrayList.add(numberRule);
-                i2 = i3 + 1;
-                i = 0;
+                selectNumberRule = selectNumberRule(1, length2);
             }
+            arrayList.add(selectNumberRule);
+            i2 = i3 + 1;
+            i = 0;
         }
         return arrayList;
     }
@@ -276,13 +264,13 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     }
 
     protected NumberRule selectNumberRule(int i, int i2) {
-        if (i2 == 1) {
-            return new UnpaddedNumberField(i);
-        }
-        if (i2 != 2) {
+        if (i2 != 1) {
+            if (i2 == 2) {
+                return new TwoDigitNumberField(i);
+            }
             return new PaddedNumberField(i, i2);
         }
-        return new TwoDigitNumberField(i);
+        return new UnpaddedNumberField(i);
     }
 
     @Override
@@ -373,11 +361,11 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     }
 
     public boolean equals(Object obj) {
-        if (!(obj instanceof FastDatePrinter)) {
-            return false;
+        if (obj instanceof FastDatePrinter) {
+            FastDatePrinter fastDatePrinter = (FastDatePrinter) obj;
+            return this.mPattern.equals(fastDatePrinter.mPattern) && this.mTimeZone.equals(fastDatePrinter.mTimeZone) && this.mLocale.equals(fastDatePrinter.mLocale);
         }
-        FastDatePrinter fastDatePrinter = (FastDatePrinter) obj;
-        return this.mPattern.equals(fastDatePrinter.mPattern) && this.mTimeZone.equals(fastDatePrinter.mTimeZone) && this.mLocale.equals(fastDatePrinter.mLocale);
+        return false;
     }
 
     public int hashCode() {
@@ -527,12 +515,11 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         }
 
         PaddedNumberField(int i, int i2) {
-            if (i2 >= 3) {
-                this.mField = i;
-                this.mSize = i2;
-                return;
+            if (i2 < 3) {
+                throw new IllegalArgumentException();
             }
-            throw new IllegalArgumentException();
+            this.mField = i;
+            this.mSize = i2;
         }
 
         @Override
@@ -702,12 +689,12 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         TimeZoneDisplayKey timeZoneDisplayKey = new TimeZoneDisplayKey(timeZone, z, i, locale);
         ConcurrentMap<TimeZoneDisplayKey, String> concurrentMap = cTimeZoneDisplayCache;
         String str = concurrentMap.get(timeZoneDisplayKey);
-        if (str != null) {
-            return str;
+        if (str == null) {
+            String displayName = timeZone.getDisplayName(z, i, locale);
+            String putIfAbsent = concurrentMap.putIfAbsent(timeZoneDisplayKey, displayName);
+            return putIfAbsent != null ? putIfAbsent : displayName;
         }
-        String displayName = timeZone.getDisplayName(z, i, locale);
-        String putIfAbsent = concurrentMap.putIfAbsent(timeZoneDisplayKey, displayName);
-        return putIfAbsent != null ? putIfAbsent : displayName;
+        return str;
     }
 
     public static class TimeZoneNameRule implements Rule {
@@ -731,10 +718,10 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         @Override
         public void appendTo(StringBuffer stringBuffer, Calendar calendar) {
             TimeZone timeZone = calendar.getTimeZone();
-            if (!timeZone.useDaylightTime() || calendar.get(16) == 0) {
-                stringBuffer.append(FastDatePrinter.getTimeZoneDisplay(timeZone, false, this.mStyle, this.mLocale));
-            } else {
+            if (timeZone.useDaylightTime() && calendar.get(16) != 0) {
                 stringBuffer.append(FastDatePrinter.getTimeZoneDisplay(timeZone, true, this.mStyle, this.mLocale));
+            } else {
+                stringBuffer.append(FastDatePrinter.getTimeZoneDisplay(timeZone, false, this.mStyle, this.mLocale));
             }
         }
     }
@@ -797,11 +784,11 @@ public class FastDatePrinter implements DatePrinter, Serializable {
             if (this == obj) {
                 return true;
             }
-            if (!(obj instanceof TimeZoneDisplayKey)) {
-                return false;
+            if (obj instanceof TimeZoneDisplayKey) {
+                TimeZoneDisplayKey timeZoneDisplayKey = (TimeZoneDisplayKey) obj;
+                return this.mTimeZone.equals(timeZoneDisplayKey.mTimeZone) && this.mStyle == timeZoneDisplayKey.mStyle && this.mLocale.equals(timeZoneDisplayKey.mLocale);
             }
-            TimeZoneDisplayKey timeZoneDisplayKey = (TimeZoneDisplayKey) obj;
-            return this.mTimeZone.equals(timeZoneDisplayKey.mTimeZone) && this.mStyle == timeZoneDisplayKey.mStyle && this.mLocale.equals(timeZoneDisplayKey.mLocale);
+            return false;
         }
     }
 }

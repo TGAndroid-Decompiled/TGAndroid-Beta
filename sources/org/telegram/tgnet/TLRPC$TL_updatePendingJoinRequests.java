@@ -13,13 +13,15 @@ public class TLRPC$TL_updatePendingJoinRequests extends TLRPC$Update {
         this.peer = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.requests_pending = abstractSerializedData.readInt32(z);
         int readInt32 = abstractSerializedData.readInt32(z);
-        if (readInt32 == 481674261) {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                this.recent_requesters.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+        if (readInt32 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+            return;
+        }
+        int readInt322 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt322; i++) {
+            this.recent_requesters.add(Long.valueOf(abstractSerializedData.readInt64(z)));
         }
     }
 

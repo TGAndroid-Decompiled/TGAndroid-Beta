@@ -40,18 +40,19 @@ public abstract class TLRPC$ChatInvite extends TLObject {
                     this.participants_count = abstractSerializedData2.readInt32(z2);
                     if ((this.flags & 16) != 0) {
                         int readInt322 = abstractSerializedData2.readInt32(z2);
-                        if (readInt322 == 481674261) {
-                            int readInt323 = abstractSerializedData2.readInt32(z2);
-                            for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$User TLdeserialize = TLRPC$User.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                if (TLdeserialize != null) {
-                                    this.participants.add(TLdeserialize);
-                                } else {
-                                    return;
-                                }
+                        if (readInt322 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                             }
-                        } else if (z2) {
-                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                            return;
+                        }
+                        int readInt323 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt323; i2++) {
+                            TLRPC$User TLdeserialize = TLRPC$User.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize == null) {
+                                return;
+                            }
+                            this.participants.add(TLdeserialize);
                         }
                     }
                 }
@@ -122,12 +123,12 @@ public abstract class TLRPC$ChatInvite extends TLObject {
                 }
             };
         }
-        if (tLRPC$ChatInvite != null || !z) {
-            if (tLRPC$ChatInvite != null) {
-                tLRPC$ChatInvite.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$ChatInvite;
+        if (tLRPC$ChatInvite == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in ChatInvite", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in ChatInvite", Integer.valueOf(i)));
+        if (tLRPC$ChatInvite != null) {
+            tLRPC$ChatInvite.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$ChatInvite;
     }
 }

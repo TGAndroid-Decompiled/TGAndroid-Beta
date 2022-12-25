@@ -7,11 +7,7 @@ public class TLRPC$TL_channelParticipantBanned extends TLRPC$ChannelParticipant 
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = true;
-        if ((readInt32 & 1) == 0) {
-            z2 = false;
-        }
-        this.left = z2;
+        this.left = (readInt32 & 1) != 0;
         this.peer = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.kicked_by = abstractSerializedData.readInt64(z);
         this.date = abstractSerializedData.readInt32(z);

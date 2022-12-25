@@ -10,16 +10,17 @@ public class NotificationRepeat extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        if (intent != null) {
-            final int intExtra = intent.getIntExtra("currentAccount", UserConfig.selectedAccount);
-            if (UserConfig.isValidAccount(intExtra)) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        NotificationRepeat.lambda$onHandleIntent$0(intExtra);
-                    }
-                });
-            }
+        if (intent == null) {
+            return;
+        }
+        final int intExtra = intent.getIntExtra("currentAccount", UserConfig.selectedAccount);
+        if (UserConfig.isValidAccount(intExtra)) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    NotificationRepeat.lambda$onHandleIntent$0(intExtra);
+                }
+            });
         }
     }
 

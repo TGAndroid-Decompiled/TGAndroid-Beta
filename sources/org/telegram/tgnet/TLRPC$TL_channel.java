@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_channel extends TLRPC$Chat {
-    public static int constructor = -2107528095;
+    public static int constructor = -2094689180;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -25,8 +25,10 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         this.gigagroup = (67108864 & readInt32) != 0;
         this.noforwards = (134217728 & readInt32) != 0;
         this.join_to_send = (268435456 & readInt32) != 0;
-        this.join_request = (readInt32 & 536870912) != 0;
-        this.id = abstractSerializedData.readInt64(z);
+        this.join_request = (536870912 & readInt32) != 0;
+        this.forum = (readInt32 & 1073741824) != 0;
+        this.flags2 = abstractSerializedData.readInt32(z);
+        this.f848id = abstractSerializedData.readInt64(z);
         if ((this.flags & 8192) != 0) {
             this.access_hash = abstractSerializedData.readInt64(z);
         }
@@ -38,20 +40,19 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         this.date = abstractSerializedData.readInt32(z);
         if ((this.flags & 512) != 0) {
             int readInt322 = abstractSerializedData.readInt32(z);
-            if (readInt322 == 481674261) {
-                int readInt323 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt323; i++) {
-                    TLRPC$TL_restrictionReason TLdeserialize = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize != null) {
-                        this.restriction_reason.add(TLdeserialize);
-                    } else {
-                        return;
-                    }
+            if (readInt322 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-            } else {
                 return;
+            }
+            int readInt323 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt323; i++) {
+                TLRPC$TL_restrictionReason TLdeserialize = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize == null) {
+                    return;
+                }
+                this.restriction_reason.add(TLdeserialize);
             }
         }
         if ((this.flags & 16384) != 0) {
@@ -65,6 +66,23 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         }
         if ((this.flags & 131072) != 0) {
             this.participants_count = abstractSerializedData.readInt32(z);
+        }
+        if ((this.flags2 & 1) != 0) {
+            int readInt324 = abstractSerializedData.readInt32(z);
+            if (readInt324 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                }
+                return;
+            }
+            int readInt325 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt325; i2++) {
+                TLRPC$TL_username TLdeserialize2 = TLRPC$TL_username.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize2 == null) {
+                    return;
+                }
+                this.usernames.add(TLdeserialize2);
+            }
         }
     }
 
@@ -109,8 +127,11 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         this.flags = i18;
         int i19 = this.join_request ? i18 | 536870912 : i18 & (-536870913);
         this.flags = i19;
-        abstractSerializedData.writeInt32(i19);
-        abstractSerializedData.writeInt64(this.id);
+        int i20 = this.forum ? i19 | 1073741824 : i19 & (-1073741825);
+        this.flags = i20;
+        abstractSerializedData.writeInt32(i20);
+        abstractSerializedData.writeInt32(this.flags2);
+        abstractSerializedData.writeInt64(this.f848id);
         if ((this.flags & 8192) != 0) {
             abstractSerializedData.writeInt64(this.access_hash);
         }
@@ -124,8 +145,8 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
             abstractSerializedData.writeInt32(481674261);
             int size = this.restriction_reason.size();
             abstractSerializedData.writeInt32(size);
-            for (int i20 = 0; i20 < size; i20++) {
-                this.restriction_reason.get(i20).serializeToStream(abstractSerializedData);
+            for (int i21 = 0; i21 < size; i21++) {
+                this.restriction_reason.get(i21).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 16384) != 0) {
@@ -139,6 +160,14 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         }
         if ((this.flags & 131072) != 0) {
             abstractSerializedData.writeInt32(this.participants_count);
+        }
+        if ((this.flags2 & 1) != 0) {
+            abstractSerializedData.writeInt32(481674261);
+            int size2 = this.usernames.size();
+            abstractSerializedData.writeInt32(size2);
+            for (int i22 = 0; i22 < size2; i22++) {
+                this.usernames.get(i22).serializeToStream(abstractSerializedData);
+            }
         }
     }
 }

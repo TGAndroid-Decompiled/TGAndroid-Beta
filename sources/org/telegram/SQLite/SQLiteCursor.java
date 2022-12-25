@@ -89,22 +89,23 @@ public class SQLiteCursor {
         if (step == -1) {
             int i = 6;
             while (true) {
-                i--;
+                int i2 = i - 1;
                 if (i == 0) {
                     break;
                 }
                 try {
                     if (BuildVars.LOGS_ENABLED) {
-                        FileLog.d("sqlite busy, waiting...");
+                        FileLog.m34d("sqlite busy, waiting...");
                     }
                     Thread.sleep(500L);
                     step = this.preparedStatement.step();
                 } catch (Exception e) {
-                    FileLog.e(e);
+                    FileLog.m31e(e);
                 }
                 if (step == 0) {
                     break;
                 }
+                i = i2;
             }
             if (step == -1) {
                 throw new SQLiteException("sqlite busy");

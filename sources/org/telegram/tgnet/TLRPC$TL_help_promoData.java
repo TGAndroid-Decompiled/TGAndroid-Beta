@@ -21,38 +21,40 @@ public class TLRPC$TL_help_promoData extends TLRPC$help_PromoData {
         this.expires = abstractSerializedData.readInt32(z);
         this.peer = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         int readInt322 = abstractSerializedData.readInt32(z);
-        if (readInt322 == 481674261) {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                TLRPC$Chat TLdeserialize = TLRPC$Chat.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize != null) {
-                    this.chats.add(TLdeserialize);
-                } else {
-                    return;
-                }
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            int readInt324 = abstractSerializedData.readInt32(z);
-            if (readInt324 == 481674261) {
-                int readInt325 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt325; i2++) {
-                    TLRPC$User TLdeserialize2 = TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize2 != null) {
-                        this.users.add(TLdeserialize2);
-                    } else {
-                        return;
-                    }
-                }
-                if ((this.flags & 2) != 0) {
-                    this.psa_type = abstractSerializedData.readString(z);
-                }
-                if ((this.flags & 4) != 0) {
-                    this.psa_message = abstractSerializedData.readString(z);
-                }
-            } else if (z) {
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            TLRPC$Chat TLdeserialize = TLRPC$Chat.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
+            }
+            this.chats.add(TLdeserialize);
+        }
+        int readInt324 = abstractSerializedData.readInt32(z);
+        if (readInt324 != 481674261) {
+            if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
             }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+            return;
+        }
+        int readInt325 = abstractSerializedData.readInt32(z);
+        for (int i2 = 0; i2 < readInt325; i2++) {
+            TLRPC$User TLdeserialize2 = TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize2 == null) {
+                return;
+            }
+            this.users.add(TLdeserialize2);
+        }
+        if ((this.flags & 2) != 0) {
+            this.psa_type = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & 4) != 0) {
+            this.psa_message = abstractSerializedData.readString(z);
         }
     }
 

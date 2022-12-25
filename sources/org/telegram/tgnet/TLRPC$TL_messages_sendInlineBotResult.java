@@ -1,12 +1,12 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_messages_sendInlineBotResult extends TLObject {
-    public static int constructor = 2057376407;
+    public static int constructor = -738468661;
     public boolean background;
     public boolean clear_draft;
     public int flags;
     public boolean hide_via;
-    public String id;
+    public String f955id;
     public TLRPC$InputPeer peer;
     public long query_id;
     public long random_id;
@@ -14,6 +14,7 @@ public class TLRPC$TL_messages_sendInlineBotResult extends TLObject {
     public int schedule_date;
     public TLRPC$InputPeer send_as;
     public boolean silent;
+    public int top_msg_id;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -36,10 +37,13 @@ public class TLRPC$TL_messages_sendInlineBotResult extends TLObject {
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.reply_to_msg_id);
         }
+        if ((this.flags & 512) != 0) {
+            abstractSerializedData.writeInt32(this.top_msg_id);
+        }
         abstractSerializedData.writeInt64(this.random_id);
         abstractSerializedData.writeInt64(this.query_id);
-        abstractSerializedData.writeString(this.id);
-        if ((this.flags & 1024) != 0) {
+        abstractSerializedData.writeString(this.f955id);
+        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
             abstractSerializedData.writeInt32(this.schedule_date);
         }
         if ((this.flags & 8192) != 0) {

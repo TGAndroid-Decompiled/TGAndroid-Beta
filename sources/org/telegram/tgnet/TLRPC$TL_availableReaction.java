@@ -17,27 +17,23 @@ public class TLRPC$TL_availableReaction extends TLObject {
     public String title;
 
     public static TLRPC$TL_availableReaction TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_availableReaction tLRPC$TL_availableReaction = new TLRPC$TL_availableReaction();
-            tLRPC$TL_availableReaction.readParams(abstractSerializedData, z);
-            return tLRPC$TL_availableReaction;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_availableReaction", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_availableReaction", Integer.valueOf(i)));
         }
+        TLRPC$TL_availableReaction tLRPC$TL_availableReaction = new TLRPC$TL_availableReaction();
+        tLRPC$TL_availableReaction.readParams(abstractSerializedData, z);
+        return tLRPC$TL_availableReaction;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.inactive = (readInt32 & 1) != 0;
-        if ((readInt32 & 4) != 0) {
-            z2 = true;
-        }
-        this.premium = z2;
+        this.premium = (readInt32 & 4) != 0;
         this.reaction = abstractSerializedData.readString(z);
         this.title = abstractSerializedData.readString(z);
         this.static_icon = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);

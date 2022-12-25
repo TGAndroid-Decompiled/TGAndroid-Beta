@@ -24,13 +24,9 @@ public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.revoked = (readInt32 & 1) != 0;
         this.permanent = (readInt32 & 32) != 0;
-        if ((readInt32 & 64) != 0) {
-            z2 = true;
-        }
-        this.request_needed = z2;
+        this.request_needed = (readInt32 & 64) != 0;
         this.link = abstractSerializedData.readString(z);
         this.admin_id = abstractSerializedData.readInt64(z);
         this.date = abstractSerializedData.readInt32(z);

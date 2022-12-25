@@ -23,7 +23,9 @@ public class TLRPC$TL_messageMediaDocument extends TLRPC$MessageMedia {
         abstractSerializedData.writeInt32(constructor);
         int i = this.nopremium ? this.flags | 8 : this.flags & (-9);
         this.flags = i;
-        abstractSerializedData.writeInt32(i);
+        int i2 = this.document != null ? i | 1 : i & (-2);
+        this.flags = i2;
+        abstractSerializedData.writeInt32(i2);
         if ((this.flags & 1) != 0) {
             this.document.serializeToStream(abstractSerializedData);
         }

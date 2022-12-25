@@ -7,15 +7,15 @@ public class TLRPC$TL_restrictionReason extends TLObject {
     public String text;
 
     public static TLRPC$TL_restrictionReason TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_restrictionReason tLRPC$TL_restrictionReason = new TLRPC$TL_restrictionReason();
-            tLRPC$TL_restrictionReason.readParams(abstractSerializedData, z);
-            return tLRPC$TL_restrictionReason;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_restrictionReason", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_restrictionReason", Integer.valueOf(i)));
         }
+        TLRPC$TL_restrictionReason tLRPC$TL_restrictionReason = new TLRPC$TL_restrictionReason();
+        tLRPC$TL_restrictionReason.readParams(abstractSerializedData, z);
+        return tLRPC$TL_restrictionReason;
     }
 
     @Override

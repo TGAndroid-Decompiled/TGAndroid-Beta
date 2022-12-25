@@ -32,38 +32,36 @@ public class TLRPC$TL_inputSecureValue extends TLObject {
         }
         if ((this.flags & 64) != 0) {
             int readInt32 = abstractSerializedData.readInt32(z);
-            if (readInt32 == 481674261) {
-                int readInt322 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt322; i++) {
-                    TLRPC$InputSecureFile TLdeserialize = TLRPC$InputSecureFile.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize != null) {
-                        this.translation.add(TLdeserialize);
-                    } else {
-                        return;
-                    }
+            if (readInt32 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
-            } else {
                 return;
+            }
+            int readInt322 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt322; i++) {
+                TLRPC$InputSecureFile TLdeserialize = TLRPC$InputSecureFile.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize == null) {
+                    return;
+                }
+                this.translation.add(TLdeserialize);
             }
         }
         if ((this.flags & 16) != 0) {
             int readInt323 = abstractSerializedData.readInt32(z);
-            if (readInt323 == 481674261) {
-                int readInt324 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt324; i2++) {
-                    TLRPC$InputSecureFile TLdeserialize2 = TLRPC$InputSecureFile.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize2 != null) {
-                        this.files.add(TLdeserialize2);
-                    } else {
-                        return;
-                    }
+            if (readInt323 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
-            } else {
                 return;
+            }
+            int readInt324 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt324; i2++) {
+                TLRPC$InputSecureFile TLdeserialize2 = TLRPC$InputSecureFile.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize2 == null) {
+                    return;
+                }
+                this.files.add(TLdeserialize2);
             }
         }
         if ((this.flags & 32) != 0) {

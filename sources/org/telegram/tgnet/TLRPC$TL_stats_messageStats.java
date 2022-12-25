@@ -5,15 +5,15 @@ public class TLRPC$TL_stats_messageStats extends TLObject {
     public TLRPC$StatsGraph views_graph;
 
     public static TLRPC$TL_stats_messageStats TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_stats_messageStats tLRPC$TL_stats_messageStats = new TLRPC$TL_stats_messageStats();
-            tLRPC$TL_stats_messageStats.readParams(abstractSerializedData, z);
-            return tLRPC$TL_stats_messageStats;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_stats_messageStats", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_stats_messageStats", Integer.valueOf(i)));
         }
+        TLRPC$TL_stats_messageStats tLRPC$TL_stats_messageStats = new TLRPC$TL_stats_messageStats();
+        tLRPC$TL_stats_messageStats.readParams(abstractSerializedData, z);
+        return tLRPC$TL_stats_messageStats;
     }
 
     @Override

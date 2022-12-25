@@ -12,13 +12,15 @@ public class TLRPC$TL_phoneCallProtocol extends TLRPC$PhoneCallProtocol {
         this.min_layer = abstractSerializedData.readInt32(z);
         this.max_layer = abstractSerializedData.readInt32(z);
         int readInt322 = abstractSerializedData.readInt32(z);
-        if (readInt322 == 481674261) {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                this.library_versions.add(abstractSerializedData.readString(z));
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            this.library_versions.add(abstractSerializedData.readString(z));
         }
     }
 

@@ -8,21 +8,16 @@ public final class ContactsLoadingObserver {
     private final Callback callback;
     private final ContactsController contactsController;
     private final int currentAccount;
+    private final Handler handler;
     private final NotificationCenter notificationCenter;
-    private boolean released;
     private final NotificationCenter.NotificationCenterDelegate observer = new NotificationCenter.NotificationCenterDelegate() {
         @Override
         public final void didReceivedNotification(int i, int i2, Object[] objArr) {
             ContactsLoadingObserver.this.lambda$new$0(i, i2, objArr);
         }
     };
-    private final Runnable releaseRunnable = new Runnable() {
-        @Override
-        public final void run() {
-            ContactsLoadingObserver.this.lambda$new$1();
-        }
-    };
-    private final Handler handler = new Handler(Looper.myLooper());
+    private final Runnable releaseRunnable;
+    private boolean released;
 
     public interface Callback {
         void onResult(boolean z);
@@ -42,8 +37,15 @@ public final class ContactsLoadingObserver {
         this.callback = callback;
         int i = UserConfig.selectedAccount;
         this.currentAccount = i;
+        this.releaseRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                ContactsLoadingObserver.this.lambda$new$1();
+            }
+        };
         this.contactsController = ContactsController.getInstance(i);
         this.notificationCenter = NotificationCenter.getInstance(i);
+        this.handler = new Handler(Looper.myLooper());
     }
 
     public void lambda$new$1() {
@@ -51,24 +53,26 @@ public final class ContactsLoadingObserver {
     }
 
     public void start(long j) {
-        if (!onContactsLoadingStateUpdated(this.currentAccount, false)) {
-            this.notificationCenter.addObserver(this.observer, NotificationCenter.contactsDidLoad);
-            this.handler.postDelayed(this.releaseRunnable, j);
+        if (onContactsLoadingStateUpdated(this.currentAccount, false)) {
+            return;
         }
+        this.notificationCenter.addObserver(this.observer, NotificationCenter.contactsDidLoad);
+        this.handler.postDelayed(this.releaseRunnable, j);
     }
 
     public void release() {
-        if (!this.released) {
-            NotificationCenter notificationCenter = this.notificationCenter;
-            if (notificationCenter != null) {
-                notificationCenter.removeObserver(this.observer, NotificationCenter.contactsDidLoad);
-            }
-            Handler handler = this.handler;
-            if (handler != null) {
-                handler.removeCallbacks(this.releaseRunnable);
-            }
-            this.released = true;
+        if (this.released) {
+            return;
         }
+        NotificationCenter notificationCenter = this.notificationCenter;
+        if (notificationCenter != null) {
+            notificationCenter.removeObserver(this.observer, NotificationCenter.contactsDidLoad);
+        }
+        Handler handler = this.handler;
+        if (handler != null) {
+            handler.removeCallbacks(this.releaseRunnable);
+        }
+        this.released = true;
     }
 
     private boolean onContactsLoadingStateUpdated(int i, boolean z) {
@@ -76,11 +80,11 @@ public final class ContactsLoadingObserver {
             return false;
         }
         boolean z2 = this.contactsController.contactsLoaded;
-        if (!z2 && !z) {
-            return false;
+        if (z2 || z) {
+            release();
+            this.callback.onResult(z2);
+            return true;
         }
-        release();
-        this.callback.onResult(z2);
-        return true;
+        return false;
     }
 }

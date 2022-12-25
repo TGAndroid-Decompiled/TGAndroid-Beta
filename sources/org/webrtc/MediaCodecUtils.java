@@ -38,12 +38,12 @@ class MediaCodecUtils {
                 try {
                     arrayList.add(MediaCodecList.getCodecInfoAt(i));
                 } catch (IllegalArgumentException e) {
-                    Logging.e(TAG, "Cannot retrieve codec info", e);
+                    Logging.m7e(TAG, "Cannot retrieve codec info", e);
                 }
             }
             Collections.sort(arrayList, MediaCodecUtils$$ExternalSyntheticLambda0.INSTANCE);
         } catch (Exception e2) {
-            FileLog.e(e2);
+            FileLog.m31e(e2);
         }
         return arrayList;
     }
@@ -73,7 +73,7 @@ class MediaCodecUtils {
         return false;
     }
 
-    static class AnonymousClass1 {
+    static class C41481 {
         static final int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
 
         static {
@@ -103,7 +103,7 @@ class MediaCodecUtils {
     }
 
     public static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z) {
-        int i = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+        int i = C41481.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i == 1 || i == 2 || i == 3 || i == 4) {
             return new HashMap();
         }

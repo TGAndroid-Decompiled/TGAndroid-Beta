@@ -6,15 +6,15 @@ public class TLRPC$TL_contact extends TLObject {
     public long user_id;
 
     public static TLRPC$TL_contact TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_contact tLRPC$TL_contact = new TLRPC$TL_contact();
-            tLRPC$TL_contact.readParams(abstractSerializedData, z);
-            return tLRPC$TL_contact;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_contact", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_contact", Integer.valueOf(i)));
         }
+        TLRPC$TL_contact tLRPC$TL_contact = new TLRPC$TL_contact();
+        tLRPC$TL_contact.readParams(abstractSerializedData, z);
+        return tLRPC$TL_contact;
     }
 
     @Override

@@ -7,12 +7,8 @@ public class TLRPC$TL_channelParticipantAdmin extends TLRPC$ChannelParticipant {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.can_edit = (readInt32 & 1) != 0;
-        if ((readInt32 & 2) != 0) {
-            z2 = true;
-        }
-        this.self = z2;
+        this.self = (readInt32 & 2) != 0;
         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
         this.peer = tLRPC$TL_peerUser;
         tLRPC$TL_peerUser.user_id = abstractSerializedData.readInt64(z);

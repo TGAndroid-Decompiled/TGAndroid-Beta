@@ -5,15 +5,11 @@ public class TLRPC$TL_wallPaperNoFile extends TLRPC$WallPaper {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.id = abstractSerializedData.readInt64(z);
+        this.f994id = abstractSerializedData.readInt64(z);
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = true;
         this.isDefault = (readInt32 & 2) != 0;
-        if ((readInt32 & 16) == 0) {
-            z2 = false;
-        }
-        this.dark = z2;
+        this.dark = (readInt32 & 16) != 0;
         if ((readInt32 & 4) != 0) {
             this.settings = TLRPC$WallPaperSettings.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
@@ -22,7 +18,7 @@ public class TLRPC$TL_wallPaperNoFile extends TLRPC$WallPaper {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.id);
+        abstractSerializedData.writeInt64(this.f994id);
         int i = this.isDefault ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.dark ? i | 16 : i & (-17);

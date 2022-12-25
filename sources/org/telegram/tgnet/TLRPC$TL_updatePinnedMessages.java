@@ -18,16 +18,18 @@ public class TLRPC$TL_updatePinnedMessages extends TLRPC$Update {
         this.pinned = (readInt32 & 1) != 0;
         this.peer = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         int readInt322 = abstractSerializedData.readInt32(z);
-        if (readInt322 == 481674261) {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                this.messages.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            this.pts = abstractSerializedData.readInt32(z);
-            this.pts_count = abstractSerializedData.readInt32(z);
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+            return;
         }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            this.messages.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
+        }
+        this.pts = abstractSerializedData.readInt32(z);
+        this.pts_count = abstractSerializedData.readInt32(z);
     }
 
     @Override

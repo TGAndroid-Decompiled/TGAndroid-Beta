@@ -6,15 +6,15 @@ public class TLRPC$TL_pollAnswer extends TLObject {
     public String text;
 
     public static TLRPC$TL_pollAnswer TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_pollAnswer tLRPC$TL_pollAnswer = new TLRPC$TL_pollAnswer();
-            tLRPC$TL_pollAnswer.readParams(abstractSerializedData, z);
-            return tLRPC$TL_pollAnswer;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_pollAnswer", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_pollAnswer", Integer.valueOf(i)));
         }
+        TLRPC$TL_pollAnswer tLRPC$TL_pollAnswer = new TLRPC$TL_pollAnswer();
+        tLRPC$TL_pollAnswer.readParams(abstractSerializedData, z);
+        return tLRPC$TL_pollAnswer;
     }
 
     @Override

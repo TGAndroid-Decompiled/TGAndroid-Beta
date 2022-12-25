@@ -8,7 +8,7 @@ public class TLRPC$TL_help_appUpdate extends TLRPC$help_AppUpdate {
     public TLRPC$Document document;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;
-    public int id;
+    public int f905id;
     public TLRPC$Document sticker;
     public String text;
     public String url;
@@ -19,31 +19,32 @@ public class TLRPC$TL_help_appUpdate extends TLRPC$help_AppUpdate {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.can_not_skip = (readInt32 & 1) != 0;
-        this.id = abstractSerializedData.readInt32(z);
+        this.f905id = abstractSerializedData.readInt32(z);
         this.version = abstractSerializedData.readString(z);
         this.text = abstractSerializedData.readString(z);
         int readInt322 = abstractSerializedData.readInt32(z);
-        if (readInt322 == 481674261) {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                TLRPC$MessageEntity TLdeserialize = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize != null) {
-                    this.entities.add(TLdeserialize);
-                } else {
-                    return;
-                }
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            if ((this.flags & 2) != 0) {
-                this.document = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            TLRPC$MessageEntity TLdeserialize = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
             }
-            if ((this.flags & 4) != 0) {
-                this.url = abstractSerializedData.readString(z);
-            }
-            if ((this.flags & 8) != 0) {
-                this.sticker = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-            }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+            this.entities.add(TLdeserialize);
+        }
+        if ((this.flags & 2) != 0) {
+            this.document = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
+        if ((this.flags & 4) != 0) {
+            this.url = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & 8) != 0) {
+            this.sticker = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
 
@@ -53,7 +54,7 @@ public class TLRPC$TL_help_appUpdate extends TLRPC$help_AppUpdate {
         int i = this.can_not_skip ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
-        abstractSerializedData.writeInt32(this.id);
+        abstractSerializedData.writeInt32(this.f905id);
         abstractSerializedData.writeString(this.version);
         abstractSerializedData.writeString(this.text);
         abstractSerializedData.writeInt32(481674261);

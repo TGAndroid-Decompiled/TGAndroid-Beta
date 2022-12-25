@@ -15,27 +15,23 @@ public class TLRPC$TL_langPackLanguage extends TLObject {
     public String translations_url;
 
     public static TLRPC$TL_langPackLanguage TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_langPackLanguage tLRPC$TL_langPackLanguage = new TLRPC$TL_langPackLanguage();
-            tLRPC$TL_langPackLanguage.readParams(abstractSerializedData, z);
-            return tLRPC$TL_langPackLanguage;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_langPackLanguage", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_langPackLanguage", Integer.valueOf(i)));
         }
+        TLRPC$TL_langPackLanguage tLRPC$TL_langPackLanguage = new TLRPC$TL_langPackLanguage();
+        tLRPC$TL_langPackLanguage.readParams(abstractSerializedData, z);
+        return tLRPC$TL_langPackLanguage;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.official = (readInt32 & 1) != 0;
-        if ((readInt32 & 4) != 0) {
-            z2 = true;
-        }
-        this.rtl = z2;
+        this.rtl = (readInt32 & 4) != 0;
         this.name = abstractSerializedData.readString(z);
         this.native_name = abstractSerializedData.readString(z);
         this.lang_code = abstractSerializedData.readString(z);

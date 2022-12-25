@@ -5,15 +5,15 @@ public class TLRPC$TL_phone_exportedGroupCallInvite extends TLObject {
     public String link;
 
     public static TLRPC$TL_phone_exportedGroupCallInvite TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_phone_exportedGroupCallInvite tLRPC$TL_phone_exportedGroupCallInvite = new TLRPC$TL_phone_exportedGroupCallInvite();
-            tLRPC$TL_phone_exportedGroupCallInvite.readParams(abstractSerializedData, z);
-            return tLRPC$TL_phone_exportedGroupCallInvite;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_phone_exportedGroupCallInvite", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_phone_exportedGroupCallInvite", Integer.valueOf(i)));
         }
+        TLRPC$TL_phone_exportedGroupCallInvite tLRPC$TL_phone_exportedGroupCallInvite = new TLRPC$TL_phone_exportedGroupCallInvite();
+        tLRPC$TL_phone_exportedGroupCallInvite.readParams(abstractSerializedData, z);
+        return tLRPC$TL_phone_exportedGroupCallInvite;
     }
 
     @Override

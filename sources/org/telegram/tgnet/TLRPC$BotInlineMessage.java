@@ -23,13 +23,13 @@ public abstract class TLRPC$BotInlineMessage extends TLObject {
     public String venue_type;
 
     public static TLRPC$BotInlineMessage TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$BotInlineMessage tLRPC$BotInlineMessage;
+        TLRPC$BotInlineMessage tLRPC$TL_botInlineMessageMediaVenue;
         switch (i) {
             case -1970903652:
-                tLRPC$BotInlineMessage = new TLRPC$TL_botInlineMessageMediaVenue();
+                tLRPC$TL_botInlineMessageMediaVenue = new TLRPC$TL_botInlineMessageMediaVenue();
                 break;
             case -1937807902:
-                tLRPC$BotInlineMessage = new TLRPC$BotInlineMessage() {
+                tLRPC$TL_botInlineMessageMediaVenue = new TLRPC$BotInlineMessage() {
                     public static int constructor = -1937807902;
 
                     @Override
@@ -40,20 +40,19 @@ public abstract class TLRPC$BotInlineMessage extends TLObject {
                         this.message = abstractSerializedData2.readString(z2);
                         if ((this.flags & 2) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize != null) {
-                                        this.entities.add(TLdeserialize);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
+                            }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize);
                             }
                         }
                         if ((this.flags & 4) != 0) {
@@ -83,7 +82,7 @@ public abstract class TLRPC$BotInlineMessage extends TLObject {
                 };
                 break;
             case -1222451611:
-                tLRPC$BotInlineMessage = new TLRPC$TL_botInlineMessageMediaGeo() {
+                tLRPC$TL_botInlineMessageMediaVenue = new TLRPC$TL_botInlineMessageMediaGeo() {
                     public static int constructor = -1222451611;
 
                     @Override
@@ -109,10 +108,10 @@ public abstract class TLRPC$BotInlineMessage extends TLObject {
                 };
                 break;
             case 85477117:
-                tLRPC$BotInlineMessage = new TLRPC$TL_botInlineMessageMediaGeo();
+                tLRPC$TL_botInlineMessageMediaVenue = new TLRPC$TL_botInlineMessageMediaGeo();
                 break;
             case 175419739:
-                tLRPC$BotInlineMessage = new TLRPC$TL_botInlineMessageMediaAuto() {
+                tLRPC$TL_botInlineMessageMediaVenue = new TLRPC$TL_botInlineMessageMediaAuto() {
                     public static int constructor = 175419739;
 
                     @Override
@@ -136,13 +135,13 @@ public abstract class TLRPC$BotInlineMessage extends TLObject {
                 };
                 break;
             case 416402882:
-                tLRPC$BotInlineMessage = new TLRPC$TL_botInlineMessageMediaContact();
+                tLRPC$TL_botInlineMessageMediaVenue = new TLRPC$TL_botInlineMessageMediaContact();
                 break;
             case 894081801:
-                tLRPC$BotInlineMessage = new TLRPC$TL_botInlineMessageMediaInvoice();
+                tLRPC$TL_botInlineMessageMediaVenue = new TLRPC$TL_botInlineMessageMediaInvoice();
                 break;
             case 904770772:
-                tLRPC$BotInlineMessage = new TLRPC$TL_botInlineMessageMediaContact() {
+                tLRPC$TL_botInlineMessageMediaVenue = new TLRPC$TL_botInlineMessageMediaContact() {
                     public static int constructor = 904770772;
 
                     @Override
@@ -170,7 +169,7 @@ public abstract class TLRPC$BotInlineMessage extends TLObject {
                 };
                 break;
             case 982505656:
-                tLRPC$BotInlineMessage = new TLRPC$TL_botInlineMessageMediaGeo() {
+                tLRPC$TL_botInlineMessageMediaVenue = new TLRPC$TL_botInlineMessageMediaGeo() {
                     public static int constructor = 982505656;
 
                     @Override
@@ -194,7 +193,7 @@ public abstract class TLRPC$BotInlineMessage extends TLObject {
                 };
                 break;
             case 1130767150:
-                tLRPC$BotInlineMessage = new TLRPC$TL_botInlineMessageMediaVenue() {
+                tLRPC$TL_botInlineMessageMediaVenue = new TLRPC$TL_botInlineMessageMediaVenue() {
                     public static int constructor = 1130767150;
 
                     @Override
@@ -226,18 +225,18 @@ public abstract class TLRPC$BotInlineMessage extends TLObject {
                 };
                 break;
             case 1984755728:
-                tLRPC$BotInlineMessage = new TLRPC$TL_botInlineMessageMediaAuto();
+                tLRPC$TL_botInlineMessageMediaVenue = new TLRPC$TL_botInlineMessageMediaAuto();
                 break;
             default:
-                tLRPC$BotInlineMessage = null;
+                tLRPC$TL_botInlineMessageMediaVenue = null;
                 break;
         }
-        if (tLRPC$BotInlineMessage != null || !z) {
-            if (tLRPC$BotInlineMessage != null) {
-                tLRPC$BotInlineMessage.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$BotInlineMessage;
+        if (tLRPC$TL_botInlineMessageMediaVenue == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in BotInlineMessage", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in BotInlineMessage", Integer.valueOf(i)));
+        if (tLRPC$TL_botInlineMessageMediaVenue != null) {
+            tLRPC$TL_botInlineMessageMediaVenue.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_botInlineMessageMediaVenue;
     }
 }

@@ -69,12 +69,12 @@ public abstract class TLRPC$Peer extends TLObject {
                 tLRPC$Peer = null;
                 break;
         }
-        if (tLRPC$Peer != null || !z) {
-            if (tLRPC$Peer != null) {
-                tLRPC$Peer.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$Peer;
+        if (tLRPC$Peer == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in Peer", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in Peer", Integer.valueOf(i)));
+        if (tLRPC$Peer != null) {
+            tLRPC$Peer.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$Peer;
     }
 }

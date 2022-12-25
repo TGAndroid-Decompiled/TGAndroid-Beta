@@ -4,9 +4,11 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.CharacterCompat;
+import org.telegram.messenger.ImageReceiver;
 
-public abstract class TLRPC$Message extends TLObject {
+public class TLRPC$Message extends TLObject {
     public TLRPC$MessageAction action;
     public int date;
     public int destroyTime;
@@ -19,7 +21,7 @@ public abstract class TLRPC$Message extends TLObject {
     public boolean from_scheduled;
     public TLRPC$MessageFwdHeader fwd_from;
     public long grouped_id;
-    public int id;
+    public int f872id;
     public boolean isThreadMessage;
     public int layer;
     public boolean legacy;
@@ -46,6 +48,7 @@ public abstract class TLRPC$Message extends TLObject {
     public int seq_in;
     public int seq_out;
     public boolean silent;
+    public boolean topic_start;
     public int ttl;
     public int ttl_period;
     public boolean unread;
@@ -54,6 +57,7 @@ public abstract class TLRPC$Message extends TLObject {
     public int views;
     public String voiceTranscription;
     public boolean voiceTranscriptionFinal;
+    public boolean voiceTranscriptionForce;
     public long voiceTranscriptionId;
     public boolean voiceTranscriptionOpen;
     public boolean voiceTranscriptionRated;
@@ -62,7 +66,7 @@ public abstract class TLRPC$Message extends TLObject {
     public ArrayList<TLRPC$TL_restrictionReason> restriction_reason = new ArrayList<>();
     public int send_state = 0;
     public int fwd_msg_id = 0;
-    public String attachPath = "";
+    public String attachPath = BuildConfig.APP_CENTER_HASH;
     public int local_id = 0;
     public int stickerVerified = 1;
 
@@ -75,14 +79,14 @@ public abstract class TLRPC$Message extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         this.peer_id = new TLRPC$TL_peerUser();
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                     }
                 };
                 break;
@@ -104,7 +108,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.edit_hide = (2097152 & readInt32) != 0;
                         this.pinned = (16777216 & readInt32) != 0;
                         this.noforwards = (readInt32 & ConnectionsManager.FileTypeFile) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
@@ -135,26 +139,25 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.entities.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
                             }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize2);
+                            }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.views = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.forwards = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & 8388608) != 0) {
@@ -171,20 +174,19 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & 4194304) != 0) {
                             int readInt324 = abstractSerializedData2.readInt32(z2);
-                            if (readInt324 == 481674261) {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize3 != null) {
-                                        this.restriction_reason.add(TLdeserialize3);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt324 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
-                            } else {
                                 return;
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize3 == null) {
+                                    return;
+                                }
+                                this.restriction_reason.add(TLdeserialize3);
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
@@ -216,7 +218,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i11 = this.noforwards ? i10 | ConnectionsManager.FileTypeFile : i10 & (-67108865);
                         this.flags = i11;
                         abstractSerializedData2.writeInt32(i11);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             this.from_id.serializeToStream(abstractSerializedData2);
                         }
@@ -246,10 +248,10 @@ public abstract class TLRPC$Message extends TLObject {
                                 this.entities.get(i12).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.views);
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.forwards);
                         }
                         if ((this.flags & 8388608) != 0) {
@@ -295,7 +297,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.media_unread = (readInt32 & 32) != 0;
                         this.silent = (readInt32 & 8192) != 0;
                         this.post = (readInt32 & 16384) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                             this.from_id = tLRPC$TL_peerUser;
@@ -330,23 +332,22 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.entities.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
                             }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize2);
+                            }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.views = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -371,7 +372,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i6 = this.post ? i5 | 16384 : i5 & (-16385);
                         this.flags = i6;
                         abstractSerializedData2.writeInt32(i6);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         }
@@ -401,7 +402,7 @@ public abstract class TLRPC$Message extends TLObject {
                                 this.entities.get(i7).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.views);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -430,7 +431,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.from_scheduled = (262144 & readInt32) != 0;
                         this.legacy = (524288 & readInt32) != 0;
                         this.edit_hide = (readInt32 & 2097152) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                             this.from_id = tLRPC$TL_peerUser;
@@ -465,23 +466,22 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.entities.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
                             }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize2);
+                            }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.views = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -498,18 +498,19 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & 4194304) != 0) {
                             int readInt324 = abstractSerializedData2.readInt32(z2);
-                            if (readInt324 == 481674261) {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize3 != null) {
-                                        this.restriction_reason.add(TLdeserialize3);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt324 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                                return;
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize3 == null) {
+                                    return;
+                                }
+                                this.restriction_reason.add(TLdeserialize3);
                             }
                         }
                     }
@@ -534,7 +535,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i9 = this.edit_hide ? i8 | 2097152 : i8 & (-2097153);
                         this.flags = i9;
                         abstractSerializedData2.writeInt32(i9);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         }
@@ -564,7 +565,7 @@ public abstract class TLRPC$Message extends TLObject {
                                 this.entities.get(i10).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.views);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -599,18 +600,14 @@ public abstract class TLRPC$Message extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.unread = (readInt32 & 1) != 0;
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
                         this.media_unread = (readInt32 & 32) != 0;
                         this.silent = (readInt32 & 8192) != 0;
                         this.post = (readInt32 & 16384) != 0;
-                        if ((readInt32 & 524288) != 0) {
-                            z3 = true;
-                        }
-                        this.legacy = z3;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.legacy = (readInt32 & 524288) != 0;
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                             this.from_id = tLRPC$TL_peerUser;
@@ -644,7 +641,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i8 = this.legacy ? i7 | 524288 : i7 & (-524289);
                         this.flags = i8;
                         abstractSerializedData2.writeInt32(i8);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         }
@@ -664,7 +661,7 @@ public abstract class TLRPC$Message extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.from_id = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -679,7 +676,7 @@ public abstract class TLRPC$Message extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         this.peer_id.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeBool(this.out);
@@ -700,15 +697,11 @@ public abstract class TLRPC$Message extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2) | 256 | 512;
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.unread = (readInt32 & 1) != 0;
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
-                        if ((readInt32 & 32) != 0) {
-                            z3 = true;
-                        }
-                        this.media_unread = z3;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.media_unread = (readInt32 & 32) != 0;
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.from_id = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -731,9 +724,10 @@ public abstract class TLRPC$Message extends TLObject {
                         this.message = abstractSerializedData2.readString(z2);
                         TLRPC$MessageMedia TLdeserialize = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         this.media = TLdeserialize;
-                        if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
-                            this.message = this.media.captionLegacy;
+                        if (TLdeserialize == null || TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
+                            return;
                         }
+                        this.message = this.media.captionLegacy;
                     }
 
                     @Override
@@ -748,7 +742,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i5 = this.media_unread ? i4 | 32 : i4 & (-33);
                         this.flags = i5;
                         abstractSerializedData2.writeInt32(i5);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         this.peer_id.serializeToStream(abstractSerializedData2);
                         if ((this.flags & 4) != 0) {
@@ -782,7 +776,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.legacy = (524288 & readInt32) != 0;
                         this.edit_hide = (2097152 & readInt32) != 0;
                         this.pinned = (readInt32 & ConnectionsManager.FileTypePhoto) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
@@ -813,26 +807,25 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.entities.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
                             }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize2);
+                            }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.views = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.forwards = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & 8388608) != 0) {
@@ -849,20 +842,19 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & 4194304) != 0) {
                             int readInt324 = abstractSerializedData2.readInt32(z2);
-                            if (readInt324 == 481674261) {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize3 != null) {
-                                        this.restriction_reason.add(TLdeserialize3);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt324 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
-                            } else {
                                 return;
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize3 == null) {
+                                    return;
+                                }
+                                this.restriction_reason.add(TLdeserialize3);
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
@@ -892,7 +884,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i10 = this.pinned ? i9 | ConnectionsManager.FileTypePhoto : i9 & (-16777217);
                         this.flags = i10;
                         abstractSerializedData2.writeInt32(i10);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             this.from_id.serializeToStream(abstractSerializedData2);
                         }
@@ -922,10 +914,10 @@ public abstract class TLRPC$Message extends TLObject {
                                 this.entities.get(i11).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.views);
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.forwards);
                         }
                         if ((this.flags & 8388608) != 0) {
@@ -963,17 +955,13 @@ public abstract class TLRPC$Message extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.unread = (readInt32 & 1) != 0;
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
                         this.media_unread = (readInt32 & 32) != 0;
                         this.silent = (readInt32 & 8192) != 0;
-                        if ((readInt32 & 16384) != 0) {
-                            z3 = true;
-                        }
-                        this.post = z3;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.post = (readInt32 & 16384) != 0;
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                             this.from_id = tLRPC$TL_peerUser;
@@ -1004,7 +992,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i7 = this.post ? i6 | 16384 : i6 & (-16385);
                         this.flags = i7;
                         abstractSerializedData2.writeInt32(i7);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         }
@@ -1029,7 +1017,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.silent = (readInt32 & 8192) != 0;
                         this.post = (readInt32 & 16384) != 0;
                         this.with_my_score = (readInt32 & 1073741824) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                             this.from_id = tLRPC$TL_peerUser;
@@ -1067,23 +1055,22 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize3 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize3 != null) {
-                                        this.entities.add(TLdeserialize3);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
                             }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize3 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize3 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize3);
+                            }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.views = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -1109,7 +1096,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i8 = this.with_my_score ? i7 | 1073741824 : i7 & (-1073741825);
                         this.flags = i8;
                         abstractSerializedData2.writeInt32(i8);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         }
@@ -1139,7 +1126,7 @@ public abstract class TLRPC$Message extends TLObject {
                                 this.entities.get(i9).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.views);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -1157,15 +1144,11 @@ public abstract class TLRPC$Message extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2) | 256 | 512;
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.unread = (readInt32 & 1) != 0;
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
-                        if ((readInt32 & 32) != 0) {
-                            z3 = true;
-                        }
-                        this.media_unread = z3;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.media_unread = (readInt32 & 32) != 0;
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.from_id = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -1208,7 +1191,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i5 = this.media_unread ? i4 | 32 : i4 & (-33);
                         this.flags = i5;
                         abstractSerializedData2.writeInt32(i5);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         this.peer_id.serializeToStream(abstractSerializedData2);
                         if ((this.flags & 4) != 0) {
@@ -1240,7 +1223,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
                         this.media_unread = (readInt32 & 32) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                             this.from_id = tLRPC$TL_peerUser;
@@ -1285,23 +1268,22 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize4 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize4 != null) {
-                                        this.entities.add(TLdeserialize4);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
                             }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize4 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize4 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize4);
+                            }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.views = abstractSerializedData2.readInt32(z2);
                         }
                     }
@@ -1318,7 +1300,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i5 = this.media_unread ? i4 | 32 : i4 & (-33);
                         this.flags = i5;
                         abstractSerializedData2.writeInt32(i5);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         }
@@ -1352,7 +1334,7 @@ public abstract class TLRPC$Message extends TLObject {
                                 this.entities.get(i6).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.views);
                         }
                         writeAttachPath(abstractSerializedData2);
@@ -1371,7 +1353,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
                         this.media_unread = (readInt32 & 32) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.from_id = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -1402,18 +1384,19 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.entities.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                                return;
+                            }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize2);
                             }
                         }
                     }
@@ -1430,7 +1413,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i5 = this.media_unread ? i4 | 32 : i4 & (-33);
                         this.flags = i5;
                         abstractSerializedData2.writeInt32(i5);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         this.peer_id.serializeToStream(abstractSerializedData2);
                         if ((this.flags & 4) != 0) {
@@ -1474,7 +1457,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.from_scheduled = (262144 & readInt32) != 0;
                         this.legacy = (524288 & readInt32) != 0;
                         this.edit_hide = (readInt32 & 2097152) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                             this.from_id = tLRPC$TL_peerUser;
@@ -1509,26 +1492,25 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.entities.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
                             }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize2);
+                            }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.views = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.forwards = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -1542,18 +1524,19 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & 4194304) != 0) {
                             int readInt324 = abstractSerializedData2.readInt32(z2);
-                            if (readInt324 == 481674261) {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize3 != null) {
-                                        this.restriction_reason.add(TLdeserialize3);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt324 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                                return;
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize3 == null) {
+                                    return;
+                                }
+                                this.restriction_reason.add(TLdeserialize3);
                             }
                         }
                     }
@@ -1578,7 +1561,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i9 = this.edit_hide ? i8 | 2097152 : i8 & (-2097153);
                         this.flags = i9;
                         abstractSerializedData2.writeInt32(i9);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         }
@@ -1608,10 +1591,10 @@ public abstract class TLRPC$Message extends TLObject {
                                 this.entities.get(i10).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.views);
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.forwards);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -1641,7 +1624,7 @@ public abstract class TLRPC$Message extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         TLRPC$TL_messageFwdHeader tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader();
                         this.fwd_from = tLRPC$TL_messageFwdHeader;
                         tLRPC$TL_messageFwdHeader.from_id = new TLRPC$TL_peerUser();
@@ -1660,15 +1643,16 @@ public abstract class TLRPC$Message extends TLObject {
                         this.message = abstractSerializedData2.readString(z2);
                         TLRPC$MessageMedia TLdeserialize = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         this.media = TLdeserialize;
-                        if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
-                            this.message = this.media.captionLegacy;
+                        if (TLdeserialize == null || TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
+                            return;
                         }
+                        this.message = this.media.captionLegacy;
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         abstractSerializedData2.writeInt32((int) this.fwd_from.from_id.user_id);
                         abstractSerializedData2.writeInt32(this.fwd_from.date);
                         abstractSerializedData2.writeInt32((int) this.from_id.user_id);
@@ -1698,7 +1682,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.from_scheduled = (262144 & readInt32) != 0;
                         this.legacy = (524288 & readInt32) != 0;
                         this.edit_hide = (readInt32 & 2097152) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                             this.from_id = tLRPC$TL_peerUser;
@@ -1733,23 +1717,22 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.entities.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
                             }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize2);
+                            }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.views = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -1789,7 +1772,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i9 = this.edit_hide ? i8 | 2097152 : i8 & (-2097153);
                         this.flags = i9;
                         abstractSerializedData2.writeInt32(i9);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         }
@@ -1819,7 +1802,7 @@ public abstract class TLRPC$Message extends TLObject {
                                 this.entities.get(i10).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.views);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -1835,7 +1818,7 @@ public abstract class TLRPC$Message extends TLObject {
                             this.reactions.serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags & 4194304) != 0) {
-                            abstractSerializedData2.writeString("");
+                            abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
                         }
                         writeAttachPath(abstractSerializedData2);
                     }
@@ -1849,15 +1832,11 @@ public abstract class TLRPC$Message extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.unread = (readInt32 & 1) != 0;
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
-                        if ((readInt32 & 32) != 0) {
-                            z3 = true;
-                        }
-                        this.media_unread = z3;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.media_unread = (readInt32 & 32) != 0;
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.from_id = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -1879,7 +1858,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i5 = this.media_unread ? i4 | 32 : i4 & (-33);
                         this.flags = i5;
                         abstractSerializedData2.writeInt32(i5);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         this.peer_id.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.date);
@@ -1893,7 +1872,7 @@ public abstract class TLRPC$Message extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.from_id = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -1905,15 +1884,16 @@ public abstract class TLRPC$Message extends TLObject {
                         this.message = abstractSerializedData2.readString(z2);
                         TLRPC$MessageMedia TLdeserialize = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         this.media = TLdeserialize;
-                        if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
-                            this.message = this.media.captionLegacy;
+                        if (TLdeserialize == null || TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
+                            return;
                         }
+                        this.message = this.media.captionLegacy;
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         this.peer_id.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeBool(this.out);
@@ -1933,17 +1913,13 @@ public abstract class TLRPC$Message extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = true;
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
                         this.media_unread = (readInt32 & 32) != 0;
                         this.silent = (readInt32 & 8192) != 0;
                         this.post = (readInt32 & 16384) != 0;
-                        if ((readInt32 & 524288) == 0) {
-                            z3 = false;
-                        }
-                        this.legacy = z3;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.legacy = (readInt32 & 524288) != 0;
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
@@ -1971,7 +1947,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i7 = this.legacy ? i6 | 524288 : i6 & (-524289);
                         this.flags = i7;
                         abstractSerializedData2.writeInt32(i7);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             this.from_id.serializeToStream(abstractSerializedData2);
                         }
@@ -2000,7 +1976,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
                         this.media_unread = (readInt32 & 32) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.from_id = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -2035,18 +2011,19 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.entities.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                                return;
+                            }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize2);
                             }
                         }
                     }
@@ -2063,7 +2040,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i5 = this.media_unread ? i4 | 32 : i4 & (-33);
                         this.flags = i5;
                         abstractSerializedData2.writeInt32(i5);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         this.peer_id.serializeToStream(abstractSerializedData2);
                         if ((this.flags & 4) != 0) {
@@ -2111,7 +2088,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.post = (readInt32 & 16384) != 0;
                         this.from_scheduled = (262144 & readInt32) != 0;
                         this.legacy = (readInt32 & 524288) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                             this.from_id = tLRPC$TL_peerUser;
@@ -2146,23 +2123,22 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.entities.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
                             }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize2);
+                            }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.views = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -2194,7 +2170,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i8 = this.legacy ? i7 | 524288 : i7 & (-524289);
                         this.flags = i8;
                         abstractSerializedData2.writeInt32(i8);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         }
@@ -2224,7 +2200,7 @@ public abstract class TLRPC$Message extends TLObject {
                                 this.entities.get(i9).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.views);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -2256,7 +2232,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.from_scheduled = (262144 & readInt32) != 0;
                         this.legacy = (524288 & readInt32) != 0;
                         this.edit_hide = (readInt32 & 2097152) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                             this.from_id = tLRPC$TL_peerUser;
@@ -2291,23 +2267,22 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.entities.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
                             }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize2);
+                            }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.views = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -2321,18 +2296,19 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & 4194304) != 0) {
                             int readInt324 = abstractSerializedData2.readInt32(z2);
-                            if (readInt324 == 481674261) {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize3 != null) {
-                                        this.restriction_reason.add(TLdeserialize3);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt324 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                                return;
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize3 == null) {
+                                    return;
+                                }
+                                this.restriction_reason.add(TLdeserialize3);
                             }
                         }
                     }
@@ -2357,7 +2333,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i9 = this.edit_hide ? i8 | 2097152 : i8 & (-2097153);
                         this.flags = i9;
                         abstractSerializedData2.writeInt32(i9);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         }
@@ -2387,7 +2363,7 @@ public abstract class TLRPC$Message extends TLObject {
                                 this.entities.get(i10).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.views);
                         }
                         if ((this.flags & 32768) != 0) {
@@ -2428,15 +2404,11 @@ public abstract class TLRPC$Message extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2) | 256 | 512;
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.unread = (readInt32 & 1) != 0;
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
-                        if ((readInt32 & 32) != 0) {
-                            z3 = true;
-                        }
-                        this.media_unread = z3;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.media_unread = (readInt32 & 32) != 0;
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.from_id = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -2445,9 +2417,10 @@ public abstract class TLRPC$Message extends TLObject {
                         this.message = abstractSerializedData2.readString(z2);
                         TLRPC$MessageMedia TLdeserialize = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         this.media = TLdeserialize;
-                        if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
-                            this.message = this.media.captionLegacy;
+                        if (TLdeserialize == null || TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
+                            return;
                         }
+                        this.message = this.media.captionLegacy;
                     }
 
                     @Override
@@ -2462,7 +2435,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i5 = this.media_unread ? i4 | 32 : i4 & (-33);
                         this.flags = i5;
                         abstractSerializedData2.writeInt32(i5);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         this.peer_id.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.date);
@@ -2489,7 +2462,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.legacy = (524288 & readInt32) != 0;
                         this.edit_hide = (2097152 & readInt32) != 0;
                         this.pinned = (readInt32 & ConnectionsManager.FileTypePhoto) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
@@ -2520,26 +2493,25 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.entities.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
                             }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize2);
+                            }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.views = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.forwards = abstractSerializedData2.readInt32(z2);
                         }
                         if ((this.flags & 8388608) != 0) {
@@ -2556,18 +2528,19 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & 4194304) != 0) {
                             int readInt324 = abstractSerializedData2.readInt32(z2);
-                            if (readInt324 == 481674261) {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize3 != null) {
-                                        this.restriction_reason.add(TLdeserialize3);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt324 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                                return;
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize3 == null) {
+                                    return;
+                                }
+                                this.restriction_reason.add(TLdeserialize3);
                             }
                         }
                     }
@@ -2594,7 +2567,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i10 = this.pinned ? i9 | ConnectionsManager.FileTypePhoto : i9 & (-16777217);
                         this.flags = i10;
                         abstractSerializedData2.writeInt32(i10);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             this.from_id.serializeToStream(abstractSerializedData2);
                         }
@@ -2624,10 +2597,10 @@ public abstract class TLRPC$Message extends TLObject {
                                 this.entities.get(i11).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.views);
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.forwards);
                         }
                         if ((this.flags & 8388608) != 0) {
@@ -2666,7 +2639,7 @@ public abstract class TLRPC$Message extends TLObject {
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
                         this.media_unread = (readInt32 & 32) != 0;
-                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.f872id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 256) != 0) {
                             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                             this.from_id = tLRPC$TL_peerUser;
@@ -2708,23 +2681,22 @@ public abstract class TLRPC$Message extends TLObject {
                         }
                         if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$MessageEntity TLdeserialize4 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize4 != null) {
-                                        this.entities.add(TLdeserialize4);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
                             }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$MessageEntity TLdeserialize4 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize4 == null) {
+                                    return;
+                                }
+                                this.entities.add(TLdeserialize4);
+                            }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.views = abstractSerializedData2.readInt32(z2);
                         }
                     }
@@ -2741,7 +2713,7 @@ public abstract class TLRPC$Message extends TLObject {
                         int i5 = this.media_unread ? i4 | 32 : i4 & (-33);
                         this.flags = i5;
                         abstractSerializedData2.writeInt32(i5);
-                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.f872id);
                         if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         }
@@ -2772,7 +2744,7 @@ public abstract class TLRPC$Message extends TLObject {
                                 this.entities.get(i6).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             abstractSerializedData2.writeInt32(this.views);
                         }
                         writeAttachPath(abstractSerializedData2);
@@ -2783,16 +2755,16 @@ public abstract class TLRPC$Message extends TLObject {
                 tLRPC$Message = null;
                 break;
         }
-        if (tLRPC$Message != null || !z) {
-            if (tLRPC$Message != null) {
-                tLRPC$Message.readParams(abstractSerializedData, z);
-                if (tLRPC$Message.from_id == null) {
-                    tLRPC$Message.from_id = tLRPC$Message.peer_id;
-                }
-            }
-            return tLRPC$Message;
+        if (tLRPC$Message == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in Message", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in Message", Integer.valueOf(i)));
+        if (tLRPC$Message != null) {
+            tLRPC$Message.readParams(abstractSerializedData, z);
+            if (tLRPC$Message.from_id == null) {
+                tLRPC$Message.from_id = tLRPC$Message.peer_id;
+            }
+        }
+        return tLRPC$Message;
     }
 
     public void readAttachPath(org.telegram.tgnet.AbstractSerializedData r12, long r13) {
@@ -2805,7 +2777,7 @@ public abstract class TLRPC$Message extends TLObject {
         if ((this instanceof TLRPC$TL_message_secret) || (this instanceof TLRPC$TL_message_secret_layer72)) {
             String str = this.attachPath;
             if (str == null) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             if (this.send_state == 1 && (hashMap = this.params) != null && hashMap.size() > 0) {
                 for (Map.Entry<String, String> entry : this.params.entrySet()) {
@@ -2821,18 +2793,19 @@ public abstract class TLRPC$Message extends TLObject {
             if (this.params == null) {
                 this.params = new HashMap<>();
             }
-            this.layer = 143;
-            this.params.put("legacy_layer", "143");
+            this.layer = ImageReceiver.DEFAULT_CROSSFADE_DURATION;
+            this.params.put("legacy_layer", "150");
         }
-        if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
+        if ((this.f872id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
             for (Map.Entry<String, String> entry2 : this.params.entrySet()) {
                 str2 = entry2.getKey() + "|=|" + entry2.getValue() + "||" + str2;
             }
             str2 = "||" + str2;
         }
         abstractSerializedData.writeString(str2);
-        if ((this.flags & 4) != 0 && this.id < 0) {
-            abstractSerializedData.writeInt32(this.fwd_msg_id);
+        if ((this.flags & 4) == 0 || this.f872id >= 0) {
+            return;
         }
+        abstractSerializedData.writeInt32(this.fwd_msg_id);
     }
 }

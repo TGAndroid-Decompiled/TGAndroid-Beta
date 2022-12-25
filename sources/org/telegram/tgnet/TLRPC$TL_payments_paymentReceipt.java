@@ -21,15 +21,15 @@ public class TLRPC$TL_payments_paymentReceipt extends TLObject {
     public ArrayList<TLRPC$User> users = new ArrayList<>();
 
     public static TLRPC$TL_payments_paymentReceipt TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_payments_paymentReceipt tLRPC$TL_payments_paymentReceipt = new TLRPC$TL_payments_paymentReceipt();
-            tLRPC$TL_payments_paymentReceipt.readParams(abstractSerializedData, z);
-            return tLRPC$TL_payments_paymentReceipt;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_payments_paymentReceipt", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_payments_paymentReceipt", Integer.valueOf(i)));
         }
+        TLRPC$TL_payments_paymentReceipt tLRPC$TL_payments_paymentReceipt = new TLRPC$TL_payments_paymentReceipt();
+        tLRPC$TL_payments_paymentReceipt.readParams(abstractSerializedData, z);
+        return tLRPC$TL_payments_paymentReceipt;
     }
 
     @Override
@@ -57,18 +57,19 @@ public class TLRPC$TL_payments_paymentReceipt extends TLObject {
         this.total_amount = abstractSerializedData.readInt64(z);
         this.credentials_title = abstractSerializedData.readString(z);
         int readInt32 = abstractSerializedData.readInt32(z);
-        if (readInt32 == 481674261) {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                TLRPC$User TLdeserialize = TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize != null) {
-                    this.users.add(TLdeserialize);
-                } else {
-                    return;
-                }
+        if (readInt32 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+            return;
+        }
+        int readInt322 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt322; i++) {
+            TLRPC$User TLdeserialize = TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
+            }
+            this.users.add(TLdeserialize);
         }
     }
 

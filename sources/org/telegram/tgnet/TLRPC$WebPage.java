@@ -17,7 +17,7 @@ public abstract class TLRPC$WebPage extends TLObject {
     public int embed_width;
     public int flags;
     public int hash;
-    public long id;
+    public long f995id;
     public TLRPC$Photo photo;
     public String site_name;
     public String title;
@@ -44,7 +44,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
-                        this.id = abstractSerializedData2.readInt64(z2);
+                        this.f995id = abstractSerializedData2.readInt64(z2);
                         this.url = abstractSerializedData2.readString(z2);
                         this.display_url = abstractSerializedData2.readString(z2);
                         if ((this.flags & 1) != 0) {
@@ -86,7 +86,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.flags);
-                        abstractSerializedData2.writeInt64(this.id);
+                        abstractSerializedData2.writeInt64(this.f995id);
                         abstractSerializedData2.writeString(this.url);
                         abstractSerializedData2.writeString(this.display_url);
                         if ((this.flags & 1) != 0) {
@@ -135,7 +135,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
-                        this.id = abstractSerializedData2.readInt64(z2);
+                        this.f995id = abstractSerializedData2.readInt64(z2);
                         this.url = abstractSerializedData2.readString(z2);
                         this.display_url = abstractSerializedData2.readString(z2);
                         if ((this.flags & 1) != 0) {
@@ -180,7 +180,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.flags);
-                        abstractSerializedData2.writeInt64(this.id);
+                        abstractSerializedData2.writeInt64(this.f995id);
                         abstractSerializedData2.writeString(this.url);
                         abstractSerializedData2.writeString(this.display_url);
                         if ((this.flags & 1) != 0) {
@@ -238,7 +238,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
-                        this.id = abstractSerializedData2.readInt64(z2);
+                        this.f995id = abstractSerializedData2.readInt64(z2);
                         this.url = abstractSerializedData2.readString(z2);
                         this.display_url = abstractSerializedData2.readString(z2);
                         this.hash = abstractSerializedData2.readInt32(z2);
@@ -280,25 +280,24 @@ public abstract class TLRPC$WebPage extends TLObject {
                         }
                         if ((this.flags & 2048) != 0) {
                             int readInt32 = abstractSerializedData2.readInt32(z2);
-                            if (readInt32 == 481674261) {
-                                TLRPC$TL_webPageAttributeTheme tLRPC$TL_webPageAttributeTheme = new TLRPC$TL_webPageAttributeTheme();
-                                int readInt322 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt322; i2++) {
-                                    TLRPC$Document TLdeserialize = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize != null) {
-                                        tLRPC$TL_webPageAttributeTheme.documents.add(TLdeserialize);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt32 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                                 }
-                                this.attributes.add(tLRPC$TL_webPageAttributeTheme);
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
-                            } else {
                                 return;
                             }
+                            TLRPC$TL_webPageAttributeTheme tLRPC$TL_webPageAttributeTheme = new TLRPC$TL_webPageAttributeTheme();
+                            int readInt322 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt322; i2++) {
+                                TLRPC$Document TLdeserialize = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize == null) {
+                                    return;
+                                }
+                                tLRPC$TL_webPageAttributeTheme.documents.add(TLdeserialize);
+                            }
+                            this.attributes.add(tLRPC$TL_webPageAttributeTheme);
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.cached_page = TLRPC$Page.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                     }
@@ -307,7 +306,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.flags);
-                        abstractSerializedData2.writeInt64(this.id);
+                        abstractSerializedData2.writeInt64(this.f995id);
                         abstractSerializedData2.writeString(this.url);
                         abstractSerializedData2.writeString(this.display_url);
                         abstractSerializedData2.writeInt32(this.hash);
@@ -351,7 +350,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                             abstractSerializedData2.writeInt32(481674261);
                             abstractSerializedData2.writeInt32(0);
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.cached_page.serializeToStream(abstractSerializedData2);
                         }
                     }
@@ -364,7 +363,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
-                        this.id = abstractSerializedData2.readInt64(z2);
+                        this.f995id = abstractSerializedData2.readInt64(z2);
                         this.url = abstractSerializedData2.readString(z2);
                         this.display_url = abstractSerializedData2.readString(z2);
                         this.hash = abstractSerializedData2.readInt32(z2);
@@ -404,7 +403,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                         if ((this.flags & 512) != 0) {
                             this.document = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.cached_page = TLRPC$Page.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                     }
@@ -413,7 +412,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.flags);
-                        abstractSerializedData2.writeInt64(this.id);
+                        abstractSerializedData2.writeInt64(this.f995id);
                         abstractSerializedData2.writeString(this.url);
                         abstractSerializedData2.writeString(this.display_url);
                         abstractSerializedData2.writeInt32(this.hash);
@@ -453,7 +452,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                         if ((this.flags & 512) != 0) {
                             this.document.serializeToStream(abstractSerializedData2);
                         }
-                        if ((this.flags & 1024) != 0) {
+                        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
                             this.cached_page.serializeToStream(abstractSerializedData2);
                         }
                     }
@@ -466,12 +465,12 @@ public abstract class TLRPC$WebPage extends TLObject {
                 tLRPC$WebPage = null;
                 break;
         }
-        if (tLRPC$WebPage != null || !z) {
-            if (tLRPC$WebPage != null) {
-                tLRPC$WebPage.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$WebPage;
+        if (tLRPC$WebPage == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in WebPage", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in WebPage", Integer.valueOf(i)));
+        if (tLRPC$WebPage != null) {
+            tLRPC$WebPage.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$WebPage;
     }
 }

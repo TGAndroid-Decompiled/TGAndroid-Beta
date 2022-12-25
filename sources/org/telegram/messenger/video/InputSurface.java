@@ -8,7 +8,7 @@ import android.opengl.EGLDisplay;
 import android.opengl.EGLExt;
 import android.opengl.EGLSurface;
 import android.view.Surface;
-import org.telegram.messenger.R;
+import java.util.Objects;
 
 @TargetApi(17)
 public class InputSurface {
@@ -20,7 +20,7 @@ public class InputSurface {
     private Surface mSurface;
 
     public InputSurface(Surface surface) {
-        surface.getClass();
+        Objects.requireNonNull(surface);
         this.mSurface = surface;
         eglSetup();
     }
@@ -28,29 +28,28 @@ public class InputSurface {
     private void eglSetup() {
         EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
         this.mEGLDisplay = eglGetDisplay;
-        if (eglGetDisplay != EGL14.EGL_NO_DISPLAY) {
-            int[] iArr = new int[2];
-            if (EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
-                EGLConfig[] eGLConfigArr = new EGLConfig[1];
-                if (EGL14.eglChooseConfig(this.mEGLDisplay, new int[]{12324, 8, 12323, 8, 12322, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, new int[1], 0)) {
-                    this.mEGLContext = EGL14.eglCreateContext(this.mEGLDisplay, eGLConfigArr[0], EGL14.EGL_NO_CONTEXT, new int[]{12440, 2, 12344}, 0);
-                    checkEglError("eglCreateContext");
-                    if (this.mEGLContext != null) {
-                        this.mEGLSurface = EGL14.eglCreateWindowSurface(this.mEGLDisplay, eGLConfigArr[0], this.mSurface, new int[]{12344}, 0);
-                        checkEglError("eglCreateWindowSurface");
-                        if (this.mEGLSurface == null) {
-                            throw new RuntimeException("surface was null");
-                        }
-                        return;
-                    }
-                    throw new RuntimeException("null context");
-                }
-                throw new RuntimeException("unable to find RGB888+recordable ES2 EGL config");
-            }
+        if (eglGetDisplay == EGL14.EGL_NO_DISPLAY) {
+            throw new RuntimeException("unable to get EGL14 display");
+        }
+        int[] iArr = new int[2];
+        if (!EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
             this.mEGLDisplay = null;
             throw new RuntimeException("unable to initialize EGL14");
         }
-        throw new RuntimeException("unable to get EGL14 display");
+        EGLConfig[] eGLConfigArr = new EGLConfig[1];
+        if (!EGL14.eglChooseConfig(this.mEGLDisplay, new int[]{12324, 8, 12323, 8, 12322, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, new int[1], 0)) {
+            throw new RuntimeException("unable to find RGB888+recordable ES2 EGL config");
+        }
+        this.mEGLContext = EGL14.eglCreateContext(this.mEGLDisplay, eGLConfigArr[0], EGL14.EGL_NO_CONTEXT, new int[]{12440, 2, 12344}, 0);
+        checkEglError("eglCreateContext");
+        if (this.mEGLContext == null) {
+            throw new RuntimeException("null context");
+        }
+        this.mEGLSurface = EGL14.eglCreateWindowSurface(this.mEGLDisplay, eGLConfigArr[0], this.mSurface, new int[]{12344}, 0);
+        checkEglError("eglCreateWindowSurface");
+        if (this.mEGLSurface == null) {
+            throw new RuntimeException("surface was null");
+        }
     }
 
     public void release() {
@@ -84,7 +83,7 @@ public class InputSurface {
         return this.mSurface;
     }
 
-    @TargetApi(R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom)
+    @TargetApi(18)
     public void setPresentationTime(long j) {
         EGLExt.eglPresentationTimeANDROID(this.mEGLDisplay, this.mEGLSurface, j);
     }

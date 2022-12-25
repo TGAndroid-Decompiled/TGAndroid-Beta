@@ -13,30 +13,26 @@ public class TLRPC$TL_pageTableCell extends TLObject {
     public boolean valign_middle;
 
     public static TLRPC$TL_pageTableCell TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_pageTableCell tLRPC$TL_pageTableCell = new TLRPC$TL_pageTableCell();
-            tLRPC$TL_pageTableCell.readParams(abstractSerializedData, z);
-            return tLRPC$TL_pageTableCell;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_pageTableCell", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_pageTableCell", Integer.valueOf(i)));
         }
+        TLRPC$TL_pageTableCell tLRPC$TL_pageTableCell = new TLRPC$TL_pageTableCell();
+        tLRPC$TL_pageTableCell.readParams(abstractSerializedData, z);
+        return tLRPC$TL_pageTableCell;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.header = (readInt32 & 1) != 0;
         this.align_center = (readInt32 & 8) != 0;
         this.align_right = (readInt32 & 16) != 0;
         this.valign_middle = (readInt32 & 32) != 0;
-        if ((readInt32 & 64) != 0) {
-            z2 = true;
-        }
-        this.valign_bottom = z2;
+        this.valign_bottom = (readInt32 & 64) != 0;
         if ((readInt32 & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
             this.text = TLRPC$RichText.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }

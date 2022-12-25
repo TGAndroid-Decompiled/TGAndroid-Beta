@@ -45,40 +45,40 @@ public abstract class MappingTrackSelector extends TrackSelector {
 
     @Override
     public final TrackSelectorResult selectTracks(RendererCapabilities[] rendererCapabilitiesArr, TrackGroupArray trackGroupArray, MediaSource.MediaPeriodId mediaPeriodId, Timeline timeline) throws ExoPlaybackException {
-        int[] iArr;
-        int[] iArr2 = new int[rendererCapabilitiesArr.length + 1];
+        int[] formatSupport;
+        int[] iArr = new int[rendererCapabilitiesArr.length + 1];
         int length = rendererCapabilitiesArr.length + 1;
         TrackGroup[][] trackGroupArr = new TrackGroup[length];
-        int[][][] iArr3 = new int[rendererCapabilitiesArr.length + 1][];
+        int[][][] iArr2 = new int[rendererCapabilitiesArr.length + 1][];
         for (int i = 0; i < length; i++) {
             int i2 = trackGroupArray.length;
             trackGroupArr[i] = new TrackGroup[i2];
-            iArr3[i] = new int[i2];
+            iArr2[i] = new int[i2];
         }
         int[] mixedMimeTypeAdaptationSupports = getMixedMimeTypeAdaptationSupports(rendererCapabilitiesArr);
         for (int i3 = 0; i3 < trackGroupArray.length; i3++) {
             TrackGroup trackGroup = trackGroupArray.get(i3);
-            int findRenderer = findRenderer(rendererCapabilitiesArr, trackGroup, iArr2, MimeTypes.getTrackType(trackGroup.getFormat(0).sampleMimeType) == 4);
+            int findRenderer = findRenderer(rendererCapabilitiesArr, trackGroup, iArr, MimeTypes.getTrackType(trackGroup.getFormat(0).sampleMimeType) == 4);
             if (findRenderer == rendererCapabilitiesArr.length) {
-                iArr = new int[trackGroup.length];
+                formatSupport = new int[trackGroup.length];
             } else {
-                iArr = getFormatSupport(rendererCapabilitiesArr[findRenderer], trackGroup);
+                formatSupport = getFormatSupport(rendererCapabilitiesArr[findRenderer], trackGroup);
             }
-            int i4 = iArr2[findRenderer];
+            int i4 = iArr[findRenderer];
             trackGroupArr[findRenderer][i4] = trackGroup;
-            iArr3[findRenderer][i4] = iArr;
-            iArr2[findRenderer] = iArr2[findRenderer] + 1;
+            iArr2[findRenderer][i4] = formatSupport;
+            iArr[findRenderer] = iArr[findRenderer] + 1;
         }
         TrackGroupArray[] trackGroupArrayArr = new TrackGroupArray[rendererCapabilitiesArr.length];
-        int[] iArr4 = new int[rendererCapabilitiesArr.length];
+        int[] iArr3 = new int[rendererCapabilitiesArr.length];
         for (int i5 = 0; i5 < rendererCapabilitiesArr.length; i5++) {
-            int i6 = iArr2[i5];
+            int i6 = iArr[i5];
             trackGroupArrayArr[i5] = new TrackGroupArray((TrackGroup[]) Util.nullSafeArrayCopy(trackGroupArr[i5], i6));
-            iArr3[i5] = (int[][]) Util.nullSafeArrayCopy(iArr3[i5], i6);
-            iArr4[i5] = rendererCapabilitiesArr[i5].getTrackType();
+            iArr2[i5] = (int[][]) Util.nullSafeArrayCopy(iArr2[i5], i6);
+            iArr3[i5] = rendererCapabilitiesArr[i5].getTrackType();
         }
-        MappedTrackInfo mappedTrackInfo = new MappedTrackInfo(iArr4, trackGroupArrayArr, mixedMimeTypeAdaptationSupports, iArr3, new TrackGroupArray((TrackGroup[]) Util.nullSafeArrayCopy(trackGroupArr[rendererCapabilitiesArr.length], iArr2[rendererCapabilitiesArr.length])));
-        Pair<RendererConfiguration[], TrackSelection[]> selectTracks = selectTracks(mappedTrackInfo, iArr3, mixedMimeTypeAdaptationSupports);
+        MappedTrackInfo mappedTrackInfo = new MappedTrackInfo(iArr3, trackGroupArrayArr, mixedMimeTypeAdaptationSupports, iArr2, new TrackGroupArray((TrackGroup[]) Util.nullSafeArrayCopy(trackGroupArr[rendererCapabilitiesArr.length], iArr[rendererCapabilitiesArr.length])));
+        Pair<RendererConfiguration[], TrackSelection[]> selectTracks = selectTracks(mappedTrackInfo, iArr2, mixedMimeTypeAdaptationSupports);
         return new TrackSelectorResult((RendererConfiguration[]) selectTracks.first, (TrackSelection[]) selectTracks.second, mappedTrackInfo);
     }
 

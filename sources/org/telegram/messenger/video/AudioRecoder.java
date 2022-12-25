@@ -59,7 +59,7 @@ public class AudioRecoder {
             this.extractor.unselectTrack(this.trackIndex);
             this.extractor.release();
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
         }
     }
 
@@ -102,7 +102,7 @@ public class AudioRecoder {
                 }
             }
         }
-        if (!(this.pendingAudioDecoderOutputBufferIndex == -1 || (dequeueInputBuffer = this.encoder.dequeueInputBuffer(2500L)) == -1)) {
+        if (this.pendingAudioDecoderOutputBufferIndex != -1 && (dequeueInputBuffer = this.encoder.dequeueInputBuffer(2500L)) != -1) {
             ByteBuffer byteBuffer2 = this.encoderInputBuffers[dequeueInputBuffer];
             MediaCodec.BufferInfo bufferInfo = this.decoderOutputBufferInfo;
             int i2 = bufferInfo.size;

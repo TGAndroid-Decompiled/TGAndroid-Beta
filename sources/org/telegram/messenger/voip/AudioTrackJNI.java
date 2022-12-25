@@ -22,24 +22,22 @@ public class AudioTrackJNI {
     }
 
     public void init(int i, int i2, int i3, int i4) {
-        if (this.audioTrack == null) {
-            AudioTrack audioTrack = new AudioTrack(0, 48000, i3 == 1 ? 4 : 12, 2, getBufferSize(i4, 48000), 1);
-            this.audioTrack = audioTrack;
-            if (audioTrack.getState() != 1) {
-                VLog.w("Error initializing AudioTrack with 48k, trying 44.1k with resampling");
-                try {
-                    this.audioTrack.release();
-                } catch (Throwable unused) {
-                }
-                int bufferSize = getBufferSize(i4 * 6, 44100);
-                VLog.d("buffer size: " + bufferSize);
-                this.audioTrack = new AudioTrack(0, 44100, i3 == 1 ? 4 : 12, 2, bufferSize, 1);
-                this.needResampling = true;
-                return;
-            }
-            return;
+        if (this.audioTrack != null) {
+            throw new IllegalStateException("already inited");
         }
-        throw new IllegalStateException("already inited");
+        AudioTrack audioTrack = new AudioTrack(0, 48000, i3 == 1 ? 4 : 12, 2, getBufferSize(i4, 48000), 1);
+        this.audioTrack = audioTrack;
+        if (audioTrack.getState() != 1) {
+            VLog.m21w("Error initializing AudioTrack with 48k, trying 44.1k with resampling");
+            try {
+                this.audioTrack.release();
+            } catch (Throwable unused) {
+            }
+            int bufferSize = getBufferSize(i4 * 6, 44100);
+            VLog.m27d("buffer size: " + bufferSize);
+            this.audioTrack = new AudioTrack(0, 44100, i3 == 1 ? 4 : 12, 2, bufferSize, 1);
+            this.needResampling = true;
+        }
     }
 
     public void stop() {
@@ -59,7 +57,7 @@ public class AudioTrackJNI {
             try {
                 thread.join();
             } catch (InterruptedException e) {
-                VLog.e(e);
+                VLog.m24e(e);
             }
             this.thread = null;
         }
@@ -79,45 +77,41 @@ public class AudioTrackJNI {
     }
 
     private void startThread() {
-        if (this.thread == null) {
-            this.running = true;
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public final void run() {
-                    AudioTrackJNI.this.lambda$startThread$0();
-                }
-            });
-            this.thread = thread;
-            thread.start();
-            return;
+        if (this.thread != null) {
+            throw new IllegalStateException("thread already started");
         }
-        throw new IllegalStateException("thread already started");
+        this.running = true;
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public final void run() {
+                AudioTrackJNI.this.lambda$startThread$0();
+            }
+        });
+        this.thread = thread;
+        thread.start();
     }
 
     public void lambda$startThread$0() {
         try {
             this.audioTrack.play();
-            ByteBuffer byteBuffer = null;
             ByteBuffer allocateDirect = this.needResampling ? ByteBuffer.allocateDirect(1920) : null;
-            if (this.needResampling) {
-                byteBuffer = ByteBuffer.allocateDirect(1764);
-            }
+            ByteBuffer allocateDirect2 = this.needResampling ? ByteBuffer.allocateDirect(1764) : null;
             while (this.running) {
                 try {
                     if (this.needResampling) {
                         nativeCallback(this.buffer);
                         allocateDirect.rewind();
                         allocateDirect.put(this.buffer);
-                        Resampler.convert48to44(allocateDirect, byteBuffer);
-                        byteBuffer.rewind();
-                        byteBuffer.get(this.buffer, 0, 1764);
+                        Resampler.convert48to44(allocateDirect, allocateDirect2);
+                        allocateDirect2.rewind();
+                        allocateDirect2.get(this.buffer, 0, 1764);
                         this.audioTrack.write(this.buffer, 0, 1764);
                     } else {
                         nativeCallback(this.buffer);
                         this.audioTrack.write(this.buffer, 0, 1920);
                     }
                 } catch (Exception e) {
-                    VLog.e(e);
+                    VLog.m24e(e);
                 }
                 if (!this.running) {
                     this.audioTrack.stop();
@@ -125,9 +119,9 @@ public class AudioTrackJNI {
                 }
                 continue;
             }
-            VLog.i("audiotrack thread exits");
+            VLog.m23i("audiotrack thread exits");
         } catch (Exception e2) {
-            VLog.e("error starting AudioTrack", e2);
+            VLog.m25e("error starting AudioTrack", e2);
         }
     }
 }

@@ -13,29 +13,25 @@ public class TLRPC$TL_autoDownloadSettings extends TLObject {
     public int video_upload_maxbitrate;
 
     public static TLRPC$TL_autoDownloadSettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_autoDownloadSettings tLRPC$TL_autoDownloadSettings = new TLRPC$TL_autoDownloadSettings();
-            tLRPC$TL_autoDownloadSettings.readParams(abstractSerializedData, z);
-            return tLRPC$TL_autoDownloadSettings;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_autoDownloadSettings", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_autoDownloadSettings", Integer.valueOf(i)));
         }
+        TLRPC$TL_autoDownloadSettings tLRPC$TL_autoDownloadSettings = new TLRPC$TL_autoDownloadSettings();
+        tLRPC$TL_autoDownloadSettings.readParams(abstractSerializedData, z);
+        return tLRPC$TL_autoDownloadSettings;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.disabled = (readInt32 & 1) != 0;
         this.video_preload_large = (readInt32 & 2) != 0;
         this.audio_preload_next = (readInt32 & 4) != 0;
-        if ((readInt32 & 8) != 0) {
-            z2 = true;
-        }
-        this.phonecalls_less_data = z2;
+        this.phonecalls_less_data = (readInt32 & 8) != 0;
         this.photo_size_max = abstractSerializedData.readInt32(z);
         this.video_size_max = abstractSerializedData.readInt64(z);
         this.file_size_max = abstractSerializedData.readInt64(z);

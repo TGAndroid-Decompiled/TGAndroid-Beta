@@ -39,23 +39,23 @@ public class OneUIUtilities {
     }
 
     public static int getOneUIMajorVersion() {
-        if (!isOneUI()) {
-            return 0;
+        if (isOneUI()) {
+            return oneUIMajorVersion;
         }
-        return oneUIMajorVersion;
+        return 0;
     }
 
     public static int getOneUIEncodedVersion() {
-        if (!isOneUI()) {
-            return 0;
+        if (isOneUI()) {
+            return oneUIEncodedVersion;
         }
-        return oneUIEncodedVersion;
+        return 0;
     }
 
     public static float getOneUIMinorVersion() {
-        if (!isOneUI()) {
-            return 0.0f;
+        if (isOneUI()) {
+            return oneUIMinorVersion;
         }
-        return oneUIMinorVersion;
+        return 0.0f;
     }
 }

@@ -7,7 +7,7 @@ public abstract class TLRPC$Page extends TLObject {
     public boolean part;
     public boolean rtl;
     public String url;
-    public boolean v2;
+    public boolean f873v2;
     public int views;
     public ArrayList<TLRPC$PageBlock> blocks = new ArrayList<>();
     public ArrayList<TLRPC$Photo> photos = new ArrayList<>();
@@ -23,46 +23,49 @@ public abstract class TLRPC$Page extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
-                        if (readInt32 == 481674261) {
-                            int readInt322 = abstractSerializedData2.readInt32(z2);
-                            for (int i2 = 0; i2 < readInt322; i2++) {
-                                TLRPC$PageBlock TLdeserialize = TLRPC$PageBlock.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                if (TLdeserialize != null) {
-                                    this.blocks.add(TLdeserialize);
-                                } else {
-                                    return;
-                                }
+                        if (readInt32 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                             }
-                            int readInt323 = abstractSerializedData2.readInt32(z2);
-                            if (readInt323 == 481674261) {
-                                int readInt324 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt324; i3++) {
-                                    TLRPC$Photo TLdeserialize2 = TLRPC$Photo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.photos.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
-                                }
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                if (readInt325 == 481674261) {
-                                    int readInt326 = abstractSerializedData2.readInt32(z2);
-                                    for (int i4 = 0; i4 < readInt326; i4++) {
-                                        TLRPC$Document TLdeserialize3 = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                        if (TLdeserialize3 != null) {
-                                            this.documents.add(TLdeserialize3);
-                                        } else {
-                                            return;
-                                        }
-                                    }
-                                } else if (z2) {
-                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
-                                }
-                            } else if (z2) {
+                            return;
+                        }
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt322; i2++) {
+                            TLRPC$PageBlock TLdeserialize = TLRPC$PageBlock.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize == null) {
+                                return;
+                            }
+                            this.blocks.add(TLdeserialize);
+                        }
+                        int readInt323 = abstractSerializedData2.readInt32(z2);
+                        if (readInt323 != 481674261) {
+                            if (z2) {
                                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                             }
-                        } else if (z2) {
-                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                            return;
+                        }
+                        int readInt324 = abstractSerializedData2.readInt32(z2);
+                        for (int i3 = 0; i3 < readInt324; i3++) {
+                            TLRPC$Photo TLdeserialize2 = TLRPC$Photo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize2 == null) {
+                                return;
+                            }
+                            this.photos.add(TLdeserialize2);
+                        }
+                        int readInt325 = abstractSerializedData2.readInt32(z2);
+                        if (readInt325 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
+                            }
+                            return;
+                        }
+                        int readInt326 = abstractSerializedData2.readInt32(z2);
+                        for (int i4 = 0; i4 < readInt326; i4++) {
+                            TLRPC$Document TLdeserialize3 = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize3 == null) {
+                                return;
+                            }
+                            this.documents.add(TLdeserialize3);
                         }
                     }
 
@@ -108,46 +111,49 @@ public abstract class TLRPC$Page extends TLObject {
                         this.rtl = (readInt32 & 2) != 0;
                         this.url = abstractSerializedData2.readString(z2);
                         int readInt322 = abstractSerializedData2.readInt32(z2);
-                        if (readInt322 == 481674261) {
-                            int readInt323 = abstractSerializedData2.readInt32(z2);
-                            for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$PageBlock TLdeserialize = TLRPC$PageBlock.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                if (TLdeserialize != null) {
-                                    this.blocks.add(TLdeserialize);
-                                } else {
-                                    return;
-                                }
+                        if (readInt322 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                             }
-                            int readInt324 = abstractSerializedData2.readInt32(z2);
-                            if (readInt324 == 481674261) {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    TLRPC$Photo TLdeserialize2 = TLRPC$Photo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.photos.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
-                                }
-                                int readInt326 = abstractSerializedData2.readInt32(z2);
-                                if (readInt326 == 481674261) {
-                                    int readInt327 = abstractSerializedData2.readInt32(z2);
-                                    for (int i4 = 0; i4 < readInt327; i4++) {
-                                        TLRPC$Document TLdeserialize3 = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                        if (TLdeserialize3 != null) {
-                                            this.documents.add(TLdeserialize3);
-                                        } else {
-                                            return;
-                                        }
-                                    }
-                                } else if (z2) {
-                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
-                                }
-                            } else if (z2) {
+                            return;
+                        }
+                        int readInt323 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt323; i2++) {
+                            TLRPC$PageBlock TLdeserialize = TLRPC$PageBlock.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize == null) {
+                                return;
+                            }
+                            this.blocks.add(TLdeserialize);
+                        }
+                        int readInt324 = abstractSerializedData2.readInt32(z2);
+                        if (readInt324 != 481674261) {
+                            if (z2) {
                                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                             }
-                        } else if (z2) {
-                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                            return;
+                        }
+                        int readInt325 = abstractSerializedData2.readInt32(z2);
+                        for (int i3 = 0; i3 < readInt325; i3++) {
+                            TLRPC$Photo TLdeserialize2 = TLRPC$Photo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize2 == null) {
+                                return;
+                            }
+                            this.photos.add(TLdeserialize2);
+                        }
+                        int readInt326 = abstractSerializedData2.readInt32(z2);
+                        if (readInt326 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
+                            }
+                            return;
+                        }
+                        int readInt327 = abstractSerializedData2.readInt32(z2);
+                        for (int i4 = 0; i4 < readInt327; i4++) {
+                            TLRPC$Document TLdeserialize3 = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize3 == null) {
+                                return;
+                            }
+                            this.documents.add(TLdeserialize3);
                         }
                     }
 
@@ -188,46 +194,49 @@ public abstract class TLRPC$Page extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
-                        if (readInt32 == 481674261) {
-                            int readInt322 = abstractSerializedData2.readInt32(z2);
-                            for (int i2 = 0; i2 < readInt322; i2++) {
-                                TLRPC$PageBlock TLdeserialize = TLRPC$PageBlock.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                if (TLdeserialize != null) {
-                                    this.blocks.add(TLdeserialize);
-                                } else {
-                                    return;
-                                }
+                        if (readInt32 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                             }
-                            int readInt323 = abstractSerializedData2.readInt32(z2);
-                            if (readInt323 == 481674261) {
-                                int readInt324 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt324; i3++) {
-                                    TLRPC$Photo TLdeserialize2 = TLRPC$Photo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.photos.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
-                                }
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                if (readInt325 == 481674261) {
-                                    int readInt326 = abstractSerializedData2.readInt32(z2);
-                                    for (int i4 = 0; i4 < readInt326; i4++) {
-                                        TLRPC$Document TLdeserialize3 = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                        if (TLdeserialize3 != null) {
-                                            this.documents.add(TLdeserialize3);
-                                        } else {
-                                            return;
-                                        }
-                                    }
-                                } else if (z2) {
-                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
-                                }
-                            } else if (z2) {
+                            return;
+                        }
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt322; i2++) {
+                            TLRPC$PageBlock TLdeserialize = TLRPC$PageBlock.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize == null) {
+                                return;
+                            }
+                            this.blocks.add(TLdeserialize);
+                        }
+                        int readInt323 = abstractSerializedData2.readInt32(z2);
+                        if (readInt323 != 481674261) {
+                            if (z2) {
                                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                             }
-                        } else if (z2) {
-                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                            return;
+                        }
+                        int readInt324 = abstractSerializedData2.readInt32(z2);
+                        for (int i3 = 0; i3 < readInt324; i3++) {
+                            TLRPC$Photo TLdeserialize2 = TLRPC$Photo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize2 == null) {
+                                return;
+                            }
+                            this.photos.add(TLdeserialize2);
+                        }
+                        int readInt325 = abstractSerializedData2.readInt32(z2);
+                        if (readInt325 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
+                            }
+                            return;
+                        }
+                        int readInt326 = abstractSerializedData2.readInt32(z2);
+                        for (int i4 = 0; i4 < readInt326; i4++) {
+                            TLRPC$Document TLdeserialize3 = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize3 == null) {
+                                return;
+                            }
+                            this.documents.add(TLdeserialize3);
                         }
                     }
 
@@ -262,46 +271,49 @@ public abstract class TLRPC$Page extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
-                        if (readInt32 == 481674261) {
-                            int readInt322 = abstractSerializedData2.readInt32(z2);
-                            for (int i2 = 0; i2 < readInt322; i2++) {
-                                TLRPC$PageBlock TLdeserialize = TLRPC$PageBlock.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                if (TLdeserialize != null) {
-                                    this.blocks.add(TLdeserialize);
-                                } else {
-                                    return;
-                                }
+                        if (readInt32 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                             }
-                            int readInt323 = abstractSerializedData2.readInt32(z2);
-                            if (readInt323 == 481674261) {
-                                int readInt324 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt324; i3++) {
-                                    TLRPC$Photo TLdeserialize2 = TLRPC$Photo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.photos.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
-                                }
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                if (readInt325 == 481674261) {
-                                    int readInt326 = abstractSerializedData2.readInt32(z2);
-                                    for (int i4 = 0; i4 < readInt326; i4++) {
-                                        TLRPC$Document TLdeserialize3 = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                        if (TLdeserialize3 != null) {
-                                            this.documents.add(TLdeserialize3);
-                                        } else {
-                                            return;
-                                        }
-                                    }
-                                } else if (z2) {
-                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
-                                }
-                            } else if (z2) {
+                            return;
+                        }
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt322; i2++) {
+                            TLRPC$PageBlock TLdeserialize = TLRPC$PageBlock.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize == null) {
+                                return;
+                            }
+                            this.blocks.add(TLdeserialize);
+                        }
+                        int readInt323 = abstractSerializedData2.readInt32(z2);
+                        if (readInt323 != 481674261) {
+                            if (z2) {
                                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                             }
-                        } else if (z2) {
-                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                            return;
+                        }
+                        int readInt324 = abstractSerializedData2.readInt32(z2);
+                        for (int i3 = 0; i3 < readInt324; i3++) {
+                            TLRPC$Photo TLdeserialize2 = TLRPC$Photo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize2 == null) {
+                                return;
+                            }
+                            this.photos.add(TLdeserialize2);
+                        }
+                        int readInt325 = abstractSerializedData2.readInt32(z2);
+                        if (readInt325 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
+                            }
+                            return;
+                        }
+                        int readInt326 = abstractSerializedData2.readInt32(z2);
+                        for (int i4 = 0; i4 < readInt326; i4++) {
+                            TLRPC$Document TLdeserialize3 = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize3 == null) {
+                                return;
+                            }
+                            this.documents.add(TLdeserialize3);
                         }
                     }
 
@@ -333,12 +345,12 @@ public abstract class TLRPC$Page extends TLObject {
                 tLRPC$Page = null;
                 break;
         }
-        if (tLRPC$Page != null || !z) {
-            if (tLRPC$Page != null) {
-                tLRPC$Page.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$Page;
+        if (tLRPC$Page == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in Page", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in Page", Integer.valueOf(i)));
+        if (tLRPC$Page != null) {
+            tLRPC$Page.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$Page;
     }
 }

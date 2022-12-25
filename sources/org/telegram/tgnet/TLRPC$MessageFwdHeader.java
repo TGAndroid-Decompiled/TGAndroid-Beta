@@ -305,12 +305,12 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
                 tLRPC$TL_messageFwdHeader = null;
                 break;
         }
-        if (tLRPC$TL_messageFwdHeader != null || !z) {
-            if (tLRPC$TL_messageFwdHeader != null) {
-                tLRPC$TL_messageFwdHeader.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$TL_messageFwdHeader;
+        if (tLRPC$TL_messageFwdHeader == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in MessageFwdHeader", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in MessageFwdHeader", Integer.valueOf(i)));
+        if (tLRPC$TL_messageFwdHeader != null) {
+            tLRPC$TL_messageFwdHeader.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_messageFwdHeader;
     }
 }

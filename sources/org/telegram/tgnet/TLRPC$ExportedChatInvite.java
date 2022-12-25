@@ -12,12 +12,8 @@ public abstract class TLRPC$ExportedChatInvite extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.revoked = (readInt32 & 1) != 0;
-                        if ((readInt32 & 32) != 0) {
-                            z3 = true;
-                        }
-                        this.permanent = z3;
+                        this.permanent = (readInt32 & 32) != 0;
                         this.link = abstractSerializedData2.readString(z2);
                         this.admin_id = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -66,6 +62,10 @@ public abstract class TLRPC$ExportedChatInvite extends TLObject {
                     public static int constructor = -317687113;
 
                     @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                    }
+
+                    @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                     }
@@ -101,12 +101,8 @@ public abstract class TLRPC$ExportedChatInvite extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.revoked = (readInt32 & 1) != 0;
-                        if ((readInt32 & 32) != 0) {
-                            z3 = true;
-                        }
-                        this.permanent = z3;
+                        this.permanent = (readInt32 & 32) != 0;
                         this.link = abstractSerializedData2.readString(z2);
                         this.admin_id = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -154,12 +150,12 @@ public abstract class TLRPC$ExportedChatInvite extends TLObject {
                 tLRPC$TL_chatInviteExported = null;
                 break;
         }
-        if (tLRPC$TL_chatInviteExported != null || !z) {
-            if (tLRPC$TL_chatInviteExported != null) {
-                tLRPC$TL_chatInviteExported.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$TL_chatInviteExported;
+        if (tLRPC$TL_chatInviteExported == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in ExportedChatInvite", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in ExportedChatInvite", Integer.valueOf(i)));
+        if (tLRPC$TL_chatInviteExported != null) {
+            tLRPC$TL_chatInviteExported.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_chatInviteExported;
     }
 }

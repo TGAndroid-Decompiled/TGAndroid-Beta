@@ -5,7 +5,7 @@ public interface Predicate<T> {
 
     Predicate<T> negate();
 
-    Predicate<T> or(Predicate<? super T> predicate);
+    Predicate<T> mo2or(Predicate<? super T> predicate);
 
     boolean test(T t);
 
@@ -23,7 +23,7 @@ public interface Predicate<T> {
                 }
 
                 @Override
-                public Predicate or(Predicate predicate2) {
+                public Predicate mo2or(Predicate predicate2) {
                     return CC.$default$or(this, predicate2);
                 }
 
@@ -47,7 +47,7 @@ public interface Predicate<T> {
                 }
 
                 @Override
-                public Predicate or(Predicate predicate2) {
+                public Predicate mo2or(Predicate predicate2) {
                     return CC.$default$or(this, predicate2);
                 }
 
@@ -71,7 +71,7 @@ public interface Predicate<T> {
                 }
 
                 @Override
-                public Predicate or(Predicate predicate) {
+                public Predicate mo2or(Predicate predicate) {
                     return CC.$default$or(this, predicate);
                 }
 

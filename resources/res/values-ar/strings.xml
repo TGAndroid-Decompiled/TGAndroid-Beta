@@ -978,7 +978,7 @@
     <string name="ClearMediaCache">مسح الذاكرة المؤقتة</string>
     <string name="ClearOtherSessionsHelp">لتسجيل الخروج من جميع الأجهزة عدا هذا الجهاز</string>
     <string name="ClearOtherWebSessionsHelp">يمكنك تسجيل الدخول عبر تيليجرام إلى المواقع التي تدعم ذلك.</string>
-    <string name="ClearRecentEmoji">مسح الرموز التعبيرية الأخيرة؟</string>
+    <string name="ClearRecentEmojiTitle">مسح الرموز التعبيرية الأخيرة</string>
     <string name="ClearRecentHistory">مسح السجل</string>
     <string name="ClearSearch">مسح سجل البحث؟</string>
     <string name="ClearSearchAlert">هل ترغب حقًا في مسح سجل البحث؟</string>

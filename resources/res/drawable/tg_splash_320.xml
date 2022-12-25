@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:drawable="@drawable/res_0x7f07003f_tg_splash_320__0">
-    <target android:name="circle" android:animation="@drawable/res_0x7f070040_tg_splash_320__1"/>
-    <target android:name="plane" android:animation="@drawable/res_0x7f070041_tg_splash_320__2"/>
-    <target android:name="fg" android:animation="@drawable/res_0x7f070042_tg_splash_320__3"/>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:drawable="@drawable/res_0x7f070043_tg_splash_320__0">
+    <target android:name="circle" android:animation="@drawable/res_0x7f070044_tg_splash_320__1"/>
+    <target android:name="plane" android:animation="@drawable/res_0x7f070045_tg_splash_320__2"/>
+    <target android:name="fg" android:animation="@drawable/res_0x7f070046_tg_splash_320__3"/>
 </animated-vector>

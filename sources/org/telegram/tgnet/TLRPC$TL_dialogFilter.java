@@ -15,52 +15,55 @@ public class TLRPC$TL_dialogFilter extends TLRPC$DialogFilter {
         this.exclude_muted = (readInt32 & 2048) != 0;
         this.exclude_read = (readInt32 & 4096) != 0;
         this.exclude_archived = (readInt32 & 8192) != 0;
-        this.id = abstractSerializedData.readInt32(z);
+        this.f855id = abstractSerializedData.readInt32(z);
         this.title = abstractSerializedData.readString(z);
         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
             this.emoticon = abstractSerializedData.readString(z);
         }
         int readInt322 = abstractSerializedData.readInt32(z);
-        if (readInt322 == 481674261) {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                TLRPC$InputPeer TLdeserialize = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize != null) {
-                    this.pinned_peers.add(TLdeserialize);
-                } else {
-                    return;
-                }
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            int readInt324 = abstractSerializedData.readInt32(z);
-            if (readInt324 == 481674261) {
-                int readInt325 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt325; i2++) {
-                    TLRPC$InputPeer TLdeserialize2 = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize2 != null) {
-                        this.include_peers.add(TLdeserialize2);
-                    } else {
-                        return;
-                    }
-                }
-                int readInt326 = abstractSerializedData.readInt32(z);
-                if (readInt326 == 481674261) {
-                    int readInt327 = abstractSerializedData.readInt32(z);
-                    for (int i3 = 0; i3 < readInt327; i3++) {
-                        TLRPC$InputPeer TLdeserialize3 = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                        if (TLdeserialize3 != null) {
-                            this.exclude_peers.add(TLdeserialize3);
-                        } else {
-                            return;
-                        }
-                    }
-                } else if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
-                }
-            } else if (z) {
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            TLRPC$InputPeer TLdeserialize = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
+            }
+            this.pinned_peers.add(TLdeserialize);
+        }
+        int readInt324 = abstractSerializedData.readInt32(z);
+        if (readInt324 != 481674261) {
+            if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
             }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+            return;
+        }
+        int readInt325 = abstractSerializedData.readInt32(z);
+        for (int i2 = 0; i2 < readInt325; i2++) {
+            TLRPC$InputPeer TLdeserialize2 = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize2 == null) {
+                return;
+            }
+            this.include_peers.add(TLdeserialize2);
+        }
+        int readInt326 = abstractSerializedData.readInt32(z);
+        if (readInt326 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
+            }
+            return;
+        }
+        int readInt327 = abstractSerializedData.readInt32(z);
+        for (int i3 = 0; i3 < readInt327; i3++) {
+            TLRPC$InputPeer TLdeserialize3 = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize3 == null) {
+                return;
+            }
+            this.exclude_peers.add(TLdeserialize3);
         }
     }
 
@@ -84,7 +87,7 @@ public class TLRPC$TL_dialogFilter extends TLRPC$DialogFilter {
         int i8 = this.exclude_archived ? i7 | 8192 : i7 & (-8193);
         this.flags = i8;
         abstractSerializedData.writeInt32(i8);
-        abstractSerializedData.writeInt32(this.id);
+        abstractSerializedData.writeInt32(this.f855id);
         abstractSerializedData.writeString(this.title);
         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
             abstractSerializedData.writeString(this.emoticon);

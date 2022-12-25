@@ -16,10 +16,10 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.ui.Components.AnimatedFileDrawable;
-import org.telegram.ui.Components.FilterShaders;
-import org.telegram.ui.Components.Paint.Views.EditTextOutline;
-import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.p009ui.Components.AnimatedFileDrawable;
+import org.telegram.p009ui.Components.FilterShaders;
+import org.telegram.p009ui.Components.Paint.Views.EditTextOutline;
+import org.telegram.p009ui.Components.RLottieDrawable;
 
 public class TextureRenderer {
     private static final String FRAGMENT_EXTERNAL_SHADER = "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform samplerExternalOES sTexture;\nvoid main() {\n  gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
@@ -69,9 +69,9 @@ public class TextureRenderer {
         this.isPhoto = z;
         float[] fArr = {0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("start textureRenderer w = " + i7 + " h = " + i8 + " r = " + i5 + " fps = " + f2);
+            FileLog.m34d("start textureRenderer w = " + i7 + " h = " + i8 + " r = " + i5 + " fps = " + f2);
             if (cropState != null) {
-                FileLog.d("cropState px = " + cropState.cropPx + " py = " + cropState.cropPy + " cScale = " + cropState.cropScale + " cropRotate = " + cropState.cropRotate + " pw = " + cropState.cropPw + " ph = " + cropState.cropPh + " tw = " + cropState.transformWidth + " th = " + cropState.transformHeight + " tr = " + cropState.transformRotation + " mirror = " + cropState.mirrored);
+                FileLog.m34d("cropState px = " + cropState.cropPx + " py = " + cropState.cropPy + " cScale = " + cropState.cropScale + " cropRotate = " + cropState.cropRotate + " pw = " + cropState.cropPw + " ph = " + cropState.cropPh + " tw = " + cropState.transformWidth + " th = " + cropState.transformHeight + " tr = " + cropState.transformRotation + " mirror = " + cropState.mirrored);
             }
         }
         FloatBuffer asFloatBuffer = ByteBuffer.allocateDirect(32).order(ByteOrder.nativeOrder()).asFloatBuffer();
@@ -182,10 +182,10 @@ public class TextureRenderer {
     }
 
     public void drawFrame(SurfaceTexture surfaceTexture) {
-        char c;
-        float[] fArr;
         int i;
         int i2;
+        float[] fArr;
+        char c;
         if (this.isPhoto) {
             GLES20.glUseProgram(this.simpleShaderProgram);
             GLES20.glActiveTexture(33984);
@@ -207,7 +207,7 @@ public class TextureRenderer {
                     sb.append(", ");
                     i3++;
                 }
-                FileLog.d("stMatrix = " + ((Object) sb));
+                FileLog.m34d("stMatrix = " + ((Object) sb));
                 this.firstFrame = false;
             }
             if (this.blendEnabled) {
@@ -225,22 +225,22 @@ public class TextureRenderer {
                 boolean drawBlurPass = this.filterShaders.drawBlurPass();
                 GLES20.glBindFramebuffer(36160, 0);
                 int i4 = this.transformedWidth;
-                if (!(i4 == this.originalWidth && this.transformedHeight == this.originalHeight)) {
+                if (i4 != this.originalWidth || this.transformedHeight != this.originalHeight) {
                     GLES20.glViewport(0, 0, i4, this.transformedHeight);
                 }
-                i2 = this.filterShaders.getRenderTexture(!drawBlurPass);
+                i = this.filterShaders.getRenderTexture(!drawBlurPass);
                 fArr = this.mSTMatrixIdentity;
-                i = 3553;
+                i2 = 3553;
                 c = 1;
             } else {
-                i2 = this.mTextureID;
-                i = 36197;
+                i = this.mTextureID;
+                i2 = 36197;
                 fArr = this.mSTMatrix;
                 c = 0;
             }
             GLES20.glUseProgram(this.mProgram[c]);
             GLES20.glActiveTexture(33984);
-            GLES20.glBindTexture(i, i2);
+            GLES20.glBindTexture(i2, i);
             GLES20.glVertexAttribPointer(this.maPositionHandle[c], 2, 5126, false, 8, (Buffer) this.verticesBuffer);
             GLES20.glEnableVertexAttribArray(this.maPositionHandle[c]);
             GLES20.glVertexAttribPointer(this.maTextureHandle[c], 2, 5126, false, 8, (Buffer) this.renderTextureBuffer);
@@ -249,7 +249,7 @@ public class TextureRenderer {
             GLES20.glUniformMatrix4fv(this.muMVPMatrixHandle[c], 1, false, this.mMVPMatrix, 0);
             GLES20.glDrawArrays(5, 0, 4);
         }
-        if (!(this.paintTexture == null && this.stickerTexture == null)) {
+        if (this.paintTexture != null || this.stickerTexture != null) {
             GLES20.glUseProgram(this.simpleShaderProgram);
             GLES20.glActiveTexture(33984);
             GLES20.glUniform1i(this.simpleSourceImageHandle, 0);
@@ -283,7 +283,7 @@ public class TextureRenderer {
                     if (f >= mediaEntity.metadata[0]) {
                         mediaEntity.currentFrame = 0.0f;
                     }
-                    drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                    drawTexture(false, this.stickerTexture[0], mediaEntity.f825x, mediaEntity.f826y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                 } else if (mediaEntity.animatedFileDrawable != null) {
                     float f2 = mediaEntity.currentFrame;
                     int i7 = (int) f2;
@@ -297,17 +297,17 @@ public class TextureRenderer {
                         this.stickerCanvas = new Canvas(this.stickerBitmap);
                     }
                     Bitmap bitmap2 = this.stickerBitmap;
-                    if (!(bitmap2 == null || backgroundBitmap == null)) {
+                    if (bitmap2 != null && backgroundBitmap != null) {
                         bitmap2.eraseColor(0);
                         this.stickerCanvas.drawBitmap(backgroundBitmap, 0.0f, 0.0f, (Paint) null);
                         GLES20.glBindTexture(3553, this.stickerTexture[0]);
                         GLUtils.texImage2D(3553, 0, this.stickerBitmap, 0);
-                        drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                        drawTexture(false, this.stickerTexture[0], mediaEntity.f825x, mediaEntity.f826y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                     }
                 } else if (mediaEntity.bitmap != null) {
                     GLES20.glBindTexture(3553, this.stickerTexture[0]);
                     GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
-                    drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                    drawTexture(false, this.stickerTexture[0], mediaEntity.f825x, mediaEntity.f826y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                 }
             }
         }
@@ -413,11 +413,11 @@ public class TextureRenderer {
         GLES20.glLinkProgram(glCreateProgram);
         int[] iArr = new int[1];
         GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
-        if (iArr[0] == 1) {
-            return glCreateProgram;
+        if (iArr[0] != 1) {
+            GLES20.glDeleteProgram(glCreateProgram);
+            return 0;
         }
-        GLES20.glDeleteProgram(glCreateProgram);
-        return 0;
+        return glCreateProgram;
     }
 
     public void release() {

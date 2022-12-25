@@ -3,7 +3,7 @@ package org.telegram.messenger;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.p009ui.LaunchActivity;
 
 public class OpenChatReceiver extends Activity {
     @Override
@@ -19,15 +19,16 @@ public class OpenChatReceiver extends Activity {
                 long longExtra = intent.getLongExtra("chatId", intent.getIntExtra("chatId", 0));
                 long longExtra2 = intent.getLongExtra("userId", intent.getIntExtra("userId", 0));
                 int intExtra = intent.getIntExtra("encId", 0);
-                if (longExtra != 0 || longExtra2 != 0 || intExtra != 0) {
-                    Intent intent2 = new Intent(this, LaunchActivity.class);
-                    intent2.setAction(intent.getAction());
-                    intent2.putExtras(intent);
-                    startActivity(intent2);
-                    finish();
+                if (longExtra == 0 && longExtra2 == 0 && intExtra == 0) {
+                    return;
                 }
+                Intent intent2 = new Intent(this, LaunchActivity.class);
+                intent2.setAction(intent.getAction());
+                intent2.putExtras(intent);
+                startActivity(intent2);
+                finish();
             } catch (Throwable th) {
-                FileLog.e(th);
+                FileLog.m31e(th);
             }
         }
     }

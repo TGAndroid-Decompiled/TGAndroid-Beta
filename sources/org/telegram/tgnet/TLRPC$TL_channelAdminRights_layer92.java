@@ -14,22 +14,21 @@ public class TLRPC$TL_channelAdminRights_layer92 extends TLObject {
     public boolean post_messages;
 
     public static TLRPC$TL_channelAdminRights_layer92 TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_channelAdminRights_layer92 tLRPC$TL_channelAdminRights_layer92 = new TLRPC$TL_channelAdminRights_layer92();
-            tLRPC$TL_channelAdminRights_layer92.readParams(abstractSerializedData, z);
-            return tLRPC$TL_channelAdminRights_layer92;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_channelAdminRights_layer92", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_channelAdminRights_layer92", Integer.valueOf(i)));
         }
+        TLRPC$TL_channelAdminRights_layer92 tLRPC$TL_channelAdminRights_layer92 = new TLRPC$TL_channelAdminRights_layer92();
+        tLRPC$TL_channelAdminRights_layer92.readParams(abstractSerializedData, z);
+        return tLRPC$TL_channelAdminRights_layer92;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.change_info = (readInt32 & 1) != 0;
         this.post_messages = (readInt32 & 2) != 0;
         this.edit_messages = (readInt32 & 4) != 0;
@@ -38,10 +37,7 @@ public class TLRPC$TL_channelAdminRights_layer92 extends TLObject {
         this.invite_users = (readInt32 & 32) != 0;
         this.pin_messages = (readInt32 & ConnectionsManager.RequestFlagNeedQuickAck) != 0;
         this.add_admins = (readInt32 & 512) != 0;
-        if ((readInt32 & 1024) != 0) {
-            z2 = true;
-        }
-        this.manage_call = z2;
+        this.manage_call = (readInt32 & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0;
     }
 
     @Override
@@ -63,7 +59,7 @@ public class TLRPC$TL_channelAdminRights_layer92 extends TLObject {
         this.flags = i7;
         int i8 = this.add_admins ? i7 | 512 : i7 & (-513);
         this.flags = i8;
-        int i9 = this.manage_call ? i8 | 1024 : i8 & (-1025);
+        int i9 = this.manage_call ? i8 | ConnectionsManager.RequestFlagDoNotWaitFloodWait : i8 & (-1025);
         this.flags = i9;
         abstractSerializedData.writeInt32(i9);
     }

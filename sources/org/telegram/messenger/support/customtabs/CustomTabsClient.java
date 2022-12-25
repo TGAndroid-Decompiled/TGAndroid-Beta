@@ -41,57 +41,61 @@ public class CustomTabsClient {
 
             @Override
             public void onNavigationEvent(final int i, final Bundle bundle) {
-                if (customTabsCallback != null) {
-                    this.mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            customTabsCallback.onNavigationEvent(i, bundle);
-                        }
-                    });
+                if (customTabsCallback == null) {
+                    return;
                 }
+                this.mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        customTabsCallback.onNavigationEvent(i, bundle);
+                    }
+                });
             }
 
             @Override
             public void extraCallback(final String str, final Bundle bundle) throws RemoteException {
-                if (customTabsCallback != null) {
-                    this.mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            customTabsCallback.extraCallback(str, bundle);
-                        }
-                    });
+                if (customTabsCallback == null) {
+                    return;
                 }
+                this.mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        customTabsCallback.extraCallback(str, bundle);
+                    }
+                });
             }
 
             @Override
             public void onMessageChannelReady(final Bundle bundle) throws RemoteException {
-                if (customTabsCallback != null) {
-                    this.mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            customTabsCallback.onMessageChannelReady(bundle);
-                        }
-                    });
+                if (customTabsCallback == null) {
+                    return;
                 }
+                this.mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        customTabsCallback.onMessageChannelReady(bundle);
+                    }
+                });
             }
 
             @Override
             public void onPostMessage(final String str, final Bundle bundle) throws RemoteException {
-                if (customTabsCallback != null) {
-                    this.mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            customTabsCallback.onPostMessage(str, bundle);
-                        }
-                    });
+                if (customTabsCallback == null) {
+                    return;
                 }
+                this.mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        customTabsCallback.onPostMessage(str, bundle);
+                    }
+                });
             }
         };
         try {
-            if (!this.mService.newSession(stub)) {
-                return null;
+            if (this.mService.newSession(stub)) {
+                return new CustomTabsSession(this.mService, stub, this.mServiceComponentName);
             }
-            return new CustomTabsSession(this.mService, stub, this.mServiceComponentName);
+            return null;
         } catch (RemoteException unused) {
             return null;
         }

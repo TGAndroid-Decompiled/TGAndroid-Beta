@@ -9,15 +9,15 @@ public class TLRPC$TL_paymentRequestedInfo extends TLObject {
     public TLRPC$TL_postAddress shipping_address;
 
     public static TLRPC$TL_paymentRequestedInfo TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_paymentRequestedInfo tLRPC$TL_paymentRequestedInfo = new TLRPC$TL_paymentRequestedInfo();
-            tLRPC$TL_paymentRequestedInfo.readParams(abstractSerializedData, z);
-            return tLRPC$TL_paymentRequestedInfo;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_paymentRequestedInfo", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_paymentRequestedInfo", Integer.valueOf(i)));
         }
+        TLRPC$TL_paymentRequestedInfo tLRPC$TL_paymentRequestedInfo = new TLRPC$TL_paymentRequestedInfo();
+        tLRPC$TL_paymentRequestedInfo.readParams(abstractSerializedData, z);
+        return tLRPC$TL_paymentRequestedInfo;
     }
 
     @Override

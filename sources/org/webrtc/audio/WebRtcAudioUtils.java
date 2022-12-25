@@ -6,7 +6,6 @@ import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
 import java.util.Arrays;
-import org.telegram.messenger.R;
 import org.webrtc.Logging;
 
 final class WebRtcAudioUtils {
@@ -81,15 +80,15 @@ final class WebRtcAudioUtils {
                 return "TYPE_FM_TUNER";
             case 17:
                 return "TYPE_TV_TUNER";
-            case R.styleable.MapAttrs_uiScrollGesturesDuringRotateOrZoom:
+            case 18:
                 return "TYPE_TELEPHONY";
-            case R.styleable.MapAttrs_uiTiltGestures:
+            case 19:
                 return "TYPE_AUX_LINE";
-            case R.styleable.MapAttrs_uiZoomControls:
+            case 20:
                 return "TYPE_IP";
-            case R.styleable.MapAttrs_uiZoomGestures:
+            case 21:
                 return "TYPE_BUS";
-            case R.styleable.MapAttrs_useViewLifecycle:
+            case 22:
                 return "TYPE_USB_HEADSET";
             default:
                 return "TYPE_UNKNOWN";
@@ -116,7 +115,7 @@ final class WebRtcAudioUtils {
     }
 
     static void logDeviceInfo(String str) {
-        Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
+        Logging.m9d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
     }
 
     public static void logAudioState(String str, Context context, AudioManager audioManager) {
@@ -128,32 +127,32 @@ final class WebRtcAudioUtils {
 
     @TargetApi(24)
     public static String audioEncodingToString(int i) {
-        if (i == 0) {
-            return "INVALID";
+        if (i != 0) {
+            switch (i) {
+                case 2:
+                    return "PCM_16BIT";
+                case 3:
+                    return "PCM_8BIT";
+                case 4:
+                    return "PCM_FLOAT";
+                case 5:
+                case 6:
+                    return "AC3";
+                case 7:
+                    return "DTS";
+                case 8:
+                    return "DTS_HD";
+                case 9:
+                    return "MP3";
+                default:
+                    return "Invalid encoding: " + i;
+            }
         }
-        switch (i) {
-            case 2:
-                return "PCM_16BIT";
-            case 3:
-                return "PCM_8BIT";
-            case 4:
-                return "PCM_FLOAT";
-            case 5:
-            case 6:
-                return "AC3";
-            case 7:
-                return "DTS";
-            case 8:
-                return "DTS_HD";
-            case 9:
-                return "MP3";
-            default:
-                return "Invalid encoding: " + i;
-        }
+        return "INVALID";
     }
 
     private static void logAudioStateBasic(String str, Context context, AudioManager audioManager) {
-        Logging.d(str, "Audio State: audio mode: " + modeToString(audioManager.getMode()) + ", has mic: " + hasMicrophone(context) + ", mic muted: " + audioManager.isMicrophoneMute() + ", music active: " + audioManager.isMusicActive() + ", speakerphone: " + audioManager.isSpeakerphoneOn() + ", BT SCO: " + audioManager.isBluetoothScoOn());
+        Logging.m9d(str, "Audio State: audio mode: " + modeToString(audioManager.getMode()) + ", has mic: " + hasMicrophone(context) + ", mic muted: " + audioManager.isMicrophoneMute() + ", music active: " + audioManager.isMusicActive() + ", speakerphone: " + audioManager.isSpeakerphoneOn() + ", BT SCO: " + audioManager.isBluetoothScoOn());
     }
 
     private static boolean isVolumeFixed(AudioManager audioManager) {
@@ -165,21 +164,22 @@ final class WebRtcAudioUtils {
 
     private static void logAudioStateVolume(String str, AudioManager audioManager) {
         int[] iArr = {0, 3, 2, 4, 5, 1};
-        Logging.d(str, "Audio State: ");
+        Logging.m9d(str, "Audio State: ");
         boolean isVolumeFixed = isVolumeFixed(audioManager);
-        Logging.d(str, "  fixed volume=" + isVolumeFixed);
-        if (!isVolumeFixed) {
-            for (int i = 0; i < 6; i++) {
-                int i2 = iArr[i];
-                StringBuilder sb = new StringBuilder();
-                sb.append("  " + streamTypeToString(i2) + ": ");
-                sb.append("volume=");
-                sb.append(audioManager.getStreamVolume(i2));
-                sb.append(", max=");
-                sb.append(audioManager.getStreamMaxVolume(i2));
-                logIsStreamMute(str, audioManager, i2, sb);
-                Logging.d(str, sb.toString());
-            }
+        Logging.m9d(str, "  fixed volume=" + isVolumeFixed);
+        if (isVolumeFixed) {
+            return;
+        }
+        for (int i = 0; i < 6; i++) {
+            int i2 = iArr[i];
+            StringBuilder sb = new StringBuilder();
+            sb.append("  " + streamTypeToString(i2) + ": ");
+            sb.append("volume=");
+            sb.append(audioManager.getStreamVolume(i2));
+            sb.append(", max=");
+            sb.append(audioManager.getStreamMaxVolume(i2));
+            logIsStreamMute(str, audioManager, i2, sb);
+            Logging.m9d(str, sb.toString());
         }
     }
 
@@ -191,35 +191,37 @@ final class WebRtcAudioUtils {
     }
 
     private static void logAudioDeviceInfo(String str, AudioManager audioManager) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            AudioDeviceInfo[] devices = audioManager.getDevices(3);
-            if (devices.length != 0) {
-                Logging.d(str, "Audio Devices: ");
-                for (AudioDeviceInfo audioDeviceInfo : devices) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("  ");
-                    sb.append(deviceTypeToString(audioDeviceInfo.getType()));
-                    sb.append(audioDeviceInfo.isSource() ? "(in): " : "(out): ");
-                    if (audioDeviceInfo.getChannelCounts().length > 0) {
-                        sb.append("channels=");
-                        sb.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
-                        sb.append(", ");
-                    }
-                    if (audioDeviceInfo.getEncodings().length > 0) {
-                        sb.append("encodings=");
-                        sb.append(Arrays.toString(audioDeviceInfo.getEncodings()));
-                        sb.append(", ");
-                    }
-                    if (audioDeviceInfo.getSampleRates().length > 0) {
-                        sb.append("sample rates=");
-                        sb.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
-                        sb.append(", ");
-                    }
-                    sb.append("id=");
-                    sb.append(audioDeviceInfo.getId());
-                    Logging.d(str, sb.toString());
-                }
+        if (Build.VERSION.SDK_INT < 23) {
+            return;
+        }
+        AudioDeviceInfo[] devices = audioManager.getDevices(3);
+        if (devices.length == 0) {
+            return;
+        }
+        Logging.m9d(str, "Audio Devices: ");
+        for (AudioDeviceInfo audioDeviceInfo : devices) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("  ");
+            sb.append(deviceTypeToString(audioDeviceInfo.getType()));
+            sb.append(audioDeviceInfo.isSource() ? "(in): " : "(out): ");
+            if (audioDeviceInfo.getChannelCounts().length > 0) {
+                sb.append("channels=");
+                sb.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
+                sb.append(", ");
             }
+            if (audioDeviceInfo.getEncodings().length > 0) {
+                sb.append("encodings=");
+                sb.append(Arrays.toString(audioDeviceInfo.getEncodings()));
+                sb.append(", ");
+            }
+            if (audioDeviceInfo.getSampleRates().length > 0) {
+                sb.append("sample rates=");
+                sb.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
+                sb.append(", ");
+            }
+            sb.append("id=");
+            sb.append(audioDeviceInfo.getId());
+            Logging.m9d(str, sb.toString());
         }
     }
 

@@ -6,7 +6,7 @@ public abstract class TLRPC$GroupCall extends TLObject {
     public boolean can_start_video;
     public int duration;
     public int flags;
-    public long id;
+    public long f863id;
     public boolean join_date_asc;
     public boolean join_muted;
     public boolean listeners_hidden;
@@ -23,18 +23,18 @@ public abstract class TLRPC$GroupCall extends TLObject {
     public int version;
 
     public static TLRPC$GroupCall TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$GroupCall tLRPC$GroupCall;
+        TLRPC$GroupCall tLRPC$TL_groupCall;
         if (i != -711498484) {
-            tLRPC$GroupCall = i != 2004925620 ? null : new TLRPC$TL_groupCallDiscarded();
+            tLRPC$TL_groupCall = i != 2004925620 ? null : new TLRPC$TL_groupCallDiscarded();
         } else {
-            tLRPC$GroupCall = new TLRPC$TL_groupCall();
+            tLRPC$TL_groupCall = new TLRPC$TL_groupCall();
         }
-        if (tLRPC$GroupCall != null || !z) {
-            if (tLRPC$GroupCall != null) {
-                tLRPC$GroupCall.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$GroupCall;
+        if (tLRPC$TL_groupCall == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in GroupCall", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in GroupCall", Integer.valueOf(i)));
+        if (tLRPC$TL_groupCall != null) {
+            tLRPC$TL_groupCall.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_groupCall;
     }
 }

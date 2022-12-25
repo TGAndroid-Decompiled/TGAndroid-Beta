@@ -117,33 +117,32 @@ public class ThreadUtils {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        } else {
-            final C1Result r0 = new C1Result();
-            final C1CaughtException r1 = new C1CaughtException();
-            final CountDownLatch countDownLatch = new CountDownLatch(1);
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        C1Result.this.value = callable.call();
-                    } catch (Exception e2) {
-                        r1.e = e2;
-                    }
-                    countDownLatch.countDown();
+        }
+        final C1Result c1Result = new C1Result();
+        final C1CaughtException c1CaughtException = new C1CaughtException();
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    C1Result.this.value = callable.call();
+                } catch (Exception e2) {
+                    c1CaughtException.f1159e = e2;
                 }
-            });
-            awaitUninterruptibly(countDownLatch);
-            if (r1.e == null) {
-                return r0.value;
+                countDownLatch.countDown();
             }
-            RuntimeException runtimeException = new RuntimeException(r1.e);
-            runtimeException.setStackTrace(concatStackTraces(r1.e.getStackTrace(), runtimeException.getStackTrace()));
+        });
+        awaitUninterruptibly(countDownLatch);
+        if (c1CaughtException.f1159e != null) {
+            RuntimeException runtimeException = new RuntimeException(c1CaughtException.f1159e);
+            runtimeException.setStackTrace(concatStackTraces(c1CaughtException.f1159e.getStackTrace(), runtimeException.getStackTrace()));
             throw runtimeException;
         }
+        return c1Result.value;
     }
 
     public class C1CaughtException {
-        Exception e;
+        Exception f1159e;
 
         C1CaughtException() {
         }

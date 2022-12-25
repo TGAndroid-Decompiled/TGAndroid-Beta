@@ -5,9 +5,11 @@ public abstract class TLRPC$upload_CdnFile extends TLObject {
     public byte[] request_token;
 
     public static TLRPC$upload_CdnFile TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$upload_CdnFile tLRPC$upload_CdnFile;
-        if (i != -1449145777) {
-            tLRPC$upload_CdnFile = i != -290921362 ? null : new TLRPC$upload_CdnFile() {
+        TLRPC$upload_CdnFile tLRPC$TL_upload_cdnFile;
+        if (i == -1449145777) {
+            tLRPC$TL_upload_cdnFile = new TLRPC$TL_upload_cdnFile();
+        } else {
+            tLRPC$TL_upload_cdnFile = i != -290921362 ? null : new TLRPC$upload_CdnFile() {
                 public static int constructor = -290921362;
 
                 @Override
@@ -21,15 +23,13 @@ public abstract class TLRPC$upload_CdnFile extends TLObject {
                     abstractSerializedData2.writeByteArray(this.request_token);
                 }
             };
-        } else {
-            tLRPC$upload_CdnFile = new TLRPC$TL_upload_cdnFile();
         }
-        if (tLRPC$upload_CdnFile != null || !z) {
-            if (tLRPC$upload_CdnFile != null) {
-                tLRPC$upload_CdnFile.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$upload_CdnFile;
+        if (tLRPC$TL_upload_cdnFile == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in upload_CdnFile", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in upload_CdnFile", Integer.valueOf(i)));
+        if (tLRPC$TL_upload_cdnFile != null) {
+            tLRPC$TL_upload_cdnFile.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_upload_cdnFile;
     }
 }

@@ -11,28 +11,24 @@ public class TLRPC$TL_messages_botCallbackAnswer extends TLObject {
     public String url;
 
     public static TLRPC$TL_messages_botCallbackAnswer TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_messages_botCallbackAnswer tLRPC$TL_messages_botCallbackAnswer = new TLRPC$TL_messages_botCallbackAnswer();
-            tLRPC$TL_messages_botCallbackAnswer.readParams(abstractSerializedData, z);
-            return tLRPC$TL_messages_botCallbackAnswer;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_messages_botCallbackAnswer", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_messages_botCallbackAnswer", Integer.valueOf(i)));
         }
+        TLRPC$TL_messages_botCallbackAnswer tLRPC$TL_messages_botCallbackAnswer = new TLRPC$TL_messages_botCallbackAnswer();
+        tLRPC$TL_messages_botCallbackAnswer.readParams(abstractSerializedData, z);
+        return tLRPC$TL_messages_botCallbackAnswer;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.alert = (readInt32 & 2) != 0;
         this.has_url = (readInt32 & 8) != 0;
-        if ((readInt32 & 16) != 0) {
-            z2 = true;
-        }
-        this.native_ui = z2;
+        this.native_ui = (readInt32 & 16) != 0;
         if ((readInt32 & 1) != 0) {
             this.message = abstractSerializedData.readString(z);
         }

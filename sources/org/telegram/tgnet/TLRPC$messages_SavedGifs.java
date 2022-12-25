@@ -25,18 +25,19 @@ public abstract class TLRPC$messages_SavedGifs extends TLObject {
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.hash = abstractSerializedData2.readInt64(z2);
                     int readInt32 = abstractSerializedData2.readInt32(z2);
-                    if (readInt32 == 481674261) {
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            TLRPC$Document TLdeserialize = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                            if (TLdeserialize != null) {
-                                this.gifs.add(TLdeserialize);
-                            } else {
-                                return;
-                            }
+                    if (readInt32 != 481674261) {
+                        if (z2) {
+                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                         }
-                    } else if (z2) {
-                        throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                        return;
+                    }
+                    int readInt322 = abstractSerializedData2.readInt32(z2);
+                    for (int i2 = 0; i2 < readInt322; i2++) {
+                        TLRPC$Document TLdeserialize = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if (TLdeserialize == null) {
+                            return;
+                        }
+                        this.gifs.add(TLdeserialize);
                     }
                 }
 
@@ -53,12 +54,12 @@ public abstract class TLRPC$messages_SavedGifs extends TLObject {
                 }
             };
         }
-        if (tLRPC$messages_SavedGifs != null || !z) {
-            if (tLRPC$messages_SavedGifs != null) {
-                tLRPC$messages_SavedGifs.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$messages_SavedGifs;
+        if (tLRPC$messages_SavedGifs == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in messages_SavedGifs", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in messages_SavedGifs", Integer.valueOf(i)));
+        if (tLRPC$messages_SavedGifs != null) {
+            tLRPC$messages_SavedGifs.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$messages_SavedGifs;
     }
 }

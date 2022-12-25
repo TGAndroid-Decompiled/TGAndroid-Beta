@@ -6,15 +6,15 @@ public class TLRPC$TL_globalPrivacySettings extends TLObject {
     public int flags;
 
     public static TLRPC$TL_globalPrivacySettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_globalPrivacySettings tLRPC$TL_globalPrivacySettings = new TLRPC$TL_globalPrivacySettings();
-            tLRPC$TL_globalPrivacySettings.readParams(abstractSerializedData, z);
-            return tLRPC$TL_globalPrivacySettings;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_globalPrivacySettings", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_globalPrivacySettings", Integer.valueOf(i)));
         }
+        TLRPC$TL_globalPrivacySettings tLRPC$TL_globalPrivacySettings = new TLRPC$TL_globalPrivacySettings();
+        tLRPC$TL_globalPrivacySettings.readParams(abstractSerializedData, z);
+        return tLRPC$TL_globalPrivacySettings;
     }
 
     @Override

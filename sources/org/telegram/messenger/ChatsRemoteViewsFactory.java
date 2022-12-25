@@ -9,11 +9,11 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 import androidx.collection.LongSparseArray;
 import java.util.ArrayList;
+import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$User;
-import org.telegram.ui.ActionBar.Theme;
 
 class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private AccountInstance accountInstance;
@@ -63,7 +63,7 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         StringBuilder sb = new StringBuilder();
         sb.append("deleted");
         sb.append(this.appWidgetId);
-        this.deleted = (sharedPreferences.getBoolean(sb.toString(), false) || this.accountInstance == null) ? true : z;
+        this.deleted = (sharedPreferences.getBoolean(sb.toString(), false) || this.accountInstance == null) ? true : true;
     }
 
     @Override
@@ -89,18 +89,19 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         this.dids.clear();
         this.messageObjects.clear();
         AccountInstance accountInstance = this.accountInstance;
-        if (accountInstance != null && accountInstance.getUserConfig().isClientActivated()) {
-            ArrayList<TLRPC$User> arrayList = new ArrayList<>();
-            ArrayList<TLRPC$Chat> arrayList2 = new ArrayList<>();
-            LongSparseArray<TLRPC$Message> longSparseArray = new LongSparseArray<>();
-            this.accountInstance.getMessagesStorage().getWidgetDialogs(this.appWidgetId, 0, this.dids, this.dialogs, longSparseArray, arrayList, arrayList2);
-            this.accountInstance.getMessagesController().putUsers(arrayList, true);
-            this.accountInstance.getMessagesController().putChats(arrayList2, true);
-            this.messageObjects.clear();
-            int size = longSparseArray.size();
-            for (int i = 0; i < size; i++) {
-                this.messageObjects.put(longSparseArray.keyAt(i), new MessageObject(this.accountInstance.getCurrentAccount(), longSparseArray.valueAt(i), (LongSparseArray<TLRPC$User>) null, (LongSparseArray<TLRPC$Chat>) null, false, true));
-            }
+        if (accountInstance == null || !accountInstance.getUserConfig().isClientActivated()) {
+            return;
+        }
+        ArrayList<TLRPC$User> arrayList = new ArrayList<>();
+        ArrayList<TLRPC$Chat> arrayList2 = new ArrayList<>();
+        LongSparseArray<TLRPC$Message> longSparseArray = new LongSparseArray<>();
+        this.accountInstance.getMessagesStorage().getWidgetDialogs(this.appWidgetId, 0, this.dids, this.dialogs, longSparseArray, arrayList, arrayList2);
+        this.accountInstance.getMessagesController().putUsers(arrayList, true);
+        this.accountInstance.getMessagesController().putChats(arrayList2, true);
+        this.messageObjects.clear();
+        int size = longSparseArray.size();
+        for (int i = 0; i < size; i++) {
+            this.messageObjects.put(longSparseArray.keyAt(i), new MessageObject(this.accountInstance.getCurrentAccount(), longSparseArray.valueAt(i), (LongSparseArray<TLRPC$User>) null, (LongSparseArray<TLRPC$Chat>) null, false, true));
         }
     }
 }

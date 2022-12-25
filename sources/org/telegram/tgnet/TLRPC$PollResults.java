@@ -25,20 +25,19 @@ public abstract class TLRPC$PollResults extends TLObject {
                         this.min = (readInt32 & 1) != 0;
                         if ((readInt32 & 2) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$TL_pollAnswerVoters TLdeserialize = TLRPC$TL_pollAnswerVoters.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize != null) {
-                                        this.results.add(TLdeserialize);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
+                            }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$TL_pollAnswerVoters TLdeserialize = TLRPC$TL_pollAnswerVoters.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize == null) {
+                                    return;
+                                }
+                                this.results.add(TLdeserialize);
                             }
                         }
                         if ((this.flags & 4) != 0) {
@@ -46,15 +45,15 @@ public abstract class TLRPC$PollResults extends TLObject {
                         }
                         if ((this.flags & 8) != 0) {
                             int readInt324 = abstractSerializedData2.readInt32(z2);
-                            if (readInt324 == 481674261) {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    this.recent_voters.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
+                            if (readInt324 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
-                            } else {
                                 return;
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.recent_voters.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
                             }
                         }
                         if ((this.flags & 16) != 0) {
@@ -62,18 +61,19 @@ public abstract class TLRPC$PollResults extends TLObject {
                         }
                         if ((this.flags & 16) != 0) {
                             int readInt326 = abstractSerializedData2.readInt32(z2);
-                            if (readInt326 == 481674261) {
-                                int readInt327 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt327; i4++) {
-                                    TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize2 != null) {
-                                        this.solution_entities.add(TLdeserialize2);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt326 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
+                                return;
+                            }
+                            int readInt327 = abstractSerializedData2.readInt32(z2);
+                            for (int i4 = 0; i4 < readInt327; i4++) {
+                                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.solution_entities.add(TLdeserialize2);
                             }
                         }
                     }
@@ -128,20 +128,19 @@ public abstract class TLRPC$PollResults extends TLObject {
                         this.min = (readInt32 & 1) != 0;
                         if ((readInt32 & 2) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$TL_pollAnswerVoters TLdeserialize = TLRPC$TL_pollAnswerVoters.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize != null) {
-                                        this.results.add(TLdeserialize);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
+                            }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$TL_pollAnswerVoters TLdeserialize = TLRPC$TL_pollAnswerVoters.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize == null) {
+                                    return;
+                                }
+                                this.results.add(TLdeserialize);
                             }
                         }
                         if ((this.flags & 4) != 0) {
@@ -149,13 +148,15 @@ public abstract class TLRPC$PollResults extends TLObject {
                         }
                         if ((this.flags & 8) != 0) {
                             int readInt324 = abstractSerializedData2.readInt32(z2);
-                            if (readInt324 == 481674261) {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    this.recent_voters.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
+                            if (readInt324 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                                return;
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.recent_voters.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
                             }
                         }
                     }
@@ -202,20 +203,19 @@ public abstract class TLRPC$PollResults extends TLObject {
                         this.min = (readInt32 & 1) != 0;
                         if ((readInt32 & 2) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
-                            if (readInt322 == 481674261) {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    TLRPC$TL_pollAnswerVoters TLdeserialize = TLRPC$TL_pollAnswerVoters.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                                    if (TLdeserialize != null) {
-                                        this.results.add(TLdeserialize);
-                                    } else {
-                                        return;
-                                    }
+                            if (readInt322 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
-                            } else if (z2) {
-                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
-                            } else {
                                 return;
+                            }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                TLRPC$TL_pollAnswerVoters TLdeserialize = TLRPC$TL_pollAnswerVoters.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize == null) {
+                                    return;
+                                }
+                                this.results.add(TLdeserialize);
                             }
                         }
                         if ((this.flags & 4) != 0) {
@@ -247,12 +247,12 @@ public abstract class TLRPC$PollResults extends TLObject {
                 tLRPC$PollResults = null;
                 break;
         }
-        if (tLRPC$PollResults != null || !z) {
-            if (tLRPC$PollResults != null) {
-                tLRPC$PollResults.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$PollResults;
+        if (tLRPC$PollResults == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in PollResults", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in PollResults", Integer.valueOf(i)));
+        if (tLRPC$PollResults != null) {
+            tLRPC$PollResults.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$PollResults;
     }
 }

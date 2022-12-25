@@ -11,15 +11,15 @@ public class TLRPC$TL_groupCallParticipantVideo extends TLObject {
     public ArrayList<TLRPC$TL_groupCallParticipantVideoSourceGroup> source_groups = new ArrayList<>();
 
     public static TLRPC$TL_groupCallParticipantVideo TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_groupCallParticipantVideo tLRPC$TL_groupCallParticipantVideo = new TLRPC$TL_groupCallParticipantVideo();
-            tLRPC$TL_groupCallParticipantVideo.readParams(abstractSerializedData, z);
-            return tLRPC$TL_groupCallParticipantVideo;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_groupCallParticipantVideo", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_groupCallParticipantVideo", Integer.valueOf(i)));
         }
+        TLRPC$TL_groupCallParticipantVideo tLRPC$TL_groupCallParticipantVideo = new TLRPC$TL_groupCallParticipantVideo();
+        tLRPC$TL_groupCallParticipantVideo.readParams(abstractSerializedData, z);
+        return tLRPC$TL_groupCallParticipantVideo;
     }
 
     @Override
@@ -29,21 +29,22 @@ public class TLRPC$TL_groupCallParticipantVideo extends TLObject {
         this.paused = (readInt32 & 1) != 0;
         this.endpoint = abstractSerializedData.readString(z);
         int readInt322 = abstractSerializedData.readInt32(z);
-        if (readInt322 == 481674261) {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                TLRPC$TL_groupCallParticipantVideoSourceGroup TLdeserialize = TLRPC$TL_groupCallParticipantVideoSourceGroup.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize != null) {
-                    this.source_groups.add(TLdeserialize);
-                } else {
-                    return;
-                }
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            if ((this.flags & 2) != 0) {
-                this.audio_source = abstractSerializedData.readInt32(z);
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            TLRPC$TL_groupCallParticipantVideoSourceGroup TLdeserialize = TLRPC$TL_groupCallParticipantVideoSourceGroup.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
             }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+            this.source_groups.add(TLdeserialize);
+        }
+        if ((this.flags & 2) != 0) {
+            this.audio_source = abstractSerializedData.readInt32(z);
         }
     }
 

@@ -6,15 +6,15 @@ public class TLRPC$TL_statsDateRangeDays extends TLObject {
     public int min_date;
 
     public static TLRPC$TL_statsDateRangeDays TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_statsDateRangeDays tLRPC$TL_statsDateRangeDays = new TLRPC$TL_statsDateRangeDays();
-            tLRPC$TL_statsDateRangeDays.readParams(abstractSerializedData, z);
-            return tLRPC$TL_statsDateRangeDays;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_statsDateRangeDays", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_statsDateRangeDays", Integer.valueOf(i)));
         }
+        TLRPC$TL_statsDateRangeDays tLRPC$TL_statsDateRangeDays = new TLRPC$TL_statsDateRangeDays();
+        tLRPC$TL_statsDateRangeDays.readParams(abstractSerializedData, z);
+        return tLRPC$TL_statsDateRangeDays;
     }
 
     @Override

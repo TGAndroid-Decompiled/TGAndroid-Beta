@@ -22,12 +22,8 @@ public abstract class TLRPC$PhoneCallProtocol extends TLObject {
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     int readInt32 = abstractSerializedData2.readInt32(z2);
                     this.flags = readInt32;
-                    boolean z3 = false;
                     this.udp_p2p = (readInt32 & 1) != 0;
-                    if ((readInt32 & 2) != 0) {
-                        z3 = true;
-                    }
-                    this.udp_reflector = z3;
+                    this.udp_reflector = (readInt32 & 2) != 0;
                     this.min_layer = abstractSerializedData2.readInt32(z2);
                     this.max_layer = abstractSerializedData2.readInt32(z2);
                 }
@@ -45,12 +41,12 @@ public abstract class TLRPC$PhoneCallProtocol extends TLObject {
                 }
             };
         }
-        if (tLRPC$TL_phoneCallProtocol != null || !z) {
-            if (tLRPC$TL_phoneCallProtocol != null) {
-                tLRPC$TL_phoneCallProtocol.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$TL_phoneCallProtocol;
+        if (tLRPC$TL_phoneCallProtocol == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in PhoneCallProtocol", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in PhoneCallProtocol", Integer.valueOf(i)));
+        if (tLRPC$TL_phoneCallProtocol != null) {
+            tLRPC$TL_phoneCallProtocol.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_phoneCallProtocol;
     }
 }

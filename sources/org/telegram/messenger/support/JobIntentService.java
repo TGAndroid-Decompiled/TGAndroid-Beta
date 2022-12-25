@@ -71,7 +71,8 @@ public abstract class JobIntentService extends Service {
             if (!this.mHasJobId) {
                 this.mHasJobId = true;
                 this.mJobId = i;
-            } else if (this.mJobId != i) {
+            } else if (this.mJobId == i) {
+            } else {
                 throw new IllegalArgumentException("Given job ID " + i + " is different than previous " + this.mJobId);
             }
         }
@@ -147,7 +148,7 @@ public abstract class JobIntentService extends Service {
     static final class JobServiceEngineImpl extends JobServiceEngine implements CompatJobEngine {
         static final boolean DEBUG = false;
         static final String TAG = "JobServiceEngineImpl";
-        final Object mLock = new Object();
+        final Object mLock;
         JobParameters mParams;
         final JobIntentService mService;
 
@@ -176,6 +177,7 @@ public abstract class JobIntentService extends Service {
 
         JobServiceEngineImpl(JobIntentService jobIntentService) {
             super(jobIntentService);
+            this.mLock = new Object();
             this.mService = jobIntentService;
         }
 
@@ -213,11 +215,11 @@ public abstract class JobIntentService extends Service {
                 } catch (Throwable unused) {
                     jobWorkItem = null;
                 }
-                if (jobWorkItem == null) {
-                    return null;
+                if (jobWorkItem != null) {
+                    jobWorkItem.getIntent().setExtrasClassLoader(this.mService.getClassLoader());
+                    return new WrapperWorkItem(jobWorkItem);
                 }
-                jobWorkItem.getIntent().setExtrasClassLoader(this.mService.getClassLoader());
-                return new WrapperWorkItem(jobWorkItem);
+                return null;
             }
         }
     }
@@ -263,6 +265,7 @@ public abstract class JobIntentService extends Service {
         CommandProcessor() {
         }
 
+        @Override
         public Void doInBackground(Void... voidArr) {
             while (true) {
                 GenericWorkItem dequeueWork = JobIntentService.this.dequeueWork();
@@ -277,10 +280,12 @@ public abstract class JobIntentService extends Service {
             }
         }
 
+        @Override
         public void onCancelled(Void r1) {
             JobIntentService.this.processorFinished();
         }
 
+        @Override
         public void onPostExecute(Void r1) {
             JobIntentService.this.processorFinished();
         }
@@ -308,19 +313,19 @@ public abstract class JobIntentService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int i, int i2) {
-        if (this.mCompatQueue == null) {
-            return 2;
-        }
-        this.mCompatWorkEnqueuer.serviceStartReceived();
-        synchronized (this.mCompatQueue) {
-            ArrayList<CompatWorkItem> arrayList = this.mCompatQueue;
-            if (intent == null) {
-                intent = new Intent();
+        if (this.mCompatQueue != null) {
+            this.mCompatWorkEnqueuer.serviceStartReceived();
+            synchronized (this.mCompatQueue) {
+                ArrayList<CompatWorkItem> arrayList = this.mCompatQueue;
+                if (intent == null) {
+                    intent = new Intent();
+                }
+                arrayList.add(new CompatWorkItem(intent, i2));
+                ensureProcessorRunningLocked(true);
             }
-            arrayList.add(new CompatWorkItem(intent, i2));
-            ensureProcessorRunningLocked(true);
+            return 3;
         }
-        return 3;
+        return 2;
     }
 
     @Override
@@ -349,34 +354,33 @@ public abstract class JobIntentService extends Service {
     }
 
     public static void enqueueWork(Context context, ComponentName componentName, int i, Intent intent) {
-        if (intent != null) {
-            synchronized (sLock) {
-                WorkEnqueuer workEnqueuer = getWorkEnqueuer(context, componentName, true, i);
-                workEnqueuer.ensureJobId(i);
-                workEnqueuer.enqueueWork(intent);
-            }
-            return;
+        if (intent == null) {
+            throw new IllegalArgumentException("work must not be null");
         }
-        throw new IllegalArgumentException("work must not be null");
+        synchronized (sLock) {
+            WorkEnqueuer workEnqueuer = getWorkEnqueuer(context, componentName, true, i);
+            workEnqueuer.ensureJobId(i);
+            workEnqueuer.enqueueWork(intent);
+        }
     }
 
     static WorkEnqueuer getWorkEnqueuer(Context context, ComponentName componentName, boolean z, int i) {
-        WorkEnqueuer workEnqueuer;
+        WorkEnqueuer compatWorkEnqueuer;
         HashMap<ComponentName, WorkEnqueuer> hashMap = sClassWorkEnqueuer;
-        WorkEnqueuer workEnqueuer2 = hashMap.get(componentName);
-        if (workEnqueuer2 != null) {
+        WorkEnqueuer workEnqueuer = hashMap.get(componentName);
+        if (workEnqueuer == null) {
+            if (Build.VERSION.SDK_INT < 26) {
+                compatWorkEnqueuer = new CompatWorkEnqueuer(context, componentName);
+            } else if (!z) {
+                throw new IllegalArgumentException("Can't be here without a job id");
+            } else {
+                compatWorkEnqueuer = new JobWorkEnqueuer(context, componentName, i);
+            }
+            WorkEnqueuer workEnqueuer2 = compatWorkEnqueuer;
+            hashMap.put(componentName, workEnqueuer2);
             return workEnqueuer2;
         }
-        if (Build.VERSION.SDK_INT < 26) {
-            workEnqueuer = new CompatWorkEnqueuer(context, componentName);
-        } else if (z) {
-            workEnqueuer = new JobWorkEnqueuer(context, componentName, i);
-        } else {
-            throw new IllegalArgumentException("Can't be here without a job id");
-        }
-        WorkEnqueuer workEnqueuer3 = workEnqueuer;
-        hashMap.put(componentName, workEnqueuer3);
-        return workEnqueuer3;
+        return workEnqueuer;
     }
 
     public void setInterruptIfStopped(boolean z) {
@@ -428,10 +432,10 @@ public abstract class JobIntentService extends Service {
             return compatJobEngine.dequeueWork();
         }
         synchronized (this.mCompatQueue) {
-            if (this.mCompatQueue.size() <= 0) {
-                return null;
+            if (this.mCompatQueue.size() > 0) {
+                return this.mCompatQueue.remove(0);
             }
-            return this.mCompatQueue.remove(0);
+            return null;
         }
     }
 }

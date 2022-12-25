@@ -44,12 +44,8 @@ public abstract class TLRPC$PeerNotifySettings extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.show_previews = (readInt32 & 1) != 0;
-                        if ((readInt32 & 2) != 0) {
-                            z3 = true;
-                        }
-                        this.silent = z3;
+                        this.silent = (readInt32 & 2) != 0;
                         this.mute_until = abstractSerializedData2.readInt32(z2);
                         this.sound = abstractSerializedData2.readString(z2);
                     }
@@ -118,12 +114,12 @@ public abstract class TLRPC$PeerNotifySettings extends TLObject {
                 tLRPC$PeerNotifySettings = null;
                 break;
         }
-        if (tLRPC$PeerNotifySettings != null || !z) {
-            if (tLRPC$PeerNotifySettings != null) {
-                tLRPC$PeerNotifySettings.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$PeerNotifySettings;
+        if (tLRPC$PeerNotifySettings == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in PeerNotifySettings", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in PeerNotifySettings", Integer.valueOf(i)));
+        if (tLRPC$PeerNotifySettings != null) {
+            tLRPC$PeerNotifySettings.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$PeerNotifySettings;
     }
 }

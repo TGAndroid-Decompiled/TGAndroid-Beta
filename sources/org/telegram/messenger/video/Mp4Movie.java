@@ -55,9 +55,10 @@ public class Mp4Movie {
     }
 
     public void addSample(int i, long j, MediaCodec.BufferInfo bufferInfo) {
-        if (i >= 0 && i < this.tracks.size()) {
-            this.tracks.get(i).addSample(j, bufferInfo);
+        if (i < 0 || i >= this.tracks.size()) {
+            return;
         }
+        this.tracks.get(i).addSample(j, bufferInfo);
     }
 
     public int addTrack(MediaFormat mediaFormat, boolean z) {

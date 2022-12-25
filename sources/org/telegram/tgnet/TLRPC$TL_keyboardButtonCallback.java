@@ -7,11 +7,7 @@ public class TLRPC$TL_keyboardButtonCallback extends TLRPC$KeyboardButton {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = true;
-        if ((readInt32 & 1) == 0) {
-            z2 = false;
-        }
-        this.requires_password = z2;
+        this.requires_password = (readInt32 & 1) != 0;
         this.text = abstractSerializedData.readString(z);
         this.data = abstractSerializedData.readByteArray(z);
     }

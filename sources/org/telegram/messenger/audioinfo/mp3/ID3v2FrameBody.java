@@ -2,6 +2,7 @@ package org.telegram.messenger.audioinfo.mp3;
 
 import java.io.IOException;
 import java.io.InputStream;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.audioinfo.util.RangeInputStream;
 
 public class ID3v2FrameBody {
@@ -84,7 +85,7 @@ public class ID3v2FrameBody {
             String str = new String(bArr, i, i2, iD3v2Encoding.getCharset().name());
             return (str.length() <= 0 || str.charAt(0) != 65279) ? str : str.substring(1);
         } catch (Exception unused) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
     }
 
@@ -108,29 +109,29 @@ public class ID3v2FrameBody {
     }
 
     public String readFixedLengthString(int i, ID3v2Encoding iD3v2Encoding) throws IOException, ID3v2Exception {
-        if (i <= getRemainingLength()) {
-            byte[] bytes = textBuffer.get().bytes(i);
-            this.data.readFully(bytes, 0, i);
-            return extractString(bytes, 0, i, iD3v2Encoding, true);
+        if (i > getRemainingLength()) {
+            throw new ID3v2Exception("Could not read fixed-length string of length: " + i);
         }
-        throw new ID3v2Exception("Could not read fixed-length string of length: " + i);
+        byte[] bytes = textBuffer.get().bytes(i);
+        this.data.readFully(bytes, 0, i);
+        return extractString(bytes, 0, i, iD3v2Encoding, true);
     }
 
     public ID3v2Encoding readEncoding() throws IOException, ID3v2Exception {
         byte readByte = this.data.readByte();
-        if (readByte == 0) {
-            return ID3v2Encoding.ISO_8859_1;
-        }
-        if (readByte == 1) {
+        if (readByte != 0) {
+            if (readByte != 1) {
+                if (readByte != 2) {
+                    if (readByte == 3) {
+                        return ID3v2Encoding.UTF_8;
+                    }
+                    throw new ID3v2Exception("Invalid encoding: " + ((int) readByte));
+                }
+                return ID3v2Encoding.UTF_16BE;
+            }
             return ID3v2Encoding.UTF_16;
         }
-        if (readByte == 2) {
-            return ID3v2Encoding.UTF_16BE;
-        }
-        if (readByte == 3) {
-            return ID3v2Encoding.UTF_8;
-        }
-        throw new ID3v2Exception("Invalid encoding: " + ((int) readByte));
+        return ID3v2Encoding.ISO_8859_1;
     }
 
     public String toString() {

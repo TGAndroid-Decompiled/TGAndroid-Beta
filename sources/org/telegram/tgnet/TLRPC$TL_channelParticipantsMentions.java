@@ -10,7 +10,7 @@ public class TLRPC$TL_channelParticipantsMentions extends TLRPC$ChannelParticipa
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         if ((readInt32 & 1) != 0) {
-            this.q = abstractSerializedData.readString(z);
+            this.f847q = abstractSerializedData.readString(z);
         }
         if ((this.flags & 2) != 0) {
             this.top_msg_id = abstractSerializedData.readInt32(z);
@@ -22,7 +22,7 @@ public class TLRPC$TL_channelParticipantsMentions extends TLRPC$ChannelParticipa
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
-            abstractSerializedData.writeString(this.q);
+            abstractSerializedData.writeString(this.f847q);
         }
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeInt32(this.top_msg_id);

@@ -101,7 +101,7 @@ public class RendererCommon {
         fArr[13] = fArr[13] + 0.5f;
     }
 
-    public static class AnonymousClass1 {
+    public static class C41611 {
         static final int[] $SwitchMap$org$webrtc$RendererCommon$ScalingType;
 
         static {
@@ -123,17 +123,17 @@ public class RendererCommon {
     }
 
     public static float convertScalingTypeToVisibleFraction(ScalingType scalingType) {
-        int i = AnonymousClass1.$SwitchMap$org$webrtc$RendererCommon$ScalingType[scalingType.ordinal()];
-        if (i == 1) {
-            return 1.0f;
-        }
-        if (i == 2) {
+        int i = C41611.$SwitchMap$org$webrtc$RendererCommon$ScalingType[scalingType.ordinal()];
+        if (i != 1) {
+            if (i != 2) {
+                if (i == 3) {
+                    return BALANCED_VISIBLE_FRACTION;
+                }
+                throw new IllegalArgumentException();
+            }
             return 0.0f;
         }
-        if (i == 3) {
-            return BALANCED_VISIBLE_FRACTION;
-        }
-        throw new IllegalArgumentException();
+        return 1.0f;
     }
 
     public static Point getDisplaySize(float f, float f2, int i, int i2) {

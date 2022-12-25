@@ -6,6 +6,7 @@ public class TLRPC$TL_chatBannedRights extends TLObject {
     public boolean embed_links;
     public int flags;
     public boolean invite_users;
+    public boolean manage_topics;
     public boolean pin_messages;
     public boolean send_games;
     public boolean send_gifs;
@@ -18,22 +19,21 @@ public class TLRPC$TL_chatBannedRights extends TLObject {
     public boolean view_messages;
 
     public static TLRPC$TL_chatBannedRights TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = new TLRPC$TL_chatBannedRights();
-            tLRPC$TL_chatBannedRights.readParams(abstractSerializedData, z);
-            return tLRPC$TL_chatBannedRights;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_chatBannedRights", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_chatBannedRights", Integer.valueOf(i)));
         }
+        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = new TLRPC$TL_chatBannedRights();
+        tLRPC$TL_chatBannedRights.readParams(abstractSerializedData, z);
+        return tLRPC$TL_chatBannedRights;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.view_messages = (readInt32 & 1) != 0;
         this.send_messages = (readInt32 & 2) != 0;
         this.send_media = (readInt32 & 4) != 0;
@@ -43,12 +43,10 @@ public class TLRPC$TL_chatBannedRights extends TLObject {
         this.send_inline = (readInt32 & 64) != 0;
         this.embed_links = (readInt32 & ConnectionsManager.RequestFlagNeedQuickAck) != 0;
         this.send_polls = (readInt32 & 256) != 0;
-        this.change_info = (readInt32 & 1024) != 0;
+        this.change_info = (readInt32 & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0;
         this.invite_users = (32768 & readInt32) != 0;
-        if ((readInt32 & 131072) != 0) {
-            z2 = true;
-        }
-        this.pin_messages = z2;
+        this.pin_messages = (131072 & readInt32) != 0;
+        this.manage_topics = (readInt32 & 262144) != 0;
         this.until_date = abstractSerializedData.readInt32(z);
     }
 
@@ -73,13 +71,15 @@ public class TLRPC$TL_chatBannedRights extends TLObject {
         this.flags = i8;
         int i9 = this.send_polls ? i8 | 256 : i8 & (-257);
         this.flags = i9;
-        int i10 = this.change_info ? i9 | 1024 : i9 & (-1025);
+        int i10 = this.change_info ? i9 | ConnectionsManager.RequestFlagDoNotWaitFloodWait : i9 & (-1025);
         this.flags = i10;
         int i11 = this.invite_users ? i10 | 32768 : i10 & (-32769);
         this.flags = i11;
         int i12 = this.pin_messages ? i11 | 131072 : i11 & (-131073);
         this.flags = i12;
-        abstractSerializedData.writeInt32(i12);
+        int i13 = this.manage_topics ? i12 | 262144 : i12 & (-262145);
+        this.flags = i13;
+        abstractSerializedData.writeInt32(i13);
         abstractSerializedData.writeInt32(this.until_date);
     }
 }

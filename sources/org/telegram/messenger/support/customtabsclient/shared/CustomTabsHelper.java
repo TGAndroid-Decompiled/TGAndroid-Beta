@@ -69,10 +69,10 @@ public class CustomTabsHelper {
         } catch (RuntimeException unused) {
             Log.e("CustomTabsHelper", "Runtime exception while getting specialized handlers");
         }
-        if (!(queryIntentActivities == null || queryIntentActivities.size() == 0)) {
+        if (queryIntentActivities != null && queryIntentActivities.size() != 0) {
             for (ResolveInfo resolveInfo : queryIntentActivities) {
                 IntentFilter intentFilter = resolveInfo.filter;
-                if (!(intentFilter == null || intentFilter.countDataAuthorities() == 0 || intentFilter.countDataPaths() == 0 || resolveInfo.activityInfo == null)) {
+                if (intentFilter != null && intentFilter.countDataAuthorities() != 0 && intentFilter.countDataPaths() != 0 && resolveInfo.activityInfo != null) {
                     return true;
                 }
             }

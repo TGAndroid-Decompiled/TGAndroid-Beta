@@ -9,15 +9,11 @@ public class TLRPC$TL_messageForwarded_old2 extends TLRPC$Message {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.unread = (readInt32 & 1) != 0;
         this.out = (readInt32 & 2) != 0;
         this.mentioned = (readInt32 & 16) != 0;
-        if ((readInt32 & 32) != 0) {
-            z2 = true;
-        }
-        this.media_unread = z2;
-        this.id = abstractSerializedData.readInt32(z);
+        this.media_unread = (readInt32 & 32) != 0;
+        this.f872id = abstractSerializedData.readInt32(z);
         TLRPC$TL_messageFwdHeader tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader();
         this.fwd_from = tLRPC$TL_messageFwdHeader;
         tLRPC$TL_messageFwdHeader.from_id = new TLRPC$TL_peerUser();
@@ -34,9 +30,10 @@ public class TLRPC$TL_messageForwarded_old2 extends TLRPC$Message {
         this.flags |= 772;
         TLRPC$MessageMedia TLdeserialize = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.media = TLdeserialize;
-        if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
-            this.message = this.media.captionLegacy;
+        if (TLdeserialize == null || TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
+            return;
         }
+        this.message = this.media.captionLegacy;
     }
 
     @Override
@@ -51,7 +48,7 @@ public class TLRPC$TL_messageForwarded_old2 extends TLRPC$Message {
         int i4 = this.media_unread ? i3 | 32 : i3 & (-33);
         this.flags = i4;
         abstractSerializedData.writeInt32(i4);
-        abstractSerializedData.writeInt32(this.id);
+        abstractSerializedData.writeInt32(this.f872id);
         abstractSerializedData.writeInt32((int) this.fwd_from.from_id.user_id);
         abstractSerializedData.writeInt32(this.fwd_from.date);
         abstractSerializedData.writeInt32((int) this.from_id.user_id);

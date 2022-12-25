@@ -6,7 +6,7 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.flags = abstractSerializedData.readInt32(z);
-        this.id = abstractSerializedData.readInt64(z);
+        this.f995id = abstractSerializedData.readInt64(z);
         this.url = abstractSerializedData.readString(z);
         this.display_url = abstractSerializedData.readString(z);
         this.hash = abstractSerializedData.readInt32(z);
@@ -46,23 +46,24 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
         if ((this.flags & 512) != 0) {
             this.document = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & 1024) != 0) {
+        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
             this.cached_page = TLRPC$Page.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 4096) != 0) {
             int readInt32 = abstractSerializedData.readInt32(z);
-            if (readInt32 == 481674261) {
-                int readInt322 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt322; i++) {
-                    TLRPC$TL_webPageAttributeTheme TLdeserialize = TLRPC$TL_webPageAttributeTheme.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                    if (TLdeserialize != null) {
-                        this.attributes.add(TLdeserialize);
-                    } else {
-                        return;
-                    }
+            if (readInt32 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                 }
-            } else if (z) {
-                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                return;
+            }
+            int readInt322 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt322; i++) {
+                TLRPC$TL_webPageAttributeTheme TLdeserialize = TLRPC$TL_webPageAttributeTheme.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize == null) {
+                    return;
+                }
+                this.attributes.add(TLdeserialize);
             }
         }
     }
@@ -71,7 +72,7 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
-        abstractSerializedData.writeInt64(this.id);
+        abstractSerializedData.writeInt64(this.f995id);
         abstractSerializedData.writeString(this.url);
         abstractSerializedData.writeString(this.display_url);
         abstractSerializedData.writeInt32(this.hash);
@@ -111,7 +112,7 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
         if ((this.flags & 512) != 0) {
             this.document.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & 1024) != 0) {
+        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
             this.cached_page.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 4096) != 0) {

@@ -74,12 +74,12 @@ public abstract class TLRPC$TopPeerCategory extends TLObject {
                 tLRPC$TopPeerCategory = null;
                 break;
         }
-        if (tLRPC$TopPeerCategory != null || !z) {
-            if (tLRPC$TopPeerCategory != null) {
-                tLRPC$TopPeerCategory.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$TopPeerCategory;
+        if (tLRPC$TopPeerCategory == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in TopPeerCategory", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in TopPeerCategory", Integer.valueOf(i)));
+        if (tLRPC$TopPeerCategory != null) {
+            tLRPC$TopPeerCategory.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TopPeerCategory;
     }
 }

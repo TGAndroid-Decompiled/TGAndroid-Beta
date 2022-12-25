@@ -17,22 +17,21 @@ public class TLRPC$TL_peerSettings extends TLObject {
     public boolean share_contact;
 
     public static TLRPC$TL_peerSettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_peerSettings tLRPC$TL_peerSettings = new TLRPC$TL_peerSettings();
-            tLRPC$TL_peerSettings.readParams(abstractSerializedData, z);
-            return tLRPC$TL_peerSettings;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_peerSettings", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_peerSettings", Integer.valueOf(i)));
         }
+        TLRPC$TL_peerSettings tLRPC$TL_peerSettings = new TLRPC$TL_peerSettings();
+        tLRPC$TL_peerSettings.readParams(abstractSerializedData, z);
+        return tLRPC$TL_peerSettings;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.report_spam = (readInt32 & 1) != 0;
         this.add_contact = (readInt32 & 2) != 0;
         this.block_contact = (readInt32 & 4) != 0;
@@ -41,10 +40,7 @@ public class TLRPC$TL_peerSettings extends TLObject {
         this.report_geo = (readInt32 & 32) != 0;
         this.autoarchived = (readInt32 & ConnectionsManager.RequestFlagNeedQuickAck) != 0;
         this.invite_members = (readInt32 & 256) != 0;
-        if ((readInt32 & 1024) != 0) {
-            z2 = true;
-        }
-        this.request_chat_broadcast = z2;
+        this.request_chat_broadcast = (readInt32 & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0;
         if ((readInt32 & 64) != 0) {
             this.geo_distance = abstractSerializedData.readInt32(z);
         }
@@ -75,7 +71,7 @@ public class TLRPC$TL_peerSettings extends TLObject {
         this.flags = i7;
         int i8 = this.invite_members ? i7 | 256 : i7 & (-257);
         this.flags = i8;
-        int i9 = this.request_chat_broadcast ? i8 | 1024 : i8 & (-1025);
+        int i9 = this.request_chat_broadcast ? i8 | ConnectionsManager.RequestFlagDoNotWaitFloodWait : i8 & (-1025);
         this.flags = i9;
         abstractSerializedData.writeInt32(i9);
         if ((this.flags & 64) != 0) {

@@ -6,9 +6,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import org.telegram.tgnet.ConnectionsManager;
 
 public class CameraEnumerationAndroid {
-    static final ArrayList<Size> COMMON_RESOLUTIONS = new ArrayList<>(Arrays.asList(new Size(160, 120), new Size(240, 160), new Size(320, 240), new Size(400, 240), new Size(480, 320), new Size(640, 360), new Size(640, 480), new Size(768, 480), new Size(854, 480), new Size(800, 600), new Size(960, 540), new Size(960, 640), new Size(1024, 576), new Size(1024, 600), new Size(1280, 720), new Size(1280, 1024), new Size(1920, 1080), new Size(1920, 1440), new Size(2560, 1440), new Size(3840, 2160)));
+    static final ArrayList<Size> COMMON_RESOLUTIONS = new ArrayList<>(Arrays.asList(new Size(160, 120), new Size(240, 160), new Size(320, 240), new Size(400, 240), new Size(480, 320), new Size(640, 360), new Size(640, 480), new Size(768, 480), new Size(854, 480), new Size(800, 600), new Size(960, 540), new Size(960, 640), new Size(ConnectionsManager.RequestFlagDoNotWaitFloodWait, 576), new Size(ConnectionsManager.RequestFlagDoNotWaitFloodWait, 600), new Size(1280, 720), new Size(1280, ConnectionsManager.RequestFlagDoNotWaitFloodWait), new Size(1920, 1080), new Size(1920, 1440), new Size(2560, 1440), new Size(3840, 2160)));
     private static final String TAG = "CameraEnumerationAndroid";
 
     public static class CaptureFormat {
@@ -31,11 +32,11 @@ public class CameraEnumerationAndroid {
             }
 
             public boolean equals(Object obj) {
-                if (!(obj instanceof FramerateRange)) {
-                    return false;
+                if (obj instanceof FramerateRange) {
+                    FramerateRange framerateRange = (FramerateRange) obj;
+                    return this.min == framerateRange.min && this.max == framerateRange.max;
                 }
-                FramerateRange framerateRange = (FramerateRange) obj;
-                return this.min == framerateRange.min && this.max == framerateRange.max;
+                return false;
             }
 
             public int hashCode() {
@@ -60,10 +61,10 @@ public class CameraEnumerationAndroid {
         }
 
         public static int frameSize(int i, int i2, int i3) {
-            if (i3 == 17) {
-                return ((i * i2) * ImageFormat.getBitsPerPixel(i3)) / 8;
+            if (i3 != 17) {
+                throw new UnsupportedOperationException("Don't know how to calculate the frame size of non-NV21 image formats.");
             }
-            throw new UnsupportedOperationException("Don't know how to calculate the frame size of non-NV21 image formats.");
+            return ((i * i2) * ImageFormat.getBitsPerPixel(i3)) / 8;
         }
 
         public String toString() {
@@ -71,11 +72,11 @@ public class CameraEnumerationAndroid {
         }
 
         public boolean equals(Object obj) {
-            if (!(obj instanceof CaptureFormat)) {
-                return false;
+            if (obj instanceof CaptureFormat) {
+                CaptureFormat captureFormat = (CaptureFormat) obj;
+                return this.width == captureFormat.width && this.height == captureFormat.height && this.framerate.equals(captureFormat.framerate);
             }
-            CaptureFormat captureFormat = (CaptureFormat) obj;
-            return this.width == captureFormat.width && this.height == captureFormat.height && this.framerate.equals(captureFormat.framerate);
+            return false;
         }
 
         public int hashCode() {
@@ -115,6 +116,7 @@ public class CameraEnumerationAndroid {
                 super();
             }
 
+            @Override
             public int diff(CaptureFormat.FramerateRange framerateRange) {
                 return progressivePenalty(framerateRange.min, MIN_FPS_THRESHOLD, 1, 4) + progressivePenalty(Math.abs((i * 1000) - framerateRange.max), MAX_FPS_DIFF_THRESHOLD, 1, 3);
             }
@@ -127,6 +129,7 @@ public class CameraEnumerationAndroid {
                 super();
             }
 
+            @Override
             public int diff(Size size) {
                 return Math.abs(i - size.width) + Math.abs(i2 - size.height);
             }

@@ -6,15 +6,15 @@ public class TLRPC$TL_popularContact extends TLObject {
     public int importers;
 
     public static TLRPC$TL_popularContact TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_popularContact tLRPC$TL_popularContact = new TLRPC$TL_popularContact();
-            tLRPC$TL_popularContact.readParams(abstractSerializedData, z);
-            return tLRPC$TL_popularContact;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_popularContact", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_popularContact", Integer.valueOf(i)));
         }
+        TLRPC$TL_popularContact tLRPC$TL_popularContact = new TLRPC$TL_popularContact();
+        tLRPC$TL_popularContact.readParams(abstractSerializedData, z);
+        return tLRPC$TL_popularContact;
     }
 
     @Override

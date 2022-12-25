@@ -34,20 +34,19 @@ public class ID3v2FrameHeader {
             data.readByte();
             byte readByte = data.readByte();
             byte b5 = 64;
-            boolean z = false;
             if (iD3v2TagBody.getTagHeader().getVersion() == 3) {
                 b4 = 128;
                 b3 = 0;
-                b2 = 32;
-                b = 0;
+                b = 32;
+                b2 = 0;
             } else {
-                b2 = 64;
+                b = 64;
                 b5 = 4;
-                b = 1;
+                b2 = 1;
             }
             this.compression = (b4 & readByte) != 0;
             this.unsynchronization = (readByte & b3) != 0;
-            this.encryption = (readByte & b5) != 0 ? true : z;
+            this.encryption = (readByte & b5) != 0;
             if (iD3v2TagBody.getTagHeader().getVersion() == 3) {
                 if (this.compression) {
                     this.dataLengthIndicator = data.readInt();
@@ -57,12 +56,12 @@ public class ID3v2FrameHeader {
                     data.readByte();
                     this.bodySize--;
                 }
-                if ((readByte & b2) != 0) {
+                if ((readByte & b) != 0) {
                     data.readByte();
                     this.bodySize--;
                 }
             } else {
-                if ((readByte & b2) != 0) {
+                if ((readByte & b) != 0) {
                     data.readByte();
                     this.bodySize--;
                 }
@@ -70,7 +69,7 @@ public class ID3v2FrameHeader {
                     data.readByte();
                     this.bodySize--;
                 }
-                if ((readByte & b) != 0) {
+                if ((readByte & b2) != 0) {
                     this.dataLengthIndicator = data.readSyncsafeInt();
                     this.bodySize -= 4;
                 }

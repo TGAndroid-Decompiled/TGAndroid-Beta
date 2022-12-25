@@ -43,7 +43,9 @@ public class CallNotificationSoundProvider extends ContentProvider {
     public ParcelFileDescriptor openFile(Uri uri, String str) throws FileNotFoundException {
         if (!"r".equals(str)) {
             throw new SecurityException("Unexpected file mode " + str);
-        } else if (ApplicationLoader.applicationContext != null) {
+        } else if (ApplicationLoader.applicationContext == null) {
+            throw new FileNotFoundException("Unexpected application state");
+        } else {
             try {
                 VoIPService sharedInstance = VoIPService.getSharedInstance();
                 if (sharedInstance != null) {
@@ -57,8 +59,6 @@ public class CallNotificationSoundProvider extends ContentProvider {
             } catch (Exception e) {
                 throw new FileNotFoundException(e.getMessage());
             }
-        } else {
-            throw new FileNotFoundException("Unexpected application state");
         }
     }
 }

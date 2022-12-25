@@ -143,11 +143,7 @@ public abstract class TLRPC$ChannelParticipant extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = true;
-                        if ((readInt32 & 1) == 0) {
-                            z3 = false;
-                        }
-                        this.can_edit = z3;
+                        this.can_edit = (readInt32 & 1) != 0;
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.peer = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -202,12 +198,8 @@ public abstract class TLRPC$ChannelParticipant extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.can_edit = (readInt32 & 1) != 0;
-                        if ((readInt32 & 2) != 0) {
-                            z3 = true;
-                        }
-                        this.self = z3;
+                        this.self = (readInt32 & 2) != 0;
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.peer = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -292,11 +284,7 @@ public abstract class TLRPC$ChannelParticipant extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = true;
-                        if ((readInt32 & 1) == 0) {
-                            z3 = false;
-                        }
-                        this.left = z3;
+                        this.left = (readInt32 & 1) != 0;
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.peer = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -326,11 +314,7 @@ public abstract class TLRPC$ChannelParticipant extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = true;
-                        if ((readInt32 & 1) == 0) {
-                            z3 = false;
-                        }
-                        this.left = z3;
+                        this.left = (readInt32 & 1) != 0;
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.peer = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -421,11 +405,7 @@ public abstract class TLRPC$ChannelParticipant extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = true;
-                        if ((readInt32 & 1) == 0) {
-                            z3 = false;
-                        }
-                        this.left = z3;
+                        this.left = (readInt32 & 1) != 0;
                         this.peer = TLRPC$Peer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         this.kicked_by = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -453,12 +433,8 @@ public abstract class TLRPC$ChannelParticipant extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = false;
                         this.can_edit = (readInt32 & 1) != 0;
-                        if ((readInt32 & 2) != 0) {
-                            z3 = true;
-                        }
-                        this.self = z3;
+                        this.self = (readInt32 & 2) != 0;
                         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                         this.peer = tLRPC$TL_peerUser;
                         tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
@@ -495,12 +471,12 @@ public abstract class TLRPC$ChannelParticipant extends TLObject {
                 tLRPC$ChannelParticipant = null;
                 break;
         }
-        if (tLRPC$ChannelParticipant != null || !z) {
-            if (tLRPC$ChannelParticipant != null) {
-                tLRPC$ChannelParticipant.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$ChannelParticipant;
+        if (tLRPC$ChannelParticipant == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in ChannelParticipant", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in ChannelParticipant", Integer.valueOf(i)));
+        if (tLRPC$ChannelParticipant != null) {
+            tLRPC$ChannelParticipant.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$ChannelParticipant;
     }
 }

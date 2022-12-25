@@ -2,13 +2,13 @@ package org.telegram.tgnet;
 
 public abstract class TLRPC$NotifyPeer extends TLObject {
     public static TLRPC$NotifyPeer TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$NotifyPeer tLRPC$NotifyPeer;
+        TLRPC$NotifyPeer tLRPC$TL_notifyPeer;
         switch (i) {
             case -1613493288:
-                tLRPC$NotifyPeer = new TLRPC$TL_notifyPeer();
+                tLRPC$TL_notifyPeer = new TLRPC$TL_notifyPeer();
                 break;
             case -1261946036:
-                tLRPC$NotifyPeer = new TLRPC$NotifyPeer() {
+                tLRPC$TL_notifyPeer = new TLRPC$NotifyPeer() {
                     public static int constructor = -1261946036;
 
                     @Override
@@ -18,7 +18,7 @@ public abstract class TLRPC$NotifyPeer extends TLObject {
                 };
                 break;
             case -1073230141:
-                tLRPC$NotifyPeer = new TLRPC$NotifyPeer() {
+                tLRPC$TL_notifyPeer = new TLRPC$NotifyPeer() {
                     public static int constructor = -1073230141;
 
                     @Override
@@ -28,7 +28,7 @@ public abstract class TLRPC$NotifyPeer extends TLObject {
                 };
                 break;
             case -703403793:
-                tLRPC$NotifyPeer = new TLRPC$NotifyPeer() {
+                tLRPC$TL_notifyPeer = new TLRPC$NotifyPeer() {
                     public static int constructor = -703403793;
 
                     @Override
@@ -37,16 +37,19 @@ public abstract class TLRPC$NotifyPeer extends TLObject {
                     }
                 };
                 break;
+            case 577659656:
+                tLRPC$TL_notifyPeer = new TLRPC$TL_notifyForumTopic();
+                break;
             default:
-                tLRPC$NotifyPeer = null;
+                tLRPC$TL_notifyPeer = null;
                 break;
         }
-        if (tLRPC$NotifyPeer != null || !z) {
-            if (tLRPC$NotifyPeer != null) {
-                tLRPC$NotifyPeer.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$NotifyPeer;
+        if (tLRPC$TL_notifyPeer == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in NotifyPeer", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in NotifyPeer", Integer.valueOf(i)));
+        if (tLRPC$TL_notifyPeer != null) {
+            tLRPC$TL_notifyPeer.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_notifyPeer;
     }
 }

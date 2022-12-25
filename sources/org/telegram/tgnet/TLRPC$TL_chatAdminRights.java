@@ -11,27 +11,27 @@ public class TLRPC$TL_chatAdminRights extends TLObject {
     public int flags;
     public boolean invite_users;
     public boolean manage_call;
+    public boolean manage_topics;
     public boolean other;
     public boolean pin_messages;
     public boolean post_messages;
 
     public static TLRPC$TL_chatAdminRights TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights = new TLRPC$TL_chatAdminRights();
-            tLRPC$TL_chatAdminRights.readParams(abstractSerializedData, z);
-            return tLRPC$TL_chatAdminRights;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_chatAdminRights", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_chatAdminRights", Integer.valueOf(i)));
         }
+        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights = new TLRPC$TL_chatAdminRights();
+        tLRPC$TL_chatAdminRights.readParams(abstractSerializedData, z);
+        return tLRPC$TL_chatAdminRights;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.change_info = (readInt32 & 1) != 0;
         this.post_messages = (readInt32 & 2) != 0;
         this.edit_messages = (readInt32 & 4) != 0;
@@ -40,12 +40,10 @@ public class TLRPC$TL_chatAdminRights extends TLObject {
         this.invite_users = (readInt32 & 32) != 0;
         this.pin_messages = (readInt32 & ConnectionsManager.RequestFlagNeedQuickAck) != 0;
         this.add_admins = (readInt32 & 512) != 0;
-        this.anonymous = (readInt32 & 1024) != 0;
+        this.anonymous = (readInt32 & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0;
         this.manage_call = (readInt32 & 2048) != 0;
-        if ((readInt32 & 4096) != 0) {
-            z2 = true;
-        }
-        this.other = z2;
+        this.other = (readInt32 & 4096) != 0;
+        this.manage_topics = (readInt32 & 8192) != 0;
     }
 
     @Override
@@ -67,12 +65,14 @@ public class TLRPC$TL_chatAdminRights extends TLObject {
         this.flags = i7;
         int i8 = this.add_admins ? i7 | 512 : i7 & (-513);
         this.flags = i8;
-        int i9 = this.anonymous ? i8 | 1024 : i8 & (-1025);
+        int i9 = this.anonymous ? i8 | ConnectionsManager.RequestFlagDoNotWaitFloodWait : i8 & (-1025);
         this.flags = i9;
         int i10 = this.manage_call ? i9 | 2048 : i9 & (-2049);
         this.flags = i10;
         int i11 = this.other ? i10 | 4096 : i10 & (-4097);
         this.flags = i11;
-        abstractSerializedData.writeInt32(i11);
+        int i12 = this.manage_topics ? i11 | 8192 : i11 & (-8193);
+        this.flags = i12;
+        abstractSerializedData.writeInt32(i12);
     }
 }

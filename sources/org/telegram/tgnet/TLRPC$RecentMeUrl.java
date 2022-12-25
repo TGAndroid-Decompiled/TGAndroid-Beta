@@ -102,12 +102,12 @@ public abstract class TLRPC$RecentMeUrl extends TLObject {
                 tLRPC$RecentMeUrl = null;
                 break;
         }
-        if (tLRPC$RecentMeUrl != null || !z) {
-            if (tLRPC$RecentMeUrl != null) {
-                tLRPC$RecentMeUrl.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$RecentMeUrl;
+        if (tLRPC$RecentMeUrl == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in RecentMeUrl", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in RecentMeUrl", Integer.valueOf(i)));
+        if (tLRPC$RecentMeUrl != null) {
+            tLRPC$RecentMeUrl.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$RecentMeUrl;
     }
 }

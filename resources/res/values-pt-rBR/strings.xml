@@ -978,7 +978,7 @@
     <string name="ClearMediaCache">Limpar Cache</string>
     <string name="ClearOtherSessionsHelp">Sai de todos os dispositivos, exceto este.</string>
     <string name="ClearOtherWebSessionsHelp">Em sites compatíveis, você pode fazer o login com o Telegram.</string>
-    <string name="ClearRecentEmoji">Limpar emojis recentes?</string>
+    <string name="ClearRecentEmojiTitle">Limpar emojis recentes</string>
     <string name="ClearRecentHistory">Limpar histórico</string>
     <string name="ClearSearch">Limpar histórico de busca?</string>
     <string name="ClearSearchAlert">Deseja limpar o seu histórico de busca?</string>

@@ -1,7 +1,7 @@
 package org.webrtc;
 
 public class StatsReport {
-    public final String id;
+    public final String f1157id;
     public final double timestamp;
     public final String type;
     public final Value[] values;
@@ -23,7 +23,7 @@ public class StatsReport {
 
     @CalledByNative
     public StatsReport(String str, String str2, double d, Value[] valueArr) {
-        this.id = str;
+        this.f1157id = str;
         this.type = str2;
         this.timestamp = d;
         this.values = valueArr;
@@ -32,7 +32,7 @@ public class StatsReport {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("id: ");
-        sb.append(this.id);
+        sb.append(this.f1157id);
         sb.append(", type: ");
         sb.append(this.type);
         sb.append(", timestamp: ");
@@ -41,12 +41,13 @@ public class StatsReport {
         int i = 0;
         while (true) {
             Value[] valueArr = this.values;
-            if (i >= valueArr.length) {
+            if (i < valueArr.length) {
+                sb.append(valueArr[i].toString());
+                sb.append(", ");
+                i++;
+            } else {
                 return sb.toString();
             }
-            sb.append(valueArr[i].toString());
-            sb.append(", ");
-            i++;
         }
     }
 }

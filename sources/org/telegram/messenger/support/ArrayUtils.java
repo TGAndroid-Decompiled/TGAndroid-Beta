@@ -100,13 +100,13 @@ public class ArrayUtils {
     }
 
     public static int indexOf(int[] iArr, int i) {
-        if (iArr == null) {
-            return -1;
-        }
-        for (int i2 = 0; i2 < iArr.length; i2++) {
-            if (iArr[i2] == i) {
-                return i2;
+        if (iArr != null) {
+            for (int i2 = 0; i2 < iArr.length; i2++) {
+                if (iArr[i2] == i) {
+                    return i2;
+                }
             }
+            return -1;
         }
         return -1;
     }
@@ -141,12 +141,11 @@ public class ArrayUtils {
                 if (tArr[i] == t) {
                     if (length == 1) {
                         return null;
-                    } else {
-                        T[] tArr2 = (T[]) ((Object[]) Array.newInstance((Class<?>) cls, length - 1));
-                        System.arraycopy(tArr, 0, tArr2, 0, i);
-                        System.arraycopy(tArr, i + 1, tArr2, i, (length - i) - 1);
-                        return tArr2;
                     }
+                    T[] tArr2 = (T[]) ((Object[]) Array.newInstance((Class<?>) cls, length - 1));
+                    System.arraycopy(tArr, 0, tArr2, 0, i);
+                    System.arraycopy(tArr, i + 1, tArr2, i, (length - i) - 1);
+                    return tArr2;
                 }
             }
         }

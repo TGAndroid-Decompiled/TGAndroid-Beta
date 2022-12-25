@@ -8,43 +8,43 @@ public class TLRPC$TL_photo extends TLRPC$Photo {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.has_stickers = (readInt32 & 1) != 0;
-        this.id = abstractSerializedData.readInt64(z);
+        this.f877id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.file_reference = abstractSerializedData.readByteArray(z);
         this.date = abstractSerializedData.readInt32(z);
         int readInt322 = abstractSerializedData.readInt32(z);
-        if (readInt322 == 481674261) {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                TLRPC$PhotoSize TLdeserialize = TLRPC$PhotoSize.TLdeserialize(this.id, 0L, 0L, abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize != null) {
-                    this.sizes.add(TLdeserialize);
-                } else {
-                    return;
-                }
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            if ((this.flags & 2) != 0) {
-                int readInt324 = abstractSerializedData.readInt32(z);
-                if (readInt324 == 481674261) {
-                    int readInt325 = abstractSerializedData.readInt32(z);
-                    for (int i2 = 0; i2 < readInt325; i2++) {
-                        TLRPC$VideoSize TLdeserialize2 = TLRPC$VideoSize.TLdeserialize(this.id, 0L, abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                        if (TLdeserialize2 != null) {
-                            this.video_sizes.add(TLdeserialize2);
-                        } else {
-                            return;
-                        }
-                    }
-                } else if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
-                } else {
-                    return;
-                }
-            }
-            this.dc_id = abstractSerializedData.readInt32(z);
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+            return;
         }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            TLRPC$PhotoSize TLdeserialize = TLRPC$PhotoSize.TLdeserialize(this.f877id, 0L, 0L, abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return;
+            }
+            this.sizes.add(TLdeserialize);
+        }
+        if ((this.flags & 2) != 0) {
+            int readInt324 = abstractSerializedData.readInt32(z);
+            if (readInt324 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                }
+                return;
+            }
+            int readInt325 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt325; i2++) {
+                TLRPC$VideoSize TLdeserialize2 = TLRPC$VideoSize.TLdeserialize(this.f877id, 0L, abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize2 == null) {
+                    return;
+                }
+                this.video_sizes.add(TLdeserialize2);
+            }
+        }
+        this.dc_id = abstractSerializedData.readInt32(z);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class TLRPC$TL_photo extends TLRPC$Photo {
         int i = this.has_stickers ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
-        abstractSerializedData.writeInt64(this.id);
+        abstractSerializedData.writeInt64(this.f877id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeByteArray(this.file_reference);
         abstractSerializedData.writeInt32(this.date);

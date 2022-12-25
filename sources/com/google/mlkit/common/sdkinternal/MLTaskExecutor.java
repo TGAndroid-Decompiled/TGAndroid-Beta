@@ -3,7 +3,6 @@ package com.google.mlkit.common.sdkinternal;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
-import com.google.android.gms.internal.mlkit_common.zzb;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.mlkit.common.MlKitException;
@@ -42,7 +41,7 @@ public class MLTaskExecutor {
     }
 
     private MLTaskExecutor(Looper looper) {
-        this.zzc = new zzb(looper);
+        this.zzc = new com.google.android.gms.internal.mlkit_common.zzb(looper);
     }
 
     public <ResultT> Task<ResultT> scheduleCallable(final Callable<ResultT> callable) {

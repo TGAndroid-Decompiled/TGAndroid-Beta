@@ -35,27 +35,28 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
 
     private static void checkCapacity(ByteBuffer byteBuffer, int i, int i2, int i3) {
         int i4 = (i3 * (i2 - 1)) + i;
-        if (byteBuffer.capacity() < i4) {
-            throw new IllegalArgumentException("Buffer must be at least " + i4 + " bytes, but was " + byteBuffer.capacity());
+        if (byteBuffer.capacity() >= i4) {
+            return;
         }
+        throw new IllegalArgumentException("Buffer must be at least " + i4 + " bytes, but was " + byteBuffer.capacity());
     }
 
     public static JavaI420Buffer wrap(int i, int i2, ByteBuffer byteBuffer, int i3, ByteBuffer byteBuffer2, int i4, ByteBuffer byteBuffer3, int i5, Runnable runnable) {
         if (byteBuffer == null || byteBuffer2 == null || byteBuffer3 == null) {
             throw new IllegalArgumentException("Data buffers cannot be null.");
-        } else if (!byteBuffer.isDirect() || !byteBuffer2.isDirect() || !byteBuffer3.isDirect()) {
-            throw new IllegalArgumentException("Data buffers must be direct byte buffers.");
-        } else {
-            ByteBuffer slice = byteBuffer.slice();
-            ByteBuffer slice2 = byteBuffer2.slice();
-            ByteBuffer slice3 = byteBuffer3.slice();
-            int i6 = (i + 1) / 2;
-            int i7 = (i2 + 1) / 2;
-            checkCapacity(slice, i, i2, i3);
-            checkCapacity(slice2, i6, i7, i4);
-            checkCapacity(slice3, i6, i7, i5);
-            return new JavaI420Buffer(i, i2, slice, i3, slice2, i4, slice3, i5, runnable);
         }
+        if (!byteBuffer.isDirect() || !byteBuffer2.isDirect() || !byteBuffer3.isDirect()) {
+            throw new IllegalArgumentException("Data buffers must be direct byte buffers.");
+        }
+        ByteBuffer slice = byteBuffer.slice();
+        ByteBuffer slice2 = byteBuffer2.slice();
+        ByteBuffer slice3 = byteBuffer3.slice();
+        int i6 = (i + 1) / 2;
+        int i7 = (i2 + 1) / 2;
+        checkCapacity(slice, i, i2, i3);
+        checkCapacity(slice2, i6, i7, i4);
+        checkCapacity(slice3, i6, i7, i5);
+        return new JavaI420Buffer(i, i2, slice, i3, slice2, i4, slice3, i5, runnable);
     }
 
     public static JavaI420Buffer allocate(int i, int i2) {

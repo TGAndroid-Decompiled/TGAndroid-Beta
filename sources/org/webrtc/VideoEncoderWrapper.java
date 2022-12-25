@@ -10,7 +10,7 @@ public class VideoEncoderWrapper {
 
     @CalledByNative
     static boolean getScalingSettingsOn(VideoEncoder.ScalingSettings scalingSettings) {
-        return scalingSettings.on;
+        return scalingSettings.f1161on;
     }
 
     @CalledByNative

@@ -7,9 +7,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.Objects;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
-import org.telegram.ui.Components.voip.VoIPHelper;
+import org.telegram.p009ui.Components.voip.VoIPHelper;
 
 public class VoIPController {
     public static final int DATA_SAVING_ALWAYS = 2;
@@ -109,12 +110,11 @@ public class VoIPController {
     }
 
     public void setEncryptionKey(byte[] bArr, boolean z) {
-        if (bArr.length == 256) {
-            ensureNativeInstance();
-            nativeSetEncryptionKey(this.nativeInst, bArr, z);
-            return;
+        if (bArr.length != 256) {
+            throw new IllegalArgumentException("key length must be exactly 256 bytes but is " + bArr.length);
         }
-        throw new IllegalArgumentException("key length must be exactly 256 bytes but is " + bArr.length);
+        ensureNativeInstance();
+        nativeSetEncryptionKey(this.nativeInst, bArr, z);
     }
 
     public static void setNativeBufferSize(int i) {
@@ -194,11 +194,8 @@ public class VoIPController {
 
     public void getStats(Stats stats) {
         ensureNativeInstance();
-        if (stats != null) {
-            nativeGetStats(this.nativeInst, stats);
-            return;
-        }
-        throw new NullPointerException("You're not supposed to pass null here");
+        Objects.requireNonNull(stats, "You're not supposed to pass null here");
+        nativeGetStats(this.nativeInst, stats);
     }
 
     public static String getVersion() {
@@ -237,11 +234,8 @@ public class VoIPController {
 
     public void setProxy(String str, int i, String str2, String str3) {
         ensureNativeInstance();
-        if (str != null) {
-            nativeSetProxy(this.nativeInst, str, i, str2, str3);
-            return;
-        }
-        throw new NullPointerException("address can't be null");
+        Objects.requireNonNull(str, "address can't be null");
+        nativeSetProxy(this.nativeInst, str, i, str2, str3);
     }
 
     public void setAudioOutputGainControlEnabled(boolean z) {

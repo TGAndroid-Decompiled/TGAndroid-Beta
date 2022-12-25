@@ -32,13 +32,13 @@ import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.audioinfo.AudioInfo;
+import org.telegram.p009ui.LaunchActivity;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$User;
-import org.telegram.ui.LaunchActivity;
 
-@TargetApi(R.styleable.MapAttrs_uiZoomGestures)
+@TargetApi(21)
 public class MusicBrowserService extends MediaBrowserService implements NotificationCenter.NotificationCenterDelegate {
     public static final String ACTION_CMD = "com.example.android.mediabrowserservice.ACTION_CMD";
     public static final String CMD_NAME = "CMD_NAME";
@@ -79,7 +79,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         this.mediaSession.setCallback(new MediaSessionCallback());
         this.mediaSession.setFlags(3);
         Context applicationContext = getApplicationContext();
-        this.mediaSession.setSessionActivity(PendingIntent.getActivity(applicationContext, 99, new Intent(applicationContext, LaunchActivity.class), 134217728));
+        this.mediaSession.setSessionActivity(PendingIntent.getActivity(applicationContext, 99, new Intent(applicationContext, LaunchActivity.class), 167772160));
         Bundle bundle = new Bundle();
         bundle.putBoolean(SLOT_RESERVATION_QUEUE, true);
         bundle.putBoolean(SLOT_RESERVATION_SKIP_TO_PREV, true);
@@ -101,7 +101,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
 
     @Override
     public MediaBrowserService.BrowserRoot onGetRoot(String str, int i, Bundle bundle) {
-        if (str == null || (1000 != i && Process.myUid() != i && !str.equals("com.google.android.mediasimulator") && !str.equals("com.google.android.projection.gearhead"))) {
+        if (str == null || !(1000 == i || Process.myUid() == i || str.equals("com.google.android.mediasimulator") || str.equals("com.google.android.projection.gearhead"))) {
             return null;
         }
         return new MediaBrowserService.BrowserRoot(MEDIA_ID_ROOT, null);
@@ -111,17 +111,17 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
     public void onLoadChildren(final String str, final MediaBrowserService.Result<List<MediaBrowser.MediaItem>> result) {
         if (!this.chatsLoaded) {
             result.detach();
-            if (!this.loadingChats) {
-                this.loadingChats = true;
-                final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-                messagesStorage.getStorageQueue().postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        MusicBrowserService.this.lambda$onLoadChildren$1(messagesStorage, str, result);
-                    }
-                });
+            if (this.loadingChats) {
                 return;
             }
+            this.loadingChats = true;
+            final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
+            messagesStorage.getStorageQueue().postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    MusicBrowserService.this.lambda$onLoadChildren$1(messagesStorage, str, result);
+                }
+            });
             return;
         }
         loadChildrenImpl(str, result);
@@ -154,7 +154,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                         byteBufferValue.reuse();
                         if (MessageObject.isMusicMessage(TLdeserialize)) {
                             long longValue2 = queryFinalized2.longValue(0);
-                            TLdeserialize.id = queryFinalized2.intValue(2);
+                            TLdeserialize.f872id = queryFinalized2.intValue(2);
                             TLdeserialize.dialog_id = longValue2;
                             ArrayList<MessageObject> arrayList3 = this.musicObjects.get(longValue2);
                             ArrayList<MediaSession.QueueItem> arrayList4 = this.musicQueues.get(longValue2);
@@ -180,7 +180,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                     messagesStorage.getUsersInternal(TextUtils.join(",", arrayList), arrayList5);
                     for (int i = 0; i < arrayList5.size(); i++) {
                         TLRPC$User tLRPC$User = arrayList5.get(i);
-                        this.users.put(tLRPC$User.id, tLRPC$User);
+                        this.users.put(tLRPC$User.f986id, tLRPC$User);
                     }
                 }
                 if (!arrayList2.isEmpty()) {
@@ -188,12 +188,12 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                     messagesStorage.getChatsInternal(TextUtils.join(",", arrayList2), arrayList6);
                     for (int i2 = 0; i2 < arrayList6.size(); i2++) {
                         TLRPC$Chat tLRPC$Chat = arrayList6.get(i2);
-                        this.chats.put(tLRPC$Chat.id, tLRPC$Chat);
+                        this.chats.put(tLRPC$Chat.f848id, tLRPC$Chat);
                     }
                 }
             }
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -252,24 +252,24 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = 2;
             Bitmap decodeFile = BitmapFactory.decodeFile(file.toString(), options);
-            if (decodeFile == null) {
-                return null;
+            if (decodeFile != null) {
+                Bitmap createBitmap = Bitmap.createBitmap(decodeFile.getWidth(), decodeFile.getHeight(), Bitmap.Config.ARGB_8888);
+                createBitmap.eraseColor(0);
+                Canvas canvas = new Canvas(createBitmap);
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);
+                if (this.roundPaint == null) {
+                    this.roundPaint = new Paint(1);
+                    this.bitmapRect = new RectF();
+                }
+                this.roundPaint.setShader(bitmapShader);
+                this.bitmapRect.set(0.0f, 0.0f, decodeFile.getWidth(), decodeFile.getHeight());
+                canvas.drawRoundRect(this.bitmapRect, decodeFile.getWidth(), decodeFile.getHeight(), this.roundPaint);
+                return createBitmap;
             }
-            Bitmap createBitmap = Bitmap.createBitmap(decodeFile.getWidth(), decodeFile.getHeight(), Bitmap.Config.ARGB_8888);
-            createBitmap.eraseColor(0);
-            Canvas canvas = new Canvas(createBitmap);
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);
-            if (this.roundPaint == null) {
-                this.roundPaint = new Paint(1);
-                this.bitmapRect = new RectF();
-            }
-            this.roundPaint.setShader(bitmapShader);
-            this.bitmapRect.set(0.0f, 0.0f, decodeFile.getWidth(), decodeFile.getHeight());
-            canvas.drawRoundRect(this.bitmapRect, decodeFile.getWidth(), decodeFile.getHeight(), this.roundPaint);
-            return createBitmap;
+            return null;
         } catch (Throwable th) {
-            FileLog.e(th);
+            FileLog.m31e(th);
             return null;
         }
     }
@@ -309,37 +309,38 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             ArrayList<MessageObject> arrayList;
             ArrayList arrayList2;
             String[] split = str.split("_");
-            if (split.length == 2) {
-                try {
-                    parseLong = Long.parseLong(split[0]);
-                    parseInt = Integer.parseInt(split[1]);
-                    arrayList = (ArrayList) MusicBrowserService.this.musicObjects.get(parseLong);
-                    arrayList2 = (ArrayList) MusicBrowserService.this.musicQueues.get(parseLong);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                if (arrayList != null && parseInt >= 0 && parseInt < arrayList.size()) {
-                    MusicBrowserService.this.lastSelectedDialog = parseLong;
-                    MessagesController.getNotificationsSettings(MusicBrowserService.this.currentAccount).edit().putLong("auto_lastSelectedDialog", parseLong).commit();
-                    MediaController.getInstance().setPlaylist(arrayList, arrayList.get(parseInt), 0L, false, null);
-                    MusicBrowserService.this.mediaSession.setQueue(arrayList2);
-                    if (parseLong > 0) {
-                        TLRPC$User tLRPC$User = (TLRPC$User) MusicBrowserService.this.users.get(parseLong);
-                        if (tLRPC$User != null) {
-                            MusicBrowserService.this.mediaSession.setQueueTitle(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name));
-                        } else {
-                            MusicBrowserService.this.mediaSession.setQueueTitle("DELETED USER");
-                        }
+            if (split.length != 2) {
+                return;
+            }
+            try {
+                parseLong = Long.parseLong(split[0]);
+                parseInt = Integer.parseInt(split[1]);
+                arrayList = (ArrayList) MusicBrowserService.this.musicObjects.get(parseLong);
+                arrayList2 = (ArrayList) MusicBrowserService.this.musicQueues.get(parseLong);
+            } catch (Exception e) {
+                FileLog.m31e(e);
+            }
+            if (arrayList != null && parseInt >= 0 && parseInt < arrayList.size()) {
+                MusicBrowserService.this.lastSelectedDialog = parseLong;
+                MessagesController.getNotificationsSettings(MusicBrowserService.this.currentAccount).edit().putLong("auto_lastSelectedDialog", parseLong).commit();
+                MediaController.getInstance().setPlaylist(arrayList, arrayList.get(parseInt), 0L, false, null);
+                MusicBrowserService.this.mediaSession.setQueue(arrayList2);
+                if (parseLong > 0) {
+                    TLRPC$User tLRPC$User = (TLRPC$User) MusicBrowserService.this.users.get(parseLong);
+                    if (tLRPC$User != null) {
+                        MusicBrowserService.this.mediaSession.setQueueTitle(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name));
                     } else {
-                        TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) MusicBrowserService.this.chats.get(-parseLong);
-                        if (tLRPC$Chat != null) {
-                            MusicBrowserService.this.mediaSession.setQueueTitle(tLRPC$Chat.title);
-                        } else {
-                            MusicBrowserService.this.mediaSession.setQueueTitle("DELETED CHAT");
-                        }
+                        MusicBrowserService.this.mediaSession.setQueueTitle("DELETED USER");
                     }
-                    MusicBrowserService.this.handlePlayRequest();
+                } else {
+                    TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) MusicBrowserService.this.chats.get(-parseLong);
+                    if (tLRPC$Chat != null) {
+                        MusicBrowserService.this.mediaSession.setQueueTitle(tLRPC$Chat.title);
+                    } else {
+                        MusicBrowserService.this.mediaSession.setQueueTitle("DELETED CHAT");
+                    }
                 }
+                MusicBrowserService.this.handlePlayRequest();
             }
         }
 
@@ -368,22 +369,23 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             String str2;
             String str3;
             String str4;
-            if (!(str == null || str.length() == 0)) {
-                String lowerCase = str.toLowerCase();
-                for (int i = 0; i < MusicBrowserService.this.dialogs.size(); i++) {
-                    long longValue = ((Long) MusicBrowserService.this.dialogs.get(i)).longValue();
-                    if (DialogObject.isUserDialog(longValue)) {
-                        TLRPC$User tLRPC$User = (TLRPC$User) MusicBrowserService.this.users.get(longValue);
-                        if (tLRPC$User != null && (((str3 = tLRPC$User.first_name) != null && str3.startsWith(lowerCase)) || ((str4 = tLRPC$User.last_name) != null && str4.startsWith(lowerCase)))) {
-                            onPlayFromMediaId(longValue + "_0", null);
-                            return;
-                        }
-                    } else {
-                        TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) MusicBrowserService.this.chats.get(-longValue);
-                        if (!(tLRPC$Chat == null || (str2 = tLRPC$Chat.title) == null || !str2.toLowerCase().contains(lowerCase))) {
-                            onPlayFromMediaId(longValue + "_0", null);
-                            return;
-                        }
+            if (str == null || str.length() == 0) {
+                return;
+            }
+            String lowerCase = str.toLowerCase();
+            for (int i = 0; i < MusicBrowserService.this.dialogs.size(); i++) {
+                long longValue = ((Long) MusicBrowserService.this.dialogs.get(i)).longValue();
+                if (DialogObject.isUserDialog(longValue)) {
+                    TLRPC$User tLRPC$User = (TLRPC$User) MusicBrowserService.this.users.get(longValue);
+                    if (tLRPC$User != null && (((str3 = tLRPC$User.first_name) != null && str3.startsWith(lowerCase)) || ((str4 = tLRPC$User.last_name) != null && str4.startsWith(lowerCase)))) {
+                        onPlayFromMediaId(longValue + "_0", null);
+                        return;
+                    }
+                } else {
+                    TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) MusicBrowserService.this.chats.get(-longValue);
+                    if (tLRPC$Chat != null && (str2 = tLRPC$Chat.title) != null && str2.toLowerCase().contains(lowerCase)) {
+                        onPlayFromMediaId(longValue + "_0", null);
+                        return;
                     }
                 }
             }
@@ -419,14 +421,10 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
     }
 
     private long getAvailableActions() {
-        long j = 3076;
-        if (MediaController.getInstance().getPlayingMessageObject() == null) {
-            return 3076L;
+        if (MediaController.getInstance().getPlayingMessageObject() != null) {
+            return (MediaController.getInstance().isMessagePaused() ? 3076L : 3078L) | 16 | 32;
         }
-        if (!MediaController.getInstance().isMessagePaused()) {
-            j = 3078;
-        }
-        return j | 16 | 32;
+        return 3076L;
     }
 
     public void handleStopRequest(String str) {
@@ -447,7 +445,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             try {
                 startService(new Intent(getApplicationContext(), MusicBrowserService.class));
             } catch (Throwable th) {
-                FileLog.e(th);
+                FileLog.m31e(th);
             }
             this.serviceStarted = true;
         }
@@ -455,17 +453,18 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             this.mediaSession.setActive(true);
         }
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-        if (playingMessageObject != null) {
-            MediaMetadata.Builder builder = new MediaMetadata.Builder();
-            builder.putLong("android.media.metadata.DURATION", playingMessageObject.getDuration() * 1000);
-            builder.putString("android.media.metadata.ARTIST", playingMessageObject.getMusicAuthor());
-            builder.putString("android.media.metadata.TITLE", playingMessageObject.getMusicTitle());
-            AudioInfo audioInfo = MediaController.getInstance().getAudioInfo();
-            if (!(audioInfo == null || (cover = audioInfo.getCover()) == null)) {
-                builder.putBitmap("android.media.metadata.ALBUM_ART", cover);
-            }
-            this.mediaSession.setMetadata(builder.build());
+        if (playingMessageObject == null) {
+            return;
         }
+        MediaMetadata.Builder builder = new MediaMetadata.Builder();
+        builder.putLong("android.media.metadata.DURATION", playingMessageObject.getDuration() * 1000);
+        builder.putString("android.media.metadata.ARTIST", playingMessageObject.getMusicAuthor());
+        builder.putString("android.media.metadata.TITLE", playingMessageObject.getMusicTitle());
+        AudioInfo audioInfo = MediaController.getInstance().getAudioInfo();
+        if (audioInfo != null && (cover = audioInfo.getCover()) != null) {
+            builder.putBitmap("android.media.metadata.ALBUM_ART", cover);
+        }
+        this.mediaSession.setMetadata(builder.build());
     }
 
     public void handlePauseRequest() {
@@ -490,12 +489,11 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         @Override
         public void handleMessage(Message message) {
             MusicBrowserService musicBrowserService = this.mWeakReference.get();
-            if (musicBrowserService == null) {
-                return;
-            }
-            if (MediaController.getInstance().getPlayingMessageObject() == null || MediaController.getInstance().isMessagePaused()) {
-                musicBrowserService.stopSelf();
-                musicBrowserService.serviceStarted = false;
+            if (musicBrowserService != null) {
+                if (MediaController.getInstance().getPlayingMessageObject() == null || MediaController.getInstance().isMessagePaused()) {
+                    musicBrowserService.stopSelf();
+                    musicBrowserService.serviceStarted = false;
+                }
             }
         }
     }

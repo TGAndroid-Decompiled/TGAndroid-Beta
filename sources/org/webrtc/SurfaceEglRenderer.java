@@ -2,7 +2,7 @@ package org.webrtc;
 
 import android.view.SurfaceHolder;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda2;
+import org.telegram.p009ui.ActionBar.Theme$$ExternalSyntheticLambda2;
 import org.webrtc.EglBase;
 import org.webrtc.RendererCommon;
 
@@ -11,13 +11,14 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     private int frameRotation;
     private boolean isFirstFrameRendered;
     private boolean isRenderingPaused;
-    private final Object layoutLock = new Object();
+    private final Object layoutLock;
     private RendererCommon.RendererEvents rendererEvents;
     private int rotatedFrameHeight;
     private int rotatedFrameWidth;
 
     public SurfaceEglRenderer(String str) {
         super(str);
+        this.layoutLock = new Object();
     }
 
     public void init(EglBase.Context context, RendererCommon.RendererEvents rendererEvents, int[] iArr, RendererCommon.GlDrawer glDrawer) {
@@ -89,30 +90,31 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
 
     private void updateFrameDimensionsAndReportEvents(VideoFrame videoFrame) {
         synchronized (this.layoutLock) {
-            if (!this.isRenderingPaused) {
-                if (!this.isFirstFrameRendered) {
-                    this.isFirstFrameRendered = true;
-                    logD("Reporting first rendered frame.");
-                    RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
-                    if (rendererEvents != null) {
-                        rendererEvents.onFirstFrameRendered();
-                    }
+            if (this.isRenderingPaused) {
+                return;
+            }
+            if (!this.isFirstFrameRendered) {
+                this.isFirstFrameRendered = true;
+                logD("Reporting first rendered frame.");
+                RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
+                if (rendererEvents != null) {
+                    rendererEvents.onFirstFrameRendered();
                 }
-                if (!(this.rotatedFrameWidth == videoFrame.getRotatedWidth() && this.rotatedFrameHeight == videoFrame.getRotatedHeight() && this.frameRotation == videoFrame.getRotation())) {
-                    logD("Reporting frame resolution changed to " + videoFrame.getBuffer().getWidth() + "x" + videoFrame.getBuffer().getHeight() + " with rotation " + videoFrame.getRotation());
-                    RendererCommon.RendererEvents rendererEvents2 = this.rendererEvents;
-                    if (rendererEvents2 != null) {
-                        rendererEvents2.onFrameResolutionChanged(videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotation());
-                    }
-                    this.rotatedFrameWidth = videoFrame.getRotatedWidth();
-                    this.rotatedFrameHeight = videoFrame.getRotatedHeight();
-                    this.frameRotation = videoFrame.getRotation();
+            }
+            if (this.rotatedFrameWidth != videoFrame.getRotatedWidth() || this.rotatedFrameHeight != videoFrame.getRotatedHeight() || this.frameRotation != videoFrame.getRotation()) {
+                logD("Reporting frame resolution changed to " + videoFrame.getBuffer().getWidth() + "x" + videoFrame.getBuffer().getHeight() + " with rotation " + videoFrame.getRotation());
+                RendererCommon.RendererEvents rendererEvents2 = this.rendererEvents;
+                if (rendererEvents2 != null) {
+                    rendererEvents2.onFrameResolutionChanged(videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotation());
                 }
+                this.rotatedFrameWidth = videoFrame.getRotatedWidth();
+                this.rotatedFrameHeight = videoFrame.getRotatedHeight();
+                this.frameRotation = videoFrame.getRotation();
             }
         }
     }
 
     private void logD(String str) {
-        Logging.d(TAG, this.name + ": " + str);
+        Logging.m9d(TAG, this.name + ": " + str);
     }
 }

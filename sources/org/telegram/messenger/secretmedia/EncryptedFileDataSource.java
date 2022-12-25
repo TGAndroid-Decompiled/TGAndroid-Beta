@@ -18,7 +18,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     private long bytesRemaining;
     private RandomAccessFile file;
     private int fileOffset;
-    private byte[] iv;
+    private byte[] f831iv;
     private byte[] key;
     private boolean opened;
     private Uri uri;
@@ -39,7 +39,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     public EncryptedFileDataSource() {
         super(false);
         this.key = new byte[32];
-        this.iv = new byte[16];
+        this.f831iv = new byte[16];
     }
 
     @Deprecated
@@ -59,7 +59,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
             File internalCacheDir = FileLoader.getInternalCacheDir();
             RandomAccessFile randomAccessFile = new RandomAccessFile(new File(internalCacheDir, name + ".key"), "r");
             randomAccessFile.read(this.key);
-            randomAccessFile.read(this.iv);
+            randomAccessFile.read(this.f831iv);
             randomAccessFile.close();
             RandomAccessFile randomAccessFile2 = new RandomAccessFile(file, "r");
             this.file = randomAccessFile2;
@@ -70,12 +70,12 @@ public final class EncryptedFileDataSource extends BaseDataSource {
                 j = this.file.length() - dataSpec.position;
             }
             this.bytesRemaining = j;
-            if (j >= 0) {
-                this.opened = true;
-                transferStarted(dataSpec);
-                return this.bytesRemaining;
+            if (j < 0) {
+                throw new EOFException();
             }
-            throw new EOFException();
+            this.opened = true;
+            transferStarted(dataSpec);
+            return this.bytesRemaining;
         } catch (IOException e) {
             throw new EncryptedFileDataSourceException(e);
         }
@@ -93,7 +93,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
         try {
             int read = this.file.read(bArr, i, (int) Math.min(j, i2));
             long j2 = read;
-            Utilities.aesCtrDecryptionByteArray(bArr, this.key, this.iv, i, j2, this.fileOffset);
+            Utilities.aesCtrDecryptionByteArray(bArr, this.key, this.f831iv, i, j2, this.fileOffset);
             this.fileOffset += read;
             if (read > 0) {
                 this.bytesRemaining -= j2;

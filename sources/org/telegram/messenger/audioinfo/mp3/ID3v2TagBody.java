@@ -47,25 +47,25 @@ public class ID3v2TagBody {
             for (int i3 = 0; i3 < length; i3++) {
                 byte b = readFully[i3];
                 if (!z || b != 0) {
-                    i2++;
                     readFully[i2] = b;
+                    i2++;
                 }
                 z = b == -1;
             }
             inputStream = new ByteArrayInputStream(readFully, 0, i2);
             bodySize = i2;
         }
-        if (!iD3v2FrameHeader.isEncryption()) {
-            if (iD3v2FrameHeader.isCompression()) {
-                i = iD3v2FrameHeader.getDataLengthIndicator();
-                inflaterInputStream = new InflaterInputStream(inputStream);
-            } else {
-                i = bodySize;
-                inflaterInputStream = inputStream;
-            }
-            return new ID3v2FrameBody(inflaterInputStream, iD3v2FrameHeader.getHeaderSize(), i, this.tagHeader, iD3v2FrameHeader);
+        if (iD3v2FrameHeader.isEncryption()) {
+            throw new ID3v2Exception("Frame encryption is not supported");
         }
-        throw new ID3v2Exception("Frame encryption is not supported");
+        if (iD3v2FrameHeader.isCompression()) {
+            i = iD3v2FrameHeader.getDataLengthIndicator();
+            inflaterInputStream = new InflaterInputStream(inputStream);
+        } else {
+            i = bodySize;
+            inflaterInputStream = inputStream;
+        }
+        return new ID3v2FrameBody(inflaterInputStream, iD3v2FrameHeader.getHeaderSize(), i, this.tagHeader, iD3v2FrameHeader);
     }
 
     public String toString() {

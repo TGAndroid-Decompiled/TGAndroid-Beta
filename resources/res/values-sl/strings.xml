@@ -17,7 +17,7 @@
     <string name="common_google_play_services_wear_update_text">Potrebujete novo različico storitev Google Play. V kratkem se bodo posodobile.</string>
     <string name="common_open_on_phone">Odpiranje v telefonu</string>
     <string name="common_signin_button_text">Prijava</string>
-    <string name="common_signin_button_text_long">Prijava z Google Računom</string>
+    <string name="common_signin_button_text_long">Prijava z računom Google</string>
     <string name="fcm_fallback_notification_channel_label">Razno</string>
     <string name="google_assistant_verification_channel_name">Preverjevalnik Pomočnika</string>
     <string name="google_assistant_verification_notification_title">Pošiljanje sporočila Pomočnika Google</string>

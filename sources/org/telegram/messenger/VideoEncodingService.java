@@ -33,14 +33,13 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.stopEncodingService);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploadProgressChanged);
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("destroy video service");
+            FileLog.m34d("destroy video service");
         }
     }
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         String str;
-        boolean z = true;
         if (i == NotificationCenter.fileUploadProgressChanged) {
             String str2 = (String) objArr[0];
             if (i2 == this.currentAccount && (str = this.path) != null && str.equals(str2)) {
@@ -48,24 +47,19 @@ public class VideoEncodingService extends Service implements NotificationCenter.
                 Boolean bool = (Boolean) objArr[3];
                 int i3 = (int) (min * 100.0f);
                 this.currentProgress = i3;
-                NotificationCompat.Builder builder = this.builder;
-                if (i3 != 0) {
-                    z = false;
-                }
-                builder.setProgress(100, i3, z);
+                this.builder.setProgress(100, i3, i3 == 0);
                 try {
                     NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(4, this.builder.build());
                 } catch (Throwable th) {
-                    FileLog.e(th);
+                    FileLog.m31e(th);
                 }
             }
         } else if (i == NotificationCenter.stopEncodingService) {
             String str3 = (String) objArr[0];
-            if (((Integer) objArr[1]).intValue() != this.currentAccount) {
-                return;
-            }
-            if (str3 == null || str3.equals(this.path)) {
-                stopSelf();
+            if (((Integer) objArr[1]).intValue() == this.currentAccount) {
+                if (str3 == null || str3.equals(this.path)) {
+                    stopSelf();
+                }
             }
         }
     }
@@ -92,7 +86,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             return 2;
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("start video service");
+            FileLog.m34d("start video service");
         }
         if (this.builder == null) {
             NotificationsController.checkOtherNotificationsChannel();
@@ -101,13 +95,17 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             builder.setSmallIcon(17301640);
             this.builder.setWhen(System.currentTimeMillis());
             this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
-            this.builder.setContentTitle(LocaleController.getString("AppName", R.string.AppName));
+            this.builder.setContentTitle(LocaleController.getString("AppName", C1010R.string.AppName));
             if (booleanExtra) {
-                this.builder.setTicker(LocaleController.getString("SendingGif", R.string.SendingGif));
-                this.builder.setContentText(LocaleController.getString("SendingGif", R.string.SendingGif));
+                NotificationCompat.Builder builder2 = this.builder;
+                int i5 = C1010R.string.SendingGif;
+                builder2.setTicker(LocaleController.getString("SendingGif", i5));
+                this.builder.setContentText(LocaleController.getString("SendingGif", i5));
             } else {
-                this.builder.setTicker(LocaleController.getString("SendingVideo", R.string.SendingVideo));
-                this.builder.setContentText(LocaleController.getString("SendingVideo", R.string.SendingVideo));
+                NotificationCompat.Builder builder3 = this.builder;
+                int i6 = C1010R.string.SendingVideo;
+                builder3.setTicker(LocaleController.getString("SendingVideo", i6));
+                this.builder.setContentText(LocaleController.getString("SendingVideo", i6));
             }
         }
         this.currentProgress = 0;

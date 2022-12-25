@@ -4,7 +4,7 @@ import java.util.concurrent.Executor;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.GuardedBy;
 
-final class zzl<TResult> implements zzr<TResult> {
+public final class zzl implements zzq {
     private final Executor zza;
     private final Object zzb = new Object();
     @GuardedBy("mLock")
@@ -17,20 +17,22 @@ final class zzl<TResult> implements zzr<TResult> {
     }
 
     @Override
-    public final void zza(Task<TResult> task) {
-        if (!task.isSuccessful() && !task.isCanceled()) {
-            synchronized (this.zzb) {
-                if (this.zzc != null) {
-                    this.zza.execute(new zzk(this, task));
-                }
-            }
+    public final void zzc() {
+        synchronized (this.zzb) {
+            this.zzc = null;
         }
     }
 
     @Override
-    public final void zza() {
+    public final void zzd(Task task) {
+        if (task.isSuccessful() || task.isCanceled()) {
+            return;
+        }
         synchronized (this.zzb) {
-            this.zzc = null;
+            if (this.zzc == null) {
+                return;
+            }
+            this.zza.execute(new zzk(this, task));
         }
     }
 }

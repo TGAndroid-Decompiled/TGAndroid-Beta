@@ -2,37 +2,49 @@ package org.telegram.tgnet;
 
 public abstract class TLRPC$InputStickerSet extends TLObject {
     public long access_hash;
-    public long id;
+    public long f871id;
     public String short_name;
 
     public static TLRPC$InputStickerSet TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$InputStickerSet tLRPC$InputStickerSet;
+        TLRPC$InputStickerSet tLRPC$TL_inputStickerSetShortName;
         switch (i) {
             case -2044933984:
-                tLRPC$InputStickerSet = new TLRPC$TL_inputStickerSetShortName();
+                tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetShortName();
                 break;
             case -1645763991:
-                tLRPC$InputStickerSet = new TLRPC$TL_inputStickerSetID();
+                tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetID();
+                break;
+            case -930399486:
+                tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetPremiumGifts();
                 break;
             case -427863538:
-                tLRPC$InputStickerSet = new TLRPC$TL_inputStickerSetDice();
+                tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetDice();
                 break;
             case -4838507:
-                tLRPC$InputStickerSet = new TLRPC$TL_inputStickerSetEmpty();
+                tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetEmpty();
                 break;
             case 42402760:
-                tLRPC$InputStickerSet = new TLRPC$TL_inputStickerSetAnimatedEmoji();
+                tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetAnimatedEmoji();
+                break;
+            case 80008398:
+                tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetEmojiGenericAnimations();
+                break;
+            case 701560302:
+                tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetEmojiDefaultStatuses();
+                break;
+            case 1153562857:
+                tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetEmojiDefaultTopicIcons();
                 break;
             default:
-                tLRPC$InputStickerSet = null;
+                tLRPC$TL_inputStickerSetShortName = null;
                 break;
         }
-        if (tLRPC$InputStickerSet != null || !z) {
-            if (tLRPC$InputStickerSet != null) {
-                tLRPC$InputStickerSet.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$InputStickerSet;
+        if (tLRPC$TL_inputStickerSetShortName == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in InputStickerSet", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in InputStickerSet", Integer.valueOf(i)));
+        if (tLRPC$TL_inputStickerSetShortName != null) {
+            tLRPC$TL_inputStickerSetShortName.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_inputStickerSetShortName;
     }
 }

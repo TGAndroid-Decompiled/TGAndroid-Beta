@@ -6,6 +6,7 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.NativeInstance;
@@ -99,7 +100,7 @@ public final class Instance {
             }
         } catch (JSONException e) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("failed to parse tgvoip server config", e);
+                FileLog.m32e("failed to parse tgvoip server config", e);
             }
         }
     }
@@ -175,7 +176,7 @@ public final class Instance {
     }
 
     public static final class Endpoint {
-        public final long id;
+        public final long f842id;
         public final String ipv4;
         public final String ipv6;
         public final boolean isRtc;
@@ -190,7 +191,7 @@ public final class Instance {
 
         public Endpoint(boolean z, long j, String str, String str2, int i, int i2, byte[] bArr, boolean z2, boolean z3, String str3, String str4, boolean z4) {
             this.isRtc = z;
-            this.id = j;
+            this.f842id = j;
             this.ipv4 = str;
             this.ipv6 = str2;
             this.port = i;
@@ -204,7 +205,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Endpoint{id=" + this.id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
+            return "Endpoint{id=" + this.f842id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
         }
     }
 
@@ -296,8 +297,8 @@ public final class Instance {
         public final String component;
         public final String foundation;
         public final String generation;
-        public final String id;
-        public final String ip;
+        public final String f840id;
+        public final String f841ip;
         public final String network;
         public final String port;
         public final String priority;
@@ -312,11 +313,11 @@ public final class Instance {
             this.protocol = str2;
             this.network = str3;
             this.generation = str4;
-            this.id = str5;
+            this.f840id = str5;
             this.component = str6;
             this.foundation = str7;
             this.priority = str8;
-            this.ip = str9;
+            this.f841ip = str9;
             this.type = str10;
             this.tcpType = str11;
             this.relAddr = str12;
@@ -324,7 +325,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
+            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f840id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.f841ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
         }
     }
 
@@ -360,7 +361,7 @@ public final class Instance {
         }
 
         public String getString(String str) {
-            return getString(str, "");
+            return getString(str, BuildConfig.APP_CENTER_HASH);
         }
 
         public String getString(String str, String str2) {

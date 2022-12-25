@@ -58,12 +58,12 @@ public abstract class TLRPC$AttachMenuPeerType extends TLObject {
                 tLRPC$AttachMenuPeerType = null;
                 break;
         }
-        if (tLRPC$AttachMenuPeerType != null || !z) {
-            if (tLRPC$AttachMenuPeerType != null) {
-                tLRPC$AttachMenuPeerType.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$AttachMenuPeerType;
+        if (tLRPC$AttachMenuPeerType == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in AttachMenuPeerType", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in AttachMenuPeerType", Integer.valueOf(i)));
+        if (tLRPC$AttachMenuPeerType != null) {
+            tLRPC$AttachMenuPeerType.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$AttachMenuPeerType;
     }
 }

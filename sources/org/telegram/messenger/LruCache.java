@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 public class LruCache<T> {
     private final LinkedHashMap<String, T> map;
@@ -19,26 +21,23 @@ public class LruCache<T> {
     }
 
     public LruCache(int i) {
-        if (i > 0) {
-            this.maxSize = i;
-            this.map = new LinkedHashMap<>(0, 0.75f, true);
-            this.mapFilters = new LinkedHashMap<>();
-            return;
+        if (i <= 0) {
+            throw new IllegalArgumentException("maxSize <= 0");
         }
-        throw new IllegalArgumentException("maxSize <= 0");
+        this.maxSize = i;
+        this.map = new LinkedHashMap<>(0, 0.75f, true);
+        this.mapFilters = new LinkedHashMap<>();
     }
 
     public final T get(String str) {
-        if (str != null) {
-            synchronized (this) {
-                T t = this.map.get(str);
-                if (t != null) {
-                    return t;
-                }
-                return null;
+        Objects.requireNonNull(str, "key == null");
+        synchronized (this) {
+            T t = this.map.get(str);
+            if (t != null) {
+                return t;
             }
+            return null;
         }
-        throw new NullPointerException("key == null");
     }
 
     public ArrayList<String> getFilterKeys(String str) {
@@ -113,26 +112,24 @@ public class LruCache<T> {
     public final T remove(String str) {
         T remove;
         ArrayList<String> arrayList;
-        if (str != null) {
-            synchronized (this) {
-                remove = this.map.remove(str);
-                if (remove != null) {
-                    this.size -= safeSizeOf(str, remove);
-                }
-            }
+        Objects.requireNonNull(str, "key == null");
+        synchronized (this) {
+            remove = this.map.remove(str);
             if (remove != null) {
-                String[] split = str.split("@");
-                if (split.length > 1 && (arrayList = this.mapFilters.get(split[0])) != null) {
-                    arrayList.remove(split[1]);
-                    if (arrayList.isEmpty()) {
-                        this.mapFilters.remove(split[0]);
-                    }
-                }
-                entryRemoved(false, str, remove, null);
+                this.size -= safeSizeOf(str, remove);
             }
-            return remove;
         }
-        throw new NullPointerException("key == null");
+        if (remove != null) {
+            String[] split = str.split("@");
+            if (split.length > 1 && (arrayList = this.mapFilters.get(split[0])) != null) {
+                arrayList.remove(split[1]);
+                if (arrayList.isEmpty()) {
+                    this.mapFilters.remove(split[0]);
+                }
+            }
+            entryRemoved(false, str, remove, null);
+        }
+        return remove;
     }
 
     public boolean contains(String str) {
@@ -157,5 +154,9 @@ public class LruCache<T> {
 
     public final synchronized int maxSize() {
         return this.maxSize;
+    }
+
+    public final synchronized Set<Map.Entry<String, T>> entrySet() {
+        return this.map.entrySet();
     }
 }

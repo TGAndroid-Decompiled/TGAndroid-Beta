@@ -128,12 +128,12 @@ public abstract class TLRPC$InputPeer extends TLObject {
                 tLRPC$InputPeer = null;
                 break;
         }
-        if (tLRPC$InputPeer != null || !z) {
-            if (tLRPC$InputPeer != null) {
-                tLRPC$InputPeer.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$InputPeer;
+        if (tLRPC$InputPeer == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in InputPeer", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in InputPeer", Integer.valueOf(i)));
+        if (tLRPC$InputPeer != null) {
+            tLRPC$InputPeer.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$InputPeer;
     }
 }

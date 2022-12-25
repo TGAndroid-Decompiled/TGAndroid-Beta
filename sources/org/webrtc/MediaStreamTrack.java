@@ -67,14 +67,13 @@ public class MediaStreamTrack {
     }
 
     public MediaStreamTrack(long j) {
-        if (j != 0) {
-            this.nativeTrack = j;
-            return;
+        if (j == 0) {
+            throw new IllegalArgumentException("nativeTrack may not be null");
         }
-        throw new IllegalArgumentException("nativeTrack may not be null");
+        this.nativeTrack = j;
     }
 
-    public String id() {
+    public String m3id() {
         checkMediaStreamTrackExists();
         return nativeGetId(this.nativeTrack);
     }

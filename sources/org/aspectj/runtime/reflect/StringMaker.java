@@ -1,6 +1,7 @@
 package org.aspectj.runtime.reflect;
 
 import java.lang.reflect.Modifier;
+import org.telegram.messenger.BuildConfig;
 
 class StringMaker {
     static StringMaker longStringMaker;
@@ -49,17 +50,17 @@ class StringMaker {
     }
 
     public String makeModifiersString(int i) {
-        if (!this.includeModifiers) {
-            return "";
+        if (this.includeModifiers) {
+            String modifier = Modifier.toString(i);
+            if (modifier.length() == 0) {
+                return BuildConfig.APP_CENTER_HASH;
+            }
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append(modifier);
+            stringBuffer.append(" ");
+            return stringBuffer.toString();
         }
-        String modifier = Modifier.toString(i);
-        if (modifier.length() == 0) {
-            return "";
-        }
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(modifier);
-        stringBuffer.append(" ");
-        return stringBuffer.toString();
+        return BuildConfig.APP_CENTER_HASH;
     }
 
     String stripPackageName(String str) {
@@ -71,17 +72,17 @@ class StringMaker {
         if (cls == null) {
             return "ANONYMOUS";
         }
-        if (cls.isArray()) {
-            Class<?> componentType = cls.getComponentType();
-            StringBuffer stringBuffer = new StringBuffer();
-            stringBuffer.append(makeTypeName(componentType, componentType.getName(), z));
-            stringBuffer.append("[]");
-            return stringBuffer.toString();
-        } else if (z) {
-            return stripPackageName(str).replace('$', '.');
-        } else {
+        if (!cls.isArray()) {
+            if (z) {
+                return stripPackageName(str).replace('$', '.');
+            }
             return str.replace('$', '.');
         }
+        Class<?> componentType = cls.getComponentType();
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(makeTypeName(componentType, componentType.getName(), z));
+        stringBuffer.append("[]");
+        return stringBuffer.toString();
     }
 
     public String makeTypeName(Class cls) {
@@ -102,23 +103,28 @@ class StringMaker {
     }
 
     public void addSignature(StringBuffer stringBuffer, Class[] clsArr) {
-        if (clsArr != null) {
-            if (this.includeArgs) {
-                stringBuffer.append("(");
-                addTypeNames(stringBuffer, clsArr);
-                stringBuffer.append(")");
-            } else if (clsArr.length == 0) {
+        if (clsArr == null) {
+            return;
+        }
+        if (!this.includeArgs) {
+            if (clsArr.length == 0) {
                 stringBuffer.append("()");
+                return;
             } else {
                 stringBuffer.append("(..)");
+                return;
             }
         }
+        stringBuffer.append("(");
+        addTypeNames(stringBuffer, clsArr);
+        stringBuffer.append(")");
     }
 
     public void addThrows(StringBuffer stringBuffer, Class[] clsArr) {
-        if (this.includeThrows && clsArr != null && clsArr.length != 0) {
-            stringBuffer.append(" throws ");
-            addTypeNames(stringBuffer, clsArr);
+        if (!this.includeThrows || clsArr == null || clsArr.length == 0) {
+            return;
         }
+        stringBuffer.append(" throws ");
+        addTypeNames(stringBuffer, clsArr);
     }
 }

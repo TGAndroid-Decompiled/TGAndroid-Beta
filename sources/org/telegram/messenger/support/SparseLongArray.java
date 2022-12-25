@@ -17,18 +17,19 @@ public class SparseLongArray implements Cloneable {
     }
 
     public SparseLongArray clone() {
-        SparseLongArray sparseLongArray = null;
+        SparseLongArray sparseLongArray;
+        SparseLongArray sparseLongArray2 = null;
         try {
-            SparseLongArray sparseLongArray2 = (SparseLongArray) super.clone();
-            try {
-                sparseLongArray2.mKeys = (int[]) this.mKeys.clone();
-                sparseLongArray2.mValues = (long[]) this.mValues.clone();
-                return sparseLongArray2;
-            } catch (CloneNotSupportedException unused) {
-                sparseLongArray = sparseLongArray2;
-                return sparseLongArray;
-            }
+            sparseLongArray = (SparseLongArray) super.clone();
+        } catch (CloneNotSupportedException unused) {
+        }
+        try {
+            sparseLongArray.mKeys = (int[]) this.mKeys.clone();
+            sparseLongArray.mValues = (long[]) this.mValues.clone();
+            return sparseLongArray;
         } catch (CloneNotSupportedException unused2) {
+            sparseLongArray2 = sparseLongArray;
+            return sparseLongArray2;
         }
     }
 
@@ -112,16 +113,16 @@ public class SparseLongArray implements Cloneable {
 
     public void append(int i, long j) {
         int i2 = this.mSize;
-        if (i2 == 0 || i > this.mKeys[i2 - 1]) {
-            if (i2 >= this.mKeys.length) {
-                growKeyAndValueArrays(i2 + 1);
-            }
-            this.mKeys[i2] = i;
-            this.mValues[i2] = j;
-            this.mSize = i2 + 1;
+        if (i2 != 0 && i <= this.mKeys[i2 - 1]) {
+            put(i, j);
             return;
         }
-        put(i, j);
+        if (i2 >= this.mKeys.length) {
+            growKeyAndValueArrays(i2 + 1);
+        }
+        this.mKeys[i2] = i;
+        this.mValues[i2] = j;
+        this.mSize = i2 + 1;
     }
 
     private void growKeyAndValueArrays(int i) {

@@ -10,15 +10,15 @@ public class TLRPC$TL_postAddress extends TLObject {
     public String street_line2;
 
     public static TLRPC$TL_postAddress TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_postAddress tLRPC$TL_postAddress = new TLRPC$TL_postAddress();
-            tLRPC$TL_postAddress.readParams(abstractSerializedData, z);
-            return tLRPC$TL_postAddress;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_postAddress", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_postAddress", Integer.valueOf(i)));
         }
+        TLRPC$TL_postAddress tLRPC$TL_postAddress = new TLRPC$TL_postAddress();
+        tLRPC$TL_postAddress.readParams(abstractSerializedData, z);
+        return tLRPC$TL_postAddress;
     }
 
     @Override

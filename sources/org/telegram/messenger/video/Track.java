@@ -44,7 +44,7 @@ public class Track {
     private boolean first = true;
 
     public static class SamplePresentationTime {
-        private long dt;
+        private long f838dt;
         private int index;
         private long presentationTime;
 
@@ -179,6 +179,7 @@ public class Track {
                 avcConfigurationBox.setProfileCompatibility(0);
                 visualSampleEntry.addBox(avcConfigurationBox);
                 this.sampleDescriptionBox.addBox(visualSampleEntry);
+                return;
             } else if (string.equals("video/mp4v")) {
                 VisualSampleEntry visualSampleEntry2 = new VisualSampleEntry("mp4v");
                 visualSampleEntry2.setDataReferenceIndex(1);
@@ -189,51 +190,53 @@ public class Track {
                 visualSampleEntry2.setWidth(this.width);
                 visualSampleEntry2.setHeight(this.height);
                 this.sampleDescriptionBox.addBox(visualSampleEntry2);
-            }
-        } else {
-            this.volume = 1.0f;
-            this.timeScale = mediaFormat.getInteger("sample-rate");
-            this.handler = "soun";
-            this.headerBox = new SoundMediaHeaderBox();
-            this.sampleDescriptionBox = new SampleDescriptionBox();
-            AudioSampleEntry audioSampleEntry = new AudioSampleEntry("mp4a");
-            audioSampleEntry.setChannelCount(mediaFormat.getInteger("channel-count"));
-            audioSampleEntry.setSampleRate(mediaFormat.getInteger("sample-rate"));
-            audioSampleEntry.setDataReferenceIndex(1);
-            audioSampleEntry.setSampleSize(16);
-            ESDescriptorBox eSDescriptorBox = new ESDescriptorBox();
-            ESDescriptor eSDescriptor = new ESDescriptor();
-            eSDescriptor.setEsId(0);
-            SLConfigDescriptor sLConfigDescriptor = new SLConfigDescriptor();
-            sLConfigDescriptor.setPredefined(2);
-            eSDescriptor.setSlConfigDescriptor(sLConfigDescriptor);
-            String string2 = mediaFormat.containsKey("mime") ? mediaFormat.getString("mime") : "audio/mp4-latm";
-            DecoderConfigDescriptor decoderConfigDescriptor = new DecoderConfigDescriptor();
-            if ("audio/mpeg".equals(string2)) {
-                decoderConfigDescriptor.setObjectTypeIndication(105);
+                return;
             } else {
-                decoderConfigDescriptor.setObjectTypeIndication(64);
+                return;
             }
-            decoderConfigDescriptor.setStreamType(5);
-            decoderConfigDescriptor.setBufferSizeDB(1536);
-            if (mediaFormat.containsKey("max-bitrate")) {
-                decoderConfigDescriptor.setMaxBitRate(mediaFormat.getInteger("max-bitrate"));
-            } else {
-                decoderConfigDescriptor.setMaxBitRate(96000L);
-            }
-            decoderConfigDescriptor.setAvgBitRate(this.timeScale);
-            AudioSpecificConfig audioSpecificConfig = new AudioSpecificConfig();
-            audioSpecificConfig.setAudioObjectType(2);
-            audioSpecificConfig.setSamplingFrequencyIndex(samplingFrequencyIndexMap.get(Integer.valueOf((int) audioSampleEntry.getSampleRate())).intValue());
-            audioSpecificConfig.setChannelConfiguration(audioSampleEntry.getChannelCount());
-            decoderConfigDescriptor.setAudioSpecificInfo(audioSpecificConfig);
-            eSDescriptor.setDecoderConfigDescriptor(decoderConfigDescriptor);
-            ByteBuffer serialize = eSDescriptor.serialize();
-            eSDescriptorBox.setEsDescriptor(eSDescriptor);
-            eSDescriptorBox.setData(serialize);
-            audioSampleEntry.addBox(eSDescriptorBox);
-            this.sampleDescriptionBox.addBox(audioSampleEntry);
         }
+        this.volume = 1.0f;
+        this.timeScale = mediaFormat.getInteger("sample-rate");
+        this.handler = "soun";
+        this.headerBox = new SoundMediaHeaderBox();
+        this.sampleDescriptionBox = new SampleDescriptionBox();
+        AudioSampleEntry audioSampleEntry = new AudioSampleEntry("mp4a");
+        audioSampleEntry.setChannelCount(mediaFormat.getInteger("channel-count"));
+        audioSampleEntry.setSampleRate(mediaFormat.getInteger("sample-rate"));
+        audioSampleEntry.setDataReferenceIndex(1);
+        audioSampleEntry.setSampleSize(16);
+        ESDescriptorBox eSDescriptorBox = new ESDescriptorBox();
+        ESDescriptor eSDescriptor = new ESDescriptor();
+        eSDescriptor.setEsId(0);
+        SLConfigDescriptor sLConfigDescriptor = new SLConfigDescriptor();
+        sLConfigDescriptor.setPredefined(2);
+        eSDescriptor.setSlConfigDescriptor(sLConfigDescriptor);
+        String string2 = mediaFormat.containsKey("mime") ? mediaFormat.getString("mime") : "audio/mp4-latm";
+        DecoderConfigDescriptor decoderConfigDescriptor = new DecoderConfigDescriptor();
+        if ("audio/mpeg".equals(string2)) {
+            decoderConfigDescriptor.setObjectTypeIndication(105);
+        } else {
+            decoderConfigDescriptor.setObjectTypeIndication(64);
+        }
+        decoderConfigDescriptor.setStreamType(5);
+        decoderConfigDescriptor.setBufferSizeDB(1536);
+        if (mediaFormat.containsKey("max-bitrate")) {
+            decoderConfigDescriptor.setMaxBitRate(mediaFormat.getInteger("max-bitrate"));
+        } else {
+            decoderConfigDescriptor.setMaxBitRate(96000L);
+        }
+        decoderConfigDescriptor.setAvgBitRate(this.timeScale);
+        AudioSpecificConfig audioSpecificConfig = new AudioSpecificConfig();
+        audioSpecificConfig.setAudioObjectType(2);
+        audioSpecificConfig.setSamplingFrequencyIndex(samplingFrequencyIndexMap.get(Integer.valueOf((int) audioSampleEntry.getSampleRate())).intValue());
+        audioSpecificConfig.setChannelConfiguration(audioSampleEntry.getChannelCount());
+        decoderConfigDescriptor.setAudioSpecificInfo(audioSpecificConfig);
+        eSDescriptor.setDecoderConfigDescriptor(decoderConfigDescriptor);
+        ByteBuffer serialize = eSDescriptor.serialize();
+        eSDescriptorBox.setEsDescriptor(eSDescriptor);
+        eSDescriptorBox.setData(serialize);
+        audioSampleEntry.addBox(eSDescriptorBox);
+        this.sampleDescriptionBox.addBox(audioSampleEntry);
     }
 
     public long getTrackId() {
@@ -242,9 +245,7 @@ public class Track {
 
     public void addSample(long j, MediaCodec.BufferInfo bufferInfo) {
         boolean z = true;
-        if (this.isAudio || (bufferInfo.flags & 1) == 0) {
-            z = false;
-        }
+        z = (this.isAudio || (bufferInfo.flags & 1) == 0) ? false : false;
         this.samples.add(new Sample(j, bufferInfo.size));
         LinkedList<Integer> linkedList = this.syncSamples;
         if (linkedList != null && z) {
@@ -287,13 +288,13 @@ public class Track {
             this.duration += j;
         }
         for (i = 1; i < arrayList.size(); i++) {
-            ((SamplePresentationTime) arrayList.get(i)).dt = this.sampleDurations[i] + ((SamplePresentationTime) arrayList.get(i - 1)).dt;
+            ((SamplePresentationTime) arrayList.get(i)).f838dt = this.sampleDurations[i] + ((SamplePresentationTime) arrayList.get(i - 1)).f838dt;
         }
         if (z) {
             this.sampleCompositions = new int[this.samplePresentationTimes.size()];
             for (int i3 = 0; i3 < this.samplePresentationTimes.size(); i3++) {
                 SamplePresentationTime samplePresentationTime2 = this.samplePresentationTimes.get(i3);
-                this.sampleCompositions[samplePresentationTime2.index] = (int) (samplePresentationTime2.presentationTime - samplePresentationTime2.dt);
+                this.sampleCompositions[samplePresentationTime2.index] = (int) (samplePresentationTime2.presentationTime - samplePresentationTime2.f838dt);
             }
         }
     }

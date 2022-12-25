@@ -17,15 +17,17 @@ public abstract class TLRPC$MessageUserVote extends TLObject {
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.user_id = abstractSerializedData2.readInt64(z2);
                     int readInt32 = abstractSerializedData2.readInt32(z2);
-                    if (readInt32 == 481674261) {
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            this.options.add(abstractSerializedData2.readByteArray(z2));
+                    if (readInt32 != 481674261) {
+                        if (z2) {
+                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                         }
-                        this.date = abstractSerializedData2.readInt32(z2);
-                    } else if (z2) {
-                        throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                        return;
                     }
+                    int readInt322 = abstractSerializedData2.readInt32(z2);
+                    for (int i2 = 0; i2 < readInt322; i2++) {
+                        this.options.add(abstractSerializedData2.readByteArray(z2));
+                    }
+                    this.date = abstractSerializedData2.readInt32(z2);
                 }
 
                 @Override
@@ -41,9 +43,7 @@ public abstract class TLRPC$MessageUserVote extends TLObject {
                     abstractSerializedData2.writeInt32(this.date);
                 }
             };
-        } else if (i != 886196148) {
-            tLRPC$MessageUserVote = i != 1017491692 ? null : new TLRPC$TL_messageUserVoteInputOption();
-        } else {
+        } else if (i == 886196148) {
             tLRPC$MessageUserVote = new TLRPC$MessageUserVote() {
                 public static int constructor = 886196148;
                 public byte[] option;
@@ -63,13 +63,15 @@ public abstract class TLRPC$MessageUserVote extends TLObject {
                     abstractSerializedData2.writeInt32(this.date);
                 }
             };
+        } else {
+            tLRPC$MessageUserVote = i != 1017491692 ? null : new TLRPC$TL_messageUserVoteInputOption();
         }
-        if (tLRPC$MessageUserVote != null || !z) {
-            if (tLRPC$MessageUserVote != null) {
-                tLRPC$MessageUserVote.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$MessageUserVote;
+        if (tLRPC$MessageUserVote == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in MessageUserVote", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in MessageUserVote", Integer.valueOf(i)));
+        if (tLRPC$MessageUserVote != null) {
+            tLRPC$MessageUserVote.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$MessageUserVote;
     }
 }

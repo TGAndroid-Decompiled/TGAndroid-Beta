@@ -6,15 +6,15 @@ public class TLRPC$TL_statsGroupTopInviter extends TLObject {
     public long user_id;
 
     public static TLRPC$TL_statsGroupTopInviter TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_statsGroupTopInviter tLRPC$TL_statsGroupTopInviter = new TLRPC$TL_statsGroupTopInviter();
-            tLRPC$TL_statsGroupTopInviter.readParams(abstractSerializedData, z);
-            return tLRPC$TL_statsGroupTopInviter;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_statsGroupTopInviter", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_statsGroupTopInviter", Integer.valueOf(i)));
         }
+        TLRPC$TL_statsGroupTopInviter tLRPC$TL_statsGroupTopInviter = new TLRPC$TL_statsGroupTopInviter();
+        tLRPC$TL_statsGroupTopInviter.readParams(abstractSerializedData, z);
+        return tLRPC$TL_statsGroupTopInviter;
     }
 
     @Override

@@ -34,6 +34,16 @@ public abstract class TLRPC$PrivacyKey extends TLObject {
                     }
                 };
                 break;
+            case 110621716:
+                tLRPC$PrivacyKey = new TLRPC$PrivacyKey() {
+                    public static int constructor = 110621716;
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                    }
+                };
+                break;
             case 961092808:
                 tLRPC$PrivacyKey = new TLRPC$PrivacyKey() {
                     public static int constructor = 961092808;
@@ -88,12 +98,12 @@ public abstract class TLRPC$PrivacyKey extends TLObject {
                 tLRPC$PrivacyKey = null;
                 break;
         }
-        if (tLRPC$PrivacyKey != null || !z) {
-            if (tLRPC$PrivacyKey != null) {
-                tLRPC$PrivacyKey.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$PrivacyKey;
+        if (tLRPC$PrivacyKey == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in PrivacyKey", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in PrivacyKey", Integer.valueOf(i)));
+        if (tLRPC$PrivacyKey != null) {
+            tLRPC$PrivacyKey.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$PrivacyKey;
     }
 }

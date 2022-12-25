@@ -8,7 +8,7 @@ public abstract class TLRPC$Updates extends TLObject {
     public int flags;
     public long from_id;
     public TLRPC$MessageFwdHeader fwd_from;
-    public int id;
+    public int f985id;
     public TLRPC$MessageMedia media;
     public boolean media_unread;
     public boolean mentioned;
@@ -30,39 +30,39 @@ public abstract class TLRPC$Updates extends TLObject {
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
 
     public static TLRPC$Updates TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$Updates tLRPC$Updates;
+        TLRPC$Updates tLRPC$TL_updateShortSentMessage;
         switch (i) {
             case -1877614335:
-                tLRPC$Updates = new TLRPC$TL_updateShortSentMessage();
+                tLRPC$TL_updateShortSentMessage = new TLRPC$TL_updateShortSentMessage();
                 break;
             case -484987010:
-                tLRPC$Updates = new TLRPC$TL_updatesTooLong();
+                tLRPC$TL_updateShortSentMessage = new TLRPC$TL_updatesTooLong();
                 break;
             case 826001400:
-                tLRPC$Updates = new TLRPC$TL_updateShortMessage();
+                tLRPC$TL_updateShortSentMessage = new TLRPC$TL_updateShortMessage();
                 break;
             case 1299050149:
-                tLRPC$Updates = new TLRPC$TL_updateShortChatMessage();
+                tLRPC$TL_updateShortSentMessage = new TLRPC$TL_updateShortChatMessage();
                 break;
             case 1918567619:
-                tLRPC$Updates = new TLRPC$TL_updatesCombined();
+                tLRPC$TL_updateShortSentMessage = new TLRPC$TL_updatesCombined();
                 break;
             case 1957577280:
-                tLRPC$Updates = new TLRPC$TL_updates();
+                tLRPC$TL_updateShortSentMessage = new TLRPC$TL_updates();
                 break;
             case 2027216577:
-                tLRPC$Updates = new TLRPC$TL_updateShort();
+                tLRPC$TL_updateShortSentMessage = new TLRPC$TL_updateShort();
                 break;
             default:
-                tLRPC$Updates = null;
+                tLRPC$TL_updateShortSentMessage = null;
                 break;
         }
-        if (tLRPC$Updates != null || !z) {
-            if (tLRPC$Updates != null) {
-                tLRPC$Updates.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$Updates;
+        if (tLRPC$TL_updateShortSentMessage == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in Updates", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in Updates", Integer.valueOf(i)));
+        if (tLRPC$TL_updateShortSentMessage != null) {
+            tLRPC$TL_updateShortSentMessage.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$TL_updateShortSentMessage;
     }
 }

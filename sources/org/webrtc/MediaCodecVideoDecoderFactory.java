@@ -57,7 +57,7 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
         int size = sortedCodecsList.size();
         for (int i = 0; i < size; i++) {
             MediaCodecInfo mediaCodecInfo = sortedCodecsList.get(i);
-            if (!(mediaCodecInfo == null || mediaCodecInfo.isEncoder() || !isSupportedCodec(mediaCodecInfo, videoCodecMimeType))) {
+            if (mediaCodecInfo != null && !mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
                 return mediaCodecInfo;
             }
         }

@@ -7,15 +7,15 @@ public class TLRPC$TL_messages_affectedHistory extends TLObject {
     public int pts_count;
 
     public static TLRPC$TL_messages_affectedHistory TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_messages_affectedHistory tLRPC$TL_messages_affectedHistory = new TLRPC$TL_messages_affectedHistory();
-            tLRPC$TL_messages_affectedHistory.readParams(abstractSerializedData, z);
-            return tLRPC$TL_messages_affectedHistory;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_messages_affectedHistory", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_messages_affectedHistory", Integer.valueOf(i)));
         }
+        TLRPC$TL_messages_affectedHistory tLRPC$TL_messages_affectedHistory = new TLRPC$TL_messages_affectedHistory();
+        tLRPC$TL_messages_affectedHistory.readParams(abstractSerializedData, z);
+        return tLRPC$TL_messages_affectedHistory;
     }
 
     @Override

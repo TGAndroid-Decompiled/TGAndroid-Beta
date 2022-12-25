@@ -13,9 +13,10 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import org.telegram.tgnet.ConnectionsManager;
 
 public class EmuDetector {
-    private static final String IP = "10.0.2.15";
+    private static final String f797IP = "10.0.2.15";
     private static final int MIN_PROPERTIES_THRESHOLD = 5;
     @SuppressLint({"StaticFieldLeak"})
     private static EmuDetector mEmulatorDetector;
@@ -61,13 +62,13 @@ public class EmuDetector {
     }
 
     public static EmuDetector with(Context context) {
-        if (context != null) {
-            if (mEmulatorDetector == null) {
-                mEmulatorDetector = new EmuDetector(context.getApplicationContext());
-            }
-            return mEmulatorDetector;
+        if (context == null) {
+            throw new IllegalArgumentException("Context must not be null.");
         }
-        throw new IllegalArgumentException("Context must not be null.");
+        if (mEmulatorDetector == null) {
+            mEmulatorDetector = new EmuDetector(context.getApplicationContext());
+        }
+        return mEmulatorDetector;
     }
 
     private EmuDetector(Context context) {
@@ -145,7 +146,7 @@ public class EmuDetector {
             PackageManager packageManager = this.mContext.getPackageManager();
             for (String str : this.mListPackageName) {
                 Intent launchIntentForPackage = packageManager.getLaunchIntentForPackage(str);
-                if (!(launchIntentForPackage == null || packageManager.queryIntentActivities(launchIntentForPackage, CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT).isEmpty())) {
+                if (launchIntentForPackage != null && !packageManager.queryIntentActivities(launchIntentForPackage, CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT).isEmpty()) {
                     return true;
                 }
             }
@@ -196,7 +197,7 @@ public class EmuDetector {
         for (int i = 0; i < 2; i++) {
             File file = fileArr[i];
             if (file.exists() && file.canRead()) {
-                byte[] bArr = new byte[1024];
+                byte[] bArr = new byte[ConnectionsManager.RequestFlagDoNotWaitFloodWait];
                 try {
                     FileInputStream fileInputStream = new FileInputStream(file);
                     fileInputStream.read(bArr);
@@ -219,12 +220,14 @@ public class EmuDetector {
     private boolean checkFiles(String[] strArr, EmulatorTypes emulatorTypes) {
         File file;
         for (String str : strArr) {
-            if (ContextCompat.checkSelfPermission(this.mContext, "android.permission.READ_EXTERNAL_STORAGE") != 0) {
-                file = new File(str);
-            } else if ((!str.contains("/") || emulatorTypes != EmulatorTypes.NOX) && emulatorTypes != EmulatorTypes.BLUE) {
-                file = new File(str);
+            if (ContextCompat.checkSelfPermission(this.mContext, "android.permission.READ_EXTERNAL_STORAGE") == 0) {
+                if ((str.contains("/") && emulatorTypes == EmulatorTypes.NOX) || emulatorTypes == EmulatorTypes.BLUE) {
+                    file = new File(Environment.getExternalStorageDirectory() + str);
+                } else {
+                    file = new File(str);
+                }
             } else {
-                file = new File(Environment.getExternalStorageDirectory() + str);
+                file = new File(str);
             }
             if (file.exists()) {
                 return true;
@@ -251,31 +254,31 @@ public class EmuDetector {
 
     private boolean checkIp() {
         String[] split;
-        if (ContextCompat.checkSelfPermission(this.mContext, "android.permission.INTERNET") != 0) {
-            return false;
-        }
-        String[] strArr = {"/system/bin/netcfg"};
-        StringBuilder sb = new StringBuilder();
-        try {
-            ProcessBuilder processBuilder = new ProcessBuilder(strArr);
-            processBuilder.directory(new File("/system/bin/"));
-            processBuilder.redirectErrorStream(true);
-            InputStream inputStream = processBuilder.start().getInputStream();
-            byte[] bArr = new byte[1024];
-            while (inputStream.read(bArr) != -1) {
-                sb.append(new String(bArr));
+        if (ContextCompat.checkSelfPermission(this.mContext, "android.permission.INTERNET") == 0) {
+            String[] strArr = {"/system/bin/netcfg"};
+            StringBuilder sb = new StringBuilder();
+            try {
+                ProcessBuilder processBuilder = new ProcessBuilder(strArr);
+                processBuilder.directory(new File("/system/bin/"));
+                processBuilder.redirectErrorStream(true);
+                InputStream inputStream = processBuilder.start().getInputStream();
+                byte[] bArr = new byte[ConnectionsManager.RequestFlagDoNotWaitFloodWait];
+                while (inputStream.read(bArr) != -1) {
+                    sb.append(new String(bArr));
+                }
+                inputStream.close();
+            } catch (Exception unused) {
             }
-            inputStream.close();
-        } catch (Exception unused) {
-        }
-        String sb2 = sb.toString();
-        if (TextUtils.isEmpty(sb2)) {
-            return false;
-        }
-        for (String str : sb2.split("\n")) {
-            if ((str.contains("wlan0") || str.contains("tunl0") || str.contains("eth0")) && str.contains(IP)) {
-                return true;
+            String sb2 = sb.toString();
+            if (TextUtils.isEmpty(sb2)) {
+                return false;
             }
+            for (String str : sb2.split("\n")) {
+                if ((str.contains("wlan0") || str.contains("tunl0") || str.contains("eth0")) && str.contains(f797IP)) {
+                    return true;
+                }
+            }
+            return false;
         }
         return false;
     }

@@ -13,9 +13,11 @@ import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.telegram.tgnet.ConnectionsManager;
 
 public class Utilities {
     private static final String RANDOM_STRING_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -28,7 +30,12 @@ public class Utilities {
     public static volatile DispatchQueue searchQueue = new DispatchQueue("searchQueue");
     public static volatile DispatchQueue phoneBookQueue = new DispatchQueue("phoneBookQueue");
     public static volatile DispatchQueue themeQueue = new DispatchQueue("themeQueue");
+    public static volatile DispatchQueue externalNetworkQueue = new DispatchQueue("externalNetworkQueue");
     protected static final char[] hexArray = "0123456789ABCDEF".toCharArray();
+
+    public interface Callback<T> {
+        void run(T t);
+    }
 
     public static native void aesCbcEncryption(ByteBuffer byteBuffer, byte[] bArr, byte[] bArr2, int i, int i2, int i3);
 
@@ -81,29 +88,29 @@ public class Utilities {
     static {
         try {
             FileInputStream fileInputStream = new FileInputStream(new File("/dev/urandom"));
-            byte[] bArr = new byte[1024];
+            byte[] bArr = new byte[ConnectionsManager.RequestFlagDoNotWaitFloodWait];
             fileInputStream.read(bArr);
             fileInputStream.close();
             random.setSeed(bArr);
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
         }
     }
 
     public static Bitmap blurWallpaper(Bitmap bitmap) {
-        Bitmap bitmap2;
+        Bitmap createBitmap;
         if (bitmap == null) {
             return null;
         }
         if (bitmap.getHeight() > bitmap.getWidth()) {
-            bitmap2 = Bitmap.createBitmap(Math.round((bitmap.getWidth() * 450.0f) / bitmap.getHeight()), 450, Bitmap.Config.ARGB_8888);
+            createBitmap = Bitmap.createBitmap(Math.round((bitmap.getWidth() * 450.0f) / bitmap.getHeight()), 450, Bitmap.Config.ARGB_8888);
         } else {
-            bitmap2 = Bitmap.createBitmap(450, Math.round((bitmap.getHeight() * 450.0f) / bitmap.getWidth()), Bitmap.Config.ARGB_8888);
+            createBitmap = Bitmap.createBitmap(450, Math.round((bitmap.getHeight() * 450.0f) / bitmap.getWidth()), Bitmap.Config.ARGB_8888);
         }
         Paint paint = new Paint(2);
-        new Canvas(bitmap2).drawBitmap(bitmap, (Rect) null, new Rect(0, 0, bitmap2.getWidth(), bitmap2.getHeight()), paint);
-        stackBlurBitmap(bitmap2, 12);
-        return bitmap2;
+        new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, new Rect(0, 0, createBitmap.getWidth(), createBitmap.getHeight()), paint);
+        stackBlurBitmap(createBitmap, 12);
+        return createBitmap;
     }
 
     public static void aesIgeEncryption(ByteBuffer byteBuffer, byte[] bArr, byte[] bArr2, boolean z, boolean z2, int i, int i2) {
@@ -140,18 +147,16 @@ public class Utilities {
                 char charAt = charSequence.charAt(i3);
                 if (charAt != '-' && (charAt < '0' || charAt > '9')) {
                     z = false;
-                    if (z || i2 >= 0) {
-                        if (!z && i2 >= 0) {
-                            i3++;
-                            break;
-                        }
-                    } else {
+                    if (!z && i2 < 0) {
                         i2 = i3;
+                    } else if (!z && i2 >= 0) {
+                        i3++;
+                        break;
                     }
                     i3++;
                 }
                 z = true;
-                if (z) {
+                if (!z) {
                 }
                 if (!z) {
                     i3++;
@@ -173,15 +178,13 @@ public class Utilities {
         int length = str.length();
         int i = 0;
         char charAt = str.charAt(0);
-        int i2 = 1;
         if (charAt == '-') {
             z = false;
         } else {
             i = '0' - charAt;
             z = true;
         }
-        while (i2 < length) {
-            i2++;
+        for (int i2 = 1; i2 < length; i2++) {
             i = ((i * 10) + 48) - str.charAt(i2);
         }
         return z ? -i : i;
@@ -212,7 +215,7 @@ public class Utilities {
 
     public static String bytesToHex(byte[] bArr) {
         if (bArr == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         char[] cArr = new char[bArr.length * 2];
         for (int i = 0; i < bArr.length; i++) {
@@ -253,15 +256,15 @@ public class Utilities {
             }
         } else if (i == 5) {
             int intValue2 = bigInteger.mod(BigInteger.valueOf(5L)).intValue();
-            if (!(intValue2 == 1 || intValue2 == 4)) {
+            if (intValue2 != 1 && intValue2 != 4) {
                 return false;
             }
         } else if (i == 6) {
             int intValue3 = bigInteger.mod(BigInteger.valueOf(24L)).intValue();
-            if (!(intValue3 == 19 || intValue3 == 23)) {
+            if (intValue3 != 19 && intValue3 != 23) {
                 return false;
             }
-        } else if (!(i != 7 || (intValue = bigInteger.mod(BigInteger.valueOf(7L)).intValue()) == 3 || intValue == 5 || intValue == 6)) {
+        } else if (i == 7 && (intValue = bigInteger.mod(BigInteger.valueOf(7L)).intValue()) != 3 && intValue != 5 && intValue != 6) {
             return false;
         }
         if (bytesToHex(bArr).equals("C71CAEB9C6B1C9048E6C522F70F13F73980D40238E3E21C14934D037563D930F48198A0AA7C14058229493D22530F4DBFA336F6E0AC925139543AED44CCE7C3720FD51F69458705AC68CD4FE6B6B13ABDC9746512969328454F18FAF8C595F642477FE96BB2A941D5BCD1D4AC8CC49880708FA9B378E3C4F3A9060BEE67CF9A4A4A695811051907E162753B56B0F6B410DBA74D8A84B2A14B3144E0EF1284754FD17ED950D5965B4B9DD46582DB1178D169C6BC465B0D6FF9CA3928FEF5B9AE4E418FC15E83EBEA0F87FA9FF5EED70050DED2849F47BF959D956850CE929851F0D8115F635B105EE2E4E15D04B2454BF6F4FADF034B10403119CD8E3B92FCC5B")) {
@@ -293,7 +296,7 @@ public class Utilities {
             messageDigest.update(bArr, i, i2);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
             return new byte[20];
         }
     }
@@ -307,20 +310,16 @@ public class Utilities {
                 byteBuffer.position(i);
                 byteBuffer.limit(i2);
                 messageDigest.update(byteBuffer);
-                byte[] digest = messageDigest.digest();
-                byteBuffer.limit(limit);
-                byteBuffer.position(position);
-                return digest;
+                return messageDigest.digest();
             } catch (Exception e) {
-                FileLog.e(e);
+                FileLog.m31e(e);
                 byteBuffer.limit(limit);
                 byteBuffer.position(position);
                 return new byte[20];
             }
-        } catch (Throwable th) {
+        } finally {
             byteBuffer.limit(limit);
             byteBuffer.position(position);
-            throw th;
         }
     }
 
@@ -342,7 +341,7 @@ public class Utilities {
             messageDigest.update(bArr, i, (int) j);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
             return new byte[32];
         }
     }
@@ -355,7 +354,7 @@ public class Utilities {
             }
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
             return new byte[32];
         }
     }
@@ -366,7 +365,7 @@ public class Utilities {
             messageDigest.update(bArr, 0, bArr.length);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
             return new byte[64];
         }
     }
@@ -378,7 +377,7 @@ public class Utilities {
             messageDigest.update(bArr2, 0, bArr2.length);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
             return new byte[64];
         }
     }
@@ -397,7 +396,7 @@ public class Utilities {
             messageDigest.update(bArr3, 0, bArr3.length);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
             return new byte[64];
         }
     }
@@ -412,20 +411,16 @@ public class Utilities {
                 byteBuffer.position(i3);
                 byteBuffer.limit(i4);
                 messageDigest.update(byteBuffer);
-                byte[] digest = messageDigest.digest();
-                byteBuffer.limit(limit);
-                byteBuffer.position(position);
-                return digest;
+                return messageDigest.digest();
             } catch (Exception e) {
-                FileLog.e(e);
+                FileLog.m31e(e);
                 byteBuffer.limit(limit);
                 byteBuffer.position(position);
                 return new byte[32];
             }
-        } catch (Throwable th) {
+        } finally {
             byteBuffer.limit(limit);
             byteBuffer.position(position);
-            throw th;
         }
     }
 
@@ -449,9 +444,13 @@ public class Utilities {
             }
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
             return null;
         }
+    }
+
+    public static int clamp(int i, int i2, int i3) {
+        return Math.max(Math.min(i, i2), i3);
     }
 
     public static float clamp(float f, float f2, float f3) {
@@ -468,5 +467,10 @@ public class Utilities {
             sb.append(RANDOM_STRING_CHARS.charAt(fastRandom.nextInt(62)));
         }
         return sb.toString();
+    }
+
+    public static <Key, Value> Value getOrDefault(HashMap<Key, Value> hashMap, Key key, Value value) {
+        Value value2 = hashMap.get(key);
+        return value2 == null ? value : value2;
     }
 }

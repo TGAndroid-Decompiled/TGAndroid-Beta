@@ -200,7 +200,7 @@ public class NotificationBadge {
             try {
                 ApplicationLoader.applicationContext.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, bundle);
             } catch (Exception e) {
-                FileLog.e(e);
+                FileLog.m31e(e);
             }
         }
 
@@ -277,10 +277,11 @@ public class NotificationBadge {
 
         @Override
         public void executeBadge(int i) {
-            if (this.mCurrentTotalCount != i) {
-                this.mCurrentTotalCount = i;
-                executeBadgeByContentProvider(i);
+            if (this.mCurrentTotalCount == i) {
+                return;
             }
+            this.mCurrentTotalCount = i;
+            executeBadgeByContentProvider(i);
         }
 
         @Override
@@ -399,20 +400,21 @@ public class NotificationBadge {
         }
 
         private void executeBadgeByContentProvider(int i) {
-            if (i >= 0) {
-                if (mQueryHandler == null) {
-                    mQueryHandler = new AsyncQueryHandler(ApplicationLoader.applicationContext.getApplicationContext().getContentResolver()) {
-                        @Override
-                        public void handleMessage(Message message) {
-                            try {
-                                super.handleMessage(message);
-                            } catch (Throwable unused) {
-                            }
-                        }
-                    };
-                }
-                insertBadgeAsync(i, NotificationBadge.componentName.getPackageName(), NotificationBadge.componentName.getClassName());
+            if (i < 0) {
+                return;
             }
+            if (mQueryHandler == null) {
+                mQueryHandler = new AsyncQueryHandler(ApplicationLoader.applicationContext.getApplicationContext().getContentResolver()) {
+                    @Override
+                    public void handleMessage(Message message) {
+                        try {
+                            super.handleMessage(message);
+                        } catch (Throwable unused) {
+                        }
+                    }
+                };
+            }
+            insertBadgeAsync(i, NotificationBadge.componentName.getPackageName(), NotificationBadge.componentName.getClassName());
         }
 
         private void insertBadgeAsync(int i, String str, String str2) {
@@ -435,12 +437,12 @@ public class NotificationBadge {
 
         @Override
         public void executeBadge(int i) {
-            Object obj = "";
+            Object obj = BuildConfig.APP_CENTER_HASH;
             try {
                 Object newInstance = Class.forName("android.app.MiuiNotification").newInstance();
                 Field declaredField = newInstance.getClass().getDeclaredField("messageCount");
                 declaredField.setAccessible(true);
-                declaredField.set(newInstance, String.valueOf(i == 0 ? obj : Integer.valueOf(i)));
+                declaredField.set(newInstance, String.valueOf(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i)));
             } catch (Throwable unused) {
                 final Intent intent = new Intent(INTENT_ACTION);
                 intent.putExtra(EXTRA_UPDATE_APP_COMPONENT_NAME, NotificationBadge.componentName.getPackageName() + "/" + NotificationBadge.componentName.getClassName());
@@ -485,7 +487,7 @@ public class NotificationBadge {
             try {
                 ApplicationLoader.applicationContext.getContentResolver().call(this.CONTENT_URI, "setAppBadgeCount", (String) null, bundle);
             } catch (Exception e) {
-                FileLog.e(e);
+                FileLog.m31e(e);
             }
         }
 
@@ -608,9 +610,10 @@ public class NotificationBadge {
     }
 
     public static void close(Cursor cursor) {
-        if (cursor != null && !cursor.isClosed()) {
-            cursor.close();
+        if (cursor == null || cursor.isClosed()) {
+            return;
         }
+        cursor.close();
     }
 
     public static void closeQuietly(Closeable closeable) {

@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 public abstract class TLRPC$EncryptedFile extends TLObject {
     public long access_hash;
     public int dc_id;
-    public long id;
+    public long f861id;
     public int key_fingerprint;
     public long size;
 
@@ -15,7 +15,7 @@ public abstract class TLRPC$EncryptedFile extends TLObject {
 
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                    this.id = abstractSerializedData2.readInt64(z2);
+                    this.f861id = abstractSerializedData2.readInt64(z2);
                     this.access_hash = abstractSerializedData2.readInt64(z2);
                     this.size = abstractSerializedData2.readInt64(z2);
                     this.dc_id = abstractSerializedData2.readInt32(z2);
@@ -25,7 +25,7 @@ public abstract class TLRPC$EncryptedFile extends TLObject {
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                     abstractSerializedData2.writeInt32(constructor);
-                    abstractSerializedData2.writeInt64(this.id);
+                    abstractSerializedData2.writeInt64(this.f861id);
                     abstractSerializedData2.writeInt64(this.access_hash);
                     abstractSerializedData2.writeInt64(this.size);
                     abstractSerializedData2.writeInt32(this.dc_id);
@@ -38,7 +38,7 @@ public abstract class TLRPC$EncryptedFile extends TLObject {
 
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                    this.id = abstractSerializedData2.readInt64(z2);
+                    this.f861id = abstractSerializedData2.readInt64(z2);
                     this.access_hash = abstractSerializedData2.readInt64(z2);
                     this.size = abstractSerializedData2.readInt32(z2);
                     this.dc_id = abstractSerializedData2.readInt32(z2);
@@ -48,7 +48,7 @@ public abstract class TLRPC$EncryptedFile extends TLObject {
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                     abstractSerializedData2.writeInt32(constructor);
-                    abstractSerializedData2.writeInt64(this.id);
+                    abstractSerializedData2.writeInt64(this.f861id);
                     abstractSerializedData2.writeInt64(this.access_hash);
                     abstractSerializedData2.writeInt32((int) this.size);
                     abstractSerializedData2.writeInt32(this.dc_id);
@@ -65,12 +65,12 @@ public abstract class TLRPC$EncryptedFile extends TLObject {
                 }
             };
         }
-        if (tLRPC$EncryptedFile != null || !z) {
-            if (tLRPC$EncryptedFile != null) {
-                tLRPC$EncryptedFile.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$EncryptedFile;
+        if (tLRPC$EncryptedFile == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in EncryptedFile", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in EncryptedFile", Integer.valueOf(i)));
+        if (tLRPC$EncryptedFile != null) {
+            tLRPC$EncryptedFile.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$EncryptedFile;
     }
 }

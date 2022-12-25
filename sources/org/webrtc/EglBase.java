@@ -82,14 +82,14 @@ public interface EglBase {
         public static EglBase create(Context context, int[] iArr) {
             if (context == null) {
                 return EglBase14Impl.isEGL14Supported() ? createEgl14(iArr) : createEgl10(iArr);
-            }
-            if (context instanceof EglBase14.Context) {
+            } else if (context instanceof EglBase14.Context) {
                 return createEgl14((EglBase14.Context) context, iArr);
+            } else {
+                if (context instanceof EglBase10.Context) {
+                    return createEgl10((EglBase10.Context) context, iArr);
+                }
+                throw new IllegalArgumentException("Unrecognized Context");
             }
-            if (context instanceof EglBase10.Context) {
-                return createEgl10((EglBase10.Context) context, iArr);
-            }
-            throw new IllegalArgumentException("Unrecognized Context");
         }
 
         public static EglBase10 createEgl10(int[] iArr) {

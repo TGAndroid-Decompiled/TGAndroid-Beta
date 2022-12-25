@@ -7,15 +7,15 @@ public class TLRPC$TL_statsGroupTopPoster extends TLObject {
     public long user_id;
 
     public static TLRPC$TL_statsGroupTopPoster TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_statsGroupTopPoster tLRPC$TL_statsGroupTopPoster = new TLRPC$TL_statsGroupTopPoster();
-            tLRPC$TL_statsGroupTopPoster.readParams(abstractSerializedData, z);
-            return tLRPC$TL_statsGroupTopPoster;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_statsGroupTopPoster", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_statsGroupTopPoster", Integer.valueOf(i)));
         }
+        TLRPC$TL_statsGroupTopPoster tLRPC$TL_statsGroupTopPoster = new TLRPC$TL_statsGroupTopPoster();
+        tLRPC$TL_statsGroupTopPoster.readParams(abstractSerializedData, z);
+        return tLRPC$TL_statsGroupTopPoster;
     }
 
     @Override

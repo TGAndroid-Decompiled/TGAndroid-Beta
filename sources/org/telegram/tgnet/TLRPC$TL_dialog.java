@@ -1,18 +1,14 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_dialog extends TLRPC$Dialog {
-    public static int constructor = -1460809483;
+    public static int constructor = -712374074;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.pinned = (readInt32 & 4) != 0;
-        if ((readInt32 & 8) != 0) {
-            z2 = true;
-        }
-        this.unread_mark = z2;
+        this.unread_mark = (readInt32 & 8) != 0;
         this.peer = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.top_message = abstractSerializedData.readInt32(z);
         this.read_inbox_max_id = abstractSerializedData.readInt32(z);
@@ -29,6 +25,9 @@ public class TLRPC$TL_dialog extends TLRPC$Dialog {
         }
         if ((this.flags & 16) != 0) {
             this.folder_id = abstractSerializedData.readInt32(z);
+        }
+        if ((this.flags & 32) != 0) {
+            this.ttl_period = abstractSerializedData.readInt32(z);
         }
     }
 
@@ -56,6 +55,9 @@ public class TLRPC$TL_dialog extends TLRPC$Dialog {
         }
         if ((this.flags & 16) != 0) {
             abstractSerializedData.writeInt32(this.folder_id);
+        }
+        if ((this.flags & 32) != 0) {
+            abstractSerializedData.writeInt32(this.ttl_period);
         }
     }
 }

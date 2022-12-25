@@ -118,11 +118,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = true;
-                        if ((readInt32 & 1) == 0) {
-                            z3 = false;
-                        }
-                        this.request_write_access = z3;
+                        this.request_write_access = (readInt32 & 1) != 0;
                         this.text = abstractSerializedData2.readString(z2);
                         if ((this.flags & 2) != 0) {
                             this.fwd_text = abstractSerializedData2.readString(z2);
@@ -188,11 +184,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        boolean z3 = true;
-                        if ((readInt32 & 1) == 0) {
-                            z3 = false;
-                        }
-                        this.same_peer = z3;
+                        this.same_peer = (readInt32 & 1) != 0;
                         this.text = abstractSerializedData2.readString(z2);
                         this.query = abstractSerializedData2.readString(z2);
                     }
@@ -306,12 +298,12 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                 tLRPC$KeyboardButton = null;
                 break;
         }
-        if (tLRPC$KeyboardButton != null || !z) {
-            if (tLRPC$KeyboardButton != null) {
-                tLRPC$KeyboardButton.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$KeyboardButton;
+        if (tLRPC$KeyboardButton == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in KeyboardButton", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in KeyboardButton", Integer.valueOf(i)));
+        if (tLRPC$KeyboardButton != null) {
+            tLRPC$KeyboardButton.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$KeyboardButton;
     }
 }

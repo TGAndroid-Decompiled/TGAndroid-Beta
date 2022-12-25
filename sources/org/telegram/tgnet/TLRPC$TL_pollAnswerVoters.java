@@ -9,27 +9,23 @@ public class TLRPC$TL_pollAnswerVoters extends TLObject {
     public int voters;
 
     public static TLRPC$TL_pollAnswerVoters TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_pollAnswerVoters tLRPC$TL_pollAnswerVoters = new TLRPC$TL_pollAnswerVoters();
-            tLRPC$TL_pollAnswerVoters.readParams(abstractSerializedData, z);
-            return tLRPC$TL_pollAnswerVoters;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_pollAnswerVoters", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_pollAnswerVoters", Integer.valueOf(i)));
         }
+        TLRPC$TL_pollAnswerVoters tLRPC$TL_pollAnswerVoters = new TLRPC$TL_pollAnswerVoters();
+        tLRPC$TL_pollAnswerVoters.readParams(abstractSerializedData, z);
+        return tLRPC$TL_pollAnswerVoters;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.chosen = (readInt32 & 1) != 0;
-        if ((readInt32 & 2) != 0) {
-            z2 = true;
-        }
-        this.correct = z2;
+        this.correct = (readInt32 & 2) != 0;
         this.option = abstractSerializedData.readByteArray(z);
         this.voters = abstractSerializedData.readInt32(z);
     }

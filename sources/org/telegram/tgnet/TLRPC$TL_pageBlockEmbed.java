@@ -6,22 +6,18 @@ public class TLRPC$TL_pageBlockEmbed extends TLRPC$PageBlock {
     public TLRPC$TL_pageCaption caption;
     public int flags;
     public boolean full_width;
-    public int h;
+    public int f960h;
     public String html;
     public long poster_photo_id;
     public String url;
-    public int w;
+    public int f961w;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        boolean z2 = false;
         this.full_width = (readInt32 & 1) != 0;
-        if ((readInt32 & 8) != 0) {
-            z2 = true;
-        }
-        this.allow_scrolling = z2;
+        this.allow_scrolling = (readInt32 & 8) != 0;
         if ((readInt32 & 2) != 0) {
             this.url = abstractSerializedData.readString(z);
         }
@@ -32,10 +28,10 @@ public class TLRPC$TL_pageBlockEmbed extends TLRPC$PageBlock {
             this.poster_photo_id = abstractSerializedData.readInt64(z);
         }
         if ((this.flags & 32) != 0) {
-            this.w = abstractSerializedData.readInt32(z);
+            this.f961w = abstractSerializedData.readInt32(z);
         }
         if ((this.flags & 32) != 0) {
-            this.h = abstractSerializedData.readInt32(z);
+            this.f960h = abstractSerializedData.readInt32(z);
         }
         this.caption = TLRPC$TL_pageCaption.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
     }
@@ -58,10 +54,10 @@ public class TLRPC$TL_pageBlockEmbed extends TLRPC$PageBlock {
             abstractSerializedData.writeInt64(this.poster_photo_id);
         }
         if ((this.flags & 32) != 0) {
-            abstractSerializedData.writeInt32(this.w);
+            abstractSerializedData.writeInt32(this.f961w);
         }
         if ((this.flags & 32) != 0) {
-            abstractSerializedData.writeInt32(this.h);
+            abstractSerializedData.writeInt32(this.f960h);
         }
         this.caption.serializeToStream(abstractSerializedData);
     }

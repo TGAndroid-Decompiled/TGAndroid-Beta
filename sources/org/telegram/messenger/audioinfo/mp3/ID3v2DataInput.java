@@ -15,11 +15,10 @@ public class ID3v2DataInput {
         int i3 = 0;
         while (i3 < i2) {
             int read = this.input.read(bArr, i + i3, i2 - i3);
-            if (read > 0) {
-                i3 += read;
-            } else {
+            if (read <= 0) {
                 throw new EOFException();
             }
+            i3 += read;
         }
     }
 
@@ -33,11 +32,10 @@ public class ID3v2DataInput {
         long j2 = 0;
         while (j2 < j) {
             long skip = this.input.skip(j - j2);
-            if (skip > 0) {
-                j2 += skip;
-            } else {
+            if (skip <= 0) {
                 throw new EOFException();
             }
+            j2 += skip;
         }
     }
 

@@ -13,7 +13,7 @@ public class TLRPC$TL_message_secret_layer72 extends TLRPC$TL_message {
         this.out = (readInt32 & 2) != 0;
         this.mentioned = (readInt32 & 16) != 0;
         this.media_unread = (readInt32 & 32) != 0;
-        this.id = abstractSerializedData.readInt32(z);
+        this.f872id = abstractSerializedData.readInt32(z);
         this.ttl = abstractSerializedData.readInt32(z);
         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
         this.from_id = tLRPC$TL_peerUser;
@@ -27,26 +27,27 @@ public class TLRPC$TL_message_secret_layer72 extends TLRPC$TL_message {
             this.message = this.media.captionLegacy;
         }
         int readInt322 = abstractSerializedData.readInt32(z);
-        if (readInt322 == 481674261) {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-                if (TLdeserialize2 != null) {
-                    this.entities.add(TLdeserialize2);
-                } else {
-                    return;
-                }
+        if (readInt322 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-            if ((this.flags & 2048) != 0) {
-                this.via_bot_name = abstractSerializedData.readString(z);
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize2 == null) {
+                return;
             }
-            if ((this.flags & 8) != 0) {
-                TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
-                this.reply_to = tLRPC$TL_messageReplyHeader;
-                tLRPC$TL_messageReplyHeader.reply_to_random_id = abstractSerializedData.readInt64(z);
-            }
-        } else if (z) {
-            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+            this.entities.add(TLdeserialize2);
+        }
+        if ((this.flags & 2048) != 0) {
+            this.via_bot_name = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & 8) != 0) {
+            TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
+            this.reply_to = tLRPC$TL_messageReplyHeader;
+            tLRPC$TL_messageReplyHeader.reply_to_random_id = abstractSerializedData.readInt64(z);
         }
     }
 
@@ -62,7 +63,7 @@ public class TLRPC$TL_message_secret_layer72 extends TLRPC$TL_message {
         int i4 = this.media_unread ? i3 | 32 : i3 & (-33);
         this.flags = i4;
         abstractSerializedData.writeInt32(i4);
-        abstractSerializedData.writeInt32(this.id);
+        abstractSerializedData.writeInt32(this.f872id);
         abstractSerializedData.writeInt32(this.ttl);
         abstractSerializedData.writeInt32((int) this.from_id.user_id);
         this.peer_id.serializeToStream(abstractSerializedData);

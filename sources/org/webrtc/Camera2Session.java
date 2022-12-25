@@ -15,13 +15,12 @@ import android.view.Surface;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.R;
 import org.webrtc.Camera2Session;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
 import org.webrtc.VideoSink;
 
-@TargetApi(R.styleable.MapAttrs_uiZoomGestures)
+@TargetApi(21)
 public class Camera2Session implements CameraSession {
     private static final String TAG = "Camera2Session";
     private final Context applicationContext;
@@ -31,24 +30,24 @@ public class Camera2Session implements CameraSession {
     private final String cameraId;
     private final CameraManager cameraManager;
     private int cameraOrientation;
+    private final Handler cameraThreadHandler;
     private CameraEnumerationAndroid.CaptureFormat captureFormat;
     private CameraCaptureSession captureSession;
+    private final long constructionTimeNs;
     private final CameraSession.Events events;
     private boolean firstFrameReported;
     private int fpsUnitFactor;
     private final int framerate;
     private final int height;
     private boolean isCameraFrontFacing;
+    private OrientationHelper orientationHelper;
+    private SessionState state = SessionState.RUNNING;
     private Surface surface;
     private final SurfaceTextureHelper surfaceTextureHelper;
     private final int width;
     private static final Histogram camera2StartTimeMsHistogram = Histogram.createCounts("WebRTC.Android.Camera2.StartTimeMs", 1, 10000, 50);
     private static final Histogram camera2StopTimeMsHistogram = Histogram.createCounts("WebRTC.Android.Camera2.StopTimeMs", 1, 10000, 50);
     private static final Histogram camera2ResolutionHistogram = Histogram.createEnumeration("WebRTC.Android.Camera2.Resolution", CameraEnumerationAndroid.COMMON_RESOLUTIONS.size());
-    private SessionState state = SessionState.RUNNING;
-    private final long constructionTimeNs = System.nanoTime();
-    private final Handler cameraThreadHandler = new Handler();
-    private OrientationHelper orientationHelper = new OrientationHelper();
 
     public enum SessionState {
         RUNNING,
@@ -60,22 +59,22 @@ public class Camera2Session implements CameraSession {
         }
 
         private String getErrorDescription(int i) {
-            if (i == 1) {
-                return "Camera device is in use already.";
-            }
-            if (i == 2) {
+            if (i != 1) {
+                if (i != 2) {
+                    if (i != 3) {
+                        if (i != 4) {
+                            if (i != 5) {
+                                return "Unknown camera error: " + i;
+                            }
+                            return "Camera service has encountered a fatal error.";
+                        }
+                        return "Camera device has encountered a fatal error.";
+                    }
+                    return "Camera device could not be opened due to a device policy.";
+                }
                 return "Camera device could not be opened because there are too many other open camera devices.";
             }
-            if (i == 3) {
-                return "Camera device could not be opened due to a device policy.";
-            }
-            if (i == 4) {
-                return "Camera device has encountered a fatal error.";
-            }
-            if (i == 5) {
-                return "Camera service has encountered a fatal error.";
-            }
-            return "Unknown camera error: " + i;
+            return "Camera device is in use already.";
         }
 
         @Override
@@ -100,7 +99,7 @@ public class Camera2Session implements CameraSession {
         @Override
         public void onOpened(CameraDevice cameraDevice) {
             Camera2Session.this.checkIsOnCameraThread();
-            Logging.d(Camera2Session.TAG, "Camera opened.");
+            Logging.m9d(Camera2Session.TAG, "Camera opened.");
             Camera2Session.this.cameraDevice = cameraDevice;
             Camera2Session.this.surfaceTextureHelper.setTextureSize(Camera2Session.this.captureFormat.width, Camera2Session.this.captureFormat.height);
             Camera2Session.this.surface = new Surface(Camera2Session.this.surfaceTextureHelper.getSurfaceTexture());
@@ -115,7 +114,7 @@ public class Camera2Session implements CameraSession {
         @Override
         public void onClosed(CameraDevice cameraDevice) {
             Camera2Session.this.checkIsOnCameraThread();
-            Logging.d(Camera2Session.TAG, "Camera device closed.");
+            Logging.m9d(Camera2Session.TAG, "Camera device closed.");
             Camera2Session.this.events.onCameraClosed(Camera2Session.this);
         }
     }
@@ -134,7 +133,7 @@ public class Camera2Session implements CameraSession {
         @Override
         public void onConfigured(CameraCaptureSession cameraCaptureSession) {
             Camera2Session.this.checkIsOnCameraThread();
-            Logging.d(Camera2Session.TAG, "Camera capture session configured.");
+            Logging.m9d(Camera2Session.TAG, "Camera capture session configured.");
             Camera2Session.this.captureSession = cameraCaptureSession;
             try {
                 CaptureRequest.Builder createCaptureRequest = Camera2Session.this.cameraDevice.createCaptureRequest(3);
@@ -156,7 +155,7 @@ public class Camera2Session implements CameraSession {
                         VideoSink.CC.$default$setParentSink(this, videoSink);
                     }
                 });
-                Logging.d(Camera2Session.TAG, "Camera device successfully started.");
+                Logging.m9d(Camera2Session.TAG, "Camera device successfully started.");
                 Camera2Session.this.callback.onDone(Camera2Session.this);
             } catch (CameraAccessException e) {
                 Camera2Session camera2Session = Camera2Session.this;
@@ -166,17 +165,17 @@ public class Camera2Session implements CameraSession {
 
         public void lambda$onConfigured$0(VideoFrame videoFrame) {
             Camera2Session.this.checkIsOnCameraThread();
-            if (Camera2Session.this.state != SessionState.RUNNING) {
-                Logging.d(Camera2Session.TAG, "Texture frame captured but camera is no longer running.");
+            if (Camera2Session.this.state == SessionState.RUNNING) {
+                if (!Camera2Session.this.firstFrameReported) {
+                    Camera2Session.this.firstFrameReported = true;
+                    Camera2Session.camera2StartTimeMsHistogram.addSample((int) TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - Camera2Session.this.constructionTimeNs));
+                }
+                VideoFrame videoFrame2 = new VideoFrame(CameraSession.CC.createTextureBufferWithModifiedTransformMatrix((TextureBufferImpl) videoFrame.getBuffer(), Camera2Session.this.isCameraFrontFacing, -Camera2Session.this.cameraOrientation), Camera2Session.this.getFrameOrientation(), videoFrame.getTimestampNs());
+                Camera2Session.this.events.onFrameCaptured(Camera2Session.this, videoFrame2);
+                videoFrame2.release();
                 return;
             }
-            if (!Camera2Session.this.firstFrameReported) {
-                Camera2Session.this.firstFrameReported = true;
-                Camera2Session.camera2StartTimeMsHistogram.addSample((int) TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - Camera2Session.this.constructionTimeNs));
-            }
-            VideoFrame videoFrame2 = new VideoFrame(CameraSession.CC.createTextureBufferWithModifiedTransformMatrix((TextureBufferImpl) videoFrame.getBuffer(), Camera2Session.this.isCameraFrontFacing, -Camera2Session.this.cameraOrientation), Camera2Session.this.getFrameOrientation(), videoFrame.getTimestampNs());
-            Camera2Session.this.events.onFrameCaptured(Camera2Session.this, videoFrame2);
-            videoFrame2.release();
+            Logging.m9d(Camera2Session.TAG, "Texture frame captured but camera is no longer running.");
         }
 
         private void chooseStabilizationMode(CaptureRequest.Builder builder) {
@@ -186,7 +185,7 @@ public class Camera2Session implements CameraSession {
                     if (i == 1) {
                         builder.set(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE, 1);
                         builder.set(CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE, 0);
-                        Logging.d(Camera2Session.TAG, "Using optical stabilization.");
+                        Logging.m9d(Camera2Session.TAG, "Using optical stabilization.");
                         return;
                     }
                 }
@@ -195,22 +194,22 @@ public class Camera2Session implements CameraSession {
                 if (i2 == 1) {
                     builder.set(CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE, 1);
                     builder.set(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE, 0);
-                    Logging.d(Camera2Session.TAG, "Using video stabilization.");
+                    Logging.m9d(Camera2Session.TAG, "Using video stabilization.");
                     return;
                 }
             }
-            Logging.d(Camera2Session.TAG, "Stabilization not available.");
+            Logging.m9d(Camera2Session.TAG, "Stabilization not available.");
         }
 
         private void chooseFocusMode(CaptureRequest.Builder builder) {
             for (int i : (int[]) Camera2Session.this.cameraCharacteristics.get(CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES)) {
                 if (i == 3) {
                     builder.set(CaptureRequest.CONTROL_AF_MODE, 3);
-                    Logging.d(Camera2Session.TAG, "Using continuous video auto-focus.");
+                    Logging.m9d(Camera2Session.TAG, "Using continuous video auto-focus.");
                     return;
                 }
             }
-            Logging.d(Camera2Session.TAG, "Auto-focus is not available.");
+            Logging.m9d(Camera2Session.TAG, "Auto-focus is not available.");
         }
     }
 
@@ -220,7 +219,7 @@ public class Camera2Session implements CameraSession {
 
         @Override
         public void onCaptureFailed(CameraCaptureSession cameraCaptureSession, CaptureRequest captureRequest, CaptureFailure captureFailure) {
-            Logging.d(Camera2Session.TAG, "Capture failed: " + captureFailure);
+            Logging.m9d(Camera2Session.TAG, "Capture failed: " + captureFailure);
         }
     }
 
@@ -229,7 +228,9 @@ public class Camera2Session implements CameraSession {
     }
 
     private Camera2Session(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, CameraManager cameraManager, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) {
-        Logging.d(TAG, "Create new camera2 session on camera " + str);
+        Logging.m9d(TAG, "Create new camera2 session on camera " + str);
+        this.constructionTimeNs = System.nanoTime();
+        this.cameraThreadHandler = new Handler();
         this.callback = createSessionCallback;
         this.events = events;
         this.applicationContext = context;
@@ -239,12 +240,13 @@ public class Camera2Session implements CameraSession {
         this.width = i;
         this.height = i2;
         this.framerate = i3;
+        this.orientationHelper = new OrientationHelper();
         start();
     }
 
     private void start() {
         checkIsOnCameraThread();
-        Logging.d(TAG, "start");
+        Logging.m9d(TAG, "start");
         try {
             this.cameraCharacteristics = this.cameraManager.getCameraCharacteristics(this.cameraId);
             this.orientationHelper.start();
@@ -264,8 +266,8 @@ public class Camera2Session implements CameraSession {
         this.fpsUnitFactor = fpsUnitFactor;
         List<CameraEnumerationAndroid.CaptureFormat.FramerateRange> convertFramerates = Camera2Enumerator.convertFramerates(rangeArr, fpsUnitFactor);
         List<Size> supportedSizes = Camera2Enumerator.getSupportedSizes(this.cameraCharacteristics);
-        Logging.d(TAG, "Available preview sizes: " + supportedSizes);
-        Logging.d(TAG, "Available fps ranges: " + convertFramerates);
+        Logging.m9d(TAG, "Available preview sizes: " + supportedSizes);
+        Logging.m9d(TAG, "Available fps ranges: " + convertFramerates);
         if (convertFramerates.isEmpty() || supportedSizes.isEmpty()) {
             reportError("No supported capture formats.");
             return;
@@ -274,12 +276,12 @@ public class Camera2Session implements CameraSession {
         Size closestSupportedSize = CameraEnumerationAndroid.getClosestSupportedSize(supportedSizes, this.width, this.height);
         CameraEnumerationAndroid.reportCameraResolution(camera2ResolutionHistogram, closestSupportedSize);
         this.captureFormat = new CameraEnumerationAndroid.CaptureFormat(closestSupportedSize.width, closestSupportedSize.height, closestSupportedFramerateRange);
-        Logging.d(TAG, "Using capture format: " + this.captureFormat);
+        Logging.m9d(TAG, "Using capture format: " + this.captureFormat);
     }
 
     private void openCamera() {
         checkIsOnCameraThread();
-        Logging.d(TAG, "Opening camera " + this.cameraId);
+        Logging.m9d(TAG, "Opening camera " + this.cameraId);
         this.events.onCameraOpening();
         try {
             this.cameraManager.openCamera(this.cameraId, new CameraStateCallback(), this.cameraThreadHandler);
@@ -290,7 +292,7 @@ public class Camera2Session implements CameraSession {
 
     @Override
     public void stop() {
-        Logging.d(TAG, "Stop camera2 session on camera " + this.cameraId);
+        Logging.m9d(TAG, "Stop camera2 session on camera " + this.cameraId);
         checkIsOnCameraThread();
         SessionState sessionState = this.state;
         SessionState sessionState2 = SessionState.STOPPED;
@@ -303,7 +305,7 @@ public class Camera2Session implements CameraSession {
     }
 
     public void stopInternal() {
-        Logging.d(TAG, "Stop internal");
+        Logging.m9d(TAG, "Stop internal");
         checkIsOnCameraThread();
         this.surfaceTextureHelper.stopListening();
         CameraCaptureSession cameraCaptureSession = this.captureSession;
@@ -325,12 +327,12 @@ public class Camera2Session implements CameraSession {
         if (orientationHelper != null) {
             orientationHelper.stop();
         }
-        Logging.d(TAG, "Stop done");
+        Logging.m9d(TAG, "Stop done");
     }
 
     public void reportError(String str) {
         checkIsOnCameraThread();
-        Logging.e(TAG, "Error: " + str);
+        Logging.m8e(TAG, "Error: " + str);
         boolean z = this.captureSession == null && this.state != SessionState.STOPPED;
         this.state = SessionState.STOPPED;
         stopInternal();

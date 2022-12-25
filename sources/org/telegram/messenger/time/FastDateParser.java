@@ -1,7 +1,5 @@
 package org.telegram.messenger.time;
 
-import j$.util.DesugarTimeZone;
-import j$.util.concurrent.ConcurrentHashMap;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -21,6 +19,8 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.FileLoader;
+import p008j$.util.DesugarTimeZone;
+import p008j$.util.concurrent.ConcurrentHashMap;
 
 public class FastDateParser implements DateParser, Serializable {
     private static final long serialVersionUID = 2;
@@ -105,36 +105,35 @@ public class FastDateParser implements DateParser, Serializable {
         StringBuilder sb = new StringBuilder();
         ArrayList arrayList = new ArrayList();
         Matcher matcher = formatPattern.matcher(this.pattern);
-        if (matcher.lookingAt()) {
-            String group = matcher.group();
-            this.currentFormatField = group;
-            Strategy strategy = getStrategy(group, calendar);
-            while (true) {
-                matcher.region(matcher.end(), matcher.regionEnd());
-                if (!matcher.lookingAt()) {
-                    break;
-                }
-                String group2 = matcher.group();
-                this.nextStrategy = getStrategy(group2, calendar);
-                if (strategy.addRegex(this, sb)) {
-                    arrayList.add(strategy);
-                }
-                this.currentFormatField = group2;
-                strategy = this.nextStrategy;
+        if (!matcher.lookingAt()) {
+            throw new IllegalArgumentException("Illegal pattern character '" + this.pattern.charAt(matcher.regionStart()) + "'");
+        }
+        String group = matcher.group();
+        this.currentFormatField = group;
+        Strategy strategy = getStrategy(group, calendar);
+        while (true) {
+            matcher.region(matcher.end(), matcher.regionEnd());
+            if (!matcher.lookingAt()) {
+                break;
             }
-            this.nextStrategy = null;
-            if (matcher.regionStart() == matcher.regionEnd()) {
-                if (strategy.addRegex(this, sb)) {
-                    arrayList.add(strategy);
-                }
-                this.currentFormatField = null;
-                this.strategies = (Strategy[]) arrayList.toArray(new Strategy[arrayList.size()]);
-                this.parsePattern = Pattern.compile(sb.toString());
-                return;
+            String group2 = matcher.group();
+            this.nextStrategy = getStrategy(group2, calendar);
+            if (strategy.addRegex(this, sb)) {
+                arrayList.add(strategy);
             }
+            this.currentFormatField = group2;
+            strategy = this.nextStrategy;
+        }
+        this.nextStrategy = null;
+        if (matcher.regionStart() != matcher.regionEnd()) {
             throw new IllegalArgumentException("Failed to parse \"" + this.pattern + "\" ; gave up at index " + matcher.regionStart());
         }
-        throw new IllegalArgumentException("Illegal pattern character '" + this.pattern.charAt(matcher.regionStart()) + "'");
+        if (strategy.addRegex(this, sb)) {
+            arrayList.add(strategy);
+        }
+        this.currentFormatField = null;
+        this.strategies = (Strategy[]) arrayList.toArray(new Strategy[arrayList.size()]);
+        this.parsePattern = Pattern.compile(sb.toString());
     }
 
     @Override
@@ -157,11 +156,11 @@ public class FastDateParser implements DateParser, Serializable {
     }
 
     public boolean equals(Object obj) {
-        if (!(obj instanceof FastDateParser)) {
-            return false;
+        if (obj instanceof FastDateParser) {
+            FastDateParser fastDateParser = (FastDateParser) obj;
+            return this.pattern.equals(fastDateParser.pattern) && this.timeZone.equals(fastDateParser.timeZone) && this.locale.equals(fastDateParser.locale);
         }
-        FastDateParser fastDateParser = (FastDateParser) obj;
-        return this.pattern.equals(fastDateParser.pattern) && this.timeZone.equals(fastDateParser.timeZone) && this.locale.equals(fastDateParser.locale);
+        return false;
     }
 
     public int hashCode() {
@@ -185,13 +184,13 @@ public class FastDateParser implements DateParser, Serializable {
     @Override
     public Date parse(String str) throws ParseException {
         Date parse = parse(str, new ParsePosition(0));
-        if (parse != null) {
-            return parse;
+        if (parse == null) {
+            if (this.locale.equals(JAPANESE_IMPERIAL)) {
+                throw new ParseException("(The " + this.locale + " locale does not support dates before 1868 AD)\nUnparseable date: \"" + str + "\" does not match " + this.parsePattern.pattern(), 0);
+            }
+            throw new ParseException("Unparseable date: \"" + str + "\" does not match " + this.parsePattern.pattern(), 0);
         }
-        if (this.locale.equals(JAPANESE_IMPERIAL)) {
-            throw new ParseException("(The " + this.locale + " locale does not support dates before 1868 AD)\nUnparseable date: \"" + str + "\" does not match " + this.parsePattern.pattern(), 0);
-        }
-        throw new ParseException("Unparseable date: \"" + str + "\" does not match " + this.parsePattern.pattern(), 0);
+        return parse;
     }
 
     @Override
@@ -236,14 +235,14 @@ public class FastDateParser implements DateParser, Serializable {
                         charAt = 'Q';
                     }
                 }
-            } else if (!z) {
-                continue;
-            } else {
+            } else if (z) {
                 i++;
                 if (i == str.length()) {
                     return sb;
                 }
                 charAt = str.charAt(i);
+            } else {
+                continue;
             }
             sb.append(charAt);
             i++;
@@ -254,27 +253,27 @@ public class FastDateParser implements DateParser, Serializable {
 
     private static String[] getDisplayNameArray(int i, boolean z, Locale locale) {
         DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(locale);
-        if (i == 0) {
-            return dateFormatSymbols.getEras();
+        if (i != 0) {
+            if (i == 2) {
+                return z ? dateFormatSymbols.getMonths() : dateFormatSymbols.getShortMonths();
+            } else if (i == 7) {
+                return z ? dateFormatSymbols.getWeekdays() : dateFormatSymbols.getShortWeekdays();
+            } else if (i != 9) {
+                return null;
+            } else {
+                return dateFormatSymbols.getAmPmStrings();
+            }
         }
-        if (i == 2) {
-            return z ? dateFormatSymbols.getMonths() : dateFormatSymbols.getShortMonths();
-        }
-        if (i == 7) {
-            return z ? dateFormatSymbols.getWeekdays() : dateFormatSymbols.getShortWeekdays();
-        }
-        if (i != 9) {
-            return null;
-        }
-        return dateFormatSymbols.getAmPmStrings();
+        return dateFormatSymbols.getEras();
     }
 
     private static void insertValuesInMap(Map<String, Integer> map, String[] strArr) {
-        if (strArr != null) {
-            for (int i = 0; i < strArr.length; i++) {
-                if (strArr[i] != null && strArr[i].length() > 0) {
-                    map.put(strArr[i], Integer.valueOf(i));
-                }
+        if (strArr == null) {
+            return;
+        }
+        for (int i = 0; i < strArr.length; i++) {
+            if (strArr[i] != null && strArr[i].length() > 0) {
+                map.put(strArr[i], Integer.valueOf(i));
             }
         }
     }
@@ -506,17 +505,18 @@ public class FastDateParser implements DateParser, Serializable {
     }
 
     public static class TimeZoneStrategy extends Strategy {
-        private static final int ID = 0;
+        private static final int f833ID = 0;
         private static final int LONG_DST = 3;
         private static final int LONG_STD = 1;
         private static final int SHORT_DST = 4;
         private static final int SHORT_STD = 2;
-        private final SortedMap<String, TimeZone> tzNames = new TreeMap(String.CASE_INSENSITIVE_ORDER);
+        private final SortedMap<String, TimeZone> tzNames;
         private final String validTimeZoneChars;
 
         TimeZoneStrategy(Locale locale) {
             super();
             String[][] zoneStrings;
+            this.tzNames = new TreeMap(String.CASE_INSENSITIVE_ORDER);
             for (String[] strArr : DateFormatSymbols.getInstance(locale).getZoneStrings()) {
                 if (!strArr[0].startsWith("GMT")) {
                     TimeZone timeZone = DesugarTimeZone.getTimeZone(strArr[0]);

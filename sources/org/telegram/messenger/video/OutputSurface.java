@@ -41,25 +41,24 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         this.mEGLDisplay = eglGetDisplay;
         if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
             throw new RuntimeException("unable to get EGL10 display");
-        } else if (this.mEGL.eglInitialize(eglGetDisplay, null)) {
-            EGLConfig[] eGLConfigArr = new EGLConfig[1];
-            if (this.mEGL.eglChooseConfig(this.mEGLDisplay, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12339, 1, 12352, 4, 12344}, eGLConfigArr, 1, new int[1])) {
-                this.mEGLContext = this.mEGL.eglCreateContext(this.mEGLDisplay, eGLConfigArr[0], EGL10.EGL_NO_CONTEXT, new int[]{EGL_CONTEXT_CLIENT_VERSION, 2, 12344});
-                checkEglError("eglCreateContext");
-                if (this.mEGLContext != null) {
-                    this.mEGLSurface = this.mEGL.eglCreatePbufferSurface(this.mEGLDisplay, eGLConfigArr[0], new int[]{12375, i, 12374, i2, 12344});
-                    checkEglError("eglCreatePbufferSurface");
-                    if (this.mEGLSurface == null) {
-                        throw new RuntimeException("surface was null");
-                    }
-                    return;
-                }
-                throw new RuntimeException("null context");
-            }
-            throw new RuntimeException("unable to find RGB888+pbuffer EGL config");
-        } else {
+        }
+        if (!this.mEGL.eglInitialize(eglGetDisplay, null)) {
             this.mEGLDisplay = null;
             throw new RuntimeException("unable to initialize EGL10");
+        }
+        EGLConfig[] eGLConfigArr = new EGLConfig[1];
+        if (!this.mEGL.eglChooseConfig(this.mEGLDisplay, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12339, 1, 12352, 4, 12344}, eGLConfigArr, 1, new int[1])) {
+            throw new RuntimeException("unable to find RGB888+pbuffer EGL config");
+        }
+        this.mEGLContext = this.mEGL.eglCreateContext(this.mEGLDisplay, eGLConfigArr[0], EGL10.EGL_NO_CONTEXT, new int[]{EGL_CONTEXT_CLIENT_VERSION, 2, 12344});
+        checkEglError("eglCreateContext");
+        if (this.mEGLContext == null) {
+            throw new RuntimeException("null context");
+        }
+        this.mEGLSurface = this.mEGL.eglCreatePbufferSurface(this.mEGLDisplay, eGLConfigArr[0], new int[]{12375, i, 12374, i2, 12344});
+        checkEglError("eglCreatePbufferSurface");
+        if (this.mEGLSurface == null) {
+            throw new RuntimeException("surface was null");
         }
     }
 
@@ -90,17 +89,16 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     }
 
     public void makeCurrent() {
-        if (this.mEGL != null) {
-            checkEglError("before makeCurrent");
-            EGL10 egl10 = this.mEGL;
-            EGLDisplay eGLDisplay = this.mEGLDisplay;
-            EGLSurface eGLSurface = this.mEGLSurface;
-            if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.mEGLContext)) {
-                throw new RuntimeException("eglMakeCurrent failed");
-            }
-            return;
+        if (this.mEGL == null) {
+            throw new RuntimeException("not configured for makeCurrent");
         }
-        throw new RuntimeException("not configured for makeCurrent");
+        checkEglError("before makeCurrent");
+        EGL10 egl10 = this.mEGL;
+        EGLDisplay eGLDisplay = this.mEGLDisplay;
+        EGLSurface eGLSurface = this.mEGLSurface;
+        if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.mEGLContext)) {
+            throw new RuntimeException("eglMakeCurrent failed");
+        }
     }
 
     public Surface getSurface() {
@@ -131,12 +129,11 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     @Override
     public void onFrameAvailable(SurfaceTexture surfaceTexture) {
         synchronized (this.mFrameSyncObject) {
-            if (!this.mFrameAvailable) {
-                this.mFrameAvailable = true;
-                this.mFrameSyncObject.notifyAll();
-            } else {
+            if (this.mFrameAvailable) {
                 throw new RuntimeException("mFrameAvailable already set, frame could be dropped");
             }
+            this.mFrameAvailable = true;
+            this.mFrameSyncObject.notifyAll();
         }
     }
 

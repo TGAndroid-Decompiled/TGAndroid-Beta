@@ -72,20 +72,20 @@ public class MrzRecognizer {
     public static Result recognize(Bitmap bitmap, boolean z) {
         Result recognizeBarcode;
         Result recognizeBarcode2;
-        if (z && (recognizeBarcode2 = recognizeBarcode(bitmap)) != null) {
-            return recognizeBarcode2;
-        }
-        try {
-            Result recognizeMRZ = recognizeMRZ(bitmap);
-            if (recognizeMRZ != null) {
-                return recognizeMRZ;
+        if (!z || (recognizeBarcode2 = recognizeBarcode(bitmap)) == null) {
+            try {
+                Result recognizeMRZ = recognizeMRZ(bitmap);
+                if (recognizeMRZ != null) {
+                    return recognizeMRZ;
+                }
+            } catch (Exception unused) {
             }
-        } catch (Exception unused) {
+            if (z || (recognizeBarcode = recognizeBarcode(bitmap)) == null) {
+                return null;
+            }
+            return recognizeBarcode;
         }
-        if (z || (recognizeBarcode = recognizeBarcode(bitmap)) == null) {
-            return null;
-        }
-        return recognizeBarcode;
+        return recognizeBarcode2;
     }
 
     private static Result recognizeBarcode(Bitmap bitmap) {
@@ -101,59 +101,33 @@ public class MrzRecognizer {
             int i3 = valueAt.valueFormat;
             int i4 = 6;
             int i5 = 4;
-            if (i3 != 12 || valueAt.driverLicense == null) {
-                if (i3 == 7 && valueAt.format == 2048 && valueAt.rawValue.matches("^[A-Za-z0-9=]+$")) {
-                    try {
-                        String[] split = new String(Base64.decode(valueAt.rawValue, 0), "windows-1251").split("\\|");
-                        if (split.length >= 10) {
-                            Result result = new Result();
-                            result.type = 4;
-                            result.issuingCountry = "RU";
-                            result.nationality = "RU";
-                            result.number = split[0];
-                            result.expiryYear = Integer.parseInt(split[2].substring(0, 4));
-                            result.expiryMonth = Integer.parseInt(split[2].substring(4, 6));
-                            result.expiryDay = Integer.parseInt(split[2].substring(6));
-                            result.lastName = capitalize(cyrillicToLatin(split[3]));
-                            result.firstName = capitalize(cyrillicToLatin(split[4]));
-                            result.middleName = capitalize(cyrillicToLatin(split[5]));
-                            result.birthYear = Integer.parseInt(split[6].substring(0, 4));
-                            result.birthMonth = Integer.parseInt(split[6].substring(4, 6));
-                            result.birthDay = Integer.parseInt(split[6].substring(6));
-                            return result;
-                        }
-                        continue;
-                    } catch (Exception unused) {
-                        continue;
-                    }
-                }
-            } else {
-                Result result2 = new Result();
-                result2.type = "ID".equals(valueAt.driverLicense.documentType) ? 2 : 4;
+            if (i3 == 12 && valueAt.driverLicense != null) {
+                Result result = new Result();
+                result.type = "ID".equals(valueAt.driverLicense.documentType) ? 2 : 4;
                 String str = valueAt.driverLicense.issuingCountry;
                 str.hashCode();
                 if (str.equals("CAN")) {
-                    result2.issuingCountry = "CA";
-                    result2.nationality = "CA";
+                    result.issuingCountry = "CA";
+                    result.nationality = "CA";
                 } else if (str.equals("USA")) {
-                    result2.issuingCountry = "US";
-                    result2.nationality = "US";
+                    result.issuingCountry = "US";
+                    result.nationality = "US";
                 }
-                result2.firstName = capitalize(valueAt.driverLicense.firstName);
-                result2.lastName = capitalize(valueAt.driverLicense.lastName);
-                result2.middleName = capitalize(valueAt.driverLicense.middleName);
+                result.firstName = capitalize(valueAt.driverLicense.firstName);
+                result.lastName = capitalize(valueAt.driverLicense.lastName);
+                result.middleName = capitalize(valueAt.driverLicense.middleName);
                 Barcode.DriverLicense driverLicense = valueAt.driverLicense;
-                result2.number = driverLicense.licenseNumber;
+                result.number = driverLicense.licenseNumber;
                 String str2 = driverLicense.gender;
                 if (str2 != null) {
                     str2.hashCode();
                     if (str2.equals("1")) {
-                        result2.gender = 1;
+                        result.gender = 1;
                     } else if (str2.equals("2")) {
-                        result2.gender = 2;
+                        result.gender = 2;
                     }
                 }
-                if ("USA".equals(result2.issuingCountry)) {
+                if ("USA".equals(result.issuingCountry)) {
                     i = 4;
                     i4 = 2;
                     i5 = 0;
@@ -161,19 +135,44 @@ public class MrzRecognizer {
                 try {
                     String str3 = valueAt.driverLicense.birthDate;
                     if (str3 != null && str3.length() == 8) {
-                        result2.birthYear = Integer.parseInt(valueAt.driverLicense.birthDate.substring(i, i + 4));
-                        result2.birthMonth = Integer.parseInt(valueAt.driverLicense.birthDate.substring(i5, i5 + 2));
-                        result2.birthDay = Integer.parseInt(valueAt.driverLicense.birthDate.substring(i4, i4 + 2));
+                        result.birthYear = Integer.parseInt(valueAt.driverLicense.birthDate.substring(i, i + 4));
+                        result.birthMonth = Integer.parseInt(valueAt.driverLicense.birthDate.substring(i5, i5 + 2));
+                        result.birthDay = Integer.parseInt(valueAt.driverLicense.birthDate.substring(i4, i4 + 2));
                     }
                     String str4 = valueAt.driverLicense.expiryDate;
                     if (str4 != null && str4.length() == 8) {
-                        result2.expiryYear = Integer.parseInt(valueAt.driverLicense.expiryDate.substring(i, i + 4));
-                        result2.expiryMonth = Integer.parseInt(valueAt.driverLicense.expiryDate.substring(i5, i5 + 2));
-                        result2.expiryDay = Integer.parseInt(valueAt.driverLicense.expiryDate.substring(i4, i4 + 2));
+                        result.expiryYear = Integer.parseInt(valueAt.driverLicense.expiryDate.substring(i, i + 4));
+                        result.expiryMonth = Integer.parseInt(valueAt.driverLicense.expiryDate.substring(i5, i5 + 2));
+                        result.expiryDay = Integer.parseInt(valueAt.driverLicense.expiryDate.substring(i4, i4 + 2));
                     }
-                } catch (NumberFormatException unused2) {
+                } catch (NumberFormatException unused) {
                 }
-                return result2;
+                return result;
+            }
+            if (i3 == 7 && valueAt.format == 2048 && valueAt.rawValue.matches("^[A-Za-z0-9=]+$")) {
+                try {
+                    String[] split = new String(Base64.decode(valueAt.rawValue, 0), "windows-1251").split("\\|");
+                    if (split.length >= 10) {
+                        Result result2 = new Result();
+                        result2.type = 4;
+                        result2.issuingCountry = "RU";
+                        result2.nationality = "RU";
+                        result2.number = split[0];
+                        result2.expiryYear = Integer.parseInt(split[2].substring(0, 4));
+                        result2.expiryMonth = Integer.parseInt(split[2].substring(4, 6));
+                        result2.expiryDay = Integer.parseInt(split[2].substring(6));
+                        result2.lastName = capitalize(cyrillicToLatin(split[3]));
+                        result2.firstName = capitalize(cyrillicToLatin(split[4]));
+                        result2.middleName = capitalize(cyrillicToLatin(split[5]));
+                        result2.birthYear = Integer.parseInt(split[6].substring(0, 4));
+                        result2.birthMonth = Integer.parseInt(split[6].substring(4, 6));
+                        result2.birthDay = Integer.parseInt(split[6].substring(6));
+                        return result2;
+                    }
+                    continue;
+                } catch (Exception unused2) {
+                    continue;
+                }
             }
         }
         return null;
@@ -201,10 +200,10 @@ public class MrzRecognizer {
         char[] charArray = str.toCharArray();
         boolean z = true;
         for (int i = 0; i < charArray.length; i++) {
-            if (z || !Character.isLetter(charArray[i])) {
-                z = charArray[i] == ' ';
-            } else {
+            if (!z && Character.isLetter(charArray[i])) {
                 charArray[i] = Character.toLowerCase(charArray[i]);
+            } else {
+                z = charArray[i] == ' ';
             }
         }
         return new String(charArray);
@@ -216,10 +215,10 @@ public class MrzRecognizer {
         int[] iArr = {7, 3, 1};
         int i2 = 0;
         for (int i3 = 0; i3 < charArray.length; i3++) {
-            if (charArray[i3] < '0' || charArray[i3] > '9') {
-                i = (charArray[i3] < 'A' || charArray[i3] > 'Z') ? 0 : (charArray[i3] - 'A') + 10;
-            } else {
+            if (charArray[i3] >= '0' && charArray[i3] <= '9') {
                 i = charArray[i3] - '0';
+            } else {
+                i = (charArray[i3] < 'A' || charArray[i3] > 'Z') ? 0 : (charArray[i3] - 'A') + 10;
             }
             i2 += i * iArr[i3 % 3];
         }
@@ -262,14 +261,15 @@ public class MrzRecognizer {
     }
 
     private static String cyrillicToLatin(String str) {
+        String[] strArr = {"A", "B", "V", "G", "D", "E", "E", "ZH", "Z", "I", "I", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "F", "KH", "TS", "CH", "SH", "SHCH", "IE", "Y", BuildConfig.APP_CENTER_HASH, "E", "IU", "IA"};
+        String str2 = str;
         int i = 0;
-        String[] strArr = {"A", "B", "V", "G", "D", "E", "E", "ZH", "Z", "I", "I", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "F", "KH", "TS", "CH", "SH", "SHCH", "IE", "Y", "", "E", "IU", "IA"};
         while (i < 33) {
             int i2 = i + 1;
-            str = str.replace("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".substring(i, i2), strArr[i]);
+            str2 = str2.replace("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".substring(i, i2), strArr[i]);
             i = i2;
         }
-        return str;
+        return str2;
     }
 
     private static HashMap<String, String> getCountriesMap() {

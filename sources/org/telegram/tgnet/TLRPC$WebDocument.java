@@ -22,20 +22,21 @@ public abstract class TLRPC$WebDocument extends TLObject {
                     this.size = abstractSerializedData2.readInt32(z2);
                     this.mime_type = abstractSerializedData2.readString(z2);
                     int readInt32 = abstractSerializedData2.readInt32(z2);
-                    if (readInt32 == 481674261) {
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            TLRPC$DocumentAttribute TLdeserialize = TLRPC$DocumentAttribute.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                            if (TLdeserialize != null) {
-                                this.attributes.add(TLdeserialize);
-                            } else {
-                                return;
-                            }
+                    if (readInt32 != 481674261) {
+                        if (z2) {
+                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                         }
-                        abstractSerializedData2.readInt32(z2);
-                    } else if (z2) {
-                        throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                        return;
                     }
+                    int readInt322 = abstractSerializedData2.readInt32(z2);
+                    for (int i2 = 0; i2 < readInt322; i2++) {
+                        TLRPC$DocumentAttribute TLdeserialize = TLRPC$DocumentAttribute.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if (TLdeserialize == null) {
+                            return;
+                        }
+                        this.attributes.add(TLdeserialize);
+                    }
+                    abstractSerializedData2.readInt32(z2);
                 }
 
                 @Override
@@ -54,9 +55,7 @@ public abstract class TLRPC$WebDocument extends TLObject {
                     abstractSerializedData2.writeInt32(0);
                 }
             };
-        } else if (i != -104284986) {
-            tLRPC$WebDocument = i != 475467473 ? null : new TLRPC$TL_webDocument();
-        } else {
+        } else if (i == -104284986) {
             tLRPC$WebDocument = new TLRPC$WebDocument() {
                 public static int constructor = -104284986;
 
@@ -66,18 +65,19 @@ public abstract class TLRPC$WebDocument extends TLObject {
                     this.size = abstractSerializedData2.readInt32(z2);
                     this.mime_type = abstractSerializedData2.readString(z2);
                     int readInt32 = abstractSerializedData2.readInt32(z2);
-                    if (readInt32 == 481674261) {
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            TLRPC$DocumentAttribute TLdeserialize = TLRPC$DocumentAttribute.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                            if (TLdeserialize != null) {
-                                this.attributes.add(TLdeserialize);
-                            } else {
-                                return;
-                            }
+                    if (readInt32 != 481674261) {
+                        if (z2) {
+                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                         }
-                    } else if (z2) {
-                        throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                        return;
+                    }
+                    int readInt322 = abstractSerializedData2.readInt32(z2);
+                    for (int i2 = 0; i2 < readInt322; i2++) {
+                        TLRPC$DocumentAttribute TLdeserialize = TLRPC$DocumentAttribute.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if (TLdeserialize == null) {
+                            return;
+                        }
+                        this.attributes.add(TLdeserialize);
                     }
                 }
 
@@ -95,13 +95,15 @@ public abstract class TLRPC$WebDocument extends TLObject {
                     }
                 }
             };
+        } else {
+            tLRPC$WebDocument = i != 475467473 ? null : new TLRPC$TL_webDocument();
         }
-        if (tLRPC$WebDocument != null || !z) {
-            if (tLRPC$WebDocument != null) {
-                tLRPC$WebDocument.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$WebDocument;
+        if (tLRPC$WebDocument == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in WebDocument", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in WebDocument", Integer.valueOf(i)));
+        if (tLRPC$WebDocument != null) {
+            tLRPC$WebDocument.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$WebDocument;
     }
 }

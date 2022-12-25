@@ -31,12 +31,12 @@ public class DispatchQueuePool {
                     i++;
                 }
             }
-            if (!DispatchQueuePool.this.queues.isEmpty() || !DispatchQueuePool.this.busyQueues.isEmpty()) {
-                AndroidUtilities.runOnUIThread(this, 30000L);
-                DispatchQueuePool.this.cleanupScheduled = true;
+            if (DispatchQueuePool.this.queues.isEmpty() && DispatchQueuePool.this.busyQueues.isEmpty()) {
+                DispatchQueuePool.this.cleanupScheduled = false;
                 return;
             }
-            DispatchQueuePool.this.cleanupScheduled = false;
+            AndroidUtilities.runOnUIThread(this, 30000L);
+            DispatchQueuePool.this.cleanupScheduled = true;
         }
     };
     private int guid = Utilities.random.nextInt();
@@ -52,27 +52,27 @@ public class DispatchQueuePool {
     }
 
     public void execute(final Runnable runnable) {
-        final DispatchQueue dispatchQueue;
+        final DispatchQueue remove;
         if (!this.busyQueues.isEmpty() && (this.totalTasksCount / 2 <= this.busyQueues.size() || (this.queues.isEmpty() && this.createdCount >= this.maxCount))) {
-            dispatchQueue = this.busyQueues.remove(0);
+            remove = this.busyQueues.remove(0);
         } else if (this.queues.isEmpty()) {
-            dispatchQueue = new DispatchQueue("DispatchQueuePool" + this.guid + "_" + Utilities.random.nextInt());
-            dispatchQueue.setPriority(10);
+            remove = new DispatchQueue("DispatchQueuePool" + this.guid + "_" + Utilities.random.nextInt());
+            remove.setPriority(10);
             this.createdCount = this.createdCount + 1;
         } else {
-            dispatchQueue = this.queues.remove(0);
+            remove = this.queues.remove(0);
         }
         if (!this.cleanupScheduled) {
             AndroidUtilities.runOnUIThread(this.cleanupRunnable, 30000L);
             this.cleanupScheduled = true;
         }
         this.totalTasksCount++;
-        this.busyQueues.add(dispatchQueue);
-        this.busyQueuesMap.put(dispatchQueue.index, this.busyQueuesMap.get(dispatchQueue.index, 0) + 1);
-        dispatchQueue.postRunnable(new Runnable() {
+        this.busyQueues.add(remove);
+        this.busyQueuesMap.put(remove.index, this.busyQueuesMap.get(remove.index, 0) + 1);
+        remove.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DispatchQueuePool.this.lambda$execute$1(runnable, dispatchQueue);
+                DispatchQueuePool.this.lambda$execute$1(runnable, remove);
             }
         });
     }

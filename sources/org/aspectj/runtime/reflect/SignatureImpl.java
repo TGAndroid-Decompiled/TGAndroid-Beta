@@ -76,12 +76,13 @@ abstract class SignatureImpl implements Signature {
         int indexOf = this.stringRep.indexOf(45);
         int i2 = 0;
         while (true) {
-            i--;
+            int i3 = i - 1;
             if (i <= 0) {
                 break;
             }
             i2 = indexOf + 1;
             indexOf = this.stringRep.indexOf(45, i2);
+            i = i3;
         }
         if (indexOf == -1) {
             indexOf = this.stringRep.length();

@@ -17,7 +17,7 @@
     <string name="common_google_play_services_wear_update_text">Vyžaduje sa nová verzia služieb Google Play. Aktualizujú sa automaticky v najbližšom čase.</string>
     <string name="common_open_on_phone">Otvoriť v telefóne</string>
     <string name="common_signin_button_text">Prihlásiť sa</string>
-    <string name="common_signin_button_text_long">Prihlásiť sa účtom Google</string>
+    <string name="common_signin_button_text_long">Prihlásiť sa do účtu Google</string>
     <string name="fcm_fallback_notification_channel_label">Rôzne</string>
     <string name="google_assistant_verification_channel_name">Overenie Asistenta</string>
     <string name="google_assistant_verification_notification_title">Asistent Google odosiela správu</string>

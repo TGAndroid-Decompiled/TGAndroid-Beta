@@ -18,18 +18,19 @@ public abstract class TLRPC$messages_ExportedChatInvite extends TLObject {
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.invite = TLRPC$ExportedChatInvite.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                     int readInt32 = abstractSerializedData2.readInt32(z2);
-                    if (readInt32 == 481674261) {
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            TLRPC$User TLdeserialize = TLRPC$User.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                            if (TLdeserialize != null) {
-                                this.users.add(TLdeserialize);
-                            } else {
-                                return;
-                            }
+                    if (readInt32 != 481674261) {
+                        if (z2) {
+                            throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                         }
-                    } else if (z2) {
-                        throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                        return;
+                    }
+                    int readInt322 = abstractSerializedData2.readInt32(z2);
+                    for (int i2 = 0; i2 < readInt322; i2++) {
+                        TLRPC$User TLdeserialize = TLRPC$User.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        if (TLdeserialize == null) {
+                            return;
+                        }
+                        this.users.add(TLdeserialize);
                     }
                 }
 
@@ -46,12 +47,12 @@ public abstract class TLRPC$messages_ExportedChatInvite extends TLObject {
                 }
             };
         }
-        if (tLRPC$messages_ExportedChatInvite != null || !z) {
-            if (tLRPC$messages_ExportedChatInvite != null) {
-                tLRPC$messages_ExportedChatInvite.readParams(abstractSerializedData, z);
-            }
-            return tLRPC$messages_ExportedChatInvite;
+        if (tLRPC$messages_ExportedChatInvite == null && z) {
+            throw new RuntimeException(String.format("can't parse magic %x in messages_ExportedChatInvite", Integer.valueOf(i)));
         }
-        throw new RuntimeException(String.format("can't parse magic %x in messages_ExportedChatInvite", Integer.valueOf(i)));
+        if (tLRPC$messages_ExportedChatInvite != null) {
+            tLRPC$messages_ExportedChatInvite.readParams(abstractSerializedData, z);
+        }
+        return tLRPC$messages_ExportedChatInvite;
     }
 }

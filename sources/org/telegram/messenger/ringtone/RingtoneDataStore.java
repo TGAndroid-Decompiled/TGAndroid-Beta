@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationBadge;
@@ -45,7 +46,7 @@ public class RingtoneDataStore {
             queryHash = sharedPreferences.getLong("hash", 0L);
             lastReloadTimeMs = sharedPreferences.getLong("lastReload", 0L);
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.m31e(e);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -109,8 +110,8 @@ public class RingtoneDataStore {
         int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
         this.userRingtones.clear();
         for (int i2 = 0; i2 < i; i2++) {
-            String string = sharedPreferences.getString("tone_document" + i2, "");
-            String string2 = sharedPreferences.getString("tone_local_path" + i2, "");
+            String string = sharedPreferences.getString("tone_document" + i2, BuildConfig.APP_CENTER_HASH);
+            String string2 = sharedPreferences.getString("tone_local_path" + i2, BuildConfig.APP_CENTER_HASH);
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
             try {
                 TLRPC$Document TLdeserialize = TLRPC$Document.TLdeserialize(serializedData, serializedData.readInt32(true), true);
@@ -150,8 +151,8 @@ public class RingtoneDataStore {
         Iterator<CachedTone> it = this.userRingtones.iterator();
         while (it.hasNext()) {
             CachedTone next = it.next();
-            if (!(next.localUri == null || (tLRPC$Document = next.document) == null)) {
-                hashMap.put(Long.valueOf(tLRPC$Document.id), next.localUri);
+            if (next.localUri != null && (tLRPC$Document = next.document) != null) {
+                hashMap.put(Long.valueOf(tLRPC$Document.f856id), next.localUri);
             }
         }
         this.userRingtones.clear();
@@ -161,7 +162,7 @@ public class RingtoneDataStore {
         edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, arrayList.size());
         for (int i = 0; i < arrayList.size(); i++) {
             TLRPC$Document tLRPC$Document2 = arrayList.get(i);
-            String str = (String) hashMap.get(Long.valueOf(tLRPC$Document2.id));
+            String str = (String) hashMap.get(Long.valueOf(tLRPC$Document2.f856id));
             SerializedData serializedData = new SerializedData(tLRPC$Document2.getObjectSize());
             tLRPC$Document2.serializeToStream(serializedData);
             edit.putString("tone_document" + i, Utilities.bytesToHex(serializedData.toByteArray()));
@@ -225,30 +226,28 @@ public class RingtoneDataStore {
         if (z) {
             int i = 0;
             while (true) {
-                if (i < this.userRingtones.size()) {
-                    if (this.userRingtones.get(i).uploading && str.equals(this.userRingtones.get(i).localUri)) {
-                        this.userRingtones.remove(i);
-                        break;
-                    }
-                    i++;
-                } else {
+                if (i >= this.userRingtones.size()) {
                     z2 = false;
                     break;
+                } else if (this.userRingtones.get(i).uploading && str.equals(this.userRingtones.get(i).localUri)) {
+                    this.userRingtones.remove(i);
+                    break;
+                } else {
+                    i++;
                 }
             }
         } else {
             int i2 = 0;
             while (true) {
-                if (i2 < this.userRingtones.size()) {
-                    if (this.userRingtones.get(i2).uploading && str.equals(this.userRingtones.get(i2).localUri)) {
-                        this.userRingtones.get(i2).uploading = false;
-                        this.userRingtones.get(i2).document = tLRPC$Document;
-                        break;
-                    }
-                    i2++;
-                } else {
+                if (i2 >= this.userRingtones.size()) {
                     z2 = false;
                     break;
+                } else if (this.userRingtones.get(i2).uploading && str.equals(this.userRingtones.get(i2).localUri)) {
+                    this.userRingtones.get(i2).uploading = false;
+                    this.userRingtones.get(i2).document = tLRPC$Document;
+                    break;
+                } else {
+                    i2++;
                 }
             }
             if (z2) {
@@ -266,12 +265,11 @@ public class RingtoneDataStore {
             this.loaded = true;
         }
         for (int i = 0; i < this.userRingtones.size(); i++) {
-            if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.id == j) {
+            if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f856id == j) {
                 if (!TextUtils.isEmpty(this.userRingtones.get(i).localUri)) {
                     return this.userRingtones.get(i).localUri;
-                } else {
-                    return FileLoader.getInstance(this.currentAccount).getPathToAttach(this.userRingtones.get(i).document).toString();
                 }
+                return FileLoader.getInstance(this.currentAccount).getPathToAttach(this.userRingtones.get(i).document).toString();
             }
         }
         return "NoSound";
@@ -316,16 +314,17 @@ public class RingtoneDataStore {
     }
 
     public void remove(TLRPC$Document tLRPC$Document) {
-        if (tLRPC$Document != null) {
-            if (!this.loaded) {
-                loadFromPrefs(true);
-                this.loaded = true;
-            }
-            for (int i = 0; i < this.userRingtones.size(); i++) {
-                if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.id == tLRPC$Document.id) {
-                    this.userRingtones.remove(i);
-                    return;
-                }
+        if (tLRPC$Document == null) {
+            return;
+        }
+        if (!this.loaded) {
+            loadFromPrefs(true);
+            this.loaded = true;
+        }
+        for (int i = 0; i < this.userRingtones.size(); i++) {
+            if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f856id == tLRPC$Document.f856id) {
+                this.userRingtones.remove(i);
+                return;
             }
         }
     }
@@ -335,16 +334,17 @@ public class RingtoneDataStore {
     }
 
     public void addTone(TLRPC$Document tLRPC$Document) {
-        if (tLRPC$Document != null && !contains(tLRPC$Document.id)) {
-            CachedTone cachedTone = new CachedTone(this);
-            cachedTone.document = tLRPC$Document;
-            int i = this.localIds;
-            this.localIds = i + 1;
-            cachedTone.localId = i;
-            cachedTone.uploading = false;
-            this.userRingtones.add(cachedTone);
-            saveTones();
+        if (tLRPC$Document == null || contains(tLRPC$Document.f856id)) {
+            return;
         }
+        CachedTone cachedTone = new CachedTone(this);
+        cachedTone.document = tLRPC$Document;
+        int i = this.localIds;
+        this.localIds = i + 1;
+        cachedTone.localId = i;
+        cachedTone.uploading = false;
+        this.userRingtones.add(cachedTone);
+        saveTones();
     }
 
     public TLRPC$Document getDocument(long j) {
@@ -354,11 +354,11 @@ public class RingtoneDataStore {
         }
         for (int i = 0; i < this.userRingtones.size(); i++) {
             try {
-                if (!(this.userRingtones.get(i) == null || this.userRingtones.get(i).document == null || this.userRingtones.get(i).document.id != j)) {
+                if (this.userRingtones.get(i) != null && this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f856id == j) {
                     return this.userRingtones.get(i).document;
                 }
             } catch (Exception e) {
-                FileLog.e(e);
+                FileLog.m31e(e);
                 return null;
             }
         }

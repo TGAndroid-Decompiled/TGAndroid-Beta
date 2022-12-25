@@ -6,15 +6,15 @@ public class TLRPC$TL_exportedMessageLink extends TLObject {
     public String link;
 
     public static TLRPC$TL_exportedMessageLink TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor == i) {
-            TLRPC$TL_exportedMessageLink tLRPC$TL_exportedMessageLink = new TLRPC$TL_exportedMessageLink();
-            tLRPC$TL_exportedMessageLink.readParams(abstractSerializedData, z);
-            return tLRPC$TL_exportedMessageLink;
-        } else if (!z) {
+        if (constructor != i) {
+            if (z) {
+                throw new RuntimeException(String.format("can't parse magic %x in TL_exportedMessageLink", Integer.valueOf(i)));
+            }
             return null;
-        } else {
-            throw new RuntimeException(String.format("can't parse magic %x in TL_exportedMessageLink", Integer.valueOf(i)));
         }
+        TLRPC$TL_exportedMessageLink tLRPC$TL_exportedMessageLink = new TLRPC$TL_exportedMessageLink();
+        tLRPC$TL_exportedMessageLink.readParams(abstractSerializedData, z);
+        return tLRPC$TL_exportedMessageLink;
     }
 
     @Override

@@ -17,12 +17,13 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
         }
 
         @Override
-        public Predicate<MediaCodecInfo> or(Predicate<? super MediaCodecInfo> predicate) {
+        public Predicate<MediaCodecInfo> mo2or(Predicate<? super MediaCodecInfo> predicate) {
             return Predicate.CC.$default$or(this, predicate);
         }
 
+        @Override
         public boolean test(android.media.MediaCodecInfo r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.webrtc.HardwareVideoDecoderFactory.AnonymousClass1.test(android.media.MediaCodecInfo):boolean");
+            throw new UnsupportedOperationException("Method not decompiled: org.webrtc.HardwareVideoDecoderFactory.C41421.test(android.media.MediaCodecInfo):boolean");
         }
     };
 
