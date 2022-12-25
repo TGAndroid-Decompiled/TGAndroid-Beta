@@ -9,7 +9,6 @@ import android.view.TextureView;
 import android.view.View;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.p009ui.ActionBar.Theme$$ExternalSyntheticLambda2;
 import org.webrtc.EglBase;
@@ -434,7 +433,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         try {
             return getResources().getResourceEntryName(getId());
         } catch (Resources.NotFoundException unused) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 

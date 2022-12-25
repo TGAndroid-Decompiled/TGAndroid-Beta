@@ -5,8 +5,7 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.BaseFragment;
 import org.telegram.p009ui.ChatActivity;
@@ -36,7 +35,7 @@ public class MemberRequestsBottomSheet extends UsersAlertBase {
                     }
                     MemberRequestsBottomSheet.this.dismiss();
                 } else if (z2) {
-                    MemberRequestsBottomSheet.this.searchView.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
+                    MemberRequestsBottomSheet.this.searchView.searchEditText.setText("");
                 } else {
                     super.onImportersChanged(str, z, z2);
                 }
@@ -45,7 +44,7 @@ public class MemberRequestsBottomSheet extends UsersAlertBase {
         this.delegate = memberRequestsDelegate;
         memberRequestsDelegate.setShowLastItemDivider(false);
         setDimBehindAlpha(75);
-        this.searchView.searchEditText.setHint(LocaleController.getString("SearchMemberRequests", C1010R.string.SearchMemberRequests));
+        this.searchView.searchEditText.setHint(LocaleController.getString("SearchMemberRequests", C1072R.string.SearchMemberRequests));
         MemberRequestsDelegate.Adapter adapter = memberRequestsDelegate.getAdapter();
         this.listViewAdapter = adapter;
         this.searchListViewAdapter = adapter;

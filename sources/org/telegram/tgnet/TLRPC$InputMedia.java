@@ -17,6 +17,7 @@ public abstract class TLRPC$InputMedia extends TLObject {
     public String phone_number;
     public String provider;
     public int proximity_notification_radius;
+    public boolean spoiler;
     public boolean stopped;
     public TLRPC$InputFile thumb;
     public String title;

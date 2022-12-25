@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.SimpleTextView;
@@ -91,7 +90,7 @@ public class ManageChatUserCell extends FrameLayout {
             this.optionsButton = imageView;
             imageView.setFocusable(false);
             this.optionsButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("stickers_menuSelector", resourcesProvider)));
-            this.optionsButton.setImageResource(C1010R.C1011drawable.ic_ab_other);
+            this.optionsButton.setImageResource(C1072R.C1073drawable.ic_ab_other);
             this.optionsButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu", resourcesProvider), PorterDuff.Mode.MULTIPLY));
             this.optionsButton.setScaleType(ImageView.ScaleType.CENTER);
             addView(this.optionsButton, LayoutHelper.createFrame(60, 64, (LocaleController.isRTL ? 3 : 5) | 48));
@@ -101,7 +100,7 @@ public class ManageChatUserCell extends FrameLayout {
                     ManageChatUserCell.this.lambda$new$0(view);
                 }
             });
-            this.optionsButton.setContentDescription(LocaleController.getString("AccDescrUserOptions", C1010R.string.AccDescrUserOptions));
+            this.optionsButton.setContentDescription(LocaleController.getString("AccDescrUserOptions", C1072R.string.AccDescrUserOptions));
         }
     }
 
@@ -133,8 +132,8 @@ public class ManageChatUserCell extends FrameLayout {
             this.currrntStatus = null;
             this.currentName = null;
             this.currentObject = null;
-            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
-            this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.nameTextView.setText("");
+            this.statusTextView.setText("");
             this.avatarImageView.setImageDrawable(null);
             return;
         }
@@ -190,7 +189,7 @@ public class ManageChatUserCell extends FrameLayout {
     public long getUserId() {
         Object obj = this.currentObject;
         if (obj instanceof TLRPC$User) {
-            return ((TLRPC$User) obj).f986id;
+            return ((TLRPC$User) obj).f995id;
         }
         return 0L;
     }

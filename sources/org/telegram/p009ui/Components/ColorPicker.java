@@ -35,8 +35,7 @@ import androidx.annotation.Keep;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -188,7 +187,7 @@ public class ColorPicker extends FrameLayout {
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", C1010R.string.ColorPickerMainColor));
+            accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", C1072R.string.ColorPickerMainColor));
             accessibilityNodeInfo.setClassName(Button.class.getName());
             accessibilityNodeInfo.setChecked(this.checked);
             accessibilityNodeInfo.setCheckable(true);
@@ -212,7 +211,7 @@ public class ColorPicker extends FrameLayout {
         this.delegate = colorPickerDelegate;
         this.colorEditText = new EditTextBoldCursor[2];
         setWillNotDraw(false);
-        this.circleDrawable = context.getResources().getDrawable(C1010R.C1011drawable.knob_shadow).mutate();
+        this.circleDrawable = context.getResources().getDrawable(C1072R.C1073drawable.knob_shadow).mutate();
         this.circlePaint = new Paint(1);
         this.colorWheelPaint = new Paint(5);
         this.valueSliderPaint = new Paint(5);
@@ -337,7 +336,7 @@ public class ColorPicker extends FrameLayout {
                         while (i3 < editable.length()) {
                             char charAt = editable.charAt(i3);
                             if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'f') && (charAt < 'A' || charAt > 'F'))) {
-                                editable.replace(i3, i3 + 1, BuildConfig.APP_CENTER_HASH);
+                                editable.replace(i3, i3 + 1, "");
                                 i3--;
                             }
                             i3++;
@@ -382,7 +381,7 @@ public class ColorPicker extends FrameLayout {
         ImageView imageView = new ImageView(getContext());
         this.addButton = imageView;
         imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 1));
-        this.addButton.setImageResource(C1010R.C1011drawable.msg_add);
+        this.addButton.setImageResource(C1072R.C1073drawable.msg_add);
         this.addButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"), PorterDuff.Mode.MULTIPLY));
         this.addButton.setScaleType(ImageView.ScaleType.CENTER);
         this.addButton.setOnClickListener(new View.OnClickListener() {
@@ -391,7 +390,7 @@ public class ColorPicker extends FrameLayout {
                 ColorPicker.this.lambda$new$2(view);
             }
         });
-        this.addButton.setContentDescription(LocaleController.getString("Add", C1010R.string.Add));
+        this.addButton.setContentDescription(LocaleController.getString("Add", C1072R.string.Add));
         addView(this.addButton, LayoutHelper.createFrame(30, 30.0f, 49, 36.0f, 1.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(getContext()) {
             @Override
@@ -402,7 +401,7 @@ public class ColorPicker extends FrameLayout {
         };
         this.clearButton = imageView2;
         imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 1));
-        this.clearButton.setImageResource(C1010R.C1011drawable.msg_close);
+        this.clearButton.setImageResource(C1072R.C1073drawable.msg_close);
         this.clearButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"), PorterDuff.Mode.MULTIPLY));
         this.clearButton.setAlpha(0.0f);
         this.clearButton.setScaleX(0.0f);
@@ -415,7 +414,7 @@ public class ColorPicker extends FrameLayout {
                 ColorPicker.this.lambda$new$3(view);
             }
         });
-        this.clearButton.setContentDescription(LocaleController.getString("ClearButton", C1010R.string.ClearButton));
+        this.clearButton.setContentDescription(LocaleController.getString("ClearButton", C1072R.string.ClearButton));
         addView(this.clearButton, LayoutHelper.createFrame(30, 30.0f, 51, 97.0f, 1.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.resetButton = textView;
@@ -430,11 +429,11 @@ public class ColorPicker extends FrameLayout {
             ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, null, 0, Theme.getColor("windowBackgroundWhiteBlackText"));
             this.menuItem = actionBarMenuItem;
             actionBarMenuItem.setLongClickEnabled(false);
-            this.menuItem.setIcon(C1010R.C1011drawable.ic_ab_other);
-            this.menuItem.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C1010R.string.AccDescrMoreOptions));
-            this.menuItem.addSubItem(1, C1010R.C1011drawable.msg_edit, LocaleController.getString("OpenInEditor", C1010R.string.OpenInEditor));
-            this.menuItem.addSubItem(2, C1010R.C1011drawable.msg_share, LocaleController.getString("ShareTheme", C1010R.string.ShareTheme));
-            this.menuItem.addSubItem(3, C1010R.C1011drawable.msg_delete, LocaleController.getString("DeleteTheme", C1010R.string.DeleteTheme));
+            this.menuItem.setIcon(C1072R.C1073drawable.ic_ab_other);
+            this.menuItem.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C1072R.string.AccDescrMoreOptions));
+            this.menuItem.addSubItem(1, C1072R.C1073drawable.msg_edit, LocaleController.getString("OpenInEditor", C1072R.string.OpenInEditor));
+            this.menuItem.addSubItem(2, C1072R.C1073drawable.msg_share, LocaleController.getString("ShareTheme", C1072R.string.ShareTheme));
+            this.menuItem.addSubItem(3, C1072R.C1073drawable.msg_delete, LocaleController.getString("DeleteTheme", C1072R.string.DeleteTheme));
             this.menuItem.setMenuYOffset(-AndroidUtilities.m35dp(80.0f));
             this.menuItem.setSubMenuOpenSide(2);
             this.menuItem.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
@@ -634,7 +633,7 @@ public class ColorPicker extends FrameLayout {
                             ColorPicker.this.clearButton.setVisibility(4);
                         }
                         for (int i5 = 0; i5 < ColorPicker.this.radioButton.length; i5++) {
-                            if (ColorPicker.this.radioButton[i5].getTag(C1010R.C1012id.index_tag) == null) {
+                            if (ColorPicker.this.radioButton[i5].getTag(C1072R.C1074id.index_tag) == null) {
                                 ColorPicker.this.radioButton[i5].setVisibility(4);
                             }
                         }
@@ -683,7 +682,7 @@ public class ColorPicker extends FrameLayout {
                 return;
             }
             RadioButton radioButton = radioButtonArr[i4];
-            int i6 = C1010R.C1012id.index_tag;
+            int i6 = C1072R.C1074id.index_tag;
             boolean z2 = radioButton.getTag(i6) != null;
             if (i4 < this.colorsCount) {
                 this.radioButton[i4].setVisibility(0);

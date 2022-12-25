@@ -19,8 +19,7 @@ import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -222,9 +221,9 @@ public class GroupCallUserCell extends FrameLayout {
         public VerifiedDrawable(Context context) {
             Drawable[] drawableArr = new Drawable[2];
             this.drawables = drawableArr;
-            drawableArr[0] = context.getResources().getDrawable(C1010R.C1011drawable.verified_area).mutate();
+            drawableArr[0] = context.getResources().getDrawable(C1072R.C1073drawable.verified_area).mutate();
             this.drawables[0].setColorFilter(new PorterDuffColorFilter(-9063442, PorterDuff.Mode.MULTIPLY));
-            this.drawables[1] = context.getResources().getDrawable(C1010R.C1011drawable.verified_check).mutate();
+            this.drawables[1] = context.getResources().getDrawable(C1072R.C1073drawable.verified_check).mutate();
         }
 
         @Override
@@ -348,7 +347,7 @@ public class GroupCallUserCell extends FrameLayout {
         boolean z3 = LocaleController.isRTL;
         addView(simpleTextView2, LayoutHelper.createFrame(-1, 20.0f, (z3 ? 5 : 3) | 48, z3 ? 54.0f : 67.0f, 10.0f, z3 ? 67.0f : 54.0f, 0.0f));
         this.rightDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.nameTextView, AndroidUtilities.m35dp(20.0f), 9);
-        Drawable drawable = context.getResources().getDrawable(C1010R.C1011drawable.voice_volume_mini);
+        Drawable drawable = context.getResources().getDrawable(C1072R.C1073drawable.voice_volume_mini);
         this.speakingDrawable = drawable;
         drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("voipgroup_speakingText"), PorterDuff.Mode.MULTIPLY));
         final int i = 0;
@@ -411,17 +410,17 @@ public class GroupCallUserCell extends FrameLayout {
             } else {
                 if (i == 0) {
                     this.statusTextView[i].setTextColor(Theme.getColor("voipgroup_listeningText"));
-                    this.statusTextView[i].setText(LocaleController.getString("Listening", C1010R.string.Listening));
+                    this.statusTextView[i].setText(LocaleController.getString("Listening", C1072R.string.Listening));
                 } else if (i == 1) {
                     this.statusTextView[i].setTextColor(Theme.getColor("voipgroup_speakingText"));
-                    this.statusTextView[i].setText(LocaleController.getString("Speaking", C1010R.string.Speaking));
+                    this.statusTextView[i].setText(LocaleController.getString("Speaking", C1072R.string.Speaking));
                     this.statusTextView[i].setDrawablePadding(AndroidUtilities.m35dp(2.0f));
                 } else if (i == 2) {
                     this.statusTextView[i].setTextColor(Theme.getColor("voipgroup_mutedByAdminIcon"));
-                    this.statusTextView[i].setText(LocaleController.getString("VoipGroupMutedForMe", C1010R.string.VoipGroupMutedForMe));
+                    this.statusTextView[i].setText(LocaleController.getString("VoipGroupMutedForMe", C1072R.string.VoipGroupMutedForMe));
                 } else if (i == 3) {
                     this.statusTextView[i].setTextColor(Theme.getColor("voipgroup_listeningText"));
-                    this.statusTextView[i].setText(LocaleController.getString("WantsToSpeak", C1010R.string.WantsToSpeak));
+                    this.statusTextView[i].setText(LocaleController.getString("WantsToSpeak", C1072R.string.WantsToSpeak));
                 }
                 SimpleTextView simpleTextView4 = this.statusTextView[i];
                 boolean z5 = LocaleController.isRTL;
@@ -436,10 +435,10 @@ public class GroupCallUserCell extends FrameLayout {
         this.fullAboutTextView.setTextColor(Theme.getColor("voipgroup_mutedIcon"));
         this.fullAboutTextView.setVisibility(8);
         addView(this.fullAboutTextView, LayoutHelper.createFrame(-1, 60.0f, (LocaleController.isRTL ? 5 : 3) | 48, 14.0f, 32.0f, 14.0f, 0.0f));
-        int i2 = C1010R.raw.voice_outlined2;
-        this.muteDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.m35dp(34.0f), AndroidUtilities.m35dp(32.0f), true, null);
-        int i3 = C1010R.raw.hand_1;
-        this.shakeHandDrawable = new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, AndroidUtilities.m35dp(34.0f), AndroidUtilities.m35dp(32.0f), true, null);
+        int i2 = C1072R.raw.voice_outlined2;
+        this.muteDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(34.0f), AndroidUtilities.m35dp(32.0f), true, null);
+        int i3 = C1072R.raw.hand_1;
+        this.shakeHandDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.m35dp(34.0f), AndroidUtilities.m35dp(32.0f), true, null);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.muteButton = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -496,10 +495,10 @@ public class GroupCallUserCell extends FrameLayout {
         long j = this.selfId;
         if (j > 0) {
             TLRPC$User tLRPC$User = this.currentUser;
-            return tLRPC$User != null && tLRPC$User.f986id == j;
+            return tLRPC$User != null && tLRPC$User.f995id == j;
         }
         TLRPC$Chat tLRPC$Chat = this.currentChat;
-        return tLRPC$Chat != null && tLRPC$Chat.f848id == (-j);
+        return tLRPC$Chat != null && tLRPC$Chat.f857id == (-j);
     }
 
     public boolean isHandRaised() {
@@ -551,7 +550,7 @@ public class GroupCallUserCell extends FrameLayout {
                 TLRPC$User tLRPC$User2 = this.currentUser;
                 if (tLRPC$User2 != null && tLRPC$User2.premium) {
                     if (this.premiumDrawable == null) {
-                        this.premiumDrawable = getContext().getResources().getDrawable(C1010R.C1011drawable.msg_premium_liststar).mutate();
+                        this.premiumDrawable = getContext().getResources().getDrawable(C1072R.C1073drawable.msg_premium_liststar).mutate();
                         this.premiumDrawable = new AnimatedEmojiDrawable.WrapSizeDrawable(this, this.premiumDrawable, AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(14.0f)) {
                             @Override
                             public void draw(Canvas canvas) {
@@ -886,10 +885,10 @@ public class GroupCallUserCell extends FrameLayout {
         }
         TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = this.participant;
         if (!tLRPC$TL_groupCallParticipant.muted || tLRPC$TL_groupCallParticipant.can_self_unmute) {
-            i = C1010R.string.VoipMute;
+            i = C1072R.string.VoipMute;
             str = "VoipMute";
         } else {
-            i = C1010R.string.VoipUnmute;
+            i = C1072R.string.VoipUnmute;
             str = "VoipUnmute";
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(str, i)));

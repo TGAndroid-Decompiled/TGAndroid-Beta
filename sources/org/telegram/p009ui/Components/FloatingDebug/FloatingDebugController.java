@@ -70,7 +70,7 @@ public class FloatingDebugController {
         AnimationProperties.FloatProperty floatProperty;
         float from;
         final CharSequence title;
-        float f1060to;
+        float f1070to;
         final DebugItemType type;
 
         public DebugItem(CharSequence charSequence, Runnable runnable) {
@@ -88,7 +88,7 @@ public class FloatingDebugController {
             this.type = DebugItemType.SEEKBAR;
             this.title = charSequence;
             this.from = f;
-            this.f1060to = f2;
+            this.f1070to = f2;
             this.floatProperty = floatProperty;
         }
     }

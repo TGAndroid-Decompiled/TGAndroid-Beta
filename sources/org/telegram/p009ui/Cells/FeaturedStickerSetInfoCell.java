@@ -18,7 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
@@ -90,7 +90,7 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
             ProgressButton progressButton = new ProgressButton(context);
             this.addButton = progressButton;
             progressButton.setTextColor(getThemedColor("featuredStickers_buttonText"));
-            this.addButton.setText(LocaleController.getString("Add", C1010R.string.Add));
+            this.addButton.setText(LocaleController.getString("Add", C1072R.string.Add));
             if (z) {
                 createFrame3 = LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f);
             } else {
@@ -103,7 +103,7 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
             this.delButton.setTextColor(getThemedColor("featuredStickers_removeButtonText"));
             this.delButton.setTextSize(1, 14.0f);
             this.delButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.delButton.setText(LocaleController.getString("StickersRemove", C1010R.string.StickersRemove));
+            this.delButton.setText(LocaleController.getString("StickersRemove", C1072R.string.StickersRemove));
             if (z) {
                 createFrame4 = LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f);
             } else {
@@ -176,7 +176,7 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
         if (this.canAddRemove) {
             if (this.hasOnClick) {
                 this.addButton.setVisibility(0);
-                boolean z4 = z3 || MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(tLRPC$StickerSetCovered.set.f881id);
+                boolean z4 = z3 || MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(tLRPC$StickerSetCovered.set.f890id);
                 this.isInstalled = z4;
                 if (!z2) {
                     if (z4) {

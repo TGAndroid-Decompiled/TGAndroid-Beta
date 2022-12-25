@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -266,7 +266,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.titleView.getLayoutParams();
             if (launcherIcon.premium && !UserConfig.hasPremiumOnAccounts()) {
                 SpannableString spannableString = new SpannableString("d " + LocaleController.getString(launcherIcon.title));
-                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(C1010R.C1011drawable.msg_mini_premiumlock);
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(C1072R.C1073drawable.msg_mini_premiumlock);
                 coloredImageSpan.setTopOffset(1);
                 coloredImageSpan.setSize(AndroidUtilities.m35dp(13.0f));
                 spannableString.setSpan(coloredImageSpan, 0, 1, 33);

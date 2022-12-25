@@ -7,15 +7,19 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.text.SpannableString;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.p009ui.Components.Paint.Views.EditTextOutline;
 
@@ -108,8 +112,8 @@ public class PaintingOverlay extends FrameLayout {
                         i5 = ((int) (measuredWidth * mediaEntity.textViewX)) - (childAt.getMeasuredWidth() / 2);
                         i6 = ((int) (measuredHeight * mediaEntity.textViewY)) - (childAt.getMeasuredHeight() / 2);
                     } else {
-                        i5 = (int) (measuredWidth * mediaEntity.f825x);
-                        i6 = (int) (measuredHeight * mediaEntity.f826y);
+                        i5 = (int) (measuredWidth * mediaEntity.f834x);
+                        i6 = (int) (measuredHeight * mediaEntity.f835y);
                     }
                     childAt.layout(i5, i6, childAt.getMeasuredWidth() + i5, childAt.getMeasuredHeight() + i6);
                 }
@@ -156,12 +160,13 @@ public class PaintingOverlay extends FrameLayout {
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
             VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i);
-            byte b = mediaEntity.type;
             BackupImageView backupImageView = null;
+            byte b = mediaEntity.type;
+            int i2 = 2;
             if (b == 0) {
-                backupImageView = new BackupImageView(getContext());
-                backupImageView.setAspectFit(true);
-                ImageReceiver imageReceiver = backupImageView.getImageReceiver();
+                BackupImageView backupImageView2 = new BackupImageView(getContext());
+                backupImageView2.setAspectFit(true);
+                ImageReceiver imageReceiver = backupImageView2.getImageReceiver();
                 if (z) {
                     imageReceiver.setAllowDecodeSingleFrame(true);
                     imageReceiver.setAllowStartLottieAnimation(false);
@@ -171,9 +176,10 @@ public class PaintingOverlay extends FrameLayout {
                 }
                 imageReceiver.setImage(ImageLocation.getForDocument(mediaEntity.document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(mediaEntity.document.thumbs, 90), mediaEntity.document), (String) null, "webp", mediaEntity.parentObject, 1);
                 if ((mediaEntity.subType & 2) != 0) {
-                    backupImageView.setScaleX(-1.0f);
+                    backupImageView2.setScaleX(-1.0f);
                 }
-                mediaEntity.view = backupImageView;
+                mediaEntity.view = backupImageView2;
+                backupImageView = backupImageView2;
             } else if (b == 1) {
                 EditTextOutline editTextOutline = new EditTextOutline(this, getContext()) {
                     @Override
@@ -185,19 +191,43 @@ public class PaintingOverlay extends FrameLayout {
                     public boolean onTouchEvent(MotionEvent motionEvent) {
                         return false;
                     }
+
+                    {
+                        this.animatedEmojiOffsetX = AndroidUtilities.m35dp(8.0f);
+                    }
                 };
                 editTextOutline.setBackgroundColor(0);
                 editTextOutline.setPadding(AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(7.0f));
                 editTextOutline.setTextSize(0, mediaEntity.fontSize);
-                editTextOutline.setText(mediaEntity.text);
-                editTextOutline.setTypeface(null, 1);
+                editTextOutline.setTypeface(mediaEntity.textTypeface.getTypeface());
+                SpannableString spannableString = new SpannableString(Emoji.replaceEmoji(mediaEntity.text, editTextOutline.getPaint().getFontMetricsInt(), (int) (editTextOutline.getTextSize() * 0.8f), false));
+                Iterator<VideoEditedInfo.EmojiEntity> it = mediaEntity.entities.iterator();
+                while (it.hasNext()) {
+                    VideoEditedInfo.EmojiEntity next = it.next();
+                    AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(next.document_id, editTextOutline.getPaint().getFontMetricsInt());
+                    int i3 = next.offset;
+                    spannableString.setSpan(animatedEmojiSpan, i3, next.length + i3, 33);
+                }
+                editTextOutline.setText(spannableString);
                 editTextOutline.setGravity(17);
+                int i4 = mediaEntity.textAlign;
+                editTextOutline.setGravity(i4 != 1 ? i4 != 2 ? 19 : 21 : 17);
+                int i5 = Build.VERSION.SDK_INT;
+                if (i5 >= 17) {
+                    int i6 = mediaEntity.textAlign;
+                    if (i6 == 1) {
+                        i2 = 4;
+                    } else if (i6 == 2 ? !LocaleController.isRTL : LocaleController.isRTL) {
+                        i2 = 3;
+                    }
+                    editTextOutline.setTextAlignment(i2);
+                }
                 editTextOutline.setHorizontallyScrolling(false);
                 editTextOutline.setImeOptions(268435456);
                 editTextOutline.setFocusableInTouchMode(true);
                 editTextOutline.setEnabled(false);
                 editTextOutline.setInputType(editTextOutline.getInputType() | 16384);
-                if (Build.VERSION.SDK_INT >= 23) {
+                if (i5 >= 23) {
                     editTextOutline.setBreakStrategy(0);
                 }
                 byte b2 = mediaEntity.subType;

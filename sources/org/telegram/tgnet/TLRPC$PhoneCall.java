@@ -12,7 +12,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
     public byte[] g_a_hash;
     public byte[] g_a_or_b;
     public byte[] g_b;
-    public long f874id;
+    public long f883id;
     public long key_fingerprint;
     public boolean need_debug;
     public boolean need_rating;
@@ -37,7 +37,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                         this.flags = readInt32;
                         this.p2p_allowed = (readInt32 & 32) != 0;
                         this.video = (readInt32 & 64) != 0;
-                        this.f874id = abstractSerializedData2.readInt64(z2);
+                        this.f883id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         this.admin_id = abstractSerializedData2.readInt64(z2);
@@ -71,7 +71,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                         int i3 = this.video ? i2 | 64 : i2 & (-65);
                         this.flags = i3;
                         abstractSerializedData2.writeInt32(i3);
-                        abstractSerializedData2.writeInt64(this.f874id);
+                        abstractSerializedData2.writeInt64(this.f883id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt64(this.admin_id);
@@ -98,7 +98,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.video = (readInt32 & 64) != 0;
-                        this.f874id = abstractSerializedData2.readInt64(z2);
+                        this.f883id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         this.admin_id = abstractSerializedData2.readInt64(z2);
@@ -115,7 +115,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                         int i2 = this.video ? this.flags | 64 : this.flags & (-65);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
-                        abstractSerializedData2.writeInt64(this.f874id);
+                        abstractSerializedData2.writeInt64(this.f883id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt64(this.admin_id);
@@ -136,7 +136,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.video = (readInt32 & 64) != 0;
-                        this.f874id = abstractSerializedData2.readInt64(z2);
+                        this.f883id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         this.admin_id = abstractSerializedData2.readInt64(z2);
@@ -151,7 +151,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                         int i2 = this.video ? this.flags | 64 : this.flags & (-65);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
-                        abstractSerializedData2.writeInt64(this.f874id);
+                        abstractSerializedData2.writeInt64(this.f883id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt64(this.admin_id);
@@ -170,7 +170,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
                         this.video = (readInt32 & 64) != 0;
-                        this.f874id = abstractSerializedData2.readInt64(z2);
+                        this.f883id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
                         this.admin_id = abstractSerializedData2.readInt64(z2);
@@ -185,7 +185,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                         int i2 = this.video ? this.flags | 64 : this.flags & (-65);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
-                        abstractSerializedData2.writeInt64(this.f874id);
+                        abstractSerializedData2.writeInt64(this.f883id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
                         abstractSerializedData2.writeInt64(this.admin_id);
@@ -206,7 +206,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                         this.need_rating = (readInt32 & 4) != 0;
                         this.need_debug = (readInt32 & 8) != 0;
                         this.video = (readInt32 & 64) != 0;
-                        this.f874id = abstractSerializedData2.readInt64(z2);
+                        this.f883id = abstractSerializedData2.readInt64(z2);
                         if ((this.flags & 1) != 0) {
                             this.reason = TLRPC$PhoneCallDiscardReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
@@ -225,7 +225,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                         int i4 = this.video ? i3 | 64 : i3 & (-65);
                         this.flags = i4;
                         abstractSerializedData2.writeInt32(i4);
-                        abstractSerializedData2.writeInt64(this.f874id);
+                        abstractSerializedData2.writeInt64(this.f883id);
                         if ((this.flags & 1) != 0) {
                             this.reason.serializeToStream(abstractSerializedData2);
                         }
@@ -241,13 +241,13 @@ public abstract class TLRPC$PhoneCall extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f874id = abstractSerializedData2.readInt64(z2);
+                        this.f883id = abstractSerializedData2.readInt64(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f874id);
+                        abstractSerializedData2.writeInt64(this.f883id);
                     }
                 };
                 break;

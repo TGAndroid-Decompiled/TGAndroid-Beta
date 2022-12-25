@@ -22,9 +22,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -86,6 +85,10 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         return true;
     }
 
+    public void setSubtitle(String str) {
+        this.areaView.setSubtitle(str);
+    }
+
     public class CropState {
         public float baseRotation;
         public float height;
@@ -96,14 +99,14 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         public float rotation;
         public float scale;
         public float width;
-        public float f1041x;
-        public float f1042y;
+        public float f1051x;
+        public float f1052y;
 
         private CropState(int i, int i2, int i3) {
             this.width = i;
             this.height = i2;
-            this.f1041x = 0.0f;
-            this.f1042y = 0.0f;
+            this.f1051x = 0.0f;
+            this.f1052y = 0.0f;
             this.scale = 1.0f;
             this.baseRotation = i3;
             this.rotation = 0.0f;
@@ -128,7 +131,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         }
 
         public boolean hasChanges() {
-            return Math.abs(this.f1041x) > 1.0E-5f || Math.abs(this.f1042y) > 1.0E-5f || Math.abs(this.scale - this.minimumScale) > 1.0E-5f || Math.abs(this.rotation) > 1.0E-5f || Math.abs(this.orientation) > 1.0E-5f;
+            return Math.abs(this.f1051x) > 1.0E-5f || Math.abs(this.f1052y) > 1.0E-5f || Math.abs(this.scale - this.minimumScale) > 1.0E-5f || Math.abs(this.rotation) > 1.0E-5f || Math.abs(this.orientation) > 1.0E-5f;
         }
 
         public float getWidth() {
@@ -148,17 +151,17 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         }
 
         public void translate(float f, float f2) {
-            this.f1041x += f;
-            this.f1042y += f2;
+            this.f1051x += f;
+            this.f1052y += f2;
             this.matrix.postTranslate(f, f2);
         }
 
         public float getX() {
-            return this.f1041x;
+            return this.f1051x;
         }
 
         public float getY() {
-            return this.f1042y;
+            return this.f1052y;
         }
 
         public void scale(float f, float f2, float f3) {
@@ -197,8 +200,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
 
         public void reset(CropAreaView cropAreaView, float f, boolean z) {
             this.matrix.reset();
-            this.f1041x = 0.0f;
-            this.f1042y = 0.0f;
+            this.f1051x = 0.0f;
+            this.f1052y = 0.0f;
             this.rotation = 0.0f;
             this.orientation = f;
             updateMinimumScale();
@@ -765,8 +768,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
             final RectF rectF2 = new RectF();
             this.areaView.getCropRect(rectF);
             CropState cropState = this.state;
-            final float f3 = cropState.f1041x;
-            final float f4 = cropState.f1042y;
+            final float f3 = cropState.f1051x;
+            final float f4 = cropState.f1052y;
             final float f5 = cropState.scale;
             final float f6 = cropState.rotation;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -782,7 +785,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         }
         this.areaView.setActualRect(this.initialAreaRect);
         CropState cropState2 = this.state;
-        cropState2.translate(-cropState2.f1041x, -cropState2.f1042y);
+        cropState2.translate(-cropState2.f1051x, -cropState2.f1052y);
         CropState cropState3 = this.state;
         cropState3.scale(cropState3.minimumScale / cropState3.scale, 0.0f, 0.0f);
         CropState cropState4 = this.state;
@@ -797,8 +800,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         this.areaView.setActualRect(rectF2);
         CropState cropState = this.state;
         float f6 = 1.0f - floatValue;
-        float f7 = cropState.f1041x - (f * f6);
-        float f8 = cropState.f1042y - (f2 * f6);
+        float f7 = cropState.f1051x - (f * f6);
+        float f8 = cropState.f1052y - (f2 * f6);
         float f9 = cropState.rotation - (f3 * f6);
         float lerp = AndroidUtilities.lerp(f4, f5, floatValue);
         CropState cropState2 = this.state;
@@ -987,8 +990,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
             int i4 = 0;
             while (i4 < size) {
                 VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i4);
-                fArr[c] = (mediaEntity.f825x * decodeFile.getWidth()) + ((mediaEntity.viewWidth * mediaEntity.scale) / 2.0f);
-                fArr[1] = (mediaEntity.f826y * decodeFile.getHeight()) + ((mediaEntity.viewHeight * mediaEntity.scale) / 2.0f);
+                fArr[c] = (mediaEntity.f834x * decodeFile.getWidth()) + ((mediaEntity.viewWidth * mediaEntity.scale) / 2.0f);
+                fArr[1] = (mediaEntity.f835y * decodeFile.getHeight()) + ((mediaEntity.viewHeight * mediaEntity.scale) / 2.0f);
                 fArr[i3] = mediaEntity.textViewX * decodeFile.getWidth();
                 fArr[3] = mediaEntity.textViewY * decodeFile.getHeight();
                 matrix2.mapPoints(fArr);
@@ -1000,7 +1003,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
                 } else if (b == 1) {
                     mediaEntity.fontSize = bitmap2.getWidth() / 9;
                     if (textPaintView == null) {
-                        textPaintView = new TextPaintView(context, new Point(0.0f, 0.0f), mediaEntity.fontSize, BuildConfig.APP_CENTER_HASH, new Swatch(-16777216, 0.85f, 0.1f), 0);
+                        textPaintView = new TextPaintView(context, new Point(0.0f, 0.0f), mediaEntity.fontSize, "", new Swatch(-16777216, 0.85f, 0.1f), 0);
                         textPaintView.setMaxWidth(bitmap2.getWidth() - 20);
                     }
                     byte b2 = mediaEntity.subType;
@@ -1013,8 +1016,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
                 float f7 = mediaEntity.scale * width;
                 mediaEntity.scale = f7;
                 c = 0;
-                mediaEntity.f825x = (fArr[0] - ((mediaEntity.viewWidth * f7) / 2.0f)) / bitmap2.getWidth();
-                mediaEntity.f826y = (fArr[1] - ((mediaEntity.viewHeight * mediaEntity.scale) / 2.0f)) / bitmap2.getHeight();
+                mediaEntity.f834x = (fArr[0] - ((mediaEntity.viewWidth * f7) / 2.0f)) / bitmap2.getWidth();
+                mediaEntity.f835y = (fArr[1] - ((mediaEntity.viewHeight * mediaEntity.scale) / 2.0f)) / bitmap2.getHeight();
                 mediaEntity.textViewX = fArr[2] / bitmap2.getWidth();
                 mediaEntity.textViewY = fArr[3] / bitmap2.getHeight();
                 mediaEntity.width = (mediaEntity.viewWidth * mediaEntity.scale) / bitmap2.getWidth();
@@ -1240,8 +1243,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         this.hasAspectRatioDialog = true;
         String[] strArr = new String[8];
         final Integer[][] numArr = {new Integer[]{3, 2}, new Integer[]{5, 3}, new Integer[]{4, 3}, new Integer[]{5, 4}, new Integer[]{7, 5}, new Integer[]{16, 9}};
-        strArr[0] = LocaleController.getString("CropOriginal", C1010R.string.CropOriginal);
-        strArr[1] = LocaleController.getString("CropSquare", C1010R.string.CropSquare);
+        strArr[0] = LocaleController.getString("CropOriginal", C1072R.string.CropOriginal);
+        strArr[1] = LocaleController.getString("CropSquare", C1072R.string.CropSquare);
         int i = 2;
         for (int i2 = 0; i2 < 6; i2++) {
             Integer[] numArr2 = numArr[i2];

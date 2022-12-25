@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -122,7 +122,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
 
             @Override
             protected void onDraw(android.graphics.Canvas r13) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.FiltersListBottomSheet.C22101.onDraw(android.graphics.Canvas):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.FiltersListBottomSheet.C23041.onDraw(android.graphics.Canvas):void");
             }
 
             private void updateLightStatusBar(boolean z) {
@@ -197,7 +197,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         this.titleTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.titleTextView.setPadding(AndroidUtilities.m35dp(18.0f), 0, AndroidUtilities.m35dp(18.0f), 0);
         this.titleTextView.setGravity(16);
-        this.titleTextView.setText(LocaleController.getString("FilterChoose", C1010R.string.FilterChoose));
+        this.titleTextView.setText(LocaleController.getString("FilterChoose", C1072R.string.FilterChoose));
         this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.containerView.addView(this.titleTextView, LayoutHelper.createFrame(-1, 50.0f, 51, 0.0f, 0.0f, 40.0f, 0.0f));
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
@@ -393,37 +393,37 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
                 bottomSheetCell.setTextColor(Theme.getColor("dialogTextBlack"));
                 int i3 = dialogFilter.flags;
                 if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i3) == (MessagesController.DIALOG_FILTER_FLAG_CONTACTS | MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS)) {
-                    i2 = C1010R.C1011drawable.msg_openprofile;
+                    i2 = C1072R.C1073drawable.msg_openprofile;
                 } else {
                     if ((MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ & i3) != 0) {
                         int i4 = MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS;
                         if ((i3 & i4) == i4) {
-                            i2 = C1010R.C1011drawable.msg_markunread;
+                            i2 = C1072R.C1073drawable.msg_markunread;
                         }
                     }
                     if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i3) == MessagesController.DIALOG_FILTER_FLAG_CHANNELS) {
-                        i2 = C1010R.C1011drawable.msg_channel;
+                        i2 = C1072R.C1073drawable.msg_channel;
                     } else if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i3) == MessagesController.DIALOG_FILTER_FLAG_GROUPS) {
-                        i2 = C1010R.C1011drawable.msg_groups;
+                        i2 = C1072R.C1073drawable.msg_groups;
                     } else if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i3) == MessagesController.DIALOG_FILTER_FLAG_CONTACTS) {
-                        i2 = C1010R.C1011drawable.msg_contacts;
+                        i2 = C1072R.C1073drawable.msg_contacts;
                     } else if ((i3 & MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS) == MessagesController.DIALOG_FILTER_FLAG_BOTS) {
-                        i2 = C1010R.C1011drawable.msg_bots;
+                        i2 = C1072R.C1073drawable.msg_bots;
                     } else {
-                        i2 = C1010R.C1011drawable.msg_folders;
+                        i2 = C1072R.C1073drawable.msg_folders;
                     }
                 }
                 bottomSheetCell.setTextAndIcon(dialogFilter.name, i2);
                 return;
             }
             bottomSheetCell.getImageView().setColorFilter((ColorFilter) null);
-            Drawable drawable = this.context.getResources().getDrawable(C1010R.C1011drawable.poll_add_circle);
-            Drawable drawable2 = this.context.getResources().getDrawable(C1010R.C1011drawable.poll_add_plus);
+            Drawable drawable = this.context.getResources().getDrawable(C1072R.C1073drawable.poll_add_circle);
+            Drawable drawable2 = this.context.getResources().getDrawable(C1072R.C1073drawable.poll_add_plus);
             drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("switchTrackChecked"), PorterDuff.Mode.MULTIPLY));
             drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("checkboxCheck"), PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(drawable, drawable2);
             bottomSheetCell.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText4"));
-            bottomSheetCell.setTextAndIcon(LocaleController.getString("CreateNewFilter", C1010R.string.CreateNewFilter), combinedDrawable);
+            bottomSheetCell.setTextAndIcon(LocaleController.getString("CreateNewFilter", C1072R.string.CreateNewFilter), combinedDrawable);
         }
     }
 }

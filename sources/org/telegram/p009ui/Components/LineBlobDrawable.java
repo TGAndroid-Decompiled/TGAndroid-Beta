@@ -6,7 +6,7 @@ import android.graphics.Path;
 import java.util.Random;
 
 public class LineBlobDrawable {
-    private final float f1066N;
+    private final float f1076N;
     public float maxRadius;
     public float minRadius;
     public Path path = new Path();
@@ -19,13 +19,13 @@ public class LineBlobDrawable {
     public LineBlobDrawable(int i) {
         new Paint(1);
         this.random = new Random();
-        this.f1066N = i;
+        this.f1076N = i;
         int i2 = i + 1;
         this.radius = new float[i2];
         this.radiusNext = new float[i2];
         this.progress = new float[i2];
         this.speed = new float[i2];
-        for (int i3 = 0; i3 <= this.f1066N; i3++) {
+        for (int i3 = 0; i3 <= this.f1076N; i3++) {
             generateBlob(this.radius, i3);
             generateBlob(this.radiusNext, i3);
             this.progress[i3] = 0.0f;
@@ -43,7 +43,7 @@ public class LineBlobDrawable {
     }
 
     public void update(float f, float f2) {
-        for (int i = 0; i <= this.f1066N; i++) {
+        for (int i = 0; i <= this.f1076N; i++) {
             float[] fArr = this.progress;
             float f3 = fArr[i];
             float[] fArr2 = this.speed;
@@ -65,7 +65,7 @@ public class LineBlobDrawable {
         int i = 0;
         while (true) {
             float f7 = i;
-            float f8 = this.f1066N;
+            float f8 = this.f1076N;
             if (f7 > f8) {
                 canvas.drawPath(this.path, paint);
                 return;
@@ -89,7 +89,7 @@ public class LineBlobDrawable {
                 float f18 = (1.0f - f6) * f5;
                 float f19 = ((f2 - f13) * f6) + f18;
                 this.path.cubicTo(f17, ((f2 - (f11 + (fArr3[i2] * f10))) * f6) + f18, f17, f19, f16, f19);
-                if (f7 == this.f1066N) {
+                if (f7 == this.f1076N) {
                     this.path.lineTo(f3, f4);
                 }
             }

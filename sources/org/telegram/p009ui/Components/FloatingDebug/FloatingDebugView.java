@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
@@ -216,7 +216,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             }
         };
         ImageView imageView = new ImageView(context);
-        imageView.setImageResource(C1010R.C1011drawable.device_phone_android);
+        imageView.setImageResource(C1072R.C1073drawable.device_phone_android);
         imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chats_actionIcon"), PorterDuff.Mode.SRC_IN));
         this.floatingButtonContainer.addView(imageView);
         this.floatingButtonContainer.setVisibility(8);
@@ -228,7 +228,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         TextView textView = new TextView(context);
         this.titleView = textView;
         textView.setTextSize(1, 20.0f);
-        this.titleView.setText(LocaleController.getString(C1010R.string.DebugMenu));
+        this.titleView.setText(LocaleController.getString(C1072R.string.DebugMenu));
         this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.titleView.setPadding(AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(19.0f), AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(19.0f));
         this.bigLayout.addView(this.titleView, LayoutHelper.createLinear(-1, -2));
@@ -244,7 +244,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 View headerCell;
-                int i2 = C22194.f1061xe4e639ed[FloatingDebugController.DebugItemType.values()[i].ordinal()];
+                int i2 = C23134.f1071xe4e639ed[FloatingDebugController.DebugItemType.values()[i].ordinal()];
                 if (i2 == 2) {
                     headerCell = new HeaderCell(context);
                 } else if (i2 != 3) {
@@ -259,7 +259,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 FloatingDebugController.DebugItem debugItem = (FloatingDebugController.DebugItem) FloatingDebugView.this.debugItems.get(i);
-                int i2 = C22194.f1061xe4e639ed[debugItem.type.ordinal()];
+                int i2 = C23134.f1071xe4e639ed[debugItem.type.ordinal()];
                 if (i2 == 1) {
                     AlertDialog.AlertDialogCell alertDialogCell = (AlertDialog.AlertDialogCell) viewHolder.itemView;
                     alertDialogCell.setTextColor(Theme.getColor("dialogTextBlack"));
@@ -274,7 +274,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
                     seekBarCell.title = debugItem.title.toString();
                     seekBarCell.value = debugItem.floatProperty.get(null).floatValue();
                     seekBarCell.min = debugItem.from;
-                    seekBarCell.max = debugItem.f1060to;
+                    seekBarCell.max = debugItem.f1070to;
                     seekBarCell.callback = debugItem.floatProperty;
                     seekBarCell.invalidate();
                 }
@@ -303,22 +303,22 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         setWillNotDraw(false);
     }
 
-    static class C22194 {
-        static final int[] f1061xe4e639ed;
+    static class C23134 {
+        static final int[] f1071xe4e639ed;
 
         static {
             int[] iArr = new int[FloatingDebugController.DebugItemType.values().length];
-            f1061xe4e639ed = iArr;
+            f1071xe4e639ed = iArr;
             try {
                 iArr[FloatingDebugController.DebugItemType.SIMPLE.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
             try {
-                f1061xe4e639ed[FloatingDebugController.DebugItemType.HEADER.ordinal()] = 2;
+                f1071xe4e639ed[FloatingDebugController.DebugItemType.HEADER.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                f1061xe4e639ed[FloatingDebugController.DebugItemType.SEEKBAR.ordinal()] = 3;
+                f1071xe4e639ed[FloatingDebugController.DebugItemType.SEEKBAR.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
         }
@@ -356,12 +356,12 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
 
     private void updateDrawables() {
         Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
-        Drawable mutate = getResources().getDrawable(C1010R.C1011drawable.floating_shadow).mutate();
+        Drawable mutate = getResources().getDrawable(C1072R.C1073drawable.floating_shadow).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
         combinedDrawable.setIconSize(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
         this.floatingButtonBackground = combinedDrawable;
-        Drawable drawable = getResources().getDrawable(C1010R.C1011drawable.popup_fixed_alert3);
+        Drawable drawable = getResources().getDrawable(C1072R.C1073drawable.popup_fixed_alert3);
         drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
         this.bigLayout.setBackground(drawable);
         this.titleView.setTextColor(Theme.getColor("dialogTextBlack"));
@@ -497,16 +497,16 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
 
     private List<FloatingDebugController.DebugItem> getBuiltInDebugItems() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(C1010R.string.DebugGeneral)));
+        arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(C1072R.string.DebugGeneral)));
         if (Build.VERSION.SDK_INT >= 19) {
-            arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(SharedConfig.debugWebView ? C1010R.string.DebugMenuDisableWebViewDebug : C1010R.string.DebugMenuEnableWebViewDebug), new Runnable() {
+            arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(SharedConfig.debugWebView ? C1072R.string.DebugMenuDisableWebViewDebug : C1072R.string.DebugMenuEnableWebViewDebug), new Runnable() {
                 @Override
                 public final void run() {
                     FloatingDebugView.this.lambda$getBuiltInDebugItems$4();
                 }
             }));
         }
-        arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(SharedConfig.useLNavigation ? C1010R.string.AltNavigationDisable : C1010R.string.AltNavigationEnable), new Runnable() {
+        arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(SharedConfig.useLNavigation ? C1072R.string.AltNavigationDisable : C1072R.string.AltNavigationEnable), new Runnable() {
             @Override
             public final void run() {
                 FloatingDebugView.this.lambda$getBuiltInDebugItems$5();
@@ -518,7 +518,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
 
     public void lambda$getBuiltInDebugItems$4() {
         SharedConfig.toggleDebugWebView();
-        Toast.makeText(getContext(), LocaleController.getString(SharedConfig.debugWebView ? C1010R.string.DebugMenuWebViewDebugEnabled : C1010R.string.DebugMenuWebViewDebugDisabled), 0).show();
+        Toast.makeText(getContext(), LocaleController.getString(SharedConfig.debugWebView ? C1072R.string.DebugMenuWebViewDebugEnabled : C1072R.string.DebugMenuWebViewDebugDisabled), 0).show();
     }
 
     public void lambda$getBuiltInDebugItems$5() {

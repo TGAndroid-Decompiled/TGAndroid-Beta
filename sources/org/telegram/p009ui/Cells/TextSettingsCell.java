@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.AnimatedEmojiDrawable;
@@ -311,7 +310,8 @@ public class TextSettingsCell extends FrameLayout {
         this.valueTextView.setAlpha(1.0f - this.drawLoadingProgress);
         super.dispatchDraw(canvas);
         if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            int m35dp = AndroidUtilities.m35dp(this.imageView.getVisibility() == 0 ? 71.0f : 20.0f);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : m35dp, getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? m35dp : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }
 
@@ -323,7 +323,7 @@ public class TextSettingsCell extends FrameLayout {
         sb.append((Object) this.textView.getText());
         AnimatedTextView animatedTextView = this.valueTextView;
         if (animatedTextView == null || animatedTextView.getVisibility() != 0) {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         } else {
             str = "\n" + ((Object) this.valueTextView.getText());
         }

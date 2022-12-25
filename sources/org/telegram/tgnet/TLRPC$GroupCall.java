@@ -6,7 +6,7 @@ public abstract class TLRPC$GroupCall extends TLObject {
     public boolean can_start_video;
     public int duration;
     public int flags;
-    public long f863id;
+    public long f872id;
     public boolean join_date_asc;
     public boolean join_muted;
     public boolean listeners_hidden;

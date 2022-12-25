@@ -23,7 +23,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.EmojiData;
 import org.telegram.messenger.FileLog;
@@ -32,7 +32,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Components.IdenticonDrawable;
@@ -91,10 +91,10 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
 
     @Override
     public View createView(Context context) {
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("EncryptionKey", C1010R.string.EncryptionKey));
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setTitle(LocaleController.getString("EncryptionKey", C1072R.string.EncryptionKey));
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -198,12 +198,12 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
             }
             this.codeTextView.setText(spannableStringBuilder.toString());
             spannableStringBuilder.clear();
-            int i6 = C1010R.string.EncryptionKeyDescription;
+            int i6 = C1072R.string.EncryptionKeyDescription;
             String str = user.first_name;
             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("EncryptionKeyDescription", i6, str, str)));
             int indexOf = spannableStringBuilder.toString().indexOf("telegram.org");
             if (indexOf != -1) {
-                spannableStringBuilder.setSpan(new URLSpanReplacement(LocaleController.getString("EncryptionKeyLink", C1010R.string.EncryptionKeyLink)), indexOf, indexOf + 12, 33);
+                spannableStringBuilder.setSpan(new URLSpanReplacement(LocaleController.getString("EncryptionKeyLink", C1072R.string.EncryptionKeyLink)), indexOf, indexOf + 12, 33);
             }
             this.textView.setText(spannableStringBuilder);
         }

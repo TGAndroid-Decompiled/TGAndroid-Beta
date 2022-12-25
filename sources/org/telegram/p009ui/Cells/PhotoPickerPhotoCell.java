@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -73,7 +73,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
         this.videoInfoContainer.setPadding(AndroidUtilities.m35dp(3.0f), 0, AndroidUtilities.m35dp(3.0f), 0);
         addView(this.videoInfoContainer, LayoutHelper.createFrame(-1, 16, 83));
         ImageView imageView = new ImageView(context);
-        imageView.setImageResource(C1010R.C1011drawable.ic_video);
+        imageView.setImageResource(C1072R.C1073drawable.ic_video);
         this.videoInfoContainer.addView(imageView, LayoutHelper.createFrame(-2, -2, 19));
         TextView textView = new TextView(context);
         this.videoTextView = textView;
@@ -118,7 +118,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
     }
 
     public void setImage(MediaController.PhotoEntry photoEntry) {
-        Drawable drawable = getResources().getDrawable(C1010R.C1011drawable.nophotos);
+        Drawable drawable = getResources().getDrawable(C1072R.C1073drawable.nophotos);
         String str = photoEntry.thumbPath;
         if (str != null) {
             this.imageView.setImage(str, null, drawable);
@@ -127,13 +127,13 @@ public class PhotoPickerPhotoCell extends FrameLayout {
             if (photoEntry.isVideo) {
                 this.videoInfoContainer.setVisibility(0);
                 this.videoTextView.setText(AndroidUtilities.formatShortDuration(photoEntry.duration));
-                setContentDescription(LocaleController.getString("AttachVideo", C1010R.string.AttachVideo) + ", " + LocaleController.formatDuration(photoEntry.duration));
+                setContentDescription(LocaleController.getString("AttachVideo", C1072R.string.AttachVideo) + ", " + LocaleController.formatDuration(photoEntry.duration));
                 BackupImageView backupImageView = this.imageView;
                 backupImageView.setImage("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
                 return;
             }
             this.videoInfoContainer.setVisibility(4);
-            setContentDescription(LocaleController.getString("AttachPhoto", C1010R.string.AttachPhoto));
+            setContentDescription(LocaleController.getString("AttachPhoto", C1072R.string.AttachPhoto));
             BackupImageView backupImageView2 = this.imageView;
             backupImageView2.setImage("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
         } else {
@@ -142,7 +142,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
     }
 
     public void setImage(MediaController.SearchImage searchImage) {
-        Drawable drawable = getResources().getDrawable(C1010R.C1011drawable.nophotos);
+        Drawable drawable = getResources().getDrawable(C1072R.C1073drawable.nophotos);
         TLRPC$PhotoSize tLRPC$PhotoSize = searchImage.thumbPhotoSize;
         if (tLRPC$PhotoSize != null) {
             this.imageView.setImage(ImageLocation.getForPhoto(tLRPC$PhotoSize, searchImage.photo), (String) null, drawable, searchImage);

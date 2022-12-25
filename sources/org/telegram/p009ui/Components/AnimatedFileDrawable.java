@@ -138,8 +138,8 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         return i;
     }
 
-    public class RunnableC17012 implements Runnable {
-        RunnableC17012() {
+    public class RunnableC17882 implements Runnable {
+        RunnableC17882() {
         }
 
         @Override
@@ -164,7 +164,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedFileDrawable.RunnableC17012.this.lambda$run$1();
+                    AnimatedFileDrawable.RunnableC17882.this.lambda$run$1();
                 }
             };
             animatedFileDrawable3.cacheGenRunnable = runnable;
@@ -176,7 +176,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedFileDrawable.RunnableC17012.this.lambda$run$0();
+                    AnimatedFileDrawable.RunnableC17882.this.lambda$run$0();
                 }
             });
         }
@@ -878,6 +878,22 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         canvas.restore();
         this.cacheGenerateTimestamp = this.metaData[3];
         return 1;
+    }
+
+    public void drawFrame(Canvas canvas, int i) {
+        if (this.nativePtr == 0) {
+            return;
+        }
+        for (int i2 = 0; i2 < i; i2++) {
+            getNextFrame();
+        }
+        Bitmap backgroundBitmap = getBackgroundBitmap();
+        if (backgroundBitmap == null) {
+            backgroundBitmap = getNextFrame();
+        }
+        Rect rect = AndroidUtilities.rectTmp2;
+        rect.set(0, 0, backgroundBitmap.getWidth(), backgroundBitmap.getHeight());
+        canvas.drawBitmap(getBackgroundBitmap(), rect, getBounds(), getPaint());
     }
 
     public boolean canLoadFrames() {

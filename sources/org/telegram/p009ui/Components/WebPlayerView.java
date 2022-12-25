@@ -44,9 +44,8 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Bitmaps;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.p009ui.Components.VideoPlayer;
@@ -215,7 +214,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                             interpretExpression(group, hashMap, i);
                             return;
                         } else {
-                            hashMap.put(matcher2.group(1), BuildConfig.APP_CENTER_HASH);
+                            hashMap.put(matcher2.group(1), "");
                             return;
                         }
                     }
@@ -250,7 +249,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                                 if (TextUtils.isEmpty(group3)) {
                                     group3 = group4;
                                 }
-                                group3.replace("\"", BuildConfig.APP_CENTER_HASH);
+                                group3.replace("\"", "");
                                 String group5 = matcher4.group(4);
                                 if (hashMap.get(group2) == null) {
                                     extractObject(group2);
@@ -356,7 +355,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private void buildFunction(String[] strArr, String str) throws Exception {
             HashMap<String, String> hashMap = new HashMap<>();
             for (String str2 : strArr) {
-                hashMap.put(str2, BuildConfig.APP_CENTER_HASH);
+                hashMap.put(str2, "");
             }
             String[] split = str.split(";");
             boolean[] zArr = new boolean[1];
@@ -384,7 +383,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 this.codeLines.clear();
                 FileLog.m31e(e);
             }
-            return TextUtils.join(BuildConfig.APP_CENTER_HASH, this.codeLines);
+            return TextUtils.join("", this.codeLines);
         }
     }
 
@@ -1006,8 +1005,8 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 return true;
             }
 
-            public class ViewTreeObserver$OnPreDrawListenerC28781 implements ViewTreeObserver.OnPreDrawListener {
-                ViewTreeObserver$OnPreDrawListenerC28781() {
+            public class ViewTreeObserver$OnPreDrawListenerC30241 implements ViewTreeObserver.OnPreDrawListener {
+                ViewTreeObserver$OnPreDrawListenerC30241() {
                 }
 
                 @Override
@@ -1024,7 +1023,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            WebPlayerView.TextureView$SurfaceTextureListenerC28772.ViewTreeObserver$OnPreDrawListenerC28781.this.lambda$onPreDraw$0();
+                            WebPlayerView.TextureView$SurfaceTextureListenerC30232.ViewTreeObserver$OnPreDrawListenerC30241.this.lambda$onPreDraw$0();
                         }
                     });
                     WebPlayerView.this.waitingForFirstTextureUpload = 0;
@@ -1039,7 +1038,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             @Override
             public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
                 if (WebPlayerView.this.waitingForFirstTextureUpload == 1) {
-                    WebPlayerView.this.changedTextureView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC28781());
+                    WebPlayerView.this.changedTextureView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC30241());
                     WebPlayerView.this.changedTextureView.invalidate();
                 }
             }
@@ -1196,7 +1195,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             ImageView imageView5 = new ImageView(context);
             this.shareButton = imageView5;
             imageView5.setScaleType(ImageView.ScaleType.CENTER);
-            this.shareButton.setImageResource(C1010R.C1011drawable.ic_share_video);
+            this.shareButton.setImageResource(C1072R.C1073drawable.ic_share_video);
             this.controlsView.addView(this.shareButton, LayoutHelper.createFrame(56, 48, 53));
             this.shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1474,14 +1473,14 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         AndroidUtilities.cancelRunOnUIThread(this.progressRunnable);
         if (!this.videoPlayer.isPlaying()) {
             if (this.isCompleted) {
-                this.playButton.setImageResource(this.isInline ? C1010R.C1011drawable.ic_againinline : C1010R.C1011drawable.ic_again);
+                this.playButton.setImageResource(this.isInline ? C1072R.C1073drawable.ic_againinline : C1072R.C1073drawable.ic_again);
                 return;
             } else {
-                this.playButton.setImageResource(this.isInline ? C1010R.C1011drawable.ic_playinline : C1010R.C1011drawable.ic_play);
+                this.playButton.setImageResource(this.isInline ? C1072R.C1073drawable.ic_playinline : C1072R.C1073drawable.ic_play);
                 return;
             }
         }
-        this.playButton.setImageResource(this.isInline ? C1010R.C1011drawable.ic_pauseinline : C1010R.C1011drawable.ic_pause);
+        this.playButton.setImageResource(this.isInline ? C1072R.C1073drawable.ic_pauseinline : C1072R.C1073drawable.ic_pause);
         AndroidUtilities.runOnUIThread(this.progressRunnable, 500L);
         checkAudioFocus();
     }
@@ -1530,11 +1529,11 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
         this.fullscreenButton.setVisibility(0);
         if (!this.inFullscreen) {
-            this.fullscreenButton.setImageResource(C1010R.C1011drawable.ic_gofullscreen);
+            this.fullscreenButton.setImageResource(C1072R.C1073drawable.ic_gofullscreen);
             this.fullscreenButton.setLayoutParams(LayoutHelper.createFrame(56, 56.0f, 85, 0.0f, 0.0f, 0.0f, 5.0f));
             return;
         }
-        this.fullscreenButton.setImageResource(C1010R.C1011drawable.ic_outfullscreen);
+        this.fullscreenButton.setImageResource(C1072R.C1073drawable.ic_outfullscreen);
         this.fullscreenButton.setLayoutParams(LayoutHelper.createFrame(56, 56.0f, 85, 0.0f, 0.0f, 0.0f, 1.0f));
     }
 
@@ -1559,7 +1558,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         if (imageView == null) {
             return;
         }
-        imageView.setImageResource(this.isInline ? C1010R.C1011drawable.ic_goinline : C1010R.C1011drawable.ic_outinline);
+        imageView.setImageResource(this.isInline ? C1072R.C1073drawable.ic_goinline : C1072R.C1073drawable.ic_outinline);
         this.inlineButton.setVisibility(this.videoPlayer.isPlayerPrepared() ? 0 : 8);
         if (this.isInline) {
             this.inlineButton.setLayoutParams(LayoutHelper.createFrame(40, 40, 53));

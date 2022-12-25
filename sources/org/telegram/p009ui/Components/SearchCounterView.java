@@ -13,7 +13,6 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 
@@ -32,7 +31,7 @@ public class SearchCounterView extends View {
     private int countWidthOld;
     int currentCount;
     String currentString;
-    float f1123dx;
+    float f1139dx;
     int gravity;
     public float horizontalPadding;
     int lastH;
@@ -41,7 +40,7 @@ public class SearchCounterView extends View {
     private int textColor;
     private String textColorKey;
     TextPaint textPaint;
-    float f1124x;
+    float f1140x;
 
     public SearchCounterView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -50,7 +49,7 @@ public class SearchCounterView extends View {
         this.countChangeProgress = 1.0f;
         this.textColorKey = "chat_searchPanelText";
         this.gravity = 17;
-        this.f1123dx = 0.0f;
+        this.f1139dx = 0.0f;
         this.resourcesProvider = resourcesProvider;
         this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textPaint.setTextSize(AndroidUtilities.m35dp(15.0f));
@@ -82,7 +81,7 @@ public class SearchCounterView extends View {
             }
             if (!z2) {
                 if (str2 != null) {
-                    str2 = str2.replaceAll("\\*\\*", BuildConfig.APP_CENTER_HASH);
+                    str2 = str2.replaceAll("\\*\\*", "");
                 }
                 this.currentCount = i;
                 if (str2 == null) {
@@ -94,7 +93,7 @@ public class SearchCounterView extends View {
                 }
                 invalidate();
             }
-            this.f1123dx = 0.0f;
+            this.f1139dx = 0.0f;
             if (z2) {
                 ValueAnimator valueAnimator2 = this.countAnimator;
                 if (valueAnimator2 != null) {
@@ -127,7 +126,7 @@ public class SearchCounterView extends View {
                     String str4 = this.currentString;
                     int indexOf = str2.indexOf("**");
                     if (indexOf >= 0) {
-                        str2 = str2.replaceAll("\\*\\*", BuildConfig.APP_CENTER_HASH);
+                        str2 = str2.replaceAll("\\*\\*", "");
                     } else {
                         indexOf = 0;
                     }
@@ -180,7 +179,7 @@ public class SearchCounterView extends View {
                     } else {
                         this.countAnimationStableLayout2 = null;
                     }
-                    this.f1123dx = this.countOldLayout.getPrimaryHorizontal(i2) - this.countAnimationStableLayout.getPrimaryHorizontal(i3);
+                    this.f1139dx = this.countOldLayout.getPrimaryHorizontal(i2) - this.countAnimationStableLayout.getPrimaryHorizontal(i3);
                 }
                 this.countWidthOld = this.countWidth;
                 this.countAnimationIncrement = i < this.currentCount;
@@ -222,7 +221,7 @@ public class SearchCounterView extends View {
             }
             updateX(f);
             RectF rectF = this.rectF;
-            float f3 = this.f1124x;
+            float f3 = this.f1140x;
             rectF.set(f3, measuredHeight, f + f3 + AndroidUtilities.m35dp(11.0f), AndroidUtilities.m35dp(23.0f) + measuredHeight);
             boolean z = this.countAnimationIncrement;
             if (this.countAnimationInLayout != null) {
@@ -259,7 +258,7 @@ public class SearchCounterView extends View {
             }
             if (this.countAnimationStableLayout != null) {
                 canvas.save();
-                canvas.translate(this.countLeft + (this.f1123dx * (1.0f - this.countChangeProgress)), AndroidUtilities.m35dp(2.0f) + measuredHeight);
+                canvas.translate(this.countLeft + (this.f1139dx * (1.0f - this.countChangeProgress)), AndroidUtilities.m35dp(2.0f) + measuredHeight);
                 this.textPaint.setAlpha(255);
                 this.countAnimationStableLayout.draw(canvas);
                 canvas.restore();
@@ -293,7 +292,7 @@ public class SearchCounterView extends View {
         } else {
             this.countLeft = (int) ((getMeasuredWidth() - f) / 2.0f);
         }
-        this.f1124x = this.countLeft - AndroidUtilities.m35dp(5.5f);
+        this.f1140x = this.countLeft - AndroidUtilities.m35dp(5.5f);
     }
 
     private void drawInternal(Canvas canvas) {

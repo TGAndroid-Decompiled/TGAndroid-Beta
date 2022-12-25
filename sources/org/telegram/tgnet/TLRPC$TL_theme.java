@@ -10,7 +10,7 @@ public class TLRPC$TL_theme extends TLRPC$Theme {
     public String emoticon;
     public int flags;
     public boolean for_chat;
-    public long f977id;
+    public long f986id;
     public int installs_count;
     public boolean isDefault;
     public ArrayList<TLRPC$ThemeSettings> settings = new ArrayList<>();
@@ -24,7 +24,7 @@ public class TLRPC$TL_theme extends TLRPC$Theme {
         this.creator = (readInt32 & 1) != 0;
         this.isDefault = (readInt32 & 2) != 0;
         this.for_chat = (readInt32 & 32) != 0;
-        this.f977id = abstractSerializedData.readInt64(z);
+        this.f986id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.slug = abstractSerializedData.readString(z);
         this.title = abstractSerializedData.readString(z);
@@ -66,7 +66,7 @@ public class TLRPC$TL_theme extends TLRPC$Theme {
         int i3 = this.for_chat ? i2 | 32 : i2 & (-33);
         this.flags = i3;
         abstractSerializedData.writeInt32(i3);
-        abstractSerializedData.writeInt64(this.f977id);
+        abstractSerializedData.writeInt64(this.f986id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeString(this.slug);
         abstractSerializedData.writeString(this.title);

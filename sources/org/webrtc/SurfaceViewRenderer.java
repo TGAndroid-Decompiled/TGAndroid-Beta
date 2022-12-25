@@ -7,7 +7,6 @@ import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import org.telegram.messenger.BuildConfig;
 import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
 import org.webrtc.RendererCommon;
@@ -181,7 +180,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         try {
             return getResources().getResourceEntryName(getId());
         } catch (Resources.NotFoundException unused) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 

@@ -176,7 +176,7 @@ public class VideoCapturerDevice {
         this.nativePtr = j;
         if ("screen".equals(str)) {
             if (Build.VERSION.SDK_INT >= 21 && this.videoCapturer == null) {
-                this.videoCapturer = new ScreenCapturerAndroid(mediaProjectionPermissionResultData, new C10531());
+                this.videoCapturer = new ScreenCapturerAndroid(mediaProjectionPermissionResultData, new C11171());
                 final Point screenCaptureSize = getScreenCaptureSize();
                 this.currentWidth = screenCaptureSize.x;
                 this.currentHeight = screenCaptureSize.y;
@@ -209,7 +209,7 @@ public class VideoCapturerDevice {
         }
         final String str2 = deviceNames[i];
         if (this.videoCapturer == null) {
-            this.videoCapturer = camera2Enumerator.createCapturer(str2, new C10542());
+            this.videoCapturer = camera2Enumerator.createCapturer(str2, new C11182());
             this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("VideoCapturerThread", eglBase.getEglBaseContext());
             this.handler.post(new Runnable() {
                 @Override
@@ -227,8 +227,8 @@ public class VideoCapturerDevice {
         });
     }
 
-    public class C10531 extends MediaProjection.Callback {
-        C10531() {
+    public class C11171 extends MediaProjection.Callback {
+        C11171() {
         }
 
         @Override
@@ -259,7 +259,7 @@ public class VideoCapturerDevice {
         }
     }
 
-    public class C10542 implements CameraVideoCapturer.CameraEventsHandler {
+    public class C11182 implements CameraVideoCapturer.CameraEventsHandler {
         @Override
         public void onCameraClosed() {
         }
@@ -280,7 +280,7 @@ public class VideoCapturerDevice {
         public void onCameraOpening(String str) {
         }
 
-        C10542() {
+        C11182() {
         }
 
         @Override
@@ -304,12 +304,12 @@ public class VideoCapturerDevice {
         this.videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, CAPTURE_FPS);
     }
 
-    public class C10553 implements CameraVideoCapturer.CameraSwitchHandler {
+    public class C11193 implements CameraVideoCapturer.CameraSwitchHandler {
         @Override
         public void onCameraSwitchError(String str) {
         }
 
-        C10553() {
+        C11193() {
         }
 
         @Override
@@ -317,7 +317,7 @@ public class VideoCapturerDevice {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoCapturerDevice.C10553.lambda$onCameraSwitchDone$0(z);
+                    VideoCapturerDevice.C11193.lambda$onCameraSwitchDone$0(z);
                 }
             });
         }
@@ -330,7 +330,7 @@ public class VideoCapturerDevice {
     }
 
     public void lambda$init$4(String str) {
-        ((CameraVideoCapturer) this.videoCapturer).switchCamera(new C10553(), str);
+        ((CameraVideoCapturer) this.videoCapturer).switchCamera(new C11193(), str);
     }
 
     public static MediaProjection getMediaProjection() {

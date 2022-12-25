@@ -62,7 +62,7 @@ public class ReactionsEffectOverlay {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Reactions.ReactionsEffectOverlay.<init>(android.content.Context, org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.Components.ReactionsContainerLayout, org.telegram.ui.Cells.ChatMessageCell, android.view.View, float, float, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, int, int):void");
     }
 
-    public class C25421 extends FrameLayout {
+    public class C26841 extends FrameLayout {
         final int val$animationType;
         final ChatMessageCell val$cell;
         final ChatActivity val$chatActivity;
@@ -74,7 +74,7 @@ public class ReactionsEffectOverlay {
         final float val$fromY;
         final ReactionsLayoutInBubble.VisibleReaction val$visibleReaction;
 
-        C25421(Context context, BaseFragment baseFragment, ChatMessageCell chatMessageCell, ChatActivity chatActivity, int i, int i2, boolean z, float f, float f2, float f3, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        C26841(Context context, BaseFragment baseFragment, ChatMessageCell chatMessageCell, ChatActivity chatActivity, int i, int i2, boolean z, float f, float f2, float f3, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
             super(context);
             this.val$fragment = baseFragment;
             this.val$cell = chatMessageCell;
@@ -90,7 +90,7 @@ public class ReactionsEffectOverlay {
 
         @Override
         protected void dispatchDraw(android.graphics.Canvas r20) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Reactions.ReactionsEffectOverlay.C25421.dispatchDraw(android.graphics.Canvas):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Reactions.ReactionsEffectOverlay.C26841.dispatchDraw(android.graphics.Canvas):void");
         }
 
         public void lambda$dispatchDraw$0() {
@@ -335,7 +335,7 @@ public class ReactionsEffectOverlay {
         private AvatarParticle(ReactionsEffectOverlay reactionsEffectOverlay) {
         }
 
-        AvatarParticle(ReactionsEffectOverlay reactionsEffectOverlay, C25421 c25421) {
+        AvatarParticle(ReactionsEffectOverlay reactionsEffectOverlay, C26841 c26841) {
             this(reactionsEffectOverlay);
         }
     }

@@ -32,6 +32,8 @@ public class AdjustPanLayoutHelper {
     ValueAnimator animator;
     boolean checkHierarchyHeight;
     private ViewGroup contentView;
+    private Runnable delayedAnimationRunnable;
+    private boolean enabled;
     float from;
     private boolean ignoreOnce;
     boolean inverse;
@@ -39,79 +41,19 @@ public class AdjustPanLayoutHelper {
     protected float keyboardSize;
     private boolean needDelay;
     int notificationsIndex;
+    ViewTreeObserver.OnPreDrawListener onPreDrawListener;
     private final View parent;
     View parentForListener;
+    int previousContentHeight;
+    int previousHeight;
+    int previousStartOffset;
     private View resizableView;
     private View resizableViewToSet;
     long startAfter;
-    float f998to;
-    private boolean usingInsetAnimator = false;
-    private Runnable delayedAnimationRunnable = new Runnable() {
-        @Override
-        public void run() {
-            ValueAnimator valueAnimator = AdjustPanLayoutHelper.this.animator;
-            if (valueAnimator == null || valueAnimator.isRunning()) {
-                return;
-            }
-            AdjustPanLayoutHelper.this.animator.start();
-        }
-    };
-    int previousHeight = -1;
-    int previousContentHeight = -1;
-    int previousStartOffset = -1;
-    ArrayList<View> viewsToHeightSet = new ArrayList<>();
-    ViewTreeObserver.OnPreDrawListener onPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
-        @Override
-        public boolean onPreDraw() {
-            if (SharedConfig.smoothKeyboard) {
-                int height = AdjustPanLayoutHelper.this.parent.getHeight();
-                int startOffset = height - AdjustPanLayoutHelper.this.startOffset();
-                AdjustPanLayoutHelper adjustPanLayoutHelper = AdjustPanLayoutHelper.this;
-                int i = adjustPanLayoutHelper.previousHeight;
-                if (startOffset == i - adjustPanLayoutHelper.previousStartOffset || height == i || adjustPanLayoutHelper.animator != null) {
-                    if (adjustPanLayoutHelper.animator == null) {
-                        adjustPanLayoutHelper.previousHeight = height;
-                        adjustPanLayoutHelper.previousContentHeight = adjustPanLayoutHelper.contentView.getHeight();
-                        AdjustPanLayoutHelper adjustPanLayoutHelper2 = AdjustPanLayoutHelper.this;
-                        adjustPanLayoutHelper2.previousStartOffset = adjustPanLayoutHelper2.startOffset();
-                        AdjustPanLayoutHelper.this.usingInsetAnimator = false;
-                    }
-                    return true;
-                } else if (!adjustPanLayoutHelper.heightAnimationEnabled() || Math.abs(AdjustPanLayoutHelper.this.previousHeight - height) < AndroidUtilities.m35dp(20.0f)) {
-                    AdjustPanLayoutHelper adjustPanLayoutHelper3 = AdjustPanLayoutHelper.this;
-                    adjustPanLayoutHelper3.previousHeight = height;
-                    adjustPanLayoutHelper3.previousContentHeight = adjustPanLayoutHelper3.contentView.getHeight();
-                    AdjustPanLayoutHelper adjustPanLayoutHelper4 = AdjustPanLayoutHelper.this;
-                    adjustPanLayoutHelper4.previousStartOffset = adjustPanLayoutHelper4.startOffset();
-                    AdjustPanLayoutHelper.this.usingInsetAnimator = false;
-                    return true;
-                } else {
-                    AdjustPanLayoutHelper adjustPanLayoutHelper5 = AdjustPanLayoutHelper.this;
-                    if (adjustPanLayoutHelper5.previousHeight != -1 && adjustPanLayoutHelper5.previousContentHeight == adjustPanLayoutHelper5.contentView.getHeight()) {
-                        AdjustPanLayoutHelper adjustPanLayoutHelper6 = AdjustPanLayoutHelper.this;
-                        adjustPanLayoutHelper6.isKeyboardVisible = height < adjustPanLayoutHelper6.contentView.getBottom();
-                        AdjustPanLayoutHelper adjustPanLayoutHelper7 = AdjustPanLayoutHelper.this;
-                        adjustPanLayoutHelper7.animateHeight(adjustPanLayoutHelper7.previousHeight, height, adjustPanLayoutHelper7.isKeyboardVisible);
-                        AdjustPanLayoutHelper adjustPanLayoutHelper8 = AdjustPanLayoutHelper.this;
-                        adjustPanLayoutHelper8.previousHeight = height;
-                        adjustPanLayoutHelper8.previousContentHeight = adjustPanLayoutHelper8.contentView.getHeight();
-                        AdjustPanLayoutHelper adjustPanLayoutHelper9 = AdjustPanLayoutHelper.this;
-                        adjustPanLayoutHelper9.previousStartOffset = adjustPanLayoutHelper9.startOffset();
-                        return false;
-                    }
-                    AdjustPanLayoutHelper adjustPanLayoutHelper10 = AdjustPanLayoutHelper.this;
-                    adjustPanLayoutHelper10.previousHeight = height;
-                    adjustPanLayoutHelper10.previousContentHeight = adjustPanLayoutHelper10.contentView.getHeight();
-                    AdjustPanLayoutHelper adjustPanLayoutHelper11 = AdjustPanLayoutHelper.this;
-                    adjustPanLayoutHelper11.previousStartOffset = adjustPanLayoutHelper11.startOffset();
-                    return false;
-                }
-            }
-            AdjustPanLayoutHelper.this.onDetach();
-            return true;
-        }
-    };
-    private boolean enabled = true;
+    float f1007to;
+    private boolean useInsetsAnimator;
+    private boolean usingInsetAnimator;
+    ArrayList<View> viewsToHeightSet;
 
     protected boolean heightAnimationEnabled() {
         throw null;
@@ -180,7 +122,7 @@ public class AdjustPanLayoutHelper {
         if (this.inverse) {
             f = 1.0f - f;
         }
-        float f2 = (int) ((this.from * f) + (this.f998to * (1.0f - f)));
+        float f2 = (int) ((this.from * f) + (this.f1007to * (1.0f - f)));
         this.parent.setTranslationY(f2);
         onPanTranslationUpdate(-f2, f, this.isKeyboardVisible);
     }
@@ -222,16 +164,78 @@ public class AdjustPanLayoutHelper {
     }
 
     public AdjustPanLayoutHelper(View view) {
-        this.parent = view;
-        onAttach();
+        this(view, USE_ANDROID11_INSET_ANIMATOR);
     }
 
     public AdjustPanLayoutHelper(View view, boolean z) {
-        boolean z2 = false;
-        if (USE_ANDROID11_INSET_ANIMATOR && z) {
-            z2 = true;
-        }
-        USE_ANDROID11_INSET_ANIMATOR = z2;
+        this.usingInsetAnimator = false;
+        this.delayedAnimationRunnable = new Runnable() {
+            @Override
+            public void run() {
+                ValueAnimator valueAnimator = AdjustPanLayoutHelper.this.animator;
+                if (valueAnimator == null || valueAnimator.isRunning()) {
+                    return;
+                }
+                AdjustPanLayoutHelper.this.animator.start();
+            }
+        };
+        this.previousHeight = -1;
+        this.previousContentHeight = -1;
+        this.previousStartOffset = -1;
+        this.viewsToHeightSet = new ArrayList<>();
+        this.onPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                if (SharedConfig.smoothKeyboard) {
+                    int height = AdjustPanLayoutHelper.this.parent.getHeight();
+                    int startOffset = height - AdjustPanLayoutHelper.this.startOffset();
+                    AdjustPanLayoutHelper adjustPanLayoutHelper = AdjustPanLayoutHelper.this;
+                    int i = adjustPanLayoutHelper.previousHeight;
+                    if (startOffset == i - adjustPanLayoutHelper.previousStartOffset || height == i || adjustPanLayoutHelper.animator != null) {
+                        if (adjustPanLayoutHelper.animator == null) {
+                            adjustPanLayoutHelper.previousHeight = height;
+                            adjustPanLayoutHelper.previousContentHeight = adjustPanLayoutHelper.contentView.getHeight();
+                            AdjustPanLayoutHelper adjustPanLayoutHelper2 = AdjustPanLayoutHelper.this;
+                            adjustPanLayoutHelper2.previousStartOffset = adjustPanLayoutHelper2.startOffset();
+                            AdjustPanLayoutHelper.this.usingInsetAnimator = false;
+                        }
+                        return true;
+                    } else if (!adjustPanLayoutHelper.heightAnimationEnabled() || Math.abs(AdjustPanLayoutHelper.this.previousHeight - height) < AndroidUtilities.m35dp(20.0f)) {
+                        AdjustPanLayoutHelper adjustPanLayoutHelper3 = AdjustPanLayoutHelper.this;
+                        adjustPanLayoutHelper3.previousHeight = height;
+                        adjustPanLayoutHelper3.previousContentHeight = adjustPanLayoutHelper3.contentView.getHeight();
+                        AdjustPanLayoutHelper adjustPanLayoutHelper4 = AdjustPanLayoutHelper.this;
+                        adjustPanLayoutHelper4.previousStartOffset = adjustPanLayoutHelper4.startOffset();
+                        AdjustPanLayoutHelper.this.usingInsetAnimator = false;
+                        return true;
+                    } else {
+                        AdjustPanLayoutHelper adjustPanLayoutHelper5 = AdjustPanLayoutHelper.this;
+                        if (adjustPanLayoutHelper5.previousHeight != -1 && adjustPanLayoutHelper5.previousContentHeight == adjustPanLayoutHelper5.contentView.getHeight()) {
+                            AdjustPanLayoutHelper adjustPanLayoutHelper6 = AdjustPanLayoutHelper.this;
+                            adjustPanLayoutHelper6.isKeyboardVisible = height < adjustPanLayoutHelper6.contentView.getBottom();
+                            AdjustPanLayoutHelper adjustPanLayoutHelper7 = AdjustPanLayoutHelper.this;
+                            adjustPanLayoutHelper7.animateHeight(adjustPanLayoutHelper7.previousHeight, height, adjustPanLayoutHelper7.isKeyboardVisible);
+                            AdjustPanLayoutHelper adjustPanLayoutHelper8 = AdjustPanLayoutHelper.this;
+                            adjustPanLayoutHelper8.previousHeight = height;
+                            adjustPanLayoutHelper8.previousContentHeight = adjustPanLayoutHelper8.contentView.getHeight();
+                            AdjustPanLayoutHelper adjustPanLayoutHelper9 = AdjustPanLayoutHelper.this;
+                            adjustPanLayoutHelper9.previousStartOffset = adjustPanLayoutHelper9.startOffset();
+                            return false;
+                        }
+                        AdjustPanLayoutHelper adjustPanLayoutHelper10 = AdjustPanLayoutHelper.this;
+                        adjustPanLayoutHelper10.previousHeight = height;
+                        adjustPanLayoutHelper10.previousContentHeight = adjustPanLayoutHelper10.contentView.getHeight();
+                        AdjustPanLayoutHelper adjustPanLayoutHelper11 = AdjustPanLayoutHelper.this;
+                        adjustPanLayoutHelper11.previousStartOffset = adjustPanLayoutHelper11.startOffset();
+                        return false;
+                    }
+                }
+                AdjustPanLayoutHelper.this.onDetach();
+                return true;
+            }
+        };
+        this.enabled = true;
+        this.useInsetsAnimator = z;
         this.parent = view;
         onAttach();
     }
@@ -249,7 +253,7 @@ public class AdjustPanLayoutHelper {
                 this.parentForListener = findResizableView;
                 findResizableView.getViewTreeObserver().addOnPreDrawListener(this.onPreDrawListener);
             }
-            if (!USE_ANDROID11_INSET_ANIMATOR || Build.VERSION.SDK_INT < 30) {
+            if (!this.useInsetsAnimator || Build.VERSION.SDK_INT < 30) {
                 return;
             }
             setupNewCallback();
@@ -295,7 +299,7 @@ public class AdjustPanLayoutHelper {
             this.parentForListener = null;
         }
         View view2 = this.parent;
-        if (view2 == null || !USE_ANDROID11_INSET_ANIMATOR || Build.VERSION.SDK_INT < 30) {
+        if (view2 == null || !this.useInsetsAnimator || Build.VERSION.SDK_INT < 30) {
             return;
         }
         view2.setWindowInsetsAnimationCallback(null);
@@ -303,6 +307,10 @@ public class AdjustPanLayoutHelper {
 
     public void ignoreOnce() {
         this.ignoreOnce = true;
+    }
+
+    protected void onTransitionStart(boolean z, int i, int i2) {
+        onTransitionStart(z, i2);
     }
 
     public void setResizableView(FrameLayout frameLayout) {

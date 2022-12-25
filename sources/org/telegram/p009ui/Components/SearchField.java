@@ -13,8 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 
@@ -54,7 +53,7 @@ public class SearchField extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.searchIconImageView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.searchIconImageView.setImageResource(C1010R.C1011drawable.smiles_inputsearch);
+        this.searchIconImageView.setImageResource(C1072R.C1073drawable.smiles_inputsearch);
         this.searchIconImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("dialogSearchIcon"), PorterDuff.Mode.MULTIPLY));
         if (z) {
             createFrame2 = LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388659, 16.0f, 11.0f, 0.0f, 0.0f);
@@ -158,7 +157,7 @@ public class SearchField extends FrameLayout {
     }
 
     public void lambda$new$0(View view) {
-        this.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
+        this.searchEditText.setText("");
         AndroidUtilities.showKeyboard(this.searchEditText);
     }
 

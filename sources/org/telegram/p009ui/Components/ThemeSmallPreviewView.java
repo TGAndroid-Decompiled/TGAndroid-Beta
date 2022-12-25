@@ -25,7 +25,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
@@ -219,7 +219,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
             updatePreviewBackground(this.themeDrawable);
             TLRPC$TL_theme tlTheme = chatThemeItem.chatTheme.getTlTheme(this.lastThemeIndex);
             if (tlTheme != null) {
-                final long j = tlTheme.f977id;
+                final long j = tlTheme.f986id;
                 TLRPC$WallPaper wallpaper = chatThemeItem.chatTheme.getWallpaper(this.lastThemeIndex);
                 if (wallpaper != null) {
                     final int i3 = wallpaper.settings.intensity;
@@ -284,7 +284,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         }
         EmojiThemes emojiThemes = this.chatThemeItem.chatTheme;
         if (emojiThemes == null || emojiThemes.showAsDefaultStub) {
-            setContentDescription(LocaleController.getString("ChatNoTheme", C1010R.string.ChatNoTheme));
+            setContentDescription(LocaleController.getString("ChatNoTheme", C1072R.string.ChatNoTheme));
         } else {
             setContentDescription(emojiThemes.getEmoticon());
         }
@@ -320,7 +320,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
     }
 
     public void lambda$setItem$3(final ChatThemeBottomSheet.ChatThemeItem chatThemeItem, final int i) {
-        final Bitmap bitmap = SvgHelper.getBitmap(C1010R.raw.default_pattern, AndroidUtilities.m35dp(120.0f), AndroidUtilities.m35dp(140.0f), -16777216, AndroidUtilities.density);
+        final Bitmap bitmap = SvgHelper.getBitmap(C1072R.raw.default_pattern, AndroidUtilities.m35dp(120.0f), AndroidUtilities.m35dp(140.0f), -16777216, AndroidUtilities.density);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -544,7 +544,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         textPaint.setColor(getThemedColor("chat_emojiPanelTrendingDescription"));
         this.noThemeTextPaint.setTextSize(AndroidUtilities.m35dp(14.0f));
         this.noThemeTextPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        StaticLayout createStaticLayout2 = StaticLayoutEx.createStaticLayout2(LocaleController.getString("ChatNoTheme", C1010R.string.ChatNoTheme), this.noThemeTextPaint, AndroidUtilities.m35dp(52.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, true, TextUtils.TruncateAt.END, AndroidUtilities.m35dp(52.0f), 3);
+        StaticLayout createStaticLayout2 = StaticLayoutEx.createStaticLayout2(LocaleController.getString("ChatNoTheme", C1072R.string.ChatNoTheme), this.noThemeTextPaint, AndroidUtilities.m35dp(52.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, true, TextUtils.TruncateAt.END, AndroidUtilities.m35dp(52.0f), 3);
         this.textLayout = createStaticLayout2;
         return createStaticLayout2;
     }

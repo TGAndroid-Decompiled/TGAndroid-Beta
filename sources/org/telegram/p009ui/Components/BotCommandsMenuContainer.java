@@ -17,7 +17,7 @@ import android.widget.FrameLayout;
 import androidx.core.view.NestedScrollingParent;
 import androidx.core.view.NestedScrollingParentHelper;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.p009ui.ActionBar.Theme;
 
 public class BotCommandsMenuContainer extends FrameLayout implements NestedScrollingParent {
@@ -51,7 +51,7 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
         this.topBackground = new Paint(1);
         this.dismissed = true;
         this.nestedScrollingParentHelper = new NestedScrollingParentHelper(this);
-        this.shadowDrawable = context.getResources().getDrawable(C1010R.C1011drawable.sheet_shadow_round).mutate();
+        this.shadowDrawable = context.getResources().getDrawable(C1072R.C1073drawable.sheet_shadow_round).mutate();
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public void dispatchDraw(Canvas canvas) {

@@ -2,7 +2,6 @@ package org.telegram.p009ui.Components.Paint.Views;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -18,9 +17,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
-import org.telegram.messenger.LocaleController;
-import org.telegram.p009ui.Components.LayoutHelper;
 import org.telegram.p009ui.Components.Paint.Swatch;
 
 public class ColorPicker extends FrameLayout {
@@ -50,68 +46,6 @@ public class ColorPicker extends FrameLayout {
         void onColorValueChanged();
 
         void onFinishedColorPicking();
-
-        void onSettingsPressed();
-
-        void onUndoPressed();
-    }
-
-    public ColorPicker(Context context) {
-        super(context);
-        this.interpolator = new OvershootInterpolator(1.02f);
-        this.gradientPaint = new Paint(1);
-        this.backgroundPaint = new Paint(1);
-        this.swatchPaint = new Paint(1);
-        this.swatchStrokePaint = new Paint(1);
-        this.rectF = new RectF();
-        this.weight = 0.016773745f;
-        setWillNotDraw(false);
-        this.shadowDrawable = getResources().getDrawable(C1010R.C1011drawable.knob_shadow);
-        this.backgroundPaint.setColor(-1);
-        this.swatchStrokePaint.setStyle(Paint.Style.STROKE);
-        this.swatchStrokePaint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
-        ImageView imageView = new ImageView(context);
-        this.settingsButton = imageView;
-        imageView.setContentDescription(LocaleController.getString("AccDescrBrushType", C1010R.string.AccDescrBrushType));
-        this.settingsButton.setScaleType(ImageView.ScaleType.CENTER);
-        this.settingsButton.setImageResource(C1010R.C1011drawable.photo_paint_brush);
-        addView(this.settingsButton, LayoutHelper.createFrame(46, 52.0f));
-        this.settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                ColorPicker.this.lambda$new$0(view);
-            }
-        });
-        ImageView imageView2 = new ImageView(context);
-        this.undoButton = imageView2;
-        imageView2.setContentDescription(LocaleController.getString("Undo", C1010R.string.Undo));
-        this.undoButton.setScaleType(ImageView.ScaleType.CENTER);
-        this.undoButton.setImageResource(C1010R.C1011drawable.photo_undo);
-        addView(this.undoButton, LayoutHelper.createFrame(46, 52.0f));
-        this.undoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                ColorPicker.this.lambda$new$1(view);
-            }
-        });
-        SharedPreferences sharedPreferences = context.getSharedPreferences("paint", 0);
-        this.location = sharedPreferences.getFloat("last_color_location", 1.0f);
-        setWeight(sharedPreferences.getFloat("last_color_weight", 0.016773745f));
-        setLocation(this.location);
-    }
-
-    public void lambda$new$0(View view) {
-        ColorPickerDelegate colorPickerDelegate = this.delegate;
-        if (colorPickerDelegate != null) {
-            colorPickerDelegate.onSettingsPressed();
-        }
-    }
-
-    public void lambda$new$1(View view) {
-        ColorPickerDelegate colorPickerDelegate = this.delegate;
-        if (colorPickerDelegate != null) {
-            colorPickerDelegate.onUndoPressed();
-        }
     }
 
     public void setUndoEnabled(boolean z) {

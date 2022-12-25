@@ -12,6 +12,6 @@ public final class PrivacySettingsActivity$$ExternalSyntheticLambda17 implements
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        PrivacySettingsActivity.lambda$onFragmentDestroy$0(tLObject, tLRPC$TL_error);
+        PrivacySettingsActivity.lambda$onFragmentDestroy$2(tLObject, tLRPC$TL_error);
     }
 }

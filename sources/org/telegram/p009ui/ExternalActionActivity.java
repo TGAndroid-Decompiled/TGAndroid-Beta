@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -98,8 +98,8 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
     protected void onCreate(Bundle bundle) {
         ApplicationLoader.postInitApplication();
         requestWindowFeature(1);
-        setTheme(C1010R.style.Theme_TMessages);
-        getWindow().setBackgroundDrawableResource(C1010R.C1011drawable.transparent);
+        setTheme(C1072R.style.Theme_TMessages);
+        getWindow().setBackgroundDrawableResource(C1072R.C1073drawable.transparent);
         if (SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture) {
             try {
                 getWindow().setFlags(8192, 8192);
@@ -155,7 +155,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             newLayout.setRemoveActionBarExtraHeight(true);
             this.layersActionBarLayout.setBackgroundView(frameLayout);
             this.layersActionBarLayout.setUseAlphaAnimations(true);
-            this.layersActionBarLayout.getView().setBackgroundResource(C1010R.C1011drawable.boxshadow);
+            this.layersActionBarLayout.getView().setBackgroundResource(C1072R.C1073drawable.boxshadow);
             relativeLayout.addView(this.layersActionBarLayout.getView(), LayoutHelper.createRelative(530, AndroidUtilities.isSmallTablet() ? 528 : 700));
             this.layersActionBarLayout.setFragmentStack(layerFragmentsStack);
             this.layersActionBarLayout.setDelegate(this);
@@ -303,9 +303,9 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
                             this.layersActionBarLayout.showLastFragment();
                         }
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                        builder.setTitle(LocaleController.getString("AppName", C1010R.string.AppName));
-                        builder.setMessage(LocaleController.getString("PleaseLoginPassport", C1010R.string.PleaseLoginPassport));
-                        builder.setPositiveButton(LocaleController.getString("OK", C1010R.string.OK), null);
+                        builder.setTitle(LocaleController.getString("AppName", C1072R.string.AppName));
+                        builder.setMessage(LocaleController.getString("PleaseLoginPassport", C1072R.string.PleaseLoginPassport));
+                        builder.setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), null);
                         builder.show();
                         return true;
                     } else if (activatedAccountsCount >= 2) {
@@ -447,7 +447,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         try {
             alertDialog.dismiss();
             if ("APP_VERSION_OUTDATED".equals(tLRPC$TL_error.text)) {
-                AlertDialog showUpdateAppAlert = AlertsCreator.showUpdateAppAlert(this, LocaleController.getString("UpdateAppAlert", C1010R.string.UpdateAppAlert), true);
+                AlertDialog showUpdateAppAlert = AlertsCreator.showUpdateAppAlert(this, LocaleController.getString("UpdateAppAlert", C1072R.string.UpdateAppAlert), true);
                 if (showUpdateAppAlert != null) {
                     showUpdateAppAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override

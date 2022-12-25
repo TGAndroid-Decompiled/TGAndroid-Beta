@@ -46,8 +46,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
@@ -269,7 +268,7 @@ public class TranslateAlert extends Dialog {
     }
 
     public TranslateAlert(BaseFragment baseFragment, Context context, int i, TLRPC$InputPeer tLRPC$InputPeer, int i2, String str, String str2, CharSequence charSequence, boolean z, OnLinkPress onLinkPress, Runnable runnable) {
-        super(context, C1010R.style.TransparentDialog);
+        super(context, C1072R.style.TransparentDialog);
         this.blockIndex = 0;
         this.containerOpenAnimationT = 0.0f;
         this.openAnimationToAnimatorPriority = false;
@@ -397,7 +396,7 @@ public class TranslateAlert extends Dialog {
         textView.setPivotX(LocaleController.isRTL ? textView.getWidth() : 0.0f);
         this.titleView.setPivotY(0.0f);
         this.titleView.setLines(1);
-        this.titleView.setText(LocaleController.getString("AutomaticTranslation", C1010R.string.AutomaticTranslation));
+        this.titleView.setText(LocaleController.getString("AutomaticTranslation", C1072R.string.AutomaticTranslation));
         this.titleView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.titleView.setTextColor(Theme.getColor("dialogTextBlack"));
@@ -443,7 +442,7 @@ public class TranslateAlert extends Dialog {
         inlineLoadingTextView.showLoadingText = false;
         ImageView imageView = new ImageView(context);
         this.subtitleArrowView = imageView;
-        imageView.setImageResource(C1010R.C1011drawable.search_arrow);
+        imageView.setImageResource(C1072R.C1073drawable.search_arrow);
         this.subtitleArrowView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("player_actionBarSubtitle"), PorterDuff.Mode.MULTIPLY));
         if (LocaleController.isRTL) {
             this.subtitleArrowView.setScaleX(-1.0f);
@@ -478,7 +477,7 @@ public class TranslateAlert extends Dialog {
         frameLayout4.addView(view2, createFrame2);
         ImageView imageView2 = new ImageView(context);
         this.backButton = imageView2;
-        imageView2.setImageResource(C1010R.C1011drawable.ic_ab_back);
+        imageView2.setImageResource(C1072R.C1073drawable.ic_ab_back);
         this.backButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlack"), PorterDuff.Mode.MULTIPLY));
         this.backButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
         this.backButton.setPadding(AndroidUtilities.m35dp(16.0f), 0, AndroidUtilities.m35dp(16.0f), 0);
@@ -552,7 +551,7 @@ public class TranslateAlert extends Dialog {
             public boolean onTextContextMenuItem(int i6) {
                 if (i6 == 16908321 && isFocused()) {
                     ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", getText().subSequence(Math.max(0, Math.min(getSelectionStart(), getSelectionEnd())), Math.max(0, Math.max(getSelectionStart(), getSelectionEnd())))));
-                    BulletinFactory.m14of(TranslateAlert.this.bulletinContainer, null).createCopyBulletin(LocaleController.getString("TextCopied", C1010R.string.TextCopied)).show();
+                    BulletinFactory.m14of(TranslateAlert.this.bulletinContainer, null).createCopyBulletin(LocaleController.getString("TextCopied", C1072R.string.TextCopied)).show();
                     clearFocus();
                     return true;
                 }
@@ -616,7 +615,7 @@ public class TranslateAlert extends Dialog {
         this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.buttonTextView.setTextSize(1, 14.0f);
-        this.buttonTextView.setText(LocaleController.getString("CloseTranslation", C1010R.string.CloseTranslation));
+        this.buttonTextView.setText(LocaleController.getString("CloseTranslation", C1072R.string.CloseTranslation));
         FrameLayout frameLayout10 = new FrameLayout(context);
         this.buttonView = frameLayout10;
         frameLayout10.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor("featuredStickers_addButton"), 4.0f));
@@ -840,7 +839,7 @@ public class TranslateAlert extends Dialog {
         this.contentView.setPadding(0, 0, 0, 0);
         setContentView(this.contentView, new ViewGroup.LayoutParams(-1, -1));
         Window window = getWindow();
-        window.setWindowAnimations(C1010R.style.DialogNoAnimation);
+        window.setWindowAnimations(C1072R.style.DialogNoAnimation);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;
         attributes.gravity = 51;
@@ -1068,7 +1067,7 @@ public class TranslateAlert extends Dialog {
         }
         CharSequence charSequence = this.allTexts;
         if (charSequence == null) {
-            charSequence = BuildConfig.APP_CENTER_HASH;
+            charSequence = "";
         }
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence);
         if (this.blockIndex != 0) {
@@ -1103,9 +1102,9 @@ public class TranslateAlert extends Dialog {
 
     public void lambda$fetchNext$8(boolean z) {
         if (z) {
-            Toast.makeText(getContext(), LocaleController.getString("TranslationFailedAlert1", C1010R.string.TranslationFailedAlert1), 0).show();
+            Toast.makeText(getContext(), LocaleController.getString("TranslationFailedAlert1", C1072R.string.TranslationFailedAlert1), 0).show();
         } else {
-            Toast.makeText(getContext(), LocaleController.getString("TranslationFailedAlert2", C1010R.string.TranslationFailedAlert2), 0).show();
+            Toast.makeText(getContext(), LocaleController.getString("TranslationFailedAlert2", C1072R.string.TranslationFailedAlert2), 0).show();
         }
         if (this.blockIndex == 0) {
             dismiss();

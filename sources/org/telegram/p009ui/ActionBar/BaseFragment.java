@@ -47,7 +47,7 @@ import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.tgnet.ConnectionsManager;
 
 public abstract class BaseFragment {
-    protected C1069ActionBar actionBar;
+    protected C1133ActionBar actionBar;
     protected Bundle arguments;
     protected boolean finishing;
     protected boolean fragmentBeginToShow;
@@ -220,7 +220,7 @@ public abstract class BaseFragment {
         return this.fragmentBeginToShow;
     }
 
-    public C1069ActionBar getActionBar() {
+    public C1133ActionBar getActionBar() {
         return this.actionBar;
     }
 
@@ -257,21 +257,21 @@ public abstract class BaseFragment {
     }
 
     public INavigationLayout.BackButtonState getBackButtonState() {
-        C1069ActionBar c1069ActionBar = this.actionBar;
-        if (c1069ActionBar != null) {
-            return c1069ActionBar.getBackButtonState();
+        C1133ActionBar c1133ActionBar = this.actionBar;
+        if (c1133ActionBar != null) {
+            return c1133ActionBar.getBackButtonState();
         }
         return null;
     }
 
     public void setInPreviewMode(boolean z) {
         this.inPreviewMode = z;
-        C1069ActionBar c1069ActionBar = this.actionBar;
-        if (c1069ActionBar != null) {
+        C1133ActionBar c1133ActionBar = this.actionBar;
+        if (c1133ActionBar != null) {
             if (z) {
-                c1069ActionBar.setOccupyStatusBar(false);
+                c1133ActionBar.setOccupyStatusBar(false);
             } else {
-                c1069ActionBar.setOccupyStatusBar(Build.VERSION.SDK_INT >= 21);
+                c1133ActionBar.setOccupyStatusBar(Build.VERSION.SDK_INT >= 21);
             }
         }
     }
@@ -294,9 +294,9 @@ public abstract class BaseFragment {
             }
             this.fragmentView = null;
         }
-        C1069ActionBar c1069ActionBar = this.actionBar;
-        if (c1069ActionBar != null) {
-            ViewGroup viewGroup2 = (ViewGroup) c1069ActionBar.getParent();
+        C1133ActionBar c1133ActionBar = this.actionBar;
+        if (c1133ActionBar != null) {
+            ViewGroup viewGroup2 = (ViewGroup) c1133ActionBar.getParent();
             if (viewGroup2 != null) {
                 try {
                     viewGroup2.removeViewInLayout(this.actionBar);
@@ -354,7 +354,7 @@ public abstract class BaseFragment {
             if (iNavigationLayout4 == null || this.actionBar != null) {
                 return;
             }
-            C1069ActionBar createActionBar = createActionBar(iNavigationLayout4.getView().getContext());
+            C1133ActionBar createActionBar = createActionBar(iNavigationLayout4.getView().getContext());
             this.actionBar = createActionBar;
             if (createActionBar != null) {
                 createActionBar.parentFragment = this;
@@ -362,17 +362,17 @@ public abstract class BaseFragment {
         }
     }
 
-    public C1069ActionBar createActionBar(Context context) {
-        C1069ActionBar c1069ActionBar = new C1069ActionBar(context, getResourceProvider());
-        c1069ActionBar.setBackgroundColor(getThemedColor("actionBarDefault"));
-        c1069ActionBar.setItemsBackgroundColor(getThemedColor("actionBarDefaultSelector"), false);
-        c1069ActionBar.setItemsBackgroundColor(getThemedColor("actionBarActionModeDefaultSelector"), true);
-        c1069ActionBar.setItemsColor(getThemedColor("actionBarDefaultIcon"), false);
-        c1069ActionBar.setItemsColor(getThemedColor("actionBarActionModeDefaultIcon"), true);
+    public C1133ActionBar createActionBar(Context context) {
+        C1133ActionBar c1133ActionBar = new C1133ActionBar(context, getResourceProvider());
+        c1133ActionBar.setBackgroundColor(getThemedColor("actionBarDefault"));
+        c1133ActionBar.setItemsBackgroundColor(getThemedColor("actionBarDefaultSelector"), false);
+        c1133ActionBar.setItemsBackgroundColor(getThemedColor("actionBarActionModeDefaultSelector"), true);
+        c1133ActionBar.setItemsColor(getThemedColor("actionBarDefaultIcon"), false);
+        c1133ActionBar.setItemsColor(getThemedColor("actionBarActionModeDefaultIcon"), true);
         if (this.inPreviewMode || this.inBubbleMode) {
-            c1069ActionBar.setOccupyStatusBar(false);
+            c1133ActionBar.setOccupyStatusBar(false);
         }
-        return c1069ActionBar;
+        return c1133ActionBar;
     }
 
     public void movePreviewFragment(float f) {
@@ -396,6 +396,10 @@ public abstract class BaseFragment {
         } else {
             finishFragment(true);
         }
+    }
+
+    public void setFinishing(boolean z) {
+        this.finishing = z;
     }
 
     public void finishFragment(boolean z) {
@@ -428,9 +432,9 @@ public abstract class BaseFragment {
         getConnectionsManager().cancelRequestsForGuid(this.classGuid);
         getMessagesStorage().cancelTasksForGuid(this.classGuid);
         this.isFinished = true;
-        C1069ActionBar c1069ActionBar = this.actionBar;
-        if (c1069ActionBar != null) {
-            c1069ActionBar.setEnabled(false);
+        C1133ActionBar c1133ActionBar = this.actionBar;
+        if (c1133ActionBar != null) {
+            c1133ActionBar.setEnabled(false);
         }
         if (!hasForceLightStatusBar() || AndroidUtilities.isTablet() || getParentLayout().getLastFragment() != this || getParentActivity() == null || this.finishing) {
             return;
@@ -450,9 +454,9 @@ public abstract class BaseFragment {
     }
 
     public void onPause() {
-        C1069ActionBar c1069ActionBar = this.actionBar;
-        if (c1069ActionBar != null) {
-            c1069ActionBar.onPause();
+        C1133ActionBar c1133ActionBar = this.actionBar;
+        if (c1133ActionBar != null) {
+            c1133ActionBar.onPause();
         }
         this.isPaused = true;
         try {
@@ -577,9 +581,9 @@ public abstract class BaseFragment {
         } catch (Exception e) {
             FileLog.m31e(e);
         }
-        C1069ActionBar c1069ActionBar = this.actionBar;
-        if (c1069ActionBar != null) {
-            c1069ActionBar.onPause();
+        C1133ActionBar c1133ActionBar = this.actionBar;
+        if (c1133ActionBar != null) {
+            c1133ActionBar.onPause();
         }
     }
 
@@ -590,7 +594,7 @@ public abstract class BaseFragment {
     }
 
     public void onBecomeFullyVisible() {
-        C1069ActionBar actionBar;
+        C1133ActionBar actionBar;
         if (!((AccessibilityManager) ApplicationLoader.applicationContext.getSystemService("accessibility")).isEnabled() || (actionBar = getActionBar()) == null) {
             return;
         }
@@ -737,13 +741,13 @@ public abstract class BaseFragment {
             return null;
         }
         INavigationLayout[] iNavigationLayoutArr = {INavigationLayout.CC.newLayout(getParentActivity())};
-        DialogC11241 dialogC11241 = new DialogC11241(this, getParentActivity(), true, iNavigationLayoutArr, baseFragment);
-        baseFragment.setParentDialog(dialogC11241);
-        dialogC11241.show();
+        DialogC11891 dialogC11891 = new DialogC11891(this, getParentActivity(), true, iNavigationLayoutArr, baseFragment);
+        baseFragment.setParentDialog(dialogC11891);
+        dialogC11891.show();
         return iNavigationLayoutArr;
     }
 
-    class DialogC11241 extends BottomSheet {
+    class DialogC11891 extends BottomSheet {
         final INavigationLayout[] val$actionBarLayout;
         final BaseFragment val$fragment;
 
@@ -752,7 +756,7 @@ public abstract class BaseFragment {
             return false;
         }
 
-        DialogC11241(BaseFragment baseFragment, Context context, boolean z, INavigationLayout[] iNavigationLayoutArr, final BaseFragment baseFragment2) {
+        DialogC11891(BaseFragment baseFragment, Context context, boolean z, INavigationLayout[] iNavigationLayoutArr, final BaseFragment baseFragment2) {
             super(context, z);
             this.val$actionBarLayout = iNavigationLayoutArr;
             this.val$fragment = baseFragment2;
@@ -834,8 +838,8 @@ public abstract class BaseFragment {
         int color;
         if (!hasForceLightStatusBar() || Theme.getCurrentTheme().isDark()) {
             Theme.ResourcesProvider resourceProvider = getResourceProvider();
-            C1069ActionBar c1069ActionBar = this.actionBar;
-            String str = (c1069ActionBar == null || !c1069ActionBar.isActionModeShowed()) ? "actionBarDefault" : "actionBarActionModeDefault";
+            C1133ActionBar c1133ActionBar = this.actionBar;
+            String str = (c1133ActionBar == null || !c1133ActionBar.isActionModeShowed()) ? "actionBarDefault" : "actionBarActionModeDefault";
             if (resourceProvider != null) {
                 color = resourceProvider.getColorOrDefault(str);
             } else {
@@ -848,5 +852,13 @@ public abstract class BaseFragment {
 
     public void setPreviewDelegate(PreviewDelegate previewDelegate) {
         this.previewDelegate = previewDelegate;
+    }
+
+    public void resetFragment() {
+        if (this.isFinished) {
+            clearViews();
+            this.isFinished = false;
+            this.finishing = false;
+        }
     }
 }

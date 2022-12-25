@@ -1,20 +1,23 @@
 package org.telegram.p009ui;
 
-import android.animation.TimeInterpolator;
-import android.app.Dialog;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StatFs;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.transition.ChangeBounds;
-import android.transition.Fade;
-import android.transition.TransitionManager;
-import android.transition.TransitionSet;
+import android.text.style.RelativeSizeSpan;
 import android.util.LongSparseArray;
 import android.util.SparseArray;
 import android.view.MotionEvent;
@@ -22,22 +25,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.core.widget.NestedScrollView;
+import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
-import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.C1072R;
+import org.telegram.messenger.CacheByChatsController;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -51,75 +55,103 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.ActionBarMenu;
+import org.telegram.p009ui.ActionBar.ActionBarMenuSubItem;
+import org.telegram.p009ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BackDrawable;
 import org.telegram.p009ui.ActionBar.BaseFragment;
 import org.telegram.p009ui.ActionBar.BottomSheet;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
+import org.telegram.p009ui.CacheControlActivity;
+import org.telegram.p009ui.CachedMediaLayout;
 import org.telegram.p009ui.Cells.CheckBoxCell;
 import org.telegram.p009ui.Cells.HeaderCell;
+import org.telegram.p009ui.Cells.TextCell;
 import org.telegram.p009ui.Cells.TextCheckBoxCell;
 import org.telegram.p009ui.Cells.TextInfoPrivacyCell;
 import org.telegram.p009ui.Cells.TextSettingsCell;
+import org.telegram.p009ui.Components.AlertsCreator;
+import org.telegram.p009ui.Components.AnimatedFloat;
 import org.telegram.p009ui.Components.AnimatedTextView;
 import org.telegram.p009ui.Components.BackupImageView;
+import org.telegram.p009ui.Components.CacheChart;
 import org.telegram.p009ui.Components.CheckBox2;
 import org.telegram.p009ui.Components.CubicBezierInterpolator;
 import org.telegram.p009ui.Components.FlickerLoadingView;
 import org.telegram.p009ui.Components.LayoutHelper;
 import org.telegram.p009ui.Components.ListView.AdapterWithDiffUtils;
-import org.telegram.p009ui.Components.MediaActivity;
-import org.telegram.p009ui.Components.NumberTextView;
+import org.telegram.p009ui.Components.LoadingDrawable;
+import org.telegram.p009ui.Components.NestedSizeNotifierLayout;
 import org.telegram.p009ui.Components.RecyclerListView;
 import org.telegram.p009ui.Components.SlideChooseView;
 import org.telegram.p009ui.Components.StorageDiagramView;
 import org.telegram.p009ui.Components.StorageUsageView;
+import org.telegram.p009ui.Components.TypefaceSpan;
 import org.telegram.p009ui.Components.UndoView;
-import org.telegram.tgnet.TLObject;
+import org.telegram.p009ui.DilogCacheBottomSheet;
+import org.telegram.p009ui.KeepMediaPopupView;
+import org.telegram.p009ui.Storage.CacheModel;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
 
 public class CacheControlActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
+    private ValueAnimator actionBarAnimator;
+    private boolean actionBarShown;
+    private float actionBarShownT;
+    private ActionBarMenu actionMode;
+    private TextView actionModeClearButton;
+    private AnimatedTextView actionModeSubtitle;
+    private AnimatedTextView actionModeTitle;
     private View actionTextView;
     private BottomSheet bottomSheet;
     private View bottomSheetView;
+    private CacheChart cacheChart;
+    private CacheChartHeader cacheChartHeader;
+    CacheModel cacheModel;
     private UndoView cacheRemovedTooltip;
-    private int databaseInfoRow;
-    private int databaseRow;
+    private CachedMediaLayout cachedMediaLayout;
+    private boolean changeStatusBar;
+    private ClearCacheButtonInternal clearCacheButton;
+    private ActionBarMenuSubItem clearDatabaseItem;
     long fragmentCreateTime;
-    private int keepMediaInfoRow;
     private LinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
-    private boolean loadingDialogs;
+    private NestedSizeNotifierLayout nestedSizeNotifierLayout;
+    private int[] percents;
     AlertDialog progressDialog;
-    NumberTextView selectedDialogsCountTextView;
-    private int storageUsageRow;
-    private boolean updateDatabaseSize;
+    private float[] tempSizes;
+    private boolean[] selected = {true, true, true, true, true, true, true, true, true};
     private long databaseSize = -1;
     private long cacheSize = -1;
+    private long cacheEmojiSize = -1;
+    private long cacheTempSize = -1;
     private long documentsSize = -1;
     private long audioSize = -1;
     private long musicSize = -1;
     private long photoSize = -1;
     private long videoSize = -1;
-    private long stickersSize = -1;
+    private long stickersCacheSize = -1;
     private long totalSize = -1;
     private long totalDeviceSize = -1;
     private long totalDeviceFreeSize = -1;
     private long migrateOldFolderRow = -1;
-    private StorageDiagramView.ClearViewData[] clearViewData = new StorageDiagramView.ClearViewData[7];
     private boolean calculating = true;
+    private boolean collapsed = true;
+    private int sectionsStartRow = -1;
+    private int sectionsEndRow = -1;
     private volatile boolean canceled = false;
-    HashSet<Long> selectedDialogs = new HashSet<>();
-    ArrayList<DialogFileEntities> dialogsFilesEntities = null;
     private ArrayList<ItemInner> oldItems = new ArrayList<>();
     private ArrayList<ItemInner> itemInners = new ArrayList<>();
+    private float actionBarShadowAlpha = 1.0f;
 
-    public static boolean lambda$checkActionMode$16(View view, MotionEvent motionEvent) {
-        return true;
+    public static class FileEntities {
+        public int count;
+        public ArrayList<CacheModel.FileInfo> files = new ArrayList<>();
+        public long totalSize;
     }
 
     @Override
@@ -127,12 +159,31 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         return true;
     }
 
+    static float access$516(CacheControlActivity cacheControlActivity, float f) {
+        float f2 = cacheControlActivity.actionBarShadowAlpha + f;
+        cacheControlActivity.actionBarShadowAlpha = f2;
+        return f2;
+    }
+
+    static float access$524(CacheControlActivity cacheControlActivity, float f) {
+        float f2 = cacheControlActivity.actionBarShadowAlpha - f;
+        cacheControlActivity.actionBarShadowAlpha = f2;
+        return f2;
+    }
+
+    private void updateDatabaseItemSize() {
+        if (this.clearDatabaseItem != null) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            spannableStringBuilder.append((CharSequence) LocaleController.getString("ClearLocalDatabase", C1072R.string.ClearLocalDatabase));
+            this.clearDatabaseItem.setText(spannableStringBuilder);
+        }
+    }
+
     @Override
     public boolean onFragmentCreate() {
         super.onFragmentCreate();
         getNotificationCenter().addObserver(this, NotificationCenter.didClearDatabase);
         this.databaseSize = MessagesStorage.getInstance(this.currentAccount).getDatabaseSize();
-        this.loadingDialogs = true;
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -140,7 +191,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             }
         });
         this.fragmentCreateTime = System.currentTimeMillis();
-        updateRows();
+        updateRows(false);
+        updateChart();
         return true;
     }
 
@@ -149,7 +201,11 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         long blockSize;
         long availableBlocks;
         long blockCount;
-        this.cacheSize = getDirectorySize(FileLoader.checkDirectory(4), 0);
+        this.cacheSize = getDirectorySize(FileLoader.checkDirectory(4), 5);
+        if (this.canceled) {
+            return;
+        }
+        this.cacheTempSize = getDirectorySize(FileLoader.checkDirectory(4), 4);
         if (this.canceled) {
             return;
         }
@@ -177,13 +233,18 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         if (this.canceled) {
             return;
         }
-        this.stickersSize = getDirectorySize(new File(FileLoader.checkDirectory(4), "acache"), 0);
+        this.stickersCacheSize = getDirectorySize(new File(FileLoader.checkDirectory(4), "acache"), 0);
         if (this.canceled) {
             return;
         }
+        this.cacheEmojiSize = getDirectorySize(FileLoader.checkDirectory(4), 3);
+        if (this.canceled) {
+            return;
+        }
+        this.stickersCacheSize += this.cacheEmojiSize;
         long directorySize5 = getDirectorySize(FileLoader.checkDirectory(1), 0);
         this.audioSize = directorySize5;
-        this.totalSize = this.cacheSize + this.videoSize + directorySize5 + this.photoSize + this.documentsSize + this.musicSize + this.stickersSize;
+        this.totalSize = this.cacheSize + this.cacheTempSize + this.videoSize + directorySize5 + this.photoSize + this.documentsSize + this.musicSize + this.stickersCacheSize;
         if (Build.VERSION.SDK_INT >= 19) {
             ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
             file = rootDirs.get(0);
@@ -224,19 +285,57 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         } catch (Exception e) {
             FileLog.m31e(e);
         }
+        System.currentTimeMillis();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
                 CacheControlActivity.this.lambda$onFragmentCreate$0();
             }
-        });
+        }, Math.max(1L, 800 - (System.currentTimeMillis() - this.fragmentCreateTime)));
         loadDialogEntities();
     }
 
     public void lambda$onFragmentCreate$0() {
         resumeDelayedFragmentAnimation();
         this.calculating = false;
-        updateStorageUsageRow();
+        updateRows(true);
+        updateChart();
+    }
+
+    public void updateChart() {
+        CacheChart cacheChart = this.cacheChart;
+        if (cacheChart != null) {
+            boolean z = this.calculating;
+            if (!z && this.totalSize > 0) {
+                long[] jArr = new long[9];
+                for (int i = 0; i < this.itemInners.size(); i++) {
+                    ItemInner itemInner = this.itemInners.get(i);
+                    if (itemInner.viewType == 11) {
+                        int i2 = itemInner.index;
+                        if (i2 < 0) {
+                            if (this.collapsed && this.selected[8]) {
+                                jArr[8] = itemInner.size;
+                            }
+                        } else if (this.selected[i2]) {
+                            jArr[i2] = itemInner.size;
+                        }
+                    }
+                }
+                if (System.currentTimeMillis() - this.fragmentCreateTime < 80) {
+                    this.cacheChart.loadingFloat.set(0.0f, true);
+                }
+                this.cacheChart.setSegments(this.totalSize, jArr);
+            } else if (z) {
+                cacheChart.setSegments(-1L, new long[0]);
+            } else {
+                cacheChart.setSegments(0L, new long[0]);
+            }
+        }
+        ClearCacheButtonInternal clearCacheButtonInternal = this.clearCacheButton;
+        if (clearCacheButtonInternal == null || this.calculating) {
+            return;
+        }
+        clearCacheButtonInternal.updateSize();
     }
 
     private void loadDialogEntities() {
@@ -249,15 +348,16 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$loadDialogEntities$4() {
+        final CacheModel cacheModel = new CacheModel(false);
         LongSparseArray<DialogFileEntities> longSparseArray = new LongSparseArray<>();
-        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(4), 6, longSparseArray);
-        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(0), 0, longSparseArray);
-        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(1), 4, longSparseArray);
-        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(100), 0, longSparseArray);
-        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(2), 1, longSparseArray);
-        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(FileLoader.MEDIA_DIR_VIDEO_PUBLIC), 1, longSparseArray);
-        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(3), 2, longSparseArray);
-        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(5), 2, longSparseArray);
+        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(4), 6, longSparseArray, null);
+        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(0), 0, longSparseArray, cacheModel);
+        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(100), 0, longSparseArray, cacheModel);
+        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(2), 1, longSparseArray, cacheModel);
+        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(FileLoader.MEDIA_DIR_VIDEO_PUBLIC), 1, longSparseArray, cacheModel);
+        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(1), 4, longSparseArray, cacheModel);
+        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(3), 2, longSparseArray, cacheModel);
+        fillDialogsEntitiesRecursive(FileLoader.checkDirectory(5), 2, longSparseArray, cacheModel);
         final ArrayList arrayList = new ArrayList();
         final ArrayList arrayList2 = new ArrayList();
         final ArrayList arrayList3 = new ArrayList();
@@ -273,15 +373,16 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 }
             }
         }
+        cacheModel.sortBySize();
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                CacheControlActivity.this.lambda$loadDialogEntities$3(arrayList2, arrayList3, arrayList);
+                CacheControlActivity.this.lambda$loadDialogEntities$3(arrayList2, arrayList3, arrayList, cacheModel);
             }
         });
     }
 
-    public void lambda$loadDialogEntities$3(ArrayList arrayList, ArrayList arrayList2, final ArrayList arrayList3) {
+    public void lambda$loadDialogEntities$3(ArrayList arrayList, ArrayList arrayList2, final ArrayList arrayList3, final CacheModel cacheModel) {
         final ArrayList<TLRPC$User> arrayList4 = new ArrayList<>();
         final ArrayList<TLRPC$Chat> arrayList5 = new ArrayList<>();
         if (!arrayList.isEmpty()) {
@@ -310,14 +411,13 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CacheControlActivity.this.lambda$loadDialogEntities$2(arrayList4, arrayList5, arrayList3);
+                CacheControlActivity.this.lambda$loadDialogEntities$2(arrayList4, arrayList5, arrayList3, cacheModel);
             }
         });
     }
 
-    public void lambda$loadDialogEntities$2(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3) {
+    public void lambda$loadDialogEntities$2(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, CacheModel cacheModel) {
         boolean z;
-        this.loadingDialogs = false;
         getMessagesController().putUsers(arrayList, true);
         getMessagesController().putChats(arrayList2, true);
         DialogFileEntities dialogFileEntities = null;
@@ -341,11 +441,13 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             }
             i++;
         }
+        cacheModel.setEntities(arrayList3);
         if (this.canceled) {
             return;
         }
-        this.dialogsFilesEntities = arrayList3;
+        setCacheModel(cacheModel);
         updateRows();
+        updateChart();
     }
 
     private void sort(ArrayList<DialogFileEntities> arrayList) {
@@ -361,7 +463,15 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         return j < j2 ? -1 : 0;
     }
 
-    public void fillDialogsEntitiesRecursive(File file, int i, LongSparseArray<DialogFileEntities> longSparseArray) {
+    public void setCacheModel(CacheModel cacheModel) {
+        this.cacheModel = cacheModel;
+        CachedMediaLayout cachedMediaLayout = this.cachedMediaLayout;
+        if (cachedMediaLayout != null) {
+            cachedMediaLayout.setCacheModel(cacheModel);
+        }
+    }
+
+    public void fillDialogsEntitiesRecursive(File file, int i, LongSparseArray<DialogFileEntities> longSparseArray, CacheModel cacheModel) {
         File[] listFiles;
         if (file == null || (listFiles = file.listFiles()) == null) {
             return;
@@ -371,83 +481,65 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 return;
             }
             if (file2.isDirectory()) {
-                fillDialogsEntitiesRecursive(file2, i, longSparseArray);
-            } else {
+                fillDialogsEntitiesRecursive(file2, i, longSparseArray, cacheModel);
+            } else if (!file2.getName().equals(".nomedia")) {
                 long fileDialogId = getFileLoader().getFileDatabase().getFileDialogId(file2);
+                String lowerCase = file2.getName().toLowerCase();
+                int i2 = (lowerCase.endsWith(".mp3") || lowerCase.endsWith(".m4a")) ? 3 : i;
+                CacheModel.FileInfo fileInfo = new CacheModel.FileInfo(file2);
+                fileInfo.type = i2;
+                fileInfo.dialogId = fileDialogId;
+                fileInfo.size = file2.length();
                 if (fileDialogId != 0) {
                     DialogFileEntities dialogFileEntities = longSparseArray.get(fileDialogId, null);
                     if (dialogFileEntities == null) {
                         dialogFileEntities = new DialogFileEntities(fileDialogId);
                         longSparseArray.put(fileDialogId, dialogFileEntities);
                     }
-                    String lowerCase = file2.getName().toLowerCase();
-                    dialogFileEntities.addFile(file2, (lowerCase.endsWith(".mp3") || lowerCase.endsWith(".m4a")) ? 3 : i);
+                    dialogFileEntities.addFile(fileInfo, i2);
+                }
+                if (cacheModel != null) {
+                    cacheModel.add(i2, fileInfo);
                 }
             }
         }
+    }
+
+    public String formatPercent(float f) {
+        return formatPercent(f, true);
+    }
+
+    private String formatPercent(float f, boolean z) {
+        float round = Math.round(f * 100.0f);
+        if (!z || round >= 0.1f) {
+            if (round % 1.0f == 0.0f) {
+                return ((int) round) + "%";
+            }
+            return String.format("%.1f%%", Float.valueOf(round));
+        }
+        return String.format("<%.1f%%", Float.valueOf(0.1f));
+    }
+
+    public CharSequence getCheckBoxTitle(CharSequence charSequence, int i, boolean z) {
+        SpannableString spannableString = new SpannableString(i <= 0 ? String.format("<%.1f%%", Float.valueOf(0.1f)) : String.format("%d%%", Integer.valueOf(i)));
+        spannableString.setSpan(new RelativeSizeSpan(0.834f), 0, spannableString.length(), 33);
+        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString.length(), 33);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        spannableStringBuilder.append((CharSequence) "  ");
+        spannableStringBuilder.append((CharSequence) spannableString);
+        return spannableStringBuilder;
     }
 
     public void updateRows() {
-        this.oldItems.clear();
-        this.oldItems.addAll(this.itemInners);
-        this.itemInners.clear();
-        this.itemInners.add(new ItemInner(this, 3, LocaleController.getString("KeepMedia", C1010R.string.KeepMedia), null));
-        this.itemInners.add(new ItemInner(this, 4, null, null));
-        this.keepMediaInfoRow = this.itemInners.size();
-        this.itemInners.add(new ItemInner(this, 1, "keep media", null));
-        this.itemInners.add(new ItemInner(this, 3, LocaleController.getString("DeviceStorage", C1010R.string.DeviceStorage), null));
-        this.storageUsageRow = this.itemInners.size();
-        this.itemInners.add(new ItemInner(this, 2, null, null));
-        this.databaseRow = this.itemInners.size();
-        this.itemInners.add(new ItemInner(this, 0, null, null));
-        this.databaseInfoRow = this.itemInners.size();
-        this.itemInners.add(new ItemInner(this, 1, "database", null));
-        if (this.loadingDialogs) {
-            this.itemInners.add(new ItemInner(this, 3, LocaleController.getString("DataUsageByChats", C1010R.string.DataUsageByChats), 15, 4, null));
-            this.itemInners.add(new ItemInner(this, 6, null, null));
-        } else {
-            ArrayList<DialogFileEntities> arrayList = this.dialogsFilesEntities;
-            if (arrayList != null && arrayList.size() > 0) {
-                this.itemInners.add(new ItemInner(this, 3, LocaleController.getString("DataUsageByChats", C1010R.string.DataUsageByChats), 15, 4, null));
-                this.itemInners.size();
-                for (int i = 0; i < this.dialogsFilesEntities.size(); i++) {
-                    this.itemInners.add(new ItemInner(this, 5, null, this.dialogsFilesEntities.get(i)));
-                }
-                this.itemInners.size();
-                this.itemInners.add(new ItemInner(this, 1, null, null));
-            }
-        }
-        ListAdapter listAdapter = this.listAdapter;
-        if (listAdapter != null) {
-            listAdapter.setItems(this.oldItems, this.itemInners);
-        }
+        updateRows(true);
     }
 
-    private void updateStorageUsageRow() {
-        View findViewByPosition = this.layoutManager.findViewByPosition(this.storageUsageRow);
-        if (findViewByPosition instanceof StorageUsageView) {
-            StorageUsageView storageUsageView = (StorageUsageView) findViewByPosition;
-            if (System.currentTimeMillis() - this.fragmentCreateTime > 150) {
-                TransitionSet transitionSet = new TransitionSet();
-                ChangeBounds changeBounds = new ChangeBounds();
-                changeBounds.setDuration(250L);
-                changeBounds.excludeTarget((View) storageUsageView.legendLayout, true);
-                Fade fade = new Fade(1);
-                fade.setDuration(290L);
-                transitionSet.addTransition(new Fade(2).setDuration(250L)).addTransition(changeBounds).addTransition(fade);
-                transitionSet.setOrdering(0);
-                transitionSet.setInterpolator((TimeInterpolator) CubicBezierInterpolator.EASE_OUT);
-                TransitionManager.beginDelayedTransition(this.listView, transitionSet);
-            }
-            storageUsageView.setStorageUsage(this.calculating, this.databaseSize, this.totalSize, this.totalDeviceFreeSize, this.totalDeviceSize);
-            RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(this.storageUsageRow);
-            if (findViewHolderForAdapterPosition != null) {
-                storageUsageView.setEnabled(this.listAdapter.isEnabled(findViewHolderForAdapterPosition));
-                return;
-            }
-            return;
-        }
-        updateRows();
+    private void updateRows(boolean r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.CacheControlActivity.updateRows(boolean):void");
+    }
+
+    public static int lambda$updateRows$6(ItemInner itemInner, ItemInner itemInner2) {
+        return Long.compare(itemInner2.size, itemInner.size);
     }
 
     @Override
@@ -478,10 +570,12 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         return 0L;
     }
 
-    private void cleanupFolders() {
-        if (this.selectedDialogs.size() > 0) {
-            this.actionBar.hideActionMode();
-            this.selectedDialogs.clear();
+    public void cleanupFolders() {
+        this.cacheModel.clearSelection();
+        CachedMediaLayout cachedMediaLayout = this.cachedMediaLayout;
+        if (cachedMediaLayout != null) {
+            cachedMediaLayout.updateVisibleRows();
+            this.cachedMediaLayout.showActionMode(false);
         }
         AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3);
         this.progressDialog = alertDialog;
@@ -491,33 +585,171 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         getFileLoader().getFileLoaderQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                CacheControlActivity.this.lambda$cleanupFolders$7();
+                CacheControlActivity.this.lambda$cleanupFolders$8();
             }
         });
-        this.dialogsFilesEntities = null;
-        this.loadingDialogs = true;
-        updateRows();
+        setCacheModel(null);
     }
 
-    public void lambda$cleanupFolders$7() {
+    public void lambda$cleanupFolders$8() {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                CacheControlActivity.this.lambda$cleanupFolders$6();
+                CacheControlActivity.this.lambda$cleanupFolders$7();
             }
         });
     }
 
-    public void lambda$cleanupFolders$6() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.CacheControlActivity.lambda$cleanupFolders$6():void");
+    public void lambda$cleanupFolders$7() {
+        long blockSize;
+        long availableBlocks;
+        long blockCount;
+        File checkDirectory;
+        long j;
+        File checkDirectory2;
+        File checkDirectory3;
+        int i = 1;
+        final long j2 = 0;
+        int i2 = 0;
+        final boolean z = false;
+        boolean z2 = true;
+        while (i2 < 8) {
+            if (this.selected[i2]) {
+                int i3 = 2;
+                int i4 = 3;
+                if (i2 == 0) {
+                    j2 += this.photoSize;
+                    i3 = 0;
+                    i4 = 0;
+                } else if (i2 == i) {
+                    j2 += this.videoSize;
+                    i3 = 0;
+                    i4 = 2;
+                } else if (i2 == 2) {
+                    j2 += this.documentsSize;
+                    i3 = 1;
+                } else if (i2 == 3) {
+                    j2 += this.musicSize;
+                } else if (i2 == 4) {
+                    j2 += this.audioSize;
+                    i3 = 0;
+                    i4 = 1;
+                } else if (i2 == 5) {
+                    j2 += this.stickersCacheSize + this.cacheEmojiSize;
+                    i3 = 0;
+                    i4 = 100;
+                } else {
+                    if (i2 == 6) {
+                        j2 += this.cacheSize;
+                        i3 = 5;
+                    } else if (i2 == 7) {
+                        j2 += this.cacheTempSize;
+                        i3 = 4;
+                    } else {
+                        i3 = 0;
+                        i4 = -1;
+                    }
+                    i4 = 4;
+                }
+                if (i4 == -1) {
+                    j = j2;
+                } else {
+                    if (i4 == 100) {
+                        checkDirectory = new File(FileLoader.checkDirectory(4), "acache");
+                    } else {
+                        checkDirectory = FileLoader.checkDirectory(i4);
+                    }
+                    j = j2;
+                    if (checkDirectory != null) {
+                        Utilities.clearDir(checkDirectory.getAbsolutePath(), i3, Long.MAX_VALUE, false);
+                    }
+                    if (i4 == 100 && (checkDirectory3 = FileLoader.checkDirectory(4)) != null) {
+                        Utilities.clearDir(checkDirectory3.getAbsolutePath(), 3, Long.MAX_VALUE, false);
+                    }
+                    if (i4 == 0 || i4 == 2) {
+                        File checkDirectory4 = FileLoader.checkDirectory(i4 == 0 ? 100 : FileLoader.MEDIA_DIR_VIDEO_PUBLIC);
+                        if (checkDirectory4 != null) {
+                            Utilities.clearDir(checkDirectory4.getAbsolutePath(), i3, Long.MAX_VALUE, false);
+                        }
+                    }
+                    if (i4 == 3 && (checkDirectory2 = FileLoader.checkDirectory(5)) != null) {
+                        Utilities.clearDir(checkDirectory2.getAbsolutePath(), i3, Long.MAX_VALUE, false);
+                    }
+                    if (i4 == 4) {
+                        this.cacheSize = getDirectorySize(FileLoader.checkDirectory(4), 5);
+                        this.cacheTempSize = getDirectorySize(FileLoader.checkDirectory(4), 4);
+                    } else if (i4 == 1) {
+                        this.audioSize = getDirectorySize(FileLoader.checkDirectory(1), i3);
+                    } else if (i4 == 3) {
+                        if (i3 == 1) {
+                            long directorySize = getDirectorySize(FileLoader.checkDirectory(3), i3);
+                            this.documentsSize = directorySize;
+                            this.documentsSize = directorySize + getDirectorySize(FileLoader.checkDirectory(5), i3);
+                        } else {
+                            long directorySize2 = getDirectorySize(FileLoader.checkDirectory(3), i3);
+                            this.musicSize = directorySize2;
+                            this.musicSize = directorySize2 + getDirectorySize(FileLoader.checkDirectory(5), i3);
+                        }
+                    } else if (i4 == 0) {
+                        long directorySize3 = getDirectorySize(FileLoader.checkDirectory(0), i3);
+                        this.photoSize = directorySize3;
+                        this.photoSize = directorySize3 + getDirectorySize(FileLoader.checkDirectory(100), i3);
+                    } else if (i4 == 2) {
+                        long directorySize4 = getDirectorySize(FileLoader.checkDirectory(2), i3);
+                        this.videoSize = directorySize4;
+                        this.videoSize = directorySize4 + getDirectorySize(FileLoader.checkDirectory(FileLoader.MEDIA_DIR_VIDEO_PUBLIC), i3);
+                    } else if (i4 == 100) {
+                        this.stickersCacheSize = getDirectorySize(new File(FileLoader.checkDirectory(4), "acache"), i3);
+                        long directorySize5 = getDirectorySize(FileLoader.checkDirectory(4), 3);
+                        this.cacheEmojiSize = directorySize5;
+                        this.stickersCacheSize += directorySize5;
+                    }
+                    j2 = j;
+                    z = true;
+                }
+                j2 = j;
+            } else {
+                z2 = false;
+            }
+            i2++;
+            i = 1;
+        }
+        this.totalSize = this.cacheSize + this.cacheTempSize + this.videoSize + this.audioSize + this.photoSize + this.documentsSize + this.musicSize + this.stickersCacheSize;
+        Arrays.fill(this.selected, true);
+        StatFs statFs = new StatFs(Environment.getDataDirectory().getPath());
+        int i5 = Build.VERSION.SDK_INT;
+        if (i5 >= 18) {
+            blockSize = statFs.getBlockSizeLong();
+        } else {
+            blockSize = statFs.getBlockSize();
+        }
+        if (i5 >= 18) {
+            availableBlocks = statFs.getAvailableBlocksLong();
+        } else {
+            availableBlocks = statFs.getAvailableBlocks();
+        }
+        if (i5 >= 18) {
+            blockCount = statFs.getBlockCountLong();
+        } else {
+            blockCount = statFs.getBlockCount();
+        }
+        this.totalDeviceSize = blockCount * blockSize;
+        this.totalDeviceFreeSize = availableBlocks * blockSize;
+        if (z2) {
+            FileLoader.getInstance(this.currentAccount).clearFilePaths();
+        }
+        FileLoader.getInstance(this.currentAccount).checkCurrentDownloadsFiles();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                CacheControlActivity.this.lambda$cleanupFoldersInternal$9(z, j2);
+            }
+        });
     }
 
-    public void lambda$cleanupFoldersInternal$8(boolean z, long j) {
+    public void lambda$cleanupFoldersInternal$9(boolean z, long j) {
         if (z) {
             ImageLoader.getInstance().clearMemory();
-        }
-        if (this.listAdapter != null) {
-            updateStorageUsageRow();
         }
         try {
             AlertDialog alertDialog = this.progressDialog;
@@ -529,312 +761,406 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             FileLog.m31e(e);
         }
         getMediaDataController().ringtoneDataStore.checkRingtoneSoundsLoaded();
-        this.cacheRemovedTooltip.setInfoText(LocaleController.formatString("CacheWasCleared", C1010R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j)));
+        this.cacheRemovedTooltip.setInfoText(LocaleController.formatString("CacheWasCleared", C1072R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j)));
         this.cacheRemovedTooltip.showWithAction(0L, 19, null, null);
         MediaDataController.getInstance(this.currentAccount).chekAllMedia(true);
         loadDialogEntities();
+        updateChart();
+        CacheChartHeader cacheChartHeader = this.cacheChartHeader;
+        if (cacheChartHeader == null || this.calculating) {
+            return;
+        }
+        long j2 = this.totalSize;
+        boolean z2 = j2 > 0;
+        long j3 = this.totalDeviceSize;
+        cacheChartHeader.setData(z2, j3 <= 0 ? 0.0f : ((float) j2) / ((float) j3));
     }
 
     @Override
-    public View createView(final Context context) {
+    public void onTransitionAnimationProgress(boolean z, float f) {
+        if (f > 0.5f && !this.changeStatusBar) {
+            this.changeStatusBar = true;
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+        }
+        super.onTransitionAnimationProgress(z, f);
+    }
+
+    @Override
+    public boolean isLightStatusBar() {
+        if (this.changeStatusBar) {
+            return AndroidUtilities.computePerceivedBrightness(Theme.getColor("windowBackgroundGray")) > 0.721f;
+        }
+        return super.isLightStatusBar();
+    }
+
+    private long size(int i) {
+        switch (i) {
+            case 0:
+                return this.photoSize;
+            case 1:
+                return this.videoSize;
+            case 2:
+                return this.documentsSize;
+            case 3:
+                return this.musicSize;
+            case 4:
+                return this.audioSize;
+            case 5:
+                return this.stickersCacheSize;
+            case 6:
+                return this.cacheSize;
+            case 7:
+                return this.cacheTempSize;
+            default:
+                return 0L;
+        }
+    }
+
+    private int sectionsSelected() {
+        int i = 0;
+        for (int i2 = 0; i2 < 8; i2++) {
+            if (this.selected[i2] && size(i2) > 0) {
+                i++;
+            }
+        }
+        return i;
+    }
+
+    @Override
+    public View createView(Context context) {
+        this.actionBar.setBackgroundDrawable(null);
+        this.actionBar.setCastShadows(false);
+        this.actionBar.setAddToContainer(false);
+        this.actionBar.setOccupyStatusBar(true);
+        this.actionBar.setTitleColor(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlackText"), 0));
+        this.actionBar.setItemsColor(Theme.getColor("windowBackgroundWhiteBlackText"), false);
+        this.actionBar.setItemsBackgroundColor(Theme.getColor("listSelectorSDK21"), false);
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("StorageUsage", C1010R.string.StorageUsage));
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setAllowOverlayTitle(false);
+        this.actionBar.setTitle(LocaleController.getString("StorageUsage", C1072R.string.StorageUsage));
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
-                if (i == -1) {
-                    if (CacheControlActivity.this.selectedDialogs.size() > 0) {
-                        CacheControlActivity.this.selectedDialogs.clear();
-                        ((BaseFragment) CacheControlActivity.this).actionBar.hideActionMode();
-                        CacheControlActivity.this.listAdapter.notifyItemRangeChanged(0, CacheControlActivity.this.listAdapter.getItemCount());
-                        return;
+                if (i != -1) {
+                    if (i == 1) {
+                        CacheControlActivity.this.clearSelectedFiles();
+                    } else if (i == 3) {
+                        CacheControlActivity.this.clearDatabase();
                     }
-                    CacheControlActivity.this.finishFragment();
-                } else if (i != 1 || CacheControlActivity.this.selectedDialogs.isEmpty() || CacheControlActivity.this.getParentActivity() == null) {
+                } else if (((BaseFragment) CacheControlActivity.this).actionBar.isActionModeShowed()) {
+                    CacheModel cacheModel = CacheControlActivity.this.cacheModel;
+                    if (cacheModel != null) {
+                        cacheModel.clearSelection();
+                    }
+                    if (CacheControlActivity.this.cachedMediaLayout != null) {
+                        CacheControlActivity.this.cachedMediaLayout.showActionMode(false);
+                        CacheControlActivity.this.cachedMediaLayout.updateVisibleRows();
+                    }
                 } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle(LocaleController.getString("ClearCache", C1010R.string.ClearCache));
-                    builder.setMessage(LocaleController.getString("ClearCacheForChats", C1010R.string.ClearCacheForChats));
-                    builder.setPositiveButton(LocaleController.getString("ClearButton", C1010R.string.ClearButton), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i2) {
-                            DialogFileEntities dialogFileEntities = new DialogFileEntities(0L);
-                            int i3 = 0;
-                            while (i3 < CacheControlActivity.this.dialogsFilesEntities.size()) {
-                                CacheControlActivity cacheControlActivity = CacheControlActivity.this;
-                                if (cacheControlActivity.selectedDialogs.contains(Long.valueOf(cacheControlActivity.dialogsFilesEntities.get(i3).dialogId))) {
-                                    dialogFileEntities.merge(CacheControlActivity.this.dialogsFilesEntities.get(i3));
-                                    CacheControlActivity.this.dialogsFilesEntities.remove(i3);
-                                    i3--;
-                                }
-                                i3++;
-                            }
-                            if (dialogFileEntities.totalSize > 0) {
-                                CacheControlActivity.this.cleanupDialogFiles(dialogFileEntities, null);
-                            }
-                            CacheControlActivity.this.selectedDialogs.clear();
-                            ((BaseFragment) CacheControlActivity.this).actionBar.hideActionMode();
-                            CacheControlActivity.this.updateRows();
-                        }
-                    });
-                    builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
-                    AlertDialog create = builder.create();
-                    CacheControlActivity.this.showDialog(create);
-                    TextView textView = (TextView) create.getButton(-1);
-                    if (textView != null) {
-                        textView.setTextColor(Theme.getColor("dialogTextRed2"));
-                    }
+                    CacheControlActivity.this.finishFragment();
                 }
             }
         });
-        this.listAdapter = new ListAdapter(context);
+        this.actionMode = this.actionBar.createActionMode();
         FrameLayout frameLayout = new FrameLayout(context);
-        this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
-        RecyclerListView recyclerListView = new RecyclerListView(context);
+        this.actionMode.addView(frameLayout, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
+        AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
+        this.actionModeTitle = animatedTextView;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        animatedTextView.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
+        this.actionModeTitle.setTextSize(AndroidUtilities.m35dp(18.0f));
+        this.actionModeTitle.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.actionModeTitle.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        frameLayout.addView(this.actionModeTitle, LayoutHelper.createFrame(-1, 18.0f, 19, 0.0f, -11.0f, 0.0f, 0.0f));
+        AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true);
+        this.actionModeSubtitle = animatedTextView2;
+        animatedTextView2.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
+        this.actionModeSubtitle.setTextSize(AndroidUtilities.m35dp(14.0f));
+        this.actionModeSubtitle.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        frameLayout.addView(this.actionModeSubtitle, LayoutHelper.createFrame(-1, 18.0f, 19, 0.0f, 10.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.actionModeClearButton = textView;
+        textView.setTextSize(1, 14.0f);
+        this.actionModeClearButton.setPadding(AndroidUtilities.m35dp(14.0f), 0, AndroidUtilities.m35dp(14.0f), 0);
+        this.actionModeClearButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+        this.actionModeClearButton.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 6.0f));
+        this.actionModeClearButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.actionModeClearButton.setGravity(17);
+        this.actionModeClearButton.setText(LocaleController.getString("CacheClear", C1072R.string.CacheClear));
+        this.actionModeClearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                CacheControlActivity.this.lambda$createView$10(view);
+            }
+        });
+        frameLayout.addView(this.actionModeClearButton, LayoutHelper.createFrame(-2, 28.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
+        ActionBarMenuSubItem addSubItem = this.actionBar.createMenu().addItem(2, C1072R.C1073drawable.ic_ab_other).addSubItem(3, C1072R.C1073drawable.msg_delete, LocaleController.getString("ClearLocalDatabase", C1072R.string.ClearLocalDatabase));
+        this.clearDatabaseItem = addSubItem;
+        addSubItem.setIconColor(Theme.getColor("dialogRedIcon"));
+        this.clearDatabaseItem.setTextColor(Theme.getColor("dialogTextRed2"));
+        updateDatabaseItemSize();
+        this.listAdapter = new ListAdapter(context);
+        NestedSizeNotifierLayout nestedSizeNotifierLayout = new NestedSizeNotifierLayout(context) {
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                boolean z = !isPinnedToTop();
+                if (z || CacheControlActivity.this.actionBarShadowAlpha == 0.0f) {
+                    if (z && CacheControlActivity.this.actionBarShadowAlpha != 1.0f) {
+                        CacheControlActivity.access$516(CacheControlActivity.this, 0.16f);
+                        invalidate();
+                    }
+                } else {
+                    CacheControlActivity.access$524(CacheControlActivity.this, 0.16f);
+                    invalidate();
+                }
+                CacheControlActivity cacheControlActivity = CacheControlActivity.this;
+                cacheControlActivity.actionBarShadowAlpha = Utilities.clamp(cacheControlActivity.actionBarShadowAlpha, 1.0f, 0.0f);
+                ((BaseFragment) CacheControlActivity.this).parentLayout.drawHeaderShadow(canvas, (int) (CacheControlActivity.this.actionBarShownT * 255.0f * CacheControlActivity.this.actionBarShadowAlpha), AndroidUtilities.statusBarHeight + C1133ActionBar.getCurrentActionBarHeight());
+            }
+        };
+        this.nestedSizeNotifierLayout = nestedSizeNotifierLayout;
+        this.fragmentView = nestedSizeNotifierLayout;
+        nestedSizeNotifierLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        RecyclerListView recyclerListView = new RecyclerListView(context) {
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                if (CacheControlActivity.this.sectionsStartRow >= 0 && CacheControlActivity.this.sectionsEndRow >= 0) {
+                    drawSectionBackgroundExclusive(canvas, CacheControlActivity.this.sectionsStartRow - 1, CacheControlActivity.this.sectionsEndRow, Theme.getColor("windowBackgroundWhite"));
+                }
+                super.dispatchDraw(canvas);
+            }
+        };
         this.listView = recyclerListView;
         recyclerListView.setVerticalScrollBarEnabled(false);
+        this.listView.setClipToPadding(false);
+        this.listView.setPadding(0, AndroidUtilities.statusBarHeight + (C1133ActionBar.getCurrentActionBarHeight() / 2), 0, 0);
         RecyclerListView recyclerListView2 = this.listView;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         this.layoutManager = linearLayoutManager;
         recyclerListView2.setLayoutManager(linearLayoutManager);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        nestedSizeNotifierLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setAdapter(this.listAdapter);
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
+            @Override
+            protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                CacheControlActivity.this.listView.invalidate();
+            }
+        };
+        defaultItemAnimator.setDurations(350L);
+        defaultItemAnimator.setInterpolator(cubicBezierInterpolator);
         defaultItemAnimator.setDelayAnimations(false);
         defaultItemAnimator.setSupportsChangeAnimations(false);
         this.listView.setItemAnimator(defaultItemAnimator);
-        this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+        this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
-            public final void onItemClick(View view, int i) {
-                CacheControlActivity.this.lambda$createView$9(view, i);
+            public boolean hasDoubleTap(View view, int i) {
+                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i);
+            }
+
+            @Override
+            public void onDoubleTap(View view, int i, float f, float f2) {
+                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i, f, f2);
+            }
+
+            @Override
+            public final void onItemClick(View view, int i, float f, float f2) {
+                CacheControlActivity.this.lambda$createView$12(view, i, f, f2);
             }
         });
-        this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
+        this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            boolean pinned;
+
             @Override
-            public boolean onItemClick(View view, int i) {
-                if ((view instanceof UserCell) && ((ItemInner) CacheControlActivity.this.itemInners.get(i)).entities != null) {
-                    view.performHapticFeedback(0);
-                    CacheControlActivity cacheControlActivity = CacheControlActivity.this;
-                    cacheControlActivity.selectDialog((UserCell) view, ((ItemInner) cacheControlActivity.itemInners.get(i)).entities.dialogId);
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+                super.onScrolled(recyclerView, i, i2);
+                CacheControlActivity cacheControlActivity = CacheControlActivity.this;
+                cacheControlActivity.updateActionBar(cacheControlActivity.layoutManager.findFirstVisibleItemPosition() > 0 || ((BaseFragment) CacheControlActivity.this).actionBar.isActionModeShowed());
+                if (this.pinned != CacheControlActivity.this.nestedSizeNotifierLayout.isPinnedToTop()) {
+                    this.pinned = CacheControlActivity.this.nestedSizeNotifierLayout.isPinnedToTop();
+                    CacheControlActivity.this.nestedSizeNotifierLayout.invalidate();
                 }
-                return false;
             }
         });
+        nestedSizeNotifierLayout.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
         UndoView undoView = new UndoView(context);
         this.cacheRemovedTooltip = undoView;
-        frameLayout2.addView(undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
+        nestedSizeNotifierLayout.addView(undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
+        this.nestedSizeNotifierLayout.setTargetListView(this.listView);
         return this.fragmentView;
     }
 
-    public void lambda$createView$9(View view, int i) {
+    public void lambda$createView$10(View view) {
+        clearSelectedFiles();
+    }
+
+    public void lambda$createView$12(View view, int i, float f, float f2) {
+        int childAdapterPosition;
         if (getParentActivity() == null) {
             return;
         }
-        if (i == this.databaseRow) {
-            clearDatabase();
-        } else if (i == this.storageUsageRow) {
-            showClearCacheDialog(null);
-        } else if (this.itemInners.get(i).entities != null) {
-            if ((view instanceof UserCell) && this.selectedDialogs.size() > 0) {
-                selectDialog((UserCell) view, this.itemInners.get(i).entities.dialogId);
+        ItemInner itemInner = this.itemInners.get(i);
+        if (itemInner.viewType == 11) {
+            int i2 = itemInner.index;
+            if (i2 < 0) {
+                this.collapsed = !this.collapsed;
+                updateRows();
+                updateChart();
+                return;
+            } else if (this.selected[i2] && sectionsSelected() <= 1) {
+                BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                AndroidUtilities.shakeViewSpring(view, -3.0f);
+                return;
             } else {
-                showClearCacheDialog(this.itemInners.get(i).entities);
+                boolean[] zArr = this.selected;
+                int i3 = itemInner.index;
+                boolean z = !zArr[i3];
+                zArr[i3] = z;
+                ((CheckBoxCell) view).setChecked(z, true);
+                if (itemInner.pad) {
+                    int i4 = 0;
+                    while (true) {
+                        if (i4 >= this.listView.getChildCount()) {
+                            break;
+                        }
+                        View childAt = this.listView.getChildAt(i4);
+                        if ((childAt instanceof CheckBoxCell) && (childAdapterPosition = this.listView.getChildAdapterPosition(childAt)) >= 0 && childAdapterPosition < this.itemInners.size() && this.itemInners.get(childAdapterPosition).index < 0) {
+                            ((CheckBoxCell) childAt).setChecked(isOtherSelected(), true);
+                            break;
+                        }
+                        i4++;
+                    }
+                }
+                updateChart();
+                return;
             }
         }
+        DialogFileEntities dialogFileEntities = itemInner.entities;
+        if (dialogFileEntities != null) {
+            showClearCacheDialog(dialogFileEntities);
+        } else if (itemInner.keepMediaType >= 0) {
+            KeepMediaPopupView keepMediaPopupView = new KeepMediaPopupView(this, view.getContext());
+            ActionBarPopupWindow createSimplePopup = AlertsCreator.createSimplePopup(this, keepMediaPopupView, view, f, f2);
+            keepMediaPopupView.update(this.itemInners.get(i).keepMediaType);
+            keepMediaPopupView.setParentWindow(createSimplePopup);
+            keepMediaPopupView.setCallback(new KeepMediaPopupView.Callback() {
+                @Override
+                public final void onKeepMediaChange(int i5, int i6) {
+                    CacheControlActivity.this.lambda$createView$11(i5, i6);
+                }
+            });
+        }
     }
 
-    public void selectDialog(UserCell userCell, long j) {
-        boolean z;
-        if (this.selectedDialogs.contains(Long.valueOf(j))) {
-            this.selectedDialogs.remove(Long.valueOf(j));
-            z = false;
-        } else {
-            this.selectedDialogs.add(Long.valueOf(j));
-            z = true;
-        }
-        userCell.setChecked(z, true);
-        if (this.selectedDialogs.size() > 0) {
-            checkActionMode();
-            this.actionBar.showActionMode(true);
-            this.selectedDialogsCountTextView.setNumber(this.selectedDialogs.size(), true);
+    public void lambda$createView$11(int i, int i2) {
+        AndroidUtilities.updateVisibleRows(this.listView);
+    }
+
+    public void clearSelectedFiles() {
+        if (this.cacheModel.getSelectedFiles() == 0 || getParentActivity() == null) {
             return;
         }
-        this.actionBar.hideActionMode();
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(LocaleController.getString("ClearCache", C1072R.string.ClearCache));
+        builder.setMessage(LocaleController.getString("ClearCacheForChats", C1072R.string.ClearCacheForChats));
+        builder.setPositiveButton(LocaleController.getString("ClearButton", C1072R.string.ClearButton), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                CacheControlActivity.this.lambda$clearSelectedFiles$13(dialogInterface, i);
+            }
+        });
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
+        AlertDialog create = builder.create();
+        showDialog(create);
+        TextView textView = (TextView) create.getButton(-1);
+        if (textView != null) {
+            textView.setTextColor(Theme.getColor("dialogTextRed2"));
+        }
     }
 
-    private void showClearCacheDialog(final DialogFileEntities dialogFileEntities) {
-        StorageDiagramView storageDiagramView;
-        long j;
-        String string;
-        String str;
-        long j2 = 0;
+    public void lambda$clearSelectedFiles$13(DialogInterface dialogInterface, int i) {
+        DialogFileEntities removeSelectedFiles = this.cacheModel.removeSelectedFiles();
+        if (removeSelectedFiles.totalSize > 0) {
+            cleanupDialogFiles(removeSelectedFiles, null, null);
+        }
+        this.cacheModel.clearSelection();
+        CachedMediaLayout cachedMediaLayout = this.cachedMediaLayout;
+        if (cachedMediaLayout != null) {
+            cachedMediaLayout.update();
+            this.cachedMediaLayout.showActionMode(false);
+        }
+        updateRows();
+        updateChart();
+    }
+
+    public void updateActionBar(boolean z) {
+        if (z != this.actionBarShown) {
+            ValueAnimator valueAnimator = this.actionBarAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            float[] fArr = new float[2];
+            fArr[0] = this.actionBarShownT;
+            this.actionBarShown = z;
+            fArr[1] = z ? 1.0f : 0.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            this.actionBarAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    CacheControlActivity.this.lambda$updateActionBar$14(valueAnimator2);
+                }
+            });
+            this.actionBarAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.actionBarAnimator.setDuration(380L);
+            this.actionBarAnimator.start();
+        }
+    }
+
+    public void lambda$updateActionBar$14(ValueAnimator valueAnimator) {
+        this.actionBarShownT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.actionBar.setTitleColor(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlackText"), (int) (this.actionBarShownT * 255.0f)));
+        this.actionBar.setBackgroundColor(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), (int) (this.actionBarShownT * 255.0f)));
+        this.fragmentView.invalidate();
+    }
+
+    public void showClearCacheDialog(final DialogFileEntities dialogFileEntities) {
         if (this.totalSize <= 0 || getParentActivity() == null) {
             return;
         }
-        BottomSheet bottomSheet = new BottomSheet(this, getParentActivity(), false) {
+        DilogCacheBottomSheet dilogCacheBottomSheet = new DilogCacheBottomSheet(this, dialogFileEntities, dialogFileEntities.createCacheModel(), new DilogCacheBottomSheet.Delegate() {
             @Override
-            protected boolean canDismissWithSwipe() {
-                return false;
-            }
-        };
-        this.bottomSheet = bottomSheet;
-        bottomSheet.fixNavigationBar();
-        this.bottomSheet.setAllowNestedScroll(true);
-        this.bottomSheet.setApplyBottomPadding(false);
-        LinearLayout linearLayout = new LinearLayout(getParentActivity());
-        this.bottomSheetView = linearLayout;
-        linearLayout.setOrientation(1);
-        if (dialogFileEntities != null) {
-            storageDiagramView = new StorageDiagramView(getContext(), dialogFileEntities.dialogId) {
-                @Override
-                protected void onAvatarClick() {
-                    CacheControlActivity.this.bottomSheet.dismiss();
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("dialog_id", dialogFileEntities.dialogId);
-                    MediaActivity mediaActivity = new MediaActivity(bundle, null);
-                    mediaActivity.setChatInfo(null);
-                    CacheControlActivity.this.presentFragment(mediaActivity);
+            public void onAvatarClick() {
+                CacheControlActivity.this.bottomSheet.dismiss();
+                Bundle bundle = new Bundle();
+                long j = dialogFileEntities.dialogId;
+                if (j > 0) {
+                    bundle.putLong("user_id", j);
+                } else {
+                    bundle.putLong("chat_id", -j);
                 }
-            };
-        } else {
-            storageDiagramView = new StorageDiagramView(getContext());
-        }
-        linearLayout.addView(storageDiagramView, LayoutHelper.createLinear(-2, -2, 1, 0, 16, 0, 16));
-        CheckBoxCell checkBoxCell = null;
-        int i = 0;
-        while (i < 7) {
-            if (i == 0) {
-                j = this.photoSize;
-                string = LocaleController.getString("LocalPhotoCache", C1010R.string.LocalPhotoCache);
-                str = "statisticChartLine_blue";
-            } else if (i == 1) {
-                j = this.videoSize;
-                string = LocaleController.getString("LocalVideoCache", C1010R.string.LocalVideoCache);
-                str = "statisticChartLine_golden";
-            } else if (i == 2) {
-                j = this.documentsSize;
-                string = LocaleController.getString("LocalDocumentCache", C1010R.string.LocalDocumentCache);
-                str = "statisticChartLine_green";
-            } else if (i == 3) {
-                j = this.musicSize;
-                string = LocaleController.getString("LocalMusicCache", C1010R.string.LocalMusicCache);
-                str = "statisticChartLine_indigo";
-            } else if (i == 4) {
-                j = this.audioSize;
-                string = LocaleController.getString("LocalAudioCache", C1010R.string.LocalAudioCache);
-                str = "statisticChartLine_red";
-            } else if (i == 5) {
-                j = this.stickersSize;
-                string = LocaleController.getString("AnimatedStickers", C1010R.string.AnimatedStickers);
-                str = "statisticChartLine_lightgreen";
-            } else {
-                j = this.cacheSize;
-                string = LocaleController.getString("LocalCache", C1010R.string.LocalCache);
-                str = "statisticChartLine_lightblue";
+                CacheControlActivity.this.presentFragment(new ProfileActivity(bundle, null));
             }
-            if (dialogFileEntities != null) {
-                FileEntities fileEntities = dialogFileEntities.entitiesByType.get(i);
-                j = fileEntities != null ? fileEntities.totalSize : j2;
-            }
-            if (j > j2) {
-                this.clearViewData[i] = new StorageDiagramView.ClearViewData(storageDiagramView);
-                StorageDiagramView.ClearViewData[] clearViewDataArr = this.clearViewData;
-                clearViewDataArr[i].size = j;
-                clearViewDataArr[i].color = str;
-                checkBoxCell = new CheckBoxCell(getParentActivity(), 4, 21, null);
-                checkBoxCell.setTag(Integer.valueOf(i));
-                checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                linearLayout.addView(checkBoxCell, LayoutHelper.createLinear(-1, 50));
-                checkBoxCell.setText(string, AndroidUtilities.formatFileSize(j), true, true);
-                checkBoxCell.setTextColor(Theme.getColor("dialogTextBlack"));
-                checkBoxCell.setCheckBoxColor(str, "windowBackgroundWhiteGrayIcon", "checkboxCheck");
-                checkBoxCell.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        CacheControlActivity.this.lambda$showClearCacheDialog$10(view);
-                    }
-                });
-            } else {
-                this.clearViewData[i] = null;
-            }
-            i++;
-            j2 = 0;
-        }
-        if (checkBoxCell != null) {
-            checkBoxCell.setNeedDivider(false);
-        }
-        storageDiagramView.setData(this.clearViewData);
-        BottomSheet.BottomSheetCell bottomSheetCell = new BottomSheet.BottomSheetCell(getParentActivity(), 2);
-        bottomSheetCell.setTextAndIcon(LocaleController.getString("ClearMediaCache", C1010R.string.ClearMediaCache), 0);
-        this.actionTextView = bottomSheetCell.getTextView();
-        bottomSheetCell.getTextView().setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public final void onClick(View view) {
-                CacheControlActivity.this.lambda$showClearCacheDialog$11(dialogFileEntities, view);
+            public void cleanupDialogFiles(DialogFileEntities dialogFileEntities2, StorageDiagramView.ClearViewData[] clearViewDataArr, CacheModel cacheModel) {
+                CacheControlActivity.this.cleanupDialogFiles(dialogFileEntities2, clearViewDataArr, cacheModel);
             }
         });
-        linearLayout.addView(bottomSheetCell, LayoutHelper.createLinear(-1, 50));
-        NestedScrollView nestedScrollView = new NestedScrollView(getContext());
-        nestedScrollView.setVerticalScrollBarEnabled(false);
-        nestedScrollView.addView(linearLayout);
-        this.bottomSheet.setCustomView(nestedScrollView);
-        showDialog(this.bottomSheet);
+        this.bottomSheet = dilogCacheBottomSheet;
+        showDialog(dilogCacheBottomSheet);
     }
 
-    public void lambda$showClearCacheDialog$10(View view) {
-        int i = 0;
-        int i2 = 0;
-        while (true) {
-            StorageDiagramView.ClearViewData[] clearViewDataArr = this.clearViewData;
-            if (i >= clearViewDataArr.length) {
-                break;
-            }
-            if (clearViewDataArr[i] != null && clearViewDataArr[i].clear) {
-                i2++;
-            }
-            i++;
-        }
-        CheckBoxCell checkBoxCell = (CheckBoxCell) view;
-        int intValue = ((Integer) checkBoxCell.getTag()).intValue();
-        if (i2 == 1 && this.clearViewData[intValue].clear) {
-            BotWebViewVibrationEffect.APP_ERROR.vibrate();
-            AndroidUtilities.shakeViewSpring(checkBoxCell.getCheckBoxView(), -3.0f);
-            return;
-        }
-        StorageDiagramView.ClearViewData[] clearViewDataArr2 = this.clearViewData;
-        clearViewDataArr2[intValue].setClear(!clearViewDataArr2[intValue].clear);
-        checkBoxCell.setChecked(this.clearViewData[intValue].clear, true);
-    }
-
-    public void lambda$showClearCacheDialog$11(DialogFileEntities dialogFileEntities, View view) {
-        try {
-            Dialog dialog = this.visibleDialog;
-            if (dialog != null) {
-                dialog.dismiss();
-            }
-        } catch (Exception e) {
-            FileLog.m31e(e);
-        }
-        if (dialogFileEntities == null) {
-            cleanupFolders();
-        } else {
-            cleanupDialogFiles(dialogFileEntities, this.clearViewData);
-        }
-    }
-
-    public void cleanupDialogFiles(DialogFileEntities dialogFileEntities, StorageDiagramView.ClearViewData[] clearViewDataArr) {
+    public void cleanupDialogFiles(DialogFileEntities dialogFileEntities, StorageDiagramView.ClearViewData[] clearViewDataArr, CacheModel cacheModel) {
         FileEntities fileEntities;
         final AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3);
         alertDialog.setCanCancel(false);
         alertDialog.showDelayed(500L);
-        final ArrayList arrayList = new ArrayList();
+        HashSet hashSet = new HashSet();
         long j = this.totalSize;
         for (int i = 0; i < 7; i++) {
             if ((clearViewDataArr == null || (clearViewDataArr[i] != null && clearViewDataArr[i].clear)) && (fileEntities = dialogFileEntities.entitiesByType.get(i)) != null) {
-                arrayList.addAll(fileEntities.files);
+                hashSet.addAll(fileEntities.files);
                 long j2 = dialogFileEntities.totalSize;
                 long j3 = fileEntities.totalSize;
                 dialogFileEntities.totalSize = j2 - j3;
@@ -852,41 +1178,75 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 } else if (i == 4) {
                     this.audioSize -= fileEntities.totalSize;
                 } else if (i == 5) {
-                    this.stickersSize -= fileEntities.totalSize;
+                    this.stickersCacheSize -= fileEntities.totalSize;
                 } else {
                     this.cacheSize -= fileEntities.totalSize;
                 }
             }
         }
         if (dialogFileEntities.entitiesByType.size() == 0) {
-            this.dialogsFilesEntities.remove(dialogFileEntities);
+            this.cacheModel.remove(dialogFileEntities);
         }
         updateRows();
-        this.cacheRemovedTooltip.setInfoText(LocaleController.formatString("CacheWasCleared", C1010R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j - this.totalSize)));
+        if (cacheModel != null) {
+            Iterator<CacheModel.FileInfo> it = cacheModel.selectedFiles.iterator();
+            while (it.hasNext()) {
+                CacheModel.FileInfo next = it.next();
+                if (!hashSet.contains(next)) {
+                    long j4 = this.totalSize;
+                    long j5 = next.size;
+                    this.totalSize = j4 - j5;
+                    this.totalDeviceFreeSize += j5;
+                    hashSet.add(next);
+                    dialogFileEntities.removeFile(next);
+                    int i2 = next.type;
+                    if (i2 == 0) {
+                        this.photoSize -= next.size;
+                    } else if (i2 == 1) {
+                        this.videoSize -= next.size;
+                    } else {
+                        long j6 = next.size;
+                        if (j6 == 2) {
+                            this.documentsSize -= j6;
+                        } else if (j6 == 3) {
+                            this.musicSize -= j6;
+                        } else if (j6 == 4) {
+                            this.audioSize -= j6;
+                        }
+                    }
+                }
+            }
+        }
+        Iterator it2 = hashSet.iterator();
+        while (it2.hasNext()) {
+            this.cacheModel.onFileDeleted((CacheModel.FileInfo) it2.next());
+        }
+        this.cacheRemovedTooltip.setInfoText(LocaleController.formatString("CacheWasCleared", C1072R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j - this.totalSize)));
         this.cacheRemovedTooltip.showWithAction(0L, 19, null, null);
+        final ArrayList arrayList = new ArrayList(hashSet);
         getFileLoader().getFileDatabase().removeFiles(arrayList);
         getFileLoader().cancelLoadAllFiles();
         getFileLoader().getFileLoaderQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                CacheControlActivity.this.lambda$cleanupDialogFiles$13(arrayList, alertDialog);
+                CacheControlActivity.this.lambda$cleanupDialogFiles$16(arrayList, alertDialog);
             }
         });
     }
 
-    public void lambda$cleanupDialogFiles$13(ArrayList arrayList, final AlertDialog alertDialog) {
+    public void lambda$cleanupDialogFiles$16(ArrayList arrayList, final AlertDialog alertDialog) {
         for (int i = 0; i < arrayList.size(); i++) {
-            ((File) arrayList.get(i)).delete();
+            ((CacheModel.FileInfo) arrayList.get(i)).file.delete();
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CacheControlActivity.this.lambda$cleanupDialogFiles$12(alertDialog);
+                CacheControlActivity.this.lambda$cleanupDialogFiles$15(alertDialog);
             }
         });
     }
 
-    public void lambda$cleanupDialogFiles$12(AlertDialog alertDialog) {
+    public void lambda$cleanupDialogFiles$15(AlertDialog alertDialog) {
         FileLoader.getInstance(this.currentAccount).checkCurrentDownloadsFiles();
         try {
             alertDialog.dismiss();
@@ -895,15 +1255,19 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    private void clearDatabase() {
+    public void clearDatabase() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString("LocalDatabaseClearTextTitle", C1010R.string.LocalDatabaseClearTextTitle));
-        builder.setMessage(LocaleController.getString("LocalDatabaseClearText", C1010R.string.LocalDatabaseClearText));
-        builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
-        builder.setPositiveButton(LocaleController.getString("CacheClear", C1010R.string.CacheClear), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString("LocalDatabaseClearTextTitle", C1072R.string.LocalDatabaseClearTextTitle));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) LocaleController.getString("LocalDatabaseClearText", C1072R.string.LocalDatabaseClearText));
+        spannableStringBuilder.append((CharSequence) "\n\n");
+        spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("LocalDatabaseClearText2", C1072R.string.LocalDatabaseClearText2, AndroidUtilities.formatFileSize(this.databaseSize))));
+        builder.setMessage(spannableStringBuilder);
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
+        builder.setPositiveButton(LocaleController.getString("CacheClear", C1072R.string.CacheClear), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                CacheControlActivity.this.lambda$clearDatabase$14(dialogInterface, i);
+                CacheControlActivity.this.lambda$clearDatabase$17(dialogInterface, i);
             }
         });
         AlertDialog create = builder.create();
@@ -914,7 +1278,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$clearDatabase$14(DialogInterface dialogInterface, int i) {
+    public void lambda$clearDatabase$17(DialogInterface dialogInterface, int i) {
         if (getParentActivity() == null) {
             return;
         }
@@ -929,7 +1293,6 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     @Override
     public void onResume() {
         super.onResume();
-        loadDialogEntities();
     }
 
     @Override
@@ -946,10 +1309,348 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.progressDialog = null;
             if (this.listAdapter != null) {
                 this.databaseSize = MessagesStorage.getInstance(this.currentAccount).getDatabaseSize();
-                this.updateDatabaseSize = true;
+                updateDatabaseItemSize();
                 updateRows();
             }
         }
+    }
+
+    public class CacheChartHeader extends FrameLayout {
+        View bottomImage;
+        boolean firstSet;
+        Paint loadingBackgroundPaint;
+        LoadingDrawable loadingDrawable;
+        AnimatedFloat loadingFloat;
+        Float percent;
+        AnimatedFloat percentAnimated;
+        Paint percentPaint;
+        RectF progressRect;
+        TextView[] subtitle;
+        AnimatedTextView title;
+
+        public CacheChartHeader(Context context) {
+            super(context);
+            this.subtitle = new TextView[3];
+            this.progressRect = new RectF();
+            this.loadingDrawable = new LoadingDrawable();
+            this.percentAnimated = new AnimatedFloat(this);
+            this.loadingFloat = new AnimatedFloat(this);
+            this.loadingBackgroundPaint = new Paint(1);
+            this.percentPaint = new Paint(1);
+            this.firstSet = true;
+            AnimatedTextView animatedTextView = new AnimatedTextView(context);
+            this.title = animatedTextView;
+            animatedTextView.setAnimationProperties(0.35f, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.title.setTextSize(AndroidUtilities.m35dp(20.0f));
+            this.title.setText(LocaleController.getString("StorageUsage", C1072R.string.StorageUsage));
+            this.title.setGravity(17);
+            this.title.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            addView(this.title, LayoutHelper.createFrame(-2, 26, 49));
+            int i = 0;
+            while (i < 3) {
+                this.subtitle[i] = new TextView(context);
+                this.subtitle[i].setTextSize(1, 13.0f);
+                this.subtitle[i].setGravity(17);
+                this.subtitle[i].setPadding(AndroidUtilities.m35dp(24.0f), 0, AndroidUtilities.m35dp(24.0f), 0);
+                if (i == 0) {
+                    this.subtitle[i].setText(LocaleController.getString("StorageUsageCalculating", C1072R.string.StorageUsageCalculating));
+                } else if (i == 1) {
+                    this.subtitle[i].setAlpha(0.0f);
+                    this.subtitle[i].setVisibility(8);
+                } else if (i == 2) {
+                    this.subtitle[i].setText(LocaleController.getString("StorageCleared2", C1072R.string.StorageCleared2));
+                    this.subtitle[i].setAlpha(0.0f);
+                    this.subtitle[i].setVisibility(8);
+                }
+                this.subtitle[i].setTextColor(Theme.getColor("windowBackgroundWhiteGrayText4"));
+                addView(this.subtitle[i], LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, i == 2 ? 38.0f : 32.0f, 0.0f, 0.0f));
+                i++;
+            }
+            this.bottomImage = new View(context);
+            Drawable mutate = getContext().getResources().getDrawable(C1072R.C1073drawable.popup_fixed_alert2).mutate();
+            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhite"), PorterDuff.Mode.MULTIPLY));
+            this.bottomImage.setBackground(mutate);
+            FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, 24, 87);
+            ((ViewGroup.MarginLayoutParams) createFrame).leftMargin = -this.bottomImage.getPaddingLeft();
+            ((ViewGroup.MarginLayoutParams) createFrame).bottomMargin = -AndroidUtilities.m35dp(11.0f);
+            ((ViewGroup.MarginLayoutParams) createFrame).rightMargin = -this.bottomImage.getPaddingRight();
+            addView(this.bottomImage, createFrame);
+            this.loadingDrawable.setColors(Theme.getColor("actionBarActionModeDefaultSelector"), Theme.multAlpha(Theme.getColor("windowBackgroundWhiteGrayText4"), 0.2f));
+            this.loadingDrawable.setRadiiDp(4.0f);
+            this.loadingDrawable.setCallback(this);
+        }
+
+        public void setData(boolean z, float f) {
+            String string;
+            AnimatedTextView animatedTextView = this.title;
+            if (z) {
+                string = LocaleController.getString("StorageUsage", C1072R.string.StorageUsage);
+            } else {
+                string = LocaleController.getString("StorageCleared", C1072R.string.StorageCleared);
+            }
+            animatedTextView.setText(string);
+            if (z) {
+                this.subtitle[1].setText(LocaleController.formatString("StorageUsageTelegram", C1072R.string.StorageUsageTelegram, CacheControlActivity.this.formatPercent(f)));
+                switchSubtitle(1);
+            } else {
+                switchSubtitle(2);
+            }
+            this.bottomImage.animate().cancel();
+            if (this.firstSet) {
+                this.bottomImage.setAlpha(z ? 1.0f : 0.0f);
+            } else {
+                this.bottomImage.animate().alpha(z ? 1.0f : 0.0f).setDuration(365L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+            }
+            this.firstSet = false;
+            this.percent = Float.valueOf(f);
+            invalidate();
+        }
+
+        private void switchSubtitle(int i) {
+            AndroidUtilities.updateViewShow(this.subtitle[0], i == 0, false, true);
+            AndroidUtilities.updateViewShow(this.subtitle[1], i == 1, false, true);
+            AndroidUtilities.updateViewShow(this.subtitle[2], i == 2, false, true);
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            int size = View.MeasureSpec.getSize(i);
+            double d = size;
+            Double.isNaN(d);
+            int min = (int) Math.min(AndroidUtilities.m35dp(174.0f), d * 0.8d);
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(90.0f), 1073741824));
+            this.progressRect.set((size - min) / 2.0f, AndroidUtilities.m35dp(60.0f), (size + min) / 2.0f, AndroidUtilities.m35dp(64.0f));
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            float max = Math.max(this.subtitle[0].getAlpha(), this.subtitle[1].getAlpha());
+            float f = this.loadingFloat.set(this.percent == null ? 1.0f : 0.0f);
+            AnimatedFloat animatedFloat = this.percentAnimated;
+            Float f2 = this.percent;
+            float f3 = animatedFloat.set(f2 == null ? 0.0f : f2.floatValue());
+            this.loadingBackgroundPaint.setColor(Theme.getColor("actionBarActionModeDefaultSelector"));
+            Paint paint = this.loadingBackgroundPaint;
+            paint.setAlpha((int) (paint.getAlpha() * max));
+            canvas.drawRoundRect(this.progressRect, AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), this.loadingBackgroundPaint);
+            this.loadingDrawable.setBounds(this.progressRect);
+            this.loadingDrawable.setAlpha((int) (255.0f * max * f));
+            this.loadingDrawable.draw(canvas);
+            this.percentPaint.setColor(Theme.getColor("radioBackgroundChecked"));
+            Paint paint2 = this.percentPaint;
+            paint2.setAlpha((int) (paint2.getAlpha() * max));
+            RectF rectF = AndroidUtilities.rectTmp;
+            RectF rectF2 = this.progressRect;
+            float f4 = rectF2.left;
+            rectF.set(f4, rectF2.top, ((1.0f - f) * Math.max(AndroidUtilities.m35dp(4.0f), f3 * this.progressRect.width())) + f4, this.progressRect.bottom);
+            canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), this.percentPaint);
+            if (f > 0.0f || this.percentAnimated.isInProgress()) {
+                invalidate();
+            }
+            super.dispatchDraw(canvas);
+        }
+    }
+
+    public class ClearCacheButtonInternal extends ClearCacheButton {
+        public ClearCacheButtonInternal(Context context) {
+            super(context);
+            this.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    CacheControlActivity.ClearCacheButtonInternal.this.lambda$new$0(view);
+                }
+            });
+        }
+
+        public void lambda$new$0(View view) {
+            CacheControlActivity.this.cleanupFolders();
+        }
+
+        public void updateSize() {
+            setSize(CacheControlActivity.this.isAllSectionsSelected(), (CacheControlActivity.this.selected[0] ? CacheControlActivity.this.photoSize : 0L) + (CacheControlActivity.this.selected[1] ? CacheControlActivity.this.videoSize : 0L) + (CacheControlActivity.this.selected[2] ? CacheControlActivity.this.documentsSize : 0L) + (CacheControlActivity.this.selected[3] ? CacheControlActivity.this.musicSize : 0L) + (CacheControlActivity.this.selected[4] ? CacheControlActivity.this.audioSize : 0L) + (CacheControlActivity.this.selected[5] ? CacheControlActivity.this.stickersCacheSize : 0L) + (CacheControlActivity.this.selected[6] ? CacheControlActivity.this.cacheSize : 0L) + (CacheControlActivity.this.selected[7] ? CacheControlActivity.this.cacheTempSize : 0L));
+        }
+    }
+
+    public boolean isAllSectionsSelected() {
+        for (int i = 0; i < this.itemInners.size(); i++) {
+            ItemInner itemInner = this.itemInners.get(i);
+            if (itemInner.viewType == 11) {
+                int i2 = itemInner.index;
+                if (i2 < 0) {
+                    i2 = this.selected.length - 1;
+                }
+                if (!this.selected[i2]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static class ClearCacheButton extends FrameLayout {
+        FrameLayout button;
+        TextView rtlTextView;
+        AnimatedTextView.AnimatedTextDrawable textView;
+        AnimatedTextView.AnimatedTextDrawable valueTextView;
+
+        public ClearCacheButton(Context context) {
+            super(context);
+            FrameLayout frameLayout = new FrameLayout(context) {
+                @Override
+                protected void dispatchDraw(Canvas canvas) {
+                    int measuredWidth = (((getMeasuredWidth() - AndroidUtilities.m35dp(8.0f)) - ClearCacheButton.this.valueTextView.getCurrentWidth()) + ClearCacheButton.this.textView.getCurrentWidth()) / 2;
+                    if (LocaleController.isRTL) {
+                        super.dispatchDraw(canvas);
+                        return;
+                    }
+                    ClearCacheButton.this.textView.setBounds(0, 0, measuredWidth, getHeight());
+                    ClearCacheButton.this.textView.draw(canvas);
+                    ClearCacheButton.this.valueTextView.setBounds(measuredWidth + AndroidUtilities.m35dp(8.0f), 0, getWidth(), getHeight());
+                    ClearCacheButton.this.valueTextView.draw(canvas);
+                }
+
+                @Override
+                protected boolean verifyDrawable(Drawable drawable) {
+                    ClearCacheButton clearCacheButton = ClearCacheButton.this;
+                    return drawable == clearCacheButton.valueTextView || drawable == clearCacheButton.textView || super.verifyDrawable(drawable);
+                }
+            };
+            this.button = frameLayout;
+            frameLayout.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 8.0f));
+            if (LocaleController.isRTL) {
+                TextView textView = new TextView(context);
+                this.rtlTextView = textView;
+                textView.setText(LocaleController.getString("ClearCache", C1072R.string.ClearCache));
+                this.rtlTextView.setGravity(17);
+                this.rtlTextView.setTextSize(1, 14.0f);
+                this.rtlTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.rtlTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+                this.button.addView(this.rtlTextView, LayoutHelper.createFrame(-2, -1, 17));
+            }
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
+            this.textView = animatedTextDrawable;
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            animatedTextDrawable.setAnimationProperties(0.25f, 0L, 300L, cubicBezierInterpolator);
+            this.textView.setCallback(this.button);
+            this.textView.setTextSize(AndroidUtilities.m35dp(14.0f));
+            this.textView.setText(LocaleController.getString("ClearCache", C1072R.string.ClearCache));
+            this.textView.setGravity(5);
+            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
+            this.valueTextView = animatedTextDrawable2;
+            animatedTextDrawable2.setAnimationProperties(0.25f, 0L, 300L, cubicBezierInterpolator);
+            this.valueTextView.setCallback(this.button);
+            this.valueTextView.setTextSize(AndroidUtilities.m35dp(14.0f));
+            this.valueTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.valueTextView.setTextColor(Theme.adaptHSV(Theme.getColor("featuredStickers_addButton"), -0.46f, 0.08f));
+            this.valueTextView.setText("");
+            setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+            addView(this.button, LayoutHelper.createFrame(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+        }
+
+        public void setSize(boolean z, long j) {
+            String string;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textView;
+            if (z) {
+                string = LocaleController.getString("ClearCache", C1072R.string.ClearCache);
+            } else {
+                string = LocaleController.getString("ClearSelectedCache", C1072R.string.ClearSelectedCache);
+            }
+            animatedTextDrawable.setText(string);
+            this.valueTextView.setText(j <= 0 ? "" : AndroidUtilities.formatFileSize(j));
+            this.button.invalidate();
+        }
+    }
+
+    public boolean isOtherSelected() {
+        int i;
+        int length = this.selected.length;
+        boolean[] zArr = new boolean[length];
+        for (int i2 = 0; i2 < this.itemInners.size(); i2++) {
+            ItemInner itemInner = this.itemInners.get(i2);
+            if (itemInner.viewType == 11 && !itemInner.pad && (i = itemInner.index) >= 0) {
+                zArr[i] = true;
+            }
+        }
+        for (int i3 = 0; i3 < length; i3++) {
+            if (!zArr[i3] && !this.selected[i3]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void toggleOtherSelected(View view) {
+        int i;
+        int childAdapterPosition;
+        int i2;
+        boolean z;
+        int i3;
+        boolean isOtherSelected = isOtherSelected();
+        if (isOtherSelected) {
+            int i4 = 0;
+            while (true) {
+                if (i4 >= this.itemInners.size()) {
+                    z = false;
+                    break;
+                }
+                ItemInner itemInner = this.itemInners.get(i4);
+                if (itemInner.viewType == 11 && !itemInner.pad && (i3 = itemInner.index) >= 0 && this.selected[i3]) {
+                    z = true;
+                    break;
+                }
+                i4++;
+            }
+            if (!z) {
+                BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                AndroidUtilities.shakeViewSpring(view, -3.0f);
+                return;
+            }
+        }
+        if (this.collapsed) {
+            int length = this.selected.length;
+            boolean[] zArr = new boolean[length];
+            for (int i5 = 0; i5 < this.itemInners.size(); i5++) {
+                ItemInner itemInner2 = this.itemInners.get(i5);
+                if (itemInner2.viewType == 11 && !itemInner2.pad && (i2 = itemInner2.index) >= 0) {
+                    zArr[i2] = true;
+                }
+            }
+            for (int i6 = 0; i6 < length; i6++) {
+                if (!zArr[i6]) {
+                    this.selected[i6] = !isOtherSelected;
+                }
+            }
+        } else {
+            for (int i7 = 0; i7 < this.itemInners.size(); i7++) {
+                ItemInner itemInner3 = this.itemInners.get(i7);
+                if (itemInner3.viewType == 11 && itemInner3.pad && (i = itemInner3.index) >= 0) {
+                    this.selected[i] = !isOtherSelected;
+                }
+            }
+        }
+        for (int i8 = 0; i8 < this.listView.getChildCount(); i8++) {
+            View childAt = this.listView.getChildAt(i8);
+            if ((childAt instanceof CheckBoxCell) && (childAdapterPosition = this.listView.getChildAdapterPosition(childAt)) >= 0) {
+                ItemInner itemInner4 = this.itemInners.get(childAdapterPosition);
+                if (itemInner4.viewType == 11) {
+                    int i9 = itemInner4.index;
+                    if (i9 < 0) {
+                        ((CheckBoxCell) childAt).setChecked(!isOtherSelected, true);
+                    } else {
+                        ((CheckBoxCell) childAt).setChecked(this.selected[i9], true);
+                    }
+                }
+            }
+        }
+        updateChart();
     }
 
     public class ListAdapter extends AdapterWithDiffUtils {
@@ -961,8 +1662,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            int adapterPosition = viewHolder.getAdapterPosition();
-            return ((long) adapterPosition) == CacheControlActivity.this.migrateOldFolderRow || adapterPosition == CacheControlActivity.this.databaseRow || (viewHolder.getItemViewType() == 2 && CacheControlActivity.this.totalSize > 0 && !CacheControlActivity.this.calculating) || viewHolder.getItemViewType() == 5;
+            return ((long) viewHolder.getAdapterPosition()) == CacheControlActivity.this.migrateOldFolderRow || (viewHolder.getItemViewType() == 2 && CacheControlActivity.this.totalSize > 0 && !CacheControlActivity.this.calculating) || viewHolder.getItemViewType() == 5 || viewHolder.getItemViewType() == 7 || viewHolder.getItemViewType() == 11;
         }
 
         @Override
@@ -985,73 +1685,208 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             FrameLayout frameLayout;
-            FrameLayout frameLayout2;
+            View view;
             if (i == 0) {
                 FrameLayout textSettingsCell = new TextSettingsCell(this.mContext);
                 textSettingsCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                 frameLayout = textSettingsCell;
-            } else if (i == 2) {
-                FrameLayout storageUsageView = new StorageUsageView(this.mContext);
-                storageUsageView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                frameLayout = storageUsageView;
-            } else if (i == 3) {
-                FrameLayout headerCell = new HeaderCell(this.mContext);
-                headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                frameLayout = headerCell;
-            } else if (i == 4) {
-                SlideChooseView slideChooseView = new SlideChooseView(this.mContext);
-                slideChooseView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                slideChooseView.setCallback(CacheControlActivity$ListAdapter$$ExternalSyntheticLambda0.INSTANCE);
-                int i2 = SharedConfig.keepMedia;
-                slideChooseView.setOptions(i2 == 3 ? 0 : i2 + 1, LocaleController.formatPluralString("Days", 3, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.getString("KeepMediaForever", C1010R.string.KeepMediaForever));
-                frameLayout = slideChooseView;
-            } else if (i == 5) {
-                CacheControlActivity cacheControlActivity = CacheControlActivity.this;
-                FrameLayout userCell = new UserCell(cacheControlActivity, cacheControlActivity.getContext(), CacheControlActivity.this.getResourceProvider());
-                userCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                frameLayout = userCell;
-            } else if (i == 6) {
-                FlickerLoadingView flickerLoadingView = new FlickerLoadingView(CacheControlActivity.this.getContext());
-                flickerLoadingView.setIsSingleCell(true);
-                flickerLoadingView.setItemsCount(3);
-                flickerLoadingView.setIgnoreHeightCheck(true);
-                flickerLoadingView.setViewType(25);
-                flickerLoadingView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                frameLayout = flickerLoadingView;
             } else {
-                frameLayout2 = new TextInfoPrivacyCell(this.mContext);
-                return new RecyclerListView.Holder(frameLayout2);
+                switch (i) {
+                    case 2:
+                        FrameLayout storageUsageView = new StorageUsageView(this.mContext);
+                        storageUsageView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                        frameLayout = storageUsageView;
+                        break;
+                    case 3:
+                        FrameLayout headerCell = new HeaderCell(this.mContext);
+                        headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                        frameLayout = headerCell;
+                        break;
+                    case 4:
+                        SlideChooseView slideChooseView = new SlideChooseView(this.mContext);
+                        slideChooseView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                        slideChooseView.setCallback(CacheControlActivity$ListAdapter$$ExternalSyntheticLambda3.INSTANCE);
+                        int i2 = SharedConfig.keepMedia;
+                        slideChooseView.setOptions(i2 == 3 ? 0 : i2 + 1, LocaleController.formatPluralString("Days", 3, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.getString("KeepMediaForever", C1072R.string.KeepMediaForever));
+                        frameLayout = slideChooseView;
+                        break;
+                    case 5:
+                        FrameLayout userCell = new UserCell(CacheControlActivity.this.getContext(), CacheControlActivity.this.getResourceProvider());
+                        userCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                        frameLayout = userCell;
+                        break;
+                    case 6:
+                        FlickerLoadingView flickerLoadingView = new FlickerLoadingView(CacheControlActivity.this.getContext());
+                        flickerLoadingView.setIsSingleCell(true);
+                        flickerLoadingView.setItemsCount(3);
+                        flickerLoadingView.setIgnoreHeightCheck(true);
+                        flickerLoadingView.setViewType(25);
+                        flickerLoadingView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                        frameLayout = flickerLoadingView;
+                        break;
+                    case 7:
+                        FrameLayout textCell = new TextCell(this.mContext);
+                        textCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                        frameLayout = textCell;
+                        break;
+                    case 8:
+                        FrameLayout frameLayout2 = CacheControlActivity.this.cachedMediaLayout = new CachedMediaLayout(this.mContext, CacheControlActivity.this) {
+                            @Override
+                            protected void onMeasure(int i3, int i4) {
+                                super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4) - (C1133ActionBar.getCurrentActionBarHeight() / 2), 1073741824));
+                            }
+
+                            @Override
+                            protected void showActionMode(boolean z) {
+                                if (z) {
+                                    CacheControlActivity.this.updateActionBar(true);
+                                    ((BaseFragment) CacheControlActivity.this).actionBar.showActionMode();
+                                    return;
+                                }
+                                ((BaseFragment) CacheControlActivity.this).actionBar.hideActionMode();
+                            }
+                        };
+                        CacheControlActivity.this.cachedMediaLayout.setDelegate(new CachedMediaLayout.Delegate() {
+                            @Override
+                            public void onItemSelected(DialogFileEntities dialogFileEntities, CacheModel.FileInfo fileInfo, boolean z) {
+                                if (dialogFileEntities == null) {
+                                    if (fileInfo != null) {
+                                        CacheControlActivity.this.cacheModel.toggleSelect(fileInfo);
+                                        CacheControlActivity.this.cachedMediaLayout.updateVisibleRows();
+                                        CacheControlActivity.this.updateActionMode();
+                                    }
+                                } else if (CacheControlActivity.this.cacheModel.getSelectedFiles() <= 0 && !z) {
+                                    CacheControlActivity.this.showClearCacheDialog(dialogFileEntities);
+                                } else {
+                                    CacheControlActivity.this.cacheModel.toggleSelect(dialogFileEntities);
+                                    CacheControlActivity.this.cachedMediaLayout.updateVisibleRows();
+                                    CacheControlActivity.this.updateActionMode();
+                                }
+                            }
+
+                            @Override
+                            public void clear() {
+                                CacheControlActivity.this.clearSelectedFiles();
+                            }
+
+                            @Override
+                            public void clearSelection() {
+                                CacheModel cacheModel = CacheControlActivity.this.cacheModel;
+                                if (cacheModel == null || cacheModel.getSelectedFiles() <= 0) {
+                                    return;
+                                }
+                                CacheControlActivity.this.cacheModel.clearSelection();
+                                if (CacheControlActivity.this.cachedMediaLayout != null) {
+                                    CacheControlActivity.this.cachedMediaLayout.showActionMode(false);
+                                    CacheControlActivity.this.cachedMediaLayout.updateVisibleRows();
+                                }
+                            }
+                        });
+                        CacheControlActivity.this.cachedMediaLayout.setCacheModel(CacheControlActivity.this.cacheModel);
+                        CacheControlActivity.this.nestedSizeNotifierLayout.setChildLayout(CacheControlActivity.this.cachedMediaLayout);
+                        frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                        frameLayout2.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
+                        frameLayout = frameLayout2;
+                        break;
+                    case 9:
+                        view = CacheControlActivity.this.cacheChart = new CacheChart(this.mContext);
+                        break;
+                    case 10:
+                        view = CacheControlActivity.this.cacheChartHeader = new CacheChartHeader(this.mContext);
+                        break;
+                    case 11:
+                        FrameLayout checkBoxCell = new CheckBoxCell(this.mContext, 4, 21, CacheControlActivity.this.getResourceProvider());
+                        checkBoxCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                        frameLayout = checkBoxCell;
+                        break;
+                    case 12:
+                        FlickerLoadingView flickerLoadingView2 = new FlickerLoadingView(CacheControlActivity.this.getContext());
+                        flickerLoadingView2.setIsSingleCell(true);
+                        flickerLoadingView2.setItemsCount(1);
+                        flickerLoadingView2.setIgnoreHeightCheck(true);
+                        flickerLoadingView2.setViewType(26);
+                        flickerLoadingView2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                        frameLayout = flickerLoadingView2;
+                        break;
+                    case 13:
+                        view = CacheControlActivity.this.clearCacheButton = new ClearCacheButtonInternal(this.mContext);
+                        break;
+                    case 14:
+                        SlideChooseView slideChooseView2 = new SlideChooseView(this.mContext);
+                        slideChooseView2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                        float f = ((int) ((CacheControlActivity.this.totalDeviceSize / 1024) / 1024)) / 1000.0f;
+                        final ArrayList arrayList = new ArrayList();
+                        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                            arrayList.add(1);
+                        }
+                        if (f <= 5.0f) {
+                            arrayList.add(2);
+                        }
+                        if (f > 5.0f) {
+                            arrayList.add(5);
+                        }
+                        if (f > 16.0f) {
+                            arrayList.add(16);
+                        }
+                        if (f > 32.0f) {
+                            arrayList.add(32);
+                        }
+                        arrayList.add(Integer.valueOf((int) ConnectionsManager.DEFAULT_DATACENTER_ID));
+                        String[] strArr = new String[arrayList.size()];
+                        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                            if (((Integer) arrayList.get(i3)).intValue() == 1) {
+                                strArr[i3] = String.format("300 MB", new Object[0]);
+                            } else if (((Integer) arrayList.get(i3)).intValue() == Integer.MAX_VALUE) {
+                                strArr[i3] = LocaleController.getString("NoLimit", C1072R.string.NoLimit);
+                            } else {
+                                strArr[i3] = String.format("%d GB", arrayList.get(i3));
+                            }
+                        }
+                        slideChooseView2.setCallback(new SlideChooseView.Callback() {
+                            @Override
+                            public final void onOptionSelected(int i4) {
+                                CacheControlActivity.ListAdapter.lambda$onCreateViewHolder$1(arrayList, i4);
+                            }
+
+                            @Override
+                            public void onTouchEnd() {
+                                SlideChooseView.Callback.CC.$default$onTouchEnd(this);
+                            }
+                        });
+                        int indexOf = arrayList.indexOf(Integer.valueOf(SharedConfig.getPreferences().getInt("cache_limit", ConnectionsManager.DEFAULT_DATACENTER_ID)));
+                        if (indexOf < 0) {
+                            indexOf = arrayList.size() - 1;
+                        }
+                        slideChooseView2.setOptions(indexOf, strArr);
+                        frameLayout = slideChooseView2;
+                        break;
+                    default:
+                        view = new TextInfoPrivacyCell(this.mContext);
+                        break;
+                }
+                return new RecyclerListView.Holder(view);
             }
-            frameLayout2 = frameLayout;
-            return new RecyclerListView.Holder(frameLayout2);
+            view = frameLayout;
+            return new RecyclerListView.Holder(view);
+        }
+
+        public static void lambda$onCreateViewHolder$1(ArrayList arrayList, int i) {
+            SharedConfig.getPreferences().edit().putInt("cache_limit", ((Integer) arrayList.get(i)).intValue()).apply();
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            String dialogPhotoTitle;
+            ItemInner itemInner = (ItemInner) CacheControlActivity.this.itemInners.get(i);
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 0) {
                 TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
-                if (i == CacheControlActivity.this.databaseRow) {
-                    textSettingsCell.setTextAndValue(LocaleController.getString("ClearLocalDatabase", C1010R.string.ClearLocalDatabase), AndroidUtilities.formatFileSize(CacheControlActivity.this.databaseSize), CacheControlActivity.this.updateDatabaseSize, false);
-                    CacheControlActivity.this.updateDatabaseSize = false;
-                } else if (i == CacheControlActivity.this.migrateOldFolderRow) {
-                    textSettingsCell.setTextAndValue(LocaleController.getString("MigrateOldFolder", C1010R.string.MigrateOldFolder), null, false);
+                if (i == CacheControlActivity.this.migrateOldFolderRow) {
+                    textSettingsCell.setTextAndValue(LocaleController.getString("MigrateOldFolder", C1072R.string.MigrateOldFolder), null, false);
                 }
             } else if (itemViewType == 1) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                if (i != CacheControlActivity.this.databaseInfoRow) {
-                    if (i == CacheControlActivity.this.keepMediaInfoRow) {
-                        textInfoPrivacyCell.setText(AndroidUtilities.replaceTags(LocaleController.getString("KeepMediaInfo", C1010R.string.KeepMediaInfo)));
-                        textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow"));
-                        return;
-                    }
-                    textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
-                    textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow"));
-                    return;
-                }
-                textInfoPrivacyCell.setText(LocaleController.getString("LocalDatabaseInfo", C1010R.string.LocalDatabaseInfo));
-                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                textInfoPrivacyCell.setText(AndroidUtilities.replaceTags(itemInner.text));
+                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow"));
             } else if (itemViewType == 2) {
                 ((StorageUsageView) viewHolder.itemView).setStorageUsage(CacheControlActivity.this.calculating, CacheControlActivity.this.databaseSize, CacheControlActivity.this.totalSize, CacheControlActivity.this.totalDeviceFreeSize, CacheControlActivity.this.totalDeviceSize);
             } else if (itemViewType == 3) {
@@ -1059,25 +1894,73 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 headerCell.setText(((ItemInner) CacheControlActivity.this.itemInners.get(i)).headerName);
                 headerCell.setTopMargin(((ItemInner) CacheControlActivity.this.itemInners.get(i)).headerTopMargin);
                 headerCell.setBottomMargin(((ItemInner) CacheControlActivity.this.itemInners.get(i)).headerBottomMargin);
-            } else if (itemViewType != 5) {
-            } else {
-                UserCell userCell = (UserCell) viewHolder.itemView;
-                DialogFileEntities dialogFileEntities = ((ItemInner) CacheControlActivity.this.itemInners.get(i)).entities;
-                TLObject userOrChat = CacheControlActivity.this.getMessagesController().getUserOrChat(dialogFileEntities.dialogId);
-                DialogFileEntities dialogFileEntities2 = userCell.dialogFileEntities;
-                boolean z = dialogFileEntities2 != null && dialogFileEntities2.dialogId == dialogFileEntities.dialogId;
-                if (dialogFileEntities.dialogId == Long.MAX_VALUE) {
-                    dialogPhotoTitle = LocaleController.getString("CacheOtherChats", C1010R.string.CacheOtherChats);
-                    userCell.getImageView().getAvatarDrawable().setAvatarType(14);
-                    userCell.getImageView().setForUserOrChat(null, userCell.getImageView().getAvatarDrawable());
-                } else {
-                    dialogPhotoTitle = DialogObject.setDialogPhotoTitle(userCell.getImageView(), userOrChat);
+            } else if (itemViewType == 7) {
+                TextCell textCell = (TextCell) viewHolder.itemView;
+                String keepMediaString = CacheByChatsController.getKeepMediaString(CacheControlActivity.this.getMessagesController().getCacheByChatsController().getKeepMedia(itemInner.keepMediaType));
+                if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 0) {
+                    if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 1) {
+                        if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType == 2) {
+                            textCell.setTextAndValue(LocaleController.getString("CacheChannels", C1072R.string.CacheChannels), keepMediaString, true, false);
+                            textCell.setColorfulIcon(CacheControlActivity.this.getThemedColor("statisticChartLine_golden"), C1072R.C1073drawable.msg_filled_menu_channels);
+                            return;
+                        }
+                        return;
+                    }
+                    textCell.setTextAndValue(LocaleController.getString("GroupChats", C1072R.string.GroupChats), keepMediaString, true, true);
+                    textCell.setColorfulIcon(CacheControlActivity.this.getThemedColor("statisticChartLine_green"), C1072R.C1073drawable.msg_filled_menu_groups);
+                    return;
                 }
-                userCell.dialogFileEntities = dialogFileEntities;
-                userCell.getImageView().setRoundRadius(AndroidUtilities.m35dp(((userOrChat instanceof TLRPC$Chat) && ((TLRPC$Chat) userOrChat).forum) ? 12.0f : 19.0f));
-                userCell.setTextAndValue(dialogPhotoTitle, AndroidUtilities.formatFileSize(dialogFileEntities.totalSize), i < getItemCount() - 2);
-                userCell.setChecked(CacheControlActivity.this.selectedDialogs.contains(Long.valueOf(dialogFileEntities.dialogId)), z);
+                textCell.setTextAndValue(LocaleController.getString("PrivateChats", C1072R.string.PrivateChats), keepMediaString, true, true);
+                textCell.setColorfulIcon(CacheControlActivity.this.getThemedColor("statisticChartLine_lightblue"), C1072R.C1073drawable.msg_filled_menu_users);
+            } else if (itemViewType == 10) {
+                if (CacheControlActivity.this.cacheChartHeader == null || CacheControlActivity.this.calculating) {
+                    return;
+                }
+                CacheControlActivity.this.cacheChartHeader.setData(CacheControlActivity.this.totalSize > 0, CacheControlActivity.this.totalDeviceSize <= 0 ? 0.0f : ((float) CacheControlActivity.this.totalSize) / ((float) CacheControlActivity.this.totalDeviceSize));
+            } else if (itemViewType != 11) {
+            } else {
+                final CheckBoxCell checkBoxCell = (CheckBoxCell) viewHolder.itemView;
+                boolean isOtherSelected = itemInner.index < 0 ? CacheControlActivity.this.isOtherSelected() : CacheControlActivity.this.selected[itemInner.index];
+                CacheControlActivity cacheControlActivity = CacheControlActivity.this;
+                CharSequence charSequence = itemInner.headerName;
+                int[] iArr = cacheControlActivity.percents;
+                int i2 = itemInner.index;
+                CharSequence checkBoxTitle = cacheControlActivity.getCheckBoxTitle(charSequence, iArr[i2 < 0 ? 8 : i2], i2 < 0);
+                String formatFileSize = AndroidUtilities.formatFileSize(itemInner.size);
+                if (itemInner.index >= 0 ? !itemInner.last : !CacheControlActivity.this.collapsed) {
+                    r3 = true;
+                }
+                checkBoxCell.setText(checkBoxTitle, formatFileSize, isOtherSelected, r3);
+                checkBoxCell.setCheckBoxColor(itemInner.colorKey, "windowBackgroundWhiteGrayIcon", "checkboxCheck");
+                checkBoxCell.setCollapsed(itemInner.index < 0 ? Boolean.valueOf(CacheControlActivity.this.collapsed) : null);
+                if (itemInner.index == -1) {
+                    checkBoxCell.setOnSectionsClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            CacheControlActivity.ListAdapter.this.lambda$onBindViewHolder$2(view);
+                        }
+                    }, new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            CacheControlActivity.ListAdapter.this.lambda$onBindViewHolder$3(checkBoxCell, view);
+                        }
+                    });
+                } else {
+                    checkBoxCell.setOnSectionsClickListener(null, null);
+                }
+                checkBoxCell.setPad(itemInner.pad ? 1 : 0);
             }
+        }
+
+        public void lambda$onBindViewHolder$2(View view) {
+            CacheControlActivity cacheControlActivity = CacheControlActivity.this;
+            cacheControlActivity.collapsed = !cacheControlActivity.collapsed;
+            CacheControlActivity.this.updateRows();
+            CacheControlActivity.this.updateChart();
+        }
+
+        public void lambda$onBindViewHolder$3(CheckBoxCell checkBoxCell, View view) {
+            CacheControlActivity.this.toggleOtherSelected(checkBoxCell);
         }
 
         @Override
@@ -1086,12 +1969,44 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
     }
 
+    public void updateActionMode() {
+        String formatPluralString;
+        if (this.cacheModel.getSelectedFiles() > 0) {
+            if (this.cachedMediaLayout != null) {
+                if (!this.cacheModel.selectedDialogs.isEmpty()) {
+                    Iterator<DialogFileEntities> it = this.cacheModel.entities.iterator();
+                    int i = 0;
+                    while (it.hasNext()) {
+                        DialogFileEntities next = it.next();
+                        if (this.cacheModel.selectedDialogs.contains(Long.valueOf(next.dialogId))) {
+                            i += next.filesCount;
+                        }
+                    }
+                    int selectedFiles = this.cacheModel.getSelectedFiles() - i;
+                    if (selectedFiles > 0) {
+                        formatPluralString = String.format("%s, %s", LocaleController.formatPluralString("Chats", this.cacheModel.selectedDialogs.size(), Integer.valueOf(this.cacheModel.selectedDialogs.size())), LocaleController.formatPluralString("Files", selectedFiles, Integer.valueOf(selectedFiles)));
+                    } else {
+                        formatPluralString = LocaleController.formatPluralString("Chats", this.cacheModel.selectedDialogs.size(), Integer.valueOf(this.cacheModel.selectedDialogs.size()));
+                    }
+                } else {
+                    formatPluralString = LocaleController.formatPluralString("Files", this.cacheModel.getSelectedFiles(), Integer.valueOf(this.cacheModel.getSelectedFiles()));
+                }
+                this.actionModeTitle.setText(AndroidUtilities.formatFileSize(this.cacheModel.getSelectedFilesSize()));
+                this.actionModeSubtitle.setText(formatPluralString);
+                this.cachedMediaLayout.showActionMode(true);
+                return;
+            }
+            return;
+        }
+        this.cachedMediaLayout.showActionMode(false);
+    }
+
     @Override
     public ArrayList<ThemeDescription> getThemeDescriptions() {
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                CacheControlActivity.this.lambda$getThemeDescriptions$15();
+                CacheControlActivity.this.lambda$getThemeDescriptions$18();
             }
 
             @Override
@@ -1140,7 +2055,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$15() {
+    public void lambda$getThemeDescriptions$18() {
         BottomSheet bottomSheet = this.bottomSheet;
         if (bottomSheet != null) {
             bottomSheet.setBackgroundColor(Theme.getColor("dialogBackground"));
@@ -1151,7 +2066,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public class UserCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public static class UserCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
         private boolean canDisable;
         protected CheckBox2 checkBox;
         public DialogFileEntities dialogFileEntities;
@@ -1161,7 +2076,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         private TextView textView;
         private AnimatedTextView valueTextView;
 
-        public UserCell(CacheControlActivity cacheControlActivity, Context context, Theme.ResourcesProvider resourcesProvider) {
+        public UserCell(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.resourcesProvider = resourcesProvider;
             TextView textView = new TextView(context);
@@ -1283,7 +2198,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             sb.append((Object) this.textView.getText());
             AnimatedTextView animatedTextView = this.valueTextView;
             if (animatedTextView == null || animatedTextView.getVisibility() != 0) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             } else {
                 str = "\n" + ((Object) this.valueTextView.getText());
             }
@@ -1352,26 +2267,28 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public class DialogFileEntities {
-        long dialogId;
-        SparseArray<FileEntities> entitiesByType = new SparseArray<>();
+    public static class DialogFileEntities {
+        public long dialogId;
+        public final SparseArray<FileEntities> entitiesByType = new SparseArray<>();
+        int filesCount;
         long totalSize;
 
         public DialogFileEntities(long j) {
             this.dialogId = j;
         }
 
-        public void addFile(File file, int i) {
+        public void addFile(CacheModel.FileInfo fileInfo, int i) {
             FileEntities fileEntities = this.entitiesByType.get(i, null);
             if (fileEntities == null) {
                 fileEntities = new FileEntities();
                 this.entitiesByType.put(i, fileEntities);
             }
             fileEntities.count++;
-            long length = file.length();
-            fileEntities.totalSize += length;
-            this.totalSize += length;
-            fileEntities.files.add(file);
+            long j = fileInfo.size;
+            fileEntities.totalSize += j;
+            this.totalSize += j;
+            this.filesCount++;
+            fileEntities.files.add(fileInfo);
         }
 
         public void merge(DialogFileEntities dialogFileEntities) {
@@ -1388,41 +2305,103 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 this.totalSize += valueAt.totalSize;
                 fileEntities.files.addAll(valueAt.files);
             }
+            this.filesCount += dialogFileEntities.filesCount;
+        }
+
+        public void removeFile(CacheModel.FileInfo fileInfo) {
+            FileEntities fileEntities = this.entitiesByType.get(fileInfo.type, null);
+            if (fileEntities != null && fileEntities.files.remove(fileInfo)) {
+                fileEntities.count--;
+                long j = fileEntities.totalSize;
+                long j2 = fileInfo.size;
+                fileEntities.totalSize = j - j2;
+                this.totalSize -= j2;
+                this.filesCount--;
+            }
+        }
+
+        public boolean isEmpty() {
+            return this.totalSize <= 0;
+        }
+
+        public CacheModel createCacheModel() {
+            CacheModel cacheModel = new CacheModel(true);
+            if (this.entitiesByType.get(0) != null) {
+                cacheModel.media.addAll(this.entitiesByType.get(0).files);
+            }
+            if (this.entitiesByType.get(1) != null) {
+                cacheModel.media.addAll(this.entitiesByType.get(1).files);
+            }
+            if (this.entitiesByType.get(2) != null) {
+                cacheModel.documents.addAll(this.entitiesByType.get(2).files);
+            }
+            if (this.entitiesByType.get(3) != null) {
+                cacheModel.music.addAll(this.entitiesByType.get(3).files);
+            }
+            if (this.entitiesByType.get(4) != null) {
+                cacheModel.voice.addAll(this.entitiesByType.get(4).files);
+            }
+            cacheModel.selectAllFiles();
+            cacheModel.sortBySize();
+            return cacheModel;
         }
     }
 
-    public class FileEntities {
-        int count;
-        ArrayList<File> files;
-        long totalSize;
-
-        private FileEntities(CacheControlActivity cacheControlActivity) {
-            this.files = new ArrayList<>();
-        }
-    }
-
-    public class ItemInner extends AdapterWithDiffUtils.Item {
+    public static class ItemInner extends AdapterWithDiffUtils.Item {
+        String colorKey;
         DialogFileEntities entities;
         int headerBottomMargin;
-        String headerName;
+        CharSequence headerName;
         int headerTopMargin;
+        public int index;
+        int keepMediaType;
+        boolean last;
+        public boolean pad;
+        public long size;
+        String text;
 
-        public ItemInner(CacheControlActivity cacheControlActivity, int i, String str, DialogFileEntities dialogFileEntities) {
+        public ItemInner(int i, String str, DialogFileEntities dialogFileEntities) {
             super(i, true);
             this.headerTopMargin = 15;
             this.headerBottomMargin = 0;
+            this.keepMediaType = -1;
             this.headerName = str;
             this.entities = dialogFileEntities;
         }
 
-        public ItemInner(CacheControlActivity cacheControlActivity, int i, String str, int i2, int i3, DialogFileEntities dialogFileEntities) {
+        public ItemInner(int i, int i2) {
             super(i, true);
             this.headerTopMargin = 15;
             this.headerBottomMargin = 0;
-            this.headerName = str;
-            this.headerTopMargin = i2;
-            this.headerBottomMargin = i3;
-            this.entities = dialogFileEntities;
+            this.keepMediaType = -1;
+            this.keepMediaType = i2;
+        }
+
+        private ItemInner(int i) {
+            super(i, true);
+            this.headerTopMargin = 15;
+            this.headerBottomMargin = 0;
+            this.keepMediaType = -1;
+        }
+
+        public static ItemInner asCheckBox(CharSequence charSequence, int i, long j, String str) {
+            return asCheckBox(charSequence, i, j, str, false);
+        }
+
+        public static ItemInner asCheckBox(CharSequence charSequence, int i, long j, String str, boolean z) {
+            ItemInner itemInner = new ItemInner(11);
+            itemInner.index = i;
+            itemInner.headerName = charSequence;
+            itemInner.size = j;
+            itemInner.colorKey = str;
+            itemInner.last = z;
+            return itemInner;
+        }
+
+        public static ItemInner asInfo(String str) {
+            ItemInner itemInner = new ItemInner(1);
+            itemInner.text = str;
+            return itemInner;
         }
 
         public boolean equals(Object obj) {
@@ -1435,38 +2414,51 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 ItemInner itemInner = (ItemInner) obj;
                 int i = this.viewType;
                 if (i == itemInner.viewType) {
-                    if (i == 5 && (dialogFileEntities = this.entities) != null && (dialogFileEntities2 = itemInner.entities) != null) {
-                        return dialogFileEntities.dialogId == dialogFileEntities2.dialogId;
-                    } else if (i == 4 || i == 2 || i == 0) {
-                        return true;
-                    } else {
-                        if (i == 3 || i == 1) {
-                            return Objects.equals(this.headerName, itemInner.headerName);
+                    if (i != 9 && i != 10) {
+                        if (i == 5 && (dialogFileEntities = this.entities) != null && (dialogFileEntities2 = itemInner.entities) != null) {
+                            return dialogFileEntities.dialogId == dialogFileEntities2.dialogId;
+                        } else if (i != 8 && i != 4 && i != 2 && i != 0 && i != 13) {
+                            if (i == 3) {
+                                return Objects.equals(this.headerName, itemInner.headerName);
+                            }
+                            if (i == 1) {
+                                return Objects.equals(this.text, itemInner.text);
+                            }
+                            return i == 11 ? this.index == itemInner.index && this.size == itemInner.size : i == 7 && this.keepMediaType == itemInner.keepMediaType;
                         }
-                        return false;
                     }
+                    return true;
                 }
             }
             return false;
         }
     }
 
-    private void checkActionMode() {
-        if (this.actionBar.actionModeIsExist(null)) {
-            return;
+    @Override
+    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        CachedMediaLayout cachedMediaLayout = this.cachedMediaLayout;
+        if (cachedMediaLayout != null) {
+            Rect rect = AndroidUtilities.rectTmp2;
+            cachedMediaLayout.getHitRect(rect);
+            if (rect.contains((int) motionEvent.getX(), ((int) motionEvent.getY()) - this.actionBar.getMeasuredHeight())) {
+                return this.cachedMediaLayout.viewPagerFixed.isCurrentTabFirst();
+            }
+            return true;
         }
-        ActionBarMenu createActionMode = this.actionBar.createActionMode(false, null);
-        if (this.inPreviewMode) {
-            createActionMode.setBackgroundColor(0);
-            createActionMode.drawBlur = false;
+        return true;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        if (!this.cacheModel.selectedFiles.isEmpty()) {
+            this.cacheModel.clearSelection();
+            CachedMediaLayout cachedMediaLayout = this.cachedMediaLayout;
+            if (cachedMediaLayout != null) {
+                cachedMediaLayout.showActionMode(false);
+                this.cachedMediaLayout.updateVisibleRows();
+            }
+            return false;
         }
-        NumberTextView numberTextView = new NumberTextView(createActionMode.getContext());
-        this.selectedDialogsCountTextView = numberTextView;
-        numberTextView.setTextSize(18);
-        this.selectedDialogsCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.selectedDialogsCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon"));
-        createActionMode.addView(this.selectedDialogsCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
-        this.selectedDialogsCountTextView.setOnTouchListener(CacheControlActivity$$ExternalSyntheticLambda3.INSTANCE);
-        createActionMode.addItemWithWidth(1, C1010R.C1011drawable.msg_clear, AndroidUtilities.m35dp(54.0f), LocaleController.getString("ClearCache", C1010R.string.ClearCache));
+        return super.onBackPressed();
     }
 }

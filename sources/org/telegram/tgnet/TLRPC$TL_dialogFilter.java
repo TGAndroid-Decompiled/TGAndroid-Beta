@@ -15,7 +15,7 @@ public class TLRPC$TL_dialogFilter extends TLRPC$DialogFilter {
         this.exclude_muted = (readInt32 & 2048) != 0;
         this.exclude_read = (readInt32 & 4096) != 0;
         this.exclude_archived = (readInt32 & 8192) != 0;
-        this.f855id = abstractSerializedData.readInt32(z);
+        this.f864id = abstractSerializedData.readInt32(z);
         this.title = abstractSerializedData.readString(z);
         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
             this.emoticon = abstractSerializedData.readString(z);
@@ -87,7 +87,7 @@ public class TLRPC$TL_dialogFilter extends TLRPC$DialogFilter {
         int i8 = this.exclude_archived ? i7 | 8192 : i7 & (-8193);
         this.flags = i8;
         abstractSerializedData.writeInt32(i8);
-        abstractSerializedData.writeInt32(this.f855id);
+        abstractSerializedData.writeInt32(this.f864id);
         abstractSerializedData.writeString(this.title);
         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
             abstractSerializedData.writeString(this.emoticon);

@@ -24,7 +24,7 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -111,7 +111,7 @@ public class ContentPreviewViewer {
     private boolean isVisible = false;
     private int keyboardHeight = AndroidUtilities.m35dp(200.0f);
     private Paint paint = new Paint(1);
-    private Runnable showSheetRunnable = new RunnableC29711();
+    private Runnable showSheetRunnable = new RunnableC31201();
 
     public interface ContentPreviewViewerDelegate {
 
@@ -188,8 +188,8 @@ public class ContentPreviewViewer {
         }
     }
 
-    public class RunnableC29711 implements Runnable {
-        RunnableC29711() {
+    public class RunnableC31201 implements Runnable {
+        RunnableC31201() {
             ContentPreviewViewer.this = r1;
         }
 
@@ -219,46 +219,46 @@ public class ContentPreviewViewer {
                     ContentPreviewViewer.this.containerView.invalidate();
                     if (ContentPreviewViewer.this.delegate != null) {
                         if (ContentPreviewViewer.this.delegate.needSend() && !ContentPreviewViewer.this.delegate.isInScheduleMode()) {
-                            arrayList.add(LocaleController.getString("SendStickerPreview", C1010R.string.SendStickerPreview));
-                            arrayList3.add(Integer.valueOf(C1010R.C1011drawable.msg_send));
+                            arrayList.add(LocaleController.getString("SendStickerPreview", C1072R.string.SendStickerPreview));
+                            arrayList3.add(Integer.valueOf(C1072R.C1073drawable.msg_send));
                             arrayList2.add(0);
                         }
                         if (ContentPreviewViewer.this.delegate.needSend() && !ContentPreviewViewer.this.delegate.isInScheduleMode()) {
-                            arrayList.add(LocaleController.getString("SendWithoutSound", C1010R.string.SendWithoutSound));
-                            arrayList3.add(Integer.valueOf(C1010R.C1011drawable.input_notify_off));
+                            arrayList.add(LocaleController.getString("SendWithoutSound", C1072R.string.SendWithoutSound));
+                            arrayList3.add(Integer.valueOf(C1072R.C1073drawable.input_notify_off));
                             arrayList2.add(6);
                         }
                         if (ContentPreviewViewer.this.delegate.canSchedule()) {
-                            arrayList.add(LocaleController.getString("Schedule", C1010R.string.Schedule));
-                            arrayList3.add(Integer.valueOf(C1010R.C1011drawable.msg_autodelete));
+                            arrayList.add(LocaleController.getString("Schedule", C1072R.string.Schedule));
+                            arrayList3.add(Integer.valueOf(C1072R.C1073drawable.msg_autodelete));
                             arrayList2.add(3);
                         }
                         if (ContentPreviewViewer.this.currentStickerSet != null && ContentPreviewViewer.this.delegate.needOpen()) {
-                            arrayList.add(LocaleController.formatString("ViewPackPreview", C1010R.string.ViewPackPreview, new Object[0]));
-                            arrayList3.add(Integer.valueOf(C1010R.C1011drawable.msg_media));
+                            arrayList.add(LocaleController.formatString("ViewPackPreview", C1072R.string.ViewPackPreview, new Object[0]));
+                            arrayList3.add(Integer.valueOf(C1072R.C1073drawable.msg_media));
                             arrayList2.add(1);
                         }
                         if (ContentPreviewViewer.this.delegate.needRemove()) {
-                            arrayList.add(LocaleController.getString("ImportStickersRemoveMenu", C1010R.string.ImportStickersRemoveMenu));
-                            arrayList3.add(Integer.valueOf(C1010R.C1011drawable.msg_delete));
+                            arrayList.add(LocaleController.getString("ImportStickersRemoveMenu", C1072R.string.ImportStickersRemoveMenu));
+                            arrayList3.add(Integer.valueOf(C1072R.C1073drawable.msg_delete));
                             arrayList2.add(5);
                         }
                     }
                     if (!MessageObject.isMaskDocument(ContentPreviewViewer.this.currentDocument) && (isStickerInFavorites || (MediaDataController.getInstance(ContentPreviewViewer.this.currentAccount).canAddStickerToFavorites() && MessageObject.isStickerHasSet(ContentPreviewViewer.this.currentDocument)))) {
                         if (isStickerInFavorites) {
-                            i6 = C1010R.string.DeleteFromFavorites;
+                            i6 = C1072R.string.DeleteFromFavorites;
                             str = "DeleteFromFavorites";
                         } else {
-                            i6 = C1010R.string.AddToFavorites;
+                            i6 = C1072R.string.AddToFavorites;
                             str = "AddToFavorites";
                         }
                         arrayList.add(LocaleController.getString(str, i6));
-                        arrayList3.add(Integer.valueOf(isStickerInFavorites ? C1010R.C1011drawable.msg_unfave : C1010R.C1011drawable.msg_fave));
+                        arrayList3.add(Integer.valueOf(isStickerInFavorites ? C1072R.C1073drawable.msg_unfave : C1072R.C1073drawable.msg_fave));
                         arrayList2.add(2);
                     }
                     if (ContentPreviewViewer.this.isRecentSticker) {
-                        arrayList.add(LocaleController.getString("DeleteFromRecent", C1010R.string.DeleteFromRecent));
-                        arrayList3.add(Integer.valueOf(C1010R.C1011drawable.msg_delete));
+                        arrayList.add(LocaleController.getString("DeleteFromRecent", C1072R.string.DeleteFromRecent));
+                        arrayList3.add(Integer.valueOf(C1072R.C1073drawable.msg_delete));
                         arrayList2.add(4);
                     }
                     if (arrayList.isEmpty()) {
@@ -268,16 +268,16 @@ public class ContentPreviewViewer {
                     for (int i7 = 0; i7 < arrayList3.size(); i7++) {
                         iArr[i7] = ((Integer) arrayList3.get(i7)).intValue();
                     }
-                    View$OnClickListenerC29721 view$OnClickListenerC29721 = new View$OnClickListenerC29721(arrayList2, isStickerInFavorites);
-                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), C1010R.C1011drawable.popup_fixed_alert2, ContentPreviewViewer.this.resourcesProvider);
+                    View$OnClickListenerC31211 view$OnClickListenerC31211 = new View$OnClickListenerC31211(arrayList2, isStickerInFavorites);
+                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), C1072R.C1073drawable.popup_fixed_alert2, ContentPreviewViewer.this.resourcesProvider);
                     for (int i8 = 0; i8 < arrayList.size(); i8++) {
                         ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList3.get(i8)).intValue(), (CharSequence) arrayList.get(i8), false, ContentPreviewViewer.this.resourcesProvider);
                         addItem.setTag(Integer.valueOf(i8));
-                        addItem.setOnClickListener(view$OnClickListenerC29721);
+                        addItem.setOnClickListener(view$OnClickListenerC31211);
                     }
                     ContentPreviewViewer.this.popupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2) {
                         {
-                            RunnableC29711.this = this;
+                            RunnableC31201.this = this;
                         }
 
                         @Override
@@ -296,7 +296,7 @@ public class ContentPreviewViewer {
                     ContentPreviewViewer.this.popupWindow.setScaleOut(true);
                     ContentPreviewViewer.this.popupWindow.setOutsideTouchable(true);
                     ContentPreviewViewer.this.popupWindow.setClippingEnabled(true);
-                    ContentPreviewViewer.this.popupWindow.setAnimationStyle(C1010R.style.PopupContextAnimation);
+                    ContentPreviewViewer.this.popupWindow.setAnimationStyle(C1072R.style.PopupContextAnimation);
                     ContentPreviewViewer.this.popupWindow.setFocusable(true);
                     actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE));
                     ContentPreviewViewer.this.popupWindow.setInputMethodMode(2);
@@ -327,24 +327,24 @@ public class ContentPreviewViewer {
                 final ArrayList arrayList5 = new ArrayList();
                 ArrayList arrayList6 = new ArrayList();
                 if (ContentPreviewViewer.this.delegate.needSend() && !ContentPreviewViewer.this.delegate.isInScheduleMode()) {
-                    arrayList4.add(LocaleController.getString("SendGifPreview", C1010R.string.SendGifPreview));
-                    arrayList6.add(Integer.valueOf(C1010R.C1011drawable.msg_send));
+                    arrayList4.add(LocaleController.getString("SendGifPreview", C1072R.string.SendGifPreview));
+                    arrayList6.add(Integer.valueOf(C1072R.C1073drawable.msg_send));
                     arrayList5.add(0);
                 }
                 if (ContentPreviewViewer.this.delegate.canSchedule()) {
-                    arrayList4.add(LocaleController.getString("Schedule", C1010R.string.Schedule));
-                    arrayList6.add(Integer.valueOf(C1010R.C1011drawable.msg_autodelete));
+                    arrayList4.add(LocaleController.getString("Schedule", C1072R.string.Schedule));
+                    arrayList6.add(Integer.valueOf(C1072R.C1073drawable.msg_autodelete));
                     arrayList5.add(3);
                 }
                 if (ContentPreviewViewer.this.currentDocument != null) {
                     z = MediaDataController.getInstance(ContentPreviewViewer.this.currentAccount).hasRecentGif(ContentPreviewViewer.this.currentDocument);
                     if (z) {
-                        arrayList4.add(LocaleController.formatString("Delete", C1010R.string.Delete, new Object[0]));
-                        arrayList6.add(Integer.valueOf(C1010R.C1011drawable.msg_delete));
+                        arrayList4.add(LocaleController.formatString("Delete", C1072R.string.Delete, new Object[0]));
+                        arrayList6.add(Integer.valueOf(C1072R.C1073drawable.msg_delete));
                         arrayList5.add(1);
                     } else {
-                        arrayList4.add(LocaleController.formatString("SaveToGIFs", C1010R.string.SaveToGIFs, new Object[0]));
-                        arrayList6.add(Integer.valueOf(C1010R.C1011drawable.msg_gif_add));
+                        arrayList4.add(LocaleController.formatString("SaveToGIFs", C1072R.string.SaveToGIFs, new Object[0]));
+                        arrayList6.add(Integer.valueOf(C1072R.C1073drawable.msg_gif_add));
                         arrayList5.add(2);
                     }
                 } else {
@@ -354,11 +354,11 @@ public class ContentPreviewViewer {
                 for (int i9 = 0; i9 < arrayList6.size(); i9++) {
                     iArr2[i9] = ((Integer) arrayList6.get(i9)).intValue();
                 }
-                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), C1010R.C1011drawable.popup_fixed_alert2, ContentPreviewViewer.this.resourcesProvider);
+                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), C1072R.C1073drawable.popup_fixed_alert2, ContentPreviewViewer.this.resourcesProvider);
                 View.OnClickListener onClickListener = new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        ContentPreviewViewer.RunnableC29711.this.lambda$run$1(arrayList5, view);
+                        ContentPreviewViewer.RunnableC31201.this.lambda$run$1(arrayList5, view);
                     }
                 };
                 int i10 = 0;
@@ -374,7 +374,7 @@ public class ContentPreviewViewer {
                 }
                 ContentPreviewViewer.this.popupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout2, -2, -2) {
                     {
-                        RunnableC29711.this = this;
+                        RunnableC31201.this = this;
                     }
 
                     @Override
@@ -393,7 +393,7 @@ public class ContentPreviewViewer {
                 ContentPreviewViewer.this.popupWindow.setScaleOut(true);
                 ContentPreviewViewer.this.popupWindow.setOutsideTouchable(true);
                 ContentPreviewViewer.this.popupWindow.setClippingEnabled(true);
-                ContentPreviewViewer.this.popupWindow.setAnimationStyle(C1010R.style.PopupContextAnimation);
+                ContentPreviewViewer.this.popupWindow.setAnimationStyle(C1072R.style.PopupContextAnimation);
                 ContentPreviewViewer.this.popupWindow.setFocusable(true);
                 actionBarPopupWindowLayout2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE));
                 ContentPreviewViewer.this.popupWindow.setInputMethodMode(2);
@@ -422,7 +422,7 @@ public class ContentPreviewViewer {
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ContentPreviewViewer.RunnableC29711.this.lambda$run$2(valueAnimator);
+                            ContentPreviewViewer.RunnableC31201.this.lambda$run$2(valueAnimator);
                         }
                     });
                     ofFloat.setDuration(350L);
@@ -432,12 +432,12 @@ public class ContentPreviewViewer {
             }
         }
 
-        class View$OnClickListenerC29721 implements View.OnClickListener {
+        class View$OnClickListenerC31211 implements View.OnClickListener {
             final ArrayList val$actions;
             final boolean val$inFavs;
 
-            View$OnClickListenerC29721(ArrayList arrayList, boolean z) {
-                RunnableC29711.this = r1;
+            View$OnClickListenerC31211(ArrayList arrayList, boolean z) {
+                RunnableC31201.this = r1;
                 this.val$actions = arrayList;
                 this.val$inFavs = z;
             }
@@ -503,7 +503,7 @@ public class ContentPreviewViewer {
                 AlertsCreator.createScheduleDatePickerDialog(ContentPreviewViewer.this.parentActivity, contentPreviewViewerDelegate.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
                     public final void didSelectDate(boolean z, int i) {
-                        ContentPreviewViewer.RunnableC29711.lambda$run$0(ContentPreviewViewer.ContentPreviewViewerDelegate.this, tLRPC$Document, tLRPC$BotInlineResult, obj, z, i);
+                        ContentPreviewViewer.RunnableC31201.lambda$run$0(ContentPreviewViewer.ContentPreviewViewerDelegate.this, tLRPC$Document, tLRPC$BotInlineResult, obj, z, i);
                     }
                 }, ContentPreviewViewer.this.resourcesProvider);
             }
@@ -564,7 +564,7 @@ public class ContentPreviewViewer {
             if (launchActivity.getActionBarLayout() != null && launchActivity.getActionBarLayout().getLastFragment() != null) {
                 launchActivity.getActionBarLayout().getLastFragment().dismissCurrentDialog();
             }
-            launchActivity.lambda$runLinkRequest$67(new PremiumPreviewFragment(PremiumPreviewFragment.featureTypeToServerString(5)));
+            launchActivity.lambda$runLinkRequest$71(new PremiumPreviewFragment(PremiumPreviewFragment.featureTypeToServerString(5)));
         }
         this.menuVisible = false;
         this.containerView.invalidate();
@@ -743,7 +743,7 @@ public class ContentPreviewViewer {
             return;
         }
         this.parentActivity = activity;
-        this.slideUpDrawable = activity.getResources().getDrawable(C1010R.C1011drawable.preview_arrow);
+        this.slideUpDrawable = activity.getResources().getDrawable(C1072R.C1073drawable.preview_arrow);
         FrameLayout frameLayout = new FrameLayout(activity);
         this.windowView = frameLayout;
         frameLayout.setFocusable(true);

@@ -142,9 +142,9 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                 drawable.size2 = 16;
                 drawable.size3 = 15;
             }
-            drawable.f1110k3 = 0.98f;
-            drawable.f1109k2 = 0.98f;
-            drawable.f1108k1 = 0.98f;
+            drawable.f1126k3 = 0.98f;
+            drawable.f1125k2 = 0.98f;
+            drawable.f1124k1 = 0.98f;
             drawable.speedScale = 4.0f;
             drawable.colorKey = "premiumStartSmallStarsColor2";
             drawable.init();
@@ -165,9 +165,9 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             drawable2.size1 = 8;
             drawable2.size1 = 6;
             drawable2.size1 = 4;
-            drawable2.f1110k3 = 0.98f;
-            drawable2.f1109k2 = 0.98f;
-            drawable2.f1108k1 = 0.98f;
+            drawable2.f1126k3 = 0.98f;
+            drawable2.f1125k2 = 0.98f;
+            drawable2.f1124k1 = 0.98f;
             drawable2.useRotate = true;
             drawable2.speedScale = 4.0f;
             drawable2.checkBounds = true;
@@ -614,7 +614,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                     sb.append("?account=");
                     sb.append(this.currentAccount);
                     sb.append("&id=");
-                    sb.append(this.document.f856id);
+                    sb.append(this.document.f865id);
                     sb.append("&hash=");
                     sb.append(this.document.access_hash);
                     sb.append("&dc=");

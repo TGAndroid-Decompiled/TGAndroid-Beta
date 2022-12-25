@@ -70,7 +70,7 @@ import javax.microedition.khronos.egl.EGLSurface;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -125,7 +125,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     boolean isInPinchToZoomTouchMode;
     private boolean isMessageTransition;
     private boolean isSecretChat;
-    private byte[] f1064iv;
+    private byte[] f1074iv;
     private byte[] key;
     private Bitmap lastBitmap;
     private float[] mMVPMatrix;
@@ -275,7 +275,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         ImageView imageView = new ImageView(context);
         this.switchCameraButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.switchCameraButton.setContentDescription(LocaleController.getString("AccDescrSwitchCamera", C1010R.string.AccDescrSwitchCamera));
+        this.switchCameraButton.setContentDescription(LocaleController.getString("AccDescrSwitchCamera", C1072R.string.AccDescrSwitchCamera));
         addView(this.switchCameraButton, LayoutHelper.createFrame(62, 62.0f, 83, 8.0f, 0.0f, 0.0f, 0.0f));
         this.switchCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -286,7 +286,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         ImageView imageView2 = new ImageView(context);
         this.muteImageView = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        this.muteImageView.setImageResource(C1010R.C1011drawable.video_mute);
+        this.muteImageView.setImageResource(C1072R.C1073drawable.video_mute);
         this.muteImageView.setAlpha(0.0f);
         addView(this.muteImageView, LayoutHelper.createFrame(48, 48, 17));
         final Paint paint3 = new Paint(1);
@@ -441,7 +441,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             this.size = ((Long) objArr[5]).longValue();
             if (this.encryptedFile != null) {
                 this.key = (byte[]) objArr[3];
-                this.f1064iv = (byte[]) objArr[4];
+                this.f1074iv = (byte[]) objArr[4];
             }
         }
     }
@@ -536,11 +536,11 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             return;
         }
         if (Build.VERSION.SDK_INT >= 21) {
-            AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) ContextCompat.getDrawable(getContext(), C1010R.C1011drawable.avd_flip);
+            AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) ContextCompat.getDrawable(getContext(), C1072R.C1073drawable.avd_flip);
             this.switchCameraDrawable = animatedVectorDrawable;
             this.switchCameraButton.setImageDrawable(animatedVectorDrawable);
         } else {
-            this.switchCameraButton.setImageResource(C1010R.C1011drawable.vd_flip);
+            this.switchCameraButton.setImageResource(C1072R.C1073drawable.vd_flip);
         }
         this.textureOverlayView.setAlpha(1.0f);
         this.textureOverlayView.invalidate();
@@ -554,7 +554,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         if (bitmap != null) {
             this.textureOverlayView.setImageBitmap(bitmap);
         } else {
-            this.textureOverlayView.setImageResource(C1010R.C1011drawable.icplaceholder);
+            this.textureOverlayView.setImageResource(C1072R.C1073drawable.icplaceholder);
         }
         this.cameraReady = false;
         this.isFrontface = true;
@@ -565,7 +565,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         this.file = null;
         this.encryptedFile = null;
         this.key = null;
-        this.f1064iv = null;
+        this.f1074iv = null;
         this.needDrawFlickerStub = true;
         if (initCamera()) {
             MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
@@ -776,7 +776,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 this.file = null;
                 this.encryptedFile = null;
                 this.key = null;
-                this.f1064iv = null;
+                this.f1074iv = null;
                 VideoEditedInfo videoEditedInfo = this.videoEditedInfo;
                 long j = videoEditedInfo.estimatedDuration;
                 double d = j;
@@ -814,7 +814,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             videoEditedInfo3.file = this.file;
             videoEditedInfo3.encryptedFile = this.encryptedFile;
             videoEditedInfo3.key = this.key;
-            videoEditedInfo3.f824iv = this.f1064iv;
+            videoEditedInfo3.f833iv = this.f1074iv;
             this.baseFragment.sendMedia(new MediaController.PhotoEntry(0, 0, 0L, this.cameraFile.getAbsolutePath(), 0, true, 0, 0, 0L), this.videoEditedInfo, z, i2, false);
             if (i2 != 0) {
                 startAnimation(false);
@@ -1156,11 +1156,11 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
         Timer timer2 = new Timer();
         this.progressTimer = timer2;
-        timer2.schedule(new C228510(), 0L, 17L);
+        timer2.schedule(new C237910(), 0L, 17L);
     }
 
-    public class C228510 extends TimerTask {
-        C228510() {
+    public class C237910 extends TimerTask {
+        C237910() {
         }
 
         @Override
@@ -1168,7 +1168,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    InstantCameraView.C228510.this.lambda$run$0();
+                    InstantCameraView.C237910.this.lambda$run$0();
                 }
             });
         }
@@ -1740,16 +1740,16 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             this.lastCameraId = 0;
             this.buffers = new ArrayBlockingQueue<>(10);
             this.keyframeThumbs = new ArrayList<>();
-            this.recorderRunnable = new RunnableC22961();
+            this.recorderRunnable = new RunnableC23901();
         }
 
-        public class RunnableC22961 implements Runnable {
-            RunnableC22961() {
+        public class RunnableC23901 implements Runnable {
+            RunnableC23901() {
             }
 
             @Override
             public void run() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.InstantCameraView.VideoRecorder.RunnableC22961.run():void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.InstantCameraView.VideoRecorder.RunnableC23901.run():void");
             }
 
             public void lambda$run$0(double d) {
@@ -1970,7 +1970,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             InstantCameraView.this.videoEditedInfo.file = InstantCameraView.this.file;
             InstantCameraView.this.videoEditedInfo.encryptedFile = InstantCameraView.this.encryptedFile;
             InstantCameraView.this.videoEditedInfo.key = InstantCameraView.this.key;
-            InstantCameraView.this.videoEditedInfo.f824iv = InstantCameraView.this.f1064iv;
+            InstantCameraView.this.videoEditedInfo.f833iv = InstantCameraView.this.f1074iv;
             InstantCameraView.this.videoEditedInfo.estimatedSize = Math.max(1L, InstantCameraView.this.size);
             InstantCameraView.this.videoEditedInfo.framerate = 25;
             VideoEditedInfo videoEditedInfo = InstantCameraView.this.videoEditedInfo;

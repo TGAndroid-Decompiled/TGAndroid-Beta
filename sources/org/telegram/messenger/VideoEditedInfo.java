@@ -1,17 +1,22 @@
 package org.telegram.messenger;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.text.TextUtils;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.MediaController;
 import org.telegram.p009ui.Components.AnimatedFileDrawable;
+import org.telegram.p009ui.Components.Paint.PaintTypeface;
 import org.telegram.p009ui.Components.PhotoFilterView;
 import org.telegram.p009ui.Components.Point;
+import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$InputEncryptedFile;
 import org.telegram.tgnet.TLRPC$InputFile;
+import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
 
 public class VideoEditedInfo {
     public int bitrate;
@@ -26,7 +31,7 @@ public class VideoEditedInfo {
     public TLRPC$InputFile file;
     public MediaController.SavedFilterState filterState;
     public boolean isPhoto;
-    public byte[] f824iv;
+    public byte[] f833iv;
     public byte[] key;
     public ArrayList<MediaEntity> mediaEntities;
     public boolean muted;
@@ -48,12 +53,39 @@ public class VideoEditedInfo {
     public boolean needUpdateProgress = false;
     public boolean shouldLimitFps = true;
 
+    public static class EmojiEntity extends TLRPC$TL_messageEntityCustomEmoji {
+        public String documentAbsolutePath;
+
+        @Override
+        public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
+            super.readParams(abstractSerializedData, z);
+            if (abstractSerializedData.readBool(z)) {
+                this.documentAbsolutePath = abstractSerializedData.readString(z);
+            }
+            if (TextUtils.isEmpty(this.documentAbsolutePath)) {
+                this.documentAbsolutePath = null;
+            }
+        }
+
+        @Override
+        public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+            super.serializeToStream(abstractSerializedData);
+            abstractSerializedData.writeBool(!TextUtils.isEmpty(this.documentAbsolutePath));
+            if (TextUtils.isEmpty(this.documentAbsolutePath)) {
+                return;
+            }
+            abstractSerializedData.writeString(this.documentAbsolutePath);
+        }
+    }
+
     public static class MediaEntity {
         public AnimatedFileDrawable animatedFileDrawable;
         public Bitmap bitmap;
+        public Canvas canvas;
         public int color;
         public float currentFrame;
         public TLRPC$Document document;
+        public ArrayList<EmojiEntity> entities;
         public int fontSize;
         public float framesPerDraw;
         public float height;
@@ -64,6 +96,8 @@ public class VideoEditedInfo {
         public float scale;
         public byte subType;
         public String text;
+        public int textAlign;
+        public PaintTypeface textTypeface;
         public float textViewHeight;
         public float textViewWidth;
         public float textViewX;
@@ -73,52 +107,68 @@ public class VideoEditedInfo {
         public int viewHeight;
         public int viewWidth;
         public float width;
-        public float f825x;
-        public float f826y;
+        public float f834x;
+        public float f835y;
 
         public MediaEntity() {
+            this.entities = new ArrayList<>();
         }
 
         private MediaEntity(SerializedData serializedData) {
+            this.entities = new ArrayList<>();
             this.type = serializedData.readByte(false);
             this.subType = serializedData.readByte(false);
-            this.f825x = serializedData.readFloat(false);
-            this.f826y = serializedData.readFloat(false);
+            this.f834x = serializedData.readFloat(false);
+            this.f835y = serializedData.readFloat(false);
             this.rotation = serializedData.readFloat(false);
             this.width = serializedData.readFloat(false);
             this.height = serializedData.readFloat(false);
             this.text = serializedData.readString(false);
+            int readInt32 = serializedData.readInt32(false);
+            for (int i = 0; i < readInt32; i++) {
+                EmojiEntity emojiEntity = new EmojiEntity();
+                serializedData.readInt32(false);
+                emojiEntity.readParams(serializedData, false);
+                this.entities.add(emojiEntity);
+            }
             this.color = serializedData.readInt32(false);
             this.fontSize = serializedData.readInt32(false);
             this.viewWidth = serializedData.readInt32(false);
             this.viewHeight = serializedData.readInt32(false);
+            this.textAlign = serializedData.readInt32(false);
         }
 
         public void serializeTo(SerializedData serializedData) {
             serializedData.writeByte(this.type);
             serializedData.writeByte(this.subType);
-            serializedData.writeFloat(this.f825x);
-            serializedData.writeFloat(this.f826y);
+            serializedData.writeFloat(this.f834x);
+            serializedData.writeFloat(this.f835y);
             serializedData.writeFloat(this.rotation);
             serializedData.writeFloat(this.width);
             serializedData.writeFloat(this.height);
             serializedData.writeString(this.text);
+            serializedData.writeInt32(this.entities.size());
+            for (int i = 0; i < this.entities.size(); i++) {
+                this.entities.get(i).serializeToStream(serializedData);
+            }
             serializedData.writeInt32(this.color);
             serializedData.writeInt32(this.fontSize);
             serializedData.writeInt32(this.viewWidth);
             serializedData.writeInt32(this.viewHeight);
+            serializedData.writeInt32(this.textAlign);
         }
 
         public MediaEntity copy() {
             MediaEntity mediaEntity = new MediaEntity();
             mediaEntity.type = this.type;
             mediaEntity.subType = this.subType;
-            mediaEntity.f825x = this.f825x;
-            mediaEntity.f826y = this.f826y;
+            mediaEntity.f834x = this.f834x;
+            mediaEntity.f835y = this.f835y;
             mediaEntity.rotation = this.rotation;
             mediaEntity.width = this.width;
             mediaEntity.height = this.height;
             mediaEntity.text = this.text;
+            mediaEntity.entities.addAll(this.entities);
             mediaEntity.color = this.color;
             mediaEntity.fontSize = this.fontSize;
             mediaEntity.viewWidth = this.viewWidth;
@@ -128,6 +178,7 @@ public class VideoEditedInfo {
             mediaEntity.textViewHeight = this.textViewHeight;
             mediaEntity.textViewX = this.textViewX;
             mediaEntity.textViewY = this.textViewY;
+            mediaEntity.textAlign = this.textAlign;
             return mediaEntity;
         }
     }
@@ -138,7 +189,7 @@ public class VideoEditedInfo {
         PhotoFilterView.CurvesValue curvesValue;
         ArrayList<MediaEntity> arrayList;
         if (this.avatarStartTime == -1 && this.filterState == null && this.paintPath == null && (((arrayList = this.mediaEntities) == null || arrayList.isEmpty()) && this.cropState == null)) {
-            bytesToHex = BuildConfig.APP_CENTER_HASH;
+            bytesToHex = "";
         } else {
             int i = this.filterState != null ? 170 : 10;
             String str = this.paintPath;
@@ -172,8 +223,8 @@ public class VideoEditedInfo {
                 serializedData.writeFloat(this.filterState.blurExcludeSize);
                 Point point = this.filterState.blurExcludePoint;
                 if (point != null) {
-                    serializedData.writeFloat(point.f1087x);
-                    serializedData.writeFloat(this.filterState.blurExcludePoint.f1088y);
+                    serializedData.writeFloat(point.f1103x);
+                    serializedData.writeFloat(this.filterState.blurExcludePoint.f1104y);
                 } else {
                     serializedData.writeFloat(0.0f);
                     serializedData.writeFloat(0.0f);

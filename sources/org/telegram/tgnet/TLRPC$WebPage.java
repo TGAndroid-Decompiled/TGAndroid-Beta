@@ -17,7 +17,7 @@ public abstract class TLRPC$WebPage extends TLObject {
     public int embed_width;
     public int flags;
     public int hash;
-    public long f995id;
+    public long f1004id;
     public TLRPC$Photo photo;
     public String site_name;
     public String title;
@@ -44,7 +44,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
-                        this.f995id = abstractSerializedData2.readInt64(z2);
+                        this.f1004id = abstractSerializedData2.readInt64(z2);
                         this.url = abstractSerializedData2.readString(z2);
                         this.display_url = abstractSerializedData2.readString(z2);
                         if ((this.flags & 1) != 0) {
@@ -86,7 +86,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.flags);
-                        abstractSerializedData2.writeInt64(this.f995id);
+                        abstractSerializedData2.writeInt64(this.f1004id);
                         abstractSerializedData2.writeString(this.url);
                         abstractSerializedData2.writeString(this.display_url);
                         if ((this.flags & 1) != 0) {
@@ -135,7 +135,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
-                        this.f995id = abstractSerializedData2.readInt64(z2);
+                        this.f1004id = abstractSerializedData2.readInt64(z2);
                         this.url = abstractSerializedData2.readString(z2);
                         this.display_url = abstractSerializedData2.readString(z2);
                         if ((this.flags & 1) != 0) {
@@ -180,7 +180,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.flags);
-                        abstractSerializedData2.writeInt64(this.f995id);
+                        abstractSerializedData2.writeInt64(this.f1004id);
                         abstractSerializedData2.writeString(this.url);
                         abstractSerializedData2.writeString(this.display_url);
                         if ((this.flags & 1) != 0) {
@@ -238,7 +238,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
-                        this.f995id = abstractSerializedData2.readInt64(z2);
+                        this.f1004id = abstractSerializedData2.readInt64(z2);
                         this.url = abstractSerializedData2.readString(z2);
                         this.display_url = abstractSerializedData2.readString(z2);
                         this.hash = abstractSerializedData2.readInt32(z2);
@@ -306,7 +306,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.flags);
-                        abstractSerializedData2.writeInt64(this.f995id);
+                        abstractSerializedData2.writeInt64(this.f1004id);
                         abstractSerializedData2.writeString(this.url);
                         abstractSerializedData2.writeString(this.display_url);
                         abstractSerializedData2.writeInt32(this.hash);
@@ -363,7 +363,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
-                        this.f995id = abstractSerializedData2.readInt64(z2);
+                        this.f1004id = abstractSerializedData2.readInt64(z2);
                         this.url = abstractSerializedData2.readString(z2);
                         this.display_url = abstractSerializedData2.readString(z2);
                         this.hash = abstractSerializedData2.readInt32(z2);
@@ -412,7 +412,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.flags);
-                        abstractSerializedData2.writeInt64(this.f995id);
+                        abstractSerializedData2.writeInt64(this.f1004id);
                         abstractSerializedData2.writeString(this.url);
                         abstractSerializedData2.writeString(this.display_url);
                         abstractSerializedData2.writeInt32(this.hash);

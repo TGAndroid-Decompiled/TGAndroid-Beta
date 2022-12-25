@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -81,17 +81,17 @@ public class HintView extends FrameLayout {
             addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, z ? 6.0f : 0.0f, 0.0f, z ? 0.0f : 6.0f));
         }
         if (i == 0) {
-            this.textView.setText(LocaleController.getString("AutoplayVideoInfo", C1010R.string.AutoplayVideoInfo));
+            this.textView.setText(LocaleController.getString("AutoplayVideoInfo", C1072R.string.AutoplayVideoInfo));
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
-            imageView.setImageResource(C1010R.C1011drawable.tooltip_sound);
+            imageView.setImageResource(C1072R.C1073drawable.tooltip_sound);
             this.imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_gifSaveHintText"), PorterDuff.Mode.MULTIPLY));
             addView(this.imageView, LayoutHelper.createFrame(38, 34.0f, 51, 7.0f, 7.0f, 0.0f, 0.0f));
         }
         ImageView imageView2 = new ImageView(context);
         this.arrowImageView = imageView2;
-        imageView2.setImageResource(z ? C1010R.C1011drawable.tooltip_arrow_up : C1010R.C1011drawable.tooltip_arrow);
+        imageView2.setImageResource(z ? C1072R.C1073drawable.tooltip_arrow_up : C1072R.C1073drawable.tooltip_arrow);
         this.arrowImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_gifSaveHintBackground"), PorterDuff.Mode.MULTIPLY));
         addView(this.arrowImageView, LayoutHelper.createFrame(14, 6.0f, (z ? 48 : 80) | 3, 0.0f, 0.0f, 0.0f, 0.0f));
     }
@@ -159,15 +159,15 @@ public class HintView extends FrameLayout {
                 m35dp = i5 + i2;
                 this.shownY = i2;
                 if (num.intValue() == -1) {
-                    this.textView.setText(LocaleController.getString("PollSelectOption", C1010R.string.PollSelectOption));
+                    this.textView.setText(LocaleController.getString("PollSelectOption", C1072R.string.PollSelectOption));
                 } else if (chatMessageCell.getMessageObject().isQuiz()) {
                     if (num.intValue() == 0) {
-                        this.textView.setText(LocaleController.getString("NoVotesQuiz", C1010R.string.NoVotesQuiz));
+                        this.textView.setText(LocaleController.getString("NoVotesQuiz", C1072R.string.NoVotesQuiz));
                     } else {
                         this.textView.setText(LocaleController.formatPluralString("Answer", num.intValue(), new Object[0]));
                     }
                 } else if (num.intValue() == 0) {
-                    this.textView.setText(LocaleController.getString("NoVotes", C1010R.string.NoVotes));
+                    this.textView.setText(LocaleController.getString("NoVotes", C1072R.string.NoVotes));
                 } else {
                     this.textView.setText(LocaleController.formatPluralString("Vote", num.intValue(), new Object[0]));
                 }
@@ -177,13 +177,13 @@ public class HintView extends FrameLayout {
                 MessageObject messageObject = chatMessageCell.getMessageObject();
                 String str = this.overrideText;
                 if (str == null) {
-                    this.textView.setText(LocaleController.getString("HidAccount", C1010R.string.HidAccount));
+                    this.textView.setText(LocaleController.getString("HidAccount", C1072R.string.HidAccount));
                 } else {
                     this.textView.setText(str);
                 }
                 measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
                 TLRPC$User currentUser = chatMessageCell.getCurrentUser();
-                if (currentUser != null && currentUser.f986id == 0) {
+                if (currentUser != null && currentUser.f995id == 0) {
                     m35dp = i5 + ((chatMessageCell.getMeasuredHeight() - Math.max(0, chatMessageCell.getBottom() - view.getMeasuredHeight())) - AndroidUtilities.m35dp(50.0f));
                 } else {
                     m35dp = i5 + AndroidUtilities.m35dp(22.0f);
@@ -253,7 +253,7 @@ public class HintView extends FrameLayout {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.animatorSet = animatorSet2;
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f, 1.0f));
-                this.animatorSet.addListener(new C22771());
+                this.animatorSet.addListener(new C23711());
                 this.animatorSet.setDuration(300L);
                 this.animatorSet.start();
             } else {
@@ -264,8 +264,8 @@ public class HintView extends FrameLayout {
         return false;
     }
 
-    public class C22771 extends AnimatorListenerAdapter {
-        C22771() {
+    public class C23711 extends AnimatorListenerAdapter {
+        C23711() {
         }
 
         @Override
@@ -274,7 +274,7 @@ public class HintView extends FrameLayout {
             AndroidUtilities.runOnUIThread(HintView.this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    HintView.C22771.this.lambda$onAnimationEnd$0();
+                    HintView.C23711.this.lambda$onAnimationEnd$0();
                 }
             }, HintView.this.currentType == 0 ? 10000L : 2000L);
         }
@@ -309,7 +309,7 @@ public class HintView extends FrameLayout {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
             animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f, 1.0f));
-            this.animatorSet.addListener(new C22782());
+            this.animatorSet.addListener(new C23722());
             this.animatorSet.setDuration(300L);
             this.animatorSet.start();
         } else {
@@ -318,8 +318,8 @@ public class HintView extends FrameLayout {
         return true;
     }
 
-    public class C22782 extends AnimatorListenerAdapter {
-        C22782() {
+    public class C23722 extends AnimatorListenerAdapter {
+        C23722() {
         }
 
         @Override
@@ -328,7 +328,7 @@ public class HintView extends FrameLayout {
             AndroidUtilities.runOnUIThread(HintView.this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    HintView.C22782.this.lambda$onAnimationEnd$0();
+                    HintView.C23722.this.lambda$onAnimationEnd$0();
                 }
             }, HintView.this.showingDuration);
         }

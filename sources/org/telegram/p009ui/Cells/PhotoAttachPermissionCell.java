@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.LayoutHelper;
@@ -48,16 +48,16 @@ public class PhotoAttachPermissionCell extends FrameLayout {
 
     public void setType(int i) {
         if (i == 0) {
-            this.imageView.setImageResource(C1010R.C1011drawable.permissions_camera1);
-            this.imageView2.setImageResource(C1010R.C1011drawable.permissions_camera2);
-            this.textView.setText(LocaleController.getString("CameraPermissionText", C1010R.string.CameraPermissionText));
+            this.imageView.setImageResource(C1072R.C1073drawable.permissions_camera1);
+            this.imageView2.setImageResource(C1072R.C1073drawable.permissions_camera2);
+            this.textView.setText(LocaleController.getString("CameraPermissionText", C1072R.string.CameraPermissionText));
             this.imageView.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
             this.imageView2.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
             return;
         }
-        this.imageView.setImageResource(C1010R.C1011drawable.permissions_gallery1);
-        this.imageView2.setImageResource(C1010R.C1011drawable.permissions_gallery2);
-        this.textView.setText(LocaleController.getString("GalleryPermissionText", C1010R.string.GalleryPermissionText));
+        this.imageView.setImageResource(C1072R.C1073drawable.permissions_gallery1);
+        this.imageView2.setImageResource(C1072R.C1073drawable.permissions_gallery2);
+        this.textView.setText(LocaleController.getString("GalleryPermissionText", C1072R.string.GalleryPermissionText));
         this.imageView.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
         this.imageView2.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
     }

@@ -18,7 +18,7 @@ public class AudioRecordJNI {
     private int bufferSize;
     private long nativeInst;
     private boolean needResampling = false;
-    private NoiseSuppressor f839ns;
+    private NoiseSuppressor f848ns;
     private boolean running;
     private Thread thread;
 
@@ -66,9 +66,9 @@ public class AudioRecordJNI {
                 try {
                     if (NoiseSuppressor.isAvailable()) {
                         NoiseSuppressor create2 = NoiseSuppressor.create(this.audioRecord.getAudioSessionId());
-                        this.f839ns = create2;
+                        this.f848ns = create2;
                         if (create2 != null) {
-                            create2.setEnabled(Instance.getGlobalServerConfig().useSystemNs && isGoodAudioEffect(this.f839ns));
+                            create2.setEnabled(Instance.getGlobalServerConfig().useSystemNs && isGoodAudioEffect(this.f848ns));
                         }
                     } else {
                         VLog.m21w("NoiseSuppressor is not available on this device :(");
@@ -147,10 +147,10 @@ public class AudioRecordJNI {
             automaticGainControl.release();
             this.agc = null;
         }
-        NoiseSuppressor noiseSuppressor = this.f839ns;
+        NoiseSuppressor noiseSuppressor = this.f848ns;
         if (noiseSuppressor != null) {
             noiseSuppressor.release();
-            this.f839ns = null;
+            this.f848ns = null;
         }
         AcousticEchoCanceler acousticEchoCanceler = this.aec;
         if (acousticEchoCanceler != null) {
@@ -221,7 +221,7 @@ public class AudioRecordJNI {
     public int getEnabledEffectsMask() {
         AcousticEchoCanceler acousticEchoCanceler = this.aec;
         int i = (acousticEchoCanceler == null || !acousticEchoCanceler.getEnabled()) ? 0 : 1;
-        NoiseSuppressor noiseSuppressor = this.f839ns;
+        NoiseSuppressor noiseSuppressor = this.f848ns;
         return (noiseSuppressor == null || !noiseSuppressor.getEnabled()) ? i : i | 2;
     }
 

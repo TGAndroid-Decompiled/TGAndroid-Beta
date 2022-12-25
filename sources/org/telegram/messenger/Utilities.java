@@ -37,6 +37,10 @@ public class Utilities {
         void run(T t);
     }
 
+    public interface Callback2<T, T2> {
+        void run(T t, T2 t2);
+    }
+
     public static native void aesCbcEncryption(ByteBuffer byteBuffer, byte[] bArr, byte[] bArr2, int i, int i2, int i3);
 
     private static native void aesCbcEncryptionByteArray(byte[] bArr, byte[] bArr2, byte[] bArr3, int i, int i2, int i3, int i4);
@@ -62,6 +66,8 @@ public class Utilities {
     public static native void generateGradient(Bitmap bitmap, boolean z, int i, float f, int i2, int i3, int i4, int[] iArr);
 
     public static native long getDirSize(String str, int i, boolean z);
+
+    public static native long getLastUsageFileTime(String str);
 
     public static byte[] intToBytes(int i) {
         return new byte[]{(byte) (i >>> 24), (byte) (i >>> 16), (byte) (i >>> 8), (byte) i};
@@ -95,6 +101,19 @@ public class Utilities {
         } catch (Exception e) {
             FileLog.m31e(e);
         }
+    }
+
+    public static Bitmap stackBlurBitmapWithScaleFactor(Bitmap bitmap, float f) {
+        int max = (int) Math.max(AndroidUtilities.m35dp(20.0f), bitmap.getWidth() / f);
+        int max2 = (int) Math.max((AndroidUtilities.m35dp(20.0f) * bitmap.getHeight()) / bitmap.getWidth(), bitmap.getHeight() / f);
+        Bitmap createBitmap = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        canvas.save();
+        canvas.scale(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
+        canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
+        canvas.restore();
+        stackBlurBitmap(createBitmap, Math.max(8, Math.max(max, max2) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));
+        return createBitmap;
     }
 
     public static Bitmap blurWallpaper(Bitmap bitmap) {
@@ -215,7 +234,7 @@ public class Utilities {
 
     public static String bytesToHex(byte[] bArr) {
         if (bArr == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         char[] cArr = new char[bArr.length * 2];
         for (int i = 0; i < bArr.length; i++) {
@@ -467,6 +486,15 @@ public class Utilities {
             sb.append(RANDOM_STRING_CHARS.charAt(fastRandom.nextInt(62)));
         }
         return sb.toString();
+    }
+
+    public static String getExtension(String str) {
+        int lastIndexOf = str.lastIndexOf(46);
+        String substring = lastIndexOf != -1 ? str.substring(lastIndexOf + 1) : null;
+        if (substring == null) {
+            return null;
+        }
+        return substring.toUpperCase();
     }
 
     public static <Key, Value> Value getOrDefault(HashMap<Key, Value> hashMap, Key key, Value value) {

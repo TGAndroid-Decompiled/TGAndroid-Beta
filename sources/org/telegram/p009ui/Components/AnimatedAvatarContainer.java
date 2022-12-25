@@ -5,7 +5,7 @@ import android.os.Build;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 
 public class AnimatedAvatarContainer extends FrameLayout {
@@ -54,7 +54,7 @@ public class AnimatedAvatarContainer extends FrameLayout {
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int currentActionBarHeight = ((C1069ActionBar.getCurrentActionBarHeight() - AndroidUtilities.m35dp(42.0f)) / 2) + ((Build.VERSION.SDK_INT < 21 || !this.occupyStatusBar) ? 0 : AndroidUtilities.statusBarHeight);
+        int currentActionBarHeight = ((C1133ActionBar.getCurrentActionBarHeight() - AndroidUtilities.m35dp(42.0f)) / 2) + ((Build.VERSION.SDK_INT < 21 || !this.occupyStatusBar) ? 0 : AndroidUtilities.statusBarHeight);
         int i5 = this.leftPadding;
         if (this.subtitleTextView.getVisibility() != 8) {
             this.titleTextView.layout(i5, (AndroidUtilities.m35dp(1.0f) + currentActionBarHeight) - this.titleTextView.getPaddingTop(), this.titleTextView.getMeasuredWidth() + i5, (((this.titleTextView.getTextHeight() + currentActionBarHeight) + AndroidUtilities.m35dp(1.3f)) - this.titleTextView.getPaddingTop()) + this.titleTextView.getPaddingBottom());

@@ -10,8 +10,8 @@ public final class AlertsCreator$$ExternalSyntheticLambda117 implements NumberPi
 
     @Override
     public final String format(int i) {
-        String lambda$createStatusUntilDatePickerDialog$65;
-        lambda$createStatusUntilDatePickerDialog$65 = AlertsCreator.lambda$createStatusUntilDatePickerDialog$65(i);
-        return lambda$createStatusUntilDatePickerDialog$65;
+        String lambda$createTTLAlert$115;
+        lambda$createTTLAlert$115 = AlertsCreator.lambda$createTTLAlert$115(i);
+        return lambda$createTTLAlert$115;
     }
 }

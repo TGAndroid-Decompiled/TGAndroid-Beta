@@ -5,13 +5,13 @@ public class TLRPC$TL_chatEmpty extends TLRPC$Chat {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f848id = abstractSerializedData.readInt64(z);
+        this.f857id = abstractSerializedData.readInt64(z);
         this.title = "DELETED";
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f848id);
+        abstractSerializedData.writeInt64(this.f857id);
     }
 }

@@ -33,8 +33,7 @@ import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LanguageDetector;
@@ -657,7 +656,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this.textSelectionOverlay.getContext());
                 this.popupLayout = actionBarPopupWindowLayout;
                 actionBarPopupWindowLayout.setPadding(AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(1.0f));
-                this.popupLayout.setBackgroundDrawable(this.textSelectionOverlay.getContext().getResources().getDrawable(C1010R.C1011drawable.menu_copy));
+                this.popupLayout.setBackgroundDrawable(this.textSelectionOverlay.getContext().getResources().getDrawable(C1072R.C1073drawable.menu_copy));
                 this.popupLayout.setAnimationEnabled(false);
                 this.popupLayout.setOnTouchListener(new View.OnTouchListener() {
                     @Override
@@ -687,7 +686,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.popupLayout, -2, -2);
                 this.popupWindow = actionBarPopupWindow;
                 actionBarPopupWindow.setAnimationEnabled(false);
-                this.popupWindow.setAnimationStyle(C1010R.style.PopupContextAnimation);
+                this.popupWindow.setAnimationStyle(C1072R.style.PopupContextAnimation);
                 this.popupWindow.setOutsideTouchable(true);
                 ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = this.popupLayout;
                 if (actionBarPopupWindowLayout2 != null) {
@@ -1075,17 +1074,17 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         }
     }
 
-    public class ActionMode$CallbackC13734 implements ActionMode.Callback {
+    public class ActionMode$CallbackC14564 implements ActionMode.Callback {
         private String translateFromLanguage = null;
 
-        ActionMode$CallbackC13734() {
+        ActionMode$CallbackC14564() {
         }
 
         @Override
         public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
             menu.add(0, 16908321, 0, 17039361);
             menu.add(0, 16908319, 1, 17039373);
-            menu.add(0, 3, 2, LocaleController.getString("TranslateMessage", C1010R.string.TranslateMessage));
+            menu.add(0, 3, 2, LocaleController.getString("TranslateMessage", C1072R.string.TranslateMessage));
             return true;
         }
 
@@ -1106,12 +1105,12 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 LanguageDetector.detectLanguage(TextSelectionHelper.this.getSelectedText().toString(), new LanguageDetector.StringCallback() {
                     @Override
                     public final void run(String str) {
-                        TextSelectionHelper.ActionMode$CallbackC13734.this.lambda$onPrepareActionMode$0(menu, str);
+                        TextSelectionHelper.ActionMode$CallbackC14564.this.lambda$onPrepareActionMode$0(menu, str);
                     }
                 }, new LanguageDetector.ExceptionCallback() {
                     @Override
                     public final void run(Exception exc) {
-                        TextSelectionHelper.ActionMode$CallbackC13734.this.lambda$onPrepareActionMode$1(menu, exc);
+                        TextSelectionHelper.ActionMode$CallbackC14564.this.lambda$onPrepareActionMode$1(menu, exc);
                     }
                 });
             } else {
@@ -1147,7 +1146,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                         TextSelectionHelper.this.onTranslateListener.run(TextSelectionHelper.this.getSelectedText(), this.translateFromLanguage, LocaleController.getInstance().getCurrentLocale().getLanguage(), new Runnable() {
                             @Override
                             public final void run() {
-                                TextSelectionHelper.ActionMode$CallbackC13734.this.lambda$onActionItemClicked$2();
+                                TextSelectionHelper.ActionMode$CallbackC14564.this.lambda$onActionItemClicked$2();
                             }
                         });
                     }
@@ -1191,26 +1190,26 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
     }
 
     private ActionMode.Callback createActionCallback() {
-        final ActionMode$CallbackC13734 actionMode$CallbackC13734 = new ActionMode$CallbackC13734();
+        final ActionMode$CallbackC14564 actionMode$CallbackC14564 = new ActionMode$CallbackC14564();
         return Build.VERSION.SDK_INT >= 23 ? new ActionMode.Callback2() {
             @Override
             public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-                return actionMode$CallbackC13734.onCreateActionMode(actionMode, menu);
+                return actionMode$CallbackC14564.onCreateActionMode(actionMode, menu);
             }
 
             @Override
             public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-                return actionMode$CallbackC13734.onPrepareActionMode(actionMode, menu);
+                return actionMode$CallbackC14564.onPrepareActionMode(actionMode, menu);
             }
 
             @Override
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-                return actionMode$CallbackC13734.onActionItemClicked(actionMode, menuItem);
+                return actionMode$CallbackC14564.onActionItemClicked(actionMode, menuItem);
             }
 
             @Override
             public void onDestroyActionMode(ActionMode actionMode) {
-                actionMode$CallbackC13734.onDestroyActionMode(actionMode);
+                actionMode$CallbackC14564.onDestroyActionMode(actionMode);
             }
 
             @Override
@@ -1242,7 +1241,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     rect.set(Math.min(i, width), i2, Math.max(i, width), i2 + 1);
                 }
             }
-        } : actionMode$CallbackC13734;
+        } : actionMode$CallbackC14564;
     }
 
     public void copyText() {
@@ -1858,7 +1857,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             } else {
                 i = this.startPeek ? this.startViewChildPosition : this.endViewChildPosition;
             }
-            return (this.arrayList.isEmpty() || i < 0) ? BuildConfig.APP_CENTER_HASH : this.arrayList.get(i).getLayout().getText();
+            return (this.arrayList.isEmpty() || i < 0) ? "" : this.arrayList.get(i).getLayout().getText();
         }
 
         @Override

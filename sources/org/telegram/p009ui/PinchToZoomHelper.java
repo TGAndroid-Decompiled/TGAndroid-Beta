@@ -23,7 +23,7 @@ import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
 import com.google.android.exoplayer2.p004ui.AspectRatioFrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -171,7 +171,7 @@ public class PinchToZoomHelper {
             this.isHardwareVideo = true;
             MediaController.getInstance().setTextureView(this.overlayView.videoTextureView, this.overlayView.aspectRatioFrameLayout, this.overlayView.videoPlayerContainer, true);
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.overlayView.videoPlayerContainer.getLayoutParams();
-            this.overlayView.videoPlayerContainer.setTag(C1010R.C1012id.parent_tag, imageReceiver);
+            this.overlayView.videoPlayerContainer.setTag(C1072R.C1074id.parent_tag, imageReceiver);
             if (layoutParams.width != imageReceiver.getImageWidth() || layoutParams.height != imageReceiver.getImageHeight()) {
                 this.overlayView.aspectRatioFrameLayout.setResizeMode(3);
                 layoutParams.width = (int) imageReceiver.getImageWidth();
@@ -381,7 +381,7 @@ public class PinchToZoomHelper {
                     @Override
                     @TargetApi(21)
                     public void getOutline(View view, Outline outline) {
-                        ImageReceiver imageReceiver = (ImageReceiver) view.getTag(C1010R.C1012id.parent_tag);
+                        ImageReceiver imageReceiver = (ImageReceiver) view.getTag(C1072R.C1074id.parent_tag);
                         if (imageReceiver != null) {
                             int[] roundRadius = imageReceiver.getRoundRadius();
                             int i = 0;
@@ -408,7 +408,7 @@ public class PinchToZoomHelper {
                     protected void onSizeChanged(int i, int i2, int i3, int i4) {
                         super.onSizeChanged(i, i2, i3, i4);
                         ZoomOverlayView.this.aspectPath.reset();
-                        ImageReceiver imageReceiver = (ImageReceiver) getTag(C1010R.C1012id.parent_tag);
+                        ImageReceiver imageReceiver = (ImageReceiver) getTag(C1072R.C1074id.parent_tag);
                         if (imageReceiver == null) {
                             float f = i / 2;
                             ZoomOverlayView.this.aspectPath.addCircle(f, i2 / 2, f, Path.Direction.CW);

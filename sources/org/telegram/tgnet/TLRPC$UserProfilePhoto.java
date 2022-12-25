@@ -9,6 +9,7 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
     public int dc_id;
     public int flags;
     public boolean has_video;
+    public boolean personal;
     public TLRPC$FileLocation photo_big;
     public long photo_id;
     public TLRPC$FileLocation photo_small;

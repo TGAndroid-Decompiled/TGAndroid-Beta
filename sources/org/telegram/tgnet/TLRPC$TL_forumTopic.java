@@ -14,9 +14,9 @@ public class TLRPC$TL_forumTopic extends TLRPC$ForumTopic {
     public boolean hidden;
     public int icon_color;
     public long icon_emoji_id;
-    public int f901id;
+    public int f910id;
     public boolean isShort;
-    public boolean f902my;
+    public boolean f911my;
     public TLRPC$PeerNotifySettings notify_settings;
     public boolean pinned;
     public int pinnedOrder;
@@ -54,12 +54,12 @@ public class TLRPC$TL_forumTopic extends TLRPC$ForumTopic {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        this.f902my = (readInt32 & 2) != 0;
+        this.f911my = (readInt32 & 2) != 0;
         this.closed = (readInt32 & 4) != 0;
         this.pinned = (readInt32 & 8) != 0;
         this.isShort = (readInt32 & 32) != 0;
         this.hidden = (readInt32 & 64) != 0;
-        this.f901id = abstractSerializedData.readInt32(z);
+        this.f910id = abstractSerializedData.readInt32(z);
         this.date = abstractSerializedData.readInt32(z);
         this.title = abstractSerializedData.readString(z);
         this.icon_color = abstractSerializedData.readInt32(z);
@@ -82,7 +82,7 @@ public class TLRPC$TL_forumTopic extends TLRPC$ForumTopic {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        int i = this.f902my ? this.flags | 2 : this.flags & (-3);
+        int i = this.f911my ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.closed ? i | 4 : i & (-5);
         this.flags = i2;
@@ -93,7 +93,7 @@ public class TLRPC$TL_forumTopic extends TLRPC$ForumTopic {
         int i5 = this.hidden ? i4 | 64 : i4 & (-65);
         this.flags = i5;
         abstractSerializedData.writeInt32(i5);
-        abstractSerializedData.writeInt32(this.f901id);
+        abstractSerializedData.writeInt32(this.f910id);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeString(this.title);
         abstractSerializedData.writeInt32(this.icon_color);

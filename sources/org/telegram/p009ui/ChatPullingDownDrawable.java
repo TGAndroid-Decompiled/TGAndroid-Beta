@@ -17,7 +17,7 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -104,21 +104,21 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     public void updateDialog() {
         TLRPC$Dialog nextUnreadDialog = getNextUnreadDialog(this.currentDialog, this.folderId, this.filterId, true, this.params);
         if (nextUnreadDialog != null) {
-            this.nextDialogId = nextUnreadDialog.f854id;
+            this.nextDialogId = nextUnreadDialog.f863id;
             int[] iArr = this.params;
             this.drawFolderBackground = iArr[0] == 1;
             this.dialogFolderId = iArr[1];
             this.dialogFilterId = iArr[2];
             this.emptyStub = false;
-            TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-nextUnreadDialog.f854id));
+            TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-nextUnreadDialog.f863id));
             this.nextChat = chat;
             if (chat == null) {
-                MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(nextUnreadDialog.f854id));
+                MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(nextUnreadDialog.f863id));
             }
             AvatarDrawable avatarDrawable = new AvatarDrawable();
             avatarDrawable.setInfo(this.nextChat);
             this.imageReceiver.setImage(ImageLocation.getForChat(this.nextChat, 1), "50_50", avatarDrawable, null, UserConfig.getInstance(0).getCurrentUser(), 0);
-            MessagesController.getInstance(this.currentAccount).ensureMessagesLoaded(nextUnreadDialog.f854id, 0, null);
+            MessagesController.getInstance(this.currentAccount).ensureMessagesLoaded(nextUnreadDialog.f863id, 0, null);
             this.counterDrawable.setCount(nextUnreadDialog.unread_count, false);
             return;
         }
@@ -135,21 +135,21 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             this.circleRadius = AndroidUtilities.m35dp(56.0f) / 2.0f;
             this.lastWidth = i;
             TLRPC$Chat tLRPC$Chat = this.nextChat;
-            String string3 = tLRPC$Chat != null ? tLRPC$Chat.title : LocaleController.getString("SwipeToGoNextChannelEnd", C1010R.string.SwipeToGoNextChannelEnd);
+            String string3 = tLRPC$Chat != null ? tLRPC$Chat.title : LocaleController.getString("SwipeToGoNextChannelEnd", C1072R.string.SwipeToGoNextChannelEnd);
             int measureText = (int) this.textPaint.measureText(string3);
             this.chatNameWidth = measureText;
             this.chatNameWidth = Math.min(measureText, this.lastWidth - AndroidUtilities.m35dp(60.0f));
             this.chatNameLayout = new StaticLayout(string3, this.textPaint, this.chatNameWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             boolean z = this.drawFolderBackground;
             if (z && (i2 = this.dialogFolderId) != this.folderId && i2 != 0) {
-                string = LocaleController.getString("SwipeToGoNextArchive", C1010R.string.SwipeToGoNextArchive);
-                string2 = LocaleController.getString("ReleaseToGoNextArchive", C1010R.string.ReleaseToGoNextArchive);
+                string = LocaleController.getString("SwipeToGoNextArchive", C1072R.string.SwipeToGoNextArchive);
+                string2 = LocaleController.getString("ReleaseToGoNextArchive", C1072R.string.ReleaseToGoNextArchive);
             } else if (z) {
-                string = LocaleController.getString("SwipeToGoNextFolder", C1010R.string.SwipeToGoNextFolder);
-                string2 = LocaleController.getString("ReleaseToGoNextFolder", C1010R.string.ReleaseToGoNextFolder);
+                string = LocaleController.getString("SwipeToGoNextFolder", C1072R.string.SwipeToGoNextFolder);
+                string2 = LocaleController.getString("ReleaseToGoNextFolder", C1072R.string.ReleaseToGoNextFolder);
             } else {
-                string = LocaleController.getString("SwipeToGoNextChannel", C1010R.string.SwipeToGoNextChannel);
-                string2 = LocaleController.getString("ReleaseToGoNextChannel", C1010R.string.ReleaseToGoNextChannel);
+                string = LocaleController.getString("SwipeToGoNextChannel", C1072R.string.SwipeToGoNextChannel);
+                string2 = LocaleController.getString("ReleaseToGoNextChannel", C1072R.string.ReleaseToGoNextChannel);
             }
             String str = string;
             String str2 = string2;
@@ -561,15 +561,15 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         }
         for (int i3 = 0; i3 < dialogs.size(); i3++) {
             TLRPC$Dialog tLRPC$Dialog = dialogs.get(i3);
-            TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-tLRPC$Dialog.f854id));
-            if (chat != null && tLRPC$Dialog.f854id != j && tLRPC$Dialog.unread_count > 0 && DialogObject.isChannel(tLRPC$Dialog) && !chat.megagroup && !messagesController.isPromoDialog(tLRPC$Dialog.f854id, false) && MessagesController.getRestrictionReason(chat.restriction_reason) == null) {
+            TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-tLRPC$Dialog.f863id));
+            if (chat != null && tLRPC$Dialog.f863id != j && tLRPC$Dialog.unread_count > 0 && DialogObject.isChannel(tLRPC$Dialog) && !chat.megagroup && !messagesController.isPromoDialog(tLRPC$Dialog.f863id, false) && MessagesController.getRestrictionReason(chat.restriction_reason) == null) {
                 return tLRPC$Dialog;
             }
         }
         if (z) {
             if (i2 != 0) {
                 for (int i4 = 0; i4 < messagesController.dialogFilters.size(); i4++) {
-                    int i5 = messagesController.dialogFilters.get(i4).f810id;
+                    int i5 = messagesController.dialogFilters.get(i4).f819id;
                     if (i2 != i5 && (nextUnreadDialog2 = getNextUnreadDialog(j, i, i5, false, iArr)) != null) {
                         if (iArr != null) {
                             iArr[0] = 1;
@@ -592,7 +592,7 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     }
 
     public long getChatId() {
-        return this.nextChat.f848id;
+        return this.nextChat.f857id;
     }
 
     public void drawBottomPanel(android.graphics.Canvas r17, int r18, int r19, int r20) {

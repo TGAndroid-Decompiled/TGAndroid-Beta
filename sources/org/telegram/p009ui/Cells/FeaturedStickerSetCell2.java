@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -76,7 +76,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout {
         addView(backupImageView, LayoutHelper.createFrame(48, 48.0f, (z3 ? 5 : 3) | 48, z3 ? 0.0f : 12.0f, 8.0f, z3 ? 12.0f : 0.0f, 0.0f));
         ProgressButton progressButton = new ProgressButton(context);
         this.addButton = progressButton;
-        progressButton.setText(LocaleController.getString("Add", C1010R.string.Add));
+        progressButton.setText(LocaleController.getString("Add", C1072R.string.Add));
         progressButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         addView(progressButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
         TextView textView3 = new TextView(context);
@@ -85,12 +85,12 @@ public class FeaturedStickerSetCell2 extends FrameLayout {
         textView3.setTextColor(Theme.getColor("featuredStickers_removeButtonText"));
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView3.setText(LocaleController.getString("StickersRemove", C1010R.string.StickersRemove));
+        textView3.setText(LocaleController.getString("StickersRemove", C1072R.string.StickersRemove));
         addView(textView3, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f));
         PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.m35dp(4.0f), false);
         this.unlockButton = premiumButtonView;
-        premiumButtonView.setIcon(C1010R.raw.unlock_icon);
-        premiumButtonView.setButton(LocaleController.getString("Unlock", C1010R.string.Unlock), new View.OnClickListener() {
+        premiumButtonView.setIcon(C1072R.raw.unlock_icon);
+        premiumButtonView.setButton(LocaleController.getString("Unlock", C1072R.string.Unlock), new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 FeaturedStickerSetCell2.this.lambda$new$0(view);

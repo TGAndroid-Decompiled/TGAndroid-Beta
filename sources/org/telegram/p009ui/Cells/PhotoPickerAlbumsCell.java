@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.MediaController;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.BackupImageView;
@@ -28,7 +28,7 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
         void didSelectAlbum(MediaController.AlbumEntry albumEntry);
     }
 
-    private class AlbumView extends FrameLayout {
+    public class AlbumView extends FrameLayout {
         private TextView countTextView;
         private BackupImageView imageView;
         private TextView nameTextView;
@@ -41,7 +41,7 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
             addView(backupImageView, LayoutHelper.createFrame(-1, -1.0f));
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(0);
-            linearLayout.setBackgroundResource(C1010R.C1011drawable.album_shadow);
+            linearLayout.setBackgroundResource(C1072R.C1073drawable.album_shadow);
             addView(linearLayout, LayoutHelper.createFrame(-1, 60, 83));
             TextView textView = new TextView(context);
             this.nameTextView = textView;

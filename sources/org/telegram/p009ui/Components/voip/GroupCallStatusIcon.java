@@ -4,8 +4,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.p009ui.Components.RLottieDrawable;
@@ -88,10 +87,10 @@ public class GroupCallStatusIcon {
     }
 
     public GroupCallStatusIcon() {
-        int i = C1010R.raw.voice_mini;
-        this.micDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(24.0f), true, null);
-        int i2 = C1010R.raw.hand_2;
-        this.shakeHandDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.m35dp(15.0f), AndroidUtilities.m35dp(15.0f), true, null);
+        int i = C1072R.raw.voice_mini;
+        this.micDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(24.0f), true, null);
+        int i2 = C1072R.raw.hand_2;
+        this.shakeHandDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(15.0f), AndroidUtilities.m35dp(15.0f), true, null);
     }
 
     public void lambda$new$2() {

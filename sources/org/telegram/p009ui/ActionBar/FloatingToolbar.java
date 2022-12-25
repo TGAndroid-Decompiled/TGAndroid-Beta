@@ -45,7 +45,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -276,16 +276,16 @@ public final class FloatingToolbar {
             this.mFastOutSlowInInterpolator = AnimationUtils.loadInterpolator(context, 17563661);
             this.mLinearOutSlowInInterpolator = AnimationUtils.loadInterpolator(context, 17563662);
             this.mFastOutLinearInInterpolator = AnimationUtils.loadInterpolator(context, 17563663);
-            Drawable mutate = context.getDrawable(C1010R.C1011drawable.ft_avd_tooverflow).mutate();
+            Drawable mutate = context.getDrawable(C1072R.C1073drawable.ft_avd_tooverflow).mutate();
             this.mArrow = mutate;
             mutate.setAutoMirrored(true);
-            Drawable mutate2 = context.getDrawable(C1010R.C1011drawable.ft_avd_toarrow).mutate();
+            Drawable mutate2 = context.getDrawable(C1072R.C1073drawable.ft_avd_toarrow).mutate();
             this.mOverflow = mutate2;
             mutate2.setAutoMirrored(true);
-            AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) context.getDrawable(C1010R.C1011drawable.ft_avd_toarrow_animation).mutate();
+            AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) context.getDrawable(C1072R.C1073drawable.ft_avd_toarrow_animation).mutate();
             this.mToArrow = animatedVectorDrawable;
             animatedVectorDrawable.setAutoMirrored(true);
-            AnimatedVectorDrawable animatedVectorDrawable2 = (AnimatedVectorDrawable) context.getDrawable(C1010R.C1011drawable.ft_avd_tooverflow_animation).mutate();
+            AnimatedVectorDrawable animatedVectorDrawable2 = (AnimatedVectorDrawable) context.getDrawable(C1072R.C1073drawable.ft_avd_tooverflow_animation).mutate();
             this.mToOverflow = animatedVectorDrawable2;
             animatedVectorDrawable2.setAutoMirrored(true);
             ImageButton createOverflowButton = createOverflowButton();
@@ -302,12 +302,12 @@ public final class FloatingToolbar {
             this.mCloseOverflowAnimation = animationSet2;
             animationSet2.setAnimationListener(createOverflowAnimationListener);
             this.mShowAnimation = FloatingToolbar.createEnterAnimation(createContentContainer);
-            this.mDismissAnimation = FloatingToolbar.createExitAnimation(createContentContainer, ImageReceiver.DEFAULT_CROSSFADE_DURATION, new C11463(FloatingToolbar.this));
-            this.mHideAnimation = FloatingToolbar.createExitAnimation(createContentContainer, 0, new C11474(FloatingToolbar.this));
+            this.mDismissAnimation = FloatingToolbar.createExitAnimation(createContentContainer, ImageReceiver.DEFAULT_CROSSFADE_DURATION, new C12113(FloatingToolbar.this));
+            this.mHideAnimation = FloatingToolbar.createExitAnimation(createContentContainer, 0, new C12124(FloatingToolbar.this));
         }
 
-        public class C11463 extends AnimatorListenerAdapter {
-            C11463(FloatingToolbar floatingToolbar) {
+        public class C12113 extends AnimatorListenerAdapter {
+            C12113(FloatingToolbar floatingToolbar) {
             }
 
             @Override
@@ -315,7 +315,7 @@ public final class FloatingToolbar {
                 NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new Runnable() {
                     @Override
                     public final void run() {
-                        FloatingToolbar.FloatingToolbarPopup.C11463.this.lambda$onAnimationEnd$0();
+                        FloatingToolbar.FloatingToolbarPopup.C12113.this.lambda$onAnimationEnd$0();
                     }
                 });
             }
@@ -326,8 +326,8 @@ public final class FloatingToolbar {
             }
         }
 
-        public class C11474 extends AnimatorListenerAdapter {
-            C11474(FloatingToolbar floatingToolbar) {
+        public class C12124 extends AnimatorListenerAdapter {
+            C12124(FloatingToolbar floatingToolbar) {
             }
 
             @Override
@@ -335,7 +335,7 @@ public final class FloatingToolbar {
                 NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new Runnable() {
                     @Override
                     public final void run() {
-                        FloatingToolbar.FloatingToolbarPopup.C11474.this.lambda$onAnimationEnd$0();
+                        FloatingToolbar.FloatingToolbarPopup.C12124.this.lambda$onAnimationEnd$0();
                     }
                 });
             }
@@ -619,7 +619,7 @@ public final class FloatingToolbar {
                 this.mOverflowPanel.setAlpha(1.0f);
                 this.mOverflowPanel.setVisibility(0);
                 this.mOverflowButton.setImageDrawable(this.mArrow);
-                this.mOverflowButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C1010R.string.AccDescrMoreOptions));
+                this.mOverflowButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C1072R.string.AccDescrMoreOptions));
                 if (isInRTLMode()) {
                     this.mContentContainer.setX(this.mMarginHorizontal);
                     this.mMainPanel.setX(0.0f);
@@ -651,7 +651,7 @@ public final class FloatingToolbar {
             this.mOverflowPanel.setAlpha(0.0f);
             this.mOverflowPanel.setVisibility(4);
             this.mOverflowButton.setImageDrawable(this.mOverflow);
-            this.mOverflowButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C1010R.string.AccDescrMoreOptions));
+            this.mOverflowButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C1072R.string.AccDescrMoreOptions));
             if (hasOverflow()) {
                 if (isInRTLMode()) {
                     this.mContentContainer.setX(this.mMarginHorizontal);
@@ -991,12 +991,12 @@ public final class FloatingToolbar {
             return (this.mOpenOverflowAnimation.hasStarted() && !this.mOpenOverflowAnimation.hasEnded()) || (this.mCloseOverflowAnimation.hasStarted() && !this.mCloseOverflowAnimation.hasEnded());
         }
 
-        public class animationAnimation$AnimationListenerC114413 implements Animation.AnimationListener {
+        public class animationAnimation$AnimationListenerC120913 implements Animation.AnimationListener {
             @Override
             public void onAnimationRepeat(Animation animation) {
             }
 
-            animationAnimation$AnimationListenerC114413() {
+            animationAnimation$AnimationListenerC120913() {
             }
 
             @Override
@@ -1011,7 +1011,7 @@ public final class FloatingToolbar {
                 FloatingToolbarPopup.this.mContentContainer.post(new Runnable() {
                     @Override
                     public final void run() {
-                        FloatingToolbar.FloatingToolbarPopup.animationAnimation$AnimationListenerC114413.this.lambda$onAnimationEnd$0();
+                        FloatingToolbar.FloatingToolbarPopup.animationAnimation$AnimationListenerC120913.this.lambda$onAnimationEnd$0();
                     }
                 });
             }
@@ -1023,7 +1023,7 @@ public final class FloatingToolbar {
         }
 
         private Animation.AnimationListener createOverflowAnimationListener() {
-            return new animationAnimation$AnimationListenerC114413();
+            return new animationAnimation$AnimationListenerC120913();
         }
 
         private Size measure(View view) {

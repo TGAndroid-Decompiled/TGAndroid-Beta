@@ -1991,7 +1991,6 @@
     <string name="KMetersShort">%1$s km</string>
     <string name="KeepMedia">Media bewaren</string>
     <string name="KeepMediaForever">Voor altijd</string>
-    <string name="KeepMediaInfo">Foto\'s, video\'s en andere bestanden uit cloudchats die je gedurende deze periode niet hebt **geopend** zullen worden verwijderd van dit apparaat om ruimte te besparen.\n\nAlle media zal in de Telegram-cloud bewaard blijven en kan opnieuw worden gedownload als je het weer nodig hebt.</string>
     <string name="KickFromBroadcast">Verwijder van verzendlijst</string>
     <string name="KickFromGroup">Verwijderen uit groep</string>
     <string name="Km">km</string>
@@ -3131,7 +3130,6 @@
     <string name="PrivacyPolicyUrl">https://telegram.org/privacy</string>
     <string name="PrivacyProfilePhoto">Profielfoto\'s</string>
     <string name="PrivacyProfilePhotoInfo">Je kunt nauwkeurig beperken wie je profielfoto kan zien.</string>
-    <string name="PrivacyProfilePhotoInfo2">Je kunt gebruikers of groepen toevoegen als uitzondering op de instelling hierboven.</string>
     <string name="PrivacyProfilePhotoTitle">Wie kan mijn profielfotos en -video\'s zien?</string>
     <string name="PrivacySettings">Privacy en veiligheid</string>
     <string name="PrivacySettingsChangedAlert">Je hebt privacyinstellingen aangepast. Wijzigingen toepassen?</string>

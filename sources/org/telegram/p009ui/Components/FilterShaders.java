@@ -13,7 +13,6 @@ import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
@@ -730,7 +729,7 @@ public class FilterShaders {
             return false;
         }
         boolean z = this.isVideo;
-        String str3 = z ? "#extension GL_OES_EGL_image_external : require" : BuildConfig.APP_CENTER_HASH;
+        String str3 = z ? "#extension GL_OES_EGL_image_external : require" : "";
         String str4 = z ? "samplerExternalOES" : "sampler2D";
         int loadShader8 = loadShader(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 texCoord;void main() {gl_Position = position;texCoord = inputTexCoord;}");
         int loadShader9 = loadShader(35632, "varying highp vec2 texCoord;uniform sampler2D sourceImage;uniform sampler2D inputImageTexture2;uniform lowp float excludeSize;uniform lowp vec2 excludePoint;uniform lowp float excludeBlurSize;uniform highp float angle;uniform highp float aspectRatio;void main() {lowp vec4 sharpImageColor = texture2D(sourceImage, texCoord);lowp vec4 blurredImageColor = texture2D(inputImageTexture2, texCoord);highp vec2 texCoordToUse = vec2(texCoord.x, (texCoord.y * aspectRatio + 0.5 - 0.5 * aspectRatio));highp float distanceFromCenter = abs((texCoordToUse.x - excludePoint.x) * aspectRatio * cos(angle) + (texCoordToUse.y - excludePoint.y) * sin(angle));gl_FragColor = mix(sharpImageColor, blurredImageColor, smoothstep(excludeSize - excludeBlurSize, excludeSize, distanceFromCenter));}");
@@ -934,7 +933,7 @@ public class FilterShaders {
             } else {
                 str2 = str5;
                 int loadShader21 = loadShader(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 texCoord;void main() {gl_Position = position;texCoord = inputTexCoord;}");
-                loadShader3 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision highp float;varying vec2 texCoord;uniform %2$s sourceImage;vec3 rgb_to_hsv(vec3 c) {vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);vec4 p = c.g < c.b ? vec4(c.bg, K.wz) : vec4(c.gb, K.xy);vec4 q = c.r < p.x ? vec4(p.xyw, c.r) : vec4(c.r, p.yzx);float d = q.x - min(q.w, q.y);float e = 1.0e-10;return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);}void main() {vec4 texel = texture2D(sourceImage, texCoord);gl_FragColor = vec4(rgb_to_hsv(texel.rgb), texel.a);}", BuildConfig.APP_CENTER_HASH, "sampler2D"));
+                loadShader3 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision highp float;varying vec2 texCoord;uniform %2$s sourceImage;vec3 rgb_to_hsv(vec3 c) {vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);vec4 p = c.g < c.b ? vec4(c.bg, K.wz) : vec4(c.gb, K.xy);vec4 q = c.r < p.x ? vec4(p.xyw, c.r) : vec4(c.r, p.yzx);float d = q.x - min(q.w, q.y);float e = 1.0e-10;return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);}void main() {vec4 texel = texture2D(sourceImage, texCoord);gl_FragColor = vec4(rgb_to_hsv(texel.rgb), texel.a);}", "", "sampler2D"));
                 i = loadShader21;
             }
             if (i == 0 || loadShader3 == 0) {
@@ -1319,7 +1318,7 @@ public class FilterShaders {
             GLES20.glUniform1f(this.radialBlurExcludeSizeHandle, this.delegate.getBlurExcludeSize());
             GLES20.glUniform1f(this.radialBlurExcludeBlurSizeHandle, this.delegate.getBlurExcludeBlurSize());
             Point blurExcludePoint = this.delegate.getBlurExcludePoint();
-            GLES20.glUniform2f(this.radialBlurExcludePointHandle, blurExcludePoint.f1087x, blurExcludePoint.f1088y);
+            GLES20.glUniform2f(this.radialBlurExcludePointHandle, blurExcludePoint.f1103x, blurExcludePoint.f1104y);
             GLES20.glUniform1f(this.radialBlurAspectRatioHandle, this.renderBufferHeight / this.renderBufferWidth);
             GLES20.glEnableVertexAttribArray(this.radialBlurInputTexCoordHandle);
             GLES20.glVertexAttribPointer(this.radialBlurInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
@@ -1333,7 +1332,7 @@ public class FilterShaders {
             GLES20.glUniform1f(this.linearBlurExcludeBlurSizeHandle, this.delegate.getBlurExcludeBlurSize());
             GLES20.glUniform1f(this.linearBlurAngleHandle, this.delegate.getBlurAngle());
             Point blurExcludePoint2 = this.delegate.getBlurExcludePoint();
-            GLES20.glUniform2f(this.linearBlurExcludePointHandle, blurExcludePoint2.f1087x, blurExcludePoint2.f1088y);
+            GLES20.glUniform2f(this.linearBlurExcludePointHandle, blurExcludePoint2.f1103x, blurExcludePoint2.f1104y);
             GLES20.glUniform1f(this.linearBlurAspectRatioHandle, this.renderBufferHeight / this.renderBufferWidth);
             GLES20.glEnableVertexAttribArray(this.linearBlurInputTexCoordHandle);
             GLES20.glVertexAttribPointer(this.linearBlurInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);

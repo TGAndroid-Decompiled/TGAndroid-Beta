@@ -12,8 +12,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -99,7 +98,7 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
                 this.fileName = "name";
             }
             int lastIndexOf = this.fileName.lastIndexOf(46);
-            String upperCase = lastIndexOf == -1 ? BuildConfig.APP_CENTER_HASH : this.fileName.substring(lastIndexOf + 1).toUpperCase();
+            String upperCase = lastIndexOf == -1 ? "" : this.fileName.substring(lastIndexOf + 1).toUpperCase();
             this.ext = upperCase;
             if (((int) Math.ceil(docPaint.measureText(upperCase))) > AndroidUtilities.m35dp(40.0f)) {
                 this.ext = TextUtils.ellipsize(this.ext, docPaint, AndroidUtilities.m35dp(40.0f), TextUtils.TruncateAt.END).toString();
@@ -148,14 +147,14 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
         canvas.drawText(this.fileName, (width - ((int) Math.ceil(namePaint.measureText(this.fileName)))) / 2, AndroidUtilities.m35dp(96.0f) + m35dp2, namePaint);
         canvas.drawText(this.fileSize, (width - ((int) Math.ceil(sizePaint.measureText(this.fileSize)))) / 2, AndroidUtilities.m35dp(125.0f) + m35dp2, sizePaint);
         if (this.loaded) {
-            string = LocaleController.getString("OpenFile", C1010R.string.OpenFile);
+            string = LocaleController.getString("OpenFile", C1072R.string.OpenFile);
             textPaint = openPaint;
             m35dp = 0;
         } else {
             if (this.loading) {
-                string = LocaleController.getString("Cancel", C1010R.string.Cancel).toUpperCase();
+                string = LocaleController.getString("Cancel", C1072R.string.Cancel).toUpperCase();
             } else {
-                string = LocaleController.getString("TapToDownload", C1010R.string.TapToDownload);
+                string = LocaleController.getString("TapToDownload", C1072R.string.TapToDownload);
             }
             m35dp = AndroidUtilities.m35dp(28.0f);
             textPaint = buttonPaint;

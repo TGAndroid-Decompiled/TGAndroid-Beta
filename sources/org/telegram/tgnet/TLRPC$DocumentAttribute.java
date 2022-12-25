@@ -5,7 +5,7 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
     public int duration;
     public String file_name;
     public int flags;
-    public int f858h;
+    public int f867h;
     public boolean mask;
     public TLRPC$TL_maskCoords mask_coords;
     public String performer;
@@ -14,7 +14,7 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
     public boolean supports_streaming;
     public String title;
     public boolean voice;
-    public int f859w;
+    public int f868w;
     public byte[] waveform;
 
     public static TLRPC$DocumentAttribute TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -114,16 +114,16 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.duration = abstractSerializedData2.readInt32(z2);
-                        this.f859w = abstractSerializedData2.readInt32(z2);
-                        this.f858h = abstractSerializedData2.readInt32(z2);
+                        this.f868w = abstractSerializedData2.readInt32(z2);
+                        this.f867h = abstractSerializedData2.readInt32(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.duration);
-                        abstractSerializedData2.writeInt32(this.f859w);
-                        abstractSerializedData2.writeInt32(this.f858h);
+                        abstractSerializedData2.writeInt32(this.f868w);
+                        abstractSerializedData2.writeInt32(this.f867h);
                     }
                 };
                 break;

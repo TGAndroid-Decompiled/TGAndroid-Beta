@@ -12,11 +12,11 @@ public class BuildVars {
     public static String BUILD_VERSION_STRING = null;
     public static boolean CHECK_UPDATES = true;
     public static boolean DEBUG_PRIVATE_VERSION = false;
-    public static boolean DEBUG_VERSION = false;
+    public static boolean DEBUG_VERSION = true;
     public static String GOOGLE_AUTH_CLIENT_ID = null;
     public static String HUAWEI_APP_ID = null;
     public static boolean IS_BILLING_UNAVAILABLE = false;
-    public static boolean LOGS_ENABLED = false;
+    public static boolean LOGS_ENABLED = true;
     public static boolean NO_SCOPED_STORAGE = false;
     public static String PLAYSTORE_APP_URL = null;
     public static String SMS_HASH = null;
@@ -27,8 +27,8 @@ public class BuildVars {
     static {
         boolean z = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
-        BUILD_VERSION = 2965;
-        BUILD_VERSION_STRING = "9.2.2";
+        BUILD_VERSION = 3002;
+        BUILD_VERSION_STRING = "9.3.0";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
         SMS_HASH = isStandaloneApp() ? "w0lkcmTZkKh" : DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT";

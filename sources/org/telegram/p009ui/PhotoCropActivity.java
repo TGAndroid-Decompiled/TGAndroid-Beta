@@ -13,12 +13,12 @@ import android.widget.FrameLayout;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Bitmaps;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.PhotoCropActivity;
 
 public class PhotoCropActivity extends BaseFragment {
@@ -269,10 +269,10 @@ public class PhotoCropActivity extends BaseFragment {
         this.actionBar.setItemsBackgroundColor(-12763843, false);
         this.actionBar.setTitleColor(-1);
         this.actionBar.setItemsColor(-1, false);
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("CropImage", C1010R.string.CropImage));
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setTitle(LocaleController.getString("CropImage", C1072R.string.CropImage));
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -290,7 +290,7 @@ public class PhotoCropActivity extends BaseFragment {
                 }
             }
         });
-        this.actionBar.createMenu().addItemWithWidth(1, C1010R.C1011drawable.ic_ab_done, AndroidUtilities.m35dp(56.0f), LocaleController.getString("Done", C1010R.string.Done));
+        this.actionBar.createMenu().addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m35dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
         PhotoCropView photoCropView = new PhotoCropView(context);
         this.view = photoCropView;
         this.fragmentView = photoCropView;

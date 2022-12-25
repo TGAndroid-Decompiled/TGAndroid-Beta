@@ -13,6 +13,6 @@ public final class NotificationsSoundActivity$1$$ExternalSyntheticLambda2 implem
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        NotificationsSoundActivity.C34761.lambda$deleteSelectedMessages$2(tLObject, tLRPC$TL_error);
+        NotificationsSoundActivity.C36341.lambda$deleteSelectedMessages$2(tLObject, tLRPC$TL_error);
     }
 }

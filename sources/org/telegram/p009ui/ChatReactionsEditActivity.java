@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.AvailableReactionCell;
@@ -74,10 +74,10 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
     @Override
     public View createView(final Context context) {
         this.isChannel = ChatObject.isChannelAndNotMegaGroup(this.chatId, this.currentAccount);
-        this.actionBar.setTitle(LocaleController.getString("Reactions", C1010R.string.Reactions));
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setTitle(LocaleController.getString("Reactions", C1072R.string.Reactions));
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -92,7 +92,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             TextCheckCell textCheckCell = new TextCheckCell(context);
             this.enableReactionsCell = textCheckCell;
             textCheckCell.setHeight(56);
-            this.enableReactionsCell.setTextAndCheck(LocaleController.getString("EnableReactions", C1010R.string.EnableReactions), !this.chatReactions.isEmpty(), false);
+            this.enableReactionsCell.setTextAndCheck(LocaleController.getString("EnableReactions", C1072R.string.EnableReactions), !this.chatReactions.isEmpty(), false);
             TextCheckCell textCheckCell2 = this.enableReactionsCell;
             textCheckCell2.setBackgroundColor(Theme.getColor(textCheckCell2.isChecked() ? "windowBackgroundChecked" : "windowBackgroundUnchecked"));
             this.enableReactionsCell.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -105,19 +105,19 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             linearLayout.addView(this.enableReactionsCell, LayoutHelper.createLinear(-1, -2));
         }
         HeaderCell headerCell = new HeaderCell(context);
-        headerCell.setText(LocaleController.getString("AvailableReactions", C1010R.string.AvailableReactions));
+        headerCell.setText(LocaleController.getString("AvailableReactions", C1072R.string.AvailableReactions));
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.contorlsLayout = linearLayout2;
         linearLayout2.setOrientation(1);
         RadioCell radioCell = new RadioCell(context);
         this.allReactions = radioCell;
-        radioCell.setText(LocaleController.getString("AllReactions", C1010R.string.AllReactions), false, true);
+        radioCell.setText(LocaleController.getString("AllReactions", C1072R.string.AllReactions), false, true);
         RadioCell radioCell2 = new RadioCell(context);
         this.someReactions = radioCell2;
-        radioCell2.setText(LocaleController.getString("SomeReactions", C1010R.string.SomeReactions), false, true);
+        radioCell2.setText(LocaleController.getString("SomeReactions", C1072R.string.SomeReactions), false, true);
         RadioCell radioCell3 = new RadioCell(context);
         this.disableReactions = radioCell3;
-        radioCell3.setText(LocaleController.getString("NoReactions", C1010R.string.NoReactions), false, false);
+        radioCell3.setText(LocaleController.getString("NoReactions", C1072R.string.NoReactions), false, false);
         this.contorlsLayout.addView(headerCell, LayoutHelper.createLinear(-1, -2));
         this.contorlsLayout.addView(this.allReactions, LayoutHelper.createLinear(-1, -2));
         this.contorlsLayout.addView(this.someReactions, LayoutHelper.createLinear(-1, -2));
@@ -180,7 +180,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
                 if (itemViewType != 0) {
                     if (itemViewType == 1) {
                         HeaderCell headerCell2 = (HeaderCell) viewHolder.itemView;
-                        headerCell2.setText(LocaleController.getString("OnlyAllowThisReactions", C1010R.string.OnlyAllowThisReactions));
+                        headerCell2.setText(LocaleController.getString("OnlyAllowThisReactions", C1072R.string.OnlyAllowThisReactions));
                         headerCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                         return;
                     } else if (itemViewType != 2) {
@@ -196,16 +196,16 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
                 textInfoPrivacyCell.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText4"));
                 ChatReactionsEditActivity chatReactionsEditActivity = ChatReactionsEditActivity.this;
                 if (chatReactionsEditActivity.isChannel) {
-                    textInfoPrivacyCell.setText(ChatObject.isChannelAndNotMegaGroup(chatReactionsEditActivity.currentChat) ? LocaleController.getString("EnableReactionsChannelInfo", C1010R.string.EnableReactionsChannelInfo) : LocaleController.getString("EnableReactionsGroupInfo", C1010R.string.EnableReactionsGroupInfo));
+                    textInfoPrivacyCell.setText(ChatObject.isChannelAndNotMegaGroup(chatReactionsEditActivity.currentChat) ? LocaleController.getString("EnableReactionsChannelInfo", C1072R.string.EnableReactionsChannelInfo) : LocaleController.getString("EnableReactionsGroupInfo", C1072R.string.EnableReactionsGroupInfo));
                     return;
                 }
                 int i2 = chatReactionsEditActivity.selectedType;
                 if (i2 == 1) {
-                    textInfoPrivacyCell.setText(LocaleController.getString("EnableSomeReactionsInfo", C1010R.string.EnableSomeReactionsInfo));
+                    textInfoPrivacyCell.setText(LocaleController.getString("EnableSomeReactionsInfo", C1072R.string.EnableSomeReactionsInfo));
                 } else if (i2 == 0) {
-                    textInfoPrivacyCell.setText(LocaleController.getString("EnableAllReactionsInfo", C1010R.string.EnableAllReactionsInfo));
+                    textInfoPrivacyCell.setText(LocaleController.getString("EnableAllReactionsInfo", C1072R.string.EnableAllReactionsInfo));
                 } else if (i2 == 2) {
-                    textInfoPrivacyCell.setText(LocaleController.getString("DisableReactionsInfo", C1010R.string.DisableReactionsInfo));
+                    textInfoPrivacyCell.setText(LocaleController.getString("DisableReactionsInfo", C1072R.string.DisableReactionsInfo));
                 }
             }
 

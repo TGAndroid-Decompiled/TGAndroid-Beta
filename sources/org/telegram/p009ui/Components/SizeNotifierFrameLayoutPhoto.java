@@ -32,7 +32,7 @@ public class SizeNotifierFrameLayoutPhoto extends FrameLayout {
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         notifyHeightChanged();
     }

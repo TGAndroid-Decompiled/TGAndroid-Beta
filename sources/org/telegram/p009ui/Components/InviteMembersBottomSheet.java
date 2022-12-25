@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -106,7 +106,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     private float spansEnterProgress;
     private final ScrollView spansScrollView;
     private float touchSlop;
-    float f1065y;
+    float f1075y;
 
     public interface InviteMembersBottomSheetDelegate {
         void didSelectDialogs(ArrayList<Long> arrayList);
@@ -145,7 +145,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         this.parentFragment = baseFragment;
         this.chatId = j;
         fixNavigationBar();
-        this.searchView.searchEditText.setHint(LocaleController.getString("SearchForChats", C1010R.string.SearchForChats));
+        this.searchView.searchEditText.setHint(LocaleController.getString("SearchForChats", C1072R.string.SearchForChats));
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         SearchAdapter searchAdapter = new SearchAdapter();
         this.searchAdapter = searchAdapter;
@@ -195,7 +195,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
         int i3 = Build.VERSION.SDK_INT;
         if (i3 < 21) {
-            Drawable mutate = context.getResources().getDrawable(C1010R.C1011drawable.floating_shadow).mutate();
+            Drawable mutate = context.getResources().getDrawable(C1072R.C1073drawable.floating_shadow).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
             combinedDrawable.setIconSize(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
@@ -203,7 +203,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         }
         imageView.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
         imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chats_actionIcon"), PorterDuff.Mode.MULTIPLY));
-        imageView.setImageResource(C1010R.C1011drawable.floating_check);
+        imageView.setImageResource(C1072R.C1073drawable.floating_check);
         if (i3 >= 21) {
             StateListAnimator stateListAnimator = new StateListAnimator();
             stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(imageView, "translationZ", AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(4.0f)).setDuration(200L));
@@ -227,7 +227,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         imageView.setScaleX(0.0f);
         imageView.setScaleY(0.0f);
         imageView.setAlpha(0.0f);
-        imageView.setContentDescription(LocaleController.getString("Next", C1010R.string.Next));
+        imageView.setContentDescription(LocaleController.getString("Next", C1072R.string.Next));
         this.containerView.addView(imageView, LayoutHelper.createFrame(i3 >= 21 ? 56 : 60, i3 < 21 ? 60 : 56, 85, 14.0f, 14.0f, 14.0f, 14.0f));
         ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).topMargin = AndroidUtilities.m35dp(20.0f);
         ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).leftMargin = AndroidUtilities.m35dp(4.0f);
@@ -276,15 +276,15 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             }
             builder.setMessage(spannableStringBuilder);
         } else {
-            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", C1010R.string.AddMembersAlertNamesText, sb, chat.title)));
+            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", C1072R.string.AddMembersAlertNamesText, sb, chat.title)));
         }
-        builder.setPositiveButton(LocaleController.getString("Add", C1010R.string.Add), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(LocaleController.getString("Add", C1072R.string.Add), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 InviteMembersBottomSheet.this.lambda$new$1(dialogInterface, i3);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
         builder.create();
         builder.show();
     }
@@ -491,7 +491,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 manageChatTextCell = new View(context);
             } else if (i != 5) {
                 ManageChatTextCell manageChatTextCell2 = new ManageChatTextCell(context);
-                manageChatTextCell2.setText(LocaleController.getString("VoipGroupCopyInviteLink", C1010R.string.VoipGroupCopyInviteLink), null, C1010R.C1011drawable.msg_link, 7, true);
+                manageChatTextCell2.setText(LocaleController.getString("VoipGroupCopyInviteLink", C1072R.string.VoipGroupCopyInviteLink), null, C1072R.C1073drawable.msg_link, 7, true);
                 manageChatTextCell2.setColors("dialogTextBlue2", "dialogTextBlue2");
                 manageChatTextCell = manageChatTextCell2;
             } else {
@@ -505,9 +505,9 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 stickerEmptyView.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
                 stickerEmptyView.subtitle.setVisibility(8);
                 if (InviteMembersBottomSheet.this.dialogsDelegate != null) {
-                    stickerEmptyView.title.setText(LocaleController.getString("FilterNoChats", C1010R.string.FilterNoChats));
+                    stickerEmptyView.title.setText(LocaleController.getString("FilterNoChats", C1072R.string.FilterNoChats));
                 } else {
-                    stickerEmptyView.title.setText(LocaleController.getString("NoContacts", C1010R.string.NoContacts));
+                    stickerEmptyView.title.setText(LocaleController.getString("NoContacts", C1072R.string.NoContacts));
                 }
                 stickerEmptyView.setAnimateLayoutChange(true);
                 manageChatTextCell = stickerEmptyView;
@@ -518,7 +518,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         public TLObject getObject(int i) {
             if (InviteMembersBottomSheet.this.dialogsDelegate != null) {
                 TLRPC$Dialog tLRPC$Dialog = (TLRPC$Dialog) InviteMembersBottomSheet.this.dialogsServerOnly.get(i - InviteMembersBottomSheet.this.contactsStartRow);
-                return DialogObject.isUserDialog(tLRPC$Dialog.f854id) ? MessagesController.getInstance(((BottomSheet) InviteMembersBottomSheet.this).currentAccount).getUser(Long.valueOf(tLRPC$Dialog.f854id)) : MessagesController.getInstance(((BottomSheet) InviteMembersBottomSheet.this).currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.f854id));
+                return DialogObject.isUserDialog(tLRPC$Dialog.f863id) ? MessagesController.getInstance(((BottomSheet) InviteMembersBottomSheet.this).currentAccount).getUser(Long.valueOf(tLRPC$Dialog.f863id)) : MessagesController.getInstance(((BottomSheet) InviteMembersBottomSheet.this).currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.f863id));
             }
             return (TLObject) InviteMembersBottomSheet.this.contacts.get(i - InviteMembersBottomSheet.this.contactsStartRow);
         }
@@ -536,15 +536,15 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 TLObject object = getObject(i);
                 Object object2 = groupCreateUserCell.getObject();
                 if (object2 instanceof TLRPC$User) {
-                    j = ((TLRPC$User) object2).f986id;
+                    j = ((TLRPC$User) object2).f995id;
                 } else {
-                    j = object2 instanceof TLRPC$Chat ? -((TLRPC$Chat) object2).f848id : 0L;
+                    j = object2 instanceof TLRPC$Chat ? -((TLRPC$Chat) object2).f857id : 0L;
                 }
                 groupCreateUserCell.setObject(object, null, null, i != InviteMembersBottomSheet.this.contactsEndRow);
                 if (object instanceof TLRPC$User) {
-                    j2 = ((TLRPC$User) object).f986id;
+                    j2 = ((TLRPC$User) object).f995id;
                 } else {
-                    j2 = object instanceof TLRPC$Chat ? -((TLRPC$Chat) object).f848id : 0L;
+                    j2 = object instanceof TLRPC$Chat ? -((TLRPC$Chat) object).f857id : 0L;
                 }
                 if (j2 != 0) {
                     if (InviteMembersBottomSheet.this.ignoreUsers == null || InviteMembersBottomSheet.this.ignoreUsers.indexOfKey(j2) < 0) {
@@ -777,8 +777,8 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     @Override
     protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) {
         if (motionEvent.getAction() == 0) {
-            this.f1065y = this.scrollOffsetY;
-        } else if (motionEvent.getAction() != 1 || Math.abs(this.scrollOffsetY - this.f1065y) >= this.touchSlop || this.enterEventSent) {
+            this.f1075y = this.scrollOffsetY;
+        } else if (motionEvent.getAction() != 1 || Math.abs(this.scrollOffsetY - this.f1075y) >= this.touchSlop || this.enterEventSent) {
         } else {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             BaseFragment baseFragment = null;

@@ -1991,7 +1991,6 @@
     <string name="KMetersShort">%1$s كم</string>
     <string name="KeepMedia">الاحتفاظ بالوسائط</string>
     <string name="KeepMediaForever">للأبد</string>
-    <string name="KeepMediaInfo">سيتم حذف جميع الصور، المقاطع المرئية، وجميع الملفات المحفوظة في خوادمنا والتي **لم تقم باستخدامها** خلال هذه المدة لتوفير المساحة على هذا الجهاز.\n\nمع ذلك ستبقى جميع الملفات في خوادم تيليجرام، ويمكنك إعادة تنزيلها مرة أخرى متى ما احتجتها.</string>
     <string name="KickFromBroadcast">إزالة من قائمة الرسالة الجماعية</string>
     <string name="KickFromGroup">إزالة من المجموعة</string>
     <string name="Km">كم</string>
@@ -3131,7 +3130,6 @@
     <string name="PrivacyPolicyUrl">https://telegram.org/faq/ar#a10</string>
     <string name="PrivacyProfilePhoto">الصور الشخصية</string>
     <string name="PrivacyProfilePhotoInfo">بإمكانك تخصيص من يمْكنه رؤية صورتك الشخصية بدقة انتقائية.</string>
-    <string name="PrivacyProfilePhotoInfo2">يمكنك إضافة مستخدمين أو مجموعات بأكملها كاستثناءات تتجاوز القيم في الأعلى.</string>
     <string name="PrivacyProfilePhotoTitle">من يمْكنه رؤية صور ومقاطع ملفّي التعريفي؟</string>
     <string name="PrivacySettings">الخصوصية والأمان</string>
     <string name="PrivacySettingsChangedAlert">لقد قمت بتغيير بعض إعدادات الخصوصية؛ تطبيق التغييرات؟</string>

@@ -20,8 +20,7 @@ import android.widget.LinearLayout;
 import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -84,18 +83,18 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         setWillNotDraw(false);
         setOrientation(1);
         setPadding(0, AndroidUtilities.m35dp(11.0f), 0, AndroidUtilities.m35dp(11.0f));
-        this.shadowDrawable = Theme.getThemedDrawable(context, C1010R.C1011drawable.greydivider_bottom, "windowBackgroundGrayShadow");
+        this.shadowDrawable = Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow");
         int currentTimeMillis = ((int) (System.currentTimeMillis() / 1000)) - 3600;
         if (i == 2) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-            tLRPC$TL_message.message = LocaleController.getString("DoubleTapPreviewMessage", C1010R.string.DoubleTapPreviewMessage);
+            tLRPC$TL_message.message = LocaleController.getString("DoubleTapPreviewMessage", C1072R.string.DoubleTapPreviewMessage);
             tLRPC$TL_message.date = currentTimeMillis + 60;
             tLRPC$TL_message.dialog_id = 1L;
             tLRPC$TL_message.flags = 259;
             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
             tLRPC$TL_message.from_id = tLRPC$TL_peerUser;
             tLRPC$TL_peerUser.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
-            tLRPC$TL_message.f872id = 1;
+            tLRPC$TL_message.f881id = 1;
             tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message.out = false;
             TLRPC$TL_peerUser tLRPC$TL_peerUser2 = new TLRPC$TL_peerUser();
@@ -104,17 +103,17 @@ public class ThemePreviewMessagesCell extends LinearLayout {
             MessageObject messageObject3 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message, true, false);
             messageObject3.resetLayout();
             messageObject3.eventId = 1L;
-            messageObject3.customName = LocaleController.getString("DoubleTapPreviewSenderName", C1010R.string.DoubleTapPreviewSenderName);
-            messageObject3.customAvatarDrawable = ContextCompat.getDrawable(context, C1010R.C1011drawable.dino_pic);
+            messageObject3.customName = LocaleController.getString("DoubleTapPreviewSenderName", C1072R.string.DoubleTapPreviewSenderName);
+            messageObject3.customAvatarDrawable = ContextCompat.getDrawable(context, C1072R.C1073drawable.dino_pic);
             messageObject = messageObject3;
             i2 = i3;
             messageObject2 = null;
         } else {
             TLRPC$TL_message tLRPC$TL_message2 = new TLRPC$TL_message();
             if (i == 0) {
-                tLRPC$TL_message2.message = LocaleController.getString("FontSizePreviewReply", C1010R.string.FontSizePreviewReply);
+                tLRPC$TL_message2.message = LocaleController.getString("FontSizePreviewReply", C1072R.string.FontSizePreviewReply);
             } else {
-                tLRPC$TL_message2.message = LocaleController.getString("NewThemePreviewReply", C1010R.string.NewThemePreviewReply);
+                tLRPC$TL_message2.message = LocaleController.getString("NewThemePreviewReply", C1072R.string.NewThemePreviewReply);
             }
             int indexOf = tLRPC$TL_message2.message.indexOf("👋");
             if (indexOf >= 0) {
@@ -134,7 +133,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
             TLRPC$TL_peerUser tLRPC$TL_peerUser3 = new TLRPC$TL_peerUser();
             tLRPC$TL_message2.from_id = tLRPC$TL_peerUser3;
             tLRPC$TL_peerUser3.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
-            tLRPC$TL_message2.f872id = 1;
+            tLRPC$TL_message2.f881id = 1;
             tLRPC$TL_message2.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message2.out = true;
             TLRPC$TL_peerUser tLRPC$TL_peerUser4 = new TLRPC$TL_peerUser();
@@ -143,15 +142,15 @@ public class ThemePreviewMessagesCell extends LinearLayout {
             MessageObject messageObject4 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message2, true, false);
             TLRPC$TL_message tLRPC$TL_message3 = new TLRPC$TL_message();
             if (i == 0) {
-                tLRPC$TL_message3.message = LocaleController.getString("FontSizePreviewLine2", C1010R.string.FontSizePreviewLine2);
+                tLRPC$TL_message3.message = LocaleController.getString("FontSizePreviewLine2", C1072R.string.FontSizePreviewLine2);
             } else {
-                String string = LocaleController.getString("NewThemePreviewLine3", C1010R.string.NewThemePreviewLine3);
+                String string = LocaleController.getString("NewThemePreviewLine3", C1072R.string.NewThemePreviewLine3);
                 StringBuilder sb = new StringBuilder(string);
                 int indexOf2 = string.indexOf(42);
                 int lastIndexOf = string.lastIndexOf(42);
                 if (indexOf2 != -1 && lastIndexOf != -1) {
-                    sb.replace(lastIndexOf, lastIndexOf + 1, BuildConfig.APP_CENTER_HASH);
-                    sb.replace(indexOf2, indexOf2 + 1, BuildConfig.APP_CENTER_HASH);
+                    sb.replace(lastIndexOf, lastIndexOf + 1, "");
+                    sb.replace(indexOf2, indexOf2 + 1, "");
                     TLRPC$TL_messageEntityTextUrl tLRPC$TL_messageEntityTextUrl = new TLRPC$TL_messageEntityTextUrl();
                     tLRPC$TL_messageEntityTextUrl.offset = indexOf2;
                     tLRPC$TL_messageEntityTextUrl.length = (lastIndexOf - indexOf2) - 1;
@@ -174,7 +173,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
             TLRPC$TL_peerUser tLRPC$TL_peerUser5 = new TLRPC$TL_peerUser();
             tLRPC$TL_message3.from_id = tLRPC$TL_peerUser5;
             tLRPC$TL_peerUser5.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
-            tLRPC$TL_message3.f872id = 1;
+            tLRPC$TL_message3.f881id = 1;
             tLRPC$TL_message3.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message3.out = true;
             TLRPC$TL_peerUser tLRPC$TL_peerUser6 = new TLRPC$TL_peerUser();
@@ -185,15 +184,15 @@ public class ThemePreviewMessagesCell extends LinearLayout {
             messageObject5.eventId = 1L;
             TLRPC$TL_message tLRPC$TL_message4 = new TLRPC$TL_message();
             if (i == 0) {
-                tLRPC$TL_message4.message = LocaleController.getString("FontSizePreviewLine1", C1010R.string.FontSizePreviewLine1);
+                tLRPC$TL_message4.message = LocaleController.getString("FontSizePreviewLine1", C1072R.string.FontSizePreviewLine1);
             } else {
-                tLRPC$TL_message4.message = LocaleController.getString("NewThemePreviewLine1", C1010R.string.NewThemePreviewLine1);
+                tLRPC$TL_message4.message = LocaleController.getString("NewThemePreviewLine1", C1072R.string.NewThemePreviewLine1);
             }
             tLRPC$TL_message4.date = i4;
             tLRPC$TL_message4.dialog_id = 1L;
             tLRPC$TL_message4.flags = 265;
             tLRPC$TL_message4.from_id = new TLRPC$TL_peerUser();
-            tLRPC$TL_message4.f872id = 1;
+            tLRPC$TL_message4.f881id = 1;
             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
             tLRPC$TL_message4.reply_to = tLRPC$TL_messageReplyHeader;
             tLRPC$TL_messageReplyHeader.reply_to_msg_id = 5;
@@ -204,9 +203,9 @@ public class ThemePreviewMessagesCell extends LinearLayout {
             tLRPC$TL_peerUser7.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
             MessageObject messageObject6 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message4, true, false);
             if (i == 0) {
-                messageObject6.customReplyName = LocaleController.getString("FontSizePreviewName", C1010R.string.FontSizePreviewName);
+                messageObject6.customReplyName = LocaleController.getString("FontSizePreviewName", C1072R.string.FontSizePreviewName);
             } else {
-                messageObject6.customReplyName = LocaleController.getString("NewThemePreviewName", C1010R.string.NewThemePreviewName);
+                messageObject6.customReplyName = LocaleController.getString("NewThemePreviewName", C1072R.string.NewThemePreviewName);
             }
             messageObject6.eventId = 1L;
             messageObject6.resetLayout();
@@ -226,28 +225,28 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 final int val$currentAccount;
                 final int val$type;
 
-                public class C13791 extends GestureDetector.SimpleOnGestureListener {
-                    C13791() {
+                public class C14621 extends GestureDetector.SimpleOnGestureListener {
+                    C14621() {
                     }
 
                     @Override
                     public boolean onDoubleTap(MotionEvent motionEvent) {
-                        boolean selectReaction = getMessageObject().selectReaction(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(C13781.this.val$currentAccount).getDoubleTapReaction()), false, false);
-                        C13781 c13781 = C13781.this;
-                        c13781.setMessageObject(c13781.getMessageObject(), null, false, false);
+                        boolean selectReaction = getMessageObject().selectReaction(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(C14611.this.val$currentAccount).getDoubleTapReaction()), false, false);
+                        C14611 c14611 = C14611.this;
+                        c14611.setMessageObject(c14611.getMessageObject(), null, false, false);
                         requestLayout();
                         ReactionsEffectOverlay.removeCurrent(false);
                         if (selectReaction) {
                             ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
-                            ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], null, motionEvent.getX(), motionEvent.getY(), ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(C13781.this.val$currentAccount).getDoubleTapReaction()), C13781.this.val$currentAccount, 0);
+                            ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], null, motionEvent.getX(), motionEvent.getY(), ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(C14611.this.val$currentAccount).getDoubleTapReaction()), C14611.this.val$currentAccount, 0);
                             ReactionsEffectOverlay.startAnimation();
                         }
-                        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC13801());
+                        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC14631());
                         return true;
                     }
 
-                    public class ViewTreeObserver$OnPreDrawListenerC13801 implements ViewTreeObserver.OnPreDrawListener {
-                        ViewTreeObserver$OnPreDrawListenerC13801() {
+                    public class ViewTreeObserver$OnPreDrawListenerC14631 implements ViewTreeObserver.OnPreDrawListener {
+                        ViewTreeObserver$OnPreDrawListenerC14631() {
                         }
 
                         @Override
@@ -261,7 +260,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                    ThemePreviewMessagesCell.C13781.C13791.ViewTreeObserver$OnPreDrawListenerC13801.this.lambda$onPreDraw$0(valueAnimator);
+                                    ThemePreviewMessagesCell.C14611.C14621.ViewTreeObserver$OnPreDrawListenerC14631.this.lambda$onPreDraw$0(valueAnimator);
                                 }
                             });
                             ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -288,7 +287,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                     this.val$context = context;
                     this.val$currentAccount = i2;
                     this.val$type = i;
-                    this.gestureDetector = new GestureDetector(context, new C13791());
+                    this.gestureDetector = new GestureDetector(context, new C14621());
                 }
 
                 @Override
@@ -461,6 +460,11 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 }
 
                 @Override
+                public CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getProgressLoadingLink(this, chatMessageCell);
+                }
+
+                @Override
                 public TextSelectionHelper.ChatListTextSelectionHelper getTextSelectionHelper() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getTextSelectionHelper(this);
                 }
@@ -478,6 +482,11 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 @Override
                 public boolean isLandscape() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isLandscape(this);
+                }
+
+                @Override
+                public boolean isProgressLoading(ChatMessageCell chatMessageCell, int i6) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isProgressLoading(this, chatMessageCell, i6);
                 }
 
                 @Override

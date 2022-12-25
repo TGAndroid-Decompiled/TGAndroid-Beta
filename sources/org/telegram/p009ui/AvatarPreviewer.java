@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
 import androidx.core.util.Preconditions;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
@@ -140,17 +140,17 @@ public class AvatarPreviewer {
         }
 
         static {
-            MenuItem menuItem = new MenuItem("OPEN_PROFILE", 0, "OpenProfile", C1010R.string.OpenProfile, C1010R.C1011drawable.msg_openprofile);
+            MenuItem menuItem = new MenuItem("OPEN_PROFILE", 0, "OpenProfile", C1072R.string.OpenProfile, C1072R.C1073drawable.msg_openprofile);
             OPEN_PROFILE = menuItem;
-            MenuItem menuItem2 = new MenuItem("OPEN_CHANNEL", 1, "OpenChannel2", C1010R.string.OpenChannel2, C1010R.C1011drawable.msg_channel);
+            MenuItem menuItem2 = new MenuItem("OPEN_CHANNEL", 1, "OpenChannel2", C1072R.string.OpenChannel2, C1072R.C1073drawable.msg_channel);
             OPEN_CHANNEL = menuItem2;
-            int i = C1010R.string.OpenGroup2;
-            int i2 = C1010R.C1011drawable.msg_discussion;
+            int i = C1072R.string.OpenGroup2;
+            int i2 = C1072R.C1073drawable.msg_discussion;
             MenuItem menuItem3 = new MenuItem("OPEN_GROUP", 2, "OpenGroup2", i, i2);
             OPEN_GROUP = menuItem3;
-            MenuItem menuItem4 = new MenuItem("SEND_MESSAGE", 3, "SendMessage", C1010R.string.SendMessage, i2);
+            MenuItem menuItem4 = new MenuItem("SEND_MESSAGE", 3, "SendMessage", C1072R.string.SendMessage, i2);
             SEND_MESSAGE = menuItem4;
-            MenuItem menuItem5 = new MenuItem("MENTION", 4, "Mention", C1010R.string.Mention, C1010R.C1011drawable.msg_mention);
+            MenuItem menuItem5 = new MenuItem("MENTION", 4, "Mention", C1072R.string.Mention, C1072R.C1073drawable.msg_mention);
             MENTION = menuItem5;
             $VALUES = new MenuItem[]{menuItem, menuItem2, menuItem3, menuItem4, menuItem5};
         }
@@ -253,7 +253,7 @@ public class AvatarPreviewer {
 
         @Override
         protected void onReceiveNotification(Object... objArr) {
-            if (((Long) objArr[0]).longValue() == ((TLRPC$User) this.argument).f986id) {
+            if (((Long) objArr[0]).longValue() == ((TLRPC$User) this.argument).f995id) {
                 onResult((TLRPC$UserFull) objArr[1]);
             }
         }
@@ -266,13 +266,13 @@ public class AvatarPreviewer {
 
         @Override
         protected void load() {
-            MessagesController.getInstance(UserConfig.selectedAccount).loadFullChat(((TLRPC$Chat) this.argument).f848id, this.classGuid, false);
+            MessagesController.getInstance(UserConfig.selectedAccount).loadFullChat(((TLRPC$Chat) this.argument).f857id, this.classGuid, false);
         }
 
         @Override
         protected void onReceiveNotification(Object... objArr) {
             TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
-            if (tLRPC$ChatFull == null || tLRPC$ChatFull.f849id != ((TLRPC$Chat) this.argument).f848id) {
+            if (tLRPC$ChatFull == null || tLRPC$ChatFull.f858id != ((TLRPC$Chat) this.argument).f857id) {
                 return;
             }
             onResult(tLRPC$ChatFull);
@@ -377,7 +377,7 @@ public class AvatarPreviewer {
             radialProgress2.setOverrideAlpha(0.0f);
             radialProgress2.setIcon(10, false, false);
             radialProgress2.setColors(1107296256, 1107296256, -1, -1);
-            this.arrowDrawable = ContextCompat.getDrawable(context, C1010R.C1011drawable.preview_arrow);
+            this.arrowDrawable = ContextCompat.getDrawable(context, C1072R.C1073drawable.preview_arrow);
         }
 
         @Override

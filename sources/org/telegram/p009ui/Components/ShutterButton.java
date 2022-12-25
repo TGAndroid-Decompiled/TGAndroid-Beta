@@ -13,7 +13,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.DecelerateInterpolator;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 
 public class ShutterButton extends View {
@@ -57,7 +57,7 @@ public class ShutterButton extends View {
                 ShutterButton.this.processRelease = false;
             }
         };
-        this.shadowDrawable = getResources().getDrawable(C1010R.C1011drawable.camera_btn);
+        this.shadowDrawable = getResources().getDrawable(C1072R.C1073drawable.camera_btn);
         Paint paint = new Paint(1);
         this.whitePaint = paint;
         paint.setStyle(Paint.Style.FILL);
@@ -205,8 +205,8 @@ public class ShutterButton extends View {
         accessibilityNodeInfo.setClickable(true);
         accessibilityNodeInfo.setLongClickable(true);
         if (Build.VERSION.SDK_INT >= 21) {
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK.getId(), LocaleController.getString("AccActionTakePicture", C1010R.string.AccActionTakePicture)));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_LONG_CLICK.getId(), LocaleController.getString("AccActionRecordVideo", C1010R.string.AccActionRecordVideo)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK.getId(), LocaleController.getString("AccActionTakePicture", C1072R.string.AccActionTakePicture)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_LONG_CLICK.getId(), LocaleController.getString("AccActionRecordVideo", C1072R.string.AccActionRecordVideo)));
         }
     }
 }

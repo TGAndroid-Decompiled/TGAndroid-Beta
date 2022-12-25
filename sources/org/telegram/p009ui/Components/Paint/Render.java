@@ -10,10 +10,10 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 public class Render {
-    public static RectF RenderPath(Path path, RenderState renderState) {
+    public static RectF RenderPath(Path path, RenderState renderState, boolean z) {
         renderState.baseWeight = path.getBaseWeight();
         renderState.spacing = path.getBrush().getSpacing();
-        renderState.alpha = path.getBrush().getAlpha();
+        renderState.alpha = z ? 1.0f : path.getBrush().getAlpha();
         renderState.angle = path.getBrush().getAngle();
         renderState.scale = path.getBrush().getScale();
         int length = path.getLength();
@@ -42,8 +42,16 @@ public class Render {
         double distanceTo = point.getDistanceTo(point2);
         Point substract = point2.substract(point);
         Point point3 = new Point(1.0d, 1.0d, 0.0d);
-        float atan2 = Math.abs(renderState.angle) > 0.0f ? renderState.angle : (float) Math.atan2(substract.f1068y, substract.f1067x);
-        float f = ((renderState.baseWeight * renderState.scale) * 1.0f) / renderState.viewportScale;
+        float atan2 = Math.abs(renderState.angle) > 0.0f ? renderState.angle : (float) Math.atan2(substract.f1078y, substract.f1077x);
+        double d = renderState.baseWeight;
+        double d2 = point2.f1079z;
+        Double.isNaN(d);
+        double d3 = d * d2;
+        double d4 = renderState.scale;
+        Double.isNaN(d4);
+        double d5 = renderState.viewportScale;
+        Double.isNaN(d5);
+        float f = (float) (((d3 * d4) * 1.0d) / d5);
         double max = Math.max(1.0f, renderState.spacing * f);
         if (distanceTo > 0.0d) {
             Double.isNaN(distanceTo);
@@ -53,17 +61,17 @@ public class Render {
         float min = Math.min(1.0f, renderState.alpha * 1.15f);
         boolean z2 = point.edge;
         boolean z3 = point2.edge;
-        double d = renderState.remainder;
+        double d6 = renderState.remainder;
         Double.isNaN(distanceTo);
         Double.isNaN(max);
         int count = renderState.getCount();
-        renderState.appendValuesCount((int) Math.ceil((distanceTo - d) / max));
+        renderState.appendValuesCount((int) Math.ceil((distanceTo - d6) / max));
         renderState.setPosition(count);
         Point add = point.add(point4.multiplyByScalar(renderState.remainder));
-        double d2 = renderState.remainder;
+        double d7 = renderState.remainder;
         boolean z4 = true;
         while (true) {
-            if (d2 > distanceTo) {
+            if (d7 > distanceTo) {
                 z = z3;
                 i = 1;
                 break;
@@ -77,7 +85,7 @@ public class Render {
             add = add.add(point4.multiplyByScalar(max));
             z2 = false;
             Double.isNaN(max);
-            d2 += max;
+            d7 += max;
             z3 = z;
         }
         if (z4 && z) {
@@ -85,7 +93,7 @@ public class Render {
             renderState.addPoint(point2.toPointF(), f, atan2, min, -1);
         }
         Double.isNaN(distanceTo);
-        renderState.remainder = d2 - distanceTo;
+        renderState.remainder = d7 - distanceTo;
     }
 
     private static void PaintStamp(Point point, RenderState renderState) {
@@ -103,7 +111,7 @@ public class Render {
         float f;
         RectF rectF = new RectF(0.0f, 0.0f, 0.0f, 0.0f);
         int count = renderState.getCount();
-        if (count == 0) {
+        if (count <= 0) {
             return rectF;
         }
         int i2 = count - 1;

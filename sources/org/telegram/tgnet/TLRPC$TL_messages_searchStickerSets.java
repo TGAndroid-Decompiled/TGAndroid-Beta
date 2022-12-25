@@ -5,7 +5,7 @@ public class TLRPC$TL_messages_searchStickerSets extends TLObject {
     public boolean exclude_featured;
     public int flags;
     public long hash;
-    public String f954q;
+    public String f963q;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -18,7 +18,7 @@ public class TLRPC$TL_messages_searchStickerSets extends TLObject {
         int i = this.exclude_featured ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
-        abstractSerializedData.writeString(this.f954q);
+        abstractSerializedData.writeString(this.f963q);
         abstractSerializedData.writeInt64(this.hash);
     }
 }

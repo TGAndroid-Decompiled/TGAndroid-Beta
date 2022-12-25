@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
@@ -57,11 +57,11 @@ public class ChatGreetingsView extends LinearLayout {
         addView(this.stickerToSendView, LayoutHelper.createLinear(112, 112, 1, 0, 16, 0, 16));
         updateColors();
         if (i <= 0) {
-            this.titleView.setText(LocaleController.getString("NoMessages", C1010R.string.NoMessages));
-            this.descriptionView.setText(LocaleController.getString("NoMessagesGreetingsDescription", C1010R.string.NoMessagesGreetingsDescription));
+            this.titleView.setText(LocaleController.getString("NoMessages", C1072R.string.NoMessages));
+            this.descriptionView.setText(LocaleController.getString("NoMessagesGreetingsDescription", C1072R.string.NoMessagesGreetingsDescription));
         } else {
-            this.titleView.setText(LocaleController.formatString("NearbyPeopleGreetingsMessage", C1010R.string.NearbyPeopleGreetingsMessage, tLRPC$User.first_name, LocaleController.formatDistance(i, 1)));
-            this.descriptionView.setText(LocaleController.getString("NearbyPeopleGreetingsDescription", C1010R.string.NearbyPeopleGreetingsDescription));
+            this.titleView.setText(LocaleController.formatString("NearbyPeopleGreetingsMessage", C1072R.string.NearbyPeopleGreetingsMessage, tLRPC$User.first_name, LocaleController.formatDistance(i, 1)));
+            this.descriptionView.setText(LocaleController.getString("NearbyPeopleGreetingsDescription", C1072R.string.NearbyPeopleGreetingsDescription));
         }
         this.stickerToSendView.setContentDescription(this.descriptionView.getText());
         this.preloadedGreetingsSticker = tLRPC$Document;
@@ -118,8 +118,8 @@ public class ChatGreetingsView extends LinearLayout {
             }
             TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i3);
             if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeImageSize) {
-                i = tLRPC$DocumentAttribute.f859w;
-                i2 = tLRPC$DocumentAttribute.f858h;
+                i = tLRPC$DocumentAttribute.f868w;
+                i2 = tLRPC$DocumentAttribute.f867h;
                 break;
             }
             i3++;

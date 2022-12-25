@@ -69,7 +69,7 @@ public class ChartPickerDelegate {
     }
 
     public class CapturesData {
-        ValueAnimator f1014a;
+        ValueAnimator f1024a;
         public float aValue = 0.0f;
         public int capturedX;
         public float end;
@@ -84,16 +84,16 @@ public class ChartPickerDelegate {
 
         public void captured() {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f1014a = ofFloat;
+            this.f1024a = ofFloat;
             ofFloat.setDuration(600L);
-            this.f1014a.setInterpolator(BaseChartView.INTERPOLATOR);
-            this.f1014a.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            this.f1024a.setInterpolator(BaseChartView.INTERPOLATOR);
+            this.f1024a.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     ChartPickerDelegate.CapturesData.this.lambda$captured$0(valueAnimator);
                 }
             });
-            this.f1014a.start();
+            this.f1024a.start();
         }
 
         public void lambda$captured$0(ValueAnimator valueAnimator) {
@@ -102,7 +102,7 @@ public class ChartPickerDelegate {
         }
 
         public void uncapture() {
-            ValueAnimator valueAnimator = this.f1014a;
+            ValueAnimator valueAnimator = this.f1024a;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }

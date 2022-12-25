@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.BottomSheet;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -64,7 +64,7 @@ public class ReportAlert extends BottomSheet {
         FrameLayout frameLayout = new FrameLayout(context);
         scrollView.addView(frameLayout, LayoutHelper.createScroll(-1, -2, 51));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
-        rLottieImageView.setAnimation(C1010R.raw.report_police, 120, 120);
+        rLottieImageView.setAnimation(C1072R.raw.report_police, 120, 120);
         rLottieImageView.playAnimation();
         frameLayout.addView(rLottieImageView, LayoutHelper.createFrame(160, 160.0f, 49, 17.0f, 14.0f, 17.0f, 0.0f));
         TextView textView = new TextView(context);
@@ -72,24 +72,24 @@ public class ReportAlert extends BottomSheet {
         textView.setTextSize(1, 24.0f);
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
         if (i == 0) {
-            textView.setText(LocaleController.getString("ReportTitleSpam", C1010R.string.ReportTitleSpam));
+            textView.setText(LocaleController.getString("ReportTitleSpam", C1072R.string.ReportTitleSpam));
         } else if (i == 6) {
-            textView.setText(LocaleController.getString("ReportTitleFake", C1010R.string.ReportTitleFake));
+            textView.setText(LocaleController.getString("ReportTitleFake", C1072R.string.ReportTitleFake));
         } else if (i == 1) {
-            textView.setText(LocaleController.getString("ReportTitleViolence", C1010R.string.ReportTitleViolence));
+            textView.setText(LocaleController.getString("ReportTitleViolence", C1072R.string.ReportTitleViolence));
         } else if (i == 2) {
-            textView.setText(LocaleController.getString("ReportTitleChild", C1010R.string.ReportTitleChild));
+            textView.setText(LocaleController.getString("ReportTitleChild", C1072R.string.ReportTitleChild));
         } else if (i == 5) {
-            textView.setText(LocaleController.getString("ReportTitlePornography", C1010R.string.ReportTitlePornography));
+            textView.setText(LocaleController.getString("ReportTitlePornography", C1072R.string.ReportTitlePornography));
         } else if (i == 100) {
-            textView.setText(LocaleController.getString("ReportChat", C1010R.string.ReportChat));
+            textView.setText(LocaleController.getString("ReportChat", C1072R.string.ReportChat));
         }
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 49, 17.0f, 197.0f, 17.0f, 0.0f));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(Theme.getColor("dialogTextGray3"));
         textView2.setGravity(1);
-        textView2.setText(LocaleController.getString("ReportInfo", C1010R.string.ReportInfo));
+        textView2.setText(LocaleController.getString("ReportInfo", C1072R.string.ReportInfo));
         frameLayout.addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 49, 30.0f, 235.0f, 30.0f, 44.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.editText = editTextBoldCursor;
@@ -105,7 +105,7 @@ public class ReportAlert extends BottomSheet {
         this.editText.setGravity(LocaleController.isRTL ? 5 : 3);
         this.editText.setInputType(180224);
         this.editText.setImeOptions(6);
-        this.editText.setHint(LocaleController.getString("ReportHint", C1010R.string.ReportHint));
+        this.editText.setHint(LocaleController.getString("ReportHint", C1072R.string.ReportHint));
         this.editText.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.editText.setCursorSize(AndroidUtilities.m35dp(20.0f));
         this.editText.setCursorWidth(1.5f);
@@ -121,7 +121,7 @@ public class ReportAlert extends BottomSheet {
         BottomSheetCell bottomSheetCell = new BottomSheetCell(context);
         this.clearButton = bottomSheetCell;
         bottomSheetCell.setBackground(null);
-        this.clearButton.setText(LocaleController.getString("ReportSend", C1010R.string.ReportSend));
+        this.clearButton.setText(LocaleController.getString("ReportSend", C1072R.string.ReportSend));
         this.clearButton.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {

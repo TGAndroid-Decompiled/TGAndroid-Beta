@@ -27,7 +27,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.AdjustPanLayoutHelper;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.INavigationLayout;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.BlurSettingsBottomSheet;
@@ -174,7 +174,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                         if (drawable instanceof MotionBackgroundDrawable) {
                             MotionBackgroundDrawable motionBackgroundDrawable = (MotionBackgroundDrawable) drawable;
                             if (motionBackgroundDrawable.hasPattern()) {
-                                int currentActionBarHeight = (SizeNotifierFrameLayout.this.isActionBarVisible() ? C1069ActionBar.getCurrentActionBarHeight() : 0) + ((Build.VERSION.SDK_INT < 21 || !SizeNotifierFrameLayout.this.occupyStatusBar) ? 0 : AndroidUtilities.statusBarHeight);
+                                int currentActionBarHeight = (SizeNotifierFrameLayout.this.isActionBarVisible() ? C1133ActionBar.getCurrentActionBarHeight() : 0) + ((Build.VERSION.SDK_INT < 21 || !SizeNotifierFrameLayout.this.occupyStatusBar) ? 0 : AndroidUtilities.statusBarHeight);
                                 int measuredHeight = getRootView().getMeasuredHeight() - currentActionBarHeight;
                                 float max = Math.max(getMeasuredWidth() / drawable.getIntrinsicWidth(), measuredHeight / drawable.getIntrinsicHeight());
                                 int ceil = (int) Math.ceil(drawable.getIntrinsicWidth() * max * SizeNotifierFrameLayout.this.parallaxScale);
@@ -229,7 +229,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                             }
                         } else if (drawable instanceof BitmapDrawable) {
                             if (((BitmapDrawable) drawable).getTileModeX() != Shader.TileMode.REPEAT) {
-                                int currentActionBarHeight2 = (SizeNotifierFrameLayout.this.isActionBarVisible() ? C1069ActionBar.getCurrentActionBarHeight() : 0) + ((Build.VERSION.SDK_INT < 21 || !SizeNotifierFrameLayout.this.occupyStatusBar) ? 0 : AndroidUtilities.statusBarHeight);
+                                int currentActionBarHeight2 = (SizeNotifierFrameLayout.this.isActionBarVisible() ? C1133ActionBar.getCurrentActionBarHeight() : 0) + ((Build.VERSION.SDK_INT < 21 || !SizeNotifierFrameLayout.this.occupyStatusBar) ? 0 : AndroidUtilities.statusBarHeight);
                                 int measuredHeight3 = getRootView().getMeasuredHeight() - currentActionBarHeight2;
                                 float max2 = Math.max(getMeasuredWidth() / drawable.getIntrinsicWidth(), measuredHeight3 / drawable.getIntrinsicHeight());
                                 int ceil3 = (int) Math.ceil(drawable.getIntrinsicWidth() * max2 * SizeNotifierFrameLayout.this.parallaxScale);
@@ -458,7 +458,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
             if (this.snowflakesEffect == null) {
                 this.snowflakesEffect = new SnowflakesEffect(1);
             }
-            this.snowflakesEffect.onDraw(this, canvas);
+            this.snowflakesEffect.onDraw(this.backgroundView, canvas);
         }
     }
 
@@ -482,7 +482,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         BlurBitmap blurBitmap;
         if (this.blurIsRunning && !this.blurGeneratingTuskIsRunning && this.invalidateBlur && SharedConfig.chatBlurEnabled() && Color.alpha(Theme.getColor("chat_BlurAlpha")) != 255) {
             int measuredWidth = getMeasuredWidth();
-            int currentActionBarHeight = C1069ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.m35dp(100.0f);
+            int currentActionBarHeight = C1133ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.m35dp(100.0f);
             if (measuredWidth == 0 || currentActionBarHeight == 0) {
                 return;
             }

@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BackDrawable;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Cells.ShadowSectionCell;
 import org.telegram.p009ui.Cells.TextCell;
@@ -58,7 +58,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -66,7 +66,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 }
             }
         });
-        this.actionBar.setTitle(LocaleController.getString(C1010R.string.NotificationsExceptions));
+        this.actionBar.setTitle(LocaleController.getString(C1072R.string.NotificationsExceptions));
         this.recyclerListView = new RecyclerListView(context);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDelayAnimations(false);
@@ -77,14 +77,14 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         Adapter adapter = new Adapter();
         this.adapter = adapter;
         recyclerListView.setAdapter(adapter);
-        this.recyclerListView.setOnItemClickListener(new C40502());
+        this.recyclerListView.setOnItemClickListener(new C42132());
         frameLayout.addView(this.recyclerListView);
         frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
         return this.fragmentView;
     }
 
-    public class C40502 implements RecyclerListView.OnItemClickListener {
-        C40502() {
+    public class C42132 implements RecyclerListView.OnItemClickListener {
+        C42132() {
         }
 
         @Override
@@ -98,7 +98,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 topicsFragment.setOnTopicSelectedListener(new TopicsFragment.OnTopicSelectedListener() {
                     @Override
                     public final void onTopicSelected(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
-                        TopicsNotifySettingsFragments.C40502.this.lambda$onItemClick$1(tLRPC$TL_forumTopic);
+                        TopicsNotifySettingsFragments.C42132.this.lambda$onItemClick$1(tLRPC$TL_forumTopic);
                     }
                 });
                 TopicsNotifySettingsFragments.this.presentFragment(topicsFragment);
@@ -107,23 +107,23 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 TLRPC$TL_forumTopic tLRPC$TL_forumTopic = TopicsNotifySettingsFragments.this.items.get(i).topic;
                 Bundle bundle2 = new Bundle();
                 bundle2.putLong("dialog_id", TopicsNotifySettingsFragments.this.dialogId);
-                bundle2.putInt("topic_id", tLRPC$TL_forumTopic.f901id);
+                bundle2.putInt("topic_id", tLRPC$TL_forumTopic.f910id);
                 bundle2.putBoolean("exception", false);
                 ProfileNotificationsActivity profileNotificationsActivity = new ProfileNotificationsActivity(bundle2);
-                profileNotificationsActivity.setDelegate(new C40511(tLRPC$TL_forumTopic));
+                profileNotificationsActivity.setDelegate(new C42141(tLRPC$TL_forumTopic));
                 TopicsNotifySettingsFragments.this.presentFragment(profileNotificationsActivity);
             }
             if (TopicsNotifySettingsFragments.this.items.get(i).viewType == 4) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(TopicsNotifySettingsFragments.this.getParentActivity());
-                builder.setTitle(LocaleController.getString("NotificationsDeleteAllExceptionTitle", C1010R.string.NotificationsDeleteAllExceptionTitle));
-                builder.setMessage(LocaleController.getString("NotificationsDeleteAllExceptionAlert", C1010R.string.NotificationsDeleteAllExceptionAlert));
-                builder.setPositiveButton(LocaleController.getString("Delete", C1010R.string.Delete), new DialogInterface.OnClickListener() {
+                builder.setTitle(LocaleController.getString("NotificationsDeleteAllExceptionTitle", C1072R.string.NotificationsDeleteAllExceptionTitle));
+                builder.setMessage(LocaleController.getString("NotificationsDeleteAllExceptionAlert", C1072R.string.NotificationsDeleteAllExceptionAlert));
+                builder.setPositiveButton(LocaleController.getString("Delete", C1072R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
-                        TopicsNotifySettingsFragments.C40502.this.lambda$onItemClick$2(dialogInterface, i2);
+                        TopicsNotifySettingsFragments.C42132.this.lambda$onItemClick$2(dialogInterface, i2);
                     }
                 });
-                builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+                builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
                 AlertDialog create = builder.create();
                 TopicsNotifySettingsFragments.this.showDialog(create);
                 TextView textView = (TextView) create.getButton(-1);
@@ -136,13 +136,13 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         public void lambda$onItemClick$1(final TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", TopicsNotifySettingsFragments.this.dialogId);
-            bundle.putInt("topic_id", tLRPC$TL_forumTopic.f901id);
+            bundle.putInt("topic_id", tLRPC$TL_forumTopic.f910id);
             bundle.putBoolean("exception", true);
             ProfileNotificationsActivity profileNotificationsActivity = new ProfileNotificationsActivity(bundle);
             profileNotificationsActivity.setDelegate(new ProfileNotificationsActivity.ProfileNotificationsActivityDelegate() {
                 @Override
                 public final void didCreateNewException(NotificationsSettingsActivity.NotificationException notificationException) {
-                    TopicsNotifySettingsFragments.C40502.this.lambda$onItemClick$0(tLRPC$TL_forumTopic, notificationException);
+                    TopicsNotifySettingsFragments.C42132.this.lambda$onItemClick$0(tLRPC$TL_forumTopic, notificationException);
                 }
 
                 @Override
@@ -154,35 +154,35 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         }
 
         public void lambda$onItemClick$0(TLRPC$TL_forumTopic tLRPC$TL_forumTopic, NotificationsSettingsActivity.NotificationException notificationException) {
-            TopicsNotifySettingsFragments.this.exceptionsTopics.add(Integer.valueOf(tLRPC$TL_forumTopic.f901id));
+            TopicsNotifySettingsFragments.this.exceptionsTopics.add(Integer.valueOf(tLRPC$TL_forumTopic.f910id));
             TopicsNotifySettingsFragments.this.updateRows();
         }
 
-        public class C40511 implements ProfileNotificationsActivity.ProfileNotificationsActivityDelegate {
+        public class C42141 implements ProfileNotificationsActivity.ProfileNotificationsActivityDelegate {
             final TLRPC$TL_forumTopic val$topic;
 
             @Override
             public void didCreateNewException(NotificationsSettingsActivity.NotificationException notificationException) {
             }
 
-            C40511(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+            C42141(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                 this.val$topic = tLRPC$TL_forumTopic;
             }
 
             @Override
             public void didRemoveException(long j) {
-                TopicsNotifySettingsFragments.this.removeException(this.val$topic.f901id);
+                TopicsNotifySettingsFragments.this.removeException(this.val$topic.f910id);
                 final TLRPC$TL_forumTopic tLRPC$TL_forumTopic = this.val$topic;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TopicsNotifySettingsFragments.C40502.C40511.this.lambda$didRemoveException$0(tLRPC$TL_forumTopic);
+                        TopicsNotifySettingsFragments.C42132.C42141.this.lambda$didRemoveException$0(tLRPC$TL_forumTopic);
                     }
                 }, 300L);
             }
 
             public void lambda$didRemoveException$0(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
-                TopicsNotifySettingsFragments.this.exceptionsTopics.remove(Integer.valueOf(tLRPC$TL_forumTopic.f901id));
+                TopicsNotifySettingsFragments.this.exceptionsTopics.remove(Integer.valueOf(tLRPC$TL_forumTopic.f910id));
                 TopicsNotifySettingsFragments.this.updateRows();
             }
         }
@@ -230,7 +230,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         if (topics != null) {
             int i2 = 0;
             while (i < topics.size()) {
-                if (this.exceptionsTopics.contains(Integer.valueOf(topics.get(i).f901id))) {
+                if (this.exceptionsTopics.contains(Integer.valueOf(topics.get(i).f910id))) {
                     this.items.add(new Item(2, topics.get(i)));
                     i2 = 1;
                 }
@@ -262,7 +262,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             TextCell textCell = null;
             if (i == 1) {
                 TextCell textCell2 = new TextCell(viewGroup.getContext());
-                textCell2.setTextAndIcon(LocaleController.getString("NotificationsAddAnException", C1010R.string.NotificationsAddAnException), C1010R.C1011drawable.msg_contact_add, true);
+                textCell2.setTextAndIcon(LocaleController.getString("NotificationsAddAnException", C1072R.string.NotificationsAddAnException), C1072R.C1073drawable.msg_contact_add, true);
                 textCell2.setColors("windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteBlueButton");
                 textCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                 textCell = textCell2;
@@ -274,7 +274,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 textCell = new ShadowSectionCell(viewGroup.getContext());
             } else if (i == 4) {
                 TextCell textCell3 = new TextCell(viewGroup.getContext());
-                textCell3.setText(LocaleController.getString("NotificationsDeleteAllException", C1010R.string.NotificationsDeleteAllException), false);
+                textCell3.setText(LocaleController.getString("NotificationsDeleteAllException", C1072R.string.NotificationsDeleteAllException), false);
                 textCell3.setColors(null, "windowBackgroundWhiteRedText5");
                 textCell3.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                 textCell = textCell3;
@@ -334,7 +334,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 return false;
             }
             TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = this.topic;
-            return tLRPC$TL_forumTopic2 == null || (tLRPC$TL_forumTopic = item.topic) == null || tLRPC$TL_forumTopic2.f901id == tLRPC$TL_forumTopic.f901id;
+            return tLRPC$TL_forumTopic2 == null || (tLRPC$TL_forumTopic = item.topic) == null || tLRPC$TL_forumTopic2.f910id == tLRPC$TL_forumTopic.f910id;
         }
     }
 }

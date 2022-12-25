@@ -24,7 +24,8 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.messenger.Utilities;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.Components.CircularViewPager;
 import org.telegram.p009ui.Components.ProfileGalleryView;
 import org.telegram.p009ui.PinchToZoomHelper;
@@ -44,8 +45,10 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     ImageLocation curreantUploadingThumbLocation;
     private int currentAccount;
     ImageLocation currentUploadingImageLocation;
+    private int customAvatarIndex;
     private long dialogId;
     private final PointF downPoint;
+    private int fallbackPhotoIndex;
     private boolean forceResetPosition;
     private boolean hasActiveVideo;
     private int imagesLayerNum;
@@ -57,19 +60,21 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     private final boolean isProfileFragment;
     private boolean isScrollingListView;
     private boolean isSwipingViewPager;
-    private final C1069ActionBar parentActionBar;
+    private final C1133ActionBar parentActionBar;
     private final int parentClassGuid;
     private final RecyclerListView parentListView;
     Path path;
     private ArrayList<TLRPC$Photo> photos;
     PinchToZoomHelper pinchToZoomHelper;
     private ImageLocation prevImageLocation;
+    int prevPage;
     private final SparseArray<RadialProgress2> radialProgresses;
     float[] radii;
     RectF rect;
     private int roundBottomRadius;
     private int roundTopRadius;
     private boolean scrolledByUser;
+    int selectedPage;
     private int settingMainPhoto;
     private ArrayList<String> thumbsFileNames;
     private ArrayList<ImageLocation> thumbsLocations;
@@ -86,6 +91,9 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         void onRelease();
 
         void onVideoSet();
+    }
+
+    protected void setCustomAvatarProgress(float f) {
     }
 
     public void setHasActiveVideo(boolean z) {
@@ -114,7 +122,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         }
     }
 
-    public ProfileGalleryView(Context context, C1069ActionBar c1069ActionBar, RecyclerListView recyclerListView, Callback callback) {
+    public ProfileGalleryView(Context context, C1133ActionBar c1133ActionBar, RecyclerListView recyclerListView, Callback callback) {
         super(context);
         this.downPoint = new PointF();
         this.isScrollingListView = true;
@@ -133,11 +141,13 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         this.imagesUploadProgress = new ArrayList<>();
         this.radialProgresses = new SparseArray<>();
         this.createThumbFromParent = true;
+        this.customAvatarIndex = -1;
+        this.fallbackPhotoIndex = -1;
         setOffscreenPageLimit(2);
         this.isProfileFragment = false;
         this.parentListView = recyclerListView;
         this.parentClassGuid = ConnectionsManager.generateClassGuid();
-        this.parentActionBar = c1069ActionBar;
+        this.parentActionBar = c1133ActionBar;
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         this.callback = callback;
         addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -146,12 +156,9 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
             }
 
             @Override
-            public void onPageSelected(int i) {
-            }
-
-            @Override
             public void onPageScrolled(int i, float f, int i2) {
                 ImageLocation imageLocation;
+                ProfileGalleryView.this.checkCustomAvatar(i, f);
                 if (i2 == 0) {
                     int realPosition = ProfileGalleryView.this.adapter.getRealPosition(i);
                     if (ProfileGalleryView.this.hasActiveVideo) {
@@ -189,8 +196,18 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                     }
                 }
             }
+
+            @Override
+            public void onPageSelected(int i) {
+                ProfileGalleryView profileGalleryView = ProfileGalleryView.this;
+                int i2 = profileGalleryView.selectedPage;
+                if (i != i2) {
+                    profileGalleryView.prevPage = i2;
+                    profileGalleryView.selectedPage = i;
+                }
+            }
         });
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext(), null, c1069ActionBar);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext(), null, c1133ActionBar);
         this.adapter = viewPagerAdapter;
         setAdapter((CircularViewPager.Adapter) viewPagerAdapter);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogPhotosLoaded);
@@ -199,11 +216,38 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.reloadDialogPhotos);
     }
 
+    public void checkCustomAvatar(int i, float f) {
+        float f2;
+        int i2 = this.customAvatarIndex;
+        float f3 = 0.0f;
+        if (i2 >= 0 || this.fallbackPhotoIndex >= 0) {
+            if (i2 < 0) {
+                i2 = this.fallbackPhotoIndex;
+            }
+            int realPosition = this.adapter.getRealPosition(i);
+            if (this.hasActiveVideo) {
+                realPosition--;
+            }
+            if (realPosition == i2) {
+                f2 = 1.0f - f;
+            } else if ((realPosition - 1) % getRealCount() == i2) {
+                f2 = (1.0f - f) - 1.0f;
+            } else {
+                f2 = (realPosition + 1) % getRealCount() == i2 ? (1.0f - f) + 1.0f : 0.0f;
+            }
+            if (f2 > 1.0f) {
+                f2 = 2.0f - f2;
+            }
+            f3 = Utilities.clamp(f2, 1.0f, 0.0f);
+        }
+        setCustomAvatarProgress(f3);
+    }
+
     public void setImagesLayerNum(int i) {
         this.imagesLayerNum = i;
     }
 
-    public ProfileGalleryView(Context context, long j, C1069ActionBar c1069ActionBar, RecyclerListView recyclerListView, ProfileActivity.AvatarImageView avatarImageView, int i, Callback callback) {
+    public ProfileGalleryView(Context context, long j, C1133ActionBar c1133ActionBar, RecyclerListView recyclerListView, ProfileActivity.AvatarImageView avatarImageView, int i, Callback callback) {
         super(context);
         this.downPoint = new PointF();
         this.isScrollingListView = true;
@@ -222,6 +266,8 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         this.imagesUploadProgress = new ArrayList<>();
         this.radialProgresses = new SparseArray<>();
         this.createThumbFromParent = true;
+        this.customAvatarIndex = -1;
+        this.fallbackPhotoIndex = -1;
         setVisibility(8);
         setOverScrollMode(2);
         setOffscreenPageLimit(2);
@@ -229,8 +275,8 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         this.dialogId = j;
         this.parentListView = recyclerListView;
         this.parentClassGuid = i;
-        this.parentActionBar = c1069ActionBar;
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext(), avatarImageView, c1069ActionBar);
+        this.parentActionBar = c1133ActionBar;
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext(), avatarImageView, c1133ActionBar);
         this.adapter = viewPagerAdapter;
         setAdapter((CircularViewPager.Adapter) viewPagerAdapter);
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -241,12 +287,9 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
             }
 
             @Override
-            public void onPageSelected(int i2) {
-            }
-
-            @Override
             public void onPageScrolled(int i2, float f, int i3) {
                 ImageLocation imageLocation;
+                ProfileGalleryView.this.checkCustomAvatar(i2, f);
                 if (i3 == 0) {
                     int realPosition = ProfileGalleryView.this.adapter.getRealPosition(i2);
                     ProfileGalleryView.this.getCurrentItemView();
@@ -278,6 +321,16 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                     }
                 }
             }
+
+            @Override
+            public void onPageSelected(int i2) {
+                ProfileGalleryView profileGalleryView = ProfileGalleryView.this;
+                int i3 = profileGalleryView.selectedPage;
+                if (i2 != i3) {
+                    profileGalleryView.prevPage = i3;
+                    profileGalleryView.selectedPage = i2;
+                }
+            }
         });
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogPhotosLoaded);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoaded);
@@ -289,11 +342,14 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     public void onDestroy() {
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.dialogPhotosLoaded);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoaded);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
+        NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
+        int i = NotificationCenter.fileLoadProgressChanged;
+        notificationCenter.removeObserver(this, i);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, i);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.reloadDialogPhotos);
         int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = getChildAt(i);
+        for (int i2 = 0; i2 < childCount; i2++) {
+            View childAt = getChildAt(i2);
             if (childAt instanceof BackupImageView) {
                 BackupImageView backupImageView = (BackupImageView) childAt;
                 if (backupImageView.getImageReceiver().hasStaticThumb()) {
@@ -713,7 +769,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         private final ArrayList<Item> objects = new ArrayList<>();
         private final ArrayList<BackupImageView> imageViews = new ArrayList<>();
 
-        public ViewPagerAdapter(Context context, ProfileActivity.AvatarImageView avatarImageView, C1069ActionBar c1069ActionBar) {
+        public ViewPagerAdapter(Context context, ProfileActivity.AvatarImageView avatarImageView, C1133ActionBar c1133ActionBar) {
             this.context = context;
             this.parentAvatarImageView = avatarImageView;
             Paint paint = new Paint(1);
@@ -742,7 +798,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         }
 
         @Override
-        public org.telegram.p009ui.Components.ProfileGalleryView.Item instantiateItem(android.view.ViewGroup r24, int r25) {
+        public org.telegram.p009ui.Components.ProfileGalleryView.Item instantiateItem(android.view.ViewGroup r25, int r26) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ProfileGalleryView.ViewPagerAdapter.instantiateItem(android.view.ViewGroup, int):org.telegram.ui.Components.ProfileGalleryView$Item");
         }
 
@@ -908,7 +964,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         protected void onSizeChanged(int i, int i2, int i3, int i4) {
             super.onSizeChanged(i, i2, i3, i4);
             if (this.radialProgress != null) {
-                int currentActionBarHeight = (ProfileGalleryView.this.parentActionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + C1069ActionBar.getCurrentActionBarHeight();
+                int currentActionBarHeight = (ProfileGalleryView.this.parentActionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + C1133ActionBar.getCurrentActionBarHeight();
                 int dp2 = AndroidUtilities.dp2(80.0f);
                 RadialProgress2 radialProgress2 = this.radialProgress;
                 int i5 = this.radialProgressSize;
@@ -1028,5 +1084,13 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         public TextureStubView(ProfileGalleryView profileGalleryView, Context context) {
             super(context);
         }
+    }
+
+    public void scrollToLastItem() {
+        int i = 0;
+        while (getRealPosition(i) != getRealCount() - 1) {
+            i++;
+        }
+        setCurrentItem(i, true);
     }
 }

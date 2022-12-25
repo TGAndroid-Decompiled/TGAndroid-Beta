@@ -15,8 +15,7 @@ import androidx.dynamicanimation.animation.FloatValueHolder;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -126,11 +125,11 @@ public class ShareDialogCell extends FrameLayout {
             this.user = user;
             this.avatarDrawable.setInfo(user);
             if (this.currentType != 2 && UserObject.isReplyUser(this.user)) {
-                this.nameTextView.setText(LocaleController.getString("RepliesTitle", C1010R.string.RepliesTitle));
+                this.nameTextView.setText(LocaleController.getString("RepliesTitle", C1072R.string.RepliesTitle));
                 this.avatarDrawable.setAvatarType(12);
                 this.imageView.setImage((ImageLocation) null, (String) null, this.avatarDrawable, this.user);
             } else if (this.currentType != 2 && UserObject.isUserSelf(this.user)) {
-                this.nameTextView.setText(LocaleController.getString("SavedMessages", C1010R.string.SavedMessages));
+                this.nameTextView.setText(LocaleController.getString("SavedMessages", C1072R.string.SavedMessages));
                 this.avatarDrawable.setAvatarType(1);
                 this.imageView.setImage((ImageLocation) null, (String) null, this.avatarDrawable, this.user);
             } else {
@@ -141,7 +140,7 @@ public class ShareDialogCell extends FrameLayout {
                     if (tLRPC$User != null) {
                         this.nameTextView.setText(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name));
                     } else {
-                        this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+                        this.nameTextView.setText("");
                     }
                 }
                 this.imageView.setForUserOrChat(this.user, this.avatarDrawable);
@@ -155,7 +154,7 @@ public class ShareDialogCell extends FrameLayout {
             } else if (chat != null) {
                 this.nameTextView.setText(chat.title);
             } else {
-                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+                this.nameTextView.setText("");
             }
             this.avatarDrawable.setInfo(chat);
             this.imageView.setForUserOrChat(chat, this.avatarDrawable);
@@ -184,7 +183,7 @@ public class ShareDialogCell extends FrameLayout {
             return;
         }
         SimpleTextView simpleTextView = this.topicTextView;
-        int i = C1010R.C1012id.spring_tag;
+        int i = C1072R.C1074id.spring_tag;
         SpringAnimation springAnimation = (SpringAnimation) simpleTextView.getTag(i);
         if (springAnimation != null) {
             springAnimation.cancel();
@@ -232,7 +231,7 @@ public class ShareDialogCell extends FrameLayout {
     }
 
     public void lambda$setTopic$2(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-        this.topicTextView.setTag(C1010R.C1012id.spring_tag, null);
+        this.topicTextView.setTag(C1072R.C1074id.spring_tag, null);
     }
 
     @Override
@@ -248,7 +247,7 @@ public class ShareDialogCell extends FrameLayout {
             }
             this.lastUpdateTime = elapsedRealtime;
             TLRPC$User tLRPC$User2 = this.user;
-            boolean z = (tLRPC$User2.self || tLRPC$User2.bot || (((tLRPC$UserStatus = tLRPC$User2.status) == null || tLRPC$UserStatus.expires <= ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) && !MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.f986id)))) ? false : true;
+            boolean z = (tLRPC$User2.self || tLRPC$User2.bot || (((tLRPC$UserStatus = tLRPC$User2.status) == null || tLRPC$UserStatus.expires <= ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) && !MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.f995id)))) ? false : true;
             if (z || this.onlineProgress != 0.0f) {
                 int bottom = this.imageView.getBottom() - AndroidUtilities.m35dp(6.0f);
                 int right = this.imageView.getRight() - AndroidUtilities.m35dp(10.0f);

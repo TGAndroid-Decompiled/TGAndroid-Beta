@@ -7,6 +7,7 @@ import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.opengl.Matrix;
+import android.view.View;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -16,7 +17,9 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.p009ui.Components.AnimatedEmojiDrawable;
 import org.telegram.p009ui.Components.AnimatedFileDrawable;
+import org.telegram.p009ui.Components.EditTextEffects;
 import org.telegram.p009ui.Components.FilterShaders;
 import org.telegram.p009ui.Components.Paint.Views.EditTextOutline;
 import org.telegram.p009ui.Components.RLottieDrawable;
@@ -27,6 +30,7 @@ public class TextureRenderer {
     private static final String VERTEX_SHADER = "uniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n  gl_Position = uMVPMatrix * aPosition;\n  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n}\n";
     private FloatBuffer bitmapVerticesBuffer;
     private boolean blendEnabled;
+    private ArrayList<AnimatedEmojiDrawable> emojiDrawables;
     private FilterShaders filterShaders;
     private int imageOrientation;
     private String imagePath;
@@ -186,6 +190,7 @@ public class TextureRenderer {
         int i2;
         float[] fArr;
         char c;
+        Bitmap bitmap;
         if (this.isPhoto) {
             GLES20.glUseProgram(this.simpleShaderProgram);
             GLES20.glActiveTexture(33984);
@@ -274,8 +279,8 @@ public class TextureRenderer {
                 VideoEditedInfo.MediaEntity mediaEntity = this.mediaEntities.get(i6);
                 long j = mediaEntity.ptr;
                 if (j != 0) {
-                    Bitmap bitmap = this.stickerBitmap;
-                    RLottieDrawable.getFrame(j, (int) mediaEntity.currentFrame, bitmap, 512, 512, bitmap.getRowBytes(), true);
+                    Bitmap bitmap2 = this.stickerBitmap;
+                    RLottieDrawable.getFrame(j, (int) mediaEntity.currentFrame, bitmap2, 512, 512, bitmap2.getRowBytes(), true);
                     GLES20.glBindTexture(3553, this.stickerTexture[0]);
                     GLUtils.texImage2D(3553, 0, this.stickerBitmap, 0);
                     float f = mediaEntity.currentFrame + mediaEntity.framesPerDraw;
@@ -283,7 +288,7 @@ public class TextureRenderer {
                     if (f >= mediaEntity.metadata[0]) {
                         mediaEntity.currentFrame = 0.0f;
                     }
-                    drawTexture(false, this.stickerTexture[0], mediaEntity.f825x, mediaEntity.f826y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                    drawTexture(false, this.stickerTexture[0], mediaEntity.f834x, mediaEntity.f835y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                 } else if (mediaEntity.animatedFileDrawable != null) {
                     float f2 = mediaEntity.currentFrame;
                     int i7 = (int) f2;
@@ -296,18 +301,29 @@ public class TextureRenderer {
                     if (this.stickerCanvas == null && this.stickerBitmap != null) {
                         this.stickerCanvas = new Canvas(this.stickerBitmap);
                     }
-                    Bitmap bitmap2 = this.stickerBitmap;
-                    if (bitmap2 != null && backgroundBitmap != null) {
-                        bitmap2.eraseColor(0);
+                    Bitmap bitmap3 = this.stickerBitmap;
+                    if (bitmap3 != null && backgroundBitmap != null) {
+                        bitmap3.eraseColor(0);
                         this.stickerCanvas.drawBitmap(backgroundBitmap, 0.0f, 0.0f, (Paint) null);
                         GLES20.glBindTexture(3553, this.stickerTexture[0]);
                         GLUtils.texImage2D(3553, 0, this.stickerBitmap, 0);
-                        drawTexture(false, this.stickerTexture[0], mediaEntity.f825x, mediaEntity.f826y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                        drawTexture(false, this.stickerTexture[0], mediaEntity.f834x, mediaEntity.f835y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                     }
+                } else if (mediaEntity.view != null && mediaEntity.canvas != null && (bitmap = mediaEntity.bitmap) != null) {
+                    bitmap.eraseColor(0);
+                    float f4 = mediaEntity.currentFrame;
+                    int i9 = (int) f4;
+                    float f5 = f4 + mediaEntity.framesPerDraw;
+                    mediaEntity.currentFrame = f5;
+                    ((EditTextEffects) mediaEntity.view).incrementFrames(((int) f5) - i9);
+                    mediaEntity.view.draw(mediaEntity.canvas);
+                    GLES20.glBindTexture(3553, this.stickerTexture[0]);
+                    GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
+                    drawTexture(false, this.stickerTexture[0], mediaEntity.f834x, mediaEntity.f835y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                 } else if (mediaEntity.bitmap != null) {
                     GLES20.glBindTexture(3553, this.stickerTexture[0]);
                     GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
-                    drawTexture(false, this.stickerTexture[0], mediaEntity.f825x, mediaEntity.f826y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                    drawTexture(false, this.stickerTexture[0], mediaEntity.f834x, mediaEntity.f835y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                 }
             }
         }
@@ -433,6 +449,10 @@ public class TextureRenderer {
                 AnimatedFileDrawable animatedFileDrawable = mediaEntity.animatedFileDrawable;
                 if (animatedFileDrawable != null) {
                     animatedFileDrawable.recycle();
+                }
+                View view = mediaEntity.view;
+                if (view instanceof EditTextEffects) {
+                    ((EditTextEffects) view).recycleEmojis();
                 }
             }
         }

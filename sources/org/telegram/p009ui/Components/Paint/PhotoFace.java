@@ -36,32 +36,32 @@ public class PhotoFace {
             }
         }
         if (point != null && point2 != null) {
-            if (point.f1087x < point2.f1087x) {
+            if (point.f1103x < point2.f1103x) {
                 Point point5 = point2;
                 point2 = point;
                 point = point5;
             }
-            this.eyesCenterPoint = new Point((point.f1087x * 0.5f) + (point2.f1087x * 0.5f), (point.f1088y * 0.5f) + (point2.f1088y * 0.5f));
-            this.eyesDistance = (float) Math.hypot(point2.f1087x - point.f1087x, point2.f1088y - point.f1088y);
-            this.angle = (float) Math.toDegrees(Math.atan2(point2.f1088y - point.f1088y, point2.f1087x - point.f1087x) + 3.141592653589793d);
+            this.eyesCenterPoint = new Point((point.f1103x * 0.5f) + (point2.f1103x * 0.5f), (point.f1104y * 0.5f) + (point2.f1104y * 0.5f));
+            this.eyesDistance = (float) Math.hypot(point2.f1103x - point.f1103x, point2.f1104y - point.f1104y);
+            this.angle = (float) Math.toDegrees(Math.atan2(point2.f1104y - point.f1104y, point2.f1103x - point.f1103x) + 3.141592653589793d);
             float f = this.eyesDistance;
             this.width = 2.35f * f;
             float f2 = f * 0.8f;
             double radians = (float) Math.toRadians(degrees - 90.0f);
-            this.foreheadPoint = new Point(this.eyesCenterPoint.f1087x + (((float) Math.cos(radians)) * f2), this.eyesCenterPoint.f1088y + (f2 * ((float) Math.sin(radians))));
+            this.foreheadPoint = new Point(this.eyesCenterPoint.f1103x + (((float) Math.cos(radians)) * f2), this.eyesCenterPoint.f1104y + (f2 * ((float) Math.sin(radians))));
         }
         if (point3 == null || point4 == null) {
             return;
         }
-        if (point3.f1087x < point4.f1087x) {
+        if (point3.f1103x < point4.f1103x) {
             Point point6 = point4;
             point4 = point3;
             point3 = point6;
         }
-        this.mouthPoint = new Point((point3.f1087x * 0.5f) + (point4.f1087x * 0.5f), (point3.f1088y * 0.5f) + (point4.f1088y * 0.5f));
+        this.mouthPoint = new Point((point3.f1103x * 0.5f) + (point4.f1103x * 0.5f), (point3.f1104y * 0.5f) + (point4.f1104y * 0.5f));
         float f3 = this.eyesDistance * 0.7f;
         double radians2 = (float) Math.toRadians(this.angle + 90.0f);
-        this.chinPoint = new Point(this.mouthPoint.f1087x + (((float) Math.cos(radians2)) * f3), this.mouthPoint.f1088y + (f3 * ((float) Math.sin(radians2))));
+        this.chinPoint = new Point(this.mouthPoint.f1103x + (((float) Math.cos(radians2)) * f3), this.mouthPoint.f1104y + (f3 * ((float) Math.sin(radians2))));
     }
 
     public boolean isSufficient() {

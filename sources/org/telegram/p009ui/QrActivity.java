@@ -52,8 +52,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
@@ -533,14 +532,14 @@ public class QrActivity extends BaseFragment {
         }
         long longValue = ((Long) pair.first).longValue();
         Bitmap bitmap = (Bitmap) pair.second;
-        if (longValue != this.currentTheme.getTlTheme(z ? 1 : 0).f977id || bitmap == null) {
+        if (longValue != this.currentTheme.getTlTheme(z ? 1 : 0).f986id || bitmap == null) {
             return;
         }
         onPatternLoaded(bitmap, this.currMotionDrawable.getIntensity(), SystemClock.elapsedRealtime() - j > 150);
     }
 
     public void lambda$onItemSelected$10() {
-        final Bitmap bitmap = SvgHelper.getBitmap(C1010R.raw.default_pattern, this.backgroundView.getWidth(), this.backgroundView.getHeight(), -16777216);
+        final Bitmap bitmap = SvgHelper.getBitmap(C1072R.raw.default_pattern, this.backgroundView.getWidth(), this.backgroundView.getHeight(), -16777216);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -625,7 +624,7 @@ public class QrActivity extends BaseFragment {
         Uri bitmapShareUri = AndroidUtilities.getBitmapShareUri(createBitmap, "qr_tmp.jpg", Bitmap.CompressFormat.JPEG);
         if (bitmapShareUri != null) {
             try {
-                getParentActivity().startActivityForResult(Intent.createChooser(new Intent("android.intent.action.SEND").setType("image/*").putExtra("android.intent.extra.STREAM", bitmapShareUri), LocaleController.getString("InviteByQRCode", C1010R.string.InviteByQRCode)), 500);
+                getParentActivity().startActivityForResult(Intent.createChooser(new Intent("android.intent.action.SEND").setType("image/*").putExtra("android.intent.extra.STREAM", bitmapShareUri), LocaleController.getString("InviteByQRCode", C1072R.string.InviteByQRCode)), 500);
             } catch (ActivityNotFoundException e) {
                 e.printStackTrace();
             }
@@ -734,6 +733,7 @@ public class QrActivity extends BaseFragment {
         private Bitmap backgroundBitmap;
         private final Paint bitmapGradientPaint;
         private QrCenterChangedListener centerChangedListener;
+        private Runnable checkTimerToken;
         private Bitmap contentBitmap;
         private AnimatedFloat contentBitmapAlpha;
         private Paint crossfadeFromPaint;
@@ -777,6 +777,12 @@ public class QrActivity extends BaseFragment {
             this.crossfadeFromPaint = new Paint(1);
             this.crossfadeToPaint = new Paint(1);
             this.radii = new float[8];
+            this.checkTimerToken = new Runnable() {
+                @Override
+                public final void run() {
+                    QrActivity.QrView.this.lambda$new$5();
+                }
+            };
             this.firstPrepare = true;
             motionBackgroundDrawable.setIndeterminateAnimation(true);
             motionBackgroundDrawable.setParentView(this);
@@ -802,7 +808,7 @@ public class QrActivity extends BaseFragment {
             this.timerTextDrawable.getPaint().setShader(bitmapShader2);
             this.timerTextDrawable.setGravity(17);
             this.timerTextDrawable.setTextSize(AndroidUtilities.m35dp(35.0f));
-            this.timerTextDrawable.setText(BuildConfig.APP_CENTER_HASH);
+            this.timerTextDrawable.setText("");
             this.crossfadeFromPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.m35dp(120.0f), new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
             this.crossfadeFromPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             this.crossfadeToPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.m35dp(120.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
@@ -820,7 +826,7 @@ public class QrActivity extends BaseFragment {
                     this.shareUsernameLayoutPaint.setTextSize(AndroidUtilities.m35dp(25.0f));
                     String str = this.username;
                     if (str == null) {
-                        str = BuildConfig.APP_CENTER_HASH;
+                        str = "";
                     }
                     this.shareUsernameLayout = StaticLayoutEx.createStaticLayout(Emoji.replaceEmoji(str, this.shareUsernameLayoutPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false), this.shareUsernameLayoutPaint, getWidth(), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, getWidth() - AndroidUtilities.m35dp(60.0f), 1);
                     return;
@@ -941,29 +947,22 @@ public class QrActivity extends BaseFragment {
                 }
             });
             invalidate();
-            checkTimerToken();
+            this.checkTimerToken.run();
         }
 
-        public void checkTimerToken() {
-            AndroidUtilities.cancelRunOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    QrActivity.QrView.this.checkTimerToken();
-                }
-            });
+        public void lambda$new$5() {
+            AndroidUtilities.cancelRunOnUIThread(this.checkTimerToken);
             boolean z = this.hasTimer;
             if (z) {
                 if (z && this.loadingMatrix == null) {
-                    RLottieDrawable rLottieDrawable = new RLottieDrawable(C1010R.raw.qr_matrix, "qr_matrix", AndroidUtilities.m35dp(200.0f), AndroidUtilities.m35dp(200.0f));
+                    RLottieDrawable rLottieDrawable = new RLottieDrawable(C1072R.raw.qr_matrix, "qr_matrix", AndroidUtilities.m35dp(200.0f), AndroidUtilities.m35dp(200.0f));
                     this.loadingMatrix = rLottieDrawable;
                     rLottieDrawable.setMasterParent(this);
                     this.loadingMatrix.getPaint().setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
                     this.loadingMatrix.setAutoRepeat(1);
                     this.loadingMatrix.start();
                 }
-                int i = this.linkExpires;
-                String str = BuildConfig.APP_CENTER_HASH;
-                if (i == 0 || System.currentTimeMillis() / 1000 >= this.linkExpires) {
+                if (this.linkExpires == 0 || System.currentTimeMillis() / 1000 >= this.linkExpires) {
                     if (this.linkExpires != 0) {
                         this.link = null;
                         final int width = getWidth();
@@ -971,56 +970,48 @@ public class QrActivity extends BaseFragment {
                         Utilities.themeQueue.postRunnable(new Runnable() {
                             @Override
                             public final void run() {
-                                QrActivity.QrView.this.lambda$checkTimerToken$2(width, height);
+                                QrActivity.QrView.this.lambda$new$2(width, height);
                             }
                         });
-                        this.timerTextDrawable.setText(BuildConfig.APP_CENTER_HASH);
+                        this.timerTextDrawable.setText("");
                     }
                     MessagesController.getInstance(UserConfig.selectedAccount).requestContactToken(this.linkExpires == 0 ? 750L : 1750L, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            QrActivity.QrView.this.lambda$checkTimerToken$4((TLRPC$TL_exportedContactToken) obj);
+                            QrActivity.QrView.this.lambda$new$4((TLRPC$TL_exportedContactToken) obj);
                         }
                     });
                 }
-                int i2 = this.linkExpires;
-                if (i2 > 0 && this.link != null) {
-                    long max = Math.max(0L, (i2 - (System.currentTimeMillis() / 1000)) - 1);
-                    int i3 = (int) (max % 60);
+                int i = this.linkExpires;
+                if (i > 0 && this.link != null) {
+                    long max = Math.max(0L, (i - (System.currentTimeMillis() / 1000)) - 1);
+                    int i2 = (int) (max % 60);
                     int min = Math.min(99, (int) (max / 60));
                     AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.timerTextDrawable;
                     StringBuilder sb = new StringBuilder();
-                    sb.append(min < 10 ? "0" : BuildConfig.APP_CENTER_HASH);
+                    sb.append(min < 10 ? "0" : "");
                     sb.append(min);
                     sb.append(":");
-                    if (i3 < 10) {
-                        str = "0";
-                    }
-                    sb.append(str);
-                    sb.append(i3);
+                    sb.append(i2 < 10 ? "0" : "");
+                    sb.append(i2);
                     animatedTextDrawable.setText(sb.toString(), true, false);
                 }
                 if (isAttachedToWindow()) {
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            QrActivity.QrView.this.checkTimerToken();
-                        }
-                    }, 1000L);
+                    AndroidUtilities.runOnUIThread(this.checkTimerToken, 1000L);
                 }
             }
         }
 
-        public void lambda$checkTimerToken$4(final TLRPC$TL_exportedContactToken tLRPC$TL_exportedContactToken) {
+        public void lambda$new$4(final TLRPC$TL_exportedContactToken tLRPC$TL_exportedContactToken) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.QrView.this.lambda$checkTimerToken$3(tLRPC$TL_exportedContactToken);
+                    QrActivity.QrView.this.lambda$new$3(tLRPC$TL_exportedContactToken);
                 }
             });
         }
 
-        public void lambda$checkTimerToken$3(TLRPC$TL_exportedContactToken tLRPC$TL_exportedContactToken) {
+        public void lambda$new$3(TLRPC$TL_exportedContactToken tLRPC$TL_exportedContactToken) {
             if (tLRPC$TL_exportedContactToken == null) {
                 return;
             }
@@ -1055,7 +1046,7 @@ public class QrActivity extends BaseFragment {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.QrActivity.QrView.lambda$setData$1(int, int):void");
         }
 
-        public void lambda$prepareContent$5() {
+        public void lambda$prepareContent$6() {
             this.firstPrepare = false;
             Bitmap bitmap = this.contentBitmap;
             if (bitmap != null) {
@@ -1070,7 +1061,7 @@ public class QrActivity extends BaseFragment {
             }
         }
 
-        public void lambda$prepareContent$6(Bitmap bitmap, float f, int i, float f2) {
+        public void lambda$prepareContent$7(Bitmap bitmap, float f, int i, float f2) {
             Bitmap bitmap2 = this.contentBitmap;
             this.contentBitmap = bitmap.extractAlpha();
             if (!this.firstPrepare) {
@@ -1094,7 +1085,7 @@ public class QrActivity extends BaseFragment {
         @Override
         protected void onAttachedToWindow() {
             super.onAttachedToWindow();
-            checkTimerToken();
+            this.checkTimerToken.run();
         }
 
         @Override
@@ -1149,7 +1140,7 @@ public class QrActivity extends BaseFragment {
                     return super.calculateTimeForScrolling(i) * 6;
                 }
             };
-            Drawable mutate = parentActivity.getResources().getDrawable(C1010R.C1011drawable.sheet_shadow_round).mutate();
+            Drawable mutate = parentActivity.getResources().getDrawable(C1072R.C1073drawable.sheet_shadow_round).mutate();
             this.backgroundDrawable = mutate;
             mutate.setColorFilter(new PorterDuffColorFilter(baseFragment.getThemedColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
             FrameLayout frameLayout = new FrameLayout(parentActivity, QrActivity.this, baseFragment) {
@@ -1235,8 +1226,8 @@ public class QrActivity extends BaseFragment {
             frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 8388659, 0.0f, 0.0f, 62.0f, 0.0f));
             int themedColor = baseFragment.getThemedColor("featuredStickers_addButton");
             int m35dp = AndroidUtilities.m35dp(28.0f);
-            int i = C1010R.raw.sun_outline;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, m35dp, m35dp, false, null);
+            int i = C1072R.raw.sun_outline;
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, m35dp, m35dp, false, null);
             this.darkThemeDrawable = rLottieDrawable;
             this.forceDark = Theme.getActiveTheme().isDark() ^ true;
             setForceDark(Theme.getActiveTheme().isDark(), false);
@@ -1247,9 +1238,9 @@ public class QrActivity extends BaseFragment {
                 public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                     super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                     if (QrActivity.this.isCurrentThemeDark) {
-                        accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToDayTheme", C1010R.string.AccDescrSwitchToDayTheme));
+                        accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToDayTheme", C1072R.string.AccDescrSwitchToDayTheme));
                     } else {
-                        accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToNightTheme", C1010R.string.AccDescrSwitchToNightTheme));
+                        accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToNightTheme", C1072R.string.AccDescrSwitchToNightTheme));
                     }
                 }
             };
@@ -1303,7 +1294,7 @@ public class QrActivity extends BaseFragment {
             View view = new View(parentActivity);
             this.topShadow = view;
             view.setAlpha(0.0f);
-            int i2 = C1010R.C1011drawable.shadowdown;
+            int i2 = C1072R.C1073drawable.shadowdown;
             view.setBackground(ContextCompat.getDrawable(parentActivity, i2));
             view.setRotation(180.0f);
             frameLayout.addView(view);
@@ -1318,7 +1309,7 @@ public class QrActivity extends BaseFragment {
             textView2.setGravity(17);
             textView2.setLines(1);
             textView2.setSingleLine(true);
-            textView2.setText(LocaleController.getString("ShareQrCode", C1010R.string.ShareQrCode));
+            textView2.setText(LocaleController.getString("ShareQrCode", C1072R.string.ShareQrCode));
             textView2.setTextColor(baseFragment.getThemedColor("featuredStickers_buttonText"));
             textView2.setTextSize(1, 15.0f);
             textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));

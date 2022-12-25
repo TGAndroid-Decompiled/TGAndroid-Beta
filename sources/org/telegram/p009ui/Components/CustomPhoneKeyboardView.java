@@ -18,8 +18,7 @@ import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.GestureDetectorCompat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.p009ui.ActionBar.Theme;
 
 public class CustomPhoneKeyboardView extends ViewGroup {
@@ -107,7 +106,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
                         break;
                     case 9:
                     default:
-                        str = BuildConfig.APP_CENTER_HASH;
+                        str = "";
                         break;
                     case 10:
                         str = "+";
@@ -141,7 +140,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
             }
         };
         this.backButton = imageView;
-        imageView.setImageResource(C1010R.C1011drawable.msg_clear_input);
+        imageView.setImageResource(C1072R.C1073drawable.msg_clear_input);
         this.backButton.setColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.backButton.setBackground(getButtonDrawable());
         int m35dp = AndroidUtilities.m35dp(11.0f);

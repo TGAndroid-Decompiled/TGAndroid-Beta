@@ -24,8 +24,7 @@ import java.io.File;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -70,7 +69,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         FrameLayout frameLayout = new FrameLayout(context);
         addView(frameLayout, new FrameLayout.LayoutParams(-1, AndroidUtilities.m35dp(176.0f) + (i >= 21 ? AndroidUtilities.statusBarHeight : 0)));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
-        rLottieImageView.setAnimation(C1010R.raw.qr_code_logo, 108, 108);
+        rLottieImageView.setAnimation(C1072R.raw.qr_code_logo, 108, 108);
         rLottieImageView.playAnimation();
         rLottieImageView.getAnimatedDrawable().setAutoRepeat(1);
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -95,7 +94,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         textView.setTextSize(1, 20.0f);
         textView.setGravity(49);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView.setText(LocaleController.getString("UpdateTelegram", C1010R.string.UpdateTelegram));
+        textView.setText(LocaleController.getString("UpdateTelegram", C1072R.string.UpdateTelegram));
         frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2, 49));
         TextView textView2 = new TextView(context);
         this.textView = textView2;
@@ -332,9 +331,9 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         this.textView.setText(spannableStringBuilder);
         if (tLRPC$TL_help_appUpdate.document instanceof TLRPC$TL_document) {
             TextView textView = this.acceptTextView;
-            textView.setText(LocaleController.getString("Update", C1010R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate.document.size)));
+            textView.setText(LocaleController.getString("Update", C1072R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate.document.size)));
         } else {
-            this.acceptTextView.setText(LocaleController.getString("Update", C1010R.string.Update));
+            this.acceptTextView.setText(LocaleController.getString("Update", C1072R.string.Update));
         }
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoaded);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoadFailed);
@@ -346,7 +345,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
             } catch (Exception unused) {
             }
             if (tLRPC$TL_help_getAppUpdate.source == null) {
-                tLRPC$TL_help_getAppUpdate.source = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_help_getAppUpdate.source = "";
             }
             ConnectionsManager.getInstance(this.accountNum).sendRequest(tLRPC$TL_help_getAppUpdate, new RequestDelegate() {
                 @Override

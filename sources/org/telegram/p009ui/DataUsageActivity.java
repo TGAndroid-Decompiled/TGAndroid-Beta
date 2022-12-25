@@ -21,13 +21,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.StatsController;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.HeaderCell;
@@ -71,8 +71,8 @@ public class DataUsageActivity extends BaseFragment {
     @Override
     public View createView(Context context) {
         RecyclerListView.Holder holder;
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
-        this.actionBar.setTitle(LocaleController.getString("NetworkUsage", C1010R.string.NetworkUsage));
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
+        this.actionBar.setTitle(LocaleController.getString("NetworkUsage", C1072R.string.NetworkUsage));
         if (AndroidUtilities.isTablet()) {
             this.actionBar.setOccupyStatusBar(false);
         }
@@ -80,7 +80,7 @@ public class DataUsageActivity extends BaseFragment {
         this.actionBar.setAllowOverlayTitle(false);
         this.actionBar.setAddToContainer(false);
         this.actionBar.setClipContent(true);
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -348,8 +348,8 @@ public class DataUsageActivity extends BaseFragment {
                                     DataUsageActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DataUsageActivity.this.viewPages[0].selectedType, 1.0f);
                                 }
                                 DataUsageActivity.this.tabsAnimationInProgress = false;
-                                C29913.this.maybeStartTracking = false;
-                                C29913.this.startedTracking = false;
+                                C31403.this.maybeStartTracking = false;
+                                C31403.this.startedTracking = false;
                                 ((BaseFragment) DataUsageActivity.this).actionBar.setEnabled(true);
                                 DataUsageActivity.this.scrollSlidingTextTabStrip.setEnabled(true);
                             }
@@ -427,7 +427,7 @@ public class DataUsageActivity extends BaseFragment {
                 public void onScrollStateChanged(RecyclerView recyclerView, int i4) {
                     if (i4 != 1) {
                         int i5 = (int) (-((BaseFragment) DataUsageActivity.this).actionBar.getTranslationY());
-                        int currentActionBarHeight = C1069ActionBar.getCurrentActionBarHeight();
+                        int currentActionBarHeight = C1133ActionBar.getCurrentActionBarHeight();
                         if (i5 == 0 || i5 == currentActionBarHeight) {
                             return;
                         }
@@ -444,8 +444,8 @@ public class DataUsageActivity extends BaseFragment {
                     if (recyclerView == DataUsageActivity.this.viewPages[0].listView) {
                         float translationY = ((BaseFragment) DataUsageActivity.this).actionBar.getTranslationY();
                         float f = translationY - i5;
-                        if (f < (-C1069ActionBar.getCurrentActionBarHeight())) {
-                            f = -C1069ActionBar.getCurrentActionBarHeight();
+                        if (f < (-C1133ActionBar.getCurrentActionBarHeight())) {
+                            f = -C1133ActionBar.getCurrentActionBarHeight();
                         } else if (f > 0.0f) {
                             f = 0.0f;
                         }
@@ -477,15 +477,15 @@ public class DataUsageActivity extends BaseFragment {
         final ListAdapter listAdapter = (ListAdapter) recyclerListView.getAdapter();
         if (i == listAdapter.resetRow) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setTitle(LocaleController.getString("ResetStatisticsAlertTitle", C1010R.string.ResetStatisticsAlertTitle));
-            builder.setMessage(LocaleController.getString("ResetStatisticsAlert", C1010R.string.ResetStatisticsAlert));
-            builder.setPositiveButton(LocaleController.getString("Reset", C1010R.string.Reset), new DialogInterface.OnClickListener() {
+            builder.setTitle(LocaleController.getString("ResetStatisticsAlertTitle", C1072R.string.ResetStatisticsAlertTitle));
+            builder.setMessage(LocaleController.getString("ResetStatisticsAlert", C1072R.string.ResetStatisticsAlert));
+            builder.setPositiveButton(LocaleController.getString("Reset", C1072R.string.Reset), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
                     DataUsageActivity.this.lambda$createView$1(listAdapter, dialogInterface, i2);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+            builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
             AlertDialog create = builder.create();
             showDialog(create);
             TextView textView = (TextView) create.getButton(-1);
@@ -542,9 +542,9 @@ public class DataUsageActivity extends BaseFragment {
         if (scrollSlidingTextTabStrip == null) {
             return;
         }
-        scrollSlidingTextTabStrip.addTextTab(0, LocaleController.getString("NetworkUsageMobileTab", C1010R.string.NetworkUsageMobileTab));
-        this.scrollSlidingTextTabStrip.addTextTab(1, LocaleController.getString("NetworkUsageWiFiTab", C1010R.string.NetworkUsageWiFiTab));
-        this.scrollSlidingTextTabStrip.addTextTab(2, LocaleController.getString("NetworkUsageRoamingTab", C1010R.string.NetworkUsageRoamingTab));
+        scrollSlidingTextTabStrip.addTextTab(0, LocaleController.getString("NetworkUsageMobileTab", C1072R.string.NetworkUsageMobileTab));
+        this.scrollSlidingTextTabStrip.addTextTab(1, LocaleController.getString("NetworkUsageWiFiTab", C1072R.string.NetworkUsageWiFiTab));
+        this.scrollSlidingTextTabStrip.addTextTab(2, LocaleController.getString("NetworkUsageRoamingTab", C1072R.string.NetworkUsageRoamingTab));
         this.scrollSlidingTextTabStrip.setVisibility(0);
         this.actionBar.setExtraHeight(AndroidUtilities.m35dp(44.0f));
         int currentTabId = this.scrollSlidingTextTabStrip.getCurrentTabId();
@@ -769,10 +769,10 @@ public class DataUsageActivity extends BaseFragment {
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 0) {
                 if (i == this.resetSection2Row) {
-                    viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                    viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
                     return;
                 } else {
-                    viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow"));
+                    viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow"));
                     return;
                 }
             }
@@ -783,31 +783,31 @@ public class DataUsageActivity extends BaseFragment {
                         return;
                     }
                     TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                    textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
-                    textInfoPrivacyCell.setText(LocaleController.formatString("NetworkUsageSince", C1010R.string.NetworkUsageSince, LocaleController.getInstance().formatterStats.format(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getResetStatsDate(this.currentType))));
+                    textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                    textInfoPrivacyCell.setText(LocaleController.formatString("NetworkUsageSince", C1072R.string.NetworkUsageSince, LocaleController.getInstance().formatterStats.format(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getResetStatsDate(this.currentType))));
                     return;
                 }
                 HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                 if (i == this.totalSectionRow) {
-                    headerCell.setText(LocaleController.getString("TotalDataUsage", C1010R.string.TotalDataUsage));
+                    headerCell.setText(LocaleController.getString("TotalDataUsage", C1072R.string.TotalDataUsage));
                     return;
                 } else if (i == this.callsSectionRow) {
-                    headerCell.setText(LocaleController.getString("CallsDataUsage", C1010R.string.CallsDataUsage));
+                    headerCell.setText(LocaleController.getString("CallsDataUsage", C1072R.string.CallsDataUsage));
                     return;
                 } else if (i == this.filesSectionRow) {
-                    headerCell.setText(LocaleController.getString("FilesDataUsage", C1010R.string.FilesDataUsage));
+                    headerCell.setText(LocaleController.getString("FilesDataUsage", C1072R.string.FilesDataUsage));
                     return;
                 } else if (i == this.audiosSectionRow) {
-                    headerCell.setText(LocaleController.getString("LocalAudioCache", C1010R.string.LocalAudioCache));
+                    headerCell.setText(LocaleController.getString("LocalAudioCache", C1072R.string.LocalAudioCache));
                     return;
                 } else if (i == this.videosSectionRow) {
-                    headerCell.setText(LocaleController.getString("LocalVideoCache", C1010R.string.LocalVideoCache));
+                    headerCell.setText(LocaleController.getString("LocalVideoCache", C1072R.string.LocalVideoCache));
                     return;
                 } else if (i == this.photosSectionRow) {
-                    headerCell.setText(LocaleController.getString("LocalPhotoCache", C1010R.string.LocalPhotoCache));
+                    headerCell.setText(LocaleController.getString("LocalPhotoCache", C1072R.string.LocalPhotoCache));
                     return;
                 } else if (i == this.messagesSectionRow) {
-                    headerCell.setText(LocaleController.getString("MessagesDataUsage", C1010R.string.MessagesDataUsage));
+                    headerCell.setText(LocaleController.getString("MessagesDataUsage", C1072R.string.MessagesDataUsage));
                     return;
                 } else {
                     return;
@@ -816,7 +816,7 @@ public class DataUsageActivity extends BaseFragment {
             TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
             if (i == this.resetRow) {
                 textSettingsCell.setTag("windowBackgroundWhiteRedText2");
-                textSettingsCell.setText(LocaleController.getString("ResetStatistics", C1010R.string.ResetStatistics), false);
+                textSettingsCell.setText(LocaleController.getString("ResetStatistics", C1072R.string.ResetStatistics), false);
                 textSettingsCell.setTextColor(Theme.getColor("windowBackgroundWhiteRedText2"));
                 return;
             }
@@ -837,19 +837,19 @@ public class DataUsageActivity extends BaseFragment {
                 }
             }
             if (i == i3) {
-                textSettingsCell.setTextAndValue(LocaleController.getString("OutgoingCalls", C1010R.string.OutgoingCalls), String.format("%d", Integer.valueOf(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getSentItemsCount(this.currentType, i2))), true);
+                textSettingsCell.setTextAndValue(LocaleController.getString("OutgoingCalls", C1072R.string.OutgoingCalls), String.format("%d", Integer.valueOf(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getSentItemsCount(this.currentType, i2))), true);
             } else if (i == this.callsReceivedRow) {
-                textSettingsCell.setTextAndValue(LocaleController.getString("IncomingCalls", C1010R.string.IncomingCalls), String.format("%d", Integer.valueOf(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getRecivedItemsCount(this.currentType, i2))), true);
+                textSettingsCell.setTextAndValue(LocaleController.getString("IncomingCalls", C1072R.string.IncomingCalls), String.format("%d", Integer.valueOf(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getRecivedItemsCount(this.currentType, i2))), true);
             } else if (i == this.callsTotalTimeRow) {
-                textSettingsCell.setTextAndValue(LocaleController.getString("CallsTotalTime", C1010R.string.CallsTotalTime), AndroidUtilities.formatShortDuration(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getCallsTotalTime(this.currentType)), false);
+                textSettingsCell.setTextAndValue(LocaleController.getString("CallsTotalTime", C1072R.string.CallsTotalTime), AndroidUtilities.formatShortDuration(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getCallsTotalTime(this.currentType)), false);
             } else if (i == this.messagesSentRow || i == this.photosSentRow || i == this.videosSentRow || i == this.audiosSentRow || i == this.filesSentRow) {
-                textSettingsCell.setTextAndValue(LocaleController.getString("CountSent", C1010R.string.CountSent), String.format("%d", Integer.valueOf(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getSentItemsCount(this.currentType, i2))), true);
+                textSettingsCell.setTextAndValue(LocaleController.getString("CountSent", C1072R.string.CountSent), String.format("%d", Integer.valueOf(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getSentItemsCount(this.currentType, i2))), true);
             } else if (i == this.messagesReceivedRow || i == this.photosReceivedRow || i == this.videosReceivedRow || i == this.audiosReceivedRow || i == this.filesReceivedRow) {
-                textSettingsCell.setTextAndValue(LocaleController.getString("CountReceived", C1010R.string.CountReceived), String.format("%d", Integer.valueOf(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getRecivedItemsCount(this.currentType, i2))), true);
+                textSettingsCell.setTextAndValue(LocaleController.getString("CountReceived", C1072R.string.CountReceived), String.format("%d", Integer.valueOf(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getRecivedItemsCount(this.currentType, i2))), true);
             } else if (i == this.messagesBytesSentRow || i == this.photosBytesSentRow || i == this.videosBytesSentRow || i == this.audiosBytesSentRow || i == this.filesBytesSentRow || i == this.callsBytesSentRow || i == this.totalBytesSentRow) {
-                textSettingsCell.setTextAndValue(LocaleController.getString("BytesSent", C1010R.string.BytesSent), AndroidUtilities.formatFileSize(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getSentBytesCount(this.currentType, i2)), true);
+                textSettingsCell.setTextAndValue(LocaleController.getString("BytesSent", C1072R.string.BytesSent), AndroidUtilities.formatFileSize(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getSentBytesCount(this.currentType, i2)), true);
             } else if (i == this.messagesBytesReceivedRow || i == this.photosBytesReceivedRow || i == this.videosBytesReceivedRow || i == this.audiosBytesReceivedRow || i == this.filesBytesReceivedRow || i == this.callsBytesReceivedRow || i == this.totalBytesReceivedRow) {
-                textSettingsCell.setTextAndValue(LocaleController.getString("BytesReceived", C1010R.string.BytesReceived), AndroidUtilities.formatFileSize(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getReceivedBytesCount(this.currentType, i2)), i == this.callsBytesReceivedRow);
+                textSettingsCell.setTextAndValue(LocaleController.getString("BytesReceived", C1072R.string.BytesReceived), AndroidUtilities.formatFileSize(StatsController.getInstance(((BaseFragment) DataUsageActivity.this).currentAccount).getReceivedBytesCount(this.currentType, i2)), i == this.callsBytesReceivedRow);
             }
         }
 

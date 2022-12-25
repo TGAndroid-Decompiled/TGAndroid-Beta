@@ -11,9 +11,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
-import org.telegram.PhoneFormat.C0933PhoneFormat;
+import org.telegram.PhoneFormat.C0995PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.LayoutHelper;
 
@@ -132,7 +131,7 @@ public class CodeFieldContainer extends LinearLayout {
                         if (keyEvent.getAction() == 1) {
                             if (keyCode == 67 && CodeFieldContainer.this.codeField[i6].length() == 1) {
                                 CodeFieldContainer.this.codeField[i6].startExitAnimation();
-                                CodeFieldContainer.this.codeField[i6].setText(BuildConfig.APP_CENTER_HASH);
+                                CodeFieldContainer.this.codeField[i6].setText("");
                                 return true;
                             } else if (keyCode != 67 || CodeFieldContainer.this.codeField[i6].length() != 0 || (i7 = i6) <= 0) {
                                 if (keyCode >= 7 && keyCode <= 16) {
@@ -159,7 +158,7 @@ public class CodeFieldContainer extends LinearLayout {
                                     int i10 = i6;
                                     if (i8 >= i10) {
                                         CodeFieldContainer.this.codeField[i10 - 1].startExitAnimation();
-                                        CodeFieldContainer.this.codeField[i6 - 1].setText(BuildConfig.APP_CENTER_HASH);
+                                        CodeFieldContainer.this.codeField[i6 - 1].setText("");
                                         return true;
                                     }
                                     if (i8 == i10 - 1) {
@@ -259,7 +258,7 @@ public class CodeFieldContainer extends LinearLayout {
             if (i5 >= codeNumberFieldArr2.length) {
                 return;
             }
-            codeNumberFieldArr2[i5].setText(BuildConfig.APP_CENTER_HASH);
+            codeNumberFieldArr2[i5].setText("");
             i5++;
         }
     }
@@ -274,14 +273,14 @@ public class CodeFieldContainer extends LinearLayout {
 
     public String getCode() {
         if (this.codeField == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         StringBuilder sb = new StringBuilder();
         int i = 0;
         while (true) {
             CodeNumberField[] codeNumberFieldArr = this.codeField;
             if (i < codeNumberFieldArr.length) {
-                sb.append(C0933PhoneFormat.stripExceptNumbers(codeNumberFieldArr[i].getText().toString()));
+                sb.append(C0995PhoneFormat.stripExceptNumbers(codeNumberFieldArr[i].getText().toString()));
                 i++;
             } else {
                 return sb.toString();

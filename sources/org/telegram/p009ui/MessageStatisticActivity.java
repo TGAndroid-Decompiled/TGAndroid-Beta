@@ -21,7 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -216,7 +216,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.chatInfoDidLoad) {
             TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
-            if (this.chat == null && tLRPC$ChatFull.f849id == this.chatId) {
+            if (this.chat == null && tLRPC$ChatFull.f858id == this.chatId) {
                 TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
                 if (chat != null) {
                     this.avatarContainer.setChatAvatar(chat);
@@ -248,7 +248,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         } else {
             bundle.putLong("chat_id", -dialogId);
         }
-        bundle.putInt("message_id", tLRPC$Message.f872id);
+        bundle.putInt("message_id", tLRPC$Message.f881id);
         bundle.putBoolean("need_remove_previous_same_chat_activity", false);
         if (getMessagesController().checkCanOpenChat(bundle, this)) {
             presentFragment(new ChatActivity(bundle));
@@ -258,7 +258,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     public void lambda$createView$1(View view) {
         if (getParentLayout().getFragmentStack().size() > 1) {
             BaseFragment baseFragment = getParentLayout().getFragmentStack().get(getParentLayout().getFragmentStack().size() - 2);
-            if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getCurrentChat().f848id == this.chatId) {
+            if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getCurrentChat().f857id == this.chatId) {
                 finishFragment();
                 return;
             }
@@ -277,7 +277,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         }
         ActionBarMenu createMenu = this.actionBar.createMenu();
         createMenu.clearItems();
-        createMenu.addItem(0, C1010R.C1011drawable.ic_ab_other).addSubItem(1, C1010R.C1011drawable.msg_stats, LocaleController.getString("ViewChannelStats", C1010R.string.ViewChannelStats));
+        createMenu.addItem(0, C1072R.C1073drawable.ic_ab_other).addSubItem(1, C1072R.C1073drawable.msg_stats, LocaleController.getString("ViewChannelStats", C1072R.string.ViewChannelStats));
     }
 
     public void loadChats(int i) {
@@ -303,7 +303,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         if (!this.messages.isEmpty()) {
             ArrayList<TLRPC$Message> arrayList = this.messages;
             TLRPC$Message tLRPC$Message = arrayList.get(arrayList.size() - 1);
-            tLRPC$TL_stats_getMessagePublicForwards.offset_id = tLRPC$Message.f872id;
+            tLRPC$TL_stats_getMessagePublicForwards.offset_id = tLRPC$Message.f881id;
             tLRPC$TL_stats_getMessagePublicForwards.offset_peer = getMessagesController().getInputPeer(MessageObject.getDialogId(tLRPC$Message));
             tLRPC$TL_stats_getMessagePublicForwards.offset_rate = this.nextRate;
         } else {
@@ -386,17 +386,17 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             updateRows();
             return;
         }
-        StatisticActivity.ChartViewData createViewData = StatisticActivity.createViewData(((TLRPC$TL_stats_messageStats) tLObject).views_graph, LocaleController.getString("InteractionsChartTitle", C1010R.string.InteractionsChartTitle), 1, false);
+        StatisticActivity.ChartViewData createViewData = StatisticActivity.createViewData(((TLRPC$TL_stats_messageStats) tLObject).views_graph, LocaleController.getString("InteractionsChartTitle", C1072R.string.InteractionsChartTitle), 1, false);
         this.interactionsViewData = createViewData;
-        if (createViewData != null && createViewData.chartData.f1015x.length <= 5) {
+        if (createViewData != null && createViewData.chartData.f1025x.length <= 5) {
             this.statsLoaded = false;
             final TLRPC$TL_stats_loadAsyncGraph tLRPC$TL_stats_loadAsyncGraph = new TLRPC$TL_stats_loadAsyncGraph();
             StatisticActivity.ChartViewData chartViewData = this.interactionsViewData;
             tLRPC$TL_stats_loadAsyncGraph.token = chartViewData.zoomToken;
-            long[] jArr = chartViewData.chartData.f1015x;
-            tLRPC$TL_stats_loadAsyncGraph.f974x = jArr[jArr.length - 1];
+            long[] jArr = chartViewData.chartData.f1025x;
+            tLRPC$TL_stats_loadAsyncGraph.f983x = jArr[jArr.length - 1];
             tLRPC$TL_stats_loadAsyncGraph.flags |= 1;
-            final String str = this.interactionsViewData.zoomToken + "_" + tLRPC$TL_stats_loadAsyncGraph.f974x;
+            final String str = this.interactionsViewData.zoomToken + "_" + tLRPC$TL_stats_loadAsyncGraph.f983x;
             ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stats_loadAsyncGraph, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
@@ -448,7 +448,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         this.childDataCache.put(str, chartData);
         StatisticActivity.ChartViewData chartViewData = this.interactionsViewData;
         chartViewData.childChartData = chartData;
-        chartViewData.activeZoom = tLRPC$TL_stats_loadAsyncGraph.f974x;
+        chartViewData.activeZoom = tLRPC$TL_stats_loadAsyncGraph.f983x;
         updateRows();
     }
 
@@ -482,12 +482,12 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             return MessageStatisticActivity.this.rowCount;
         }
 
-        public class C34561 extends StatisticActivity.BaseChartCell {
+        public class C36141 extends StatisticActivity.BaseChartCell {
             @Override
             void loadData(StatisticActivity.ChartViewData chartViewData) {
             }
 
-            C34561(Context context, int i, BaseChartView.SharedUiComponents sharedUiComponents) {
+            C36141(Context context, int i, BaseChartView.SharedUiComponents sharedUiComponents) {
                 super(context, i, sharedUiComponents);
             }
 
@@ -517,7 +517,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                         TLRPC$TL_stats_loadAsyncGraph tLRPC$TL_stats_loadAsyncGraph = new TLRPC$TL_stats_loadAsyncGraph();
                         tLRPC$TL_stats_loadAsyncGraph.token = this.data.zoomToken;
                         if (selectedDate != 0) {
-                            tLRPC$TL_stats_loadAsyncGraph.f974x = selectedDate;
+                            tLRPC$TL_stats_loadAsyncGraph.f983x = selectedDate;
                             tLRPC$TL_stats_loadAsyncGraph.flags |= 1;
                         }
                         MessageStatisticActivity messageStatisticActivity = MessageStatisticActivity.this;
@@ -528,7 +528,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                         ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).sendRequest(tLRPC$TL_stats_loadAsyncGraph, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                MessageStatisticActivity.ListAdapter.C34561.this.lambda$onZoomed$1(str, zoomCancelable, tLObject, tLRPC$TL_error);
+                                MessageStatisticActivity.ListAdapter.C36141.this.lambda$onZoomed$1(str, zoomCancelable, tLObject, tLRPC$TL_error);
                             }
                         }, null, null, 0, MessageStatisticActivity.this.chat.stats_dc, 1, true), ((BaseFragment) MessageStatisticActivity.this).classGuid);
                     }
@@ -549,7 +549,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessageStatisticActivity.ListAdapter.C34561.this.lambda$onZoomed$0(chartData, str, zoomCancelable);
+                        MessageStatisticActivity.ListAdapter.C36141.this.lambda$onZoomed$0(chartData, str, zoomCancelable);
                     }
                 });
             }
@@ -600,9 +600,9 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 headerCell2.setHeight(43);
                 headerCell = headerCell2;
             } else if (i == 4) {
-                View c34561 = new C34561(this.mContext, 1, MessageStatisticActivity.this.sharedUi = new BaseChartView.SharedUiComponents());
-                c34561.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                headerCell = c34561;
+                View c36141 = new C36141(this.mContext, 1, MessageStatisticActivity.this.sharedUi = new BaseChartView.SharedUiComponents());
+                c36141.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                headerCell = c36141;
             } else if (i == 5) {
                 View overviewCell = new OverviewCell(this.mContext);
                 overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
@@ -692,11 +692,11 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
 
         public void setData() {
             this.primary[0].setText(AndroidUtilities.formatWholeNumber(MessageStatisticActivity.this.messageObject.messageOwner.views, 0));
-            this.title[0].setText(LocaleController.getString("StatisticViews", C1010R.string.StatisticViews));
+            this.title[0].setText(LocaleController.getString("StatisticViews", C1072R.string.StatisticViews));
             if (MessageStatisticActivity.this.publicChats > 0) {
                 this.cell[1].setVisibility(0);
                 this.primary[1].setText(AndroidUtilities.formatWholeNumber(MessageStatisticActivity.this.publicChats, 0));
-                this.title[1].setText(LocaleController.formatString("PublicShares", C1010R.string.PublicShares, new Object[0]));
+                this.title[1].setText(LocaleController.formatString("PublicShares", C1072R.string.PublicShares, new Object[0]));
             } else {
                 this.cell[1].setVisibility(8);
             }
@@ -704,7 +704,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             if (i > 0) {
                 this.cell[2].setVisibility(0);
                 this.primary[2].setText(AndroidUtilities.formatWholeNumber(i, 0));
-                this.title[2].setText(LocaleController.formatString("PrivateShares", C1010R.string.PrivateShares, new Object[0]));
+                this.title[2].setText(LocaleController.formatString("PrivateShares", C1072R.string.PrivateShares, new Object[0]));
             } else {
                 this.cell[2].setVisibility(8);
             }
@@ -799,7 +799,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             ((StatisticActivity.BaseChartCell) view).recolor();
             view.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
         } else if (view instanceof ShadowSectionCell) {
-            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(ApplicationLoader.applicationContext, C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow"), 0, 0);
+            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(ApplicationLoader.applicationContext, C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow"), 0, 0);
             combinedDrawable.setFullsize(true);
             view.setBackground(combinedDrawable);
         } else if (view instanceof ChartHeaderView) {

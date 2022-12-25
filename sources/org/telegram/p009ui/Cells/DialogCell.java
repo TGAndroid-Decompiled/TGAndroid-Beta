@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -29,8 +30,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -52,6 +52,7 @@ import org.telegram.p009ui.Adapters.DialogsAdapter;
 import org.telegram.p009ui.Components.AnimatedEmojiDrawable;
 import org.telegram.p009ui.Components.AnimatedEmojiSpan;
 import org.telegram.p009ui.Components.AvatarDrawable;
+import org.telegram.p009ui.Components.BubbleCounterPath;
 import org.telegram.p009ui.Components.CanvasButton;
 import org.telegram.p009ui.Components.CheckBox2;
 import org.telegram.p009ui.Components.CubicBezierInterpolator;
@@ -128,6 +129,8 @@ public class DialogCell extends BaseCell {
     private int countWidth;
     private int countWidthOld;
     private Paint counterPaintOutline;
+    private Path counterPath;
+    private RectF counterPathRect;
     private int currentAccount;
     private int currentDialogFolderDialogsCount;
     private int currentDialogFolderId;
@@ -159,6 +162,7 @@ public class DialogCell extends BaseCell {
     private boolean drawReorder;
     private boolean drawRevealBackground;
     private int drawScam;
+    private boolean[] drawSpoiler;
     private boolean drawUnmute;
     private boolean drawVerified;
     public boolean drawingForBlur;
@@ -269,7 +273,9 @@ public class DialogCell extends BaseCell {
     private int swipeMessageWidth;
     private Paint thumbBackgroundPaint;
     private ImageReceiver[] thumbImage;
+    private Path thumbPath;
     int thumbSize;
+    private SpoilerEffect thumbSpoiler;
     private int thumbsCount;
     private StaticLayout timeLayout;
     private int timeLeft;
@@ -314,7 +320,7 @@ public class DialogCell extends BaseCell {
 
     public static class CustomDialog {
         public int date;
-        public int f1010id;
+        public int f1020id;
         public boolean isMedia;
         public String message;
         public boolean muted;
@@ -388,7 +394,7 @@ public class DialogCell extends BaseCell {
             this.groupMessages = tLRPC$TL_forumTopic.groupedMessages;
         }
         TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = this.forumTopic;
-        if (tLRPC$TL_forumTopic2 != null && tLRPC$TL_forumTopic2.f901id == 1 && (pullForegroundDrawable = this.archivedChatsDrawable) != null) {
+        if (tLRPC$TL_forumTopic2 != null && tLRPC$TL_forumTopic2.f910id == 1 && (pullForegroundDrawable = this.archivedChatsDrawable) != null) {
             pullForegroundDrawable.setCell(this);
         }
         update(0, z2);
@@ -450,11 +456,14 @@ public class DialogCell extends BaseCell {
         this.heightDefault = 72;
         this.heightThreeLines = 78;
         this.chekBoxPaddingTop = 42.0f;
+        this.thumbPath = new Path();
+        this.thumbSpoiler = new SpoilerEffect();
         this.collapseOffset = 0.0f;
         this.hasUnmutedTopics = false;
         this.overrideSwipeAction = false;
         this.thumbImage = new ImageReceiver[3];
         this.drawPlay = new boolean[3];
+        this.drawSpoiler = new boolean[3];
         this.avatarImage = new ImageReceiver(this);
         this.avatarDrawable = new AvatarDrawable();
         this.interpolator = new BounceInterpolator();
@@ -492,7 +501,7 @@ public class DialogCell extends BaseCell {
     }
 
     public void setDialog(TLRPC$Dialog tLRPC$Dialog, int i, int i2) {
-        if (this.currentDialogId != tLRPC$Dialog.f854id) {
+        if (this.currentDialogId != tLRPC$Dialog.f863id) {
             ValueAnimator valueAnimator = this.statusDrawableAnimator;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
@@ -501,11 +510,11 @@ public class DialogCell extends BaseCell {
             this.statusDrawableAnimationInProgress = false;
             this.lastStatusDrawableParams = -1;
         }
-        this.currentDialogId = tLRPC$Dialog.f854id;
+        this.currentDialogId = tLRPC$Dialog.f863id;
         this.lastDialogChangedTime = System.currentTimeMillis();
         this.isDialogCell = true;
         if (tLRPC$Dialog instanceof TLRPC$TL_dialogFolder) {
-            this.currentDialogFolderId = ((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.f900id;
+            this.currentDialogFolderId = ((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.f909id;
             PullForegroundDrawable pullForegroundDrawable = this.archivedChatsDrawable;
             if (pullForegroundDrawable != null) {
                 pullForegroundDrawable.setCell(this);
@@ -537,7 +546,7 @@ public class DialogCell extends BaseCell {
 
     private void checkOnline() {
         TLRPC$User user;
-        if (this.user != null && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.user.f986id))) != null) {
+        if (this.user != null && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.user.f995id))) != null) {
             this.user = user;
         }
         this.onlineProgress = isOnline() ? 1.0f : 0.0f;
@@ -547,7 +556,7 @@ public class DialogCell extends BaseCell {
         TLRPC$User tLRPC$User;
         if (!isForumCell() && (tLRPC$User = this.user) != null && !tLRPC$User.self) {
             TLRPC$UserStatus tLRPC$UserStatus = tLRPC$User.status;
-            if (tLRPC$UserStatus != null && tLRPC$UserStatus.expires <= 0 && MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.f986id))) {
+            if (tLRPC$UserStatus != null && tLRPC$UserStatus.expires <= 0 && MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.f995id))) {
                 return true;
             }
             TLRPC$UserStatus tLRPC$UserStatus2 = this.user.status;
@@ -566,7 +575,8 @@ public class DialogCell extends BaseCell {
     }
 
     private void checkTtl() {
-        boolean z = (this.ttlPeriod <= 0 || this.hasCall || isOnline()) ? false : true;
+        CheckBox2 checkBox2;
+        boolean z = this.ttlPeriod > 0 && !this.hasCall && !isOnline() && ((checkBox2 = this.checkBox) == null || !checkBox2.isChecked());
         this.showTtl = z;
         this.ttlProgress = z ? 1.0f : 0.0f;
     }
@@ -798,13 +808,13 @@ public class DialogCell extends BaseCell {
         for (int i = 0; i < size; i++) {
             TLRPC$Dialog tLRPC$Dialog = dialogs.get(i);
             TLRPC$Chat tLRPC$Chat = null;
-            if (DialogObject.isEncryptedDialog(tLRPC$Dialog.f854id)) {
-                TLRPC$EncryptedChat encryptedChat = MessagesController.getInstance(this.currentAccount).getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(tLRPC$Dialog.f854id)));
+            if (DialogObject.isEncryptedDialog(tLRPC$Dialog.f863id)) {
+                TLRPC$EncryptedChat encryptedChat = MessagesController.getInstance(this.currentAccount).getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(tLRPC$Dialog.f863id)));
                 tLRPC$User = encryptedChat != null ? MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(encryptedChat.user_id)) : null;
-            } else if (DialogObject.isUserDialog(tLRPC$Dialog.f854id)) {
-                tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$Dialog.f854id));
+            } else if (DialogObject.isUserDialog(tLRPC$Dialog.f863id)) {
+                tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$Dialog.f863id));
             } else {
-                tLRPC$Chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.f854id));
+                tLRPC$Chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.f863id));
                 tLRPC$User = null;
             }
             if (tLRPC$Chat != null) {
@@ -812,7 +822,7 @@ public class DialogCell extends BaseCell {
             } else if (tLRPC$User == null) {
                 continue;
             } else if (UserObject.isDeleted(tLRPC$User)) {
-                replace = LocaleController.getString("HiddenName", C1010R.string.HiddenName);
+                replace = LocaleController.getString("HiddenName", C1072R.string.HiddenName);
             } else {
                 replace = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace('\n', ' ');
             }
@@ -884,7 +894,7 @@ public class DialogCell extends BaseCell {
         this.topMessageTopicStartIndex = 0;
         this.topMessageTopicEndIndex = 0;
         if (this.chat != null) {
-            ArrayList<TLRPC$TL_forumTopic> topics = MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(this.chat.f848id);
+            ArrayList<TLRPC$TL_forumTopic> topics = MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(this.chat.f857id);
             if (topics != null && !topics.isEmpty()) {
                 ArrayList arrayList = new ArrayList(topics);
                 Collections.sort(arrayList, Comparator$CC.comparingInt(DialogCell$$ExternalSyntheticLambda6.INSTANCE));
@@ -893,7 +903,7 @@ public class DialogCell extends BaseCell {
                 boolean z2 = true;
                 if (messageObject != null) {
                     i = MessageObject.getTopicId(messageObject.messageOwner, true);
-                    TLRPC$TL_forumTopic findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(this.chat.f848id, i);
+                    TLRPC$TL_forumTopic findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(this.chat.f857id, i);
                     if (findTopic != null) {
                         CharSequence topicSpannedName = ForumUtilities.getTopicSpannedName(findTopic, this.currentMessagePaint);
                         spannableStringBuilder.append(topicSpannedName);
@@ -922,7 +932,7 @@ public class DialogCell extends BaseCell {
                     i2 = 0;
                 }
                 for (int i3 = 0; i3 < Math.min(5, arrayList.size()); i3++) {
-                    if (((TLRPC$TL_forumTopic) arrayList.get(i3)).f901id != i) {
+                    if (((TLRPC$TL_forumTopic) arrayList.get(i3)).f910id != i) {
                         if (spannableStringBuilder.length() != 0) {
                             if (z2 && z) {
                                 spannableStringBuilder.append((CharSequence) " ");
@@ -938,10 +948,10 @@ public class DialogCell extends BaseCell {
                     spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, "chats_name", null), 0, Math.min(spannableStringBuilder.length(), i2 + 2), 0);
                 }
                 return spannableStringBuilder;
-            } else if (MessagesController.getInstance(this.currentAccount).getTopicsController().endIsReached(this.chat.f848id)) {
+            } else if (MessagesController.getInstance(this.currentAccount).getTopicsController().endIsReached(this.chat.f857id)) {
                 return "no created topics";
             } else {
-                MessagesController.getInstance(this.currentAccount).getTopicsController().preloadTopics(this.chat.f848id);
+                MessagesController.getInstance(this.currentAccount).getTopicsController().preloadTopics(this.chat.f857id);
                 return "Loading...";
             }
         }
@@ -1063,6 +1073,7 @@ public class DialogCell extends BaseCell {
                 addView(this.checkBox);
             }
             this.checkBox.setChecked(z, z2);
+            checkTtl();
         }
     }
 
@@ -1078,7 +1089,7 @@ public class DialogCell extends BaseCell {
             TLRPC$Dialog tLRPC$Dialog = dialogsArray.get(i);
             LongSparseArray<ArrayList<MessageObject>> longSparseArray = MessagesController.getInstance(this.currentAccount).dialogMessage;
             if (longSparseArray != null) {
-                ArrayList<MessageObject> arrayList = longSparseArray.get(tLRPC$Dialog.f854id);
+                ArrayList<MessageObject> arrayList = longSparseArray.get(tLRPC$Dialog.f863id);
                 MessageObject messageObject2 = (arrayList == null || arrayList.isEmpty()) ? null : arrayList.get(0);
                 if (messageObject2 != null && (messageObject == null || messageObject2.messageOwner.date > messageObject.messageOwner.date)) {
                     messageObject = messageObject2;
@@ -1118,7 +1129,7 @@ public class DialogCell extends BaseCell {
         if (tLRPC$TL_forumTopic == null) {
             return 0;
         }
-        return tLRPC$TL_forumTopic.f901id;
+        return tLRPC$TL_forumTopic.f910id;
     }
 
     @Override
@@ -1186,9 +1197,12 @@ public class DialogCell extends BaseCell {
         Paint paint;
         boolean z3;
         int m35dp;
+        RectF rectF;
         float f2;
         float interpolation;
+        RectF rectF2;
         int color;
+        boolean z4 = isForumCell() || isFolderCell();
         if (!(this.drawCount && this.drawCount2) && this.countChangeProgress == 1.0f) {
             return;
         }
@@ -1200,6 +1214,8 @@ public class DialogCell extends BaseCell {
                 this.counterPaintOutline = paint2;
                 paint2.setStyle(Paint.Style.STROKE);
                 this.counterPaintOutline.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+                this.counterPaintOutline.setStrokeJoin(Paint.Join.ROUND);
+                this.counterPaintOutline.setStrokeCap(Paint.Cap.ROUND);
             }
             this.counterPaintOutline.setColor(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhite"), ColorUtils.setAlphaComponent(Theme.getColor("chats_pinnedOverlay"), 255), Color.alpha(color) / 255.0f));
         }
@@ -1241,13 +1257,28 @@ public class DialogCell extends BaseCell {
                 }
                 canvas.scale(f3, f3, this.rect.centerX(), this.rect.centerY());
             }
-            RectF rectF = this.rect;
-            float f5 = AndroidUtilities.density;
-            canvas.drawRoundRect(rectF, f5 * 11.5f, f5 * 11.5f, paint);
-            if (z2) {
-                RectF rectF2 = this.rect;
-                float f6 = AndroidUtilities.density;
-                canvas.drawRoundRect(rectF2, f6 * 11.5f, f6 * 11.5f, this.counterPaintOutline);
+            if (z4) {
+                if (this.counterPath == null || (rectF = this.counterPathRect) == null || !rectF.equals(this.rect)) {
+                    RectF rectF3 = this.counterPathRect;
+                    if (rectF3 == null) {
+                        this.counterPathRect = new RectF(this.rect);
+                    } else {
+                        rectF3.set(this.rect);
+                    }
+                    if (this.counterPath == null) {
+                        this.counterPath = new Path();
+                    }
+                    BubbleCounterPath.addBubbleRect(this.counterPath, this.counterPathRect, AndroidUtilities.m35dp(11.5f));
+                }
+                canvas.drawPath(this.counterPath, paint);
+                if (z2) {
+                    canvas.drawPath(this.counterPath, this.counterPaintOutline);
+                }
+            } else {
+                canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(11.5f), AndroidUtilities.m35dp(11.5f), paint);
+                if (z2) {
+                    canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(11.5f), AndroidUtilities.m35dp(11.5f), this.counterPaintOutline);
+                }
             }
             if (staticLayout != null) {
                 canvas.save();
@@ -1259,55 +1290,70 @@ public class DialogCell extends BaseCell {
         } else {
             paint.setAlpha((int) ((1.0f - this.reorderIconProgress) * i4));
             Theme.dialogs_countTextPaint.setAlpha((int) ((1.0f - this.reorderIconProgress) * 255.0f));
-            float f7 = f3 * 2.0f;
-            float f8 = f7 > 1.0f ? 1.0f : f7;
-            float f9 = 1.0f - f8;
-            float f10 = (i2 * f8) + (i3 * f9);
-            float m35dp2 = f10 - AndroidUtilities.m35dp(5.5f);
-            float f11 = i;
-            this.rect.set(m35dp2, f11, (this.countWidth * f8) + m35dp2 + (this.countWidthOld * f9) + AndroidUtilities.m35dp(11.0f), AndroidUtilities.m35dp(23.0f) + i);
+            float f5 = f3 * 2.0f;
+            float f6 = f5 > 1.0f ? 1.0f : f5;
+            float f7 = 1.0f - f6;
+            float f8 = (i2 * f6) + (i3 * f7);
+            float m35dp2 = f8 - AndroidUtilities.m35dp(5.5f);
+            float f9 = i;
+            this.rect.set(m35dp2, f9, (this.countWidth * f6) + m35dp2 + (this.countWidthOld * f7) + AndroidUtilities.m35dp(11.0f), AndroidUtilities.m35dp(23.0f) + i);
             if (f3 <= 0.5f) {
-                interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(f7) * 0.1f;
+                interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(f5) * 0.1f;
                 f2 = 1.0f;
             } else {
                 f2 = 1.0f;
                 interpolation = CubicBezierInterpolator.EASE_IN.getInterpolation(1.0f - ((f3 - 0.5f) * 2.0f)) * 0.1f;
             }
             canvas.save();
-            float f12 = (interpolation + f2) * f;
-            canvas.scale(f12, f12, this.rect.centerX(), this.rect.centerY());
-            RectF rectF3 = this.rect;
-            float f13 = AndroidUtilities.density;
-            canvas.drawRoundRect(rectF3, f13 * 11.5f, f13 * 11.5f, paint);
-            if (z2) {
-                RectF rectF4 = this.rect;
-                float f14 = AndroidUtilities.density;
-                canvas.drawRoundRect(rectF4, f14 * 11.5f, f14 * 11.5f, this.counterPaintOutline);
+            float f10 = (interpolation + f2) * f;
+            canvas.scale(f10, f10, this.rect.centerX(), this.rect.centerY());
+            if (z4) {
+                if (this.counterPath == null || (rectF2 = this.counterPathRect) == null || !rectF2.equals(this.rect)) {
+                    RectF rectF4 = this.counterPathRect;
+                    if (rectF4 == null) {
+                        this.counterPathRect = new RectF(this.rect);
+                    } else {
+                        rectF4.set(this.rect);
+                    }
+                    if (this.counterPath == null) {
+                        this.counterPath = new Path();
+                    }
+                    BubbleCounterPath.addBubbleRect(this.counterPath, this.counterPathRect, AndroidUtilities.m35dp(11.5f));
+                }
+                canvas.drawPath(this.counterPath, paint);
+                if (z2) {
+                    canvas.drawPath(this.counterPath, this.counterPaintOutline);
+                }
+            } else {
+                canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(11.5f), AndroidUtilities.m35dp(11.5f), paint);
+                if (z2) {
+                    canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(11.5f), AndroidUtilities.m35dp(11.5f), this.counterPaintOutline);
+                }
             }
             if (this.countAnimationStableLayout != null) {
                 canvas.save();
-                canvas.translate(f10, i + AndroidUtilities.m35dp(4.0f));
+                canvas.translate(f8, i + AndroidUtilities.m35dp(4.0f));
                 this.countAnimationStableLayout.draw(canvas);
                 canvas.restore();
             }
             int alpha = Theme.dialogs_countTextPaint.getAlpha();
-            float f15 = alpha;
-            Theme.dialogs_countTextPaint.setAlpha((int) (f15 * f8));
+            float f11 = alpha;
+            Theme.dialogs_countTextPaint.setAlpha((int) (f11 * f6));
             if (this.countAnimationInLayout != null) {
                 canvas.save();
-                canvas.translate(f10, ((this.countAnimationIncrement ? AndroidUtilities.m35dp(13.0f) : -AndroidUtilities.m35dp(13.0f)) * f9) + f11 + AndroidUtilities.m35dp(4.0f));
+                canvas.translate(f8, ((this.countAnimationIncrement ? AndroidUtilities.m35dp(13.0f) : -AndroidUtilities.m35dp(13.0f)) * f7) + f9 + AndroidUtilities.m35dp(4.0f));
                 this.countAnimationInLayout.draw(canvas);
                 canvas.restore();
             } else if (this.countLayout != null) {
                 canvas.save();
-                canvas.translate(f10, ((this.countAnimationIncrement ? AndroidUtilities.m35dp(13.0f) : -AndroidUtilities.m35dp(13.0f)) * f9) + f11 + AndroidUtilities.m35dp(4.0f));
+                canvas.translate(f8, ((this.countAnimationIncrement ? AndroidUtilities.m35dp(13.0f) : -AndroidUtilities.m35dp(13.0f)) * f7) + f9 + AndroidUtilities.m35dp(4.0f));
                 this.countLayout.draw(canvas);
                 canvas.restore();
             }
             if (this.countOldLayout != null) {
-                Theme.dialogs_countTextPaint.setAlpha((int) (f15 * f9));
+                Theme.dialogs_countTextPaint.setAlpha((int) (f11 * f7));
                 canvas.save();
-                canvas.translate(f10, ((this.countAnimationIncrement ? -AndroidUtilities.m35dp(13.0f) : AndroidUtilities.m35dp(13.0f)) * f8) + f11 + AndroidUtilities.m35dp(4.0f));
+                canvas.translate(f8, ((this.countAnimationIncrement ? -AndroidUtilities.m35dp(13.0f) : AndroidUtilities.m35dp(13.0f)) * f6) + f9 + AndroidUtilities.m35dp(4.0f));
                 this.countOldLayout.draw(canvas);
                 canvas.restore();
             }
@@ -1409,7 +1455,7 @@ public class DialogCell extends BaseCell {
     @Override
     public boolean performAccessibilityAction(int i, Bundle bundle) {
         DialogsActivity dialogsActivity;
-        if (i == C1010R.C1012id.acc_action_chat_preview && (dialogsActivity = this.parentFragment) != null) {
+        if (i == C1072R.C1074id.acc_action_chat_preview && (dialogsActivity = this.parentFragment) != null) {
             dialogsActivity.showChatPreview(this);
             return true;
         }
@@ -1426,7 +1472,7 @@ public class DialogCell extends BaseCell {
             accessibilityNodeInfo.addAction(16);
             accessibilityNodeInfo.addAction(32);
             if (!isFolderCell() && this.parentFragment != null && Build.VERSION.SDK_INT >= 21) {
-                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(C1010R.C1012id.acc_action_chat_preview, LocaleController.getString("AccActionChatPreview", C1010R.string.AccActionChatPreview)));
+                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(C1072R.C1074id.acc_action_chat_preview, LocaleController.getString("AccActionChatPreview", C1072R.string.AccActionChatPreview)));
             }
         }
         CheckBox2 checkBox2 = this.checkBox;
@@ -1445,15 +1491,15 @@ public class DialogCell extends BaseCell {
         super.onPopulateAccessibilityEvent(accessibilityEvent);
         StringBuilder sb = new StringBuilder();
         if (this.currentDialogFolderId == 1) {
-            sb.append(LocaleController.getString("ArchivedChats", C1010R.string.ArchivedChats));
+            sb.append(LocaleController.getString("ArchivedChats", C1072R.string.ArchivedChats));
             sb.append(". ");
         } else {
             if (this.encryptedChat != null) {
-                sb.append(LocaleController.getString("AccDescrSecretChat", C1010R.string.AccDescrSecretChat));
+                sb.append(LocaleController.getString("AccDescrSecretChat", C1072R.string.AccDescrSecretChat));
                 sb.append(". ");
             }
             if (this.isTopic && this.forumTopic != null) {
-                sb.append(LocaleController.getString("AccDescrTopic", C1010R.string.AccDescrTopic));
+                sb.append(LocaleController.getString("AccDescrTopic", C1072R.string.AccDescrTopic));
                 sb.append(". ");
                 sb.append(this.forumTopic.title);
                 sb.append(". ");
@@ -1461,15 +1507,15 @@ public class DialogCell extends BaseCell {
                 TLRPC$User tLRPC$User = this.user;
                 if (tLRPC$User != null) {
                     if (UserObject.isReplyUser(tLRPC$User)) {
-                        sb.append(LocaleController.getString("RepliesTitle", C1010R.string.RepliesTitle));
+                        sb.append(LocaleController.getString("RepliesTitle", C1072R.string.RepliesTitle));
                     } else {
                         if (this.user.bot) {
-                            sb.append(LocaleController.getString("Bot", C1010R.string.Bot));
+                            sb.append(LocaleController.getString("Bot", C1072R.string.Bot));
                             sb.append(". ");
                         }
                         TLRPC$User tLRPC$User2 = this.user;
                         if (tLRPC$User2.self) {
-                            sb.append(LocaleController.getString("SavedMessages", C1010R.string.SavedMessages));
+                            sb.append(LocaleController.getString("SavedMessages", C1072R.string.SavedMessages));
                         } else {
                             sb.append(ContactsController.formatName(tLRPC$User2.first_name, tLRPC$User2.last_name));
                         }
@@ -1479,9 +1525,9 @@ public class DialogCell extends BaseCell {
                     TLRPC$Chat tLRPC$Chat = this.chat;
                     if (tLRPC$Chat != null) {
                         if (tLRPC$Chat.broadcast) {
-                            sb.append(LocaleController.getString("AccDescrChannel", C1010R.string.AccDescrChannel));
+                            sb.append(LocaleController.getString("AccDescrChannel", C1072R.string.AccDescrChannel));
                         } else {
-                            sb.append(LocaleController.getString("AccDescrGroup", C1010R.string.AccDescrGroup));
+                            sb.append(LocaleController.getString("AccDescrGroup", C1072R.string.AccDescrGroup));
                         }
                         sb.append(". ");
                         sb.append(this.chat.title);
@@ -1491,7 +1537,7 @@ public class DialogCell extends BaseCell {
             }
         }
         if (this.drawVerified) {
-            sb.append(LocaleController.getString("AccDescrVerified", C1010R.string.AccDescrVerified));
+            sb.append(LocaleController.getString("AccDescrVerified", C1072R.string.AccDescrVerified));
             sb.append(". ");
         }
         int i = this.unreadCount;
@@ -1505,7 +1551,7 @@ public class DialogCell extends BaseCell {
             sb.append(". ");
         }
         if (this.reactionMentionCount > 0) {
-            sb.append(LocaleController.getString("AccDescrMentionReaction", C1010R.string.AccDescrMentionReaction));
+            sb.append(LocaleController.getString("AccDescrMentionReaction", C1072R.string.AccDescrMentionReaction));
             sb.append(". ");
         }
         MessageObject messageObject = this.message;
@@ -1519,9 +1565,9 @@ public class DialogCell extends BaseCell {
         }
         String formatDateAudio = LocaleController.formatDateAudio(i3, true);
         if (this.message.isOut()) {
-            sb.append(LocaleController.formatString("AccDescrSentDate", C1010R.string.AccDescrSentDate, formatDateAudio));
+            sb.append(LocaleController.formatString("AccDescrSentDate", C1072R.string.AccDescrSentDate, formatDateAudio));
         } else {
-            sb.append(LocaleController.formatString("AccDescrReceivedDate", C1010R.string.AccDescrReceivedDate, formatDateAudio));
+            sb.append(LocaleController.formatString("AccDescrReceivedDate", C1072R.string.AccDescrReceivedDate, formatDateAudio));
         }
         sb.append(". ");
         if (this.chat != null && !this.message.isOut() && this.message.isFromUser() && this.message.messageOwner.action == null && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
@@ -1647,8 +1693,11 @@ public class DialogCell extends BaseCell {
             int i2 = this.thumbsCount;
             if (i2 < 3) {
                 this.thumbsCount = i2 + 1;
-                this.drawPlay[i] = messageObject.isVideo() || messageObject.isRoundVideo();
-                this.thumbImage[i].setImage(ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject), "20_20", ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject), "20_20", (messageObject.type != 1 || closestPhotoSizeWithSize2 == null) ? 0 : closestPhotoSizeWithSize2.size, null, messageObject, 0);
+                this.drawPlay[i] = (messageObject.isVideo() || messageObject.isRoundVideo()) && !messageObject.hasMediaSpoilers();
+                this.drawSpoiler[i] = messageObject.hasMediaSpoilers();
+                int i3 = (messageObject.type != 1 || closestPhotoSizeWithSize2 == null) ? 0 : closestPhotoSizeWithSize2.size;
+                String str = messageObject.hasMediaSpoilers() ? "20_20_b2" : "20_20";
+                this.thumbImage[i].setImage(ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject), str, ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject), str, i3, null, messageObject, 0);
                 this.thumbImage[i].setRoundRadius(AndroidUtilities.m35dp(messageObject.isRoundVideo() ? 18.0f : 2.0f));
                 this.needEmoji = false;
             }
@@ -1676,23 +1725,23 @@ public class DialogCell extends BaseCell {
             chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-fromChatId));
         }
         if (this.message.isOutOwner()) {
-            return LocaleController.getString("FromYou", C1010R.string.FromYou);
+            return LocaleController.getString("FromYou", C1072R.string.FromYou);
         }
         MessageObject messageObject2 = this.message;
         if (messageObject2 != null && (tLRPC$Message2 = messageObject2.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
-            return UserObject.getFirstName(user).replace("\n", BuildConfig.APP_CENTER_HASH);
+            return UserObject.getFirstName(user).replace("\n", "");
         }
         MessageObject messageObject3 = this.message;
         if (messageObject3 == null || (tLRPC$Message = messageObject3.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (str2 = tLRPC$MessageFwdHeader.from_name) == null) {
             if (tLRPC$User == null) {
-                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", BuildConfig.APP_CENTER_HASH);
+                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", "");
             } else if (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) {
                 if (UserObject.isDeleted(tLRPC$User)) {
-                    return LocaleController.getString("HiddenName", C1010R.string.HiddenName);
+                    return LocaleController.getString("HiddenName", C1072R.string.HiddenName);
                 }
-                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", BuildConfig.APP_CENTER_HASH);
+                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", "");
             } else {
-                return UserObject.getFirstName(tLRPC$User).replace("\n", BuildConfig.APP_CENTER_HASH);
+                return UserObject.getFirstName(tLRPC$User).replace("\n", "");
             }
         }
         return str2;

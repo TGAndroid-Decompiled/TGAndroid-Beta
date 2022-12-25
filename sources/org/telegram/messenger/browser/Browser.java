@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.support.customtabs.CustomTabsCallback;
 import org.telegram.messenger.support.customtabs.CustomTabsClient;
 import org.telegram.messenger.support.customtabs.CustomTabsServiceConnection;
@@ -161,7 +161,7 @@ public class Browser {
         }
         StringBuilder sb = new StringBuilder();
         sb.append("^(https");
-        sb.append(z2 ? BuildConfig.APP_CENTER_HASH : "?");
+        sb.append(z2 ? "" : "?");
         sb.append("://)?(te\\.?legra\\.ph|graph\\.org)(/.*|$)");
         return str.matches(sb.toString());
     }
@@ -192,21 +192,57 @@ public class Browser {
         return isTelegraphUrl(str, false, true) || str.matches("^(https://)?t\\.me/iv\\??(/.*|$)") || str.matches("^(https://)?telegram\\.org/(blog|tour)(/.*|$)") || str.matches("^(https://)?fragment\\.com(/.*|$)");
     }
 
-    public static void openUrl(final android.content.Context r16, final android.net.Uri r17, final boolean r18, boolean r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean):void");
+    public static class Progress {
+        private Runnable onCancelListener;
+
+        public void end(boolean z) {
+            throw null;
+        }
+
+        public void init() {
+            throw null;
+        }
+
+        public void end() {
+            end(false);
+        }
+
+        public void cancel() {
+            cancel(false);
+        }
+
+        public void cancel(boolean z) {
+            Runnable runnable = this.onCancelListener;
+            if (runnable != null) {
+                runnable.run();
+            }
+            end(z);
+        }
+
+        public void onCancel(Runnable runnable) {
+            this.onCancelListener = runnable;
+        }
     }
 
-    public static void lambda$openUrl$1(final AlertDialog[] alertDialogArr, final int i, final Uri uri, final Context context, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void openUrl(Context context, Uri uri, boolean z, boolean z2) {
+        openUrl(context, uri, z, z2, null);
+    }
+
+    public static void openUrl(final android.content.Context r18, final android.net.Uri r19, final boolean r20, boolean r21, final org.telegram.messenger.browser.Browser.Progress r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, org.telegram.messenger.browser.Browser$Progress):void");
+    }
+
+    public static void lambda$openUrl$1(final Progress progress, final AlertDialog[] alertDialogArr, final int i, final Uri uri, final Context context, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                Browser.lambda$openUrl$0(alertDialogArr, tLObject, i, uri, context, z);
+                Browser.lambda$openUrl$0(Browser.Progress.this, alertDialogArr, tLObject, i, uri, context, z);
             }
         });
     }
 
-    public static void lambda$openUrl$0(org.telegram.p009ui.ActionBar.AlertDialog[] r3, org.telegram.tgnet.TLObject r4, int r5, android.net.Uri r6, android.content.Context r7, boolean r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.lambda$openUrl$0(org.telegram.ui.ActionBar.AlertDialog[], org.telegram.tgnet.TLObject, int, android.net.Uri, android.content.Context, boolean):void");
+    public static void lambda$openUrl$0(org.telegram.messenger.browser.Browser.Progress r2, org.telegram.p009ui.ActionBar.AlertDialog[] r3, org.telegram.tgnet.TLObject r4, int r5, android.net.Uri r6, android.content.Context r7, boolean r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.lambda$openUrl$0(org.telegram.messenger.browser.Browser$Progress, org.telegram.ui.ActionBar.AlertDialog[], org.telegram.tgnet.TLObject, int, android.net.Uri, android.content.Context, boolean):void");
     }
 
     public static void lambda$openUrl$3(AlertDialog[] alertDialogArr, final int i) {
@@ -265,31 +301,27 @@ public class Browser {
         String str;
         String str2;
         String host = uri.getHost();
-        String str3 = BuildConfig.APP_CENTER_HASH;
-        String lowerCase = host != null ? host.toLowerCase() : BuildConfig.APP_CENTER_HASH;
+        String lowerCase = host != null ? host.toLowerCase() : "";
         Matcher matcher = LaunchActivity.PREFIX_T_ME_PATTERN.matcher(lowerCase);
         if (matcher.find()) {
             StringBuilder sb = new StringBuilder();
             sb.append("https://t.me/");
             sb.append(matcher.group(1));
             if (TextUtils.isEmpty(uri.getPath())) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             } else {
                 str = "/" + uri.getPath();
             }
             sb.append(str);
             if (TextUtils.isEmpty(uri.getQuery())) {
-                str2 = BuildConfig.APP_CENTER_HASH;
+                str2 = "";
             } else {
                 str2 = "?" + uri.getQuery();
             }
             sb.append(str2);
             uri = Uri.parse(sb.toString());
             String host2 = uri.getHost();
-            if (host2 != null) {
-                str3 = host2.toLowerCase();
-            }
-            lowerCase = str3;
+            lowerCase = host2 != null ? host2.toLowerCase() : "";
         }
         if ("ton".equals(uri.getScheme())) {
             try {

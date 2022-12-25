@@ -10,7 +10,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -85,7 +85,7 @@ public class AvailableReactionCell extends FrameLayout {
         z2 = (this.canLock && tLRPC$TL_availableReaction.premium && !UserConfig.getInstance(i).isPremium()) ? false : false;
         this.locked = z2;
         if (z2) {
-            Drawable drawable = ContextCompat.getDrawable(getContext(), C1010R.C1011drawable.other_lockedfolders2);
+            Drawable drawable = ContextCompat.getDrawable(getContext(), C1072R.C1073drawable.other_lockedfolders2);
             drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu"), PorterDuff.Mode.MULTIPLY));
             this.textView.setRightDrawable(drawable);
         } else {

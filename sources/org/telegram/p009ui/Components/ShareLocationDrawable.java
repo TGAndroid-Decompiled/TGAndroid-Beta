@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 
 public class ShareLocationDrawable extends Drawable {
     private int currentType;
@@ -27,25 +27,25 @@ public class ShareLocationDrawable extends Drawable {
     public ShareLocationDrawable(Context context, int i) {
         this.currentType = i;
         if (i == 4) {
-            this.drawable = context.getResources().getDrawable(C1010R.C1011drawable.pin);
-            this.drawableLeft = context.getResources().getDrawable(C1010R.C1011drawable.smallanimationpinleft);
-            this.drawableRight = context.getResources().getDrawable(C1010R.C1011drawable.smallanimationpinright);
+            this.drawable = context.getResources().getDrawable(C1072R.C1073drawable.pin);
+            this.drawableLeft = context.getResources().getDrawable(C1072R.C1073drawable.smallanimationpinleft);
+            this.drawableRight = context.getResources().getDrawable(C1072R.C1073drawable.smallanimationpinright);
         } else if (i == 3) {
-            this.drawable = context.getResources().getDrawable(C1010R.C1011drawable.nearby_l);
-            this.drawableLeft = context.getResources().getDrawable(C1010R.C1011drawable.animationpinleft);
-            this.drawableRight = context.getResources().getDrawable(C1010R.C1011drawable.animationpinright);
+            this.drawable = context.getResources().getDrawable(C1072R.C1073drawable.nearby_l);
+            this.drawableLeft = context.getResources().getDrawable(C1072R.C1073drawable.animationpinleft);
+            this.drawableRight = context.getResources().getDrawable(C1072R.C1073drawable.animationpinright);
         } else if (i == 2) {
-            this.drawable = context.getResources().getDrawable(C1010R.C1011drawable.nearby_m);
-            this.drawableLeft = context.getResources().getDrawable(C1010R.C1011drawable.animationpinleft);
-            this.drawableRight = context.getResources().getDrawable(C1010R.C1011drawable.animationpinright);
+            this.drawable = context.getResources().getDrawable(C1072R.C1073drawable.nearby_m);
+            this.drawableLeft = context.getResources().getDrawable(C1072R.C1073drawable.animationpinleft);
+            this.drawableRight = context.getResources().getDrawable(C1072R.C1073drawable.animationpinright);
         } else if (i == 1) {
-            this.drawable = context.getResources().getDrawable(C1010R.C1011drawable.smallanimationpin);
-            this.drawableLeft = context.getResources().getDrawable(C1010R.C1011drawable.smallanimationpinleft);
-            this.drawableRight = context.getResources().getDrawable(C1010R.C1011drawable.smallanimationpinright);
+            this.drawable = context.getResources().getDrawable(C1072R.C1073drawable.smallanimationpin);
+            this.drawableLeft = context.getResources().getDrawable(C1072R.C1073drawable.smallanimationpinleft);
+            this.drawableRight = context.getResources().getDrawable(C1072R.C1073drawable.smallanimationpinright);
         } else {
-            this.drawable = context.getResources().getDrawable(C1010R.C1011drawable.animationpin);
-            this.drawableLeft = context.getResources().getDrawable(C1010R.C1011drawable.animationpinleft);
-            this.drawableRight = context.getResources().getDrawable(C1010R.C1011drawable.animationpinright);
+            this.drawable = context.getResources().getDrawable(C1072R.C1073drawable.animationpin);
+            this.drawableLeft = context.getResources().getDrawable(C1072R.C1073drawable.animationpinleft);
+            this.drawableRight = context.getResources().getDrawable(C1072R.C1073drawable.animationpinright);
         }
     }
 

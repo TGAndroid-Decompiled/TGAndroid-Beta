@@ -16,7 +16,7 @@ public class WebRtcAudioEffects {
     private static final String TAG = "WebRtcAudioEffects";
     private static AudioEffect.Descriptor[] cachedEffects;
     private AcousticEchoCanceler aec;
-    private NoiseSuppressor f1163ns;
+    private NoiseSuppressor f1179ns;
     private boolean shouldEnableAec;
     private boolean shouldEnableNs;
 
@@ -129,7 +129,7 @@ public class WebRtcAudioEffects {
             Logging.m5w(TAG, "Platform NS is not supported");
             this.shouldEnableNs = false;
             return false;
-        } else if (this.f1163ns != null && z != this.shouldEnableNs) {
+        } else if (this.f1179ns != null && z != this.shouldEnableNs) {
             Logging.m8e(TAG, "Platform NS state can't be modified while recording");
             return false;
         } else {
@@ -142,7 +142,7 @@ public class WebRtcAudioEffects {
         Logging.m9d(TAG, "enable(audioSession=" + i + ")");
         boolean z = true;
         assertTrue(this.aec == null);
-        assertTrue(this.f1163ns == null);
+        assertTrue(this.f1179ns == null);
         if (isAcousticEchoCancelerSupported()) {
             AcousticEchoCanceler create = AcousticEchoCanceler.create(i);
             this.aec = create;
@@ -166,11 +166,11 @@ public class WebRtcAudioEffects {
         }
         if (isNoiseSuppressorSupported()) {
             NoiseSuppressor create2 = NoiseSuppressor.create(i);
-            this.f1163ns = create2;
+            this.f1179ns = create2;
             if (create2 != null) {
                 boolean enabled2 = create2.getEnabled();
                 z = (this.shouldEnableNs && canUseNoiseSuppressor() && !SharedConfig.disableVoiceAudioEffects) ? false : false;
-                if (this.f1163ns.setEnabled(z) != 0) {
+                if (this.f1179ns.setEnabled(z) != 0) {
                     Logging.m8e(TAG, "Failed to set the NoiseSuppressor state");
                 }
                 StringBuilder sb2 = new StringBuilder();
@@ -179,7 +179,7 @@ public class WebRtcAudioEffects {
                 sb2.append(", enable: ");
                 sb2.append(z);
                 sb2.append(", is now: ");
-                sb2.append(this.f1163ns.getEnabled() ? "enabled" : "disabled");
+                sb2.append(this.f1179ns.getEnabled() ? "enabled" : "disabled");
                 Logging.m9d(TAG, sb2.toString());
                 return;
             }
@@ -194,10 +194,10 @@ public class WebRtcAudioEffects {
             acousticEchoCanceler.release();
             this.aec = null;
         }
-        NoiseSuppressor noiseSuppressor = this.f1163ns;
+        NoiseSuppressor noiseSuppressor = this.f1179ns;
         if (noiseSuppressor != null) {
             noiseSuppressor.release();
-            this.f1163ns = null;
+            this.f1179ns = null;
         }
     }
 

@@ -43,7 +43,7 @@ public class WebRtcAudioManager {
 
     public static synchronized void setBlacklistDeviceForOpenSLESUsage(boolean z) {
         synchronized (WebRtcAudioManager.class) {
-            blacklistDeviceForOpenSLESUsageIsOverridden = blacklistDeviceForAAudioUsage;
+            blacklistDeviceForOpenSLESUsageIsOverridden = true;
             blacklistDeviceForOpenSLESUsage = z;
         }
     }
@@ -137,12 +137,12 @@ public class WebRtcAudioManager {
     private boolean init() {
         Logging.m9d(TAG, "init" + WebRtcAudioUtils.getThreadInfo());
         if (this.initialized) {
-            return blacklistDeviceForAAudioUsage;
+            return true;
         }
         Logging.m9d(TAG, "audio mode is: " + WebRtcAudioUtils.modeToString(this.audioManager.getMode()));
-        this.initialized = blacklistDeviceForAAudioUsage;
+        this.initialized = true;
         this.volumeLogger.start();
-        return blacklistDeviceForAAudioUsage;
+        return true;
     }
 
     private void dispose() {
@@ -153,10 +153,7 @@ public class WebRtcAudioManager {
     }
 
     private boolean isCommunicationModeEnabled() {
-        if (this.audioManager.getMode() == 3) {
-            return blacklistDeviceForAAudioUsage;
-        }
-        return false;
+        return this.audioManager.getMode() == 3;
     }
 
     private boolean isDeviceBlacklistedForOpenSLESUsage() {
@@ -168,9 +165,9 @@ public class WebRtcAudioManager {
         }
         if (deviceIsBlacklistedForOpenSLESUsage) {
             Logging.m9d(TAG, Build.MODEL + " is blacklisted for OpenSL ES usage!");
-            return blacklistDeviceForAAudioUsage;
+            return true;
         }
-        return blacklistDeviceForAAudioUsage;
+        return true;
     }
 
     private void storeAudioParameters() {
@@ -197,17 +194,11 @@ public class WebRtcAudioManager {
     }
 
     public boolean isLowLatencyInputSupported() {
-        if (Build.VERSION.SDK_INT < 21 || !isLowLatencyOutputSupported()) {
-            return false;
-        }
-        return blacklistDeviceForAAudioUsage;
+        return Build.VERSION.SDK_INT >= 21 && isLowLatencyOutputSupported();
     }
 
     private boolean isProAudioSupported() {
-        if (Build.VERSION.SDK_INT < 23 || !ContextUtils.getApplicationContext().getPackageManager().hasSystemFeature("android.hardware.audio.pro")) {
-            return false;
-        }
-        return blacklistDeviceForAAudioUsage;
+        return Build.VERSION.SDK_INT >= 23 && ContextUtils.getApplicationContext().getPackageManager().hasSystemFeature("android.hardware.audio.pro");
     }
 
     private boolean isAAudioSupported() {

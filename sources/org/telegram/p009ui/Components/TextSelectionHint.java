@@ -19,13 +19,12 @@ import android.view.animation.OvershootInterpolator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 
 public class TextSelectionHint extends View {
-    Animator f1133a;
+    Animator f1149a;
     int animateToEnd;
     int animateToStart;
     int currentEnd;
@@ -78,15 +77,15 @@ public class TextSelectionHint extends View {
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         if (getMeasuredWidth() != this.lastW || this.textLayout == null) {
-            Animator animator = this.f1133a;
+            Animator animator = this.f1149a;
             if (animator != null) {
                 animator.removeAllListeners();
-                this.f1133a.cancel();
+                this.f1149a.cancel();
             }
-            String string = LocaleController.getString("TextSelectionHit", C1010R.string.TextSelectionHit);
+            String string = LocaleController.getString("TextSelectionHit", C1072R.string.TextSelectionHit);
             Matcher matcher = Pattern.compile("\\*\\*.*\\*\\*").matcher(string);
             String group = matcher.matches() ? matcher.group() : null;
-            String replace = string.replace("**", BuildConfig.APP_CENTER_HASH);
+            String replace = string.replace("**", "");
             this.textLayout = new StaticLayout(replace, this.textPaint, getMeasuredWidth() - (this.padding * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.start = 0;
             this.end = 0;
@@ -266,10 +265,10 @@ public class TextSelectionHint extends View {
 
     public void show() {
         AndroidUtilities.cancelRunOnUIThread(this.dismissTunnable);
-        Animator animator = this.f1133a;
+        Animator animator = this.f1149a;
         if (animator != null) {
             animator.removeAllListeners();
-            this.f1133a.cancel();
+            this.f1149a.cancel();
         }
         if (getMeasuredHeight() == 0 || getMeasuredWidth() == 0) {
             this.showOnMeasure = true;
@@ -325,7 +324,7 @@ public class TextSelectionHint extends View {
         ofFloat4.setDuration(900L);
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playSequentially(ofFloat, ofFloat2, ofFloat3, ofFloat4);
-        this.f1133a = animatorSet;
+        this.f1149a = animatorSet;
         animatorSet.start();
         AndroidUtilities.runOnUIThread(this.dismissTunnable, 5000L);
     }
@@ -362,10 +361,10 @@ public class TextSelectionHint extends View {
     }
 
     public void hideInternal() {
-        Animator animator = this.f1133a;
+        Animator animator = this.f1149a;
         if (animator != null) {
             animator.removeAllListeners();
-            this.f1133a.cancel();
+            this.f1149a.cancel();
         }
         this.showing = false;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.prepareProgress, 0.0f);
@@ -381,7 +380,7 @@ public class TextSelectionHint extends View {
                 TextSelectionHint.this.setVisibility(4);
             }
         });
-        this.f1133a = ofFloat;
+        this.f1149a = ofFloat;
         ofFloat.start();
     }
 

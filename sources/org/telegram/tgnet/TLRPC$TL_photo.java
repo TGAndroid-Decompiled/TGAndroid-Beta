@@ -8,7 +8,7 @@ public class TLRPC$TL_photo extends TLRPC$Photo {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.has_stickers = (readInt32 & 1) != 0;
-        this.f877id = abstractSerializedData.readInt64(z);
+        this.f886id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.file_reference = abstractSerializedData.readByteArray(z);
         this.date = abstractSerializedData.readInt32(z);
@@ -21,7 +21,7 @@ public class TLRPC$TL_photo extends TLRPC$Photo {
         }
         int readInt323 = abstractSerializedData.readInt32(z);
         for (int i = 0; i < readInt323; i++) {
-            TLRPC$PhotoSize TLdeserialize = TLRPC$PhotoSize.TLdeserialize(this.f877id, 0L, 0L, abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            TLRPC$PhotoSize TLdeserialize = TLRPC$PhotoSize.TLdeserialize(this.f886id, 0L, 0L, abstractSerializedData, abstractSerializedData.readInt32(z), z);
             if (TLdeserialize == null) {
                 return;
             }
@@ -37,7 +37,7 @@ public class TLRPC$TL_photo extends TLRPC$Photo {
             }
             int readInt325 = abstractSerializedData.readInt32(z);
             for (int i2 = 0; i2 < readInt325; i2++) {
-                TLRPC$VideoSize TLdeserialize2 = TLRPC$VideoSize.TLdeserialize(this.f877id, 0L, abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                TLRPC$VideoSize TLdeserialize2 = TLRPC$VideoSize.TLdeserialize(this.f886id, 0L, abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize2 == null) {
                     return;
                 }
@@ -53,7 +53,7 @@ public class TLRPC$TL_photo extends TLRPC$Photo {
         int i = this.has_stickers ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
-        abstractSerializedData.writeInt64(this.f877id);
+        abstractSerializedData.writeInt64(this.f886id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeByteArray(this.file_reference);
         abstractSerializedData.writeInt32(this.date);

@@ -2,7 +2,6 @@ package org.telegram.p009ui.Components.Paint.Views;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +65,7 @@ public class StickerView extends EntityView {
             if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeSticker) {
                 TLRPC$TL_maskCoords tLRPC$TL_maskCoords = tLRPC$DocumentAttribute.mask_coords;
                 if (tLRPC$TL_maskCoords != null) {
-                    this.anchor = tLRPC$TL_maskCoords.f924n;
+                    this.anchor = tLRPC$TL_maskCoords.f933n;
                 }
             } else {
                 i++;
@@ -136,8 +135,8 @@ public class StickerView extends EntityView {
     @Override
     public void updatePosition() {
         Size size = this.baseSize;
-        setX(this.position.f1087x - (size.width / 2.0f));
-        setY(this.position.f1088y - (size.height / 2.0f));
+        setX(getPositionX() - (size.width / 2.0f));
+        setY(getPositionY() - (size.height / 2.0f));
         updateSelectionView();
     }
 
@@ -176,12 +175,15 @@ public class StickerView extends EntityView {
 
     @Override
     protected Rect getSelectionBounds() {
-        float scaleX = ((ViewGroup) getParent()).getScaleX();
-        float measuredWidth = getMeasuredWidth() * (getScale() + 0.4f);
-        Point point = this.position;
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Rect();
+        }
+        float scaleX = viewGroup.getScaleX();
+        float measuredWidth = getMeasuredWidth() * (getScale() + 0.5f);
         float f = measuredWidth / 2.0f;
         float f2 = measuredWidth * scaleX;
-        return new Rect((point.f1087x - f) * scaleX, (point.f1088y - f) * scaleX, f2, f2);
+        return new Rect((getPositionX() - f) * scaleX, (getPositionY() - f) * scaleX, f2, f2);
     }
 
     @Override
@@ -202,16 +204,11 @@ public class StickerView extends EntityView {
     }
 
     public class StickerViewSelectionView extends EntityView.SelectionView {
-        private Paint arcPaint;
         private RectF arcRect;
 
         public StickerViewSelectionView(StickerView stickerView, Context context) {
             super(context);
-            this.arcPaint = new Paint(1);
             this.arcRect = new RectF();
-            this.arcPaint.setColor(-1);
-            this.arcPaint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
-            this.arcPaint.setStyle(Paint.Style.STROKE);
         }
 
         @Override
@@ -236,11 +233,10 @@ public class StickerView extends EntityView {
             float m35dp = AndroidUtilities.m35dp(4.5f);
             float m35dp2 = AndroidUtilities.m35dp(1.0f) + m35dp + AndroidUtilities.m35dp(15.0f);
             float measuredWidth = (getMeasuredWidth() / 2) - m35dp2;
-            float f = (2.0f * measuredWidth) + m35dp2;
+            float f = m35dp2 + (2.0f * measuredWidth);
             this.arcRect.set(m35dp2, m35dp2, f, f);
-            for (int i = 0; i < 48; i++) {
-                canvas.drawArc(this.arcRect, i * 8.0f, 4.0f, false, this.arcPaint);
-            }
+            canvas.drawArc(this.arcRect, 0.0f, 180.0f, false, this.paint);
+            canvas.drawArc(this.arcRect, 180.0f, 180.0f, false, this.paint);
             float f2 = measuredWidth + m35dp2;
             canvas.drawCircle(m35dp2, f2, m35dp, this.dotPaint);
             canvas.drawCircle(m35dp2, f2, m35dp, this.dotStrokePaint);

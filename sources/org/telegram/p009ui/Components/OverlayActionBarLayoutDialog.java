@@ -13,7 +13,7 @@ import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.p009ui.ActionBar.BaseFragment;
 import org.telegram.p009ui.ActionBar.INavigationLayout;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -55,7 +55,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
     }
 
     public OverlayActionBarLayoutDialog(Context context, Theme.ResourcesProvider resourcesProvider) {
-        super(context, C1010R.style.TransparentDialog);
+        super(context, C1072R.style.TransparentDialog);
         this.resourcesProvider = resourcesProvider;
         INavigationLayout newLayout = INavigationLayout.CC.newLayout(context);
         this.actionBarLayout = newLayout;
@@ -103,7 +103,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         } else if (i >= 21) {
             window.addFlags(-2147417856);
         }
-        window.setWindowAnimations(C1010R.style.DialogNoAnimation);
+        window.setWindowAnimations(C1072R.style.DialogNoAnimation);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;
         attributes.gravity = 51;

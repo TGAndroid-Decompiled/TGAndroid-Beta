@@ -14,8 +14,7 @@ import android.text.TextPaint;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -59,50 +58,50 @@ public class TimerDrawable extends Drawable {
         if (this.time != i) {
             this.time = i;
             if (this.isDialog) {
-                this.currentTtlIcon = ContextCompat.getDrawable(this.context, C1010R.C1011drawable.msg_autodelete_badge2).mutate();
+                this.currentTtlIcon = ContextCompat.getDrawable(this.context, C1072R.C1073drawable.msg_autodelete_badge2).mutate();
             } else {
-                Drawable mutate = ContextCompat.getDrawable(this.context, i == 0 ? C1010R.C1011drawable.msg_mini_autodelete : C1010R.C1011drawable.msg_mini_autodelete_empty).mutate();
+                Drawable mutate = ContextCompat.getDrawable(this.context, i == 0 ? C1072R.C1073drawable.msg_mini_autodelete : C1072R.C1073drawable.msg_mini_autodelete_empty).mutate();
                 this.currentTtlIcon = mutate;
                 mutate.setColorFilter(this.currentColorFilter);
             }
             invalidateSelf();
             int i2 = this.time;
             if (i2 >= 1 && i2 < 60) {
-                str = BuildConfig.APP_CENTER_HASH + i;
+                str = "" + i;
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerSeconds", C1010R.string.SecretChatTimerSeconds);
+                    str = str + LocaleController.getString("SecretChatTimerSeconds", C1072R.string.SecretChatTimerSeconds);
                 }
             } else if (i2 >= 60 && i2 < 3600) {
-                str = BuildConfig.APP_CENTER_HASH + (i / 60);
+                str = "" + (i / 60);
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerMinutes", C1010R.string.SecretChatTimerMinutes);
+                    str = str + LocaleController.getString("SecretChatTimerMinutes", C1072R.string.SecretChatTimerMinutes);
                 }
             } else if (i2 >= 3600 && i2 < 86400) {
-                str = BuildConfig.APP_CENTER_HASH + ((i / 60) / 60);
+                str = "" + ((i / 60) / 60);
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerHours", C1010R.string.SecretChatTimerHours);
+                    str = str + LocaleController.getString("SecretChatTimerHours", C1072R.string.SecretChatTimerHours);
                 }
             } else if (i2 >= 86400 && i2 < 604800) {
-                str = BuildConfig.APP_CENTER_HASH + (((i / 60) / 60) / 24);
+                str = "" + (((i / 60) / 60) / 24);
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerDays", C1010R.string.SecretChatTimerDays);
+                    str = str + LocaleController.getString("SecretChatTimerDays", C1072R.string.SecretChatTimerDays);
                 }
             } else if (i2 < 2678400) {
-                str = BuildConfig.APP_CENTER_HASH + ((((i / 60) / 60) / 24) / 7);
+                str = "" + ((((i / 60) / 60) / 24) / 7);
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerWeeks", C1010R.string.SecretChatTimerWeeks);
+                    str = str + LocaleController.getString("SecretChatTimerWeeks", C1072R.string.SecretChatTimerWeeks);
                 } else if (str.length() > 2) {
                     str = "c";
                 }
             } else if (i2 < 31449600) {
-                str = BuildConfig.APP_CENTER_HASH + ((((i / 60) / 60) / 24) / 30);
+                str = "" + ((((i / 60) / 60) / 24) / 30);
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerMonths", C1010R.string.SecretChatTimerMonths);
+                    str = str + LocaleController.getString("SecretChatTimerMonths", C1072R.string.SecretChatTimerMonths);
                 }
             } else {
-                str = BuildConfig.APP_CENTER_HASH + ((((i / 60) / 60) / 24) / 364);
+                str = "" + ((((i / 60) / 60) / 24) / 364);
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerYears", C1010R.string.SecretChatTimerYears);
+                    str = str + LocaleController.getString("SecretChatTimerYears", C1072R.string.SecretChatTimerYears);
                 }
             }
             String str2 = str;

@@ -30,7 +30,7 @@ import android.widget.TextView;
 import androidx.annotation.Keep;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -200,7 +200,7 @@ public class UndoView extends FrameLayout {
         });
         ImageView imageView = new ImageView(context);
         this.undoImageView = imageView;
-        imageView.setImageResource(C1010R.C1011drawable.chats_undo);
+        imageView.setImageResource(C1072R.C1073drawable.chats_undo);
         this.undoImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("undo_cancelColor"), PorterDuff.Mode.MULTIPLY));
         this.undoButton.addView(this.undoImageView, LayoutHelper.createLinear(-2, -2, 19, 4, 4, 0, 4));
         TextView textView3 = new TextView(context);
@@ -208,7 +208,7 @@ public class UndoView extends FrameLayout {
         textView3.setTextSize(1, 14.0f);
         this.undoTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.undoTextView.setTextColor(getThemedColor("undo_cancelColor"));
-        this.undoTextView.setText(LocaleController.getString("Undo", C1010R.string.Undo));
+        this.undoTextView.setText(LocaleController.getString("Undo", C1072R.string.Undo));
         this.undoButton.addView(this.undoTextView, LayoutHelper.createLinear(-2, -2, 19, 6, 4, 8, 4));
         this.rect = new RectF(AndroidUtilities.m35dp(15.0f), AndroidUtilities.m35dp(15.0f), AndroidUtilities.m35dp(33.0f), AndroidUtilities.m35dp(33.0f));
         Paint paint = new Paint(1);
@@ -362,7 +362,7 @@ public class UndoView extends FrameLayout {
     public void lambda$showWithAction$6(TLRPC$Message tLRPC$Message, View view) {
         hide(true, 1);
         TLRPC$TL_payments_getPaymentReceipt tLRPC$TL_payments_getPaymentReceipt = new TLRPC$TL_payments_getPaymentReceipt();
-        tLRPC$TL_payments_getPaymentReceipt.msg_id = tLRPC$Message.f872id;
+        tLRPC$TL_payments_getPaymentReceipt.msg_id = tLRPC$Message.f881id;
         tLRPC$TL_payments_getPaymentReceipt.peer = this.parentFragment.getMessagesController().getInputPeer(tLRPC$Message.peer_id);
         this.parentFragment.getConnectionsManager().sendRequest(tLRPC$TL_payments_getPaymentReceipt, new RequestDelegate() {
             @Override

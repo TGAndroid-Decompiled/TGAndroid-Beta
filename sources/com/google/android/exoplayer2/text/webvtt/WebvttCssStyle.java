@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.checkerframework.checker.nullness.qual.EnsuresNonNull;
-import org.telegram.messenger.BuildConfig;
 
 public final class WebvttCssStyle {
     private int backgroundColor;
@@ -33,10 +32,10 @@ public final class WebvttCssStyle {
 
     @EnsuresNonNull({"targetId", "targetTag", "targetClasses", "targetVoice"})
     public void reset() {
-        this.targetId = BuildConfig.APP_CENTER_HASH;
-        this.targetTag = BuildConfig.APP_CENTER_HASH;
+        this.targetId = "";
+        this.targetTag = "";
         this.targetClasses = Collections.emptyList();
-        this.targetVoice = BuildConfig.APP_CENTER_HASH;
+        this.targetVoice = "";
         this.fontFamily = null;
         this.hasFontColor = false;
         this.hasBackgroundColor = false;

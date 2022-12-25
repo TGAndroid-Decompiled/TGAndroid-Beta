@@ -5,7 +5,7 @@ public class TLRPC$TL_inputDocument extends TLRPC$InputDocument {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f864id = abstractSerializedData.readInt64(z);
+        this.f873id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.file_reference = abstractSerializedData.readByteArray(z);
     }
@@ -13,7 +13,7 @@ public class TLRPC$TL_inputDocument extends TLRPC$InputDocument {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f864id);
+        abstractSerializedData.writeInt64(this.f873id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeByteArray(this.file_reference);
     }

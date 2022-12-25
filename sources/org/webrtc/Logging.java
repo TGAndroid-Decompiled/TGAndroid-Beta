@@ -5,7 +5,6 @@ import java.io.StringWriter;
 import java.util.EnumSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.tgnet.ConnectionsManager;
 
 public class Logging {
@@ -107,7 +106,7 @@ public class Logging {
         } else if (loggingEnabled) {
             nativeLog(severity.ordinal(), str, str2);
         } else {
-            int i = C41471.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
+            int i = C43101.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
             if (i == 1) {
                 level = Level.SEVERE;
             } else if (i == 2) {
@@ -122,7 +121,7 @@ public class Logging {
         }
     }
 
-    public static class C41471 {
+    public static class C43101 {
         static final int[] $SwitchMap$org$webrtc$Logging$Severity;
 
         static {
@@ -175,7 +174,7 @@ public class Logging {
 
     private static String getStackTraceString(Throwable th) {
         if (th == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         StringWriter stringWriter = new StringWriter();
         th.printStackTrace(new PrintWriter(stringWriter));

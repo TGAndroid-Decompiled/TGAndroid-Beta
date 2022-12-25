@@ -23,8 +23,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -201,7 +200,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             boolean z10 = LocaleController.isRTL;
             addView(view7, LayoutHelper.createFrame(-1, -2.0f, (z10 ? 5 : 3) | 48, z10 ? 8.0f : 72.0f, 5.0f, z10 ? 72.0f : 8.0f, 0.0f));
         }
-        this.statusDrawable = new RLottieDrawable(C1010R.raw.download_arrow, "download_arrow", AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(14.0f), true, null);
+        this.statusDrawable = new RLottieDrawable(C1072R.raw.download_arrow, "download_arrow", AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(14.0f), true, null);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.statusImageView = rLottieImageView;
         rLottieImageView.setAnimation(this.statusDrawable);
@@ -287,19 +286,21 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         }
         if (str4 != null || i != 0) {
             if (str4 != null) {
-                this.thumbImageView.setImage(str4, "42_42", null);
+                if (this.viewType != 3) {
+                    this.thumbImageView.setImage(str4, "42_42", null);
+                }
             } else {
                 CombinedDrawable createCircleDrawableWithIcon = Theme.createCircleDrawableWithIcon(AndroidUtilities.m35dp(42.0f), i);
-                if (i == C1010R.C1011drawable.files_storage) {
+                if (i == C1072R.C1073drawable.files_storage) {
                     str5 = "chat_attachLocationBackground";
                     str6 = "chat_attachLocationIcon";
-                } else if (i == C1010R.C1011drawable.files_gallery) {
+                } else if (i == C1072R.C1073drawable.files_gallery) {
                     str5 = "chat_attachContactBackground";
                     str6 = "chat_attachContactIcon";
-                } else if (i == C1010R.C1011drawable.files_music) {
+                } else if (i == C1072R.C1073drawable.files_music) {
                     str5 = "chat_attachAudioBackground";
                     str6 = "chat_attachAudioIcon";
-                } else if (i == C1010R.C1011drawable.files_internal) {
+                } else if (i == C1072R.C1073drawable.files_internal) {
                     str5 = "chat_attachGalleryBackground";
                     str6 = "chat_attachGalleryIcon";
                 } else {
@@ -314,8 +315,10 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         } else {
             this.extTextView.setAlpha(1.0f);
             this.placeholderImageView.setAlpha(1.0f);
-            this.thumbImageView.setImageBitmap(null);
-            this.thumbImageView.setVisibility(4);
+            if (this.viewType != 3) {
+                this.thumbImageView.setImageBitmap(null);
+                this.thumbImageView.setVisibility(4);
+            }
         }
         setWillNotDraw(true ^ this.needDivider);
     }
@@ -339,7 +342,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             str = photoEntry.path;
         } else {
             this.thumbImageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         }
         File file = new File(str);
         this.nameTextView.setText(file.getName());
@@ -415,39 +418,35 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             this.downloadedSize = 0L;
         }
         TLRPC$Document document = messageObject.getDocument();
-        String str4 = BuildConfig.APP_CENTER_HASH;
         if (document != null) {
-            String str5 = null;
+            String str4 = null;
             if (messageObject.isMusic()) {
                 for (int i = 0; i < document.attributes.size(); i++) {
                     TLRPC$DocumentAttribute tLRPC$DocumentAttribute = document.attributes.get(i);
                     if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeAudio) && (((str2 = tLRPC$DocumentAttribute.performer) != null && str2.length() != 0) || ((str3 = tLRPC$DocumentAttribute.title) != null && str3.length() != 0))) {
-                        str5 = messageObject.getMusicAuthor() + " - " + messageObject.getMusicTitle();
+                        str4 = messageObject.getMusicAuthor() + " - " + messageObject.getMusicTitle();
                     }
                 }
             }
             String documentFileName = (messageObject.isVideo() || (messageObject.messageOwner.media instanceof TLRPC$TL_messageMediaPhoto) || MessageObject.isGifDocument(document)) ? null : FileLoader.getDocumentFileName(document);
             if (TextUtils.isEmpty(documentFileName) && (str = document.mime_type) != null) {
-                documentFileName = str.startsWith(MediaStreamTrack.VIDEO_TRACK_KIND) ? MessageObject.isGifDocument(document) ? LocaleController.getString("AttachGif", C1010R.string.AttachGif) : LocaleController.getString("AttachVideo", C1010R.string.AttachVideo) : document.mime_type.startsWith("image") ? MessageObject.isGifDocument(document) ? LocaleController.getString("AttachGif", C1010R.string.AttachGif) : LocaleController.getString("AttachPhoto", C1010R.string.AttachPhoto) : document.mime_type.startsWith(MediaStreamTrack.AUDIO_TRACK_KIND) ? LocaleController.getString("AttachAudio", C1010R.string.AttachAudio) : LocaleController.getString("AttachDocument", C1010R.string.AttachDocument);
+                documentFileName = str.startsWith(MediaStreamTrack.VIDEO_TRACK_KIND) ? MessageObject.isGifDocument(document) ? LocaleController.getString("AttachGif", C1072R.string.AttachGif) : LocaleController.getString("AttachVideo", C1072R.string.AttachVideo) : document.mime_type.startsWith("image") ? MessageObject.isGifDocument(document) ? LocaleController.getString("AttachGif", C1072R.string.AttachGif) : LocaleController.getString("AttachPhoto", C1072R.string.AttachPhoto) : document.mime_type.startsWith(MediaStreamTrack.AUDIO_TRACK_KIND) ? LocaleController.getString("AttachAudio", C1072R.string.AttachAudio) : LocaleController.getString("AttachDocument", C1072R.string.AttachDocument);
             }
-            if (str5 == null) {
-                str5 = documentFileName;
+            if (str4 == null) {
+                str4 = documentFileName;
             }
-            CharSequence highlightText = AndroidUtilities.highlightText(str5, messageObject.highlightedWords, this.resourcesProvider);
+            CharSequence highlightText = AndroidUtilities.highlightText(str4, messageObject.highlightedWords, this.resourcesProvider);
             if (highlightText != null) {
                 this.nameTextView.setText(highlightText);
             } else {
-                this.nameTextView.setText(str5);
+                this.nameTextView.setText(str4);
             }
             this.placeholderImageView.setVisibility(0);
             this.extTextView.setVisibility(0);
             this.placeholderImageView.setImageResource(AndroidUtilities.getThumbForNameOrMime(documentFileName, document.mime_type, false));
             TextView textView = this.extTextView;
             int lastIndexOf = documentFileName.lastIndexOf(46);
-            if (lastIndexOf != -1) {
-                str4 = documentFileName.substring(lastIndexOf + 1).toLowerCase();
-            }
-            textView.setText(str4);
+            textView.setText(lastIndexOf != -1 ? documentFileName.substring(lastIndexOf + 1).toLowerCase() : "");
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320);
             TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 40);
             if (closestPhotoSizeWithSize2 == closestPhotoSizeWithSize) {
@@ -483,9 +482,9 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
                 }
             }
         } else {
-            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
-            this.extTextView.setText(BuildConfig.APP_CENTER_HASH);
-            this.dateTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.nameTextView.setText("");
+            this.extTextView.setText("");
+            this.dateTextView.setText("");
             this.placeholderImageView.setVisibility(0);
             this.extTextView.setVisibility(0);
             this.extTextView.setAlpha(1.0f);
@@ -522,7 +521,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             this.rightDateTextView.setText(LocaleController.stringForMessageListDate(this.message.messageOwner.date));
             return;
         }
-        this.dateTextView.setText(String.format("%s, %s", format, LocaleController.formatString("formatDateAtTime", C1010R.string.formatDateAtTime, LocaleController.getInstance().formatterYear.format(new Date(j)), LocaleController.getInstance().formatterDay.format(new Date(j)))));
+        this.dateTextView.setText(String.format("%s, %s", format, LocaleController.formatString("formatDateAtTime", C1072R.string.formatDateAtTime, LocaleController.getInstance().formatterYear.format(new Date(j)), LocaleController.getInstance().formatterDay.format(new Date(j)))));
     }
 
     public void updateFileExistIcon(boolean z) {
@@ -790,5 +789,19 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             this.showReorderIconProgress = z ? 1.0f : 0.0f;
         }
         invalidate();
+    }
+
+    public void setPhoto(String str) {
+        if (str.endsWith("mp4")) {
+            BackupImageView backupImageView = this.thumbImageView;
+            backupImageView.setImage("vthumb://0:" + str, null, null);
+            this.thumbImageView.setVisibility(0);
+        } else if (str.endsWith(".jpg") || str.endsWith(".jpeg") || str.endsWith(".png") || str.endsWith(".gif")) {
+            BackupImageView backupImageView2 = this.thumbImageView;
+            backupImageView2.setImage("thumb://0:" + str, null, null);
+            this.thumbImageView.setVisibility(0);
+        } else {
+            this.thumbImageView.setVisibility(8);
+        }
     }
 }

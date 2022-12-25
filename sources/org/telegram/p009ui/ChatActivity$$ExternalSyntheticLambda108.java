@@ -11,8 +11,8 @@ public final class ChatActivity$$ExternalSyntheticLambda108 implements View.OnTo
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        boolean lambda$createView$23;
-        lambda$createView$23 = ChatActivity.lambda$createView$23(view, motionEvent);
-        return lambda$createView$23;
+        boolean lambda$createView$58;
+        lambda$createView$58 = ChatActivity.lambda$createView$58(view, motionEvent);
+        return lambda$createView$58;
     }
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
@@ -218,62 +218,62 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         if (UserConfig.getInstance(UserConfig.selectedAccount).isClientActivated()) {
             int eventType = Theme.getEventType();
             if (eventType == 0) {
-                i = C1010R.C1011drawable.msg_groups_ny;
-                i2 = C1010R.C1011drawable.msg_contacts_ny;
-                i3 = C1010R.C1011drawable.msg_calls_ny;
-                i4 = C1010R.C1011drawable.msg_saved_ny;
-                i5 = C1010R.C1011drawable.msg_settings_ny;
-                i6 = C1010R.C1011drawable.msg_invite_ny;
-                i7 = C1010R.C1011drawable.msg_help_ny;
-                i8 = C1010R.C1011drawable.msg_nearby_ny;
+                i = C1072R.C1073drawable.msg_groups_ny;
+                i2 = C1072R.C1073drawable.msg_contacts_ny;
+                i3 = C1072R.C1073drawable.msg_calls_ny;
+                i4 = C1072R.C1073drawable.msg_saved_ny;
+                i5 = C1072R.C1073drawable.msg_settings_ny;
+                i6 = C1072R.C1073drawable.msg_invite_ny;
+                i7 = C1072R.C1073drawable.msg_help_ny;
+                i8 = C1072R.C1073drawable.msg_nearby_ny;
             } else if (eventType == 1) {
-                i = C1010R.C1011drawable.msg_groups_14;
-                i2 = C1010R.C1011drawable.msg_contacts_14;
-                i3 = C1010R.C1011drawable.msg_calls_14;
-                i4 = C1010R.C1011drawable.msg_saved_14;
-                i5 = C1010R.C1011drawable.msg_settings_14;
-                i6 = C1010R.C1011drawable.msg_secret_ny;
-                i7 = C1010R.C1011drawable.msg_help;
-                i8 = C1010R.C1011drawable.msg_secret_14;
+                i = C1072R.C1073drawable.msg_groups_14;
+                i2 = C1072R.C1073drawable.msg_contacts_14;
+                i3 = C1072R.C1073drawable.msg_calls_14;
+                i4 = C1072R.C1073drawable.msg_saved_14;
+                i5 = C1072R.C1073drawable.msg_settings_14;
+                i6 = C1072R.C1073drawable.msg_secret_ny;
+                i7 = C1072R.C1073drawable.msg_help;
+                i8 = C1072R.C1073drawable.msg_secret_14;
             } else if (eventType == 2) {
-                i = C1010R.C1011drawable.msg_groups_hw;
-                i2 = C1010R.C1011drawable.msg_contacts_hw;
-                i3 = C1010R.C1011drawable.msg_calls_hw;
-                i4 = C1010R.C1011drawable.msg_saved_hw;
-                i5 = C1010R.C1011drawable.msg_settings_hw;
-                i6 = C1010R.C1011drawable.msg_invite_hw;
-                i7 = C1010R.C1011drawable.msg_help_hw;
-                i8 = C1010R.C1011drawable.msg_secret_hw;
+                i = C1072R.C1073drawable.msg_groups_hw;
+                i2 = C1072R.C1073drawable.msg_contacts_hw;
+                i3 = C1072R.C1073drawable.msg_calls_hw;
+                i4 = C1072R.C1073drawable.msg_saved_hw;
+                i5 = C1072R.C1073drawable.msg_settings_hw;
+                i6 = C1072R.C1073drawable.msg_invite_hw;
+                i7 = C1072R.C1073drawable.msg_help_hw;
+                i8 = C1072R.C1073drawable.msg_secret_hw;
             } else {
-                i = C1010R.C1011drawable.msg_groups;
-                i2 = C1010R.C1011drawable.msg_contacts;
-                i3 = C1010R.C1011drawable.msg_calls;
-                i4 = C1010R.C1011drawable.msg_saved;
-                i5 = C1010R.C1011drawable.msg_settings_old;
-                i6 = C1010R.C1011drawable.msg_invite;
-                i7 = C1010R.C1011drawable.msg_help;
-                i8 = C1010R.C1011drawable.msg_nearby;
+                i = C1072R.C1073drawable.msg_groups;
+                i2 = C1072R.C1073drawable.msg_contacts;
+                i3 = C1072R.C1073drawable.msg_calls;
+                i4 = C1072R.C1073drawable.msg_saved;
+                i5 = C1072R.C1073drawable.msg_settings_old;
+                i6 = C1072R.C1073drawable.msg_invite;
+                i7 = C1072R.C1073drawable.msg_help;
+                i8 = C1072R.C1073drawable.msg_nearby;
             }
             UserConfig userConfig = UserConfig.getInstance(UserConfig.selectedAccount);
             if (userConfig != null && userConfig.isPremium()) {
                 if (userConfig.getEmojiStatus() != null) {
-                    this.items.add(new Item(15, LocaleController.getString("ChangeEmojiStatus", C1010R.string.ChangeEmojiStatus), 0, C1010R.raw.emoji_status_change_to_set));
+                    this.items.add(new Item(15, LocaleController.getString("ChangeEmojiStatus", C1072R.string.ChangeEmojiStatus), 0, C1072R.raw.emoji_status_change_to_set));
                 } else {
-                    this.items.add(new Item(15, LocaleController.getString("SetEmojiStatus", C1010R.string.SetEmojiStatus), 0, C1010R.raw.emoji_status_set_to_change));
+                    this.items.add(new Item(15, LocaleController.getString("SetEmojiStatus", C1072R.string.SetEmojiStatus), 0, C1072R.raw.emoji_status_set_to_change));
                 }
                 this.items.add(null);
             }
-            this.items.add(new Item(2, LocaleController.getString("NewGroup", C1010R.string.NewGroup), i));
-            this.items.add(new Item(6, LocaleController.getString("Contacts", C1010R.string.Contacts), i2));
-            this.items.add(new Item(10, LocaleController.getString("Calls", C1010R.string.Calls), i3));
+            this.items.add(new Item(2, LocaleController.getString("NewGroup", C1072R.string.NewGroup), i));
+            this.items.add(new Item(6, LocaleController.getString("Contacts", C1072R.string.Contacts), i2));
+            this.items.add(new Item(10, LocaleController.getString("Calls", C1072R.string.Calls), i3));
             if (this.hasGps) {
-                this.items.add(new Item(12, LocaleController.getString("PeopleNearby", C1010R.string.PeopleNearby), i8));
+                this.items.add(new Item(12, LocaleController.getString("PeopleNearby", C1072R.string.PeopleNearby), i8));
             }
-            this.items.add(new Item(11, LocaleController.getString("SavedMessages", C1010R.string.SavedMessages), i4));
-            this.items.add(new Item(8, LocaleController.getString("Settings", C1010R.string.Settings), i5));
+            this.items.add(new Item(11, LocaleController.getString("SavedMessages", C1072R.string.SavedMessages), i4));
+            this.items.add(new Item(8, LocaleController.getString("Settings", C1072R.string.Settings), i5));
             this.items.add(null);
-            this.items.add(new Item(7, LocaleController.getString("InviteFriends", C1010R.string.InviteFriends), i6));
-            this.items.add(new Item(13, LocaleController.getString("TelegramFeatures", C1010R.string.TelegramFeatures), i7));
+            this.items.add(new Item(7, LocaleController.getString("InviteFriends", C1072R.string.InviteFriends), i6));
+            this.items.add(new Item(13, LocaleController.getString("TelegramFeatures", C1072R.string.TelegramFeatures), i7));
         }
     }
 
@@ -295,7 +295,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         if (i2 < 0 || i2 >= this.items.size() || (item = this.items.get(i2)) == null) {
             return -1;
         }
-        return item.f1001id;
+        return item.f1010id;
     }
 
     public int getFirstAccountPosition() {
@@ -311,25 +311,25 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
 
     public static class Item {
         public int icon;
-        public int f1001id;
+        public int f1010id;
         public int lottieIcon;
         public String text;
 
         public Item(int i, String str, int i2) {
             this.icon = i2;
-            this.f1001id = i;
+            this.f1010id = i;
             this.text = str;
         }
 
         public Item(int i, String str, int i2, int i3) {
             this.icon = i2;
             this.lottieIcon = i3;
-            this.f1001id = i;
+            this.f1010id = i;
             this.text = str;
         }
 
         public void bind(DrawerActionCell drawerActionCell) {
-            drawerActionCell.setTextAndIcon(this.f1001id, this.text, this.icon, this.lottieIcon);
+            drawerActionCell.setTextAndIcon(this.f1010id, this.text, this.icon, this.lottieIcon);
         }
     }
 }

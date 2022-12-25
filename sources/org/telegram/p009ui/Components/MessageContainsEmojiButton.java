@@ -3,7 +3,6 @@ package org.telegram.p009ui.Components;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.Layout;
@@ -16,7 +15,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -106,9 +105,9 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
             }
         } else if (arrayList.size() == 1) {
             if (i2 == 0) {
-                string = LocaleController.getString("MessageContainsEmojiPack", C1010R.string.MessageContainsEmojiPack);
+                string = LocaleController.getString("MessageContainsEmojiPack", C1072R.string.MessageContainsEmojiPack);
             } else {
-                string = LocaleController.getString("MessageContainsReactionsPack", C1010R.string.MessageContainsReactionsPack);
+                string = LocaleController.getString("MessageContainsReactionsPack", C1072R.string.MessageContainsReactionsPack);
             }
             String[] split = string.split("%s");
             if (split.length <= 1) {
@@ -127,7 +126,7 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
                     ArrayList<TLRPC$Document> arrayList3 = stickerSet.documents;
                     if (arrayList3 == null || i4 >= arrayList3.size()) {
                         break;
-                    } else if (stickerSet.documents.get(i4).f856id == stickerSet.set.thumb_document_id) {
+                    } else if (stickerSet.documents.get(i4).f865id == stickerSet.set.thumb_document_id) {
                         tLRPC$Document = stickerSet.documents.get(i4);
                         break;
                     } else {
@@ -166,7 +165,7 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
             this.loadingDrawable = loadingDrawable;
             loadingDrawable.colorKey1 = "actionBarDefaultSubmenuBackground";
             loadingDrawable.colorKey2 = "listSelectorSDK21";
-            loadingDrawable.paint.setPathEffect(new CornerPathEffect(AndroidUtilities.m35dp(4.0f)));
+            loadingDrawable.setRadiiDp(4.0f);
         }
     }
 
@@ -188,7 +187,9 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
                     if (this.loadingBoundsFrom == null) {
                         this.loadingBoundsFrom = new Rect();
                     }
-                    this.loadingBoundsFrom.set(this.lastLineMargin, this.lastLineTop + AndroidUtilities.m35dp(1.25f), (int) (this.lastLineMargin + min), r1 + AndroidUtilities.m35dp(1.25f));
+                    Rect rect = this.loadingBoundsFrom;
+                    int i2 = this.lastLineMargin;
+                    rect.set(i2, this.lastLineTop, (int) (i2 + min), r1);
                     this.loadingDrawable.setBounds(this.loadingBoundsFrom);
                     this.loadingDrawableBoundsSet = true;
                 }

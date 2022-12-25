@@ -20,8 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -34,7 +33,7 @@ import org.telegram.p009ui.ActionBar.ActionBarMenu;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.SimpleTextView;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
@@ -112,7 +111,7 @@ public class FilterCreateActivity extends BaseFragment {
             super(context);
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             this.imageView = rLottieImageView;
-            rLottieImageView.setAnimation(C1010R.raw.filter_new, 100, 100);
+            rLottieImageView.setAnimation(C1072R.raw.filter_new, 100, 100);
             this.imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.imageView.playAnimation();
             addView(this.imageView, LayoutHelper.createFrame(100, 100.0f, 17, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -152,11 +151,11 @@ public class FilterCreateActivity extends BaseFragment {
         if (dialogFilter == null) {
             MessagesController.DialogFilter dialogFilter2 = new MessagesController.DialogFilter();
             this.filter = dialogFilter2;
-            dialogFilter2.f810id = 2;
-            while (getMessagesController().dialogFiltersById.get(this.filter.f810id) != null) {
-                this.filter.f810id++;
+            dialogFilter2.f819id = 2;
+            while (getMessagesController().dialogFiltersById.get(this.filter.f819id) != null) {
+                this.filter.f819id++;
             }
-            this.filter.name = BuildConfig.APP_CENTER_HASH;
+            this.filter.name = "";
             this.creatingNew = true;
         }
         MessagesController.DialogFilter dialogFilter3 = this.filter;
@@ -325,17 +324,17 @@ public class FilterCreateActivity extends BaseFragment {
 
     @Override
     public View createView(Context context) {
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         ActionBarMenu createMenu = this.actionBar.createMenu();
         if (this.creatingNew) {
-            this.actionBar.setTitle(LocaleController.getString("FilterNew", C1010R.string.FilterNew));
+            this.actionBar.setTitle(LocaleController.getString("FilterNew", C1072R.string.FilterNew));
         } else {
             TextPaint textPaint = new TextPaint(1);
             textPaint.setTextSize(AndroidUtilities.m35dp(20.0f));
             this.actionBar.setTitle(Emoji.replaceEmoji(this.filter.name, textPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -347,7 +346,7 @@ public class FilterCreateActivity extends BaseFragment {
                 }
             }
         });
-        this.doneItem = createMenu.addItem(1, LocaleController.getString("Save", C1010R.string.Save).toUpperCase());
+        this.doneItem = createMenu.addItem(1, LocaleController.getString("Save", C1072R.string.Save).toUpperCase());
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
@@ -407,10 +406,10 @@ public class FilterCreateActivity extends BaseFragment {
                 presentFragment(usersSelectActivity);
             } else if (i == this.removeRow) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setTitle(LocaleController.getString("FilterDelete", C1010R.string.FilterDelete));
-                builder.setMessage(LocaleController.getString("FilterDeleteAlert", C1010R.string.FilterDeleteAlert));
-                builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
-                builder.setPositiveButton(LocaleController.getString("Delete", C1010R.string.Delete), new DialogInterface.OnClickListener() {
+                builder.setTitle(LocaleController.getString("FilterDelete", C1072R.string.FilterDelete));
+                builder.setMessage(LocaleController.getString("FilterDeleteAlert", C1072R.string.FilterDeleteAlert));
+                builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
+                builder.setPositiveButton(LocaleController.getString("Delete", C1072R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i3) {
                         FilterCreateActivity.this.lambda$createView$3(dialogInterface, i3);
@@ -475,7 +474,7 @@ public class FilterCreateActivity extends BaseFragment {
             alertDialog = null;
         }
         TLRPC$TL_messages_updateDialogFilter tLRPC$TL_messages_updateDialogFilter = new TLRPC$TL_messages_updateDialogFilter();
-        tLRPC$TL_messages_updateDialogFilter.f957id = this.filter.f810id;
+        tLRPC$TL_messages_updateDialogFilter.f966id = this.filter.f819id;
         getConnectionsManager().sendRequest(tLRPC$TL_messages_updateDialogFilter, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -536,51 +535,50 @@ public class FilterCreateActivity extends BaseFragment {
                 int i = this.newFilterFlags;
                 int i2 = MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS;
                 int i3 = i & i2;
-                int i4 = i3 & i2;
-                String str = BuildConfig.APP_CENTER_HASH;
-                if (i4 == i2) {
+                String str = "";
+                if ((i3 & i2) == i2) {
                     if ((MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ & i) != 0) {
-                        string = LocaleController.getString("FilterNameUnread", C1010R.string.FilterNameUnread);
+                        string = LocaleController.getString("FilterNameUnread", C1072R.string.FilterNameUnread);
                     } else {
                         if ((i & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED) != 0) {
-                            string = LocaleController.getString("FilterNameNonMuted", C1010R.string.FilterNameNonMuted);
+                            string = LocaleController.getString("FilterNameNonMuted", C1072R.string.FilterNameNonMuted);
                         }
-                        string = BuildConfig.APP_CENTER_HASH;
+                        string = "";
                     }
                 } else {
-                    int i5 = MessagesController.DIALOG_FILTER_FLAG_CONTACTS;
-                    if ((i3 & i5) != 0) {
-                        if (((i5 ^ (-1)) & i3) == 0) {
-                            string = LocaleController.getString("FilterContacts", C1010R.string.FilterContacts);
+                    int i4 = MessagesController.DIALOG_FILTER_FLAG_CONTACTS;
+                    if ((i3 & i4) != 0) {
+                        if (((i4 ^ (-1)) & i3) == 0) {
+                            string = LocaleController.getString("FilterContacts", C1072R.string.FilterContacts);
                         }
-                        string = BuildConfig.APP_CENTER_HASH;
+                        string = "";
                     } else {
-                        int i6 = MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS;
-                        if ((i3 & i6) != 0) {
-                            if (((i6 ^ (-1)) & i3) == 0) {
-                                string = LocaleController.getString("FilterNonContacts", C1010R.string.FilterNonContacts);
+                        int i5 = MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS;
+                        if ((i3 & i5) != 0) {
+                            if (((i5 ^ (-1)) & i3) == 0) {
+                                string = LocaleController.getString("FilterNonContacts", C1072R.string.FilterNonContacts);
                             }
-                            string = BuildConfig.APP_CENTER_HASH;
+                            string = "";
                         } else {
-                            int i7 = MessagesController.DIALOG_FILTER_FLAG_GROUPS;
-                            if ((i3 & i7) != 0) {
-                                if (((i7 ^ (-1)) & i3) == 0) {
-                                    string = LocaleController.getString("FilterGroups", C1010R.string.FilterGroups);
+                            int i6 = MessagesController.DIALOG_FILTER_FLAG_GROUPS;
+                            if ((i3 & i6) != 0) {
+                                if (((i6 ^ (-1)) & i3) == 0) {
+                                    string = LocaleController.getString("FilterGroups", C1072R.string.FilterGroups);
                                 }
-                                string = BuildConfig.APP_CENTER_HASH;
+                                string = "";
                             } else {
-                                int i8 = MessagesController.DIALOG_FILTER_FLAG_BOTS;
-                                if ((i3 & i8) != 0) {
-                                    if (((i8 ^ (-1)) & i3) == 0) {
-                                        string = LocaleController.getString("FilterBots", C1010R.string.FilterBots);
+                                int i7 = MessagesController.DIALOG_FILTER_FLAG_BOTS;
+                                if ((i3 & i7) != 0) {
+                                    if (((i7 ^ (-1)) & i3) == 0) {
+                                        string = LocaleController.getString("FilterBots", C1072R.string.FilterBots);
                                     }
-                                    string = BuildConfig.APP_CENTER_HASH;
+                                    string = "";
                                 } else {
-                                    int i9 = MessagesController.DIALOG_FILTER_FLAG_CHANNELS;
-                                    if ((i3 & i9) != 0 && ((i9 ^ (-1)) & i3) == 0) {
-                                        string = LocaleController.getString("FilterChannels", C1010R.string.FilterChannels);
+                                    int i8 = MessagesController.DIALOG_FILTER_FLAG_CHANNELS;
+                                    if ((i3 & i8) != 0 && ((i8 ^ (-1)) & i3) == 0) {
+                                        string = LocaleController.getString("FilterChannels", C1072R.string.FilterChannels);
                                     }
-                                    string = BuildConfig.APP_CENTER_HASH;
+                                    string = "";
                                 }
                             }
                         }
@@ -602,25 +600,25 @@ public class FilterCreateActivity extends BaseFragment {
         if (this.doneItem.getAlpha() == 1.0f) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
             if (this.creatingNew) {
-                builder.setTitle(LocaleController.getString("FilterDiscardNewTitle", C1010R.string.FilterDiscardNewTitle));
-                builder.setMessage(LocaleController.getString("FilterDiscardNewAlert", C1010R.string.FilterDiscardNewAlert));
-                builder.setPositiveButton(LocaleController.getString("FilterDiscardNewSave", C1010R.string.FilterDiscardNewSave), new DialogInterface.OnClickListener() {
+                builder.setTitle(LocaleController.getString("FilterDiscardNewTitle", C1072R.string.FilterDiscardNewTitle));
+                builder.setMessage(LocaleController.getString("FilterDiscardNewAlert", C1072R.string.FilterDiscardNewAlert));
+                builder.setPositiveButton(LocaleController.getString("FilterDiscardNewSave", C1072R.string.FilterDiscardNewSave), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
                         FilterCreateActivity.this.lambda$checkDiscard$6(dialogInterface, i);
                     }
                 });
             } else {
-                builder.setTitle(LocaleController.getString("FilterDiscardTitle", C1010R.string.FilterDiscardTitle));
-                builder.setMessage(LocaleController.getString("FilterDiscardAlert", C1010R.string.FilterDiscardAlert));
-                builder.setPositiveButton(LocaleController.getString("ApplyTheme", C1010R.string.ApplyTheme), new DialogInterface.OnClickListener() {
+                builder.setTitle(LocaleController.getString("FilterDiscardTitle", C1072R.string.FilterDiscardTitle));
+                builder.setMessage(LocaleController.getString("FilterDiscardAlert", C1072R.string.FilterDiscardAlert));
+                builder.setPositiveButton(LocaleController.getString("ApplyTheme", C1072R.string.ApplyTheme), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
                         FilterCreateActivity.this.lambda$checkDiscard$7(dialogInterface, i);
                     }
                 });
             }
-            builder.setNegativeButton(LocaleController.getString("PassportDiscard", C1010R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString("PassportDiscard", C1072R.string.PassportDiscard), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     FilterCreateActivity.this.lambda$checkDiscard$8(dialogInterface, i);
@@ -647,26 +645,26 @@ public class FilterCreateActivity extends BaseFragment {
     private void showRemoveAlert(final int i, CharSequence charSequence, Object obj, final boolean z) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         if (z) {
-            builder.setTitle(LocaleController.getString("FilterRemoveInclusionTitle", C1010R.string.FilterRemoveInclusionTitle));
+            builder.setTitle(LocaleController.getString("FilterRemoveInclusionTitle", C1072R.string.FilterRemoveInclusionTitle));
             if (obj instanceof String) {
-                builder.setMessage(LocaleController.formatString("FilterRemoveInclusionText", C1010R.string.FilterRemoveInclusionText, charSequence));
+                builder.setMessage(LocaleController.formatString("FilterRemoveInclusionText", C1072R.string.FilterRemoveInclusionText, charSequence));
             } else if (obj instanceof TLRPC$User) {
-                builder.setMessage(LocaleController.formatString("FilterRemoveInclusionUserText", C1010R.string.FilterRemoveInclusionUserText, charSequence));
+                builder.setMessage(LocaleController.formatString("FilterRemoveInclusionUserText", C1072R.string.FilterRemoveInclusionUserText, charSequence));
             } else {
-                builder.setMessage(LocaleController.formatString("FilterRemoveInclusionChatText", C1010R.string.FilterRemoveInclusionChatText, charSequence));
+                builder.setMessage(LocaleController.formatString("FilterRemoveInclusionChatText", C1072R.string.FilterRemoveInclusionChatText, charSequence));
             }
         } else {
-            builder.setTitle(LocaleController.getString("FilterRemoveExclusionTitle", C1010R.string.FilterRemoveExclusionTitle));
+            builder.setTitle(LocaleController.getString("FilterRemoveExclusionTitle", C1072R.string.FilterRemoveExclusionTitle));
             if (obj instanceof String) {
-                builder.setMessage(LocaleController.formatString("FilterRemoveExclusionText", C1010R.string.FilterRemoveExclusionText, charSequence));
+                builder.setMessage(LocaleController.formatString("FilterRemoveExclusionText", C1072R.string.FilterRemoveExclusionText, charSequence));
             } else if (obj instanceof TLRPC$User) {
-                builder.setMessage(LocaleController.formatString("FilterRemoveExclusionUserText", C1010R.string.FilterRemoveExclusionUserText, charSequence));
+                builder.setMessage(LocaleController.formatString("FilterRemoveExclusionUserText", C1072R.string.FilterRemoveExclusionUserText, charSequence));
             } else {
-                builder.setMessage(LocaleController.formatString("FilterRemoveExclusionChatText", C1010R.string.FilterRemoveExclusionChatText, charSequence));
+                builder.setMessage(LocaleController.formatString("FilterRemoveExclusionChatText", C1072R.string.FilterRemoveExclusionChatText, charSequence));
             }
         }
-        builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
-        builder.setPositiveButton(LocaleController.getString("StickersRemove", C1010R.string.StickersRemove), new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
+        builder.setPositiveButton(LocaleController.getString("StickersRemove", C1072R.string.StickersRemove), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
                 FilterCreateActivity.this.lambda$showRemoveAlert$9(i, z, dialogInterface, i2);
@@ -759,7 +757,7 @@ public class FilterCreateActivity extends BaseFragment {
             alertDialog = null;
         }
         TLRPC$TL_messages_updateDialogFilter tLRPC$TL_messages_updateDialogFilter = new TLRPC$TL_messages_updateDialogFilter();
-        tLRPC$TL_messages_updateDialogFilter.f957id = dialogFilter.f810id;
+        tLRPC$TL_messages_updateDialogFilter.f966id = dialogFilter.f819id;
         int i3 = 1;
         tLRPC$TL_messages_updateDialogFilter.flags |= 1;
         TLRPC$TL_dialogFilter tLRPC$TL_dialogFilter = new TLRPC$TL_dialogFilter();
@@ -772,7 +770,7 @@ public class FilterCreateActivity extends BaseFragment {
         tLRPC$TL_dialogFilter.exclude_muted = (i & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED) != 0;
         tLRPC$TL_dialogFilter.exclude_read = (i & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ) != 0;
         tLRPC$TL_dialogFilter.exclude_archived = (i & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED) != 0;
-        tLRPC$TL_dialogFilter.f855id = dialogFilter.f810id;
+        tLRPC$TL_dialogFilter.f864id = dialogFilter.f819id;
         tLRPC$TL_dialogFilter.title = str;
         MessagesController messagesController = baseFragment.getMessagesController();
         ArrayList<Long> arrayList5 = new ArrayList<>();
@@ -950,7 +948,7 @@ public class FilterCreateActivity extends BaseFragment {
                 textView2.setAlpha((pollEditTextCell.getTextView().isFocused() || length < 0) ? 1.0f : 0.0f);
                 return;
             }
-            pollEditTextCell.setText2(BuildConfig.APP_CENTER_HASH);
+            pollEditTextCell.setText2("");
         }
     }
 
@@ -1053,7 +1051,7 @@ public class FilterCreateActivity extends BaseFragment {
                 FilterCreateActivity.this.setTextLeft(viewHolder.itemView);
                 PollEditTextCell pollEditTextCell = (PollEditTextCell) viewHolder.itemView;
                 pollEditTextCell.setTag(1);
-                pollEditTextCell.setTextAndHint(FilterCreateActivity.this.newFilterName != null ? FilterCreateActivity.this.newFilterName : BuildConfig.APP_CENTER_HASH, LocaleController.getString("FilterNameHint", C1010R.string.FilterNameHint), false);
+                pollEditTextCell.setTextAndHint(FilterCreateActivity.this.newFilterName != null ? FilterCreateActivity.this.newFilterName : "", LocaleController.getString("FilterNameHint", C1072R.string.FilterNameHint), false);
                 pollEditTextCell.setTag(null);
             }
         }

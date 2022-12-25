@@ -40,27 +40,27 @@ public class SvgHelper {
     }
 
     public static class Line {
-        float f817x1;
-        float f818x2;
-        float f819y1;
-        float f820y2;
+        float f826x1;
+        float f827x2;
+        float f828y1;
+        float f829y2;
 
         public Line(float f, float f2, float f3, float f4) {
-            this.f817x1 = f;
-            this.f819y1 = f2;
-            this.f818x2 = f3;
-            this.f820y2 = f4;
+            this.f826x1 = f;
+            this.f828y1 = f2;
+            this.f827x2 = f3;
+            this.f829y2 = f4;
         }
     }
 
     public static class Circle {
         float rad;
-        float f815x1;
-        float f816y1;
+        float f824x1;
+        float f825y1;
 
         public Circle(float f, float f2, float f3) {
-            this.f815x1 = f;
-            this.f816y1 = f2;
+            this.f824x1 = f;
+            this.f825y1 = f2;
             this.rad = f3;
         }
     }
@@ -75,11 +75,11 @@ public class SvgHelper {
 
     public static class RoundRect {
         RectF rect;
-        float f823rx;
+        float f832rx;
 
         public RoundRect(RectF rectF, float f) {
             this.rect = rectF;
-            this.f823rx = f;
+            this.f832rx = f;
         }
     }
 
@@ -257,16 +257,16 @@ public class SvgHelper {
                         canvas.drawRect((RectF) obj, paint);
                     } else if (obj instanceof Line) {
                         Line line = (Line) obj;
-                        canvas.drawLine(line.f817x1, line.f819y1, line.f818x2, line.f820y2, paint);
+                        canvas.drawLine(line.f826x1, line.f828y1, line.f827x2, line.f829y2, paint);
                     } else if (obj instanceof Circle) {
                         Circle circle = (Circle) obj;
-                        canvas.drawCircle(circle.f815x1, circle.f816y1, circle.rad, paint);
+                        canvas.drawCircle(circle.f824x1, circle.f825y1, circle.rad, paint);
                     } else if (obj instanceof Oval) {
                         canvas.drawOval(((Oval) obj).rect, paint);
                     } else if (obj instanceof RoundRect) {
                         RoundRect roundRect = (RoundRect) obj;
                         RectF rectF = roundRect.rect;
-                        float f11 = roundRect.f823rx;
+                        float f11 = roundRect.f832rx;
                         canvas.drawRoundRect(rectF, f11, f11, paint);
                     }
                     paint.setAlpha(alpha);
@@ -448,10 +448,10 @@ public class SvgHelper {
         }
     }
 
-    public static SvgDrawable getDrawable(int i, int i2) {
+    public static SvgDrawable getDrawable(int i, Integer num) {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            SVGHandler sVGHandler = new SVGHandler(0, 0, Integer.valueOf(i2), true, 1.0f);
+            SVGHandler sVGHandler = new SVGHandler(0, 0, num, true, 1.0f);
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(ApplicationLoader.applicationContext.getResources().openRawResource(i)));
             return sVGHandler.getDrawable();
@@ -1425,7 +1425,7 @@ public class SvgHelper {
                     if (sb != null) {
                         String[] split = sb.toString().split("\\}");
                         for (int i = 0; i < split.length; i++) {
-                            split[i] = split[i].trim().replace("\t", BuildConfig.APP_CENTER_HASH).replace("\n", BuildConfig.APP_CENTER_HASH);
+                            split[i] = split[i].trim().replace("\t", "").replace("\n", "");
                             if (split[i].length() != 0 && split[i].charAt(0) == '.' && (indexOf = split[i].indexOf(123)) >= 0) {
                                 this.globalStyles.put(split[i].substring(1, indexOf).trim(), new StyleSet(split[i].substring(indexOf + 1)));
                             }
@@ -1462,20 +1462,20 @@ public class SvgHelper {
 
     public static class ParserHelper {
         private char current;
-        private int f821n;
+        private int f830n;
         public int pos;
-        private CharSequence f822s;
+        private CharSequence f831s;
 
         public ParserHelper(CharSequence charSequence, int i) {
-            this.f822s = charSequence;
+            this.f831s = charSequence;
             this.pos = i;
-            this.f821n = charSequence.length();
+            this.f830n = charSequence.length();
             this.current = charSequence.charAt(i);
         }
 
         private char read() {
             int i = this.pos;
-            int i2 = this.f821n;
+            int i2 = this.f830n;
             if (i < i2) {
                 this.pos = i + 1;
             }
@@ -1483,13 +1483,13 @@ public class SvgHelper {
             if (i3 == i2) {
                 return (char) 0;
             }
-            return this.f822s.charAt(i3);
+            return this.f831s.charAt(i3);
         }
 
         public void skipWhitespace() {
             while (true) {
                 int i = this.pos;
-                if (i >= this.f821n || !Character.isWhitespace(this.f822s.charAt(i))) {
+                if (i >= this.f830n || !Character.isWhitespace(this.f831s.charAt(i))) {
                     return;
                 }
                 advance();
@@ -1499,10 +1499,10 @@ public class SvgHelper {
         public void skipNumberSeparator() {
             while (true) {
                 int i = this.pos;
-                if (i >= this.f821n) {
+                if (i >= this.f830n) {
                     return;
                 }
-                char charAt = this.f822s.charAt(i);
+                char charAt = this.f831s.charAt(i);
                 if (charAt != '\t' && charAt != '\n' && charAt != ' ' && charAt != ',') {
                     return;
                 }
@@ -1579,7 +1579,7 @@ public class SvgHelper {
             return sb.toString();
         } catch (Exception e) {
             FileLog.m31e(e);
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 }

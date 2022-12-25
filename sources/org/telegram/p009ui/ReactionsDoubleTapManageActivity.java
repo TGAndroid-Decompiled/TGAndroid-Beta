@@ -15,13 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.AvailableReactionCell;
@@ -55,10 +55,10 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
 
     @Override
     public View createView(final Context context) {
-        this.actionBar.setTitle(LocaleController.getString("Reactions", C1010R.string.Reactions));
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setTitle(LocaleController.getString("Reactions", C1072R.string.Reactions));
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -91,8 +91,8 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                     setDefaultReactionCell = themePreviewMessagesCell;
                 } else if (i == 2) {
                     TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
-                    textInfoPrivacyCell.setText(LocaleController.getString("DoubleTapPreviewRational", C1010R.string.DoubleTapPreviewRational));
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(context, C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow"));
+                    textInfoPrivacyCell.setText(LocaleController.getString("DoubleTapPreviewRational", C1072R.string.DoubleTapPreviewRational));
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow"));
                     setDefaultReactionCell = textInfoPrivacyCell;
                 } else if (i == 3) {
                     SetDefaultReactionCell setDefaultReactionCell2 = new SetDefaultReactionCell(context);
@@ -105,7 +105,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(16.0f), 1073741824));
                         }
                     };
-                    view.setBackground(Theme.getThemedDrawable(context, C1010R.C1011drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                    view.setBackground(Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
                     setDefaultReactionCell = view;
                 } else {
                     setDefaultReactionCell = new AvailableReactionCell(context, true, true);
@@ -184,7 +184,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             this.textView = textView;
             textView.setTextSize(1, 16.0f);
             this.textView.setTextColor(ReactionsDoubleTapManageActivity.this.getThemedColor("windowBackgroundWhiteBlackText"));
-            this.textView.setText(LocaleController.getString("DoubleTapSetting", C1010R.string.DoubleTapSetting));
+            this.textView.setText(LocaleController.getString("DoubleTapSetting", C1072R.string.DoubleTapSetting));
             addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 23, 20.0f, 0.0f, 48.0f, 0.0f));
             this.imageDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.m35dp(24.0f));
         }

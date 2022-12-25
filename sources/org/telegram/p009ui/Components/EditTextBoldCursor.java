@@ -36,8 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.p009ui.ActionBar.FloatingActionMode;
@@ -65,6 +64,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     private float cursorWidth;
     boolean drawInMaim;
     private Object editor;
+    private StaticLayout errorLayout;
     private int errorLineColor;
     private TextPaint errorPaint;
     private CharSequence errorText;
@@ -88,7 +88,9 @@ public class EditTextBoldCursor extends EditTextEffects {
     private Runnable invalidateRunnable;
     private boolean isTextWatchersSuppressed;
     private float lastLineActiveness;
+    int lastOffset;
     private int lastSize;
+    CharSequence lastText;
     private int lastTouchX;
     private boolean lineActive;
     private float lineActiveness;
@@ -99,6 +101,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     private boolean lineVisible;
     private float lineY;
     private ViewTreeObserver.OnPreDrawListener listenerFixer;
+    private Drawable mCursorDrawable;
     private Rect mTempRect;
     private boolean nextSetTextAnimated;
     private Rect padding;
@@ -188,6 +191,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         this.lineActiveness = 0.0f;
         this.lastLineActiveness = 0.0f;
         this.activeLineWidth = 0.0f;
+        this.lastOffset = -1;
         this.registeredTextWatchers = new ArrayList();
         this.isTextWatchersSuppressed = false;
         this.padding = new Rect();
@@ -218,7 +222,7 @@ public class EditTextBoldCursor extends EditTextEffects {
 
     public void dispatchTextWatchersTextChanged() {
         for (TextWatcher textWatcher : this.registeredTextWatchers) {
-            textWatcher.beforeTextChanged(BuildConfig.APP_CENTER_HASH, 0, length(), length());
+            textWatcher.beforeTextChanged("", 0, length(), length());
             textWatcher.onTextChanged(getText(), 0, length(), length());
             textWatcher.afterTextChanged(getText());
         }
@@ -238,11 +242,15 @@ public class EditTextBoldCursor extends EditTextEffects {
         for (TextWatcher textWatcher2 : this.registeredTextWatchers) {
             super.addTextChangedListener(textWatcher2);
             if (z2) {
-                textWatcher2.beforeTextChanged(BuildConfig.APP_CENTER_HASH, 0, length(), length());
+                textWatcher2.beforeTextChanged("", 0, length(), length());
                 textWatcher2.onTextChanged(getText(), 0, length(), length());
                 textWatcher2.afterTextChanged(getText());
             }
         }
+    }
+
+    public boolean isTextWatchersSuppressed() {
+        return this.isTextWatchersSuppressed;
     }
 
     @Override
@@ -352,7 +360,7 @@ public class EditTextBoldCursor extends EditTextEffects {
                 }
                 Field field = mCursorDrawableResField;
                 if (field != null) {
-                    field.set(this, Integer.valueOf(C1010R.C1011drawable.field_carret_empty));
+                    field.set(this, Integer.valueOf(C1072R.C1073drawable.field_carret_empty));
                 }
             } catch (Throwable unused5) {
             }
@@ -438,7 +446,7 @@ public class EditTextBoldCursor extends EditTextEffects {
 
     public void setLineColors(int i, int i2, int i3) {
         this.lineVisible = true;
-        getContext().getResources().getDrawable(C1010R.C1011drawable.search_dark).getPadding(this.padding);
+        getContext().getResources().getDrawable(C1072R.C1073drawable.search_dark).getPadding(this.padding);
         Rect rect = this.padding;
         setPadding(rect.left, rect.top, rect.right, rect.bottom);
         this.lineColor = i;
@@ -535,7 +543,7 @@ public class EditTextBoldCursor extends EditTextEffects {
 
     public void setHintText(CharSequence charSequence, boolean z) {
         if (charSequence == null) {
-            charSequence = BuildConfig.APP_CENTER_HASH;
+            charSequence = "";
         }
         if (getMeasuredWidth() == 0) {
             z = false;
@@ -684,7 +692,8 @@ public class EditTextBoldCursor extends EditTextEffects {
         int selectionStart = getSelectionStart();
         int lineForOffset = layout.getLineForOffset(selectionStart);
         updateCursorPosition(layout.getLineTop(lineForOffset), layout.getLineTop(lineForOffset + 1), layout.getPrimaryHorizontal(selectionStart));
-        layout.getText();
+        this.lastText = layout.getText();
+        this.lastOffset = selectionStart;
         return true;
     }
 

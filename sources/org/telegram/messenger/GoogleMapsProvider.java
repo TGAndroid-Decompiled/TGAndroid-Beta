@@ -80,7 +80,7 @@ public class GoogleMapsProvider implements IMapsProvider {
 
     @Override
     public int getInstallMapsString() {
-        return C1010R.string.InstallGoogleMaps;
+        return C1072R.string.InstallGoogleMaps;
     }
 
     @Override
@@ -559,8 +559,8 @@ public class GoogleMapsProvider implements IMapsProvider {
             return IMapsProvider.IMapView.CC.$default$getGlSurfaceView(this);
         }
 
-        public class C09661 extends MapView {
-            C09661(Context context) {
+        public class C10281 extends MapView {
+            C10281(Context context) {
                 super(context);
             }
 
@@ -571,7 +571,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                         @Override
                         public final Object call(Object obj) {
                             Boolean lambda$dispatchTouchEvent$0;
-                            lambda$dispatchTouchEvent$0 = GoogleMapsProvider.GoogleMapView.C09661.this.lambda$dispatchTouchEvent$0((MotionEvent) obj);
+                            lambda$dispatchTouchEvent$0 = GoogleMapsProvider.GoogleMapView.C10281.this.lambda$dispatchTouchEvent$0((MotionEvent) obj);
                             return lambda$dispatchTouchEvent$0;
                         }
                     });
@@ -590,7 +590,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                         @Override
                         public final Object call(Object obj) {
                             Boolean lambda$onInterceptTouchEvent$1;
-                            lambda$onInterceptTouchEvent$1 = GoogleMapsProvider.GoogleMapView.C09661.this.lambda$onInterceptTouchEvent$1((MotionEvent) obj);
+                            lambda$onInterceptTouchEvent$1 = GoogleMapsProvider.GoogleMapView.C10281.this.lambda$onInterceptTouchEvent$1((MotionEvent) obj);
                             return lambda$onInterceptTouchEvent$1;
                         }
                     });
@@ -612,7 +612,7 @@ public class GoogleMapsProvider implements IMapsProvider {
         }
 
         private GoogleMapView(Context context) {
-            this.mapView = new C09661(context);
+            this.mapView = new C10281(context);
         }
 
         @Override

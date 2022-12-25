@@ -13,7 +13,7 @@ public class TLRPC$TL_messageForwarded_old2 extends TLRPC$Message {
         this.out = (readInt32 & 2) != 0;
         this.mentioned = (readInt32 & 16) != 0;
         this.media_unread = (readInt32 & 32) != 0;
-        this.f872id = abstractSerializedData.readInt32(z);
+        this.f881id = abstractSerializedData.readInt32(z);
         TLRPC$TL_messageFwdHeader tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader();
         this.fwd_from = tLRPC$TL_messageFwdHeader;
         tLRPC$TL_messageFwdHeader.from_id = new TLRPC$TL_peerUser();
@@ -48,7 +48,7 @@ public class TLRPC$TL_messageForwarded_old2 extends TLRPC$Message {
         int i4 = this.media_unread ? i3 | 32 : i3 & (-33);
         this.flags = i4;
         abstractSerializedData.writeInt32(i4);
-        abstractSerializedData.writeInt32(this.f872id);
+        abstractSerializedData.writeInt32(this.f881id);
         abstractSerializedData.writeInt32((int) this.fwd_from.from_id.user_id);
         abstractSerializedData.writeInt32(this.fwd_from.date);
         abstractSerializedData.writeInt32((int) this.from_id.user_id);

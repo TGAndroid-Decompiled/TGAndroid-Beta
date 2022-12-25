@@ -23,6 +23,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
+import org.telegram.p009ui.Components.Paint.Brush;
 import org.telegram.p009ui.Components.Paint.Painting;
 import org.telegram.p009ui.Components.Paint.RenderView;
 import org.telegram.p009ui.Components.Size;
@@ -37,19 +38,27 @@ public class RenderView extends TextureView {
     private CanvasInternal internal;
     private Painting painting;
     private DispatchQueue queue;
+    private ShapeInput shapeInput;
     private boolean shuttingDown;
     private boolean transformedBitmap;
     private UndoStore undoStore;
     private float weight;
 
     public interface RenderViewDelegate {
+        void invalidateInputView();
+
         void onBeganDrawing();
 
         void onFinishedDrawing(boolean z);
 
         void onFirstDraw();
 
+        void resetBrush();
+
         boolean shouldDraw();
+    }
+
+    public void selectBrush(Brush brush) {
     }
 
     public RenderView(Context context, Painting painting, Bitmap bitmap) {
@@ -58,8 +67,14 @@ public class RenderView extends TextureView {
         this.bitmap = bitmap;
         this.painting = painting;
         painting.setRenderView(this);
-        setSurfaceTextureListener(new TextureView$SurfaceTextureListenerC23631());
+        setSurfaceTextureListener(new TextureView$SurfaceTextureListenerC24701());
         this.input = new Input(this);
+        this.shapeInput = new ShapeInput(this, new Runnable() {
+            @Override
+            public final void run() {
+                RenderView.this.lambda$new$0();
+            }
+        });
         this.painting.setDelegate(new Painting.PaintingDelegate() {
             @Override
             public void contentChanged() {
@@ -80,12 +95,12 @@ public class RenderView extends TextureView {
         });
     }
 
-    public class TextureView$SurfaceTextureListenerC23631 implements TextureView.SurfaceTextureListener {
+    public class TextureView$SurfaceTextureListenerC24701 implements TextureView.SurfaceTextureListener {
         @Override
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         }
 
-        TextureView$SurfaceTextureListenerC23631() {
+        TextureView$SurfaceTextureListenerC24701() {
         }
 
         @Override
@@ -96,10 +111,19 @@ public class RenderView extends TextureView {
             RenderView.this.internal = new CanvasInternal(surfaceTexture);
             RenderView.this.internal.setBufferSize(i, i2);
             RenderView.this.updateTransform();
-            RenderView.this.internal.requestRender();
+            RenderView.this.post(new Runnable() {
+                @Override
+                public final void run() {
+                    RenderView.TextureView$SurfaceTextureListenerC24701.this.lambda$onSurfaceTextureAvailable$0();
+                }
+            });
             if (RenderView.this.painting.isPaused()) {
                 RenderView.this.painting.onResume();
             }
+        }
+
+        public void lambda$onSurfaceTextureAvailable$0() {
+            RenderView.this.internal.requestRender();
         }
 
         @Override
@@ -113,12 +137,12 @@ public class RenderView extends TextureView {
             RenderView.this.internal.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    RenderView.TextureView$SurfaceTextureListenerC23631.this.lambda$onSurfaceTextureSizeChanged$0();
+                    RenderView.TextureView$SurfaceTextureListenerC24701.this.lambda$onSurfaceTextureSizeChanged$1();
                 }
             });
         }
 
-        public void lambda$onSurfaceTextureSizeChanged$0() {
+        public void lambda$onSurfaceTextureSizeChanged$1() {
             if (RenderView.this.internal != null) {
                 RenderView.this.internal.requestRender();
             }
@@ -130,16 +154,23 @@ public class RenderView extends TextureView {
                 RenderView.this.painting.onPause(new Runnable() {
                     @Override
                     public final void run() {
-                        RenderView.TextureView$SurfaceTextureListenerC23631.this.lambda$onSurfaceTextureDestroyed$1();
+                        RenderView.TextureView$SurfaceTextureListenerC24701.this.lambda$onSurfaceTextureDestroyed$2();
                     }
                 });
             }
             return true;
         }
 
-        public void lambda$onSurfaceTextureDestroyed$1() {
+        public void lambda$onSurfaceTextureDestroyed$2() {
             RenderView.this.internal.shutdown();
             RenderView.this.internal = null;
+        }
+    }
+
+    public void lambda$new$0() {
+        RenderViewDelegate renderViewDelegate = this.delegate;
+        if (renderViewDelegate != null) {
+            renderViewDelegate.invalidateInputView();
         }
     }
 
@@ -157,9 +188,19 @@ public class RenderView extends TextureView {
         }
         CanvasInternal canvasInternal = this.internal;
         if (canvasInternal != null && canvasInternal.initialized && this.internal.ready) {
-            this.input.process(motionEvent, getScaleX());
+            if (this.brush instanceof Brush.Shape) {
+                this.shapeInput.process(motionEvent, getScaleX());
+            } else {
+                this.input.process(motionEvent, getScaleX());
+            }
         }
         return true;
+    }
+
+    public void onDrawForInput(Canvas canvas) {
+        if (this.brush instanceof Brush.Shape) {
+            this.shapeInput.dispatchDraw(canvas);
+        }
     }
 
     public void setUndoStore(UndoStore undoStore) {
@@ -178,7 +219,7 @@ public class RenderView extends TextureView {
         return this.painting;
     }
 
-    private float brushWeightForSize(float f) {
+    public float brushWeightForSize(float f) {
         float f2 = this.painting.getSize().width;
         return (0.00390625f * f2) + (f2 * 0.043945312f * f);
     }
@@ -189,6 +230,9 @@ public class RenderView extends TextureView {
 
     public void setColor(int i) {
         this.color = i;
+        if (this.brush instanceof Brush.Shape) {
+            this.shapeInput.onColorChange();
+        }
     }
 
     public float getCurrentWeight() {
@@ -197,19 +241,51 @@ public class RenderView extends TextureView {
 
     public void setBrushSize(float f) {
         this.weight = brushWeightForSize(f);
+        if (this.brush instanceof Brush.Shape) {
+            this.shapeInput.onWeightChange();
+        }
     }
 
     public Brush getCurrentBrush() {
         return this.brush;
     }
 
+    public UndoStore getUndoStore() {
+        return this.undoStore;
+    }
+
     public void setBrush(Brush brush) {
-        Painting painting = this.painting;
+        if (this.brush instanceof Brush.Shape) {
+            this.shapeInput.stop();
+        }
         this.brush = brush;
-        painting.setBrush(brush);
+        updateTransform();
+        this.painting.setBrush(this.brush);
+        Brush brush2 = this.brush;
+        if (brush2 instanceof Brush.Shape) {
+            this.shapeInput.start(((Brush.Shape) brush2).getShapeShaderType());
+        }
+    }
+
+    public void resetBrush() {
+        RenderViewDelegate renderViewDelegate = this.delegate;
+        if (renderViewDelegate != null) {
+            renderViewDelegate.resetBrush();
+        }
+        this.input.ignoreOnce();
+    }
+
+    public void clearShape() {
+        ShapeInput shapeInput = this.shapeInput;
+        if (shapeInput != null) {
+            shapeInput.clear();
+        }
     }
 
     public void updateTransform() {
+        if (this.internal == null) {
+            return;
+        }
         Matrix matrix = new Matrix();
         float width = this.painting != null ? getWidth() / this.painting.getSize().width : 1.0f;
         float f = width > 0.0f ? width : 1.0f;
@@ -217,7 +293,11 @@ public class RenderView extends TextureView {
         matrix.preTranslate(getWidth() / 2.0f, getHeight() / 2.0f);
         matrix.preScale(f, -f);
         matrix.preTranslate((-size.width) / 2.0f, (-size.height) / 2.0f);
-        this.input.setMatrix(matrix);
+        if (this.brush instanceof Brush.Shape) {
+            this.shapeInput.setMatrix(matrix);
+        } else {
+            this.input.setMatrix(matrix);
+        }
         this.painting.setRenderProjection(GLMatrix.MultiplyMat4f(GLMatrix.LoadOrtho(0.0f, this.internal.bufferWidth, 0.0f, this.internal.bufferHeight, -1.0f, 1.0f), GLMatrix.LoadGraphicsMatrix(matrix)));
     }
 
@@ -246,17 +326,30 @@ public class RenderView extends TextureView {
             performInContext(new Runnable() {
                 @Override
                 public final void run() {
-                    RenderView.this.lambda$shutdown$0();
+                    RenderView.this.lambda$shutdown$1();
                 }
             });
         }
         setVisibility(8);
     }
 
-    public void lambda$shutdown$0() {
+    public void lambda$shutdown$1() {
         this.painting.cleanResources(this.transformedBitmap);
         this.internal.shutdown();
         this.internal = null;
+    }
+
+    public void lambda$clearAll$2() {
+        this.painting.setBrush(this.brush);
+    }
+
+    public void clearAll() {
+        this.input.clear(new Runnable() {
+            @Override
+            public final void run() {
+                RenderView.this.lambda$clearAll$2();
+            }
+        });
     }
 
     public class CanvasInternal extends DispatchQueue {
@@ -274,7 +367,7 @@ public class RenderView extends TextureView {
 
         public CanvasInternal(SurfaceTexture surfaceTexture) {
             super("CanvasInternal");
-            this.drawRunnable = new RunnableC23651();
+            this.drawRunnable = new RunnableC24721();
             this.surfaceTexture = surfaceTexture;
         }
 
@@ -388,8 +481,8 @@ public class RenderView extends TextureView {
             return false;
         }
 
-        public class RunnableC23651 implements Runnable {
-            RunnableC23651() {
+        public class RunnableC24721 implements Runnable {
+            RunnableC24721() {
             }
 
             @Override
@@ -410,7 +503,7 @@ public class RenderView extends TextureView {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            RenderView.CanvasInternal.RunnableC23651.this.lambda$run$0();
+                            RenderView.CanvasInternal.RunnableC24721.this.lambda$run$0();
                         }
                     });
                 }
@@ -532,6 +625,9 @@ public class RenderView extends TextureView {
     }
 
     public Bitmap getResultBitmap() {
+        if (this.brush instanceof Brush.Shape) {
+            this.shapeInput.stop();
+        }
         CanvasInternal canvasInternal = this.internal;
         if (canvasInternal != null) {
             return canvasInternal.getTexture();
@@ -547,12 +643,12 @@ public class RenderView extends TextureView {
         canvasInternal.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                RenderView.this.lambda$performInContext$1(runnable);
+                RenderView.this.lambda$performInContext$3(runnable);
             }
         });
     }
 
-    public void lambda$performInContext$1(Runnable runnable) {
+    public void lambda$performInContext$3(Runnable runnable) {
         CanvasInternal canvasInternal = this.internal;
         if (canvasInternal == null || !canvasInternal.initialized) {
             return;

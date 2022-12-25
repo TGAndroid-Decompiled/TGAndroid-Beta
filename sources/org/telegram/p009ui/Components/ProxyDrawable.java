@@ -8,7 +8,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.p009ui.ActionBar.Theme;
 
 public class ProxyDrawable extends Drawable {
@@ -32,8 +32,8 @@ public class ProxyDrawable extends Drawable {
     }
 
     public ProxyDrawable(Context context) {
-        this.emptyDrawable = context.getResources().getDrawable(C1010R.C1011drawable.proxy_off);
-        this.fullDrawable = context.getResources().getDrawable(C1010R.C1011drawable.proxy_on);
+        this.emptyDrawable = context.getResources().getDrawable(C1072R.C1073drawable.proxy_off);
+        this.fullDrawable = context.getResources().getDrawable(C1072R.C1073drawable.proxy_on);
         this.outerPaint.setStyle(Paint.Style.STROKE);
         this.outerPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
         this.outerPaint.setStrokeCap(Paint.Cap.ROUND);

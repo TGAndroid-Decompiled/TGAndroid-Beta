@@ -36,8 +36,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -48,7 +47,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Adapters.SearchAdapterHelper;
@@ -420,24 +419,24 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         if (this.type == 1) {
             AnimatedAvatarContainer animatedAvatarContainer = new AnimatedAvatarContainer(getContext());
             this.animatedAvatarContainer = animatedAvatarContainer;
-            C1069ActionBar c1069ActionBar = this.actionBar;
+            C1133ActionBar c1133ActionBar = this.actionBar;
             boolean z = LocaleController.isRTL;
-            c1069ActionBar.addView(animatedAvatarContainer, LayoutHelper.createFrame(-1, -1.0f, 0, z ? 0.0f : 64.0f, 0.0f, z ? 64.0f : 0.0f, 0.0f));
+            c1133ActionBar.addView(animatedAvatarContainer, LayoutHelper.createFrame(-1, -1.0f, 0, z ? 0.0f : 64.0f, 0.0f, z ? 64.0f : 0.0f, 0.0f));
             this.actionBar.setAllowOverlayTitle(false);
         }
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         int i2 = this.type;
         if (i2 == 0) {
             if (this.isInclude) {
-                this.actionBar.setTitle(LocaleController.getString("FilterAlwaysShow", C1010R.string.FilterAlwaysShow));
+                this.actionBar.setTitle(LocaleController.getString("FilterAlwaysShow", C1072R.string.FilterAlwaysShow));
             } else {
-                this.actionBar.setTitle(LocaleController.getString("FilterNeverShow", C1010R.string.FilterNeverShow));
+                this.actionBar.setTitle(LocaleController.getString("FilterNeverShow", C1072R.string.FilterNeverShow));
             }
         } else if (i2 == 1) {
             updateHint();
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
@@ -547,7 +546,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         this.editText.setImeOptions(268435462);
         this.editText.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         this.spansContainer.addView(this.editText);
-        this.editText.setHintText(LocaleController.getString("SearchForPeopleAndGroups", C1010R.string.SearchForPeopleAndGroups));
+        this.editText.setHintText(LocaleController.getString("SearchForPeopleAndGroups", C1072R.string.SearchForPeopleAndGroups));
         this.editText.setCustomSelectionActionModeCallback(new ActionMode.Callback(this) {
             @Override
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
@@ -625,7 +624,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                     UsersSelectActivity.this.adapter.setSearching(true);
                     UsersSelectActivity.this.listView.setFastScrollVisible(false);
                     UsersSelectActivity.this.listView.setVerticalScrollBarEnabled(true);
-                    UsersSelectActivity.this.emptyView.setText(LocaleController.getString("NoResult", C1010R.string.NoResult));
+                    UsersSelectActivity.this.emptyView.setText(LocaleController.getString("NoResult", C1072R.string.NoResult));
                     UsersSelectActivity.this.emptyView.showProgress();
                 }
                 UsersSelectActivity.this.adapter.searchDialogs(UsersSelectActivity.this.editText.getText().toString());
@@ -638,7 +637,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             this.emptyView.showTextView();
         }
         this.emptyView.setShowAtCenter(true);
-        this.emptyView.setText(LocaleController.getString("NoContacts", C1010R.string.NoContacts));
+        this.emptyView.setText(LocaleController.getString("NoContacts", C1072R.string.NoContacts));
         viewGroup2.addView(this.emptyView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         RecyclerListView recyclerListView = new RecyclerListView(context);
@@ -674,7 +673,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
         int i3 = Build.VERSION.SDK_INT;
         if (i3 < 21) {
-            Drawable mutate = context.getResources().getDrawable(C1010R.C1011drawable.floating_shadow).mutate();
+            Drawable mutate = context.getResources().getDrawable(C1072R.C1073drawable.floating_shadow).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
             combinedDrawable.setIconSize(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
@@ -682,7 +681,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         }
         this.floatingButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
         this.floatingButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chats_actionIcon"), PorterDuff.Mode.MULTIPLY));
-        this.floatingButton.setImageResource(C1010R.C1011drawable.floating_check);
+        this.floatingButton.setImageResource(C1072R.C1073drawable.floating_check);
         if (i3 >= 21) {
             StateListAnimator stateListAnimator = new StateListAnimator();
             ImageView imageView2 = this.floatingButton;
@@ -705,7 +704,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                 UsersSelectActivity.this.lambda$createView$2(view);
             }
         });
-        this.floatingButton.setContentDescription(LocaleController.getString("Next", C1010R.string.Next));
+        this.floatingButton.setContentDescription(LocaleController.getString("Next", C1072R.string.Next));
         int i4 = this.isInclude ? 5 : 3;
         for (int i5 = 1; i5 <= i4; i5++) {
             if (this.isInclude) {
@@ -809,14 +808,14 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                     this.filterFlags = i2 | this.filterFlags;
                 }
             } else if (object instanceof TLRPC$User) {
-                j = ((TLRPC$User) object).f986id;
+                j = ((TLRPC$User) object).f995id;
             } else if (!(object instanceof TLRPC$Chat)) {
                 return;
             } else {
                 TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) object;
-                j = -tLRPC$Chat.f848id;
+                j = -tLRPC$Chat.f857id;
                 if (this.type == 1 && !ChatObject.canUserDoAdminAction(tLRPC$Chat, 13)) {
-                    BulletinFactory.m13of(this).createErrorBulletin(LocaleController.getString("NeedAdminRightForSetAutoDeleteTimer", C1010R.string.NeedAdminRightForSetAutoDeleteTimer)).show();
+                    BulletinFactory.m13of(this).createErrorBulletin(LocaleController.getString("NeedAdminRightForSetAutoDeleteTimer", C1072R.string.NeedAdminRightForSetAutoDeleteTimer)).show();
                     return;
                 }
             }
@@ -996,9 +995,9 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                             break;
                     }
                 } else if (object instanceof TLRPC$User) {
-                    j = ((TLRPC$User) object).f986id;
+                    j = ((TLRPC$User) object).f995id;
                 } else {
-                    j = object instanceof TLRPC$Chat ? -((TLRPC$Chat) object).f848id : 0L;
+                    j = object instanceof TLRPC$Chat ? -((TLRPC$Chat) object).f857id : 0L;
                 }
                 if (j != 0) {
                     groupCreateUserCell.setChecked(this.selectedContacts.indexOfKey(j) >= 0, true);
@@ -1030,7 +1029,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         this.adapter.searchDialogs(null);
         this.listView.setFastScrollVisible(true);
         this.listView.setVerticalScrollBarEnabled(false);
-        this.emptyView.setText(LocaleController.getString("NoContacts", C1010R.string.NoContacts));
+        this.emptyView.setText(LocaleController.getString("NoContacts", C1072R.string.NoContacts));
     }
 
     public void updateHint() {
@@ -1039,20 +1038,20 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             int i2 = getUserConfig().isPremium() ? getMessagesController().dialogFiltersChatsLimitPremium : getMessagesController().dialogFiltersChatsLimitDefault;
             int i3 = this.selectedCount;
             if (i3 == 0) {
-                this.actionBar.setSubtitle(LocaleController.formatString("MembersCountZero", C1010R.string.MembersCountZero, LocaleController.formatPluralString("Chats", i2, new Object[0])));
+                this.actionBar.setSubtitle(LocaleController.formatString("MembersCountZero", C1072R.string.MembersCountZero, LocaleController.formatPluralString("Chats", i2, new Object[0])));
             } else {
                 this.actionBar.setSubtitle(String.format(LocaleController.getPluralString("MembersCountSelected", i3), Integer.valueOf(this.selectedCount), Integer.valueOf(i2)));
             }
         } else if (i == 1) {
-            this.actionBar.setTitle(BuildConfig.APP_CENTER_HASH);
-            this.actionBar.setSubtitle(BuildConfig.APP_CENTER_HASH);
+            this.actionBar.setTitle("");
+            this.actionBar.setSubtitle("");
             if (this.selectedCount == 0) {
-                this.animatedAvatarContainer.getTitle().setText(LocaleController.getString("SelectChats", C1010R.string.SelectChats), true);
+                this.animatedAvatarContainer.getTitle().setText(LocaleController.getString("SelectChats", C1072R.string.SelectChats), true);
                 if (this.ttlPeriod > 0) {
-                    this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getString("SelectChatsForAutoDelete", C1010R.string.SelectChatsForAutoDelete), true);
+                    this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getString("SelectChatsForAutoDelete", C1072R.string.SelectChatsForAutoDelete), true);
                     return;
                 } else {
-                    this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getString("SelectChatsForDisableAutoDelete", C1010R.string.SelectChatsForDisableAutoDelete), true);
+                    this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getString("SelectChatsForDisableAutoDelete", C1072R.string.SelectChatsForDisableAutoDelete), true);
                     return;
                 }
             }
@@ -1100,9 +1099,9 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             boolean z = false;
             for (int i2 = 0; i2 < size; i2++) {
                 TLRPC$Dialog tLRPC$Dialog = allDialogs.get(i2);
-                if (!DialogObject.isEncryptedDialog(tLRPC$Dialog.f854id)) {
-                    if (DialogObject.isUserDialog(tLRPC$Dialog.f854id)) {
-                        TLRPC$User user = UsersSelectActivity.this.getMessagesController().getUser(Long.valueOf(tLRPC$Dialog.f854id));
+                if (!DialogObject.isEncryptedDialog(tLRPC$Dialog.f863id)) {
+                    if (DialogObject.isUserDialog(tLRPC$Dialog.f863id)) {
+                        TLRPC$User user = UsersSelectActivity.this.getMessagesController().getUser(Long.valueOf(tLRPC$Dialog.f863id));
                         if (user != null && (UsersSelectActivity.this.type != 1 || !UserObject.isUserSelf(user))) {
                             this.contacts.add(user);
                             if (UserObject.isUserSelf(user)) {
@@ -1110,7 +1109,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                             }
                         }
                     } else {
-                        TLRPC$Chat chat = UsersSelectActivity.this.getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.f854id));
+                        TLRPC$Chat chat = UsersSelectActivity.this.getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.f863id));
                         if (chat != null) {
                             this.contacts.add(chat);
                         }
@@ -1313,9 +1312,9 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                     strArr2[c] = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).toLowerCase();
                     str2 = UserObject.getPublicUsername(tLRPC$User);
                     if (UserObject.isReplyUser(tLRPC$User)) {
-                        strArr2[2] = LocaleController.getString("RepliesTitle", C1010R.string.RepliesTitle).toLowerCase();
+                        strArr2[2] = LocaleController.getString("RepliesTitle", C1072R.string.RepliesTitle).toLowerCase();
                     } else if (tLRPC$User.self) {
-                        strArr2[2] = LocaleController.getString("SavedMessages", C1010R.string.SavedMessages).toLowerCase();
+                        strArr2[2] = LocaleController.getString("SavedMessages", C1072R.string.SavedMessages).toLowerCase();
                     }
                 } else {
                     TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;

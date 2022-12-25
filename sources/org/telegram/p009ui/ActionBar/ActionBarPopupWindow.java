@@ -29,11 +29,12 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
+import org.telegram.p009ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.LayoutHelper;
 import org.telegram.p009ui.Components.PopupSwipeBackLayout;
@@ -77,7 +78,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         } catch (NoSuchFieldException unused) {
         }
         superListenerField = field;
-        NOP = ActionBarPopupWindow$$ExternalSyntheticLambda0.INSTANCE;
+        NOP = ActionBarPopupWindow$$ExternalSyntheticLambda1.INSTANCE;
     }
 
     public void setScaleOut(boolean z) {
@@ -110,13 +111,14 @@ public class ActionBarPopupWindow extends PopupWindow {
         private PopupSwipeBackLayout swipeBackLayout;
         private View topView;
         public boolean updateAnimation;
+        protected ActionBarPopupWindow window;
 
         public ActionBarPopupWindowLayout(Context context) {
             this(context, null);
         }
 
         public ActionBarPopupWindowLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
-            this(context, C1010R.C1011drawable.popup_fixed_alert2, resourcesProvider);
+            this(context, C1072R.C1073drawable.popup_fixed_alert2, resourcesProvider);
         }
 
         public ActionBarPopupWindowLayout(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
@@ -181,9 +183,9 @@ public class ActionBarPopupWindow extends PopupWindow {
                         for (int i7 = 0; i7 < childCount; i7++) {
                             View childAt = getChildAt(i7);
                             if (childAt.getVisibility() != 8) {
-                                Object tag = childAt.getTag(C1010R.C1012id.width_tag);
-                                Object tag2 = childAt.getTag(C1010R.C1012id.object_tag);
-                                Object tag3 = childAt.getTag(C1010R.C1012id.fit_width_tag);
+                                Object tag = childAt.getTag(C1072R.C1074id.width_tag);
+                                Object tag2 = childAt.getTag(C1072R.C1074id.object_tag);
+                                Object tag3 = childAt.getTag(C1072R.C1074id.fit_width_tag);
                                 if (tag != null) {
                                     childAt.getLayoutParams().width = -2;
                                 }
@@ -350,7 +352,7 @@ public class ActionBarPopupWindow extends PopupWindow {
             }
         }
 
-        private void startChildAnimation(View view) {
+        private void startChildAnimation(final View view) {
             if (this.animationEnabled) {
                 final AnimatorSet animatorSet = new AnimatorSet();
                 Animator[] animatorArr = new Animator[2];
@@ -370,6 +372,10 @@ public class ActionBarPopupWindow extends PopupWindow {
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         ActionBarPopupWindowLayout.this.itemAnimators.remove(animatorSet);
+                        View view2 = view;
+                        if (view2 instanceof ActionBarMenuSubItem) {
+                            ((ActionBarMenuSubItem) view2).onItemShown();
+                        }
                     }
                 });
                 animatorSet.setInterpolator(ActionBarPopupWindow.decelerateInterpolator);
@@ -491,7 +497,7 @@ public class ActionBarPopupWindow extends PopupWindow {
             for (int i2 = 0; i2 < childCount; i2++) {
                 View childAt2 = this.linearLayout.getChildAt(i2);
                 if (childAt2.getVisibility() == 0) {
-                    Object tag = childAt2.getTag(C1010R.C1012id.object_tag);
+                    Object tag = childAt2.getTag(C1072R.C1074id.object_tag);
                     if (childAt2 instanceof ActionBarMenuSubItem) {
                         ((ActionBarMenuSubItem) childAt2).updateSelectorBackground(childAt2 == view || z, childAt2 == view2);
                     }
@@ -529,6 +535,10 @@ public class ActionBarPopupWindow extends PopupWindow {
             if (popupSwipeBackLayout != null) {
                 popupSwipeBackLayout.invalidateTransforms(!this.startAnimationPending);
             }
+        }
+
+        public void setParentWindow(ActionBarPopupWindow actionBarPopupWindow) {
+            this.window = actionBarPopupWindow;
         }
     }
 
@@ -654,6 +664,74 @@ public class ActionBarPopupWindow extends PopupWindow {
             registerListener(view);
         } catch (Exception e) {
             FileLog.m31e(e);
+        }
+    }
+
+    public static AnimatorSet startAnimation(final ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
+        actionBarPopupWindowLayout.startAnimationPending = true;
+        actionBarPopupWindowLayout.setTranslationY(0.0f);
+        float f = 1.0f;
+        actionBarPopupWindowLayout.setAlpha(1.0f);
+        actionBarPopupWindowLayout.setPivotX(actionBarPopupWindowLayout.getMeasuredWidth());
+        actionBarPopupWindowLayout.setPivotY(0.0f);
+        int itemsCount = actionBarPopupWindowLayout.getItemsCount();
+        actionBarPopupWindowLayout.positions.clear();
+        int i = 0;
+        for (int i2 = 0; i2 < itemsCount; i2++) {
+            View itemAt = actionBarPopupWindowLayout.getItemAt(i2);
+            if (!(itemAt instanceof GapView)) {
+                itemAt.setAlpha(0.0f);
+                if (itemAt.getVisibility() == 0) {
+                    actionBarPopupWindowLayout.positions.put(itemAt, Integer.valueOf(i));
+                    i++;
+                }
+            }
+        }
+        if (actionBarPopupWindowLayout.shownFromBottom) {
+            actionBarPopupWindowLayout.lastStartedChild = itemsCount - 1;
+        } else {
+            actionBarPopupWindowLayout.lastStartedChild = 0;
+        }
+        if (actionBarPopupWindowLayout.getSwipeBack() != null) {
+            actionBarPopupWindowLayout.getSwipeBack().invalidateTransforms();
+            f = actionBarPopupWindowLayout.backScaleY;
+        }
+        AnimatorSet animatorSet = new AnimatorSet();
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                ActionBarPopupWindow.lambda$startAnimation$1(ActionBarPopupWindow.ActionBarPopupWindowLayout.this, valueAnimator);
+            }
+        });
+        actionBarPopupWindowLayout.updateAnimation = true;
+        animatorSet.playTogether(ObjectAnimator.ofFloat(actionBarPopupWindowLayout, "backScaleY", 0.0f, f), ObjectAnimator.ofInt(actionBarPopupWindowLayout, "backAlpha", 0, 255), ofFloat);
+        animatorSet.setDuration((i * 16) + ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+        animatorSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                ActionBarPopupWindowLayout.this.startAnimationPending = false;
+                int itemsCount2 = ActionBarPopupWindowLayout.this.getItemsCount();
+                for (int i3 = 0; i3 < itemsCount2; i3++) {
+                    View itemAt2 = ActionBarPopupWindowLayout.this.getItemAt(i3);
+                    if (!(itemAt2 instanceof GapView)) {
+                        itemAt2.setAlpha(itemAt2.isEnabled() ? 1.0f : 0.5f);
+                    }
+                }
+            }
+        });
+        animatorSet.start();
+        return animatorSet;
+    }
+
+    public static void lambda$startAnimation$1(ActionBarPopupWindowLayout actionBarPopupWindowLayout, ValueAnimator valueAnimator) {
+        int itemsCount = actionBarPopupWindowLayout.getItemsCount();
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        for (int i = 0; i < itemsCount; i++) {
+            View itemAt = actionBarPopupWindowLayout.getItemAt(i);
+            if (!(itemAt instanceof GapView)) {
+                itemAt.setTranslationY((1.0f - AndroidUtilities.cascade(floatValue, actionBarPopupWindowLayout.shownFromBottom ? (itemsCount - 1) - i : i, itemsCount, 4.0f)) * AndroidUtilities.m35dp(-6.0f));
+            }
         }
     }
 
@@ -850,7 +928,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         public GapView(Context context, Theme.ResourcesProvider resourcesProvider, String str) {
             super(context);
             this.resourcesProvider = resourcesProvider;
-            this.shadowDrawable = Theme.getThemedDrawable(getContext(), C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow", resourcesProvider);
+            this.shadowDrawable = Theme.getThemedDrawable(getContext(), C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow", resourcesProvider);
             setBackgroundColor(Theme.getColor(str, resourcesProvider));
         }
 

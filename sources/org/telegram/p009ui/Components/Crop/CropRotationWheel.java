@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.LayoutHelper;
@@ -65,7 +65,7 @@ public class CropRotationWheel extends FrameLayout {
         this.bluePaint.setAntiAlias(true);
         ImageView imageView = new ImageView(context);
         this.mirrorButton = imageView;
-        imageView.setImageResource(C1010R.C1011drawable.msg_photo_flip);
+        imageView.setImageResource(C1072R.C1073drawable.msg_photo_flip);
         this.mirrorButton.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.mirrorButton.setScaleType(ImageView.ScaleType.CENTER);
         this.mirrorButton.setOnClickListener(new View.OnClickListener() {
@@ -82,11 +82,11 @@ public class CropRotationWheel extends FrameLayout {
                 return lambda$new$1;
             }
         });
-        this.mirrorButton.setContentDescription(LocaleController.getString("AccDescrMirror", C1010R.string.AccDescrMirror));
+        this.mirrorButton.setContentDescription(LocaleController.getString("AccDescrMirror", C1072R.string.AccDescrMirror));
         addView(this.mirrorButton, LayoutHelper.createFrame(70, 64, 19));
         ImageView imageView2 = new ImageView(context);
         this.aspectRatioButton = imageView2;
-        imageView2.setImageResource(C1010R.C1011drawable.msg_photo_cropfix);
+        imageView2.setImageResource(C1072R.C1073drawable.msg_photo_cropfix);
         this.aspectRatioButton.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.aspectRatioButton.setScaleType(ImageView.ScaleType.CENTER);
         this.aspectRatioButton.setOnClickListener(new View.OnClickListener() {
@@ -96,11 +96,11 @@ public class CropRotationWheel extends FrameLayout {
             }
         });
         this.aspectRatioButton.setVisibility(8);
-        this.aspectRatioButton.setContentDescription(LocaleController.getString("AccDescrAspectRatio", C1010R.string.AccDescrAspectRatio));
+        this.aspectRatioButton.setContentDescription(LocaleController.getString("AccDescrAspectRatio", C1072R.string.AccDescrAspectRatio));
         addView(this.aspectRatioButton, LayoutHelper.createFrame(70, 64, 19));
         ImageView imageView3 = new ImageView(context);
         this.rotation90Button = imageView3;
-        imageView3.setImageResource(C1010R.C1011drawable.msg_photo_rotate);
+        imageView3.setImageResource(C1072R.C1073drawable.msg_photo_rotate);
         this.rotation90Button.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.rotation90Button.setScaleType(ImageView.ScaleType.CENTER);
         this.rotation90Button.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +109,7 @@ public class CropRotationWheel extends FrameLayout {
                 CropRotationWheel.this.lambda$new$3(view);
             }
         });
-        this.rotation90Button.setContentDescription(LocaleController.getString("AccDescrRotate", C1010R.string.AccDescrRotate));
+        this.rotation90Button.setContentDescription(LocaleController.getString("AccDescrRotate", C1072R.string.AccDescrRotate));
         addView(this.rotation90Button, LayoutHelper.createFrame(70, 64, 21));
         TextPaint textPaint = new TextPaint(1);
         this.degreesTextPaint = textPaint;

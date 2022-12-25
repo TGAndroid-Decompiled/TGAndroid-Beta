@@ -31,7 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
@@ -40,7 +40,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.p009ui.ActionBar.ActionBarMenuSubItem;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Cells.ChatMessageCell;
 import org.telegram.p009ui.Cells.TextSelectionHelper;
@@ -55,7 +55,7 @@ import org.telegram.tgnet.TLRPC$ReactionCount;
 import org.telegram.tgnet.TLRPC$User;
 
 public class ForwardingPreviewView extends FrameLayout {
-    C1069ActionBar actionBar;
+    C1133ActionBar actionBar;
     ArrayList<ActionBarMenuSubItem> actionItems;
     Adapter adapter;
     LinearLayout buttonsLayout;
@@ -169,9 +169,9 @@ public class ForwardingPreviewView extends FrameLayout {
             this.chatPreviewContainer.setClipToOutline(true);
             this.chatPreviewContainer.setElevation(AndroidUtilities.m35dp(4.0f));
         }
-        C1069ActionBar c1069ActionBar = new C1069ActionBar(context, resourcesDelegate);
-        this.actionBar = c1069ActionBar;
-        c1069ActionBar.setBackgroundColor(getThemedColor("actionBarDefault"));
+        C1133ActionBar c1133ActionBar = new C1133ActionBar(context, resourcesDelegate);
+        this.actionBar = c1133ActionBar;
+        c1133ActionBar.setBackgroundColor(getThemedColor("actionBarDefault"));
         this.actionBar.setOccupyStatusBar(false);
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesDelegate) {
             @Override
@@ -355,9 +355,9 @@ public class ForwardingPreviewView extends FrameLayout {
             }
         };
         this.chatListView = recyclerListView;
-        C22295 c22295 = new C22295(null, this.chatListView, resourcesDelegate, i);
-        this.itemAnimator = c22295;
-        recyclerListView.setItemAnimator(c22295);
+        C23235 c23235 = new C23235(null, this.chatListView, resourcesDelegate, i);
+        this.itemAnimator = c23235;
+        recyclerListView.setItemAnimator(c23235);
         this.chatListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
@@ -391,9 +391,9 @@ public class ForwardingPreviewView extends FrameLayout {
         this.adapter = adapter;
         recyclerListView2.setAdapter(adapter);
         this.chatListView.setPadding(0, AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f));
-        C22328 c22328 = new C22328(context, 1000, 1, true, forwardingMessagesParams);
-        this.chatLayoutManager = c22328;
-        c22328.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+        C23268 c23268 = new C23268(context, 1000, 1, true, forwardingMessagesParams);
+        this.chatLayoutManager = c23268;
+        c23268.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int i4) {
                 if (i4 < 0 || i4 >= forwardingMessagesParams.previewMessages.size()) {
@@ -440,7 +440,7 @@ public class ForwardingPreviewView extends FrameLayout {
                         byte b = groupedMessagePosition.minY;
                         byte b2 = currentPosition.minY;
                         if (b == b2 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b != b2 || groupedMessagePosition.maxY != currentPosition.maxY) && b == b2)) {
-                            round -= ((int) Math.ceil(max * groupedMessagePosition.f806ph)) - AndroidUtilities.m35dp(4.0f);
+                            round -= ((int) Math.ceil(max * groupedMessagePosition.f815ph)) - AndroidUtilities.m35dp(4.0f);
                             break;
                         }
                         i4++;
@@ -465,7 +465,7 @@ public class ForwardingPreviewView extends FrameLayout {
         this.buttonsLayout = linearLayout2;
         linearLayout2.setOrientation(1);
         Resources resources = getContext().getResources();
-        int i4 = C1010R.C1011drawable.popup_fixed_alert;
+        int i4 = C1072R.C1073drawable.popup_fixed_alert;
         Drawable mutate = resources.getDrawable(i4).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
         this.buttonsLayout.setBackground(mutate);
@@ -475,10 +475,10 @@ public class ForwardingPreviewView extends FrameLayout {
         this.buttonsLayout.addView(actionBarMenuSubItem, LayoutHelper.createFrame(-1, 48.0f));
         ActionBarMenuSubItem actionBarMenuSubItem2 = this.showSendersNameView;
         if (this.forwardingMessagesParams.multiplyUsers) {
-            i2 = C1010R.string.ShowSenderNames;
+            i2 = C1072R.string.ShowSenderNames;
             str = "ShowSenderNames";
         } else {
-            i2 = C1010R.string.ShowSendersName;
+            i2 = C1072R.string.ShowSendersName;
             str = "ShowSendersName";
         }
         actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(str, i2), 0);
@@ -488,10 +488,10 @@ public class ForwardingPreviewView extends FrameLayout {
         this.buttonsLayout.addView(actionBarMenuSubItem3, LayoutHelper.createFrame(-1, 48.0f));
         ActionBarMenuSubItem actionBarMenuSubItem4 = this.hideSendersNameView;
         if (this.forwardingMessagesParams.multiplyUsers) {
-            i3 = C1010R.string.HideSenderNames;
+            i3 = C1072R.string.HideSenderNames;
             str2 = "HideSenderNames";
         } else {
-            i3 = C1010R.string.HideSendersName;
+            i3 = C1072R.string.HideSendersName;
             str2 = "HideSendersName";
         }
         actionBarMenuSubItem4.setTextAndIcon(LocaleController.getString(str2, i3), 0);
@@ -508,12 +508,12 @@ public class ForwardingPreviewView extends FrameLayout {
             ActionBarMenuSubItem actionBarMenuSubItem5 = new ActionBarMenuSubItem(context, true, false, false, resourcesDelegate);
             this.showCaptionView = actionBarMenuSubItem5;
             this.buttonsLayout.addView(actionBarMenuSubItem5, LayoutHelper.createFrame(-1, 48.0f));
-            this.showCaptionView.setTextAndIcon(LocaleController.getString("ShowCaption", C1010R.string.ShowCaption), 0);
+            this.showCaptionView.setTextAndIcon(LocaleController.getString("ShowCaption", C1072R.string.ShowCaption), 0);
             this.showCaptionView.setChecked(true);
             ActionBarMenuSubItem actionBarMenuSubItem6 = new ActionBarMenuSubItem(context, true, false, true, resourcesDelegate);
             this.hideCaptionView = actionBarMenuSubItem6;
             this.buttonsLayout.addView(actionBarMenuSubItem6, LayoutHelper.createFrame(-1, 48.0f));
-            this.hideCaptionView.setTextAndIcon(LocaleController.getString("HideCaption", C1010R.string.HideCaption), 0);
+            this.hideCaptionView.setTextAndIcon(LocaleController.getString("HideCaption", C1072R.string.HideCaption), 0);
             this.hideCaptionView.setChecked(false);
         }
         LinearLayout linearLayout3 = new LinearLayout(context);
@@ -526,11 +526,11 @@ public class ForwardingPreviewView extends FrameLayout {
         ActionBarMenuSubItem actionBarMenuSubItem7 = new ActionBarMenuSubItem(context, true, false, (Theme.ResourcesProvider) resourcesDelegate);
         this.changeRecipientView = actionBarMenuSubItem7;
         this.buttonsLayout2.addView(actionBarMenuSubItem7, LayoutHelper.createFrame(-1, 48.0f));
-        this.changeRecipientView.setTextAndIcon(LocaleController.getString("ChangeRecipient", C1010R.string.ChangeRecipient), C1010R.C1011drawable.msg_forward_replace);
+        this.changeRecipientView.setTextAndIcon(LocaleController.getString("ChangeRecipient", C1072R.string.ChangeRecipient), C1072R.C1073drawable.msg_forward_replace);
         ActionBarMenuSubItem actionBarMenuSubItem8 = new ActionBarMenuSubItem(context, false, true, (Theme.ResourcesProvider) resourcesDelegate);
         this.sendMessagesView = actionBarMenuSubItem8;
         this.buttonsLayout2.addView(actionBarMenuSubItem8, LayoutHelper.createFrame(-1, 48.0f));
-        this.sendMessagesView.setTextAndIcon(LocaleController.getString("ForwardSendMessages", C1010R.string.ForwardSendMessages), C1010R.C1011drawable.msg_send);
+        this.sendMessagesView.setTextAndIcon(LocaleController.getString("ForwardSendMessages", C1072R.string.ForwardSendMessages), C1072R.C1073drawable.msg_send);
         if (this.forwardingMessagesParams.hasSenders) {
             this.actionItems.add(this.showSendersNameView);
             this.actionItems.add(this.hideSendersNameView);
@@ -615,12 +615,12 @@ public class ForwardingPreviewView extends FrameLayout {
         updateColors();
     }
 
-    public class C22295 extends ChatListItemAnimator {
+    public class C23235 extends ChatListItemAnimator {
         Runnable finishRunnable;
         int scrollAnimationIndex;
         final int val$currentAccount;
 
-        C22295(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider, int i) {
+        C23235(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider, int i) {
             super(chatActivity, recyclerListView, resourcesProvider);
             this.val$currentAccount = i;
             this.scrollAnimationIndex = -1;
@@ -652,7 +652,7 @@ public class ForwardingPreviewView extends FrameLayout {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ForwardingPreviewView.C22295.this.lambda$onAllAnimationsDone$0(i);
+                    ForwardingPreviewView.C23235.this.lambda$onAllAnimationsDone$0(i);
                 }
             };
             this.finishRunnable = runnable2;
@@ -663,7 +663,7 @@ public class ForwardingPreviewView extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ForwardingPreviewView.C22295.this.lambda$onAllAnimationsDone$1();
+                        ForwardingPreviewView.C23235.this.lambda$onAllAnimationsDone$1();
                     }
                 });
             }
@@ -691,7 +691,7 @@ public class ForwardingPreviewView extends FrameLayout {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ForwardingPreviewView.C22295.this.lambda$endAnimations$2(i);
+                    ForwardingPreviewView.C23235.this.lambda$endAnimations$2(i);
                 }
             };
             this.finishRunnable = runnable2;
@@ -706,7 +706,7 @@ public class ForwardingPreviewView extends FrameLayout {
         }
     }
 
-    public class C22328 extends GridLayoutManagerFixed {
+    public class C23268 extends GridLayoutManagerFixed {
         final ForwardingMessagesParams val$params;
 
         @Override
@@ -714,7 +714,7 @@ public class ForwardingPreviewView extends FrameLayout {
             return false;
         }
 
-        C22328(Context context, int i, int i2, boolean z, ForwardingMessagesParams forwardingMessagesParams) {
+        C23268(Context context, int i, int i2, boolean z, ForwardingMessagesParams forwardingMessagesParams) {
             super(context, i, i2, z);
             this.val$params = forwardingMessagesParams;
         }
@@ -756,7 +756,7 @@ public class ForwardingPreviewView extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ForwardingPreviewView.C22328.this.lambda$onLayoutChildren$0();
+                        ForwardingPreviewView.C23268.this.lambda$onLayoutChildren$0();
                     }
                 });
             }
@@ -857,41 +857,41 @@ public class ForwardingPreviewView extends FrameLayout {
             if (forwardingMessagesParams.willSeeSenders) {
                 TLRPC$User tLRPC$User = this.currentUser;
                 if (tLRPC$User != null) {
-                    this.actionBar.setSubtitle(LocaleController.formatString("ForwardPreviewSendersNameVisible", C1010R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name)));
+                    this.actionBar.setSubtitle(LocaleController.formatString("ForwardPreviewSendersNameVisible", C1072R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name)));
                     return;
                 } else if (ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup) {
-                    this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameVisibleChannel", C1010R.string.ForwardPreviewSendersNameVisibleChannel));
+                    this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameVisibleChannel", C1072R.string.ForwardPreviewSendersNameVisibleChannel));
                     return;
                 } else {
-                    this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameVisibleGroup", C1010R.string.ForwardPreviewSendersNameVisibleGroup));
+                    this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameVisibleGroup", C1072R.string.ForwardPreviewSendersNameVisibleGroup));
                     return;
                 }
             }
             TLRPC$User tLRPC$User2 = this.currentUser;
             if (tLRPC$User2 != null) {
-                this.actionBar.setSubtitle(LocaleController.formatString("ForwardPreviewSendersNameVisible", C1010R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(tLRPC$User2.first_name, tLRPC$User2.last_name)));
+                this.actionBar.setSubtitle(LocaleController.formatString("ForwardPreviewSendersNameVisible", C1072R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(tLRPC$User2.first_name, tLRPC$User2.last_name)));
             } else if (ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup) {
-                this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameHiddenChannel", C1010R.string.ForwardPreviewSendersNameHiddenChannel));
+                this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameHiddenChannel", C1072R.string.ForwardPreviewSendersNameHiddenChannel));
             } else {
-                this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameHiddenGroup", C1010R.string.ForwardPreviewSendersNameHiddenGroup));
+                this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameHiddenGroup", C1072R.string.ForwardPreviewSendersNameHiddenGroup));
             }
         } else if (!forwardingMessagesParams.hideForwardSendersName) {
             TLRPC$User tLRPC$User3 = this.currentUser;
             if (tLRPC$User3 != null) {
-                this.actionBar.setSubtitle(LocaleController.formatString("ForwardPreviewSendersNameVisible", C1010R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(tLRPC$User3.first_name, tLRPC$User3.last_name)));
+                this.actionBar.setSubtitle(LocaleController.formatString("ForwardPreviewSendersNameVisible", C1072R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(tLRPC$User3.first_name, tLRPC$User3.last_name)));
             } else if (ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup) {
-                this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameVisibleChannel", C1010R.string.ForwardPreviewSendersNameVisibleChannel));
+                this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameVisibleChannel", C1072R.string.ForwardPreviewSendersNameVisibleChannel));
             } else {
-                this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameVisibleGroup", C1010R.string.ForwardPreviewSendersNameVisibleGroup));
+                this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameVisibleGroup", C1072R.string.ForwardPreviewSendersNameVisibleGroup));
             }
         } else {
             TLRPC$User tLRPC$User4 = this.currentUser;
             if (tLRPC$User4 != null) {
-                this.actionBar.setSubtitle(LocaleController.formatString("ForwardPreviewSendersNameHidden", C1010R.string.ForwardPreviewSendersNameHidden, ContactsController.formatName(tLRPC$User4.first_name, tLRPC$User4.last_name)));
+                this.actionBar.setSubtitle(LocaleController.formatString("ForwardPreviewSendersNameHidden", C1072R.string.ForwardPreviewSendersNameHidden, ContactsController.formatName(tLRPC$User4.first_name, tLRPC$User4.last_name)));
             } else if (ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup) {
-                this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameHiddenChannel", C1010R.string.ForwardPreviewSendersNameHiddenChannel));
+                this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameHiddenChannel", C1072R.string.ForwardPreviewSendersNameHiddenChannel));
             } else {
-                this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameHiddenGroup", C1010R.string.ForwardPreviewSendersNameHiddenGroup));
+                this.actionBar.setSubtitle(LocaleController.getString("ForwardPreviewSendersNameHiddenGroup", C1072R.string.ForwardPreviewSendersNameHiddenGroup));
             }
         }
     }
@@ -968,7 +968,7 @@ public class ForwardingPreviewView extends FrameLayout {
         this.buttonsLayout2.getLayoutParams().width = i5;
         this.buttonsLayout.measure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 0));
         this.buttonsLayout2.measure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 0));
-        ((ViewGroup.MarginLayoutParams) this.chatListView.getLayoutParams()).topMargin = C1069ActionBar.getCurrentActionBarHeight();
+        ((ViewGroup.MarginLayoutParams) this.chatListView.getLayoutParams()).topMargin = C1133ActionBar.getCurrentActionBarHeight();
         if (this.isLandscapeMode) {
             this.chatPreviewContainer.getLayoutParams().height = -1;
             ((ViewGroup.MarginLayoutParams) this.chatPreviewContainer.getLayoutParams()).topMargin = AndroidUtilities.m35dp(8.0f);
@@ -1285,6 +1285,11 @@ public class ForwardingPreviewView extends FrameLayout {
                 }
 
                 @Override
+                public CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getProgressLoadingLink(this, chatMessageCell2);
+                }
+
+                @Override
                 public TextSelectionHelper.ChatListTextSelectionHelper getTextSelectionHelper() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getTextSelectionHelper(this);
                 }
@@ -1302,6 +1307,11 @@ public class ForwardingPreviewView extends FrameLayout {
                 @Override
                 public boolean isLandscape() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isLandscape(this);
+                }
+
+                @Override
+                public boolean isProgressLoading(ChatMessageCell chatMessageCell2, int i2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isProgressLoading(this, chatMessageCell2, i2);
                 }
 
                 @Override

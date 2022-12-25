@@ -31,7 +31,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -109,7 +109,7 @@ public class AboutLinkCell extends FrameLayout {
         this.needSpace = false;
         this.backgroundPaint = new Paint();
         this.SPACE = AndroidUtilities.m35dp(3.0f);
-        this.longPressedRunnable = new RunnableC12912();
+        this.longPressedRunnable = new RunnableC13682();
         this.expandT = 0.0f;
         this.lastMaxWidth = 0;
         this.shouldExpand = false;
@@ -133,7 +133,7 @@ public class AboutLinkCell extends FrameLayout {
         this.valueTextView.setFocusable(false);
         this.container.addView(this.valueTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, 23.0f, 0.0f, 23.0f, 10.0f));
         this.bottomShadow = new FrameLayout(context);
-        Drawable mutate = context.getResources().getDrawable(C1010R.C1011drawable.gradient_bottom).mutate();
+        Drawable mutate = context.getResources().getDrawable(C1072R.C1073drawable.gradient_bottom).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhite", resourcesProvider), PorterDuff.Mode.SRC_ATOP));
         this.bottomShadow.setBackground(mutate);
         addView(this.bottomShadow, LayoutHelper.createFrame(-1, 12.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -171,7 +171,7 @@ public class AboutLinkCell extends FrameLayout {
         this.showMoreTextView.setLines(1);
         this.showMoreTextView.setMaxLines(1);
         this.showMoreTextView.setSingleLine(true);
-        this.showMoreTextView.setText(LocaleController.getString("DescriptionMore", C1010R.string.DescriptionMore));
+        this.showMoreTextView.setText(LocaleController.getString("DescriptionMore", C1072R.string.DescriptionMore));
         this.showMoreTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -180,7 +180,7 @@ public class AboutLinkCell extends FrameLayout {
         });
         this.showMoreTextView.setPadding(AndroidUtilities.m35dp(2.0f), 0, AndroidUtilities.m35dp(2.0f), 0);
         this.showMoreTextBackgroundView = new FrameLayout(context);
-        Drawable mutate2 = context.getResources().getDrawable(C1010R.C1011drawable.gradient_left).mutate();
+        Drawable mutate2 = context.getResources().getDrawable(C1072R.C1073drawable.gradient_left).mutate();
         this.showMoreBackgroundDrawable = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhite", resourcesProvider), PorterDuff.Mode.MULTIPLY));
         this.showMoreTextBackgroundView.setBackground(this.showMoreBackgroundDrawable);
@@ -395,8 +395,8 @@ public class AboutLinkCell extends FrameLayout {
         requestLayout();
     }
 
-    public class RunnableC12912 implements Runnable {
-        RunnableC12912() {
+    public class RunnableC13682 implements Runnable {
+        RunnableC13682() {
         }
 
         @Override
@@ -410,16 +410,16 @@ public class AboutLinkCell extends FrameLayout {
                 final ClickableSpan clickableSpan = (ClickableSpan) AboutLinkCell.this.pressedLink.getSpan();
                 BottomSheet.Builder builder = new BottomSheet.Builder(AboutLinkCell.this.parentFragment.getParentActivity());
                 builder.setTitle(url);
-                builder.setItems(new CharSequence[]{LocaleController.getString("Open", C1010R.string.Open), LocaleController.getString("Copy", C1010R.string.Copy)}, new DialogInterface.OnClickListener() {
+                builder.setItems(new CharSequence[]{LocaleController.getString("Open", C1072R.string.Open), LocaleController.getString("Copy", C1072R.string.Copy)}, new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        AboutLinkCell.RunnableC12912.this.lambda$run$0(clickableSpan, url, dialogInterface, i);
+                        AboutLinkCell.RunnableC13682.this.lambda$run$0(clickableSpan, url, dialogInterface, i);
                     }
                 });
                 builder.setOnPreDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
-                        AboutLinkCell.RunnableC12912.this.lambda$run$1(dialogInterface);
+                        AboutLinkCell.RunnableC13682.this.lambda$run$1(dialogInterface);
                     }
                 });
                 builder.show();
@@ -434,11 +434,11 @@ public class AboutLinkCell extends FrameLayout {
                 AndroidUtilities.addToClipboard(str);
                 if (AndroidUtilities.shouldShowClipboardToast()) {
                     if (str.startsWith("@")) {
-                        BulletinFactory.m13of(AboutLinkCell.this.parentFragment).createSimpleBulletin(C1010R.raw.copy, LocaleController.getString("UsernameCopied", C1010R.string.UsernameCopied)).show();
+                        BulletinFactory.m13of(AboutLinkCell.this.parentFragment).createSimpleBulletin(C1072R.raw.copy, LocaleController.getString("UsernameCopied", C1072R.string.UsernameCopied)).show();
                     } else if (str.startsWith("#") || str.startsWith("$")) {
-                        BulletinFactory.m13of(AboutLinkCell.this.parentFragment).createSimpleBulletin(C1010R.raw.copy, LocaleController.getString("HashtagCopied", C1010R.string.HashtagCopied)).show();
+                        BulletinFactory.m13of(AboutLinkCell.this.parentFragment).createSimpleBulletin(C1072R.raw.copy, LocaleController.getString("HashtagCopied", C1072R.string.HashtagCopied)).show();
                     } else {
-                        BulletinFactory.m13of(AboutLinkCell.this.parentFragment).createSimpleBulletin(C1010R.raw.copy, LocaleController.getString("LinkCopied", C1010R.string.LinkCopied)).show();
+                        BulletinFactory.m13of(AboutLinkCell.this.parentFragment).createSimpleBulletin(C1072R.raw.copy, LocaleController.getString("LinkCopied", C1072R.string.LinkCopied)).show();
                     }
                 }
             }

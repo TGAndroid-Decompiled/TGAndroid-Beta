@@ -13,6 +13,6 @@ public final class GroupCallActivity$6$$ExternalSyntheticLambda9 implements Requ
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        GroupCallActivity.C31806.lambda$onItemClick$8(tLObject, tLRPC$TL_error);
+        GroupCallActivity.C33346.lambda$onItemClick$8(tLObject, tLRPC$TL_error);
     }
 }

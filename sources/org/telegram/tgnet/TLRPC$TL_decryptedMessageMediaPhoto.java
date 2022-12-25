@@ -9,11 +9,11 @@ public class TLRPC$TL_decryptedMessageMediaPhoto extends TLRPC$DecryptedMessageM
         this.thumb = abstractSerializedData.readByteArray(z);
         this.thumb_w = abstractSerializedData.readInt32(z);
         this.thumb_h = abstractSerializedData.readInt32(z);
-        this.f853w = abstractSerializedData.readInt32(z);
-        this.f850h = abstractSerializedData.readInt32(z);
+        this.f862w = abstractSerializedData.readInt32(z);
+        this.f859h = abstractSerializedData.readInt32(z);
         this.size = abstractSerializedData.readInt32(z);
         this.key = abstractSerializedData.readByteArray(z);
-        this.f852iv = abstractSerializedData.readByteArray(z);
+        this.f861iv = abstractSerializedData.readByteArray(z);
         this.caption = abstractSerializedData.readString(z);
     }
 
@@ -23,11 +23,11 @@ public class TLRPC$TL_decryptedMessageMediaPhoto extends TLRPC$DecryptedMessageM
         abstractSerializedData.writeByteArray(this.thumb);
         abstractSerializedData.writeInt32(this.thumb_w);
         abstractSerializedData.writeInt32(this.thumb_h);
-        abstractSerializedData.writeInt32(this.f853w);
-        abstractSerializedData.writeInt32(this.f850h);
+        abstractSerializedData.writeInt32(this.f862w);
+        abstractSerializedData.writeInt32(this.f859h);
         abstractSerializedData.writeInt32((int) this.size);
         abstractSerializedData.writeByteArray(this.key);
-        abstractSerializedData.writeByteArray(this.f852iv);
+        abstractSerializedData.writeByteArray(this.f861iv);
         abstractSerializedData.writeString(this.caption);
     }
 }

@@ -12,7 +12,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.p009ui.Components.EditTextBoldCursor;
 
 public class EditTextOutline extends EditTextBoldCursor {
-    private float[] lines;
+    private boolean isFrameDirty;
+    private RectF[] lines;
     private Bitmap mCache;
     private Canvas mCanvas;
     private int mFrameColor;
@@ -21,7 +22,6 @@ public class EditTextOutline extends EditTextBoldCursor {
     private boolean mUpdateCachedBitmap;
     private Paint paint;
     private Path path;
-    private RectF rect;
     private TextPaint textPaint;
 
     public EditTextOutline(Context context) {
@@ -30,24 +30,26 @@ public class EditTextOutline extends EditTextBoldCursor {
         this.textPaint = new TextPaint(1);
         this.paint = new Paint(1);
         this.path = new Path();
-        this.rect = new RectF();
         this.mStrokeColor = 0;
         setInputType(getInputType() | 131072 | 524288);
         this.mUpdateCachedBitmap = true;
+        this.isFrameDirty = true;
         this.textPaint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
 
     @Override
-    protected void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         super.onTextChanged(charSequence, i, i2, i3);
         this.mUpdateCachedBitmap = true;
+        this.isFrameDirty = true;
     }
 
     @Override
-    protected void onSizeChanged(int i, int i2, int i3, int i4) {
+    public void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         if (i > 0 && i2 > 0) {
             this.mUpdateCachedBitmap = true;
+            this.isFrameDirty = true;
             Bitmap bitmap = this.mCache;
             if (bitmap != null) {
                 bitmap.recycle();
@@ -56,6 +58,14 @@ public class EditTextOutline extends EditTextBoldCursor {
             return;
         }
         this.mCache = null;
+    }
+
+    @Override
+    public void setGravity(int i) {
+        super.setGravity(i);
+        this.mUpdateCachedBitmap = true;
+        this.isFrameDirty = true;
+        invalidate();
     }
 
     public void setStrokeColor(int i) {
@@ -84,6 +94,7 @@ public class EditTextOutline extends EditTextBoldCursor {
             } else {
                 setTextColor(-1);
             }
+            this.isFrameDirty = true;
         }
         this.mUpdateCachedBitmap = true;
         invalidate();
@@ -97,7 +108,7 @@ public class EditTextOutline extends EditTextBoldCursor {
 
     @Override
     @android.annotation.SuppressLint({"DrawAllocation"})
-    public void onDraw(android.graphics.Canvas r25) {
+    public void onDraw(android.graphics.Canvas r17) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Paint.Views.EditTextOutline.onDraw(android.graphics.Canvas):void");
     }
 }

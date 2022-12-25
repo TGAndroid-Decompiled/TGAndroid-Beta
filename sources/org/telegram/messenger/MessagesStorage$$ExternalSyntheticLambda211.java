@@ -11,8 +11,8 @@ public final class MessagesStorage$$ExternalSyntheticLambda211 implements Compar
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        int lambda$loadDialogFilters$47;
-        lambda$loadDialogFilters$47 = MessagesStorage.lambda$loadDialogFilters$47((MessagesController.DialogFilter) obj, (MessagesController.DialogFilter) obj2);
-        return lambda$loadDialogFilters$47;
+        int lambda$processLoadedFilterPeersInternal$51;
+        lambda$processLoadedFilterPeersInternal$51 = MessagesStorage.lambda$processLoadedFilterPeersInternal$51((MessagesController.DialogFilter) obj, (MessagesController.DialogFilter) obj2);
+        return lambda$processLoadedFilterPeersInternal$51;
     }
 }

@@ -19,7 +19,7 @@ import android.view.animation.LinearInterpolator;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.TopicsFragment;
 
@@ -143,7 +143,7 @@ public class PullForegroundDrawable {
         this.releaseTooltipLayout = staticLayout2;
         this.releaseTooltipLayoutWidth = staticLayout2.getLineWidth(0);
         try {
-            this.generalTopicDrawable = ApplicationLoader.applicationContext.getResources().getDrawable(C1010R.C1011drawable.msg_filled_general).mutate();
+            this.generalTopicDrawable = ApplicationLoader.applicationContext.getResources().getDrawable(C1072R.C1073drawable.msg_filled_general).mutate();
         } catch (Exception unused) {
         }
     }

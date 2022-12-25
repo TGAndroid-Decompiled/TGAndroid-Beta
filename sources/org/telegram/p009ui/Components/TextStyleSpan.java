@@ -75,7 +75,7 @@ public class TextStyleSpan extends MetricAffectingSpan {
                     }
                     return null;
                 }
-                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
+                return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM_ITALIC);
             }
             return Typeface.MONOSPACE;
         }

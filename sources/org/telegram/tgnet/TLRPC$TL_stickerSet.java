@@ -16,7 +16,7 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
         if ((readInt32 & 1) != 0) {
             this.installed_date = abstractSerializedData.readInt32(z);
         }
-        this.f881id = abstractSerializedData.readInt64(z);
+        this.f890id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.title = abstractSerializedData.readString(z);
         this.short_name = abstractSerializedData.readString(z);
@@ -30,7 +30,7 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
             }
             int readInt323 = abstractSerializedData.readInt32(z);
             for (int i = 0; i < readInt323; i++) {
-                TLRPC$PhotoSize TLdeserialize = TLRPC$PhotoSize.TLdeserialize(0L, 0L, this.f881id, abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                TLRPC$PhotoSize TLdeserialize = TLRPC$PhotoSize.TLdeserialize(0L, 0L, this.f890id, abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize == null) {
                     return;
                 }
@@ -69,7 +69,7 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.installed_date);
         }
-        abstractSerializedData.writeInt64(this.f881id);
+        abstractSerializedData.writeInt64(this.f890id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeString(this.title);
         abstractSerializedData.writeString(this.short_name);

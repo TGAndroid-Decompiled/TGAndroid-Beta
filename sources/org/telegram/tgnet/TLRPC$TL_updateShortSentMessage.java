@@ -8,7 +8,7 @@ public class TLRPC$TL_updateShortSentMessage extends TLRPC$Updates {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.out = (readInt32 & 2) != 0;
-        this.f985id = abstractSerializedData.readInt32(z);
+        this.f994id = abstractSerializedData.readInt32(z);
         this.pts = abstractSerializedData.readInt32(z);
         this.pts_count = abstractSerializedData.readInt32(z);
         this.date = abstractSerializedData.readInt32(z);

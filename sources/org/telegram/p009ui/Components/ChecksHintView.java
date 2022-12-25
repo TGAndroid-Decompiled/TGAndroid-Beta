@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Cells.ChatMessageCell;
@@ -53,18 +53,18 @@ public class ChecksHintView extends FrameLayout {
             this.textView[i].setPivotX(0.0f);
             frameLayout.addView(this.textView[i], LayoutHelper.createFrame(-2, -2.0f, 51, 32.0f, i == 0 ? 2.0f : 26.0f, 10.0f, 0.0f));
             if (i == 0) {
-                this.imageView[i].setAnimation(C1010R.raw.ticks_single, 24, 24);
-                this.textView[i].setText(LocaleController.getString("HintSent", C1010R.string.HintSent));
+                this.imageView[i].setAnimation(C1072R.raw.ticks_single, 24, 24);
+                this.textView[i].setText(LocaleController.getString("HintSent", C1072R.string.HintSent));
             } else {
-                this.imageView[i].setAnimation(C1010R.raw.ticks_double, 24, 24);
-                this.textView[i].setText(LocaleController.getString("HintRead", C1010R.string.HintRead));
+                this.imageView[i].setAnimation(C1072R.raw.ticks_double, 24, 24);
+                this.textView[i].setText(LocaleController.getString("HintRead", C1072R.string.HintRead));
             }
             this.imageView[i].playAnimation();
             i++;
         }
         ImageView imageView = new ImageView(context);
         this.arrowImageView = imageView;
-        imageView.setImageResource(C1010R.C1011drawable.tooltip_arrow);
+        imageView.setImageResource(C1072R.C1073drawable.tooltip_arrow);
         this.arrowImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_gifSaveHintBackground"), PorterDuff.Mode.MULTIPLY));
         addView(this.arrowImageView, LayoutHelper.createFrame(14, 6.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
     }
@@ -135,7 +135,7 @@ public class ChecksHintView extends FrameLayout {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
             animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.0f, 1.0f));
-            this.animatorSet.addListener(new C20521());
+            this.animatorSet.addListener(new C21461());
             this.animatorSet.setDuration(180L);
             this.animatorSet.start();
             while (i3 < 2) {
@@ -153,8 +153,8 @@ public class ChecksHintView extends FrameLayout {
         return true;
     }
 
-    public class C20521 extends AnimatorListenerAdapter {
-        C20521() {
+    public class C21461 extends AnimatorListenerAdapter {
+        C21461() {
         }
 
         @Override
@@ -163,7 +163,7 @@ public class ChecksHintView extends FrameLayout {
             AndroidUtilities.runOnUIThread(ChecksHintView.this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChecksHintView.C20521.this.lambda$onAnimationEnd$0();
+                    ChecksHintView.C21461.this.lambda$onAnimationEnd$0();
                 }
             }, 3000L);
         }

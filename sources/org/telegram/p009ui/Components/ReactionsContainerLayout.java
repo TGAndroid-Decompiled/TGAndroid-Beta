@@ -37,7 +37,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
@@ -183,7 +183,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         reactionHolderView2.pressedBackupImageView.setVisibility(8);
         addView(this.nextRecentReaction);
         this.animationEnabled = (!SharedConfig.animationsEnabled() || SharedConfig.getDevicePerformanceClass() == 0) ? false : false;
-        this.shadow = ContextCompat.getDrawable(context, C1010R.C1011drawable.reactions_bubble_shadow).mutate();
+        this.shadow = ContextCompat.getDrawable(context, C1072R.C1073drawable.reactions_bubble_shadow).mutate();
         Rect rect = this.shadowPad;
         int m35dp2 = AndroidUtilities.m35dp(7.0f);
         rect.bottom = m35dp2;
@@ -294,9 +294,9 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         });
         recyclerListView.setLayoutManager(this.linearLayoutManager);
         recyclerListView.setOverScrollMode(2);
-        C25485 c25485 = new C25485(context);
-        this.listAdapter = c25485;
-        recyclerListView.setAdapter(c25485);
+        C26905 c26905 = new C26905(context);
+        this.listAdapter = c26905;
+        recyclerListView.setAdapter(c26905);
         recyclerListView.addOnScrollListener(new LeftRightShadowsListener());
         recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -362,7 +362,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         MediaDataController.getInstance(i).preloadDefaultReactions();
     }
 
-    public class C25485 extends AdapterWithDiffUtils {
+    public class C26905 extends AdapterWithDiffUtils {
         ArrayList<InnerItem> items = new ArrayList<>();
         ArrayList<InnerItem> oldItems = new ArrayList<>();
         final Context val$context;
@@ -372,7 +372,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             return false;
         }
 
-        C25485(Context context) {
+        C26905(Context context) {
             this.val$context = context;
         }
 
@@ -392,7 +392,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 ReactionsContainerLayout.this.premiumLockIconView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ReactionsContainerLayout.C25485.this.lambda$onCreateViewHolder$0(view2);
+                        ReactionsContainerLayout.C26905.this.lambda$onCreateViewHolder$0(view2);
                     }
                 });
                 view = ReactionsContainerLayout.this.premiumLockContainer;
@@ -401,7 +401,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             } else {
                 ReactionsContainerLayout.this.customReactionsContainer = new CustomReactionsContainer(this.val$context);
                 ReactionsContainerLayout.this.customEmojiReactionsIconView = new InternalImageView(this.val$context);
-                ReactionsContainerLayout.this.customEmojiReactionsIconView.setImageResource(C1010R.C1011drawable.msg_reactions_expand);
+                ReactionsContainerLayout.this.customEmojiReactionsIconView.setImageResource(C1072R.C1073drawable.msg_reactions_expand);
                 ReactionsContainerLayout.this.customEmojiReactionsIconView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 ReactionsContainerLayout.this.customEmojiReactionsIconView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
                 ReactionsContainerLayout.this.customEmojiReactionsIconView.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(28.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor("listSelectorSDK21"), 40)));
@@ -411,7 +411,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 ReactionsContainerLayout.this.customEmojiReactionsIconView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ReactionsContainerLayout.C25485.this.lambda$onCreateViewHolder$1(view2);
+                        ReactionsContainerLayout.C26905.this.lambda$onCreateViewHolder$1(view2);
                     }
                 });
                 view = ReactionsContainerLayout.this.customReactionsContainer;
@@ -471,7 +471,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         class InnerItem extends AdapterWithDiffUtils.Item {
             ReactionsLayoutInBubble.VisibleReaction reaction;
 
-            public InnerItem(C25485 c25485, int i, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+            public InnerItem(C26905 c26905, int i, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
                 super(i, false);
                 this.reaction = visibleReaction;
             }
@@ -938,7 +938,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         if (tLRPC$ChatFull != null) {
             TLRPC$ChatReactions tLRPC$ChatReactions = tLRPC$ChatFull.available_reactions;
             if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsAll) {
-                TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(tLRPC$ChatFull.f849id));
+                TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(tLRPC$ChatFull.f858id));
                 if (chat != null && !ChatObject.isChannelAndNotMegaGroup(chat)) {
                     this.allReactionsAvailable = true;
                 } else {
@@ -1097,12 +1097,12 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     }
 
     public void clearRecentReactions() {
-        AlertDialog create = new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(C1010R.string.ClearRecentReactionsAlertTitle)).setMessage(LocaleController.getString(C1010R.string.ClearRecentReactionsAlertMessage)).setPositiveButton(LocaleController.getString(C1010R.string.ClearButton), new DialogInterface.OnClickListener() {
+        AlertDialog create = new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(C1072R.string.ClearRecentReactionsAlertTitle)).setMessage(LocaleController.getString(C1072R.string.ClearRecentReactionsAlertMessage)).setPositiveButton(LocaleController.getString(C1072R.string.ClearButton), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 ReactionsContainerLayout.this.lambda$clearRecentReactions$4(dialogInterface, i);
             }
-        }).setNegativeButton(LocaleController.getString(C1010R.string.Cancel), null).create();
+        }).setNegativeButton(LocaleController.getString(C1072R.string.Cancel), null).create();
         create.show();
         TextView textView = (TextView) create.getButton(-1);
         if (textView != null) {
@@ -1246,7 +1246,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                     accessibilityNodeInfo.setEnabled(true);
                     return;
                 }
-                accessibilityNodeInfo.setText(LocaleController.getString(C1010R.string.AccDescrCustomEmoji));
+                accessibilityNodeInfo.setText(LocaleController.getString(C1072R.string.AccDescrCustomEmoji));
                 accessibilityNodeInfo.setEnabled(true);
             }
         }
@@ -1276,7 +1276,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 }
             };
             this.touchable = true;
-            this.enterImageView = new C25562(context, ReactionsContainerLayout.this);
+            this.enterImageView = new C26982(context, ReactionsContainerLayout.this);
             this.loopImageView = new BackupImageView(context);
             this.enterImageView.getImageReceiver().setAutoRepeat(0);
             this.enterImageView.getImageReceiver().setAllowStartLottieAnimation(false);
@@ -1295,8 +1295,8 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             this.pressedBackupImageView.setLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
         }
 
-        public class C25562 extends BackupImageView {
-            C25562(Context context, ReactionsContainerLayout reactionsContainerLayout) {
+        public class C26982 extends BackupImageView {
+            C26982(Context context, ReactionsContainerLayout reactionsContainerLayout) {
                 super(context);
             }
 
@@ -1315,7 +1315,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ReactionsContainerLayout.ReactionHolderView.C25562.this.lambda$dispatchDraw$0();
+                            ReactionsContainerLayout.ReactionHolderView.C26982.this.lambda$dispatchDraw$0();
                         }
                     });
                 }
@@ -1586,7 +1586,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.chatInfoDidLoad) {
             TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
-            if (tLRPC$ChatFull.f849id != this.waitingLoadingChatId || getVisibility() == 0 || (tLRPC$ChatFull.available_reactions instanceof TLRPC$TL_chatReactionsNone)) {
+            if (tLRPC$ChatFull.f858id != this.waitingLoadingChatId || getVisibility() == 0 || (tLRPC$ChatFull.available_reactions instanceof TLRPC$TL_chatReactionsNone)) {
                 return;
             }
             setMessage(this.messageObject, null);

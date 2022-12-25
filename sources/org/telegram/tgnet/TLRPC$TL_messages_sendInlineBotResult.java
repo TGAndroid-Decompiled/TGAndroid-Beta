@@ -6,7 +6,7 @@ public class TLRPC$TL_messages_sendInlineBotResult extends TLObject {
     public boolean clear_draft;
     public int flags;
     public boolean hide_via;
-    public String f955id;
+    public String f964id;
     public TLRPC$InputPeer peer;
     public long query_id;
     public long random_id;
@@ -42,7 +42,7 @@ public class TLRPC$TL_messages_sendInlineBotResult extends TLObject {
         }
         abstractSerializedData.writeInt64(this.random_id);
         abstractSerializedData.writeInt64(this.query_id);
-        abstractSerializedData.writeString(this.f955id);
+        abstractSerializedData.writeString(this.f964id);
         if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
             abstractSerializedData.writeInt32(this.schedule_date);
         }

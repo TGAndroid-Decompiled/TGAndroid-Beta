@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Adapters.FiltersView;
 import org.telegram.p009ui.Components.RLottieDrawable;
@@ -14,13 +14,13 @@ import org.telegram.p009ui.Components.RLottieDrawable;
 public class ActionBarMenu extends LinearLayout {
     public boolean drawBlur;
     protected boolean isActionMode;
-    protected C1069ActionBar parentActionBar;
+    protected C1133ActionBar parentActionBar;
 
-    public ActionBarMenu(Context context, C1069ActionBar c1069ActionBar) {
+    public ActionBarMenu(Context context, C1133ActionBar c1133ActionBar) {
         super(context);
         this.drawBlur = true;
         setOrientation(0);
-        this.parentActionBar = c1069ActionBar;
+        this.parentActionBar = c1133ActionBar;
     }
 
     public void updateItemsBackgroundColor() {
@@ -171,7 +171,7 @@ public class ActionBarMenu extends LinearLayout {
     }
 
     public void onItemClick(int i) {
-        C1069ActionBar.ActionBarMenuOnItemClick actionBarMenuOnItemClick = this.parentActionBar.actionBarMenuOnItemClick;
+        C1133ActionBar.ActionBarMenuOnItemClick actionBarMenuOnItemClick = this.parentActionBar.actionBarMenuOnItemClick;
         if (actionBarMenuOnItemClick != null) {
             actionBarMenuOnItemClick.onItemClick(i);
         }

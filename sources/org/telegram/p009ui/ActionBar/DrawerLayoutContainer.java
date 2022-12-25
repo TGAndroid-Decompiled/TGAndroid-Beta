@@ -27,7 +27,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 
@@ -93,7 +93,7 @@ public class DrawerLayoutContainer extends FrameLayout {
             });
             setSystemUiVisibility(1280);
         }
-        this.shadowLeft = getResources().getDrawable(C1010R.C1011drawable.menu_shadow);
+        this.shadowLeft = getResources().getDrawable(C1072R.C1073drawable.menu_shadow);
     }
 
     public WindowInsets lambda$new$0(View view, WindowInsets windowInsets) {
@@ -673,11 +673,11 @@ public class DrawerLayoutContainer extends FrameLayout {
             canvas.save();
             int i = bounds.left;
             int i2 = bounds.top;
-            canvas.clipRect(i, i2, bounds.right, C1069ActionBar.getCurrentActionBarHeight() + i2);
+            canvas.clipRect(i, i2, bounds.right, C1133ActionBar.getCurrentActionBarHeight() + i2);
             this.topDrawable.draw(canvas);
             canvas.restore();
             canvas.save();
-            canvas.clipRect(bounds.left, bounds.top + C1069ActionBar.getCurrentActionBarHeight(), bounds.right, bounds.bottom);
+            canvas.clipRect(bounds.left, bounds.top + C1133ActionBar.getCurrentActionBarHeight(), bounds.right, bounds.bottom);
             this.bottomDrawable.draw(canvas);
             canvas.restore();
         }

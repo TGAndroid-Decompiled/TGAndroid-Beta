@@ -15,7 +15,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -43,10 +43,10 @@ public class PremiumGradient {
         this.mainGradient = gradientTools;
         this.mainGradientPaint = gradientTools.paint;
         Context context = ApplicationLoader.applicationContext;
-        int i = C1010R.C1011drawable.msg_premium_liststar;
+        int i = C1072R.C1073drawable.msg_premium_liststar;
         this.premiumStarDrawableMini = ContextCompat.getDrawable(context, i).mutate();
-        this.premiumStarMenuDrawable = createGradientDrawable(ContextCompat.getDrawable(ApplicationLoader.applicationContext, C1010R.C1011drawable.msg_settings_premium));
-        this.premiumStarMenuDrawable2 = createGradientDrawable(ContextCompat.getDrawable(ApplicationLoader.applicationContext, C1010R.C1011drawable.msg_premium_normal));
+        this.premiumStarMenuDrawable = createGradientDrawable(ContextCompat.getDrawable(ApplicationLoader.applicationContext, C1072R.C1073drawable.msg_settings_premium));
+        this.premiumStarMenuDrawable2 = createGradientDrawable(ContextCompat.getDrawable(ApplicationLoader.applicationContext, C1072R.C1073drawable.msg_premium_normal));
         this.premiumStarColoredDrawable = ContextCompat.getDrawable(ApplicationLoader.applicationContext, i).mutate();
         gradientTools.chekColors();
         checkIconColors();
@@ -132,31 +132,31 @@ public class PremiumGradient {
         final String colorKey4;
         final String colorKey5;
         final int[] colors;
-        public float f1095cx;
-        public float f1096cy;
+        public float f1111cx;
+        public float f1112cy;
         public boolean exactly;
         Matrix matrix;
         public final Paint paint;
         Shader shader;
-        public float f1097x1;
-        public float f1098x2;
-        public float f1099y1;
-        public float f1100y2;
+        public float f1113x1;
+        public float f1114x2;
+        public float f1115y1;
+        public float f1116y2;
 
         public GradientTools(String str, String str2, String str3, String str4) {
             this(str, str2, str3, str4, null);
         }
 
         public GradientTools(String str, String str2, String str3, String str4, String str5) {
-            this.f1095cx = 0.5f;
-            this.f1096cy = 0.5f;
+            this.f1111cx = 0.5f;
+            this.f1112cy = 0.5f;
             this.matrix = new Matrix();
             this.paint = new Paint(1);
             this.colors = new int[5];
-            this.f1097x1 = 0.0f;
-            this.f1099y1 = 1.0f;
-            this.f1098x2 = 1.5f;
-            this.f1100y2 = 0.0f;
+            this.f1113x1 = 0.0f;
+            this.f1115y1 = 1.0f;
+            this.f1114x2 = 1.5f;
+            this.f1116y2 = 0.0f;
             this.colorKey1 = str;
             this.colorKey2 = str2;
             this.colorKey3 = str3;
@@ -168,7 +168,7 @@ public class PremiumGradient {
             chekColors();
             if (this.exactly) {
                 this.matrix.reset();
-                this.matrix.postScale((i3 - i) / 100.0f, (i4 - i2) / 100.0f, this.f1095cx * 100.0f, this.f1096cy * 100.0f);
+                this.matrix.postScale((i3 - i) / 100.0f, (i4 - i2) / 100.0f, this.f1111cx * 100.0f, this.f1112cy * 100.0f);
                 this.matrix.postTranslate(f, f2);
                 this.shader.setLocalMatrix(this.matrix);
                 return;
@@ -201,31 +201,31 @@ public class PremiumGradient {
             iArr[3] = color4;
             iArr[4] = color5;
             if (color3 == 0) {
-                float f = this.f1097x1 * 100.0f;
-                float f2 = this.f1099y1 * 100.0f;
-                float f3 = this.f1098x2 * 100.0f;
-                float f4 = this.f1100y2 * 100.0f;
+                float f = this.f1113x1 * 100.0f;
+                float f2 = this.f1115y1 * 100.0f;
+                float f3 = this.f1114x2 * 100.0f;
+                float f4 = this.f1116y2 * 100.0f;
                 int[] iArr2 = this.colors;
                 this.shader = new LinearGradient(f, f2, f3, f4, new int[]{iArr2[0], iArr2[1]}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
             } else if (color4 == 0) {
-                float f5 = this.f1097x1 * 100.0f;
-                float f6 = this.f1099y1 * 100.0f;
-                float f7 = this.f1098x2 * 100.0f;
-                float f8 = this.f1100y2 * 100.0f;
+                float f5 = this.f1113x1 * 100.0f;
+                float f6 = this.f1115y1 * 100.0f;
+                float f7 = this.f1114x2 * 100.0f;
+                float f8 = this.f1116y2 * 100.0f;
                 int[] iArr3 = this.colors;
                 this.shader = new LinearGradient(f5, f6, f7, f8, new int[]{iArr3[0], iArr3[1], iArr3[2]}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP);
             } else if (color5 == 0) {
-                float f9 = this.f1097x1 * 100.0f;
-                float f10 = this.f1099y1 * 100.0f;
-                float f11 = this.f1098x2 * 100.0f;
-                float f12 = this.f1100y2 * 100.0f;
+                float f9 = this.f1113x1 * 100.0f;
+                float f10 = this.f1115y1 * 100.0f;
+                float f11 = this.f1114x2 * 100.0f;
+                float f12 = this.f1116y2 * 100.0f;
                 int[] iArr4 = this.colors;
                 this.shader = new LinearGradient(f9, f10, f11, f12, new int[]{iArr4[0], iArr4[1], iArr4[2], iArr4[3]}, new float[]{0.0f, 0.5f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
             } else {
-                float f13 = this.f1097x1 * 100.0f;
-                float f14 = this.f1099y1 * 100.0f;
-                float f15 = this.f1098x2 * 100.0f;
-                float f16 = this.f1100y2 * 100.0f;
+                float f13 = this.f1113x1 * 100.0f;
+                float f14 = this.f1115y1 * 100.0f;
+                float f15 = this.f1114x2 * 100.0f;
+                float f16 = this.f1116y2 * 100.0f;
                 int[] iArr5 = this.colors;
                 this.shader = new LinearGradient(f13, f14, f15, f16, new int[]{iArr5[0], iArr5[1], iArr5[2], iArr5[3], iArr5[4]}, new float[]{0.0f, 0.425f, 0.655f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
             }

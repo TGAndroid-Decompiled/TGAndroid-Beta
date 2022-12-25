@@ -18,7 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.tgnet.ConnectionsManager;
@@ -27,6 +26,7 @@ public class NumberPicker extends LinearLayout {
     private static final CubicBezierInterpolator interpolator = new CubicBezierInterpolator(0.0f, 0.5f, 0.5f, 1.0f);
     private int SELECTOR_MIDDLE_ITEM_INDEX;
     private int SELECTOR_WHEEL_ITEM_COUNT;
+    private Integer allItemsCount;
     private boolean drawDividers;
     private Scroller mAdjustScroller;
     private int mBottomSelectionDividerBottom;
@@ -571,14 +571,20 @@ public class NumberPicker extends LinearLayout {
     }
 
     public void setWrapSelectorWheel(boolean z) {
+        Integer num;
         boolean z2 = false;
-        if ((this.mMaxValueSet && this.mMinValueSet && this.mMaxValue - this.mMinValue < this.mSelectorIndices.length) ? false : true) {
+        if ((this.mMaxValueSet && this.mMinValueSet && ((num = this.allItemsCount) == null || (this.mMaxValue - this.mMinValue) + 1 < num.intValue())) ? false : true) {
             this.mWrapSelectorWheelSetting = z;
             if (z) {
                 z2 = true;
             }
         }
         this.mWrapSelectorWheel = z2;
+    }
+
+    public void setAllItemsCount(int i) {
+        this.allItemsCount = Integer.valueOf(i);
+        setWrapSelectorWheel(this.mWrapSelectorWheelSetting);
     }
 
     public void setOnLongPressUpdateInterval(long j) {
@@ -594,6 +600,7 @@ public class NumberPicker extends LinearLayout {
     }
 
     public void setMinValue(int i) {
+        this.mMinValueSet = true;
         if (this.mMinValue == i) {
             return;
         }
@@ -601,7 +608,6 @@ public class NumberPicker extends LinearLayout {
             throw new IllegalArgumentException("minValue must be >= 0");
         }
         this.mMinValue = i;
-        this.mMinValueSet = true;
         if (i > this.mValue) {
             int i2 = this.mFantomValue;
             if (i <= i2) {
@@ -610,9 +616,7 @@ public class NumberPicker extends LinearLayout {
                 this.mValue = i;
             }
         }
-        if (this.mWrapSelectorWheelSetting && this.mMaxValueSet) {
-            this.mWrapSelectorWheel = this.mMaxValue - i > this.mSelectorIndices.length;
-        }
+        setWrapSelectorWheel(this.mWrapSelectorWheelSetting);
         initializeSelectorWheelIndices();
         updateInputTextView();
         tryComputeMaxWidth();
@@ -624,6 +628,7 @@ public class NumberPicker extends LinearLayout {
     }
 
     public void setMaxValue(int i) {
+        this.mMaxValueSet = true;
         if (this.mMaxValue == i) {
             return;
         }
@@ -631,7 +636,6 @@ public class NumberPicker extends LinearLayout {
             throw new IllegalArgumentException("maxValue must be >= 0");
         }
         this.mMaxValue = i;
-        this.mMaxValueSet = true;
         if (i < this.mValue) {
             int i2 = this.mFantomValue;
             if (i >= i2) {
@@ -640,9 +644,7 @@ public class NumberPicker extends LinearLayout {
                 this.mValue = i;
             }
         }
-        if (this.mWrapSelectorWheelSetting && this.mMinValueSet) {
-            this.mWrapSelectorWheel = i - this.mMinValue > this.mSelectorIndices.length;
-        }
+        setWrapSelectorWheel(this.mWrapSelectorWheelSetting);
         initializeSelectorWheelIndices();
         updateInputTextView();
         tryComputeMaxWidth();
@@ -877,13 +879,21 @@ public class NumberPicker extends LinearLayout {
     }
 
     private int getWrappedSelectorIndex(int i) {
-        int i2 = this.mMaxValue;
-        if (i > i2) {
-            int i3 = this.mMinValue;
-            return (i3 + ((i - i2) % (i2 - i3))) - 1;
+        int i2;
+        int i3;
+        if (this.mMaxValueSet && i > (i3 = this.mMaxValue)) {
+            int i4 = this.mMinValue;
+            if (i3 - i4 != 0) {
+                return (i4 + ((i - i3) % (i3 - i4))) - 1;
+            }
         }
-        int i4 = this.mMinValue;
-        return i < i4 ? (i2 - ((i4 - i) % (i2 - i4))) + 1 : i;
+        if (this.mMinValueSet && i < (i2 = this.mMinValue)) {
+            int i5 = this.mMaxValue;
+            if (i5 - i2 != 0) {
+                return (i5 - ((i2 - i) % (i5 - i2))) + 1;
+            }
+        }
+        return i;
     }
 
     private void incrementSelectorIndices(int[] iArr) {
@@ -914,7 +924,7 @@ public class NumberPicker extends LinearLayout {
         }
         int i2 = this.mMinValue;
         if (i < i2 || i > this.mMaxValue) {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         } else {
             String[] strArr = this.mDisplayedValues;
             if (strArr != null) {

@@ -22,8 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageReceiver;
@@ -33,7 +32,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Components.AlertsCreator;
@@ -65,7 +64,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
     }
 
     public static class ViewPage extends FrameLayout {
-        private C1069ActionBar actionBar;
+        private C1133ActionBar actionBar;
         private FrameLayout fragmentView;
         private RecyclerListView listView;
         private RecyclerListView listView2;
@@ -127,8 +126,8 @@ public class DialogOrContactPickerActivity extends BaseFragment {
 
     @Override
     public View createView(Context context) {
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
-        this.actionBar.setTitle(LocaleController.getString("BlockUserMultiTitle", C1010R.string.BlockUserMultiTitle));
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
+        this.actionBar.setTitle(LocaleController.getString("BlockUserMultiTitle", C1072R.string.BlockUserMultiTitle));
         if (AndroidUtilities.isTablet()) {
             this.actionBar.setOccupyStatusBar(false);
         }
@@ -136,7 +135,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         this.actionBar.setAllowOverlayTitle(false);
         this.actionBar.setAddToContainer(false);
         this.actionBar.setClipContent(true);
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -145,11 +144,11 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             }
         });
         this.hasOwnBackground = true;
-        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, C1010R.C1011drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, C1072R.C1073drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
-                DialogOrContactPickerActivity.this.dialogsActivity.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
-                DialogOrContactPickerActivity.this.contactsActivity.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
+                DialogOrContactPickerActivity.this.dialogsActivity.getActionBar().openSearchField("", false);
+                DialogOrContactPickerActivity.this.contactsActivity.getActionBar().openSearchField("", false);
                 DialogOrContactPickerActivity.this.searchItem.getSearchField().requestFocus();
             }
 
@@ -166,7 +165,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             }
         });
         this.searchItem = actionBarMenuItemSearchListener;
-        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("Search", C1010R.string.Search));
+        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("Search", C1072R.string.Search));
         ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = new ScrollSlidingTextTabStrip(context);
         this.scrollSlidingTextTabStrip = scrollSlidingTextTabStrip;
         scrollSlidingTextTabStrip.setUseSameWidth(true);
@@ -432,8 +431,8 @@ public class DialogOrContactPickerActivity extends BaseFragment {
                                     DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DialogOrContactPickerActivity.this.viewPages[0].selectedType, 1.0f);
                                 }
                                 DialogOrContactPickerActivity.this.tabsAnimationInProgress = false;
-                                C30164.this.maybeStartTracking = false;
-                                C30164.this.startedTracking = false;
+                                C31654.this.maybeStartTracking = false;
+                                C31654.this.startedTracking = false;
                                 ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.setEnabled(true);
                                 DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.setEnabled(true);
                             }
@@ -507,7 +506,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
                             onScrollListener.onScrollStateChanged(recyclerView, i3);
                             if (i3 != 1) {
                                 int i4 = (int) (-((BaseFragment) DialogOrContactPickerActivity.this).actionBar.getTranslationY());
-                                int currentActionBarHeight = C1069ActionBar.getCurrentActionBarHeight();
+                                int currentActionBarHeight = C1133ActionBar.getCurrentActionBarHeight();
                                 if (i4 == 0 || i4 == currentActionBarHeight) {
                                     return;
                                 }
@@ -534,8 +533,8 @@ public class DialogOrContactPickerActivity extends BaseFragment {
                             if (recyclerView == DialogOrContactPickerActivity.this.viewPages[0].listView || recyclerView == DialogOrContactPickerActivity.this.viewPages[0].listView2) {
                                 float translationY = ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.getTranslationY();
                                 float f = translationY - i4;
-                                if (f < (-C1069ActionBar.getCurrentActionBarHeight())) {
-                                    f = -C1069ActionBar.getCurrentActionBarHeight();
+                                if (f < (-C1133ActionBar.getCurrentActionBarHeight())) {
+                                    f = -C1133ActionBar.getCurrentActionBarHeight();
                                 } else if (f > 0.0f) {
                                     f = 0.0f;
                                 }
@@ -625,15 +624,15 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString("BlockUser", C1010R.string.BlockUser));
-        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AreYouSureBlockContact2", C1010R.string.AreYouSureBlockContact2, ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name))));
-        builder.setPositiveButton(LocaleController.getString("BlockContact", C1010R.string.BlockContact), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString("BlockUser", C1072R.string.BlockUser));
+        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AreYouSureBlockContact2", C1072R.string.AreYouSureBlockContact2, ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name))));
+        builder.setPositiveButton(LocaleController.getString("BlockContact", C1072R.string.BlockContact), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 DialogOrContactPickerActivity.this.lambda$showBlockAlert$3(tLRPC$User, dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
         AlertDialog create = builder.create();
         showDialog(create);
         TextView textView = (TextView) create.getButton(-1);
@@ -644,10 +643,10 @@ public class DialogOrContactPickerActivity extends BaseFragment {
 
     public void lambda$showBlockAlert$3(TLRPC$User tLRPC$User, DialogInterface dialogInterface, int i) {
         if (MessagesController.isSupportUser(tLRPC$User)) {
-            AlertsCreator.showSimpleToast(this, LocaleController.getString("ErrorOccurred", C1010R.string.ErrorOccurred));
+            AlertsCreator.showSimpleToast(this, LocaleController.getString("ErrorOccurred", C1072R.string.ErrorOccurred));
         } else {
-            MessagesController.getInstance(this.currentAccount).blockPeer(tLRPC$User.f986id);
-            AlertsCreator.showSimpleToast(this, LocaleController.getString("UserBlocked", C1010R.string.UserBlocked));
+            MessagesController.getInstance(this.currentAccount).blockPeer(tLRPC$User.f995id);
+            AlertsCreator.showSimpleToast(this, LocaleController.getString("UserBlocked", C1072R.string.UserBlocked));
         }
         finishFragment();
     }
@@ -657,8 +656,8 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         if (scrollSlidingTextTabStrip == null) {
             return;
         }
-        scrollSlidingTextTabStrip.addTextTab(0, LocaleController.getString("BlockUserChatsTitle", C1010R.string.BlockUserChatsTitle));
-        this.scrollSlidingTextTabStrip.addTextTab(1, LocaleController.getString("BlockUserContactsTitle", C1010R.string.BlockUserContactsTitle));
+        scrollSlidingTextTabStrip.addTextTab(0, LocaleController.getString("BlockUserChatsTitle", C1072R.string.BlockUserChatsTitle));
+        this.scrollSlidingTextTabStrip.addTextTab(1, LocaleController.getString("BlockUserContactsTitle", C1072R.string.BlockUserContactsTitle));
         this.scrollSlidingTextTabStrip.setVisibility(0);
         this.actionBar.setExtraHeight(AndroidUtilities.m35dp(44.0f));
         int currentTabId = this.scrollSlidingTextTabStrip.getCurrentTabId();

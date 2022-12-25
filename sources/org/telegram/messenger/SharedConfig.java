@@ -10,15 +10,18 @@ import android.util.Base64;
 import android.util.SparseArray;
 import android.webkit.WebView;
 import androidx.core.content.p001pm.ShortcutManagerCompat;
+import com.google.android.exoplayer2.util.Log;
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import org.json.JSONObject;
+import org.telegram.messenger.CacheByChatsController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
@@ -70,9 +73,7 @@ public class SharedConfig {
     public static boolean isFloatingDebugActive = false;
     public static boolean isWaitingForPasscodeEnter = false;
     public static int ivFontSize = 0;
-    public static int keepMedia = 2;
     public static int lastKeepMediaCheckTime = 0;
-    private static int lastLocalId = -210000;
     public static int lastLogsCheckTime = 0;
     public static int lastPauseTime = 0;
     public static long lastUpdateCheckTime = 0;
@@ -80,7 +81,6 @@ public class SharedConfig {
     public static long lastUptimeMillis = 0;
     public static int lockRecordAudioVideoHint = 0;
     public static boolean loopStickers = false;
-    public static int mapPreviewType = 2;
     public static int mediaColumnsCount = 0;
     public static int messageSeenHintCount = 0;
     public static boolean noSoundHintShowed = false;
@@ -90,7 +90,6 @@ public class SharedConfig {
     public static long passcodeRetryInMs = 0;
     public static int passcodeType = 0;
     public static int passportConfigHash = 0;
-    private static String passportConfigJson = "";
     private static HashMap<String, String> passportConfigMap = null;
     public static boolean pauseMusicOnRecord = false;
     public static TLRPC$TL_help_appUpdate pendingAppUpdate = null;
@@ -134,8 +133,12 @@ public class SharedConfig {
     public static boolean useSystemEmoji;
     public static boolean useThreeLinesLayout;
     public static byte[] passcodeSalt = new byte[0];
+    public static int keepMedia = CacheByChatsController.KEEP_MEDIA_ONE_MONTH;
+    private static int lastLocalId = -210000;
+    private static String passportConfigJson = "";
     private static final Object sync = new Object();
     private static final Object localIdSync = new Object();
+    public static int mapPreviewType = 2;
 
     @Retention(RetentionPolicy.SOURCE)
     public @interface PasscodeType {
@@ -193,16 +196,16 @@ public class SharedConfig {
             this.password = str3;
             this.secret = str4;
             if (str == null) {
-                this.address = BuildConfig.APP_CENTER_HASH;
+                this.address = "";
             }
             if (str3 == null) {
-                this.password = BuildConfig.APP_CENTER_HASH;
+                this.password = "";
             }
             if (str2 == null) {
-                this.username = BuildConfig.APP_CENTER_HASH;
+                this.username = "";
             }
             if (str4 == null) {
-                this.secret = BuildConfig.APP_CENTER_HASH;
+                this.secret = "";
             }
         }
     }
@@ -214,7 +217,7 @@ public class SharedConfig {
                 edit.putBoolean("saveIncomingPhotos", saveIncomingPhotos);
                 edit.putString("passcodeHash1", passcodeHash);
                 byte[] bArr = passcodeSalt;
-                edit.putString("passcodeSalt", bArr.length > 0 ? Base64.encodeToString(bArr, 0) : BuildConfig.APP_CENTER_HASH);
+                edit.putString("passcodeSalt", bArr.length > 0 ? Base64.encodeToString(bArr, 0) : "");
                 edit.putBoolean("appLocked", appLocked);
                 edit.putInt("passcodeType", passcodeType);
                 edit.putLong("passcodeRetryInMs", passcodeRetryInMs);
@@ -229,7 +232,7 @@ public class SharedConfig {
                 edit.putInt("pushType", pushType);
                 edit.putBoolean("pushStatSent", pushStatSent);
                 byte[] bArr2 = pushAuthKey;
-                edit.putString("pushAuthKey", bArr2 != null ? Base64.encodeToString(bArr2, 0) : BuildConfig.APP_CENTER_HASH);
+                edit.putString("pushAuthKey", bArr2 != null ? Base64.encodeToString(bArr2, 0) : "");
                 edit.putInt("lastLocalId", lastLocalId);
                 edit.putString("passportConfigJson", passportConfigJson);
                 edit.putInt("passportConfigHash", passportConfigHash);
@@ -239,7 +242,7 @@ public class SharedConfig {
                 edit.putInt("scheduledOrNoSoundHintShows", scheduledOrNoSoundHintShows);
                 edit.putBoolean("forwardingOptionsHintShown", forwardingOptionsHintShown);
                 edit.putInt("lockRecordAudioVideoHint", lockRecordAudioVideoHint);
-                edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : BuildConfig.APP_CENTER_HASH);
+                edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : "");
                 TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = pendingAppUpdate;
                 if (tLRPC$TL_help_appUpdate != null) {
                     try {
@@ -400,7 +403,7 @@ public class SharedConfig {
         passcodeRetryInMs = 0L;
         lastUptimeMillis = 0L;
         badPasscodeTries = 0;
-        passcodeHash = BuildConfig.APP_CENTER_HASH;
+        passcodeHash = "";
         passcodeSalt = new byte[0];
         autoLockIn = 3600;
         lastPauseTime = 0;
@@ -534,45 +537,167 @@ public class SharedConfig {
 
     public static void checkKeepMedia() {
         final int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
-        if (Math.abs(currentTimeMillis - lastKeepMediaCheckTime) < 3600) {
-            return;
+        if (BuildVars.DEBUG_PRIVATE_VERSION || Math.abs(currentTimeMillis - lastKeepMediaCheckTime) >= 3600) {
+            lastKeepMediaCheckTime = currentTimeMillis;
+            final File checkDirectory = FileLoader.checkDirectory(4);
+            Utilities.cacheClearQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    SharedConfig.lambda$checkKeepMedia$2(currentTimeMillis, checkDirectory);
+                }
+            });
         }
-        lastKeepMediaCheckTime = currentTimeMillis;
-        final File checkDirectory = FileLoader.checkDirectory(4);
-        Utilities.cacheClearQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                SharedConfig.lambda$checkKeepMedia$1(currentTimeMillis, checkDirectory);
-            }
-        });
     }
 
-    public static void lambda$checkKeepMedia$1(int i, File file) {
-        int i2 = keepMedia;
-        if (i2 != 2) {
-            long j = i - ((i2 == 0 ? 7 : i2 == 1 ? 30 : 3) * 86400);
-            SparseArray<File> createMediaPaths = ImageLoader.getInstance().createMediaPaths();
-            for (int i3 = 0; i3 < createMediaPaths.size(); i3++) {
-                if (createMediaPaths.keyAt(i3) != 4) {
-                    try {
-                        Utilities.clearDir(createMediaPaths.valueAt(i3).getAbsolutePath(), 0, j, false);
-                    } catch (Throwable th) {
-                        FileLog.m31e(th);
-                    }
+    public static void lambda$checkKeepMedia$2(int i, File file) {
+        int i2;
+        long j;
+        ArrayList arrayList = new ArrayList();
+        int i3 = 0;
+        boolean z = false;
+        while (true) {
+            i2 = 4;
+            if (i3 >= 4) {
+                break;
+            }
+            if (UserConfig.getInstance(i3).isClientActivated()) {
+                CacheByChatsController cacheByChatsController = UserConfig.getInstance(i3).getMessagesController().getCacheByChatsController();
+                arrayList.add(cacheByChatsController);
+                if (cacheByChatsController.getKeepMediaExceptionsByDialogs().size() > 0) {
+                    z = true;
                 }
             }
+            i3++;
         }
-        File file2 = new File(file, "acache");
-        if (file2.exists()) {
+        int[] iArr = new int[3];
+        long j2 = Long.MAX_VALUE;
+        long j3 = Long.MAX_VALUE;
+        int i4 = 0;
+        boolean z2 = true;
+        for (int i5 = 3; i4 < i5; i5 = 3) {
+            iArr[i4] = getPreferences().getInt("keep_media_type_" + i4, CacheByChatsController.getDefault(i4));
+            if (iArr[i4] != CacheByChatsController.KEEP_MEDIA_FOREVER) {
+                z2 = false;
+            }
+            long daysInSeconds = CacheByChatsController.getDaysInSeconds(iArr[i4]);
+            if (daysInSeconds < j3) {
+                j3 = daysInSeconds;
+            }
+            i4++;
+        }
+        if (z) {
+            z2 = false;
+        }
+        if (!z2) {
+            SparseArray<File> createMediaPaths = ImageLoader.getInstance().createMediaPaths();
+            int i6 = 0;
+            while (i6 < createMediaPaths.size()) {
+                boolean z3 = createMediaPaths.keyAt(i6) == i2;
+                try {
+                    File[] listFiles = createMediaPaths.valueAt(i6).listFiles();
+                    ArrayList<CacheByChatsController.KeepMediaFile> arrayList2 = new ArrayList<>();
+                    for (File file2 : listFiles) {
+                        arrayList2.add(new CacheByChatsController.KeepMediaFile(file2));
+                    }
+                    for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                        ((CacheByChatsController) arrayList.get(i7)).lookupFiles(arrayList2);
+                    }
+                    int i8 = 0;
+                    while (i8 < arrayList2.size()) {
+                        CacheByChatsController.KeepMediaFile keepMediaFile = arrayList2.get(i8);
+                        int i9 = keepMediaFile.keepMedia;
+                        if (i9 != CacheByChatsController.KEEP_MEDIA_FOREVER) {
+                            if (i9 >= 0) {
+                                j = CacheByChatsController.getDaysInSeconds(i9);
+                            } else {
+                                int i10 = keepMediaFile.dialogType;
+                                if (i10 >= 0) {
+                                    j = CacheByChatsController.getDaysInSeconds(iArr[i10]);
+                                } else if (!z3) {
+                                    j = j3;
+                                }
+                            }
+                            if (j != j2) {
+                                if (Utilities.getLastUsageFileTime(keepMediaFile.file.getAbsolutePath()) < ((long) i) - j) {
+                                    try {
+                                        keepMediaFile.file.delete();
+                                    } catch (Exception e) {
+                                        FileLog.m31e(e);
+                                    }
+                                }
+                            }
+                        }
+                        i8++;
+                        j2 = Long.MAX_VALUE;
+                    }
+                } catch (Throwable th) {
+                    FileLog.m31e(th);
+                }
+                i6++;
+                i2 = 4;
+                j2 = Long.MAX_VALUE;
+            }
+        }
+        int i11 = getPreferences().getInt("cache_limit", ConnectionsManager.DEFAULT_DATACENTER_ID);
+        if (i11 != Integer.MAX_VALUE) {
+            long j4 = i11 == 1 ? 314572800L : i11 * 1024 * 1024 * 1000;
+            SparseArray<File> createMediaPaths2 = ImageLoader.getInstance().createMediaPaths();
+            long j5 = 0;
+            for (int i12 = 0; i12 < createMediaPaths2.size(); i12++) {
+                j5 += Utilities.getDirSize(createMediaPaths2.valueAt(i12).getAbsolutePath(), 0, true);
+            }
+            if (j5 > j4) {
+                ArrayList arrayList3 = new ArrayList();
+                for (int i13 = 0; i13 < createMediaPaths2.size(); i13++) {
+                    fillFilesRecursive(createMediaPaths2.valueAt(i13), arrayList3);
+                }
+                Collections.sort(arrayList3, SharedConfig$$ExternalSyntheticLambda5.INSTANCE);
+                for (int i14 = 0; i14 < arrayList3.size(); i14++) {
+                    j5 -= ((FileInfoInternal) arrayList3.get(i14)).file.length();
+                    Log.m664d("kek", "remove files by size" + ((FileInfoInternal) arrayList3.get(i14)).file.getName());
+                    try {
+                        ((FileInfoInternal) arrayList3.get(i14)).file.delete();
+                    } catch (Exception unused) {
+                    }
+                    if (j5 < j4) {
+                        break;
+                    }
+                }
+                Log.m664d("kek", "total size " + AndroidUtilities.formatFileSize(j5));
+            }
+        }
+        File file3 = new File(file, "acache");
+        if (file3.exists()) {
             try {
-                Utilities.clearDir(file2.getAbsolutePath(), 0, i - 86400, false);
+                Utilities.clearDir(file3.getAbsolutePath(), 0, i - 86400, false);
             } catch (Throwable th2) {
                 FileLog.m31e(th2);
             }
         }
-        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-        edit.putInt("lastKeepMediaCheckTime", lastKeepMediaCheckTime);
-        edit.commit();
+        MessagesController.getGlobalMainSettings().edit().putInt("lastKeepMediaCheckTime", lastKeepMediaCheckTime).apply();
+    }
+
+    public static int lambda$checkKeepMedia$1(FileInfoInternal fileInfoInternal, FileInfoInternal fileInfoInternal2) {
+        long j = fileInfoInternal2.lastUsageDate;
+        long j2 = fileInfoInternal.lastUsageDate;
+        if (j > j2) {
+            return -1;
+        }
+        return j < j2 ? 1 : 0;
+    }
+
+    private static void fillFilesRecursive(File file, ArrayList<FileInfoInternal> arrayList) {
+        File[] listFiles;
+        if (file == null || (listFiles = file.listFiles()) == null) {
+            return;
+        }
+        for (File file2 : listFiles) {
+            if (file2.isDirectory()) {
+                fillFilesRecursive(file2, arrayList);
+            } else if (!file2.getName().equals(".nomedia")) {
+                arrayList.add(new FileInfoInternal(file2));
+            }
+        }
     }
 
     public static void toggleDisableVoiceAudioEffects() {
@@ -845,10 +970,10 @@ public class SharedConfig {
             return;
         }
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-        String string = sharedPreferences.getString("proxy_ip", BuildConfig.APP_CENTER_HASH);
-        String string2 = sharedPreferences.getString("proxy_user", BuildConfig.APP_CENTER_HASH);
-        String string3 = sharedPreferences.getString("proxy_pass", BuildConfig.APP_CENTER_HASH);
-        String string4 = sharedPreferences.getString("proxy_secret", BuildConfig.APP_CENTER_HASH);
+        String string = sharedPreferences.getString("proxy_ip", "");
+        String string2 = sharedPreferences.getString("proxy_user", "");
+        String string3 = sharedPreferences.getString("proxy_pass", "");
+        String string4 = sharedPreferences.getString("proxy_secret", "");
         int i = sharedPreferences.getInt("proxy_port", 1080);
         proxyListLoaded = true;
         proxyList.clear();
@@ -881,20 +1006,20 @@ public class SharedConfig {
         for (int i = 0; i < size; i++) {
             ProxyInfo proxyInfo = proxyList.get(i);
             String str = proxyInfo.address;
-            String str2 = BuildConfig.APP_CENTER_HASH;
+            String str2 = "";
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             serializedData.writeString(str);
             serializedData.writeInt32(proxyInfo.port);
             String str3 = proxyInfo.username;
             if (str3 == null) {
-                str3 = BuildConfig.APP_CENTER_HASH;
+                str3 = "";
             }
             serializedData.writeString(str3);
             String str4 = proxyInfo.password;
             if (str4 == null) {
-                str4 = BuildConfig.APP_CENTER_HASH;
+                str4 = "";
             }
             serializedData.writeString(str4);
             String str5 = proxyInfo.secret;
@@ -927,16 +1052,16 @@ public class SharedConfig {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             boolean z = globalMainSettings.getBoolean("proxy_enabled", false);
             SharedPreferences.Editor edit = globalMainSettings.edit();
-            edit.putString("proxy_ip", BuildConfig.APP_CENTER_HASH);
-            edit.putString("proxy_pass", BuildConfig.APP_CENTER_HASH);
-            edit.putString("proxy_user", BuildConfig.APP_CENTER_HASH);
-            edit.putString("proxy_secret", BuildConfig.APP_CENTER_HASH);
+            edit.putString("proxy_ip", "");
+            edit.putString("proxy_pass", "");
+            edit.putString("proxy_user", "");
+            edit.putString("proxy_secret", "");
             edit.putInt("proxy_port", 1080);
             edit.putBoolean("proxy_enabled", false);
             edit.putBoolean("proxy_enabled_calls", false);
             edit.commit();
             if (z) {
-                ConnectionsManager.setProxySettings(false, BuildConfig.APP_CENTER_HASH, 0, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
+                ConnectionsManager.setProxySettings(false, "", 0, "", "", "");
             }
         }
         proxyList.remove(proxyInfo);
@@ -947,7 +1072,7 @@ public class SharedConfig {
         Utilities.globalQueue.postRunnable(SharedConfig$$ExternalSyntheticLambda2.INSTANCE);
     }
 
-    public static void lambda$checkSaveToGalleryFiles$3() {
+    public static void lambda$checkSaveToGalleryFiles$4() {
         try {
             File file = new File(Environment.getExternalStorageDirectory(), "Telegram");
             File file2 = new File(file, "Telegram Images");
@@ -1088,5 +1213,19 @@ public class SharedConfig {
             animationsEnabled = Boolean.valueOf(MessagesController.getGlobalMainSettings().getBoolean("view_animations", true));
         }
         return animationsEnabled.booleanValue();
+    }
+
+    public static SharedPreferences getPreferences() {
+        return ApplicationLoader.applicationContext.getSharedPreferences("userconfing", 0);
+    }
+
+    public static class FileInfoInternal {
+        final File file;
+        final long lastUsageDate;
+
+        private FileInfoInternal(File file) {
+            this.file = file;
+            this.lastUsageDate = Utilities.getLastUsageFileTime(file.getAbsolutePath());
+        }
     }
 }

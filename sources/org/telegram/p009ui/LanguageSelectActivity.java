@@ -25,7 +25,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
@@ -35,7 +35,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.HeaderCell;
@@ -84,10 +84,10 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
     @Override
     public View createView(Context context) {
         this.searching = false;
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("Language", C1010R.string.Language));
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setTitle(LocaleController.getString("Language", C1072R.string.Language));
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -95,7 +95,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                 }
             }
         });
-        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, C1010R.C1011drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, C1072R.C1073drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
                 LanguageSelectActivity.this.searching = true;
@@ -133,7 +133,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             }
         });
         this.searchItem = actionBarMenuItemSearchListener;
-        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("Search", C1010R.string.Search));
+        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("Search", C1072R.string.Search));
         this.listAdapter = new ListAdapter(context, false);
         this.searchListViewAdapter = new ListAdapter(context, true);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -142,7 +142,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
-        emptyTextProgressView.setText(LocaleController.getString("NoResult", C1010R.string.NoResult));
+        emptyTextProgressView.setText(LocaleController.getString("NoResult", C1072R.string.NoResult));
         this.emptyView.showTextView();
         this.emptyView.setShowAtCenter(true);
         frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
@@ -319,15 +319,15 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             }
             if (localeInfo != null && localeInfo.pathToFile != null && (!localeInfo.isRemote() || localeInfo.serverIndex == Integer.MAX_VALUE)) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setTitle(LocaleController.getString("DeleteLocalizationTitle", C1010R.string.DeleteLocalizationTitle));
-                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DeleteLocalizationText", C1010R.string.DeleteLocalizationText, localeInfo.name)));
-                builder.setPositiveButton(LocaleController.getString("Delete", C1010R.string.Delete), new DialogInterface.OnClickListener() {
+                builder.setTitle(LocaleController.getString("DeleteLocalizationTitle", C1072R.string.DeleteLocalizationTitle));
+                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DeleteLocalizationText", C1072R.string.DeleteLocalizationText, localeInfo.name)));
+                builder.setPositiveButton(LocaleController.getString("Delete", C1072R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
                         LanguageSelectActivity.this.lambda$createView$4(localeInfo, dialogInterface, i2);
                     }
                 });
-                builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+                builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
                 AlertDialog create = builder.create();
                 showDialog(create);
                 TextView textView = (TextView) create.getButton(-1);
@@ -444,9 +444,9 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
     }
 
     private void updateLanguage() {
-        C1069ActionBar c1069ActionBar = this.actionBar;
-        if (c1069ActionBar != null) {
-            c1069ActionBar.setTitleAnimated(LocaleController.getString("Language", C1010R.string.Language), true, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        C1133ActionBar c1133ActionBar = this.actionBar;
+        if (c1133ActionBar != null) {
+            c1133ActionBar.setTitleAnimated(LocaleController.getString("Language", C1072R.string.Language), true, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         }
         if (this.listView != null) {
             for (int i = 0; i < this.listView.getChildCount(); i++) {
@@ -528,7 +528,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             headerCell.setFocusable(true);
             this.header.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
             HeaderCell headerCell2 = this.header;
-            int i = C1010R.string.TranslateMessages;
+            int i = C1072R.string.TranslateMessages;
             headerCell2.setText(LocaleController.getString("TranslateMessages", i));
             this.header.setContentDescription(LocaleController.getString("TranslateMessages", i));
             addView(this.header, LayoutHelper.createLinear(-1, -2));
@@ -536,7 +536,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             TextCheckCell textCheckCell = new TextCheckCell(context);
             this.showButtonCheck = textCheckCell;
             textCheckCell.setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.getColor("windowBackgroundWhite"), Theme.getColor("listSelectorSDK21")));
-            this.showButtonCheck.setTextAndCheck(LocaleController.getString("ShowTranslateButton", C1010R.string.ShowTranslateButton), value, value);
+            this.showButtonCheck.setTextAndCheck(LocaleController.getString("ShowTranslateButton", C1072R.string.ShowTranslateButton), value, value);
             this.showButtonCheck.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -562,7 +562,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             this.info.setBottomPadding(16);
             this.info.setFocusable(true);
             TextInfoPrivacyCell textInfoPrivacyCell2 = this.info;
-            int i2 = C1010R.string.TranslateMessagesInfo1;
+            int i2 = C1072R.string.TranslateMessagesInfo1;
             textInfoPrivacyCell2.setText(LocaleController.getString("TranslateMessagesInfo1", i2));
             this.info.setContentDescription(LocaleController.getString("TranslateMessagesInfo1", i2));
             addView(this.info, LayoutHelper.createLinear(-1, -2));
@@ -572,7 +572,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             this.info2.setBottomPadding(16);
             this.info2.setFocusable(true);
             TextInfoPrivacyCell textInfoPrivacyCell4 = this.info2;
-            int i3 = C1010R.string.TranslateMessagesInfo2;
+            int i3 = C1072R.string.TranslateMessagesInfo2;
             textInfoPrivacyCell4.setText(LocaleController.getString("TranslateMessagesInfo2", i3));
             this.info2.setContentDescription(LocaleController.getString("TranslateMessagesInfo2", i3));
             this.info2.setAlpha(value ? 0.0f : 1.0f);
@@ -592,13 +592,13 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         }
 
         public void updateTranslations() {
-            this.header.setText(LocaleController.getString("TranslateMessages", C1010R.string.TranslateMessages));
-            this.showButtonCheck.setTextAndCheck(LocaleController.getString("ShowTranslateButton", C1010R.string.ShowTranslateButton), getValue(), getValue());
+            this.header.setText(LocaleController.getString("TranslateMessages", C1072R.string.TranslateMessages));
+            this.showButtonCheck.setTextAndCheck(LocaleController.getString("ShowTranslateButton", C1072R.string.ShowTranslateButton), getValue(), getValue());
             this.showButtonCheck.updateRTL();
             this.doNotTranslateCell.updateRTL();
-            this.info.setText(LocaleController.getString("TranslateMessagesInfo1", C1010R.string.TranslateMessagesInfo1));
+            this.info.setText(LocaleController.getString("TranslateMessagesInfo1", C1072R.string.TranslateMessagesInfo1));
             this.info.getTextView().setGravity(LocaleController.isRTL ? 5 : 3);
-            this.info2.setText(LocaleController.getString("TranslateMessagesInfo2", C1010R.string.TranslateMessagesInfo2));
+            this.info2.setText(LocaleController.getString("TranslateMessagesInfo2", C1072R.string.TranslateMessagesInfo2));
             this.info2.getTextView().setGravity(LocaleController.isRTL ? 5 : 3);
             update();
             updateHeight();
@@ -636,7 +636,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             if (str == null) {
                 str = String.format(LocaleController.getPluralString("Languages", getRestrictedLanguages().size()), Integer.valueOf(getRestrictedLanguages().size()));
             }
-            this.doNotTranslateCell.setTextAndValue(LocaleController.getString("DoNotTranslate", C1010R.string.DoNotTranslate), str, false);
+            this.doNotTranslateCell.setTextAndValue(LocaleController.getString("DoNotTranslate", C1072R.string.DoNotTranslate), str, false);
             this.doNotTranslateCell.setClickable(z);
             this.info2.setVisibility(0);
             float[] fArr = new float[2];

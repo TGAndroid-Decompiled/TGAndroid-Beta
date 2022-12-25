@@ -15,7 +15,7 @@ import java.util.Calendar;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 
@@ -72,9 +72,9 @@ public class FireworksOverlay extends View {
         byte side;
         byte type;
         byte typeSize;
-        float f1057x;
+        float f1067x;
         byte xFinished;
-        float f1058y;
+        float f1068y;
 
         private Particle() {
         }
@@ -82,9 +82,9 @@ public class FireworksOverlay extends View {
         public void draw(Canvas canvas) {
             byte b = this.type;
             if (b == 0) {
-                canvas.drawCircle(this.f1057x, this.f1058y, AndroidUtilities.m35dp(this.typeSize), FireworksOverlay.paint[this.colorType]);
+                canvas.drawCircle(this.f1067x, this.f1068y, AndroidUtilities.m35dp(this.typeSize), FireworksOverlay.paint[this.colorType]);
             } else if (b == 1) {
-                FireworksOverlay.this.rect.set(this.f1057x - AndroidUtilities.m35dp(this.typeSize), this.f1058y - AndroidUtilities.m35dp(2.0f), this.f1057x + AndroidUtilities.m35dp(this.typeSize), this.f1058y + AndroidUtilities.m35dp(2.0f));
+                FireworksOverlay.this.rect.set(this.f1067x - AndroidUtilities.m35dp(this.typeSize), this.f1068y - AndroidUtilities.m35dp(2.0f), this.f1067x + AndroidUtilities.m35dp(this.typeSize), this.f1068y + AndroidUtilities.m35dp(2.0f));
                 canvas.save();
                 canvas.rotate(this.rotation, FireworksOverlay.this.rect.centerX(), FireworksOverlay.this.rect.centerY());
                 canvas.drawRoundRect(FireworksOverlay.this.rect, AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), FireworksOverlay.paint[this.colorType]);
@@ -93,13 +93,13 @@ public class FireworksOverlay extends View {
                 Drawable drawable = FireworksOverlay.heartDrawable[this.colorType];
                 int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
                 int intrinsicHeight = drawable.getIntrinsicHeight() / 2;
-                float f = this.f1057x;
-                float f2 = this.f1058y;
+                float f = this.f1067x;
+                float f2 = this.f1068y;
                 drawable.setBounds(((int) f) - intrinsicWidth, ((int) f2) - intrinsicHeight, ((int) f) + intrinsicWidth, ((int) f2) + intrinsicHeight);
                 canvas.save();
-                canvas.rotate(this.rotation, this.f1057x, this.f1058y);
+                canvas.rotate(this.rotation, this.f1067x, this.f1068y);
                 byte b2 = this.typeSize;
-                canvas.scale(b2 / 6.0f, b2 / 6.0f, this.f1057x, this.f1058y);
+                canvas.scale(b2 / 6.0f, b2 / 6.0f, this.f1067x, this.f1068y);
                 drawable.draw(canvas);
                 canvas.restore();
             }
@@ -107,10 +107,10 @@ public class FireworksOverlay extends View {
 
         public boolean update(int i) {
             float f = i / 16.0f;
-            float f2 = this.f1057x;
+            float f2 = this.f1067x;
             float f3 = this.moveX;
-            this.f1057x = f2 + (f3 * f);
-            this.f1058y += this.moveY * f;
+            this.f1067x = f2 + (f3 * f);
+            this.f1068y += this.moveY * f;
             if (this.xFinished != 0) {
                 float m35dp = AndroidUtilities.m35dp(1.0f) * 0.5f;
                 if (this.xFinished == 1) {
@@ -162,7 +162,7 @@ public class FireworksOverlay extends View {
                     this.rotation = (short) (s - 360);
                 }
             }
-            return this.f1058y >= ((float) FireworksOverlay.this.getHeightForAnimation());
+            return this.f1068y >= ((float) FireworksOverlay.this.getHeightForAnimation());
         }
     }
 
@@ -184,7 +184,7 @@ public class FireworksOverlay extends View {
             if (i >= drawableArr.length) {
                 return;
             }
-            drawableArr[i] = ApplicationLoader.applicationContext.getResources().getDrawable(C1010R.C1011drawable.heart_confetti).mutate();
+            drawableArr[i] = ApplicationLoader.applicationContext.getResources().getDrawable(C1072R.C1073drawable.heart_confetti).mutate();
             heartDrawable[i].setColorFilter(new PorterDuffColorFilter(heartColors[i], PorterDuff.Mode.MULTIPLY));
             i++;
         }
@@ -223,20 +223,20 @@ public class FireworksOverlay extends View {
             particle.typeSize = (byte) ((Utilities.random.nextFloat() * 4.0f) + 4.0f);
         }
         if (z) {
-            particle.f1058y = (-Utilities.random.nextFloat()) * getHeightForAnimation() * 1.2f;
-            particle.f1057x = AndroidUtilities.m35dp(5.0f) + Utilities.random.nextInt(getWidthForAnimation() - AndroidUtilities.m35dp(10.0f));
+            particle.f1068y = (-Utilities.random.nextFloat()) * getHeightForAnimation() * 1.2f;
+            particle.f1067x = AndroidUtilities.m35dp(5.0f) + Utilities.random.nextInt(getWidthForAnimation() - AndroidUtilities.m35dp(10.0f));
             particle.xFinished = particle.finishedStart;
         } else {
             int m35dp = AndroidUtilities.m35dp(Utilities.random.nextInt(10) + 4);
             int heightForAnimation = getHeightForAnimation() / 4;
             if (particle.side == 0) {
-                particle.f1057x = -m35dp;
+                particle.f1067x = -m35dp;
             } else {
-                particle.f1057x = getWidthForAnimation() + m35dp;
+                particle.f1067x = getWidthForAnimation() + m35dp;
             }
             particle.moveX = (particle.side != 0 ? -1 : 1) * (AndroidUtilities.m35dp(1.2f) + (Utilities.random.nextFloat() * AndroidUtilities.m35dp(4.0f)));
             particle.moveY = -(AndroidUtilities.m35dp(4.0f) + (Utilities.random.nextFloat() * AndroidUtilities.m35dp(4.0f)));
-            particle.f1058y = (heightForAnimation / 2) + Utilities.random.nextInt(heightForAnimation * 2);
+            particle.f1068y = (heightForAnimation / 2) + Utilities.random.nextInt(heightForAnimation * 2);
         }
         return particle;
     }

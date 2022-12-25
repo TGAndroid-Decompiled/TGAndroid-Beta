@@ -462,7 +462,7 @@ public class LocationController extends BaseController implements NotificationCe
                 }
                 final TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage = new TLRPC$TL_messages_editMessage();
                 tLRPC$TL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
-                tLRPC$TL_messages_editMessage.f931id = sharingLocationInfo.mid;
+                tLRPC$TL_messages_editMessage.f940id = sharingLocationInfo.mid;
                 tLRPC$TL_messages_editMessage.flags |= 16384;
                 TLRPC$TL_inputMediaGeoLive tLRPC$TL_inputMediaGeoLive = new TLRPC$TL_inputMediaGeoLive();
                 tLRPC$TL_messages_editMessage.media = tLRPC$TL_inputMediaGeoLive;
@@ -680,7 +680,7 @@ public class LocationController extends BaseController implements NotificationCe
     public void addSharingLocation(TLRPC$Message tLRPC$Message) {
         final SharingLocationInfo sharingLocationInfo = new SharingLocationInfo();
         sharingLocationInfo.did = tLRPC$Message.dialog_id;
-        sharingLocationInfo.mid = tLRPC$Message.f872id;
+        sharingLocationInfo.mid = tLRPC$Message.f881id;
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
         sharingLocationInfo.period = tLRPC$MessageMedia.period;
         int i = tLRPC$MessageMedia.proximity_notification_radius;
@@ -919,7 +919,7 @@ public class LocationController extends BaseController implements NotificationCe
         if (sharingLocationInfo != null) {
             TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage = new TLRPC$TL_messages_editMessage();
             tLRPC$TL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
-            tLRPC$TL_messages_editMessage.f931id = sharingLocationInfo.mid;
+            tLRPC$TL_messages_editMessage.f940id = sharingLocationInfo.mid;
             tLRPC$TL_messages_editMessage.flags |= 16384;
             TLRPC$TL_inputMediaGeoLive tLRPC$TL_inputMediaGeoLive = new TLRPC$TL_inputMediaGeoLive();
             tLRPC$TL_messages_editMessage.media = tLRPC$TL_inputMediaGeoLive;
@@ -987,7 +987,7 @@ public class LocationController extends BaseController implements NotificationCe
             SharingLocationInfo sharingLocationInfo = this.sharingLocations.get(i);
             TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage = new TLRPC$TL_messages_editMessage();
             tLRPC$TL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
-            tLRPC$TL_messages_editMessage.f931id = sharingLocationInfo.mid;
+            tLRPC$TL_messages_editMessage.f940id = sharingLocationInfo.mid;
             tLRPC$TL_messages_editMessage.flags |= 16384;
             TLRPC$TL_inputMediaGeoLive tLRPC$TL_inputMediaGeoLive = new TLRPC$TL_inputMediaGeoLive();
             tLRPC$TL_messages_editMessage.media = tLRPC$TL_inputMediaGeoLive;
@@ -1152,7 +1152,7 @@ public class LocationController extends BaseController implements NotificationCe
                     tLRPC$TL_messages_readMessageContents = new TLRPC$TL_channels_readMessageContents();
                     int size = arrayList.size();
                     while (i < size) {
-                        tLRPC$TL_messages_readMessageContents.f891id.add(Integer.valueOf(arrayList.get(i).f872id));
+                        tLRPC$TL_messages_readMessageContents.f900id.add(Integer.valueOf(arrayList.get(i).f881id));
                         i++;
                     }
                     tLRPC$TL_messages_readMessageContents.channel = getMessagesController().getInputChannel(j2);
@@ -1167,7 +1167,7 @@ public class LocationController extends BaseController implements NotificationCe
             tLRPC$TL_messages_readMessageContents = new TLRPC$TL_messages_readMessageContents();
             int size2 = arrayList.size();
             while (i < size2) {
-                tLRPC$TL_messages_readMessageContents.f947id.add(Integer.valueOf(arrayList.get(i).f872id));
+                tLRPC$TL_messages_readMessageContents.f956id.add(Integer.valueOf(arrayList.get(i).f881id));
                 i++;
             }
             getConnectionsManager().sendRequest(tLRPC$TL_messages_readMessageContents, new RequestDelegate() {

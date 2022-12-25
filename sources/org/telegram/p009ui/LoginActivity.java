@@ -69,6 +69,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -76,12 +77,11 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.PhoneFormat.C0933PhoneFormat;
+import org.telegram.PhoneFormat.C0995PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
@@ -129,7 +129,7 @@ import org.telegram.p009ui.Components.TransformableLoginButtonView;
 import org.telegram.p009ui.Components.VerticalPositionAutoAnimator;
 import org.telegram.p009ui.CountrySelectActivity;
 import org.telegram.p009ui.LoginActivity;
-import org.telegram.tgnet.C1068x72c667f;
+import org.telegram.tgnet.C1132x72c667f;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
@@ -693,7 +693,7 @@ public class LoginActivity extends BaseFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(str);
         builder.setMessage(str2);
-        builder.setPositiveButton(LocaleController.getString("OK", C1010R.string.OK), null);
+        builder.setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), null);
         showDialog(builder.create());
     }
 
@@ -701,7 +701,7 @@ public class LoginActivity extends BaseFragment {
         view.performHapticFeedback(3, 2);
         AndroidUtilities.shakeViewSpring(view, 3.5f);
         if (z && (view instanceof OutlineTextContainerView)) {
-            int i = C1010R.C1012id.timeout_callback;
+            int i = C1072R.C1074id.timeout_callback;
             Runnable runnable = (Runnable) view.getTag(i);
             if (runnable != null) {
                 view.removeCallbacks(runnable);
@@ -709,24 +709,24 @@ public class LoginActivity extends BaseFragment {
             final OutlineTextContainerView outlineTextContainerView = (OutlineTextContainerView) view;
             AtomicReference atomicReference = new AtomicReference();
             final EditText attachedEditText = outlineTextContainerView.getAttachedEditText();
-            final C33288 c33288 = new C33288(this, attachedEditText, atomicReference);
+            final C34868 c34868 = new C34868(this, attachedEditText, atomicReference);
             outlineTextContainerView.animateError(1.0f);
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.lambda$onFieldError$9(OutlineTextContainerView.this, view, attachedEditText, c33288);
+                    LoginActivity.lambda$onFieldError$9(OutlineTextContainerView.this, view, attachedEditText, c34868);
                 }
             };
             atomicReference.set(runnable2);
             view.postDelayed(runnable2, 2000L);
             view.setTag(i, runnable2);
             if (attachedEditText != null) {
-                attachedEditText.addTextChangedListener(c33288);
+                attachedEditText.addTextChangedListener(c34868);
             }
         }
     }
 
-    public class C33288 implements TextWatcher {
+    public class C34868 implements TextWatcher {
         final EditText val$editText;
         final AtomicReference val$timeoutCallbackRef;
 
@@ -738,7 +738,7 @@ public class LoginActivity extends BaseFragment {
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         }
 
-        C33288(LoginActivity loginActivity, EditText editText, AtomicReference atomicReference) {
+        C34868(LoginActivity loginActivity, EditText editText, AtomicReference atomicReference) {
             this.val$editText = editText;
             this.val$timeoutCallbackRef = atomicReference;
         }
@@ -750,7 +750,7 @@ public class LoginActivity extends BaseFragment {
             editText.post(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.C33288.this.lambda$beforeTextChanged$0(editText, atomicReference);
+                    LoginActivity.C34868.this.lambda$beforeTextChanged$0(editText, atomicReference);
                 }
             });
         }
@@ -764,7 +764,7 @@ public class LoginActivity extends BaseFragment {
 
     public static void lambda$onFieldError$9(OutlineTextContainerView outlineTextContainerView, View view, final EditText editText, final TextWatcher textWatcher) {
         outlineTextContainerView.animateError(0.0f);
-        view.setTag(C1010R.C1012id.timeout_callback, null);
+        view.setTag(C1072R.C1074id.timeout_callback, null);
         if (editText != null) {
             editText.post(new Runnable() {
                 @Override
@@ -785,34 +785,34 @@ public class LoginActivity extends BaseFragment {
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(baseFragment.getParentActivity());
         if (z) {
-            builder.setTitle(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle));
-            builder.setMessage(LocaleController.getString("BannedPhoneNumber", C1010R.string.BannedPhoneNumber));
+            builder.setTitle(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle));
+            builder.setMessage(LocaleController.getString("BannedPhoneNumber", C1072R.string.BannedPhoneNumber));
         } else if (phoneInputData == null || phoneInputData.patterns == null || phoneInputData.patterns.isEmpty() || phoneInputData.country == null) {
-            builder.setTitle(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle));
-            builder.setMessage(LocaleController.getString(C1010R.string.InvalidPhoneNumber));
+            builder.setTitle(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle));
+            builder.setMessage(LocaleController.getString(C1072R.string.InvalidPhoneNumber));
         } else {
             int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
             for (String str2 : phoneInputData.patterns) {
-                int length = str2.replace(" ", BuildConfig.APP_CENTER_HASH).length();
+                int length = str2.replace(" ", "").length();
                 if (length < i) {
                     i = length;
                 }
             }
-            if (C0933PhoneFormat.stripExceptNumbers(str).length() - phoneInputData.country.code.length() < i) {
-                builder.setTitle(LocaleController.getString(C1010R.string.WrongNumberFormat));
-                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("ShortNumberInfo", C1010R.string.ShortNumberInfo, phoneInputData.country.name, phoneInputData.phoneNumber)));
+            if (C0995PhoneFormat.stripExceptNumbers(str).length() - phoneInputData.country.code.length() < i) {
+                builder.setTitle(LocaleController.getString(C1072R.string.WrongNumberFormat));
+                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("ShortNumberInfo", C1072R.string.ShortNumberInfo, phoneInputData.country.name, phoneInputData.phoneNumber)));
             } else {
-                builder.setTitle(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle));
-                builder.setMessage(LocaleController.getString(C1010R.string.InvalidPhoneNumber));
+                builder.setTitle(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle));
+                builder.setMessage(LocaleController.getString(C1072R.string.InvalidPhoneNumber));
             }
         }
-        builder.setNeutralButton(LocaleController.getString("BotHelp", C1010R.string.BotHelp), new DialogInterface.OnClickListener() {
+        builder.setNeutralButton(LocaleController.getString("BotHelp", C1072R.string.BotHelp), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
                 LoginActivity.lambda$needShowInvalidAlert$10(z, str, baseFragment, dialogInterface, i2);
             }
         });
-        builder.setPositiveButton(LocaleController.getString("OK", C1010R.string.OK), null);
+        builder.setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), null);
         baseFragment.showDialog(builder.create());
     }
 
@@ -835,9 +835,9 @@ public class LoginActivity extends BaseFragment {
             baseFragment.getParentActivity().startActivity(Intent.createChooser(intent, "Send email..."));
         } catch (Exception unused) {
             AlertDialog.Builder builder = new AlertDialog.Builder(baseFragment.getParentActivity());
-            builder.setTitle(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle));
-            builder.setMessage(LocaleController.getString("NoMailInstalled", C1010R.string.NoMailInstalled));
-            builder.setPositiveButton(LocaleController.getString("OK", C1010R.string.OK), null);
+            builder.setTitle(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle));
+            builder.setMessage(LocaleController.getString("NoMailInstalled", C1072R.string.NoMailInstalled));
+            builder.setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), null);
             baseFragment.showDialog(builder.create());
         }
     }
@@ -965,10 +965,10 @@ public class LoginActivity extends BaseFragment {
                     return;
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setTitle(LocaleController.getString(C1010R.string.AppName));
-                builder.setMessage(LocaleController.getString("StopLoading", C1010R.string.StopLoading));
-                builder.setPositiveButton(LocaleController.getString("WaitMore", C1010R.string.WaitMore), null);
-                builder.setNegativeButton(LocaleController.getString("Stop", C1010R.string.Stop), new DialogInterface.OnClickListener() {
+                builder.setTitle(LocaleController.getString("StopLoadingTitle", C1072R.string.StopLoadingTitle));
+                builder.setMessage(LocaleController.getString("StopLoading", C1072R.string.StopLoading));
+                builder.setPositiveButton(LocaleController.getString("WaitMore", C1072R.string.WaitMore), null);
+                builder.setNegativeButton(LocaleController.getString("Stop", C1072R.string.Stop), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
                         LoginActivity.this.lambda$onDoneButtonPressed$13(dialogInterface, i);
@@ -1319,7 +1319,7 @@ public class LoginActivity extends BaseFragment {
 
     public void onAuthSuccess(TLRPC$TL_auth_authorization tLRPC$TL_auth_authorization, boolean z) {
         MessagesController.getInstance(this.currentAccount).cleanup();
-        ConnectionsManager.getInstance(this.currentAccount).setUserId(tLRPC$TL_auth_authorization.user.f986id);
+        ConnectionsManager.getInstance(this.currentAccount).setUserId(tLRPC$TL_auth_authorization.user.f995id);
         UserConfig.getInstance(this.currentAccount).clearConfig();
         MessagesController.getInstance(this.currentAccount).cleanup();
         UserConfig.getInstance(this.currentAccount).syncContacts = this.syncContacts;
@@ -1413,10 +1413,11 @@ public class LoginActivity extends BaseFragment {
         private ImageView chevronRight;
         private View codeDividerView;
         private AnimatedPhoneNumberEditText codeField;
-        private HashMap<String, CountrySelectActivity.Country> codesMap;
+        private HashMap<String, List<CountrySelectActivity.Country>> codesMap;
         private boolean confirmedNumber;
         private ArrayList<CountrySelectActivity.Country> countriesArray;
         private TextViewSwitcher countryButton;
+        private String countryCodeForHint;
         private OutlineTextContainerView countryOutlineView;
         private int countryState;
         private CountrySelectActivity.Country currentCountry;
@@ -1433,6 +1434,7 @@ public class LoginActivity extends BaseFragment {
         private CheckBoxCell syncContactsBox;
         private CheckBoxCell testBackendCheckBox;
         private TextView titleView;
+        private int wasCountryHintIndex;
 
         @Override
         public boolean hasCustomKeyboard() {
@@ -1445,7 +1447,6 @@ public class LoginActivity extends BaseFragment {
 
         public PhoneView(final Context context) {
             super(context);
-            int i;
             this.countryState = 0;
             this.countriesArray = new ArrayList<>();
             this.codesMap = new HashMap<>();
@@ -1455,19 +1456,20 @@ public class LoginActivity extends BaseFragment {
             this.ignoreOnPhoneChange = false;
             this.nextPressed = false;
             this.confirmedNumber = false;
+            this.wasCountryHintIndex = -1;
             setOrientation(1);
             setGravity(17);
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextSize(1, 18.0f);
             this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.titleView.setText(LocaleController.getString(LoginActivity.this.activityMode == 2 ? C1010R.string.ChangePhoneNewNumber : C1010R.string.YourNumber));
+            this.titleView.setText(LocaleController.getString(LoginActivity.this.activityMode == 2 ? C1072R.string.ChangePhoneNewNumber : C1072R.string.YourNumber));
             this.titleView.setGravity(17);
             this.titleView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
             addView(this.titleView, LayoutHelper.createFrame(-1, -2.0f, 1, 32.0f, 0.0f, 32.0f, 0.0f));
             TextView textView2 = new TextView(context);
             this.subtitleView = textView2;
-            textView2.setText(LocaleController.getString(LoginActivity.this.activityMode == 2 ? C1010R.string.ChangePhoneHelp : C1010R.string.StartText));
+            textView2.setText(LocaleController.getString(LoginActivity.this.activityMode == 2 ? C1072R.string.ChangePhoneHelp : C1072R.string.StartText));
             this.subtitleView.setTextSize(1, 14.0f);
             this.subtitleView.setGravity(17);
             this.subtitleView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
@@ -1482,12 +1484,12 @@ public class LoginActivity extends BaseFragment {
                     return lambda$new$0;
                 }
             });
-            Animation loadAnimation = AnimationUtils.loadAnimation(context, C1010R.anim.text_in);
+            Animation loadAnimation = AnimationUtils.loadAnimation(context, C1072R.anim.text_in);
             loadAnimation.setInterpolator(Easings.easeInOutQuad);
             this.countryButton.setInAnimation(loadAnimation);
             ImageView imageView = new ImageView(context);
             this.chevronRight = imageView;
-            imageView.setImageResource(C1010R.C1011drawable.msg_inputarrow);
+            imageView.setImageResource(C1072R.C1073drawable.msg_inputarrow);
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(0);
             linearLayout.setGravity(16);
@@ -1495,12 +1497,12 @@ public class LoginActivity extends BaseFragment {
             linearLayout.addView(this.chevronRight, LayoutHelper.createLinearRelatively(24.0f, 24.0f, 0, 0.0f, 0.0f, 14.0f, 0.0f));
             OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context);
             this.countryOutlineView = outlineTextContainerView;
-            int i2 = C1010R.string.Country;
-            outlineTextContainerView.setText(LocaleController.getString(i2));
+            int i = C1072R.string.Country;
+            outlineTextContainerView.setText(LocaleController.getString(i));
             this.countryOutlineView.addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
             this.countryOutlineView.setForceUseCenter(true);
             this.countryOutlineView.setFocusable(true);
-            this.countryOutlineView.setContentDescription(LocaleController.getString(i2));
+            this.countryOutlineView.setContentDescription(LocaleController.getString(i));
             this.countryOutlineView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public final void onFocusChange(View view, boolean z) {
@@ -1520,8 +1522,8 @@ public class LoginActivity extends BaseFragment {
             this.phoneOutlineView = outlineTextContainerView2;
             outlineTextContainerView2.addView(linearLayout2, LayoutHelper.createFrame(-1, -2.0f, 16, 16.0f, 8.0f, 16.0f, 8.0f));
             OutlineTextContainerView outlineTextContainerView3 = this.phoneOutlineView;
-            int i3 = C1010R.string.PhoneNumber;
-            outlineTextContainerView3.setText(LocaleController.getString(i3));
+            int i2 = C1072R.string.PhoneNumber;
+            outlineTextContainerView3.setText(LocaleController.getString(i2));
             addView(this.phoneOutlineView, LayoutHelper.createLinear(-1, 58, 16.0f, 8.0f, 16.0f, 8.0f));
             TextView textView3 = new TextView(context);
             this.plusTextView = textView3;
@@ -1531,8 +1533,8 @@ public class LoginActivity extends BaseFragment {
             linearLayout2.addView(this.plusTextView, LayoutHelper.createLinear(-2, -2));
             AnimatedPhoneNumberEditText animatedPhoneNumberEditText = new AnimatedPhoneNumberEditText(context, LoginActivity.this) {
                 @Override
-                public void onFocusChanged(boolean z, int i4, Rect rect) {
-                    super.onFocusChanged(z, i4, rect);
+                public void onFocusChanged(boolean z, int i3, Rect rect) {
+                    super.onFocusChanged(z, i3, rect);
                     PhoneView.this.phoneOutlineView.animateSelection((z || PhoneView.this.phoneField.isFocused()) ? 1.0f : 0.0f);
                     if (z) {
                         LoginActivity.this.keyboardView.setEditText(this);
@@ -1549,54 +1551,78 @@ public class LoginActivity extends BaseFragment {
             this.codeField.setGravity(19);
             this.codeField.setImeOptions(268435461);
             this.codeField.setBackground(null);
-            int i4 = Build.VERSION.SDK_INT;
-            if (i4 >= 21) {
+            int i3 = Build.VERSION.SDK_INT;
+            if (i3 >= 21) {
                 this.codeField.setShowSoftInputOnFocus(!hasCustomKeyboard() || LoginActivity.this.isCustomKeyboardForceDisabled());
             }
-            this.codeField.setContentDescription(LocaleController.getString(C1010R.string.LoginAccessibilityCountryCode));
+            this.codeField.setContentDescription(LocaleController.getString(C1072R.string.LoginAccessibilityCountryCode));
             linearLayout2.addView(this.codeField, LayoutHelper.createLinear(55, 36, -9.0f, 0.0f, 0.0f, 0.0f));
             this.codeField.addTextChangedListener(new TextWatcher(LoginActivity.this) {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
+                public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
                 }
 
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
+                public void onTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
                 }
 
                 @Override
                 public void afterTextChanged(Editable editable) {
                     String str;
                     boolean z;
+                    CountrySelectActivity.Country country;
+                    CountrySelectActivity.Country country2;
                     if (PhoneView.this.ignoreOnTextChange) {
                         return;
                     }
                     PhoneView.this.ignoreOnTextChange = true;
-                    String stripExceptNumbers = C0933PhoneFormat.stripExceptNumbers(PhoneView.this.codeField.getText().toString());
+                    String stripExceptNumbers = C0995PhoneFormat.stripExceptNumbers(PhoneView.this.codeField.getText().toString());
                     PhoneView.this.codeField.setText(stripExceptNumbers);
                     if (stripExceptNumbers.length() == 0) {
                         PhoneView.this.setCountryButtonText(null);
                         PhoneView.this.phoneField.setHintText((String) null);
                         PhoneView.this.countryState = 1;
                     } else {
-                        int i5 = 4;
+                        int i4 = 4;
                         if (stripExceptNumbers.length() > 4) {
                             while (true) {
-                                if (i5 < 1) {
+                                if (i4 < 1) {
                                     str = null;
                                     z = false;
                                     break;
                                 }
-                                String substring = stripExceptNumbers.substring(0, i5);
-                                if (((CountrySelectActivity.Country) PhoneView.this.codesMap.get(substring)) != null) {
-                                    String str2 = stripExceptNumbers.substring(i5) + PhoneView.this.phoneField.getText().toString();
+                                String substring = stripExceptNumbers.substring(0, i4);
+                                List list = (List) PhoneView.this.codesMap.get(substring);
+                                if (list == null) {
+                                    country2 = null;
+                                } else if (list.size() > 1) {
+                                    String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, null);
+                                    country2 = (CountrySelectActivity.Country) list.get(list.size() - 1);
+                                    if (string != null) {
+                                        Iterator it = PhoneView.this.countriesArray.iterator();
+                                        while (true) {
+                                            if (!it.hasNext()) {
+                                                break;
+                                            }
+                                            CountrySelectActivity.Country country3 = (CountrySelectActivity.Country) it.next();
+                                            if (Objects.equals(country3.shortname, string)) {
+                                                country2 = country3;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    country2 = (CountrySelectActivity.Country) list.get(0);
+                                }
+                                if (country2 != null) {
+                                    String str2 = stripExceptNumbers.substring(i4) + PhoneView.this.phoneField.getText().toString();
                                     PhoneView.this.codeField.setText(substring);
                                     z = true;
                                     str = str2;
                                     stripExceptNumbers = substring;
                                     break;
                                 }
-                                i5--;
+                                i4--;
                             }
                             if (!z) {
                                 str = stripExceptNumbers.substring(1) + PhoneView.this.phoneField.getText().toString();
@@ -1608,28 +1634,51 @@ public class LoginActivity extends BaseFragment {
                             str = null;
                             z = false;
                         }
-                        CountrySelectActivity.Country country = null;
-                        int i6 = 0;
-                        for (CountrySelectActivity.Country country2 : PhoneView.this.codesMap.values()) {
-                            if (country2.code.startsWith(stripExceptNumbers)) {
-                                i6++;
-                                if (country2.code.equals(stripExceptNumbers)) {
-                                    country = country2;
+                        Iterator it2 = PhoneView.this.countriesArray.iterator();
+                        CountrySelectActivity.Country country4 = null;
+                        int i5 = 0;
+                        while (it2.hasNext()) {
+                            CountrySelectActivity.Country country5 = (CountrySelectActivity.Country) it2.next();
+                            if (country5.code.startsWith(stripExceptNumbers)) {
+                                i5++;
+                                if (country5.code.equals(stripExceptNumbers)) {
+                                    country4 = country5;
                                 }
                             }
                         }
-                        if (i6 == 1 && country != null && str == null) {
-                            str = stripExceptNumbers.substring(country.code.length()) + PhoneView.this.phoneField.getText().toString();
+                        if (i5 == 1 && country4 != null && str == null) {
+                            str = stripExceptNumbers.substring(country4.code.length()) + PhoneView.this.phoneField.getText().toString();
                             AnimatedPhoneNumberEditText animatedPhoneNumberEditText3 = PhoneView.this.codeField;
-                            String str3 = country.code;
+                            String str3 = country4.code;
                             animatedPhoneNumberEditText3.setText(str3);
                             stripExceptNumbers = str3;
                         }
-                        CountrySelectActivity.Country country3 = (CountrySelectActivity.Country) PhoneView.this.codesMap.get(stripExceptNumbers);
-                        if (country3 != null) {
+                        List list2 = (List) PhoneView.this.codesMap.get(stripExceptNumbers);
+                        if (list2 == null) {
+                            country = null;
+                        } else if (list2.size() > 1) {
+                            String string2 = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + stripExceptNumbers, null);
+                            country = (CountrySelectActivity.Country) list2.get(list2.size() - 1);
+                            if (string2 != null) {
+                                Iterator it3 = PhoneView.this.countriesArray.iterator();
+                                while (true) {
+                                    if (!it3.hasNext()) {
+                                        break;
+                                    }
+                                    CountrySelectActivity.Country country6 = (CountrySelectActivity.Country) it3.next();
+                                    if (Objects.equals(country6.shortname, string2)) {
+                                        country = country6;
+                                        break;
+                                    }
+                                }
+                            }
+                        } else {
+                            country = (CountrySelectActivity.Country) list2.get(0);
+                        }
+                        if (country != null) {
                             PhoneView.this.ignoreSelection = true;
-                            PhoneView.this.currentCountry = country3;
-                            PhoneView.this.setCountryHint(stripExceptNumbers, country3);
+                            PhoneView.this.currentCountry = country;
+                            PhoneView.this.setCountryHint(stripExceptNumbers, country);
                             PhoneView.this.countryState = 0;
                         } else {
                             PhoneView.this.setCountryButtonText(null);
@@ -1650,9 +1699,9 @@ public class LoginActivity extends BaseFragment {
             });
             this.codeField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
-                public final boolean onEditorAction(TextView textView4, int i5, KeyEvent keyEvent) {
+                public final boolean onEditorAction(TextView textView4, int i4, KeyEvent keyEvent) {
                     boolean lambda$new$5;
-                    lambda$new$5 = LoginActivity.PhoneView.this.lambda$new$5(textView4, i5, keyEvent);
+                    lambda$new$5 = LoginActivity.PhoneView.this.lambda$new$5(textView4, i4, keyEvent);
                     return lambda$new$5;
                 }
             });
@@ -1662,13 +1711,13 @@ public class LoginActivity extends BaseFragment {
             linearLayout2.addView(this.codeDividerView, createLinear);
             AnimatedPhoneNumberEditText animatedPhoneNumberEditText2 = new AnimatedPhoneNumberEditText(context, LoginActivity.this) {
                 @Override
-                public boolean onKeyDown(int i5, KeyEvent keyEvent) {
-                    if (i5 == 67 && PhoneView.this.phoneField.length() == 0) {
+                public boolean onKeyDown(int i4, KeyEvent keyEvent) {
+                    if (i4 == 67 && PhoneView.this.phoneField.length() == 0) {
                         PhoneView.this.codeField.requestFocus();
                         PhoneView.this.codeField.setSelection(PhoneView.this.codeField.length());
                         PhoneView.this.codeField.dispatchKeyEvent(keyEvent);
                     }
-                    return super.onKeyDown(i5, keyEvent);
+                    return super.onKeyDown(i4, keyEvent);
                 }
 
                 @Override
@@ -1681,14 +1730,14 @@ public class LoginActivity extends BaseFragment {
                 }
 
                 @Override
-                public void onFocusChanged(boolean z, int i5, Rect rect) {
-                    super.onFocusChanged(z, i5, rect);
+                public void onFocusChanged(boolean z, int i4, Rect rect) {
+                    super.onFocusChanged(z, i4, rect);
                     PhoneView.this.phoneOutlineView.animateSelection((z || PhoneView.this.codeField.isFocused()) ? 1.0f : 0.0f);
                     if (z) {
                         LoginActivity.this.keyboardView.setEditText(this);
                         LoginActivity.this.keyboardView.setDispatchBackWhenEmpty(true);
                         if (PhoneView.this.countryState == 2) {
-                            PhoneView.this.setCountryButtonText(LocaleController.getString(C1010R.string.WrongCountry));
+                            PhoneView.this.setCountryButtonText(LocaleController.getString(C1072R.string.WrongCountry));
                         }
                     } else if (PhoneView.this.countryState == 2) {
                         PhoneView.this.setCountryButtonText(null);
@@ -1705,27 +1754,23 @@ public class LoginActivity extends BaseFragment {
             this.phoneField.setGravity(19);
             this.phoneField.setImeOptions(268435461);
             this.phoneField.setBackground(null);
-            if (i4 >= 21) {
+            if (i3 >= 21) {
                 this.phoneField.setShowSoftInputOnFocus(!hasCustomKeyboard() || LoginActivity.this.isCustomKeyboardForceDisabled());
             }
-            this.phoneField.setContentDescription(LocaleController.getString(i3));
+            this.phoneField.setContentDescription(LocaleController.getString(i2));
             linearLayout2.addView(this.phoneField, LayoutHelper.createFrame(-1, 36.0f));
             this.phoneField.addTextChangedListener(new TextWatcher(LoginActivity.this) {
                 private int actionPosition;
                 private int characterAction = -1;
 
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
-                }
-
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
-                    if (i6 == 0 && i7 == 1) {
+                public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+                    if (i5 == 0 && i6 == 1) {
                         this.characterAction = 1;
-                    } else if (i6 == 1 && i7 == 0) {
-                        if (charSequence.charAt(i5) == ' ' && i5 > 0) {
+                    } else if (i5 == 1 && i6 == 0) {
+                        if (charSequence.charAt(i4) == ' ' && i4 > 0) {
                             this.characterAction = 3;
-                            this.actionPosition = i5 - 1;
+                            this.actionPosition = i4 - 1;
                             return;
                         }
                         this.characterAction = 2;
@@ -1735,9 +1780,43 @@ public class LoginActivity extends BaseFragment {
                 }
 
                 @Override
+                public void onTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+                    List list;
+                    if (PhoneView.this.ignoreOnPhoneChange) {
+                        return;
+                    }
+                    String replaceAll = charSequence.toString().substring(i4, i6 + i4).replaceAll("[^\\d]+", "");
+                    if (replaceAll.isEmpty()) {
+                        return;
+                    }
+                    for (int min = Math.min(3, replaceAll.length()); min >= 0; min--) {
+                        String substring = replaceAll.substring(0, min);
+                        List list2 = (List) PhoneView.this.codesMap.get(substring);
+                        if (list2 != null && !list2.isEmpty() && (list = (List) PhoneView.this.phoneFormatMap.get(substring)) != null && !list.isEmpty()) {
+                            Iterator it = list.iterator();
+                            while (true) {
+                                if (it.hasNext()) {
+                                    if (((String) it.next()).replace(" ", "").length() == replaceAll.length() - min) {
+                                        PhoneView.this.codeField.setText(substring);
+                                        PhoneView.this.ignoreOnTextChange = true;
+                                        PhoneView.this.phoneField.setText(replaceAll.substring(min));
+                                        PhoneView.this.ignoreOnTextChange = false;
+                                        afterTextChanged(PhoneView.this.phoneField.getText());
+                                        PhoneView.this.phoneField.setSelection(PhoneView.this.phoneField.getText().length(), PhoneView.this.phoneField.getText().length());
+                                        break;
+                                    }
+                                } else {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                @Override
                 public void afterTextChanged(Editable editable) {
+                    int i4;
                     int i5;
-                    int i6;
                     if (PhoneView.this.ignoreOnPhoneChange) {
                         return;
                     }
@@ -1748,34 +1827,34 @@ public class LoginActivity extends BaseFragment {
                         selectionStart--;
                     }
                     StringBuilder sb = new StringBuilder(obj.length());
-                    int i7 = 0;
-                    while (i7 < obj.length()) {
-                        int i8 = i7 + 1;
-                        String substring = obj.substring(i7, i8);
+                    int i6 = 0;
+                    while (i6 < obj.length()) {
+                        int i7 = i6 + 1;
+                        String substring = obj.substring(i6, i7);
                         if ("0123456789".contains(substring)) {
                             sb.append(substring);
                         }
-                        i7 = i8;
+                        i6 = i7;
                     }
                     PhoneView.this.ignoreOnPhoneChange = true;
                     String hintText = PhoneView.this.phoneField.getHintText();
                     if (hintText != null) {
-                        int i9 = 0;
+                        int i8 = 0;
                         while (true) {
-                            if (i9 >= sb.length()) {
+                            if (i8 >= sb.length()) {
                                 break;
-                            } else if (i9 < hintText.length()) {
-                                if (hintText.charAt(i9) == ' ') {
-                                    sb.insert(i9, ' ');
-                                    i9++;
-                                    if (selectionStart == i9 && (i6 = this.characterAction) != 2 && i6 != 3) {
+                            } else if (i8 < hintText.length()) {
+                                if (hintText.charAt(i8) == ' ') {
+                                    sb.insert(i8, ' ');
+                                    i8++;
+                                    if (selectionStart == i8 && (i5 = this.characterAction) != 2 && i5 != 3) {
                                         selectionStart++;
                                     }
                                 }
-                                i9++;
+                                i8++;
                             } else {
-                                sb.insert(i9, ' ');
-                                if (selectionStart == i9 + 1 && (i5 = this.characterAction) != 2 && i5 != 3) {
+                                sb.insert(i8, ' ');
+                                if (selectionStart == i8 + 1 && (i4 = this.characterAction) != 2 && i4 != 3) {
                                     selectionStart++;
                                 }
                             }
@@ -1786,25 +1865,26 @@ public class LoginActivity extends BaseFragment {
                         PhoneView.this.phoneField.setSelection(Math.min(selectionStart, PhoneView.this.phoneField.length()));
                     }
                     PhoneView.this.phoneField.onTextChange();
+                    PhoneView.this.invalidateCountryHint();
                     PhoneView.this.ignoreOnPhoneChange = false;
                 }
             });
             this.phoneField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
-                public final boolean onEditorAction(TextView textView4, int i5, KeyEvent keyEvent) {
+                public final boolean onEditorAction(TextView textView4, int i4, KeyEvent keyEvent) {
                     boolean lambda$new$6;
-                    lambda$new$6 = LoginActivity.PhoneView.this.lambda$new$6(textView4, i5, keyEvent);
+                    lambda$new$6 = LoginActivity.PhoneView.this.lambda$new$6(textView4, i4, keyEvent);
                     return lambda$new$6;
                 }
             });
-            int i5 = 72;
-            int i6 = 56;
+            int i4 = 72;
+            int i5 = 56;
             if (LoginActivity.this.newAccount && LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell = new CheckBoxCell(context, 2);
                 this.syncContactsBox = checkBoxCell;
-                checkBoxCell.setText(LocaleController.getString("SyncContacts", C1010R.string.SyncContacts), BuildConfig.APP_CENTER_HASH, LoginActivity.this.syncContacts, false);
-                addView(this.syncContactsBox, LayoutHelper.createLinear(-2, -1, 51, 16, 0, 16 + ((LocaleController.isRTL && AndroidUtilities.isSmallScreen()) ? i4 >= 21 ? 56 : 60 : 0), 0));
-                i5 = 48;
+                checkBoxCell.setText(LocaleController.getString("SyncContacts", C1072R.string.SyncContacts), "", LoginActivity.this.syncContacts, false);
+                addView(this.syncContactsBox, LayoutHelper.createLinear(-2, -1, 51, 16, 0, 16 + ((LocaleController.isRTL && AndroidUtilities.isSmallScreen()) ? i3 >= 21 ? 56 : 60 : 0), 0));
+                i4 = 48;
                 this.syncContactsBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -1815,19 +1895,15 @@ public class LoginActivity extends BaseFragment {
             if (BuildVars.DEBUG_PRIVATE_VERSION && LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell2 = new CheckBoxCell(context, 2);
                 this.testBackendCheckBox = checkBoxCell2;
-                checkBoxCell2.setText(LocaleController.getString(C1010R.string.DebugTestBackend), BuildConfig.APP_CENTER_HASH, LoginActivity.this.testBackend, false);
+                checkBoxCell2.setText(LocaleController.getString(C1072R.string.DebugTestBackend), "", LoginActivity.this.testBackend, false);
                 View view = this.testBackendCheckBox;
                 if (!LocaleController.isRTL || !AndroidUtilities.isSmallScreen()) {
-                    i = 16;
-                    i6 = 0;
-                } else if (i4 >= 21) {
-                    i = 16;
-                } else {
-                    i = 16;
-                    i6 = 60;
+                    i5 = 0;
+                } else if (i3 < 21) {
+                    i5 = 60;
                 }
-                addView(view, LayoutHelper.createLinear(-2, -1, 51, 16, 0, i + i6, 0));
-                i5 -= 24;
+                addView(view, LayoutHelper.createLinear(-2, -1, 51, 16, 0, 16 + i5, 0));
+                i4 -= 24;
                 this.testBackendCheckBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
@@ -1835,9 +1911,9 @@ public class LoginActivity extends BaseFragment {
                     }
                 });
             }
-            if (i5 > 0 && !AndroidUtilities.isSmallScreen()) {
+            if (i4 > 0 && !AndroidUtilities.isSmallScreen()) {
                 Space space = new Space(context);
-                space.setMinimumHeight(AndroidUtilities.m35dp(i5));
+                space.setMinimumHeight(AndroidUtilities.m35dp(i4));
                 addView(space, LayoutHelper.createLinear(-2, -2));
             }
             final HashMap hashMap = new HashMap();
@@ -1854,7 +1930,15 @@ public class LoginActivity extends BaseFragment {
                     country.code = split[0];
                     country.shortname = split[1];
                     this.countriesArray.add(0, country);
-                    this.codesMap.put(split[0], country);
+                    List<CountrySelectActivity.Country> list = this.codesMap.get(split[0]);
+                    if (list == null) {
+                        HashMap<String, List<CountrySelectActivity.Country>> hashMap2 = this.codesMap;
+                        String str = split[0];
+                        ArrayList arrayList = new ArrayList();
+                        hashMap2.put(str, arrayList);
+                        list = arrayList;
+                    }
+                    list.add(country);
                     if (split.length > 3) {
                         this.phoneFormatMap.put(split[0], Collections.singletonList(split[3]));
                     }
@@ -1874,8 +1958,8 @@ public class LoginActivity extends BaseFragment {
                 public static int constructor = 531836966;
 
                 @Override
-                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i7, boolean z) {
-                    return TLRPC$TL_nearestDc.TLdeserialize(abstractSerializedData, i7, z);
+                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i6, boolean z) {
+                    return TLRPC$TL_nearestDc.TLdeserialize(abstractSerializedData, i6, z);
                 }
 
                 @Override
@@ -1978,9 +2062,9 @@ public class LoginActivity extends BaseFragment {
             loginActivity.syncContacts = !loginActivity.syncContacts;
             ((CheckBoxCell) view).setChecked(LoginActivity.this.syncContacts, true);
             if (LoginActivity.this.syncContacts) {
-                BulletinFactory.m14of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(C1010R.raw.contacts_sync_on, LocaleController.getString("SyncContactsOn", C1010R.string.SyncContactsOn)).show();
+                BulletinFactory.m14of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(C1072R.raw.contacts_sync_on, LocaleController.getString("SyncContactsOn", C1072R.string.SyncContactsOn)).show();
             } else {
-                BulletinFactory.m14of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(C1010R.raw.contacts_sync_off, LocaleController.getString("SyncContactsOff", C1010R.string.SyncContactsOff)).show();
+                BulletinFactory.m14of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(C1072R.raw.contacts_sync_off, LocaleController.getString("SyncContactsOff", C1072R.string.SyncContactsOff)).show();
             }
         }
 
@@ -2019,7 +2103,7 @@ public class LoginActivity extends BaseFragment {
 
         private void loadCountries() {
             TLRPC$TL_help_getCountriesList tLRPC$TL_help_getCountriesList = new TLRPC$TL_help_getCountriesList();
-            tLRPC$TL_help_getCountriesList.lang_code = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_help_getCountriesList.lang_code = "";
             LoginActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_help_getCountriesList, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -2039,6 +2123,7 @@ public class LoginActivity extends BaseFragment {
 
         public void lambda$loadCountries$12(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
             boolean z;
+            CountrySelectActivity.Country country;
             if (tLRPC$TL_error == null) {
                 this.countriesArray.clear();
                 this.codesMap.clear();
@@ -2049,12 +2134,20 @@ public class LoginActivity extends BaseFragment {
                     for (int i2 = 0; i2 < tLRPC$TL_help_country.country_codes.size(); i2++) {
                         TLRPC$TL_help_countryCode tLRPC$TL_help_countryCode = tLRPC$TL_help_country.country_codes.get(i2);
                         if (tLRPC$TL_help_countryCode != null) {
-                            CountrySelectActivity.Country country = new CountrySelectActivity.Country();
-                            country.name = tLRPC$TL_help_country.default_name;
-                            country.code = tLRPC$TL_help_countryCode.country_code;
-                            country.shortname = tLRPC$TL_help_country.iso2;
-                            this.countriesArray.add(country);
-                            this.codesMap.put(tLRPC$TL_help_countryCode.country_code, country);
+                            CountrySelectActivity.Country country2 = new CountrySelectActivity.Country();
+                            country2.name = tLRPC$TL_help_country.default_name;
+                            country2.code = tLRPC$TL_help_countryCode.country_code;
+                            country2.shortname = tLRPC$TL_help_country.iso2;
+                            this.countriesArray.add(country2);
+                            List<CountrySelectActivity.Country> list = this.codesMap.get(tLRPC$TL_help_countryCode.country_code);
+                            if (list == null) {
+                                HashMap<String, List<CountrySelectActivity.Country>> hashMap = this.codesMap;
+                                String str = tLRPC$TL_help_countryCode.country_code;
+                                ArrayList arrayList = new ArrayList();
+                                hashMap.put(str, arrayList);
+                                list = arrayList;
+                            }
+                            list.add(country2);
                             if (tLRPC$TL_help_countryCode.patterns.size() > 0) {
                                 this.phoneFormatMap.put(tLRPC$TL_help_countryCode.country_code, tLRPC$TL_help_countryCode.patterns);
                             }
@@ -2062,7 +2155,7 @@ public class LoginActivity extends BaseFragment {
                     }
                 }
                 if (LoginActivity.this.activityMode == 2) {
-                    String stripExceptNumbers = C0933PhoneFormat.stripExceptNumbers(UserConfig.getInstance(((BaseFragment) LoginActivity.this).currentAccount).getClientPhone());
+                    String stripExceptNumbers = C0995PhoneFormat.stripExceptNumbers(UserConfig.getInstance(((BaseFragment) LoginActivity.this).currentAccount).getClientPhone());
                     if (TextUtils.isEmpty(stripExceptNumbers)) {
                         return;
                     }
@@ -2074,7 +2167,33 @@ public class LoginActivity extends BaseFragment {
                                 break;
                             }
                             String substring = stripExceptNumbers.substring(0, i3);
-                            if (this.codesMap.get(substring) != null) {
+                            List<CountrySelectActivity.Country> list2 = this.codesMap.get(substring);
+                            CountrySelectActivity.Country country3 = null;
+                            if (list2 != null) {
+                                if (list2.size() > 1) {
+                                    String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, null);
+                                    if (string != null) {
+                                        country = list2.get(list2.size() - 1);
+                                        Iterator<CountrySelectActivity.Country> it = this.countriesArray.iterator();
+                                        while (true) {
+                                            if (!it.hasNext()) {
+                                                break;
+                                            }
+                                            CountrySelectActivity.Country next = it.next();
+                                            if (Objects.equals(next.shortname, string)) {
+                                                country = next;
+                                                break;
+                                            }
+                                        }
+                                    } else {
+                                        country = list2.get(list2.size() - 1);
+                                    }
+                                    country3 = country;
+                                } else {
+                                    country3 = list2.get(0);
+                                }
+                            }
+                            if (country3 != null) {
                                 this.codeField.setText(substring);
                                 z = true;
                                 break;
@@ -2142,6 +2261,8 @@ public class LoginActivity extends BaseFragment {
             this.currentCountry = country;
             this.countryState = 0;
             this.ignoreOnTextChange = false;
+            SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+            edit.putString("phone_code_last_matched_" + country.code, country.shortname).apply();
         }
 
         public void setCountryHint(String str, CountrySelectActivity.Country country) {
@@ -2162,16 +2283,17 @@ public class LoginActivity extends BaseFragment {
             }
             spannableStringBuilder.append((CharSequence) country.name);
             setCountryButtonText(Emoji.replaceEmoji(spannableStringBuilder, this.countryButton.getCurrentView().getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false));
-            if (this.phoneFormatMap.get(str) != null && !this.phoneFormatMap.get(str).isEmpty()) {
-                String str2 = this.phoneFormatMap.get(str).get(0);
-                this.phoneField.setHintText(str2 != null ? str2.replace('X', '0') : null);
-                return;
-            }
-            this.phoneField.setHintText((String) null);
+            this.countryCodeForHint = str;
+            this.wasCountryHintIndex = -1;
+            invalidateCountryHint();
+        }
+
+        public void invalidateCountryHint() {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.LoginActivity.PhoneView.invalidateCountryHint():void");
         }
 
         public void setCountryButtonText(CharSequence charSequence) {
-            Animation loadAnimation = AnimationUtils.loadAnimation(ApplicationLoader.applicationContext, (this.countryButton.getCurrentView().getText() == null || charSequence != null) ? C1010R.anim.text_out : C1010R.anim.text_out_down);
+            Animation loadAnimation = AnimationUtils.loadAnimation(ApplicationLoader.applicationContext, (this.countryButton.getCurrentView().getText() == null || charSequence != null) ? C1072R.anim.text_out : C1072R.anim.text_out_down);
             loadAnimation.setInterpolator(Easings.easeInOutQuad);
             this.countryButton.setOutAnimation(loadAnimation);
             CharSequence text = this.countryButton.getCurrentView().getText();
@@ -2232,10 +2354,10 @@ public class LoginActivity extends BaseFragment {
             }, 200L);
         }
 
-        public class C33616 implements PhoneNumberConfirmView.IConfirmDialogCallback {
+        public class C35196 implements PhoneNumberConfirmView.IConfirmDialogCallback {
             final String val$code;
 
-            C33616(String str) {
+            C35196(String str) {
                 this.val$code = str;
             }
 
@@ -2297,16 +2419,16 @@ public class LoginActivity extends BaseFragment {
                             }
                             globalMainSettings.edit().putBoolean("firstlogin", false).commit();
                             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this.getParentActivity());
-                            builder.setPositiveButton(LocaleController.getString("Continue", C1010R.string.Continue), null);
+                            builder.setPositiveButton(LocaleController.getString("Continue", C1072R.string.Continue), null);
                             if (!z && (!z2 || !z3)) {
-                                builder.setMessage(LocaleController.getString("AllowReadCallAndLog", C1010R.string.AllowReadCallAndLog));
-                                i = C1010R.raw.calls_log;
+                                builder.setMessage(LocaleController.getString("AllowReadCallAndLog", C1072R.string.AllowReadCallAndLog));
+                                i = C1072R.raw.calls_log;
                             } else if (!z2 || !z3) {
-                                builder.setMessage(LocaleController.getString("AllowReadCallLog", C1010R.string.AllowReadCallLog));
-                                i = C1010R.raw.calls_log;
+                                builder.setMessage(LocaleController.getString("AllowReadCallLog", C1072R.string.AllowReadCallLog));
+                                i = C1072R.raw.calls_log;
                             } else {
-                                builder.setMessage(LocaleController.getString("AllowReadCall", C1010R.string.AllowReadCall));
-                                i = C1010R.raw.incoming_calls;
+                                builder.setMessage(LocaleController.getString("AllowReadCall", C1072R.string.AllowReadCall));
+                                i = C1072R.raw.incoming_calls;
                             }
                             builder.setTopAnimation(i, 46, false, Theme.getColor("dialogTopBackground"));
                             LoginActivity loginActivity = LoginActivity.this;
@@ -2320,7 +2442,7 @@ public class LoginActivity extends BaseFragment {
                 phoneNumberConfirmView.animateProgress(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.PhoneView.C33616.this.lambda$onConfirm$1(phoneNumberConfirmView, str);
+                        LoginActivity.PhoneView.C35196.this.lambda$onConfirm$1(phoneNumberConfirmView, str);
                     }
                 });
             }
@@ -2330,7 +2452,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.PhoneView.C33616.this.lambda$onConfirm$0(str, phoneNumberConfirmView);
+                        LoginActivity.PhoneView.C35196.this.lambda$onConfirm$0(str, phoneNumberConfirmView);
                     }
                 }, 150L);
             }
@@ -2374,17 +2496,17 @@ public class LoginActivity extends BaseFragment {
                     } else if (tLRPC$TL_error.text.contains("PHONE_NUMBER_INVALID")) {
                         LoginActivity.needShowInvalidAlert(LoginActivity.this, str, phoneInputData, false);
                     } else if (tLRPC$TL_error.text.contains("PHONE_PASSWORD_FLOOD")) {
-                        LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("FloodWait", C1010R.string.FloodWait));
+                        LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("FloodWait", C1072R.string.FloodWait));
                     } else if (tLRPC$TL_error.text.contains("PHONE_NUMBER_FLOOD")) {
-                        LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("PhoneNumberFlood", C1010R.string.PhoneNumberFlood));
+                        LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("PhoneNumberFlood", C1072R.string.PhoneNumberFlood));
                     } else if (tLRPC$TL_error.text.contains("PHONE_NUMBER_BANNED")) {
                         LoginActivity.needShowInvalidAlert(LoginActivity.this, str, phoneInputData, true);
                     } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
-                        LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidCode", C1010R.string.InvalidCode));
+                        LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidCode", C1072R.string.InvalidCode));
                     } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
-                        LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("CodeExpired", C1010R.string.CodeExpired));
+                        LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("CodeExpired", C1072R.string.CodeExpired));
                     } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("FloodWait", C1010R.string.FloodWait));
+                        LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("FloodWait", C1072R.string.FloodWait));
                     } else if (tLRPC$TL_error.code != -1000) {
                         AlertsCreator.processError(((BaseFragment) LoginActivity.this).currentAccount, tLRPC$TL_error, LoginActivity.this, tLObject2, phoneInputData.phoneNumber);
                     }
@@ -2406,12 +2528,12 @@ public class LoginActivity extends BaseFragment {
             this.nextPressed = false;
             LoginActivity.this.showDoneButton(false, true);
             if (tLRPC$TL_error != null) {
-                LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
+                LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
                 return;
             }
             TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             if (!TwoStepVerificationActivity.canHandleCurrentPassword(tLRPC$account_Password, true)) {
-                AlertsCreator.showUpdateAppAlert(LoginActivity.this.getParentActivity(), LocaleController.getString("UpdateAppAlert", C1010R.string.UpdateAppAlert), true);
+                AlertsCreator.showUpdateAppAlert(LoginActivity.this.getParentActivity(), LocaleController.getString("UpdateAppAlert", C1072R.string.UpdateAppAlert), true);
                 return;
             }
             Bundle bundle = new Bundle();
@@ -2431,9 +2553,9 @@ public class LoginActivity extends BaseFragment {
             if (globalMainSettings.getBoolean("firstloginshow", true) || LoginActivity.this.getParentActivity().shouldShowRequestPermissionRationale("android.permission.READ_PHONE_STATE")) {
                 globalMainSettings.edit().putBoolean("firstloginshow", false).commit();
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this.getParentActivity());
-                builder.setTopAnimation(C1010R.raw.incoming_calls, 46, false, Theme.getColor("dialogTopBackground"));
-                builder.setPositiveButton(LocaleController.getString("Continue", C1010R.string.Continue), null);
-                builder.setMessage(LocaleController.getString("AllowFillNumber", C1010R.string.AllowFillNumber));
+                builder.setTopAnimation(C1072R.raw.incoming_calls, 46, false, Theme.getColor("dialogTopBackground"));
+                builder.setPositiveButton(LocaleController.getString("Continue", C1072R.string.Continue), null);
+                builder.setMessage(LocaleController.getString("AllowFillNumber", C1072R.string.AllowFillNumber));
                 LoginActivity loginActivity = LoginActivity.this;
                 loginActivity.permissionsShowDialog = loginActivity.showDialog(builder.create(), true, null);
                 LoginActivity.this.needRequestPermissions = true;
@@ -2479,7 +2601,7 @@ public class LoginActivity extends BaseFragment {
 
         @Override
         public String getHeaderName() {
-            return LocaleController.getString("YourPhone", C1010R.string.YourPhone);
+            return LocaleController.getString("YourPhone", C1072R.string.YourPhone);
         }
 
         @Override
@@ -2572,7 +2694,7 @@ public class LoginActivity extends BaseFragment {
             return true;
         }
 
-        static int access$8326(LoginActivitySmsView loginActivitySmsView, double d) {
+        static int access$8626(LoginActivitySmsView loginActivitySmsView, double d) {
             double d2 = loginActivitySmsView.codeTime;
             Double.isNaN(d2);
             int i = (int) (d2 - d);
@@ -2580,7 +2702,7 @@ public class LoginActivity extends BaseFragment {
             return i;
         }
 
-        static int access$8926(LoginActivitySmsView loginActivitySmsView, double d) {
+        static int access$9226(LoginActivitySmsView loginActivitySmsView, double d) {
             double d2 = loginActivitySmsView.time;
             Double.isNaN(d2);
             int i = (int) (d2 - d);
@@ -2624,9 +2746,9 @@ public class LoginActivity extends BaseFragment {
             this.timeText.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText6"));
             int i2 = this.nextType;
             if (i2 == 4 || i2 == 11) {
-                this.timeText.setText(LocaleController.getString("Calling", C1010R.string.Calling));
+                this.timeText.setText(LocaleController.getString("Calling", C1072R.string.Calling));
             } else {
-                this.timeText.setText(LocaleController.getString("SendingSms", C1010R.string.SendingSms));
+                this.timeText.setText(LocaleController.getString("SendingSms", C1072R.string.SendingSms));
             }
             final Bundle bundle = new Bundle();
             bundle.putString("phone", this.phone);
@@ -2690,12 +2812,12 @@ public class LoginActivity extends BaseFragment {
                 resendCode();
                 return;
             }
-            new AlertDialog.Builder(context).setTitle(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DidNotGetTheCodeInfo", C1010R.string.DidNotGetTheCodeInfo, this.phone))).setNeutralButton(LocaleController.getString(C1010R.string.DidNotGetTheCodeHelpButton), new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(context).setTitle(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DidNotGetTheCodeInfo", C1072R.string.DidNotGetTheCodeInfo, this.phone))).setNeutralButton(LocaleController.getString(C1072R.string.DidNotGetTheCodeHelpButton), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     LoginActivity.LoginActivitySmsView.this.lambda$new$6(dialogInterface, i);
                 }
-            }).setPositiveButton(LocaleController.getString(C1010R.string.Close), null).setNegativeButton(LocaleController.getString(C1010R.string.DidNotGetTheCodeEditNumberButton), new DialogInterface.OnClickListener() {
+            }).setPositiveButton(LocaleController.getString(C1072R.string.Close), null).setNegativeButton(LocaleController.getString(C1072R.string.DidNotGetTheCodeEditNumberButton), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     LoginActivity.LoginActivitySmsView.this.lambda$new$7(dialogInterface, i);
@@ -2714,7 +2836,7 @@ public class LoginActivity extends BaseFragment {
                 intent.putExtra("android.intent.extra.TEXT", "Phone: " + this.requestPhone + "\nApp version: " + format + "\nOS version: SDK " + Build.VERSION.SDK_INT + "\nDevice Name: " + Build.MANUFACTURER + Build.MODEL + "\nLocale: " + Locale.getDefault() + "\nError: " + this.lastError);
                 getContext().startActivity(Intent.createChooser(intent, "Send email..."));
             } catch (Exception unused) {
-                LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.AppName), LocaleController.getString("NoMailInstalled", C1010R.string.NoMailInstalled));
+                LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.AppName), LocaleController.getString("NoMailInstalled", C1072R.string.NoMailInstalled));
             }
         }
 
@@ -2801,19 +2923,19 @@ public class LoginActivity extends BaseFragment {
                 String str = tLRPC$TL_error.text;
                 if (str != null) {
                     if (str.contains("PHONE_NUMBER_INVALID")) {
-                        LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidPhoneNumber", C1010R.string.InvalidPhoneNumber));
+                        LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidPhoneNumber", C1072R.string.InvalidPhoneNumber));
                     } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
-                        LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidCode", C1010R.string.InvalidCode));
+                        LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidCode", C1072R.string.InvalidCode));
                     } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
                         onBackPressed(true);
                         LoginActivity.this.setPage(0, true, null, true);
-                        LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("CodeExpired", C1010R.string.CodeExpired));
+                        LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("CodeExpired", C1072R.string.CodeExpired));
                     } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("FloodWait", C1010R.string.FloodWait));
+                        LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("FloodWait", C1072R.string.FloodWait));
                     } else if (tLRPC$TL_error.code != -1000) {
                         LoginActivity loginActivity = LoginActivity.this;
-                        String string = LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle);
-                        loginActivity.needShowAlert(string, LocaleController.getString("ErrorOccurred", C1010R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
+                        String string = LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle);
+                        loginActivity.needShowAlert(string, LocaleController.getString("ErrorOccurred", C1072R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
                     }
                 }
             }
@@ -2955,7 +3077,7 @@ public class LoginActivity extends BaseFragment {
             if (i == 3 || i == 11) {
                 return this.phone;
             }
-            return LocaleController.getString("YourCode", C1010R.string.YourCode);
+            return LocaleController.getString("YourCode", C1072R.string.YourCode);
         }
 
         @Override
@@ -2989,11 +3111,11 @@ public class LoginActivity extends BaseFragment {
             this.codeTime = 15000;
             this.codeTimer = new Timer();
             this.lastCodeTime = System.currentTimeMillis();
-            this.codeTimer.schedule(new C33515(), 0L, 1000L);
+            this.codeTimer.schedule(new C35095(), 0L, 1000L);
         }
 
-        public class C33515 extends TimerTask {
-            C33515() {
+        public class C35095 extends TimerTask {
+            C35095() {
             }
 
             @Override
@@ -3001,7 +3123,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.LoginActivitySmsView.C33515.this.lambda$run$0();
+                        LoginActivity.LoginActivitySmsView.C35095.this.lambda$run$0();
                     }
                 });
             }
@@ -3011,7 +3133,7 @@ public class LoginActivity extends BaseFragment {
                 double d = LoginActivitySmsView.this.lastCodeTime;
                 Double.isNaN(currentTimeMillis);
                 LoginActivitySmsView.this.lastCodeTime = currentTimeMillis;
-                LoginActivitySmsView.access$8326(LoginActivitySmsView.this, currentTimeMillis - d);
+                LoginActivitySmsView.access$8626(LoginActivitySmsView.this, currentTimeMillis - d);
                 if (LoginActivitySmsView.this.codeTime <= 1000) {
                     LoginActivitySmsView.this.setProblemTextVisible(true);
                     LoginActivitySmsView.this.timeText.setVisibility(8);
@@ -3039,14 +3161,14 @@ public class LoginActivity extends BaseFragment {
                 return;
             }
             this.timeText.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText6"));
-            this.timeText.setTag(C1010R.C1012id.color_key_tag, "windowBackgroundWhiteGrayText6");
+            this.timeText.setTag(C1072R.C1074id.color_key_tag, "windowBackgroundWhiteGrayText6");
             Timer timer = new Timer();
             this.timeTimer = timer;
-            timer.schedule(new C33526(), 0L, 1000L);
+            timer.schedule(new C35106(), 0L, 1000L);
         }
 
-        public class C33526 extends TimerTask {
-            C33526() {
+        public class C35106 extends TimerTask {
+            C35106() {
             }
 
             @Override
@@ -3057,7 +3179,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.LoginActivitySmsView.C33526.this.lambda$run$0();
+                        LoginActivity.LoginActivitySmsView.C35106.this.lambda$run$0();
                     }
                 });
             }
@@ -3067,14 +3189,14 @@ public class LoginActivity extends BaseFragment {
                 double d = LoginActivitySmsView.this.lastCurrentTime;
                 Double.isNaN(currentTimeMillis);
                 LoginActivitySmsView.this.lastCurrentTime = currentTimeMillis;
-                LoginActivitySmsView.access$8926(LoginActivitySmsView.this, currentTimeMillis - d);
+                LoginActivitySmsView.access$9226(LoginActivitySmsView.this, currentTimeMillis - d);
                 if (LoginActivitySmsView.this.time >= 1000) {
                     int i = (LoginActivitySmsView.this.time / 1000) / 60;
                     int i2 = (LoginActivitySmsView.this.time / 1000) - (i * 60);
                     if (LoginActivitySmsView.this.nextType == 4 || LoginActivitySmsView.this.nextType == 3 || LoginActivitySmsView.this.nextType == 11) {
-                        LoginActivitySmsView.this.timeText.setText(LocaleController.formatString("CallAvailableIn", C1010R.string.CallAvailableIn, Integer.valueOf(i), Integer.valueOf(i2)));
+                        LoginActivitySmsView.this.timeText.setText(LocaleController.formatString("CallAvailableIn", C1072R.string.CallAvailableIn, Integer.valueOf(i), Integer.valueOf(i2)));
                     } else if (LoginActivitySmsView.this.nextType == 2) {
-                        LoginActivitySmsView.this.timeText.setText(LocaleController.formatString("SmsAvailableIn", C1010R.string.SmsAvailableIn, Integer.valueOf(i), Integer.valueOf(i2)));
+                        LoginActivitySmsView.this.timeText.setText(LocaleController.formatString("SmsAvailableIn", C1072R.string.SmsAvailableIn, Integer.valueOf(i), Integer.valueOf(i2)));
                     }
                     ProgressView unused = LoginActivitySmsView.this.progressView;
                     return;
@@ -3082,21 +3204,21 @@ public class LoginActivity extends BaseFragment {
                 LoginActivitySmsView.this.destroyTimer();
                 if (LoginActivitySmsView.this.nextType == 3 || LoginActivitySmsView.this.nextType == 4 || LoginActivitySmsView.this.nextType == 2 || LoginActivitySmsView.this.nextType == 11) {
                     if (LoginActivitySmsView.this.nextType == 4) {
-                        LoginActivitySmsView.this.timeText.setText(LocaleController.getString("RequestCallButton", C1010R.string.RequestCallButton));
+                        LoginActivitySmsView.this.timeText.setText(LocaleController.getString("RequestCallButton", C1072R.string.RequestCallButton));
                     } else if (LoginActivitySmsView.this.nextType == 11 || LoginActivitySmsView.this.nextType == 3) {
-                        LoginActivitySmsView.this.timeText.setText(LocaleController.getString("RequestMissedCall", C1010R.string.RequestMissedCall));
+                        LoginActivitySmsView.this.timeText.setText(LocaleController.getString("RequestMissedCall", C1072R.string.RequestMissedCall));
                     } else {
-                        LoginActivitySmsView.this.timeText.setText(LocaleController.getString("RequestSmsButton", C1010R.string.RequestSmsButton));
+                        LoginActivitySmsView.this.timeText.setText(LocaleController.getString("RequestSmsButton", C1072R.string.RequestSmsButton));
                     }
                     LoginActivitySmsView.this.timeText.setTextColor(Theme.getColor("chats_actionBackground"));
-                    LoginActivitySmsView.this.timeText.setTag(C1010R.C1012id.color_key_tag, "chats_actionBackground");
+                    LoginActivitySmsView.this.timeText.setTag(C1072R.C1074id.color_key_tag, "chats_actionBackground");
                 }
             }
         }
 
         public void destroyTimer() {
             this.timeText.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText6"));
-            this.timeText.setTag(C1010R.C1012id.color_key_tag, "windowBackgroundWhiteGrayText6");
+            this.timeText.setTag(C1072R.C1074id.color_key_tag, "windowBackgroundWhiteGrayText6");
             try {
                 synchronized (this.timerSync) {
                     Timer timer = this.timeTimer;
@@ -3228,10 +3350,10 @@ public class LoginActivity extends BaseFragment {
                 ((BaseFragment) LoginActivity.this).fragmentView.performHapticFeedback(3, 2);
             } catch (Exception unused) {
             }
-            AlertDialog.Builder title = new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(C1010R.string.YourPasswordSuccess));
-            int i = C1010R.string.ChangePhoneNumberSuccessWithPhone;
-            C0933PhoneFormat c0933PhoneFormat = C0933PhoneFormat.getInstance();
-            title.setMessage(LocaleController.formatString(i, c0933PhoneFormat.format("+" + this.requestPhone))).setPositiveButton(LocaleController.getString(C1010R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+            AlertDialog.Builder title = new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(C1072R.string.YourPasswordSuccess));
+            int i = C1072R.string.ChangePhoneNumberSuccessWithPhone;
+            C0995PhoneFormat c0995PhoneFormat = C0995PhoneFormat.getInstance();
+            title.setMessage(LocaleController.formatString(i, c0995PhoneFormat.format("+" + this.requestPhone))).setPositiveButton(LocaleController.getString(C1072R.string.OK), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$20(dialogInterface);
@@ -3294,10 +3416,10 @@ public class LoginActivity extends BaseFragment {
         }
 
         public void lambda$onNextPressed$25() {
-            AlertDialog.Builder title = new AlertDialog.Builder(LoginActivity.this.getParentActivity()).setTitle(LocaleController.getString(C1010R.string.CancelLinkSuccessTitle));
-            int i = C1010R.string.CancelLinkSuccess;
-            C0933PhoneFormat c0933PhoneFormat = C0933PhoneFormat.getInstance();
-            title.setMessage(LocaleController.formatString("CancelLinkSuccess", i, c0933PhoneFormat.format("+" + this.phone))).setPositiveButton(LocaleController.getString(C1010R.string.Close), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+            AlertDialog.Builder title = new AlertDialog.Builder(LoginActivity.this.getParentActivity()).setTitle(LocaleController.getString(C1072R.string.CancelLinkSuccessTitle));
+            int i = C1072R.string.CancelLinkSuccess;
+            C0995PhoneFormat c0995PhoneFormat = C0995PhoneFormat.getInstance();
+            title.setMessage(LocaleController.formatString("CancelLinkSuccess", i, c0995PhoneFormat.format("+" + this.phone))).setPositiveButton(LocaleController.getString(C1072R.string.Close), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$24(dialogInterface);
@@ -3343,12 +3465,12 @@ public class LoginActivity extends BaseFragment {
             this.nextPressed = false;
             LoginActivity.this.showDoneButton(false, true);
             if (tLRPC$TL_error != null) {
-                LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
+                LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
                 return;
             }
             TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             if (!TwoStepVerificationActivity.canHandleCurrentPassword(tLRPC$account_Password, true)) {
-                AlertsCreator.showUpdateAppAlert(LoginActivity.this.getParentActivity(), LocaleController.getString("UpdateAppAlert", C1010R.string.UpdateAppAlert), true);
+                AlertsCreator.showUpdateAppAlert(LoginActivity.this.getParentActivity(), LocaleController.getString("UpdateAppAlert", C1072R.string.UpdateAppAlert), true);
                 return;
             }
             final Bundle bundle = new Bundle();
@@ -3424,7 +3546,7 @@ public class LoginActivity extends BaseFragment {
                 if (i >= codeNumberFieldArr.length) {
                     break;
                 }
-                codeNumberFieldArr[i].setText(BuildConfig.APP_CENTER_HASH);
+                codeNumberFieldArr[i].setText("");
                 this.codeFieldContainer.codeField[i].animateErrorProgress(1.0f);
                 i++;
             }
@@ -3480,7 +3602,7 @@ public class LoginActivity extends BaseFragment {
                 return false;
             } else if (!z) {
                 LoginActivity loginActivity = LoginActivity.this;
-                loginActivity.showDialog(new AlertDialog.Builder(loginActivity.getParentActivity()).setTitle(LocaleController.getString(C1010R.string.EditNumber)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("EditNumberInfo", C1010R.string.EditNumberInfo, this.phone))).setPositiveButton(LocaleController.getString(C1010R.string.Close), null).setNegativeButton(LocaleController.getString(C1010R.string.Edit), new DialogInterface.OnClickListener() {
+                loginActivity.showDialog(new AlertDialog.Builder(loginActivity.getParentActivity()).setTitle(LocaleController.getString(C1072R.string.EditNumber)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("EditNumberInfo", C1072R.string.EditNumberInfo, this.phone))).setPositiveButton(LocaleController.getString(C1072R.string.Close), null).setNegativeButton(LocaleController.getString(C1072R.string.Edit), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
                         LoginActivity.LoginActivitySmsView.this.lambda$onBackPressed$39(dialogInterface, i);
@@ -3581,10 +3703,10 @@ public class LoginActivity extends BaseFragment {
                     return;
                 }
                 if (i == NotificationCenter.didReceiveSmsCode) {
-                    codeFieldContainer.setText(BuildConfig.APP_CENTER_HASH + objArr[0]);
+                    codeFieldContainer.setText("" + objArr[0]);
                     onNextPressed(null);
                 } else if (i == NotificationCenter.didReceiveCall) {
-                    String str = BuildConfig.APP_CENTER_HASH + objArr[0];
+                    String str = "" + objArr[0];
                     if (AndroidUtilities.checkPhonePattern(this.pattern, str)) {
                         if (!this.pattern.equals("*")) {
                             this.catchedPhone = str;
@@ -3699,7 +3821,7 @@ public class LoginActivity extends BaseFragment {
                 return;
             }
             AndroidUtilities.hideKeyboard(this.codeField);
-            new AlertDialog.Builder(context).setTitle(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle)).setMessage(LocaleController.getString(C1010R.string.RestorePasswordNoEmailText)).setPositiveButton(LocaleController.getString(C1010R.string.Close), null).setNegativeButton(LocaleController.getString(C1010R.string.ResetAccount), new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(context).setTitle(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle)).setMessage(LocaleController.getString(C1072R.string.RestorePasswordNoEmailText)).setPositiveButton(LocaleController.getString(C1072R.string.Close), null).setNegativeButton(LocaleController.getString(C1072R.string.ResetAccount), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     LoginActivity.LoginActivityPasswordView.this.lambda$new$5(dialogInterface, i);
@@ -3734,9 +3856,9 @@ public class LoginActivity extends BaseFragment {
                     textStyleRun.end = i;
                     valueOf.setSpan(new TextStyleSpan(textStyleRun), indexOf, i, 0);
                 }
-                builder.setMessage(AndroidUtilities.formatSpannable(LocaleController.getString(C1010R.string.RestoreEmailSent), valueOf));
-                builder.setTitle(LocaleController.getString("RestoreEmailSentTitle", C1010R.string.RestoreEmailSentTitle));
-                builder.setPositiveButton(LocaleController.getString(C1010R.string.Continue), new DialogInterface.OnClickListener() {
+                builder.setMessage(AndroidUtilities.formatSpannable(LocaleController.getString(C1072R.string.RestoreEmailSent), valueOf));
+                builder.setTitle(LocaleController.getString("RestoreEmailSentTitle", C1072R.string.RestoreEmailSentTitle));
+                builder.setPositiveButton(LocaleController.getString(C1072R.string.Continue), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
                         LoginActivity.LoginActivityPasswordView.this.lambda$new$2(tLRPC$TL_auth_passwordRecovery, dialogInterface, i2);
@@ -3748,7 +3870,7 @@ public class LoginActivity extends BaseFragment {
                     showDialog.setCancelable(false);
                 }
             } else if (!tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
+                LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
             } else {
                 int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
                 if (intValue < 60) {
@@ -3756,7 +3878,7 @@ public class LoginActivity extends BaseFragment {
                 } else {
                     formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
                 }
-                LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.WrongCodeTitle), LocaleController.formatString("FloodWaitTime", C1010R.string.FloodWaitTime, formatPluralString));
+                LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.WrongCodeTitle), LocaleController.formatString("FloodWaitTime", C1072R.string.FloodWaitTime, formatPluralString));
             }
         }
 
@@ -3787,7 +3909,7 @@ public class LoginActivity extends BaseFragment {
 
         @Override
         public String getHeaderName() {
-            return LocaleController.getString("LoginPassword", C1010R.string.LoginPassword);
+            return LocaleController.getString("LoginPassword", C1072R.string.LoginPassword);
         }
 
         @Override
@@ -3804,7 +3926,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.hideKeyboard(this.codeField);
                 return;
             }
-            this.codeField.setText(BuildConfig.APP_CENTER_HASH);
+            this.codeField.setText("");
             this.currentParams = bundle;
             String string = bundle.getString("password");
             this.passwordString = string;
@@ -3828,7 +3950,7 @@ public class LoginActivity extends BaseFragment {
                 return;
             }
             if (z) {
-                this.codeField.setText(BuildConfig.APP_CENTER_HASH);
+                this.codeField.setText("");
             }
             LoginActivity.this.onFieldError(this.outlineCodeField, true);
         }
@@ -3855,8 +3977,8 @@ public class LoginActivity extends BaseFragment {
 
         public void lambda$onNextPressed$12(String str) {
             TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo = this.currentPassword.current_algo;
-            boolean z = tLRPC$PasswordKdfAlgo instanceof C1068x72c667f;
-            byte[] x = z ? SRPHelper.getX(AndroidUtilities.getStringBytes(str), (C1068x72c667f) tLRPC$PasswordKdfAlgo) : null;
+            boolean z = tLRPC$PasswordKdfAlgo instanceof C1132x72c667f;
+            byte[] x = z ? SRPHelper.getX(AndroidUtilities.getStringBytes(str), (C1132x72c667f) tLRPC$PasswordKdfAlgo) : null;
             TLRPC$TL_auth_checkPassword tLRPC$TL_auth_checkPassword = new TLRPC$TL_auth_checkPassword();
             RequestDelegate requestDelegate = new RequestDelegate() {
                 @Override
@@ -3866,7 +3988,7 @@ public class LoginActivity extends BaseFragment {
             };
             if (z) {
                 TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
-                TLRPC$TL_inputCheckPasswordSRP startCheck = SRPHelper.startCheck(x, tLRPC$account_Password.srp_id, tLRPC$account_Password.srp_B, (C1068x72c667f) tLRPC$PasswordKdfAlgo);
+                TLRPC$TL_inputCheckPasswordSRP startCheck = SRPHelper.startCheck(x, tLRPC$account_Password.srp_id, tLRPC$account_Password.srp_B, (C1132x72c667f) tLRPC$PasswordKdfAlgo);
                 tLRPC$TL_auth_checkPassword.password = startCheck;
                 if (startCheck != null) {
                     ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(tLRPC$TL_auth_checkPassword, requestDelegate, 10);
@@ -3910,7 +4032,7 @@ public class LoginActivity extends BaseFragment {
                 if (tLRPC$TL_error.text.equals("PASSWORD_HASH_INVALID")) {
                     onPasscodeError(true);
                 } else if (!tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
                 } else {
                     int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
                     if (intValue < 60) {
@@ -3918,7 +4040,7 @@ public class LoginActivity extends BaseFragment {
                     } else {
                         formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
                     }
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.formatString("FloodWaitTime", C1010R.string.FloodWaitTime, formatPluralString));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.formatString("FloodWaitTime", C1072R.string.FloodWaitTime, formatPluralString));
                 }
             }
         }
@@ -4033,7 +4155,7 @@ public class LoginActivity extends BaseFragment {
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             this.waitImageView = rLottieImageView;
             rLottieImageView.setAutoRepeat(true);
-            this.waitImageView.setAnimation(C1010R.raw.sandclock, 120, 120);
+            this.waitImageView.setAnimation(C1072R.raw.sandclock, 120, 120);
             frameLayout.addView(this.waitImageView, LayoutHelper.createFrame(120, 120, 1));
             Point point = AndroidUtilities.displaySize;
             frameLayout.setVisibility((point.x <= point.y || AndroidUtilities.isTablet()) ? 0 : 8);
@@ -4043,7 +4165,7 @@ public class LoginActivity extends BaseFragment {
             textView.setTextSize(1, 18.0f);
             this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             TextView textView2 = this.titleView;
-            int i = C1010R.string.ResetAccount;
+            int i = C1072R.string.ResetAccount;
             textView2.setText(LocaleController.getString(i));
             this.titleView.setGravity(17);
             this.titleView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
@@ -4058,7 +4180,7 @@ public class LoginActivity extends BaseFragment {
             TextView textView4 = new TextView(context);
             this.resetAccountText = textView4;
             textView4.setGravity(1);
-            this.resetAccountText.setText(LocaleController.getString("ResetAccountStatus", C1010R.string.ResetAccountStatus));
+            this.resetAccountText.setText(LocaleController.getString("ResetAccountStatus", C1072R.string.ResetAccountStatus));
             this.resetAccountText.setTextSize(1, 14.0f);
             this.resetAccountText.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
             addView(this.resetAccountText, LayoutHelper.createLinear(-2, -2, 49, 0, 24, 0, 0));
@@ -4092,12 +4214,12 @@ public class LoginActivity extends BaseFragment {
                 return;
             }
             LoginActivity loginActivity = LoginActivity.this;
-            loginActivity.showDialog(new AlertDialog.Builder(loginActivity.getParentActivity()).setTitle(LocaleController.getString("ResetMyAccountWarning", C1010R.string.ResetMyAccountWarning)).setMessage(LocaleController.getString("ResetMyAccountWarningText", C1010R.string.ResetMyAccountWarningText)).setPositiveButton(LocaleController.getString("ResetMyAccountWarningReset", C1010R.string.ResetMyAccountWarningReset), new DialogInterface.OnClickListener() {
+            loginActivity.showDialog(new AlertDialog.Builder(loginActivity.getParentActivity()).setTitle(LocaleController.getString("ResetMyAccountWarning", C1072R.string.ResetMyAccountWarning)).setMessage(LocaleController.getString("ResetMyAccountWarningText", C1072R.string.ResetMyAccountWarningText)).setPositiveButton(LocaleController.getString("ResetMyAccountWarningReset", C1072R.string.ResetMyAccountWarningReset), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     LoginActivity.LoginActivityResetWaitView.this.lambda$new$2(dialogInterface, i);
                 }
-            }).setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null).create());
+            }).setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null).create());
         }
 
         public void lambda$new$2(DialogInterface dialogInterface, int i) {
@@ -4134,9 +4256,9 @@ public class LoginActivity extends BaseFragment {
                 bundle.putString("code", this.phoneCode);
                 LoginActivity.this.setPage(5, true, bundle, false);
             } else if (tLRPC$TL_error.text.equals("2FA_RECENT_CONFIRM")) {
-                LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("ResetAccountCancelledAlert", C1010R.string.ResetAccountCancelledAlert));
+                LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("ResetAccountCancelledAlert", C1072R.string.ResetAccountCancelledAlert));
             } else {
-                LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
+                LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
             }
         }
 
@@ -4151,7 +4273,7 @@ public class LoginActivity extends BaseFragment {
 
         @Override
         public String getHeaderName() {
-            return LocaleController.getString("ResetAccount", C1010R.string.ResetAccount);
+            return LocaleController.getString("ResetAccount", C1072R.string.ResetAccount);
         }
 
         public void updateTimeText() {
@@ -4196,9 +4318,9 @@ public class LoginActivity extends BaseFragment {
             this.startTime = bundle.getInt("startTime");
             this.waitTime = bundle.getInt("waitTime");
             TextView textView = this.confirmTextView;
-            int i = C1010R.string.ResetAccountInfo;
-            C0933PhoneFormat c0933PhoneFormat = C0933PhoneFormat.getInstance();
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ResetAccountInfo", i, LocaleController.addNbsp(c0933PhoneFormat.format("+" + this.requestPhone)))));
+            int i = C1072R.string.ResetAccountInfo;
+            C0995PhoneFormat c0995PhoneFormat = C0995PhoneFormat.getInstance();
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ResetAccountInfo", i, LocaleController.addNbsp(c0995PhoneFormat.format("+" + this.requestPhone)))));
             updateTimeText();
             Runnable runnable = new Runnable() {
                 @Override
@@ -4321,7 +4443,7 @@ public class LoginActivity extends BaseFragment {
 
         @Override
         public String getHeaderName() {
-            return LocaleController.getString("AddEmailTitle", C1010R.string.AddEmailTitle);
+            return LocaleController.getString("AddEmailTitle", C1072R.string.AddEmailTitle);
         }
 
         @Override
@@ -4329,7 +4451,7 @@ public class LoginActivity extends BaseFragment {
             if (bundle == null) {
                 return;
             }
-            this.emailField.setText(BuildConfig.APP_CENTER_HASH);
+            this.emailField.setText("");
             this.currentParams = bundle;
             this.phone = bundle.getString("phone");
             this.emailPhone = this.currentParams.getString("ephone");
@@ -4351,7 +4473,7 @@ public class LoginActivity extends BaseFragment {
             } catch (Exception unused) {
             }
             if (z) {
-                this.emailField.setText(BuildConfig.APP_CENTER_HASH);
+                this.emailField.setText("");
             }
             this.emailField.requestFocus();
             LoginActivity.this.onFieldError(this.emailOutlineView, true);
@@ -4444,9 +4566,9 @@ public class LoginActivity extends BaseFragment {
                 LoginActivity.this.fillNextCodeParams(bundle, tLRPC$TL_account_emailVerifiedLogin.sent_code);
             } else if (tLRPC$TL_error != null) {
                 if (tLRPC$TL_error.text.contains("EMAIL_NOT_ALLOWED")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString(C1010R.string.EmailNotAllowed));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString(C1072R.string.EmailNotAllowed));
                 } else if (tLRPC$TL_error.text.contains("EMAIL_TOKEN_INVALID")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString(C1010R.string.EmailTokenInvalid));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString(C1072R.string.EmailTokenInvalid));
                 } else if (tLRPC$TL_error.code != -1000) {
                     AlertsCreator.processError(((BaseFragment) LoginActivity.this).currentAccount, tLRPC$TL_error, LoginActivity.this, tLRPC$TL_account_verifyEmail, new Object[0]);
                 }
@@ -4474,17 +4596,17 @@ public class LoginActivity extends BaseFragment {
                 if (str.contains("EMAIL_INVALID")) {
                     onPasscodeError(false);
                 } else if (tLRPC$TL_error.text.contains("EMAIL_NOT_ALLOWED")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString(C1010R.string.EmailNotAllowed));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString(C1072R.string.EmailNotAllowed));
                 } else if (tLRPC$TL_error.text.contains("PHONE_PASSWORD_FLOOD")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("FloodWait", C1010R.string.FloodWait));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("FloodWait", C1072R.string.FloodWait));
                 } else if (tLRPC$TL_error.text.contains("PHONE_NUMBER_FLOOD")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("PhoneNumberFlood", C1010R.string.PhoneNumberFlood));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("PhoneNumberFlood", C1072R.string.PhoneNumberFlood));
                 } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidCode", C1010R.string.InvalidCode));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidCode", C1072R.string.InvalidCode));
                 } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("CodeExpired", C1010R.string.CodeExpired));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("CodeExpired", C1072R.string.CodeExpired));
                 } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("FloodWait", C1010R.string.FloodWait));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("FloodWait", C1072R.string.FloodWait));
                 } else if (tLRPC$TL_error.code != -1000) {
                     AlertsCreator.processError(((BaseFragment) LoginActivity.this).currentAccount, tLRPC$TL_error, LoginActivity.this, tLRPC$TL_account_sendVerifyEmailCode, this.requestPhone);
                 }
@@ -4689,7 +4811,7 @@ public class LoginActivity extends BaseFragment {
 
         @Override
         public String getHeaderName() {
-            return LocaleController.getString(C1010R.string.VerificationCode);
+            return LocaleController.getString(C1072R.string.VerificationCode);
         }
 
         @Override
@@ -4707,9 +4829,9 @@ public class LoginActivity extends BaseFragment {
             this.length = this.currentParams.getInt("length");
             this.email = this.currentParams.getString("email");
             if (LoginActivity.this.activityMode == 3) {
-                this.confirmTextView.setText(LocaleController.formatString(C1010R.string.CheckYourNewEmailSubtitle, this.email));
+                this.confirmTextView.setText(LocaleController.formatString(C1072R.string.CheckYourNewEmailSubtitle, this.email));
             } else if (this.isSetup) {
-                this.confirmTextView.setText(LocaleController.formatString(C1010R.string.VerificationCodeSubtitle, this.email));
+                this.confirmTextView.setText(LocaleController.formatString(C1072R.string.VerificationCodeSubtitle, this.email));
             }
             this.codeFieldContainer.setNumbersCount(this.length, 1);
             for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
@@ -4739,7 +4861,7 @@ public class LoginActivity extends BaseFragment {
                     }
                 });
             }
-            this.codeFieldContainer.setText(BuildConfig.APP_CENTER_HASH);
+            this.codeFieldContainer.setText("");
             if (!this.isFromSetup && LoginActivity.this.activityMode != 3) {
                 String string = this.currentParams.getString("emailPattern");
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
@@ -4753,7 +4875,7 @@ public class LoginActivity extends BaseFragment {
                     textStyleRun.end = i;
                     spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun), indexOf, i, 0);
                 }
-                this.confirmTextView.setText(AndroidUtilities.formatSpannable(LocaleController.getString(C1010R.string.CheckYourEmailSubtitle), spannableStringBuilder));
+                this.confirmTextView.setText(AndroidUtilities.formatSpannable(LocaleController.getString(C1072R.string.CheckYourEmailSubtitle), spannableStringBuilder));
             }
             int i2 = bundle.getBoolean("googleSignInAllowed") ? 0 : 8;
             this.loginOrView.setVisibility(i2);
@@ -4779,7 +4901,7 @@ public class LoginActivity extends BaseFragment {
             }
             if (z) {
                 for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
-                    codeNumberField.setText(BuildConfig.APP_CENTER_HASH);
+                    codeNumberField.setText("");
                 }
             }
             for (CodeNumberField codeNumberField2 : this.codeFieldContainer.codeField) {
@@ -4927,12 +5049,12 @@ public class LoginActivity extends BaseFragment {
             this.nextPressed = false;
             LoginActivity.this.showDoneButton(false, true);
             if (tLRPC$TL_error != null) {
-                LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
+                LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
                 return;
             }
             TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             if (!TwoStepVerificationActivity.canHandleCurrentPassword(tLRPC$account_Password, true)) {
-                AlertsCreator.showUpdateAppAlert(LoginActivity.this.getParentActivity(), LocaleController.getString("UpdateAppAlert", C1010R.string.UpdateAppAlert), true);
+                AlertsCreator.showUpdateAppAlert(LoginActivity.this.getParentActivity(), LocaleController.getString("UpdateAppAlert", C1072R.string.UpdateAppAlert), true);
                 return;
             }
             final Bundle bundle = new Bundle();
@@ -5012,7 +5134,7 @@ public class LoginActivity extends BaseFragment {
                 if (i >= codeNumberFieldArr.length) {
                     break;
                 }
-                codeNumberFieldArr[i].setText(BuildConfig.APP_CENTER_HASH);
+                codeNumberFieldArr[i].setText("");
                 this.codeFieldContainer.codeField[i].animateErrorProgress(1.0f);
                 i++;
             }
@@ -5071,7 +5193,7 @@ public class LoginActivity extends BaseFragment {
             this.inboxImageView.playAnimation();
             CodeFieldContainer codeFieldContainer = this.codeFieldContainer;
             if (codeFieldContainer != null) {
-                codeFieldContainer.setText(BuildConfig.APP_CENTER_HASH);
+                codeFieldContainer.setText("");
                 this.codeFieldContainer.codeField[0].requestFocus();
             }
             AndroidUtilities.runOnUIThread(this.resendCodeTimeout, 60000L);
@@ -5153,12 +5275,12 @@ public class LoginActivity extends BaseFragment {
         }
 
         public void lambda$new$4(View view) {
-            Dialog showDialog = LoginActivity.this.showDialog(new AlertDialog.Builder(LoginActivity.this.getParentActivity()).setTitle(LocaleController.getString("RestorePasswordNoEmailTitle", C1010R.string.RestorePasswordNoEmailTitle)).setMessage(LocaleController.getString("RestoreEmailTroubleText", C1010R.string.RestoreEmailTroubleText)).setPositiveButton(LocaleController.getString(C1010R.string.OK), new DialogInterface.OnClickListener() {
+            Dialog showDialog = LoginActivity.this.showDialog(new AlertDialog.Builder(LoginActivity.this.getParentActivity()).setTitle(LocaleController.getString("RestorePasswordNoEmailTitle", C1072R.string.RestorePasswordNoEmailTitle)).setMessage(LocaleController.getString("RestoreEmailTroubleText", C1072R.string.RestoreEmailTroubleText)).setPositiveButton(LocaleController.getString(C1072R.string.OK), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     LoginActivity.LoginActivityRecoverView.this.lambda$new$2(dialogInterface, i);
                 }
-            }).setNegativeButton(LocaleController.getString(C1010R.string.ResetAccount), new DialogInterface.OnClickListener() {
+            }).setNegativeButton(LocaleController.getString(C1072R.string.ResetAccount), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     LoginActivity.LoginActivityRecoverView.this.lambda$new$3(dialogInterface, i);
@@ -5199,7 +5321,7 @@ public class LoginActivity extends BaseFragment {
 
         @Override
         public String getHeaderName() {
-            return LocaleController.getString("LoginPassword", C1010R.string.LoginPassword);
+            return LocaleController.getString("LoginPassword", C1072R.string.LoginPassword);
         }
 
         @Override
@@ -5207,7 +5329,7 @@ public class LoginActivity extends BaseFragment {
             if (bundle == null) {
                 return;
             }
-            this.codeFieldContainer.setText(BuildConfig.APP_CENTER_HASH);
+            this.codeFieldContainer.setText("");
             this.currentParams = bundle;
             this.passwordString = bundle.getString("password");
             this.requestPhone = this.currentParams.getString("requestPhone");
@@ -5225,7 +5347,7 @@ public class LoginActivity extends BaseFragment {
                 textStyleRun.end = i;
                 valueOf.setSpan(new TextStyleSpan(textStyleRun), indexOf, i, 0);
             }
-            this.troubleButton.setText(AndroidUtilities.formatSpannable(LocaleController.getString(C1010R.string.RestoreEmailNoAccess), valueOf));
+            this.troubleButton.setText(AndroidUtilities.formatSpannable(LocaleController.getString(C1072R.string.RestoreEmailNoAccess), valueOf));
             LoginActivity.this.showKeyboard(this.codeFieldContainer);
             this.codeFieldContainer.requestFocus();
         }
@@ -5240,7 +5362,7 @@ public class LoginActivity extends BaseFragment {
             }
             if (z) {
                 for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
-                    codeNumberField.setText(BuildConfig.APP_CENTER_HASH);
+                    codeNumberField.setText("");
                 }
             }
             for (CodeNumberField codeNumberField2 : this.codeFieldContainer.codeField) {
@@ -5330,7 +5452,7 @@ public class LoginActivity extends BaseFragment {
             } else if (tLRPC$TL_error == null || tLRPC$TL_error.text.startsWith("CODE_INVALID")) {
                 onPasscodeError(true);
             } else if (!tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
+                LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
             } else {
                 int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
                 if (intValue < 60) {
@@ -5338,7 +5460,7 @@ public class LoginActivity extends BaseFragment {
                 } else {
                     formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
                 }
-                LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.formatString("FloodWaitTime", C1010R.string.FloodWaitTime, formatPluralString));
+                LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.formatString("FloodWaitTime", C1072R.string.FloodWaitTime, formatPluralString));
             }
         }
 
@@ -5432,7 +5554,7 @@ public class LoginActivity extends BaseFragment {
             this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titleTextView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
             this.titleTextView.setGravity(49);
-            this.titleTextView.setText(LocaleController.getString(C1010R.string.SetNewPassword));
+            this.titleTextView.setText(LocaleController.getString(C1072R.string.SetNewPassword));
             addView(this.titleTextView, LayoutHelper.createLinear(-2, -2, 1, 8, AndroidUtilities.isSmallScreen() ? 16 : 72, 8, 0));
             TextView textView2 = new TextView(context);
             this.confirmTextView = textView2;
@@ -5445,9 +5567,9 @@ public class LoginActivity extends BaseFragment {
                 final OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context);
                 this.outlineFields[i3] = outlineTextContainerView;
                 if (i == 0) {
-                    i2 = i3 == 0 ? C1010R.string.PleaseEnterNewFirstPasswordHint : C1010R.string.PleaseEnterNewSecondPasswordHint;
+                    i2 = i3 == 0 ? C1072R.string.PleaseEnterNewFirstPasswordHint : C1072R.string.PleaseEnterNewSecondPasswordHint;
                 } else {
-                    i2 = C1010R.string.PasswordHintPlaceholder;
+                    i2 = C1072R.string.PasswordHintPlaceholder;
                 }
                 outlineTextContainerView.setText(LocaleController.getString(i2));
                 this.codeField[i3] = new EditTextBoldCursor(context);
@@ -5512,7 +5634,7 @@ public class LoginActivity extends BaseFragment {
                     linearLayout.addView(this.codeField[i3], LayoutHelper.createLinear(0, -2, 1.0f));
                     ImageView imageView = new ImageView(context);
                     this.passwordButton = imageView;
-                    imageView.setImageResource(C1010R.C1011drawable.msg_message);
+                    imageView.setImageResource(C1072R.C1073drawable.msg_message);
                     AndroidUtilities.updateViewVisibilityAnimated(this.passwordButton, true, 0.1f, false);
                     this.passwordButton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -5539,9 +5661,9 @@ public class LoginActivity extends BaseFragment {
                 f = 18.0f;
             }
             if (i == 0) {
-                this.confirmTextView.setText(LocaleController.getString("PleaseEnterNewFirstPasswordLogin", C1010R.string.PleaseEnterNewFirstPasswordLogin));
+                this.confirmTextView.setText(LocaleController.getString("PleaseEnterNewFirstPasswordLogin", C1072R.string.PleaseEnterNewFirstPasswordLogin));
             } else {
-                this.confirmTextView.setText(LocaleController.getString("PasswordHintTextLogin", C1010R.string.PasswordHintTextLogin));
+                this.confirmTextView.setText(LocaleController.getString("PasswordHintTextLogin", C1072R.string.PasswordHintTextLogin));
             }
             TextView textView3 = new TextView(context);
             this.cancelButton = textView3;
@@ -5549,7 +5671,7 @@ public class LoginActivity extends BaseFragment {
             this.cancelButton.setTextSize(1, 15.0f);
             this.cancelButton.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
             this.cancelButton.setPadding(AndroidUtilities.m35dp(16.0f), 0, AndroidUtilities.m35dp(16.0f), 0);
-            this.cancelButton.setText(LocaleController.getString(C1010R.string.YourEmailSkip));
+            this.cancelButton.setText(LocaleController.getString(C1072R.string.YourEmailSkip));
             FrameLayout frameLayout = new FrameLayout(context);
             frameLayout.addView(this.cancelButton, LayoutHelper.createFrame(-1, Build.VERSION.SDK_INT >= 21 ? 56 : 60, 80, 0.0f, 0.0f, 0.0f, 32.0f));
             addView(frameLayout, LayoutHelper.createLinear(-1, -1, 80));
@@ -5641,7 +5763,7 @@ public class LoginActivity extends BaseFragment {
 
         @Override
         public String getHeaderName() {
-            return LocaleController.getString("NewPassword", C1010R.string.NewPassword);
+            return LocaleController.getString("NewPassword", C1072R.string.NewPassword);
         }
 
         @Override
@@ -5655,7 +5777,7 @@ public class LoginActivity extends BaseFragment {
                 if (i >= editTextBoldCursorArr.length) {
                     break;
                 }
-                editTextBoldCursorArr[i].setText(BuildConfig.APP_CENTER_HASH);
+                editTextBoldCursorArr[i].setText("");
                 i++;
             }
             this.currentParams = bundle;
@@ -5717,7 +5839,7 @@ public class LoginActivity extends BaseFragment {
                 TLRPC$TL_account_passwordInputSettings tLRPC$TL_account_passwordInputSettings = new TLRPC$TL_account_passwordInputSettings();
                 tLRPC$TL_auth_recoverPassword.new_settings = tLRPC$TL_account_passwordInputSettings;
                 tLRPC$TL_account_passwordInputSettings.flags |= 1;
-                tLRPC$TL_account_passwordInputSettings.hint = str2 != null ? str2 : BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_account_passwordInputSettings.hint = str2 != null ? str2 : "";
                 tLRPC$TL_account_passwordInputSettings.new_algo = this.currentPassword.new_algo;
             }
             Utilities.globalQueue.postRunnable(new Runnable() {
@@ -5737,9 +5859,9 @@ public class LoginActivity extends BaseFragment {
                 }
             };
             TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo = this.currentPassword.new_algo;
-            if (tLRPC$PasswordKdfAlgo instanceof C1068x72c667f) {
+            if (tLRPC$PasswordKdfAlgo instanceof C1132x72c667f) {
                 if (str != null) {
-                    tLRPC$TL_auth_recoverPassword.new_settings.new_password_hash = SRPHelper.getVBytes(stringBytes, (C1068x72c667f) tLRPC$PasswordKdfAlgo);
+                    tLRPC$TL_auth_recoverPassword.new_settings.new_password_hash = SRPHelper.getVBytes(stringBytes, (C1132x72c667f) tLRPC$PasswordKdfAlgo);
                     if (tLRPC$TL_auth_recoverPassword.new_settings.new_password_hash == null) {
                         TLRPC$TL_error tLRPC$TL_error = new TLRPC$TL_error();
                         tLRPC$TL_error.text = "ALGO_INVALID";
@@ -5769,18 +5891,18 @@ public class LoginActivity extends BaseFragment {
                 LoginActivity.this.needHideProgress(false);
                 if (tLObject instanceof TLRPC$auth_Authorization) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this.getParentActivity());
-                    builder.setPositiveButton(LocaleController.getString(C1010R.string.Continue), new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(LocaleController.getString(C1072R.string.Continue), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
                             LoginActivity.LoginActivityNewPasswordView.this.lambda$recoverPassword$6(tLObject, dialogInterface, i);
                         }
                     });
                     if (TextUtils.isEmpty(str)) {
-                        builder.setMessage(LocaleController.getString(C1010R.string.YourPasswordReset));
+                        builder.setMessage(LocaleController.getString(C1072R.string.YourPasswordReset));
                     } else {
-                        builder.setMessage(LocaleController.getString(C1010R.string.YourPasswordChangedSuccessText));
+                        builder.setMessage(LocaleController.getString(C1072R.string.YourPasswordChangedSuccessText));
                     }
-                    builder.setTitle(LocaleController.getString(C1010R.string.TwoStepVerificationTitle));
+                    builder.setTitle(LocaleController.getString(C1072R.string.TwoStepVerificationTitle));
                     Dialog showDialog = LoginActivity.this.showDialog(builder.create());
                     if (showDialog != null) {
                         showDialog.setCanceledOnTouchOutside(false);
@@ -5791,7 +5913,7 @@ public class LoginActivity extends BaseFragment {
                 } else if (tLRPC$TL_error != null) {
                     this.nextPressed = false;
                     if (!tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
+                        LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
                         return;
                     }
                     int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
@@ -5800,7 +5922,7 @@ public class LoginActivity extends BaseFragment {
                     } else {
                         formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
                     }
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.formatString("FloodWaitTime", C1010R.string.FloodWaitTime, formatPluralString));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.formatString("FloodWaitTime", C1072R.string.FloodWaitTime, formatPluralString));
                     return;
                 } else {
                     return;
@@ -5910,8 +6032,18 @@ public class LoginActivity extends BaseFragment {
         private TextView wrongNumber;
 
         @Override
+        public boolean canFinishFragment() {
+            return ImageUpdater.ImageUpdaterDelegate.CC.$default$canFinishFragment(this);
+        }
+
+        @Override
         public void didStartUpload(boolean z) {
             ImageUpdater.ImageUpdaterDelegate.CC.$default$didStartUpload(this, z);
+        }
+
+        @Override
+        public void didUploadFailed() {
+            ImageUpdater.ImageUpdaterDelegate.CC.$default$didUploadFailed(this);
         }
 
         @Override
@@ -5950,22 +6082,22 @@ public class LoginActivity extends BaseFragment {
                 return;
             }
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this.getParentActivity());
-            builder.setTitle(LocaleController.getString("TermsOfService", C1010R.string.TermsOfService));
+            builder.setTitle(LocaleController.getString("TermsOfService", C1072R.string.TermsOfService));
             if (z) {
-                builder.setPositiveButton(LocaleController.getString("Accept", C1010R.string.Accept), new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(LocaleController.getString("Accept", C1072R.string.Accept), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
                         LoginActivity.LoginActivityRegisterView.this.lambda$showTermsOfService$0(dialogInterface, i);
                     }
                 });
-                builder.setNegativeButton(LocaleController.getString("Decline", C1010R.string.Decline), new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(LocaleController.getString("Decline", C1072R.string.Decline), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
                         LoginActivity.LoginActivityRegisterView.this.lambda$showTermsOfService$3(dialogInterface, i);
                     }
                 });
             } else {
-                builder.setPositiveButton(LocaleController.getString("OK", C1010R.string.OK), null);
+                builder.setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), null);
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LoginActivity.this.currentTermsOfService.text);
             MessageObject.addEntitiesToText(spannableStringBuilder, LoginActivity.this.currentTermsOfService.entities, false, false, false, false);
@@ -5980,15 +6112,15 @@ public class LoginActivity extends BaseFragment {
 
         public void lambda$showTermsOfService$3(DialogInterface dialogInterface, int i) {
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this.getParentActivity());
-            builder.setTitle(LocaleController.getString("TermsOfService", C1010R.string.TermsOfService));
-            builder.setMessage(LocaleController.getString("TosDecline", C1010R.string.TosDecline));
-            builder.setPositiveButton(LocaleController.getString("SignUp", C1010R.string.SignUp), new DialogInterface.OnClickListener() {
+            builder.setTitle(LocaleController.getString("TermsOfService", C1072R.string.TermsOfService));
+            builder.setMessage(LocaleController.getString("TosDecline", C1072R.string.TosDecline));
+            builder.setPositiveButton(LocaleController.getString("SignUp", C1072R.string.SignUp), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface2, int i2) {
                     LoginActivity.LoginActivityRegisterView.this.lambda$showTermsOfService$1(dialogInterface2, i2);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Decline", C1010R.string.Decline), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString("Decline", C1072R.string.Decline), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface2, int i2) {
                     LoginActivity.LoginActivityRegisterView.this.lambda$showTermsOfService$2(dialogInterface2, i2);
@@ -6072,9 +6204,9 @@ public class LoginActivity extends BaseFragment {
                     LoginActivity.LoginActivityRegisterView.this.lambda$new$7(view2);
                 }
             });
-            int i = C1010R.raw.camera;
+            int i = C1072R.raw.camera;
             this.cameraDrawable = new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.m35dp(70.0f), AndroidUtilities.m35dp(70.0f), false, null);
-            int i2 = C1010R.raw.camera_wait;
+            int i2 = C1072R.raw.camera_wait;
             this.cameraWaitDrawable = new RLottieDrawable(i2, String.valueOf(i2), AndroidUtilities.m35dp(70.0f), AndroidUtilities.m35dp(70.0f), false, null);
             RLottieImageView rLottieImageView = new RLottieImageView(context, LoginActivity.this) {
                 @Override
@@ -6095,7 +6227,7 @@ public class LoginActivity extends BaseFragment {
             this.avatarEditor.setEnabled(false);
             this.avatarEditor.setClickable(false);
             frameLayout.addView(this.avatarEditor, LayoutHelper.createFrame(-1, -1.0f));
-            this.avatarEditor.addOnAttachStateChangeListener(new View$OnAttachStateChangeListenerC33414(LoginActivity.this));
+            this.avatarEditor.addOnAttachStateChangeListener(new View$OnAttachStateChangeListenerC34994(LoginActivity.this));
             RadialProgressView radialProgressView = new RadialProgressView(context, LoginActivity.this) {
                 @Override
                 public void setAlpha(float f) {
@@ -6110,7 +6242,7 @@ public class LoginActivity extends BaseFragment {
             showAvatarProgress(false, false);
             TextView textView = new TextView(context);
             this.titleTextView = textView;
-            textView.setText(LocaleController.getString(C1010R.string.RegistrationProfileInfo));
+            textView.setText(LocaleController.getString(C1072R.string.RegistrationProfileInfo));
             this.titleTextView.setTextSize(1, 18.0f);
             this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titleTextView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
@@ -6118,7 +6250,7 @@ public class LoginActivity extends BaseFragment {
             addView(this.titleTextView, LayoutHelper.createLinear(-2, -2, 1, 8, 12, 8, 0));
             TextView textView2 = new TextView(context);
             this.descriptionTextView = textView2;
-            textView2.setText(LocaleController.getString("RegisterText2", C1010R.string.RegisterText2));
+            textView2.setText(LocaleController.getString("RegisterText2", C1072R.string.RegisterText2));
             this.descriptionTextView.setGravity(1);
             this.descriptionTextView.setTextSize(1, 14.0f);
             this.descriptionTextView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
@@ -6128,7 +6260,7 @@ public class LoginActivity extends BaseFragment {
             addView(frameLayout2, LayoutHelper.createLinear(-1, -2, 8.0f, 21.0f, 8.0f, 0.0f));
             OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context);
             this.firstNameOutlineView = outlineTextContainerView;
-            outlineTextContainerView.setText(LocaleController.getString(C1010R.string.FirstName));
+            outlineTextContainerView.setText(LocaleController.getString(C1072R.string.FirstName));
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
             this.firstNameField = editTextBoldCursor;
             editTextBoldCursor.setCursorSize(AndroidUtilities.m35dp(20.0f));
@@ -6157,7 +6289,7 @@ public class LoginActivity extends BaseFragment {
             });
             OutlineTextContainerView outlineTextContainerView2 = new OutlineTextContainerView(context);
             this.lastNameOutlineView = outlineTextContainerView2;
-            outlineTextContainerView2.setText(LocaleController.getString(C1010R.string.LastName));
+            outlineTextContainerView2.setText(LocaleController.getString(C1072R.string.LastName));
             EditTextBoldCursor editTextBoldCursor2 = new EditTextBoldCursor(context);
             this.lastNameField = editTextBoldCursor2;
             editTextBoldCursor2.setCursorSize(AndroidUtilities.m35dp(20.0f));
@@ -6187,7 +6319,7 @@ public class LoginActivity extends BaseFragment {
             buildEditTextLayout(AndroidUtilities.isSmallScreen());
             TextView textView3 = new TextView(context);
             this.wrongNumber = textView3;
-            textView3.setText(LocaleController.getString("CancelRegistration", C1010R.string.CancelRegistration));
+            textView3.setText(LocaleController.getString("CancelRegistration", C1072R.string.CancelRegistration));
             this.wrongNumber.setGravity((LocaleController.isRTL ? 5 : 3) | 1);
             this.wrongNumber.setTextSize(1, 14.0f);
             this.wrongNumber.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
@@ -6210,13 +6342,13 @@ public class LoginActivity extends BaseFragment {
             this.privacyView.setGravity(16);
             frameLayout3.addView(this.privacyView, LayoutHelper.createFrame(-2, Build.VERSION.SDK_INT >= 21 ? 56.0f : 60.0f, 83, 14.0f, 0.0f, 70.0f, 32.0f));
             VerticalPositionAutoAnimator.attach(this.privacyView);
-            String string = LocaleController.getString("TermsOfServiceLogin", C1010R.string.TermsOfServiceLogin);
+            String string = LocaleController.getString("TermsOfServiceLogin", C1072R.string.TermsOfServiceLogin);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
             int indexOf = string.indexOf(42);
             int lastIndexOf = string.lastIndexOf(42);
             if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
-                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
-                spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
+                spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
                 spannableStringBuilder.setSpan(new LinkSpan(), indexOf, lastIndexOf - 1, 33);
             }
             this.privacyView.setText(spannableStringBuilder);
@@ -6233,7 +6365,7 @@ public class LoginActivity extends BaseFragment {
                 public final void onDismiss(DialogInterface dialogInterface) {
                     LoginActivity.LoginActivityRegisterView.this.lambda$new$6(dialogInterface);
                 }
-            });
+            }, 0);
             this.isCameraWaitAnimationAllowed = false;
             this.avatarEditor.setAnimation(this.cameraDrawable);
             this.cameraDrawable.setCurrentFrame(0);
@@ -6273,17 +6405,17 @@ public class LoginActivity extends BaseFragment {
             this.isCameraWaitAnimationAllowed = true;
         }
 
-        public class View$OnAttachStateChangeListenerC33414 implements View.OnAttachStateChangeListener {
+        public class View$OnAttachStateChangeListenerC34994 implements View.OnAttachStateChangeListener {
             private boolean isAttached;
             private long lastRun = System.currentTimeMillis();
             private Runnable cameraWaitCallback = new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC33414.this.lambda$$2();
+                    LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC34994.this.lambda$$2();
                 }
             };
 
-            View$OnAttachStateChangeListenerC33414(LoginActivity loginActivity) {
+            View$OnAttachStateChangeListenerC34994(LoginActivity loginActivity) {
             }
 
             public void lambda$$2() {
@@ -6294,7 +6426,7 @@ public class LoginActivity extends BaseFragment {
                         LoginActivityRegisterView.this.cameraWaitDrawable.setOnAnimationEndListener(new Runnable() {
                             @Override
                             public final void run() {
-                                LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC33414.this.lambda$$1();
+                                LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC34994.this.lambda$$1();
                             }
                         });
                         LoginActivityRegisterView.this.avatarEditor.playAnimation();
@@ -6308,7 +6440,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC33414.this.lambda$$0();
+                        LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC34994.this.lambda$$0();
                     }
                 });
             }
@@ -6385,8 +6517,8 @@ public class LoginActivity extends BaseFragment {
             if (z) {
                 LinearLayout linearLayout = new LinearLayout(LoginActivity.this.getParentActivity());
                 linearLayout.setOrientation(0);
-                this.firstNameOutlineView.setText(LocaleController.getString(C1010R.string.FirstNameSmall));
-                this.lastNameOutlineView.setText(LocaleController.getString(C1010R.string.LastNameSmall));
+                this.firstNameOutlineView.setText(LocaleController.getString(C1072R.string.FirstNameSmall));
+                this.lastNameOutlineView.setText(LocaleController.getString(C1072R.string.LastNameSmall));
                 linearLayout.addView(this.firstNameOutlineView, LayoutHelper.createLinear(0, -2, 1.0f, 0, 0, 8, 0));
                 linearLayout.addView(this.lastNameOutlineView, LayoutHelper.createLinear(0, -2, 1.0f, 8, 0, 0, 0));
                 this.editTextContainer.addView(linearLayout);
@@ -6402,14 +6534,14 @@ public class LoginActivity extends BaseFragment {
                     return;
                 }
             }
-            this.firstNameOutlineView.setText(LocaleController.getString(C1010R.string.FirstName));
-            this.lastNameOutlineView.setText(LocaleController.getString(C1010R.string.LastName));
+            this.firstNameOutlineView.setText(LocaleController.getString(C1072R.string.FirstName));
+            this.lastNameOutlineView.setText(LocaleController.getString(C1072R.string.LastName));
             this.editTextContainer.addView(this.firstNameOutlineView, LayoutHelper.createFrame(-1, -2.0f, 48, 8.0f, 0.0f, 8.0f, 0.0f));
             this.editTextContainer.addView(this.lastNameOutlineView, LayoutHelper.createFrame(-1, -2.0f, 48, 8.0f, 82.0f, 8.0f, 0.0f));
         }
 
         @Override
-        public void didUploadPhoto(TLRPC$InputFile tLRPC$InputFile, TLRPC$InputFile tLRPC$InputFile2, double d, String str, final TLRPC$PhotoSize tLRPC$PhotoSize, final TLRPC$PhotoSize tLRPC$PhotoSize2) {
+        public void didUploadPhoto(TLRPC$InputFile tLRPC$InputFile, TLRPC$InputFile tLRPC$InputFile2, double d, String str, final TLRPC$PhotoSize tLRPC$PhotoSize, final TLRPC$PhotoSize tLRPC$PhotoSize2, boolean z) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -6486,15 +6618,15 @@ public class LoginActivity extends BaseFragment {
                 return true;
             }
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this.getParentActivity());
-            builder.setTitle(LocaleController.getString(C1010R.string.Warning));
-            builder.setMessage(LocaleController.getString("AreYouSureRegistration", C1010R.string.AreYouSureRegistration));
-            builder.setNegativeButton(LocaleController.getString("Stop", C1010R.string.Stop), new DialogInterface.OnClickListener() {
+            builder.setTitle(LocaleController.getString(C1072R.string.Warning));
+            builder.setMessage(LocaleController.getString("AreYouSureRegistration", C1072R.string.AreYouSureRegistration));
+            builder.setNegativeButton(LocaleController.getString("Stop", C1072R.string.Stop), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     LoginActivity.LoginActivityRegisterView.this.lambda$onBackPressed$14(dialogInterface, i);
                 }
             });
-            builder.setPositiveButton(LocaleController.getString("Continue", C1010R.string.Continue), null);
+            builder.setPositiveButton(LocaleController.getString("Continue", C1072R.string.Continue), null);
             LoginActivity.this.showDialog(builder.create());
             return false;
         }
@@ -6507,7 +6639,7 @@ public class LoginActivity extends BaseFragment {
 
         @Override
         public String getHeaderName() {
-            return LocaleController.getString("YourName", C1010R.string.YourName);
+            return LocaleController.getString("YourName", C1072R.string.YourName);
         }
 
         @Override
@@ -6556,8 +6688,8 @@ public class LoginActivity extends BaseFragment {
             if (bundle == null) {
                 return;
             }
-            this.firstNameField.setText(BuildConfig.APP_CENTER_HASH);
-            this.lastNameField.setText(BuildConfig.APP_CENTER_HASH);
+            this.firstNameField.setText("");
+            this.lastNameField.setText("");
             this.requestPhone = bundle.getString("phoneFormated");
             this.phoneHash = bundle.getString("phoneHash");
             this.currentParams = bundle;
@@ -6603,22 +6735,22 @@ public class LoginActivity extends BaseFragment {
             if (!(tLObject instanceof TLRPC$TL_auth_authorization)) {
                 LoginActivity.this.needHideProgress(false);
                 if (tLRPC$TL_error.text.contains("PHONE_NUMBER_INVALID")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidPhoneNumber", C1010R.string.InvalidPhoneNumber));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidPhoneNumber", C1072R.string.InvalidPhoneNumber));
                     return;
                 } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidCode", C1010R.string.InvalidCode));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidCode", C1072R.string.InvalidCode));
                     return;
                 } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("CodeExpired", C1010R.string.CodeExpired));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("CodeExpired", C1072R.string.CodeExpired));
                     return;
                 } else if (tLRPC$TL_error.text.contains("FIRSTNAME_INVALID")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidFirstName", C1010R.string.InvalidFirstName));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidFirstName", C1072R.string.InvalidFirstName));
                     return;
                 } else if (tLRPC$TL_error.text.contains("LASTNAME_INVALID")) {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidLastName", C1010R.string.InvalidLastName));
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("InvalidLastName", C1072R.string.InvalidLastName));
                     return;
                 } else {
-                    LoginActivity.this.needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
+                    LoginActivity.this.needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
                     return;
                 }
             }
@@ -6816,7 +6948,7 @@ public class LoginActivity extends BaseFragment {
         Activity parentActivity = getParentActivity();
         Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
         if (Build.VERSION.SDK_INT < 21) {
-            Drawable mutate = parentActivity.getResources().getDrawable(C1010R.C1011drawable.floating_shadow).mutate();
+            Drawable mutate = parentActivity.getResources().getDrawable(C1072R.C1073drawable.floating_shadow).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
             combinedDrawable.setIconSize(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
@@ -6859,15 +6991,15 @@ public class LoginActivity extends BaseFragment {
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setMessage(LocaleController.getString("ResetMyAccountWarningText", C1010R.string.ResetMyAccountWarningText));
-        builder.setTitle(LocaleController.getString("ResetMyAccountWarning", C1010R.string.ResetMyAccountWarning));
-        builder.setPositiveButton(LocaleController.getString("ResetMyAccountWarningReset", C1010R.string.ResetMyAccountWarningReset), new DialogInterface.OnClickListener() {
+        builder.setMessage(LocaleController.getString("ResetMyAccountWarningText", C1072R.string.ResetMyAccountWarningText));
+        builder.setTitle(LocaleController.getString("ResetMyAccountWarning", C1072R.string.ResetMyAccountWarning));
+        builder.setPositiveButton(LocaleController.getString("ResetMyAccountWarningReset", C1072R.string.ResetMyAccountWarningReset), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 LoginActivity.this.lambda$tryResetAccount$20(str, str2, str3, dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
         showDialog(builder.create());
     }
 
@@ -6905,17 +7037,17 @@ public class LoginActivity extends BaseFragment {
             bundle.putString("code", str3);
             setPage(5, true, bundle, false);
         } else if (tLRPC$TL_error.text.equals("2FA_RECENT_CONFIRM")) {
-            needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), LocaleController.getString("ResetAccountCancelledAlert", C1010R.string.ResetAccountCancelledAlert));
+            needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), LocaleController.getString("ResetAccountCancelledAlert", C1072R.string.ResetAccountCancelledAlert));
         } else if (tLRPC$TL_error.text.startsWith("2FA_CONFIRM_WAIT_")) {
             Bundle bundle2 = new Bundle();
             bundle2.putString("phoneFormated", str);
             bundle2.putString("phoneHash", str2);
             bundle2.putString("code", str3);
             bundle2.putInt("startTime", ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-            bundle2.putInt("waitTime", Utilities.parseInt((CharSequence) tLRPC$TL_error.text.replace("2FA_CONFIRM_WAIT_", BuildConfig.APP_CENTER_HASH)).intValue());
+            bundle2.putInt("waitTime", Utilities.parseInt((CharSequence) tLRPC$TL_error.text.replace("2FA_CONFIRM_WAIT_", "")).intValue());
             setPage(8, true, bundle2, false);
         } else {
-            needShowAlert(LocaleController.getString(C1010R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
+            needShowAlert(LocaleController.getString(C1072R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
         }
     }
 
@@ -6984,7 +7116,7 @@ public class LoginActivity extends BaseFragment {
             this.floatingProgressView.setScaleX(0.1f);
             this.floatingProgressView.setScaleY(0.1f);
             this.popupFabContainer.addView(this.floatingProgressView, LayoutHelper.createFrame(-1, -1.0f));
-            this.popupFabContainer.setContentDescription(LocaleController.getString(C1010R.string.Done));
+            this.popupFabContainer.setContentDescription(LocaleController.getString(C1072R.string.Done));
             View view4 = this.popupFabContainer;
             int i = Build.VERSION.SDK_INT;
             addView(view4, LayoutHelper.createFrame(i >= 21 ? 56 : 60, i >= 21 ? 56.0f : 60.0f));
@@ -6993,7 +7125,7 @@ public class LoginActivity extends BaseFragment {
             addView(frameLayout2, LayoutHelper.createFrame(-1, 140.0f, 49, 24.0f, 0.0f, 24.0f, 0.0f));
             TextView textView = new TextView(context);
             this.confirmMessageView = textView;
-            textView.setText(LocaleController.getString(C1010R.string.ConfirmCorrectNumber));
+            textView.setText(LocaleController.getString(C1072R.string.ConfirmCorrectNumber));
             this.confirmMessageView.setTextSize(1, 14.0f);
             this.confirmMessageView.setSingleLine();
             this.popupLayout.addView(this.confirmMessageView, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 24.0f, 20.0f, 24.0f, 0.0f));
@@ -7007,7 +7139,7 @@ public class LoginActivity extends BaseFragment {
             int m35dp = AndroidUtilities.m35dp(16.0f);
             TextView textView3 = new TextView(context);
             this.editTextView = textView3;
-            textView3.setText(LocaleController.getString(C1010R.string.Edit));
+            textView3.setText(LocaleController.getString(C1072R.string.Edit));
             this.editTextView.setSingleLine();
             this.editTextView.setTextSize(1, 16.0f);
             this.editTextView.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("changephoneinfo_image2")));
@@ -7024,7 +7156,7 @@ public class LoginActivity extends BaseFragment {
             this.popupLayout.addView(this.editTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, f, f, f, f));
             TextView textView4 = new TextView(context);
             this.confirmTextView = textView4;
-            textView4.setText(LocaleController.getString(C1010R.string.CheckPhoneNumberYes));
+            textView4.setText(LocaleController.getString(C1072R.string.CheckPhoneNumberYes));
             this.confirmTextView.setSingleLine();
             this.confirmTextView.setTextSize(1, 16.0f);
             this.confirmTextView.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("changephoneinfo_image2")));

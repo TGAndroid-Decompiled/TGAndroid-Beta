@@ -16,7 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 
 public class VideoTimelinePlayView extends View {
@@ -83,10 +83,10 @@ public class VideoTimelinePlayView extends View {
         Paint paint2 = new Paint();
         this.paint2 = paint2;
         paint2.setColor(2130706432);
-        Drawable drawable = context.getResources().getDrawable(C1010R.C1011drawable.video_cropleft);
+        Drawable drawable = context.getResources().getDrawable(C1072R.C1073drawable.video_cropleft);
         this.drawableLeft = drawable;
         drawable.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
-        Drawable drawable2 = context.getResources().getDrawable(C1010R.C1011drawable.video_cropright);
+        Drawable drawable2 = context.getResources().getDrawable(C1072R.C1073drawable.video_cropright);
         this.drawableRight = drawable2;
         drawable2.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         this.exclusionRects.add(this.exclustionRect);

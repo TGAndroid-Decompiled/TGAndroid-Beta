@@ -10,6 +10,8 @@ public class LinkPath extends Path {
     private static CornerPathEffect roundedEffect;
     private static int roundedEffectRadius;
     private int baselineShift;
+    public float centerX;
+    public float centerY;
     private Layout currentLayout;
     private int currentLine;
     private int lineHeight;
@@ -20,7 +22,7 @@ public class LinkPath extends Path {
     private boolean allowReset = true;
 
     public static int getRadius() {
-        return AndroidUtilities.m35dp(4.0f);
+        return AndroidUtilities.m35dp(5.0f);
     }
 
     public static CornerPathEffect getRoundedEffect() {
@@ -118,6 +120,8 @@ public class LinkPath extends Path {
                         f6 += i;
                     }
                     float f12 = f7;
+                    this.centerX = (f11 + f10) / 2.0f;
+                    this.centerY = (f12 + f6) / 2.0f;
                     if (this.useRoundRect) {
                         super.addRect(f10 - (getRadius() / 2.0f), f6, f11 + (getRadius() / 2.0f), f12, direction);
                     } else {

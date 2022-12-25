@@ -15,7 +15,7 @@ import org.telegram.p009ui.ActionBar.Theme;
 public class FlatCheckBox extends View {
     int HEIGHT;
     int INNER_PADDING;
-    int f1059P;
+    int f1069P;
     int TRANSLETE_TEXT;
     boolean attached;
     ValueAnimator checkAnimator;
@@ -43,7 +43,7 @@ public class FlatCheckBox extends View {
         this.HEIGHT = AndroidUtilities.m35dp(36.0f);
         this.INNER_PADDING = AndroidUtilities.m35dp(22.0f);
         this.TRANSLETE_TEXT = AndroidUtilities.m35dp(8.0f);
-        this.f1059P = AndroidUtilities.m35dp(2.0f);
+        this.f1069P = AndroidUtilities.m35dp(2.0f);
         this.rectF = new RectF();
         this.progress = 0.0f;
         this.lastW = 0;
@@ -119,10 +119,10 @@ public class FlatCheckBox extends View {
     @Override
     protected void onMeasure(int i, int i2) {
         String str = this.text;
-        setMeasuredDimension((str == null ? 0 : (int) this.textPaint.measureText(str)) + (this.INNER_PADDING << 1) + (this.f1059P * 2), this.HEIGHT + AndroidUtilities.m35dp(4.0f));
+        setMeasuredDimension((str == null ? 0 : (int) this.textPaint.measureText(str)) + (this.INNER_PADDING << 1) + (this.f1069P * 2), this.HEIGHT + AndroidUtilities.m35dp(4.0f));
         if (getMeasuredWidth() != this.lastW) {
             this.rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.rectF.inset(this.f1059P + (this.outLinePaint.getStrokeWidth() / 2.0f), this.f1059P + (this.outLinePaint.getStrokeWidth() / 2.0f) + AndroidUtilities.m35dp(2.0f));
+            this.rectF.inset(this.f1069P + (this.outLinePaint.getStrokeWidth() / 2.0f), this.f1069P + (this.outLinePaint.getStrokeWidth() / 2.0f) + AndroidUtilities.m35dp(2.0f));
         }
     }
 

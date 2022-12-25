@@ -5,14 +5,14 @@ public class TLRPC$TL_webPagePending extends TLRPC$WebPage {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f995id = abstractSerializedData.readInt64(z);
+        this.f1004id = abstractSerializedData.readInt64(z);
         this.date = abstractSerializedData.readInt32(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f995id);
+        abstractSerializedData.writeInt64(this.f1004id);
         abstractSerializedData.writeInt32(this.date);
     }
 }

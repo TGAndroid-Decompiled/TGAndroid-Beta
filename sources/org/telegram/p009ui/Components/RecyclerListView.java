@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -539,7 +539,7 @@ public class RecyclerListView extends RecyclerView {
                 this.letterPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
                 this.letterPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 this.paint2.setColor(Theme.getColor("windowBackgroundWhite"));
-                Drawable mutate = ContextCompat.getDrawable(context, C1010R.C1011drawable.calendar_date).mutate();
+                Drawable mutate = ContextCompat.getDrawable(context, C1072R.C1073drawable.calendar_date).mutate();
                 this.fastScrollBackgroundDrawable = mutate;
                 mutate.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhite"), -1, 0.1f), PorterDuff.Mode.MULTIPLY));
             }
@@ -550,7 +550,7 @@ public class RecyclerListView extends RecyclerView {
             updateColors();
             setFocusableInTouchMode(true);
             this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-            this.fastScrollShadowDrawable = ContextCompat.getDrawable(context, C1010R.C1011drawable.fast_scroll_shadow);
+            this.fastScrollShadowDrawable = ContextCompat.getDrawable(context, C1072R.C1073drawable.fast_scroll_shadow);
         }
 
         public void updateColors() {
@@ -1246,6 +1246,34 @@ public class RecyclerListView extends RecyclerView {
         }
     }
 
+    public void drawSectionBackgroundExclusive(Canvas canvas, int i, int i2, int i3) {
+        int i4 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i5 = Integer.MIN_VALUE;
+        for (int i6 = 0; i6 < getChildCount(); i6++) {
+            View childAt = getChildAt(i6);
+            if (childAt != null) {
+                int childAdapterPosition = getChildAdapterPosition(childAt);
+                if (childAdapterPosition > i && childAdapterPosition < i2) {
+                    i4 = Math.min((int) childAt.getY(), i4);
+                    i5 = Math.max(((int) childAt.getY()) + childAt.getHeight(), i5);
+                } else if (childAdapterPosition == i) {
+                    i4 = Math.min(((int) childAt.getY()) + childAt.getHeight(), i4);
+                    i5 = Math.max(((int) childAt.getY()) + childAt.getHeight(), i5);
+                } else if (childAdapterPosition == i2) {
+                    i4 = Math.min((int) childAt.getY(), i4);
+                    i5 = Math.max((int) childAt.getY(), i5);
+                }
+            }
+        }
+        if (i4 < i5) {
+            if (this.backgroundPaint == null) {
+                this.backgroundPaint = new Paint(1);
+            }
+            this.backgroundPaint.setColor(i3);
+            canvas.drawRect(0.0f, i4, getWidth(), i5, this.backgroundPaint);
+        }
+    }
+
     public void drawItemBackground(Canvas canvas, int i, int i2, int i3) {
         int i4 = ConnectionsManager.DEFAULT_DATACENTER_ID;
         int i5 = Integer.MIN_VALUE;
@@ -1288,7 +1316,8 @@ public class RecyclerListView extends RecyclerView {
     @Override
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        if (this.fastScroll != null) {
+        FastScroll fastScroll = this.fastScroll;
+        if (fastScroll != null && fastScroll.getLayoutParams() != null) {
             int measuredHeight = (getMeasuredHeight() - getPaddingTop()) - getPaddingBottom();
             this.fastScroll.getLayoutParams().height = measuredHeight;
             this.fastScroll.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(132.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, 1073741824));
@@ -2294,8 +2323,8 @@ public class RecyclerListView extends RecyclerView {
 
     public static class FoucsableOnTouchListener implements View.OnTouchListener {
         private boolean onFocus;
-        private float f1121x;
-        private float f1122y;
+        private float f1137x;
+        private float f1138y;
 
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -2304,14 +2333,14 @@ public class RecyclerListView extends RecyclerView {
                 return false;
             }
             if (motionEvent.getAction() == 0) {
-                this.f1121x = motionEvent.getX();
-                this.f1122y = motionEvent.getY();
+                this.f1137x = motionEvent.getX();
+                this.f1138y = motionEvent.getY();
                 this.onFocus = true;
                 parent.requestDisallowInterceptTouchEvent(true);
             }
             if (motionEvent.getAction() == 2) {
-                float x = this.f1121x - motionEvent.getX();
-                float y = this.f1122y - motionEvent.getY();
+                float x = this.f1137x - motionEvent.getX();
+                float y = this.f1138y - motionEvent.getY();
                 float scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
                 if (this.onFocus && Math.sqrt((x * x) + (y * y)) > scaledTouchSlop) {
                     this.onFocus = false;

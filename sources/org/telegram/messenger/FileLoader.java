@@ -256,7 +256,7 @@ public class FileLoader extends BaseController {
         String attachFileName = getAttachFileName(tLRPC$Document);
         StringBuilder sb = new StringBuilder();
         sb.append(attachFileName);
-        sb.append(z ? "p" : BuildConfig.APP_CENTER_HASH);
+        sb.append(z ? "p" : "");
         this.loadingVideos.put(sb.toString(), Boolean.TRUE);
         getNotificationCenter().postNotificationName(NotificationCenter.videoLoadingStateChanged, attachFileName);
     }
@@ -285,16 +285,12 @@ public class FileLoader extends BaseController {
         HashMap<String, Boolean> hashMap = this.loadingVideos;
         StringBuilder sb = new StringBuilder();
         sb.append(attachFileName);
-        String str = BuildConfig.APP_CENTER_HASH;
-        sb.append(z ? BuildConfig.APP_CENTER_HASH : "p");
+        sb.append(z ? "" : "p");
         if (hashMap.containsKey(sb.toString())) {
             HashMap<String, Boolean> hashMap2 = this.loadingVideos;
             StringBuilder sb2 = new StringBuilder();
             sb2.append(attachFileName);
-            if (z) {
-                str = "p";
-            }
-            sb2.append(str);
+            sb2.append(z ? "p" : "");
             hashMap2.put(sb2.toString(), Boolean.TRUE);
         }
     }
@@ -303,7 +299,7 @@ public class FileLoader extends BaseController {
         String attachFileName = getAttachFileName(tLRPC$Document);
         StringBuilder sb = new StringBuilder();
         sb.append(attachFileName);
-        sb.append(z ? "p" : BuildConfig.APP_CENTER_HASH);
+        sb.append(z ? "p" : "");
         if (this.loadingVideos.remove(sb.toString()) != null) {
             getNotificationCenter().postNotificationName(NotificationCenter.videoLoadingStateChanged, attachFileName);
         }
@@ -330,7 +326,7 @@ public class FileLoader extends BaseController {
             HashMap<String, Boolean> hashMap = this.loadingVideos;
             StringBuilder sb = new StringBuilder();
             sb.append(getAttachFileName(tLRPC$Document));
-            sb.append(z ? "p" : BuildConfig.APP_CENTER_HASH);
+            sb.append(z ? "p" : "");
             if (hashMap.containsKey(sb.toString())) {
                 return true;
             }
@@ -452,7 +448,7 @@ public class FileLoader extends BaseController {
         if (z2) {
             fileUploadOperation.setForceSmallFile();
         }
-        fileUploadOperation.setDelegate(new C09521(z, str, z3));
+        fileUploadOperation.setDelegate(new C10141(z, str, z3));
         if (z3) {
             int i2 = this.currentUploadSmallOperationsCount;
             if (i2 < 1) {
@@ -472,12 +468,12 @@ public class FileLoader extends BaseController {
         this.uploadOperationQueue.add(fileUploadOperation);
     }
 
-    public class C09521 implements FileUploadOperation.FileUploadOperationDelegate {
+    public class C10141 implements FileUploadOperation.FileUploadOperationDelegate {
         final boolean val$encrypted;
         final String val$location;
         final boolean val$small;
 
-        C09521(boolean z, String str, boolean z2) {
+        C10141(boolean z, String str, boolean z2) {
             this.val$encrypted = z;
             this.val$location = str;
             this.val$small = z2;
@@ -492,7 +488,7 @@ public class FileLoader extends BaseController {
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.C09521.this.lambda$didFinishUploadingFile$0(z, str, z2, tLRPC$InputFile, tLRPC$InputEncryptedFile, bArr, bArr2, fileUploadOperation);
+                    FileLoader.C10141.this.lambda$didFinishUploadingFile$0(z, str, z2, tLRPC$InputFile, tLRPC$InputEncryptedFile, bArr, bArr2, fileUploadOperation);
                 }
             });
         }
@@ -532,7 +528,7 @@ public class FileLoader extends BaseController {
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.C09521.this.lambda$didFailedUploadingFile$1(z, str, z2);
+                    FileLoader.C10141.this.lambda$didFailedUploadingFile$1(z, str, z2);
                 }
             });
         }
@@ -893,7 +889,7 @@ public class FileLoader extends BaseController {
         TLRPC$PhotoSize closestPhotoSizeWithSize2;
         TLRPC$PhotoSize closestPhotoSizeWithSize3;
         if (tLRPC$Message == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         if (tLRPC$Message instanceof TLRPC$TL_messageService) {
             TLRPC$Photo tLRPC$Photo = tLRPC$Message.action.photo;
@@ -925,7 +921,7 @@ public class FileLoader extends BaseController {
                 return Utilities.MD5(tLRPC$WebDocument.url) + "." + ImageLoader.getHttpUrlExtension(tLRPC$WebDocument.url, getMimeTypePart(tLRPC$WebDocument.mime_type));
             }
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     public File getPathToMessage(TLRPC$Message tLRPC$Message) {
@@ -937,7 +933,7 @@ public class FileLoader extends BaseController {
         TLRPC$PhotoSize closestPhotoSizeWithSize2;
         TLRPC$PhotoSize closestPhotoSizeWithSize3;
         if (tLRPC$Message == null) {
-            return new File(BuildConfig.APP_CENTER_HASH);
+            return new File("");
         }
         if (tLRPC$Message instanceof TLRPC$TL_messageService) {
             TLRPC$Photo tLRPC$Photo = tLRPC$Message.action.photo;
@@ -967,7 +963,7 @@ public class FileLoader extends BaseController {
         } else if (MessageObject.getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaInvoice) {
             return getPathToAttach(((TLRPC$TL_messageMediaInvoice) MessageObject.getMedia(tLRPC$Message)).photo, null, true, z);
         }
-        return new File(BuildConfig.APP_CENTER_HASH);
+        return new File("");
     }
 
     public File getPathToAttach(TLObject tLObject) {
@@ -1023,12 +1019,12 @@ public class FileLoader extends BaseController {
         try {
             return name.substring(name.lastIndexOf(46) + 1);
         } catch (Exception unused) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 
     public static String fixFileName(String str) {
-        return str != null ? str.replaceAll("[\u0001-\u001f<>\u202e:\"/\\\\|?*\u007f]+", BuildConfig.APP_CENTER_HASH).trim() : str;
+        return str != null ? str.replaceAll("[\u0001-\u001f<>\u202e:\"/\\\\|?*\u007f]+", "").trim() : str;
     }
 
     public static String getDocumentFileName(TLRPC$Document tLRPC$Document) {
@@ -1051,12 +1047,12 @@ public class FileLoader extends BaseController {
             str3 = str;
         }
         String fixFileName = fixFileName(str3);
-        return fixFileName != null ? fixFileName : BuildConfig.APP_CENTER_HASH;
+        return fixFileName != null ? fixFileName : "";
     }
 
     public static String getMimeTypePart(String str) {
         int lastIndexOf = str.lastIndexOf(47);
-        return lastIndexOf != -1 ? str.substring(lastIndexOf + 1) : BuildConfig.APP_CENTER_HASH;
+        return lastIndexOf != -1 ? str.substring(lastIndexOf + 1) : "";
     }
 
     public static String getExtensionByMimeType(String str) {
@@ -1090,10 +1086,10 @@ public class FileLoader extends BaseController {
                 case 2:
                     return ".mkv";
                 default:
-                    return BuildConfig.APP_CENTER_HASH;
+                    return "";
             }
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     public static File getInternalCacheDir() {
@@ -1108,7 +1104,7 @@ public class FileLoader extends BaseController {
             substring = tLRPC$Document.mime_type;
         }
         if (substring == null) {
-            substring = BuildConfig.APP_CENTER_HASH;
+            substring = "";
         }
         return substring.toUpperCase();
     }
@@ -1122,28 +1118,24 @@ public class FileLoader extends BaseController {
     }
 
     public static String getAttachFileName(TLObject tLObject, String str, String str2) {
-        boolean z = tLObject instanceof TLRPC$Document;
-        String str3 = BuildConfig.APP_CENTER_HASH;
-        if (z) {
+        if (tLObject instanceof TLRPC$Document) {
             TLRPC$Document tLRPC$Document = (TLRPC$Document) tLObject;
             String documentFileName = getDocumentFileName(tLRPC$Document);
             int lastIndexOf = documentFileName.lastIndexOf(46);
-            if (lastIndexOf != -1) {
-                str3 = documentFileName.substring(lastIndexOf);
+            String substring = lastIndexOf != -1 ? documentFileName.substring(lastIndexOf) : "";
+            if (substring.length() <= 1) {
+                substring = getExtensionByMimeType(tLRPC$Document.mime_type);
             }
-            if (str3.length() <= 1) {
-                str3 = getExtensionByMimeType(tLRPC$Document.mime_type);
+            if (substring.length() > 1) {
+                return tLRPC$Document.dc_id + "_" + tLRPC$Document.f865id + substring;
             }
-            if (str3.length() > 1) {
-                return tLRPC$Document.dc_id + "_" + tLRPC$Document.f856id + str3;
-            }
-            return tLRPC$Document.dc_id + "_" + tLRPC$Document.f856id;
+            return tLRPC$Document.dc_id + "_" + tLRPC$Document.f865id;
         } else if (tLObject instanceof SecureDocument) {
             SecureDocument secureDocument = (SecureDocument) tLObject;
-            return secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.f972id + ".jpg";
+            return secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.f981id + ".jpg";
         } else if (tLObject instanceof TLRPC$TL_secureFile) {
             TLRPC$TL_secureFile tLRPC$TL_secureFile = (TLRPC$TL_secureFile) tLObject;
-            return tLRPC$TL_secureFile.dc_id + "_" + tLRPC$TL_secureFile.f972id + ".jpg";
+            return tLRPC$TL_secureFile.dc_id + "_" + tLRPC$TL_secureFile.f981id + ".jpg";
         } else if (tLObject instanceof WebFile) {
             WebFile webFile = (WebFile) tLObject;
             return Utilities.MD5(webFile.url) + "." + ImageLoader.getHttpUrlExtension(webFile.url, getMimeTypePart(webFile.mime_type));
@@ -1151,7 +1143,7 @@ public class FileLoader extends BaseController {
             TLRPC$PhotoSize tLRPC$PhotoSize = (TLRPC$PhotoSize) tLObject;
             TLRPC$FileLocation tLRPC$FileLocation = tLRPC$PhotoSize.location;
             if (tLRPC$FileLocation == null || (tLRPC$FileLocation instanceof TLRPC$TL_fileLocationUnavailable)) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             StringBuilder sb = new StringBuilder();
             sb.append(tLRPC$PhotoSize.location.volume_id);
@@ -1167,7 +1159,7 @@ public class FileLoader extends BaseController {
             TLRPC$TL_videoSize tLRPC$TL_videoSize = (TLRPC$TL_videoSize) tLObject;
             TLRPC$FileLocation tLRPC$FileLocation2 = tLRPC$TL_videoSize.location;
             if (tLRPC$FileLocation2 == null || (tLRPC$FileLocation2 instanceof TLRPC$TL_fileLocationUnavailable)) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             StringBuilder sb2 = new StringBuilder();
             sb2.append(tLRPC$TL_videoSize.location.volume_id);
@@ -1181,7 +1173,7 @@ public class FileLoader extends BaseController {
             return sb2.toString();
         } else if (tLObject instanceof TLRPC$FileLocation) {
             if (tLObject instanceof TLRPC$TL_fileLocationUnavailable) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             TLRPC$FileLocation tLRPC$FileLocation3 = (TLRPC$FileLocation) tLObject;
             StringBuilder sb3 = new StringBuilder();
@@ -1234,7 +1226,7 @@ public class FileLoader extends BaseController {
             sb5.append(str2);
             return sb5.toString();
         } else {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 
@@ -1346,7 +1338,7 @@ public class FileLoader extends BaseController {
                     return true;
                 }
             }
-            if ((-tLRPC$FileLocation.volume_id) == tLRPC$Photo.f877id) {
+            if ((-tLRPC$FileLocation.volume_id) == tLRPC$Photo.f886id) {
                 return true;
             }
         }
@@ -1355,7 +1347,7 @@ public class FileLoader extends BaseController {
 
     public static long getPhotoId(TLObject tLObject) {
         if (tLObject instanceof TLRPC$Photo) {
-            return ((TLRPC$Photo) tLObject).f877id;
+            return ((TLRPC$Photo) tLObject).f886id;
         }
         if (tLObject instanceof TLRPC$ChatPhoto) {
             return ((TLRPC$ChatPhoto) tLObject).photo_id;
@@ -1433,7 +1425,7 @@ public class FileLoader extends BaseController {
         private LoadOperationUIObject() {
         }
 
-        LoadOperationUIObject(C09521 c09521) {
+        LoadOperationUIObject(C10141 c10141) {
             this();
         }
     }

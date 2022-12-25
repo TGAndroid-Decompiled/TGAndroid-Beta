@@ -16,7 +16,7 @@ import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.MenuDrawable;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -58,7 +58,7 @@ public class BotCommandsMenuView extends View {
             }
         };
         this.backDrawable = menuDrawable;
-        int i = C1010R.raw.bot_webview_sheet_to_cross;
+        int i = C1072R.raw.bot_webview_sheet_to_cross;
         this.webViewAnimation = new RLottieDrawable(i, String.valueOf(i) + hashCode(), AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(20.0f)) {
             @Override
             public void invalidateSelf() {
@@ -72,7 +72,7 @@ public class BotCommandsMenuView extends View {
                 BotCommandsMenuView.this.invalidate();
             }
         };
-        this.menuText = LocaleController.getString(C1010R.string.BotsMenuTitle);
+        this.menuText = LocaleController.getString(C1072R.string.BotsMenuTitle);
         this.drawBackgroundDrawable = true;
         updateColors();
         menuDrawable.setMiniIcon(true);
@@ -84,7 +84,7 @@ public class BotCommandsMenuView extends View {
         Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(16.0f), 0, Theme.getColor("featuredStickers_addButtonPressed"));
         this.backgroundDrawable = createSimpleSelectorRoundRectDrawable;
         createSimpleSelectorRoundRectDrawable.setCallback(this);
-        setContentDescription(LocaleController.getString("AccDescrBotMenu", C1010R.string.AccDescrBotMenu));
+        setContentDescription(LocaleController.getString("AccDescrBotMenu", C1072R.string.AccDescrBotMenu));
     }
 
     public void setDrawBackgroundDrawable(boolean z) {
@@ -143,7 +143,7 @@ public class BotCommandsMenuView extends View {
 
     public boolean setMenuText(String str) {
         if (str == null) {
-            str = LocaleController.getString(C1010R.string.BotsMenuTitle);
+            str = LocaleController.getString(C1072R.string.BotsMenuTitle);
         }
         String str2 = this.menuText;
         boolean z = str2 == null || !str2.equals(str);

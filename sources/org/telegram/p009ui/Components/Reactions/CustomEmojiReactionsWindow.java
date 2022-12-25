@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -115,9 +115,9 @@ public class CustomEmojiReactionsWindow {
             }
         });
         this.containerView = new ContainerView(context);
-        C25362 c25362 = new C25362(baseFragment, context, false, null, 1, resourcesProvider, baseFragment, reactionsContainerLayout);
-        this.selectAnimatedEmojiDialog = c25362;
-        c25362.setOnLongPressedListener(new SelectAnimatedEmojiDialog.onLongPressedListener(this) {
+        C26782 c26782 = new C26782(baseFragment, context, false, null, 1, resourcesProvider, baseFragment, reactionsContainerLayout);
+        this.selectAnimatedEmojiDialog = c26782;
+        c26782.setOnLongPressedListener(new SelectAnimatedEmojiDialog.onLongPressedListener(this) {
             @Override
             public void onLongPressed(SelectAnimatedEmojiDialog.ImageViewEmoji imageViewEmoji) {
                 if (imageViewEmoji.isDefaultReaction) {
@@ -163,11 +163,11 @@ public class CustomEmojiReactionsWindow {
         }
     }
 
-    public class C25362 extends SelectAnimatedEmojiDialog {
+    public class C26782 extends SelectAnimatedEmojiDialog {
         final BaseFragment val$baseFragment;
         final ReactionsContainerLayout val$reactionsContainerLayout;
 
-        C25362(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, BaseFragment baseFragment2, ReactionsContainerLayout reactionsContainerLayout) {
+        C26782(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, BaseFragment baseFragment2, ReactionsContainerLayout reactionsContainerLayout) {
             super(baseFragment, context, z, num, i, resourcesProvider);
             this.val$baseFragment = baseFragment2;
             this.val$reactionsContainerLayout = reactionsContainerLayout;
@@ -197,10 +197,10 @@ public class CustomEmojiReactionsWindow {
         protected void onEmojiSelected(View view, Long l, TLRPC$Document tLRPC$Document, Integer num) {
             if (!UserConfig.getInstance(this.val$baseFragment.getCurrentAccount()).isPremium()) {
                 CustomEmojiReactionsWindow.this.windowView.performHapticFeedback(3);
-                BulletinFactory.m14of(CustomEmojiReactionsWindow.this.windowView, null).createEmojiBulletin(tLRPC$Document, AndroidUtilities.replaceTags(LocaleController.getString("UnlockPremiumEmojiReaction", C1010R.string.UnlockPremiumEmojiReaction)), LocaleController.getString("PremiumMore", C1010R.string.PremiumMore), new Runnable() {
+                BulletinFactory.m14of(CustomEmojiReactionsWindow.this.windowView, null).createEmojiBulletin(tLRPC$Document, AndroidUtilities.replaceTags(LocaleController.getString("UnlockPremiumEmojiReaction", C1072R.string.UnlockPremiumEmojiReaction)), LocaleController.getString("PremiumMore", C1072R.string.PremiumMore), new Runnable() {
                     @Override
                     public final void run() {
-                        CustomEmojiReactionsWindow.C25362.this.lambda$onEmojiSelected$0();
+                        CustomEmojiReactionsWindow.C26782.this.lambda$onEmojiSelected$0();
                     }
                 }).show();
                 return;
@@ -439,7 +439,7 @@ public class CustomEmojiReactionsWindow {
             this.dimPaint = new Paint(1);
             this.radiusTmp = new int[4];
             this.transitionReactions = new HashMap<>();
-            this.shadow = ContextCompat.getDrawable(context, C1010R.C1011drawable.reactions_bubble_shadow).mutate();
+            this.shadow = ContextCompat.getDrawable(context, C1072R.C1073drawable.reactions_bubble_shadow).mutate();
             Rect rect = this.shadowPad;
             int m35dp = AndroidUtilities.m35dp(7.0f);
             rect.bottom = m35dp;

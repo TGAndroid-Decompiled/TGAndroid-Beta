@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 public class TLRPC$TL_messages_updatePinnedMessage extends TLObject {
     public static int constructor = -760547348;
     public int flags;
-    public int f958id;
+    public int f967id;
     public TLRPC$InputPeer peer;
     public boolean pm_oneside;
     public boolean silent;
@@ -25,6 +25,6 @@ public class TLRPC$TL_messages_updatePinnedMessage extends TLObject {
         this.flags = i3;
         abstractSerializedData.writeInt32(i3);
         this.peer.serializeToStream(abstractSerializedData);
-        abstractSerializedData.writeInt32(this.f958id);
+        abstractSerializedData.writeInt32(this.f967id);
     }
 }

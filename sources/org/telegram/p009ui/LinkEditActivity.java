@@ -21,14 +21,13 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.HeaderCell;
@@ -96,15 +95,15 @@ public class LinkEditActivity extends BaseFragment {
     @Override
     public View createView(final Context context) {
         boolean z;
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         int i = this.type;
         if (i == 0) {
-            this.actionBar.setTitle(LocaleController.getString("NewLink", C1010R.string.NewLink));
+            this.actionBar.setTitle(LocaleController.getString("NewLink", C1072R.string.NewLink));
         } else if (i == 1) {
-            this.actionBar.setTitle(LocaleController.getString("EditLink", C1010R.string.EditLink));
+            this.actionBar.setTitle(LocaleController.getString("EditLink", C1072R.string.EditLink));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
@@ -126,9 +125,9 @@ public class LinkEditActivity extends BaseFragment {
         this.createTextView.setSingleLine();
         int i2 = this.type;
         if (i2 == 0) {
-            this.createTextView.setText(LocaleController.getString("CreateLinkHeader", C1010R.string.CreateLinkHeader));
+            this.createTextView.setText(LocaleController.getString("CreateLinkHeader", C1072R.string.CreateLinkHeader));
         } else if (i2 == 1) {
-            this.createTextView.setText(LocaleController.getString("SaveLinkHeader", C1010R.string.SaveLinkHeader));
+            this.createTextView.setText(LocaleController.getString("SaveLinkHeader", C1072R.string.SaveLinkHeader));
         }
         this.createTextView.setTextColor(Theme.getColor("actionBarDefaultTitle"));
         this.createTextView.setTextSize(1, 14.0f);
@@ -284,9 +283,9 @@ public class LinkEditActivity extends BaseFragment {
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         int i3 = this.type;
         if (i3 == 0) {
-            this.buttonTextView.setText(LocaleController.getString("CreateLink", C1010R.string.CreateLink));
+            this.buttonTextView.setText(LocaleController.getString("CreateLink", C1072R.string.CreateLink));
         } else if (i3 == 1) {
-            this.buttonTextView.setText(LocaleController.getString("SaveLink", C1010R.string.SaveLink));
+            this.buttonTextView.setText(LocaleController.getString("SaveLink", C1072R.string.SaveLink));
         }
         TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
         if (chat == null || chat.username == null) {
@@ -305,7 +304,7 @@ public class LinkEditActivity extends BaseFragment {
             this.approveCell.setDrawCheckRipple(true);
             this.approveCell.setHeight(56);
             this.approveCell.setTag("windowBackgroundUnchecked");
-            this.approveCell.setTextAndCheck(LocaleController.getString("ApproveNewMembers", C1010R.string.ApproveNewMembers), false, false);
+            this.approveCell.setTextAndCheck(LocaleController.getString("ApproveNewMembers", C1072R.string.ApproveNewMembers), false, false);
             this.approveCell.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.approveCell.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -319,15 +318,15 @@ public class LinkEditActivity extends BaseFragment {
             z = false;
         }
         TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
-        int i4 = C1010R.C1011drawable.greydivider;
+        int i4 = C1072R.C1073drawable.greydivider;
         textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(context, i4, "windowBackgroundGrayShadow"));
         if (z) {
-            textInfoPrivacyCell.setText(LocaleController.getString("ApproveNewMembersDescription", C1010R.string.ApproveNewMembersDescription));
+            textInfoPrivacyCell.setText(LocaleController.getString("ApproveNewMembersDescription", C1072R.string.ApproveNewMembersDescription));
         }
         linearLayout.addView(textInfoPrivacyCell);
         HeaderCell headerCell = new HeaderCell(context);
         this.timeHeaderCell = headerCell;
-        headerCell.setText(LocaleController.getString("LimitByPeriod", C1010R.string.LimitByPeriod));
+        headerCell.setText(LocaleController.getString("LimitByPeriod", C1072R.string.LimitByPeriod));
         linearLayout.addView(this.timeHeaderCell);
         SlideChooseView slideChooseView = new SlideChooseView(context);
         this.timeChooseView = slideChooseView;
@@ -337,7 +336,7 @@ public class LinkEditActivity extends BaseFragment {
         textView3.setPadding(AndroidUtilities.m35dp(22.0f), 0, AndroidUtilities.m35dp(22.0f), 0);
         this.timeEditText.setGravity(16);
         this.timeEditText.setTextSize(1, 16.0f);
-        this.timeEditText.setHint(LocaleController.getString("TimeLimitHint", C1010R.string.TimeLimitHint));
+        this.timeEditText.setHint(LocaleController.getString("TimeLimitHint", C1072R.string.TimeLimitHint));
         this.timeEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -359,11 +358,11 @@ public class LinkEditActivity extends BaseFragment {
         linearLayout.addView(this.timeEditText, LayoutHelper.createLinear(-1, 50));
         TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context);
         this.divider = textInfoPrivacyCell2;
-        textInfoPrivacyCell2.setText(LocaleController.getString("TimeLimitHelp", C1010R.string.TimeLimitHelp));
+        textInfoPrivacyCell2.setText(LocaleController.getString("TimeLimitHelp", C1072R.string.TimeLimitHelp));
         linearLayout.addView(this.divider);
         HeaderCell headerCell2 = new HeaderCell(context);
         this.usesHeaderCell = headerCell2;
-        headerCell2.setText(LocaleController.getString("LimitNumberOfUses", C1010R.string.LimitNumberOfUses));
+        headerCell2.setText(LocaleController.getString("LimitNumberOfUses", C1072R.string.LimitNumberOfUses));
         linearLayout.addView(this.usesHeaderCell);
         SlideChooseView slideChooseView2 = new SlideChooseView(context);
         this.usesChooseView = slideChooseView2;
@@ -393,7 +392,7 @@ public class LinkEditActivity extends BaseFragment {
         editText.setPadding(AndroidUtilities.m35dp(22.0f), 0, AndroidUtilities.m35dp(22.0f), 0);
         this.usesEditText.setGravity(16);
         this.usesEditText.setTextSize(1, 16.0f);
-        this.usesEditText.setHint(LocaleController.getString("UsesLimitHint", C1010R.string.UsesLimitHint));
+        this.usesEditText.setHint(LocaleController.getString("UsesLimitHint", C1072R.string.UsesLimitHint));
         this.usesEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
         this.usesEditText.setInputType(2);
         this.usesEditText.addTextChangedListener(new TextWatcher() {
@@ -411,7 +410,7 @@ public class LinkEditActivity extends BaseFragment {
                     return;
                 }
                 if (editable.toString().equals("0")) {
-                    LinkEditActivity.this.usesEditText.setText(BuildConfig.APP_CENTER_HASH);
+                    LinkEditActivity.this.usesEditText.setText("");
                     return;
                 }
                 try {
@@ -429,7 +428,7 @@ public class LinkEditActivity extends BaseFragment {
         linearLayout.addView(this.usesEditText, LayoutHelper.createLinear(-1, 50));
         TextInfoPrivacyCell textInfoPrivacyCell3 = new TextInfoPrivacyCell(context);
         this.dividerUses = textInfoPrivacyCell3;
-        textInfoPrivacyCell3.setText(LocaleController.getString("UsesLimitHelp", C1010R.string.UsesLimitHelp));
+        textInfoPrivacyCell3.setText(LocaleController.getString("UsesLimitHelp", C1072R.string.UsesLimitHelp));
         linearLayout.addView(this.dividerUses);
         EditText editText2 = new EditText(this, context) {
             @Override
@@ -467,7 +466,7 @@ public class LinkEditActivity extends BaseFragment {
         this.nameEditText.setCursorVisible(false);
         this.nameEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(32)});
         this.nameEditText.setGravity(16);
-        this.nameEditText.setHint(LocaleController.getString("LinkNameHint", C1010R.string.LinkNameHint));
+        this.nameEditText.setHint(LocaleController.getString("LinkNameHint", C1072R.string.LinkNameHint));
         this.nameEditText.setHintTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
         this.nameEditText.setLines(1);
         this.nameEditText.setPadding(AndroidUtilities.m35dp(22.0f), 0, AndroidUtilities.m35dp(22.0f), 0);
@@ -477,15 +476,15 @@ public class LinkEditActivity extends BaseFragment {
         linearLayout.addView(this.nameEditText, LayoutHelper.createLinear(-1, 50));
         TextInfoPrivacyCell textInfoPrivacyCell4 = new TextInfoPrivacyCell(context);
         this.dividerName = textInfoPrivacyCell4;
-        int i5 = C1010R.C1011drawable.greydivider_bottom;
+        int i5 = C1072R.C1073drawable.greydivider_bottom;
         textInfoPrivacyCell4.setBackground(Theme.getThemedDrawable(context, i5, "windowBackgroundGrayShadow"));
-        this.dividerName.setText(LocaleController.getString("LinkNameHelp", C1010R.string.LinkNameHelp));
+        this.dividerName.setText(LocaleController.getString("LinkNameHelp", C1072R.string.LinkNameHelp));
         linearLayout.addView(this.dividerName);
         if (this.type == 1) {
             TextSettingsCell textSettingsCell = new TextSettingsCell(context);
             this.revokeLink = textSettingsCell;
             textSettingsCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-            this.revokeLink.setText(LocaleController.getString("RevokeLink", C1010R.string.RevokeLink), false);
+            this.revokeLink.setText(LocaleController.getString("RevokeLink", C1072R.string.RevokeLink), false);
             this.revokeLink.setTextColor(Theme.getColor("windowBackgroundWhiteRedText5"));
             this.revokeLink.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -554,7 +553,7 @@ public class LinkEditActivity extends BaseFragment {
             this.timeEditText.setText(LocaleController.formatDateAudio(this.dispalyedDates.get(i).intValue() + getConnectionsManager().getCurrentTime(), false));
             return;
         }
-        this.timeEditText.setText(BuildConfig.APP_CENTER_HASH);
+        this.timeEditText.setText("");
     }
 
     public void lambda$createView$4(int i) {
@@ -563,22 +562,22 @@ public class LinkEditActivity extends BaseFragment {
         if (i < this.dispalyedUses.size()) {
             this.usesEditText.setText(this.dispalyedUses.get(i).toString());
         } else {
-            this.usesEditText.setText(BuildConfig.APP_CENTER_HASH);
+            this.usesEditText.setText("");
         }
         this.ignoreSet = false;
     }
 
     public void lambda$createView$6(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setMessage(LocaleController.getString("RevokeAlert", C1010R.string.RevokeAlert));
-        builder.setTitle(LocaleController.getString("RevokeLink", C1010R.string.RevokeLink));
-        builder.setPositiveButton(LocaleController.getString("RevokeButton", C1010R.string.RevokeButton), new DialogInterface.OnClickListener() {
+        builder.setMessage(LocaleController.getString("RevokeAlert", C1072R.string.RevokeAlert));
+        builder.setTitle(LocaleController.getString("RevokeLink", C1072R.string.RevokeLink));
+        builder.setPositiveButton(LocaleController.getString("RevokeButton", C1072R.string.RevokeButton), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 LinkEditActivity.this.lambda$createView$5(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
         showDialog(builder.create());
     }
 
@@ -674,7 +673,7 @@ public class LinkEditActivity extends BaseFragment {
         String[] strArr = new String[size];
         for (int i4 = 0; i4 < size; i4++) {
             if (i4 == size - 1) {
-                strArr[i4] = LocaleController.getString("NoLimit", C1010R.string.NoLimit);
+                strArr[i4] = LocaleController.getString("NoLimit", C1072R.string.NoLimit);
             } else {
                 strArr[i4] = this.dispalyedUses.get(i4).toString();
             }
@@ -711,7 +710,7 @@ public class LinkEditActivity extends BaseFragment {
         String[] strArr = new String[size];
         for (int i4 = 0; i4 < size; i4++) {
             if (i4 == size - 1) {
-                strArr[i4] = LocaleController.getString("NoLimit", C1010R.string.NoLimit);
+                strArr[i4] = LocaleController.getString("NoLimit", C1072R.string.NoLimit);
             } else if (this.dispalyedDates.get(i4).intValue() == this.defaultDates[0]) {
                 strArr[i4] = LocaleController.formatPluralString("Hours", 1, new Object[0]);
             } else if (this.dispalyedDates.get(i4).intValue() == this.defaultDates[1]) {
@@ -721,7 +720,7 @@ public class LinkEditActivity extends BaseFragment {
             } else {
                 long j2 = currentTime;
                 if (j2 < 86400) {
-                    strArr[i4] = LocaleController.getString("MessageScheduleToday", C1010R.string.MessageScheduleToday);
+                    strArr[i4] = LocaleController.getString("MessageScheduleToday", C1072R.string.MessageScheduleToday);
                 } else if (j2 < 31449600) {
                     strArr[i4] = LocaleController.getInstance().formatterScheduleDay.format(j * 1000);
                 } else {
@@ -741,7 +740,7 @@ public class LinkEditActivity extends BaseFragment {
                 this.dispalyedDates.add(Integer.valueOf(iArr[i]));
                 i++;
             } else {
-                this.timeChooseView.setOptions(3, LocaleController.formatPluralString("Hours", 1, new Object[0]), LocaleController.formatPluralString("Days", 1, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.getString("NoLimit", C1010R.string.NoLimit));
+                this.timeChooseView.setOptions(3, LocaleController.formatPluralString("Hours", 1, new Object[0]), LocaleController.formatPluralString("Days", 1, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.getString("NoLimit", C1072R.string.NoLimit));
                 return;
             }
         }
@@ -760,7 +759,7 @@ public class LinkEditActivity extends BaseFragment {
                 this.dispalyedUses.add(Integer.valueOf(iArr[i]));
                 i++;
             } else {
-                this.usesChooseView.setOptions(3, "1", "10", "100", LocaleController.getString("NoLimit", C1010R.string.NoLimit));
+                this.usesChooseView.setOptions(3, "1", "10", "100", LocaleController.getString("NoLimit", C1072R.string.NoLimit));
                 return;
             }
         }
@@ -802,7 +801,7 @@ public class LinkEditActivity extends BaseFragment {
         this.usesChooseView.setVisibility(z ? 0 : 8);
         this.usesEditText.setVisibility(z ? 0 : 8);
         this.dividerUses.setVisibility(z ? 0 : 8);
-        this.divider.setBackground(Theme.getThemedDrawable(getParentActivity(), z ? C1010R.C1011drawable.greydivider : C1010R.C1011drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+        this.divider.setBackground(Theme.getThemedDrawable(getParentActivity(), z ? C1072R.C1073drawable.greydivider : C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
     }
 
     @Override
@@ -858,9 +857,9 @@ public class LinkEditActivity extends BaseFragment {
         if (textInfoPrivacyCell != null) {
             Context context = textInfoPrivacyCell.getContext();
             TextInfoPrivacyCell textInfoPrivacyCell2 = this.dividerUses;
-            int i = C1010R.C1011drawable.greydivider_bottom;
+            int i = C1072R.C1073drawable.greydivider_bottom;
             textInfoPrivacyCell2.setBackgroundDrawable(Theme.getThemedDrawable(context, i, "windowBackgroundGrayShadow"));
-            this.divider.setBackgroundDrawable(Theme.getThemedDrawable(context, C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow"));
+            this.divider.setBackgroundDrawable(Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow"));
             this.buttonTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
             this.usesEditText.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.usesEditText.setHintTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));

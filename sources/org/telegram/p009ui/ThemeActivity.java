@@ -41,8 +41,7 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -54,7 +53,7 @@ import org.telegram.p009ui.ActionBar.ActionBarMenu;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.EmojiThemes;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
@@ -181,7 +180,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         private GpsLocationListener() {
         }
 
-        GpsLocationListener(ThemeActivity themeActivity, C39471 c39471) {
+        GpsLocationListener(ThemeActivity themeActivity, C41101 c41101) {
             this();
         }
 
@@ -249,7 +248,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         @Override
         protected void onDraw(Canvas canvas) {
             this.textPaint.setColor(Theme.getColor("windowBackgroundWhiteValueText"));
-            canvas.drawText(BuildConfig.APP_CENTER_HASH + SharedConfig.fontSize, getMeasuredWidth() - AndroidUtilities.m35dp(39.0f), AndroidUtilities.m35dp(28.0f), this.textPaint);
+            canvas.drawText("" + SharedConfig.fontSize, getMeasuredWidth() - AndroidUtilities.m35dp(39.0f), AndroidUtilities.m35dp(28.0f), this.textPaint);
         }
 
         @Override
@@ -330,7 +329,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         @Override
         protected void onDraw(Canvas canvas) {
             this.textPaint.setColor(Theme.getColor("windowBackgroundWhiteValueText"));
-            canvas.drawText(BuildConfig.APP_CENTER_HASH + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.m35dp(39.0f), AndroidUtilities.m35dp(28.0f), this.textPaint);
+            canvas.drawText("" + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.m35dp(39.0f), AndroidUtilities.m35dp(28.0f), this.textPaint);
         }
 
         @Override
@@ -555,7 +554,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             Theme.ThemeInfo currentTheme = Theme.getCurrentTheme();
             Theme.ThemeAccent accent = currentTheme.getAccent(false);
             ArrayList<Theme.ThemeAccent> arrayList = currentTheme.themeAccents;
-            if (arrayList != null && !arrayList.isEmpty() && accent != null && accent.f1000id >= 100) {
+            if (arrayList != null && !arrayList.isEmpty() && accent != null && accent.f1009id >= 100) {
                 int i19 = this.rowCount;
                 this.rowCount = i19 + 1;
                 this.editThemeRow = i19;
@@ -948,17 +947,17 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
     @Override
     public View createView(final Context context) {
         this.lastIsDarkTheme = !Theme.isCurrentThemeDay();
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(false);
         if (AndroidUtilities.isTablet()) {
             this.actionBar.setOccupyStatusBar(false);
         }
         int i = this.currentType;
         if (i == 3) {
-            this.actionBar.setTitle(LocaleController.getString("BrowseThemes", C1010R.string.BrowseThemes));
+            this.actionBar.setTitle(LocaleController.getString("BrowseThemes", C1072R.string.BrowseThemes));
             ActionBarMenu createMenu = this.actionBar.createMenu();
-            int i2 = C1010R.raw.sun;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(28.0f), true, null);
+            int i2 = C1072R.raw.sun;
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(28.0f), true, null);
             this.sunDrawable = rLottieDrawable;
             if (this.lastIsDarkTheme) {
                 rLottieDrawable.setCurrentFrame(rLottieDrawable.getFramesCount() - 1);
@@ -968,18 +967,18 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             this.sunDrawable.setPlayInDirectionOfCustomEndFrame(true);
             this.menuItem = createMenu.addItem(5, this.sunDrawable);
         } else if (i == 0) {
-            this.actionBar.setTitle(LocaleController.getString("ChatSettings", C1010R.string.ChatSettings));
-            ActionBarMenuItem addItem = this.actionBar.createMenu().addItem(0, C1010R.C1011drawable.ic_ab_other);
+            this.actionBar.setTitle(LocaleController.getString("ChatSettings", C1072R.string.ChatSettings));
+            ActionBarMenuItem addItem = this.actionBar.createMenu().addItem(0, C1072R.C1073drawable.ic_ab_other);
             this.menuItem = addItem;
-            addItem.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C1010R.string.AccDescrMoreOptions));
-            this.menuItem.addSubItem(2, C1010R.C1011drawable.msg_share, LocaleController.getString("ShareTheme", C1010R.string.ShareTheme));
-            this.menuItem.addSubItem(3, C1010R.C1011drawable.msg_edit, LocaleController.getString("EditThemeColors", C1010R.string.EditThemeColors));
-            this.menuItem.addSubItem(1, C1010R.C1011drawable.msg_palette, LocaleController.getString("CreateNewThemeMenu", C1010R.string.CreateNewThemeMenu));
-            this.menuItem.addSubItem(4, C1010R.C1011drawable.msg_reset, LocaleController.getString("ThemeResetToDefaults", C1010R.string.ThemeResetToDefaults));
+            addItem.setContentDescription(LocaleController.getString("AccDescrMoreOptions", C1072R.string.AccDescrMoreOptions));
+            this.menuItem.addSubItem(2, C1072R.C1073drawable.msg_share, LocaleController.getString("ShareTheme", C1072R.string.ShareTheme));
+            this.menuItem.addSubItem(3, C1072R.C1073drawable.msg_edit, LocaleController.getString("EditThemeColors", C1072R.string.EditThemeColors));
+            this.menuItem.addSubItem(1, C1072R.C1073drawable.msg_palette, LocaleController.getString("CreateNewThemeMenu", C1072R.string.CreateNewThemeMenu));
+            this.menuItem.addSubItem(4, C1072R.C1073drawable.msg_reset, LocaleController.getString("ThemeResetToDefaults", C1072R.string.ThemeResetToDefaults));
         } else {
-            this.actionBar.setTitle(LocaleController.getString("AutoNightTheme", C1010R.string.AutoNightTheme));
+            this.actionBar.setTitle(LocaleController.getString("AutoNightTheme", C1072R.string.AutoNightTheme));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C39471());
+        this.actionBar.setActionBarMenuOnItemClick(new C41101());
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
@@ -1010,13 +1009,13 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         return this.fragmentView;
     }
 
-    public class C39471 extends C1069ActionBar.ActionBarMenuOnItemClick {
-        C39471() {
+    public class C41101 extends C1133ActionBar.ActionBarMenuOnItemClick {
+        C41101() {
         }
 
         @Override
         public void onItemClick(int r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ThemeActivity.C39471.onItemClick(int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ThemeActivity.C41101.onItemClick(int):void");
         }
 
         public void lambda$onItemClick$0(DialogInterface dialogInterface, int i) {
@@ -1104,7 +1103,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 final AtomicReference atomicReference = new AtomicReference();
                 LinearLayout linearLayout = new LinearLayout(context);
                 linearLayout.setOrientation(1);
-                CharSequence[] charSequenceArr = {LocaleController.getString("DistanceUnitsAutomatic", C1010R.string.DistanceUnitsAutomatic), LocaleController.getString("DistanceUnitsKilometers", C1010R.string.DistanceUnitsKilometers), LocaleController.getString("DistanceUnitsMiles", C1010R.string.DistanceUnitsMiles)};
+                CharSequence[] charSequenceArr = {LocaleController.getString("DistanceUnitsAutomatic", C1072R.string.DistanceUnitsAutomatic), LocaleController.getString("DistanceUnitsKilometers", C1072R.string.DistanceUnitsKilometers), LocaleController.getString("DistanceUnitsMiles", C1072R.string.DistanceUnitsMiles)};
                 final int i4 = 0;
                 for (int i5 = 3; i4 < i5; i5 = 3) {
                     RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
@@ -1121,7 +1120,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     });
                     i4++;
                 }
-                AlertDialog create = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("DistanceUnitsTitle", C1010R.string.DistanceUnitsTitle)).setView(linearLayout).setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null).create();
+                AlertDialog create = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("DistanceUnitsTitle", C1072R.string.DistanceUnitsTitle)).setView(linearLayout).setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null).create();
                 atomicReference.set(create);
                 showDialog(create);
             } else if (i == this.bluetoothScoRow) {
@@ -1134,7 +1133,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 RadioColorCell radioColorCell2 = new RadioColorCell(getParentActivity());
                 radioColorCell2.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
                 radioColorCell2.setCheckColor(Theme.getColor("radioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
-                radioColorCell2.setTextAndValue(LocaleController.getString(C1010R.string.MicrophoneForVoiceMessagesBuiltIn), !SharedConfig.recordViaSco);
+                radioColorCell2.setTextAndValue(LocaleController.getString(C1072R.string.MicrophoneForVoiceMessagesBuiltIn), !SharedConfig.recordViaSco);
                 radioColorCell2.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 2));
                 linearLayout2.addView(radioColorCell2);
                 radioColorCell2.setOnClickListener(new View.OnClickListener() {
@@ -1146,7 +1145,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 RadioColorCell radioColorCell3 = new RadioColorCell(getParentActivity());
                 radioColorCell3.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
                 radioColorCell3.setCheckColor(Theme.getColor("radioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
-                radioColorCell3.setTextAndText2AndValue(LocaleController.getString(C1010R.string.MicrophoneForVoiceMessagesScoIfConnected), LocaleController.getString(C1010R.string.MicrophoneForVoiceMessagesScoHint), SharedConfig.recordViaSco);
+                radioColorCell3.setTextAndText2AndValue(LocaleController.getString(C1072R.string.MicrophoneForVoiceMessagesScoIfConnected), LocaleController.getString(C1072R.string.MicrophoneForVoiceMessagesScoHint), SharedConfig.recordViaSco);
                 radioColorCell3.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 2));
                 linearLayout2.addView(radioColorCell3);
                 radioColorCell3.setOnClickListener(new View.OnClickListener() {
@@ -1155,7 +1154,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         ThemeActivity.this.lambda$createView$4(atomicReference2, view2);
                     }
                 });
-                AlertDialog create2 = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(C1010R.string.MicrophoneForVoiceMessages)).setView(linearLayout2).setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null).create();
+                AlertDialog create2 = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(C1072R.string.MicrophoneForVoiceMessages)).setView(linearLayout2).setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null).create();
                 atomicReference2.set(create2);
                 showDialog(create2);
             } else if (i == this.customTabsRow) {
@@ -1174,14 +1173,14 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         return;
                     }
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                    builder.setTitle(LocaleController.getString("SortBy", C1010R.string.SortBy));
-                    builder.setItems(new CharSequence[]{LocaleController.getString("Default", C1010R.string.Default), LocaleController.getString("SortFirstName", C1010R.string.SortFirstName), LocaleController.getString("SortLastName", C1010R.string.SortLastName)}, new DialogInterface.OnClickListener() {
+                    builder.setTitle(LocaleController.getString("SortBy", C1072R.string.SortBy));
+                    builder.setItems(new CharSequence[]{LocaleController.getString("Default", C1072R.string.Default), LocaleController.getString("SortFirstName", C1072R.string.SortFirstName), LocaleController.getString("SortLastName", C1072R.string.SortLastName)}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i6) {
                             ThemeActivity.this.lambda$createView$5(i, dialogInterface, i6);
                         }
                     });
-                    builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+                    builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
                     showDialog(builder.create());
                 } else if (i == this.chatBlurRow) {
                     SharedConfig.toggleChatBlur();
@@ -1203,19 +1202,19 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         Theme.saveAutoNightThemeConfig();
                         Theme.checkAutoNightThemeConditions(z);
                         boolean z4 = Theme.selectedAutoNightType != 0;
-                        String currentNightThemeName = z4 ? Theme.getCurrentNightThemeName() : LocaleController.getString("AutoNightThemeOff", C1010R.string.AutoNightThemeOff);
+                        String currentNightThemeName = z4 ? Theme.getCurrentNightThemeName() : LocaleController.getString("AutoNightThemeOff", C1072R.string.AutoNightThemeOff);
                         if (z4) {
                             int i6 = Theme.selectedAutoNightType;
                             if (i6 == 1) {
-                                string = LocaleController.getString("AutoNightScheduled", C1010R.string.AutoNightScheduled);
+                                string = LocaleController.getString("AutoNightScheduled", C1072R.string.AutoNightScheduled);
                             } else if (i6 == 3) {
-                                string = LocaleController.getString("AutoNightSystemDefault", C1010R.string.AutoNightSystemDefault);
+                                string = LocaleController.getString("AutoNightSystemDefault", C1072R.string.AutoNightSystemDefault);
                             } else {
-                                string = LocaleController.getString("AutoNightAdaptive", C1010R.string.AutoNightAdaptive);
+                                string = LocaleController.getString("AutoNightAdaptive", C1072R.string.AutoNightAdaptive);
                             }
                             currentNightThemeName = string + " " + currentNightThemeName;
                         }
-                        notificationsCheckCell.setTextAndValueAndCheck(LocaleController.getString("AutoNightTheme", C1010R.string.AutoNightTheme), currentNightThemeName, z4, true);
+                        notificationsCheckCell.setTextAndValueAndCheck(LocaleController.getString("AutoNightTheme", C1072R.string.AutoNightTheme), currentNightThemeName, z4, true);
                         return;
                     }
                     presentFragment(new ThemeActivity(1));
@@ -1335,16 +1334,16 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         int i4 = (i2 * 60) + i3;
         if (i == this.scheduleFromRow) {
             Theme.autoNightDayStartTime = i4;
-            textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightFrom", C1010R.string.AutoNightFrom), String.format("%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), true);
+            textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightFrom", C1072R.string.AutoNightFrom), String.format("%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), true);
             return;
         }
         Theme.autoNightDayEndTime = i4;
-        textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightTo", C1010R.string.AutoNightTo), String.format("%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), true);
+        textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightTo", C1072R.string.AutoNightTo), String.format("%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), true);
     }
 
     public void editTheme() {
         Theme.ThemeInfo currentTheme = Theme.getCurrentTheme();
-        presentFragment(new ThemePreviewActivity(currentTheme, false, 1, currentTheme.getAccent(false).f1000id >= 100, this.currentType == 1));
+        presentFragment(new ThemePreviewActivity(currentTheme, false, 1, currentTheme.getAccent(false).f1009id >= 100, this.currentType == 1));
     }
 
     public void createNewTheme() {
@@ -1352,10 +1351,10 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString("NewTheme", C1010R.string.NewTheme));
-        builder.setMessage(LocaleController.getString("CreateNewThemeAlert", C1010R.string.CreateNewThemeAlert));
-        builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
-        builder.setPositiveButton(LocaleController.getString("CreateTheme", C1010R.string.CreateTheme), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString("NewTheme", C1072R.string.NewTheme));
+        builder.setMessage(LocaleController.getString("CreateNewThemeAlert", C1072R.string.CreateNewThemeAlert));
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
+        builder.setPositiveButton(LocaleController.getString("CreateTheme", C1072R.string.CreateTheme), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 ThemeActivity.this.lambda$createNewTheme$8(dialogInterface, i);
@@ -1392,7 +1391,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         Theme.ThemeInfo currentTheme = Theme.getCurrentTheme();
         Theme.ThemeAccent accent = currentTheme.getAccent(false);
         ArrayList<Theme.ThemeAccent> arrayList = currentTheme.themeAccents;
-        if (arrayList != null && !arrayList.isEmpty() && accent != null && accent.f1000id >= 100) {
+        if (arrayList != null && !arrayList.isEmpty() && accent != null && accent.f1009id >= 100) {
             this.menuItem.showSubItem(2);
             this.menuItem.showSubItem(3);
         } else {
@@ -1422,15 +1421,15 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             try {
                 if (!((LocationManager) ApplicationLoader.applicationContext.getSystemService("location")).isProviderEnabled("gps")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                    builder.setTopAnimation(C1010R.raw.permission_request_location, 72, false, Theme.getColor("dialogTopBackground"));
-                    builder.setMessage(LocaleController.getString("GpsDisabledAlertText", C1010R.string.GpsDisabledAlertText));
-                    builder.setPositiveButton(LocaleController.getString("ConnectingToProxyEnable", C1010R.string.ConnectingToProxyEnable), new DialogInterface.OnClickListener() {
+                    builder.setTopAnimation(C1072R.raw.permission_request_location, 72, false, Theme.getColor("dialogTopBackground"));
+                    builder.setMessage(LocaleController.getString("GpsDisabledAlertText", C1072R.string.GpsDisabledAlertText));
+                    builder.setPositiveButton(LocaleController.getString("ConnectingToProxyEnable", C1072R.string.ConnectingToProxyEnable), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
                             ThemeActivity.this.lambda$updateSunTime$9(dialogInterface, i);
                         }
                     });
-                    builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+                    builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
                     showDialog(builder.create());
                     return;
                 }
@@ -1522,7 +1521,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
         View view = holder.itemView;
         if (view instanceof TextSettingsCell) {
-            ((TextSettingsCell) view).setTextAndValue(LocaleController.getString("AutoNightUpdateLocation", C1010R.string.AutoNightUpdateLocation), Theme.autoNightCityName, false);
+            ((TextSettingsCell) view).setTextAndValue(LocaleController.getString("AutoNightUpdateLocation", C1072R.string.AutoNightUpdateLocation), Theme.autoNightCityName, false);
         }
     }
 
@@ -1557,7 +1556,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         String format = String.format("%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i - (i2 * 60)));
         int i3 = Theme.autoNightSunsetTime;
         int i4 = i3 / 60;
-        return LocaleController.formatString("AutoNightUpdateLocationInfo", C1010R.string.AutoNightUpdateLocationInfo, String.format("%02d:%02d", Integer.valueOf(i4), Integer.valueOf(i3 - (i4 * 60))), format);
+        return LocaleController.formatString("AutoNightUpdateLocationInfo", C1072R.string.AutoNightUpdateLocationInfo, String.format("%02d:%02d", Integer.valueOf(i4), Integer.valueOf(i3 - (i4 * 60))), format);
     }
 
     public static class InnerAccentView extends View {
@@ -1580,7 +1579,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
 
         void updateCheckedState(boolean z) {
-            this.checked = this.currentTheme.currentAccentId == this.currentAccent.f1000id;
+            this.checked = this.currentTheme.currentAccentId == this.currentAccent.f1009id;
             ObjectAnimator objectAnimator = this.checkAnimator;
             if (objectAnimator != null) {
                 objectAnimator.cancel();
@@ -1650,7 +1649,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", C1010R.string.ColorPickerMainColor));
+            accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", C1072R.string.ColorPickerMainColor));
             accessibilityNodeInfo.setClassName(Button.class.getName());
             accessibilityNodeInfo.setChecked(this.checked);
             accessibilityNodeInfo.setCheckable(true);
@@ -1703,7 +1702,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", C1010R.string.ColorPickerMainColor));
+            accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", C1072R.string.ColorPickerMainColor));
             accessibilityNodeInfo.setClassName(Button.class.getName());
             accessibilityNodeInfo.setEnabled(true);
         }
@@ -1795,21 +1794,21 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     AlertDialog.Builder builder = new AlertDialog.Builder(ThemeActivity.this.getParentActivity());
                     boolean z = false;
                     if (themeInfo.pathToFile == null) {
-                        charSequenceArr = new CharSequence[]{null, LocaleController.getString("ExportTheme", C1010R.string.ExportTheme)};
-                        iArr = new int[]{0, C1010R.C1011drawable.msg_shareout};
+                        charSequenceArr = new CharSequence[]{null, LocaleController.getString("ExportTheme", C1072R.string.ExportTheme)};
+                        iArr = new int[]{0, C1072R.C1073drawable.msg_shareout};
                     } else {
                         TLRPC$TL_theme tLRPC$TL_theme = themeInfo.info;
                         boolean z2 = tLRPC$TL_theme == null || !tLRPC$TL_theme.isDefault;
                         CharSequence[] charSequenceArr2 = new CharSequence[5];
-                        charSequenceArr2[0] = LocaleController.getString("ShareFile", C1010R.string.ShareFile);
-                        charSequenceArr2[1] = LocaleController.getString("ExportTheme", C1010R.string.ExportTheme);
+                        charSequenceArr2[0] = LocaleController.getString("ShareFile", C1072R.string.ShareFile);
+                        charSequenceArr2[1] = LocaleController.getString("ExportTheme", C1072R.string.ExportTheme);
                         TLRPC$TL_theme tLRPC$TL_theme2 = themeInfo.info;
-                        charSequenceArr2[2] = (tLRPC$TL_theme2 == null || (!tLRPC$TL_theme2.isDefault && tLRPC$TL_theme2.creator)) ? LocaleController.getString("Edit", C1010R.string.Edit) : null;
+                        charSequenceArr2[2] = (tLRPC$TL_theme2 == null || (!tLRPC$TL_theme2.isDefault && tLRPC$TL_theme2.creator)) ? LocaleController.getString("Edit", C1072R.string.Edit) : null;
                         TLRPC$TL_theme tLRPC$TL_theme3 = themeInfo.info;
-                        charSequenceArr2[3] = (tLRPC$TL_theme3 == null || !tLRPC$TL_theme3.creator) ? null : LocaleController.getString("ThemeSetUrl", C1010R.string.ThemeSetUrl);
-                        charSequenceArr2[4] = z2 ? LocaleController.getString("Delete", C1010R.string.Delete) : null;
+                        charSequenceArr2[3] = (tLRPC$TL_theme3 == null || !tLRPC$TL_theme3.creator) ? null : LocaleController.getString("ThemeSetUrl", C1072R.string.ThemeSetUrl);
+                        charSequenceArr2[4] = z2 ? LocaleController.getString("Delete", C1072R.string.Delete) : null;
                         z = z2;
-                        iArr = new int[]{C1010R.C1011drawable.msg_share, C1010R.C1011drawable.msg_shareout, C1010R.C1011drawable.msg_edit, C1010R.C1011drawable.msg_link, C1010R.C1011drawable.msg_delete};
+                        iArr = new int[]{C1072R.C1073drawable.msg_share, C1072R.C1073drawable.msg_shareout, C1072R.C1073drawable.msg_edit, C1072R.C1073drawable.msg_link, C1072R.C1073drawable.msg_delete};
                         charSequenceArr = charSequenceArr2;
                     }
                     builder.setItems(charSequenceArr, iArr, new DialogInterface.OnClickListener() {
@@ -1843,11 +1842,11 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             Theme.ThemeInfo currentNightTheme = ThemeActivity.this.currentType == 1 ? Theme.getCurrentNightTheme() : Theme.getCurrentTheme();
             if (i != themeAccentsListAdapter.getItemCount() - 1) {
                 Theme.ThemeAccent themeAccent = (Theme.ThemeAccent) themeAccentsListAdapter.themeAccents.get(i);
-                if (!TextUtils.isEmpty(themeAccent.patternSlug) && themeAccent.f1000id != Theme.DEFALT_THEME_ACCENT_ID) {
+                if (!TextUtils.isEmpty(themeAccent.patternSlug) && themeAccent.f1009id != Theme.DEFALT_THEME_ACCENT_ID) {
                     Theme.PatternsLoader.createLoader(false);
                 }
                 int i2 = currentNightTheme.currentAccentId;
-                int i3 = themeAccent.f1000id;
+                int i3 = themeAccent.f1009id;
                 if (i2 != i3) {
                     NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
                     int i4 = NotificationCenter.needSetDayNightTheme;
@@ -1855,9 +1854,9 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     objArr[0] = currentNightTheme;
                     objArr[1] = Boolean.valueOf(ThemeActivity.this.currentType == 1);
                     objArr[2] = null;
-                    objArr[3] = Integer.valueOf(themeAccent.f1000id);
+                    objArr[3] = Integer.valueOf(themeAccent.f1009id);
                     globalInstance.postNotificationName(i4, objArr);
-                    EmojiThemes.saveCustomTheme(currentNightTheme, themeAccent.f1000id);
+                    EmojiThemes.saveCustomTheme(currentNightTheme, themeAccent.f1009id);
                 } else {
                     ThemeActivity themeActivity = ThemeActivity.this;
                     themeActivity.presentFragment(new ThemePreviewActivity(currentNightTheme, false, 1, i3 >= 100, themeActivity.currentType == 1));
@@ -1890,15 +1889,15 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         public boolean lambda$onCreateViewHolder$5(final ThemeAccentsListAdapter themeAccentsListAdapter, View view, int i) {
             if (i >= 0 && i < themeAccentsListAdapter.themeAccents.size()) {
                 final Theme.ThemeAccent themeAccent = (Theme.ThemeAccent) themeAccentsListAdapter.themeAccents.get(i);
-                if (themeAccent.f1000id >= 100 && !themeAccent.isDefault) {
+                if (themeAccent.f1009id >= 100 && !themeAccent.isDefault) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(ThemeActivity.this.getParentActivity());
                     CharSequence[] charSequenceArr = new CharSequence[4];
-                    charSequenceArr[0] = LocaleController.getString("OpenInEditor", C1010R.string.OpenInEditor);
-                    charSequenceArr[1] = LocaleController.getString("ShareTheme", C1010R.string.ShareTheme);
+                    charSequenceArr[0] = LocaleController.getString("OpenInEditor", C1072R.string.OpenInEditor);
+                    charSequenceArr[1] = LocaleController.getString("ShareTheme", C1072R.string.ShareTheme);
                     TLRPC$TL_theme tLRPC$TL_theme = themeAccent.info;
-                    charSequenceArr[2] = (tLRPC$TL_theme == null || !tLRPC$TL_theme.creator) ? null : LocaleController.getString("ThemeSetUrl", C1010R.string.ThemeSetUrl);
-                    charSequenceArr[3] = LocaleController.getString("DeleteTheme", C1010R.string.DeleteTheme);
-                    builder.setItems(charSequenceArr, new int[]{C1010R.C1011drawable.msg_edit, C1010R.C1011drawable.msg_share, C1010R.C1011drawable.msg_link, C1010R.C1011drawable.msg_delete}, new DialogInterface.OnClickListener() {
+                    charSequenceArr[2] = (tLRPC$TL_theme == null || !tLRPC$TL_theme.creator) ? null : LocaleController.getString("ThemeSetUrl", C1072R.string.ThemeSetUrl);
+                    charSequenceArr[3] = LocaleController.getString("DeleteTheme", C1072R.string.DeleteTheme);
+                    builder.setItems(charSequenceArr, new int[]{C1072R.C1073drawable.msg_edit, C1072R.C1073drawable.msg_share, C1072R.C1073drawable.msg_link, C1072R.C1073drawable.msg_delete}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i2) {
                             ThemeActivity.ListAdapter.this.lambda$onCreateViewHolder$4(themeAccent, themeAccentsListAdapter, dialogInterface, i2);
@@ -1932,15 +1931,15 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             } else if (i != 3 || ThemeActivity.this.getParentActivity() == null) {
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ThemeActivity.this.getParentActivity());
-                builder.setTitle(LocaleController.getString("DeleteThemeTitle", C1010R.string.DeleteThemeTitle));
-                builder.setMessage(LocaleController.getString("DeleteThemeAlert", C1010R.string.DeleteThemeAlert));
-                builder.setPositiveButton(LocaleController.getString("Delete", C1010R.string.Delete), new DialogInterface.OnClickListener() {
+                builder.setTitle(LocaleController.getString("DeleteThemeTitle", C1072R.string.DeleteThemeTitle));
+                builder.setMessage(LocaleController.getString("DeleteThemeAlert", C1072R.string.DeleteThemeAlert));
+                builder.setPositiveButton(LocaleController.getString("Delete", C1072R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface2, int i2) {
                         ThemeActivity.ListAdapter.this.lambda$onCreateViewHolder$3(themeAccentsListAdapter, themeAccent, dialogInterface2, i2);
                     }
                 });
-                builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+                builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
                 AlertDialog create = builder.create();
                 ThemeActivity.this.showDialog(create);
                 TextView textView = (TextView) create.getButton(-1);
@@ -1976,7 +1975,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     break;
                 case 2:
                     View textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow"));
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow"));
                     themePreviewMessagesCell = textInfoPrivacyCell;
                     break;
                 case 3:
@@ -2002,7 +2001,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                             if (i2 != i3) {
                                 RecyclerListView.Holder holder = (RecyclerListView.Holder) ThemeActivity.this.listView.findViewHolderForAdapterPosition(ThemeActivity.this.automaticBrightnessInfoRow);
                                 if (holder != null) {
-                                    ((TextInfoPrivacyCell) holder.itemView).setText(LocaleController.formatString("AutoNightBrightnessInfo", C1010R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (Theme.autoNightBrighnessThreshold * 100.0f))));
+                                    ((TextInfoPrivacyCell) holder.itemView).setText(LocaleController.formatString("AutoNightBrightnessInfo", C1072R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (Theme.autoNightBrighnessThreshold * 100.0f))));
                                 }
                                 Theme.checkAutoNightThemeConditions(true);
                             }
@@ -2161,7 +2160,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                         if (i != ThemeActivity.this.contactsReimportRow) {
                                             if (i != ThemeActivity.this.distanceRow) {
                                                 if (i == ThemeActivity.this.bluetoothScoRow) {
-                                                    textSettingsCell.setTextAndValue(LocaleController.getString(C1010R.string.MicrophoneForVoiceMessages), LocaleController.getString(SharedConfig.recordViaSco ? C1010R.string.MicrophoneForVoiceMessagesSco : C1010R.string.MicrophoneForVoiceMessagesBuiltIn), ThemeActivity.this.updateRecordViaSco, true);
+                                                    textSettingsCell.setTextAndValue(LocaleController.getString(C1072R.string.MicrophoneForVoiceMessages), LocaleController.getString(SharedConfig.recordViaSco ? C1072R.string.MicrophoneForVoiceMessagesSco : C1072R.string.MicrophoneForVoiceMessagesBuiltIn), ThemeActivity.this.updateRecordViaSco, true);
                                                     ThemeActivity.this.updateRecordViaSco = false;
                                                     return;
                                                 }
@@ -2169,53 +2168,53 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                             }
                                             int i2 = SharedConfig.distanceSystemType;
                                             if (i2 == 0) {
-                                                string = LocaleController.getString("DistanceUnitsAutomatic", C1010R.string.DistanceUnitsAutomatic);
+                                                string = LocaleController.getString("DistanceUnitsAutomatic", C1072R.string.DistanceUnitsAutomatic);
                                             } else if (i2 == 1) {
-                                                string = LocaleController.getString("DistanceUnitsKilometers", C1010R.string.DistanceUnitsKilometers);
+                                                string = LocaleController.getString("DistanceUnitsKilometers", C1072R.string.DistanceUnitsKilometers);
                                             } else {
-                                                string = LocaleController.getString("DistanceUnitsMiles", C1010R.string.DistanceUnitsMiles);
+                                                string = LocaleController.getString("DistanceUnitsMiles", C1072R.string.DistanceUnitsMiles);
                                             }
-                                            textSettingsCell.setTextAndValue(LocaleController.getString("DistanceUnits", C1010R.string.DistanceUnits), string, ThemeActivity.this.updateDistance, false);
+                                            textSettingsCell.setTextAndValue(LocaleController.getString("DistanceUnits", C1072R.string.DistanceUnits), string, ThemeActivity.this.updateDistance, false);
                                             ThemeActivity.this.updateDistance = false;
                                             return;
                                         }
-                                        textSettingsCell.setText(LocaleController.getString("ImportContacts", C1010R.string.ImportContacts), true);
+                                        textSettingsCell.setText(LocaleController.getString("ImportContacts", C1072R.string.ImportContacts), true);
                                         return;
                                     }
                                     int i3 = MessagesController.getGlobalMainSettings().getInt("sortContactsBy", 0);
                                     if (i3 == 0) {
-                                        string2 = LocaleController.getString("Default", C1010R.string.Default);
+                                        string2 = LocaleController.getString("Default", C1072R.string.Default);
                                     } else if (i3 == 1) {
-                                        string2 = LocaleController.getString("FirstName", C1010R.string.SortFirstName);
+                                        string2 = LocaleController.getString("FirstName", C1072R.string.SortFirstName);
                                     } else {
-                                        string2 = LocaleController.getString("LastName", C1010R.string.SortLastName);
+                                        string2 = LocaleController.getString("LastName", C1072R.string.SortLastName);
                                     }
-                                    textSettingsCell.setTextAndValue(LocaleController.getString("SortBy", C1010R.string.SortBy), string2, true);
+                                    textSettingsCell.setTextAndValue(LocaleController.getString("SortBy", C1072R.string.SortBy), string2, true);
                                     return;
                                 }
-                                textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightUpdateLocation", C1010R.string.AutoNightUpdateLocation), Theme.autoNightCityName, false);
+                                textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightUpdateLocation", C1072R.string.AutoNightUpdateLocation), Theme.autoNightCityName, false);
                                 return;
                             }
                             int i4 = Theme.autoNightDayEndTime;
                             int i5 = i4 / 60;
-                            textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightTo", C1010R.string.AutoNightTo), String.format("%02d:%02d", Integer.valueOf(i5), Integer.valueOf(i4 - (i5 * 60))), false);
+                            textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightTo", C1072R.string.AutoNightTo), String.format("%02d:%02d", Integer.valueOf(i5), Integer.valueOf(i4 - (i5 * 60))), false);
                             return;
                         }
                         int i6 = Theme.autoNightDayStartTime;
                         int i7 = i6 / 60;
-                        textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightFrom", C1010R.string.AutoNightFrom), String.format("%02d:%02d", Integer.valueOf(i7), Integer.valueOf(i6 - (i7 * 60))), true);
+                        textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightFrom", C1072R.string.AutoNightFrom), String.format("%02d:%02d", Integer.valueOf(i7), Integer.valueOf(i6 - (i7 * 60))), true);
                         return;
                     } else if (Theme.selectedAutoNightType == 0 || Theme.getCurrentNightTheme() == null) {
-                        textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightTheme", C1010R.string.AutoNightTheme), LocaleController.getString("AutoNightThemeOff", C1010R.string.AutoNightThemeOff), false);
+                        textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightTheme", C1072R.string.AutoNightTheme), LocaleController.getString("AutoNightThemeOff", C1072R.string.AutoNightThemeOff), false);
                         return;
                     } else {
-                        textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightTheme", C1010R.string.AutoNightTheme), Theme.getCurrentNightThemeName(), false);
+                        textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightTheme", C1072R.string.AutoNightTheme), Theme.getCurrentNightThemeName(), false);
                         return;
                     }
                 case 2:
                     TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                     if (i == ThemeActivity.this.automaticBrightnessInfoRow) {
-                        textInfoPrivacyCell.setText(LocaleController.formatString("AutoNightBrightnessInfo", C1010R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (Theme.autoNightBrighnessThreshold * 100.0f))));
+                        textInfoPrivacyCell.setText(LocaleController.formatString("AutoNightBrightnessInfo", C1072R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (Theme.autoNightBrighnessThreshold * 100.0f))));
                         return;
                     } else if (i == ThemeActivity.this.scheduleLocationInfoRow) {
                         textInfoPrivacyCell.setText(ThemeActivity.this.getLocationSunString());
@@ -2225,10 +2224,10 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     }
                 case 3:
                     if ((i == ThemeActivity.this.nightTypeInfoRow && ThemeActivity.this.themeInfoRow == -1) || ((i == ThemeActivity.this.themeInfoRow && ThemeActivity.this.nightTypeInfoRow != -1) || i == ThemeActivity.this.saveToGallerySectionRow)) {
-                        viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                        viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
                         return;
                     } else {
-                        viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow"));
+                        viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow"));
                         return;
                     }
                 case 4:
@@ -2236,19 +2235,19 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     if (i != ThemeActivity.this.nightDisabledRow) {
                         if (i != ThemeActivity.this.nightScheduledRow) {
                             if (i == ThemeActivity.this.nightAutomaticRow) {
-                                themeTypeCell.setValue(LocaleController.getString("AutoNightAdaptive", C1010R.string.AutoNightAdaptive), Theme.selectedAutoNightType == 2, ThemeActivity.this.nightSystemDefaultRow != -1);
+                                themeTypeCell.setValue(LocaleController.getString("AutoNightAdaptive", C1072R.string.AutoNightAdaptive), Theme.selectedAutoNightType == 2, ThemeActivity.this.nightSystemDefaultRow != -1);
                                 return;
                             } else if (i == ThemeActivity.this.nightSystemDefaultRow) {
-                                themeTypeCell.setValue(LocaleController.getString("AutoNightSystemDefault", C1010R.string.AutoNightSystemDefault), Theme.selectedAutoNightType == 3, false);
+                                themeTypeCell.setValue(LocaleController.getString("AutoNightSystemDefault", C1072R.string.AutoNightSystemDefault), Theme.selectedAutoNightType == 3, false);
                                 return;
                             } else {
                                 return;
                             }
                         }
-                        themeTypeCell.setValue(LocaleController.getString("AutoNightScheduled", C1010R.string.AutoNightScheduled), Theme.selectedAutoNightType == 1, true);
+                        themeTypeCell.setValue(LocaleController.getString("AutoNightScheduled", C1072R.string.AutoNightScheduled), Theme.selectedAutoNightType == 1, true);
                         return;
                     }
-                    themeTypeCell.setValue(LocaleController.getString("AutoNightDisabled", C1010R.string.AutoNightDisabled), Theme.selectedAutoNightType == 0, true);
+                    themeTypeCell.setValue(LocaleController.getString("AutoNightDisabled", C1072R.string.AutoNightDisabled), Theme.selectedAutoNightType == 0, true);
                     return;
                 case 5:
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
@@ -2258,10 +2257,10 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                 if (i != ThemeActivity.this.settingsRow) {
                                     if (i == ThemeActivity.this.themeHeaderRow) {
                                         if (ThemeActivity.this.currentType == 3) {
-                                            headerCell.setText(LocaleController.getString("BuildMyOwnTheme", C1010R.string.BuildMyOwnTheme));
+                                            headerCell.setText(LocaleController.getString("BuildMyOwnTheme", C1072R.string.BuildMyOwnTheme));
                                             return;
                                         } else {
-                                            headerCell.setText(LocaleController.getString("ColorTheme", C1010R.string.ColorTheme));
+                                            headerCell.setText(LocaleController.getString("ColorTheme", C1072R.string.ColorTheme));
                                             return;
                                         }
                                     } else if (i != ThemeActivity.this.textSizeHeaderRow) {
@@ -2270,37 +2269,37 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                                 if (i != ThemeActivity.this.swipeGestureHeaderRow) {
                                                     if (i != ThemeActivity.this.selectThemeHeaderRow) {
                                                         if (i == ThemeActivity.this.appIconHeaderRow) {
-                                                            headerCell.setText(LocaleController.getString(C1010R.string.AppIcon));
+                                                            headerCell.setText(LocaleController.getString(C1072R.string.AppIcon));
                                                             return;
                                                         }
                                                         return;
                                                     }
-                                                    headerCell.setText(LocaleController.getString("SelectTheme", C1010R.string.SelectTheme));
+                                                    headerCell.setText(LocaleController.getString("SelectTheme", C1072R.string.SelectTheme));
                                                     return;
                                                 }
-                                                headerCell.setText(LocaleController.getString("ChatListSwipeGesture", C1010R.string.ChatListSwipeGesture));
+                                                headerCell.setText(LocaleController.getString("ChatListSwipeGesture", C1072R.string.ChatListSwipeGesture));
                                                 return;
                                             }
-                                            headerCell.setText(LocaleController.getString("BubbleRadius", C1010R.string.BubbleRadius));
+                                            headerCell.setText(LocaleController.getString("BubbleRadius", C1072R.string.BubbleRadius));
                                             return;
                                         }
-                                        headerCell.setText(LocaleController.getString("ChatList", C1010R.string.ChatList));
+                                        headerCell.setText(LocaleController.getString("ChatList", C1072R.string.ChatList));
                                         return;
                                     } else {
-                                        headerCell.setText(LocaleController.getString("TextSizeHeader", C1010R.string.TextSizeHeader));
+                                        headerCell.setText(LocaleController.getString("TextSizeHeader", C1072R.string.TextSizeHeader));
                                         return;
                                     }
                                 }
-                                headerCell.setText(LocaleController.getString("SETTINGS", C1010R.string.SETTINGS));
+                                headerCell.setText(LocaleController.getString("SETTINGS", C1072R.string.SETTINGS));
                                 return;
                             }
-                            headerCell.setText(LocaleController.getString("AutoNightPreferred", C1010R.string.AutoNightPreferred));
+                            headerCell.setText(LocaleController.getString("AutoNightPreferred", C1072R.string.AutoNightPreferred));
                             return;
                         }
-                        headerCell.setText(LocaleController.getString("AutoNightBrightness", C1010R.string.AutoNightBrightness));
+                        headerCell.setText(LocaleController.getString("AutoNightBrightness", C1072R.string.AutoNightBrightness));
                         return;
                     }
-                    headerCell.setText(LocaleController.getString("AutoNightSchedule", C1010R.string.AutoNightSchedule));
+                    headerCell.setText(LocaleController.getString("AutoNightSchedule", C1072R.string.AutoNightSchedule));
                     return;
                 case 6:
                     ((BrightnessControlCell) viewHolder.itemView).setProgress(Theme.autoNightBrighnessThreshold);
@@ -2314,27 +2313,27 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                     if (i != ThemeActivity.this.customTabsRow) {
                                         if (i != ThemeActivity.this.directShareRow) {
                                             if (i == ThemeActivity.this.chatBlurRow) {
-                                                textCheckCell.setTextAndCheck(LocaleController.getString("BlurInChat", C1010R.string.BlurInChat), SharedConfig.chatBlurEnabled(), true);
+                                                textCheckCell.setTextAndCheck(LocaleController.getString("BlurInChat", C1072R.string.BlurInChat), SharedConfig.chatBlurEnabled(), true);
                                                 return;
                                             }
                                             return;
                                         }
-                                        textCheckCell.setTextAndValueAndCheck(LocaleController.getString("DirectShare", C1010R.string.DirectShare), LocaleController.getString("DirectShareInfo", C1010R.string.DirectShareInfo), SharedConfig.directShare, false, true);
+                                        textCheckCell.setTextAndValueAndCheck(LocaleController.getString("DirectShare", C1072R.string.DirectShare), LocaleController.getString("DirectShareInfo", C1072R.string.DirectShareInfo), SharedConfig.directShare, false, true);
                                         return;
                                     }
-                                    textCheckCell.setTextAndValueAndCheck(LocaleController.getString("ChromeCustomTabs", C1010R.string.ChromeCustomTabs), LocaleController.getString("ChromeCustomTabsInfo", C1010R.string.ChromeCustomTabsInfo), SharedConfig.customTabs, false, true);
+                                    textCheckCell.setTextAndValueAndCheck(LocaleController.getString("ChromeCustomTabs", C1072R.string.ChromeCustomTabs), LocaleController.getString("ChromeCustomTabsInfo", C1072R.string.ChromeCustomTabsInfo), SharedConfig.customTabs, false, true);
                                     return;
                                 }
-                                textCheckCell.setTextAndCheck(LocaleController.getString("RaiseToSpeak", C1010R.string.RaiseToSpeak), SharedConfig.raiseToSpeak, true);
+                                textCheckCell.setTextAndCheck(LocaleController.getString("RaiseToSpeak", C1072R.string.RaiseToSpeak), SharedConfig.raiseToSpeak, true);
                                 return;
                             }
-                            textCheckCell.setTextAndCheck(LocaleController.getString("SendByEnter", C1010R.string.SendByEnter), MessagesController.getGlobalMainSettings().getBoolean("send_by_enter", false), true);
+                            textCheckCell.setTextAndCheck(LocaleController.getString("SendByEnter", C1072R.string.SendByEnter), MessagesController.getGlobalMainSettings().getBoolean("send_by_enter", false), true);
                             return;
                         }
-                        textCheckCell.setTextAndCheck(LocaleController.getString("EnableAnimations", C1010R.string.EnableAnimations), MessagesController.getGlobalMainSettings().getBoolean("view_animations", true), true);
+                        textCheckCell.setTextAndCheck(LocaleController.getString("EnableAnimations", C1072R.string.EnableAnimations), MessagesController.getGlobalMainSettings().getBoolean("view_animations", true), true);
                         return;
                     }
-                    textCheckCell.setTextAndCheck(LocaleController.getString("AutoNightLocation", C1010R.string.AutoNightLocation), Theme.autoNightScheduleByLocation, true);
+                    textCheckCell.setTextAndCheck(LocaleController.getString("AutoNightLocation", C1072R.string.AutoNightLocation), Theme.autoNightScheduleByLocation, true);
                     return;
                 case 8:
                 case 9:
@@ -2348,19 +2347,19 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) viewHolder.itemView;
                     if (i == ThemeActivity.this.nightThemeRow) {
                         boolean z = Theme.selectedAutoNightType != 0;
-                        String currentNightThemeName = z ? Theme.getCurrentNightThemeName() : LocaleController.getString("AutoNightThemeOff", C1010R.string.AutoNightThemeOff);
+                        String currentNightThemeName = z ? Theme.getCurrentNightThemeName() : LocaleController.getString("AutoNightThemeOff", C1072R.string.AutoNightThemeOff);
                         if (z) {
                             int i8 = Theme.selectedAutoNightType;
                             if (i8 == 1) {
-                                string3 = LocaleController.getString("AutoNightScheduled", C1010R.string.AutoNightScheduled);
+                                string3 = LocaleController.getString("AutoNightScheduled", C1072R.string.AutoNightScheduled);
                             } else if (i8 == 3) {
-                                string3 = LocaleController.getString("AutoNightSystemDefault", C1010R.string.AutoNightSystemDefault);
+                                string3 = LocaleController.getString("AutoNightSystemDefault", C1072R.string.AutoNightSystemDefault);
                             } else {
-                                string3 = LocaleController.getString("AutoNightAdaptive", C1010R.string.AutoNightAdaptive);
+                                string3 = LocaleController.getString("AutoNightAdaptive", C1072R.string.AutoNightAdaptive);
                             }
                             currentNightThemeName = string3 + " " + currentNightThemeName;
                         }
-                        notificationsCheckCell.setTextAndValueAndCheck(LocaleController.getString("AutoNightTheme", C1010R.string.AutoNightTheme), currentNightThemeName, z, true);
+                        notificationsCheckCell.setTextAndValueAndCheck(LocaleController.getString("AutoNightTheme", C1072R.string.AutoNightTheme), currentNightThemeName, z, true);
                         return;
                     }
                     return;
@@ -2390,15 +2389,15 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     if (i != ThemeActivity.this.backgroundRow) {
                         if (i != ThemeActivity.this.editThemeRow) {
                             if (i == ThemeActivity.this.createNewThemeRow) {
-                                textCell.setTextAndIcon(LocaleController.getString("CreateNewTheme", C1010R.string.CreateNewTheme), C1010R.C1011drawable.msg_colors, false);
+                                textCell.setTextAndIcon(LocaleController.getString("CreateNewTheme", C1072R.string.CreateNewTheme), C1072R.C1073drawable.msg_colors, false);
                                 return;
                             }
                             return;
                         }
-                        textCell.setTextAndIcon(LocaleController.getString("EditCurrentTheme", C1010R.string.EditCurrentTheme), C1010R.C1011drawable.msg_theme, true);
+                        textCell.setTextAndIcon(LocaleController.getString("EditCurrentTheme", C1072R.string.EditCurrentTheme), C1072R.C1073drawable.msg_theme, true);
                         return;
                     }
-                    textCell.setTextAndIcon(LocaleController.getString("ChangeChatBackground", C1010R.string.ChangeChatBackground), C1010R.C1011drawable.msg_background, false);
+                    textCell.setTextAndIcon(LocaleController.getString("ChangeChatBackground", C1072R.string.ChangeChatBackground), C1072R.C1073drawable.msg_background, false);
                     return;
                 case 17:
                     ((DefaultThemesPreviewCell) viewHolder.itemView).updateDayNightMode();
@@ -2406,10 +2405,10 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 case 19:
                     RadioButtonCell radioButtonCell = (RadioButtonCell) viewHolder.itemView;
                     if (i == ThemeActivity.this.saveToGalleryOption1Row) {
-                        radioButtonCell.setTextAndValue("save media only from peer chats", BuildConfig.APP_CENTER_HASH, true, false);
+                        radioButtonCell.setTextAndValue("save media only from peer chats", "", true, false);
                         return;
                     } else {
-                        radioButtonCell.setTextAndValue("save media from all chats", BuildConfig.APP_CENTER_HASH, true, false);
+                        radioButtonCell.setTextAndValue("save media from all chats", "", true, false);
                         return;
                     }
             }

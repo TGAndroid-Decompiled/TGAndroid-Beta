@@ -8,7 +8,7 @@ public abstract class TLRPC$Updates extends TLObject {
     public int flags;
     public long from_id;
     public TLRPC$MessageFwdHeader fwd_from;
-    public int f985id;
+    public int f994id;
     public TLRPC$MessageMedia media;
     public boolean media_unread;
     public boolean mentioned;

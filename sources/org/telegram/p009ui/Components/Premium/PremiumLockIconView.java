@@ -12,7 +12,7 @@ import android.graphics.Shader;
 import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.Premium.StarParticlesView;
@@ -56,7 +56,7 @@ public class PremiumLockIconView extends ImageView {
         this.cellFlickerDrawable = new CellFlickerDrawable();
         this.type = i;
         this.resourcesProvider = resourcesProvider;
-        setImageResource(i == TYPE_REACTIONS ? C1010R.C1011drawable.msg_premium_lock2 : C1010R.C1011drawable.msg_mini_premiumlock);
+        setImageResource(i == TYPE_REACTIONS ? C1072R.C1073drawable.msg_premium_lock2 : C1072R.C1073drawable.msg_mini_premiumlock);
         if (i == TYPE_REACTIONS) {
             StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(5);
             this.starParticles = drawable;
@@ -251,7 +251,7 @@ public class PremiumLockIconView extends ImageView {
 
     public void setLocked(boolean z) {
         if (this.type != TYPE_REACTIONS) {
-            setImageResource(z ? C1010R.C1011drawable.msg_mini_premiumlock : C1010R.C1011drawable.msg_mini_stickerstar);
+            setImageResource(z ? C1072R.C1073drawable.msg_mini_premiumlock : C1072R.C1073drawable.msg_mini_stickerstar);
         }
     }
 }

@@ -18,7 +18,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     private long bytesRemaining;
     private RandomAccessFile file;
     private int fileOffset;
-    private byte[] f831iv;
+    private byte[] f840iv;
     private byte[] key;
     private boolean opened;
     private Uri uri;
@@ -39,7 +39,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     public EncryptedFileDataSource() {
         super(false);
         this.key = new byte[32];
-        this.f831iv = new byte[16];
+        this.f840iv = new byte[16];
     }
 
     @Deprecated
@@ -59,7 +59,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
             File internalCacheDir = FileLoader.getInternalCacheDir();
             RandomAccessFile randomAccessFile = new RandomAccessFile(new File(internalCacheDir, name + ".key"), "r");
             randomAccessFile.read(this.key);
-            randomAccessFile.read(this.f831iv);
+            randomAccessFile.read(this.f840iv);
             randomAccessFile.close();
             RandomAccessFile randomAccessFile2 = new RandomAccessFile(file, "r");
             this.file = randomAccessFile2;
@@ -93,7 +93,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
         try {
             int read = this.file.read(bArr, i, (int) Math.min(j, i2));
             long j2 = read;
-            Utilities.aesCtrDecryptionByteArray(bArr, this.key, this.f831iv, i, j2, this.fileOffset);
+            Utilities.aesCtrDecryptionByteArray(bArr, this.key, this.f840iv, i, j2, this.fileOffset);
             this.fileOffset += read;
             if (read > 0) {
                 this.bytesRemaining -= j2;

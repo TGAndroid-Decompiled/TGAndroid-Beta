@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Adapters.MentionsAdapter;
 import org.telegram.p009ui.Adapters.PaddedListAdapter;
@@ -149,14 +148,14 @@ public class MentionsContainerView extends BlurredFrameLayout {
                         if (tLRPC$Document != null) {
                             TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
                             Size size2 = this.size;
-                            size2.width = closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.f879w : 100.0f;
-                            size2.height = closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.f878h : 100.0f;
+                            size2.width = closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.f888w : 100.0f;
+                            size2.height = closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.f887h : 100.0f;
                             while (i4 < tLRPC$BotInlineResult.document.attributes.size()) {
                                 TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$BotInlineResult.document.attributes.get(i4);
                                 if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeImageSize) || (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo)) {
                                     Size size3 = this.size;
-                                    size3.width = tLRPC$DocumentAttribute.f859w;
-                                    size3.height = tLRPC$DocumentAttribute.f858h;
+                                    size3.width = tLRPC$DocumentAttribute.f868w;
+                                    size3.height = tLRPC$DocumentAttribute.f867h;
                                     break;
                                 }
                                 i4++;
@@ -166,8 +165,8 @@ public class MentionsContainerView extends BlurredFrameLayout {
                                 TLRPC$DocumentAttribute tLRPC$DocumentAttribute2 = tLRPC$BotInlineResult.content.attributes.get(i4);
                                 if ((tLRPC$DocumentAttribute2 instanceof TLRPC$TL_documentAttributeImageSize) || (tLRPC$DocumentAttribute2 instanceof TLRPC$TL_documentAttributeVideo)) {
                                     Size size4 = this.size;
-                                    size4.width = tLRPC$DocumentAttribute2.f859w;
-                                    size4.height = tLRPC$DocumentAttribute2.f858h;
+                                    size4.width = tLRPC$DocumentAttribute2.f868w;
+                                    size4.height = tLRPC$DocumentAttribute2.f867h;
                                     break;
                                 }
                                 i4++;
@@ -177,8 +176,8 @@ public class MentionsContainerView extends BlurredFrameLayout {
                                 TLRPC$DocumentAttribute tLRPC$DocumentAttribute3 = tLRPC$BotInlineResult.thumb.attributes.get(i4);
                                 if ((tLRPC$DocumentAttribute3 instanceof TLRPC$TL_documentAttributeImageSize) || (tLRPC$DocumentAttribute3 instanceof TLRPC$TL_documentAttributeVideo)) {
                                     Size size5 = this.size;
-                                    size5.width = tLRPC$DocumentAttribute3.f859w;
-                                    size5.height = tLRPC$DocumentAttribute3.f858h;
+                                    size5.width = tLRPC$DocumentAttribute3.f868w;
+                                    size5.height = tLRPC$DocumentAttribute3.f867h;
                                     break;
                                 }
                                 i4++;
@@ -187,8 +186,8 @@ public class MentionsContainerView extends BlurredFrameLayout {
                             TLRPC$Photo tLRPC$Photo = tLRPC$BotInlineResult.photo;
                             if (tLRPC$Photo != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, AndroidUtilities.photoSize.intValue())) != null) {
                                 Size size6 = this.size;
-                                size6.width = closestPhotoSizeWithSize.f879w;
-                                size6.height = closestPhotoSizeWithSize.f878h;
+                                size6.width = closestPhotoSizeWithSize.f888w;
+                                size6.height = closestPhotoSizeWithSize.f887h;
                             }
                         }
                     }
@@ -493,11 +492,11 @@ public class MentionsContainerView extends BlurredFrameLayout {
             max += this.listView.computeVerticalScrollOffset();
         }
         final float f2 = max;
-        setVisibility(0);
         SpringAnimation springAnimation2 = this.listViewTranslationAnimator;
         if (springAnimation2 != null) {
             springAnimation2.cancel();
         }
+        Integer num = null;
         if (z2) {
             this.listViewHiding = z;
             final float translationY = this.listView.getTranslationY();
@@ -505,42 +504,45 @@ public class MentionsContainerView extends BlurredFrameLayout {
             final float f4 = z ? 1.0f : 0.0f;
             if (translationY == f2) {
                 this.listViewTranslationAnimator = null;
-                setVisibility(z ? 8 : 0);
+                Integer valueOf = Integer.valueOf(z ? 8 : 0);
                 if (this.switchLayoutManagerOnEnd && z) {
                     this.switchLayoutManagerOnEnd = false;
                     this.listView.setLayoutManager(getNeededLayoutManager());
                     this.shown = true;
                     updateVisibility(true);
-                    return;
                 }
-                return;
-            }
-            int i = UserConfig.selectedAccount;
-            SpringAnimation spring = new SpringAnimation(new FloatValueHolder(translationY)).setSpring(new SpringForce(f2).setDampingRatio(1.0f).setStiffness(550.0f));
-            this.listViewTranslationAnimator = spring;
-            spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f5, float f6) {
-                    MentionsContainerView.this.lambda$updateListViewTranslation$1(f3, f4, translationY, f2, dynamicAnimation, f5, f6);
-                }
-            });
-            if (z) {
-                this.listViewTranslationAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
+                num = valueOf;
+            } else {
+                SpringAnimation spring = new SpringAnimation(new FloatValueHolder(translationY)).setSpring(new SpringForce(f2).setDampingRatio(1.0f).setStiffness(550.0f));
+                this.listViewTranslationAnimator = spring;
+                spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                     @Override
-                    public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f5, float f6) {
-                        MentionsContainerView.this.lambda$updateListViewTranslation$2(z, dynamicAnimation, z3, f5, f6);
+                    public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f5, float f6) {
+                        MentionsContainerView.this.lambda$updateListViewTranslation$1(f3, f4, translationY, f2, dynamicAnimation, f5, f6);
                     }
                 });
+                if (z) {
+                    this.listViewTranslationAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
+                        @Override
+                        public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f5, float f6) {
+                            MentionsContainerView.this.lambda$updateListViewTranslation$2(z, dynamicAnimation, z3, f5, f6);
+                        }
+                    });
+                }
+                this.listViewTranslationAnimator.addEndListener(MentionsContainerView$$ExternalSyntheticLambda1.INSTANCE);
+                this.listViewTranslationAnimator.start();
             }
-            this.listViewTranslationAnimator.addEndListener(MentionsContainerView$$ExternalSyntheticLambda1.INSTANCE);
-            this.listViewTranslationAnimator.start();
+        } else {
+            this.hideT = z ? 1.0f : 0.0f;
+            this.listView.setTranslationY(f2);
+            if (z) {
+                num = 8;
+            }
+        }
+        if (num == null || getVisibility() == num.intValue()) {
             return;
         }
-        this.hideT = z ? 1.0f : 0.0f;
-        this.listView.setTranslationY(f2);
-        if (z) {
-            setVisibility(8);
-        }
+        setVisibility(num.intValue());
     }
 
     public void lambda$updateListViewTranslation$1(float f, float f2, float f3, float f4, DynamicAnimation dynamicAnimation, float f5, float f6) {

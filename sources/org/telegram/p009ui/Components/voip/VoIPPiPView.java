@@ -26,7 +26,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -269,7 +269,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
         this.yOffset = ((int) ((f * 1.05f) - f)) / 2;
         float f2 = i * 0.4f;
         this.xOffset = ((int) ((1.05f * f2) - f2)) / 2;
-        final Drawable drawable = ContextCompat.getDrawable(context, C1010R.C1011drawable.calls_pip_outershadow);
+        final Drawable drawable = ContextCompat.getDrawable(context, C1072R.C1073drawable.calls_pip_outershadow);
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected void onDraw(Canvas canvas) {
@@ -307,15 +307,15 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
             this.floatingView.addView(this.topShadow, -1, AndroidUtilities.m35dp(60.0f));
             ImageView imageView = new ImageView(context);
             this.closeIcon = imageView;
-            imageView.setImageResource(C1010R.C1011drawable.pip_close);
+            imageView.setImageResource(C1072R.C1073drawable.pip_close);
             this.closeIcon.setPadding(AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f));
-            this.closeIcon.setContentDescription(LocaleController.getString("Close", C1010R.string.Close));
+            this.closeIcon.setContentDescription(LocaleController.getString("Close", C1072R.string.Close));
             this.floatingView.addView(this.closeIcon, LayoutHelper.createFrame(40, 40.0f, 53, 4.0f, 4.0f, 4.0f, 0.0f));
             ImageView imageView2 = new ImageView(context);
             this.enlargeIcon = imageView2;
-            imageView2.setImageResource(C1010R.C1011drawable.pip_enlarge);
+            imageView2.setImageResource(C1072R.C1073drawable.pip_enlarge);
             this.enlargeIcon.setPadding(AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f));
-            this.enlargeIcon.setContentDescription(LocaleController.getString("Open", C1010R.string.Open));
+            this.enlargeIcon.setContentDescription(LocaleController.getString("Open", C1072R.string.Open));
             this.floatingView.addView(this.enlargeIcon, LayoutHelper.createFrame(40, 40.0f, 51, 4.0f, 4.0f, 4.0f, 0.0f));
             this.closeIcon.setOnClickListener(VoIPPiPView$$ExternalSyntheticLambda2.INSTANCE);
             this.enlargeIcon.setOnClickListener(new View.OnClickListener() {
@@ -609,7 +609,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
                     }
                 });
                 ofFloat.setDuration(300L).setInterpolator(CubicBezierInterpolator.DEFAULT);
-                ofFloat.addListener(new C29453(z));
+                ofFloat.addListener(new C30913(z));
                 ofFloat.start();
                 VoIPPiPView.this.expandAnimator = ofFloat;
             }
@@ -672,10 +672,10 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
             }
         }
 
-        public class C29453 extends AnimatorListenerAdapter {
+        public class C30913 extends AnimatorListenerAdapter {
             final boolean val$expanded;
 
-            C29453(boolean z) {
+            C30913(boolean z) {
                 this.val$expanded = z;
             }
 
@@ -691,7 +691,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        VoIPPiPView.FloatingView.C29453.this.lambda$onAnimationEnd$0(z);
+                        VoIPPiPView.FloatingView.C30913.this.lambda$onAnimationEnd$0(z);
                     }
                 }, 64L);
             }

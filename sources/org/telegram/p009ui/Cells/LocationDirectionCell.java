@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.SimpleTextView;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -29,8 +29,8 @@ public class LocationDirectionCell extends FrameLayout {
         this.buttonTextView.setDrawablePadding(AndroidUtilities.m35dp(8.0f));
         this.buttonTextView.setTextColor(getThemedColor("featuredStickers_buttonText"));
         this.buttonTextView.setTextSize(14);
-        this.buttonTextView.setText(LocaleController.getString("Directions", C1010R.string.Directions));
-        this.buttonTextView.setLeftDrawable(C1010R.C1011drawable.navigate);
+        this.buttonTextView.setText(LocaleController.getString("Directions", C1072R.string.Directions));
+        this.buttonTextView.setLeftDrawable(C1072R.C1073drawable.navigate);
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.frameLayout.addView(this.buttonTextView, LayoutHelper.createFrame(-1, -1.0f));
     }

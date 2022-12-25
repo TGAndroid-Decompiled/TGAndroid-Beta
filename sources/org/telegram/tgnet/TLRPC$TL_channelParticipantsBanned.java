@@ -5,12 +5,12 @@ public class TLRPC$TL_channelParticipantsBanned extends TLRPC$ChannelParticipant
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f847q = abstractSerializedData.readString(z);
+        this.f856q = abstractSerializedData.readString(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeString(this.f847q);
+        abstractSerializedData.writeString(this.f856q);
     }
 }

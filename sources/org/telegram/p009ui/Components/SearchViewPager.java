@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -232,7 +232,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             }
         };
         this.emptyView = stickerEmptyView;
-        stickerEmptyView.title.setText(LocaleController.getString("NoResult", C1010R.string.NoResult));
+        stickerEmptyView.title.setText(LocaleController.getString("NoResult", C1072R.string.NoResult));
         this.emptyView.subtitle.setVisibility(8);
         this.emptyView.setVisibility(8);
         this.emptyView.addView(flickerLoadingView, 0);
@@ -271,7 +271,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
 
     public void updateTabs() {
         this.viewPagerAdapter.updateItems();
-        fillTabs();
+        fillTabs(false);
         ViewPagerFixed.TabsView tabsView = this.tabsView;
         if (tabsView != null) {
             tabsView.finishAddingTabs();
@@ -291,9 +291,9 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             if (i4 == 4) {
                 TLObject tLObject = mediaFilterData.chat;
                 if (tLObject instanceof TLRPC$User) {
-                    j = ((TLRPC$User) tLObject).f986id;
+                    j = ((TLRPC$User) tLObject).f995id;
                 } else if (tLObject instanceof TLRPC$Chat) {
-                    j = -((TLRPC$Chat) tLObject).f848id;
+                    j = -((TLRPC$Chat) tLObject).f857id;
                 }
             } else if (i4 == 6) {
                 FiltersView.DateData dateData = mediaFilterData.dateData;
@@ -407,12 +407,12 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             this.selectedMessagesCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon"));
             this.actionMode.addView(this.selectedMessagesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
             this.selectedMessagesCountTextView.setOnTouchListener(SearchViewPager$$ExternalSyntheticLambda2.INSTANCE);
-            ActionBarMenuItem addItemWithWidth = this.actionMode.addItemWithWidth(203, C1010R.C1011drawable.avd_speed, AndroidUtilities.m35dp(54.0f), LocaleController.getString("AccDescrPremiumSpeed", C1010R.string.AccDescrPremiumSpeed));
+            ActionBarMenuItem addItemWithWidth = this.actionMode.addItemWithWidth(203, C1072R.C1073drawable.avd_speed, AndroidUtilities.m35dp(54.0f), LocaleController.getString("AccDescrPremiumSpeed", C1072R.string.AccDescrPremiumSpeed));
             this.speedItem = addItemWithWidth;
             addItemWithWidth.getIconView().setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarActionModeDefaultIcon"), PorterDuff.Mode.SRC_IN));
-            this.gotoItem = this.actionMode.addItemWithWidth(200, C1010R.C1011drawable.msg_message, AndroidUtilities.m35dp(54.0f), LocaleController.getString("AccDescrGoToMessage", C1010R.string.AccDescrGoToMessage));
-            this.forwardItem = this.actionMode.addItemWithWidth(201, C1010R.C1011drawable.msg_forward, AndroidUtilities.m35dp(54.0f), LocaleController.getString("Forward", C1010R.string.Forward));
-            this.deleteItem = this.actionMode.addItemWithWidth(202, C1010R.C1011drawable.msg_delete, AndroidUtilities.m35dp(54.0f), LocaleController.getString("Delete", C1010R.string.Delete));
+            this.gotoItem = this.actionMode.addItemWithWidth(200, C1072R.C1073drawable.msg_message, AndroidUtilities.m35dp(54.0f), LocaleController.getString("AccDescrGoToMessage", C1072R.string.AccDescrGoToMessage));
+            this.forwardItem = this.actionMode.addItemWithWidth(201, C1072R.C1073drawable.msg_forward, AndroidUtilities.m35dp(54.0f), LocaleController.getString("Forward", C1072R.string.Forward));
+            this.deleteItem = this.actionMode.addItemWithWidth(202, C1072R.C1073drawable.msg_delete, AndroidUtilities.m35dp(54.0f), LocaleController.getString("Delete", C1072R.string.Delete));
         }
         if (this.selectedMessagesCountTextView != null) {
             DialogsSearchAdapter dialogsSearchAdapter = this.dialogsSearchAdapter;
@@ -480,10 +480,10 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             AlertDialog.Builder builder = new AlertDialog.Builder(this.parent.getParentActivity());
             builder.setTitle(LocaleController.formatPluralString("RemoveDocumentsTitle", this.selectedFiles.size(), new Object[0]));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("RemoveDocumentsMessage", this.selectedFiles.size(), new Object[0]))).append((CharSequence) "\n\n").append((CharSequence) LocaleController.getString("RemoveDocumentsAlertMessage", C1010R.string.RemoveDocumentsAlertMessage));
+            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("RemoveDocumentsMessage", this.selectedFiles.size(), new Object[0]))).append((CharSequence) "\n\n").append((CharSequence) LocaleController.getString("RemoveDocumentsAlertMessage", C1072R.string.RemoveDocumentsAlertMessage));
             builder.setMessage(spannableStringBuilder);
-            builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), SearchViewPager$$ExternalSyntheticLambda1.INSTANCE);
-            builder.setPositiveButton(LocaleController.getString("Delete", C1010R.string.Delete), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), SearchViewPager$$ExternalSyntheticLambda1.INSTANCE);
+            builder.setPositiveButton(LocaleController.getString("Delete", C1072R.string.Delete), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
                     SearchViewPager.this.lambda$onActionBarItemClick$2(arrayList, dialogInterface, i2);
@@ -908,10 +908,10 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         @Override
         public String getItemTitle(int i) {
             if (this.items.get(i).type == 0) {
-                return LocaleController.getString("SearchAllChatsShort", C1010R.string.SearchAllChatsShort);
+                return LocaleController.getString("SearchAllChatsShort", C1072R.string.SearchAllChatsShort);
             }
             if (this.items.get(i).type == 1) {
-                return LocaleController.getString("DownloadsTabs", C1010R.string.DownloadsTabs);
+                return LocaleController.getString("DownloadsTabs", C1072R.string.DownloadsTabs);
             }
             return FiltersView.filters[this.items.get(i).filterIndex].title;
         }

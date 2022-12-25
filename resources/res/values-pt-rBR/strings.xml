@@ -1991,7 +1991,6 @@
     <string name="KMetersShort">%1$s km</string>
     <string name="KeepMedia">Manter Mídias</string>
     <string name="KeepMediaForever">Sempre</string>
-    <string name="KeepMediaInfo">Fotos, vídeos e outros arquivos da nuvem que você **não acessou** durante esse período serão removidos deste dispositivo para economizar espaço em disco.\n\nTodas as mídias permanecerão na nuvem do Telegram e poderão ser baixadas novamente conforme necessário.</string>
     <string name="KickFromBroadcast">Remover da lista de transmissão</string>
     <string name="KickFromGroup">Remover do grupo</string>
     <string name="Km">km</string>
@@ -3131,7 +3130,6 @@
     <string name="PrivacyPolicyUrl">https://telegram.org/privacy</string>
     <string name="PrivacyProfilePhoto">Fotos de Perfil</string>
     <string name="PrivacyProfilePhotoInfo">Você pode restringir quem pode ver sua foto de perfil com precisão granular.</string>
-    <string name="PrivacyProfilePhotoInfo2">Você pode adicionar usuários ou grupos inteiros como exceções que substituirão as configurações acima.</string>
     <string name="PrivacyProfilePhotoTitle">Quem pode ver minhas fotos e vídeos de perfil?</string>
     <string name="PrivacySettings">Privacidade e Segurança</string>
     <string name="PrivacySettingsChangedAlert">Você alterou algumas configurações de privacidade. Gostaria de aplicar?</string>

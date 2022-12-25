@@ -4,14 +4,21 @@ import android.graphics.PointF;
 
 public class Point {
     public boolean edge;
-    public double f1067x;
-    public double f1068y;
-    public double f1069z;
+    public double f1077x;
+    public double f1078y;
+    public double f1079z;
 
     public Point(double d, double d2, double d3) {
-        this.f1067x = d;
-        this.f1068y = d2;
-        this.f1069z = d3;
+        this.f1077x = d;
+        this.f1078y = d2;
+        this.f1079z = d3;
+    }
+
+    public Point(double d, double d2, double d3, boolean z) {
+        this.f1077x = d;
+        this.f1078y = d2;
+        this.f1079z = d3;
+        this.edge = z;
     }
 
     public boolean equals(Object obj) {
@@ -23,32 +30,32 @@ public class Point {
         }
         if (obj instanceof Point) {
             Point point = (Point) obj;
-            return this.f1067x == point.f1067x && this.f1068y == point.f1068y && this.f1069z == point.f1069z;
+            return this.f1077x == point.f1077x && this.f1078y == point.f1078y && this.f1079z == point.f1079z;
         }
         return false;
     }
 
     public Point multiplySum(Point point, double d) {
-        return new Point((this.f1067x + point.f1067x) * d, (this.f1068y + point.f1068y) * d, (this.f1069z + point.f1069z) * d);
+        return new Point((this.f1077x + point.f1077x) * d, (this.f1078y + point.f1078y) * d, (this.f1079z + point.f1079z) * d);
     }
 
     public Point add(Point point) {
-        return new Point(this.f1067x + point.f1067x, this.f1068y + point.f1068y, this.f1069z + point.f1069z);
+        return new Point(this.f1077x + point.f1077x, this.f1078y + point.f1078y, this.f1079z + point.f1079z);
     }
 
     public Point substract(Point point) {
-        return new Point(this.f1067x - point.f1067x, this.f1068y - point.f1068y, this.f1069z - point.f1069z);
+        return new Point(this.f1077x - point.f1077x, this.f1078y - point.f1078y, this.f1079z - point.f1079z);
     }
 
     public Point multiplyByScalar(double d) {
-        return new Point(this.f1067x * d, this.f1068y * d, this.f1069z * d);
+        return new Point(this.f1077x * d, this.f1078y * d, this.f1079z * d);
     }
 
     public float getDistanceTo(Point point) {
-        return (float) Math.sqrt(Math.pow(this.f1067x - point.f1067x, 2.0d) + Math.pow(this.f1068y - point.f1068y, 2.0d) + Math.pow(this.f1069z - point.f1069z, 2.0d));
+        return (float) Math.sqrt(Math.pow(this.f1077x - point.f1077x, 2.0d) + Math.pow(this.f1078y - point.f1078y, 2.0d) + Math.pow(this.f1079z - point.f1079z, 2.0d));
     }
 
     public PointF toPointF() {
-        return new PointF((float) this.f1067x, (float) this.f1068y);
+        return new PointF((float) this.f1077x, (float) this.f1078y);
     }
 }

@@ -223,8 +223,8 @@ public class Camera1Session implements CameraSession {
         videoFrame2.release();
     }
 
-    public class C41232 implements Camera.PreviewCallback {
-        C41232() {
+    public class C42862 implements Camera.PreviewCallback {
+        C42862() {
         }
 
         @Override
@@ -243,7 +243,7 @@ public class Camera1Session implements CameraSession {
                 VideoFrame videoFrame = new VideoFrame(new NV21Buffer(bArr, Camera1Session.this.captureFormat.width, Camera1Session.this.captureFormat.height, new Runnable() {
                     @Override
                     public final void run() {
-                        Camera1Session.C41232.this.lambda$onPreviewFrame$1(bArr);
+                        Camera1Session.C42862.this.lambda$onPreviewFrame$1(bArr);
                     }
                 }), Camera1Session.this.getFrameOrientation(), nanos);
                 Camera1Session.this.events.onFrameCaptured(Camera1Session.this, videoFrame);
@@ -257,7 +257,7 @@ public class Camera1Session implements CameraSession {
             Camera1Session.this.cameraThreadHandler.post(new Runnable() {
                 @Override
                 public final void run() {
-                    Camera1Session.C41232.this.lambda$onPreviewFrame$0(bArr);
+                    Camera1Session.C42862.this.lambda$onPreviewFrame$0(bArr);
                 }
             });
         }
@@ -270,7 +270,7 @@ public class Camera1Session implements CameraSession {
     }
 
     private void listenForBytebufferFrames() {
-        this.camera.setPreviewCallbackWithBuffer(new C41232());
+        this.camera.setPreviewCallbackWithBuffer(new C42862());
     }
 
     public int getFrameOrientation() {

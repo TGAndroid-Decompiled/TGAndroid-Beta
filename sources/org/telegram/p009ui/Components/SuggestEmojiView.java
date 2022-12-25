@@ -251,7 +251,6 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                 if (selectionStart == spanEnd) {
                     String substring = fieldText.toString().substring(spanStart, spanEnd);
                     this.show = true;
-                    this.containerView.setVisibility(0);
                     this.arrowToSpan = emojiSpan;
                     this.arrowToEnd = null;
                     this.arrowToStart = null;
@@ -264,7 +263,6 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             AnimatedEmojiSpan[] animatedEmojiSpanArr = z ? (AnimatedEmojiSpan[]) ((Spanned) fieldText).getSpans(Math.max(0, selectionEnd), selectionEnd, AnimatedEmojiSpan.class) : null;
             if ((animatedEmojiSpanArr == null || animatedEmojiSpanArr.length == 0) && selectionEnd < 52) {
                 this.show = true;
-                this.containerView.setVisibility(0);
                 this.arrowToSpan = null;
                 searchKeywords(fieldText.toString().substring(0, selectionEnd));
                 this.containerView.invalidate();

@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -58,7 +57,7 @@ public class RLottieImageView extends ImageView {
     }
 
     public void setAnimation(int i, int i2, int i3, int[] iArr) {
-        setAnimation(new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.m35dp(i2), AndroidUtilities.m35dp(i3), false, iArr));
+        setAnimation(new RLottieDrawable(i, "" + i, AndroidUtilities.m35dp(i2), AndroidUtilities.m35dp(i3), false, iArr));
     }
 
     public void setOnAnimationEndListener(Runnable runnable) {
@@ -108,7 +107,7 @@ public class RLottieImageView extends ImageView {
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
             this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), i + "_" + i2 + "_pcache_" + ImageLoader.AUTOPLAY_FILTER, ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), null, null, tLRPC$Document.size, null, tLRPC$Document, 1);
         } else {
-            if (ImageLoader.getInstance().hasLottieMemCache(tLRPC$Document.f856id + "@" + i + "_" + i2)) {
+            if (ImageLoader.getInstance().hasLottieMemCache(tLRPC$Document.f865id + "@" + i + "_" + i2)) {
                 svgDrawable = null;
             } else {
                 SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document.thumbs, "windowBackgroundWhiteGrayIcon", 0.2f);

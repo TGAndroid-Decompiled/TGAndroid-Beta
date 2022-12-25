@@ -23,8 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -111,7 +110,7 @@ public class LimitPreviewView extends LinearLayout {
         FrameLayout frameLayout = new FrameLayout(context);
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView.setText(LocaleController.getString("LimitFree", C1010R.string.LimitFree));
+        textView.setText(LocaleController.getString("LimitFree", C1072R.string.LimitFree));
         textView.setGravity(16);
         textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         textView.setPadding(AndroidUtilities.m35dp(12.0f), 0, 0, 0);
@@ -127,7 +126,7 @@ public class LimitPreviewView extends LinearLayout {
         FrameLayout frameLayout2 = new FrameLayout(context);
         TextView textView3 = new TextView(context);
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView3.setText(LocaleController.getString("LimitPremium", C1010R.string.LimitPremium));
+        textView3.setText(LocaleController.getString("LimitPremium", C1072R.string.LimitPremium));
         textView3.setGravity(16);
         textView3.setTextColor(-1);
         textView3.setPadding(AndroidUtilities.m35dp(12.0f), 0, 0, 0);
@@ -404,13 +403,13 @@ public class LimitPreviewView extends LinearLayout {
                 AnimatedLayout animatedLayout = this.animatedLayouts.get(i);
                 canvas.save();
                 if (animatedLayout.direction) {
-                    canvas.translate(animatedLayout.f1093x + measuredWidth, (height - ((measuredHeight * 10) * animatedLayout.progress)) + ((10 - animatedLayout.staticLayouts.size()) * measuredHeight));
+                    canvas.translate(animatedLayout.f1109x + measuredWidth, (height - ((measuredHeight * 10) * animatedLayout.progress)) + ((10 - animatedLayout.staticLayouts.size()) * measuredHeight));
                     for (int i2 = 0; i2 < animatedLayout.staticLayouts.size(); i2++) {
                         canvas.translate(0.0f, measuredHeight);
                         animatedLayout.staticLayouts.get(i2).draw(canvas);
                     }
                 } else {
-                    canvas.translate(animatedLayout.f1093x + measuredWidth, (((measuredHeight * 10) * animatedLayout.progress) + height) - ((10 - animatedLayout.staticLayouts.size()) * measuredHeight));
+                    canvas.translate(animatedLayout.f1109x + measuredWidth, (((measuredHeight * 10) * animatedLayout.progress) + height) - ((10 - animatedLayout.staticLayouts.size()) * measuredHeight));
                     for (int i3 = 0; i3 < animatedLayout.staticLayouts.size(); i3++) {
                         canvas.translate(0.0f, -measuredHeight);
                         animatedLayout.staticLayouts.get(i3).draw(canvas);
@@ -438,7 +437,7 @@ public class LimitPreviewView extends LinearLayout {
                 if (Character.isDigit(this.text.charAt(i2))) {
                     AnimatedLayout animatedLayout = new AnimatedLayout();
                     this.animatedLayouts.add(animatedLayout);
-                    animatedLayout.f1093x = this.textLayout.getSecondaryHorizontal(i2);
+                    animatedLayout.f1109x = this.textLayout.getSecondaryHorizontal(i2);
                     animatedLayout.direction = z;
                     if (i >= 1) {
                         z = !z;
@@ -451,7 +450,7 @@ public class LimitPreviewView extends LinearLayout {
                     }
                     int i3 = 1;
                     while (i3 <= charAt) {
-                        animatedLayout.staticLayouts.add(new StaticLayout(BuildConfig.APP_CENTER_HASH + (i3 == 10 ? 0 : i3), this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                        animatedLayout.staticLayouts.add(new StaticLayout("" + (i3 == 10 ? 0 : i3), this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                         i3++;
                     }
                     spannableStringBuilder.setSpan(new EmptyStubSpan(), i2, i2 + 1, 0);
@@ -516,7 +515,7 @@ public class LimitPreviewView extends LinearLayout {
             float progress;
             ArrayList<StaticLayout> staticLayouts;
             ValueAnimator valueAnimator;
-            float f1093x;
+            float f1109x;
 
             private AnimatedLayout(CounterView counterView) {
                 this.staticLayouts = new ArrayList<>();

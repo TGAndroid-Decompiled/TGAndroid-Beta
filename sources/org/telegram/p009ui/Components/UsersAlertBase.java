@@ -28,8 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.p009ui.ActionBar.BottomSheet;
@@ -108,7 +107,7 @@ public class UsersAlertBase extends BottomSheet {
         updateColorKeys();
         setDimBehindAlpha(75);
         this.currentAccount = i;
-        this.shadowDrawable = context.getResources().getDrawable(C1010R.C1011drawable.sheet_shadow_round).mutate();
+        this.shadowDrawable = context.getResources().getDrawable(C1072R.C1073drawable.sheet_shadow_round).mutate();
         ContainerView createContainerView = createContainerView(context);
         this.containerView = createContainerView;
         createContainerView.setWillNotDraw(false);
@@ -129,8 +128,8 @@ public class UsersAlertBase extends BottomSheet {
         StickerEmptyView stickerEmptyView = new StickerEmptyView(context, this.flickerLoadingView, 1);
         this.emptyView = stickerEmptyView;
         stickerEmptyView.addView(this.flickerLoadingView, 0, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 2.0f, 0.0f, 0.0f));
-        this.emptyView.title.setText(LocaleController.getString("NoResult", C1010R.string.NoResult));
-        this.emptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", C1010R.string.SearchEmptyViewFilteredSubtitle2));
+        this.emptyView.title.setText(LocaleController.getString("NoResult", C1072R.string.NoResult));
+        this.emptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", C1072R.string.SearchEmptyViewFilteredSubtitle2));
         this.emptyView.setVisibility(8);
         this.emptyView.setAnimateLayoutChange(true);
         this.emptyView.showProgress(true, false);
@@ -228,7 +227,7 @@ public class UsersAlertBase extends BottomSheet {
             ImageView imageView = new ImageView(context);
             this.searchIconImageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            imageView.setImageResource(C1010R.C1011drawable.smiles_inputsearch);
+            imageView.setImageResource(C1072R.C1073drawable.smiles_inputsearch);
             imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(UsersAlertBase.this.keySearchPlaceholder), PorterDuff.Mode.MULTIPLY));
             addView(imageView, LayoutHelper.createFrame(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
             ImageView imageView2 = new ImageView(context);
@@ -276,7 +275,7 @@ public class UsersAlertBase extends BottomSheet {
             this.searchEditText.setLines(1);
             this.searchEditText.setSingleLine(true);
             this.searchEditText.setImeOptions(268435459);
-            this.searchEditText.setHint(LocaleController.getString("VoipGroupSearchMembers", C1010R.string.VoipGroupSearchMembers));
+            this.searchEditText.setHint(LocaleController.getString("VoipGroupSearchMembers", C1072R.string.VoipGroupSearchMembers));
             this.searchEditText.setCursorColor(Theme.getColor(UsersAlertBase.this.keySearchText));
             this.searchEditText.setCursorSize(AndroidUtilities.m35dp(20.0f));
             this.searchEditText.setCursorWidth(1.5f);
@@ -327,7 +326,7 @@ public class UsersAlertBase extends BottomSheet {
         }
 
         public void lambda$new$0(View view) {
-            this.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
+            this.searchEditText.setText("");
             AndroidUtilities.showKeyboard(this.searchEditText);
         }
 

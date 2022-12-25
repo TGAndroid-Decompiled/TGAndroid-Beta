@@ -20,8 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -31,7 +30,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Cells.HeaderCell;
 import org.telegram.p009ui.Cells.TextCheckCell2;
@@ -88,7 +87,7 @@ public class TopicCreateFragment extends BaseFragment {
     private TopicCreateFragment(Bundle bundle) {
         super(bundle);
         this.backupImageView = new BackupImageView[2];
-        this.firstSymbol = BuildConfig.APP_CENTER_HASH;
+        this.firstSymbol = "";
         this.animationIndex = 0;
     }
 
@@ -114,16 +113,16 @@ public class TopicCreateFragment extends BaseFragment {
     @Override
     public View createView(Context context) {
         if (this.topicForEdit != null) {
-            this.actionBar.setTitle(LocaleController.getString("EditTopic", C1010R.string.EditTopic));
+            this.actionBar.setTitle(LocaleController.getString("EditTopic", C1072R.string.EditTopic));
         } else {
-            this.actionBar.setTitle(LocaleController.getString("NewTopic", C1010R.string.NewTopic));
+            this.actionBar.setTitle(LocaleController.getString("NewTopic", C1072R.string.NewTopic));
         }
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
-        this.actionBar.setActionBarMenuOnItemClick(new C40111());
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
+        this.actionBar.setActionBarMenuOnItemClick(new C41741());
         if (this.topicForEdit == null) {
-            this.actionBar.createMenu().addItem(1, LocaleController.getString("Create", C1010R.string.Create).toUpperCase());
+            this.actionBar.createMenu().addItem(1, LocaleController.getString("Create", C1072R.string.Create).toUpperCase());
         } else {
-            this.actionBar.createMenu().addItem(2, C1010R.C1011drawable.ic_ab_done);
+            this.actionBar.createMenu().addItem(2, C1072R.C1073drawable.ic_ab_done);
         }
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(this, context) {
             boolean keyboardWasShown;
@@ -148,15 +147,15 @@ public class TopicCreateFragment extends BaseFragment {
         sizeNotifierFrameLayout.addView(linearLayout);
         HeaderCell headerCell = new HeaderCell(context);
         TLRPC$TL_forumTopic tLRPC$TL_forumTopic = this.topicForEdit;
-        if (tLRPC$TL_forumTopic != null && tLRPC$TL_forumTopic.f901id == 1) {
-            headerCell.setText(LocaleController.getString("CreateGeneralTopicTitle", C1010R.string.CreateGeneralTopicTitle));
+        if (tLRPC$TL_forumTopic != null && tLRPC$TL_forumTopic.f910id == 1) {
+            headerCell.setText(LocaleController.getString("CreateGeneralTopicTitle", C1072R.string.CreateGeneralTopicTitle));
         } else {
-            headerCell.setText(LocaleController.getString("CreateTopicTitle", C1010R.string.CreateTopicTitle));
+            headerCell.setText(LocaleController.getString("CreateTopicTitle", C1072R.string.CreateTopicTitle));
         }
         FrameLayout frameLayout = new FrameLayout(context);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.editTextBoldCursor = editTextBoldCursor;
-        editTextBoldCursor.setHintText(LocaleController.getString("EnterTopicName", C1010R.string.EnterTopicName));
+        editTextBoldCursor.setHintText(LocaleController.getString("EnterTopicName", C1072R.string.EnterTopicName));
         this.editTextBoldCursor.setHintColor(getThemedColor("chat_messagePanelHint"));
         this.editTextBoldCursor.setTextColor(getThemedColor("chat_messagePanelText"));
         this.editTextBoldCursor.setPadding(AndroidUtilities.m35dp(0.0f), this.editTextBoldCursor.getPaddingTop(), AndroidUtilities.m35dp(0.0f), this.editTextBoldCursor.getPaddingBottom());
@@ -181,7 +180,7 @@ public class TopicCreateFragment extends BaseFragment {
                 if (trim.length() > 0) {
                     TopicCreateFragment.this.firstSymbol = trim.substring(0, 1).toUpperCase();
                 } else {
-                    TopicCreateFragment.this.firstSymbol = BuildConfig.APP_CENTER_HASH;
+                    TopicCreateFragment.this.firstSymbol = "";
                 }
                 if (str.equals(TopicCreateFragment.this.firstSymbol)) {
                     return;
@@ -194,8 +193,8 @@ public class TopicCreateFragment extends BaseFragment {
                 }
             }
         });
-        C40144 c40144 = new C40144(this, context);
-        c40144.setOnClickListener(new View.OnClickListener() {
+        C41774 c41774 = new C41774(this, context);
+        c41774.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 TopicCreateFragment.this.lambda$createView$0(view);
@@ -203,18 +202,18 @@ public class TopicCreateFragment extends BaseFragment {
         });
         for (int i = 0; i < 2; i++) {
             this.backupImageView[i] = new BackupImageView(context);
-            c40144.addView(this.backupImageView[i], LayoutHelper.createFrame(28, 28, 17));
+            c41774.addView(this.backupImageView[i], LayoutHelper.createFrame(28, 28, 17));
         }
-        frameLayout.addView(c40144, LayoutHelper.createFrame(40, 40.0f, 16, 10.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.addView(c41774, LayoutHelper.createFrame(40, 40.0f, 16, 10.0f, 0.0f, 0.0f, 0.0f));
         linearLayout.addView(headerCell);
         linearLayout.addView(frameLayout);
         FrameLayout frameLayout2 = new FrameLayout(context);
-        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(context, C1010R.C1011drawable.greydivider_top, Theme.getColor("windowBackgroundGrayShadow")), 0, 0);
+        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider_top, Theme.getColor("windowBackgroundGrayShadow")), 0, 0);
         combinedDrawable.setFullsize(true);
         frameLayout2.setBackgroundDrawable(combinedDrawable);
         frameLayout2.setClipChildren(false);
         TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = this.topicForEdit;
-        if (tLRPC$TL_forumTopic2 == null || tLRPC$TL_forumTopic2.f901id != 1) {
+        if (tLRPC$TL_forumTopic2 == null || tLRPC$TL_forumTopic2.f910id != 1) {
             SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(this, getContext(), false, null, 3, null) {
                 private boolean firstLayout = true;
 
@@ -232,7 +231,7 @@ public class TopicCreateFragment extends BaseFragment {
                     boolean z = false;
                     if (!TextUtils.isEmpty(UserConfig.getInstance(((BaseFragment) TopicCreateFragment.this).currentAccount).defaultTopicIcons)) {
                         TLRPC$TL_messages_stickerSet stickerSetByEmojiOrName = TopicCreateFragment.this.getMediaDataController().getStickerSetByEmojiOrName(UserConfig.getInstance(((BaseFragment) TopicCreateFragment.this).currentAccount).defaultTopicIcons);
-                        if ((stickerSetByEmojiOrName == null ? 0L : stickerSetByEmojiOrName.set.f881id) == MediaDataController.getStickerSetId(tLRPC$Document)) {
+                        if ((stickerSetByEmojiOrName == null ? 0L : stickerSetByEmojiOrName.set.f890id) == MediaDataController.getStickerSetId(tLRPC$Document)) {
                             z = true;
                         }
                     }
@@ -243,7 +242,7 @@ public class TopicCreateFragment extends BaseFragment {
             selectAnimatedEmojiDialog.setAnimationsEnabled(this.fragmentBeginToShow);
             this.selectAnimatedEmojiDialog.setClipChildren(false);
             frameLayout2.addView(this.selectAnimatedEmojiDialog, LayoutHelper.createFrame(-1, -1.0f, 0, 12.0f, 12.0f, 12.0f, 12.0f));
-            Drawable createTopicDrawable = ForumUtilities.createTopicDrawable(BuildConfig.APP_CENTER_HASH, this.iconColor);
+            Drawable createTopicDrawable = ForumUtilities.createTopicDrawable("", this.iconColor);
             this.forumBubbleDrawable = (ForumBubbleDrawable) ((CombinedDrawable) createTopicDrawable).getBackgroundDrawable();
             this.replaceableIconDrawable = new ReplaceableIconDrawable(context);
             CombinedDrawable combinedDrawable2 = new CombinedDrawable(createTopicDrawable, this.replaceableIconDrawable, 0, 0);
@@ -259,14 +258,14 @@ public class TopicCreateFragment extends BaseFragment {
             this.forumBubbleDrawable.addParent(this.backupImageView[1]);
         } else {
             ImageView imageView = new ImageView(context);
-            imageView.setImageResource(C1010R.C1011drawable.msg_filled_general);
+            imageView.setImageResource(C1072R.C1073drawable.msg_filled_general);
             imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_inMenu"), PorterDuff.Mode.MULTIPLY));
-            c40144.addView(imageView, LayoutHelper.createFrame(22, 22, 17));
+            c41774.addView(imageView, LayoutHelper.createFrame(22, 22, 17));
             frameLayout2.addView(new ActionBarPopupWindow.GapView(context, getResourceProvider()), LayoutHelper.createFrame(-1, 8.0f));
             TextCheckCell2 textCheckCell2 = new TextCheckCell2(context);
             this.checkBoxCell = textCheckCell2;
             textCheckCell2.getCheckBox().setDrawIconType(0);
-            this.checkBoxCell.setTextAndCheck(LocaleController.getString("EditTopicHide", C1010R.string.EditTopicHide), !this.topicForEdit.hidden, false);
+            this.checkBoxCell.setTextAndCheck(LocaleController.getString("EditTopicHide", C1072R.string.EditTopicHide), !this.topicForEdit.hidden, false);
             this.checkBoxCell.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor("windowBackgroundWhite"), getThemedColor("listSelectorSDK21")));
             this.checkBoxCell.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -276,8 +275,8 @@ public class TopicCreateFragment extends BaseFragment {
             });
             frameLayout2.addView(this.checkBoxCell, LayoutHelper.createFrame(-1, 50.0f, 48, 0.0f, 8.0f, 0.0f, 0.0f));
             TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
-            textInfoPrivacyCell.setText(LocaleController.getString("EditTopicHideInfo", C1010R.string.EditTopicHideInfo));
-            textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(getContext(), C1010R.C1011drawable.greydivider_bottom, "windowBackgroundGrayShadow", getResourceProvider()));
+            textInfoPrivacyCell.setText(LocaleController.getString("EditTopicHideInfo", C1072R.string.EditTopicHideInfo));
+            textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(getContext(), C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow", getResourceProvider()));
             frameLayout2.addView(textInfoPrivacyCell, LayoutHelper.createFrame(-1, -2.0f, 48, 0.0f, 58.0f, 0.0f, 0.0f));
         }
         linearLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, -1.0f));
@@ -291,26 +290,26 @@ public class TopicCreateFragment extends BaseFragment {
         return this.fragmentView;
     }
 
-    public class C40111 extends C1069ActionBar.ActionBarMenuOnItemClick {
+    public class C41741 extends C1133ActionBar.ActionBarMenuOnItemClick {
         public static void lambda$onItemClick$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         }
 
         public static void lambda$onItemClick$3(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         }
 
-        C40111() {
+        C41741() {
         }
 
         @Override
         public void onItemClick(int r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.TopicCreateFragment.C40111.onItemClick(int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.TopicCreateFragment.C41741.onItemClick(int):void");
         }
 
         public void lambda$onItemClick$1(final String str, final AlertDialog alertDialog, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TopicCreateFragment.C40111.this.lambda$onItemClick$0(tLObject, str, alertDialog);
+                    TopicCreateFragment.C41741.this.lambda$onItemClick$0(tLObject, str, alertDialog);
                 }
             });
         }
@@ -333,29 +332,29 @@ public class TopicCreateFragment extends BaseFragment {
                         tLRPC$TL_messageService.action = tLRPC$TL_messageActionTopicCreate;
                         tLRPC$TL_messageService.peer_id = TopicCreateFragment.this.getMessagesController().getPeer(-TopicCreateFragment.this.chatId);
                         tLRPC$TL_messageService.dialog_id = -TopicCreateFragment.this.chatId;
-                        tLRPC$TL_messageService.f872id = tLRPC$TL_updateMessageID.f981id;
+                        tLRPC$TL_messageService.f881id = tLRPC$TL_updateMessageID.f990id;
                         tLRPC$TL_messageService.date = (int) (System.currentTimeMillis() / 1000);
                         ArrayList<MessageObject> arrayList = new ArrayList<>();
                         arrayList.add(new MessageObject(((BaseFragment) TopicCreateFragment.this).currentAccount, tLRPC$TL_messageService, false, false));
                         TLRPC$Chat chat = TopicCreateFragment.this.getMessagesController().getChat(Long.valueOf(TopicCreateFragment.this.chatId));
                         TLRPC$TL_forumTopic tLRPC$TL_forumTopic = new TLRPC$TL_forumTopic();
-                        tLRPC$TL_forumTopic.f901id = tLRPC$TL_updateMessageID.f981id;
+                        tLRPC$TL_forumTopic.f910id = tLRPC$TL_updateMessageID.f990id;
                         TopicCreateFragment topicCreateFragment = TopicCreateFragment.this;
                         long j = topicCreateFragment.selectedEmojiDocumentId;
                         if (j != 0) {
                             tLRPC$TL_forumTopic.icon_emoji_id = j;
                             tLRPC$TL_forumTopic.flags |= 1;
                         }
-                        tLRPC$TL_forumTopic.f902my = true;
+                        tLRPC$TL_forumTopic.f911my = true;
                         tLRPC$TL_forumTopic.flags |= 2;
                         tLRPC$TL_forumTopic.topicStartMessage = tLRPC$TL_messageService;
                         tLRPC$TL_forumTopic.title = str;
-                        tLRPC$TL_forumTopic.top_message = tLRPC$TL_messageService.f872id;
+                        tLRPC$TL_forumTopic.top_message = tLRPC$TL_messageService.f881id;
                         tLRPC$TL_forumTopic.topMessage = tLRPC$TL_messageService;
                         tLRPC$TL_forumTopic.from_id = topicCreateFragment.getMessagesController().getPeer(TopicCreateFragment.this.getUserConfig().clientUserId);
                         tLRPC$TL_forumTopic.notify_settings = new TLRPC$TL_peerNotifySettings();
                         tLRPC$TL_forumTopic.icon_color = TopicCreateFragment.this.iconColor;
-                        chatActivity.setThreadMessages(arrayList, chat, tLRPC$TL_messageService.f872id, 1, 1, tLRPC$TL_forumTopic);
+                        chatActivity.setThreadMessages(arrayList, chat, tLRPC$TL_messageService.f881id, 1, 1, tLRPC$TL_forumTopic);
                         chatActivity.justCreatedTopic = true;
                         TopicCreateFragment.this.getMessagesController().getTopicsController().onTopicCreated(-TopicCreateFragment.this.chatId, tLRPC$TL_forumTopic, true);
                         TopicCreateFragment.this.presentFragment(chatActivity);
@@ -366,12 +365,12 @@ public class TopicCreateFragment extends BaseFragment {
         }
     }
 
-    public class C40144 extends FrameLayout {
+    public class C41774 extends FrameLayout {
         ValueAnimator backAnimator;
         boolean pressed;
         float pressedProgress;
 
-        C40144(TopicCreateFragment topicCreateFragment, Context context) {
+        C41774(TopicCreateFragment topicCreateFragment, Context context) {
             super(context);
         }
 
@@ -406,14 +405,14 @@ public class TopicCreateFragment extends BaseFragment {
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            TopicCreateFragment.C40144.this.lambda$setPressed$0(valueAnimator2);
+                            TopicCreateFragment.C41774.this.lambda$setPressed$0(valueAnimator2);
                         }
                     });
                     this.backAnimator.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             super.onAnimationEnd(animator);
-                            C40144.this.backAnimator = null;
+                            C41774.this.backAnimator = null;
                         }
                     });
                     this.backAnimator.setInterpolator(new OvershootInterpolator(5.0f));
@@ -462,7 +461,7 @@ public class TopicCreateFragment extends BaseFragment {
         if (!z && longValue != 0 && !getUserConfig().isPremium()) {
             TLRPC$Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, l.longValue());
             if (findDocument != null) {
-                BulletinFactory.m13of(this).createEmojiBulletin(findDocument, AndroidUtilities.replaceTags(LocaleController.getString("UnlockPremiumEmojiHint", C1010R.string.UnlockPremiumEmojiHint)), LocaleController.getString("PremiumMore", C1010R.string.PremiumMore), new Runnable() {
+                BulletinFactory.m13of(this).createEmojiBulletin(findDocument, AndroidUtilities.replaceTags(LocaleController.getString("UnlockPremiumEmojiHint", C1072R.string.UnlockPremiumEmojiHint)), LocaleController.getString("PremiumMore", C1072R.string.PremiumMore), new Runnable() {
                     @Override
                     public final void run() {
                         TopicCreateFragment.this.lambda$selectEmoji$2();

@@ -29,7 +29,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -37,7 +37,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.DividerCell;
@@ -91,14 +91,14 @@ public class CountrySelectActivity extends BaseFragment {
 
     @Override
     public View createView(Context context) {
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(false);
-        this.actionBar.setTitle(LocaleController.getString("ChooseCountry", C1010R.string.ChooseCountry));
+        this.actionBar.setTitle(LocaleController.getString("ChooseCountry", C1072R.string.ChooseCountry));
         this.actionBar.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
         this.actionBar.setItemsColor(Theme.getColor("windowBackgroundWhiteBlackText"), false);
         this.actionBar.setItemsBackgroundColor(Theme.getColor("actionBarWhiteSelector"), false);
         this.actionBar.setTitleColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -106,7 +106,7 @@ public class CountrySelectActivity extends BaseFragment {
                 }
             }
         });
-        this.actionBar.createMenu().addItem(0, C1010R.C1011drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+        this.actionBar.createMenu().addItem(0, C1072R.C1073drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
                 CountrySelectActivity.this.searching = true;
@@ -136,7 +136,7 @@ public class CountrySelectActivity extends BaseFragment {
                     CountrySelectActivity.this.searchWas = true;
                 }
             }
-        }).setSearchFieldHint(LocaleController.getString("Search", C1010R.string.Search));
+        }).setSearchFieldHint(LocaleController.getString("Search", C1072R.string.Search));
         this.actionBar.setSearchTextColor(Theme.getColor("windowBackgroundWhiteGrayText"), true);
         this.actionBar.setSearchTextColor(Theme.getColor("windowBackgroundWhiteBlackText"), false);
         this.actionBar.setSearchCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
@@ -152,7 +152,7 @@ public class CountrySelectActivity extends BaseFragment {
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.showTextView();
         this.emptyView.setShowAtCenter(true);
-        this.emptyView.setText(LocaleController.getString("NoResult", C1010R.string.NoResult));
+        this.emptyView.setText(LocaleController.getString("NoResult", C1072R.string.NoResult));
         frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
@@ -530,20 +530,20 @@ public class CountrySelectActivity extends BaseFragment {
     public static TextSettingsCell createSettingsCell(Context context) {
         TextSettingsCell textSettingsCell = new TextSettingsCell(context);
         textSettingsCell.setPadding(AndroidUtilities.m35dp(LocaleController.isRTL ? 16.0f : 12.0f), 0, AndroidUtilities.m35dp(LocaleController.isRTL ? 12.0f : 16.0f), 0);
-        textSettingsCell.addOnAttachStateChangeListener(new View$OnAttachStateChangeListenerC29794(textSettingsCell));
+        textSettingsCell.addOnAttachStateChangeListener(new View$OnAttachStateChangeListenerC31284(textSettingsCell));
         return textSettingsCell;
     }
 
-    public class View$OnAttachStateChangeListenerC29794 implements View.OnAttachStateChangeListener {
+    public class View$OnAttachStateChangeListenerC31284 implements View.OnAttachStateChangeListener {
         private NotificationCenter.NotificationCenterDelegate listener;
         final TextSettingsCell val$view;
 
-        View$OnAttachStateChangeListenerC29794(final TextSettingsCell textSettingsCell) {
+        View$OnAttachStateChangeListenerC31284(final TextSettingsCell textSettingsCell) {
             this.val$view = textSettingsCell;
             this.listener = new NotificationCenter.NotificationCenterDelegate() {
                 @Override
                 public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                    CountrySelectActivity.View$OnAttachStateChangeListenerC29794.lambda$$0(TextSettingsCell.this, i, i2, objArr);
+                    CountrySelectActivity.View$OnAttachStateChangeListenerC31284.lambda$$0(TextSettingsCell.this, i, i2, objArr);
                 }
             };
         }

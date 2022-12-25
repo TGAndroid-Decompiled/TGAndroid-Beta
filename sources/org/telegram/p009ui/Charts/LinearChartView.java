@@ -32,7 +32,7 @@ public class LinearChartView extends BaseChartView<ChartData, LineViewData> {
                 if (lineViewData.enabled || lineViewData.alpha != 0.0f) {
                     lineViewData.bottomLinePath.reset();
                     int length = this.chartData.xPercentage.length;
-                    int[] iArr = lineViewData.line.f1017y;
+                    int[] iArr = lineViewData.line.f1027y;
                     lineViewData.chartPath.reset();
                     int i2 = 0;
                     for (int i3 = 0; i3 < length; i3++) {

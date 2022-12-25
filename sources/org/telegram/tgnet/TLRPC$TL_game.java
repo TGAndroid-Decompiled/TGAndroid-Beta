@@ -6,7 +6,7 @@ public class TLRPC$TL_game extends TLObject {
     public String description;
     public TLRPC$Document document;
     public int flags;
-    public long f903id;
+    public long f912id;
     public TLRPC$Photo photo;
     public String short_name;
     public String title;
@@ -26,7 +26,7 @@ public class TLRPC$TL_game extends TLObject {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.flags = abstractSerializedData.readInt32(z);
-        this.f903id = abstractSerializedData.readInt64(z);
+        this.f912id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.short_name = abstractSerializedData.readString(z);
         this.title = abstractSerializedData.readString(z);
@@ -41,7 +41,7 @@ public class TLRPC$TL_game extends TLObject {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
-        abstractSerializedData.writeInt64(this.f903id);
+        abstractSerializedData.writeInt64(this.f912id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeString(this.short_name);
         abstractSerializedData.writeString(this.title);

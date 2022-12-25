@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.BottomSheet;
@@ -77,7 +77,7 @@ public class JoinCallByUrlAlert extends BottomSheet {
         textView2.setTextColor(Theme.getColor("dialogTextGray3"));
         textView2.setGravity(1);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 49, 30, 8, 30, 0));
-        ChatObject.Call groupCall = AccountInstance.getInstance(this.currentAccount).getMessagesController().getGroupCall(tLRPC$Chat.f848id, false);
+        ChatObject.Call groupCall = AccountInstance.getInstance(this.currentAccount).getMessagesController().getGroupCall(tLRPC$Chat.f857id, false);
         if (groupCall != null) {
             if (TextUtils.isEmpty(groupCall.call.title)) {
                 textView.setText(tLRPC$Chat.title);
@@ -86,20 +86,20 @@ public class JoinCallByUrlAlert extends BottomSheet {
             }
             int i = groupCall.call.participants_count;
             if (i == 0) {
-                textView2.setText(LocaleController.getString("NoOneJoinedYet", C1010R.string.NoOneJoinedYet));
+                textView2.setText(LocaleController.getString("NoOneJoinedYet", C1072R.string.NoOneJoinedYet));
             } else {
                 textView2.setText(LocaleController.formatPluralString("Participants", i, new Object[0]));
             }
         } else {
             textView.setText(tLRPC$Chat.title);
-            textView2.setText(LocaleController.getString("NoOneJoinedYet", C1010R.string.NoOneJoinedYet));
+            textView2.setText(LocaleController.getString("NoOneJoinedYet", C1072R.string.NoOneJoinedYet));
         }
         BottomSheetCell bottomSheetCell = new BottomSheetCell(context);
         bottomSheetCell.setBackground(null);
         if (ChatObject.isChannelOrGiga(tLRPC$Chat)) {
-            bottomSheetCell.setText(LocaleController.getString("VoipChannelJoinVoiceChatUrl", C1010R.string.VoipChannelJoinVoiceChatUrl));
+            bottomSheetCell.setText(LocaleController.getString("VoipChannelJoinVoiceChatUrl", C1072R.string.VoipChannelJoinVoiceChatUrl));
         } else {
-            bottomSheetCell.setText(LocaleController.getString("VoipGroupJoinVoiceChatUrl", C1010R.string.VoipGroupJoinVoiceChatUrl));
+            bottomSheetCell.setText(LocaleController.getString("VoipGroupJoinVoiceChatUrl", C1072R.string.VoipGroupJoinVoiceChatUrl));
         }
         bottomSheetCell.background.setOnClickListener(new View.OnClickListener() {
             @Override

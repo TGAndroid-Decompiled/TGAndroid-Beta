@@ -317,7 +317,7 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
                     LineViewData lineViewData = (LineViewData) this.lines.get(i6);
                     boolean z2 = lineViewData.enabled;
                     if (z2 || lineViewData.alpha != 0.0f) {
-                        float f6 = lineViewData.line.f1017y[i3] * lineViewData.alpha;
+                        float f6 = lineViewData.line.f1027y[i3] * lineViewData.alpha;
                         f5 += f6;
                         if (f6 > 0.0f) {
                             i5++;
@@ -332,7 +332,7 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
                 while (i7 < size) {
                     LineViewData lineViewData2 = (LineViewData) this.lines.get(i7);
                     if (lineViewData2.enabled || lineViewData2.alpha != f4) {
-                        int[] iArr = lineViewData2.line.f1017y;
+                        int[] iArr = lineViewData2.line.f1027y;
                         if (i5 == i4) {
                             if (iArr[i3] != 0) {
                                 f = lineViewData2.alpha;
@@ -580,20 +580,20 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
 
     @Override
     public void updatePicker(ChartData chartData, long j) {
-        int length = chartData.f1015x.length;
+        int length = chartData.f1025x.length;
         long j2 = j - (j % 86400000);
         int i = 0;
         for (int i2 = 0; i2 < length; i2++) {
-            if (j2 >= chartData.f1015x[i2]) {
+            if (j2 >= chartData.f1025x[i2]) {
                 i = i2;
             }
         }
-        float length2 = chartData.xPercentage.length < 2 ? 0.5f : 1.0f / chartData.f1015x.length;
+        float length2 = chartData.xPercentage.length < 2 ? 0.5f : 1.0f / chartData.f1025x.length;
         if (i == 0) {
             ChartPickerDelegate chartPickerDelegate = this.pickerDelegate;
             chartPickerDelegate.pickerStart = 0.0f;
             chartPickerDelegate.pickerEnd = length2;
-        } else if (i >= chartData.f1015x.length - 1) {
+        } else if (i >= chartData.f1025x.length - 1) {
             ChartPickerDelegate chartPickerDelegate2 = this.pickerDelegate;
             chartPickerDelegate2.pickerStart = 1.0f - length2;
             chartPickerDelegate2.pickerEnd = 1.0f;
@@ -662,9 +662,9 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
         while (i3 <= i2) {
             for (int i6 = 0; i6 < size; i6++) {
                 float[] fArr = this.values;
-                fArr[i6] = fArr[i6] + ((StackLinearChartData) this.chartData).lines.get(i6).f1017y[i3];
-                this.sum += ((StackLinearChartData) this.chartData).lines.get(i6).f1017y[i3];
-                if (this.isEmpty && ((PieChartViewData) this.lines.get(i6)).enabled && ((StackLinearChartData) this.chartData).lines.get(i6).f1017y[i3] > 0) {
+                fArr[i6] = fArr[i6] + ((StackLinearChartData) this.chartData).lines.get(i6).f1027y[i3];
+                this.sum += ((StackLinearChartData) this.chartData).lines.get(i6).f1027y[i3];
+                if (this.isEmpty && ((PieChartViewData) this.lines.get(i6)).enabled && ((StackLinearChartData) this.chartData).lines.get(i6).f1027y[i3] > 0) {
                     this.isEmpty = false;
                 }
             }

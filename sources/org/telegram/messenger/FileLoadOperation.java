@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.FilePathDatabase;
 import org.telegram.p009ui.LaunchActivity;
+import org.telegram.p009ui.Storage.CacheModel;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
@@ -88,7 +89,7 @@ public class FileLoadOperation {
     private boolean isForceRequest;
     private boolean isPreloadVideoOperation;
     private boolean isStream;
-    private byte[] f798iv;
+    private byte[] f807iv;
     private byte[] key;
     protected long lastProgressUpdateTime;
     protected TLRPC$InputFileLocation location;
@@ -231,33 +232,33 @@ public class FileLoadOperation {
 
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData, boolean z2) {
-                    this.f867id = abstractSerializedData.readInt64(z2);
+                    this.f876id = abstractSerializedData.readInt64(z2);
                     this.access_hash = abstractSerializedData.readInt64(z2);
                 }
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
                     abstractSerializedData.writeInt32(constructor);
-                    abstractSerializedData.writeInt64(this.f867id);
+                    abstractSerializedData.writeInt64(this.f876id);
                     abstractSerializedData.writeInt64(this.access_hash);
                 }
             };
             this.location = tLRPC$InputFileLocation;
             TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = imageLocation.location;
             long j2 = tLRPC$TL_fileLocationToBeDeprecated.volume_id;
-            tLRPC$InputFileLocation.f867id = j2;
+            tLRPC$InputFileLocation.f876id = j2;
             tLRPC$InputFileLocation.volume_id = j2;
             tLRPC$InputFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated.local_id;
             tLRPC$InputFileLocation.access_hash = imageLocation.access_hash;
             byte[] bArr = new byte[32];
-            this.f798iv = bArr;
-            System.arraycopy(imageLocation.f803iv, 0, bArr, 0, bArr.length);
+            this.f807iv = bArr;
+            System.arraycopy(imageLocation.f812iv, 0, bArr, 0, bArr.length);
             this.key = imageLocation.key;
         } else if (imageLocation.photoPeer != null) {
             TLRPC$TL_inputPeerPhotoFileLocation tLRPC$TL_inputPeerPhotoFileLocation = new TLRPC$TL_inputPeerPhotoFileLocation();
             TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated2 = imageLocation.location;
             long j3 = tLRPC$TL_fileLocationToBeDeprecated2.volume_id;
-            tLRPC$TL_inputPeerPhotoFileLocation.f867id = j3;
+            tLRPC$TL_inputPeerPhotoFileLocation.f876id = j3;
             tLRPC$TL_inputPeerPhotoFileLocation.volume_id = j3;
             tLRPC$TL_inputPeerPhotoFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated2.local_id;
             tLRPC$TL_inputPeerPhotoFileLocation.photo_id = imageLocation.photoId;
@@ -268,7 +269,7 @@ public class FileLoadOperation {
             TLRPC$TL_inputStickerSetThumb tLRPC$TL_inputStickerSetThumb = new TLRPC$TL_inputStickerSetThumb();
             TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated3 = imageLocation.location;
             long j4 = tLRPC$TL_fileLocationToBeDeprecated3.volume_id;
-            tLRPC$TL_inputStickerSetThumb.f867id = j4;
+            tLRPC$TL_inputStickerSetThumb.f876id = j4;
             tLRPC$TL_inputStickerSetThumb.volume_id = j4;
             tLRPC$TL_inputStickerSetThumb.local_id = tLRPC$TL_fileLocationToBeDeprecated3.local_id;
             tLRPC$TL_inputStickerSetThumb.thumb_version = imageLocation.thumbVersion;
@@ -278,7 +279,7 @@ public class FileLoadOperation {
             if (imageLocation.photoId != 0) {
                 TLRPC$TL_inputPhotoFileLocation tLRPC$TL_inputPhotoFileLocation = new TLRPC$TL_inputPhotoFileLocation();
                 this.location = tLRPC$TL_inputPhotoFileLocation;
-                tLRPC$TL_inputPhotoFileLocation.f867id = imageLocation.photoId;
+                tLRPC$TL_inputPhotoFileLocation.f876id = imageLocation.photoId;
                 TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated4 = imageLocation.location;
                 tLRPC$TL_inputPhotoFileLocation.volume_id = tLRPC$TL_fileLocationToBeDeprecated4.volume_id;
                 tLRPC$TL_inputPhotoFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated4.local_id;
@@ -291,7 +292,7 @@ public class FileLoadOperation {
             } else {
                 TLRPC$TL_inputDocumentFileLocation tLRPC$TL_inputDocumentFileLocation = new TLRPC$TL_inputDocumentFileLocation();
                 this.location = tLRPC$TL_inputDocumentFileLocation;
-                tLRPC$TL_inputDocumentFileLocation.f867id = imageLocation.documentId;
+                tLRPC$TL_inputDocumentFileLocation.f876id = imageLocation.documentId;
                 TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated5 = imageLocation.location;
                 tLRPC$TL_inputDocumentFileLocation.volume_id = tLRPC$TL_fileLocationToBeDeprecated5.volume_id;
                 tLRPC$TL_inputDocumentFileLocation.local_id = tLRPC$TL_fileLocationToBeDeprecated5.local_id;
@@ -364,20 +365,20 @@ public class FileLoadOperation {
 
             @Override
             public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-                this.f867id = abstractSerializedData.readInt64(z);
+                this.f876id = abstractSerializedData.readInt64(z);
                 this.access_hash = abstractSerializedData.readInt64(z);
             }
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
                 abstractSerializedData.writeInt32(constructor);
-                abstractSerializedData.writeInt64(this.f867id);
+                abstractSerializedData.writeInt64(this.f876id);
                 abstractSerializedData.writeInt64(this.access_hash);
             }
         };
         this.location = tLRPC$InputFileLocation;
         TLRPC$TL_secureFile tLRPC$TL_secureFile = secureDocument.secureFile;
-        tLRPC$InputFileLocation.f867id = tLRPC$TL_secureFile.f972id;
+        tLRPC$InputFileLocation.f876id = tLRPC$TL_secureFile.f981id;
         tLRPC$InputFileLocation.access_hash = tLRPC$TL_secureFile.access_hash;
         this.datacenterId = tLRPC$TL_secureFile.dc_id;
         this.totalBytesCount = tLRPC$TL_secureFile.size;
@@ -1033,10 +1034,10 @@ public class FileLoadOperation {
             }
             if (this.fileDialogId != 0) {
                 if (this.cacheFileTemp != null) {
-                    FileLoader.getInstance(this.currentAccount).getFileDatabase().removeFiles(Collections.singletonList(this.cacheFileTemp));
+                    FileLoader.getInstance(this.currentAccount).getFileDatabase().removeFiles(Collections.singletonList(new CacheModel.FileInfo(this.cacheFileTemp)));
                 }
                 if (this.cacheFileParts != null) {
-                    FileLoader.getInstance(this.currentAccount).getFileDatabase().removeFiles(Collections.singletonList(this.cacheFileParts));
+                    FileLoader.getInstance(this.currentAccount).getFileDatabase().removeFiles(Collections.singletonList(new CacheModel.FileInfo(this.cacheFileParts)));
                 }
             }
             this.delegate.didFinishLoadingFile(this, this.cacheFileFinal);

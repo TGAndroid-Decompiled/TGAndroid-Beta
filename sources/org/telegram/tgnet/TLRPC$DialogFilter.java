@@ -12,7 +12,7 @@ public abstract class TLRPC$DialogFilter extends TLObject {
     public boolean exclude_read;
     public int flags;
     public boolean groups;
-    public int f855id;
+    public int f864id;
     public boolean non_contacts;
     public String title;
     public ArrayList<TLRPC$InputPeer> pinned_peers = new ArrayList<>();

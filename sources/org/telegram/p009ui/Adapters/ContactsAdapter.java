@@ -13,14 +13,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Cells.DividerCell;
 import org.telegram.p009ui.Cells.GraySectionCell;
@@ -256,22 +255,22 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         }
         LetterSectionCell letterSectionCell = (LetterSectionCell) view;
         if (this.sortType == 2 || this.disableSections || this.isEmpty) {
-            letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
+            letterSectionCell.setLetter("");
         } else if (this.onlyUsers == 0 || this.isAdmin) {
             if (i == 0) {
-                letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
+                letterSectionCell.setLetter("");
             } else {
                 int i2 = i - 1;
                 if (i2 < arrayList.size()) {
                     letterSectionCell.setLetter(arrayList.get(i2));
                 } else {
-                    letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
+                    letterSectionCell.setLetter("");
                 }
             }
         } else if (i < arrayList.size()) {
             letterSectionCell.setLetter(arrayList.get(i));
         } else {
-            letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
+            letterSectionCell.setLetter("");
         }
         return view;
     }
@@ -297,7 +296,7 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                         size = viewGroup.getMeasuredHeight();
                     }
                     if (size == 0) {
-                        size = (AndroidUtilities.displaySize.y - C1069ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
+                        size = (AndroidUtilities.displaySize.y - C1133ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
                     }
                     int m35dp = AndroidUtilities.m35dp(50.0f);
                     int m35dp2 = ContactsAdapter.this.onlyUsers != 0 ? 0 : AndroidUtilities.m35dp(30.0f) + m35dp;
@@ -314,7 +313,7 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             userCell = frameLayout;
         } else {
             userCell = new ShadowSectionCell(this.mContext);
-            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow"));
+            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow"));
             combinedDrawable.setFullsize(true);
             userCell.setBackgroundDrawable(combinedDrawable);
         }
@@ -337,11 +336,11 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             userCell.setData(user, null, null, 0);
             LongSparseArray<?> longSparseArray = this.checkedMap;
             if (longSparseArray != null) {
-                userCell.setChecked(longSparseArray.indexOfKey(user.f986id) >= 0, !this.scrolling);
+                userCell.setChecked(longSparseArray.indexOfKey(user.f995id) >= 0, !this.scrolling);
             }
             LongSparseArray<TLRPC$User> longSparseArray2 = this.ignoreUsers;
             if (longSparseArray2 != null) {
-                if (longSparseArray2.indexOfKey(user.f986id) >= 0) {
+                if (longSparseArray2.indexOfKey(user.f995id) >= 0) {
                     userCell.setAlpha(0.5f);
                 } else {
                     userCell.setAlpha(1.0f);
@@ -354,41 +353,41 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
             int i3 = this.sortType;
             if (i3 == 0) {
-                graySectionCell.setText(LocaleController.getString("Contacts", C1010R.string.Contacts));
+                graySectionCell.setText(LocaleController.getString("Contacts", C1072R.string.Contacts));
             } else if (i3 == 1) {
-                graySectionCell.setText(LocaleController.getString("SortedByName", C1010R.string.SortedByName));
+                graySectionCell.setText(LocaleController.getString("SortedByName", C1072R.string.SortedByName));
             } else {
-                graySectionCell.setText(LocaleController.getString("SortedByLastSeen", C1010R.string.SortedByLastSeen));
+                graySectionCell.setText(LocaleController.getString("SortedByLastSeen", C1072R.string.SortedByLastSeen));
             }
         } else {
             TextCell textCell = (TextCell) viewHolder.itemView;
             if (i == 0) {
                 if (this.needPhonebook) {
                     if (i2 == 0) {
-                        textCell.setTextAndIcon(LocaleController.getString("InviteFriends", C1010R.string.InviteFriends), C1010R.C1011drawable.msg_invite, false);
+                        textCell.setTextAndIcon(LocaleController.getString("InviteFriends", C1072R.string.InviteFriends), C1072R.C1073drawable.msg_invite, false);
                         return;
                     } else if (i2 == 1) {
-                        textCell.setTextAndIcon(LocaleController.getString("AddPeopleNearby", C1010R.string.AddPeopleNearby), C1010R.C1011drawable.msg_location, false);
+                        textCell.setTextAndIcon(LocaleController.getString("AddPeopleNearby", C1072R.string.AddPeopleNearby), C1072R.C1073drawable.msg_location, false);
                         return;
                     } else {
                         return;
                     }
                 } else if (this.isAdmin) {
                     if (this.isChannel) {
-                        textCell.setTextAndIcon(LocaleController.getString("ChannelInviteViaLink", C1010R.string.ChannelInviteViaLink), C1010R.C1011drawable.msg_link2, false);
+                        textCell.setTextAndIcon(LocaleController.getString("ChannelInviteViaLink", C1072R.string.ChannelInviteViaLink), C1072R.C1073drawable.msg_link2, false);
                         return;
                     } else {
-                        textCell.setTextAndIcon(LocaleController.getString("InviteToGroupByLink", C1010R.string.InviteToGroupByLink), C1010R.C1011drawable.msg_link2, false);
+                        textCell.setTextAndIcon(LocaleController.getString("InviteToGroupByLink", C1072R.string.InviteToGroupByLink), C1072R.C1073drawable.msg_link2, false);
                         return;
                     }
                 } else if (i2 == 0) {
-                    textCell.setTextAndIcon(LocaleController.getString("NewGroup", C1010R.string.NewGroup), C1010R.C1011drawable.msg_groups, false);
+                    textCell.setTextAndIcon(LocaleController.getString("NewGroup", C1072R.string.NewGroup), C1072R.C1073drawable.msg_groups, false);
                     return;
                 } else if (i2 == 1) {
-                    textCell.setTextAndIcon(LocaleController.getString("NewSecretChat", C1010R.string.NewSecretChat), C1010R.C1011drawable.msg_secret, false);
+                    textCell.setTextAndIcon(LocaleController.getString("NewSecretChat", C1072R.string.NewSecretChat), C1072R.C1073drawable.msg_secret, false);
                     return;
                 } else if (i2 == 2) {
-                    textCell.setTextAndIcon(LocaleController.getString("NewChannel", C1010R.string.NewChannel), C1010R.C1011drawable.msg_channel, false);
+                    textCell.setTextAndIcon(LocaleController.getString("NewChannel", C1072R.string.NewChannel), C1072R.C1073drawable.msg_channel, false);
                     return;
                 } else {
                     return;

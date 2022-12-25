@@ -5,8 +5,8 @@ public class TransitionParams {
     public float[] endX;
     public float[] endY;
     public boolean needScaleY = true;
-    public float f1018pX;
-    public float f1019pY;
+    public float f1028pX;
+    public float f1029pY;
     public float pickerEndOut;
     public float pickerStartOut;
     public float progress;

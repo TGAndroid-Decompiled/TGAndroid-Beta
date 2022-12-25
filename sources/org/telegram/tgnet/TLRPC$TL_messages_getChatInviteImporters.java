@@ -8,7 +8,7 @@ public class TLRPC$TL_messages_getChatInviteImporters extends TLObject {
     public int offset_date;
     public TLRPC$InputUser offset_user;
     public TLRPC$InputPeer peer;
-    public String f934q;
+    public String f943q;
     public boolean requested;
 
     @Override
@@ -27,7 +27,7 @@ public class TLRPC$TL_messages_getChatInviteImporters extends TLObject {
             abstractSerializedData.writeString(this.link);
         }
         if ((this.flags & 4) != 0) {
-            abstractSerializedData.writeString(this.f934q);
+            abstractSerializedData.writeString(this.f943q);
         }
         abstractSerializedData.writeInt32(this.offset_date);
         this.offset_user.serializeToStream(abstractSerializedData);

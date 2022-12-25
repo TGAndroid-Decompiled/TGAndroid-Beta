@@ -354,6 +354,10 @@ public class Emoji {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.Emoji.parseEmojis(java.lang.CharSequence, int[]):java.util.ArrayList");
     }
 
+    public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, boolean z) {
+        return replaceEmoji(charSequence, fontMetricsInt, AndroidUtilities.m35dp(16.0f), z, null);
+    }
+
     public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, int i, boolean z) {
         return replaceEmoji(charSequence, fontMetricsInt, i, z, null);
     }
@@ -442,6 +446,17 @@ public class Emoji {
         public void replaceFontMetrics(Paint.FontMetricsInt fontMetricsInt, int i) {
             this.fontMetrics = fontMetricsInt;
             this.size = i;
+        }
+
+        public void replaceFontMetrics(Paint.FontMetricsInt fontMetricsInt) {
+            this.fontMetrics = fontMetricsInt;
+            if (fontMetricsInt != null) {
+                int abs = Math.abs(fontMetricsInt.descent) + Math.abs(this.fontMetrics.ascent);
+                this.size = abs;
+                if (abs == 0) {
+                    this.size = AndroidUtilities.m35dp(20.0f);
+                }
+            }
         }
 
         @Override
@@ -583,7 +598,7 @@ public class Emoji {
         try {
             emojiUseHistory.clear();
             if (globalEmojiSettings.contains("emojis")) {
-                String string = globalEmojiSettings.getString("emojis", BuildConfig.APP_CENTER_HASH);
+                String string = globalEmojiSettings.getString("emojis", "");
                 if (string != null && string.length() > 0) {
                     for (String str : string.split(",")) {
                         String[] split = str.split("=");
@@ -604,7 +619,7 @@ public class Emoji {
                 globalEmojiSettings.edit().remove("emojis").commit();
                 saveRecentEmoji();
             } else {
-                String string2 = globalEmojiSettings.getString("emojis2", BuildConfig.APP_CENTER_HASH);
+                String string2 = globalEmojiSettings.getString("emojis2", "");
                 if (string2 != null && string2.length() > 0) {
                     for (String str2 : string2.split(",")) {
                         String[] split2 = str2.split("=");
@@ -625,7 +640,7 @@ public class Emoji {
             FileLog.m31e(e);
         }
         try {
-            String string3 = globalEmojiSettings.getString("color", BuildConfig.APP_CENTER_HASH);
+            String string3 = globalEmojiSettings.getString("color", "");
             if (string3 == null || string3.length() <= 0) {
                 return;
             }

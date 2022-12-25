@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessagesController;
@@ -106,7 +105,7 @@ public class HintDialogCell extends FrameLayout {
     public void update(int i) {
         int i2;
         if ((MessagesController.UPDATE_MASK_STATUS & i) != 0 && this.currentUser != null) {
-            this.currentUser = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.currentUser.f986id));
+            this.currentUser = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.currentUser.f995id));
             this.imageView.invalidate();
             invalidate();
         }
@@ -157,7 +156,7 @@ public class HintDialogCell extends FrameLayout {
             } else if (user != null) {
                 this.nameTextView.setText(UserObject.getFirstName(user));
             } else {
-                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+                this.nameTextView.setText("");
             }
             this.avatarDrawable.setInfo(this.currentUser);
             this.imageView.setForUserOrChat(this.currentUser, this.avatarDrawable);
@@ -168,7 +167,7 @@ public class HintDialogCell extends FrameLayout {
             } else if (chat != null) {
                 this.nameTextView.setText(chat.title);
             } else {
-                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+                this.nameTextView.setText("");
             }
             this.avatarDrawable.setInfo(chat);
             this.currentUser = null;

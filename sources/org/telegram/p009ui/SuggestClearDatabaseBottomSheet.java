@@ -9,7 +9,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.p009ui.ActionBar.AlertDialog;
@@ -45,20 +45,20 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView.setText(LocaleController.getString("SuggestClearDatabaseTitle", C1010R.string.SuggestClearDatabaseTitle));
+        textView.setText(LocaleController.getString("SuggestClearDatabaseTitle", C1072R.string.SuggestClearDatabaseTitle));
         linearLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(parentActivity);
         textView2.setGravity(8388611);
         textView2.setTextSize(1, 15.0f);
         textView2.setTextColor(Theme.getColor("dialogTextBlack"));
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString("SuggestClearDatabaseMessage", C1010R.string.SuggestClearDatabaseMessage, AndroidUtilities.formatFileSize(baseFragment.getMessagesStorage().getDatabaseSize()))));
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString("SuggestClearDatabaseMessage", C1072R.string.SuggestClearDatabaseMessage, AndroidUtilities.formatFileSize(baseFragment.getMessagesStorage().getDatabaseSize()))));
         linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
         TextView textView3 = new TextView(parentActivity);
         textView3.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
         textView3.setGravity(17);
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView3.setText(LocaleController.getString("ClearLocalDatabase", C1010R.string.ClearLocalDatabase));
+        textView3.setText(LocaleController.getString("ClearLocalDatabase", C1072R.string.ClearLocalDatabase));
         textView3.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         textView3.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("featuredStickers_addButton"), ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), 120)));
         linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
@@ -75,10 +75,10 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
 
     public void lambda$new$1(final BaseFragment baseFragment, View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(baseFragment.getParentActivity());
-        builder.setTitle(LocaleController.getString("LocalDatabaseClearTextTitle", C1010R.string.LocalDatabaseClearTextTitle));
-        builder.setMessage(LocaleController.getString("LocalDatabaseClearText", C1010R.string.LocalDatabaseClearText));
-        builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
-        builder.setPositiveButton(LocaleController.getString("CacheClear", C1010R.string.CacheClear), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString("LocalDatabaseClearTextTitle", C1072R.string.LocalDatabaseClearTextTitle));
+        builder.setMessage(LocaleController.getString("LocalDatabaseClearText", C1072R.string.LocalDatabaseClearText));
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
+        builder.setPositiveButton(LocaleController.getString("CacheClear", C1072R.string.CacheClear), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 SuggestClearDatabaseBottomSheet.this.lambda$new$0(baseFragment, dialogInterface, i);

@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -81,7 +80,7 @@ public class AdminedChannelCell extends FrameLayout {
             ImageView imageView = new ImageView(context);
             this.deleteButton = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.deleteButton.setImageResource(C1010R.C1011drawable.msg_panel_clear);
+            this.deleteButton.setImageResource(C1072R.C1073drawable.msg_panel_clear);
             this.deleteButton.setOnClickListener(onClickListener);
             this.deleteButton.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
             this.deleteButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayText"), PorterDuff.Mode.MULTIPLY));
@@ -97,7 +96,7 @@ public class AdminedChannelCell extends FrameLayout {
         this.avatarDrawable.setInfo(tLRPC$Chat);
         this.nameTextView.setText(tLRPC$Chat.title);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str + ChatObject.getPublicUsername(tLRPC$Chat));
-        spannableStringBuilder.setSpan(new URLSpanNoUnderline(BuildConfig.APP_CENTER_HASH), str.length(), spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new URLSpanNoUnderline(""), str.length(), spannableStringBuilder.length(), 33);
         this.statusTextView.setText(spannableStringBuilder);
         this.avatarImageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
         this.isLast = z;

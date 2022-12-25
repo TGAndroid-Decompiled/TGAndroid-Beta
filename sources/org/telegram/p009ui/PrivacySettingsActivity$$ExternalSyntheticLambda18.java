@@ -12,6 +12,6 @@ public final class PrivacySettingsActivity$$ExternalSyntheticLambda18 implements
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        PrivacySettingsActivity.lambda$createView$14(tLObject, tLRPC$TL_error);
+        PrivacySettingsActivity.lambda$createView$15(tLObject, tLRPC$TL_error);
     }
 }

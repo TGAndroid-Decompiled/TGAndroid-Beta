@@ -10,7 +10,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -18,18 +18,18 @@ import org.telegram.p009ui.Components.LayoutHelper;
 import org.telegram.p009ui.Components.RadioButton;
 
 public class ChatListCell extends LinearLayout {
-    private C1303ListView[] listView;
+    private C1380ListView[] listView;
 
     protected void didSelectChatType(boolean z) {
     }
 
-    public class C1303ListView extends FrameLayout {
+    public class C1380ListView extends FrameLayout {
         private RadioButton button;
         private boolean isThreeLines;
         private RectF rect;
         private TextPaint textPaint;
 
-        public C1303ListView(ChatListCell chatListCell, Context context, boolean z) {
+        public C1380ListView(ChatListCell chatListCell, Context context, boolean z) {
             super(context);
             int i;
             String str;
@@ -39,10 +39,10 @@ public class ChatListCell extends LinearLayout {
             setWillNotDraw(false);
             this.isThreeLines = z;
             if (z) {
-                i = C1010R.string.ChatListExpanded;
+                i = C1072R.string.ChatListExpanded;
                 str = "ChatListExpanded";
             } else {
-                i = C1010R.string.ChatListDefault;
+                i = C1072R.string.ChatListDefault;
                 str = "ChatListDefault";
             }
             setContentDescription(LocaleController.getString(str, i));
@@ -51,7 +51,7 @@ public class ChatListCell extends LinearLayout {
                 @Override
                 public void invalidate() {
                     super.invalidate();
-                    C1303ListView.this.invalidate();
+                    C1380ListView.this.invalidate();
                 }
             };
             this.button = radioButton;
@@ -81,10 +81,10 @@ public class ChatListCell extends LinearLayout {
             Theme.dialogs_onlineCirclePaint.setColor(Color.argb((int) ((1.0f - this.button.getProgress()) * 31.0f), red, green, blue));
             canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), Theme.dialogs_onlineCirclePaint);
             if (this.isThreeLines) {
-                i = C1010R.string.ChatListExpanded;
+                i = C1072R.string.ChatListExpanded;
                 str = "ChatListExpanded";
             } else {
-                i = C1010R.string.ChatListDefault;
+                i = C1072R.string.ChatListDefault;
                 str = "ChatListDefault";
             }
             String string = LocaleController.getString(str, i);
@@ -124,10 +124,10 @@ public class ChatListCell extends LinearLayout {
             accessibilityNodeInfo.setChecked(this.button.isChecked());
             accessibilityNodeInfo.setCheckable(true);
             if (this.isThreeLines) {
-                i = C1010R.string.ChatListExpanded;
+                i = C1072R.string.ChatListExpanded;
                 str = "ChatListExpanded";
             } else {
-                i = C1010R.string.ChatListDefault;
+                i = C1072R.string.ChatListDefault;
                 str = "ChatListDefault";
             }
             accessibilityNodeInfo.setContentDescription(LocaleController.getString(str, i));
@@ -136,17 +136,17 @@ public class ChatListCell extends LinearLayout {
 
     public ChatListCell(Context context) {
         super(context);
-        this.listView = new C1303ListView[2];
+        this.listView = new C1380ListView[2];
         setOrientation(0);
         setPadding(AndroidUtilities.m35dp(21.0f), AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(21.0f), 0);
         int i = 0;
         while (true) {
-            C1303ListView[] c1303ListViewArr = this.listView;
-            if (i >= c1303ListViewArr.length) {
+            C1380ListView[] c1380ListViewArr = this.listView;
+            if (i >= c1380ListViewArr.length) {
                 return;
             }
             final boolean z = i == 1;
-            c1303ListViewArr[i] = new C1303ListView(this, context, z);
+            c1380ListViewArr[i] = new C1380ListView(this, context, z);
             addView(this.listView[i], LayoutHelper.createLinear(-1, -1, 0.5f, i == 1 ? 10 : 0, 0, 0, 0));
             this.listView[i].setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -170,11 +170,11 @@ public class ChatListCell extends LinearLayout {
         super.invalidate();
         int i = 0;
         while (true) {
-            C1303ListView[] c1303ListViewArr = this.listView;
-            if (i >= c1303ListViewArr.length) {
+            C1380ListView[] c1380ListViewArr = this.listView;
+            if (i >= c1380ListViewArr.length) {
                 return;
             }
-            c1303ListViewArr[i].invalidate();
+            c1380ListViewArr[i].invalidate();
             i++;
         }
     }

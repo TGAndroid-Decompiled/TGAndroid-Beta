@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationBadge;
@@ -110,8 +109,8 @@ public class RingtoneDataStore {
         int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
         this.userRingtones.clear();
         for (int i2 = 0; i2 < i; i2++) {
-            String string = sharedPreferences.getString("tone_document" + i2, BuildConfig.APP_CENTER_HASH);
-            String string2 = sharedPreferences.getString("tone_local_path" + i2, BuildConfig.APP_CENTER_HASH);
+            String string = sharedPreferences.getString("tone_document" + i2, "");
+            String string2 = sharedPreferences.getString("tone_local_path" + i2, "");
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
             try {
                 TLRPC$Document TLdeserialize = TLRPC$Document.TLdeserialize(serializedData, serializedData.readInt32(true), true);
@@ -152,7 +151,7 @@ public class RingtoneDataStore {
         while (it.hasNext()) {
             CachedTone next = it.next();
             if (next.localUri != null && (tLRPC$Document = next.document) != null) {
-                hashMap.put(Long.valueOf(tLRPC$Document.f856id), next.localUri);
+                hashMap.put(Long.valueOf(tLRPC$Document.f865id), next.localUri);
             }
         }
         this.userRingtones.clear();
@@ -162,7 +161,7 @@ public class RingtoneDataStore {
         edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, arrayList.size());
         for (int i = 0; i < arrayList.size(); i++) {
             TLRPC$Document tLRPC$Document2 = arrayList.get(i);
-            String str = (String) hashMap.get(Long.valueOf(tLRPC$Document2.f856id));
+            String str = (String) hashMap.get(Long.valueOf(tLRPC$Document2.f865id));
             SerializedData serializedData = new SerializedData(tLRPC$Document2.getObjectSize());
             tLRPC$Document2.serializeToStream(serializedData);
             edit.putString("tone_document" + i, Utilities.bytesToHex(serializedData.toByteArray()));
@@ -265,7 +264,7 @@ public class RingtoneDataStore {
             this.loaded = true;
         }
         for (int i = 0; i < this.userRingtones.size(); i++) {
-            if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f856id == j) {
+            if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f865id == j) {
                 if (!TextUtils.isEmpty(this.userRingtones.get(i).localUri)) {
                     return this.userRingtones.get(i).localUri;
                 }
@@ -322,7 +321,7 @@ public class RingtoneDataStore {
             this.loaded = true;
         }
         for (int i = 0; i < this.userRingtones.size(); i++) {
-            if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f856id == tLRPC$Document.f856id) {
+            if (this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f865id == tLRPC$Document.f865id) {
                 this.userRingtones.remove(i);
                 return;
             }
@@ -334,7 +333,7 @@ public class RingtoneDataStore {
     }
 
     public void addTone(TLRPC$Document tLRPC$Document) {
-        if (tLRPC$Document == null || contains(tLRPC$Document.f856id)) {
+        if (tLRPC$Document == null || contains(tLRPC$Document.f865id)) {
             return;
         }
         CachedTone cachedTone = new CachedTone(this);
@@ -354,7 +353,7 @@ public class RingtoneDataStore {
         }
         for (int i = 0; i < this.userRingtones.size(); i++) {
             try {
-                if (this.userRingtones.get(i) != null && this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f856id == j) {
+                if (this.userRingtones.get(i) != null && this.userRingtones.get(i).document != null && this.userRingtones.get(i).document.f865id == j) {
                     return this.userRingtones.get(i).document;
                 }
             } catch (Exception e) {

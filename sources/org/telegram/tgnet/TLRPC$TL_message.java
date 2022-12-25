@@ -21,7 +21,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
         this.pinned = (16777216 & readInt32) != 0;
         this.noforwards = (67108864 & readInt32) != 0;
         this.topic_start = (readInt32 & 134217728) != 0;
-        this.f872id = abstractSerializedData.readInt32(z);
+        this.f881id = abstractSerializedData.readInt32(z);
         if ((this.flags & 256) != 0) {
             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
@@ -136,7 +136,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
         int i11 = this.topic_start ? i10 | 134217728 : i10 & (-134217729);
         this.flags = i11;
         abstractSerializedData.writeInt32(i11);
-        abstractSerializedData.writeInt32(this.f872id);
+        abstractSerializedData.writeInt32(this.f881id);
         if ((this.flags & 256) != 0) {
             this.from_id.serializeToStream(abstractSerializedData);
         }

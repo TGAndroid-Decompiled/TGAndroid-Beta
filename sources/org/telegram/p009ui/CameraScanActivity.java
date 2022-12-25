@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -57,8 +58,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
@@ -72,7 +72,7 @@ import org.telegram.messenger.camera.CameraView;
 import org.telegram.messenger.camera.Size;
 import org.telegram.p009ui.ActionBar.BaseFragment;
 import org.telegram.p009ui.ActionBar.BottomSheet;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.INavigationLayout;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
@@ -123,8 +123,9 @@ public class CameraScanActivity extends BaseFragment {
     private QRCodeReader qrReader = null;
     private BarcodeDetector visionQrReader = null;
     private float recognizedT = 0.0f;
+    private float newRecognizedT = 0.0f;
     private float useRecognizedBounds = 0.0f;
-    private Runnable requestShot = new RunnableC12897();
+    private Runnable requestShot = new RunnableC13667();
     private float averageProcessTime = 0.0f;
     private long processTimesCount = 0;
 
@@ -137,6 +138,13 @@ public class CameraScanActivity extends BaseFragment {
             public static void $default$didFindQr(CameraScanActivityDelegate cameraScanActivityDelegate, String str) {
             }
 
+            public static String $default$getSubtitleText(CameraScanActivityDelegate cameraScanActivityDelegate) {
+                return null;
+            }
+
+            public static void $default$onDismiss(CameraScanActivityDelegate cameraScanActivityDelegate) {
+            }
+
             public static boolean $default$processQr(CameraScanActivityDelegate cameraScanActivityDelegate, String str, Runnable runnable) {
                 return false;
             }
@@ -146,6 +154,10 @@ public class CameraScanActivity extends BaseFragment {
 
         void didFindQr(String str);
 
+        String getSubtitleText();
+
+        void onDismiss();
+
         boolean processQr(String str, Runnable runnable);
     }
 
@@ -153,22 +165,11 @@ public class CameraScanActivity extends BaseFragment {
         return true;
     }
 
-    public static INavigationLayout[] showAsSheet(BaseFragment baseFragment, boolean z, int i, CameraScanActivityDelegate cameraScanActivityDelegate) {
-        if (baseFragment == null || baseFragment.getParentActivity() == null) {
-            return null;
-        }
-        INavigationLayout[] iNavigationLayoutArr = {INavigationLayout.CC.newLayout(baseFragment.getParentActivity())};
-        DialogC12821 dialogC12821 = new DialogC12821(baseFragment.getParentActivity(), false, iNavigationLayoutArr, i, z, cameraScanActivityDelegate);
-        dialogC12821.setUseLightStatusBar(false);
-        AndroidUtilities.setLightNavigationBar(dialogC12821.getWindow(), false);
-        AndroidUtilities.setNavigationBarColor(dialogC12821.getWindow(), -16777216, false);
-        dialogC12821.setUseLightStatusBar(false);
-        dialogC12821.getWindow().addFlags(512);
-        dialogC12821.show();
-        return iNavigationLayoutArr;
+    public static BottomSheet showAsSheet(BaseFragment baseFragment, boolean z, int i, CameraScanActivityDelegate cameraScanActivityDelegate) {
+        return showAsSheet(baseFragment.getParentActivity(), z, i, cameraScanActivityDelegate);
     }
 
-    public class DialogC12821 extends BottomSheet {
+    public class DialogC13591 extends BottomSheet {
         CameraScanActivity fragment;
         final INavigationLayout[] val$actionBarLayout;
         final CameraScanActivityDelegate val$cameraDelegate;
@@ -180,7 +181,7 @@ public class CameraScanActivity extends BaseFragment {
             return false;
         }
 
-        DialogC12821(Context context, boolean z, INavigationLayout[] iNavigationLayoutArr, int i, boolean z2, CameraScanActivityDelegate cameraScanActivityDelegate) {
+        DialogC13591(Context context, boolean z, INavigationLayout[] iNavigationLayoutArr, int i, boolean z2, CameraScanActivityDelegate cameraScanActivityDelegate) {
             super(context, z);
             this.val$actionBarLayout = iNavigationLayoutArr;
             this.val$type = i;
@@ -188,14 +189,19 @@ public class CameraScanActivity extends BaseFragment {
             this.val$cameraDelegate = cameraScanActivityDelegate;
             iNavigationLayoutArr[0].setFragmentStack(new ArrayList());
             CameraScanActivity cameraScanActivity = new CameraScanActivity(i) {
+                {
+                    DialogC13591.this = this;
+                }
+
                 @Override
                 public void finishFragment() {
-                    DialogC12821.this.dismiss();
+                    setFinishing(true);
+                    DialogC13591.this.dismiss();
                 }
 
                 @Override
                 public void removeSelfFromStack() {
-                    DialogC12821.this.dismiss();
+                    DialogC13591.this.dismiss();
                 }
             };
             this.fragment = cameraScanActivity;
@@ -207,13 +213,16 @@ public class CameraScanActivity extends BaseFragment {
             int i2 = this.backgroundPaddingLeft;
             view.setPadding(i2, 0, i2, 0);
             this.fragment.setDelegate(cameraScanActivityDelegate);
+            if (cameraScanActivityDelegate.getSubtitleText() != null) {
+                this.fragment.descriptionText.setText(cameraScanActivityDelegate.getSubtitleText());
+            }
             this.containerView = iNavigationLayoutArr[0].getView();
             setApplyBottomPadding(false);
             setApplyBottomPadding(false);
             setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    CameraScanActivity.DialogC12821.this.lambda$new$0(dialogInterface);
+                    CameraScanActivity.DialogC13591.this.lambda$new$0(dialogInterface);
                 }
             });
         }
@@ -236,7 +245,22 @@ public class CameraScanActivity extends BaseFragment {
         public void dismiss() {
             super.dismiss();
             this.val$actionBarLayout[0] = null;
+            this.val$cameraDelegate.onDismiss();
         }
+    }
+
+    public static BottomSheet showAsSheet(Activity activity, boolean z, int i, CameraScanActivityDelegate cameraScanActivityDelegate) {
+        if (activity == null) {
+            return null;
+        }
+        DialogC13591 dialogC13591 = new DialogC13591(activity, false, new INavigationLayout[]{INavigationLayout.CC.newLayout(activity)}, i, z, cameraScanActivityDelegate);
+        dialogC13591.setUseLightStatusBar(false);
+        AndroidUtilities.setLightNavigationBar(dialogC13591.getWindow(), false);
+        AndroidUtilities.setNavigationBarColor(dialogC13591.getWindow(), -16777216, false);
+        dialogC13591.setUseLightStatusBar(false);
+        dialogC13591.getWindow().addFlags(512);
+        dialogC13591.show();
+        return dialogC13591;
     }
 
     public CameraScanActivity(int i) {
@@ -279,7 +303,7 @@ public class CameraScanActivity extends BaseFragment {
 
     @Override
     public View createView(Context context) {
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         if (this.shownAsBottomSheet) {
             this.actionBar.setItemsColor(-1, false);
             this.actionBar.setItemsBackgroundColor(-1, false);
@@ -293,7 +317,11 @@ public class CameraScanActivity extends BaseFragment {
         if (!AndroidUtilities.isTablet() && !isQr()) {
             this.actionBar.showActionModeTop();
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
+            {
+                CameraScanActivity.this = this;
+            }
+
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -305,6 +333,10 @@ public class CameraScanActivity extends BaseFragment {
         this.cornerPaint.setColor(-1);
         this.cornerPaint.setStyle(Paint.Style.FILL);
         ViewGroup viewGroup = new ViewGroup(context) {
+            {
+                CameraScanActivity.this = this;
+            }
+
             @Override
             protected void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i);
@@ -325,7 +357,11 @@ public class CameraScanActivity extends BaseFragment {
                     CameraScanActivity.this.flashButton.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(60.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(60.0f), 1073741824));
                 }
                 CameraScanActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.m35dp(72.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                CameraScanActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec((int) (size * 0.9f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                if (CameraScanActivity.this.currentType == 3) {
+                    CameraScanActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.m35dp(72.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                } else {
+                    CameraScanActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec((int) (size * 0.9f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                }
                 setMeasuredDimension(size, size2);
             }
 
@@ -359,6 +395,10 @@ public class CameraScanActivity extends BaseFragment {
                     }
                     int i8 = measuredHeight - m35dp;
                     CameraScanActivity.this.titleTextView.layout(AndroidUtilities.m35dp(36.0f), i8, AndroidUtilities.m35dp(36.0f) + CameraScanActivity.this.titleTextView.getMeasuredWidth(), CameraScanActivity.this.titleTextView.getMeasuredHeight() + i8);
+                    if (CameraScanActivity.this.currentType == 3) {
+                        int measuredHeight2 = i8 + CameraScanActivity.this.titleTextView.getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
+                        CameraScanActivity.this.descriptionText.layout(AndroidUtilities.m35dp(36.0f), measuredHeight2, AndroidUtilities.m35dp(36.0f) + CameraScanActivity.this.descriptionText.getMeasuredWidth(), CameraScanActivity.this.descriptionText.getMeasuredHeight() + measuredHeight2);
+                    }
                     CameraScanActivity.this.recognizedMrzView.layout(0, getMeasuredHeight() - CameraScanActivity.this.recognizedMrzView.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
                     if (!CameraScanActivity.this.needGalleryButton) {
                         measuredWidth = (i5 / 2) - (CameraScanActivity.this.flashButton.getMeasuredWidth() / 2);
@@ -372,9 +412,11 @@ public class CameraScanActivity extends BaseFragment {
                         CameraScanActivity.this.galleryButton.layout(m35dp3, m35dp2, CameraScanActivity.this.galleryButton.getMeasuredWidth() + m35dp3, CameraScanActivity.this.galleryButton.getMeasuredHeight() + m35dp2);
                     }
                 }
-                int i9 = (int) (i6 * 0.74f);
-                int i10 = (int) (i5 * 0.05f);
-                CameraScanActivity.this.descriptionText.layout(i10, i9, CameraScanActivity.this.descriptionText.getMeasuredWidth() + i10, CameraScanActivity.this.descriptionText.getMeasuredHeight() + i9);
+                if (CameraScanActivity.this.currentType != 3) {
+                    int i9 = (int) (i6 * 0.74f);
+                    int i10 = (int) (i5 * 0.05f);
+                    CameraScanActivity.this.descriptionText.layout(i10, i9, CameraScanActivity.this.descriptionText.getMeasuredWidth() + i10, CameraScanActivity.this.descriptionText.getMeasuredHeight() + i9);
+                }
                 CameraScanActivity.this.updateNormalBounds();
             }
 
@@ -457,9 +499,8 @@ public class CameraScanActivity extends BaseFragment {
         };
         viewGroup.setOnTouchListener(CameraScanActivity$$ExternalSyntheticLambda4.INSTANCE);
         this.fragmentView = viewGroup;
-        int i = this.currentType;
-        if (i == 1 || i == 2) {
-            viewGroup.postDelayed(new Runnable() {
+        if (isQr()) {
+            this.fragmentView.postDelayed(new Runnable() {
                 @Override
                 public final void run() {
                     CameraScanActivity.this.initCameraView();
@@ -480,8 +521,9 @@ public class CameraScanActivity extends BaseFragment {
             viewGroup.setBackgroundColor(Theme.getColor("wallet_blackBackground"));
             viewGroup.addView(this.actionBar);
         }
-        if (this.currentType == 2) {
-            this.actionBar.setTitle(LocaleController.getString("AuthAnotherClientScan", C1010R.string.AuthAnotherClientScan));
+        int i = this.currentType;
+        if (i == 2 || i == 3) {
+            this.actionBar.setTitle(LocaleController.getString("AuthAnotherClientScan", C1072R.string.AuthAnotherClientScan));
         }
         final Paint paint = new Paint(1);
         paint.setPathEffect(LinkPath.getRoundedEffect());
@@ -588,17 +630,17 @@ public class CameraScanActivity extends BaseFragment {
         this.recognizedMrzView.setAlpha(0.0f);
         int i2 = this.currentType;
         if (i2 == 0) {
-            this.titleTextView.setText(LocaleController.getString("PassportScanPassport", C1010R.string.PassportScanPassport));
-            this.descriptionText.setText(LocaleController.getString("PassportScanPassportInfo", C1010R.string.PassportScanPassportInfo));
+            this.titleTextView.setText(LocaleController.getString("PassportScanPassport", C1072R.string.PassportScanPassport));
+            this.descriptionText.setText(LocaleController.getString("PassportScanPassportInfo", C1072R.string.PassportScanPassportInfo));
             this.titleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.recognizedMrzView.setTypeface(Typeface.MONOSPACE);
         } else {
             if (!this.needGalleryButton) {
-                if (i2 == 1) {
-                    this.titleTextView.setText(LocaleController.getString("AuthAnotherClientScan", C1010R.string.AuthAnotherClientScan));
+                if (i2 == 1 || i2 == 3) {
+                    this.titleTextView.setText(LocaleController.getString("AuthAnotherClientScan", C1072R.string.AuthAnotherClientScan));
                 } else {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("AuthAnotherClientInfo5", C1010R.string.AuthAnotherClientInfo5));
-                    String[] strArr = {LocaleController.getString("AuthAnotherClientDownloadClientUrl", C1010R.string.AuthAnotherClientDownloadClientUrl), LocaleController.getString("AuthAnotherWebClientUrl", C1010R.string.AuthAnotherWebClientUrl)};
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("AuthAnotherClientInfo5", C1072R.string.AuthAnotherClientInfo5));
+                    String[] strArr = {LocaleController.getString("AuthAnotherClientDownloadClientUrl", C1072R.string.AuthAnotherClientDownloadClientUrl), LocaleController.getString("AuthAnotherWebClientUrl", C1072R.string.AuthAnotherWebClientUrl)};
                     int i3 = 0;
                     for (int i4 = 2; i3 < i4; i4 = 2) {
                         String spannableStringBuilder2 = spannableStringBuilder.toString();
@@ -625,17 +667,20 @@ public class CameraScanActivity extends BaseFragment {
                 }
             }
             this.titleTextView.setTextColor(-1);
+            if (this.currentType == 3) {
+                this.descriptionText.setTextColor(-1711276033);
+            }
             this.recognizedMrzView.setTextSize(1, 16.0f);
             this.recognizedMrzView.setPadding(AndroidUtilities.m35dp(10.0f), 0, AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(10.0f));
             if (!this.needGalleryButton) {
-                this.recognizedMrzView.setText(LocaleController.getString("AuthAnotherClientNotFound", C1010R.string.AuthAnotherClientNotFound));
+                this.recognizedMrzView.setText(LocaleController.getString("AuthAnotherClientNotFound", C1072R.string.AuthAnotherClientNotFound));
             }
             viewGroup.addView(this.recognizedMrzView);
             if (this.needGalleryButton) {
                 ImageView imageView = new ImageView(context);
                 this.galleryButton = imageView;
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
-                this.galleryButton.setImageResource(C1010R.C1011drawable.qr_gallery);
+                this.galleryButton.setImageResource(C1072R.C1073drawable.qr_gallery);
                 this.galleryButton.setBackgroundDrawable(Theme.createSelectorDrawableFromDrawables(Theme.createCircleDrawable(AndroidUtilities.m35dp(60.0f), 587202559), Theme.createCircleDrawable(AndroidUtilities.m35dp(60.0f), 1157627903)));
                 viewGroup.addView(this.galleryButton);
                 this.galleryButton.setOnClickListener(new View.OnClickListener() {
@@ -648,7 +693,7 @@ public class CameraScanActivity extends BaseFragment {
             ImageView imageView2 = new ImageView(context);
             this.flashButton = imageView2;
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
-            this.flashButton.setImageResource(C1010R.C1011drawable.qr_flashlight);
+            this.flashButton.setImageResource(C1072R.C1073drawable.qr_flashlight);
             this.flashButton.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.m35dp(60.0f), 587202559));
             viewGroup.addView(this.flashButton);
             this.flashButton.setOnClickListener(new View.OnClickListener() {
@@ -677,6 +722,10 @@ public class CameraScanActivity extends BaseFragment {
         photoAlbumPickerActivity.setMaxSelectedPhotos(1, false);
         photoAlbumPickerActivity.setAllowSearchImages(false);
         photoAlbumPickerActivity.setDelegate(new PhotoAlbumPickerActivity.PhotoAlbumPickerActivityDelegate() {
+            {
+                CameraScanActivity.this = this;
+            }
+
             @Override
             public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i) {
                 try {
@@ -740,6 +789,10 @@ public class CameraScanActivity extends BaseFragment {
         this.flashAnimator.setDuration(200L);
         this.flashAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.flashAnimator.addListener(new AnimatorListenerAdapter() {
+            {
+                CameraScanActivity.this = this;
+            }
+
             @Override
             public void onAnimationEnd(Animator animator) {
                 CameraScanActivity.this.flashAnimator = null;
@@ -760,44 +813,51 @@ public class CameraScanActivity extends BaseFragment {
     }
 
     public void updateRecognized() {
-        ValueAnimator valueAnimator = this.recognizedAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        float f = this.recognized ? 1.0f : 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.recognizedT, f);
-        this.recognizedAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                CameraScanActivity.this.lambda$updateRecognized$5(valueAnimator2);
+        float f = this.recognizedT;
+        float f2 = this.recognized ? 1.0f : 0.0f;
+        this.newRecognizedT = f2;
+        if (f != f2) {
+            ValueAnimator valueAnimator = this.recognizedAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
             }
-        });
-        this.recognizedAnimator.setDuration(Math.abs(this.recognizedT - f) * 300.0f);
-        this.recognizedAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.recognizedAnimator.start();
-        SpringAnimation springAnimation = this.useRecognizedBoundsAnimator;
-        if (springAnimation != null) {
-            springAnimation.cancel();
-        }
-        SpringAnimation springAnimation2 = new SpringAnimation(new FloatValueHolder((this.recognized ? this.useRecognizedBounds : 1.0f - this.useRecognizedBounds) * 500.0f));
-        this.useRecognizedBoundsAnimator = springAnimation2;
-        springAnimation2.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f2, float f3) {
-                CameraScanActivity.this.lambda$updateRecognized$6(dynamicAnimation, f2, f3);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.recognizedT, this.newRecognizedT);
+            this.recognizedAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    CameraScanActivity.this.lambda$updateRecognized$5(valueAnimator2);
+                }
+            });
+            this.recognizedAnimator.setDuration(Math.abs(this.recognizedT - this.newRecognizedT) * 300.0f);
+            this.recognizedAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+            this.recognizedAnimator.start();
+            SpringAnimation springAnimation = this.useRecognizedBoundsAnimator;
+            if (springAnimation != null) {
+                springAnimation.cancel();
             }
-        });
-        this.useRecognizedBoundsAnimator.setSpring(new SpringForce(500.0f));
-        this.useRecognizedBoundsAnimator.getSpring().setDampingRatio(1.0f);
-        this.useRecognizedBoundsAnimator.getSpring().setStiffness(500.0f);
-        this.useRecognizedBoundsAnimator.start();
+            SpringAnimation springAnimation2 = new SpringAnimation(new FloatValueHolder((this.recognized ? this.useRecognizedBounds : 1.0f - this.useRecognizedBounds) * 500.0f));
+            this.useRecognizedBoundsAnimator = springAnimation2;
+            springAnimation2.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f3, float f4) {
+                    CameraScanActivity.this.lambda$updateRecognized$6(dynamicAnimation, f3, f4);
+                }
+            });
+            this.useRecognizedBoundsAnimator.setSpring(new SpringForce(500.0f));
+            this.useRecognizedBoundsAnimator.getSpring().setDampingRatio(1.0f);
+            this.useRecognizedBoundsAnimator.getSpring().setStiffness(500.0f);
+            this.useRecognizedBoundsAnimator.start();
+        }
     }
 
     public void lambda$updateRecognized$5(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.recognizedT = floatValue;
         this.titleTextView.setAlpha(1.0f - floatValue);
+        if (this.currentType == 3) {
+            this.descriptionText.setAlpha(1.0f - this.recognizedT);
+        }
         this.flashButton.setAlpha(1.0f - this.recognizedT);
         this.backShadowAlpha = (this.recognizedT * 0.25f) + 0.5f;
         this.fragmentView.invalidate();
@@ -969,8 +1029,9 @@ public class CameraScanActivity extends BaseFragment {
         this.backgroundHandlerThread.quitSafely();
     }
 
-    public class RunnableC12897 implements Runnable {
-        RunnableC12897() {
+    public class RunnableC13667 implements Runnable {
+        RunnableC13667() {
+            CameraScanActivity.this = r1;
         }
 
         @Override
@@ -981,7 +1042,7 @@ public class CameraScanActivity extends BaseFragment {
             CameraScanActivity.this.handler.post(new Runnable() {
                 @Override
                 public final void run() {
-                    CameraScanActivity.RunnableC12897.this.lambda$run$0();
+                    CameraScanActivity.RunnableC13667.this.lambda$run$0();
                 }
             });
         }
@@ -1060,12 +1121,7 @@ public class CameraScanActivity extends BaseFragment {
                             }
                         });
                         this.recognizedStart = SystemClock.elapsedRealtime();
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                CameraScanActivity.this.updateRecognized();
-                            }
-                        });
+                        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda15(this));
                     }
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
@@ -1080,32 +1136,36 @@ public class CameraScanActivity extends BaseFragment {
                         this.recognized = false;
                         this.recognizeIndex = 0;
                         this.recognizedText = null;
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                CameraScanActivity.this.updateRecognized();
-                            }
-                        });
+                        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda15(this));
                         AndroidUtilities.runOnUIThread(this.requestShot, 500L);
                         return;
                     }
                 }
                 if (((this.recognizeIndex == 0 && tryReadQr != null && tryReadQr.bounds == null && !this.qrLoading) || (SystemClock.elapsedRealtime() - this.recognizedStart > 1000 && !this.qrLoading)) && this.recognizedText != null) {
                     CameraView cameraView = this.cameraView;
-                    if (cameraView != null && cameraView.getCameraSession() != null) {
+                    if (cameraView != null && cameraView.getCameraSession() != null && this.currentType != 3) {
                         CameraController.getInstance().stopPreview(this.cameraView.getCameraSession());
                     }
+                    final String str2 = this.recognizedText;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            CameraScanActivity.this.lambda$processShot$15();
+                            CameraScanActivity.this.lambda$processShot$15(str2);
                         }
                     });
+                    if (this.currentType == 3) {
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                CameraScanActivity.this.lambda$processShot$16();
+                            }
+                        });
+                    }
                 } else if (this.recognized) {
                     this.handler.postDelayed(new Runnable() {
                         @Override
                         public final void run() {
-                            CameraScanActivity.this.lambda$processShot$16();
+                            CameraScanActivity.this.lambda$processShot$17();
                         }
                     }, Math.max(16L, (1000 / this.sps) - this.averageProcessTime));
                 }
@@ -1166,15 +1226,30 @@ public class CameraScanActivity extends BaseFragment {
         updateRecognizedBounds(qrResult.bounds);
     }
 
-    public void lambda$processShot$15() {
+    public void lambda$processShot$15(String str) {
         CameraScanActivityDelegate cameraScanActivityDelegate = this.delegate;
         if (cameraScanActivityDelegate != null) {
-            cameraScanActivityDelegate.didFindQr(this.recognizedText);
+            cameraScanActivityDelegate.didFindQr(str);
         }
-        finishFragment();
+        if (this.currentType != 3) {
+            finishFragment();
+        }
     }
 
     public void lambda$processShot$16() {
+        if (isFinishing()) {
+            return;
+        }
+        this.recognizedText = null;
+        this.recognized = false;
+        this.requestShot.run();
+        if (this.recognized) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda15(this), 500L);
+    }
+
+    public void lambda$processShot$17() {
         CameraView cameraView = this.cameraView;
         if (cameraView != null) {
             processShot(cameraView.getTextureView().getBitmap());
@@ -1216,7 +1291,7 @@ public class CameraScanActivity extends BaseFragment {
         private QrResult(CameraScanActivity cameraScanActivity) {
         }
 
-        QrResult(CameraScanActivity cameraScanActivity, DialogC12821 dialogC12821) {
+        QrResult(CameraScanActivity cameraScanActivity, DialogC13591 dialogC13591) {
             this(cameraScanActivity);
         }
     }
@@ -1386,11 +1461,8 @@ public class CameraScanActivity extends BaseFragment {
                 return null;
             }
             if (this.needGalleryButton) {
-                if (!str.startsWith("ton://transfer/")) {
-                    return null;
-                }
-                Uri.parse(str).getPath().replace("/", BuildConfig.APP_CENTER_HASH);
-            } else if (!str.startsWith("tg://login?token=")) {
+                Uri.parse(str).getPath().replace("/", "");
+            } else if (!str.startsWith("tg://login?token=") && this.currentType != 3) {
                 onNoQrFound();
                 return null;
             }
@@ -1414,7 +1486,7 @@ public class CameraScanActivity extends BaseFragment {
 
     public boolean isQr() {
         int i = this.currentType;
-        return i == 1 || i == 2;
+        return i == 1 || i == 2 || i == 3;
     }
 
     @Override

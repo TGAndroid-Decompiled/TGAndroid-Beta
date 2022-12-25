@@ -1,7 +1,6 @@
 package org.aspectj.runtime.reflect;
 
 import java.lang.reflect.Modifier;
-import org.telegram.messenger.BuildConfig;
 
 class StringMaker {
     static StringMaker longStringMaker;
@@ -53,14 +52,14 @@ class StringMaker {
         if (this.includeModifiers) {
             String modifier = Modifier.toString(i);
             if (modifier.length() == 0) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             StringBuffer stringBuffer = new StringBuffer();
             stringBuffer.append(modifier);
             stringBuffer.append(" ");
             return stringBuffer.toString();
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     String stripPackageName(String str) {

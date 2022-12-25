@@ -25,9 +25,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -37,7 +36,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.p009ui.ActionBar.ActionBarMenu;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Components.ContextProgressView;
@@ -130,7 +129,7 @@ public class WebviewActivity extends BaseFragment {
         sb.append("/");
         sb.append(this.currentBot);
         if (TextUtils.isEmpty(str4)) {
-            str5 = BuildConfig.APP_CENTER_HASH;
+            str5 = "";
         } else {
             str5 = "?game=" + str4;
         }
@@ -162,9 +161,9 @@ public class WebviewActivity extends BaseFragment {
     @Override
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     public View createView(Context context) {
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -181,13 +180,13 @@ public class WebviewActivity extends BaseFragment {
             }
         });
         ActionBarMenu createMenu = this.actionBar.createMenu();
-        this.progressItem = createMenu.addItemWithWidth(1, C1010R.C1011drawable.share, AndroidUtilities.m35dp(54.0f));
+        this.progressItem = createMenu.addItemWithWidth(1, C1072R.C1073drawable.share, AndroidUtilities.m35dp(54.0f));
         int i = this.type;
         if (i == 0) {
-            createMenu.addItem(0, C1010R.C1011drawable.ic_ab_other).addSubItem(2, C1010R.C1011drawable.msg_openin, LocaleController.getString("OpenInExternalApp", C1010R.string.OpenInExternalApp));
+            createMenu.addItem(0, C1072R.C1073drawable.ic_ab_other).addSubItem(2, C1072R.C1073drawable.msg_openin, LocaleController.getString("OpenInExternalApp", C1072R.string.OpenInExternalApp));
             this.actionBar.setTitle(this.currentGame);
-            C1069ActionBar c1069ActionBar = this.actionBar;
-            c1069ActionBar.setSubtitle("@" + this.currentBot);
+            C1133ActionBar c1133ActionBar = this.actionBar;
+            c1133ActionBar.setSubtitle("@" + this.currentBot);
             ContextProgressView contextProgressView = new ContextProgressView(context, 1);
             this.progressView = contextProgressView;
             this.progressItem.addView(contextProgressView, LayoutHelper.createFrame(-1, -1.0f));
@@ -201,7 +200,7 @@ public class WebviewActivity extends BaseFragment {
             this.actionBar.setItemsBackgroundColor(Theme.getColor("player_actionBarSelector"), false);
             this.actionBar.setTitleColor(Theme.getColor("player_actionBarTitle"));
             this.actionBar.setSubtitleColor(Theme.getColor("player_actionBarSubtitle"));
-            this.actionBar.setTitle(LocaleController.getString("Statistics", C1010R.string.Statistics));
+            this.actionBar.setTitle(LocaleController.getString("Statistics", C1072R.string.Statistics));
             ContextProgressView contextProgressView2 = new ContextProgressView(context, 3);
             this.progressView = contextProgressView2;
             this.progressItem.addView(contextProgressView2, LayoutHelper.createFrame(-1, -1.0f));
@@ -332,7 +331,7 @@ public class WebviewActivity extends BaseFragment {
         TLRPC$TL_messages_getStatsURL tLRPC$TL_messages_getStatsURL = new TLRPC$TL_messages_getStatsURL();
         tLRPC$TL_messages_getStatsURL.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.currentDialogId);
         if (str == null) {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         }
         tLRPC$TL_messages_getStatsURL.params = str;
         tLRPC$TL_messages_getStatsURL.dark = Theme.getCurrentTheme().isDark();
@@ -365,11 +364,11 @@ public class WebviewActivity extends BaseFragment {
 
     public static void openGameInBrowser(String str, MessageObject messageObject, Activity activity, String str2, String str3) {
         String str4;
-        String str5 = BuildConfig.APP_CENTER_HASH;
+        String str5 = "";
         try {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("botshare", 0);
-            String string = sharedPreferences.getString(BuildConfig.APP_CENTER_HASH + messageObject.getId(), null);
-            StringBuilder sb = new StringBuilder(string != null ? string : BuildConfig.APP_CENTER_HASH);
+            String string = sharedPreferences.getString("" + messageObject.getId(), null);
+            StringBuilder sb = new StringBuilder(string != null ? string : "");
             StringBuilder sb2 = new StringBuilder("tgShareScoreUrl=" + URLEncoder.encode("tgb://share_game_score?hash=", "UTF-8"));
             if (string == null) {
                 char[] charArray = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();

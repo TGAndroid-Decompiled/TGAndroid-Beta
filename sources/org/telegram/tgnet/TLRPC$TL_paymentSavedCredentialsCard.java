@@ -2,7 +2,7 @@ package org.telegram.tgnet;
 
 public class TLRPC$TL_paymentSavedCredentialsCard extends TLObject {
     public static int constructor = -842892769;
-    public String f968id;
+    public String f977id;
     public String title;
 
     public static TLRPC$TL_paymentSavedCredentialsCard TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -19,14 +19,14 @@ public class TLRPC$TL_paymentSavedCredentialsCard extends TLObject {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f968id = abstractSerializedData.readString(z);
+        this.f977id = abstractSerializedData.readString(z);
         this.title = abstractSerializedData.readString(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeString(this.f968id);
+        abstractSerializedData.writeString(this.f977id);
         abstractSerializedData.writeString(this.title);
     }
 }

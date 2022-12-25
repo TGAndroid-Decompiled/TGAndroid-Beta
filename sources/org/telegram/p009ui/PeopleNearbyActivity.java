@@ -28,7 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -39,7 +39,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Cells.HeaderCell;
@@ -318,7 +318,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
 
     @Override
     public View createView(Context context) {
-        this.actionBar.setBackButtonImage(C1010R.C1011drawable.ic_ab_back);
+        this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
         this.actionBar.setBackgroundDrawable(null);
         this.actionBar.setTitleColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.actionBar.setItemsColor(Theme.getColor("windowBackgroundWhiteBlackText"), false);
@@ -326,9 +326,9 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         this.actionBar.setCastShadows(false);
         this.actionBar.setAddToContainer(false);
         this.actionBar.setOccupyStatusBar(Build.VERSION.SDK_INT >= 21 && !AndroidUtilities.isTablet());
-        this.actionBar.setTitle(LocaleController.getString("PeopleNearby", C1010R.string.PeopleNearby));
+        this.actionBar.setTitle(LocaleController.getString("PeopleNearby", C1072R.string.PeopleNearby));
         this.actionBar.getTitleTextView().setAlpha(0.0f);
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -339,7 +339,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {
-                ((FrameLayout.LayoutParams) PeopleNearbyActivity.this.actionBarBackground.getLayoutParams()).height = C1069ActionBar.getCurrentActionBarHeight() + (((BaseFragment) PeopleNearbyActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + AndroidUtilities.m35dp(3.0f);
+                ((FrameLayout.LayoutParams) PeopleNearbyActivity.this.actionBarBackground.getLayoutParams()).height = C1133ActionBar.getCurrentActionBarHeight() + (((BaseFragment) PeopleNearbyActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + AndroidUtilities.m35dp(3.0f);
                 super.onMeasure(i, i2);
             }
 
@@ -461,15 +461,15 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
                 updateRows(null);
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setTitle(LocaleController.getString("MakeMyselfVisibleTitle", C1010R.string.MakeMyselfVisibleTitle));
-                builder.setMessage(LocaleController.getString("MakeMyselfVisibleInfo", C1010R.string.MakeMyselfVisibleInfo));
-                builder.setPositiveButton(LocaleController.getString("OK", C1010R.string.OK), new DialogInterface.OnClickListener() {
+                builder.setTitle(LocaleController.getString("MakeMyselfVisibleTitle", C1072R.string.MakeMyselfVisibleTitle));
+                builder.setMessage(LocaleController.getString("MakeMyselfVisibleInfo", C1072R.string.MakeMyselfVisibleInfo));
+                builder.setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i4) {
                         PeopleNearbyActivity.this.lambda$createView$1(userConfig, dialogInterface, i4);
                     }
                 });
-                builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+                builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
                 showDialog(builder.create());
             }
             userConfig.saveConfig(false);
@@ -498,7 +498,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
 
     private void openGroupCreate() {
         if (!this.canCreateGroup) {
-            AlertsCreator.showSimpleAlert(this, LocaleController.getString("YourLocatedChannelsTooMuch", C1010R.string.YourLocatedChannelsTooMuch));
+            AlertsCreator.showSimpleAlert(this, LocaleController.getString("YourLocatedChannelsTooMuch", C1072R.string.YourLocatedChannelsTooMuch));
             return;
         }
         ActionIntroActivity actionIntroActivity = new ActionIntroActivity(2);
@@ -891,7 +891,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
 
         public HintInnerCell(PeopleNearbyActivity peopleNearbyActivity, Context context) {
             super(context);
-            int currentActionBarHeight = ((int) ((C1069ActionBar.getCurrentActionBarHeight() + (((BaseFragment) peopleNearbyActivity).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0)) / AndroidUtilities.density)) - 44;
+            int currentActionBarHeight = ((int) ((C1133ActionBar.getCurrentActionBarHeight() + (((BaseFragment) peopleNearbyActivity).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0)) / AndroidUtilities.density)) - 44;
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.m35dp(74.0f), Theme.getColor("chats_archiveBackground")));
@@ -903,14 +903,14 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
             textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.titleTextView.setTextSize(1, 24.0f);
             this.titleTextView.setGravity(17);
-            this.titleTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("PeopleNearby", C1010R.string.PeopleNearby, new Object[0])));
+            this.titleTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("PeopleNearby", C1072R.string.PeopleNearby, new Object[0])));
             addView(this.titleTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 17.0f, currentActionBarHeight + 120, 17.0f, 27.0f));
             TextView textView2 = new TextView(context);
             this.messageTextView = textView2;
             textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
             this.messageTextView.setTextSize(1, 15.0f);
             this.messageTextView.setGravity(17);
-            this.messageTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("PeopleNearbyInfo2", C1010R.string.PeopleNearbyInfo2, new Object[0])));
+            this.messageTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("PeopleNearbyInfo2", C1072R.string.PeopleNearbyInfo2, new Object[0])));
             addView(this.messageTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 40.0f, currentActionBarHeight + 161, 40.0f, 27.0f));
         }
     }
@@ -1025,15 +1025,15 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
                 if (i != PeopleNearbyActivity.this.usersSectionRow) {
                     if (i != PeopleNearbyActivity.this.chatsSectionRow) {
                         if (i == PeopleNearbyActivity.this.helpSectionRow) {
-                            shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow"));
+                            shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow"));
                             return;
                         }
                         return;
                     }
-                    shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                    shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
                     return;
                 }
-                shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow"));
+                shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow"));
             } else if (itemViewType != 2) {
                 if (itemViewType != 3) {
                     return;
@@ -1041,29 +1041,29 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
                 HeaderCellProgress headerCellProgress = (HeaderCellProgress) viewHolder.itemView;
                 if (i != PeopleNearbyActivity.this.usersHeaderRow) {
                     if (i == PeopleNearbyActivity.this.chatsHeaderRow) {
-                        headerCellProgress.setText(LocaleController.getString("ChatsNearbyHeader", C1010R.string.ChatsNearbyHeader));
+                        headerCellProgress.setText(LocaleController.getString("ChatsNearbyHeader", C1072R.string.ChatsNearbyHeader));
                         return;
                     }
                     return;
                 }
-                headerCellProgress.setText(LocaleController.getString("PeopleNearbyHeader", C1010R.string.PeopleNearbyHeader));
+                headerCellProgress.setText(LocaleController.getString("PeopleNearbyHeader", C1072R.string.PeopleNearbyHeader));
             } else {
                 ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
                 manageChatTextCell.setColors("windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteBlueButton");
                 if (i == PeopleNearbyActivity.this.chatsCreateRow) {
-                    manageChatTextCell.setText(LocaleController.getString("NearbyCreateGroup", C1010R.string.NearbyCreateGroup), null, C1010R.C1011drawable.msg_groups_create, PeopleNearbyActivity.this.chatsStartRow != -1);
+                    manageChatTextCell.setText(LocaleController.getString("NearbyCreateGroup", C1072R.string.NearbyCreateGroup), null, C1072R.C1073drawable.msg_groups_create, PeopleNearbyActivity.this.chatsStartRow != -1);
                 } else if (i != PeopleNearbyActivity.this.showMeRow) {
                     if (i == PeopleNearbyActivity.this.showMoreRow) {
-                        manageChatTextCell.setText(LocaleController.formatPluralString("ShowVotes", PeopleNearbyActivity.this.users.size() - 5, new Object[0]), null, C1010R.C1011drawable.arrow_more, false);
+                        manageChatTextCell.setText(LocaleController.formatPluralString("ShowVotes", PeopleNearbyActivity.this.users.size() - 5, new Object[0]), null, C1072R.C1073drawable.arrow_more, false);
                     }
                 } else {
                     PeopleNearbyActivity peopleNearbyActivity = PeopleNearbyActivity.this;
                     if (peopleNearbyActivity.showingMe = peopleNearbyActivity.getUserConfig().sharingMyLocationUntil > PeopleNearbyActivity.this.getConnectionsManager().getCurrentTime()) {
-                        manageChatTextCell.setText(LocaleController.getString("StopShowingMe", C1010R.string.StopShowingMe), null, C1010R.C1011drawable.msg_nearby_off, PeopleNearbyActivity.this.usersStartRow != -1);
+                        manageChatTextCell.setText(LocaleController.getString("StopShowingMe", C1072R.string.StopShowingMe), null, C1072R.C1073drawable.msg_nearby_off, PeopleNearbyActivity.this.usersStartRow != -1);
                         manageChatTextCell.setColors("windowBackgroundWhiteRedText5", "windowBackgroundWhiteRedText5");
                         return;
                     }
-                    manageChatTextCell.setText(LocaleController.getString("MakeMyselfVisible", C1010R.string.MakeMyselfVisible), null, C1010R.C1011drawable.msg_nearby, PeopleNearbyActivity.this.usersStartRow != -1);
+                    manageChatTextCell.setText(LocaleController.getString("MakeMyselfVisible", C1072R.string.MakeMyselfVisible), null, C1072R.C1073drawable.msg_nearby, PeopleNearbyActivity.this.usersStartRow != -1);
                 }
             }
         }

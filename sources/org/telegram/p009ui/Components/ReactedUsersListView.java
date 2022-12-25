@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageLocation;
@@ -224,12 +224,12 @@ public class ReactedUsersListView extends FrameLayout {
     public ReactedUsersListView setSeenUsers(List<TLRPC$User> list) {
         ArrayList arrayList = new ArrayList(list.size());
         for (TLRPC$User tLRPC$User : list) {
-            if (this.peerReactionMap.get(tLRPC$User.f986id) == null) {
+            if (this.peerReactionMap.get(tLRPC$User.f995id) == null) {
                 TLRPC$TL_messagePeerReaction tLRPC$TL_messagePeerReaction = new TLRPC$TL_messagePeerReaction();
                 tLRPC$TL_messagePeerReaction.reaction = null;
                 TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                 tLRPC$TL_messagePeerReaction.peer_id = tLRPC$TL_peerUser;
-                tLRPC$TL_peerUser.user_id = tLRPC$User.f986id;
+                tLRPC$TL_peerUser.user_id = tLRPC$User.f995id;
                 ArrayList<TLRPC$MessagePeerReaction> arrayList2 = new ArrayList<>();
                 arrayList2.add(tLRPC$TL_messagePeerReaction);
                 this.peerReactionMap.put(MessageObject.getPeerId(tLRPC$TL_messagePeerReaction.peer_id), arrayList2);
@@ -263,7 +263,7 @@ public class ReactedUsersListView extends FrameLayout {
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         TLRPC$TL_messages_getMessageReactionsList tLRPC$TL_messages_getMessageReactionsList = new TLRPC$TL_messages_getMessageReactionsList();
         tLRPC$TL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(this.message.getDialogId());
-        tLRPC$TL_messages_getMessageReactionsList.f938id = this.message.getId();
+        tLRPC$TL_messages_getMessageReactionsList.f947id = this.message.getId();
         tLRPC$TL_messages_getMessageReactionsList.limit = getLoadCount();
         TLRPC$Reaction tLRPC$Reaction = this.filter;
         tLRPC$TL_messages_getMessageReactionsList.reaction = tLRPC$Reaction;
@@ -384,9 +384,9 @@ public class ReactedUsersListView extends FrameLayout {
         HashSet hashSet = new HashSet();
         for (int i = 0; i < this.customReactionsEmoji.size(); i++) {
             TLRPC$InputStickerSet inputStickerSet = MessageObject.getInputStickerSet(AnimatedEmojiDrawable.findDocument(this.currentAccount, this.customReactionsEmoji.get(i).documentId));
-            if (inputStickerSet != null && !hashSet.contains(Long.valueOf(inputStickerSet.f871id))) {
+            if (inputStickerSet != null && !hashSet.contains(Long.valueOf(inputStickerSet.f880id))) {
                 arrayList.add(inputStickerSet);
-                hashSet.add(Long.valueOf(inputStickerSet.f871id));
+                hashSet.add(Long.valueOf(inputStickerSet.f880id));
             }
         }
         if (MessagesController.getInstance(this.currentAccount).premiumLocked) {
@@ -486,7 +486,7 @@ public class ReactedUsersListView extends FrameLayout {
                     } else {
                         this.reactView.setImageDrawable(null);
                         z = false;
-                        setContentDescription(LocaleController.formatString("AccDescrReactedWith", C1010R.string.AccDescrReactedWith, UserObject.getUserName(user), tLRPC$MessagePeerReaction.reaction));
+                        setContentDescription(LocaleController.formatString("AccDescrReactedWith", C1072R.string.AccDescrReactedWith, UserObject.getUserName(user), tLRPC$MessagePeerReaction.reaction));
                         z2 = z;
                     }
                 } else {
@@ -495,11 +495,11 @@ public class ReactedUsersListView extends FrameLayout {
                     this.reactView.setAnimatedEmojiDrawable(animatedEmojiDrawable);
                 }
                 z = true;
-                setContentDescription(LocaleController.formatString("AccDescrReactedWith", C1010R.string.AccDescrReactedWith, UserObject.getUserName(user), tLRPC$MessagePeerReaction.reaction));
+                setContentDescription(LocaleController.formatString("AccDescrReactedWith", C1072R.string.AccDescrReactedWith, UserObject.getUserName(user), tLRPC$MessagePeerReaction.reaction));
                 z2 = z;
             } else {
                 this.reactView.setImageDrawable(null);
-                setContentDescription(LocaleController.formatString("AccDescrPersonHasSeen", C1010R.string.AccDescrPersonHasSeen, UserObject.getUserName(user)));
+                setContentDescription(LocaleController.formatString("AccDescrPersonHasSeen", C1072R.string.AccDescrPersonHasSeen, UserObject.getUserName(user)));
             }
             float f = 0.0f;
             this.titleView.setRightPadding(AndroidUtilities.m35dp(z2 ? 30.0f : 0.0f));

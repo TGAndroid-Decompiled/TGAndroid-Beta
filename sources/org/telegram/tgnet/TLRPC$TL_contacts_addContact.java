@@ -5,7 +5,7 @@ public class TLRPC$TL_contacts_addContact extends TLObject {
     public boolean add_phone_privacy_exception;
     public String first_name;
     public int flags;
-    public TLRPC$InputUser f894id;
+    public TLRPC$InputUser f903id;
     public String last_name;
     public String phone;
 
@@ -20,7 +20,7 @@ public class TLRPC$TL_contacts_addContact extends TLObject {
         int i = this.add_phone_privacy_exception ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
-        this.f894id.serializeToStream(abstractSerializedData);
+        this.f903id.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.first_name);
         abstractSerializedData.writeString(this.last_name);
         abstractSerializedData.writeString(this.phone);

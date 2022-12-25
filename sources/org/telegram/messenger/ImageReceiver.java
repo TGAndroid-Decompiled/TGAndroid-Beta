@@ -60,6 +60,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private long autoRepeatTimeout;
     private RectF bitmapRect;
     private Object blendMode;
+    private int bufferedFrame;
     private boolean canceledLoading;
     private boolean centerRotation;
     public boolean clip;
@@ -107,6 +108,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private Bitmap gradientBitmap;
     private BitmapShader gradientShader;
     private boolean ignoreImageSet;
+    public boolean ignoreNotifications;
     private float imageH;
     protected int imageOrientation;
     private BitmapShader imageShader;
@@ -421,7 +423,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 ?? r6 = tLRPC$UserProfilePhoto.strippedBitmap;
                 int i = tLRPC$UserProfilePhoto.stripped_thumb != null ? 1 : 0;
                 if (z && MessagesController.getInstance(this.currentAccount).isPremiumUser(tLRPC$User) && tLRPC$User.photo.has_video) {
-                    TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(tLRPC$User.f986id);
+                    TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(tLRPC$User.f995id);
                     if (userFull == null) {
                         MessagesController.getInstance(this.currentAccount).loadFullUser(tLRPC$User, this.currentGuid, false);
                     } else {
@@ -570,8 +572,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 if (tLRPC$Document == null) {
                     tLRPC$Document = ((MessageObject) obj).getDocument();
                 }
-                if (tLRPC$Document != null && tLRPC$Document.dc_id != 0 && tLRPC$Document.f856id != 0) {
-                    key = "q_" + tLRPC$Document.dc_id + "_" + tLRPC$Document.f856id;
+                if (tLRPC$Document != null && tLRPC$Document.dc_id != 0 && tLRPC$Document.f865id != 0) {
+                    key = "q_" + tLRPC$Document.dc_id + "_" + tLRPC$Document.f865id;
                     this.currentKeyQuality = true;
                 }
             }
@@ -1008,9 +1010,11 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             setImageBackup.cacheType = this.currentCacheType;
             setImageBackup.parentObject = this.currentParentObject;
         }
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didReplacedPhotoInMemCache);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.stopAllHeavyOperations);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.startAllHeavyOperations);
+        if (!this.ignoreNotifications) {
+            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didReplacedPhotoInMemCache);
+            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.stopAllHeavyOperations);
+            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.startAllHeavyOperations);
+        }
         if (this.staticThumbDrawable != null) {
             this.staticThumbDrawable = null;
             this.thumbShader = null;
@@ -1054,16 +1058,29 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return true;
     }
 
+    public void incrementFrames(int i) {
+        Drawable drawable = this.currentMediaDrawable;
+        if (!(drawable instanceof RLottieDrawable) && (drawable instanceof AnimatedFileDrawable)) {
+            int i2 = this.bufferedFrame;
+            int i3 = i + i2;
+            this.bufferedFrame = i3;
+            while (i2 != i3) {
+                ((AnimatedFileDrawable) this.currentMediaDrawable).getNextFrame();
+                i3--;
+            }
+        }
+    }
+
     public boolean onAttachedToWindow() {
         this.attachedToWindow = true;
         int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags();
         this.currentOpenedLayerFlags = currentHeavyOperationFlags;
         this.currentOpenedLayerFlags = currentHeavyOperationFlags & (this.currentLayerNum ^ (-1));
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didReplacedPhotoInMemCache);
-        NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
-        int i = NotificationCenter.stopAllHeavyOperations;
-        globalInstance.addObserver(this, i);
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.startAllHeavyOperations);
+        if (!this.ignoreNotifications) {
+            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didReplacedPhotoInMemCache);
+            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.stopAllHeavyOperations);
+            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.startAllHeavyOperations);
+        }
         if (setBackupImage()) {
             return true;
         }
@@ -1084,7 +1101,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             invalidate();
         }
         if (NotificationCenter.getGlobalInstance().isAnimationInProgress()) {
-            didReceivedNotification(i, this.currentAccount, 512);
+            didReceivedNotification(NotificationCenter.stopAllHeavyOperations, this.currentAccount, 512);
         }
         return false;
     }

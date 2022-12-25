@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -163,6 +163,6 @@ public class GroupCreateSpan extends View {
         if (!isDeleting() || Build.VERSION.SDK_INT < 21) {
             return;
         }
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK.getId(), LocaleController.getString("Delete", C1010R.string.Delete)));
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK.getId(), LocaleController.getString("Delete", C1072R.string.Delete)));
     }
 }

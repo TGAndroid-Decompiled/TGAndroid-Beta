@@ -19,8 +19,8 @@ public class CarouselView extends View implements PagerHeaderView {
     boolean autoPlayEnabled;
     ValueAnimator autoScrollAnimation;
     private Runnable autoScrollRunnable;
-    int f1089cX;
-    int f1090cY;
+    int f1105cX;
+    int f1106cY;
     Comparator<DrawingObject> comparator;
     private final ArrayList<? extends DrawingObject> drawingObjects;
     private final ArrayList<? extends DrawingObject> drawingObjectsSorted;
@@ -36,8 +36,8 @@ public class CarouselView extends View implements PagerHeaderView {
 
     public static class DrawingObject {
         public double angle;
-        public float f1091x;
-        public float f1092y;
+        public float f1107x;
+        public float f1108y;
         float yRelative;
 
         public void draw(Canvas canvas, float f, float f2, float f3) {
@@ -79,7 +79,7 @@ public class CarouselView extends View implements PagerHeaderView {
                     CarouselView.this.lambda$scrollToInternal$2(f2, f, valueAnimator2);
                 }
             });
-            this.autoScrollAnimation.addListener(new C24563(f));
+            this.autoScrollAnimation.addListener(new C25983(f));
             this.autoScrollAnimation.setInterpolator(new OvershootInterpolator());
             this.autoScrollAnimation.setDuration(600L);
             this.autoScrollAnimation.start();
@@ -92,10 +92,10 @@ public class CarouselView extends View implements PagerHeaderView {
         invalidate();
     }
 
-    public class C24563 extends AnimatorListenerAdapter {
+    public class C25983 extends AnimatorListenerAdapter {
         final float val$scrollTo;
 
-        C24563(float f) {
+        C25983(float f) {
             this.val$scrollTo = f;
         }
 
@@ -108,7 +108,7 @@ public class CarouselView extends View implements PagerHeaderView {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    CarouselView.C24563.this.lambda$onAnimationEnd$0();
+                    CarouselView.C25983.this.lambda$onAnimationEnd$0();
                 }
             });
         }
@@ -136,8 +136,8 @@ public class CarouselView extends View implements PagerHeaderView {
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        this.f1089cX = getMeasuredWidth() >> 1;
-        this.f1090cY = getMeasuredHeight() >> 1;
+        this.f1105cX = getMeasuredWidth() >> 1;
+        this.f1106cY = getMeasuredHeight() >> 1;
     }
 
     @Override

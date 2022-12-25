@@ -1,7 +1,9 @@
 package org.telegram.messenger;
 
 import android.text.TextUtils;
-import org.telegram.PhoneFormat.C0933PhoneFormat;
+import org.telegram.PhoneFormat.C0995PhoneFormat;
+import org.telegram.tgnet.TLRPC$Photo;
+import org.telegram.tgnet.TLRPC$TL_photoEmpty;
 import org.telegram.tgnet.TLRPC$TL_userContact_old2;
 import org.telegram.tgnet.TLRPC$TL_userDeleted_old2;
 import org.telegram.tgnet.TLRPC$TL_userEmpty;
@@ -9,6 +11,7 @@ import org.telegram.tgnet.TLRPC$TL_userProfilePhotoEmpty;
 import org.telegram.tgnet.TLRPC$TL_userSelf_old3;
 import org.telegram.tgnet.TLRPC$TL_username;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 
 public class UserObject {
@@ -30,7 +33,7 @@ public class UserObject {
 
     public static boolean isReplyUser(TLRPC$User tLRPC$User) {
         if (tLRPC$User != null) {
-            long j = tLRPC$User.f986id;
+            long j = tLRPC$User.f995id;
             if (j == 708513 || j == 1271266957) {
                 return true;
             }
@@ -40,14 +43,14 @@ public class UserObject {
 
     public static String getUserName(TLRPC$User tLRPC$User) {
         if (tLRPC$User == null || isDeleted(tLRPC$User)) {
-            return LocaleController.getString("HiddenName", C1010R.string.HiddenName);
+            return LocaleController.getString("HiddenName", C1072R.string.HiddenName);
         }
         String formatName = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
         if (formatName.length() != 0 || TextUtils.isEmpty(tLRPC$User.phone)) {
             return formatName;
         }
-        C0933PhoneFormat c0933PhoneFormat = C0933PhoneFormat.getInstance();
-        return c0933PhoneFormat.format("+" + tLRPC$User.phone);
+        C0995PhoneFormat c0995PhoneFormat = C0995PhoneFormat.getInstance();
+        return c0995PhoneFormat.format("+" + tLRPC$User.phone);
     }
 
     public static String getPublicUsername(TLRPC$User tLRPC$User, boolean z) {
@@ -72,6 +75,23 @@ public class UserObject {
         return getPublicUsername(tLRPC$User, false);
     }
 
+    public static boolean hasPublicUsername(TLRPC$User tLRPC$User, String str) {
+        if (tLRPC$User != null && str != null) {
+            if (str.equalsIgnoreCase(tLRPC$User.username)) {
+                return true;
+            }
+            if (tLRPC$User.usernames != null) {
+                for (int i = 0; i < tLRPC$User.usernames.size(); i++) {
+                    TLRPC$TL_username tLRPC$TL_username = tLRPC$User.usernames.get(i);
+                    if (tLRPC$TL_username != null && tLRPC$TL_username.active && str.equalsIgnoreCase(tLRPC$TL_username.username)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public static String getFirstName(TLRPC$User tLRPC$User) {
         return getFirstName(tLRPC$User, true);
     }
@@ -86,7 +106,7 @@ public class UserObject {
         } else if (!z && str.length() <= 2) {
             return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
         }
-        return !TextUtils.isEmpty(str) ? str : LocaleController.getString("HiddenName", C1010R.string.HiddenName);
+        return !TextUtils.isEmpty(str) ? str : LocaleController.getString("HiddenName", C1072R.string.HiddenName);
     }
 
     public static boolean hasPhoto(TLRPC$User tLRPC$User) {
@@ -99,5 +119,10 @@ public class UserObject {
             return tLRPC$User.photo;
         }
         return null;
+    }
+
+    public static boolean hasFallbackPhoto(TLRPC$UserFull tLRPC$UserFull) {
+        TLRPC$Photo tLRPC$Photo;
+        return (tLRPC$UserFull == null || (tLRPC$Photo = tLRPC$UserFull.fallback_photo) == null || (tLRPC$Photo instanceof TLRPC$TL_photoEmpty)) ? false : true;
     }
 }

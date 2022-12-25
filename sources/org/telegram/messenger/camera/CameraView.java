@@ -82,8 +82,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     CameraGLThread cameraThread;
     private int clipBottom;
     private int clipTop;
-    private int f829cx;
-    private int f830cy;
+    private int f838cx;
+    private int f839cy;
     private CameraViewDelegate delegate;
     boolean firstFrameRendered;
     ValueAnimator flipAnimator;
@@ -559,8 +559,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.focusProgress = 0.0f;
             this.innerAlpha = 1.0f;
             this.outerAlpha = 1.0f;
-            this.f829cx = i;
-            this.f830cy = i2;
+            this.f838cx = i;
+            this.f839cy = i2;
             this.lastDrawTime = System.currentTimeMillis();
             invalidate();
         }
@@ -617,8 +617,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.innerPaint.setAlpha((int) (this.interpolator.getInterpolation(this.innerAlpha) * 127.0f));
             float interpolation = this.interpolator.getInterpolation(this.focusProgress);
             float f = m35dp;
-            canvas.drawCircle(this.f829cx, this.f830cy, ((1.0f - interpolation) * f) + f, this.outerPaint);
-            canvas.drawCircle(this.f829cx, this.f830cy, f * interpolation, this.innerPaint);
+            canvas.drawCircle(this.f838cx, this.f839cy, ((1.0f - interpolation) * f) + f, this.outerPaint);
+            canvas.drawCircle(this.f838cx, this.f839cy, f * interpolation, this.innerPaint);
             float f2 = this.focusProgress;
             if (f2 < 1.0f) {
                 float f3 = f2 + (((float) j2) / 200.0f);
@@ -1264,7 +1264,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.recorderRunnable = new Runnable() {
                 @Override
                 public void run() {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.VideoRecorder.RunnableC10331.run():void");
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.VideoRecorder.RunnableC10961.run():void");
                 }
             };
         }

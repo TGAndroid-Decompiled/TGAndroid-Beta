@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -55,14 +54,13 @@ public class ShareTopicCell extends FrameLayout {
     }
 
     public void setTopic(TLRPC$Dialog tLRPC$Dialog, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, boolean z, CharSequence charSequence) {
-        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.f854id));
-        String str = BuildConfig.APP_CENTER_HASH;
+        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.f863id));
         if (charSequence != null) {
             this.nameTextView.setText(charSequence);
         } else if (chat != null) {
             this.nameTextView.setText(tLRPC$TL_forumTopic.title);
         } else {
-            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.nameTextView.setText("");
         }
         if (tLRPC$TL_forumTopic.icon_emoji_id != 0) {
             this.imageView.setImageDrawable(null);
@@ -72,18 +70,15 @@ public class ShareTopicCell extends FrameLayout {
             ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(tLRPC$TL_forumTopic.icon_color);
             LetterDrawable letterDrawable = new LetterDrawable(null, 1);
             String upperCase = tLRPC$TL_forumTopic.title.trim().toUpperCase();
-            if (upperCase.length() >= 1) {
-                str = upperCase.substring(0, 1);
-            }
-            letterDrawable.setTitle(str);
+            letterDrawable.setTitle(upperCase.length() >= 1 ? upperCase.substring(0, 1) : "");
             letterDrawable.scale = 1.8f;
             CombinedDrawable combinedDrawable = new CombinedDrawable(forumBubbleDrawable, letterDrawable, 0, 0);
             combinedDrawable.setFullsize(true);
             this.imageView.setImageDrawable(combinedDrawable);
         }
         this.imageView.setRoundRadius(AndroidUtilities.m35dp((chat == null || !chat.forum || z) ? 28.0f : 16.0f));
-        this.currentDialog = tLRPC$Dialog.f854id;
-        this.currentTopic = tLRPC$TL_forumTopic.f901id;
+        this.currentDialog = tLRPC$Dialog.f863id;
+        this.currentTopic = tLRPC$TL_forumTopic.f910id;
     }
 
     public long getCurrentDialog() {

@@ -27,7 +27,7 @@ public class SegmentTree {
         this.heap[i] = new Node();
         Node[] nodeArr = this.heap;
         nodeArr[i].from = i2;
-        nodeArr[i].f814to = (i2 + i3) - 1;
+        nodeArr[i].f823to = (i2 + i3) - 1;
         if (i3 == 1) {
             Node node = nodeArr[i];
             int[] iArr = this.array;
@@ -72,13 +72,13 @@ public class SegmentTree {
 
     private int rMaxQ(int i, int i2, int i3) {
         Node node = this.heap[i];
-        if (node.pendingVal != null && contains(node.from, node.f814to, i2, i3)) {
+        if (node.pendingVal != null && contains(node.from, node.f823to, i2, i3)) {
             return node.pendingVal.intValue();
         }
-        if (contains(i2, i3, node.from, node.f814to)) {
+        if (contains(i2, i3, node.from, node.f823to)) {
             return this.heap[i].max;
         }
-        if (intersects(i2, i3, node.from, node.f814to)) {
+        if (intersects(i2, i3, node.from, node.f823to)) {
             propagate(i);
             int i4 = i * 2;
             return Math.max(rMaxQ(i4, i2, i3), rMaxQ(i4 + 1, i2, i3));
@@ -110,13 +110,13 @@ public class SegmentTree {
 
     private int rMinQ(int i, int i2, int i3) {
         Node node = this.heap[i];
-        if (node.pendingVal != null && contains(node.from, node.f814to, i2, i3)) {
+        if (node.pendingVal != null && contains(node.from, node.f823to, i2, i3)) {
             return node.pendingVal.intValue();
         }
-        if (contains(i2, i3, node.from, node.f814to)) {
+        if (contains(i2, i3, node.from, node.f823to)) {
             return this.heap[i].min;
         }
-        if (intersects(i2, i3, node.from, node.f814to)) {
+        if (intersects(i2, i3, node.from, node.f823to)) {
             propagate(i);
             int i4 = i * 2;
             return Math.min(rMinQ(i4, i2, i3), rMinQ(i4 + 1, i2, i3));
@@ -150,13 +150,13 @@ public class SegmentTree {
         int min;
         Integer pendingVal = null;
         int sum;
-        int f814to;
+        int f823to;
 
         Node() {
         }
 
         int size() {
-            return (this.f814to - this.from) + 1;
+            return (this.f823to - this.from) + 1;
         }
     }
 }

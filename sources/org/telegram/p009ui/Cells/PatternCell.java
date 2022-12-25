@@ -115,7 +115,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
     public void updateSelected(boolean z) {
         TLRPC$TL_wallPaper selectedPattern = this.delegate.getSelectedPattern();
         TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.currentPattern;
-        if ((tLRPC$TL_wallPaper == null && selectedPattern == null) || !(selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.f994id != selectedPattern.f994id)) {
+        if ((tLRPC$TL_wallPaper == null && selectedPattern == null) || !(selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.f1003id != selectedPattern.f1003id)) {
             updateButtonState(selectedPattern, false, z);
         } else {
             this.radialProgress.setIcon(4, false, z);
@@ -255,7 +255,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
     public void onFailedDownload(String str, boolean z) {
         TLRPC$TL_wallPaper selectedPattern = this.delegate.getSelectedPattern();
         TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.currentPattern;
-        if ((tLRPC$TL_wallPaper == null && selectedPattern == null) || !(selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.f994id != selectedPattern.f994id)) {
+        if ((tLRPC$TL_wallPaper == null && selectedPattern == null) || !(selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.f1003id != selectedPattern.f1003id)) {
             if (z) {
                 this.radialProgress.setIcon(4, false, true);
             } else {
@@ -269,7 +269,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
         this.radialProgress.setProgress(1.0f, true);
         TLRPC$TL_wallPaper selectedPattern = this.delegate.getSelectedPattern();
         TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.currentPattern;
-        if ((tLRPC$TL_wallPaper == null && selectedPattern == null) || !(selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.f994id != selectedPattern.f994id)) {
+        if ((tLRPC$TL_wallPaper == null && selectedPattern == null) || !(selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.f1003id != selectedPattern.f1003id)) {
             updateButtonState(tLRPC$TL_wallPaper, false, true);
         }
     }
@@ -279,7 +279,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
         this.radialProgress.setProgress(Math.min(1.0f, ((float) j) / ((float) j2)), true);
         TLRPC$TL_wallPaper selectedPattern = this.delegate.getSelectedPattern();
         TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.currentPattern;
-        if (!((tLRPC$TL_wallPaper == null && selectedPattern == null) || !(selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.f994id != selectedPattern.f994id)) || this.radialProgress.getIcon() == 10) {
+        if (!((tLRPC$TL_wallPaper == null && selectedPattern == null) || !(selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.f1003id != selectedPattern.f1003id)) || this.radialProgress.getIcon() == 10) {
             return;
         }
         updateButtonState(this.currentPattern, false, true);

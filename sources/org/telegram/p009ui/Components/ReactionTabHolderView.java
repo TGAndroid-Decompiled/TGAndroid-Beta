@@ -16,7 +16,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -51,7 +51,7 @@ public class ReactionTabHolderView extends FrameLayout {
         this.overlaySelectorView = view;
         addView(view, LayoutHelper.createFrame(-1, -1.0f));
         this.iconView = new ImageView(context);
-        Drawable mutate = ContextCompat.getDrawable(context, C1010R.C1011drawable.msg_reactions_filled).mutate();
+        Drawable mutate = ContextCompat.getDrawable(context, C1072R.C1073drawable.msg_reactions_filled).mutate();
         this.drawable = mutate;
         this.iconView.setImageDrawable(mutate);
         addView(this.iconView, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388627, 8.0f, 0.0f, 8.0f, 0.0f));

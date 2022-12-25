@@ -25,7 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -93,7 +93,7 @@ public class ProximitySheet extends FrameLayout {
         this.onDismissCallback = runnable;
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         Rect rect = new Rect();
-        Drawable mutate = context.getResources().getDrawable(C1010R.C1011drawable.sheet_shadow_round).mutate();
+        Drawable mutate = context.getResources().getDrawable(C1072R.C1073drawable.sheet_shadow_round).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
         mutate.getPadding(rect);
         this.backgroundPaddingLeft = rect.left;
@@ -152,7 +152,7 @@ public class ProximitySheet extends FrameLayout {
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.customView.addView(frameLayout2, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 0, 4));
         TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString("LocationNotifiation", C1010R.string.LocationNotifiation));
+        textView.setText(LocaleController.getString("LocationNotifiation", C1072R.string.LocationNotifiation));
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -234,7 +234,7 @@ public class ProximitySheet extends FrameLayout {
     }
 
     public String lambda$new$1(int i) {
-        return this.useImperialSystem ? LocaleController.formatString("MilesShort", C1010R.string.MilesShort, Integer.valueOf(i)) : LocaleController.formatString("KMetersShort", C1010R.string.KMetersShort, Integer.valueOf(i));
+        return this.useImperialSystem ? LocaleController.formatString("MilesShort", C1072R.string.MilesShort, Integer.valueOf(i)) : LocaleController.formatString("KMetersShort", C1072R.string.KMetersShort, Integer.valueOf(i));
     }
 
     public void lambda$new$2(NumberPicker numberPicker, int i, int i2) {
@@ -248,19 +248,19 @@ public class ProximitySheet extends FrameLayout {
     public String lambda$new$3(int i) {
         if (this.useImperialSystem) {
             if (i == 1) {
-                return LocaleController.formatString("FootsShort", C1010R.string.FootsShort, 250);
+                return LocaleController.formatString("FootsShort", C1072R.string.FootsShort, 250);
             }
             if (i > 1) {
                 i--;
             }
             return String.format(Locale.US, ".%d", Integer.valueOf(i));
         } else if (i == 1) {
-            return LocaleController.formatString("MetersShort", C1010R.string.MetersShort, 50);
+            return LocaleController.formatString("MetersShort", C1072R.string.MetersShort, 50);
         } else {
             if (i > 1) {
                 i--;
             }
-            return LocaleController.formatString("MetersShort", C1010R.string.MetersShort, Integer.valueOf(i * 100));
+            return LocaleController.formatString("MetersShort", C1072R.string.MetersShort, Integer.valueOf(i * 100));
         }
     }
 
@@ -291,9 +291,9 @@ public class ProximitySheet extends FrameLayout {
         String formatDistance = LocaleController.formatDistance(value, 2, Boolean.valueOf(this.useImperialSystem));
         if (this.onRadiusChange.run(z, (int) value) || this.currentUser == null) {
             if (this.currentUser == null) {
-                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonGroup", C1010R.string.LocationNotifiationButtonGroup, formatDistance));
+                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonGroup", C1072R.string.LocationNotifiationButtonGroup, formatDistance));
             } else {
-                int i = C1010R.string.LocationNotifiationButtonUser;
+                int i = C1072R.string.LocationNotifiationButtonUser;
                 this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonUser", i, TextUtils.ellipsize(UserObject.getFirstName(this.currentUser), this.buttonTextView.getPaint(), Math.max(AndroidUtilities.m35dp(10.0f), (int) (((this.totalWidth - AndroidUtilities.m35dp(94.0f)) * 1.5f) - ((int) Math.ceil(this.buttonTextView.getPaint().measureText(LocaleController.getString("LocationNotifiationButtonUser", i)))))), TextUtils.TruncateAt.END), formatDistance));
             }
             if (this.buttonTextView.getTag() != null) {
@@ -304,7 +304,7 @@ public class ProximitySheet extends FrameLayout {
             }
             return;
         }
-        this.infoTextView.setText(LocaleController.formatString("LocationNotifiationCloser", C1010R.string.LocationNotifiationCloser, formatDistance));
+        this.infoTextView.setText(LocaleController.formatString("LocationNotifiationCloser", C1072R.string.LocationNotifiationCloser, formatDistance));
         if (this.buttonTextView.getTag() == null) {
             this.buttonTextView.setTag(1);
             this.buttonTextView.animate().setDuration(180L).alpha(0.0f).scaleX(0.5f).scaleY(0.5f).start();
@@ -531,13 +531,13 @@ public class ProximitySheet extends FrameLayout {
             this.currentSheetAnimation.setDuration(250L);
         }
         this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.currentSheetAnimation.addListener(new C25166());
+        this.currentSheetAnimation.addListener(new C26586());
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
         this.currentSheetAnimation.start();
     }
 
-    public class C25166 extends AnimatorListenerAdapter {
-        C25166() {
+    public class C26586 extends AnimatorListenerAdapter {
+        C26586() {
         }
 
         @Override
@@ -548,7 +548,7 @@ public class ProximitySheet extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProximitySheet.C25166.this.lambda$onAnimationEnd$0();
+                        ProximitySheet.C26586.this.lambda$onAnimationEnd$0();
                     }
                 });
             }

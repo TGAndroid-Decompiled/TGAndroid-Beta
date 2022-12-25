@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.AvatarDrawable;
@@ -74,7 +74,7 @@ public class PremiumGiftHeaderCell extends LinearLayout {
     public void bind(TLRPC$User tLRPC$User) {
         this.avatarDrawable.setInfo(tLRPC$User);
         this.avatarImageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
-        this.titleView.setText(AndroidUtilities.replaceTags(LocaleController.getString(C1010R.string.GiftTelegramPremiumTitle)));
-        this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(C1010R.string.GiftTelegramPremiumDescription, tLRPC$User.first_name)));
+        this.titleView.setText(AndroidUtilities.replaceTags(LocaleController.getString(C1072R.string.GiftTelegramPremiumTitle)));
+        this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(C1072R.string.GiftTelegramPremiumDescription, tLRPC$User.first_name)));
     }
 }

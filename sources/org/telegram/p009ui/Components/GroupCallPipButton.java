@@ -16,8 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -107,8 +106,8 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
         this.blobDrawable2.minRadius = AndroidUtilities.m35dp(32.0f);
         this.blobDrawable.generateBlob();
         this.blobDrawable2.generateBlob();
-        int i3 = C1010R.raw.voice_outlined;
-        this.bigMicDrawable = new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, AndroidUtilities.m35dp(22.0f), AndroidUtilities.m35dp(30.0f), true, null);
+        int i3 = C1072R.raw.voice_outlined;
+        this.bigMicDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.m35dp(22.0f), AndroidUtilities.m35dp(30.0f), true, null);
         setWillNotDraw(false);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.muteButton = rLottieImageView;
@@ -262,16 +261,16 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
             }
             VoIPService sharedInstance = VoIPService.getSharedInstance();
             if (sharedInstance != null && ChatObject.isChannelOrGiga(sharedInstance.getChat())) {
-                string = LocaleController.getString("VoipChannelVoiceChat", C1010R.string.VoipChannelVoiceChat);
+                string = LocaleController.getString("VoipChannelVoiceChat", C1072R.string.VoipChannelVoiceChat);
             } else {
-                string = LocaleController.getString("VoipGroupVoiceChat", C1010R.string.VoipGroupVoiceChat);
+                string = LocaleController.getString("VoipGroupVoiceChat", C1072R.string.VoipGroupVoiceChat);
             }
             if (i == 0) {
-                string = string + ", " + LocaleController.getString("VoipTapToMute", C1010R.string.VoipTapToMute);
+                string = string + ", " + LocaleController.getString("VoipTapToMute", C1072R.string.VoipTapToMute);
             } else if (i == 2) {
-                string = string + ", " + LocaleController.getString("Connecting", C1010R.string.Connecting);
+                string = string + ", " + LocaleController.getString("Connecting", C1072R.string.Connecting);
             } else if (i == 3) {
-                string = string + ", " + LocaleController.getString("VoipMutedByAdmin", C1010R.string.VoipMutedByAdmin);
+                string = string + ", " + LocaleController.getString("VoipMutedByAdmin", C1072R.string.VoipMutedByAdmin);
             }
             setContentDescription(string);
             invalidate();
@@ -287,10 +286,10 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
             return;
         }
         if (GroupCallPip.getInstance().showAlert) {
-            i = C1010R.string.AccDescrCloseMenu;
+            i = C1072R.string.AccDescrCloseMenu;
             str = "AccDescrCloseMenu";
         } else {
-            i = C1010R.string.AccDescrOpenMenu2;
+            i = C1072R.string.AccDescrOpenMenu2;
             str = "AccDescrOpenMenu2";
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(str, i)));

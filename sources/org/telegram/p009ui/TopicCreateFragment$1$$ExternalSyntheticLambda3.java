@@ -13,6 +13,6 @@ public final class TopicCreateFragment$1$$ExternalSyntheticLambda3 implements Re
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        TopicCreateFragment.C40111.lambda$onItemClick$2(tLObject, tLRPC$TL_error);
+        TopicCreateFragment.C41741.lambda$onItemClick$2(tLObject, tLRPC$TL_error);
     }
 }

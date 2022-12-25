@@ -16,7 +16,7 @@ public class TLRPC$TL_messages_forwardMessages extends TLObject {
     public TLRPC$InputPeer to_peer;
     public int top_msg_id;
     public boolean with_my_score;
-    public ArrayList<Integer> f933id = new ArrayList<>();
+    public ArrayList<Integer> f942id = new ArrayList<>();
     public ArrayList<Long> random_id = new ArrayList<>();
 
     @Override
@@ -42,10 +42,10 @@ public class TLRPC$TL_messages_forwardMessages extends TLObject {
         abstractSerializedData.writeInt32(i6);
         this.from_peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
-        int size = this.f933id.size();
+        int size = this.f942id.size();
         abstractSerializedData.writeInt32(size);
         for (int i7 = 0; i7 < size; i7++) {
-            abstractSerializedData.writeInt32(this.f933id.get(i7).intValue());
+            abstractSerializedData.writeInt32(this.f942id.get(i7).intValue());
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.random_id.size();

@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
@@ -135,7 +134,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
             MentionsAdapter.this.lastKnownLocation = location;
             MentionsAdapter mentionsAdapter = MentionsAdapter.this;
-            mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, MentionsAdapter.this.searchingContextQuery, BuildConfig.APP_CENTER_HASH);
+            mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, MentionsAdapter.this.searchingContextQuery, "");
         }
 
         @Override
@@ -239,7 +238,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         if (tLRPC$Document == null) {
             return;
         }
-        String str = tLRPC$Document.dc_id + "_" + tLRPC$Document.f856id;
+        String str = tLRPC$Document.dc_id + "_" + tLRPC$Document.f865id;
         HashMap<String, TLRPC$Document> hashMap = this.stickersMap;
         if (hashMap == null || !hashMap.containsKey(str)) {
             if (UserConfig.getInstance(this.currentAccount).isPremium() || !MessageObject.isPremiumSticker(tLRPC$Document)) {
@@ -264,7 +263,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
             TLRPC$Document tLRPC$Document = arrayList.get(i);
-            String str = tLRPC$Document.dc_id + "_" + tLRPC$Document.f856id;
+            String str = tLRPC$Document.dc_id + "_" + tLRPC$Document.f865id;
             HashMap<String, TLRPC$Document> hashMap = this.stickersMap;
             if ((hashMap == null || !hashMap.containsKey(str)) && (UserConfig.getInstance(this.currentAccount).isPremium() || !MessageObject.isPremiumSticker(tLRPC$Document))) {
                 int size2 = tLRPC$Document.attributes.size();
@@ -424,10 +423,10 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         if ((obj instanceof StickerResult) && (obj2 instanceof StickerResult) && ((StickerResult) obj).sticker == ((StickerResult) obj2).sticker) {
             return true;
         }
-        if ((obj instanceof TLRPC$User) && (obj2 instanceof TLRPC$User) && ((TLRPC$User) obj).f986id == ((TLRPC$User) obj2).f986id) {
+        if ((obj instanceof TLRPC$User) && (obj2 instanceof TLRPC$User) && ((TLRPC$User) obj).f995id == ((TLRPC$User) obj2).f995id) {
             return true;
         }
-        if ((obj instanceof TLRPC$Chat) && (obj2 instanceof TLRPC$Chat) && ((TLRPC$Chat) obj).f848id == ((TLRPC$Chat) obj2).f848id) {
+        if ((obj instanceof TLRPC$Chat) && (obj2 instanceof TLRPC$Chat) && ((TLRPC$Chat) obj).f857id == ((TLRPC$Chat) obj2).f857id) {
             return true;
         }
         if ((obj instanceof String) && (obj2 instanceof String) && obj.equals(obj2)) {
@@ -543,7 +542,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     public long getContextBotId() {
         TLRPC$User tLRPC$User = this.foundContextBot;
         if (tLRPC$User != null) {
-            return tLRPC$User.f986id;
+            return tLRPC$User.f995id;
         }
         return 0L;
     }
@@ -554,7 +553,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     public String getContextBotName() {
         TLRPC$User tLRPC$User = this.foundContextBot;
-        return tLRPC$User != null ? tLRPC$User.username : BuildConfig.APP_CENTER_HASH;
+        return tLRPC$User != null ? tLRPC$User.username : "";
     }
 
     public void processFoundUser(TLRPC$User tLRPC$User) {
@@ -576,19 +575,19 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
             if (this.foundContextBot.bot_inline_geo) {
                 SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
-                if (!notificationsSettings.getBoolean("inlinegeo_" + this.foundContextBot.f986id, false) && (chatActivity = this.parentFragment) != null && chatActivity.getParentActivity() != null) {
+                if (!notificationsSettings.getBoolean("inlinegeo_" + this.foundContextBot.f995id, false) && (chatActivity = this.parentFragment) != null && chatActivity.getParentActivity() != null) {
                     final TLRPC$User tLRPC$User2 = this.foundContextBot;
                     AlertDialog.Builder builder = new AlertDialog.Builder(this.parentFragment.getParentActivity());
-                    builder.setTitle(LocaleController.getString("ShareYouLocationTitle", C1010R.string.ShareYouLocationTitle));
-                    builder.setMessage(LocaleController.getString("ShareYouLocationInline", C1010R.string.ShareYouLocationInline));
+                    builder.setTitle(LocaleController.getString("ShareYouLocationTitle", C1072R.string.ShareYouLocationTitle));
+                    builder.setMessage(LocaleController.getString("ShareYouLocationInline", C1072R.string.ShareYouLocationInline));
                     final boolean[] zArr = new boolean[1];
-                    builder.setPositiveButton(LocaleController.getString("OK", C1010R.string.OK), new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
                             MentionsAdapter.this.lambda$processFoundUser$2(zArr, tLRPC$User2, dialogInterface, i);
                         }
                     });
-                    builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
                             MentionsAdapter.this.lambda$processFoundUser$3(zArr, dialogInterface, i);
@@ -616,14 +615,14 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         if (mentionsAdapterDelegate != null) {
             mentionsAdapterDelegate.onContextSearch(true);
         }
-        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, BuildConfig.APP_CENTER_HASH);
+        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
     }
 
     public void lambda$processFoundUser$2(boolean[] zArr, TLRPC$User tLRPC$User, DialogInterface dialogInterface, int i) {
         zArr[0] = true;
         if (tLRPC$User != null) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
-            edit.putBoolean("inlinegeo_" + tLRPC$User.f986id, true).commit();
+            edit.putBoolean("inlinegeo_" + tLRPC$User.f995id, true).commit();
             checkLocationPermissionsOrStart();
         }
     }
@@ -705,19 +704,19 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
             MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             this.searchingContextQuery = str2;
-            RunnableC11904 runnableC11904 = new RunnableC11904(str2, str, messagesController, messagesStorage);
-            this.contextQueryRunnable = runnableC11904;
-            AndroidUtilities.runOnUIThread(runnableC11904, 400L);
+            RunnableC12554 runnableC12554 = new RunnableC12554(str2, str, messagesController, messagesStorage);
+            this.contextQueryRunnable = runnableC12554;
+            AndroidUtilities.runOnUIThread(runnableC12554, 400L);
         }
     }
 
-    public class RunnableC11904 implements Runnable {
+    public class RunnableC12554 implements Runnable {
         final MessagesController val$messagesController;
         final MessagesStorage val$messagesStorage;
         final String val$query;
         final String val$username;
 
-        RunnableC11904(String str, String str2, MessagesController messagesController, MessagesStorage messagesStorage) {
+        RunnableC12554(String str, String str2, MessagesController messagesController, MessagesStorage messagesStorage) {
             this.val$query = str;
             this.val$username = str2;
             this.val$messagesController = messagesController;
@@ -735,7 +734,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     return;
                 }
                 MentionsAdapter mentionsAdapter = MentionsAdapter.this;
-                mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, this.val$query, BuildConfig.APP_CENTER_HASH);
+                mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, this.val$query, "");
                 return;
             }
             MentionsAdapter.this.searchingContextUsername = this.val$username;
@@ -754,7 +753,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             mentionsAdapter2.contextUsernameReqid = connectionsManager.sendRequest(tLRPC$TL_contacts_resolveUsername, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MentionsAdapter.RunnableC11904.this.lambda$run$1(str, messagesController, messagesStorage, tLObject, tLRPC$TL_error);
+                    MentionsAdapter.RunnableC12554.this.lambda$run$1(str, messagesController, messagesStorage, tLObject, tLRPC$TL_error);
                 }
             });
         }
@@ -763,7 +762,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MentionsAdapter.RunnableC11904.this.lambda$run$0(str, tLRPC$TL_error, tLObject, messagesController, messagesStorage);
+                    MentionsAdapter.RunnableC12554.this.lambda$run$0(str, tLRPC$TL_error, tLObject, messagesController, messagesStorage);
                 }
             });
         }
@@ -796,7 +795,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.lastKnownLocation = location;
         location.setLatitude(-1000.0d);
         this.lastKnownLocation.setLongitude(-1000.0d);
-        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, BuildConfig.APP_CENTER_HASH);
+        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
     }
 
     private void checkLocationPermissionsOrStart() {
@@ -865,9 +864,9 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             sb.append("_");
             sb.append(this.dialog_id);
             sb.append("_");
-            sb.append(tLRPC$User.f986id);
+            sb.append(tLRPC$User.f995id);
             sb.append("_");
-            sb.append((!tLRPC$User.bot_inline_geo || this.lastKnownLocation.getLatitude() == -1000.0d) ? BuildConfig.APP_CENTER_HASH : Double.valueOf(this.lastKnownLocation.getLatitude() + this.lastKnownLocation.getLongitude()));
+            sb.append((!tLRPC$User.bot_inline_geo || this.lastKnownLocation.getLatitude() == -1000.0d) ? "" : Double.valueOf(this.lastKnownLocation.getLatitude() + this.lastKnownLocation.getLongitude()));
             final String sb2 = sb.toString();
             final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             RequestDelegate requestDelegate = new RequestDelegate() {
@@ -948,7 +947,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 } else {
                     this.searchResultBotContext.addAll(tLRPC$TL_messages_botResults.results);
                     if (tLRPC$TL_messages_botResults.results.isEmpty()) {
-                        this.nextQueryOffset = BuildConfig.APP_CENTER_HASH;
+                        this.nextQueryOffset = "";
                     }
                     z2 = true;
                 }
@@ -986,7 +985,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         showUsersResult(arrayList, longSparseArray, true);
     }
 
-    public class RunnableC11937 implements Runnable {
+    public class RunnableC12587 implements Runnable {
         final TLRPC$Chat val$chat;
         final MessagesController val$messagesController;
         final LongSparseArray val$newMap;
@@ -994,7 +993,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         final int val$threadId;
         final String val$usernameString;
 
-        RunnableC11937(TLRPC$Chat tLRPC$Chat, String str, int i, ArrayList arrayList, LongSparseArray longSparseArray, MessagesController messagesController) {
+        RunnableC12587(TLRPC$Chat tLRPC$Chat, String str, int i, ArrayList arrayList, LongSparseArray longSparseArray, MessagesController messagesController) {
             this.val$chat = tLRPC$Chat;
             this.val$usernameString = str;
             this.val$threadId = i;
@@ -1015,7 +1014,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             TLRPC$TL_channelParticipantsMentions tLRPC$TL_channelParticipantsMentions = new TLRPC$TL_channelParticipantsMentions();
             int i = tLRPC$TL_channelParticipantsMentions.flags | 1;
             tLRPC$TL_channelParticipantsMentions.flags = i;
-            tLRPC$TL_channelParticipantsMentions.f847q = this.val$usernameString;
+            tLRPC$TL_channelParticipantsMentions.f856q = this.val$usernameString;
             int i2 = this.val$threadId;
             if (i2 != 0) {
                 tLRPC$TL_channelParticipantsMentions.flags = i | 2;
@@ -1031,7 +1030,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             mentionsAdapter.channelReqId = connectionsManager.sendRequest(tLRPC$TL_channels_getParticipants, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MentionsAdapter.RunnableC11937.this.lambda$run$1(access$1704, arrayList, longSparseArray, messagesController, tLObject, tLRPC$TL_error);
+                    MentionsAdapter.RunnableC12587.this.lambda$run$1(access$1704, arrayList, longSparseArray, messagesController, tLObject, tLRPC$TL_error);
                 }
             });
         }
@@ -1040,7 +1039,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MentionsAdapter.RunnableC11937.this.lambda$run$0(i, arrayList, longSparseArray, tLRPC$TL_error, tLObject, messagesController);
+                    MentionsAdapter.RunnableC12587.this.lambda$run$0(i, arrayList, longSparseArray, tLRPC$TL_error, tLObject, messagesController);
                 }
             });
         }
@@ -1262,7 +1261,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             if (arrayList7.get(i) != null) {
                 Object[] objArr = new Object[2];
                 objArr[0] = this.searchResultCommands.get(i);
-                objArr[1] = this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : BuildConfig.APP_CENTER_HASH;
+                objArr[1] = this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : "";
                 return String.format("%s@%s", objArr);
             }
             return String.format("%s", this.searchResultCommands.get(i));
@@ -1347,11 +1346,11 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             TLRPC$Chat currentChat = this.parentFragment.getCurrentChat();
             if (currentChat != null) {
                 if (!ChatObject.hasAdminRights(currentChat) && (tLRPC$TL_chatBannedRights = currentChat.default_banned_rights) != null && tLRPC$TL_chatBannedRights.send_inline) {
-                    textView.setText(LocaleController.getString("GlobalAttachInlineRestricted", C1010R.string.GlobalAttachInlineRestricted));
+                    textView.setText(LocaleController.getString("GlobalAttachInlineRestricted", C1072R.string.GlobalAttachInlineRestricted));
                 } else if (AndroidUtilities.isBannedForever(currentChat.banned_rights)) {
-                    textView.setText(LocaleController.getString("AttachInlineRestrictedForever", C1010R.string.AttachInlineRestrictedForever));
+                    textView.setText(LocaleController.getString("AttachInlineRestrictedForever", C1072R.string.AttachInlineRestrictedForever));
                 } else {
-                    textView.setText(LocaleController.formatString("AttachInlineRestricted", C1010R.string.AttachInlineRestricted, LocaleController.formatDateForBan(currentChat.banned_rights.until_date)));
+                    textView.setText(LocaleController.formatString("AttachInlineRestricted", C1072R.string.AttachInlineRestricted, LocaleController.formatDateForBan(currentChat.banned_rights.until_date)));
                 }
             }
         } else if (this.searchResultBotContext != null) {

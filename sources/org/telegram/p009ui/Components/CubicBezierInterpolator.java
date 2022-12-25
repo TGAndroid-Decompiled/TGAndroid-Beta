@@ -4,9 +4,9 @@ import android.graphics.PointF;
 import android.view.animation.Interpolator;
 
 public class CubicBezierInterpolator implements Interpolator {
-    protected PointF f1043a;
-    protected PointF f1044b;
-    protected PointF f1045c;
+    protected PointF f1053a;
+    protected PointF f1054b;
+    protected PointF f1055c;
     protected PointF end;
     protected PointF start;
     public static final CubicBezierInterpolator DEFAULT = new CubicBezierInterpolator(0.25d, 0.1d, 0.25d, 1.0d);
@@ -17,9 +17,9 @@ public class CubicBezierInterpolator implements Interpolator {
     public static final CubicBezierInterpolator EASE_OUT_BACK = new CubicBezierInterpolator(0.34d, 1.56d, 0.64d, 1.0d);
 
     public CubicBezierInterpolator(PointF pointF, PointF pointF2) throws IllegalArgumentException {
-        this.f1043a = new PointF();
-        this.f1044b = new PointF();
-        this.f1045c = new PointF();
+        this.f1053a = new PointF();
+        this.f1054b = new PointF();
+        this.f1055c = new PointF();
         float f = pointF.x;
         if (f < 0.0f || f > 1.0f) {
             throw new IllegalArgumentException("startX value must be in the range [0, 1]");
@@ -46,14 +46,14 @@ public class CubicBezierInterpolator implements Interpolator {
     }
 
     protected float getBezierCoordinateY(float f) {
-        PointF pointF = this.f1045c;
+        PointF pointF = this.f1055c;
         PointF pointF2 = this.start;
         float f2 = pointF2.y * 3.0f;
         pointF.y = f2;
-        PointF pointF3 = this.f1044b;
+        PointF pointF3 = this.f1054b;
         float f3 = ((this.end.y - pointF2.y) * 3.0f) - f2;
         pointF3.y = f3;
-        PointF pointF4 = this.f1043a;
+        PointF pointF4 = this.f1053a;
         float f4 = (1.0f - pointF.y) - f3;
         pointF4.y = f4;
         return f * (pointF.y + ((pointF3.y + (f4 * f)) * f));
@@ -72,18 +72,18 @@ public class CubicBezierInterpolator implements Interpolator {
     }
 
     private float getXDerivate(float f) {
-        return this.f1045c.x + (f * ((this.f1044b.x * 2.0f) + (this.f1043a.x * 3.0f * f)));
+        return this.f1055c.x + (f * ((this.f1054b.x * 2.0f) + (this.f1053a.x * 3.0f * f)));
     }
 
     private float getBezierCoordinateX(float f) {
-        PointF pointF = this.f1045c;
+        PointF pointF = this.f1055c;
         PointF pointF2 = this.start;
         float f2 = pointF2.x * 3.0f;
         pointF.x = f2;
-        PointF pointF3 = this.f1044b;
+        PointF pointF3 = this.f1054b;
         float f3 = ((this.end.x - pointF2.x) * 3.0f) - f2;
         pointF3.x = f3;
-        PointF pointF4 = this.f1043a;
+        PointF pointF4 = this.f1053a;
         float f4 = (1.0f - pointF.x) - f3;
         pointF4.x = f4;
         return f * (pointF.x + ((pointF3.x + (f4 * f)) * f));

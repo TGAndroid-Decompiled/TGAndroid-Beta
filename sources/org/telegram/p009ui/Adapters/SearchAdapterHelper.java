@@ -152,11 +152,11 @@ public class SearchAdapterHelper {
             LongSparseArray longSparseArray2 = new LongSparseArray();
             for (int i2 = 0; i2 < tLRPC$TL_contacts_found.chats.size(); i2++) {
                 TLRPC$Chat tLRPC$Chat3 = tLRPC$TL_contacts_found.chats.get(i2);
-                longSparseArray.put(tLRPC$Chat3.f848id, tLRPC$Chat3);
+                longSparseArray.put(tLRPC$Chat3.f857id, tLRPC$Chat3);
             }
             for (int i3 = 0; i3 < tLRPC$TL_contacts_found.users.size(); i3++) {
                 TLRPC$User tLRPC$User3 = tLRPC$TL_contacts_found.users.get(i3);
-                longSparseArray2.put(tLRPC$User3.f986id, tLRPC$User3);
+                longSparseArray2.put(tLRPC$User3.f995id, tLRPC$User3);
             }
             for (int i4 = 0; i4 < 2; i4++) {
                 if (i4 == 0) {
@@ -190,11 +190,11 @@ public class SearchAdapterHelper {
                     if (tLRPC$Chat2 != null) {
                         if (z && ((!z2 || ChatObject.canAddBotsToChat(tLRPC$Chat2)) && (this.allowGlobalResults || !ChatObject.isNotInChat(tLRPC$Chat2)))) {
                             this.globalSearch.add(tLRPC$Chat2);
-                            this.globalSearchMap.put(-tLRPC$Chat2.f848id, tLRPC$Chat2);
+                            this.globalSearchMap.put(-tLRPC$Chat2.f857id, tLRPC$Chat2);
                         }
                     } else if (tLRPC$User2 != null && !z2 && ((z3 || !tLRPC$User2.bot) && ((z4 || !tLRPC$User2.self) && (this.allowGlobalResults || i4 != 1 || tLRPC$User2.contact)))) {
                         this.globalSearch.add(tLRPC$User2);
-                        this.globalSearchMap.put(tLRPC$User2.f986id, tLRPC$User2);
+                        this.globalSearchMap.put(tLRPC$User2.f995id, tLRPC$User2);
                     }
                 }
             }
@@ -221,13 +221,13 @@ public class SearchAdapterHelper {
                         tLRPC$User = null;
                     }
                     if (tLRPC$Chat != null) {
-                        if (z && ((!z2 || ChatObject.canAddBotsToChat(tLRPC$Chat)) && (-tLRPC$Chat.f848id) != j)) {
+                        if (z && ((!z2 || ChatObject.canAddBotsToChat(tLRPC$Chat)) && (-tLRPC$Chat.f857id) != j)) {
                             this.localServerSearch.add(tLRPC$Chat);
-                            this.globalSearchMap.put(-tLRPC$Chat.f848id, tLRPC$Chat);
+                            this.globalSearchMap.put(-tLRPC$Chat.f857id, tLRPC$Chat);
                         }
-                    } else if (tLRPC$User != null && !z2 && ((z3 || !tLRPC$User.bot) && ((z4 || !tLRPC$User.self) && tLRPC$User.f986id != j))) {
+                    } else if (tLRPC$User != null && !z2 && ((z3 || !tLRPC$User.bot) && ((z4 || !tLRPC$User.self) && tLRPC$User.f995id != j))) {
                         this.localServerSearch.add(tLRPC$User);
-                        this.globalSearchMap.put(tLRPC$User.f986id, tLRPC$User);
+                        this.globalSearchMap.put(tLRPC$User.f995id, tLRPC$User);
                     }
                 }
             }
@@ -281,7 +281,7 @@ public class SearchAdapterHelper {
             if (tLRPC$User != null) {
                 this.globalSearch.remove(tLRPC$User);
                 this.localServerSearch.remove(tLRPC$User);
-                this.globalSearchMap.remove(tLRPC$User.f986id);
+                this.globalSearchMap.remove(tLRPC$User.f995id);
             }
         }
     }
@@ -383,26 +383,26 @@ public class SearchAdapterHelper {
                 }
                 if (obj instanceof TLRPC$User) {
                     TLRPC$User tLRPC$User = (TLRPC$User) obj;
-                    TLRPC$User tLRPC$User2 = (TLRPC$User) this.globalSearchMap.get(tLRPC$User.f986id);
+                    TLRPC$User tLRPC$User2 = (TLRPC$User) this.globalSearchMap.get(tLRPC$User.f995id);
                     if (tLRPC$User2 != null) {
                         this.globalSearch.remove(tLRPC$User2);
                         this.localServerSearch.remove(tLRPC$User2);
-                        this.globalSearchMap.remove(tLRPC$User2.f986id);
+                        this.globalSearchMap.remove(tLRPC$User2.f995id);
                     }
-                    TLObject tLObject = this.groupSearchMap.get(tLRPC$User.f986id);
+                    TLObject tLObject = this.groupSearchMap.get(tLRPC$User.f995id);
                     if (tLObject != null) {
                         this.groupSearch.remove(tLObject);
-                        this.groupSearchMap.remove(tLRPC$User.f986id);
+                        this.groupSearchMap.remove(tLRPC$User.f995id);
                     }
-                    TLObject tLObject2 = this.phoneSearchMap.get(tLRPC$User.f986id);
+                    TLObject tLObject2 = this.phoneSearchMap.get(tLRPC$User.f995id);
                     if (tLObject2 != null) {
                         this.phonesSearch.remove(tLObject2);
-                        this.phoneSearchMap.remove(tLRPC$User.f986id);
+                        this.phoneSearchMap.remove(tLRPC$User.f995id);
                     }
-                } else if ((obj instanceof TLRPC$Chat) && (tLRPC$Chat = (TLRPC$Chat) this.globalSearchMap.get(-((TLRPC$Chat) obj).f848id)) != null) {
+                } else if ((obj instanceof TLRPC$Chat) && (tLRPC$Chat = (TLRPC$Chat) this.globalSearchMap.get(-((TLRPC$Chat) obj).f857id)) != null) {
                     this.globalSearch.remove(tLRPC$Chat);
                     this.localServerSearch.remove(tLRPC$Chat);
-                    this.globalSearchMap.remove(-tLRPC$Chat.f848id);
+                    this.globalSearchMap.remove(-tLRPC$Chat.f857id);
                 }
                 i++;
             }
@@ -422,7 +422,7 @@ public class SearchAdapterHelper {
                 if (tLRPC$User != null) {
                     this.globalSearch.remove(tLRPC$User);
                     this.localServerSearch.remove(tLRPC$User);
-                    this.globalSearchMap.remove(tLRPC$User.f986id);
+                    this.globalSearchMap.remove(tLRPC$User.f995id);
                 }
             }
         }
@@ -434,7 +434,7 @@ public class SearchAdapterHelper {
                 if (tLRPC$User2 != null) {
                     this.globalSearch.remove(tLRPC$User2);
                     this.localServerSearch.remove(tLRPC$User2);
-                    this.globalSearchMap.remove(tLRPC$User2.f986id);
+                    this.globalSearchMap.remove(tLRPC$User2.f995id);
                 }
             }
         }

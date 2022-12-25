@@ -20,10 +20,9 @@ import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.PhoneFormat.C0933PhoneFormat;
+import org.telegram.PhoneFormat.C0995PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Emoji;
@@ -128,8 +127,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             if (tLRPC$User == null && charSequence == null && charSequence2 == null) {
                 this.currentStatus = null;
                 this.currentName = null;
-                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
-                this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
+                this.nameTextView.setText("");
+                this.statusTextView.setText("");
                 this.avatarImageView.setImageDrawable(null);
                 return;
             }
@@ -171,11 +170,11 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             TLRPC$User tLRPC$User = this.currentUser;
             if (tLRPC$User != null) {
                 if (TextUtils.isEmpty(tLRPC$User.phone)) {
-                    this.statusTextView.setText(LocaleController.getString("NumberUnknown", C1010R.string.NumberUnknown));
+                    this.statusTextView.setText(LocaleController.getString("NumberUnknown", C1072R.string.NumberUnknown));
                 } else if (this.formattedPhoneNumberUser != this.currentUser && (charSequence2 = this.formattedPhoneNumber) != null) {
                     this.statusTextView.setText(charSequence2);
                 } else {
-                    this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
+                    this.statusTextView.setText("");
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
@@ -188,8 +187,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
 
         public void lambda$setStatus$3() {
             if (this.currentUser != null) {
-                C0933PhoneFormat c0933PhoneFormat = C0933PhoneFormat.getInstance();
-                this.formattedPhoneNumber = c0933PhoneFormat.format("+" + this.currentUser.phone);
+                C0995PhoneFormat c0995PhoneFormat = C0995PhoneFormat.getInstance();
+                this.formattedPhoneNumber = c0995PhoneFormat.format("+" + this.currentUser.phone);
                 this.formattedPhoneNumberUser = this.currentUser;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -238,11 +237,11 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             public void onTextChange(String str) {
                 if (str.length() != 0) {
                     if (ChatAttachAlertContactsLayout.this.emptyView != null) {
-                        ChatAttachAlertContactsLayout.this.emptyView.setText(LocaleController.getString("NoResult", C1010R.string.NoResult));
+                        ChatAttachAlertContactsLayout.this.emptyView.setText(LocaleController.getString("NoResult", C1072R.string.NoResult));
                     }
                 } else if (ChatAttachAlertContactsLayout.this.listView.getAdapter() != ChatAttachAlertContactsLayout.this.listAdapter) {
                     int currentTop = ChatAttachAlertContactsLayout.this.getCurrentTop();
-                    ChatAttachAlertContactsLayout.this.emptyView.setText(LocaleController.getString("NoContacts", C1010R.string.NoContacts));
+                    ChatAttachAlertContactsLayout.this.emptyView.setText(LocaleController.getString("NoContacts", C1072R.string.NoContacts));
                     ChatAttachAlertContactsLayout.this.emptyView.showTextView();
                     ChatAttachAlertContactsLayout.this.listView.setAdapter(ChatAttachAlertContactsLayout.this.listAdapter);
                     ChatAttachAlertContactsLayout.this.listAdapter.notifyDataSetChanged();
@@ -275,12 +274,12 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.searchField = searchField;
-        searchField.setHint(LocaleController.getString("SearchFriends", C1010R.string.SearchFriends));
+        searchField.setHint(LocaleController.getString("SearchFriends", C1072R.string.SearchFriends));
         this.frameLayout.addView(this.searchField, LayoutHelper.createFrame(-1, -1, 51));
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context, null, resourcesProvider);
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.showTextView();
-        this.emptyView.setText(LocaleController.getString("NoContacts", C1010R.string.NoContacts));
+        this.emptyView.setText(LocaleController.getString("NoContacts", C1072R.string.NoContacts));
         addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             @Override
@@ -703,12 +702,12 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public static CharSequence lambda$onBindViewHolder$0(ContactsController.Contact contact) {
-            return contact.phones.isEmpty() ? BuildConfig.APP_CENTER_HASH : C0933PhoneFormat.getInstance().format(contact.phones.get(0));
+            return contact.phones.isEmpty() ? "" : C0995PhoneFormat.getInstance().format(contact.phones.get(0));
         }
 
         public static CharSequence lambda$onBindViewHolder$1(TLRPC$User tLRPC$User) {
-            C0933PhoneFormat c0933PhoneFormat = C0933PhoneFormat.getInstance();
-            return c0933PhoneFormat.format("+" + tLRPC$User.phone);
+            C0995PhoneFormat c0995PhoneFormat = C0995PhoneFormat.getInstance();
+            return c0995PhoneFormat.format("+" + tLRPC$User.phone);
         }
 
         @Override
@@ -879,12 +878,12 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public static CharSequence lambda$onBindViewHolder$4(ContactsController.Contact contact) {
-            return contact.phones.isEmpty() ? BuildConfig.APP_CENTER_HASH : C0933PhoneFormat.getInstance().format(contact.phones.get(0));
+            return contact.phones.isEmpty() ? "" : C0995PhoneFormat.getInstance().format(contact.phones.get(0));
         }
 
         public static CharSequence lambda$onBindViewHolder$5(TLRPC$User tLRPC$User) {
-            C0933PhoneFormat c0933PhoneFormat = C0933PhoneFormat.getInstance();
-            return c0933PhoneFormat.format("+" + tLRPC$User.phone);
+            C0995PhoneFormat c0995PhoneFormat = C0995PhoneFormat.getInstance();
+            return c0995PhoneFormat.format("+" + tLRPC$User.phone);
         }
 
         @Override

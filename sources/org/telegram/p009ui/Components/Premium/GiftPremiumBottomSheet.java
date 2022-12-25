@@ -29,9 +29,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -90,18 +89,18 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
         PremiumGradient.GradientTools gradientTools = new PremiumGradient.GradientTools("premiumGradient1", "premiumGradient2", null, null);
         this.gradientTools = gradientTools;
         gradientTools.exactly = true;
-        gradientTools.f1097x1 = 0.0f;
-        gradientTools.f1099y1 = 0.0f;
-        gradientTools.f1098x2 = 0.0f;
-        gradientTools.f1100y2 = 1.0f;
-        gradientTools.f1095cx = 0.0f;
-        gradientTools.f1096cy = 0.0f;
+        gradientTools.f1113x1 = 0.0f;
+        gradientTools.f1115y1 = 0.0f;
+        gradientTools.f1114x2 = 0.0f;
+        gradientTools.f1116y2 = 1.0f;
+        gradientTools.f1111cx = 0.0f;
+        gradientTools.f1112cy = 0.0f;
         PremiumGradient.GradientTools gradientTools2 = new PremiumGradient.GradientTools("premiumGradient1", "premiumGradient2", "premiumGradient3", "premiumGradient4");
         this.outlineGradient = gradientTools2;
         gradientTools2.paint.setStyle(Paint.Style.STROKE);
         this.outlineGradient.paint.setStrokeWidth(AndroidUtilities.m35dp(1.5f));
         this.dummyCell = new PremiumGiftTierCell(getContext());
-        TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(tLRPC$User.f986id);
+        TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(tLRPC$User.f995id);
         if (userFull != null) {
             ArrayList arrayList = new ArrayList();
             long j = 0;
@@ -255,11 +254,11 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
 
     private void updateButtonText(boolean z) {
         if (!BuildVars.useInvoiceBilling() && (!BillingController.getInstance().isReady() || this.giftTiers.get(this.selectedTierIndex).googlePlayProductDetails == null)) {
-            this.premiumButtonView.setButton(LocaleController.getString(C1010R.string.Loading), GiftPremiumBottomSheet$$ExternalSyntheticLambda1.INSTANCE, true);
+            this.premiumButtonView.setButton(LocaleController.getString(C1072R.string.Loading), GiftPremiumBottomSheet$$ExternalSyntheticLambda1.INSTANCE, true);
             this.premiumButtonView.setFlickerDisabled(true);
             return;
         }
-        this.premiumButtonView.setButton(LocaleController.formatString(C1010R.string.GiftSubscriptionFor, this.giftTiers.get(this.selectedTierIndex).getFormattedPrice()), new View.OnClickListener() {
+        this.premiumButtonView.setButton(LocaleController.formatString(C1072R.string.GiftSubscriptionFor, this.giftTiers.get(this.selectedTierIndex).getFormattedPrice()), new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 GiftPremiumBottomSheet.this.lambda$updateButtonText$5(view);
@@ -273,11 +272,11 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     private void onGiftSuccess(boolean z) {
-        TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.user.f986id);
+        TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.user.f995id);
         if (userFull != null) {
             this.user.premium = true;
             MessagesController.getInstance(this.currentAccount).putUser(this.user, true);
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(this.user.f986id), userFull);
+            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(this.user.f995id), userFull);
         }
         if (getBaseFragment() != null) {
             ArrayList<BaseFragment> arrayList = new ArrayList(((LaunchActivity) getBaseFragment().getParentActivity()).getActionBarLayout().getFragmentStack());
@@ -286,7 +285,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
             for (BaseFragment baseFragment : arrayList) {
                 if (baseFragment instanceof ChatActivity) {
                     chatActivity = (ChatActivity) baseFragment;
-                    if (chatActivity.getDialogId() != this.user.f986id) {
+                    if (chatActivity.getDialogId() != this.user.f995id) {
                         baseFragment.removeSelfFromStack();
                     }
                 } else if (baseFragment instanceof ProfileActivity) {
@@ -297,9 +296,9 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
                     }
                 }
             }
-            if (chatActivity == null || chatActivity.getDialogId() != this.user.f986id) {
+            if (chatActivity == null || chatActivity.getDialogId() != this.user.f995id) {
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", this.user.f986id);
+                bundle.putLong("user_id", this.user.f995id);
                 parentLayout.presentFragment(new ChatActivity(bundle), true);
             }
         }
@@ -416,11 +415,11 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
 
     @Override
     protected CharSequence getTitle() {
-        return LocaleController.getString(C1010R.string.GiftTelegramPremiumTitle);
+        return LocaleController.getString(C1072R.string.GiftTelegramPremiumTitle);
     }
 
-    public class C24661 extends RecyclerListView.SelectionAdapter {
-        C24661() {
+    public class C26081 extends RecyclerListView.SelectionAdapter {
+        C26081() {
         }
 
         @Override
@@ -458,14 +457,14 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
                     @Override
                     public final Object provide(Object obj) {
                         Paint lambda$onCreateViewHolder$0;
-                        lambda$onCreateViewHolder$0 = GiftPremiumBottomSheet.C24661.this.lambda$onCreateViewHolder$0(premiumGiftTierCell2, (Void) obj);
+                        lambda$onCreateViewHolder$0 = GiftPremiumBottomSheet.C26081.this.lambda$onCreateViewHolder$0(premiumGiftTierCell2, (Void) obj);
                         return lambda$onCreateViewHolder$0;
                     }
                 });
                 premiumGiftTierCell2.setProgressDelegate(new CheckBoxBase.ProgressDelegate() {
                     @Override
                     public final void setProgress(float f) {
-                        GiftPremiumBottomSheet.C24661.lambda$onCreateViewHolder$1(atomicReference, premiumGiftTierCell2, f);
+                        GiftPremiumBottomSheet.C26081.lambda$onCreateViewHolder$1(atomicReference, premiumGiftTierCell2, f);
                     }
                 });
                 premiumGiftTierCell = premiumGiftTierCell2;
@@ -473,7 +472,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
                 TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(GiftPremiumBottomSheet.this.getContext());
                 textInfoPrivacyCell.setTopPadding(28);
                 textInfoPrivacyCell.getTextView().setGravity(1);
-                String string = LocaleController.getString(C1010R.string.GiftPremiumListFeaturesAndTerms);
+                String string = LocaleController.getString(C1072R.string.GiftPremiumListFeaturesAndTerms);
                 int indexOf = string.indexOf(42);
                 int lastIndexOf = string.lastIndexOf(42);
                 if (indexOf != -1 && lastIndexOf != -1) {
@@ -546,14 +545,14 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
 
     @Override
     protected RecyclerListView.SelectionAdapter createAdapter() {
-        return new C24661();
+        return new C26081();
     }
 
     private final class LinkSpan extends ClickableSpan {
         private LinkSpan() {
         }
 
-        LinkSpan(GiftPremiumBottomSheet giftPremiumBottomSheet, C24661 c24661) {
+        LinkSpan(GiftPremiumBottomSheet giftPremiumBottomSheet, C26081 c26081) {
             this();
         }
 
@@ -632,14 +631,14 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
             if (BuildVars.useInvoiceBilling() || this.giftOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency());
             }
-            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
         }
 
         public String getFormattedPrice() {
             if (BuildVars.useInvoiceBilling() || this.giftOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(getPrice(), getCurrency());
             }
-            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(getPrice(), getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPrice(), getCurrency(), 6);
         }
 
         public long getPrice() {
@@ -658,7 +657,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
                 return this.giftOption.currency;
             }
             ProductDetails productDetails = this.googlePlayProductDetails;
-            return productDetails == null ? BuildConfig.APP_CENTER_HASH : productDetails.getOneTimePurchaseOfferDetails().getPriceCurrencyCode();
+            return productDetails == null ? "" : productDetails.getOneTimePurchaseOfferDetails().getPriceCurrencyCode();
         }
     }
 }

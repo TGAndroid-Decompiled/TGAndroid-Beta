@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
@@ -69,14 +69,14 @@ public class GigagroupConvertAlert extends BottomSheet {
         setCustomView(linearLayout);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         rLottieImageView.setAutoRepeat(true);
-        rLottieImageView.setAnimation(C1010R.raw.utyan_gigagroup, 120, 120);
+        rLottieImageView.setAnimation(C1072R.raw.utyan_gigagroup, 120, 120);
         rLottieImageView.playAnimation();
         linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(160, 160, 49, 17, 30, 17, 0));
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextSize(1, 24.0f);
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
-        textView.setText(LocaleController.getString("GigagroupConvertTitle", C1010R.string.GigagroupConvertTitle));
+        textView.setText(LocaleController.getString("GigagroupConvertTitle", C1072R.string.GigagroupConvertTitle));
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 49, 17, 18, 17, 0));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
@@ -89,18 +89,18 @@ public class GigagroupConvertAlert extends BottomSheet {
                 linearLayout2.addView(linearLayout3, LayoutHelper.createLinear(-2, -2, LocaleController.isRTL ? 5 : 3, 0, 8, 0, 0));
                 ImageView imageView = new ImageView(context);
                 imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextGray3"), PorterDuff.Mode.MULTIPLY));
-                imageView.setImageResource(C1010R.C1011drawable.list_circle);
+                imageView.setImageResource(C1072R.C1073drawable.list_circle);
                 TextView textView2 = new TextView(context);
                 textView2.setTextSize(1, 15.0f);
                 textView2.setTextColor(Theme.getColor("dialogTextGray3"));
                 textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
                 textView2.setMaxWidth(AndroidUtilities.m35dp(260.0f));
                 if (i == 0) {
-                    textView2.setText(LocaleController.getString("GigagroupConvertInfo1", C1010R.string.GigagroupConvertInfo1));
+                    textView2.setText(LocaleController.getString("GigagroupConvertInfo1", C1072R.string.GigagroupConvertInfo1));
                 } else if (i == 1) {
-                    textView2.setText(LocaleController.getString("GigagroupConvertInfo2", C1010R.string.GigagroupConvertInfo2));
+                    textView2.setText(LocaleController.getString("GigagroupConvertInfo2", C1072R.string.GigagroupConvertInfo2));
                 } else if (i == 2) {
-                    textView2.setText(LocaleController.getString("GigagroupConvertInfo3", C1010R.string.GigagroupConvertInfo3));
+                    textView2.setText(LocaleController.getString("GigagroupConvertInfo3", C1072R.string.GigagroupConvertInfo3));
                 }
                 if (LocaleController.isRTL) {
                     linearLayout3.addView(textView2, LayoutHelper.createLinear(-2, -2));
@@ -113,7 +113,7 @@ public class GigagroupConvertAlert extends BottomSheet {
             } else {
                 BottomSheetCell bottomSheetCell = new BottomSheetCell(context);
                 bottomSheetCell.setBackground(null);
-                bottomSheetCell.setText(LocaleController.getString("GigagroupConvertProcessButton", C1010R.string.GigagroupConvertProcessButton));
+                bottomSheetCell.setText(LocaleController.getString("GigagroupConvertProcessButton", C1072R.string.GigagroupConvertProcessButton));
                 bottomSheetCell.background.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -124,7 +124,7 @@ public class GigagroupConvertAlert extends BottomSheet {
                 TextView textView3 = new TextView(context);
                 textView3.setTextSize(1, 14.0f);
                 textView3.setTextColor(Theme.getColor("dialogTextBlue2"));
-                textView3.setText(LocaleController.getString("GigagroupConvertCancelButton", C1010R.string.GigagroupConvertCancelButton));
+                textView3.setText(LocaleController.getString("GigagroupConvertCancelButton", C1072R.string.GigagroupConvertCancelButton));
                 textView3.setGravity(17);
                 linearLayout.addView(textView3, LayoutHelper.createLinear(-2, 48, 49, 17, 0, 17, 16));
                 textView3.setOnClickListener(new View.OnClickListener() {
@@ -141,15 +141,15 @@ public class GigagroupConvertAlert extends BottomSheet {
     public void lambda$new$1(Context context, BaseFragment baseFragment, View view) {
         dismiss();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(LocaleController.getString("GigagroupConvertAlertTitle", C1010R.string.GigagroupConvertAlertTitle));
-        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.getString("GigagroupConvertAlertText", C1010R.string.GigagroupConvertAlertText)));
-        builder.setPositiveButton(LocaleController.getString("GigagroupConvertAlertConver", C1010R.string.GigagroupConvertAlertConver), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString("GigagroupConvertAlertTitle", C1072R.string.GigagroupConvertAlertTitle));
+        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.getString("GigagroupConvertAlertText", C1072R.string.GigagroupConvertAlertText)));
+        builder.setPositiveButton(LocaleController.getString("GigagroupConvertAlertConver", C1072R.string.GigagroupConvertAlertConver), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 GigagroupConvertAlert.this.lambda$new$0(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
         baseFragment.showDialog(builder.create());
     }
 

@@ -3,7 +3,6 @@ package org.telegram.p009ui.Components.Reactions;
 import android.graphics.Paint;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.p009ui.Components.AnimatedEmojiSpan;
 import org.telegram.p009ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.tgnet.TLRPC$Reaction;
@@ -42,6 +41,6 @@ public class ReactionsUtils {
             spannableStringBuilder.setSpan(new AnimatedEmojiSpan(((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id, (Paint.FontMetricsInt) null), 0, 1, 0);
             return spannableStringBuilder;
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 }

@@ -5,8 +5,7 @@ import android.graphics.Rect;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
@@ -140,8 +139,8 @@ public class AnimatedEmojiEffect {
             this.effectImageReceiver.setAutoRepeat(0);
             return;
         }
-        int i = C1010R.raw.custom_emoji_reaction;
-        this.effectImageReceiver.setImageBitmap(new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.m35dp(60.0f), AndroidUtilities.m35dp(60.0f), false, null));
+        int i = C1072R.raw.custom_emoji_reaction;
+        this.effectImageReceiver.setImageBitmap(new RLottieDrawable(i, "" + i, AndroidUtilities.m35dp(60.0f), AndroidUtilities.m35dp(60.0f), false, null));
     }
 
     public void removeView(View view) {

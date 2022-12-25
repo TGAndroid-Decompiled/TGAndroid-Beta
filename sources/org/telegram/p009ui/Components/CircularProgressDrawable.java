@@ -10,11 +10,11 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 
 public class CircularProgressDrawable extends Drawable {
+    private static final FastOutSlowInInterpolator interpolator = new FastOutSlowInInterpolator();
+    private float angleOffset;
     private final RectF bounds;
-    private final FastOutSlowInInterpolator interpolator;
     private final Paint paint;
-    private float segmentFrom;
-    private float segmentTo;
+    private float[] segment;
     private float size;
     private long start;
     private float thickness;
@@ -32,7 +32,7 @@ public class CircularProgressDrawable extends Drawable {
         this.size = AndroidUtilities.m35dp(18.0f);
         this.thickness = AndroidUtilities.m35dp(2.25f);
         this.start = -1L;
-        this.interpolator = new FastOutSlowInInterpolator();
+        this.segment = new float[2];
         Paint paint = new Paint();
         this.paint = paint;
         paint.setStyle(Paint.Style.STROKE);
@@ -44,7 +44,7 @@ public class CircularProgressDrawable extends Drawable {
         this.size = AndroidUtilities.m35dp(18.0f);
         this.thickness = AndroidUtilities.m35dp(2.25f);
         this.start = -1L;
-        this.interpolator = new FastOutSlowInInterpolator();
+        this.segment = new float[2];
         Paint paint = new Paint();
         this.paint = paint;
         paint.setStyle(Paint.Style.STROKE);
@@ -55,14 +55,19 @@ public class CircularProgressDrawable extends Drawable {
     }
 
     private void updateSegment() {
-        int i;
-        long elapsedRealtime = (SystemClock.elapsedRealtime() - this.start) % 5400;
-        float f = ((float) (1520 * elapsedRealtime)) / 5400.0f;
-        this.segmentFrom = f - 20.0f;
-        this.segmentTo = f;
-        for (int i2 = 0; i2 < 4; i2++) {
-            this.segmentTo += this.interpolator.getInterpolation(((float) (elapsedRealtime - (i2 * 1350))) / 667.0f) * 250.0f;
-            this.segmentFrom += this.interpolator.getInterpolation(((float) (elapsedRealtime - (i + 667))) / 667.0f) * 250.0f;
+        getSegments((float) ((SystemClock.elapsedRealtime() - this.start) % 5400), this.segment);
+    }
+
+    public static void getSegments(float f, float[] fArr) {
+        float f2 = (1520.0f * f) / 5400.0f;
+        fArr[0] = f2 - 20.0f;
+        fArr[1] = f2;
+        for (int i = 0; i < 4; i++) {
+            float f3 = fArr[1];
+            FastOutSlowInInterpolator fastOutSlowInInterpolator = interpolator;
+            int i2 = i * 1350;
+            fArr[1] = f3 + (fastOutSlowInInterpolator.getInterpolation((f - i2) / 667.0f) * 250.0f);
+            fArr[0] = fArr[0] + (fastOutSlowInInterpolator.getInterpolation((f - (i2 + 667)) / 667.0f) * 250.0f);
         }
     }
 
@@ -73,9 +78,18 @@ public class CircularProgressDrawable extends Drawable {
         }
         updateSegment();
         RectF rectF = this.bounds;
-        float f = this.segmentFrom;
-        canvas.drawArc(rectF, f, this.segmentTo - f, false, this.paint);
+        float f = this.angleOffset;
+        float[] fArr = this.segment;
+        canvas.drawArc(rectF, fArr[0] + f, fArr[1] - fArr[0], false, this.paint);
         invalidateSelf();
+    }
+
+    public void reset() {
+        this.start = -1L;
+    }
+
+    public void setAngleOffset(float f) {
+        this.angleOffset = f;
     }
 
     @Override

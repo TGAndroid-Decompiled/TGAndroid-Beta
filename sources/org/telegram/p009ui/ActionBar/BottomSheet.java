@@ -38,7 +38,7 @@ import androidx.core.view.NestedScrollingParent;
 import androidx.core.view.NestedScrollingParentHelper;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -245,7 +245,7 @@ public class BottomSheet extends Dialog {
         private int startedTrackingX;
         private int startedTrackingY;
         private VelocityTracker velocityTracker;
-        private float f999y;
+        private float f1008y;
 
         @Override
         public boolean hasOverlappingRendering() {
@@ -271,7 +271,7 @@ public class BottomSheet extends Dialog {
             this.currentAnimation = null;
             this.rect = new Rect();
             this.backgroundPaint = new Paint();
-            this.f999y = 0.0f;
+            this.f1008y = 0.0f;
             this.nestedScrollingParentHelper = new NestedScrollingParentHelper(this);
             setWillNotDraw(false);
         }
@@ -412,7 +412,7 @@ public class BottomSheet extends Dialog {
                     BottomSheet.this.onDismissWithTouchOutside();
                     return true;
                 }
-                BottomSheet.this.onScrollUpBegin(this.f999y);
+                BottomSheet.this.onScrollUpBegin(this.f1008y);
                 this.startedTrackingPointerId = motionEvent.getPointerId(0);
                 this.maybeStartTracking = true;
                 cancelCurrentAnimation();
@@ -426,7 +426,7 @@ public class BottomSheet extends Dialog {
                 }
                 float abs = Math.abs((int) (motionEvent.getX() - this.startedTrackingX));
                 float y2 = ((int) motionEvent.getY()) - this.startedTrackingY;
-                boolean onScrollUp = BottomSheet.this.onScrollUp(this.f999y + y2);
+                boolean onScrollUp = BottomSheet.this.onScrollUp(this.f1008y + y2);
                 this.velocityTracker.addMovement(motionEvent);
                 if (!BottomSheet.this.disableScroll && this.maybeStartTracking && !this.startedTracking && y2 > 0.0f && y2 / 3.0f > Math.abs(abs) && Math.abs(y2) >= BottomSheet.this.touchSlop) {
                     this.startedTrackingY = (int) motionEvent.getY();
@@ -434,12 +434,12 @@ public class BottomSheet extends Dialog {
                     this.startedTracking = true;
                     requestDisallowInterceptTouchEvent(true);
                 } else if (this.startedTracking) {
-                    float f = this.f999y + y2;
-                    this.f999y = f;
+                    float f = this.f1008y + y2;
+                    this.f1008y = f;
                     if (!onScrollUp) {
-                        this.f999y = Math.max(f, 0.0f);
+                        this.f1008y = Math.max(f, 0.0f);
                     }
-                    BottomSheet.this.containerView.setTranslationY(Math.max(this.f999y, 0.0f));
+                    BottomSheet.this.containerView.setTranslationY(Math.max(this.f1008y, 0.0f));
                     this.startedTrackingY = (int) motionEvent.getY();
                     BottomSheet.this.container.invalidate();
                 }
@@ -448,8 +448,8 @@ public class BottomSheet extends Dialog {
                     this.velocityTracker = VelocityTracker.obtain();
                 }
                 this.velocityTracker.computeCurrentVelocity(1000);
-                BottomSheet.this.onScrollUpEnd(this.f999y);
-                if (this.startedTracking || this.f999y > 0.0f) {
+                BottomSheet.this.onScrollUpEnd(this.f1008y);
+                if (this.startedTracking || this.f1008y > 0.0f) {
                     checkDismiss(this.velocityTracker.getXVelocity(), this.velocityTracker.getYVelocity());
                 } else {
                     this.maybeStartTracking = false;
@@ -759,7 +759,7 @@ public class BottomSheet extends Dialog {
     }
 
     public BottomSheet(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        super(context, C1010R.style.TransparentDialog);
+        super(context, C1072R.style.TransparentDialog);
         this.currentAccount = UserConfig.selectedAccount;
         this.allowDrawContent = true;
         this.useHardwareLayer = true;
@@ -801,7 +801,7 @@ public class BottomSheet extends Dialog {
         }
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         Rect rect = new Rect();
-        Drawable mutate = context.getResources().getDrawable(C1010R.C1011drawable.sheet_shadow_round).mutate();
+        Drawable mutate = context.getResources().getDrawable(C1072R.C1073drawable.sheet_shadow_round).mutate();
         this.shadowDrawable = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
         this.shadowDrawable.getPadding(rect);
@@ -889,7 +889,7 @@ public class BottomSheet extends Dialog {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         Window window = getWindow();
-        window.setWindowAnimations(C1010R.style.DialogNoAnimation);
+        window.setWindowAnimations(C1072R.style.DialogNoAnimation);
         setContentView(this.container, new ViewGroup.LayoutParams(-1, -1));
         Drawable drawable = null;
         if (this.useLightStatusBar && Build.VERSION.SDK_INT >= 23 && Theme.getColor("actionBarDefault", null, true) == -1) {
@@ -1277,7 +1277,7 @@ public class BottomSheet extends Dialog {
         this.delegate = bottomSheetDelegateInterface;
     }
 
-    public FrameLayout getContainer() {
+    public ContainerView getContainer() {
         return this.container;
     }
 
@@ -1354,15 +1354,15 @@ public class BottomSheet extends Dialog {
         animatorSet.playTogether(animatorArr);
         this.currentSheetAnimation.setDuration(180L);
         this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        this.currentSheetAnimation.addListener(new C11317(i));
+        this.currentSheetAnimation.addListener(new C11967(i));
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
         this.currentSheetAnimation.start();
     }
 
-    public class C11317 extends AnimatorListenerAdapter {
+    public class C11967 extends AnimatorListenerAdapter {
         final int val$item;
 
-        C11317(int i) {
+        C11967(int i) {
             this.val$item = i;
         }
 
@@ -1379,7 +1379,7 @@ public class BottomSheet extends Dialog {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BottomSheet.C11317.this.lambda$onAnimationEnd$0();
+                        BottomSheet.C11967.this.lambda$onAnimationEnd$0();
                     }
                 });
             }
@@ -1473,7 +1473,7 @@ public class BottomSheet extends Dialog {
                 j = 250;
                 this.currentSheetAnimation.setDuration(250L);
                 this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-                this.currentSheetAnimation.addListener(new C11328());
+                this.currentSheetAnimation.addListener(new C11978());
                 NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
                 this.currentSheetAnimation.start();
             }
@@ -1497,8 +1497,8 @@ public class BottomSheet extends Dialog {
         }
     }
 
-    public class C11328 extends AnimatorListenerAdapter {
-        C11328() {
+    public class C11978 extends AnimatorListenerAdapter {
+        C11978() {
         }
 
         @Override
@@ -1511,7 +1511,7 @@ public class BottomSheet extends Dialog {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BottomSheet.C11328.this.lambda$onAnimationEnd$0();
+                        BottomSheet.C11978.this.lambda$onAnimationEnd$0();
                     }
                 });
             }

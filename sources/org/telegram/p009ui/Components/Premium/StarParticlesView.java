@@ -15,10 +15,11 @@ import android.graphics.RectF;
 import android.view.View;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
@@ -45,9 +46,9 @@ public class StarParticlesView extends View {
         drawable.useBlur = true;
         drawable.checkBounds = true;
         drawable.size1 = 4;
-        drawable.f1110k3 = 0.98f;
-        drawable.f1109k2 = 0.98f;
-        drawable.f1108k1 = 0.98f;
+        drawable.f1126k3 = 0.98f;
+        drawable.f1125k2 = 0.98f;
+        drawable.f1124k1 = 0.98f;
         drawable.init();
     }
 
@@ -98,12 +99,13 @@ public class StarParticlesView extends View {
     }
 
     public static class Drawable {
-        float f1104a;
-        float f1105a1;
-        float f1106a2;
+        float f1120a;
+        float f1121a1;
+        float f1122a2;
         public final int count;
-        private boolean distributionAlgorithm;
+        public boolean distributionAlgorithm;
         private int lastColor;
+        public Paint overridePaint;
         public boolean paused;
         public long pausedTime;
         float[] points1;
@@ -112,6 +114,7 @@ public class StarParticlesView extends View {
         int pointsCount1;
         int pointsCount2;
         int pointsCount3;
+        private long prevTime;
         public boolean startFromCenter;
         public boolean svg;
         public boolean useGradient;
@@ -120,18 +123,19 @@ public class StarParticlesView extends View {
         public RectF rect2 = new RectF();
         public RectF excludeRect = new RectF();
         private final Bitmap[] stars = new Bitmap[3];
-        private Paint paint = new Paint();
+        public Paint paint = new Paint();
+        public float excludeRadius = 0.0f;
         public ArrayList<Particle> particles = new ArrayList<>();
         public float speedScale = 1.0f;
         public int size1 = 14;
         public int size2 = 12;
         public int size3 = 10;
-        public float f1108k1 = 0.85f;
-        public float f1109k2 = 0.85f;
-        public float f1110k3 = 0.9f;
+        public float f1124k1 = 0.85f;
+        public float f1125k2 = 0.85f;
+        public float f1126k3 = 0.9f;
         public long minLifeTime = 2000;
         public int randLifeTime = 1000;
-        private final float f1107dt = 1000.0f / AndroidUtilities.screenRefreshRate;
+        private final float f1123dt = 1000.0f / AndroidUtilities.screenRefreshRate;
         Matrix matrix = new Matrix();
         Matrix matrix2 = new Matrix();
         Matrix matrix3 = new Matrix();
@@ -179,70 +183,70 @@ public class StarParticlesView extends View {
             int i3;
             int i4;
             for (int i5 = 0; i5 < 3; i5++) {
-                float f = this.f1108k1;
+                float f = this.f1124k1;
                 if (i5 == 0) {
                     m35dp = AndroidUtilities.m35dp(this.size1);
                 } else if (i5 == 1) {
-                    f = this.f1109k2;
+                    f = this.f1125k2;
                     m35dp = AndroidUtilities.m35dp(this.size2);
                 } else {
-                    f = this.f1110k3;
+                    f = this.f1126k3;
                     m35dp = AndroidUtilities.m35dp(this.size3);
                 }
                 int i6 = m35dp;
                 int i7 = this.type;
                 if (i7 == 9) {
                     if (i5 == 0) {
-                        i4 = C1010R.raw.premium_object_folder;
+                        i4 = C1072R.raw.premium_object_folder;
                     } else if (i5 == 1) {
-                        i4 = C1010R.raw.premium_object_bubble;
+                        i4 = C1072R.raw.premium_object_bubble;
                     } else {
-                        i4 = C1010R.raw.premium_object_settings;
+                        i4 = C1072R.raw.premium_object_settings;
                     }
                     this.stars[i5] = SvgHelper.getBitmap(i4, i6, i6, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey), 30));
                     this.svg = true;
                 } else if (i7 == 11 || i7 == 4) {
                     if (i5 == 0) {
-                        i = C1010R.raw.premium_object_smile1;
+                        i = C1072R.raw.premium_object_smile1;
                     } else if (i5 == 1) {
-                        i = C1010R.raw.premium_object_smile2;
+                        i = C1072R.raw.premium_object_smile2;
                     } else {
-                        i = C1010R.raw.premium_object_like;
+                        i = C1072R.raw.premium_object_like;
                     }
                     this.stars[i5] = SvgHelper.getBitmap(i, i6, i6, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey), 30));
                     this.svg = true;
                 } else if (i7 == 3) {
                     if (i5 == 0) {
-                        i3 = C1010R.raw.premium_object_adsbubble;
+                        i3 = C1072R.raw.premium_object_adsbubble;
                     } else if (i5 == 1) {
-                        i3 = C1010R.raw.premium_object_like;
+                        i3 = C1072R.raw.premium_object_like;
                     } else {
-                        i3 = C1010R.raw.premium_object_noads;
+                        i3 = C1072R.raw.premium_object_noads;
                     }
                     this.stars[i5] = SvgHelper.getBitmap(i3, i6, i6, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey), 30));
                     this.svg = true;
                 } else if (i7 == 7) {
                     if (i5 == 0) {
-                        i2 = C1010R.raw.premium_object_video2;
+                        i2 = C1072R.raw.premium_object_video2;
                     } else if (i5 == 1) {
-                        i2 = C1010R.raw.premium_object_video;
+                        i2 = C1072R.raw.premium_object_video;
                     } else {
-                        i2 = C1010R.raw.premium_object_user;
+                        i2 = C1072R.raw.premium_object_user;
                     }
                     this.stars[i5] = SvgHelper.getBitmap(i2, i6, i6, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey), 30));
                     this.svg = true;
                 } else if (i7 == 1001) {
-                    this.stars[i5] = SvgHelper.getBitmap(C1010R.raw.premium_object_fire, i6, i6, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey), 30));
+                    this.stars[i5] = SvgHelper.getBitmap(C1072R.raw.premium_object_fire, i6, i6, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey), 30));
                     this.svg = true;
                 } else if (i7 == 1002) {
-                    this.stars[i5] = SvgHelper.getBitmap(C1010R.raw.premium_object_star2, i6, i6, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey), 30));
+                    this.stars[i5] = SvgHelper.getBitmap(C1072R.raw.premium_object_star2, i6, i6, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey), 30));
                     this.svg = true;
                 } else {
                     Bitmap createBitmap = Bitmap.createBitmap(i6, i6, Bitmap.Config.ARGB_8888);
                     this.stars[i5] = createBitmap;
                     Canvas canvas = new Canvas(createBitmap);
                     if (this.type == 6 && (i5 == 1 || i5 == 2)) {
-                        android.graphics.drawable.Drawable drawable = ContextCompat.getDrawable(ApplicationLoader.applicationContext, C1010R.C1011drawable.msg_premium_liststar);
+                        android.graphics.drawable.Drawable drawable = ContextCompat.getDrawable(ApplicationLoader.applicationContext, C1072R.C1073drawable.msg_premium_liststar);
                         drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(this.colorKey), PorterDuff.Mode.MULTIPLY));
                         drawable.setBounds(0, 0, i6, i6);
                         drawable.draw(canvas);
@@ -316,15 +320,17 @@ public class StarParticlesView extends View {
 
         public void onDraw(Canvas canvas, float f) {
             long currentTimeMillis = System.currentTimeMillis();
+            long clamp = MathUtils.clamp(currentTimeMillis - this.prevTime, 4L, 50L);
             if (this.useRotate) {
                 this.matrix.reset();
-                float f2 = this.f1104a + 0.144f;
-                this.f1104a = f2;
-                this.f1105a1 += 0.1152f;
-                this.f1106a2 += 0.096f;
-                this.matrix.setRotate(f2, this.rect.centerX(), this.rect.centerY());
-                this.matrix2.setRotate(this.f1105a1, this.rect.centerX(), this.rect.centerY());
-                this.matrix3.setRotate(this.f1106a2, this.rect.centerX(), this.rect.centerY());
+                float f2 = (float) clamp;
+                float f3 = this.f1120a + ((f2 / 40000.0f) * 360.0f);
+                this.f1120a = f3;
+                this.f1121a1 += (f2 / 50000.0f) * 360.0f;
+                this.f1122a2 += (f2 / 60000.0f) * 360.0f;
+                this.matrix.setRotate(f3, this.rect.centerX(), this.rect.centerY());
+                this.matrix2.setRotate(this.f1121a1, this.rect.centerX(), this.rect.centerY());
+                this.matrix3.setRotate(this.f1122a2, this.rect.centerX(), this.rect.centerY());
                 this.pointsCount1 = 0;
                 this.pointsCount2 = 0;
                 this.pointsCount3 = 0;
@@ -358,6 +364,7 @@ public class StarParticlesView extends View {
                     particle.genPosition(currentTimeMillis);
                 }
             }
+            this.prevTime = currentTimeMillis;
         }
 
         public class Particle {
@@ -370,10 +377,10 @@ public class StarParticlesView extends View {
             private int starIndex;
             private float vecX;
             private float vecY;
-            private float f1111x;
-            private float f1112x2;
-            private float f1113y;
-            private float f1114y2;
+            private float f1127x;
+            private float f1128x2;
+            private float f1129y;
+            private float f1130y2;
 
             public Particle() {
             }
@@ -384,22 +391,22 @@ public class StarParticlesView extends View {
                     Drawable drawable = Drawable.this;
                     float[] fArr = drawable.points1;
                     int i2 = drawable.pointsCount1;
-                    fArr[i2 * 2] = this.f1111x;
-                    fArr[(i2 * 2) + 1] = this.f1113y;
+                    fArr[i2 * 2] = this.f1127x;
+                    fArr[(i2 * 2) + 1] = this.f1129y;
                     drawable.pointsCount1 = i2 + 1;
                 } else if (i == 1) {
                     Drawable drawable2 = Drawable.this;
                     float[] fArr2 = drawable2.points2;
                     int i3 = drawable2.pointsCount2;
-                    fArr2[i3 * 2] = this.f1111x;
-                    fArr2[(i3 * 2) + 1] = this.f1113y;
+                    fArr2[i3 * 2] = this.f1127x;
+                    fArr2[(i3 * 2) + 1] = this.f1129y;
                     drawable2.pointsCount2 = i3 + 1;
                 } else if (i == 2) {
                     Drawable drawable3 = Drawable.this;
                     float[] fArr3 = drawable3.points3;
                     int i4 = drawable3.pointsCount3;
-                    fArr3[i4 * 2] = this.f1111x;
-                    fArr3[(i4 * 2) + 1] = this.f1113y;
+                    fArr3[i4 * 2] = this.f1127x;
+                    fArr3[(i4 * 2) + 1] = this.f1129y;
                     drawable3.pointsCount3 = i4 + 1;
                 }
             }
@@ -428,8 +435,8 @@ public class StarParticlesView extends View {
                         drawable.pointsCount3 = i4 + 1;
                     }
                 } else {
-                    this.drawingX = this.f1111x;
-                    this.drawingY = this.f1113y;
+                    this.drawingX = this.f1127x;
+                    this.drawingY = this.f1129y;
                 }
                 boolean z = false;
                 if (!drawable.excludeRect.isEmpty() && Drawable.this.excludeRect.contains(this.drawingX, this.drawingY)) {
@@ -454,21 +461,26 @@ public class StarParticlesView extends View {
                             f3 = Utilities.clamp(1.0f - (((float) (j2 - j)) / 150.0f), 1.0f, 0.0f);
                         }
                     }
-                    Drawable.this.paint.setAlpha((int) (this.alpha * (1.0f - f3) * f));
-                    canvas.drawBitmap(Drawable.this.stars[this.starIndex], -(Drawable.this.stars[this.starIndex].getWidth() >> 1), -(Drawable.this.stars[this.starIndex].getHeight() >> 1), Drawable.this.paint);
+                    Drawable drawable2 = Drawable.this;
+                    Paint paint = drawable2.overridePaint;
+                    if (paint == null) {
+                        paint = drawable2.paint;
+                    }
+                    paint.setAlpha((int) (this.alpha * (1.0f - f3) * f));
+                    canvas.drawBitmap(Drawable.this.stars[this.starIndex], -(Drawable.this.stars[this.starIndex].getWidth() >> 1), -(Drawable.this.stars[this.starIndex].getHeight() >> 1), paint);
                     canvas.restore();
                 }
                 if (Drawable.this.paused) {
                     return;
                 }
-                float m35dp = AndroidUtilities.m35dp(4.0f) * (Drawable.this.f1107dt / 660.0f);
-                Drawable drawable2 = Drawable.this;
-                float f5 = m35dp * drawable2.speedScale;
-                this.f1111x += this.vecX * f5;
-                this.f1113y += this.vecY * f5;
+                float m35dp = AndroidUtilities.m35dp(4.0f) * (Drawable.this.f1123dt / 660.0f);
+                Drawable drawable3 = Drawable.this;
+                float f5 = m35dp * drawable3.speedScale;
+                this.f1127x += this.vecX * f5;
+                this.f1129y += this.vecY * f5;
                 float f6 = this.inProgress;
                 if (f6 != 1.0f) {
-                    float f7 = f6 + (drawable2.f1107dt / 200.0f);
+                    float f7 = f6 + (drawable3.f1123dt / 200.0f);
                     this.inProgress = f7;
                     if (f7 > 1.0f) {
                         this.inProgress = 1.0f;
@@ -484,8 +496,9 @@ public class StarParticlesView extends View {
                 this.starIndex = Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.stars.length);
                 this.lifeTime = j + Drawable.this.minLifeTime + Utilities.fastRandom.nextInt(drawable.randLifeTime);
                 this.randomRotate = 0.0f;
-                if (Drawable.this.distributionAlgorithm) {
-                    float abs = Drawable.this.rect.left + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.width());
+                Drawable drawable2 = Drawable.this;
+                if (drawable2.distributionAlgorithm) {
+                    float abs = drawable2.rect.left + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.width());
                     float abs2 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
                     float f3 = 0.0f;
                     for (int i2 = 0; i2 < 10; i2++) {
@@ -493,13 +506,13 @@ public class StarParticlesView extends View {
                         float abs4 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
                         float f4 = 2.14748365E9f;
                         for (int i3 = 0; i3 < Drawable.this.particles.size(); i3++) {
-                            Drawable drawable2 = Drawable.this;
-                            if (drawable2.startFromCenter) {
-                                f = drawable2.particles.get(i3).f1112x2 - abs3;
-                                f2 = Drawable.this.particles.get(i3).f1114y2;
+                            Drawable drawable3 = Drawable.this;
+                            if (drawable3.startFromCenter) {
+                                f = drawable3.particles.get(i3).f1128x2 - abs3;
+                                f2 = Drawable.this.particles.get(i3).f1130y2;
                             } else {
-                                f = drawable2.particles.get(i3).f1111x - abs3;
-                                f2 = Drawable.this.particles.get(i3).f1113y;
+                                f = drawable3.particles.get(i3).f1127x - abs3;
+                                f2 = Drawable.this.particles.get(i3).f1129y;
                             }
                             float f5 = f2 - abs4;
                             float f6 = (f * f) + (f5 * f5);
@@ -513,27 +526,26 @@ public class StarParticlesView extends View {
                             f3 = f4;
                         }
                     }
-                    this.f1111x = abs;
-                    this.f1113y = abs2;
+                    this.f1127x = abs;
+                    this.f1129y = abs2;
+                } else if (drawable2.isCircle) {
+                    float width = Drawable.this.rect.width();
+                    float f7 = Drawable.this.excludeRadius;
+                    float abs5 = ((Math.abs(Utilities.fastRandom.nextInt() % 1000) / 1000.0f) * (width - f7)) + f7;
+                    float centerX = Drawable.this.rect.centerX();
+                    double d = abs5;
+                    double sin = Math.sin(Math.toRadians(r4));
+                    Double.isNaN(d);
+                    this.f1127x = centerX + ((float) (sin * d));
+                    float centerY = Drawable.this.rect.centerY();
+                    double cos = Math.cos(Math.toRadians(r4));
+                    Double.isNaN(d);
+                    this.f1129y = centerY + ((float) (d * cos));
                 } else {
-                    Drawable drawable3 = Drawable.this;
-                    if (drawable3.isCircle) {
-                        float abs5 = (Math.abs(Utilities.fastRandom.nextInt() % 1000) / 1000.0f) * Drawable.this.rect.width();
-                        float centerX = Drawable.this.rect.centerX();
-                        double d = abs5;
-                        double sin = Math.sin(Math.toRadians(r4));
-                        Double.isNaN(d);
-                        this.f1111x = centerX + ((float) (sin * d));
-                        float centerY = Drawable.this.rect.centerY();
-                        double cos = Math.cos(Math.toRadians(r4));
-                        Double.isNaN(d);
-                        this.f1113y = centerY + ((float) (d * cos));
-                    } else {
-                        this.f1111x = drawable3.rect.left + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.width());
-                        this.f1113y = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
-                    }
+                    this.f1127x = drawable2.rect.left + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.width());
+                    this.f1129y = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
                 }
-                double atan2 = Math.atan2(this.f1111x - Drawable.this.rect.centerX(), this.f1113y - Drawable.this.rect.centerY());
+                double atan2 = Math.atan2(this.f1127x - Drawable.this.rect.centerX(), this.f1129y - Drawable.this.rect.centerY());
                 this.vecX = (float) Math.sin(atan2);
                 this.vecY = (float) Math.cos(atan2);
                 if (Drawable.this.svg) {
@@ -550,10 +562,10 @@ public class StarParticlesView extends View {
                     this.inProgress = 0.0f;
                 }
                 if (drawable4.startFromCenter) {
-                    this.f1112x2 = this.f1111x;
-                    this.f1114y2 = this.f1113y;
-                    this.f1111x = drawable4.rect.centerX();
-                    this.f1113y = Drawable.this.rect.centerY();
+                    this.f1128x2 = this.f1127x;
+                    this.f1130y2 = this.f1129y;
+                    this.f1127x = drawable4.rect.centerX();
+                    this.f1129y = Drawable.this.rect.centerY();
                 }
             }
         }

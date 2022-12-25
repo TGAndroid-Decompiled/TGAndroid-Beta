@@ -52,15 +52,15 @@ public class FilesMigrationService extends Service {
     @Override
     public int onStartCommand(Intent intent, int i, int i2) {
         NotificationsController.checkOtherNotificationsChannel();
-        Notification build = new Notification.Builder(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(C1010R.string.MigratingFiles)).setAutoCancel(false).setSmallIcon(C1010R.C1011drawable.notification).build();
+        Notification build = new Notification.Builder(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(C1072R.string.MigratingFiles)).setAutoCancel(false).setSmallIcon(C1072R.C1073drawable.notification).build();
         isRunning = true;
-        new C09571().start();
+        new C10191().start();
         startForeground(301, build);
         return super.onStartCommand(intent, i, i2);
     }
 
-    public class C09571 extends Thread {
-        C09571() {
+    public class C10191 extends Thread {
+        C10191() {
         }
 
         @Override
@@ -69,7 +69,7 @@ public class FilesMigrationService extends Service {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    FilesMigrationService.C09571.this.lambda$run$0();
+                    FilesMigrationService.C10191.this.lambda$run$0();
                 }
             });
         }
@@ -184,7 +184,7 @@ public class FilesMigrationService extends Service {
     }
 
     public void lambda$updateProgress$1(int i) {
-        ((NotificationManager) getSystemService("notification")).notify(301, new Notification.Builder(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(C1010R.string.MigratingFiles)).setContentText(String.format("%s/%s", Integer.valueOf(i), Integer.valueOf(this.totalFilesCount))).setSmallIcon(C1010R.C1011drawable.notification).setAutoCancel(false).setProgress(this.totalFilesCount, i, false).build());
+        ((NotificationManager) getSystemService("notification")).notify(301, new Notification.Builder(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(getText(C1072R.string.MigratingFiles)).setContentText(String.format("%s/%s", Integer.valueOf(i), Integer.valueOf(this.totalFilesCount))).setSmallIcon(C1072R.C1073drawable.notification).setAutoCancel(false).setProgress(this.totalFilesCount, i, false).build());
     }
 
     public static void checkBottomSheet(BaseFragment baseFragment) {
@@ -252,20 +252,20 @@ public class FilesMigrationService extends Service {
             textView.setTextColor(Theme.getColor("dialogTextBlack"));
             textView.setTextSize(1, 20.0f);
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            textView.setText(LocaleController.getString("MigrateOldFolderTitle", C1010R.string.MigrateOldFolderTitle));
+            textView.setText(LocaleController.getString("MigrateOldFolderTitle", C1072R.string.MigrateOldFolderTitle));
             linearLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
             TextView textView2 = new TextView(parentActivity);
             textView2.setGravity(8388611);
             textView2.setTextSize(1, 15.0f);
             textView2.setTextColor(Theme.getColor("dialogTextBlack"));
-            textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString("MigrateOldFolderDescription", C1010R.string.MigrateOldFolderDescription)));
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString("MigrateOldFolderDescription", C1072R.string.MigrateOldFolderDescription)));
             linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
             TextView textView3 = new TextView(parentActivity);
             textView3.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
             textView3.setGravity(17);
             textView3.setTextSize(1, 14.0f);
             textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            textView3.setText(LocaleController.getString("MigrateOldFolderButton", C1010R.string.MigrateOldFolderButton));
+            textView3.setText(LocaleController.getString("MigrateOldFolderButton", C1072R.string.MigrateOldFolderButton));
             textView3.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             textView3.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 6.0f));
             linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));

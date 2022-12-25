@@ -8,7 +8,7 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 
 public class SerializedData extends AbstractSerializedData {
-    private DataInputStream f843in;
+    private DataInputStream f852in;
     private ByteArrayInputStream inbuf;
     protected boolean isOut;
     private boolean justCalc;
@@ -55,7 +55,7 @@ public class SerializedData extends AbstractSerializedData {
         this.justCalc = false;
         this.isOut = false;
         this.inbuf = new ByteArrayInputStream(bArr);
-        this.f843in = new DataInputStream(this.inbuf);
+        this.f852in = new DataInputStream(this.inbuf);
         this.len = 0;
     }
 
@@ -70,10 +70,10 @@ public class SerializedData extends AbstractSerializedData {
             FileLog.m31e(e);
         }
         try {
-            DataInputStream dataInputStream = this.f843in;
+            DataInputStream dataInputStream = this.f852in;
             if (dataInputStream != null) {
                 dataInputStream.close();
-                this.f843in = null;
+                this.f852in = null;
             }
         } catch (Exception e2) {
             FileLog.m31e(e2);
@@ -348,7 +348,7 @@ public class SerializedData extends AbstractSerializedData {
             return;
         }
         if (!this.justCalc) {
-            DataInputStream dataInputStream = this.f843in;
+            DataInputStream dataInputStream = this.f852in;
             if (dataInputStream != null) {
                 try {
                     dataInputStream.skipBytes(i);
@@ -388,7 +388,7 @@ public class SerializedData extends AbstractSerializedData {
 
     public byte readByte(boolean z) {
         try {
-            byte readByte = this.f843in.readByte();
+            byte readByte = this.f852in.readByte();
             this.len++;
             return readByte;
         } catch (Exception e) {
@@ -407,7 +407,7 @@ public class SerializedData extends AbstractSerializedData {
     @Override
     public void readBytes(byte[] bArr, boolean z) {
         try {
-            this.f843in.read(bArr);
+            this.f852in.read(bArr);
             this.len += bArr.length;
         } catch (Exception e) {
             if (z) {
@@ -431,20 +431,20 @@ public class SerializedData extends AbstractSerializedData {
     public String readString(boolean z) {
         int i;
         try {
-            int read = this.f843in.read();
+            int read = this.f852in.read();
             this.len++;
             if (read >= 254) {
-                read = this.f843in.read() | (this.f843in.read() << 8) | (this.f843in.read() << 16);
+                read = this.f852in.read() | (this.f852in.read() << 8) | (this.f852in.read() << 16);
                 this.len += 3;
                 i = 4;
             } else {
                 i = 1;
             }
             byte[] bArr = new byte[read];
-            this.f843in.read(bArr);
+            this.f852in.read(bArr);
             this.len++;
             while ((read + i) % 4 != 0) {
-                this.f843in.read();
+                this.f852in.read();
                 this.len++;
                 i++;
             }
@@ -466,20 +466,20 @@ public class SerializedData extends AbstractSerializedData {
     public byte[] readByteArray(boolean z) {
         int i;
         try {
-            int read = this.f843in.read();
+            int read = this.f852in.read();
             this.len++;
             if (read >= 254) {
-                read = this.f843in.read() | (this.f843in.read() << 8) | (this.f843in.read() << 16);
+                read = this.f852in.read() | (this.f852in.read() << 8) | (this.f852in.read() << 16);
                 this.len += 3;
                 i = 4;
             } else {
                 i = 1;
             }
             byte[] bArr = new byte[read];
-            this.f843in.read(bArr);
+            this.f852in.read(bArr);
             this.len++;
             while ((read + i) % 4 != 0) {
-                this.f843in.read();
+                this.f852in.read();
                 this.len++;
                 i++;
             }
@@ -535,7 +535,7 @@ public class SerializedData extends AbstractSerializedData {
         int i = 0;
         for (int i2 = 0; i2 < 4; i2++) {
             try {
-                i |= this.f843in.read() << (i2 * 8);
+                i |= this.f852in.read() << (i2 * 8);
                 this.len++;
             } catch (Exception e) {
                 if (z) {
@@ -556,7 +556,7 @@ public class SerializedData extends AbstractSerializedData {
         long j = 0;
         for (int i = 0; i < 8; i++) {
             try {
-                j |= this.f843in.read() << (i * 8);
+                j |= this.f852in.read() << (i * 8);
                 this.len++;
             } catch (Exception e) {
                 if (z) {
@@ -575,7 +575,7 @@ public class SerializedData extends AbstractSerializedData {
     @Override
     public int remaining() {
         try {
-            return this.f843in.available();
+            return this.f852in.available();
         } catch (Exception unused) {
             return ConnectionsManager.DEFAULT_DATACENTER_ID;
         }

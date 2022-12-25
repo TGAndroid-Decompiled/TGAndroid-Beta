@@ -8,8 +8,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
@@ -188,11 +187,11 @@ public class DialogMeUrlCell extends BaseCell {
             str = "Url";
         } else {
             this.avatarImage.setImage(null, null, this.avatarDrawable, null, tLRPC$RecentMeUrl, 0);
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         }
         String str4 = MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + this.recentMeUrl.url;
         if (TextUtils.isEmpty(str)) {
-            str = LocaleController.getString("HiddenName", C1010R.string.HiddenName);
+            str = LocaleController.getString("HiddenName", C1072R.string.HiddenName);
         }
         if (!LocaleController.isRTL) {
             measuredWidth = getMeasuredWidth() - this.nameLeft;

@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.LayoutHelper;
 
@@ -23,12 +23,12 @@ public class ChatUnreadCell extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         FrameLayout frameLayout = new FrameLayout(context);
         this.backgroundLayout = frameLayout;
-        frameLayout.setBackgroundResource(C1010R.C1011drawable.newmsg_divider);
+        frameLayout.setBackgroundResource(C1072R.C1073drawable.newmsg_divider);
         this.backgroundLayout.getBackground().setColorFilter(new PorterDuffColorFilter(getColor("chat_unreadMessagesStartBackground"), PorterDuff.Mode.MULTIPLY));
         addView(this.backgroundLayout, LayoutHelper.createFrame(-1, 27.0f, 51, 0.0f, 7.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
-        imageView.setImageResource(C1010R.C1011drawable.ic_ab_new);
+        imageView.setImageResource(C1072R.C1073drawable.ic_ab_new);
         this.imageView.setColorFilter(new PorterDuffColorFilter(getColor("chat_unreadMessagesStartArrowIcon"), PorterDuff.Mode.MULTIPLY));
         this.imageView.setPadding(0, AndroidUtilities.m35dp(2.0f), 0, 0);
         this.backgroundLayout.addView(this.imageView, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));

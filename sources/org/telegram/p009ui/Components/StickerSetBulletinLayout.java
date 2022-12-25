@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -105,21 +105,21 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
             case 0:
                 if (tLRPC$StickerSet2 != null) {
                     if (tLRPC$StickerSet2.masks) {
-                        this.titleTextView.setText(LocaleController.getString("MasksRemoved", C1010R.string.MasksRemoved));
-                        this.subtitleTextView.setText(LocaleController.formatString("MasksRemovedInfo", C1010R.string.MasksRemovedInfo, tLRPC$StickerSet2.title));
+                        this.titleTextView.setText(LocaleController.getString("MasksRemoved", C1072R.string.MasksRemoved));
+                        this.subtitleTextView.setText(LocaleController.formatString("MasksRemovedInfo", C1072R.string.MasksRemovedInfo, tLRPC$StickerSet2.title));
                         return;
                     } else if (tLRPC$StickerSet2.emojis) {
-                        this.titleTextView.setText(LocaleController.getString("EmojiRemoved", C1010R.string.EmojiRemoved));
+                        this.titleTextView.setText(LocaleController.getString("EmojiRemoved", C1072R.string.EmojiRemoved));
                         if (i > 1) {
                             this.subtitleTextView.setText(LocaleController.formatPluralString("EmojiRemovedMultipleInfo", i, new Object[0]));
                             return;
                         } else {
-                            this.subtitleTextView.setText(LocaleController.formatString("EmojiRemovedInfo", C1010R.string.EmojiRemovedInfo, tLRPC$StickerSet2.title));
+                            this.subtitleTextView.setText(LocaleController.formatString("EmojiRemovedInfo", C1072R.string.EmojiRemovedInfo, tLRPC$StickerSet2.title));
                             return;
                         }
                     } else {
-                        this.titleTextView.setText(LocaleController.getString("StickersRemoved", C1010R.string.StickersRemoved));
-                        this.subtitleTextView.setText(LocaleController.formatString("StickersRemovedInfo", C1010R.string.StickersRemovedInfo, tLRPC$StickerSet2.title));
+                        this.titleTextView.setText(LocaleController.getString("StickersRemoved", C1072R.string.StickersRemoved));
+                        this.subtitleTextView.setText(LocaleController.formatString("StickersRemovedInfo", C1072R.string.StickersRemovedInfo, tLRPC$StickerSet2.title));
                         return;
                     }
                 }
@@ -127,53 +127,53 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
             case 1:
                 if (tLRPC$StickerSet2 != null) {
                     if (tLRPC$StickerSet2.masks) {
-                        this.titleTextView.setText(LocaleController.getString("MasksArchived", C1010R.string.MasksArchived));
-                        this.subtitleTextView.setText(LocaleController.formatString("MasksArchivedInfo", C1010R.string.MasksArchivedInfo, tLRPC$StickerSet2.title));
+                        this.titleTextView.setText(LocaleController.getString("MasksArchived", C1072R.string.MasksArchived));
+                        this.subtitleTextView.setText(LocaleController.formatString("MasksArchivedInfo", C1072R.string.MasksArchivedInfo, tLRPC$StickerSet2.title));
                         return;
                     }
-                    this.titleTextView.setText(LocaleController.getString("StickersArchived", C1010R.string.StickersArchived));
-                    this.subtitleTextView.setText(LocaleController.formatString("StickersArchivedInfo", C1010R.string.StickersArchivedInfo, tLRPC$StickerSet2.title));
+                    this.titleTextView.setText(LocaleController.getString("StickersArchived", C1072R.string.StickersArchived));
+                    this.subtitleTextView.setText(LocaleController.formatString("StickersArchivedInfo", C1072R.string.StickersArchivedInfo, tLRPC$StickerSet2.title));
                     return;
                 }
                 return;
             case 2:
                 if (tLRPC$StickerSet2 != null) {
                     if (tLRPC$StickerSet2.masks) {
-                        this.titleTextView.setText(LocaleController.getString("AddMasksInstalled", C1010R.string.AddMasksInstalled));
-                        this.subtitleTextView.setText(LocaleController.formatString("AddMasksInstalledInfo", C1010R.string.AddMasksInstalledInfo, tLRPC$StickerSet2.title));
+                        this.titleTextView.setText(LocaleController.getString("AddMasksInstalled", C1072R.string.AddMasksInstalled));
+                        this.subtitleTextView.setText(LocaleController.formatString("AddMasksInstalledInfo", C1072R.string.AddMasksInstalledInfo, tLRPC$StickerSet2.title));
                         return;
                     } else if (tLRPC$StickerSet2.emojis) {
-                        this.titleTextView.setText(LocaleController.getString("AddEmojiInstalled", C1010R.string.AddEmojiInstalled));
+                        this.titleTextView.setText(LocaleController.getString("AddEmojiInstalled", C1072R.string.AddEmojiInstalled));
                         if (i > 1) {
                             this.subtitleTextView.setText(LocaleController.formatPluralString("AddEmojiMultipleInstalledInfo", i, new Object[0]));
                             return;
                         } else {
-                            this.subtitleTextView.setText(LocaleController.formatString("AddEmojiInstalledInfo", C1010R.string.AddEmojiInstalledInfo, tLRPC$StickerSet2.title));
+                            this.subtitleTextView.setText(LocaleController.formatString("AddEmojiInstalledInfo", C1072R.string.AddEmojiInstalledInfo, tLRPC$StickerSet2.title));
                             return;
                         }
                     } else {
-                        this.titleTextView.setText(LocaleController.getString("AddStickersInstalled", C1010R.string.AddStickersInstalled));
-                        this.subtitleTextView.setText(LocaleController.formatString("AddStickersInstalledInfo", C1010R.string.AddStickersInstalledInfo, tLRPC$StickerSet2.title));
+                        this.titleTextView.setText(LocaleController.getString("AddStickersInstalled", C1072R.string.AddStickersInstalled));
+                        this.subtitleTextView.setText(LocaleController.formatString("AddStickersInstalledInfo", C1072R.string.AddStickersInstalledInfo, tLRPC$StickerSet2.title));
                         return;
                     }
                 }
                 return;
             case 3:
-                this.titleTextView.setText(LocaleController.getString("RemovedFromRecent", C1010R.string.RemovedFromRecent));
+                this.titleTextView.setText(LocaleController.getString("RemovedFromRecent", C1072R.string.RemovedFromRecent));
                 this.subtitleTextView.setVisibility(8);
                 return;
             case 4:
-                this.titleTextView.setText(LocaleController.getString("RemovedFromFavorites", C1010R.string.RemovedFromFavorites));
+                this.titleTextView.setText(LocaleController.getString("RemovedFromFavorites", C1072R.string.RemovedFromFavorites));
                 this.subtitleTextView.setVisibility(8);
                 return;
             case 5:
-                this.titleTextView.setText(LocaleController.getString("AddedToFavorites", C1010R.string.AddedToFavorites));
+                this.titleTextView.setText(LocaleController.getString("AddedToFavorites", C1072R.string.AddedToFavorites));
                 this.subtitleTextView.setVisibility(8);
                 return;
             case 6:
                 if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium() && !MessagesController.getInstance(UserConfig.selectedAccount).premiumLocked) {
-                    this.titleTextView.setText(LocaleController.formatString("LimitReachedFavoriteStickers", C1010R.string.LimitReachedFavoriteStickers, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).stickersFavedLimitDefault)));
-                    this.subtitleTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString("LimitReachedFavoriteStickersSubtitle", C1010R.string.LimitReachedFavoriteStickersSubtitle, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).stickersFavedLimitPremium)), new Runnable() {
+                    this.titleTextView.setText(LocaleController.formatString("LimitReachedFavoriteStickers", C1072R.string.LimitReachedFavoriteStickers, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).stickersFavedLimitDefault)));
+                    this.subtitleTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString("LimitReachedFavoriteStickersSubtitle", C1072R.string.LimitReachedFavoriteStickersSubtitle, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).stickersFavedLimitPremium)), new Runnable() {
                         @Override
                         public final void run() {
                             StickerSetBulletinLayout.lambda$new$0(context);
@@ -181,13 +181,13 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
                     }));
                     return;
                 }
-                this.titleTextView.setText(LocaleController.formatString("LimitReachedFavoriteStickers", C1010R.string.LimitReachedFavoriteStickers, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).stickersFavedLimitPremium)));
-                this.subtitleTextView.setText(LocaleController.formatString("LimitReachedFavoriteStickersSubtitlePremium", C1010R.string.LimitReachedFavoriteStickersSubtitlePremium, new Object[0]));
+                this.titleTextView.setText(LocaleController.formatString("LimitReachedFavoriteStickers", C1072R.string.LimitReachedFavoriteStickers, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).stickersFavedLimitPremium)));
+                this.subtitleTextView.setText(LocaleController.formatString("LimitReachedFavoriteStickersSubtitlePremium", C1072R.string.LimitReachedFavoriteStickersSubtitlePremium, new Object[0]));
                 return;
             case 7:
                 if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium() && !MessagesController.getInstance(UserConfig.selectedAccount).premiumLocked) {
-                    this.titleTextView.setText(LocaleController.formatString("LimitReachedFavoriteGifs", C1010R.string.LimitReachedFavoriteGifs, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).savedGifsLimitDefault)));
-                    this.subtitleTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString("LimitReachedFavoriteGifsSubtitle", C1010R.string.LimitReachedFavoriteGifsSubtitle, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).savedGifsLimitPremium)), new Runnable() {
+                    this.titleTextView.setText(LocaleController.formatString("LimitReachedFavoriteGifs", C1072R.string.LimitReachedFavoriteGifs, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).savedGifsLimitDefault)));
+                    this.subtitleTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString("LimitReachedFavoriteGifsSubtitle", C1072R.string.LimitReachedFavoriteGifsSubtitle, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).savedGifsLimitPremium)), new Runnable() {
                         @Override
                         public final void run() {
                             StickerSetBulletinLayout.lambda$new$1(context);
@@ -195,8 +195,8 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
                     }));
                     return;
                 }
-                this.titleTextView.setText(LocaleController.formatString("LimitReachedFavoriteGifs", C1010R.string.LimitReachedFavoriteGifs, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).savedGifsLimitPremium)));
-                this.subtitleTextView.setText(LocaleController.formatString("LimitReachedFavoriteGifsSubtitlePremium", C1010R.string.LimitReachedFavoriteGifsSubtitlePremium, new Object[0]));
+                this.titleTextView.setText(LocaleController.formatString("LimitReachedFavoriteGifs", C1072R.string.LimitReachedFavoriteGifs, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).savedGifsLimitPremium)));
+                this.subtitleTextView.setText(LocaleController.formatString("LimitReachedFavoriteGifsSubtitlePremium", C1072R.string.LimitReachedFavoriteGifsSubtitlePremium, new Object[0]));
                 return;
             default:
                 return;
@@ -206,14 +206,14 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
     public static void lambda$new$0(Context context) {
         Activity findActivity = AndroidUtilities.findActivity(context);
         if (findActivity instanceof LaunchActivity) {
-            ((LaunchActivity) findActivity).lambda$runLinkRequest$67(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(10)));
+            ((LaunchActivity) findActivity).lambda$runLinkRequest$71(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(10)));
         }
     }
 
     public static void lambda$new$1(Context context) {
         Activity findActivity = AndroidUtilities.findActivity(context);
         if (findActivity instanceof LaunchActivity) {
-            ((LaunchActivity) findActivity).lambda$runLinkRequest$67(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(9)));
+            ((LaunchActivity) findActivity).lambda$runLinkRequest$71(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(9)));
         }
     }
 }

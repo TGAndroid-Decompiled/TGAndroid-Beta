@@ -91,7 +91,7 @@ public class Bitmaps {
         Bitmap.Config config = Bitmap.Config.ARGB_8888;
         Bitmap.Config config2 = bitmap.getConfig();
         if (config2 != null) {
-            int i8 = C09422.$SwitchMap$android$graphics$Bitmap$Config[config2.ordinal()];
+            int i8 = C10042.$SwitchMap$android$graphics$Bitmap$Config[config2.ordinal()];
             if (i8 == 1) {
                 config = Bitmap.Config.ARGB_8888;
             } else if (i8 == 2) {
@@ -135,7 +135,7 @@ public class Bitmaps {
         return createBitmap;
     }
 
-    public static class C09422 {
+    public static class C10042 {
         static final int[] $SwitchMap$android$graphics$Bitmap$Config;
 
         static {

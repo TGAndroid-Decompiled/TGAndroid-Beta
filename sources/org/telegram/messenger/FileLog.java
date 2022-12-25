@@ -211,7 +211,7 @@ public class FileLog {
             try {
                 File externalFilesDir = ApplicationLoader.applicationContext.getExternalFilesDir(null);
                 if (externalFilesDir == null) {
-                    return BuildConfig.APP_CENTER_HASH;
+                    return "";
                 }
                 File file = new File(externalFilesDir.getAbsolutePath() + "/logs");
                 file.mkdirs();
@@ -220,10 +220,10 @@ public class FileLog {
                 return getInstance().networkFile.getAbsolutePath();
             } catch (Throwable th) {
                 th.printStackTrace();
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     public static String getTonlibLogPath() {
@@ -231,7 +231,7 @@ public class FileLog {
             try {
                 File externalFilesDir = ApplicationLoader.applicationContext.getExternalFilesDir(null);
                 if (externalFilesDir == null) {
-                    return BuildConfig.APP_CENTER_HASH;
+                    return "";
                 }
                 File file = new File(externalFilesDir.getAbsolutePath() + "/logs");
                 file.mkdirs();
@@ -240,10 +240,10 @@ public class FileLog {
                 return getInstance().tonlibFile.getAbsolutePath();
             } catch (Throwable th) {
                 th.printStackTrace();
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     public static void m32e(final String str, final Throwable th) {

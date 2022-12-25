@@ -15,8 +15,10 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageLocation;
@@ -25,11 +27,14 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.p009ui.ActionBar.BackDrawable;
 import org.telegram.p009ui.ActionBar.BaseFragment;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.SimpleTextView;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
 import org.telegram.p009ui.Components.AudioPlayerAlert;
+import org.telegram.p009ui.Components.FloatingDebug.FloatingDebugController;
+import org.telegram.p009ui.Components.FloatingDebug.FloatingDebugProvider;
+import org.telegram.p009ui.Components.Paint.ShapeDetector;
 import org.telegram.p009ui.Components.SharedMediaLayout;
 import org.telegram.p009ui.ProfileActivity;
 import org.telegram.tgnet.TLObject;
@@ -39,7 +44,7 @@ import org.telegram.tgnet.TLRPC$ChatParticipant;
 import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$User;
 
-public class MediaActivity extends BaseFragment implements SharedMediaLayout.SharedMediaPreloaderDelegate {
+public class MediaActivity extends BaseFragment implements SharedMediaLayout.SharedMediaPreloaderDelegate, FloatingDebugProvider {
     ProfileActivity.AvatarImageView avatarImageView;
     private TLRPC$ChatFull currentChatInfo;
     private long dialogId;
@@ -73,7 +78,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setCastShadows(false);
         this.actionBar.setAddToContainer(false);
-        this.actionBar.setActionBarMenuOnItemClick(new C1069ActionBar.ActionBarMenuOnItemClick() {
+        this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
@@ -86,13 +91,13 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         final SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {
-                ((FrameLayout.LayoutParams) MediaActivity.this.sharedMediaLayout.getLayoutParams()).topMargin = C1069ActionBar.getCurrentActionBarHeight() + (((BaseFragment) MediaActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0);
+                ((FrameLayout.LayoutParams) MediaActivity.this.sharedMediaLayout.getLayoutParams()).topMargin = C1133ActionBar.getCurrentActionBarHeight() + (((BaseFragment) MediaActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0);
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
                 layoutParams.topMargin = ((BaseFragment) MediaActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0;
-                layoutParams.height = C1069ActionBar.getCurrentActionBarHeight();
-                ((FrameLayout.LayoutParams) MediaActivity.this.nameTextView.getLayoutParams()).topMargin = (((C1069ActionBar.getCurrentActionBarHeight() / 2) - AndroidUtilities.m35dp(22.0f)) / 2) + AndroidUtilities.m35dp((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 5.0f : 4.0f);
-                ((FrameLayout.LayoutParams) MediaActivity.this.mediaCounterTextView.getLayoutParams()).topMargin = ((C1069ActionBar.getCurrentActionBarHeight() / 2) + (((C1069ActionBar.getCurrentActionBarHeight() / 2) - AndroidUtilities.m35dp(19.0f)) / 2)) - AndroidUtilities.m35dp(3.0f);
-                ((FrameLayout.LayoutParams) MediaActivity.this.avatarImageView.getLayoutParams()).topMargin = (C1069ActionBar.getCurrentActionBarHeight() - AndroidUtilities.m35dp(42.0f)) / 2;
+                layoutParams.height = C1133ActionBar.getCurrentActionBarHeight();
+                ((FrameLayout.LayoutParams) MediaActivity.this.nameTextView.getLayoutParams()).topMargin = (((C1133ActionBar.getCurrentActionBarHeight() / 2) - AndroidUtilities.m35dp(22.0f)) / 2) + AndroidUtilities.m35dp((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 5.0f : 4.0f);
+                ((FrameLayout.LayoutParams) MediaActivity.this.mediaCounterTextView.getLayoutParams()).topMargin = ((C1133ActionBar.getCurrentActionBarHeight() / 2) + (((C1133ActionBar.getCurrentActionBarHeight() / 2) - AndroidUtilities.m35dp(19.0f)) / 2)) - AndroidUtilities.m35dp(3.0f);
+                ((FrameLayout.LayoutParams) MediaActivity.this.avatarImageView.getLayoutParams()).topMargin = (C1133ActionBar.getCurrentActionBarHeight() - AndroidUtilities.m35dp(42.0f)) / 2;
                 super.onMeasure(i, i2);
             }
 
@@ -130,10 +135,10 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (getImageReceiver().hasNotThumb()) {
-                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrProfilePicture", C1010R.string.AccDescrProfilePicture));
+                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrProfilePicture", C1072R.string.AccDescrProfilePicture));
                     if (Build.VERSION.SDK_INT >= 21) {
-                        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString("Open", C1010R.string.Open)));
-                        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString("AccDescrOpenInPhotoViewer", C1010R.string.AccDescrOpenInPhotoViewer)));
+                        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString("Open", C1072R.string.Open)));
+                        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString("AccDescrOpenInPhotoViewer", C1072R.string.AccDescrOpenInPhotoViewer)));
                         return;
                     }
                     return;
@@ -248,7 +253,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 TLRPC$User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
                 if (user2 != null) {
                     if (user2.self) {
-                        this.nameTextView.setText(LocaleController.getString("SavedMessages", C1010R.string.SavedMessages));
+                        this.nameTextView.setText(LocaleController.getString("SavedMessages", C1072R.string.SavedMessages));
                         avatarDrawable.setAvatarType(1);
                         avatarDrawable.setScaleSize(0.8f);
                     } else {
@@ -270,7 +275,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         }
         this.avatarImageView.setImage(ImageLocation.getForUserOrChat(tLObject, 1), "50_50", avatarDrawable, tLObject);
         if (TextUtils.isEmpty(this.nameTextView.getText())) {
-            this.nameTextView.setText(LocaleController.getString("SharedContentTitle", C1010R.string.SharedContentTitle));
+            this.nameTextView.setText(LocaleController.getString("SharedContentTitle", C1072R.string.SharedContentTitle));
         }
         if (this.sharedMediaLayout.isSearchItemVisible()) {
             r5 = 0;
@@ -387,5 +392,24 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             color = Theme.getColor("actionBarActionModeDefault");
         }
         return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
+    }
+
+    @Override
+    public List<FloatingDebugController.DebugItem> onGetDebugItems() {
+        FloatingDebugController.DebugItem[] debugItemArr = new FloatingDebugController.DebugItem[1];
+        StringBuilder sb = new StringBuilder();
+        sb.append(ShapeDetector.isLearning(getContext()) ? "Disable" : "Enable");
+        sb.append(" shape detector learning debug");
+        debugItemArr[0] = new FloatingDebugController.DebugItem(sb.toString(), new Runnable() {
+            @Override
+            public final void run() {
+                MediaActivity.this.lambda$onGetDebugItems$1();
+            }
+        });
+        return Arrays.asList(debugItemArr);
+    }
+
+    public void lambda$onGetDebugItems$1() {
+        ShapeDetector.setLearning(getContext(), !ShapeDetector.isLearning(getContext()));
     }
 }

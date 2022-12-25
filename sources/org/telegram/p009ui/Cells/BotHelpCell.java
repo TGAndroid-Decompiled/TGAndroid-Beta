@@ -15,8 +15,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.Iterator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -96,7 +95,7 @@ public class BotHelpCell extends View {
             setVisibility(8);
             return;
         }
-        String str2 = str == null ? BuildConfig.APP_CENTER_HASH : str;
+        String str2 = str == null ? "" : str;
         if (str2.equals(this.oldText) && this.isPhotoVisible == z2) {
             return;
         }
@@ -144,7 +143,7 @@ public class BotHelpCell extends View {
         if (this.isTextVisible) {
             String[] split = str2.split("\n");
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            String string = LocaleController.getString(C1010R.string.BotInfoTitle);
+            String string = LocaleController.getString(C1072R.string.BotInfoTitle);
             if (z) {
                 spannableStringBuilder.append((CharSequence) string);
                 spannableStringBuilder.append((CharSequence) "\n\n");

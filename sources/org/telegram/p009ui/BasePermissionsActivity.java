@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
@@ -35,17 +35,17 @@ public class BasePermissionsActivity extends Activity {
                     groupCallActivity.enableCamera();
                 }
             } else {
-                showPermissionErrorAlert(C1010R.raw.permission_request_camera, LocaleController.getString("VoipNeedCameraPermission", C1010R.string.VoipNeedCameraPermission));
+                showPermissionErrorAlert(C1072R.raw.permission_request_camera, LocaleController.getString("VoipNeedCameraPermission", C1072R.string.VoipNeedCameraPermission));
             }
         } else if (i == 4 || i == 151) {
             if (!z) {
-                showPermissionErrorAlert(C1010R.raw.permission_request_folder, i == 151 ? LocaleController.getString("PermissionNoStorageAvatar", C1010R.string.PermissionNoStorageAvatar) : LocaleController.getString("PermissionStorageWithHint", C1010R.string.PermissionStorageWithHint));
+                showPermissionErrorAlert(C1072R.raw.permission_request_folder, i == 151 ? LocaleController.getString("PermissionNoStorageAvatar", C1072R.string.PermissionNoStorageAvatar) : LocaleController.getString("PermissionStorageWithHint", C1072R.string.PermissionStorageWithHint));
             } else {
                 ImageLoader.getInstance().checkMediaPaths();
             }
         } else if (i == 5) {
             if (!z) {
-                showPermissionErrorAlert(C1010R.raw.permission_request_contacts, LocaleController.getString("PermissionNoContactsSharing", C1010R.string.PermissionNoContactsSharing));
+                showPermissionErrorAlert(C1072R.raw.permission_request_contacts, LocaleController.getString("PermissionNoContactsSharing", C1072R.string.PermissionNoContactsSharing));
                 return false;
             }
             ContactsController.getInstance(this.currentAccount).forceImportContacts();
@@ -61,11 +61,11 @@ public class BasePermissionsActivity extends Activity {
                 }
             }
             if (i == 150 && !(z2 && z3)) {
-                showPermissionErrorAlert(C1010R.raw.permission_request_camera, LocaleController.getString("PermissionNoCameraMicVideo", C1010R.string.PermissionNoCameraMicVideo));
+                showPermissionErrorAlert(C1072R.raw.permission_request_camera, LocaleController.getString("PermissionNoCameraMicVideo", C1072R.string.PermissionNoCameraMicVideo));
             } else if (!z2) {
-                showPermissionErrorAlert(C1010R.raw.permission_request_microphone, LocaleController.getString("PermissionNoAudioWithHint", C1010R.string.PermissionNoAudioWithHint));
+                showPermissionErrorAlert(C1072R.raw.permission_request_microphone, LocaleController.getString("PermissionNoAudioWithHint", C1072R.string.PermissionNoAudioWithHint));
             } else if (!z3) {
-                showPermissionErrorAlert(C1010R.raw.permission_request_camera, LocaleController.getString("PermissionNoCameraWithHint", C1010R.string.PermissionNoCameraWithHint));
+                showPermissionErrorAlert(C1072R.raw.permission_request_camera, LocaleController.getString("PermissionNoCameraWithHint", C1072R.string.PermissionNoCameraWithHint));
             } else {
                 if (SharedConfig.inappCamera) {
                     CameraController.getInstance().initCamera(null);
@@ -74,7 +74,7 @@ public class BasePermissionsActivity extends Activity {
             }
         } else if (i == 18 || i == 19 || i == 20 || i == 22) {
             if (!z) {
-                showPermissionErrorAlert(C1010R.raw.permission_request_camera, LocaleController.getString("PermissionNoCameraWithHint", C1010R.string.PermissionNoCameraWithHint));
+                showPermissionErrorAlert(C1072R.raw.permission_request_camera, LocaleController.getString("PermissionNoCameraWithHint", C1072R.string.PermissionNoCameraWithHint));
             }
         } else if (i == 2) {
             NotificationCenter.getGlobalInstance().postNotificationName(z ? NotificationCenter.locationPermissionGranted : NotificationCenter.locationPermissionDenied, new Object[0]);
@@ -83,12 +83,12 @@ public class BasePermissionsActivity extends Activity {
     }
 
     public AlertDialog createPermissionErrorAlert(int i, String str) {
-        return new AlertDialog.Builder(this).setTopAnimation(i, 72, false, Theme.getColor("dialogTopBackground")).setMessage(AndroidUtilities.replaceTags(str)).setPositiveButton(LocaleController.getString("PermissionOpenSettings", C1010R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
+        return new AlertDialog.Builder(this).setTopAnimation(i, 72, false, Theme.getColor("dialogTopBackground")).setMessage(AndroidUtilities.replaceTags(str)).setPositiveButton(LocaleController.getString("PermissionOpenSettings", C1072R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
                 BasePermissionsActivity.this.lambda$createPermissionErrorAlert$0(dialogInterface, i2);
             }
-        }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", C1010R.string.ContactsPermissionAlertNotNow), null).create();
+        }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", C1072R.string.ContactsPermissionAlertNotNow), null).create();
     }
 
     public void lambda$createPermissionErrorAlert$0(DialogInterface dialogInterface, int i) {

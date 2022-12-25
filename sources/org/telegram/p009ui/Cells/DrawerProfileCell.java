@@ -16,10 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.telegram.PhoneFormat.C0933PhoneFormat;
+import org.telegram.PhoneFormat.C0995PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
@@ -98,7 +97,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         this.shadowView = imageView;
         imageView.setVisibility(4);
         this.shadowView.setScaleType(ImageView.ScaleType.FIT_XY);
-        this.shadowView.setImageResource(C1010R.C1011drawable.bottom_shadow);
+        this.shadowView.setImageResource(C1072R.C1073drawable.bottom_shadow);
         addView(this.shadowView, LayoutHelper.createFrame(-1, 70, 83));
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
@@ -142,13 +141,13 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         ImageView imageView2 = new ImageView(context);
         this.arrowView = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        this.arrowView.setImageResource(C1010R.C1011drawable.msg_expand);
+        this.arrowView.setImageResource(C1072R.C1073drawable.msg_expand);
         addView(this.arrowView, LayoutHelper.createFrame(59, 59, 85));
         setArrowState(false);
         boolean z = sunDrawable == null;
         if (z) {
-            int i = C1010R.raw.sun;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(28.0f), true, null);
+            int i = C1072R.raw.sun;
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(28.0f), true, null);
             sunDrawable = rLottieDrawable;
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
             if (Theme.isCurrentThemeDay()) {
@@ -164,9 +163,9 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (Theme.isCurrentThemeDark()) {
-                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToDayTheme", C1010R.string.AccDescrSwitchToDayTheme));
+                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToDayTheme", C1072R.string.AccDescrSwitchToDayTheme));
                 } else {
-                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToNightTheme", C1010R.string.AccDescrSwitchToNightTheme));
+                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToNightTheme", C1072R.string.AccDescrSwitchToNightTheme));
                 }
             }
         };
@@ -244,8 +243,8 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         private int effectsSize;
         private int renderedEffectsSize;
         private int stateSize;
-        private float f1011y1;
-        private float f1012y2;
+        private float f1021y1;
+        private float f1022y2;
 
         public AnimatedStatusView(Context context, int i, int i2) {
             super(context);
@@ -263,13 +262,13 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         public void translate(float f, float f2) {
             setTranslationX(f - (getMeasuredWidth() / 2.0f));
             float measuredHeight = f2 - (getMeasuredHeight() / 2.0f);
-            this.f1011y1 = measuredHeight;
-            setTranslationY(measuredHeight + this.f1012y2);
+            this.f1021y1 = measuredHeight;
+            setTranslationY(measuredHeight + this.f1022y2);
         }
 
         public void translateY2(float f) {
-            float f2 = this.f1011y1;
-            this.f1012y2 = f;
+            float f2 = this.f1021y1;
+            this.f1022y2 = f;
             setTranslationY(f2 + f);
         }
 
@@ -524,7 +523,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
             this.animatedStatus.animate().alpha(1.0f).setDuration(200L).start();
             this.nameTextView.setDrawablePadding(AndroidUtilities.m35dp(4.0f));
             if (this.premiumStar == null) {
-                this.premiumStar = getResources().getDrawable(C1010R.C1011drawable.msg_premium_liststar).mutate();
+                this.premiumStar = getResources().getDrawable(C1072R.C1073drawable.msg_premium_liststar).mutate();
             }
             this.premiumStar.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chats_menuPhoneCats"), PorterDuff.Mode.MULTIPLY));
             this.status.set(this.premiumStar, true);
@@ -536,8 +535,8 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         this.animatedStatus.setColor(Theme.getColor(Theme.isCurrentThemeDark() ? "chats_verifiedBackground" : "chats_menuPhoneCats"));
         this.status.setColor(Integer.valueOf(Theme.getColor(Theme.isCurrentThemeDark() ? "chats_verifiedBackground" : "chats_menuPhoneCats")));
         TextView textView = this.phoneTextView;
-        C0933PhoneFormat c0933PhoneFormat = C0933PhoneFormat.getInstance();
-        textView.setText(c0933PhoneFormat.format("+" + tLRPC$User.phone));
+        C0995PhoneFormat c0995PhoneFormat = C0995PhoneFormat.getInstance();
+        textView.setText(c0995PhoneFormat.format("+" + tLRPC$User.phone));
         AvatarDrawable avatarDrawable = new AvatarDrawable(tLRPC$User);
         avatarDrawable.setColor(Theme.getColor("avatar_backgroundInProfileBlue"));
         this.avatarImageView.setForUserOrChat(tLRPC$User, avatarDrawable);
@@ -583,10 +582,10 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         }
         ImageView imageView = this.arrowView;
         if (this.accountsShown) {
-            i = C1010R.string.AccDescrHideAccounts;
+            i = C1072R.string.AccDescrHideAccounts;
             str = "AccDescrHideAccounts";
         } else {
-            i = C1010R.string.AccDescrShowAccounts;
+            i = C1072R.string.AccDescrShowAccounts;
             str = "AccDescrShowAccounts";
         }
         imageView.setContentDescription(LocaleController.getString(str, i));

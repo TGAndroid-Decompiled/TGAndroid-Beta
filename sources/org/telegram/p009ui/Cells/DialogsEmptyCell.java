@@ -14,11 +14,11 @@ import android.widget.ViewSwitcher;
 import androidx.core.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.BlurredRecyclerView;
 import org.telegram.p009ui.Components.Easings;
@@ -78,8 +78,8 @@ public class DialogsEmptyCell extends LinearLayout {
                 return lambda$new$2;
             }
         });
-        this.subtitleView.setInAnimation(context, C1010R.anim.alpha_in);
-        this.subtitleView.setOutAnimation(context, C1010R.anim.alpha_out);
+        this.subtitleView.setInAnimation(context, C1072R.anim.alpha_in);
+        this.subtitleView.setOutAnimation(context, C1072R.anim.alpha_out);
         addView(this.subtitleView, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 7.0f, 52.0f, 0.0f));
     }
 
@@ -116,26 +116,26 @@ public class DialogsEmptyCell extends LinearLayout {
         }
         this.currentType = i;
         if (i == 0 || i == 1) {
-            i2 = C1010R.raw.utyan_newborn;
-            string = LocaleController.getString("NoChatsHelp", C1010R.string.NoChatsHelp);
-            this.titleView.setText(LocaleController.getString("NoChats", C1010R.string.NoChats));
+            i2 = C1072R.raw.utyan_newborn;
+            string = LocaleController.getString("NoChatsHelp", C1072R.string.NoChatsHelp);
+            this.titleView.setText(LocaleController.getString("NoChats", C1072R.string.NoChats));
         } else if (i == 2) {
             this.imageView.setAutoRepeat(false);
-            i2 = C1010R.raw.filter_no_chats;
-            string = LocaleController.getString("FilterNoChatsToDisplayInfo", C1010R.string.FilterNoChatsToDisplayInfo);
-            this.titleView.setText(LocaleController.getString("FilterNoChatsToDisplay", C1010R.string.FilterNoChatsToDisplay));
+            i2 = C1072R.raw.filter_no_chats;
+            string = LocaleController.getString("FilterNoChatsToDisplayInfo", C1072R.string.FilterNoChatsToDisplayInfo);
+            this.titleView.setText(LocaleController.getString("FilterNoChatsToDisplay", C1072R.string.FilterNoChatsToDisplay));
         } else {
             this.imageView.setAutoRepeat(true);
-            i2 = C1010R.raw.filter_new;
-            string = LocaleController.getString("FilterAddingChatsInfo", C1010R.string.FilterAddingChatsInfo);
-            this.titleView.setText(LocaleController.getString("FilterAddingChats", C1010R.string.FilterAddingChats));
+            i2 = C1072R.raw.filter_new;
+            string = LocaleController.getString("FilterAddingChatsInfo", C1072R.string.FilterAddingChatsInfo);
+            this.titleView.setText(LocaleController.getString("FilterAddingChats", C1072R.string.FilterAddingChats));
         }
         if (i2 != 0) {
             this.imageView.setVisibility(0);
             if (this.currentType == 1) {
                 if (isUtyanAnimationTriggered()) {
                     this.utyanCollapseProgress = 1.0f;
-                    String string2 = LocaleController.getString("NoChatsContactsHelp", C1010R.string.NoChatsContactsHelp);
+                    String string2 = LocaleController.getString("NoChatsContactsHelp", C1072R.string.NoChatsContactsHelp);
                     if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
                         string2 = string2.replace('\n', ' ');
                     }
@@ -208,7 +208,7 @@ public class DialogsEmptyCell extends LinearLayout {
         }
         this.utyanAnimationTriggered = true;
         if (z) {
-            String string = LocaleController.getString("NoChatsContactsHelp", C1010R.string.NoChatsContactsHelp);
+            String string = LocaleController.getString("NoChatsContactsHelp", C1072R.string.NoChatsContactsHelp);
             if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
                 string = string.replace('\n', ' ');
             }
@@ -266,7 +266,7 @@ public class DialogsEmptyCell extends LinearLayout {
         }
         int i3 = this.currentType;
         if (i3 == 0 || i3 == 1) {
-            i2 = (int) (i2 - (((int) (C1069ActionBar.getCurrentActionBarHeight() / 2.0f)) * (1.0f - this.utyanCollapseProgress)));
+            i2 = (int) (i2 - (((int) (C1133ActionBar.getCurrentActionBarHeight() / 2.0f)) * (1.0f - this.utyanCollapseProgress)));
         }
         float f = i2;
         this.imageView.setTranslationY(f);
@@ -286,7 +286,7 @@ public class DialogsEmptyCell extends LinearLayout {
             size = View.MeasureSpec.getSize(i);
         }
         if (size == 0) {
-            size = (AndroidUtilities.displaySize.y - C1069ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
+            size = (AndroidUtilities.displaySize.y - C1133ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
         }
         if (getParent() instanceof BlurredRecyclerView) {
             size -= ((BlurredRecyclerView) getParent()).blurTopPadding;
@@ -311,7 +311,7 @@ public class DialogsEmptyCell extends LinearLayout {
                 size = View.MeasureSpec.getSize(i2);
             }
             if (size == 0) {
-                size = (AndroidUtilities.displaySize.y - C1069ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
+                size = (AndroidUtilities.displaySize.y - C1133ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
             }
             if (getParent() instanceof BlurredRecyclerView) {
                 size -= ((BlurredRecyclerView) getParent()).blurTopPadding;

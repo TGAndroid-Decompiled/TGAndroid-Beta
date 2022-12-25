@@ -9,6 +9,7 @@ public class TLRPC$TL_inputMediaUploadedDocument extends TLRPC$InputMedia {
         this.flags = readInt32;
         this.nosound_video = (readInt32 & 8) != 0;
         this.force_file = (readInt32 & 16) != 0;
+        this.spoiler = (readInt32 & 32) != 0;
         this.file = TLRPC$InputFile.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         if ((this.flags & 4) != 0) {
             this.thumb = TLRPC$InputFile.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -58,7 +59,9 @@ public class TLRPC$TL_inputMediaUploadedDocument extends TLRPC$InputMedia {
         this.flags = i;
         int i2 = this.force_file ? i | 16 : i & (-17);
         this.flags = i2;
-        abstractSerializedData.writeInt32(i2);
+        int i3 = this.spoiler ? i2 | 32 : i2 & (-33);
+        this.flags = i3;
+        abstractSerializedData.writeInt32(i3);
         this.file.serializeToStream(abstractSerializedData);
         if ((this.flags & 4) != 0) {
             this.thumb.serializeToStream(abstractSerializedData);
@@ -67,15 +70,15 @@ public class TLRPC$TL_inputMediaUploadedDocument extends TLRPC$InputMedia {
         abstractSerializedData.writeInt32(481674261);
         int size = this.attributes.size();
         abstractSerializedData.writeInt32(size);
-        for (int i3 = 0; i3 < size; i3++) {
-            this.attributes.get(i3).serializeToStream(abstractSerializedData);
+        for (int i4 = 0; i4 < size; i4++) {
+            this.attributes.get(i4).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.stickers.size();
             abstractSerializedData.writeInt32(size2);
-            for (int i4 = 0; i4 < size2; i4++) {
-                this.stickers.get(i4).serializeToStream(abstractSerializedData);
+            for (int i5 = 0; i5 < size2; i5++) {
+                this.stickers.get(i5).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 2) != 0) {

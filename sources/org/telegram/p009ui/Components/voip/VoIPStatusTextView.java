@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.Components.CubicBezierInterpolator;
 import org.telegram.p009ui.Components.EllipsizeSpanAnimator;
@@ -47,7 +47,7 @@ public class VoIPStatusTextView extends FrameLayout {
         this.reconnectTextView.setGravity(1);
         addView(this.reconnectTextView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));
         this.ellipsizeAnimator = new EllipsizeSpanAnimator(this);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("VoipReconnecting", C1010R.string.VoipReconnecting));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("VoipReconnecting", C1072R.string.VoipReconnecting));
         SpannableString spannableString = new SpannableString("...");
         this.ellipsizeAnimator.wrap(spannableString, 0);
         spannableStringBuilder.append((CharSequence) spannableString);
@@ -153,7 +153,7 @@ public class VoIPStatusTextView extends FrameLayout {
                 VoIPStatusTextView.lambda$replaceViews$1(view2, view, valueAnimator);
             }
         });
-        this.animator.addListener(new C29461(view, view2, runnable));
+        this.animator.addListener(new C30921(view, view2, runnable));
         this.animator.setDuration(250L).setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.animator.start();
     }
@@ -173,12 +173,12 @@ public class VoIPStatusTextView extends FrameLayout {
         view2.setScaleY(f3);
     }
 
-    public class C29461 extends AnimatorListenerAdapter {
+    public class C30921 extends AnimatorListenerAdapter {
         final View val$in;
         final Runnable val$onEnd;
         final View val$out;
 
-        C29461(View view, View view2, Runnable runnable) {
+        C30921(View view, View view2, Runnable runnable) {
             this.val$out = view;
             this.val$in = view2;
             this.val$onEnd = runnable;
@@ -214,7 +214,7 @@ public class VoIPStatusTextView extends FrameLayout {
                     voIPStatusTextView3.replaceViews(textViewArr[0], textViewArr[1], new Runnable() {
                         @Override
                         public final void run() {
-                            VoIPStatusTextView.C29461.this.lambda$onAnimationEnd$0();
+                            VoIPStatusTextView.C30921.this.lambda$onAnimationEnd$0();
                         }
                     });
                 }

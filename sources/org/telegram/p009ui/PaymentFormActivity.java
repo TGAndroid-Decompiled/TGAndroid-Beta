@@ -67,10 +67,9 @@ import java.util.Scanner;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.PhoneFormat.C0933PhoneFormat;
+import org.telegram.PhoneFormat.C0995PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -84,7 +83,7 @@ import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
 import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BaseFragment;
 import org.telegram.p009ui.ActionBar.BottomSheet;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.INavigationLayout;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.ActionBar.ThemeDescription;
@@ -106,7 +105,7 @@ import org.telegram.p009ui.Components.EditTextBoldCursor;
 import org.telegram.p009ui.Components.LayoutHelper;
 import org.telegram.p009ui.CountrySelectActivity;
 import org.telegram.p009ui.PaymentFormActivity;
-import org.telegram.tgnet.C1068x72c667f;
+import org.telegram.tgnet.C1132x72c667f;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -369,7 +368,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (user != null) {
             this.currentBotName = user.first_name;
         } else {
-            this.currentBotName = BuildConfig.APP_CENTER_HASH;
+            this.currentBotName = "";
         }
         this.currentItemName = tLRPC$TL_payments_paymentReceipt.title;
         if (tLRPC$TL_payments_paymentReceipt.info != null) {
@@ -477,7 +476,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (user != null) {
             this.currentBotName = user.first_name;
         } else {
-            this.currentBotName = BuildConfig.APP_CENTER_HASH;
+            this.currentBotName = "";
         }
         this.currentItemName = tLRPC$TL_payments_paymentForm.title;
         this.validateRequest = tLRPC$TL_payments_validateRequestedInfo;
@@ -679,7 +678,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         Long l = this.tipAmount;
         if (l != null && longValue == l.longValue()) {
             this.ignoreOnTextChange = true;
-            this.inputFields[0].setText(BuildConfig.APP_CENTER_HASH);
+            this.inputFields[0].setText("");
             this.ignoreOnTextChange = false;
             this.tipAmount = 0L;
             updateTotalPrice();
@@ -862,14 +861,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             }
             TLRPC$User tLRPC$User = this.botUser;
             if (tLRPC$User != null && !tLRPC$User.verified) {
-                String str2 = "payment_warning_" + this.botUser.f986id;
+                String str2 = "payment_warning_" + this.botUser.f995id;
                 SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
                 if (!notificationsSettings.getBoolean(str2, false)) {
                     notificationsSettings.edit().putBoolean(str2, true).commit();
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                    builder.setTitle(LocaleController.getString("PaymentWarning", C1010R.string.PaymentWarning));
-                    builder.setMessage(LocaleController.formatString("PaymentWarningText", C1010R.string.PaymentWarningText, this.currentBotName, str));
-                    builder.setPositiveButton(LocaleController.getString("Continue", C1010R.string.Continue), new DialogInterface.OnClickListener() {
+                    builder.setTitle(LocaleController.getString("PaymentWarning", C1072R.string.PaymentWarning));
+                    builder.setMessage(LocaleController.formatString("PaymentWarningText", C1072R.string.PaymentWarningText, this.currentBotName, str));
+                    builder.setPositiveButton(LocaleController.getString("Continue", C1072R.string.Continue), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i2) {
                             PaymentFormActivity.this.lambda$createView$22(dialogInterface, i2);
@@ -915,27 +914,27 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     public void lambda$createView$27(View view) {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC$TL_account_resendPasswordEmail(), PaymentFormActivity$$ExternalSyntheticLambda64.INSTANCE);
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setMessage(LocaleController.getString("ResendCodeInfo", C1010R.string.ResendCodeInfo));
-        builder.setTitle(LocaleController.getString("AppName", C1010R.string.AppName));
-        builder.setPositiveButton(LocaleController.getString("OK", C1010R.string.OK), null);
+        builder.setMessage(LocaleController.getString("ResendCodeInfo", C1072R.string.ResendCodeInfo));
+        builder.setTitle(LocaleController.getString("AppName", C1072R.string.AppName));
+        builder.setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), null);
         showDialog(builder.create());
     }
 
     public void lambda$createView$29(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        String string = LocaleController.getString("TurnPasswordOffQuestion", C1010R.string.TurnPasswordOffQuestion);
+        String string = LocaleController.getString("TurnPasswordOffQuestion", C1072R.string.TurnPasswordOffQuestion);
         if (this.currentPassword.has_secure_values) {
-            string = string + "\n\n" + LocaleController.getString("TurnPasswordOffPassport", C1010R.string.TurnPasswordOffPassport);
+            string = string + "\n\n" + LocaleController.getString("TurnPasswordOffPassport", C1072R.string.TurnPasswordOffPassport);
         }
         builder.setMessage(string);
-        builder.setTitle(LocaleController.getString("TurnPasswordOffQuestionTitle", C1010R.string.TurnPasswordOffQuestionTitle));
-        builder.setPositiveButton(LocaleController.getString("Disable", C1010R.string.Disable), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString("TurnPasswordOffQuestionTitle", C1072R.string.TurnPasswordOffQuestionTitle));
+        builder.setPositiveButton(LocaleController.getString("Disable", C1072R.string.Disable), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 PaymentFormActivity.this.lambda$createView$28(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
         AlertDialog create = builder.create();
         showDialog(create);
         TextView textView = (TextView) create.getButton(-1);
@@ -973,18 +972,18 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     private void showChoosePaymentMethod(final Runnable runnable) {
-        BottomSheet.Builder title = new BottomSheet.Builder(getParentActivity()).setTitle(LocaleController.getString("PaymentCheckoutMethod", C1010R.string.PaymentCheckoutMethod), true);
+        BottomSheet.Builder title = new BottomSheet.Builder(getParentActivity()).setTitle(LocaleController.getString("PaymentCheckoutMethod", C1072R.string.PaymentCheckoutMethod), true);
         final ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         TLRPC$TL_paymentSavedCredentialsCard tLRPC$TL_paymentSavedCredentialsCard = this.savedCredentialsCard;
         if (tLRPC$TL_paymentSavedCredentialsCard != null) {
             arrayList.add(tLRPC$TL_paymentSavedCredentialsCard.title);
-            arrayList2.add(Integer.valueOf(C1010R.C1011drawable.msg_payment_card));
+            arrayList2.add(Integer.valueOf(C1072R.C1073drawable.msg_payment_card));
         } else {
             String str = this.cardName;
             if (str != null) {
                 arrayList.add(str);
-                arrayList2.add(Integer.valueOf(C1010R.C1011drawable.msg_payment_card));
+                arrayList2.add(Integer.valueOf(C1072R.C1073drawable.msg_payment_card));
             }
         }
         final ArrayList arrayList3 = new ArrayList();
@@ -992,19 +991,19 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         while (it.hasNext()) {
             TLRPC$TL_paymentSavedCredentialsCard next = it.next();
             TLRPC$TL_paymentSavedCredentialsCard tLRPC$TL_paymentSavedCredentialsCard2 = this.savedCredentialsCard;
-            if (tLRPC$TL_paymentSavedCredentialsCard2 == null || !Objects.equals(next.f968id, tLRPC$TL_paymentSavedCredentialsCard2.f968id)) {
+            if (tLRPC$TL_paymentSavedCredentialsCard2 == null || !Objects.equals(next.f977id, tLRPC$TL_paymentSavedCredentialsCard2.f977id)) {
                 arrayList.add(next.title);
-                arrayList2.add(Integer.valueOf(C1010R.C1011drawable.msg_payment_card));
+                arrayList2.add(Integer.valueOf(C1072R.C1073drawable.msg_payment_card));
                 arrayList3.add(next);
             }
         }
         Iterator<TLRPC$TL_paymentFormMethod> it2 = this.paymentForm.additional_methods.iterator();
         while (it2.hasNext()) {
             arrayList.add(it2.next().title);
-            arrayList2.add(Integer.valueOf(C1010R.C1011drawable.msg_payment_provider));
+            arrayList2.add(Integer.valueOf(C1072R.C1073drawable.msg_payment_provider));
         }
-        arrayList.add(LocaleController.getString(C1010R.string.PaymentCheckoutMethodNewCard));
-        arrayList2.add(Integer.valueOf(C1010R.C1011drawable.msg_addbot));
+        arrayList.add(LocaleController.getString(C1072R.string.PaymentCheckoutMethodNewCard));
+        arrayList2.add(Integer.valueOf(C1072R.C1073drawable.msg_addbot));
         int[] iArr = new int[arrayList2.size()];
         for (int i = 0; i < arrayList2.size(); i++) {
             iArr[i] = ((Integer) arrayList2.get(i)).intValue();
@@ -1051,7 +1050,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     } else {
                         str3 = PaymentFormActivity.this.cardName.substring(0, 1).toUpperCase() + PaymentFormActivity.this.cardName.substring(1);
                     }
-                    textDetailSettingsCell.setTextAndValueAndIcon(str3, LocaleController.getString("PaymentCheckoutMethod", C1010R.string.PaymentCheckoutMethod), C1010R.C1011drawable.msg_payment_card, true);
+                    textDetailSettingsCell.setTextAndValueAndIcon(str3, LocaleController.getString("PaymentCheckoutMethod", C1072R.string.PaymentCheckoutMethod), C1072R.C1073drawable.msg_payment_card, true);
                     if (PaymentFormActivity.this.detailSettingsCell[1] != null) {
                         PaymentFormActivity.this.detailSettingsCell[1].setVisibility(0);
                     }
@@ -1091,31 +1090,31 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     public void setAddressFields(TLRPC$TL_paymentRequestedInfo tLRPC$TL_paymentRequestedInfo) {
         TLRPC$TL_postAddress tLRPC$TL_postAddress = tLRPC$TL_paymentRequestedInfo.shipping_address;
         if (tLRPC$TL_postAddress != null) {
-            this.detailSettingsCell[2].setTextAndValueAndIcon(String.format("%s %s, %s, %s, %s, %s", tLRPC$TL_postAddress.street_line1, tLRPC$TL_postAddress.street_line2, tLRPC$TL_postAddress.city, tLRPC$TL_postAddress.state, tLRPC$TL_postAddress.country_iso2, tLRPC$TL_postAddress.post_code), LocaleController.getString("PaymentShippingAddress", C1010R.string.PaymentShippingAddress), C1010R.C1011drawable.msg_payment_address, true);
+            this.detailSettingsCell[2].setTextAndValueAndIcon(String.format("%s %s, %s, %s, %s, %s", tLRPC$TL_postAddress.street_line1, tLRPC$TL_postAddress.street_line2, tLRPC$TL_postAddress.city, tLRPC$TL_postAddress.state, tLRPC$TL_postAddress.country_iso2, tLRPC$TL_postAddress.post_code), LocaleController.getString("PaymentShippingAddress", C1072R.string.PaymentShippingAddress), C1072R.C1073drawable.msg_payment_address, true);
         }
         this.detailSettingsCell[2].setVisibility(tLRPC$TL_paymentRequestedInfo.shipping_address != null ? 0 : 8);
         String str = tLRPC$TL_paymentRequestedInfo.name;
         if (str != null) {
-            this.detailSettingsCell[3].setTextAndValueAndIcon(str, LocaleController.getString("PaymentCheckoutName", C1010R.string.PaymentCheckoutName), C1010R.C1011drawable.msg_contacts, true);
+            this.detailSettingsCell[3].setTextAndValueAndIcon(str, LocaleController.getString("PaymentCheckoutName", C1072R.string.PaymentCheckoutName), C1072R.C1073drawable.msg_contacts, true);
         }
         this.detailSettingsCell[3].setVisibility(tLRPC$TL_paymentRequestedInfo.name != null ? 0 : 8);
         if (tLRPC$TL_paymentRequestedInfo.phone != null) {
-            this.detailSettingsCell[4].setTextAndValueAndIcon(C0933PhoneFormat.getInstance().format(tLRPC$TL_paymentRequestedInfo.phone), LocaleController.getString("PaymentCheckoutPhoneNumber", C1010R.string.PaymentCheckoutPhoneNumber), C1010R.C1011drawable.msg_calls, (tLRPC$TL_paymentRequestedInfo.email == null && this.shippingOption == null) ? false : true);
+            this.detailSettingsCell[4].setTextAndValueAndIcon(C0995PhoneFormat.getInstance().format(tLRPC$TL_paymentRequestedInfo.phone), LocaleController.getString("PaymentCheckoutPhoneNumber", C1072R.string.PaymentCheckoutPhoneNumber), C1072R.C1073drawable.msg_calls, (tLRPC$TL_paymentRequestedInfo.email == null && this.shippingOption == null) ? false : true);
         }
         this.detailSettingsCell[4].setVisibility(tLRPC$TL_paymentRequestedInfo.phone != null ? 0 : 8);
         String str2 = tLRPC$TL_paymentRequestedInfo.email;
         if (str2 != null) {
-            this.detailSettingsCell[5].setTextAndValueAndIcon(str2, LocaleController.getString("PaymentCheckoutEmail", C1010R.string.PaymentCheckoutEmail), C1010R.C1011drawable.msg_mention, this.shippingOption != null);
+            this.detailSettingsCell[5].setTextAndValueAndIcon(str2, LocaleController.getString("PaymentCheckoutEmail", C1072R.string.PaymentCheckoutEmail), C1072R.C1073drawable.msg_mention, this.shippingOption != null);
         }
         this.detailSettingsCell[5].setVisibility(tLRPC$TL_paymentRequestedInfo.email == null ? 8 : 0);
     }
 
     public void updateTotalPrice() {
         this.totalPrice[0] = getTotalPriceString(this.prices);
-        this.totalCell.setTextAndValue(LocaleController.getString("PaymentTransactionTotal", C1010R.string.PaymentTransactionTotal), this.totalPrice[0], true);
+        this.totalCell.setTextAndValue(LocaleController.getString("PaymentTransactionTotal", C1072R.string.PaymentTransactionTotal), this.totalPrice[0], true);
         TextView textView = this.payTextView;
         if (textView != null) {
-            textView.setText(LocaleController.formatString("PaymentCheckoutPay", C1010R.string.PaymentCheckoutPay, this.totalPrice[0]));
+            textView.setText(LocaleController.formatString("PaymentCheckoutPay", C1072R.string.PaymentCheckoutPay, this.totalPrice[0]));
         }
         if (this.tipLayout != null) {
             int themedColor = getThemedColor("contacts_inviteBackground");
@@ -1143,7 +1142,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         this.googlePayButton = frameLayout2;
         frameLayout2.setClickable(true);
         this.googlePayButton.setFocusable(true);
-        this.googlePayButton.setBackgroundResource(C1010R.C1011drawable.googlepay_button_no_shadow_background);
+        this.googlePayButton.setBackgroundResource(C1072R.C1073drawable.googlepay_button_no_shadow_background);
         if (this.googlePayPublicKey == null) {
             this.googlePayButton.setPadding(AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(2.0f));
         } else {
@@ -1165,12 +1164,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setDuplicateParentStateEnabled(true);
-        imageView.setImageResource(C1010R.C1011drawable.buy_with_googlepay_button_content);
+        imageView.setImageResource(C1072R.C1073drawable.buy_with_googlepay_button_content);
         linearLayout.addView(imageView, LayoutHelper.createLinear(-1, 0, 1.0f));
         ImageView imageView2 = new ImageView(context);
         imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView2.setDuplicateParentStateEnabled(true);
-        imageView2.setImageResource(C1010R.C1011drawable.googlepay_button_overlay);
+        imageView2.setImageResource(C1072R.C1073drawable.googlepay_button_overlay);
         this.googlePayButton.addView(imageView2, LayoutHelper.createFrame(-1, -1.0f));
     }
 
@@ -1261,11 +1260,11 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         showEditDoneProgress(true, false);
         if (this.waitingForEmail) {
             TextInfoPrivacyCell textInfoPrivacyCell = this.bottomCell[2];
-            int i3 = C1010R.string.EmailPasswordConfirmText2;
+            int i3 = C1072R.string.EmailPasswordConfirmText2;
             Object[] objArr = new Object[1];
             String str = this.currentPassword.email_unconfirmed_pattern;
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             objArr[0] = str;
             textInfoPrivacyCell.setText(LocaleController.formatString("EmailPasswordConfirmText2", i3, objArr));
@@ -1273,7 +1272,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             this.settingsCell[0].setVisibility(0);
             this.settingsCell[1].setVisibility(0);
             this.codeFieldCell.setVisibility(0);
-            this.bottomCell[1].setText(BuildConfig.APP_CENTER_HASH);
+            this.bottomCell[1].setText("");
             this.headerCell[0].setVisibility(8);
             this.headerCell[1].setVisibility(8);
             this.bottomCell[0].setVisibility(8);
@@ -1289,7 +1288,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         this.bottomCell[2].setVisibility(8);
         this.settingsCell[0].setVisibility(8);
         this.settingsCell[1].setVisibility(8);
-        this.bottomCell[1].setText(LocaleController.getString("PaymentPasswordEmailInfo", C1010R.string.PaymentPasswordEmailInfo));
+        this.bottomCell[1].setText(LocaleController.getString("PaymentPasswordEmailInfo", C1072R.string.PaymentPasswordEmailInfo));
         this.codeFieldCell.setVisibility(8);
         this.headerCell[0].setVisibility(0);
         this.headerCell[1].setVisibility(0);
@@ -1330,7 +1329,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             this.currentPassword = tLRPC$account_Password;
             if (!TwoStepVerificationActivity.canHandleCurrentPassword(tLRPC$account_Password, false)) {
-                AlertsCreator.showUpdateAppAlert(getParentActivity(), LocaleController.getString("UpdateAppAlert", C1010R.string.UpdateAppAlert), true);
+                AlertsCreator.showUpdateAppAlert(getParentActivity(), LocaleController.getString("UpdateAppAlert", C1072R.string.UpdateAppAlert), true);
                 return;
             }
             TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm = this.paymentForm;
@@ -1368,7 +1367,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     private void showAlertWithText(String str, String str2) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setPositiveButton(LocaleController.getString("OK", C1010R.string.OK), null);
+        builder.setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), null);
         builder.setTitle(str);
         builder.setMessage(str2);
         showDialog(builder.create());
@@ -1379,15 +1378,15 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString("PaymentTransactionReview", C1010R.string.PaymentTransactionReview));
-        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("PaymentTransactionMessage2", C1010R.string.PaymentTransactionMessage2, str, this.currentBotName, this.currentItemName)));
-        builder.setPositiveButton(LocaleController.getString("Continue", C1010R.string.Continue), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString("PaymentTransactionReview", C1072R.string.PaymentTransactionReview));
+        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("PaymentTransactionMessage2", C1072R.string.PaymentTransactionMessage2, str, this.currentBotName, this.currentItemName)));
+        builder.setPositiveButton(LocaleController.getString("Continue", C1072R.string.Continue), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 PaymentFormActivity.this.lambda$showPayAlert$36(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
         showDialog(builder.create());
     }
 
@@ -1416,7 +1415,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         try {
             JSONObject baseRequest = getBaseRequest();
             baseRequest.put("allowedPaymentMethods", new JSONArray().put(getBaseCardPaymentMethod()));
-            return Optional.m575of(baseRequest);
+            return Optional.m574of(baseRequest);
         } catch (JSONException unused) {
             return Optional.empty();
         }
@@ -1688,7 +1687,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             Status statusFromIntent = AutoResolveHelper.getStatusFromIntent(intent);
             StringBuilder sb = new StringBuilder();
             sb.append("android pay error ");
-            sb.append(statusFromIntent != null ? statusFromIntent.getStatusMessage() : BuildConfig.APP_CENTER_HASH);
+            sb.append(statusFromIntent != null ? statusFromIntent.getStatusMessage() : "");
             FileLog.m33e(sb.toString());
         }
         showEditDoneProgress(true, false);
@@ -1876,12 +1875,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
         TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm = this.paymentForm;
         if ((tLRPC$TL_payments_paymentForm.password_missing || tLRPC$TL_payments_paymentForm.can_save_credentials) && (this.webView == null || !this.webviewLoading)) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("PaymentCardSavePaymentInformationInfoLine1", C1010R.string.PaymentCardSavePaymentInformationInfoLine1));
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("PaymentCardSavePaymentInformationInfoLine1", C1072R.string.PaymentCardSavePaymentInformationInfoLine1));
             if (this.paymentForm.password_missing) {
                 loadPasswordInfo();
                 spannableStringBuilder.append((CharSequence) "\n");
                 int length = spannableStringBuilder.length();
-                String string = LocaleController.getString("PaymentCardSavePaymentInformationInfoLine2", C1010R.string.PaymentCardSavePaymentInformationInfoLine2);
+                String string = LocaleController.getString("PaymentCardSavePaymentInformationInfoLine2", C1072R.string.PaymentCardSavePaymentInformationInfoLine2);
                 int indexOf = string.indexOf(42);
                 int lastIndexOf = string.lastIndexOf(42);
                 spannableStringBuilder.append((CharSequence) string);
@@ -1889,8 +1888,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     int i = indexOf + length;
                     int i2 = lastIndexOf + length;
                     this.bottomCell[0].getTextView().setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-                    spannableStringBuilder.replace(i2, i2 + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
-                    spannableStringBuilder.replace(i, i + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                    spannableStringBuilder.replace(i2, i2 + 1, (CharSequence) "");
+                    spannableStringBuilder.replace(i, i + 1, (CharSequence) "");
                     spannableStringBuilder.setSpan(new LinkSpan(), i, i2 - 1, 33);
                 }
             }
@@ -1899,13 +1898,13 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             this.checkCell1.setVisibility(0);
             this.bottomCell[0].setVisibility(0);
             ShadowSectionCell[] shadowSectionCellArr = this.sectionCell;
-            shadowSectionCellArr[2].setBackgroundDrawable(Theme.getThemedDrawable(shadowSectionCellArr[2].getContext(), C1010R.C1011drawable.greydivider, "windowBackgroundGrayShadow"));
+            shadowSectionCellArr[2].setBackgroundDrawable(Theme.getThemedDrawable(shadowSectionCellArr[2].getContext(), C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow"));
             return;
         }
         this.checkCell1.setVisibility(8);
         this.bottomCell[0].setVisibility(8);
         ShadowSectionCell[] shadowSectionCellArr2 = this.sectionCell;
-        shadowSectionCellArr2[2].setBackgroundDrawable(Theme.getThemedDrawable(shadowSectionCellArr2[2].getContext(), C1010R.C1011drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+        shadowSectionCellArr2[2].setBackgroundDrawable(Theme.getThemedDrawable(shadowSectionCellArr2[2].getContext(), C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
     }
 
     @android.annotation.SuppressLint({"HardwareIds"})
@@ -1939,7 +1938,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             TLRPC$TL_account_passwordInputSettings tLRPC$TL_account_passwordInputSettings = new TLRPC$TL_account_passwordInputSettings();
             tLRPC$TL_account_updatePasswordSettings.new_settings = tLRPC$TL_account_passwordInputSettings;
             tLRPC$TL_account_passwordInputSettings.flags = 2;
-            tLRPC$TL_account_passwordInputSettings.email = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_account_passwordInputSettings.email = "";
             tLRPC$TL_account_updatePasswordSettings.password = new TLRPC$TL_inputCheckPasswordEmpty();
             str2 = null;
             str = null;
@@ -1950,7 +1949,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 return;
             } else if (!obj.equals(this.inputFields[1].getText().toString())) {
                 try {
-                    Toast.makeText(getParentActivity(), LocaleController.getString("PasswordDoNotMatch", C1010R.string.PasswordDoNotMatch), 0).show();
+                    Toast.makeText(getParentActivity(), LocaleController.getString("PasswordDoNotMatch", C1072R.string.PasswordDoNotMatch), 0).show();
                 } catch (Exception e) {
                     FileLog.m31e(e);
                 }
@@ -1973,7 +1972,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 tLRPC$TL_account_updatePasswordSettings.new_settings = tLRPC$TL_account_passwordInputSettings2;
                 int i = tLRPC$TL_account_passwordInputSettings2.flags | 1;
                 tLRPC$TL_account_passwordInputSettings2.flags = i;
-                tLRPC$TL_account_passwordInputSettings2.hint = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_account_passwordInputSettings2.hint = "";
                 tLRPC$TL_account_passwordInputSettings2.new_algo = this.currentPassword.new_algo;
                 tLRPC$TL_account_passwordInputSettings2.flags = i | 2;
                 tLRPC$TL_account_passwordInputSettings2.email = obj2.trim();
@@ -2014,7 +2013,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             goToNextStep();
         } else if (tLRPC$TL_error.text.startsWith("CODE_INVALID")) {
             shakeView(this.codeFieldCell);
-            this.codeFieldCell.setText(BuildConfig.APP_CENTER_HASH, false);
+            this.codeFieldCell.setText("", false);
         } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
             int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
             if (intValue < 60) {
@@ -2022,9 +2021,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             } else {
                 formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
             }
-            showAlertWithText(LocaleController.getString("AppName", C1010R.string.AppName), LocaleController.formatString("FloodWaitTime", C1010R.string.FloodWaitTime, formatPluralString));
+            showAlertWithText(LocaleController.getString("AppName", C1072R.string.AppName), LocaleController.formatString("FloodWaitTime", C1072R.string.FloodWaitTime, formatPluralString));
         } else {
-            showAlertWithText(LocaleController.getString("AppName", C1010R.string.AppName), tLRPC$TL_error.text);
+            showAlertWithText(LocaleController.getString("AppName", C1072R.string.AppName), tLRPC$TL_error.text);
         }
     }
 
@@ -2047,8 +2046,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (!z) {
             byte[] stringBytes = AndroidUtilities.getStringBytes(str2);
             TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo = this.currentPassword.new_algo;
-            if (tLRPC$PasswordKdfAlgo instanceof C1068x72c667f) {
-                tLRPC$TL_account_updatePasswordSettings.new_settings.new_password_hash = SRPHelper.getVBytes(stringBytes, (C1068x72c667f) tLRPC$PasswordKdfAlgo);
+            if (tLRPC$PasswordKdfAlgo instanceof C1132x72c667f) {
+                tLRPC$TL_account_updatePasswordSettings.new_settings.new_password_hash = SRPHelper.getVBytes(stringBytes, (C1132x72c667f) tLRPC$PasswordKdfAlgo);
                 if (tLRPC$TL_account_updatePasswordSettings.new_settings.new_password_hash == null) {
                     TLRPC$TL_error tLRPC$TL_error = new TLRPC$TL_error();
                     tLRPC$TL_error.text = "ALGO_INVALID";
@@ -2092,21 +2091,21 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (tLRPC$TL_error.text.equals("EMAIL_UNCONFIRMED") || tLRPC$TL_error.text.startsWith("EMAIL_UNCONFIRMED_")) {
                 this.emailCodeLength = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setPositiveButton(LocaleController.getString("OK", C1010R.string.OK), new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
                         PaymentFormActivity.this.lambda$sendSavePassword$45(str, dialogInterface, i);
                     }
                 });
-                builder.setMessage(LocaleController.getString("YourEmailAlmostThereText", C1010R.string.YourEmailAlmostThereText));
-                builder.setTitle(LocaleController.getString("YourEmailAlmostThere", C1010R.string.YourEmailAlmostThere));
+                builder.setMessage(LocaleController.getString("YourEmailAlmostThereText", C1072R.string.YourEmailAlmostThereText));
+                builder.setTitle(LocaleController.getString("YourEmailAlmostThere", C1072R.string.YourEmailAlmostThere));
                 Dialog showDialog = showDialog(builder.create());
                 if (showDialog != null) {
                     showDialog.setCanceledOnTouchOutside(false);
                     showDialog.setCancelable(false);
                 }
             } else if (tLRPC$TL_error.text.equals("EMAIL_INVALID")) {
-                showAlertWithText(LocaleController.getString("AppName", C1010R.string.AppName), LocaleController.getString("PasswordEmailInvalid", C1010R.string.PasswordEmailInvalid));
+                showAlertWithText(LocaleController.getString("AppName", C1072R.string.AppName), LocaleController.getString("PasswordEmailInvalid", C1072R.string.PasswordEmailInvalid));
             } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
                 int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
                 if (intValue < 60) {
@@ -2114,9 +2113,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 } else {
                     formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
                 }
-                showAlertWithText(LocaleController.getString("AppName", C1010R.string.AppName), LocaleController.formatString("FloodWaitTime", C1010R.string.FloodWaitTime, formatPluralString));
+                showAlertWithText(LocaleController.getString("AppName", C1072R.string.AppName), LocaleController.formatString("FloodWaitTime", C1072R.string.FloodWaitTime, formatPluralString));
             } else {
-                showAlertWithText(LocaleController.getString("AppName", C1010R.string.AppName), tLRPC$TL_error.text);
+                showAlertWithText(LocaleController.getString("AppName", C1072R.string.AppName), tLRPC$TL_error.text);
             }
         }
     }
@@ -2181,12 +2180,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             showEditDoneProgress(true, true);
             try {
                 if ("stripe".equals(this.paymentForm.native_provider)) {
-                    new Stripe(this.providerApiKey).createToken(card, new C354625());
+                    new Stripe(this.providerApiKey).createToken(card, new C370425());
                 } else if ("smartglocal".equals(this.paymentForm.native_provider)) {
                     new AsyncTask<Object, Object, String>() {
                         @Override
                         public java.lang.String doInBackground(java.lang.Object... r13) {
-                            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PaymentFormActivity.AsyncTaskC354726.doInBackground(java.lang.Object[]):java.lang.String");
+                            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PaymentFormActivity.AsyncTaskC370526.doInBackground(java.lang.Object[]):java.lang.String");
                         }
 
                         @Override
@@ -2198,7 +2197,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                                 PaymentFormActivity.this.paymentJson = str;
                                 PaymentFormActivity.this.goToNextStep();
                             } else {
-                                AlertsCreator.showSimpleToast(PaymentFormActivity.this, LocaleController.getString("PaymentConnectionFailed", C1010R.string.PaymentConnectionFailed));
+                                AlertsCreator.showSimpleToast(PaymentFormActivity.this, LocaleController.getString("PaymentConnectionFailed", C1072R.string.PaymentConnectionFailed));
                             }
                             PaymentFormActivity.this.showEditDoneProgress(true, false);
                             PaymentFormActivity.this.setDonePressed(false);
@@ -2213,8 +2212,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public class C354625 implements TokenCallback {
-        C354625() {
+    public class C370425 implements TokenCallback {
+        C370425() {
         }
 
         @Override
@@ -2226,7 +2225,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PaymentFormActivity.C354625.this.lambda$onSuccess$0();
+                    PaymentFormActivity.C370425.this.lambda$onSuccess$0();
                 }
             });
         }
@@ -2245,7 +2244,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             PaymentFormActivity.this.showEditDoneProgress(true, false);
             PaymentFormActivity.this.setDonePressed(false);
             if ((exc instanceof APIConnectionException) || (exc instanceof APIException)) {
-                AlertsCreator.showSimpleToast(PaymentFormActivity.this, LocaleController.getString("PaymentConnectionFailed", C1010R.string.PaymentConnectionFailed));
+                AlertsCreator.showSimpleToast(PaymentFormActivity.this, LocaleController.getString("PaymentConnectionFailed", C1072R.string.PaymentConnectionFailed));
             } else {
                 AlertsCreator.showSimpleToast(PaymentFormActivity.this, exc.getMessage());
             }
@@ -2359,7 +2358,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             TLRPC$TL_postAddress tLRPC$TL_postAddress = this.validateRequest.info.shipping_address;
             String str = this.countryName;
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             tLRPC$TL_postAddress.country_iso2 = str;
             tLRPC$TL_postAddress.post_code = this.inputFields[5].getText().toString();
@@ -2526,19 +2525,19 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-                    this.f869id = abstractSerializedData.readString(z);
+                    this.f878id = abstractSerializedData.readString(z);
                     this.tmp_password = abstractSerializedData.readByteArray(z);
                 }
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
                     abstractSerializedData.writeInt32(constructor);
-                    abstractSerializedData.writeString(this.f869id);
+                    abstractSerializedData.writeString(this.f878id);
                     abstractSerializedData.writeByteArray(this.tmp_password);
                 }
             };
             tLRPC$TL_payments_sendPaymentForm.credentials = tLRPC$InputPaymentCredentials;
-            tLRPC$InputPaymentCredentials.f869id = this.savedCredentialsCard.f968id;
+            tLRPC$InputPaymentCredentials.f878id = this.savedCredentialsCard.f977id;
             tLRPC$InputPaymentCredentials.tmp_password = UserConfig.getInstance(this.currentAccount).tmpPassword.tmp_password;
         } else {
             TLRPC$TL_inputPaymentCredentialsGooglePay tLRPC$TL_inputPaymentCredentialsGooglePay = this.googlePayCredentials;
@@ -2572,13 +2571,13 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             }
         }
         TLRPC$TL_payments_validatedRequestedInfo tLRPC$TL_payments_validatedRequestedInfo = this.requestedInfo;
-        if (tLRPC$TL_payments_validatedRequestedInfo != null && (str = tLRPC$TL_payments_validatedRequestedInfo.f969id) != null) {
+        if (tLRPC$TL_payments_validatedRequestedInfo != null && (str = tLRPC$TL_payments_validatedRequestedInfo.f978id) != null) {
             tLRPC$TL_payments_sendPaymentForm.requested_info_id = str;
             tLRPC$TL_payments_sendPaymentForm.flags = 1 | tLRPC$TL_payments_sendPaymentForm.flags;
         }
         TLRPC$TL_shippingOption tLRPC$TL_shippingOption = this.shippingOption;
         if (tLRPC$TL_shippingOption != null) {
-            tLRPC$TL_payments_sendPaymentForm.shipping_option_id = tLRPC$TL_shippingOption.f973id;
+            tLRPC$TL_payments_sendPaymentForm.shipping_option_id = tLRPC$TL_shippingOption.f982id;
             tLRPC$TL_payments_sendPaymentForm.flags |= 2;
         }
         if ((this.paymentForm.invoice.flags & 256) != 0) {
@@ -2654,7 +2653,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
         goToNextStep();
         if (this.parentFragment instanceof ChatActivity) {
-            ((ChatActivity) this.parentFragment).getUndoView().showWithAction(0L, 77, AndroidUtilities.replaceTags(LocaleController.formatString(C1010R.string.PaymentInfoHint, this.totalPrice[0], this.currentItemName)), tLRPC$MessageArr[0], (Runnable) null, (Runnable) null);
+            ((ChatActivity) this.parentFragment).getUndoView().showWithAction(0L, 77, AndroidUtilities.replaceTags(LocaleController.formatString(C1072R.string.PaymentInfoHint, this.totalPrice[0], this.currentItemName)), tLRPC$MessageArr[0], (Runnable) null, (Runnable) null);
         }
     }
 
@@ -2699,7 +2698,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     public boolean lambda$sendData$58(final INavigationLayout iNavigationLayout, final Activity activity, final TLRPC$Message tLRPC$Message) {
-        if (MessageObject.getPeerId(tLRPC$Message.peer_id) == this.botUser.f986id && (tLRPC$Message.action instanceof TLRPC$TL_messageActionPaymentSent)) {
+        if (MessageObject.getPeerId(tLRPC$Message.peer_id) == this.botUser.f995id && (tLRPC$Message.action instanceof TLRPC$TL_messageActionPaymentSent)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -2721,7 +2720,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
         onCheckoutSuccess(iNavigationLayout, activity);
         if (this.parentFragment instanceof ChatActivity) {
-            ((ChatActivity) this.parentFragment).getUndoView().showWithAction(0L, 77, AndroidUtilities.replaceTags(LocaleController.formatString(C1010R.string.PaymentInfoHint, this.totalPrice[0], this.currentItemName)), tLRPC$Message, (Runnable) null, (Runnable) null);
+            ((ChatActivity) this.parentFragment).getUndoView().showWithAction(0L, 77, AndroidUtilities.replaceTags(LocaleController.formatString(C1072R.string.PaymentInfoHint, this.totalPrice[0], this.currentItemName)), tLRPC$Message, (Runnable) null, (Runnable) null);
         }
     }
 
@@ -2753,9 +2752,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     public void setDonePressed(boolean z) {
         this.donePressed = z;
         this.swipeBackEnabled = !z;
-        C1069ActionBar c1069ActionBar = this.actionBar;
-        if (c1069ActionBar != null) {
-            c1069ActionBar.getBackButton().setEnabled(!this.donePressed);
+        C1133ActionBar c1133ActionBar = this.actionBar;
+        if (c1133ActionBar != null) {
+            c1133ActionBar.getBackButton().setEnabled(!this.donePressed);
         }
         TextDetailSettingsCell[] textDetailSettingsCellArr = this.detailSettingsCell;
         if (textDetailSettingsCellArr[0] != null) {
@@ -2808,7 +2807,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (tLRPC$TL_error == null) {
             final TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             if (!TwoStepVerificationActivity.canHandleCurrentPassword(tLRPC$account_Password, false)) {
-                AlertsCreator.showUpdateAppAlert(getParentActivity(), LocaleController.getString("UpdateAppAlert", C1010R.string.UpdateAppAlert), true);
+                AlertsCreator.showUpdateAppAlert(getParentActivity(), LocaleController.getString("UpdateAppAlert", C1072R.string.UpdateAppAlert), true);
                 return;
             } else if (!tLRPC$account_Password.has_password) {
                 this.passwordOk = false;
@@ -2832,7 +2831,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public void lambda$checkPassword$64(TLRPC$account_Password tLRPC$account_Password, byte[] bArr) {
         TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo = tLRPC$account_Password.current_algo;
-        byte[] x = tLRPC$PasswordKdfAlgo instanceof C1068x72c667f ? SRPHelper.getX(bArr, (C1068x72c667f) tLRPC$PasswordKdfAlgo) : null;
+        byte[] x = tLRPC$PasswordKdfAlgo instanceof C1132x72c667f ? SRPHelper.getX(bArr, (C1132x72c667f) tLRPC$PasswordKdfAlgo) : null;
         final TLRPC$TL_account_getTmpPassword tLRPC$TL_account_getTmpPassword = new TLRPC$TL_account_getTmpPassword();
         tLRPC$TL_account_getTmpPassword.period = 1800;
         RequestDelegate requestDelegate = new RequestDelegate() {
@@ -2842,8 +2841,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             }
         };
         TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo2 = tLRPC$account_Password.current_algo;
-        if (tLRPC$PasswordKdfAlgo2 instanceof C1068x72c667f) {
-            TLRPC$TL_inputCheckPasswordSRP startCheck = SRPHelper.startCheck(x, tLRPC$account_Password.srp_id, tLRPC$account_Password.srp_B, (C1068x72c667f) tLRPC$PasswordKdfAlgo2);
+        if (tLRPC$PasswordKdfAlgo2 instanceof C1132x72c667f) {
+            TLRPC$TL_inputCheckPasswordSRP startCheck = SRPHelper.startCheck(x, tLRPC$account_Password.srp_id, tLRPC$account_Password.srp_B, (C1132x72c667f) tLRPC$PasswordKdfAlgo2);
             tLRPC$TL_account_getTmpPassword.password = startCheck;
             if (startCheck == null) {
                 TLRPC$TL_error tLRPC$TL_error = new TLRPC$TL_error();
@@ -2882,7 +2881,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             } catch (Exception unused) {
             }
             AndroidUtilities.shakeView(this.inputFields[1]);
-            this.inputFields[1].setText(BuildConfig.APP_CENTER_HASH);
+            this.inputFields[1].setText("");
         } else {
             AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, this, tLRPC$TL_account_getTmpPassword, new Object[0]);
         }

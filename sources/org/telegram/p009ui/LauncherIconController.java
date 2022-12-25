@@ -4,7 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 
 public class LauncherIconController {
     public static void tryFixLauncherIconIfNeeded() {
@@ -60,19 +60,19 @@ public class LauncherIconController {
         }
 
         static {
-            int i = C1010R.C1011drawable.icon_background_sa;
-            int i2 = C1010R.mipmap.icon_foreground_sa;
-            LauncherIcon launcherIcon = new LauncherIcon("DEFAULT", 0, "DefaultIcon", i, i2, C1010R.string.AppIconDefault);
+            int i = C1072R.C1073drawable.icon_background_sa;
+            int i2 = C1072R.mipmap.icon_foreground_sa;
+            LauncherIcon launcherIcon = new LauncherIcon("DEFAULT", 0, "DefaultIcon", i, i2, C1072R.string.AppIconDefault);
             DEFAULT = launcherIcon;
-            LauncherIcon launcherIcon2 = new LauncherIcon("VINTAGE", 1, "VintageIcon", C1010R.C1011drawable.icon_6_background_sa, C1010R.mipmap.icon_6_foreground_sa, C1010R.string.AppIconVintage);
+            LauncherIcon launcherIcon2 = new LauncherIcon("VINTAGE", 1, "VintageIcon", C1072R.C1073drawable.icon_6_background_sa, C1072R.mipmap.icon_6_foreground_sa, C1072R.string.AppIconVintage);
             VINTAGE = launcherIcon2;
-            LauncherIcon launcherIcon3 = new LauncherIcon("AQUA", 2, "AquaIcon", C1010R.C1011drawable.icon_4_background_sa, i2, C1010R.string.AppIconAqua);
+            LauncherIcon launcherIcon3 = new LauncherIcon("AQUA", 2, "AquaIcon", C1072R.C1073drawable.icon_4_background_sa, i2, C1072R.string.AppIconAqua);
             AQUA = launcherIcon3;
-            LauncherIcon launcherIcon4 = new LauncherIcon("PREMIUM", 3, "PremiumIcon", C1010R.C1011drawable.icon_3_background_sa, C1010R.mipmap.icon_3_foreground_sa, C1010R.string.AppIconPremium, true);
+            LauncherIcon launcherIcon4 = new LauncherIcon("PREMIUM", 3, "PremiumIcon", C1072R.C1073drawable.icon_3_background_sa, C1072R.mipmap.icon_3_foreground_sa, C1072R.string.AppIconPremium, true);
             PREMIUM = launcherIcon4;
-            LauncherIcon launcherIcon5 = new LauncherIcon("TURBO", 4, "TurboIcon", C1010R.C1011drawable.icon_5_background_sa, C1010R.mipmap.icon_5_foreground_sa, C1010R.string.AppIconTurbo, true);
+            LauncherIcon launcherIcon5 = new LauncherIcon("TURBO", 4, "TurboIcon", C1072R.C1073drawable.icon_5_background_sa, C1072R.mipmap.icon_5_foreground_sa, C1072R.string.AppIconTurbo, true);
             TURBO = launcherIcon5;
-            LauncherIcon launcherIcon6 = new LauncherIcon("NOX", 5, "NoxIcon", C1010R.C1011drawable.icon_2_background_sa, i2, C1010R.string.AppIconNox, true);
+            LauncherIcon launcherIcon6 = new LauncherIcon("NOX", 5, "NoxIcon", C1072R.C1073drawable.icon_2_background_sa, i2, C1072R.string.AppIconNox, true);
             NOX = launcherIcon6;
             $VALUES = new LauncherIcon[]{launcherIcon, launcherIcon2, launcherIcon3, launcherIcon4, launcherIcon5, launcherIcon6};
         }

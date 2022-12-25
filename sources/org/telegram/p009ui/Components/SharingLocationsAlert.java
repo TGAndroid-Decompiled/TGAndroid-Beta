@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.NotificationCenter;
@@ -48,7 +48,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         super(context, false, resourcesProvider);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.liveLocationsChanged);
         this.delegate = sharingLocationsAlertDelegate;
-        Drawable mutate = context.getResources().getDrawable(C1010R.C1011drawable.sheet_shadow_round).mutate();
+        Drawable mutate = context.getResources().getDrawable(C1072R.C1073drawable.sheet_shadow_round).mutate();
         this.shadowDrawable = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
         FrameLayout frameLayout = new FrameLayout(context) {
@@ -155,14 +155,14 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         });
         this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 48.0f));
         View view = new View(context);
-        view.setBackgroundResource(C1010R.C1011drawable.header_shadow_reverse);
+        view.setBackgroundResource(C1072R.C1073drawable.header_shadow_reverse);
         this.containerView.addView(view, LayoutHelper.createFrame(-1, 3.0f, 83, 0.0f, 0.0f, 0.0f, 48.0f));
         PickerBottomLayout pickerBottomLayout = new PickerBottomLayout(context, false);
         pickerBottomLayout.setBackgroundColor(getThemedColor("dialogBackground"));
         this.containerView.addView(pickerBottomLayout, LayoutHelper.createFrame(-1, 48, 83));
         pickerBottomLayout.cancelButton.setPadding(AndroidUtilities.m35dp(18.0f), 0, AndroidUtilities.m35dp(18.0f), 0);
         pickerBottomLayout.cancelButton.setTextColor(getThemedColor("dialogTextRed"));
-        pickerBottomLayout.cancelButton.setText(LocaleController.getString("StopAllLocationSharings", C1010R.string.StopAllLocationSharings));
+        pickerBottomLayout.cancelButton.setText(LocaleController.getString("StopAllLocationSharings", C1072R.string.StopAllLocationSharings));
         pickerBottomLayout.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -170,7 +170,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
             }
         });
         pickerBottomLayout.doneButtonTextView.setTextColor(getThemedColor("dialogTextBlue2"));
-        pickerBottomLayout.doneButtonTextView.setText(LocaleController.getString("Close", C1010R.string.Close).toUpperCase());
+        pickerBottomLayout.doneButtonTextView.setText(LocaleController.getString("Close", C1072R.string.Close).toUpperCase());
         pickerBottomLayout.doneButton.setPadding(AndroidUtilities.m35dp(18.0f), 0, AndroidUtilities.m35dp(18.0f), 0);
         pickerBottomLayout.doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -311,7 +311,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType != 0) {
                 if (itemViewType == 1 && SharingLocationsAlert.this.textView != null) {
-                    SharingLocationsAlert.this.textView.setText(LocaleController.formatString("SharingLiveLocationTitle", C1010R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
+                    SharingLocationsAlert.this.textView.setText(LocaleController.formatString("SharingLiveLocationTitle", C1072R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
                     return;
                 }
                 return;

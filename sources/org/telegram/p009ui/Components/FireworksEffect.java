@@ -23,10 +23,10 @@ public class FireworksEffect {
         float scale;
         int type;
         float velocity;
-        float f1053vx;
-        float f1054vy;
-        float f1055x;
-        float f1056y;
+        float f1063vx;
+        float f1064vy;
+        float f1065x;
+        float f1066y;
 
         private Particle() {
         }
@@ -38,7 +38,7 @@ public class FireworksEffect {
             FireworksEffect.this.particlePaint.setColor(this.color);
             FireworksEffect.this.particlePaint.setStrokeWidth(AndroidUtilities.m35dp(1.5f) * this.scale);
             FireworksEffect.this.particlePaint.setAlpha((int) (this.alpha * 255.0f));
-            canvas.drawPoint(this.f1055x, this.f1056y, FireworksEffect.this.particlePaint);
+            canvas.drawPoint(this.f1065x, this.f1066y, FireworksEffect.this.particlePaint);
         }
     }
 
@@ -70,15 +70,15 @@ public class FireworksEffect {
                 size--;
             } else {
                 particle.alpha = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation(f / f2);
-                float f3 = particle.f1055x;
-                float f4 = particle.f1053vx;
+                float f3 = particle.f1065x;
+                float f4 = particle.f1063vx;
                 float f5 = particle.velocity;
                 float f6 = (float) j;
-                particle.f1055x = f3 + (((f4 * f5) * f6) / 500.0f);
-                float f7 = particle.f1056y;
-                float f8 = particle.f1054vy;
-                particle.f1056y = f7 + (((f5 * f8) * f6) / 500.0f);
-                particle.f1054vy = f8 + (f6 / 100.0f);
+                particle.f1065x = f3 + (((f4 * f5) * f6) / 500.0f);
+                float f7 = particle.f1066y;
+                float f8 = particle.f1064vy;
+                particle.f1066y = f7 + (((f5 * f8) * f6) / 500.0f);
+                particle.f1064vy = f8 + (f6 / 100.0f);
                 particle.currentTime += f6;
             }
             i++;
@@ -112,10 +112,10 @@ public class FireworksEffect {
                 } else {
                     particle = new Particle();
                 }
-                particle.f1055x = nextFloat;
-                particle.f1056y = nextFloat2;
-                particle.f1053vx = cos * 1.5f;
-                particle.f1054vy = sin;
+                particle.f1065x = nextFloat;
+                particle.f1066y = nextFloat2;
+                particle.f1063vx = cos * 1.5f;
+                particle.f1064vy = sin;
                 particle.color = i3;
                 particle.alpha = 1.0f;
                 particle.currentTime = 0.0f;

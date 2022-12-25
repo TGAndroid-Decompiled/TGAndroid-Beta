@@ -323,43 +323,43 @@ public class ThemeDescription {
             }
         }
         View view3 = this.viewToInvalidate;
-        if (view3 instanceof C1069ActionBar) {
+        if (view3 instanceof C1133ActionBar) {
             if ((this.changeFlags & FLAG_AB_ITEMSCOLOR) != 0) {
-                ((C1069ActionBar) view3).setItemsColor(i, false);
+                ((C1133ActionBar) view3).setItemsColor(i, false);
             }
             if ((this.changeFlags & FLAG_AB_TITLECOLOR) != 0) {
-                ((C1069ActionBar) this.viewToInvalidate).setTitleColor(i);
+                ((C1133ActionBar) this.viewToInvalidate).setTitleColor(i);
             }
             if ((this.changeFlags & FLAG_AB_SELECTORCOLOR) != 0) {
-                ((C1069ActionBar) this.viewToInvalidate).setItemsBackgroundColor(i, false);
+                ((C1133ActionBar) this.viewToInvalidate).setItemsBackgroundColor(i, false);
             }
             if ((this.changeFlags & FLAG_AB_AM_SELECTORCOLOR) != 0) {
-                ((C1069ActionBar) this.viewToInvalidate).setItemsBackgroundColor(i, true);
+                ((C1133ActionBar) this.viewToInvalidate).setItemsBackgroundColor(i, true);
             }
             if ((this.changeFlags & FLAG_AB_AM_ITEMSCOLOR) != 0) {
-                ((C1069ActionBar) this.viewToInvalidate).setItemsColor(i, true);
+                ((C1133ActionBar) this.viewToInvalidate).setItemsColor(i, true);
             }
             if ((this.changeFlags & FLAG_AB_SUBTITLECOLOR) != 0) {
-                ((C1069ActionBar) this.viewToInvalidate).setSubtitleColor(i);
+                ((C1133ActionBar) this.viewToInvalidate).setSubtitleColor(i);
             }
             if ((this.changeFlags & FLAG_AB_AM_BACKGROUND) != 0) {
-                ((C1069ActionBar) this.viewToInvalidate).setActionModeColor(i);
+                ((C1133ActionBar) this.viewToInvalidate).setActionModeColor(i);
             }
             if ((this.changeFlags & FLAG_AB_AM_TOPBACKGROUND) != 0) {
-                ((C1069ActionBar) this.viewToInvalidate).setActionModeTopColor(i);
+                ((C1133ActionBar) this.viewToInvalidate).setActionModeTopColor(i);
             }
             if ((this.changeFlags & FLAG_AB_SEARCHPLACEHOLDER) != 0) {
-                ((C1069ActionBar) this.viewToInvalidate).setSearchTextColor(i, true);
+                ((C1133ActionBar) this.viewToInvalidate).setSearchTextColor(i, true);
             }
             if ((this.changeFlags & FLAG_AB_SEARCH) != 0) {
-                ((C1069ActionBar) this.viewToInvalidate).setSearchTextColor(i, false);
+                ((C1133ActionBar) this.viewToInvalidate).setSearchTextColor(i, false);
             }
             int i6 = this.changeFlags;
             if ((FLAG_AB_SUBMENUITEM & i6) != 0) {
-                ((C1069ActionBar) this.viewToInvalidate).setPopupItemsColor(i, (i6 & FLAG_IMAGECOLOR) != 0, false);
+                ((C1133ActionBar) this.viewToInvalidate).setPopupItemsColor(i, (i6 & FLAG_IMAGECOLOR) != 0, false);
             }
             if ((this.changeFlags & FLAG_AB_SUBMENUBACKGROUND) != 0) {
-                ((C1069ActionBar) this.viewToInvalidate).setPopupBackgroundColor(i, false);
+                ((C1133ActionBar) this.viewToInvalidate).setPopupBackgroundColor(i, false);
             }
         }
         View view4 = this.viewToInvalidate;

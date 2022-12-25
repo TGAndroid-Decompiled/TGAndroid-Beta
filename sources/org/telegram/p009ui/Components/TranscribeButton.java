@@ -22,9 +22,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
@@ -48,8 +47,8 @@ public class TranscribeButton {
     private static HashMap<Integer, MessageObject> transcribeOperationsByDialogPosition;
     private static HashMap<Long, MessageObject> transcribeOperationsById;
     private static ArrayList<Integer> videoTranscriptionsOpen;
-    private float f1138a;
-    private float f1139b;
+    private float f1154a;
+    private float f1155b;
     private float backgroundBack;
     private int backgroundColor;
     private Paint backgroundPaint;
@@ -96,7 +95,7 @@ public class TranscribeButton {
         Rect rect = new Rect(this.bounds);
         this.pressBounds = rect;
         rect.inset(AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f));
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(C1010R.raw.transcribe_out, "transcribe_out", AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(26.0f));
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(C1072R.raw.transcribe_out, "transcribe_out", AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(26.0f));
         this.outIconDrawable = rLottieDrawable;
         rLottieDrawable.setCurrentFrame(0);
         this.outIconDrawable.setCallback(chatMessageCell);
@@ -107,7 +106,7 @@ public class TranscribeButton {
             }
         }, 19);
         this.outIconDrawable.setAllowDecodeSingleFrame(true);
-        RLottieDrawable rLottieDrawable2 = new RLottieDrawable(C1010R.raw.transcribe_in, "transcribe_in", AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(26.0f));
+        RLottieDrawable rLottieDrawable2 = new RLottieDrawable(C1072R.raw.transcribe_in, "transcribe_in", AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(26.0f));
         this.inIconDrawable = rLottieDrawable2;
         rLottieDrawable2.setCurrentFrame(0);
         this.inIconDrawable.setCallback(chatMessageCell);
@@ -305,8 +304,8 @@ public class TranscribeButton {
             float f = i3 / 2.0f;
             float f2 = i5;
             float f3 = i4 / 2.0f;
-            this.f1138a = (float) ((Math.atan((f - f2) / f3) * 180.0d) / 3.141592653589793d);
-            this.f1139b = (float) ((Math.atan(f / (f3 - f2)) * 180.0d) / 3.141592653589793d);
+            this.f1154a = (float) ((Math.atan((f - f2) / f3) * 180.0d) / 3.141592653589793d);
+            this.f1155b = (float) ((Math.atan(f / (f3 - f2)) * 180.0d) / 3.141592653589793d);
         }
         this.bounds.set(i, i2, i + i3, i2 + i4);
         int min = Math.min(Math.min(i3, i4) / 2, i5);
@@ -380,45 +379,45 @@ public class TranscribeButton {
             int centerX = this.bounds.centerX();
             Rect rect = this.bounds;
             int i2 = rect.top;
-            addLine(path4, centerX, i2, rect.right - this.radius, i2, f8, f9, 0.0f, this.f1138a);
+            addLine(path4, centerX, i2, rect.right - this.radius, i2, f8, f9, 0.0f, this.f1154a);
             Path path5 = this.progressClipPath;
             Rect rect2 = this.bounds;
-            addCorner(path5, rect2.right, rect2.top, this.diameter, 1, f8, f9, this.f1138a, this.f1139b);
+            addCorner(path5, rect2.right, rect2.top, this.diameter, 1, f8, f9, this.f1154a, this.f1155b);
             Path path6 = this.progressClipPath;
             Rect rect3 = this.bounds;
             int i3 = rect3.right;
             int i4 = rect3.top;
             int i5 = this.radius;
-            float f10 = this.f1139b;
+            float f10 = this.f1155b;
             addLine(path6, i3, i4 + i5, i3, rect3.bottom - i5, f8, f9, f10, 180.0f - f10);
             Path path7 = this.progressClipPath;
             Rect rect4 = this.bounds;
-            addCorner(path7, rect4.right, rect4.bottom, this.diameter, 2, f8, f9, 180.0f - this.f1139b, 180.0f - this.f1138a);
+            addCorner(path7, rect4.right, rect4.bottom, this.diameter, 2, f8, f9, 180.0f - this.f1155b, 180.0f - this.f1154a);
             Path path8 = this.progressClipPath;
             Rect rect5 = this.bounds;
             int i6 = rect5.right;
             int i7 = this.radius;
             int i8 = rect5.bottom;
             int i9 = rect5.left + i7;
-            float f11 = this.f1138a;
+            float f11 = this.f1154a;
             addLine(path8, i6 - i7, i8, i9, i8, f8, f9, 180.0f - f11, f11 + 180.0f);
             Path path9 = this.progressClipPath;
             Rect rect6 = this.bounds;
-            addCorner(path9, rect6.left, rect6.bottom, this.diameter, 3, f8, f9, this.f1138a + 180.0f, this.f1139b + 180.0f);
+            addCorner(path9, rect6.left, rect6.bottom, this.diameter, 3, f8, f9, this.f1154a + 180.0f, this.f1155b + 180.0f);
             Path path10 = this.progressClipPath;
             Rect rect7 = this.bounds;
             int i10 = rect7.left;
             int i11 = rect7.bottom;
             int i12 = this.radius;
             int i13 = rect7.top + i12;
-            float f12 = this.f1139b;
+            float f12 = this.f1155b;
             addLine(path10, i10, i11 - i12, i10, i13, f8, f9, f12 + 180.0f, 360.0f - f12);
             Path path11 = this.progressClipPath;
             Rect rect8 = this.bounds;
-            addCorner(path11, rect8.left, rect8.top, this.diameter, 4, f8, f9, 360.0f - this.f1139b, 360.0f - this.f1138a);
+            addCorner(path11, rect8.left, rect8.top, this.diameter, 4, f8, f9, 360.0f - this.f1155b, 360.0f - this.f1154a);
             Path path12 = this.progressClipPath;
             Rect rect9 = this.bounds;
-            addLine(path12, rect9.left + this.radius, rect9.top, rect9.centerX(), this.bounds.top, f8, f9, 360.0f - this.f1138a, 360.0f);
+            addLine(path12, rect9.left + this.radius, rect9.top, rect9.centerX(), this.bounds.top, f8, f9, 360.0f - this.f1154a, 360.0f);
             this.strokePaint.setStrokeWidth(AndroidUtilities.m35dp(1.5f));
             int alpha2 = this.strokePaint.getAlpha();
             this.strokePaint.setAlpha((int) (alpha2 * f));
@@ -550,7 +549,7 @@ public class TranscribeButton {
         public LoadingPointsDrawable(TextPaint textPaint) {
             this.paint = textPaint;
             float textSize = textPaint.getTextSize() * 0.89f;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(this, C1010R.raw.dots_loading, "dots_loading", (int) textSize, (int) (textSize * 1.25f)) {
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(this, C1072R.raw.dots_loading, "dots_loading", (int) textSize, (int) (textSize * 1.25f)) {
                 @Override
                 public boolean hasParentView() {
                     return true;
@@ -626,7 +625,7 @@ public class TranscribeButton {
         TLRPC$InputPeer inputPeer = MessagesController.getInstance(i).getInputPeer(messageObject.messageOwner.peer_id);
         final long peerDialogId = DialogObject.getPeerDialogId(inputPeer);
         TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-        final int i2 = tLRPC$Message.f872id;
+        final int i2 = tLRPC$Message.f881id;
         if (z) {
             if (tLRPC$Message.voiceTranscription != null && tLRPC$Message.voiceTranscriptionFinal) {
                 openVideoTranscription(messageObject);
@@ -682,9 +681,8 @@ public class TranscribeButton {
     public static void lambda$transcribePressed$4(final MessageObject messageObject, long j, int i, long j2, int i2, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         final long j3;
         boolean z;
-        boolean z2 = tLObject instanceof TLRPC$TL_messages_transcribedAudio;
-        final String str = BuildConfig.APP_CENTER_HASH;
-        if (z2) {
+        final String str = "";
+        if (tLObject instanceof TLRPC$TL_messages_transcribedAudio) {
             TLRPC$TL_messages_transcribedAudio tLRPC$TL_messages_transcribedAudio = (TLRPC$TL_messages_transcribedAudio) tLObject;
             String str2 = tLRPC$TL_messages_transcribedAudio.text;
             long j4 = tLRPC$TL_messages_transcribedAudio.transcription_id;

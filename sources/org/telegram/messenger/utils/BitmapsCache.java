@@ -42,15 +42,15 @@ public class BitmapsCache {
     volatile boolean fileExist;
     String fileName;
     private int frameIndex;
-    int f835h;
+    int f844h;
     BitmapFactory.Options options;
     volatile boolean recycled;
     private final Cacheable source;
     private int tryCount;
     final boolean useSharedBuffers;
-    int f836w;
+    int f845w;
     static ConcurrentHashMap<Thread, byte[]> sharedBuffers = new ConcurrentHashMap<>();
-    private static final int f834N = Utilities.clamp(Runtime.getRuntime().availableProcessors() - 2, 8, 1);
+    private static final int f843N = Utilities.clamp(Runtime.getRuntime().availableProcessors() - 2, 8, 1);
     ArrayList<FrameOffset> frameOffsets = new ArrayList<>();
     private final Object mutex = new Object();
     public AtomicBoolean cancelled = new AtomicBoolean(false);
@@ -94,12 +94,12 @@ public class BitmapsCache {
         RandomAccessFile randomAccessFile;
         Throwable th;
         this.source = cacheable;
-        this.f836w = i;
-        this.f835h = i2;
+        this.f845w = i;
+        this.f844h = i2;
         this.compressQuality = cacheOptions.compressQuality;
         this.fileName = file.getName();
         if (bitmapCompressExecutor == null) {
-            int i3 = f834N;
+            int i3 = f843N;
             bitmapCompressExecutor = new ThreadPoolExecutor(i3, i3, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue());
         }
         File file2 = new File(FileLoader.checkDirectory(4), "acache");
@@ -467,15 +467,15 @@ public class BitmapsCache {
         private int lastSize;
 
         private CacheGeneratorSharedTools() {
-            this.byteArrayOutputStream = new ByteArrayOutputStream[BitmapsCache.f834N];
-            this.bitmap = new Bitmap[BitmapsCache.f834N];
+            this.byteArrayOutputStream = new ByteArrayOutputStream[BitmapsCache.f843N];
+            this.bitmap = new Bitmap[BitmapsCache.f843N];
         }
 
         void allocate(int i, int i2) {
             int i3 = (i2 << 16) + i;
             boolean z = this.lastSize != i3;
             this.lastSize = i3;
-            for (int i4 = 0; i4 < BitmapsCache.f834N; i4++) {
+            for (int i4 = 0; i4 < BitmapsCache.f843N; i4++) {
                 if (z || this.bitmap[i4] == null) {
                     Bitmap[] bitmapArr = this.bitmap;
                     if (bitmapArr[i4] != null) {
@@ -505,7 +505,7 @@ public class BitmapsCache {
 
         void release() {
             final ArrayList arrayList = null;
-            for (int i = 0; i < BitmapsCache.f834N; i++) {
+            for (int i = 0; i < BitmapsCache.f843N; i++) {
                 if (this.bitmap[i] != null) {
                     if (arrayList == null) {
                         arrayList = new ArrayList();

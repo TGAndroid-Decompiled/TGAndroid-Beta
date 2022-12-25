@@ -20,8 +20,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -45,7 +44,7 @@ import org.telegram.p009ui.Components.RLottieImageView;
 import org.telegram.p009ui.Components.RadialProgressView;
 import org.telegram.p009ui.Components.RecyclerListView;
 import org.telegram.p009ui.Components.TransformableLoginButtonView;
-import org.telegram.tgnet.C1068x72c667f;
+import org.telegram.tgnet.C1132x72c667f;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -222,12 +221,12 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             presentFragment(twoStepVerificationSetupActivity2);
         } else if (i == this.turnPasswordOffRow) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            String string = LocaleController.getString("TurnPasswordOffQuestion", C1010R.string.TurnPasswordOffQuestion);
+            String string = LocaleController.getString("TurnPasswordOffQuestion", C1072R.string.TurnPasswordOffQuestion);
             if (this.currentPassword.has_secure_values) {
-                string = string + "\n\n" + LocaleController.getString("TurnPasswordOffPassport", C1010R.string.TurnPasswordOffPassport);
+                string = string + "\n\n" + LocaleController.getString("TurnPasswordOffPassport", C1072R.string.TurnPasswordOffPassport);
             }
-            String string2 = LocaleController.getString("TurnPasswordOffQuestionTitle", C1010R.string.TurnPasswordOffQuestionTitle);
-            String string3 = LocaleController.getString("Disable", C1010R.string.Disable);
+            String string2 = LocaleController.getString("TurnPasswordOffQuestionTitle", C1072R.string.TurnPasswordOffQuestionTitle);
+            String string3 = LocaleController.getString("Disable", C1072R.string.Disable);
             builder.setMessage(string);
             builder.setTitle(string2);
             builder.setPositiveButton(string3, new DialogInterface.OnClickListener() {
@@ -236,7 +235,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                     TwoStepVerificationActivity.this.lambda$createView$6(dialogInterface, i2);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
+            builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
             AlertDialog create = builder.create();
             showDialog(create);
             TextView textView = (TextView) create.getButton(-1);
@@ -271,15 +270,15 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setPositiveButton(LocaleController.getString("CancelPasswordResetYes", C1010R.string.CancelPasswordResetYes), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(LocaleController.getString("CancelPasswordResetYes", C1072R.string.CancelPasswordResetYes), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 TwoStepVerificationActivity.this.lambda$cancelPasswordReset$10(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("CancelPasswordResetNo", C1010R.string.CancelPasswordResetNo), null);
-        builder.setTitle(LocaleController.getString("CancelReset", C1010R.string.CancelReset));
-        builder.setMessage(LocaleController.getString("CancelPasswordReset", C1010R.string.CancelPasswordReset));
+        builder.setNegativeButton(LocaleController.getString("CancelPasswordResetNo", C1072R.string.CancelPasswordResetNo), null);
+        builder.setTitle(LocaleController.getString("CancelReset", C1072R.string.CancelReset));
+        builder.setMessage(LocaleController.getString("CancelPasswordReset", C1072R.string.CancelPasswordReset));
         showDialog(builder.create());
     }
 
@@ -360,9 +359,9 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         needHideProgress();
         if (tLObject instanceof TLRPC$TL_account_resetPasswordOk) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setNegativeButton(LocaleController.getString("OK", C1010R.string.OK), null);
-            builder.setTitle(LocaleController.getString("ResetPassword", C1010R.string.ResetPassword));
-            builder.setMessage(LocaleController.getString("RestorePasswordResetPasswordOk", C1010R.string.RestorePasswordResetPasswordOk));
+            builder.setNegativeButton(LocaleController.getString("OK", C1072R.string.OK), null);
+            builder.setTitle(LocaleController.getString("ResetPassword", C1072R.string.ResetPassword));
+            builder.setMessage(LocaleController.getString("RestorePasswordResetPasswordOk", C1072R.string.RestorePasswordResetPasswordOk));
             showDialog(builder.create(), new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
@@ -383,7 +382,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             } else {
                 formatPluralString = LocaleController.formatPluralString("Seconds", Math.max(1, currentTime), new Object[0]);
             }
-            showAlertWithText(LocaleController.getString("ResetPassword", C1010R.string.ResetPassword), LocaleController.formatString("ResetPasswordWait", C1010R.string.ResetPasswordWait, formatPluralString));
+            showAlertWithText(LocaleController.getString("ResetPassword", C1072R.string.ResetPassword), LocaleController.formatString("ResetPasswordWait", C1072R.string.ResetPasswordWait, formatPluralString));
         }
     }
 
@@ -411,15 +410,15 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             if (this.currentPassword.pending_reset_date != 0) {
                 if (getConnectionsManager().getCurrentTime() > this.currentPassword.pending_reset_date) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                    builder.setPositiveButton(LocaleController.getString("Reset", C1010R.string.Reset), new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(LocaleController.getString("Reset", C1072R.string.Reset), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
                             TwoStepVerificationActivity.this.lambda$onPasswordForgot$16(dialogInterface, i);
                         }
                     });
-                    builder.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
-                    builder.setTitle(LocaleController.getString("ResetPassword", C1010R.string.ResetPassword));
-                    builder.setMessage(LocaleController.getString("RestorePasswordResetPasswordText", C1010R.string.RestorePasswordResetPasswordText));
+                    builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
+                    builder.setTitle(LocaleController.getString("ResetPassword", C1072R.string.ResetPassword));
+                    builder.setMessage(LocaleController.getString("RestorePasswordResetPasswordText", C1072R.string.RestorePasswordResetPasswordText));
                     AlertDialog create = builder.create();
                     showDialog(create);
                     TextView textView = (TextView) create.getButton(-1);
@@ -433,15 +432,15 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                 return;
             }
             AlertDialog.Builder builder2 = new AlertDialog.Builder(getParentActivity());
-            builder2.setPositiveButton(LocaleController.getString("Reset", C1010R.string.Reset), new DialogInterface.OnClickListener() {
+            builder2.setPositiveButton(LocaleController.getString("Reset", C1072R.string.Reset), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     TwoStepVerificationActivity.this.lambda$onPasswordForgot$17(dialogInterface, i);
                 }
             });
-            builder2.setNegativeButton(LocaleController.getString("Cancel", C1010R.string.Cancel), null);
-            builder2.setTitle(LocaleController.getString("ResetPassword", C1010R.string.ResetPassword));
-            builder2.setMessage(LocaleController.getString("RestorePasswordNoEmailText2", C1010R.string.RestorePasswordNoEmailText2));
+            builder2.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
+            builder2.setTitle(LocaleController.getString("ResetPassword", C1072R.string.ResetPassword));
+            builder2.setMessage(LocaleController.getString("RestorePasswordNoEmailText2", C1072R.string.RestorePasswordNoEmailText2));
             showDialog(builder2.create());
         }
     }
@@ -477,9 +476,9 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             } else {
                 formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
             }
-            showAlertWithText(LocaleController.getString("AppName", C1010R.string.AppName), LocaleController.formatString("FloodWaitTime", C1010R.string.FloodWaitTime, formatPluralString));
+            showAlertWithText(LocaleController.getString("AppName", C1072R.string.AppName), LocaleController.formatString("FloodWaitTime", C1072R.string.FloodWaitTime, formatPluralString));
         } else {
-            showAlertWithText(LocaleController.getString("AppName", C1010R.string.AppName), tLRPC$TL_error.text);
+            showAlertWithText(LocaleController.getString("AppName", C1072R.string.AppName), tLRPC$TL_error.text);
         }
     }
 
@@ -530,13 +529,13 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
 
     public static void initPasswordNewAlgo(TLRPC$account_Password tLRPC$account_Password) {
         TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo = tLRPC$account_Password.new_algo;
-        if (tLRPC$PasswordKdfAlgo instanceof C1068x72c667f) {
-            C1068x72c667f c1068x72c667f = (C1068x72c667f) tLRPC$PasswordKdfAlgo;
-            byte[] bArr = new byte[c1068x72c667f.salt1.length + 32];
+        if (tLRPC$PasswordKdfAlgo instanceof C1132x72c667f) {
+            C1132x72c667f c1132x72c667f = (C1132x72c667f) tLRPC$PasswordKdfAlgo;
+            byte[] bArr = new byte[c1132x72c667f.salt1.length + 32];
             Utilities.random.nextBytes(bArr);
-            byte[] bArr2 = c1068x72c667f.salt1;
+            byte[] bArr2 = c1132x72c667f.salt1;
             System.arraycopy(bArr2, 0, bArr, 0, bArr2.length);
-            c1068x72c667f.salt1 = bArr;
+            c1132x72c667f.salt1 = bArr;
         }
         TLRPC$SecurePasswordKdfAlgo tLRPC$SecurePasswordKdfAlgo = tLRPC$account_Password.new_secure_algo;
         if (tLRPC$SecurePasswordKdfAlgo instanceof TLRPC$TL_securePasswordKdfAlgoPBKDF2HMACSHA512iter100000) {
@@ -580,7 +579,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             this.currentPassword = tLRPC$account_Password;
             if (!canHandleCurrentPassword(tLRPC$account_Password, false)) {
-                AlertsCreator.showUpdateAppAlert(getParentActivity(), LocaleController.getString("UpdateAppAlert", C1010R.string.UpdateAppAlert), true);
+                AlertsCreator.showUpdateAppAlert(getParentActivity(), LocaleController.getString("UpdateAppAlert", C1072R.string.UpdateAppAlert), true);
                 return;
             }
             if (!z || z2) {
@@ -774,7 +773,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setPositiveButton(LocaleController.getString("OK", C1010R.string.OK), null);
+        builder.setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), null);
         builder.setTitle(str);
         builder.setMessage(str2);
         showDialog(builder.create());
@@ -791,10 +790,10 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         this.currentSecret = null;
         TLRPC$TL_account_passwordInputSettings tLRPC$TL_account_passwordInputSettings = tLRPC$TL_account_updatePasswordSettings.new_settings;
         tLRPC$TL_account_passwordInputSettings.flags = 3;
-        tLRPC$TL_account_passwordInputSettings.hint = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_account_passwordInputSettings.hint = "";
         tLRPC$TL_account_passwordInputSettings.new_password_hash = new byte[0];
         tLRPC$TL_account_passwordInputSettings.new_algo = new TLRPC$TL_passwordKdfAlgoUnknown();
-        tLRPC$TL_account_updatePasswordSettings.new_settings.email = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_account_updatePasswordSettings.new_settings.email = "";
         needShowProgress();
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
@@ -879,10 +878,10 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                 } else {
                     formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
                 }
-                showAlertWithText(LocaleController.getString("AppName", C1010R.string.AppName), LocaleController.formatString("FloodWaitTime", C1010R.string.FloodWaitTime, formatPluralString));
+                showAlertWithText(LocaleController.getString("AppName", C1072R.string.AppName), LocaleController.formatString("FloodWaitTime", C1072R.string.FloodWaitTime, formatPluralString));
                 return;
             }
-            showAlertWithText(LocaleController.getString("AppName", C1010R.string.AppName), tLRPC$TL_error.text);
+            showAlertWithText(LocaleController.getString("AppName", C1072R.string.AppName), tLRPC$TL_error.text);
         }
     }
 
@@ -908,8 +907,8 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     public TLRPC$TL_inputCheckPasswordSRP getNewSrpPassword() {
         TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
         TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo = tLRPC$account_Password.current_algo;
-        if (tLRPC$PasswordKdfAlgo instanceof C1068x72c667f) {
-            return SRPHelper.startCheck(this.currentPasswordHash, tLRPC$account_Password.srp_id, tLRPC$account_Password.srp_B, (C1068x72c667f) tLRPC$PasswordKdfAlgo);
+        if (tLRPC$PasswordKdfAlgo instanceof C1132x72c667f) {
+            return SRPHelper.startCheck(this.currentPasswordHash, tLRPC$account_Password.srp_id, tLRPC$account_Password.srp_B, (C1132x72c667f) tLRPC$PasswordKdfAlgo);
         }
         return null;
     }
@@ -982,7 +981,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     public void lambda$processDone$35(final byte[] bArr) {
         TLRPC$TL_account_getPasswordSettings tLRPC$TL_account_getPasswordSettings = new TLRPC$TL_account_getPasswordSettings();
         TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo = this.currentPassword.current_algo;
-        final byte[] x = tLRPC$PasswordKdfAlgo instanceof C1068x72c667f ? SRPHelper.getX(bArr, (C1068x72c667f) tLRPC$PasswordKdfAlgo) : null;
+        final byte[] x = tLRPC$PasswordKdfAlgo instanceof C1132x72c667f ? SRPHelper.getX(bArr, (C1132x72c667f) tLRPC$PasswordKdfAlgo) : null;
         RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -991,8 +990,8 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         };
         TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
         TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo2 = tLRPC$account_Password.current_algo;
-        if (tLRPC$PasswordKdfAlgo2 instanceof C1068x72c667f) {
-            TLRPC$TL_inputCheckPasswordSRP startCheck = SRPHelper.startCheck(x, tLRPC$account_Password.srp_id, tLRPC$account_Password.srp_B, (C1068x72c667f) tLRPC$PasswordKdfAlgo2);
+        if (tLRPC$PasswordKdfAlgo2 instanceof C1132x72c667f) {
+            TLRPC$TL_inputCheckPasswordSRP startCheck = SRPHelper.startCheck(x, tLRPC$account_Password.srp_id, tLRPC$account_Password.srp_B, (C1132x72c667f) tLRPC$PasswordKdfAlgo2);
             tLRPC$TL_account_getPasswordSettings.password = startCheck;
             if (startCheck == null) {
                 TLRPC$TL_error tLRPC$TL_error = new TLRPC$TL_error();
@@ -1064,7 +1063,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                 return;
             }
         }
-        AlertsCreator.showUpdateAppAlert(getParentActivity(), LocaleController.getString("UpdateAppAlert", C1010R.string.UpdateAppAlert), true);
+        AlertsCreator.showUpdateAppAlert(getParentActivity(), LocaleController.getString("UpdateAppAlert", C1072R.string.UpdateAppAlert), true);
     }
 
     public void lambda$processDone$33(TLRPC$TL_error tLRPC$TL_error) {
@@ -1088,9 +1087,9 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             } else {
                 formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
             }
-            showAlertWithText(LocaleController.getString("AppName", C1010R.string.AppName), LocaleController.formatString("FloodWaitTime", C1010R.string.FloodWaitTime, formatPluralString));
+            showAlertWithText(LocaleController.getString("AppName", C1072R.string.AppName), LocaleController.formatString("FloodWaitTime", C1072R.string.FloodWaitTime, formatPluralString));
         } else {
-            showAlertWithText(LocaleController.getString("AppName", C1010R.string.AppName), tLRPC$TL_error.text);
+            showAlertWithText(LocaleController.getString("AppName", C1072R.string.AppName), tLRPC$TL_error.text);
         }
     }
 
@@ -1122,7 +1121,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         } catch (Exception unused) {
         }
         if (z) {
-            textView.setText(BuildConfig.APP_CENTER_HASH);
+            textView.setText("");
         }
         outlineTextContainerView.animateError(1.0f);
         AndroidUtilities.shakeViewSpring(outlineTextContainerView, 5.0f, new Runnable() {
@@ -1181,14 +1180,14 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 if (i != TwoStepVerificationActivity.this.setPasswordDetailRow) {
                     if (i == TwoStepVerificationActivity.this.passwordEnabledDetailRow) {
-                        textInfoPrivacyCell.setText(LocaleController.getString("EnabledPasswordText", C1010R.string.EnabledPasswordText));
-                        textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                        textInfoPrivacyCell.setText(LocaleController.getString("EnabledPasswordText", C1072R.string.EnabledPasswordText));
+                        textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
                         return;
                     }
                     return;
                 }
-                textInfoPrivacyCell.setText(LocaleController.getString("SetAdditionalPasswordInfo", C1010R.string.SetAdditionalPasswordInfo));
-                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1010R.C1011drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                textInfoPrivacyCell.setText(LocaleController.getString("SetAdditionalPasswordInfo", C1072R.string.SetAdditionalPasswordInfo));
+                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
                 return;
             }
             TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
@@ -1199,21 +1198,21 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                     if (i != TwoStepVerificationActivity.this.turnPasswordOffRow) {
                         if (i != TwoStepVerificationActivity.this.changeRecoveryEmailRow) {
                             if (i == TwoStepVerificationActivity.this.setRecoveryEmailRow) {
-                                textSettingsCell.setText(LocaleController.getString("SetRecoveryEmail", C1010R.string.SetRecoveryEmail), false);
+                                textSettingsCell.setText(LocaleController.getString("SetRecoveryEmail", C1072R.string.SetRecoveryEmail), false);
                                 return;
                             }
                             return;
                         }
-                        textSettingsCell.setText(LocaleController.getString("ChangeRecoveryEmail", C1010R.string.ChangeRecoveryEmail), false);
+                        textSettingsCell.setText(LocaleController.getString("ChangeRecoveryEmail", C1072R.string.ChangeRecoveryEmail), false);
                         return;
                     }
-                    textSettingsCell.setText(LocaleController.getString("TurnPasswordOff", C1010R.string.TurnPasswordOff), true);
+                    textSettingsCell.setText(LocaleController.getString("TurnPasswordOff", C1072R.string.TurnPasswordOff), true);
                     return;
                 }
-                textSettingsCell.setText(LocaleController.getString("SetAdditionalPassword", C1010R.string.SetAdditionalPassword), true);
+                textSettingsCell.setText(LocaleController.getString("SetAdditionalPassword", C1072R.string.SetAdditionalPassword), true);
                 return;
             }
-            textSettingsCell.setText(LocaleController.getString("ChangePassword", C1010R.string.ChangePassword), true);
+            textSettingsCell.setText(LocaleController.getString("ChangePassword", C1072R.string.ChangePassword), true);
         }
 
         @Override
@@ -1263,10 +1262,10 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
 
     public void showSetForcePasswordAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString("Warning", C1010R.string.Warning));
+        builder.setTitle(LocaleController.getString("Warning", C1072R.string.Warning));
         builder.setMessage(LocaleController.formatPluralString("ForceSetPasswordAlertMessageShort", this.otherwiseReloginDays, new Object[0]));
-        builder.setPositiveButton(LocaleController.getString("TwoStepVerificationSetPassword", C1010R.string.TwoStepVerificationSetPassword), null);
-        builder.setNegativeButton(LocaleController.getString("ForceSetPasswordCancel", C1010R.string.ForceSetPasswordCancel), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(LocaleController.getString("TwoStepVerificationSetPassword", C1072R.string.TwoStepVerificationSetPassword), null);
+        builder.setNegativeButton(LocaleController.getString("ForceSetPasswordCancel", C1072R.string.ForceSetPasswordCancel), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 TwoStepVerificationActivity.this.lambda$showSetForcePasswordAlert$37(dialogInterface, i);

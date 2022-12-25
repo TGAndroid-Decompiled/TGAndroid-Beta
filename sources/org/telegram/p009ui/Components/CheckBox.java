@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 
 public class CheckBox extends View {
     private static Paint backgroundPaint;
@@ -193,7 +192,7 @@ public class CheckBox extends View {
 
     public void setNum(int i) {
         if (i >= 0) {
-            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
+            this.checkedText = "" + (i + 1);
         } else if (this.checkAnimator == null) {
             this.checkedText = null;
         }
@@ -202,7 +201,7 @@ public class CheckBox extends View {
 
     public void setChecked(int i, boolean z, boolean z2) {
         if (i >= 0) {
-            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
+            this.checkedText = "" + (i + 1);
             invalidate();
         }
         if (z == this.isChecked) {

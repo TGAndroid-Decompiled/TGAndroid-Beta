@@ -46,7 +46,7 @@ public class TopicExceptionCell extends FrameLayout {
             ((ForumUtilities.GeneralTopicDrawable) this.backupImageView.getImageReceiver().getDrawable()).setColor(Theme.getColor("chats_archiveBackground"));
         }
         this.title.setText(tLRPC$TL_forumTopic.title);
-        this.subtitle.setText(MessagesController.getInstance(UserConfig.selectedAccount).getMutedString(j, tLRPC$TL_forumTopic.f901id));
+        this.subtitle.setText(MessagesController.getInstance(UserConfig.selectedAccount).getMutedString(j, tLRPC$TL_forumTopic.f910id));
     }
 
     @Override

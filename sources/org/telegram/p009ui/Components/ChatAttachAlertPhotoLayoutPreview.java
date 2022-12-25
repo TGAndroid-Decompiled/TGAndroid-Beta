@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -22,32 +23,35 @@ import android.view.ViewPropertyAnimator;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.Interpolator;
 import android.widget.TextView;
+import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.C1010R;
+import org.telegram.messenger.C1072R;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.p009ui.ActionBar.ActionBarMenu;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
-import org.telegram.p009ui.ActionBar.C1069ActionBar;
+import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Cells.ChatActionCell;
 import org.telegram.p009ui.ChatActivity;
 import org.telegram.p009ui.Components.ChatAttachAlert;
 import org.telegram.p009ui.Components.ChatAttachAlertPhotoLayoutPreview;
 import org.telegram.p009ui.Components.RecyclerListView;
+import org.telegram.p009ui.Components.spoilers.SpoilerEffect;
 import org.telegram.p009ui.PhotoViewer;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$FileLocation;
@@ -133,7 +137,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.header.setMaxLines(1);
         this.header.setEllipsize(TextUtils.TruncateAt.END);
         this.header.setTextColor(getThemedColor("dialogTextBlack"));
-        this.header.setText(LocaleController.getString("AttachMediaPreview", C1010R.string.AttachMediaPreview));
+        this.header.setText(LocaleController.getString("AttachMediaPreview", C1072R.string.AttachMediaPreview));
         this.header.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.header.setCompoundDrawablePadding(AndroidUtilities.m35dp(4.0f));
         this.header.setPadding(0, 0, AndroidUtilities.m35dp(10.0f), 0);
@@ -202,7 +206,21 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.undoView = undoView;
         undoView.setEnterOffsetMargin(AndroidUtilities.m35dp(32.0f));
         addView(this.undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 52.0f));
-        this.videoPlayImage = context.getResources().getDrawable(C1010R.C1011drawable.play_mini_video);
+        this.videoPlayImage = context.getResources().getDrawable(C1072R.C1073drawable.play_mini_video);
+    }
+
+    public void startMediaCrossfade() {
+        Iterator it = this.groupsView.groupCells.iterator();
+        while (it.hasNext()) {
+            Iterator<PreviewGroupsView.PreviewGroupCell.MediaCell> it2 = ((PreviewGroupsView.PreviewGroupCell) it.next()).media.iterator();
+            while (it2.hasNext()) {
+                it2.next().startCrossfade();
+            }
+        }
+    }
+
+    public void invalidateGroupsView() {
+        this.groupsView.invalidate();
     }
 
     @Override
@@ -250,9 +268,11 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     }
 
     public void lambda$onShow$1() {
-        if (this.shown) {
-            this.parentAlert.selectedMenuItem.hideSubItem(3);
+        if (!this.shown || this.parentAlert.getPhotoLayout() == null) {
+            return;
         }
+        this.parentAlert.getPhotoLayout().previewItem.setIcon(C1072R.C1073drawable.ic_ab_back);
+        this.parentAlert.getPhotoLayout().previewItem.setText(LocaleController.getString(C1072R.string.Back));
     }
 
     @Override
@@ -265,8 +285,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         ViewPropertyAnimator interpolator = this.header.animate().alpha(0.0f).setDuration(150L).setInterpolator(CubicBezierInterpolator.EASE_BOTH);
         this.headerAnimator = interpolator;
         interpolator.start();
-        if (getSelectedItemsCount() > 1) {
-            this.parentAlert.selectedMenuItem.showSubItem(3);
+        if (getSelectedItemsCount() > 1 && this.parentAlert.getPhotoLayout() != null) {
+            this.parentAlert.getPhotoLayout().previewItem.setIcon(C1072R.C1073drawable.msg_view_file);
+            this.parentAlert.getPhotoLayout().previewItem.setText(LocaleController.getString(C1072R.string.AttachMediaPreviewButton));
         }
         this.groupsView.toPhotoLayout(this.photoLayout, true);
     }
@@ -278,10 +299,21 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
 
     @Override
     public void onHidden() {
+        MediaController.PhotoEntry photoEntry;
         this.draggingCell = null;
         UndoView undoView = this.undoView;
         if (undoView != null) {
             undoView.hide(false, 0);
+        }
+        Iterator it = this.groupsView.groupCells.iterator();
+        while (it.hasNext()) {
+            Iterator<PreviewGroupsView.PreviewGroupCell.MediaCell> it2 = ((PreviewGroupsView.PreviewGroupCell) it.next()).media.iterator();
+            while (it2.hasNext()) {
+                PreviewGroupsView.PreviewGroupCell.MediaCell next = it2.next();
+                if (next.wasSpoiler && (photoEntry = next.photoEntry) != null) {
+                    photoEntry.isChatPreviewSpoilerRevealed = false;
+                }
+            }
         }
     }
 
@@ -351,7 +383,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             int size = this.posArray.size();
             for (int i = 0; i < size; i++) {
                 MessageObject.GroupedMessagePosition groupedMessagePosition = this.posArray.get(i);
-                int i2 = groupedMessagePosition.f807pw;
+                int i2 = groupedMessagePosition.f816pw;
                 for (int i3 = groupedMessagePosition.minY; i3 <= groupedMessagePosition.maxY; i3++) {
                     iArr[i3] = iArr[i3] + i2;
                 }
@@ -371,7 +403,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             int size = this.posArray.size();
             for (int i = 0; i < size; i++) {
                 MessageObject.GroupedMessagePosition groupedMessagePosition = this.posArray.get(i);
-                float f = groupedMessagePosition.f806ph;
+                float f = groupedMessagePosition.f815ph;
                 for (int i2 = groupedMessagePosition.minX; i2 <= groupedMessagePosition.maxX; i2++) {
                     fArr[i2] = fArr[i2] + f;
                 }
@@ -396,7 +428,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 if (groupedMessagePosition2 != groupedMessagePosition && groupedMessagePosition2.maxX < i3) {
                     int min = Math.min((int) groupedMessagePosition2.maxY, i2) - i;
                     for (int max = Math.max(groupedMessagePosition2.minY - i, 0); max <= min; max++) {
-                        fArr[max] = fArr[max] + groupedMessagePosition2.f807pw;
+                        fArr[max] = fArr[max] + groupedMessagePosition2.f816pw;
                     }
                 }
             }
@@ -418,7 +450,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 MessageObject.GroupedMessagePosition groupedMessagePosition2 = this.posArray.get(i3);
                 if (groupedMessagePosition2 != groupedMessagePosition && groupedMessagePosition2.maxY < i) {
                     for (int i4 = groupedMessagePosition2.minX; i4 <= groupedMessagePosition2.maxX; i4++) {
-                        fArr[i4] = fArr[i4] + groupedMessagePosition2.f806ph;
+                        fArr[i4] = fArr[i4] + groupedMessagePosition2.f815ph;
                     }
                 }
             }
@@ -500,8 +532,8 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 Point point = AndroidUtilities.displaySize;
                 i = point.x > point.y ? 6 : 12;
             }
-            if (currentItemTop < C1069ActionBar.getCurrentActionBarHeight()) {
-                currentItemTop -= AndroidUtilities.m35dp((1.0f - (currentItemTop / C1069ActionBar.getCurrentActionBarHeight())) * i);
+            if (currentItemTop < C1133ActionBar.getCurrentActionBarHeight()) {
+                currentItemTop -= AndroidUtilities.m35dp((1.0f - (currentItemTop / C1133ActionBar.getCurrentActionBarHeight())) * i);
             }
             int max = Math.max(0, currentItemTop);
             canvas.save();
@@ -621,7 +653,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             setWillNotDraw(false);
             ChatActionCell chatActionCell = new ChatActionCell(context, true, ChatAttachAlertPhotoLayoutPreview.this.themeDelegate);
             this.hintView = chatActionCell;
-            chatActionCell.setCustomText(LocaleController.getString("AttachMediaDragHint", C1010R.string.AttachMediaDragHint));
+            chatActionCell.setCustomText(LocaleController.getString("AttachMediaDragHint", C1072R.string.AttachMediaDragHint));
             addView(this.hintView);
         }
 
@@ -771,7 +803,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         private int measureHeight() {
-            return Math.max(measurePureHeight(), (AndroidUtilities.displaySize.y - C1069ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.m35dp(45.0f));
+            return Math.max(measurePureHeight(), (AndroidUtilities.displaySize.y - C1133ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.m35dp(45.0f));
         }
 
         @Override
@@ -849,7 +881,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             for (int i2 = 0; i2 < size; i2++) {
                 PreviewGroupCell previewGroupCell = this.groupCells.get(i2);
                 float measure = previewGroupCell.measure();
-                previewGroupCell.f1034y = f;
+                previewGroupCell.f1044y = f;
                 previewGroupCell.indexStart = i;
                 f += measure;
                 i += previewGroupCell.group.photos.size();
@@ -874,7 +906,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 }
                 PreviewGroupCell previewGroupCell = this.groupCells.get(i);
                 float measure = previewGroupCell.measure();
-                previewGroupCell.f1034y = f;
+                previewGroupCell.f1044y = f;
                 previewGroupCell.indexStart = i2;
                 float f2 = this.viewTop;
                 if (f < f2 || f > this.viewBottom) {
@@ -901,7 +933,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
                 canvas.save();
                 Point dragTranslate = dragTranslate();
-                canvas.translate(dragTranslate.f1087x, dragTranslate.f1088y);
+                canvas.translate(dragTranslate.f1103x, dragTranslate.f1104y);
                 if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell.draw(canvas, true)) {
                     invalidate();
                 }
@@ -915,19 +947,19 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 if (!ChatAttachAlertPhotoLayoutPreview.this.draggingCellHiding) {
                     RectF rect = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.rect();
                     RectF rect2 = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.rect(1.0f);
-                    this.tmpPoint.f1087x = AndroidUtilities.lerp(rect2.left + (rect.width() / 2.0f), ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchX - ((ChatAttachAlertPhotoLayoutPreview.this.draggingCellLeft - 0.5f) * ChatAttachAlertPhotoLayoutPreview.this.draggingCellFromWidth), this.draggingT);
-                    this.tmpPoint.f1088y = AndroidUtilities.lerp(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.f1034y + rect2.top + (rect.height() / 2.0f), (ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchY - ((ChatAttachAlertPhotoLayoutPreview.this.draggingCellTop - 0.5f) * ChatAttachAlertPhotoLayoutPreview.this.draggingCellFromHeight)) + ChatAttachAlertPhotoLayoutPreview.this.draggingCellGroupY, this.draggingT);
+                    this.tmpPoint.f1103x = AndroidUtilities.lerp(rect2.left + (rect.width() / 2.0f), ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchX - ((ChatAttachAlertPhotoLayoutPreview.this.draggingCellLeft - 0.5f) * ChatAttachAlertPhotoLayoutPreview.this.draggingCellFromWidth), this.draggingT);
+                    this.tmpPoint.f1104y = AndroidUtilities.lerp(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.f1044y + rect2.top + (rect.height() / 2.0f), (ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchY - ((ChatAttachAlertPhotoLayoutPreview.this.draggingCellTop - 0.5f) * ChatAttachAlertPhotoLayoutPreview.this.draggingCellFromHeight)) + ChatAttachAlertPhotoLayoutPreview.this.draggingCellGroupY, this.draggingT);
                 } else {
                     RectF rect3 = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.rect();
                     RectF rect4 = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.rect(1.0f);
-                    this.tmpPoint.f1087x = AndroidUtilities.lerp(rect4.left + (rect3.width() / 2.0f), this.savedDragFromX, this.draggingT / this.savedDraggingT);
-                    this.tmpPoint.f1088y = AndroidUtilities.lerp(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.f1034y + rect4.top + (rect3.height() / 2.0f), this.savedDragFromY, this.draggingT / this.savedDraggingT);
+                    this.tmpPoint.f1103x = AndroidUtilities.lerp(rect4.left + (rect3.width() / 2.0f), this.savedDragFromX, this.draggingT / this.savedDraggingT);
+                    this.tmpPoint.f1104y = AndroidUtilities.lerp(ChatAttachAlertPhotoLayoutPreview.this.draggingCell.groupCell.f1044y + rect4.top + (rect3.height() / 2.0f), this.savedDragFromY, this.draggingT / this.savedDraggingT);
                 }
                 return this.tmpPoint;
             }
             Point point = this.tmpPoint;
-            point.f1087x = 0.0f;
-            point.f1088y = 0.0f;
+            point.f1103x = 0.0f;
+            point.f1104y = 0.0f;
             return point;
         }
 
@@ -937,8 +969,8 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             }
             Point dragTranslate = dragTranslate();
             this.savedDraggingT = this.draggingT;
-            this.savedDragFromX = dragTranslate.f1087x;
-            this.savedDragFromY = dragTranslate.f1088y;
+            this.savedDragFromX = dragTranslate.f1103x;
+            this.savedDragFromY = dragTranslate.f1104y;
             ChatAttachAlertPhotoLayoutPreview.this.draggingCellHiding = true;
             ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator = ValueAnimator.ofFloat(this.savedDraggingT, 0.0f);
             ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -968,7 +1000,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         void startDragging(PreviewGroupCell.MediaCell mediaCell) {
             ChatAttachAlertPhotoLayoutPreview.this.draggingCell = mediaCell;
             ChatAttachAlertPhotoLayoutPreview chatAttachAlertPhotoLayoutPreview = ChatAttachAlertPhotoLayoutPreview.this;
-            chatAttachAlertPhotoLayoutPreview.draggingCellGroupY = chatAttachAlertPhotoLayoutPreview.draggingCell.groupCell.f1034y;
+            chatAttachAlertPhotoLayoutPreview.draggingCellGroupY = chatAttachAlertPhotoLayoutPreview.draggingCell.groupCell.f1044y;
             ChatAttachAlertPhotoLayoutPreview.this.draggingCellHiding = false;
             this.draggingT = 0.0f;
             invalidate();
@@ -1115,7 +1147,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                             iArr[0] = iArr[0] - ChatAttachAlertPhotoLayoutPreview.this.parentAlert.getLeftInset();
                         }
                         placeProviderObject.viewX = iArr[0];
-                        placeProviderObject.viewY = iArr[1] + ((int) previewGroupCell.f1034y);
+                        placeProviderObject.viewY = iArr[1] + ((int) previewGroupCell.f1044y);
                         placeProviderObject.scale = 1.0f;
                         placeProviderObject.parentView = PreviewGroupsView.this;
                         ImageReceiver imageReceiver = mediaCell.image;
@@ -1274,10 +1306,10 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             private float right;
             private float top;
             private float width;
-            public float f1034y;
+            public float f1044y;
 
             private PreviewGroupCell() {
-                this.f1034y = 0.0f;
+                this.f1044y = 0.0f;
                 this.indexStart = 0;
                 this.lastMediaUpdate = 0L;
                 this.groupWidth = 0.0f;
@@ -1296,6 +1328,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
 
             public class MediaCell {
                 private Paint bitmapPaint;
+                public ImageReceiver blurredImage;
                 private Rect durationIn;
                 private Rect durationOut;
                 private RectF fromRect;
@@ -1310,11 +1343,21 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 private long lastUpdate;
                 private long lastVisibleTUpdate;
                 private Paint paint;
+                private Path path;
                 public MediaController.PhotoEntry photoEntry;
                 private int positionFlags;
+                private float[] radii;
                 public RectF rect;
                 public RectF roundRadiuses;
                 public float scale;
+                private Bitmap spoilerCrossfadeBitmap;
+                private Paint spoilerCrossfadePaint;
+                private float spoilerCrossfadeProgress;
+                private SpoilerEffect spoilerEffect;
+                private float spoilerMaxRadius;
+                private float spoilerRevealProgress;
+                private float spoilerRevealX;
+                private float spoilerRevealY;
                 private Paint strokePaint;
                 private RectF tempRect;
                 private TextPaint textPaint;
@@ -1323,6 +1366,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 private String videoDurationText;
                 private TextPaint videoDurationTextPaint;
                 private float visibleT;
+                public boolean wasSpoiler;
 
                 private MediaCell() {
                     this.groupCell = PreviewGroupCell.this;
@@ -1335,6 +1379,11 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     this.fromRoundRadiuses = null;
                     this.roundRadiuses = new RectF();
                     this.videoDurationText = null;
+                    this.spoilerEffect = new SpoilerEffect();
+                    this.path = new Path();
+                    this.radii = new float[8];
+                    this.spoilerCrossfadeProgress = 1.0f;
+                    this.spoilerCrossfadePaint = new Paint(1);
                     this.tempRect = new RectF();
                     this.paint = new Paint(1);
                     this.strokePaint = new Paint(1);
@@ -1351,7 +1400,24 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     this.lastVisibleTUpdate = 0L;
                 }
 
-                public void setImage(MediaController.PhotoEntry photoEntry) {
+                public void startCrossfade() {
+                    RectF drawingRect = drawingRect();
+                    Bitmap createBitmap = Bitmap.createBitmap(Math.round(drawingRect.width()), Math.round(drawingRect.height()), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(createBitmap);
+                    canvas.save();
+                    canvas.translate(-drawingRect.left, -drawingRect.top);
+                    draw(canvas);
+                    canvas.restore();
+                    Bitmap bitmap = this.spoilerCrossfadeBitmap;
+                    if (bitmap != null && !bitmap.isRecycled()) {
+                        this.spoilerCrossfadeBitmap.recycle();
+                    }
+                    this.spoilerCrossfadeBitmap = createBitmap;
+                    this.spoilerCrossfadeProgress = 0.0f;
+                    PreviewGroupsView.this.invalidate();
+                }
+
+                public void setImage(final MediaController.PhotoEntry photoEntry) {
                     this.photoEntry = photoEntry;
                     if (photoEntry != null && photoEntry.isVideo) {
                         this.videoDurationText = AndroidUtilities.formatShortDuration(photoEntry.duration);
@@ -1360,6 +1426,18 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     }
                     if (this.image == null) {
                         this.image = new ImageReceiver(PreviewGroupsView.this);
+                        this.blurredImage = new ImageReceiver(PreviewGroupsView.this);
+                        this.image.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
+                            @Override
+                            public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+                                ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.PreviewGroupCell.MediaCell.this.lambda$setImage$0(photoEntry, imageReceiver, z, z2, z3);
+                            }
+
+                            @Override
+                            public void onAnimationReady(ImageReceiver imageReceiver) {
+                                ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
+                            }
+                        });
                     }
                     if (photoEntry != null) {
                         String str = photoEntry.thumbPath;
@@ -1378,6 +1456,16 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         } else {
                             this.image.setImageBitmap(Theme.chat_attachEmptyDrawable);
                         }
+                    }
+                }
+
+                public void lambda$setImage$0(MediaController.PhotoEntry photoEntry, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+                    if (z && !z2 && photoEntry != null && photoEntry.hasSpoiler && this.blurredImage.getBitmap() == null) {
+                        if (this.blurredImage.getBitmap() != null && !this.blurredImage.getBitmap().isRecycled()) {
+                            this.blurredImage.getBitmap().recycle();
+                            this.blurredImage.setImageBitmap((Bitmap) null);
+                        }
+                        this.blurredImage.setImageBitmap(Utilities.stackBlurBitmapWithScaleFactor(imageReceiver.getBitmap(), 5.0f));
                     }
                 }
 
@@ -1441,9 +1529,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     float f3 = groupedMessagePosition.top;
                     float f4 = groupCalculator.height;
                     float f5 = f3 / f4;
-                    float f6 = groupedMessagePosition.f806ph / f4;
+                    float f6 = groupedMessagePosition.f815ph / f4;
                     this.scale = 1.0f;
-                    this.rect.set(f2, f5, (groupedMessagePosition.f807pw / i) + f2, f6 + f5);
+                    this.rect.set(f2, f5, (groupedMessagePosition.f816pw / i) + f2, f6 + f5);
                     float m35dp = AndroidUtilities.m35dp(2.0f);
                     float m35dp2 = AndroidUtilities.m35dp(SharedConfig.bubbleRadius - 1);
                     RectF rectF4 = this.roundRadiuses;
@@ -1622,6 +1710,35 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     }
                 }
 
+                public void startRevealMedia(float f, float f2) {
+                    this.spoilerRevealX = f;
+                    this.spoilerRevealY = f2;
+                    RectF drawingRect = drawingRect();
+                    this.spoilerMaxRadius = (float) Math.sqrt(Math.pow(drawingRect.width(), 2.0d) + Math.pow(drawingRect.height(), 2.0d));
+                    ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(MathUtils.clamp(this.spoilerMaxRadius * 0.3f, 250.0f, 550.0f));
+                    duration.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
+                    duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.PreviewGroupCell.MediaCell.this.lambda$startRevealMedia$1(valueAnimator);
+                        }
+                    });
+                    duration.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            MediaCell mediaCell = MediaCell.this;
+                            mediaCell.photoEntry.isChatPreviewSpoilerRevealed = true;
+                            PreviewGroupsView.this.invalidate();
+                        }
+                    });
+                    duration.start();
+                }
+
+                public void lambda$startRevealMedia$1(ValueAnimator valueAnimator) {
+                    this.spoilerRevealProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    PreviewGroupsView.this.invalidate();
+                }
+
                 public boolean draw(Canvas canvas) {
                     return draw(canvas, false);
                 }
@@ -1630,74 +1747,8 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     return draw(canvas, getT(), z);
                 }
 
-                public boolean draw(Canvas canvas, float f, boolean z) {
-                    int indexOf;
-                    String str;
-                    float f2;
-                    RectF rectF;
-                    if (this.rect == null || this.image == null) {
-                        return false;
-                    }
-                    float f3 = ChatAttachAlertPhotoLayoutPreview.this.draggingCell == this ? PreviewGroupsView.this.draggingT : 0.0f;
-                    float lerp = AndroidUtilities.lerp(this.fromScale, this.scale, f);
-                    if (lerp <= 0.0f) {
-                        return false;
-                    }
-                    RectF drawingRect = drawingRect();
-                    float m35dp = AndroidUtilities.m35dp(SharedConfig.bubbleRadius - 1);
-                    RectF rectF2 = this.roundRadiuses;
-                    float f4 = rectF2.left;
-                    float f5 = rectF2.top;
-                    float f6 = rectF2.right;
-                    float f7 = rectF2.bottom;
-                    if (f < 1.0f && (rectF = this.fromRoundRadiuses) != null) {
-                        f4 = AndroidUtilities.lerp(rectF.left, f4, f);
-                        f5 = AndroidUtilities.lerp(this.fromRoundRadiuses.top, f5, f);
-                        f6 = AndroidUtilities.lerp(this.fromRoundRadiuses.right, f6, f);
-                        f7 = AndroidUtilities.lerp(this.fromRoundRadiuses.bottom, f7, f);
-                    }
-                    float lerp2 = AndroidUtilities.lerp(f4, m35dp, f3);
-                    float lerp3 = AndroidUtilities.lerp(f5, m35dp, f3);
-                    float lerp4 = AndroidUtilities.lerp(f6, m35dp, f3);
-                    float lerp5 = AndroidUtilities.lerp(f7, m35dp, f3);
-                    if (z) {
-                        canvas.save();
-                        canvas.translate(-drawingRect.centerX(), -drawingRect.centerY());
-                    }
-                    this.image.setRoundRadius((int) lerp2, (int) lerp3, (int) lerp4, (int) lerp5);
-                    this.image.setImageCoords(drawingRect.left, drawingRect.top, drawingRect.width(), drawingRect.height());
-                    this.image.setAlpha(lerp);
-                    this.image.draw(canvas);
-                    PreviewGroupCell previewGroupCell = PreviewGroupCell.this;
-                    if (previewGroupCell.indexStart + previewGroupCell.group.photos.indexOf(this.photoEntry) >= 0) {
-                        str = (indexOf + 1) + BuildConfig.APP_CENTER_HASH;
-                    } else {
-                        str = null;
-                    }
-                    String str2 = str;
-                    float f8 = this.image.getVisible() ? 1.0f : 0.0f;
-                    boolean z2 = Math.abs(this.visibleT - f8) > 0.01f;
-                    if (z2) {
-                        f2 = lerp;
-                        long min = Math.min(17L, SystemClock.elapsedRealtime() - this.lastVisibleTUpdate);
-                        this.lastVisibleTUpdate = SystemClock.elapsedRealtime();
-                        float f9 = ((float) min) / 100.0f;
-                        float f10 = this.visibleT;
-                        if (f8 < f10) {
-                            this.visibleT = Math.max(0.0f, f10 - f9);
-                        } else {
-                            this.visibleT = Math.min(1.0f, f10 + f9);
-                        }
-                    } else {
-                        f2 = lerp;
-                    }
-                    float f11 = f2;
-                    drawPhotoIndex(canvas, AndroidUtilities.m35dp(10.0f) + drawingRect.top, drawingRect.right - AndroidUtilities.m35dp(10.0f), str2, f11, f2 * this.visibleT);
-                    drawDuration(canvas, AndroidUtilities.m35dp(4.0f) + drawingRect.left, drawingRect.bottom - AndroidUtilities.m35dp(4.0f), this.videoDurationText, f11, f2 * this.visibleT);
-                    if (z) {
-                        canvas.restore();
-                    }
-                    return f < 1.0f || z2;
+                public boolean draw(android.graphics.Canvas r20, float r21, boolean r22) {
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.PreviewGroupCell.MediaCell.draw(android.graphics.Canvas, float, boolean):boolean");
                 }
             }
 

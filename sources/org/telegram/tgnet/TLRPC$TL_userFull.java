@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import org.telegram.messenger.CharacterCompat;
 
 public class TLRPC$TL_userFull extends TLRPC$UserFull {
-    public static int constructor = -994968513;
+    public static int constructor = -120378643;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -16,13 +16,19 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         this.has_scheduled = (readInt32 & 4096) != 0;
         this.video_calls_available = (readInt32 & 8192) != 0;
         this.voice_messages_forbidden = (readInt32 & 1048576) != 0;
-        this.f987id = abstractSerializedData.readInt64(z);
+        this.f996id = abstractSerializedData.readInt64(z);
         if ((this.flags & 2) != 0) {
             this.about = abstractSerializedData.readString(z);
         }
         this.settings = TLRPC$TL_peerSettings.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        if ((this.flags & 2097152) != 0) {
+            this.personal_photo = TLRPC$Photo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
         if ((this.flags & 4) != 0) {
             this.profile_photo = TLRPC$Photo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
+        if ((this.flags & 4194304) != 0) {
+            this.fallback_photo = TLRPC$Photo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         if ((this.flags & 8) != 0) {
@@ -87,13 +93,19 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
         this.flags = i7;
         abstractSerializedData.writeInt32(i7);
-        abstractSerializedData.writeInt64(this.f987id);
+        abstractSerializedData.writeInt64(this.f996id);
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeString(this.about);
         }
         this.settings.serializeToStream(abstractSerializedData);
+        if ((this.flags & 2097152) != 0) {
+            this.personal_photo.serializeToStream(abstractSerializedData);
+        }
         if ((this.flags & 4) != 0) {
             this.profile_photo.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & 4194304) != 0) {
+            this.fallback_photo.serializeToStream(abstractSerializedData);
         }
         this.notify_settings.serializeToStream(abstractSerializedData);
         if ((this.flags & 8) != 0) {

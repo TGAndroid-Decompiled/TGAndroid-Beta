@@ -181,7 +181,7 @@ public class DatabaseMigrationHelper {
                     byteBufferValue2.reuse();
                     if (TLdeserialize != null) {
                         TLRPC$TL_chatFull tLRPC$TL_chatFull = new TLRPC$TL_chatFull();
-                        tLRPC$TL_chatFull.f849id = intValue2;
+                        tLRPC$TL_chatFull.f858id = intValue2;
                         tLRPC$TL_chatFull.chat_photo = new TLRPC$TL_photoEmpty();
                         tLRPC$TL_chatFull.notify_settings = new TLRPC$TL_peerNotifySettingsEmpty_layer77();
                         tLRPC$TL_chatFull.exported_invite = null;
@@ -802,7 +802,7 @@ public class DatabaseMigrationHelper {
                                     TLdeserialize2.params = hashMap;
                                     StringBuilder sb = new StringBuilder();
                                     nativeByteBuffer = byteBufferValue7;
-                                    sb.append(BuildConfig.APP_CENTER_HASH);
+                                    sb.append("");
                                     sb.append(intValue23);
                                     hashMap.put("fwd_peer", sb.toString());
                                 } else {

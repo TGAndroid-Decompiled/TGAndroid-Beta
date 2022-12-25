@@ -261,7 +261,7 @@ public class MrzRecognizer {
     }
 
     private static String cyrillicToLatin(String str) {
-        String[] strArr = {"A", "B", "V", "G", "D", "E", "E", "ZH", "Z", "I", "I", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "F", "KH", "TS", "CH", "SH", "SHCH", "IE", "Y", BuildConfig.APP_CENTER_HASH, "E", "IU", "IA"};
+        String[] strArr = {"A", "B", "V", "G", "D", "E", "E", "ZH", "Z", "I", "I", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "F", "KH", "TS", "CH", "SH", "SHCH", "IE", "Y", "", "E", "IU", "IA"};
         String str2 = str;
         int i = 0;
         while (i < 33) {

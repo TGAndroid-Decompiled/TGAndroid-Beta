@@ -69,24 +69,21 @@ public class AnimatedFloat {
         this.firstSet = true;
     }
 
-    public AnimatedFloat(float f, View view, long j, long j2, TimeInterpolator timeInterpolator) {
+    public AnimatedFloat(float f, View view) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
         this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
         this.parent = view;
         this.targetValue = f;
         this.value = f;
-        this.transitionDelay = j;
-        this.transitionDuration = j2;
-        this.transitionInterpolator = timeInterpolator;
         this.firstSet = false;
     }
 
-    public AnimatedFloat(float f, Runnable runnable, long j, long j2, TimeInterpolator timeInterpolator) {
+    public AnimatedFloat(float f, View view, long j, long j2, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
         this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
-        this.invalidate = runnable;
+        this.parent = view;
         this.targetValue = f;
         this.value = f;
         this.transitionDelay = j;
@@ -104,7 +101,6 @@ public class AnimatedFloat {
     }
 
     public float set(float f, boolean z) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
         if (z || this.transitionDuration <= 0 || this.firstSet) {
             this.targetValue = f;
             this.value = f;
@@ -114,9 +110,10 @@ public class AnimatedFloat {
             this.transition = true;
             this.targetValue = f;
             this.startValue = this.value;
-            this.transitionStart = elapsedRealtime;
+            this.transitionStart = SystemClock.elapsedRealtime();
         }
         if (this.transition) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
             float clamp = MathUtils.clamp(((float) ((elapsedRealtime - this.transitionStart) - this.transitionDelay)) / ((float) this.transitionDuration), 0.0f, 1.0f);
             if (elapsedRealtime - this.transitionStart >= this.transitionDelay) {
                 TimeInterpolator timeInterpolator = this.transitionInterpolator;
@@ -140,6 +137,10 @@ public class AnimatedFloat {
             }
         }
         return this.value;
+    }
+
+    public boolean isInProgress() {
+        return this.transition;
     }
 
     public float getTransitionProgress() {

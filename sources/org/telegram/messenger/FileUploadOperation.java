@@ -36,7 +36,7 @@ public class FileUploadOperation {
     private boolean isBigFile;
     private boolean isEncrypted;
     private boolean isLastPart;
-    private byte[] f801iv;
+    private byte[] f810iv;
     private byte[] ivChange;
     private byte[] key;
     protected long lastProgressUpdateTime;
@@ -73,7 +73,7 @@ public class FileUploadOperation {
 
     public static class UploadCachedResult {
         private long bytesOffset;
-        private byte[] f802iv;
+        private byte[] f811iv;
 
         private UploadCachedResult() {
         }
@@ -157,7 +157,7 @@ public class FileUploadOperation {
             this.uploadedBytesCount = 0L;
             this.saveInfoTimes = 0;
             this.key = null;
-            this.f801iv = null;
+            this.f810iv = null;
             this.ivChange = null;
             this.currentUploadRequetsCount = 0;
             this.lastSavedPartNum = 0;
@@ -249,7 +249,7 @@ public class FileUploadOperation {
         edit.putLong(this.fileKey + "_id", this.currentFileId);
         edit.remove(this.fileKey + "_uploaded");
         if (this.isEncrypted) {
-            edit.putString(this.fileKey + "_iv", Utilities.bytesToHex(this.f801iv));
+            edit.putString(this.fileKey + "_iv", Utilities.bytesToHex(this.f810iv));
             edit.putString(this.fileKey + "_ivc", Utilities.bytesToHex(this.ivChange));
             edit.putString(this.fileKey + "_key", Utilities.bytesToHex(this.key));
         }
@@ -325,10 +325,10 @@ public class FileUploadOperation {
                         tLRPC$TL_inputFile = new TLRPC$TL_inputFileBig();
                     } else {
                         tLRPC$TL_inputFile = new TLRPC$TL_inputFile();
-                        tLRPC$TL_inputFile.md5_checksum = BuildConfig.APP_CENTER_HASH;
+                        tLRPC$TL_inputFile.md5_checksum = "";
                     }
                     tLRPC$TL_inputFile.parts = this.currentPartNum;
-                    tLRPC$TL_inputFile.f866id = this.currentFileId;
+                    tLRPC$TL_inputFile.f875id = this.currentFileId;
                     String str = this.uploadingFilePath;
                     tLRPC$TL_inputFile.name = str.substring(str.lastIndexOf("/") + 1);
                     this.delegate.didFinishUploadingFile(this, tLRPC$TL_inputFile, null, null, null);
@@ -340,7 +340,7 @@ public class FileUploadOperation {
 
                             @Override
                             public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-                                this.f865id = abstractSerializedData.readInt64(z);
+                                this.f874id = abstractSerializedData.readInt64(z);
                                 this.parts = abstractSerializedData.readInt32(z);
                                 this.key_fingerprint = abstractSerializedData.readInt32(z);
                             }
@@ -348,7 +348,7 @@ public class FileUploadOperation {
                             @Override
                             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
                                 abstractSerializedData.writeInt32(constructor);
-                                abstractSerializedData.writeInt64(this.f865id);
+                                abstractSerializedData.writeInt64(this.f874id);
                                 abstractSerializedData.writeInt32(this.parts);
                                 abstractSerializedData.writeInt32(this.key_fingerprint);
                             }
@@ -359,7 +359,7 @@ public class FileUploadOperation {
 
                             @Override
                             public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-                                this.f865id = abstractSerializedData.readInt64(z);
+                                this.f874id = abstractSerializedData.readInt64(z);
                                 this.parts = abstractSerializedData.readInt32(z);
                                 this.md5_checksum = abstractSerializedData.readString(z);
                                 this.key_fingerprint = abstractSerializedData.readInt32(z);
@@ -368,18 +368,18 @@ public class FileUploadOperation {
                             @Override
                             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
                                 abstractSerializedData.writeInt32(constructor);
-                                abstractSerializedData.writeInt64(this.f865id);
+                                abstractSerializedData.writeInt64(this.f874id);
                                 abstractSerializedData.writeInt32(this.parts);
                                 abstractSerializedData.writeString(this.md5_checksum);
                                 abstractSerializedData.writeInt32(this.key_fingerprint);
                             }
                         };
-                        tLRPC$InputEncryptedFile.md5_checksum = BuildConfig.APP_CENTER_HASH;
+                        tLRPC$InputEncryptedFile.md5_checksum = "";
                     }
                     tLRPC$InputEncryptedFile.parts = this.currentPartNum;
-                    tLRPC$InputEncryptedFile.f865id = this.currentFileId;
+                    tLRPC$InputEncryptedFile.f874id = this.currentFileId;
                     tLRPC$InputEncryptedFile.key_fingerprint = this.fingerprint;
-                    this.delegate.didFinishUploadingFile(this, null, tLRPC$InputEncryptedFile, this.key, this.f801iv);
+                    this.delegate.didFinishUploadingFile(this, null, tLRPC$InputEncryptedFile, this.key, this.f810iv);
                     cleanup();
                 }
                 int i8 = this.currentType;
@@ -413,7 +413,7 @@ public class FileUploadOperation {
                                 break;
                             }
                             j4 = uploadCachedResult.bytesOffset;
-                            bArr2 = uploadCachedResult.f802iv;
+                            bArr2 = uploadCachedResult.f811iv;
                             this.cachedResults.remove(this.lastSavedPartNum);
                             this.lastSavedPartNum++;
                         }
@@ -430,8 +430,8 @@ public class FileUploadOperation {
                         UploadCachedResult uploadCachedResult2 = new UploadCachedResult();
                         uploadCachedResult2.bytesOffset = j;
                         if (bArr2 != null) {
-                            uploadCachedResult2.f802iv = new byte[32];
-                            System.arraycopy(bArr2, 0, uploadCachedResult2.f802iv, 0, 32);
+                            uploadCachedResult2.f811iv = new byte[32];
+                            System.arraycopy(bArr2, 0, uploadCachedResult2.f811iv, 0, 32);
                         }
                         this.cachedResults.put(i5, uploadCachedResult2);
                     }

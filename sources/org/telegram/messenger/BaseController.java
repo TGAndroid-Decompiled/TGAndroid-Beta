@@ -1,5 +1,6 @@
 package org.telegram.messenger;
 
+import org.telegram.p009ui.Components.Paint.PersistColorPalette;
 import org.telegram.tgnet.ConnectionsManager;
 
 public class BaseController {
@@ -21,6 +22,10 @@ public class BaseController {
 
     public final ContactsController getContactsController() {
         return this.parentAccountInstance.getContactsController();
+    }
+
+    public final PersistColorPalette getColorPalette() {
+        return this.parentAccountInstance.getColorPalette();
     }
 
     public final MediaDataController getMediaDataController() {

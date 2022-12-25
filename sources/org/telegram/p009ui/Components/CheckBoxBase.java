@@ -3,8 +3,6 @@ package org.telegram.p009ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -15,7 +13,6 @@ import android.text.TextPaint;
 import android.view.View;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.p009ui.ActionBar.Theme;
 
@@ -25,11 +22,9 @@ public class CheckBoxBase {
     private boolean attachedToWindow;
     private Paint backgroundPaint;
     private int backgroundType;
-    private Canvas bitmapCanvas;
     private ObjectAnimator checkAnimator;
     private Paint checkPaint;
     private String checkedText;
-    private Bitmap drawBitmap;
     private boolean isChecked;
     private Theme.MessageDrawable messageDrawable;
     private View parentView;
@@ -39,7 +34,7 @@ public class CheckBoxBase {
     private float size;
     private TextPaint textPaint;
     private boolean useDefaultCheck;
-    private Rect bounds = new Rect();
+    public Rect bounds = new Rect();
     private RectF rect = new RectF();
     private Path path = new Path();
     private boolean enabled = true;
@@ -76,8 +71,6 @@ public class CheckBoxBase {
         this.backgroundPaint = paint4;
         paint4.setStyle(Paint.Style.STROKE);
         this.backgroundPaint.setStrokeWidth(AndroidUtilities.m35dp(1.2f));
-        this.drawBitmap = Bitmap.createBitmap(AndroidUtilities.m35dp(this.size), AndroidUtilities.m35dp(this.size), Bitmap.Config.ARGB_4444);
-        this.bitmapCanvas = new Canvas(this.drawBitmap);
     }
 
     public void onAttachedToWindow() {
@@ -204,7 +197,7 @@ public class CheckBoxBase {
 
     public void setNum(int i) {
         if (i >= 0) {
-            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
+            this.checkedText = "" + (i + 1);
         } else if (this.checkAnimator == null) {
             this.checkedText = null;
         }
@@ -217,7 +210,7 @@ public class CheckBoxBase {
 
     public void setChecked(int i, boolean z, boolean z2) {
         if (i >= 0) {
-            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
+            this.checkedText = "" + (i + 1);
             invalidate();
         }
         if (z == this.isChecked) {
@@ -232,7 +225,7 @@ public class CheckBoxBase {
         setProgress(z ? 1.0f : 0.0f);
     }
 
-    public void draw(android.graphics.Canvas r21) {
+    public void draw(android.graphics.Canvas r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.CheckBoxBase.draw(android.graphics.Canvas):void");
     }
 
