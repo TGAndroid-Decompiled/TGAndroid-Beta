@@ -28,7 +28,7 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
         void didSelectAlbum(MediaController.AlbumEntry albumEntry);
     }
 
-    public class AlbumView extends FrameLayout {
+    private class AlbumView extends FrameLayout {
         private TextView countTextView;
         private BackupImageView imageView;
         private TextView nameTextView;

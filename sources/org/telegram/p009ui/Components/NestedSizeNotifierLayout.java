@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.p009ui.ActionBar.BottomSheet;
 
-public class NestedSizeNotifierLayout extends SizeNotifierFrameLayout implements NestedScrollingParent3 {
+public class NestedSizeNotifierLayout extends SizeNotifierFrameLayout implements NestedScrollingParent3, View.OnLayoutChangeListener {
+    boolean attached;
     BottomSheet.ContainerView bottomSheetContainerView;
     ChildLayout childLayout;
     int maxTop;
@@ -46,6 +47,10 @@ public class NestedSizeNotifierLayout extends SizeNotifierFrameLayout implements
     @Override
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
+        updateMaxTop();
+    }
+
+    private void updateMaxTop() {
         View view = this.targetListView;
         if (view == null || this.childLayout == null) {
             return;
@@ -124,15 +129,47 @@ public class NestedSizeNotifierLayout extends SizeNotifierFrameLayout implements
 
     public void setTargetListView(View view) {
         this.targetListView = view;
+        updateMaxTop();
     }
 
     public void setChildLayout(ChildLayout childLayout) {
-        this.childLayout = childLayout;
+        if (this.childLayout != childLayout) {
+            this.childLayout = childLayout;
+            if (this.attached) {
+                childLayout.getListView().addOnLayoutChangeListener(this);
+            }
+            updateMaxTop();
+        }
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.attached = true;
+        ChildLayout childLayout = this.childLayout;
+        if (childLayout != null) {
+            childLayout.getListView().addOnLayoutChangeListener(this);
+        }
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.attached = false;
+        ChildLayout childLayout = this.childLayout;
+        if (childLayout != null) {
+            childLayout.getListView().removeOnLayoutChangeListener(this);
+        }
     }
 
     public boolean isPinnedToTop() {
         ChildLayout childLayout = this.childLayout;
         return childLayout != null && childLayout.getTop() == this.maxTop;
+    }
+
+    @Override
+    public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+        updateMaxTop();
     }
 
     public void setBottomSheetContainerView(BottomSheet.ContainerView containerView) {

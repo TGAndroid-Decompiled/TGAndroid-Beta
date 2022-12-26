@@ -308,7 +308,7 @@ public class ActionBarPopupWindow extends PopupWindow {
                     if (this.shownFromBottom) {
                         for (int i = this.lastStartedChild; i >= 0; i--) {
                             View itemAt = getItemAt(i);
-                            if (itemAt.getVisibility() == 0 && !(itemAt instanceof GapView)) {
+                            if (itemAt != null && itemAt.getVisibility() == 0 && !(itemAt instanceof GapView)) {
                                 if (this.positions.get(itemAt) != null && measuredHeight - ((num.intValue() * AndroidUtilities.m35dp(48.0f)) + AndroidUtilities.m35dp(32.0f)) > measuredHeight * f) {
                                     break;
                                 }

@@ -114,7 +114,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         this.allowNestedScroll = false;
         updateTitle();
         setAllowNestedScroll(true);
-        this.topPadding = 0.32f;
+        this.topPadding = 0.2f;
         Context context = cacheControlActivity.getContext();
         fixNavigationBar();
         setApplyBottomPadding(false);

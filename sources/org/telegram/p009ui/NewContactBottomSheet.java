@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -61,6 +62,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     private ContextProgressView editDoneItemProgress;
     private OutlineEditText firstNameField;
     private boolean ignoreOnPhoneChange;
+    private boolean ignoreOnPhoneChangePaste;
     private boolean ignoreOnTextChange;
     private boolean ignoreSelection;
     private String initialFirstName;
@@ -72,6 +74,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     private AnimatedPhoneNumberEditText phoneField;
     private HashMap<String, List<String>> phoneFormatMap;
     private OutlineTextContainerView phoneOutlineView;
+    private TextView plusTextView;
     private RadialProgressView progressView;
     private int wasCountryHintIndex;
 
@@ -345,10 +348,18 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
 
     public void setCountryButtonText(CharSequence charSequence) {
         if (TextUtils.isEmpty(charSequence)) {
-            this.countryFlag.animate().setInterpolator(CubicBezierInterpolator.DEFAULT).translationY(AndroidUtilities.m35dp(30.0f)).setDuration(150L);
+            ViewPropertyAnimator animate = this.countryFlag.animate();
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+            animate.setInterpolator(cubicBezierInterpolator).translationY(AndroidUtilities.m35dp(30.0f)).setDuration(150L);
+            this.plusTextView.animate().setInterpolator(cubicBezierInterpolator).translationX(-AndroidUtilities.m35dp(30.0f)).setDuration(150L);
+            this.codeField.animate().setInterpolator(cubicBezierInterpolator).translationX(-AndroidUtilities.m35dp(30.0f)).setDuration(150L);
             return;
         }
         this.countryFlag.animate().setInterpolator(AndroidUtilities.overshootInterpolator).translationY(0.0f).setDuration(350L).start();
+        ViewPropertyAnimator animate2 = this.plusTextView.animate();
+        CubicBezierInterpolator cubicBezierInterpolator2 = CubicBezierInterpolator.DEFAULT;
+        animate2.setInterpolator(cubicBezierInterpolator2).translationX(0.0f).setDuration(150L);
+        this.codeField.animate().setInterpolator(cubicBezierInterpolator2).translationX(0.0f).setDuration(150L);
         this.countryFlag.setText(charSequence);
     }
 

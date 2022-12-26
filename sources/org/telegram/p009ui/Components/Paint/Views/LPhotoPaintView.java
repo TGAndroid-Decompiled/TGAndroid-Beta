@@ -235,7 +235,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.weightDefaultValueOverride = new PaintWeightChooserView.ValueOverride() {
             @Override
             public float get() {
-                return PersistColorPalette.getInstance(LPhotoPaintView.this.currentAccount).getWeight(String.valueOf(Brush.BRUSHES_LIST.indexOf(LPhotoPaintView.this.renderView.getCurrentBrush())));
+                Brush currentBrush = LPhotoPaintView.this.renderView.getCurrentBrush();
+                return currentBrush == null ? PersistColorPalette.getInstance(LPhotoPaintView.this.currentAccount).getCurrentWeight() : PersistColorPalette.getInstance(LPhotoPaintView.this.currentAccount).getWeight(String.valueOf(Brush.BRUSHES_LIST.indexOf(currentBrush)), currentBrush.getDefaultWeight());
             }
 
             @Override
@@ -1533,14 +1534,14 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     view.setVisibility(0);
                 }
                 if (i == 2) {
-                    LPhotoPaintView.this.weightChooserView.setMinMax(0.5f, 2.0f, false);
+                    LPhotoPaintView.this.weightChooserView.setMinMax(0.5f, 2.0f);
                     return;
                 }
                 Brush currentBrush = LPhotoPaintView.this.renderView.getCurrentBrush();
                 if ((currentBrush instanceof Brush.Blurer) || (currentBrush instanceof Brush.Eraser)) {
-                    LPhotoPaintView.this.weightChooserView.setMinMax(0.4f, 1.75f, false);
+                    LPhotoPaintView.this.weightChooserView.setMinMax(0.4f, 1.75f);
                 } else {
-                    LPhotoPaintView.this.weightChooserView.setMinMax(0.05f, 1.0f, false);
+                    LPhotoPaintView.this.weightChooserView.setMinMax(0.05f, 1.0f);
                 }
             }
 

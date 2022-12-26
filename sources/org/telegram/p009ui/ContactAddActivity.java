@@ -551,6 +551,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
         updateCustomPhotoInfo();
         getNotificationCenter().postNotificationName(NotificationCenter.reloadDialogPhotos, new Object[0]);
+        getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
     }
 
     private void showAvatarProgress(final boolean z, boolean z2) {
@@ -897,6 +898,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
             getMessagesStorage().addDialogPhoto(this.user_id, tLRPC$TL_photos_photo2.photo);
             getNotificationCenter().postNotificationName(NotificationCenter.reloadDialogPhotos, new Object[0]);
+            getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
             if (getParentActivity() != null) {
                 if (i == 2) {
                     BulletinFactory.m13of(this).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", C1072R.string.UserCustomPhotoSeted, user.first_name))).show();

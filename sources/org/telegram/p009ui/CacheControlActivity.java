@@ -1295,6 +1295,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     @Override
     public void onResume() {
         super.onResume();
+        this.listAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -1905,22 +1906,26 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 headerCell.setBottomMargin(((ItemInner) CacheControlActivity.this.itemInners.get(i)).headerBottomMargin);
             } else if (itemViewType == 7) {
                 TextCell textCell = (TextCell) viewHolder.itemView;
-                String keepMediaString = CacheByChatsController.getKeepMediaString(CacheControlActivity.this.getMessagesController().getCacheByChatsController().getKeepMedia(itemInner.keepMediaType));
+                CacheByChatsController cacheByChatsController = CacheControlActivity.this.getMessagesController().getCacheByChatsController();
+                int i2 = itemInner.keepMediaType;
+                int size = cacheByChatsController.getKeepMediaExceptions(((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType).size();
+                String formatPluralString = size > 0 ? LocaleController.formatPluralString("ExceptionShort", size, Integer.valueOf(size)) : null;
+                String keepMediaString = CacheByChatsController.getKeepMediaString(cacheByChatsController.getKeepMedia(i2));
                 if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 0) {
                     if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 1) {
                         if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType == 2) {
                             textCell.setTextAndValue(LocaleController.getString("CacheChannels", C1072R.string.CacheChannels), keepMediaString, true, false);
                             textCell.setColorfulIcon(CacheControlActivity.this.getThemedColor("statisticChartLine_golden"), C1072R.C1073drawable.msg_filled_menu_channels);
-                            return;
                         }
-                        return;
+                    } else {
+                        textCell.setTextAndValue(LocaleController.getString("GroupChats", C1072R.string.GroupChats), keepMediaString, true, true);
+                        textCell.setColorfulIcon(CacheControlActivity.this.getThemedColor("statisticChartLine_green"), C1072R.C1073drawable.msg_filled_menu_groups);
                     }
-                    textCell.setTextAndValue(LocaleController.getString("GroupChats", C1072R.string.GroupChats), keepMediaString, true, true);
-                    textCell.setColorfulIcon(CacheControlActivity.this.getThemedColor("statisticChartLine_green"), C1072R.C1073drawable.msg_filled_menu_groups);
-                    return;
+                } else {
+                    textCell.setTextAndValue(LocaleController.getString("PrivateChats", C1072R.string.PrivateChats), keepMediaString, true, true);
+                    textCell.setColorfulIcon(CacheControlActivity.this.getThemedColor("statisticChartLine_lightblue"), C1072R.C1073drawable.msg_filled_menu_users);
                 }
-                textCell.setTextAndValue(LocaleController.getString("PrivateChats", C1072R.string.PrivateChats), keepMediaString, true, true);
-                textCell.setColorfulIcon(CacheControlActivity.this.getThemedColor("statisticChartLine_lightblue"), C1072R.C1073drawable.msg_filled_menu_users);
+                textCell.setSubtitle(formatPluralString);
             } else if (itemViewType == 10) {
                 if (CacheControlActivity.this.cacheChartHeader == null || CacheControlActivity.this.calculating) {
                     return;
@@ -1933,8 +1938,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 CacheControlActivity cacheControlActivity = CacheControlActivity.this;
                 CharSequence charSequence = itemInner.headerName;
                 int[] iArr = cacheControlActivity.percents;
-                int i2 = itemInner.index;
-                CharSequence checkBoxTitle = cacheControlActivity.getCheckBoxTitle(charSequence, iArr[i2 < 0 ? 8 : i2], i2 < 0);
+                int i3 = itemInner.index;
+                CharSequence checkBoxTitle = cacheControlActivity.getCheckBoxTitle(charSequence, iArr[i3 < 0 ? 8 : i3], i3 < 0);
                 String formatFileSize = AndroidUtilities.formatFileSize(itemInner.size);
                 if (itemInner.index >= 0 ? !itemInner.last : !CacheControlActivity.this.collapsed) {
                     r3 = true;

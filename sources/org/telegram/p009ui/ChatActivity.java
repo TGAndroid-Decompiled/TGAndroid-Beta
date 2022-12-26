@@ -1685,6 +1685,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void lambda$onFragmentCreate$14() {
         this.chatInviteRunnable = null;
+        if (getParentActivity() == null) {
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), this.themeDelegate);
         if (ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup) {
             builder.setMessage(LocaleController.getString("JoinByPeekChannelText", C1072R.string.JoinByPeekChannelText));

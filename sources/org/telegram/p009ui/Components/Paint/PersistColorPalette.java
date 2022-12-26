@@ -68,9 +68,9 @@ public class PersistColorPalette {
         this.mConfig.edit().putString("typeface", str).apply();
     }
 
-    public float getWeight(String str) {
+    public float getWeight(String str, float f) {
         SharedPreferences sharedPreferences = this.mConfig;
-        return sharedPreferences.getFloat("weight_" + str, 0.5f);
+        return sharedPreferences.getFloat("weight_" + str, f);
     }
 
     public void setWeight(String str, float f) {

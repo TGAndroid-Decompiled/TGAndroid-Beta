@@ -9,6 +9,6 @@ public final class TranslateAlert$$ExternalSyntheticLambda8 implements Runnable 
 
     @Override
     public final void run() {
-        TranslateAlert.m2193$r8$lambda$mwKSKbgsZrQySWppXYXfqWZUA4(this.f$0);
+        TranslateAlert.m2192$r8$lambda$mwKSKbgsZrQySWppXYXfqWZUA4(this.f$0);
     }
 }

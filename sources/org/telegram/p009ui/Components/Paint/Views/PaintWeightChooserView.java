@@ -33,7 +33,6 @@ public class PaintWeightChooserView extends View {
     private long lastUpdate;
     private float max;
     private float min;
-    private boolean minMaxSet;
     private int newContentHeight;
     private Runnable onUpdate;
     private float panProgress;
@@ -158,23 +157,8 @@ public class PaintWeightChooserView extends View {
     }
 
     public void setMinMax(float f, float f2) {
-        setMinMax(f, f2, true);
-    }
-
-    public void setMinMax(float f, float f2, boolean z) {
-        Swatch swatch = this.colorSwatch;
-        if (swatch != null && this.minMaxSet && z) {
-            float f3 = swatch.brushWeight;
-            float f4 = this.min;
-            this.colorSwatch.brushWeight = MathUtils.clamp((((f3 - f4) / (this.max - f4)) * (f2 - f)) + f, f, f2);
-            Runnable runnable = this.onUpdate;
-            if (runnable != null) {
-                runnable.run();
-            }
-        }
         this.min = f;
         this.max = f2;
-        this.minMaxSet = true;
         invalidate();
     }
 

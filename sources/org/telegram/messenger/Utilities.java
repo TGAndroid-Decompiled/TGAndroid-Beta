@@ -112,7 +112,7 @@ public class Utilities {
         canvas.scale(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
-        stackBlurBitmap(createBitmap, Math.max(8, Math.max(max, max2) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));
+        stackBlurBitmap(createBitmap, Math.max(10, Math.max(max, max2) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));
         return createBitmap;
     }
 
