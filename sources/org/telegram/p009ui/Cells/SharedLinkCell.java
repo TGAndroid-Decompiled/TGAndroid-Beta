@@ -94,6 +94,7 @@ public class SharedLinkCell extends FrameLayout {
 
     public final class CheckForTap implements Runnable {
         private CheckForTap() {
+            SharedLinkCell.this = r1;
         }
 
         @Override
@@ -112,6 +113,7 @@ public class SharedLinkCell extends FrameLayout {
         public int currentPressCount;
 
         CheckForLongPress() {
+            SharedLinkCell.this = r1;
         }
 
         @Override

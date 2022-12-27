@@ -17,6 +17,8 @@ public class NestedSizeNotifierLayout extends SizeNotifierFrameLayout implements
     View targetListView;
 
     public interface ChildLayout {
+        void addOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
+
         RecyclerListView getListView();
 
         int getMeasuredHeight();
@@ -24,6 +26,8 @@ public class NestedSizeNotifierLayout extends SizeNotifierFrameLayout implements
         int getTop();
 
         boolean isAttached();
+
+        void removeOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
     }
 
     @Override
@@ -148,7 +152,7 @@ public class NestedSizeNotifierLayout extends SizeNotifierFrameLayout implements
         this.attached = true;
         ChildLayout childLayout = this.childLayout;
         if (childLayout != null) {
-            childLayout.getListView().addOnLayoutChangeListener(this);
+            childLayout.addOnLayoutChangeListener(this);
         }
     }
 
@@ -158,7 +162,7 @@ public class NestedSizeNotifierLayout extends SizeNotifierFrameLayout implements
         this.attached = false;
         ChildLayout childLayout = this.childLayout;
         if (childLayout != null) {
-            childLayout.getListView().removeOnLayoutChangeListener(this);
+            childLayout.removeOnLayoutChangeListener(this);
         }
     }
 

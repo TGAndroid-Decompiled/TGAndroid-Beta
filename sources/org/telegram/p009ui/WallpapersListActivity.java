@@ -467,6 +467,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
 
     public class C42702 extends C1133ActionBar.ActionBarMenuOnItemClick {
         C42702() {
+            WallpapersListActivity.this = r1;
         }
 
         @Override
@@ -1379,6 +1380,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
 
         public ColorCell(Context context) {
             super(context);
+            WallpapersListActivity.this = r1;
         }
 
         @Override
@@ -1421,6 +1423,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             }
 
             private CategoryAdapterRecycler() {
+                SearchAdapter.this = r1;
             }
 
             @Override
@@ -1441,6 +1444,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         }
 
         public SearchAdapter(Context context) {
+            WallpapersListActivity.this = r1;
             this.mContext = context;
         }
 
@@ -1771,6 +1775,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         private Context mContext;
 
         public ListAdapter(Context context) {
+            WallpapersListActivity.this = r1;
             this.mContext = context;
         }
 

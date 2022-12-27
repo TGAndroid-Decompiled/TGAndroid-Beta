@@ -179,6 +179,7 @@ public class VoIPStatusTextView extends FrameLayout {
         final View val$out;
 
         C30921(View view, View view2, Runnable runnable) {
+            VoIPStatusTextView.this = r1;
             this.val$out = view;
             this.val$in = view2;
             this.val$onEnd = runnable;

@@ -102,6 +102,7 @@ public class EmbedBottomSheet extends BottomSheet {
 
     public class YoutubeProxy {
         private YoutubeProxy() {
+            EmbedBottomSheet.this = r1;
         }
 
         @JavascriptInterface

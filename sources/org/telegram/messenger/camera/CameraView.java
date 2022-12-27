@@ -719,6 +719,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
 
         public CameraGLThread(SurfaceTexture surfaceTexture) {
             super("CameraGLThread");
+            CameraView.this = r3;
             this.DO_RENDER_MESSAGE = 0;
             this.DO_SHUTDOWN_MESSAGE = 1;
             this.DO_REINIT_MESSAGE = 2;
@@ -1245,6 +1246,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         private int zeroTimeStamps;
 
         private VideoRecorder() {
+            CameraView.this = r5;
             this.videoConvertFirstWrite = true;
             this.eglDisplay = EGL14.EGL_NO_DISPLAY;
             this.eglContext = EGL14.EGL_NO_CONTEXT;

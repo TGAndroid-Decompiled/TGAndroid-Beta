@@ -35,6 +35,7 @@ public class SnowflakesEffect {
         float f1146y;
 
         private Particle() {
+            SnowflakesEffect.this = r1;
         }
 
         public void draw(Canvas canvas) {

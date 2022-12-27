@@ -160,7 +160,7 @@ public class PinchToZoomHelper {
         this.parentView.addView(this.overlayView);
         this.finishProgress = 1.0f;
         this.progressToFullView = 0.0f;
-        this.hasMediaSpoiler = messageObject.hasMediaSpoilers() && !messageObject.isMediaSpoilersRevealed;
+        this.hasMediaSpoiler = (messageObject == null || !messageObject.hasMediaSpoilers() || messageObject.isMediaSpoilersRevealed) ? false : true;
         if (this.blurImage.getBitmap() != null) {
             this.blurImage.getBitmap().recycle();
             this.blurImage.setImageBitmap((Bitmap) null);
@@ -189,7 +189,7 @@ public class PinchToZoomHelper {
             this.fullImageHeight = (f / bitmapWidth) * f3;
             this.fullImageWidth = f3;
         }
-        if (messageObject.isVideo() && MediaController.getInstance().isPlayingMessage(messageObject)) {
+        if (messageObject != null && messageObject.isVideo() && MediaController.getInstance().isPlayingMessage(messageObject)) {
             this.isHardwareVideo = true;
             MediaController.getInstance().setTextureView(this.overlayView.videoTextureView, this.overlayView.aspectRatioFrameLayout, this.overlayView.videoPlayerContainer, true);
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.overlayView.videoPlayerContainer.getLayoutParams();

@@ -149,6 +149,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         }
 
         public TouchHelperCallback() {
+            StickersActivity.this = r1;
         }
 
         @Override
@@ -595,7 +596,8 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     List<TLRPC$TL_messages_stickerSet> oldList;
 
                     {
-                        this.oldList = StickersActivity.this.listAdapter.stickerSets;
+                        StickersActivity.this = this;
+                        this.oldList = this.listAdapter.stickerSets;
                     }
 
                     @Override
@@ -624,7 +626,8 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     List<TLRPC$StickerSetCovered> oldList;
 
                     {
-                        this.oldList = StickersActivity.this.listAdapter.featuredStickerSets;
+                        StickersActivity.this = this;
+                        this.oldList = this.listAdapter.featuredStickerSets;
                     }
 
                     @Override
@@ -899,6 +902,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         private final List<Long> loadingFeaturedStickerSets = new ArrayList();
 
         public ListAdapter(Context context, List<TLRPC$TL_messages_stickerSet> list, List<TLRPC$StickerSetCovered> list2) {
+            StickersActivity.this = r1;
             this.mContext = context;
             setStickerSets(list);
             if (list2.size() > 3) {

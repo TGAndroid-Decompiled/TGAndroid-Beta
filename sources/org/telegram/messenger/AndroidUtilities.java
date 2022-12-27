@@ -1226,7 +1226,7 @@ public class AndroidUtilities {
         }
     }
 
-    private static class VcardData {
+    public static class VcardData {
         String name;
         ArrayList<String> phones;
         StringBuilder vcard;

@@ -87,6 +87,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
 
         public SpansContainer(Context context) {
             super(context);
+            InviteContactsActivity.this = r1;
             this.animators = new ArrayList<>();
         }
 
@@ -734,6 +735,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         }
 
         public InviteAdapter(Context context) {
+            InviteContactsActivity.this = r1;
             this.context = context;
         }
 
@@ -822,6 +824,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             final String val$query;
 
             C34061(String str) {
+                InviteAdapter.this = r1;
                 this.val$query = str;
             }
 

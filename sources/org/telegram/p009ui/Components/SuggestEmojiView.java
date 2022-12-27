@@ -669,6 +669,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
             public EmojiImageView(Context context) {
                 super(context);
+                Adapter.this = r3;
                 this.pressed = new AnimatedFloat(this, 350L, new OvershootInterpolator(5.0f));
             }
 
@@ -758,6 +759,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         public Adapter() {
+            SuggestEmojiView.this = r1;
         }
 
         @Override

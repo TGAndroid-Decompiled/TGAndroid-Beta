@@ -96,6 +96,7 @@ public class CarouselView extends View implements PagerHeaderView {
         final float val$scrollTo;
 
         C25983(float f) {
+            CarouselView.this = r1;
             this.val$scrollTo = f;
         }
 

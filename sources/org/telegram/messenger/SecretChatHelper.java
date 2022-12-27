@@ -81,7 +81,7 @@ import org.telegram.tgnet.TLRPC$messages_SentEncryptedMessage;
 import p008j$.util.concurrent.ConcurrentHashMap;
 
 public class SecretChatHelper extends BaseController {
-    public static int CURRENT_SECRET_CHAT_LAYER = 101;
+    public static int CURRENT_SECRET_CHAT_LAYER = 151;
     private static volatile SecretChatHelper[] Instance = new SecretChatHelper[4];
     private SparseArray<TLRPC$EncryptedChat> acceptingChats;
     public ArrayList<TLRPC$Update> delayedEncryptedChatUpdates;

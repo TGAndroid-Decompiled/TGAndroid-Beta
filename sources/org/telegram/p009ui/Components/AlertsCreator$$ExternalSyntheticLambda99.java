@@ -12,6 +12,6 @@ public final class AlertsCreator$$ExternalSyntheticLambda99 implements RequestDe
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AlertsCreator.lambda$createChangeBioAlert$30(tLObject, tLRPC$TL_error);
+        AlertsCreator.lambda$createReportAlert$93(tLObject, tLRPC$TL_error);
     }
 }

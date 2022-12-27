@@ -370,7 +370,8 @@ public class ShapeInput {
             ArrayList<Point> arrayList2 = this.allPoints;
             Point point2 = new Point() {
                 {
-                    super(ShapeInput.this);
+                    super(this);
+                    ShapeInput.this = this;
                 }
 
                 @Override
@@ -391,7 +392,8 @@ public class ShapeInput {
             ArrayList<Point> arrayList3 = this.allPoints;
             Point point3 = new Point() {
                 {
-                    super(ShapeInput.this);
+                    super(this);
+                    ShapeInput.this = this;
                 }
 
                 @Override
@@ -632,13 +634,14 @@ public class ShapeInput {
         canvas.drawCircle((point.f1084x / size.width) * canvas.getWidth(), (point.f1085y / size.height) * canvas.getHeight(), AndroidUtilities.m35dp(5.0f), point.green ? this.centerPointStrokePaint : this.controlPointStrokePaint);
     }
 
-    private class CornerPoint extends Point {
+    public class CornerPoint extends Point {
         public float f1082rx;
         public float f1083ry;
         public Shape shape;
 
         public CornerPoint(Shape shape, boolean z, boolean z2) {
-            super(ShapeInput.this);
+            super(r1);
+            ShapeInput.this = r1;
             this.rotate = false;
             this.shape = shape;
             this.f1082rx = z ? -1.0f : 1.0f;

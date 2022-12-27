@@ -10,6 +10,7 @@ public final class CryptoOptions {
         private final boolean enableGcmCryptoSuites;
 
         private Srtp(boolean z, boolean z2, boolean z3) {
+            CryptoOptions.this = r1;
             this.enableGcmCryptoSuites = z;
             this.enableAes128Sha1_32CryptoCipher = z2;
             this.enableEncryptedRtpHeaderExtensions = z3;
@@ -35,6 +36,7 @@ public final class CryptoOptions {
         private final boolean requireFrameEncryption;
 
         private SFrame(boolean z) {
+            CryptoOptions.this = r1;
             this.requireFrameEncryption = z;
         }
 

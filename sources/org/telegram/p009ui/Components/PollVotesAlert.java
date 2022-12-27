@@ -167,6 +167,7 @@ public class PollVotesAlert extends BottomSheet {
 
         public SectionCell(Context context) {
             super(context);
+            PollVotesAlert.this = r18;
             setBackgroundColor(Theme.getColor("graySection"));
             TextView textView = new TextView(getContext());
             this.textView = textView;
@@ -181,7 +182,7 @@ public class PollVotesAlert extends BottomSheet {
             textView2.setTextSize(1, 14.0f);
             this.middleTextView.setTextColor(Theme.getColor("key_graySectionText"));
             this.middleTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), PollVotesAlert.this) {
+            AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), r18) {
                 @Override
                 public boolean post(Runnable runnable) {
                     return ((BottomSheet) PollVotesAlert.this).containerView.post(runnable);
@@ -292,6 +293,7 @@ public class PollVotesAlert extends BottomSheet {
 
         public UserCell(Context context) {
             super(context);
+            PollVotesAlert.this = r12;
             int i = UserConfig.selectedAccount;
             this.placeholderAlpha = 1.0f;
             setWillNotDraw(false);
@@ -1077,6 +1079,7 @@ public class PollVotesAlert extends BottomSheet {
         }
 
         public Adapter(Context context) {
+            PollVotesAlert.this = r1;
             int i = UserConfig.selectedAccount;
             this.mContext = context;
         }
@@ -1127,6 +1130,7 @@ public class PollVotesAlert extends BottomSheet {
         private SectionCell createSectionCell() {
             return new SectionCell(this.mContext) {
                 {
+                    Adapter.this = this;
                     PollVotesAlert pollVotesAlert = PollVotesAlert.this;
                 }
 

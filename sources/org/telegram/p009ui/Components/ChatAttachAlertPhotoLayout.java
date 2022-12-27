@@ -199,8 +199,9 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         return i;
     }
 
-    private class BasePhotoProvider extends PhotoViewer.EmptyPhotoViewerProvider {
+    public class BasePhotoProvider extends PhotoViewer.EmptyPhotoViewerProvider {
         private BasePhotoProvider() {
+            ChatAttachAlertPhotoLayout.this = r1;
         }
 
         BasePhotoProvider(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, C20741 c20741) {
@@ -327,7 +328,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         C20741() {
-            super(ChatAttachAlertPhotoLayout.this, null);
+            super(r2, null);
+            ChatAttachAlertPhotoLayout.this = r2;
         }
 
         @Override
@@ -1091,6 +1093,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         private boolean zoomingWas;
 
         C207510(FrameLayout frameLayout) {
+            ChatAttachAlertPhotoLayout.this = r1;
             this.val$container = frameLayout;
         }
 
@@ -1672,7 +1675,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         C208015(boolean z) {
-            super(ChatAttachAlertPhotoLayout.this, null);
+            super(r1, null);
+            ChatAttachAlertPhotoLayout.this = r1;
             this.val$sameTakePictureOrientation = z;
         }
 
@@ -3643,6 +3647,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         public PhotoAttachAdapter(Context context, boolean z) {
+            ChatAttachAlertPhotoLayout.this = r2;
             this.mContext = context;
             this.needCamera = z;
         }

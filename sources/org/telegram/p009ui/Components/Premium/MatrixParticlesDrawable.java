@@ -132,7 +132,7 @@ public class MatrixParticlesDrawable {
         }
     }
 
-    private class Particle {
+    public class Particle {
         int len;
         long time;
         int f1110y;
@@ -154,12 +154,13 @@ public class MatrixParticlesDrawable {
         }
     }
 
-    private class MatrixTextParticle {
+    public class MatrixTextParticle {
         int index;
         int nextIndex;
         long nextUpdateTime;
 
         private MatrixTextParticle() {
+            MatrixParticlesDrawable.this = r1;
         }
 
         public void init(long j) {

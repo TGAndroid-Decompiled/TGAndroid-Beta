@@ -86,7 +86,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
     private boolean joinToSendProgress = false;
     private boolean joinRequestProgress = false;
 
-    private static class EmptyView extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
+    public static class EmptyView extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
         private int currentAccount;
         private LoadingStickerDrawable drawable;
         private BackupImageView stickerView;
@@ -828,6 +828,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         }
 
         public SearchAdapter(Context context) {
+            ChatLinkActivity.this = r1;
             this.mContext = context;
         }
 
@@ -953,6 +954,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         private Context mContext;
 
         public ListAdapter(Context context) {
+            ChatLinkActivity.this = r1;
             this.mContext = context;
         }
 
@@ -975,6 +977,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
 
             C17031(Context context, TLRPC$Chat tLRPC$Chat, TLRPC$Chat tLRPC$Chat2) {
                 super(context, tLRPC$Chat);
+                ListAdapter.this = r1;
                 this.val$chat = tLRPC$Chat2;
             }
 

@@ -646,6 +646,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         }
 
         C21945() {
+            EditTextEmoji.this = r1;
         }
 
         @Override

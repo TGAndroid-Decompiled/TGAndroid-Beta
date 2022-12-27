@@ -129,6 +129,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         public TouchHelperCallback() {
+            ChatAttachAlertPollLayout.this = r1;
         }
 
         @Override
@@ -794,6 +795,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         private Context mContext;
 
         public ListAdapter(Context context) {
+            ChatAttachAlertPollLayout.this = r1;
             this.mContext = context;
         }
 

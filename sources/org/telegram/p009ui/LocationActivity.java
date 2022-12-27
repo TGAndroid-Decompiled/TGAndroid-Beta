@@ -276,6 +276,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
 
         public MapOverlayView(Context context) {
             super(context);
+            LocationActivity.this = r1;
             this.views = new HashMap<>();
         }
 

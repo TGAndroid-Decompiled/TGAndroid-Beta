@@ -581,7 +581,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         runnable.run();
     }
 
-    private class SeekBarCell extends FrameLayout {
+    public class SeekBarCell extends FrameLayout {
         private AnimationProperties.FloatProperty callback;
         private int lastWidth;
         private float max;

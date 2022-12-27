@@ -1101,6 +1101,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
 
         public NoVideoStubLayout(Context context) {
             super(context);
+            GroupCallMiniTextureView.this = r3;
             this.avatarImageReceiver = new ImageReceiver();
             this.backgroundImageReceiver = new ImageReceiver();
             this.avatarDrawable = new AvatarDrawable();

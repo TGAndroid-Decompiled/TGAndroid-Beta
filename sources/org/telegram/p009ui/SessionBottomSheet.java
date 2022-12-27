@@ -232,6 +232,7 @@ public class SessionBottomSheet extends BottomSheet {
         final TLRPC$TL_authorization val$session;
 
         View$OnClickListenerC40718(Callback callback, TLRPC$TL_authorization tLRPC$TL_authorization, BaseFragment baseFragment) {
+            SessionBottomSheet.this = r1;
             this.val$callback = callback;
             this.val$session = tLRPC$TL_authorization;
             this.val$fragment = baseFragment;
@@ -301,7 +302,7 @@ public class SessionBottomSheet extends BottomSheet {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.SessionBottomSheet.setAnimation(org.telegram.tgnet.TLRPC$TL_authorization, org.telegram.ui.Components.RLottieImageView):void");
     }
 
-    private static class ItemView extends FrameLayout {
+    public static class ItemView extends FrameLayout {
         TextView descriptionText;
         ImageView iconView;
         boolean needDivider;

@@ -863,8 +863,9 @@ public class PhonebookShareAlert extends BottomSheet {
         this.vcardEndRow = size2;
     }
 
-    private class ListAdapter {
+    public class ListAdapter {
         private ListAdapter() {
+            PhonebookShareAlert.this = r1;
         }
 
         public int getItemCount() {

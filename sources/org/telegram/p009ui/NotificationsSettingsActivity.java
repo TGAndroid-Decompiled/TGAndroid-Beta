@@ -699,6 +699,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         private Context mContext;
 
         public ListAdapter(Context context) {
+            NotificationsSettingsActivity.this = r1;
             this.mContext = context;
         }
 

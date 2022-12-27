@@ -60,6 +60,7 @@ public class PhotoCropActivity extends BaseFragment {
 
         public PhotoCropView(Context context) {
             super(context);
+            PhotoCropActivity.this = r1;
             this.rectPaint = null;
             this.circlePaint = null;
             this.halfPaint = null;

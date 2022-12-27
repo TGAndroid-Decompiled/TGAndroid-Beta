@@ -123,6 +123,7 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
+            QuickRepliesSettingsActivity.this = r1;
             this.mContext = context;
         }
 

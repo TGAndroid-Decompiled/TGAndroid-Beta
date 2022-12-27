@@ -79,6 +79,7 @@ public class ChartPickerDelegate {
         public final int state;
 
         public CapturesData(int i) {
+            ChartPickerDelegate.this = r1;
             this.state = i;
         }
 

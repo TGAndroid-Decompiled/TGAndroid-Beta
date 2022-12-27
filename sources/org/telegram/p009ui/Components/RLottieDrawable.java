@@ -139,6 +139,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
 
     public class RunnableC26663 implements Runnable {
         RunnableC26663() {
+            RLottieDrawable.this = r1;
         }
 
         @Override
@@ -226,7 +227,9 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     public void recycleResources() {
         ArrayList arrayList = new ArrayList();
         arrayList.add(this.renderingBitmap);
+        arrayList.add(this.backgroundBitmap);
         arrayList.add(this.nextRenderingBitmap);
+        this.nextRenderingBitmap = null;
         this.renderingBitmap = null;
         this.backgroundBitmap = null;
         AndroidUtilities.recycleBitmaps(arrayList);
@@ -2150,13 +2153,14 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         return this.precache ? this.bitmapsCache != null || this.fallbackCache : this.nativePtr != 0;
     }
 
-    private class NativePtrArgs {
+    public class NativePtrArgs {
         public int[] colorReplacement;
         File file;
         public int fitzModifier;
         String json;
 
         private NativePtrArgs() {
+            RLottieDrawable.this = r1;
         }
     }
 

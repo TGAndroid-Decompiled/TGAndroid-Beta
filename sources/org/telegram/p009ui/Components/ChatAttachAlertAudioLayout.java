@@ -627,6 +627,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         public ListAdapter(Context context) {
+            ChatAttachAlertAudioLayout.this = r1;
             this.mContext = context;
         }
 
@@ -698,6 +699,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         private Runnable searchRunnable;
 
         public SearchAdapter(Context context) {
+            ChatAttachAlertAudioLayout.this = r1;
             this.mContext = context;
         }
 

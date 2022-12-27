@@ -747,7 +747,7 @@ public abstract class BaseFragment {
         return iNavigationLayoutArr;
     }
 
-    class DialogC11891 extends BottomSheet {
+    public class DialogC11891 extends BottomSheet {
         final INavigationLayout[] val$actionBarLayout;
         final BaseFragment val$fragment;
 

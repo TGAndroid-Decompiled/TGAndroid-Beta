@@ -453,6 +453,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
 
     public class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
+            InviteLinkBottomSheet.this = r1;
         }
 
         @Override
@@ -562,6 +563,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
             }
 
             C23981() {
+                Adapter.this = r1;
             }
 
             @Override
@@ -1033,6 +1035,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
 
         public TimerPrivacyCell(Context context) {
             super(context);
+            InviteLinkBottomSheet.this = r1;
             this.timerRunnable = new Runnable() {
                 @Override
                 public void run() {

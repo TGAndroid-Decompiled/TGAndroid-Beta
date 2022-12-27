@@ -164,8 +164,8 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         this.blurredBackground = z2;
     }
 
-    private static boolean supportsNativeBlur() {
-        return Build.VERSION.SDK_INT >= 31 && LaunchActivity.systemBlurEnabled;
+    private boolean supportsNativeBlur() {
+        return Build.VERSION.SDK_INT >= 31 && LaunchActivity.systemBlurEnabled && this.progressViewStyle == 0;
     }
 
     public void redPositive() {
@@ -368,7 +368,8 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                     int size;
 
                     {
-                        this.size = AlertDialog.this.topAnimationSize + AndroidUtilities.m35dp(52.0f);
+                        AlertDialog.this = this;
+                        this.size = this.topAnimationSize + AndroidUtilities.m35dp(52.0f);
                     }
 
                     @Override
@@ -879,6 +880,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
 
         C11801(Context context) {
             super(context);
+            AlertDialog.this = r1;
             this.blurPaintAlpha = new AnimatedFloat(0.0f, this);
             this.backgroundPaint = new Paint(1);
         }

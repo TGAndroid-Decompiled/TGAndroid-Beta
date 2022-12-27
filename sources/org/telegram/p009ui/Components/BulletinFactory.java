@@ -115,6 +115,7 @@ public final class BulletinFactory {
         }
 
         private FileType(String str, int i, String str2, int i2, Icon icon) {
+            super(str, i);
             this.localeKey = str2;
             this.localeRes = i2;
             this.icon = icon;
@@ -122,6 +123,7 @@ public final class BulletinFactory {
         }
 
         private FileType(String str, int i, String str2, Icon icon) {
+            super(str, i);
             this.localeKey = str2;
             this.icon = icon;
             this.localeRes = 0;

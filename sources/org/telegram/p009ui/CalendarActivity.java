@@ -496,6 +496,7 @@ public class CalendarActivity extends BaseFragment {
 
     public class CalendarAdapter extends RecyclerView.Adapter {
         private CalendarAdapter() {
+            CalendarActivity.this = r1;
         }
 
         @Override
@@ -547,13 +548,14 @@ public class CalendarActivity extends BaseFragment {
 
         public MonthView(Context context) {
             super(context);
+            CalendarActivity.this = r10;
             this.messagesByDays = new SparseArray<>();
             this.imagesByDays = new SparseArray<>();
             this.rowAnimators = new SparseArray<>();
             this.rowSelectionPos = new SparseArray<>();
             setWillNotDraw(false);
             this.titleView = new SimpleTextView(context);
-            if (CalendarActivity.this.calendarType == 0 && CalendarActivity.this.canClearHistory) {
+            if (r10.calendarType == 0 && r10.canClearHistory) {
                 this.titleView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view) {
@@ -562,7 +564,7 @@ public class CalendarActivity extends BaseFragment {
                         return lambda$new$0;
                     }
                 });
-                this.titleView.setOnClickListener(new View.OnClickListener(CalendarActivity.this) {
+                this.titleView.setOnClickListener(new View.OnClickListener(r10) {
                     @Override
                     public void onClick(View view) {
                         MonthView monthView;
@@ -602,9 +604,9 @@ public class CalendarActivity extends BaseFragment {
             this.titleView.setGravity(17);
             this.titleView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             addView(this.titleView, LayoutHelper.createFrame(-1, 28.0f, 0, 0.0f, 12.0f, 0.0f, 4.0f));
-            GestureDetectorCompat gestureDetectorCompat = new GestureDetectorCompat(context, new C13502(CalendarActivity.this, context));
+            GestureDetectorCompat gestureDetectorCompat = new GestureDetectorCompat(context, new C13502(r10, context));
             this.gestureDetector = gestureDetectorCompat;
-            gestureDetectorCompat.setIsLongpressEnabled(CalendarActivity.this.calendarType == 0);
+            gestureDetectorCompat.setIsLongpressEnabled(r10.calendarType == 0);
         }
 
         public boolean lambda$new$0(View view) {
@@ -641,6 +643,7 @@ public class CalendarActivity extends BaseFragment {
             }
 
             C13502(CalendarActivity calendarActivity, Context context) {
+                MonthView.this = r1;
                 this.val$context = context;
             }
 

@@ -622,6 +622,7 @@ public class ForwardingPreviewView extends FrameLayout {
 
         C23235(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider, int i) {
             super(chatActivity, recyclerListView, resourcesProvider);
+            ForwardingPreviewView.this = r1;
             this.val$currentAccount = i;
             this.scrollAnimationIndex = -1;
         }
@@ -716,6 +717,7 @@ public class ForwardingPreviewView extends FrameLayout {
 
         C23268(Context context, int i, int i2, boolean z, ForwardingMessagesParams forwardingMessagesParams) {
             super(context, i, i2, z);
+            ForwardingPreviewView.this = r1;
             this.val$params = forwardingMessagesParams;
         }
 
@@ -1118,6 +1120,7 @@ public class ForwardingPreviewView extends FrameLayout {
 
     public class Adapter extends RecyclerView.Adapter {
         private Adapter() {
+            ForwardingPreviewView.this = r1;
         }
 
         @Override

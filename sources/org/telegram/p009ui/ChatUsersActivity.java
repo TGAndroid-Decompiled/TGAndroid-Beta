@@ -140,6 +140,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int gigaInfoRow;
     private int hideMembersInfoRow;
     private int hideMembersRow;
+    private boolean hideMembersToggleLoading;
     private LongSparseArray<TLRPC$TL_groupCallParticipant> ignoredUsers;
     private TLRPC$ChatFull info;
     private String initialBannedRights;
@@ -546,6 +547,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
 
         C17318() {
+            ChatUsersActivity.this = r1;
         }
 
         @Override
@@ -604,6 +606,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         final Context val$context;
 
         C17329(Context context) {
+            ChatUsersActivity.this = r1;
             this.val$context = context;
         }
 
@@ -744,15 +747,15 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
             getMessagesController().putChatFull(this.info);
         }
-        if (tLRPC$TL_error == null || "CHAT_NOT_MODIFIED".equals(tLRPC$TL_error.text)) {
-            return;
+        if (tLRPC$TL_error != null && !"CHAT_NOT_MODIFIED".equals(tLRPC$TL_error.text)) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatUsersActivity.this.lambda$createView$2(textCell, z);
+                }
+            });
         }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChatUsersActivity.this.lambda$createView$2(textCell, z);
-            }
-        });
+        this.hideMembersToggleLoading = false;
     }
 
     public void lambda$createView$2(TextCell textCell, boolean z) {
@@ -773,6 +776,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
         DialogC171510(Context context, BaseFragment baseFragment) {
             super(context, baseFragment);
+            ChatUsersActivity.this = r1;
         }
 
         @Override
@@ -2047,6 +2051,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         private int totalCount = 0;
 
         public SearchAdapter(Context context) {
+            ChatUsersActivity.this = r1;
             this.mContext = context;
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
             this.searchAdapterHelper = searchAdapterHelper;
@@ -2320,6 +2325,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         private Context mContext;
 
         public ListAdapter(Context context) {
+            ChatUsersActivity.this = r1;
             this.mContext = context;
         }
 
@@ -2610,6 +2616,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         int oldRowCount;
 
         private DiffCallback() {
+            ChatUsersActivity.this = r1;
             this.oldPositionToItem = new SparseIntArray();
             this.newPositionToItem = new SparseIntArray();
             this.oldParticipants = new ArrayList<>();

@@ -572,7 +572,8 @@ public class MentionsContainerView extends BlurredFrameLayout {
 
         public MentionsListView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
-            setOnScrollListener(new RecyclerView.OnScrollListener(MentionsContainerView.this) {
+            MentionsContainerView.this = r1;
+            setOnScrollListener(new RecyclerView.OnScrollListener(r1) {
                 @Override
                 public void onScrollStateChanged(RecyclerView recyclerView, int i) {
                     MentionsListView.this.isScrolling = i != 0;
@@ -589,7 +590,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
                     MentionsContainerView.this.onScrolled(!mentionsListView.canScrollVertically(-1), true ^ MentionsListView.this.canScrollVertically(1));
                 }
             });
-            addItemDecoration(new RecyclerView.ItemDecoration(MentionsContainerView.this) {
+            addItemDecoration(new RecyclerView.ItemDecoration(r1) {
                 @Override
                 public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                     int childAdapterPosition;

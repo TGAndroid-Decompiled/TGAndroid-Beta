@@ -674,6 +674,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         private int stickersPerRow = 5;
 
         public TrendingStickersAdapter(Context context) {
+            TrendingStickersLayout.this = r1;
             this.context = context;
         }
 

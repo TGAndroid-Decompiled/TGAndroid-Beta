@@ -76,7 +76,7 @@ public class FileLoadOperation {
     private byte[] encryptIv;
     private byte[] encryptKey;
     private String ext;
-    private long fileDialogId;
+    private FilePathDatabase.FileMeta fileMetadata;
     private String fileName;
     private RandomAccessFile fileOutputStream;
     private RandomAccessFile filePartsStream;
@@ -224,7 +224,7 @@ public class FileLoadOperation {
         this.state = 0;
         updateParams();
         this.parentObject = obj;
-        this.fileDialogId = FileLoader.getDialogIdFromParent(this.currentAccount, obj);
+        this.fileMetadata = FileLoader.getFileMetadataFromParent(this.currentAccount, obj);
         this.isStream = imageLocation.imageType == 2;
         if (imageLocation.isEncrypted()) {
             TLRPC$InputFileLocation tLRPC$InputFileLocation = new TLRPC$InputFileLocation() {
@@ -1032,7 +1032,7 @@ public class FileLoadOperation {
             if (BuildVars.DEBUG_VERSION) {
                 FileLog.m34d("finished preloading file to " + this.cacheFileTemp + " loaded " + this.totalPreloadedBytes + " of " + this.totalBytesCount);
             }
-            if (this.fileDialogId != 0) {
+            if (this.fileMetadata != null) {
                 if (this.cacheFileTemp != null) {
                     FileLoader.getInstance(this.currentAccount).getFileDatabase().removeFiles(Collections.singletonList(new CacheModel.FileInfo(this.cacheFileTemp)));
                 }

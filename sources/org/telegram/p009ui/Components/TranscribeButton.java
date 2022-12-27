@@ -528,7 +528,7 @@ public class TranscribeButton {
         }
     }
 
-    private static class LoadingPointsDrawable extends Drawable {
+    public static class LoadingPointsDrawable extends Drawable {
         private int lastColor;
         private RLottieDrawable lottie;
         private Paint paint;

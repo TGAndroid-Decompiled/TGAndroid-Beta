@@ -852,6 +852,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         }
 
         public ListAdapter(Context context) {
+            PhotoAlbumPickerActivity.this = r1;
             this.mContext = context;
         }
 

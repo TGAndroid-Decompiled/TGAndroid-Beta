@@ -252,6 +252,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         private Context mContext;
 
         public ListAdapter(Context context) {
+            GroupInviteActivity.this = r1;
             this.mContext = context;
         }
 

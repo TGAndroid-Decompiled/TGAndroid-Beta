@@ -34,11 +34,11 @@ public abstract class EnhancedIntentService extends Service {
         }
     }
 
-    public Task<Void> processIntent(final Intent intent) {
+    public Task<Void> processIntent(Intent intent) {
         if (handleIntentOnMainThread(intent)) {
             return Tasks.forResult(null);
         }
-        final TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
         this.executor.execute(new Runnable(this, intent, taskCompletionSource) {
             private final EnhancedIntentService arg$1;
             private final Intent arg$2;
@@ -101,7 +101,7 @@ public abstract class EnhancedIntentService extends Service {
     }
 
     @Override
-    public final int onStartCommand(final Intent intent, int i, int i2) {
+    public final int onStartCommand(Intent intent, int i, int i2) {
         synchronized (this.lock) {
             this.lastStartId = i2;
             this.runningTasks++;

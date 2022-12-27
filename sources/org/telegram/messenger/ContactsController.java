@@ -142,6 +142,7 @@ public class ContactsController extends BaseController {
 
         public MyContentObserver() {
             super(null);
+            ContactsController.this = r1;
             this.checkRunnable = ContactsController$MyContentObserver$$ExternalSyntheticLambda0.INSTANCE;
         }
 

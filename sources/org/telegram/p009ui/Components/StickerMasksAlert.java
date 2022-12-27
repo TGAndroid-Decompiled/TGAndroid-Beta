@@ -122,9 +122,10 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
 
         public SearchField(Context context, int i) {
             super(context);
+            StickerMasksAlert.this = r13;
             View view = new View(context);
             view.setBackgroundColor(-14342875);
-            addView(view, new FrameLayout.LayoutParams(-1, StickerMasksAlert.this.searchFieldHeight));
+            addView(view, new FrameLayout.LayoutParams(-1, r13.searchFieldHeight));
             View view2 = new View(context);
             view2.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.m35dp(18.0f), -13224394));
             addView(view2, LayoutHelper.createFrame(-1, 36.0f, 51, 14.0f, 14.0f, 14.0f, 0.0f));
@@ -137,7 +138,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
             this.clearSearchImageView = imageView2;
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             ImageView imageView3 = this.clearSearchImageView;
-            CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2(this, StickerMasksAlert.this) {
+            CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2(this, r13) {
                 @Override
                 public int getCurrentColor() {
                     return -8947849;
@@ -156,7 +157,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                     StickerMasksAlert.SearchField.this.lambda$new$0(view3);
                 }
             });
-            EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context, StickerMasksAlert.this) {
+            EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context, r13) {
                 @Override
                 public boolean onTouchEvent(MotionEvent motionEvent) {
                     if (motionEvent.getAction() == 0) {
@@ -187,7 +188,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
             this.searchEditText.setCursorSize(AndroidUtilities.m35dp(20.0f));
             this.searchEditText.setCursorWidth(1.5f);
             addView(this.searchEditText, LayoutHelper.createFrame(-1, 40.0f, 51, 54.0f, 12.0f, 46.0f, 0.0f));
-            this.searchEditText.addTextChangedListener(new TextWatcher(StickerMasksAlert.this) {
+            this.searchEditText.addTextChangedListener(new TextWatcher(r13) {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                 }
@@ -948,13 +949,14 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         checkPanels();
     }
 
-    private class DrawingInBackgroundLine extends DrawingInBackgroundThreadDrawable {
+    public class DrawingInBackgroundLine extends DrawingInBackgroundThreadDrawable {
         ArrayList<ImageViewEmoji> drawInBackgroundViews;
         ArrayList<ImageViewEmoji> imageViewEmojis;
         public int position;
         public int startOffset;
 
         private DrawingInBackgroundLine() {
+            StickerMasksAlert.this = r2;
             this.drawInBackgroundViews = new ArrayList<>();
             new OvershootInterpolator(3.0f);
         }
@@ -1247,6 +1249,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         private SparseIntArray positionToRow = new SparseIntArray();
 
         public StickersGridAdapter(Context context) {
+            StickerMasksAlert.this = r1;
             this.context = context;
         }
 
@@ -1449,9 +1452,10 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
 
         public ImageViewEmoji(Context context) {
             super(context);
+            StickerMasksAlert.this = r4;
             this.backgroundThreadDrawHolder = new ImageReceiver.BackgroundThreadDrawHolder[2];
             setPadding(AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(3.0f));
-            setBackground(Theme.createRadSelectorDrawable(StickerMasksAlert.this.getThemedColor("listSelectorSDK21"), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f)));
+            setBackground(Theme.createRadSelectorDrawable(r4.getThemedColor("listSelectorSDK21"), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f)));
         }
 
         private void setDrawable(AnimatedEmojiDrawable animatedEmojiDrawable) {
@@ -1580,6 +1584,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
 
         public class RunnableC28871 implements Runnable {
             RunnableC28871() {
+                StickersSearchGridAdapter.this = r1;
             }
 
             private void clear() {
@@ -1668,6 +1673,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         }
 
         public StickersSearchGridAdapter(Context context) {
+            StickerMasksAlert.this = r1;
             this.context = context;
         }
 

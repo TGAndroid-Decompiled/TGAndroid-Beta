@@ -877,6 +877,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             final long val$dialog_id;
 
             C12401(long j) {
+                DialogsPreloader.this = r1;
                 this.val$dialog_id = j;
             }
 
@@ -973,6 +974,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
         public LastEmptyView(Context context) {
             super(context);
+            DialogsAdapter.this = r1;
         }
 
         @Override

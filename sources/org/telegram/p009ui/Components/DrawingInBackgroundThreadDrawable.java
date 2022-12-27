@@ -52,9 +52,14 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
                 DrawingInBackgroundThreadDrawable.this.needSwapBitmaps = true;
                 return;
             }
-            Bitmap bitmap = drawingInBackgroundThreadDrawable.backgroundBitmap;
+            Bitmap bitmap = drawingInBackgroundThreadDrawable.bitmap;
             if (bitmap != null) {
                 bitmap.recycle();
+                DrawingInBackgroundThreadDrawable.this.bitmap = null;
+            }
+            Bitmap bitmap2 = DrawingInBackgroundThreadDrawable.this.backgroundBitmap;
+            if (bitmap2 != null) {
+                bitmap2.recycle();
                 DrawingInBackgroundThreadDrawable.this.backgroundBitmap = null;
             }
         }
@@ -170,7 +175,14 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
         if (bitmap != null) {
             arrayList.add(bitmap);
         }
+        Bitmap bitmap2 = this.backgroundBitmap;
+        if (bitmap2 != null) {
+            arrayList.add(bitmap2);
+        }
         this.bitmap = null;
+        this.backgroundBitmap = null;
+        this.backgroundCanvas = null;
+        this.bitmapCanvas = null;
         AndroidUtilities.recycleBitmaps(arrayList);
         this.attachedToWindow = false;
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.stopAllHeavyOperations);

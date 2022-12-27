@@ -151,6 +151,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
 
         public SpansContainer(Context context) {
             super(context);
+            GroupCreateActivity.this = r1;
             this.animators = new ArrayList<>();
             this.animationIndex = -1;
         }
@@ -1247,24 +1248,25 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
 
         public GroupCreateAdapter(Context context) {
             TLRPC$Chat chat;
+            GroupCreateActivity.this = r8;
             this.context = context;
-            ArrayList<TLRPC$TL_contact> arrayList = GroupCreateActivity.this.getContactsController().contacts;
+            ArrayList<TLRPC$TL_contact> arrayList = r8.getContactsController().contacts;
             for (int i = 0; i < arrayList.size(); i++) {
-                TLRPC$User user = GroupCreateActivity.this.getMessagesController().getUser(Long.valueOf(arrayList.get(i).user_id));
+                TLRPC$User user = r8.getMessagesController().getUser(Long.valueOf(arrayList.get(i).user_id));
                 if (user != null && !user.self && !user.deleted) {
                     this.contacts.add(user);
                 }
             }
-            if (GroupCreateActivity.this.isNeverShare || GroupCreateActivity.this.isAlwaysShare) {
-                ArrayList<TLRPC$Dialog> allDialogs = GroupCreateActivity.this.getMessagesController().getAllDialogs();
+            if (r8.isNeverShare || r8.isAlwaysShare) {
+                ArrayList<TLRPC$Dialog> allDialogs = r8.getMessagesController().getAllDialogs();
                 int size = allDialogs.size();
                 for (int i2 = 0; i2 < size; i2++) {
                     TLRPC$Dialog tLRPC$Dialog = allDialogs.get(i2);
-                    if (DialogObject.isChatDialog(tLRPC$Dialog.f863id) && (chat = GroupCreateActivity.this.getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.f863id))) != null && chat.migrated_to == null && (!ChatObject.isChannel(chat) || chat.megagroup)) {
+                    if (DialogObject.isChatDialog(tLRPC$Dialog.f863id) && (chat = r8.getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.f863id))) != null && chat.migrated_to == null && (!ChatObject.isChannel(chat) || chat.megagroup)) {
                         this.contacts.add(chat);
                     }
                 }
-                Collections.sort(this.contacts, new Comparator<TLObject>(this, GroupCreateActivity.this) {
+                Collections.sort(this.contacts, new Comparator<TLObject>(this, r8) {
                     private String getName(TLObject tLObject) {
                         if (tLObject instanceof TLRPC$User) {
                             TLRPC$User tLRPC$User = (TLRPC$User) tLObject;

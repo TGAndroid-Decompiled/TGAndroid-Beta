@@ -499,6 +499,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     public class C32632 extends RecyclerListView {
         C32632(Context context) {
             super(context);
+            FiltersSetupActivity.this = r1;
         }
 
         @Override
@@ -580,6 +581,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         private Context mContext;
 
         public ListAdapter(Context context) {
+            FiltersSetupActivity.this = r1;
             this.mContext = context;
         }
 
@@ -983,6 +985,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
 
         public TouchHelperCallback() {
+            FiltersSetupActivity.this = r1;
         }
 
         @Override

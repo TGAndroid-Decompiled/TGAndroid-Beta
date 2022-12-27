@@ -424,7 +424,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
 
             @Override
-            protected void onStop() {
+            public void onStop() {
                 super.onStop();
                 setVisibility(8);
             }
@@ -781,10 +781,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         C34433(Context context) {
             super(context);
+            LaunchActivity.this = r1;
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             setDrawerPosition(getDrawerPosition());
             boolean z2 = i4 - i2 > i3 - i;
@@ -1045,6 +1046,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 private boolean inLayout;
 
                 {
+                    LaunchActivity.this = this;
                     new Path();
                 }
 
@@ -1278,6 +1280,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         C343012(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr) {
             super(baseFragment, context, z, num, i, resourcesProvider);
+            LaunchActivity.this = r8;
             this.val$popup = selectAnimatedEmojiDialogWindowArr;
         }
 
@@ -1663,6 +1666,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public class C343315 implements TermsOfServiceView.TermsOfServiceViewDelegate {
         C343315() {
+            LaunchActivity.this = r1;
         }
 
         @Override
@@ -3062,6 +3066,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final Integer val$messageId;
 
         C343618(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
+            LaunchActivity.this = r1;
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;

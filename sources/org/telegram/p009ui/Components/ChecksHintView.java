@@ -155,6 +155,7 @@ public class ChecksHintView extends FrameLayout {
 
     public class C21461 extends AnimatorListenerAdapter {
         C21461() {
+            ChecksHintView.this = r1;
         }
 
         @Override

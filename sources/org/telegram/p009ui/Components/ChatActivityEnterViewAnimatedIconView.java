@@ -178,6 +178,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         }
 
         private TransitState(String str, int i, State state, State state2, int i2) {
+            super(str, i);
             this.firstState = state;
             this.secondState = state2;
             this.resource = i2;

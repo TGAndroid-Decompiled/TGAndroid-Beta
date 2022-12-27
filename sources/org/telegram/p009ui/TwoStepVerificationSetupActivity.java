@@ -1168,6 +1168,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
 
     public class C42201 extends C1133ActionBar.ActionBarMenuOnItemClick {
         C42201() {
+            TwoStepVerificationSetupActivity.this = r1;
         }
 
         @Override

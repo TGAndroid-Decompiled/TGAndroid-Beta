@@ -687,7 +687,7 @@ public class SpoilerEffect extends Drawable {
 
                                 @Override
                                 public int getSize(Paint paint, CharSequence charSequence, int i6, int i7, Paint.FontMetricsInt fontMetricsInt) {
-                                    return Emoji.EmojiSpan.this.getSize(paint, charSequence, i6, i7, fontMetricsInt);
+                                    return emojiSpan.getSize(paint, charSequence, i6, i7, fontMetricsInt);
                                 }
                             }, spannable.getSpanStart(emojiSpan), spannable.getSpanEnd(emojiSpan), spannable.getSpanFlags(textStyleSpan));
                             spannableStringBuilder.removeSpan(emojiSpan);

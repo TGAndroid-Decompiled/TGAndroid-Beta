@@ -697,6 +697,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         ArraySet<Integer> emptyCells = new ArraySet<>();
 
         Adapter() {
+            StatisticActivity.this = r1;
         }
 
         @Override
@@ -1277,6 +1278,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     public class ChartCell extends BaseChartCell {
         public ChartCell(Context context, int i, BaseChartView.SharedUiComponents sharedUiComponents) {
             super(context, i, sharedUiComponents);
+            StatisticActivity.this = r1;
         }
 
         @Override
@@ -1880,12 +1882,13 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             final int position;
 
             CheckBoxHolder(int i) {
+                BaseChartCell.this = r4;
                 this.position = i;
-                FlatCheckBox flatCheckBox = new FlatCheckBox(BaseChartCell.this.getContext());
+                FlatCheckBox flatCheckBox = new FlatCheckBox(r4.getContext());
                 this.checkBox = flatCheckBox;
                 flatCheckBox.setPadding(AndroidUtilities.m35dp(16.0f), 0, AndroidUtilities.m35dp(16.0f), 0);
-                BaseChartCell.this.checkboxContainer.addView(flatCheckBox);
-                BaseChartCell.this.checkBoxes.add(this);
+                r4.checkboxContainer.addView(flatCheckBox);
+                r4.checkBoxes.add(this);
             }
 
             public void setData(final LineViewData lineViewData) {

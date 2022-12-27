@@ -105,6 +105,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
 
     public class RunnableC12641 implements Runnable {
         RunnableC12641() {
+            StickersSearchAdapter.this = r1;
         }
 
         private void clear() {

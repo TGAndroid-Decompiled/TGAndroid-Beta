@@ -110,6 +110,10 @@ public class PaintToolsView extends LinearLayout {
 
     public void setSelectedIndex(int i) {
         this.selectedIndex = i;
+        if (this.isShapeSelected) {
+            this.isShapeSelected = false;
+            AndroidUtilities.updateImageViewImageAnimated(this.buttons[this.brushesCount + 1], C1072R.C1073drawable.msg_add);
+        }
         invalidate();
     }
 
@@ -230,7 +234,18 @@ public class PaintToolsView extends LinearLayout {
         if (f > 0.25f && f < 0.75f) {
             f2 = (f <= 0.25f || f >= 0.5f) ? 1.0f - ((0.75f - f) / 0.25f) : (0.5f - f) / 0.25f;
         }
-        canvas.drawCircle(AndroidUtilities.lerp(rLottieImageView.getX() + (rLottieImageView.getWidth() / 2.0f), rLottieImageView2 != null ? rLottieImageView2.getX() + (rLottieImageView2.getWidth() / 2.0f) : 0.0f, f), rLottieImageView.getY() + (rLottieImageView.getHeight() / 2.0f), (Math.min((rLottieImageView.getWidth() - rLottieImageView.getPaddingLeft()) - rLottieImageView.getPaddingRight(), (rLottieImageView.getHeight() - rLottieImageView.getPaddingTop()) - rLottieImageView.getPaddingBottom()) / 2.0f) + AndroidUtilities.m35dp(3.0f) + (AndroidUtilities.m35dp(3.0f) * f2), this.selectorPaint);
+        float min = (Math.min((rLottieImageView.getWidth() - rLottieImageView.getPaddingLeft()) - rLottieImageView.getPaddingRight(), (rLottieImageView.getHeight() - rLottieImageView.getPaddingTop()) - rLottieImageView.getPaddingBottom()) / 2.0f) + AndroidUtilities.m35dp(3.0f) + (AndroidUtilities.m35dp(3.0f) * f2);
+        float x = rLottieImageView.getX() + (rLottieImageView.getWidth() / 2.0f) + getOffsetForIndex(this.selectedIndex);
+        float x2 = rLottieImageView2 != null ? rLottieImageView2.getX() + (rLottieImageView2.getWidth() / 2.0f) : 0.0f;
+        int i2 = this.nextSelectedIndex;
+        canvas.drawCircle(AndroidUtilities.lerp(x, x2 + (i2 != -1 ? getOffsetForIndex(i2) : 0.0f), f), rLottieImageView.getY() + (rLottieImageView.getHeight() / 2.0f), min, this.selectorPaint);
+    }
+
+    private float getOffsetForIndex(int i) {
+        if (i == this.brushesCount + 1) {
+            return AndroidUtilities.m35dp(4.0f);
+        }
+        return 0.0f;
     }
 
     public void setDelegate(Delegate delegate) {

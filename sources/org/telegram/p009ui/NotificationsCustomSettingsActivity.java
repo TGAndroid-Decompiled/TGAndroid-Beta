@@ -921,6 +921,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         }
 
         public SearchAdapter(Context context) {
+            NotificationsCustomSettingsActivity.this = r1;
             this.mContext = context;
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
             this.searchAdapterHelper = searchAdapterHelper;
@@ -1092,6 +1093,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         private Context mContext;
 
         public ListAdapter(Context context) {
+            NotificationsCustomSettingsActivity.this = r1;
             this.mContext = context;
         }
 

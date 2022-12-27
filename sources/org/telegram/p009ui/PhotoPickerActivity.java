@@ -861,6 +861,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
 
         C37464() {
+            PhotoPickerActivity.this = r1;
         }
 
         @Override
@@ -908,6 +909,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
         C37475(Context context) {
             super(context);
+            PhotoPickerActivity.this = r1;
         }
 
         @Override
@@ -1798,6 +1800,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
 
         public ListAdapter(Context context) {
+            PhotoPickerActivity.this = r1;
             this.mContext = context;
         }
 

@@ -225,6 +225,7 @@ public class Camera1Session implements CameraSession {
 
     public class C42862 implements Camera.PreviewCallback {
         C42862() {
+            Camera1Session.this = r1;
         }
 
         @Override

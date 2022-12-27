@@ -100,7 +100,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
         int i;
         int i2;
         String str2;
-        final CameraController cameraController = this;
+        CameraController cameraController = this;
         String str3 = "cameraCache";
         String str4 = "APP_PAUSED";
         try {

@@ -462,10 +462,11 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         private int totalCount;
 
         public SearchAdapter(Context context) {
+            GroupVoipInviteAlert.this = r2;
             this.mContext = context;
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
             this.searchAdapterHelper = searchAdapterHelper;
-            searchAdapterHelper.setDelegate(new SearchAdapterHelper.SearchAdapterHelperDelegate(GroupVoipInviteAlert.this) {
+            searchAdapterHelper.setDelegate(new SearchAdapterHelper.SearchAdapterHelperDelegate(r2) {
                 @Override
                 public boolean canApplySearchResults(int i) {
                     return SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$canApplySearchResults(this, i);
@@ -710,10 +711,11 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         }
     }
 
-    private class ListAdapter extends RecyclerListView.SelectionAdapter {
+    public class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         public ListAdapter(Context context) {
+            GroupVoipInviteAlert.this = r1;
             this.mContext = context;
         }
 
@@ -859,7 +861,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
     }
 
     @Override
-    protected void search(String str) {
+    public void search(String str) {
         this.searchAdapter.searchUsers(str);
     }
 

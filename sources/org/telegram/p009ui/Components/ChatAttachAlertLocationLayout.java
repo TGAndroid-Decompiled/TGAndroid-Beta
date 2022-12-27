@@ -208,6 +208,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
 
         public MapOverlayView(Context context) {
             super(context);
+            ChatAttachAlertLocationLayout.this = r1;
             this.views = new HashMap<>();
         }
 

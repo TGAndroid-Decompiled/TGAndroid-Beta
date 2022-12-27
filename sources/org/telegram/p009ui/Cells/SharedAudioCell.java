@@ -69,6 +69,8 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
     private boolean needDivider;
     private RadialProgress2 radialProgress;
     private final Theme.ResourcesProvider resourcesProvider;
+    boolean showName;
+    float showNameProgress;
     boolean showReorderIcon;
     float showReorderIconProgress;
     private StaticLayout titleLayout;
@@ -98,6 +100,8 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         this.descriptionY = AndroidUtilities.m35dp(29.0f);
         this.captionY = AndroidUtilities.m35dp(29.0f);
         this.currentAccount = UserConfig.selectedAccount;
+        this.showName = true;
+        this.showNameProgress = 0.0f;
         this.enterAlpha = 1.0f;
         this.resourcesProvider = resourcesProvider;
         this.viewType = i;
@@ -511,19 +515,41 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        if (this.enterAlpha != 1.0f && this.globalGradientView != null) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) ((1.0f - this.enterAlpha) * 255.0f), 31);
-            this.globalGradientView.setViewType(4);
-            this.globalGradientView.updateColors();
-            this.globalGradientView.updateGradient();
-            this.globalGradientView.draw(canvas);
-            canvas.restore();
-            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (this.enterAlpha * 255.0f), 31);
-            drawInternal(canvas);
-            super.dispatchDraw(canvas);
-            drawReorder(canvas);
-            canvas.restore();
-            return;
+        boolean z = this.showName;
+        if (z) {
+            float f = this.showNameProgress;
+            if (f != 1.0f) {
+                this.showNameProgress = f + 0.10666667f;
+                invalidate();
+                this.showNameProgress = Utilities.clamp(this.showNameProgress, 1.0f, 0.0f);
+                if (this.enterAlpha == 1.0f && this.globalGradientView != null) {
+                    canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) ((1.0f - this.enterAlpha) * 255.0f), 31);
+                    this.globalGradientView.setViewType(4);
+                    this.globalGradientView.updateColors();
+                    this.globalGradientView.updateGradient();
+                    this.globalGradientView.draw(canvas);
+                    canvas.restore();
+                    canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (this.enterAlpha * 255.0f), 31);
+                    drawInternal(canvas);
+                    super.dispatchDraw(canvas);
+                    drawReorder(canvas);
+                    canvas.restore();
+                    return;
+                }
+                drawInternal(canvas);
+                drawReorder(canvas);
+                super.dispatchDraw(canvas);
+            }
+        }
+        if (!z) {
+            float f2 = this.showNameProgress;
+            if (f2 != 0.0f) {
+                this.showNameProgress = f2 - 0.10666667f;
+                invalidate();
+            }
+        }
+        this.showNameProgress = Utilities.clamp(this.showNameProgress, 1.0f, 0.0f);
+        if (this.enterAlpha == 1.0f) {
         }
         drawInternal(canvas);
         drawReorder(canvas);
@@ -583,6 +609,11 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
             canvas.restore();
         }
         if (this.titleLayout != null) {
+            int alpha = Theme.chat_contextResult_titleTextPaint.getAlpha();
+            float f = this.showNameProgress;
+            if (f != 1.0f) {
+                Theme.chat_contextResult_titleTextPaint.setAlpha((int) (alpha * f));
+            }
             canvas.save();
             int m35dp = AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
             if (LocaleController.isRTL && (staticLayout = this.dateLayout) != null) {
@@ -592,6 +623,9 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
             this.titleLayout.draw(canvas);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.titleLayout, this.titleLayoutEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
+            if (this.showNameProgress != 1.0f) {
+                Theme.chat_contextResult_titleTextPaint.setAlpha(alpha);
+            }
         }
         if (this.captionLayout != null) {
             this.captionTextPaint.setColor(getThemedColor("windowBackgroundWhiteBlackText"));
@@ -602,13 +636,22 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         }
         if (this.descriptionLayout != null) {
             Theme.chat_contextResult_descriptionTextPaint.setColor(getThemedColor("windowBackgroundWhiteGrayText2"));
+            int alpha2 = Theme.chat_contextResult_descriptionTextPaint.getAlpha();
+            float f2 = this.showNameProgress;
+            if (f2 != 1.0f) {
+                Theme.chat_contextResult_descriptionTextPaint.setAlpha((int) (alpha2 * f2));
+            }
             canvas.save();
             canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
             this.descriptionLayout.draw(canvas);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.descriptionLayout, this.descriptionLayoutEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
+            if (this.showNameProgress != 1.0f) {
+                Theme.chat_contextResult_descriptionTextPaint.setAlpha(alpha2);
+            }
         }
         this.radialProgress.setProgressColor(getThemedColor(this.buttonPressed ? "chat_inAudioSelectedProgress" : "chat_inAudioProgress"));
+        this.radialProgress.setOverlayImageAlpha(this.showNameProgress);
         this.radialProgress.draw(canvas);
         if (this.needDivider) {
             canvas.drawLine(AndroidUtilities.m35dp(72.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, Theme.dividerPaint);
@@ -630,6 +673,17 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         if (!z2) {
             this.showReorderIconProgress = z ? 1.0f : 0.0f;
         }
+        invalidate();
+    }
+
+    public void showName(boolean z, boolean z2) {
+        if (!z2) {
+            this.showNameProgress = z ? 1.0f : 0.0f;
+        }
+        if (this.showName == z) {
+            return;
+        }
+        this.showName = z;
         invalidate();
     }
 }

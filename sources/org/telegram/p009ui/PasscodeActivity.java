@@ -251,6 +251,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         final ActionBarMenuSubItem val$switchItem;
 
         C36414(ActionBarMenuSubItem actionBarMenuSubItem) {
+            PasscodeActivity.this = r1;
             this.val$switchItem = actionBarMenuSubItem;
         }
 
@@ -331,6 +332,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
     public class C36458 extends CodeFieldContainer {
         C36458(Context context) {
             super(context);
+            PasscodeActivity.this = r1;
         }
 
         @Override
@@ -916,6 +918,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         private Context mContext;
 
         public ListAdapter(Context context) {
+            PasscodeActivity.this = r1;
             this.mContext = context;
         }
 

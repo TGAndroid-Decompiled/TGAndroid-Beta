@@ -521,6 +521,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
 
     public class ScaleGestureDetector$OnScaleGestureListenerC30683 implements ScaleGestureDetector.OnScaleGestureListener {
         ScaleGestureDetector$OnScaleGestureListenerC30683() {
+            RTMPStreamPipOverlay.this = r1;
         }
 
         @Override
@@ -620,6 +621,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
 
     public class C30748 implements RendererCommon.RendererEvents {
         C30748() {
+            RTMPStreamPipOverlay.this = r1;
         }
 
         @Override

@@ -86,6 +86,7 @@ public class WebviewActivity extends BaseFragment {
 
     public class TelegramWebviewProxy {
         private TelegramWebviewProxy() {
+            WebviewActivity.this = r1;
         }
 
         @JavascriptInterface

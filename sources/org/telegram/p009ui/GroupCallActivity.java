@@ -665,6 +665,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
         public VolumeSlider(Context context, TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant) {
             super(context);
+            GroupCallActivity.this = r19;
             this.paint = new Paint(1);
             this.paint2 = new Paint(1);
             this.path = new Path();
@@ -2620,7 +2621,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
 
                 @Override
-                protected boolean createLayout(int i6) {
+                public boolean createLayout(int i6) {
                     boolean createLayout = super.createLayout(i6);
                     int textWidth = getTextWidth();
                     if (textWidth != this.lastTextWidth) {
@@ -2634,7 +2635,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
 
                 @Override
-                protected void onDraw(android.graphics.Canvas r9) {
+                public void onDraw(android.graphics.Canvas r9) {
                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.GroupCallActivity.C33388.onDraw(android.graphics.Canvas):void");
                 }
             };
@@ -3565,7 +3566,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
         PinchToZoomHelper pinchToZoomHelper = new PinchToZoomHelper(viewGroup, this.containerView) {
             @Override
-            protected void invalidateViews() {
+            public void invalidateViews() {
                 super.invalidateViews();
                 for (int i17 = 0; i17 < GroupCallActivity.this.avatarsViewPager.getChildCount(); i17++) {
                     GroupCallActivity.this.avatarsViewPager.getChildAt(i17).invalidate();
@@ -3634,6 +3635,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
 
         C33346(Context context) {
+            GroupCallActivity.this = r1;
             this.val$context = context;
         }
 
@@ -3946,6 +3948,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         public class DialogC33351 extends GroupCallRecordAlert {
             DialogC33351(Context context, TLRPC$Chat tLRPC$Chat, boolean z) {
                 super(context, tLRPC$Chat, z);
+                C33346.this = r1;
             }
 
             @Override
@@ -4242,13 +4245,14 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    class C328417 extends FrameLayout {
+    public class C328417 extends FrameLayout {
         AnimatorSet currentButtonsAnimation;
         int currentLightColor;
         final OvershootInterpolator overshootInterpolator;
 
         C328417(Context context) {
             super(context);
+            GroupCallActivity.this = r1;
             this.overshootInterpolator = new OvershootInterpolator(1.5f);
         }
 
@@ -4532,6 +4536,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         };
 
         View$OnClickListenerC328719() {
+            GroupCallActivity.this = r1;
         }
 
         @Override
@@ -4768,6 +4773,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
         C329020(Context context, Context context2) {
             super(context);
+            GroupCallActivity.this = r1;
             this.val$context = context2;
         }
 
@@ -4828,10 +4834,11 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
         C329727(Context context, RecyclerView recyclerView, RecyclerView recyclerView2, ArrayList arrayList, ChatObject.Call call, GroupCallActivity groupCallActivity) {
             super(context, recyclerView, recyclerView2, arrayList, call, groupCallActivity);
+            GroupCallActivity.this = r8;
         }
 
         @Override
-        protected void update() {
+        public void update() {
             super.update();
             ((BottomSheet) GroupCallActivity.this).navBarColor = AndroidUtilities.getOffsetColor(Theme.getColor("voipgroup_actionBarUnscrolled"), Theme.getColor("voipgroup_actionBar"), Math.max(GroupCallActivity.this.colorProgress, GroupCallActivity.this.renderersContainer == null ? 0.0f : GroupCallActivity.this.renderersContainer.progressToFullscreenMode), 1.0f);
             ((BottomSheet) GroupCallActivity.this).containerView.invalidate();
@@ -4840,7 +4847,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
 
         @Override
-        protected boolean drawChild(Canvas canvas, View view, long j) {
+        public boolean drawChild(Canvas canvas, View view, long j) {
             if (view == GroupCallActivity.this.scrimRenderer) {
                 return true;
             }
@@ -4960,7 +4967,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
 
         @Override
-        protected boolean canHideUI() {
+        public boolean canHideUI() {
             return super.canHideUI() && GroupCallActivity.this.previewDialog == null;
         }
 
@@ -6828,6 +6835,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         private int videoNotAvailableRow;
 
         public ListAdapter(Context context) {
+            GroupCallActivity.this = r1;
             this.mContext = context;
         }
 
@@ -7037,7 +7045,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             if (i == 0) {
                 view = new GroupCallTextCell(this, this.mContext) {
                     @Override
-                    protected void onMeasure(int i2, int i3) {
+                    public void onMeasure(int i2, int i3) {
                         if (AndroidUtilities.isTablet()) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m35dp(420.0f), View.MeasureSpec.getSize(i2)), 1073741824), i3);
                         } else {
@@ -7064,7 +7072,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else if (i == 2) {
                 view = new GroupCallInvitedCell(this, this.mContext) {
                     @Override
-                    protected void onMeasure(int i2, int i3) {
+                    public void onMeasure(int i2, int i3) {
                         if (AndroidUtilities.isTablet()) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m35dp(420.0f), View.MeasureSpec.getSize(i2)), 1073741824), i3);
                         } else {
@@ -7075,7 +7083,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else if (i == 4) {
                 view = new GroupCallGridCell(this.mContext, false) {
                     @Override
-                    protected void onAttachedToWindow() {
+                    public void onAttachedToWindow() {
                         super.onAttachedToWindow();
                         if (GroupCallActivity.this.listView.getVisibility() == 0 && GroupCallActivity.this.listViewVideoVisibility) {
                             GroupCallActivity.this.attachRenderer(this, true);
@@ -7083,7 +7091,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     }
 
                     @Override
-                    protected void onDetachedFromWindow() {
+                    public void onDetachedFromWindow() {
                         super.onDetachedFromWindow();
                         GroupCallActivity.this.attachRenderer(this, false);
                     }
@@ -7253,6 +7261,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
 
         private AvatarUpdaterDelegate(long j) {
+            GroupCallActivity.this = r1;
             this.peerId = j;
         }
 
@@ -7444,6 +7453,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         HashSet<RecyclerView.ViewHolder> removingHolders;
 
         private GroupCallItemAnimator() {
+            GroupCallActivity.this = r1;
             this.addingHolders = new HashSet<>();
             this.removingHolders = new HashSet<>();
         }

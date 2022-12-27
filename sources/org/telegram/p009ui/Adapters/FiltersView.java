@@ -574,13 +574,14 @@ public class FiltersView extends RecyclerListView {
         setSelectorDrawableColor(getThemedColor("listSelectorSDK21"));
     }
 
-    private class Adapter extends RecyclerListView.SelectionAdapter {
+    public class Adapter extends RecyclerListView.SelectionAdapter {
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
             return true;
         }
 
         private Adapter() {
+            FiltersView.this = r1;
         }
 
         @Override

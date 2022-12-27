@@ -292,6 +292,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public class TelegramWebviewProxy {
         private TelegramWebviewProxy() {
+            PaymentFormActivity.this = r1;
         }
 
         @JavascriptInterface
@@ -322,6 +323,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public class LinkSpan extends ClickableSpan {
         public LinkSpan() {
+            PaymentFormActivity.this = r1;
         }
 
         @Override
@@ -1181,9 +1183,11 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (this.googlePayPublicKey != null && this.googlePayParameters == null) {
                 baseCardPaymentMethod.put("tokenizationSpecification", new JSONObject() {
                     {
+                        PaymentFormActivity.this = this;
                         put("type", "DIRECT");
                         put("parameters", new JSONObject() {
                             {
+                                C369922.this = this;
                                 put("protocolVersion", "ECv2");
                                 put("publicKey", PaymentFormActivity.this.googlePayPublicKey);
                             }
@@ -1193,12 +1197,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             } else {
                 baseCardPaymentMethod.put("tokenizationSpecification", new JSONObject() {
                     {
+                        PaymentFormActivity.this = this;
                         put("type", "PAYMENT_GATEWAY");
-                        if (PaymentFormActivity.this.googlePayParameters != null) {
-                            put("parameters", PaymentFormActivity.this.googlePayParameters);
+                        if (this.googlePayParameters != null) {
+                            put("parameters", this.googlePayParameters);
                         } else {
                             put("parameters", new JSONObject() {
                                 {
+                                    C370123.this = this;
                                     put("gateway", "stripe");
                                     put("stripe:publishableKey", PaymentFormActivity.this.providerApiKey);
                                     put("stripe:version", "3.5.0");
@@ -2214,6 +2220,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public class C370425 implements TokenCallback {
         C370425() {
+            PaymentFormActivity.this = r1;
         }
 
         @Override
@@ -3099,8 +3106,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
         public BottomFrameLayout(Context context, TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm) {
             super(context);
+            PaymentFormActivity.this = r2;
             this.paint = new Paint(1);
-            this.progress = (!tLRPC$TL_payments_paymentForm.invoice.recurring || PaymentFormActivity.this.isAcceptTermsChecked) ? 1.0f : 0.0f;
+            this.progress = (!tLRPC$TL_payments_paymentForm.invoice.recurring || r2.isAcceptTermsChecked) ? 1.0f : 0.0f;
             setWillNotDraw(false);
         }
 

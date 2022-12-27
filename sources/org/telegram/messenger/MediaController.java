@@ -652,6 +652,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public class RunnableC10442 implements Runnable {
         RunnableC10442() {
+            MediaController.this = r1;
         }
 
         @Override
@@ -698,9 +699,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    private class InternalObserver extends ContentObserver {
+    public class InternalObserver extends ContentObserver {
         public InternalObserver() {
             super(null);
+            MediaController.this = r1;
         }
 
         @Override
@@ -710,9 +712,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    private class ExternalObserver extends ContentObserver {
+    public class ExternalObserver extends ContentObserver {
         public ExternalObserver() {
             super(null);
+            MediaController.this = r1;
         }
 
         @Override
@@ -793,10 +796,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$checkGallery$1(int):void");
     }
 
-    private final class StopMediaObserverRunnable implements Runnable {
+    public final class StopMediaObserverRunnable implements Runnable {
         public int currentObserverToken;
 
         private StopMediaObserverRunnable() {
+            MediaController.this = r1;
             this.currentObserverToken = 0;
         }
 
@@ -950,6 +954,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public class C10464 extends PhoneStateListener {
         C10464() {
+            MediaController.this = r1;
         }
 
         @Override
@@ -1093,6 +1098,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         final MessageObject val$currentPlayingMessageObject;
 
         C10475(MessageObject messageObject) {
+            MediaController.this = r1;
             this.val$currentPlayingMessageObject = messageObject;
         }
 
@@ -2725,6 +2731,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         C10497(int i, MessageObject messageObject, int[] iArr, boolean z) {
+            MediaController.this = r1;
             this.val$tag = i;
             this.val$messageObject = messageObject;
             this.val$playCount = iArr;
@@ -2926,6 +2933,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         C10508(int i) {
+            MediaController.this = r1;
             this.val$tag = i;
         }
 
@@ -3043,6 +3051,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         C10519(int i, MessageObject messageObject, int[] iArr, boolean z) {
+            MediaController.this = r1;
             this.val$tag = i;
             this.val$messageObject = messageObject;
             this.val$playCount = iArr;

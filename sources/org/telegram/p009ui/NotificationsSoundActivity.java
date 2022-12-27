@@ -267,6 +267,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         }
 
         C36341(Context context) {
+            NotificationsSoundActivity.this = r1;
             this.val$context = context;
         }
 
@@ -546,6 +547,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
 
     public class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
+            NotificationsSoundActivity.this = r1;
         }
 
         Adapter(NotificationsSoundActivity notificationsSoundActivity, C36341 c36341) {

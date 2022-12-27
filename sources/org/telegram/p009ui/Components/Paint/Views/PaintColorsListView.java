@@ -189,6 +189,7 @@ public class PaintColorsListView extends RecyclerListView {
 
         public ColorView(Context context) {
             super(context);
+            PaintColorsListView.this = r3;
             setPadding(AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f));
             setLayoutParams(new RecyclerView.LayoutParams(-2, 0));
         }

@@ -104,6 +104,7 @@ public class UndoView extends FrameLayout {
 
     public class LinkMovementMethodMy extends LinkMovementMethod {
         public LinkMovementMethodMy() {
+            UndoView.this = r1;
         }
 
         @Override

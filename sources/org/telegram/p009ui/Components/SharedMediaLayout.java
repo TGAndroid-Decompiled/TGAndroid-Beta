@@ -1588,6 +1588,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         final Context val$context;
 
         View$OnClickListenerC28265(Context context) {
+            SharedMediaLayout.this = r1;
             this.val$context = context;
         }
 
@@ -2816,8 +2817,8 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         sharedMediaFastScrollTooltip.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(220L).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
-                if (SharedMediaFastScrollTooltip.this.getParent() != null) {
-                    ((ViewGroup) SharedMediaFastScrollTooltip.this.getParent()).removeView(SharedMediaFastScrollTooltip.this);
+                if (sharedMediaFastScrollTooltip.getParent() != null) {
+                    ((ViewGroup) sharedMediaFastScrollTooltip.getParent()).removeView(sharedMediaFastScrollTooltip);
                 }
             }
         }).start();
@@ -3457,6 +3458,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         final int val$oldItemCount;
 
         ViewTreeObserver$OnPreDrawListenerC281827(RecyclerListView recyclerListView, SparseBooleanArray sparseBooleanArray, View view, int i) {
+            SharedMediaLayout.this = r1;
             this.val$finalListView = recyclerListView;
             this.val$addedMesages = sparseBooleanArray;
             this.val$finalProgressView = view;
@@ -4161,6 +4163,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
     public class C282430 implements SharedLinkCell.SharedLinkCellDelegate {
         C282430() {
+            SharedMediaLayout.this = r1;
         }
 
         @Override
@@ -4218,6 +4221,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
 
         public SharedLinksAdapter(Context context) {
+            SharedMediaLayout.this = r1;
             this.mContext = context;
         }
 
@@ -4345,6 +4349,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
 
         public SharedDocumentsAdapter(Context context, int i) {
+            SharedMediaLayout.this = r1;
             this.mContext = context;
             this.currentType = i;
         }
@@ -4629,6 +4634,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
 
         public SharedPhotoVideoAdapter(Context context) {
+            SharedMediaLayout.this = r1;
             this.mContext = context;
         }
 
@@ -4890,6 +4896,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
 
         public MediaSearchAdapter(Context context, int i) {
+            SharedMediaLayout.this = r1;
             this.mContext = context;
             this.currentType = i;
         }
@@ -5236,6 +5243,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
 
         public GifAdapter(Context context) {
+            SharedMediaLayout.this = r1;
             this.mContext = context;
         }
 
@@ -5309,6 +5317,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         private Context mContext;
 
         public CommonGroupsAdapter(Context context) {
+            SharedMediaLayout.this = r1;
             this.mContext = context;
         }
 
@@ -5439,6 +5448,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
 
         public ChatUsersAdapter(Context context) {
+            SharedMediaLayout.this = r1;
             this.mContext = context;
         }
 
@@ -5524,6 +5534,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
 
         public GroupUsersSearchAdapter(Context context) {
+            SharedMediaLayout.this = r2;
             this.mContext = context;
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
             this.searchAdapterHelper = searchAdapterHelper;
@@ -5553,7 +5564,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$onSetHashtags(this, arrayList, hashMap);
                 }
             });
-            this.currentChat = SharedMediaLayout.this.delegate.getCurrentChat();
+            this.currentChat = r2.delegate.getCurrentChat();
         }
 
         public void lambda$new$0(int i) {
@@ -5914,6 +5925,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
         public ScrollSlidingTextTabStripInner(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
+            SharedMediaLayout.this = r1;
             this.backgroundColor = 0;
         }
 

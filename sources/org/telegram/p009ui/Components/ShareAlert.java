@@ -1442,6 +1442,17 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                         shareDialogCell.setChecked(true, true);
                     }
                     updateSelectedCount(2);
+                    if (this.searchIsVisible) {
+                        if (((TLRPC$Dialog) this.listAdapter.dialogsMap.get(tLRPC$Dialog.f863id)) == null) {
+                            this.listAdapter.dialogsMap.put(tLRPC$Dialog.f863id, tLRPC$Dialog);
+                            this.listAdapter.dialogs.add(1 ^ this.listAdapter.dialogs.isEmpty(), tLRPC$Dialog);
+                        }
+                        this.listAdapter.notifyDataSetChanged();
+                        this.updateSearchAdapter = false;
+                        this.searchView.searchEditText.setText("");
+                        checkCurrentList(false);
+                        this.searchView.hideKeyboard();
+                    }
                 }
             }
         }
@@ -1881,7 +1892,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.topicsGridView.setScaleX(f3);
         this.topicsGridView.setScaleY(f3);
         this.topicsGridView.setAlpha(f);
-        RecyclerListView recyclerListView = this.gridView;
+        RecyclerListView recyclerListView = this.searchIsVisible ? this.searchGridView : this.gridView;
         recyclerListView.setPivotX(view.getX() + (view.getWidth() / 2.0f));
         recyclerListView.setPivotY(view.getY() + (view.getHeight() / 2.0f));
         float f4 = f2 + 1.0f;
@@ -2174,7 +2185,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                             j2 = keyAt;
                             i2 = i4;
                             arrayList = arrayList2;
-                            sendMessagesHelper.sendMessage(charSequence, keyAt, null, messageObject2, null, true, entities, null, null, z, 0, null, false);
+                            sendMessagesHelper.sendMessage(charSequence, keyAt, messageObject2, messageObject2, null, true, entities, null, null, z, 0, null, false);
                         }
                         int sendMessage = SendMessagesHelper.getInstance(this.currentAccount).sendMessage(this.sendingMessageObjects, j2, !this.showSendersName, false, z, 0, messageObject2);
                         if (sendMessage != 0) {

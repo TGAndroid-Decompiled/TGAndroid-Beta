@@ -366,6 +366,7 @@ public class BlurBehindDrawable {
         int width;
 
         public BlurBackgroundTask() {
+            BlurBehindDrawable.this = r1;
         }
 
         @Override

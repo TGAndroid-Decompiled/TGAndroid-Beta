@@ -254,7 +254,7 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
         }
     }
 
-    private class Adapter extends RecyclerListView.SelectionAdapter {
+    public class Adapter extends RecyclerListView.SelectionAdapter {
         @Override
         public int getItemCount() {
             return ConnectionsManager.DEFAULT_DATACENTER_ID;
@@ -266,6 +266,7 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
         }
 
         private Adapter() {
+            PremiumStickersPreviewRecycler.this = r1;
         }
 
         @Override
@@ -351,8 +352,9 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
 
         public StickerView(Context context) {
             super(context);
+            PremiumStickersPreviewRecycler.this = r3;
             this.animateImage = true;
-            this.view = new View(context, PremiumStickersPreviewRecycler.this) {
+            this.view = new View(context, r3) {
                 @Override
                 public void draw(Canvas canvas) {
                     super.draw(canvas);

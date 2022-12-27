@@ -73,7 +73,7 @@ class MediaCodecUtils {
         return false;
     }
 
-    static class C43111 {
+    public static class C43111 {
         static final int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
 
         static {

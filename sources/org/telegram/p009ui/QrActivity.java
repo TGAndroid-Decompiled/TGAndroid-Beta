@@ -713,6 +713,7 @@ public class QrActivity extends BaseFragment {
         }
 
         private ThemeResourcesProvider() {
+            QrActivity.this = r1;
         }
 
         void initColors(EmojiThemes emojiThemes, boolean z) {
@@ -1131,10 +1132,11 @@ public class QrActivity extends BaseFragment {
         }
 
         public ThemeListViewController(BaseFragment baseFragment, Window window) {
+            QrActivity.this = r21;
             this.fragment = baseFragment;
             this.window = window;
             Activity parentActivity = baseFragment.getParentActivity();
-            this.scroller = new LinearSmoothScroller(this, parentActivity, QrActivity.this) {
+            this.scroller = new LinearSmoothScroller(this, parentActivity, r21) {
                 @Override
                 public int calculateTimeForScrolling(int i) {
                     return super.calculateTimeForScrolling(i) * 6;
@@ -1143,17 +1145,18 @@ public class QrActivity extends BaseFragment {
             Drawable mutate = parentActivity.getResources().getDrawable(C1072R.C1073drawable.sheet_shadow_round).mutate();
             this.backgroundDrawable = mutate;
             mutate.setColorFilter(new PorterDuffColorFilter(baseFragment.getThemedColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
-            FrameLayout frameLayout = new FrameLayout(parentActivity, QrActivity.this, baseFragment) {
+            FrameLayout frameLayout = new FrameLayout(parentActivity, r21, baseFragment) {
                 private final Rect backgroundPadding;
                 final BaseFragment val$fragment;
 
                 {
+                    ThemeListViewController.this = this;
                     this.val$fragment = baseFragment;
                     Rect rect = new Rect();
                     this.backgroundPadding = rect;
-                    ThemeListViewController.this.backgroundPaint.setColor(baseFragment.getThemedColor("windowBackgroundWhite"));
-                    ThemeListViewController.this.backgroundDrawable.setCallback(this);
-                    ThemeListViewController.this.backgroundDrawable.getPadding(rect);
+                    this.backgroundPaint.setColor(baseFragment.getThemedColor("windowBackgroundWhite"));
+                    this.backgroundDrawable.setCallback(this);
+                    this.backgroundDrawable.getPadding(rect);
                     setPadding(0, rect.top + AndroidUtilities.m35dp(8.0f), 0, rect.bottom);
                 }
 
@@ -1233,7 +1236,7 @@ public class QrActivity extends BaseFragment {
             setForceDark(Theme.getActiveTheme().isDark(), false);
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
             rLottieDrawable.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
-            RLottieImageView rLottieImageView = new RLottieImageView(parentActivity, QrActivity.this) {
+            RLottieImageView rLottieImageView = new RLottieImageView(parentActivity, r21) {
                 @Override
                 public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                     super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -1264,7 +1267,7 @@ public class QrActivity extends BaseFragment {
             this.prevIsPortrait = point.x < point.y;
             RecyclerListView recyclerListView = new RecyclerListView(parentActivity);
             this.recyclerView = recyclerListView;
-            ChatThemeBottomSheet.Adapter adapter = new ChatThemeBottomSheet.Adapter(((BaseFragment) QrActivity.this).currentAccount, QrActivity.this.resourcesProvider, 2);
+            ChatThemeBottomSheet.Adapter adapter = new ChatThemeBottomSheet.Adapter(((BaseFragment) r21).currentAccount, r21.resourcesProvider, 2);
             this.adapter = adapter;
             recyclerListView.setAdapter(adapter);
             recyclerListView.setClipChildren(false);
@@ -1280,7 +1283,7 @@ public class QrActivity extends BaseFragment {
                     QrActivity.ThemeListViewController.this.onItemClicked(view, i2);
                 }
             });
-            recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener(QrActivity.this) {
+            recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener(r21) {
                 private int yScroll = 0;
 
                 @Override

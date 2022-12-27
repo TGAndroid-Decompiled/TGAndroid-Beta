@@ -250,6 +250,7 @@ public class CountrySelectActivity extends BaseFragment {
         }
 
         public CountryAdapter(Context context, ArrayList<Country> arrayList) {
+            CountrySelectActivity.this = r6;
             this.mContext = context;
             if (arrayList != null) {
                 for (int i = 0; i < arrayList.size(); i++) {
@@ -401,6 +402,7 @@ public class CountrySelectActivity extends BaseFragment {
         }
 
         public CountrySearchAdapter(Context context, HashMap<String, ArrayList<Country>> hashMap) {
+            CountrySelectActivity.this = r4;
             this.mContext = context;
             for (ArrayList<Country> arrayList : hashMap.values()) {
                 for (Country country : arrayList) {

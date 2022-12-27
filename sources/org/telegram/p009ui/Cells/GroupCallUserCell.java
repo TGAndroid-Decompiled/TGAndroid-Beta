@@ -206,7 +206,7 @@ public class GroupCallUserCell extends FrameLayout {
         }
     }
 
-    private static class VerifiedDrawable extends Drawable {
+    public static class VerifiedDrawable extends Drawable {
         private Drawable[] drawables;
 
         @Override
@@ -313,6 +313,7 @@ public class GroupCallUserCell extends FrameLayout {
             private Paint paint;
 
             {
+                GroupCallUserCell.this = this;
                 Paint paint2 = new Paint(1);
                 this.paint = paint2;
                 paint2.setColor(1426063360);

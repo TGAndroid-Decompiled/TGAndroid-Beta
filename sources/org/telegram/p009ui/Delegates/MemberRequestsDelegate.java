@@ -626,6 +626,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
 
     public class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
+            MemberRequestsDelegate.this = r1;
         }
 
         @Override
@@ -751,6 +752,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             super(context, C1072R.style.TransparentDialog2);
             int i;
             String str;
+            MemberRequestsDelegate.this = r9;
             Drawable mutate = getContext().getResources().getDrawable(C1072R.C1073drawable.popup_fixed_alert2).mutate();
             this.pagerShadowDrawable = mutate;
             TextView textView = new TextView(getContext());
@@ -864,7 +866,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             this.contentView = viewGroup;
             setCancelable(true);
             viewGroup.setVisibility(4);
-            int color = Theme.getColor("actionBarDefaultSubmenuBackground", MemberRequestsDelegate.this.fragment.getResourceProvider());
+            int color = Theme.getColor("actionBarDefaultSubmenuBackground", r9.fragment.getResourceProvider());
             mutate.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
             mutate.setCallback(viewGroup);
             Rect rect = new Rect();
@@ -875,7 +877,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             this.popupLayout = actionBarPopupWindowLayout;
             actionBarPopupWindowLayout.setBackgroundColor(color);
             viewGroup.addView(actionBarPopupWindowLayout);
-            AvatarPreviewPagerIndicator avatarPreviewPagerIndicator = new AvatarPreviewPagerIndicator(this, getContext(), MemberRequestsDelegate.this) {
+            AvatarPreviewPagerIndicator avatarPreviewPagerIndicator = new AvatarPreviewPagerIndicator(this, getContext(), r9) {
                 @Override
                 public void onDraw(Canvas canvas) {
                     if (this.profileGalleryView.getRealCount() > 1) {
@@ -884,18 +886,18 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 }
             };
             this.pagerIndicator = avatarPreviewPagerIndicator;
-            ProfileGalleryView profileGalleryView = new ProfileGalleryView(context, MemberRequestsDelegate.this.fragment.getActionBar(), recyclerListView, avatarPreviewPagerIndicator);
+            ProfileGalleryView profileGalleryView = new ProfileGalleryView(context, r9.fragment.getActionBar(), recyclerListView, avatarPreviewPagerIndicator);
             this.viewPager = profileGalleryView;
             profileGalleryView.setCreateThumbFromParent(true);
             viewGroup.addView(profileGalleryView);
             avatarPreviewPagerIndicator.setProfileGalleryView(profileGalleryView);
             viewGroup.addView(avatarPreviewPagerIndicator);
             textView.setMaxLines(1);
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", MemberRequestsDelegate.this.fragment.getResourceProvider()));
+            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", r9.fragment.getResourceProvider()));
             textView.setTextSize(16.0f);
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             viewGroup.addView(textView);
-            textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText", MemberRequestsDelegate.this.fragment.getResourceProvider()));
+            textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText", r9.fragment.getResourceProvider()));
             textView2.setTextSize(14.0f);
             viewGroup.addView(textView2);
             ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(context, true, false);

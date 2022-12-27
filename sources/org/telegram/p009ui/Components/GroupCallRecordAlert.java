@@ -141,7 +141,8 @@ public class GroupCallRecordAlert extends BottomSheet {
             private Paint[] gradientPaint;
 
             {
-                this.gradientPaint = new Paint[GroupCallRecordAlert.this.titles.length];
+                GroupCallRecordAlert.this = this;
+                this.gradientPaint = new Paint[this.titles.length];
                 int i2 = 0;
                 while (true) {
                     Paint[] paintArr = this.gradientPaint;
@@ -292,6 +293,7 @@ public class GroupCallRecordAlert extends BottomSheet {
         }
 
         private Adapter() {
+            GroupCallRecordAlert.this = r1;
         }
 
         @Override

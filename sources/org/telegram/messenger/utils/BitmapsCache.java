@@ -326,6 +326,7 @@ public class BitmapsCache {
                 BitmapFactory.Options options = this.options;
                 options.inBitmap = bitmap;
                 BitmapFactory.decodeByteArray(buffer, 0, frameOffset.frameSize, options);
+                this.options.inBitmap = null;
                 return 0;
             }
             return -1;

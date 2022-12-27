@@ -717,6 +717,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         final String val$username;
 
         RunnableC12554(String str, String str2, MessagesController messagesController, MessagesStorage messagesStorage) {
+            MentionsAdapter.this = r1;
             this.val$query = str;
             this.val$username = str2;
             this.val$messagesController = messagesController;
@@ -994,6 +995,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         final String val$usernameString;
 
         RunnableC12587(TLRPC$Chat tLRPC$Chat, String str, int i, ArrayList arrayList, LongSparseArray longSparseArray, MessagesController messagesController) {
+            MentionsAdapter.this = r1;
             this.val$chat = tLRPC$Chat;
             this.val$usernameString = str;
             this.val$threadId = i;

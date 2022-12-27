@@ -220,20 +220,21 @@ public class UsersAlertBase extends BottomSheet {
 
         public SearchField(Context context) {
             super(context);
+            UsersAlertBase.this = r12;
             View view = new View(context);
             this.searchBackground = view;
-            view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.m35dp(18.0f), Theme.getColor(UsersAlertBase.this.keySearchBackground)));
+            view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.m35dp(18.0f), Theme.getColor(r12.keySearchBackground)));
             addView(view, LayoutHelper.createFrame(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
             ImageView imageView = new ImageView(context);
             this.searchIconImageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             imageView.setImageResource(C1072R.C1073drawable.smiles_inputsearch);
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(UsersAlertBase.this.keySearchPlaceholder), PorterDuff.Mode.MULTIPLY));
+            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(r12.keySearchPlaceholder), PorterDuff.Mode.MULTIPLY));
             addView(imageView, LayoutHelper.createFrame(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
             ImageView imageView2 = new ImageView(context);
             this.clearSearchImageView = imageView2;
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
-            CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2(UsersAlertBase.this) {
+            CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2(r12) {
                 @Override
                 protected int getCurrentColor() {
                     return Theme.getColor(UsersAlertBase.this.keySearchPlaceholder);
@@ -252,7 +253,7 @@ public class UsersAlertBase extends BottomSheet {
                     UsersAlertBase.SearchField.this.lambda$new$0(view2);
                 }
             });
-            EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context, UsersAlertBase.this) {
+            EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context, r12) {
                 @Override
                 public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                     MotionEvent obtain = MotionEvent.obtain(motionEvent);
@@ -267,8 +268,8 @@ public class UsersAlertBase extends BottomSheet {
             };
             this.searchEditText = editTextBoldCursor;
             editTextBoldCursor.setTextSize(1, 16.0f);
-            this.searchEditText.setHintTextColor(Theme.getColor(UsersAlertBase.this.keySearchPlaceholder));
-            this.searchEditText.setTextColor(Theme.getColor(UsersAlertBase.this.keySearchText));
+            this.searchEditText.setHintTextColor(Theme.getColor(r12.keySearchPlaceholder));
+            this.searchEditText.setTextColor(Theme.getColor(r12.keySearchText));
             this.searchEditText.setBackgroundDrawable(null);
             this.searchEditText.setPadding(0, 0, 0, 0);
             this.searchEditText.setMaxLines(1);
@@ -276,11 +277,11 @@ public class UsersAlertBase extends BottomSheet {
             this.searchEditText.setSingleLine(true);
             this.searchEditText.setImeOptions(268435459);
             this.searchEditText.setHint(LocaleController.getString("VoipGroupSearchMembers", C1072R.string.VoipGroupSearchMembers));
-            this.searchEditText.setCursorColor(Theme.getColor(UsersAlertBase.this.keySearchText));
+            this.searchEditText.setCursorColor(Theme.getColor(r12.keySearchText));
             this.searchEditText.setCursorSize(AndroidUtilities.m35dp(20.0f));
             this.searchEditText.setCursorWidth(1.5f);
             addView(this.searchEditText, LayoutHelper.createFrame(-1, 40.0f, 51, 54.0f, 9.0f, 46.0f, 0.0f));
-            this.searchEditText.addTextChangedListener(new TextWatcher(UsersAlertBase.this) {
+            this.searchEditText.addTextChangedListener(new TextWatcher(r12) {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 }
@@ -514,6 +515,7 @@ public class UsersAlertBase extends BottomSheet {
 
         public ContainerView(Context context) {
             super(context);
+            UsersAlertBase.this = r1;
             this.ignoreLayout = false;
         }
 

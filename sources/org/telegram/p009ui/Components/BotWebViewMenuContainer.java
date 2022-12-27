@@ -240,6 +240,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         }
 
         C18491(ChatActivityEnterView chatActivityEnterView, C1133ActionBar c1133ActionBar) {
+            BotWebViewMenuContainer.this = r1;
             this.val$parentEnterView = chatActivityEnterView;
             this.val$actionBar = c1133ActionBar;
         }
@@ -747,6 +748,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
 
     public class View$OnLayoutChangeListenerC18546 implements View.OnLayoutChangeListener {
         View$OnLayoutChangeListenerC18546() {
+            BotWebViewMenuContainer.this = r1;
         }
 
         @Override

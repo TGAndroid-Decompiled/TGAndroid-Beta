@@ -76,6 +76,7 @@ public class ReactionsEffectOverlay {
 
         C26841(Context context, BaseFragment baseFragment, ChatMessageCell chatMessageCell, ChatActivity chatActivity, int i, int i2, boolean z, float f, float f2, float f3, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
             super(context);
+            ReactionsEffectOverlay.this = r1;
             this.val$fragment = baseFragment;
             this.val$cell = chatMessageCell;
             this.val$chatActivity = chatActivity;
@@ -200,7 +201,7 @@ public class ReactionsEffectOverlay {
         return false;
     }
 
-    private class AnimationView extends BackupImageView {
+    public class AnimationView extends BackupImageView {
         AnimatedEmojiDrawable animatedEmojiDrawable;
         boolean attached;
         AnimatedEmojiEffect emojiEffect;
@@ -208,6 +209,7 @@ public class ReactionsEffectOverlay {
 
         public AnimationView(Context context) {
             super(context);
+            ReactionsEffectOverlay.this = r1;
         }
 
         @Override
@@ -316,7 +318,7 @@ public class ReactionsEffectOverlay {
         }
     }
 
-    private class AvatarParticle {
+    public class AvatarParticle {
         float currentRotation;
         float fromX;
         float fromY;

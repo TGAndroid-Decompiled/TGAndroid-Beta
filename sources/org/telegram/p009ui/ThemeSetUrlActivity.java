@@ -94,6 +94,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         private String url;
 
         public LinkSpan(String str) {
+            ThemeSetUrlActivity.this = r1;
             this.url = str;
         }
 

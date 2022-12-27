@@ -262,9 +262,10 @@ public final class FloatingToolbar {
         }
 
         public FloatingToolbarPopup(Context context, View view) {
+            FloatingToolbar.this = r5;
             this.mParent = view;
             this.mContext = context;
-            ViewGroup createContentContainer = FloatingToolbar.this.createContentContainer(context);
+            ViewGroup createContentContainer = r5.createContentContainer(context);
             this.mContentContainer = createContentContainer;
             this.mPopupWindow = FloatingToolbar.createPopupWindow(createContentContainer);
             this.mMarginHorizontal = AndroidUtilities.m35dp(16.0f);
@@ -302,12 +303,13 @@ public final class FloatingToolbar {
             this.mCloseOverflowAnimation = animationSet2;
             animationSet2.setAnimationListener(createOverflowAnimationListener);
             this.mShowAnimation = FloatingToolbar.createEnterAnimation(createContentContainer);
-            this.mDismissAnimation = FloatingToolbar.createExitAnimation(createContentContainer, ImageReceiver.DEFAULT_CROSSFADE_DURATION, new C12113(FloatingToolbar.this));
-            this.mHideAnimation = FloatingToolbar.createExitAnimation(createContentContainer, 0, new C12124(FloatingToolbar.this));
+            this.mDismissAnimation = FloatingToolbar.createExitAnimation(createContentContainer, ImageReceiver.DEFAULT_CROSSFADE_DURATION, new C12113(r5));
+            this.mHideAnimation = FloatingToolbar.createExitAnimation(createContentContainer, 0, new C12124(r5));
         }
 
         public class C12113 extends AnimatorListenerAdapter {
             C12113(FloatingToolbar floatingToolbar) {
+                FloatingToolbarPopup.this = r1;
             }
 
             @Override
@@ -328,6 +330,7 @@ public final class FloatingToolbar {
 
         public class C12124 extends AnimatorListenerAdapter {
             C12124(FloatingToolbar floatingToolbar) {
+                FloatingToolbarPopup.this = r1;
             }
 
             @Override
@@ -997,6 +1000,7 @@ public final class FloatingToolbar {
             }
 
             animationAnimation$AnimationListenerC120913() {
+                FloatingToolbarPopup.this = r1;
             }
 
             @Override
@@ -1090,7 +1094,7 @@ public final class FloatingToolbar {
             }
         }
 
-        private final class LogAccelerateInterpolator implements Interpolator {
+        public final class LogAccelerateInterpolator implements Interpolator {
             private final float LOGS_SCALE;
 
             private LogAccelerateInterpolator(FloatingToolbarPopup floatingToolbarPopup) {
@@ -1114,6 +1118,7 @@ public final class FloatingToolbar {
             private final View mCalculator = createMenuButton(null);
 
             public OverflowPanelViewHelper(Context context, int i) {
+                FloatingToolbarPopup.this = r1;
                 this.mContext = context;
                 this.mIconTextSpacing = i;
             }

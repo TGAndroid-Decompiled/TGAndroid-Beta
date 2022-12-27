@@ -152,7 +152,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         return true;
     }
 
-    private static final class EmptyFragment extends BaseFragment {
+    public static final class EmptyFragment extends BaseFragment {
         private EmptyFragment() {
         }
 

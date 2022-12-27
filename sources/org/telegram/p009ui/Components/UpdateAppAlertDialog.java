@@ -54,6 +54,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
 
         public BottomSheetCell(Context context, boolean z) {
             super(context);
+            UpdateAppAlertDialog.this = r13;
             this.textView = new TextView[2];
             this.hasBackground = !z;
             setBackground(null);

@@ -111,6 +111,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         private String url;
 
         public LinkSpan(String str) {
+            ChangeUsernameActivity.this = r1;
             this.url = str;
         }
 
@@ -238,6 +239,7 @@ public class ChangeUsernameActivity extends BaseFragment {
 
     public class C14833 implements RecyclerListView.OnItemClickListener {
         C14833() {
+            ChangeUsernameActivity.this = r1;
         }
 
         @Override
@@ -385,6 +387,7 @@ public class ChangeUsernameActivity extends BaseFragment {
 
     public class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
+            ChangeUsernameActivity.this = r1;
         }
 
         @Override
@@ -405,6 +408,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 } else {
                     return new RecyclerListView.Holder(new UsernameCell(ChangeUsernameActivity.this.getContext(), ChangeUsernameActivity.this.getResourceProvider()) {
                         {
+                            Adapter.this = this;
                             this.isProfile = true;
                         }
 
@@ -562,7 +566,8 @@ public class ChangeUsernameActivity extends BaseFragment {
 
         public UsernameHelpCell(Context context) {
             super(context);
-            ChangeUsernameActivity.this.helpCell = this;
+            ChangeUsernameActivity.this = r13;
+            r13.helpCell = this;
             setPadding(AndroidUtilities.m35dp(18.0f), AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(18.0f), AndroidUtilities.m35dp(17.0f));
             setBackgroundDrawable(Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
             setClipChildren(false);
@@ -574,7 +579,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.text1View.setLinkTextColor(Theme.getColor("windowBackgroundWhiteLinkText"));
             this.text1View.setHighlightColor(Theme.getColor("windowBackgroundWhiteLinkSelection"));
             this.text1View.setPadding(AndroidUtilities.m35dp(3.0f), 0, AndroidUtilities.m35dp(3.0f), 0);
-            LinkSpanDrawable.LinksTextView linksTextView = ChangeUsernameActivity.this.statusTextView = new LinkSpanDrawable.LinksTextView(context, ChangeUsernameActivity.this) {
+            LinkSpanDrawable.LinksTextView linksTextView = r13.statusTextView = new LinkSpanDrawable.LinksTextView(context, r13) {
                 @Override
                 public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                     if (charSequence != 0) {
@@ -666,6 +671,7 @@ public class ChangeUsernameActivity extends BaseFragment {
 
         public InputCell(Context context) {
             super(context);
+            ChangeUsernameActivity.this = r21;
             LinearLayout linearLayout = new LinearLayout(getContext());
             linearLayout.setOrientation(0);
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
@@ -693,8 +699,8 @@ public class ChangeUsernameActivity extends BaseFragment {
                     return lambda$new$0;
                 }
             });
-            this.field.setText(ChangeUsernameActivity.this.username);
-            this.field.addTextChangedListener(new TextWatcher(ChangeUsernameActivity.this) {
+            this.field.setText(r21.username);
+            this.field.addTextChangedListener(new TextWatcher(r21) {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                     String str = ChangeUsernameActivity.this.username;
@@ -745,7 +751,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.tme.setPadding(0, 0, 0, 0);
             this.tme.setSingleLine(true);
             TextView textView2 = this.tme;
-            textView2.setText(ChangeUsernameActivity.this.getMessagesController().linkPrefix + "/");
+            textView2.setText(r21.getMessagesController().linkPrefix + "/");
             this.tme.setTextSize(1, 17.0f);
             this.tme.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.tme.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
@@ -753,7 +759,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             linearLayout.addView(this.tme, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 21, 15, 0, 15));
             linearLayout.addView(this.field, LayoutHelper.createLinear(-2, -2, 1.0f, 16, 0, 15, 21, 15));
             addView(linearLayout, LayoutHelper.createFrame(-1, -1, 48));
-            setBackgroundColor(ChangeUsernameActivity.this.getThemedColor("windowBackgroundWhite"));
+            setBackgroundColor(r21.getThemedColor("windowBackgroundWhite"));
         }
 
         public boolean lambda$new$0(TextView textView, int i, KeyEvent keyEvent) {
@@ -1024,6 +1030,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
 
         public TouchHelperCallback() {
+            ChangeUsernameActivity.this = r1;
         }
 
         @Override

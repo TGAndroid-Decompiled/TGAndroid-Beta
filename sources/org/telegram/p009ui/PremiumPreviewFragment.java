@@ -1017,8 +1017,9 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
     }
 
-    private class Adapter extends RecyclerListView.SelectionAdapter {
+    public class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
+            PremiumPreviewFragment.this = r1;
         }
 
         @Override
@@ -1028,7 +1029,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             if (i == 1) {
                 view = new PremiumFeatureCell(context) {
                     @Override
-                    protected void dispatchDraw(Canvas canvas) {
+                    public void dispatchDraw(Canvas canvas) {
                         RectF rectF = AndroidUtilities.rectTmp;
                         rectF.set(this.imageView.getLeft(), this.imageView.getTop(), this.imageView.getRight(), this.imageView.getBottom());
                         PremiumPreviewFragment.this.matrix.reset();
@@ -1135,11 +1136,13 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
 
         public BackgroundView(Context context) {
             super(context);
+            PremiumPreviewFragment.this = r13;
             setOrientation(1);
-            GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 0, PremiumPreviewFragment.this, context) {
+            GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 0, r13, context) {
                 final Context val$context;
 
                 {
+                    BackgroundView.this = this;
                     this.val$context = context;
                 }
 
@@ -1174,10 +1177,11 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             textView2.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
             textView2.setGravity(1);
             addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 16, 7, 16, 0));
-            RecyclerListView recyclerListView = new RecyclerListView(context, PremiumPreviewFragment.this) {
+            RecyclerListView recyclerListView = new RecyclerListView(context, r13) {
                 Paint paint;
 
                 {
+                    BackgroundView.this = this;
                     Paint paint = new Paint(1);
                     this.paint = paint;
                     paint.setColor(Theme.getColor("dialogBackground"));
@@ -1200,7 +1204,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             this.tierListView = recyclerListView;
             recyclerListView.setOverScrollMode(2);
             this.tierListView.setLayoutManager(new LinearLayoutManager(context));
-            this.tierListView.setAdapter(new C38913(PremiumPreviewFragment.this, context));
+            this.tierListView.setAdapter(new C38913(r13, context));
             this.tierListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i) {
@@ -1229,6 +1233,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             }
 
             C38913(PremiumPreviewFragment premiumPreviewFragment, Context context) {
+                BackgroundView.this = r1;
                 this.val$context = context;
             }
 
@@ -1236,7 +1241,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 final PremiumTierCell premiumTierCell = new PremiumTierCell(this.val$context) {
                     @Override
-                    protected void dispatchDraw(Canvas canvas) {
+                    public void dispatchDraw(Canvas canvas) {
                         if (this.discountView.getVisibility() == 0) {
                             RectF rectF = AndroidUtilities.rectTmp;
                             rectF.set(this.discountView.getLeft(), this.discountView.getTop(), this.discountView.getRight(), this.discountView.getBottom());

@@ -188,6 +188,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
     public class FrameLayoutDrawer extends FrameLayout {
         public FrameLayoutDrawer(Context context) {
             super(context);
+            SecretMediaViewer.this = r1;
             setWillNotDraw(false);
         }
 
@@ -233,6 +234,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
         public SecretDeleteTimer(Context context) {
             super(context);
+            SecretMediaViewer.this = r4;
             this.deleteProgressRect = new RectF();
             this.timerParticles = new TimerParticles();
             setWillNotDraw(false);
@@ -304,6 +306,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
         public PhotoBackgroundDrawable(int i) {
             super(i);
+            SecretMediaViewer.this = r1;
         }
 
         @Override
@@ -442,6 +445,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
 
         C39981(File file) {
+            SecretMediaViewer.this = r1;
             this.val$file = file;
         }
 
@@ -1073,6 +1077,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         final PhotoViewer.PlaceProviderObject val$object;
 
         C40047(PhotoViewer.PlaceProviderObject placeProviderObject) {
+            SecretMediaViewer.this = r1;
             this.val$object = placeProviderObject;
         }
 

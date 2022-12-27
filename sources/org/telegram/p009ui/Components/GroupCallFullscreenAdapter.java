@@ -161,6 +161,7 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
 
         public GroupCallUserCell(Context context) {
             super(context);
+            GroupCallFullscreenAdapter.this = r9;
             this.avatarDrawable = new AvatarDrawable();
             this.backgroundPaint = new Paint(1);
             this.selectionPaint = new Paint(1);
@@ -178,7 +179,7 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             this.selectionPaint.setStyle(Paint.Style.STROKE);
             this.selectionPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
             this.textPaint.setColor(-1);
-            RLottieImageView rLottieImageView = new RLottieImageView(context, GroupCallFullscreenAdapter.this) {
+            RLottieImageView rLottieImageView = new RLottieImageView(context, r9) {
                 @Override
                 public void invalidate() {
                     super.invalidate();

@@ -829,6 +829,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
 
         public TextSelectionOverlay(Context context) {
             super(context);
+            TextSelectionHelper.this = r1;
             this.handleViewPaint = new Paint(1);
             this.pressedTime = 0L;
             this.path = new Path();
@@ -1078,6 +1079,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         private String translateFromLanguage = null;
 
         ActionMode$CallbackC14564() {
+            TextSelectionHelper.this = r1;
         }
 
         @Override
@@ -2549,7 +2551,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         }
     }
 
-    private static class PathCopyTo extends Path {
+    public static class PathCopyTo extends Path {
         private Path destination;
 
         public PathCopyTo(Path path) {
@@ -2567,7 +2569,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         }
     }
 
-    private static class PathWithSavedBottom extends Path {
+    public static class PathWithSavedBottom extends Path {
         float lastBottom;
 
         private PathWithSavedBottom() {

@@ -459,8 +459,9 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         return new Adapter();
     }
 
-    private class Adapter extends RecyclerListView.SelectionAdapter {
+    public class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
+            PremiumPreviewBottomSheet.this = r1;
         }
 
         @Override
@@ -827,6 +828,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
 
     public class C26344 extends AnimatorListenerAdapter {
         C26344() {
+            PremiumPreviewBottomSheet.this = r1;
         }
 
         @Override

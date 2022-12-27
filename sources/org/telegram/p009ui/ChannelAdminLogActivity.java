@@ -819,6 +819,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.contentView.addView(this.chatListView, LayoutHelper.createFrame(-1, -1.0f));
         this.chatListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             {
+                ChannelAdminLogActivity.this = this;
                 AndroidUtilities.m35dp(100.0f);
             }
 
@@ -980,6 +981,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
         C15128(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider) {
             super(chatActivity, recyclerListView, resourcesProvider);
+            ChannelAdminLogActivity.this = r1;
             this.scrollAnimationIndex = -1;
         }
 
@@ -1859,6 +1861,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
 
         public ChatActivityAdapter(Context context) {
+            ChannelAdminLogActivity.this = r1;
             this.mContext = context;
         }
 
@@ -2107,6 +2110,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             C15141() {
+                ChatActivityAdapter.this = r1;
             }
 
             @Override
@@ -2358,6 +2362,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             C15163() {
+                ChatActivityAdapter.this = r1;
             }
 
             @Override

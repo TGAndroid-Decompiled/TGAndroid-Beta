@@ -515,7 +515,8 @@ public class LinkActionView extends LinearLayout {
 
         public AvatarsContainer(Context context) {
             super(context);
-            this.avatarsImageView = new AvatarsImageView(context, false, LinkActionView.this) {
+            LinkActionView.this = r6;
+            this.avatarsImageView = new AvatarsImageView(context, false, r6) {
                 @Override
                 public void onMeasure(int i, int i2) {
                     int min = Math.min(3, LinkActionView.this.usersCount);

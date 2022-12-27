@@ -298,6 +298,7 @@ public class TopicCreateFragment extends BaseFragment {
         }
 
         C41741() {
+            TopicCreateFragment.this = r1;
         }
 
         @Override

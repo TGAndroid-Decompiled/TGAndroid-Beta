@@ -85,6 +85,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
 
     public class C42132 implements RecyclerListView.OnItemClickListener {
         C42132() {
+            TopicsNotifySettingsFragments.this = r1;
         }
 
         @Override
@@ -166,6 +167,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             }
 
             C42141(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                C42132.this = r1;
                 this.val$topic = tLRPC$TL_forumTopic;
             }
 
@@ -255,6 +257,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
 
     public class Adapter extends AdapterWithDiffUtils {
         private Adapter() {
+            TopicsNotifySettingsFragments.this = r1;
         }
 
         @Override

@@ -103,6 +103,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         public float f1052y;
 
         private CropState(int i, int i2, int i3) {
+            CropView.this = r1;
             this.width = i;
             this.height = i2;
             this.f1051x = 0.0f;

@@ -60,7 +60,9 @@ public abstract class TLRPC$InputMedia extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.flags = abstractSerializedData2.readInt32(z2);
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.spoiler = (readInt32 & 2) != 0;
                         this.url = abstractSerializedData2.readString(z2);
                         if ((this.flags & 1) != 0) {
                             this.ttl_seconds = abstractSerializedData2.readInt32(z2);
@@ -70,7 +72,9 @@ public abstract class TLRPC$InputMedia extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.flags);
+                        int i2 = this.spoiler ? this.flags | 2 : this.flags & (-3);
+                        this.flags = i2;
+                        abstractSerializedData2.writeInt32(i2);
                         abstractSerializedData2.writeString(this.url);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_seconds);
@@ -94,7 +98,9 @@ public abstract class TLRPC$InputMedia extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.flags = abstractSerializedData2.readInt32(z2);
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.spoiler = (readInt32 & 2) != 0;
                         this.url = abstractSerializedData2.readString(z2);
                         if ((this.flags & 1) != 0) {
                             this.ttl_seconds = abstractSerializedData2.readInt32(z2);
@@ -104,7 +110,9 @@ public abstract class TLRPC$InputMedia extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.flags);
+                        int i2 = this.spoiler ? this.flags | 2 : this.flags & (-3);
+                        this.flags = i2;
+                        abstractSerializedData2.writeInt32(i2);
                         abstractSerializedData2.writeString(this.url);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_seconds);

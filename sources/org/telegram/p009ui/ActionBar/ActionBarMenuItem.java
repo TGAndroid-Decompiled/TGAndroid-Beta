@@ -1419,7 +1419,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 }
 
                 @Override
-                protected void onSelectionChanged(int i, int i2) {
+                public void onSelectionChanged(int i, int i2) {
                     super.onSelectionChanged(i, i2);
                 }
 

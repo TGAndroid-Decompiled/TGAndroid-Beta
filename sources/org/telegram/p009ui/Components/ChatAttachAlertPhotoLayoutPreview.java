@@ -369,6 +369,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         public GroupCalculator(ArrayList<MediaController.PhotoEntry> arrayList) {
+            ChatAttachAlertPhotoLayoutPreview.this = r1;
             this.photos = arrayList;
             calculate();
         }
@@ -608,6 +609,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
 
         public PreviewGroupsView(Context context) {
             super(context);
+            ChatAttachAlertPhotoLayoutPreview.this = r5;
             this.groupCells = new ArrayList<>();
             this.deletedPhotos = new HashMap<>();
             this.paddingTop = AndroidUtilities.m35dp(16.0f);
@@ -651,7 +653,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             this.undoViewId = 0;
             new HashMap();
             setWillNotDraw(false);
-            ChatActionCell chatActionCell = new ChatActionCell(context, true, ChatAttachAlertPhotoLayoutPreview.this.themeDelegate);
+            ChatActionCell chatActionCell = new ChatActionCell(context, true, r5.themeDelegate);
             this.hintView = chatActionCell;
             chatActionCell.setCustomText(LocaleController.getString("AttachMediaDragHint", C1072R.string.AttachMediaDragHint));
             addView(this.hintView);
@@ -1023,7 +1025,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             invalidate();
         }
 
-        class GroupingPhotoViewerProvider extends PhotoViewer.EmptyPhotoViewerProvider {
+        public class GroupingPhotoViewerProvider extends PhotoViewer.EmptyPhotoViewerProvider {
             private ArrayList<MediaController.PhotoEntry> photos = new ArrayList<>();
 
             @Override
@@ -1032,6 +1034,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             }
 
             GroupingPhotoViewerProvider() {
+                PreviewGroupsView.this = r1;
             }
 
             public void init(ArrayList<MediaController.PhotoEntry> arrayList) {
@@ -1309,6 +1312,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             public float f1044y;
 
             private PreviewGroupCell() {
+                PreviewGroupsView.this = r4;
                 this.f1044y = 0.0f;
                 this.indexStart = 0;
                 this.lastMediaUpdate = 0L;
@@ -1369,7 +1373,8 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 public boolean wasSpoiler;
 
                 private MediaCell() {
-                    this.groupCell = PreviewGroupCell.this;
+                    PreviewGroupCell.this = r6;
+                    this.groupCell = r6;
                     this.fromRect = null;
                     this.rect = new RectF();
                     this.lastUpdate = 0L;

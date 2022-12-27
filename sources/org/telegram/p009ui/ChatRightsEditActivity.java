@@ -1533,7 +1533,8 @@ public class ChatRightsEditActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
-            if (ChatRightsEditActivity.this.currentType == 2) {
+            ChatRightsEditActivity.this = r2;
+            if (r2.currentType == 2) {
                 setHasStableIds(true);
             }
             this.mContext = context;

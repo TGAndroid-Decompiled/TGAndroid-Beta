@@ -429,13 +429,14 @@ public class ReactedUsersListView extends FrameLayout {
 
         ReactedUserHolderView(Context context) {
             super(context);
+            ReactedUsersListView.this = r12;
             this.avatarDrawable = new AvatarDrawable();
             setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(48.0f)));
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.m35dp(32.0f));
             addView(this.avatarView, LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388627, 8.0f, 0.0f, 0.0f, 0.0f));
-            SimpleTextView simpleTextView = new SimpleTextView(this, context, ReactedUsersListView.this) {
+            SimpleTextView simpleTextView = new SimpleTextView(this, context, r12) {
                 @Override
                 public boolean setText(CharSequence charSequence) {
                     return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(14.0f), false));

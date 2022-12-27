@@ -78,6 +78,7 @@ public class RecyclerItemsEnterAnimator {
         final View val$finalProgressView;
 
         ViewTreeObserver$OnPreDrawListenerC27102(View view, int i) {
+            RecyclerItemsEnterAnimator.this = r1;
             this.val$finalProgressView = view;
             this.val$finalFrom = i;
         }

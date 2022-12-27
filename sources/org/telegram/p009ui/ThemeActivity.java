@@ -178,6 +178,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
 
         private GpsLocationListener() {
+            ThemeActivity.this = r1;
         }
 
         GpsLocationListener(ThemeActivity themeActivity, C41101 c41101) {
@@ -204,6 +205,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
         public TextSizeCell(Context context) {
             super(context);
+            ThemeActivity.this = r10;
             this.startFontSize = 12;
             this.endFontSize = 30;
             setWillNotDraw(false);
@@ -214,7 +216,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             this.sizeBar = seekBarView;
             seekBarView.setReportChanges(true);
             this.sizeBar.setSeparatorsCount((this.endFontSize - this.startFontSize) + 1);
-            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate(ThemeActivity.this) {
+            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate(r10) {
                 @Override
                 public void onSeekBarPressed(boolean z) {
                 }
@@ -237,7 +239,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             });
             this.sizeBar.setImportantForAccessibility(2);
             addView(this.sizeBar, LayoutHelper.createFrame(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
-            ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(context, ((BaseFragment) ThemeActivity.this).parentLayout, 0);
+            ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(context, ((BaseFragment) r10).parentLayout, 0);
             this.messagesCell = themePreviewMessagesCell;
             if (Build.VERSION.SDK_INT >= 19) {
                 themePreviewMessagesCell.setImportantForAccessibility(4);
@@ -291,6 +293,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
         public BubbleRadiusCell(Context context) {
             super(context);
+            ThemeActivity.this = r8;
             this.startRadius = 0;
             this.endRadius = 17;
             setWillNotDraw(false);
@@ -301,7 +304,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             this.sizeBar = seekBarView;
             seekBarView.setReportChanges(true);
             this.sizeBar.setSeparatorsCount((this.endRadius - this.startRadius) + 1);
-            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate(ThemeActivity.this) {
+            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate(r8) {
                 @Override
                 public void onSeekBarPressed(boolean z) {
                 }
@@ -1011,6 +1014,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
     public class C41101 extends C1133ActionBar.ActionBarMenuOnItemClick {
         C41101() {
+            ThemeActivity.this = r1;
         }
 
         @Override
@@ -1719,6 +1723,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
 
         ThemeAccentsListAdapter(Context context) {
+            ThemeActivity.this = r1;
             this.mContext = context;
             notifyDataSetChanged();
         }
@@ -1772,6 +1777,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         private Context mContext;
 
         public ListAdapter(Context context) {
+            ThemeActivity.this = r1;
             this.mContext = context;
         }
 
@@ -2486,7 +2492,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    private static abstract class TintRecyclerListView extends RecyclerListView {
+    public static abstract class TintRecyclerListView extends RecyclerListView {
         TintRecyclerListView(Context context) {
             super(context);
         }

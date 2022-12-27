@@ -174,7 +174,8 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             private Paint[] gradientPaint;
 
             {
-                this.gradientPaint = new Paint[PrivateVideoPreviewDialog.this.titles.length];
+                PrivateVideoPreviewDialog.this = this;
+                this.gradientPaint = new Paint[this.titles.length];
                 int i = 0;
                 while (true) {
                     Paint[] paintArr = this.gradientPaint;
@@ -529,7 +530,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         }
     }
 
-    private class Adapter extends PagerAdapter {
+    public class Adapter extends PagerAdapter {
         @Override
         public void restoreState(Parcelable parcelable, ClassLoader classLoader) {
         }
@@ -540,6 +541,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         }
 
         private Adapter() {
+            PrivateVideoPreviewDialog.this = r1;
         }
 
         @Override

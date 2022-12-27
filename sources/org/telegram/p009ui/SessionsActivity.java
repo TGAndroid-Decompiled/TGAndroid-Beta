@@ -563,6 +563,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
     public class C40743 extends UndoView {
         C40743(Context context) {
             super(context);
+            SessionsActivity.this = r1;
         }
 
         @Override
@@ -608,6 +609,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         }
 
         C40754() {
+            SessionsActivity.this = r1;
         }
 
         @Override
@@ -917,6 +919,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         private Context mContext;
 
         public ListAdapter(Context context) {
+            SessionsActivity.this = r1;
             this.mContext = context;
             setHasStableIds(true);
         }
@@ -1162,6 +1165,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
 
         public ScanQRCodeView(Context context) {
             super(context);
+            SessionsActivity.this = r14;
             this.flickerDrawable = new CellFlickerDrawable();
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
@@ -1169,7 +1173,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             CellFlickerDrawable cellFlickerDrawable = this.flickerDrawable;
             cellFlickerDrawable.repeatEnabled = false;
             cellFlickerDrawable.animationSpeedScale = 1.2f;
-            this.imageView.setOnClickListener(new View.OnClickListener(SessionsActivity.this) {
+            this.imageView.setOnClickListener(new View.OnClickListener(r14) {
                 @Override
                 public void onClick(View view) {
                     if (ScanQRCodeView.this.imageView.getImageReceiver().getLottieAnimation() == null || ScanQRCodeView.this.imageView.getImageReceiver().getLottieAnimation().isRunning()) {
@@ -1214,7 +1218,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("AuthAnotherWebClientUrl", C1072R.string.AuthAnotherWebClientUrl)), indexOf3, indexOf4 - 1, 33);
             }
             this.textView.setText(spannableStringBuilder);
-            TextView textView = new TextView(context, SessionsActivity.this) {
+            TextView textView = new TextView(context, r14) {
                 @Override
                 public void draw(Canvas canvas) {
                     super.draw(canvas);
@@ -1325,6 +1329,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         }
 
         C40765() {
+            SessionsActivity.this = r1;
         }
 
         @Override

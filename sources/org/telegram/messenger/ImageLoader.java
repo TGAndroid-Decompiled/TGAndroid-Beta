@@ -181,6 +181,7 @@ public class ImageLoader {
         private boolean canRetry = true;
 
         public HttpFileTask(String str, File file, String str2, int i) {
+            ImageLoader.this = r1;
             this.url = str;
             this.tempFile = file;
             this.ext = str2;
@@ -241,6 +242,7 @@ public class ImageLoader {
         private boolean small;
 
         public ArtworkLoadTask(CacheImage cacheImage) {
+            ImageLoader.this = r2;
             this.cacheImage = cacheImage;
             this.small = Uri.parse(cacheImage.imageLocation.path).getQueryParameter("s") != null;
         }
@@ -471,11 +473,13 @@ public class ImageLoader {
         }
 
         public HttpImageTask(CacheImage cacheImage, long j) {
+            ImageLoader.this = r1;
             this.cacheImage = cacheImage;
             this.imageSize = j;
         }
 
         public HttpImageTask(CacheImage cacheImage, int i, String str) {
+            ImageLoader.this = r1;
             this.cacheImage = cacheImage;
             this.imageSize = i;
             this.overrideUrl = str;
@@ -606,6 +610,7 @@ public class ImageLoader {
         private File originalPath;
 
         public ThumbGenerateTask(int i, File file, ThumbGenerateInfo thumbGenerateInfo) {
+            ImageLoader.this = r1;
             this.mediaType = i;
             this.originalPath = file;
             this.info = thumbGenerateInfo;
@@ -770,6 +775,7 @@ public class ImageLoader {
         private final Object sync = new Object();
 
         public CacheOutTask(CacheImage cacheImage) {
+            ImageLoader.this = r1;
             this.cacheImage = cacheImage;
         }
 
@@ -1003,6 +1009,7 @@ public class ImageLoader {
         protected String url;
 
         private CacheImage() {
+            ImageLoader.this = r1;
             this.priority = 1;
             this.imageReceiverArray = new ArrayList<>();
             this.imageReceiverGuidsArray = new ArrayList<>();
@@ -1279,6 +1286,7 @@ public class ImageLoader {
         final int val$currentAccount;
 
         C10335(int i) {
+            ImageLoader.this = r1;
             this.val$currentAccount = i;
         }
 
@@ -1425,6 +1433,7 @@ public class ImageLoader {
 
     public class C10346 extends BroadcastReceiver {
         C10346() {
+            ImageLoader.this = r1;
         }
 
         @Override

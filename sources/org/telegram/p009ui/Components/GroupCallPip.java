@@ -250,7 +250,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         frameLayout2.addView(groupCallPipAlertView, LayoutHelper.createFrame(-2, -2.0f));
     }
 
-    class C23553 extends FrameLayout {
+    public class C23553 extends FrameLayout {
         Runnable micRunnable;
         AnimatorSet moveToBoundsAnimator;
         boolean pressed;
@@ -261,6 +261,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
 
         C23553(Context context, float f) {
             super(context);
+            GroupCallPip.this = r1;
             this.val$touchSlop = f;
             this.pressedRunnable = new Runnable() {
                 @Override
@@ -532,6 +533,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         final View val$windowView;
 
         C23629(View view, View view2, WindowManager windowManager, View view3, View view4) {
+            GroupCallPip.this = r1;
             this.val$windowView = view;
             this.val$windowRemoveTooltipView = view2;
             this.val$windowManager = windowManager;

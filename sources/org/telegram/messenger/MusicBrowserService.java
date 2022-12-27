@@ -276,6 +276,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
 
     private final class MediaSessionCallback extends MediaSession.Callback {
         private MediaSessionCallback() {
+            MusicBrowserService.this = r1;
         }
 
         @Override

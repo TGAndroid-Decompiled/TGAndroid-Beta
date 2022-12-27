@@ -724,6 +724,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
     public class C29032 extends Transition {
         C29032() {
+            StickersAlert.this = r1;
         }
 
         @Override
@@ -1272,6 +1273,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
     public class DialogC289710 extends ShareAlert {
         DialogC289710(Context context, ArrayList arrayList, String str, boolean z, String str2, boolean z2, Theme.ResourcesProvider resourcesProvider) {
             super(context, arrayList, str, z, str2, z2, resourcesProvider);
+            StickersAlert.this = r10;
         }
 
         @Override
@@ -2251,6 +2253,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
 
         public GridAdapter(Context context) {
+            StickersAlert.this = r1;
             this.context = context;
         }
 

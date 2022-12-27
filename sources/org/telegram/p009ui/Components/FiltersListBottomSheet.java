@@ -359,6 +359,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         }
 
         public ListAdapter(Context context) {
+            FiltersListBottomSheet.this = r1;
             this.context = context;
         }
 

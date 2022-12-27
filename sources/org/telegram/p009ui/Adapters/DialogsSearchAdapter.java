@@ -230,7 +230,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         }
     }
 
-    public DialogsSearchAdapter(Context context, int i, int i2, DefaultItemAnimator defaultItemAnimator) {
+    public DialogsSearchAdapter(Context context, int i, int i2, DefaultItemAnimator defaultItemAnimator, boolean z) {
         this.itemAnimator = defaultItemAnimator;
         SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(false);
         this.searchAdapterHelper = searchAdapterHelper;
@@ -287,6 +287,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 return i3 == DialogsSearchAdapter.this.lastSearchId;
             }
         });
+        this.searchAdapterHelper.setAllowGlobalResults(z);
         this.mContext = context;
         this.needMessagesSearch = i;
         this.dialogsType = i2;
@@ -603,8 +604,12 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     }
 
     public boolean hasRecentSearch() {
+        return resentSearchAvailable() && getRecentItemsCount() > 0;
+    }
+
+    private boolean resentSearchAvailable() {
         int i = this.dialogsType;
-        return (i == 2 || i == 4 || i == 5 || i == 6 || i == 11 || getRecentItemsCount() <= 0) ? false : true;
+        return (i == 2 || i == 4 || i == 5 || i == 6 || i == 11) ? false : true;
     }
 
     public boolean isSearchWas() {
@@ -963,18 +968,20 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                     }
                 });
             }
-            DialogsSearchAdapterDelegate dialogsSearchAdapterDelegate = this.delegate;
-            boolean z = dialogsSearchAdapterDelegate != null && dialogsSearchAdapterDelegate.getSearchForumDialogId() == j;
-            for (int i3 = 0; !z && i3 < size; i3++) {
-                RecentSearchObject recentSearchObject = this.filtered2RecentSearchObjects.get(i3);
-                if (recentSearchObject != null && recentSearchObject.did == j) {
-                    z = true;
+            if (resentSearchAvailable()) {
+                DialogsSearchAdapterDelegate dialogsSearchAdapterDelegate = this.delegate;
+                boolean z = dialogsSearchAdapterDelegate != null && dialogsSearchAdapterDelegate.getSearchForumDialogId() == j;
+                for (int i3 = 0; !z && i3 < size; i3++) {
+                    RecentSearchObject recentSearchObject = this.filtered2RecentSearchObjects.get(i3);
+                    if (recentSearchObject != null && recentSearchObject.did == j) {
+                        z = true;
+                    }
                 }
-            }
-            if (z) {
-                arrayList.remove(i2);
-                arrayList2.remove(i2);
-                i2--;
+                if (z) {
+                    arrayList.remove(i2);
+                    arrayList2.remove(i2);
+                    i2--;
+                }
             }
             i2++;
         }

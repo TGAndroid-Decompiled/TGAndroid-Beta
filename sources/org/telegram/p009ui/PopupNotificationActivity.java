@@ -108,6 +108,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     private class FrameLayoutTouch extends FrameLayout {
         public FrameLayoutTouch(Context context) {
             super(context);
+            PopupNotificationActivity.this = r1;
         }
 
         @Override

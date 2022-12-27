@@ -689,6 +689,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         final int val$localId;
 
         RunnableC13961(int i, boolean z) {
+            ContextLinkCell.this = r1;
             this.val$localId = i;
             this.val$ifSame = z;
         }

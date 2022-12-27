@@ -420,6 +420,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
 
     public class C26081 extends RecyclerListView.SelectionAdapter {
         C26081() {
+            GiftPremiumBottomSheet.this = r1;
         }
 
         @Override
@@ -550,6 +551,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
 
     private final class LinkSpan extends ClickableSpan {
         private LinkSpan() {
+            GiftPremiumBottomSheet.this = r1;
         }
 
         LinkSpan(GiftPremiumBottomSheet giftPremiumBottomSheet, C26081 c26081) {

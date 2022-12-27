@@ -169,6 +169,7 @@ public class CustomEmojiReactionsWindow {
 
         C26782(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, BaseFragment baseFragment2, ReactionsContainerLayout reactionsContainerLayout) {
             super(baseFragment, context, z, num, i, resourcesProvider);
+            CustomEmojiReactionsWindow.this = r9;
             this.val$baseFragment = baseFragment2;
             this.val$reactionsContainerLayout = reactionsContainerLayout;
         }
@@ -434,6 +435,7 @@ public class CustomEmojiReactionsWindow {
 
         public ContainerView(Context context) {
             super(context);
+            CustomEmojiReactionsWindow.this = r4;
             this.shadowPad = new Rect();
             this.backgroundPaint = new Paint(1);
             this.dimPaint = new Paint(1);
@@ -446,8 +448,8 @@ public class CustomEmojiReactionsWindow {
             rect.right = m35dp;
             rect.top = m35dp;
             rect.left = m35dp;
-            this.shadow.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chat_messagePanelShadow", CustomEmojiReactionsWindow.this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-            this.backgroundPaint.setColor(Theme.getColor("actionBarDefaultSubmenuBackground", CustomEmojiReactionsWindow.this.resourcesProvider));
+            this.shadow.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chat_messagePanelShadow", r4.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            this.backgroundPaint.setColor(Theme.getColor("actionBarDefaultSubmenuBackground", r4.resourcesProvider));
         }
 
         @Override

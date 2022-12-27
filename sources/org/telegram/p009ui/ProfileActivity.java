@@ -706,6 +706,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         public TopView(Context context) {
             super(context);
+            ProfileActivity.this = r1;
             this.paint = new Paint();
         }
 
@@ -793,7 +794,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         public OverlaysView(Context context) {
             super(context);
-            this.statusBarHeight = (!((BaseFragment) ProfileActivity.this).actionBar.getOccupyStatusBar() || ((BaseFragment) ProfileActivity.this).inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight;
+            ProfileActivity.this = r8;
+            this.statusBarHeight = (!((BaseFragment) r8).actionBar.getOccupyStatusBar() || ((BaseFragment) r8).inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight;
             this.topOverlayRect = new Rect();
             this.bottomOverlayRect = new Rect();
             this.rect = new RectF();
@@ -838,7 +840,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.OverlaysView.this.lambda$new$0(valueAnimator);
                 }
             });
-            ofFloat.addListener(new AnimatorListenerAdapter(ProfileActivity.this) {
+            ofFloat.addListener(new AnimatorListenerAdapter(r8) {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     if (OverlaysView.this.isOverlaysVisible) {
@@ -965,6 +967,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         public NestedFrameLayout(Context context) {
             super(context);
+            ProfileActivity.this = r1;
             this.nestedScrollingParentHelper = new NestedScrollingParentHelper(this);
         }
 
@@ -1068,9 +1071,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         public PagerIndicatorView(Context context) {
             super(context);
+            ProfileActivity.this = r5;
             this.indicatorRect = new RectF();
             this.animatorValues = new float[]{0.0f, 1.0f};
-            PagerAdapter adapter = ProfileActivity.this.avatarsViewPager.getAdapter();
+            PagerAdapter adapter = r5.avatarsViewPager.getAdapter();
             this.adapter = adapter;
             setVisibility(8);
             TextPaint textPaint = new TextPaint(1);
@@ -1091,10 +1095,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.PagerIndicatorView.this.lambda$new$0(valueAnimator);
                 }
             });
-            ofFloat.addListener(new AnimatorListenerAdapter(ProfileActivity.this, ProfileActivity.this.expandPhoto) {
+            ofFloat.addListener(new AnimatorListenerAdapter(r5, r5.expandPhoto) {
                 final boolean val$expanded;
 
                 {
+                    PagerIndicatorView.this = this;
                     this.val$expanded = r3;
                 }
 
@@ -1136,7 +1141,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     PagerIndicatorView.this.setVisibility(0);
                 }
             });
-            ProfileActivity.this.avatarsViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(ProfileActivity.this) {
+            r5.avatarsViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(r5) {
                 private int prevPage;
 
                 @Override
@@ -1155,7 +1160,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     PagerIndicatorView.this.updateAvatarItems();
                 }
             });
-            adapter.registerDataSetObserver(new DataSetObserver(ProfileActivity.this) {
+            adapter.registerDataSetObserver(new DataSetObserver(r5) {
                 @Override
                 public void onChanged() {
                     int realCount = ProfileActivity.this.avatarsViewPager.getRealCount();
@@ -2251,6 +2256,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             private Paint paint;
 
             {
+                ProfileActivity.this = this;
                 Paint paint = new Paint(1);
                 this.paint = paint;
                 paint.setColor(1426063360);
@@ -2555,7 +2561,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             Paint statusBarPaint;
 
             @Override
-            protected void invalidateViews() {
+            public void invalidateViews() {
                 super.invalidateViews();
                 ((BaseFragment) ProfileActivity.this).fragmentView.invalidate();
                 for (int i7 = 0; i7 < ProfileActivity.this.avatarsViewPager.getChildCount(); i7++) {
@@ -2598,7 +2604,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected boolean zoomEnabled(View view2, ImageReceiver imageReceiver2) {
+            public boolean zoomEnabled(View view2, ImageReceiver imageReceiver2) {
                 return super.zoomEnabled(view2, imageReceiver2) && ProfileActivity.this.listView.getScrollState() != 1;
             }
         };
@@ -2636,6 +2642,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
     public class C39455 extends C1133ActionBar.ActionBarMenuOnItemClick {
         C39455() {
+            ProfileActivity.this = r1;
         }
 
         @Override
@@ -3218,6 +3225,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         C39496(Context context) {
             super(context);
+            ProfileActivity.this = r1;
             this.grayPaint = new Paint();
             this.sortedChildren = new ArrayList<>();
             this.viewComparator = ProfileActivity$6$$ExternalSyntheticLambda1.INSTANCE;
@@ -3423,6 +3431,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         C390310() {
+            ProfileActivity.this = r1;
         }
 
         @Override
@@ -3801,6 +3810,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         DialogInterface$OnClickListenerC390512(CheckBoxCell[] checkBoxCellArr) {
+            ProfileActivity.this = r1;
             this.val$cells = checkBoxCellArr;
         }
 
@@ -3833,6 +3843,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         final Context val$context;
 
         C390815(Context context) {
+            ProfileActivity.this = r1;
             this.val$context = context;
         }
 
@@ -4127,6 +4138,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         C391219(Context context) {
             super(context);
+            ProfileActivity.this = r1;
         }
 
         @Override
@@ -4526,6 +4538,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
         C392530(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, int i2, SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr) {
             super(baseFragment, context, z, num, i, resourcesProvider, i2);
+            ProfileActivity.this = r10;
             this.val$popup = selectAnimatedEmojiDialogWindowArr;
         }
 
@@ -5197,6 +5210,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     public class DialogC392934 extends ShareAlert {
         DialogC392934(Context context, ArrayList arrayList, String str, boolean z, String str2, boolean z2) {
             super(context, arrayList, str, z, str2, z2);
+            ProfileActivity.this = r8;
         }
 
         @Override
@@ -7052,7 +7066,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.animatedStatusView.translate(this.nameTextView[1].getX() + (this.nameTextView[1].getRightDrawableX() * this.nameTextView[1].getScaleX()), this.nameTextView[1].getY() + (this.nameTextView[1].getHeight() - ((this.nameTextView[1].getHeight() - this.nameTextView[1].getRightDrawableY()) * this.nameTextView[1].getScaleY())));
     }
 
-    public void updateProfileData(boolean r35) {
+    public void updateProfileData(boolean r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ProfileActivity.updateProfileData(boolean):void");
     }
 
@@ -7811,6 +7825,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         private Context mContext;
 
         public ListAdapter(Context context) {
+            ProfileActivity.this = r1;
             this.mContext = context;
         }
 
@@ -8180,6 +8195,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             public SearchResult(int i, String str, String str2, String str3, String str4, int i2, Runnable runnable) {
+                SearchAdapter.this = r1;
                 this.guid = i;
                 this.searchTitle = str;
                 this.rowName = str2;
@@ -8211,6 +8227,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public SearchAdapter(Context context) {
+            ProfileActivity.this = r1;
             this.mContext = context;
             updateSearchArray();
         }
@@ -10318,6 +10335,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         int oldRowCount;
 
         private DiffCallback() {
+            ProfileActivity.this = r1;
             this.oldPositionToItem = new SparseIntArray();
             this.newPositionToItem = new SparseIntArray();
             this.oldChatParticipant = new ArrayList<>();

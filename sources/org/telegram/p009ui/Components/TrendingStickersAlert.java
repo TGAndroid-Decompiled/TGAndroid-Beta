@@ -139,6 +139,7 @@ public class TrendingStickersAlert extends BottomSheet {
 
         public AlertContainerView(Context context) {
             super(context);
+            TrendingStickersAlert.this = r3;
             this.paint = new Paint(1);
             this.gluedToTop = false;
             this.ignoreLayout = false;
@@ -146,8 +147,8 @@ public class TrendingStickersAlert extends BottomSheet {
             this.statusBarAlpha = 0.0f;
             this.radii = new float[8];
             setWillNotDraw(false);
-            setPadding(((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, 0, ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, 0);
-            setDelegate(new SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate(TrendingStickersAlert.this) {
+            setPadding(((BottomSheet) r3).backgroundPaddingLeft, 0, ((BottomSheet) r3).backgroundPaddingLeft, 0);
+            setDelegate(new SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate(r3) {
                 private boolean lastIsWidthGreater;
                 private int lastKeyboardHeight;
 

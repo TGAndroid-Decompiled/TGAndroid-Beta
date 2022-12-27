@@ -217,6 +217,11 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
                     DilogCacheBottomSheet.this.circleDiagramView.update(true);
                 }
             }
+
+            @Override
+            public void dismiss() {
+                DilogCacheBottomSheet.this.dismiss();
+            }
         });
         NestedSizeNotifierLayout nestedSizeNotifierLayout = this.nestedSizeNotifierLayout;
         if (nestedSizeNotifierLayout != null) {

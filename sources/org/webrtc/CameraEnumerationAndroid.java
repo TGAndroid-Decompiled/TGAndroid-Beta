@@ -84,7 +84,7 @@ public class CameraEnumerationAndroid {
         }
     }
 
-    private static abstract class ClosestComparator<T> implements Comparator<T> {
+    public static abstract class ClosestComparator<T> implements Comparator<T> {
         abstract int diff(T t);
 
         private ClosestComparator() {

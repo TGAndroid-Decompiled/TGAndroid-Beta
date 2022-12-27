@@ -213,6 +213,7 @@ public class LocaleController {
 
     public class TimeZoneChangedReceiver extends BroadcastReceiver {
         private TimeZoneChangedReceiver() {
+            LocaleController.this = r1;
         }
 
         @Override

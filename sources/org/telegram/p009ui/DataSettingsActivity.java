@@ -576,6 +576,7 @@ public class DataSettingsActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
+            DataSettingsActivity.this = r1;
             this.mContext = context;
         }
 

@@ -532,8 +532,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
 
         public ViewPage(Context context, int i) {
             super(context);
+            PremiumFeatureBottomSheet.this = r10;
             setOrientation(1);
-            View viewForPosition = PremiumFeatureBottomSheet.this.getViewForPosition(context, i);
+            View viewForPosition = r10.getViewForPosition(context, i);
             this.topView = viewForPosition;
             addView(viewForPosition);
             this.topHeader = (PagerHeaderView) this.topView;
@@ -549,7 +550,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             textView2.setGravity(1);
             this.description.setTextSize(1, 15.0f);
             this.description.setTextColor(Theme.getColor("dialogTextBlack"));
-            if (!PremiumFeatureBottomSheet.this.onlySelectedType) {
+            if (!r10.onlySelectedType) {
                 this.description.setLines(2);
             }
             addView(this.description, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 10.0f, 21.0f, 16.0f));

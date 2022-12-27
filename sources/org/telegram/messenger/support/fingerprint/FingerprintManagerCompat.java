@@ -23,7 +23,7 @@ public final class FingerprintManagerCompat {
         public abstract void onAuthenticationSucceeded(AuthenticationResult authenticationResult);
     }
 
-    private interface FingerprintManagerCompatImpl {
+    public interface FingerprintManagerCompatImpl {
         void authenticate(Context context, CryptoObject cryptoObject, int i, CancellationSignal cancellationSignal, AuthenticationCallback authenticationCallback, Handler handler);
 
         boolean hasEnrolledFingerprints(Context context);
@@ -168,22 +168,22 @@ public final class FingerprintManagerCompat {
             return new FingerprintManagerCompatApi23.AuthenticationCallback() {
                 @Override
                 public void onAuthenticationError(int i, CharSequence charSequence) {
-                    AuthenticationCallback.this.onAuthenticationError(i, charSequence);
+                    authenticationCallback.onAuthenticationError(i, charSequence);
                 }
 
                 @Override
                 public void onAuthenticationHelp(int i, CharSequence charSequence) {
-                    AuthenticationCallback.this.onAuthenticationHelp(i, charSequence);
+                    authenticationCallback.onAuthenticationHelp(i, charSequence);
                 }
 
                 @Override
                 public void onAuthenticationSucceeded(FingerprintManagerCompatApi23.AuthenticationResultInternal authenticationResultInternal) {
-                    AuthenticationCallback.this.onAuthenticationSucceeded(new AuthenticationResult(Api23FingerprintManagerCompatImpl.unwrapCryptoObject(authenticationResultInternal.getCryptoObject())));
+                    authenticationCallback.onAuthenticationSucceeded(new AuthenticationResult(Api23FingerprintManagerCompatImpl.unwrapCryptoObject(authenticationResultInternal.getCryptoObject())));
                 }
 
                 @Override
                 public void onAuthenticationFailed() {
-                    AuthenticationCallback.this.onAuthenticationFailed();
+                    authenticationCallback.onAuthenticationFailed();
                 }
             };
         }

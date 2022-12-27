@@ -77,6 +77,7 @@ public class FireworksOverlay extends View {
         float f1068y;
 
         private Particle() {
+            FireworksOverlay.this = r1;
         }
 
         public void draw(Canvas canvas) {

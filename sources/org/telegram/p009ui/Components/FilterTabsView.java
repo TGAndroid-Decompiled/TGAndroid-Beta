@@ -161,6 +161,7 @@ public class FilterTabsView extends FrameLayout {
         public int titleWidth;
 
         public Tab(int i, String str) {
+            FilterTabsView.this = r1;
             this.f1062id = i;
             this.title = str;
         }
@@ -239,6 +240,7 @@ public class FilterTabsView extends FrameLayout {
 
         public TabView(Context context) {
             super(context);
+            FilterTabsView.this = r1;
             this.rect = new RectF();
             this.lastTabCount = -1;
         }
@@ -649,6 +651,7 @@ public class FilterTabsView extends FrameLayout {
 
     public class C22974 extends DefaultItemAnimator {
         C22974() {
+            FilterTabsView.this = r1;
         }
 
         @Override
@@ -1144,6 +1147,7 @@ public class FilterTabsView extends FrameLayout {
         }
 
         public ListAdapter(Context context) {
+            FilterTabsView.this = r1;
             this.mContext = context;
         }
 
@@ -1270,6 +1274,7 @@ public class FilterTabsView extends FrameLayout {
         }
 
         public TouchHelperCallback() {
+            FilterTabsView.this = r1;
         }
 
         @Override

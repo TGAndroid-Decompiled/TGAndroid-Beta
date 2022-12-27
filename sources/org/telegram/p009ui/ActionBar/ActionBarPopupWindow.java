@@ -710,10 +710,10 @@ public class ActionBarPopupWindow extends PopupWindow {
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
-                ActionBarPopupWindowLayout.this.startAnimationPending = false;
-                int itemsCount2 = ActionBarPopupWindowLayout.this.getItemsCount();
+                actionBarPopupWindowLayout.startAnimationPending = false;
+                int itemsCount2 = actionBarPopupWindowLayout.getItemsCount();
                 for (int i3 = 0; i3 < itemsCount2; i3++) {
-                    View itemAt2 = ActionBarPopupWindowLayout.this.getItemAt(i3);
+                    View itemAt2 = actionBarPopupWindowLayout.getItemAt(i3);
                     if (!(itemAt2 instanceof GapView)) {
                         itemAt2.setAlpha(itemAt2.isEnabled() ? 1.0f : 0.5f);
                     }

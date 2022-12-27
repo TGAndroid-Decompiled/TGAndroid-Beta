@@ -28,7 +28,7 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
         void didSelectAlbum(MediaController.AlbumEntry albumEntry);
     }
 
-    private class AlbumView extends FrameLayout {
+    public class AlbumView extends FrameLayout {
         private TextView countTextView;
         private BackupImageView imageView;
         private TextView nameTextView;
@@ -36,6 +36,7 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
 
         public AlbumView(Context context) {
             super(context);
+            PhotoPickerAlbumsCell.this = r18;
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
             addView(backupImageView, LayoutHelper.createFrame(-1, -1.0f));

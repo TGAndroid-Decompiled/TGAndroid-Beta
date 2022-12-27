@@ -270,6 +270,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
         public LayoutContainer(Context context) {
             super(context);
+            ActionBarLayout.this = r1;
             this.rect = new Rect();
             this.backgroundPaint = new Paint();
             setWillNotDraw(false);

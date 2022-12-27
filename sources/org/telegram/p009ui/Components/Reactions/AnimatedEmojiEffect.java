@@ -166,6 +166,7 @@ public class AnimatedEmojiEffect {
         float toY2;
 
         private Particle() {
+            AnimatedEmojiEffect.this = r1;
         }
 
         public void generate() {

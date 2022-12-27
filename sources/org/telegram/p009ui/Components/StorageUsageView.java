@@ -275,6 +275,7 @@ public class StorageUsageView extends FrameLayout {
     public class ProgressView extends View {
         public ProgressView(Context context) {
             super(context);
+            StorageUsageView.this = r1;
         }
 
         @Override

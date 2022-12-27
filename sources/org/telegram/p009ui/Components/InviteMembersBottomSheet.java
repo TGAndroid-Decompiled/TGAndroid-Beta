@@ -472,6 +472,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
 
     public class ListAdapter extends RecyclerListView.SelectionAdapter {
         private ListAdapter() {
+            InviteMembersBottomSheet.this = r1;
         }
 
         @Override
@@ -594,6 +595,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         private Runnable searchRunnable;
 
         public SearchAdapter() {
+            InviteMembersBottomSheet.this = r2;
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(false);
             this.searchAdapterHelper = searchAdapterHelper;
             searchAdapterHelper.setDelegate(new SearchAdapterHelper.SearchAdapterHelperDelegate() {
@@ -828,6 +830,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
 
         public SpansContainer(Context context) {
             super(context);
+            InviteMembersBottomSheet.this = r1;
             this.animators = new ArrayList<>();
         }
 
@@ -1052,7 +1055,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
+            public void dispatchDraw(Canvas canvas) {
                 InviteMembersBottomSheet inviteMembersBottomSheet;
                 InviteMembersBottomSheet inviteMembersBottomSheet2 = InviteMembersBottomSheet.this;
                 InviteMembersBottomSheet.this.spansScrollView.setTranslationY((inviteMembersBottomSheet2.scrollOffsetY - ((BottomSheet) inviteMembersBottomSheet2).backgroundPaddingTop) + AndroidUtilities.m35dp(6.0f) + AndroidUtilities.m35dp(64.0f));
@@ -1100,7 +1103,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     }
 
     @Override
-    protected void search(String str) {
+    public void search(String str) {
         this.searchAdapter.searchDialogs(str);
     }
 
@@ -1115,7 +1118,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         updateRows();
     }
 
-    private class ItemAnimator extends DefaultItemAnimator {
+    public class ItemAnimator extends DefaultItemAnimator {
         public ItemAnimator(InviteMembersBottomSheet inviteMembersBottomSheet) {
             this.translationInterpolator = CubicBezierInterpolator.DEFAULT;
             setMoveDuration(150L);

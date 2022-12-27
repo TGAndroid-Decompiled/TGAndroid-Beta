@@ -516,6 +516,7 @@ public class EntityView extends FrameLayout {
 
         public SelectionView(Context context) {
             super(context);
+            EntityView.this = r8;
             this.paint = new Paint(1);
             this.dotPaint = new Paint(1);
             this.dotStrokePaint = new Paint(1);

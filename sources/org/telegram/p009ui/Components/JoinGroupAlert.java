@@ -416,7 +416,7 @@ public class JoinGroupAlert extends BottomSheet {
         Bulletin.make(baseFragment, twoLineLottieLayout, 2750).show();
     }
 
-    private class UsersAdapter extends RecyclerListView.SelectionAdapter {
+    public class UsersAdapter extends RecyclerListView.SelectionAdapter {
         private Context context;
 
         @Override
@@ -435,6 +435,7 @@ public class JoinGroupAlert extends BottomSheet {
         }
 
         public UsersAdapter(Context context) {
+            JoinGroupAlert.this = r1;
             this.context = context;
         }
 

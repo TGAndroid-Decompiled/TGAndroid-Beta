@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.text.SpannableString;
@@ -21,6 +22,7 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.AnimatedTextView;
 import org.telegram.p009ui.Components.Premium.StarParticlesView;
+import org.telegram.tgnet.ConnectionsManager;
 
 public class CacheChart extends View {
     private static final String[] colorKeys = {"statisticChartLine_lightblue", "statisticChartLine_blue", "statisticChartLine_green", "statisticChartLine_red", "statisticChartLine_lightgreen", "statisticChartLine_orange", "statisticChartLine_cyan", "statisticChartLine_purple", "statisticChartLine_golden"};
@@ -61,9 +63,8 @@ public class CacheChart extends View {
         float angleSize;
         AnimatedFloat angleSizeAnimated;
         Paint cut;
-        LinearGradient gradient;
+        RadialGradient gradient;
         Matrix gradientMatrix;
-        int gradientWidth;
         private float lastAngleCenter;
         private float lastAngleSize;
         private float lastRounding;
@@ -72,6 +73,8 @@ public class CacheChart extends View {
         Paint paint;
         Bitmap particle;
         Paint particlePaint = new Paint(3);
+        float particlesAlpha;
+        AnimatedFloat particlesAlphaAnimated;
         Path path;
         RectF pathBounds;
         AnimatedTextView.AnimatedTextDrawable text;
@@ -82,16 +85,17 @@ public class CacheChart extends View {
         Paint uncut;
 
         Sector() {
+            CacheChart.this = r13;
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            this.angleCenterAnimated = new AnimatedFloat(CacheChart.this, 650L, cubicBezierInterpolator);
-            this.angleSizeAnimated = new AnimatedFloat(CacheChart.this, 650L, cubicBezierInterpolator);
+            this.angleCenterAnimated = new AnimatedFloat(r13, 650L, cubicBezierInterpolator);
+            this.angleSizeAnimated = new AnimatedFloat(r13, 650L, cubicBezierInterpolator);
             CubicBezierInterpolator cubicBezierInterpolator2 = CubicBezierInterpolator.EASE_OUT;
-            this.textAlphaAnimated = new AnimatedFloat(CacheChart.this, 0L, 150L, cubicBezierInterpolator2);
+            this.textAlphaAnimated = new AnimatedFloat(r13, 0L, 150L, cubicBezierInterpolator2);
             this.textScale = 1.0f;
-            this.textScaleAnimated = new AnimatedFloat(CacheChart.this, 0L, 150L, cubicBezierInterpolator2);
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-            this.text = animatedTextDrawable;
-            animatedTextDrawable.setTextColor(-1);
+            this.textScaleAnimated = new AnimatedFloat(r13, 0L, 150L, cubicBezierInterpolator2);
+            this.text = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+            this.particlesAlphaAnimated = new AnimatedFloat(r13, 0L, 150L, cubicBezierInterpolator2);
+            this.text.setTextColor(-1);
             this.text.setAnimationProperties(0.35f, 0L, 200L, cubicBezierInterpolator);
             this.text.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.text.setTextSize(AndroidUtilities.m35dp(15.0f));
@@ -218,12 +222,7 @@ public class CacheChart extends View {
 
         private void setGradientBounds(float f, float f2, float f3, float f4) {
             this.gradientMatrix.reset();
-            Matrix matrix = this.gradientMatrix;
-            double d = f4 / 180.0f;
-            Double.isNaN(d);
-            double d2 = d * 3.141592653589793d;
-            matrix.setTranslate(f + (((float) Math.cos(d2)) * (f3 - this.gradientWidth)), f2 + (((float) Math.sin(d2)) * (f3 - this.gradientWidth)));
-            this.gradientMatrix.preRotate(f4);
+            this.gradientMatrix.setTranslate(f, f2);
             this.gradient.setLocalMatrix(this.gradientMatrix);
         }
 
@@ -242,7 +241,7 @@ public class CacheChart extends View {
             float floor2 = (float) Math.floor(this.pathBounds.top / f6);
             float ceil2 = (float) Math.ceil(this.pathBounds.bottom / f6);
             long currentTimeMillis = System.currentTimeMillis();
-            float f7 = (-(((float) (currentTimeMillis % 20000)) / 20000.0f)) * f6;
+            float f7 = (-(((float) (currentTimeMillis % 13333)) / 13333.0f)) * f6;
             double d = (((float) (currentTimeMillis % 30000)) / 30000.0f) * 2.0f;
             Double.isNaN(d);
             float sin = (float) Math.sin(d * 3.141592653589793d);
@@ -276,46 +275,44 @@ public class CacheChart extends View {
         }
 
         void draw(Canvas canvas, RectF rectF, RectF rectF2, float f, float f2, float f3, float f4, float f5) {
-            float f6;
             double centerX = rectF.centerX();
             double cos = Math.cos(CacheChart.toRad(f));
             double width = rectF.width() + rectF2.width();
             Double.isNaN(width);
             Double.isNaN(centerX);
-            float f7 = (float) (centerX + ((cos * width) / 4.0d));
+            float f6 = (float) (centerX + ((cos * width) / 4.0d));
             double centerY = rectF.centerY();
             double sin = Math.sin(CacheChart.toRad(f));
             double width2 = rectF.width() + rectF2.width();
             Double.isNaN(width2);
             Double.isNaN(centerY);
-            float f8 = (float) (centerY + ((sin * width2) / 4.0d));
-            float f9 = f5 * this.textAlphaAnimated.set(this.textAlpha) * f4;
+            float f7 = (float) (centerY + ((sin * width2) / 4.0d));
+            float f8 = f5 * this.textAlphaAnimated.set(this.textAlpha) * f4;
+            float f9 = this.particlesAlphaAnimated.set(this.particlesAlpha);
             this.paint.setAlpha((int) (f4 * 255.0f));
             if (f2 * 2.0f >= 359.0f) {
                 canvas.saveLayerAlpha(rectF, 255, 31);
                 canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.uncut);
                 canvas.drawRect(rectF, this.paint);
-                drawParticles(canvas, f7, f8, f9, Math.max(0.0f, (f5 / 0.75f) - 0.75f));
+                drawParticles(canvas, f6, f7, f8, Math.max(0.0f, (f5 / 0.75f) - 0.75f) * f9);
                 canvas.drawCircle(rectF2.centerX(), rectF2.centerY(), rectF2.width() / 2.0f, this.cut);
                 canvas.restore();
-                f6 = 0.0f;
             } else {
-                f6 = 0.0f;
                 setupPath(rectF, rectF2, f, f2, f3);
                 setGradientBounds(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, f);
                 canvas.saveLayerAlpha(rectF, 255, 31);
                 canvas.drawPath(this.path, this.uncut);
                 canvas.drawRect(rectF, this.paint);
-                drawParticles(canvas, f7, f8, f9, Math.max(0.0f, (f5 / 0.75f) - 0.75f));
+                drawParticles(canvas, f6, f7, f8, Math.max(0.0f, (f5 / 0.75f) - 0.75f) * f9);
                 canvas.restore();
             }
             float f10 = this.textScaleAnimated.set(this.textScale);
-            CacheChart.setCircleBounds(CacheChart.this.roundingRect, f7, f8, f6);
+            CacheChart.setCircleBounds(CacheChart.this.roundingRect, f6, f7, 0.0f);
             if (f10 != 1.0f) {
                 canvas.save();
                 canvas.scale(f10, f10, CacheChart.this.roundingRect.centerX(), CacheChart.this.roundingRect.centerY());
             }
-            this.text.setAlpha((int) (f9 * 255.0f));
+            this.text.setAlpha((int) (f8 * 255.0f));
             this.text.setBounds((int) CacheChart.this.roundingRect.left, (int) CacheChart.this.roundingRect.top, (int) CacheChart.this.roundingRect.right, (int) CacheChart.this.roundingRect.bottom);
             this.text.draw(canvas);
             if (f10 != 1.0f) {
@@ -365,14 +362,15 @@ public class CacheChart extends View {
             Sector[] sectorArr = this.sectors;
             Sector sector = new Sector();
             sectorArr[i] = sector;
-            int color = Theme.getColor(colorKeys[i]);
-            int blendOver = Theme.blendOver(color, 822083583);
-            sector.gradientWidth = AndroidUtilities.m35dp(50.0f);
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, sector.gradientWidth, 0.0f, new int[]{blendOver, color}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-            sector.gradient = linearGradient;
+            String[] strArr = colorKeys;
+            int blendOver = Theme.blendOver(Theme.getColor(strArr[i]), ConnectionsManager.FileTypeAudio);
+            int blendOver2 = Theme.blendOver(Theme.getColor(strArr[i]), 822083583);
+            AndroidUtilities.m35dp(50.0f);
+            RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.m35dp(86.0f), new int[]{blendOver2, blendOver}, new float[]{0.3f, 1.0f}, Shader.TileMode.CLAMP);
+            sector.gradient = radialGradient;
             Matrix matrix = new Matrix();
             sector.gradientMatrix = matrix;
-            linearGradient.setLocalMatrix(matrix);
+            radialGradient.setLocalMatrix(matrix);
             sector.paint.setShader(sector.gradient);
             sector.particle = SvgHelper.getBitmap(particles[i], AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), -1);
         }
@@ -465,6 +463,7 @@ public class CacheChart extends View {
                     int i9 = min;
                     sectorArr3[i7].textAlpha = (((double) f6) <= 0.05d || f6 >= 1.0f) ? 0.0f : 1.0f;
                     sectorArr3[i7].textScale = (f6 < 0.08f || this.tempPercents[i7] >= 100) ? 0.85f : 1.0f;
+                    sectorArr3[i7].particlesAlpha = f6 > 0.15f ? 1.0f : 0.0f;
                     if (sectorArr3[i7].textAlpha > 0.0f) {
                         sectorArr3[i7].text.setText(spannableStringBuilder);
                     }

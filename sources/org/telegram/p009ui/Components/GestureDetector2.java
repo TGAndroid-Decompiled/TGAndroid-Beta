@@ -69,12 +69,14 @@ public class GestureDetector2 {
         DOUBLE_TAP_TIMEOUT = ViewConfiguration.getDoubleTapTimeout();
     }
 
-    private class GestureHandler extends Handler {
+    public class GestureHandler extends Handler {
         GestureHandler() {
+            GestureDetector2.this = r1;
         }
 
         GestureHandler(Handler handler) {
             super(handler.getLooper());
+            GestureDetector2.this = r1;
         }
 
         @Override

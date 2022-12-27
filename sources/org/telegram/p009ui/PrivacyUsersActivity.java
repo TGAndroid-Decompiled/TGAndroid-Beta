@@ -419,6 +419,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         private Context mContext;
 
         public ListAdapter(Context context) {
+            PrivacyUsersActivity.this = r1;
             this.mContext = context;
         }
 

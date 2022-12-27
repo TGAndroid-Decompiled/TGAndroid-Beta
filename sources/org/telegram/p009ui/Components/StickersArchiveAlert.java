@@ -73,7 +73,7 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
         dialogInterface.dismiss();
     }
 
-    private class ListAdapter extends RecyclerListView.SelectionAdapter {
+    public class ListAdapter extends RecyclerListView.SelectionAdapter {
         Context context;
 
         @Override
@@ -82,6 +82,7 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
         }
 
         public ListAdapter(Context context) {
+            StickersArchiveAlert.this = r1;
             this.context = context;
         }
 

@@ -37,6 +37,7 @@ public class StickerView extends EntityView {
     public class FrameLayoutDrawer extends FrameLayout {
         public FrameLayoutDrawer(Context context) {
             super(context);
+            StickerView.this = r1;
             setWillNotDraw(false);
         }
 

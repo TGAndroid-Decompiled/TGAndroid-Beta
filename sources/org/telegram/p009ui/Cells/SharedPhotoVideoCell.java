@@ -72,6 +72,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
 
         public PhotoVideoView(Context context) {
             super(context);
+            SharedPhotoVideoCell.this = r13;
             setWillNotDraw(false);
             FrameLayout frameLayout = new FrameLayout(context);
             this.container = frameLayout;
@@ -81,7 +82,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
             backupImageView.getImageReceiver().setNeedsQualityThumb(true);
             this.imageView.getImageReceiver().setShouldGenerateQualityThumb(true);
             this.container.addView(this.imageView, LayoutHelper.createFrame(-1, -1.0f));
-            FrameLayout frameLayout2 = new FrameLayout(this, context, SharedPhotoVideoCell.this) {
+            FrameLayout frameLayout2 = new FrameLayout(this, context, r13) {
                 private RectF rect = new RectF();
 
                 @Override

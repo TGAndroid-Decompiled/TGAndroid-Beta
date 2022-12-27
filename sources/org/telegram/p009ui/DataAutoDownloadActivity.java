@@ -417,6 +417,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
+            DataAutoDownloadActivity.this = r1;
             this.mContext = context;
         }
 

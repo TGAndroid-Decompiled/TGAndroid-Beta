@@ -71,6 +71,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
 
         public TextDetailProxyCell(Context context) {
             super(context);
+            ProxyListActivity.this = r14;
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
@@ -555,6 +556,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
         private Context mContext;
 
         public ListAdapter(Context context) {
+            ProxyListActivity.this = r1;
             this.mContext = context;
         }
 

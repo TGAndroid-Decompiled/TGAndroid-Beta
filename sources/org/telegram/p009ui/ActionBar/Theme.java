@@ -1471,8 +1471,18 @@ public class Theme {
         Color.colorToHSV(i, tempHsv);
         tempHsv[1] = MathUtils.clamp(tempHsv[1] + f, 0.0f, 1.0f);
         tempHsv[2] = MathUtils.clamp(tempHsv[2] + f2, 0.0f, 1.0f);
-        Color.HSVToColor(Color.alpha(i), tempHsv);
         return Color.HSVToColor(Color.alpha(i), tempHsv);
+    }
+
+    public static int percentSV(int i, int i2, float f, float f2) {
+        float[] tempHsv = getTempHsv(5);
+        Color.colorToHSV(i2, tempHsv);
+        float f3 = tempHsv[1];
+        float f4 = tempHsv[2];
+        Color.colorToHSV(i, tempHsv);
+        tempHsv[1] = MathUtils.clamp(AndroidUtilities.lerp(tempHsv[1], f3, f), 0.0f, 1.0f);
+        tempHsv[2] = MathUtils.clamp(AndroidUtilities.lerp(tempHsv[2], f4, f2), 0.0f, 1.0f);
+        return Color.HSVToColor(AndroidUtilities.lerp(Color.alpha(i), Color.alpha(i2), 0.85f), tempHsv);
     }
 
     public static int multAlpha(int i, float f) {

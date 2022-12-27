@@ -113,6 +113,7 @@ public class RecyclerAnimationScrollHelper {
         final boolean val$scrollDown;
 
         View$OnLayoutChangeListenerC27071(RecyclerView.Adapter adapter, ArrayList arrayList, boolean z, AnimatableAdapter animatableAdapter) {
+            RecyclerAnimationScrollHelper.this = r1;
             this.val$adapter = adapter;
             this.val$oldViews = arrayList;
             this.val$scrollDown = z;

@@ -345,6 +345,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
         }
 
         C25542(PhotoViewer photoViewer, SizeNotifierFrameLayoutPhoto sizeNotifierFrameLayoutPhoto) {
+            PhotoViewerCaptionEnterView.this = r1;
             this.val$photoViewer = photoViewer;
             this.val$parent = sizeNotifierFrameLayoutPhoto;
         }
@@ -564,7 +565,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
         return editTextCaption.getSelectionStart();
     }
 
-    private class DarkTheme implements Theme.ResourcesProvider {
+    public class DarkTheme implements Theme.ResourcesProvider {
         @Override
         public void applyServiceShaderMatrix(int i, int i2, float f, float f2) {
             Theme.applyServiceShaderMatrix(i, i2, f, f2);
@@ -899,8 +900,9 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
                 return true;
             }
 
-            class C25571 extends BaseFragment {
+            public class C25571 extends BaseFragment {
                 C25571() {
+                    C25563.this = r1;
                 }
 
                 @Override

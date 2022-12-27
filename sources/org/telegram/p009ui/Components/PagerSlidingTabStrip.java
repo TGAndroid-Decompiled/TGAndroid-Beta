@@ -233,6 +233,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
     public class PageListener implements ViewPager.OnPageChangeListener {
         private PageListener() {
+            PagerSlidingTabStrip.this = r1;
         }
 
         @Override

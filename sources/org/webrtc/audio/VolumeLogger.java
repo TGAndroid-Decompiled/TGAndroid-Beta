@@ -5,7 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import org.webrtc.Logging;
 
-class VolumeLogger {
+public class VolumeLogger {
     private static final String TAG = "VolumeLogger";
     private static final String THREAD_NAME = "WebRtcVolumeLevelLoggerThread";
     private static final int TIMER_PERIOD_IN_SECONDS = 30;
@@ -27,11 +27,12 @@ class VolumeLogger {
         timer.schedule(new LogVolumeTask(this.audioManager.getStreamMaxVolume(2), this.audioManager.getStreamMaxVolume(0)), 0L, 30000L);
     }
 
-    private class LogVolumeTask extends TimerTask {
+    public class LogVolumeTask extends TimerTask {
         private final int maxRingVolume;
         private final int maxVoiceCallVolume;
 
         LogVolumeTask(int i, int i2) {
+            VolumeLogger.this = r1;
             this.maxRingVolume = i;
             this.maxVoiceCallVolume = i2;
         }

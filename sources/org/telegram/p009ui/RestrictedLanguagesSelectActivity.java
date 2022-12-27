@@ -441,6 +441,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
         private boolean search;
 
         public ListAdapter(Context context, boolean z) {
+            RestrictedLanguagesSelectActivity.this = r1;
             this.mContext = context;
             this.search = z;
         }

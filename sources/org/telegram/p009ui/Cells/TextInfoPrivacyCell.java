@@ -54,7 +54,7 @@ public class TextInfoPrivacyCell extends FrameLayout {
         this.links = linkCollector;
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, linkCollector, resourcesProvider) {
             @Override
-            protected void onDraw(Canvas canvas) {
+            public void onDraw(Canvas canvas) {
                 TextInfoPrivacyCell.this.onTextDraw();
                 super.onDraw(canvas);
                 TextInfoPrivacyCell.this.afterTextDraw();

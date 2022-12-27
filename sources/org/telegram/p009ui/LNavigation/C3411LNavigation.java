@@ -1226,6 +1226,7 @@ public class C3411LNavigation extends FrameLayout implements INavigationLayout, 
         final int val$flags;
 
         C34154(int i) {
+            C3411LNavigation.this = r1;
             this.val$flags = i;
         }
 
@@ -2117,6 +2118,7 @@ public class C3411LNavigation extends FrameLayout implements INavigationLayout, 
 
         public FragmentHolderView(Context context) {
             super(context);
+            C3411LNavigation.this = r1;
             this.backgroundPaint = new Paint();
             setWillNotDraw(false);
         }

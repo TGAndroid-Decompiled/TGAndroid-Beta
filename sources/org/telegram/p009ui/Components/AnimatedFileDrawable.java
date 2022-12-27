@@ -140,6 +140,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
 
     public class RunnableC17882 implements Runnable {
         RunnableC17882() {
+            AnimatedFileDrawable.this = r1;
         }
 
         @Override
@@ -467,12 +468,10 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             ArrayList arrayList = new ArrayList();
             arrayList.add(this.renderingBitmap);
             arrayList.add(this.nextRenderingBitmap);
-            if (this.renderingBitmap != null) {
-                this.renderingBitmap = null;
-            }
-            if (this.nextRenderingBitmap != null) {
-                this.nextRenderingBitmap = null;
-            }
+            arrayList.add(this.backgroundBitmap);
+            this.renderingBitmap = null;
+            this.nextRenderingBitmap = null;
+            this.backgroundBitmap = null;
             DispatchQueue dispatchQueue = this.decodeQueue;
             if (dispatchQueue != null) {
                 dispatchQueue.recycle();

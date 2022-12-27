@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
 
-final class AudioBecomingNoisyManager {
+public final class AudioBecomingNoisyManager {
     private final Context context;
     private final AudioBecomingNoisyReceiver receiver;
     private boolean receiverRegistered;
@@ -31,11 +31,12 @@ final class AudioBecomingNoisyManager {
         }
     }
 
-    private final class AudioBecomingNoisyReceiver extends BroadcastReceiver implements Runnable {
+    public final class AudioBecomingNoisyReceiver extends BroadcastReceiver implements Runnable {
         private final Handler eventHandler;
         private final EventListener listener;
 
         public AudioBecomingNoisyReceiver(Handler handler, EventListener eventListener) {
+            AudioBecomingNoisyManager.this = r1;
             this.eventHandler = handler;
             this.listener = eventListener;
         }

@@ -4,7 +4,7 @@ import android.media.AudioTrack;
 import android.os.Build;
 import org.webrtc.Logging;
 
-class LowLatencyAudioBufferManager {
+public class LowLatencyAudioBufferManager {
     private static final String TAG = "LowLatencyAudioBufferManager";
     private int prevUnderrunCount = 0;
     private int ticksUntilNextDecrease = 10;

@@ -140,6 +140,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     private ArrayList<PhotoFace> faces;
     private Bitmap facesBitmap;
     private boolean ignoreLayout;
+    private boolean ignoreToolChangeAnimationOnce;
     private float imageHeight;
     private float imageWidth;
     private boolean inBubbleMode;
@@ -425,6 +426,10 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
             @Override
             public void resetBrush() {
+                if (LPhotoPaintView.this.ignoreToolChangeAnimationOnce) {
+                    LPhotoPaintView.this.ignoreToolChangeAnimationOnce = false;
+                    return;
+                }
                 LPhotoPaintView.this.paintToolsView.select(1);
                 LPhotoPaintView.this.onBrushSelected(Brush.BRUSHES_LIST.get(0));
             }
@@ -467,6 +472,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             float stickyYAlpha;
 
             {
+                LPhotoPaintView.this = this;
                 setWillNotDraw(false);
                 this.linePaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
                 this.linePaint.setStyle(Paint.Style.STROKE);
@@ -640,10 +646,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             private float lastRainbowY;
 
             {
+                LPhotoPaintView.this = this;
                 new Path();
                 setWillNotDraw(false);
-                LPhotoPaintView.this.colorPickerRainbowPaint.setStyle(Paint.Style.STROKE);
-                LPhotoPaintView.this.colorPickerRainbowPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+                this.colorPickerRainbowPaint.setStyle(Paint.Style.STROKE);
+                this.colorPickerRainbowPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
             }
 
             private void checkRainbow(float f, float f2) {
@@ -745,6 +752,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.bottomLayout.addView(this.textOptionsView, LayoutHelper.createFrame(-1, 48.0f));
         FrameLayout frameLayout4 = new FrameLayout(context) {
             {
+                LPhotoPaintView.this = this;
                 setWillNotDraw(false);
             }
 
@@ -1398,6 +1406,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             Paint linePaint;
 
             {
+                LPhotoPaintView.this = this;
                 Paint paint = new Paint(1);
                 this.linePaint = paint;
                 paint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
@@ -2290,6 +2299,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             this.weightChooserView.setMinMax(0.05f, 1.0f);
         }
         this.weightChooserView.setDrawCenter(!(brush instanceof Brush.Shape));
+        if (this.renderView.getCurrentBrush() instanceof Brush.Shape) {
+            this.ignoreToolChangeAnimationOnce = true;
+        }
         this.renderView.setBrush(brush);
         this.colorSwatch.brushWeight = this.weightDefaultValueOverride.get();
         setCurrentSwatch(this.colorSwatch, true);
@@ -2404,6 +2416,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             this.bottomLayout.setTranslationY(f - ((AndroidUtilities.m35dp(40.0f) * f6) * (z ? 1 : -1)));
         }
         this.bottomLayout.invalidate();
+        if (view == this.textOptionsView) {
+            this.overlayLayout.invalidate();
+        }
     }
 
     public void lambda$showColorList$26(boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
@@ -2516,9 +2531,10 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
         public PopupButton(Context context) {
             super(context);
+            LPhotoPaintView.this = r11;
             setOrientation(0);
-            setBackground(Theme.getSelectorDrawable(Theme.getColor("listSelectorSDK21", LPhotoPaintView.this.resourcesProvider), false));
-            FrameLayout frameLayout = new FrameLayout(context, LPhotoPaintView.this) {
+            setBackground(Theme.getSelectorDrawable(Theme.getColor("listSelectorSDK21", r11.resourcesProvider), false));
+            FrameLayout frameLayout = new FrameLayout(context, r11) {
                 Path path = new Path();
 
                 @Override
@@ -2543,24 +2559,24 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.imageView.setColorFilter(LPhotoPaintView.this.getThemedColor("actionBarDefaultSubmenuItem"));
+            this.imageView.setColorFilter(r11.getThemedColor("actionBarDefaultSubmenuItem"));
             this.imagesView.addView(this.imageView, LayoutHelper.createFrame(-2, -2, 17));
             ImageView imageView2 = new ImageView(context);
             this.image2View = imageView2;
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
-            this.image2View.setColorFilter(LPhotoPaintView.this.getThemedColor("actionBarDefaultSubmenuItem"));
+            this.image2View.setColorFilter(r11.getThemedColor("actionBarDefaultSubmenuItem"));
             this.image2View.setVisibility(8);
             this.imagesView.addView(this.image2View, LayoutHelper.createFrame(-2, -2, 17));
             TextView textView = new TextView(context);
             this.textView = textView;
-            textView.setTextColor(LPhotoPaintView.this.getThemedColor("actionBarDefaultSubmenuItem"));
+            textView.setTextColor(r11.getThemedColor("actionBarDefaultSubmenuItem"));
             this.textView.setTextSize(1, 16.0f);
             addView(this.textView, LayoutHelper.createLinear(-2, -2, 19, 0, 0, 16, 0));
             ImageView imageView3 = new ImageView(context);
             this.checkView = imageView3;
             imageView3.setImageResource(C1072R.C1073drawable.msg_text_check);
             this.checkView.setScaleType(ImageView.ScaleType.CENTER);
-            this.checkView.setColorFilter(new PorterDuffColorFilter(LPhotoPaintView.this.getThemedColor("radioBackgroundChecked"), PorterDuff.Mode.MULTIPLY));
+            this.checkView.setColorFilter(new PorterDuffColorFilter(r11.getThemedColor("radioBackgroundChecked"), PorterDuff.Mode.MULTIPLY));
             this.checkView.setVisibility(8);
             addView(this.checkView, LayoutHelper.createLinear(50, -1));
         }
@@ -2726,6 +2742,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     public void lambda$onAddButtonPressed$30(Brush.Shape shape, int i) {
+        if (this.renderView.getCurrentBrush() instanceof Brush.Shape) {
+            this.ignoreToolChangeAnimationOnce = true;
+        }
         onBrushSelected(shape);
         this.paintToolsView.animatePlusToIcon(i);
     }
@@ -3151,6 +3170,10 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         if (entityView != null) {
             this.undoStore.unregisterUndo(entityView.getUUID());
         }
+        this.weightChooserView.setValueOverride(this.weightDefaultValueOverride);
+        this.weightChooserView.setShowPreview(true);
+        this.colorSwatch.brushWeight = this.weightDefaultValueOverride.get();
+        setCurrentSwatch(this.colorSwatch, true);
     }
 
     private void registerRemovalUndo(final EntityView entityView) {
@@ -3665,6 +3688,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
 
         C250020() {
+            LPhotoPaintView.this = r1;
         }
 
         @Override

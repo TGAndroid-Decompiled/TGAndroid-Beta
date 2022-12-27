@@ -532,6 +532,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         private Context context;
 
         public ListAdapter(Context context) {
+            ProfileNotificationsActivity.this = r1;
             this.context = context;
         }
 

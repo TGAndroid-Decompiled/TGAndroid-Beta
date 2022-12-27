@@ -1008,6 +1008,7 @@ public class NumberPicker extends LinearLayout {
         private int mMode;
 
         PressedStateHelper() {
+            NumberPicker.this = r1;
         }
 
         public void cancel() {
@@ -1082,6 +1083,7 @@ public class NumberPicker extends LinearLayout {
         private boolean mIncrement;
 
         ChangeCurrentByOneFromLongPressCommand() {
+            NumberPicker.this = r1;
         }
 
         public void setStep(boolean z) {

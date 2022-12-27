@@ -443,6 +443,7 @@ public class AdminLogFilterAlert extends BottomSheet {
         private Context context;
 
         public ListAdapter(Context context) {
+            AdminLogFilterAlert.this = r1;
             this.context = context;
         }
 

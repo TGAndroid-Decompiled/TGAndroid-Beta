@@ -4617,6 +4617,7 @@ public class MediaDataController extends BaseController {
         final long val$uid;
 
         RunnableC10541(int i, long j, int i2, int i3, int i4, int i5, int i6, int i7, boolean z, int i8) {
+            MediaDataController.this = r1;
             this.val$count = i;
             this.val$uid = j;
             this.val$min_id = i2;
@@ -7739,6 +7740,7 @@ public class MediaDataController extends BaseController {
         final ArrayList val$previewItems;
 
         RunnableC10552(ArrayList arrayList) {
+            MediaDataController.this = r1;
             this.val$previewItems = arrayList;
         }
 
@@ -7797,6 +7799,7 @@ public class MediaDataController extends BaseController {
         final ArrayList val$previewItems;
 
         RunnableC10563(ArrayList arrayList, int i) {
+            MediaDataController.this = r1;
             this.val$previewItems = arrayList;
             this.val$currentAccount = i;
         }

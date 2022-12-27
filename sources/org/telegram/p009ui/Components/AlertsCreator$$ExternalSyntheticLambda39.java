@@ -10,6 +10,6 @@ public final class AlertsCreator$$ExternalSyntheticLambda39 implements DialogInt
 
     @Override
     public final void onClick(DialogInterface dialogInterface, int i) {
-        AlertsCreator.lambda$createFreeSpaceDialog$109(dialogInterface, i);
+        AlertsCreator.lambda$createThemeCreateDialog$126(dialogInterface, i);
     }
 }

@@ -383,6 +383,7 @@ public class StarParticlesView extends View {
             private float f1130y2;
 
             public Particle() {
+                Drawable.this = r1;
             }
 
             public void updatePoint() {

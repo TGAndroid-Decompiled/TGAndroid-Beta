@@ -174,12 +174,14 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         cellFlickerDrawable.setColors(i, 153, 204);
         BackupImageView backupImageView = new BackupImageView(context) {
             {
+                BotWebViewContainer.this = this;
                 this.imageReceiver = new C18421(this);
             }
 
             public class C18421 extends ImageReceiver {
                 C18421(View view) {
                     super(view);
+                    C18411.this = r1;
                 }
 
                 @Override
@@ -203,7 +205,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
             }
 
             @Override
-            protected void onDraw(Canvas canvas) {
+            public void onDraw(Canvas canvas) {
                 if (BotWebViewContainer.this.isFlickeringCenter) {
                     super.onDraw(canvas);
                     return;
@@ -351,6 +353,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         private Dialog lastPermissionsDialog;
 
         C18454() {
+            BotWebViewContainer.this = r1;
         }
 
         @Override
@@ -1153,6 +1156,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
 
     public class WebViewProxy {
         private WebViewProxy() {
+            BotWebViewContainer.this = r1;
         }
 
         public void lambda$postEvent$0(String str, String str2) {

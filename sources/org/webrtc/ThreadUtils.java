@@ -125,7 +125,7 @@ public class ThreadUtils {
             @Override
             public void run() {
                 try {
-                    C1Result.this.value = callable.call();
+                    c1Result.value = callable.call();
                 } catch (Exception e2) {
                     c1CaughtException.f1175e = e2;
                 }

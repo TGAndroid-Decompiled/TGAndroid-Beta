@@ -94,6 +94,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
 
         public TouchHelperCallback() {
+            EditWidgetActivity.this = r1;
         }
 
         @Override
@@ -176,6 +177,7 @@ public class EditWidgetActivity extends BaseFragment {
 
         public WidgetPreviewCell(Context context) {
             super(context);
+            EditWidgetActivity.this = r19;
             this.roundPaint = new Paint(1);
             this.bitmapRect = new RectF();
             this.cells = new ViewGroup[2];
@@ -192,23 +194,23 @@ public class EditWidgetActivity extends BaseFragment {
             linearLayout2.setOrientation(1);
             linearLayout2.setBackgroundResource(C1072R.C1073drawable.widget_bg);
             linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, -2, 17, 10, 0, 10, 0));
-            EditWidgetActivity.this.previewImageView = new ImageView(context);
-            if (EditWidgetActivity.this.widgetType == 0) {
+            r19.previewImageView = new ImageView(context);
+            if (r19.widgetType == 0) {
                 while (i < 2) {
-                    this.cells[i] = (ViewGroup) EditWidgetActivity.this.getParentActivity().getLayoutInflater().inflate(C1072R.layout.shortcut_widget_item, (ViewGroup) null);
+                    this.cells[i] = (ViewGroup) r19.getParentActivity().getLayoutInflater().inflate(C1072R.layout.shortcut_widget_item, (ViewGroup) null);
                     linearLayout2.addView(this.cells[i], LayoutHelper.createLinear(-1, -2));
                     i++;
                 }
-                linearLayout2.addView(EditWidgetActivity.this.previewImageView, LayoutHelper.createLinear(218, 160, 17));
-                EditWidgetActivity.this.previewImageView.setImageResource(C1072R.C1073drawable.chats_widget_preview);
-            } else if (EditWidgetActivity.this.widgetType == 1) {
+                linearLayout2.addView(r19.previewImageView, LayoutHelper.createLinear(218, 160, 17));
+                r19.previewImageView.setImageResource(C1072R.C1073drawable.chats_widget_preview);
+            } else if (r19.widgetType == 1) {
                 while (i < 2) {
-                    this.cells[i] = (ViewGroup) EditWidgetActivity.this.getParentActivity().getLayoutInflater().inflate(C1072R.layout.contacts_widget_item, (ViewGroup) null);
+                    this.cells[i] = (ViewGroup) r19.getParentActivity().getLayoutInflater().inflate(C1072R.layout.contacts_widget_item, (ViewGroup) null);
                     linearLayout2.addView(this.cells[i], LayoutHelper.createLinear(160, -2));
                     i++;
                 }
-                linearLayout2.addView(EditWidgetActivity.this.previewImageView, LayoutHelper.createLinear(160, 160, 17));
-                EditWidgetActivity.this.previewImageView.setImageResource(C1072R.C1073drawable.contacts_widget_preview);
+                linearLayout2.addView(r19.previewImageView, LayoutHelper.createLinear(160, 160, 17));
+                r19.previewImageView.setImageResource(C1072R.C1073drawable.contacts_widget_preview);
             }
             updateDialogs();
             this.shadowDrawable = Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow");
@@ -462,6 +464,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
 
         C32302() {
+            EditWidgetActivity.this = r1;
         }
 
         @Override
@@ -511,6 +514,7 @@ public class EditWidgetActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
+            EditWidgetActivity.this = r1;
             this.mContext = context;
         }
 

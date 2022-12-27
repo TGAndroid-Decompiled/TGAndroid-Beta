@@ -146,6 +146,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
 
     public class RunnableC13152 implements Runnable {
         RunnableC13152() {
+            AutoDeleteMessagesActivity.this = r1;
         }
 
         @Override
@@ -199,6 +200,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
 
     public class C13163 implements AlertsCreator.ScheduleDatePickerDelegate {
         C13163() {
+            AutoDeleteMessagesActivity.this = r1;
         }
 
         @Override

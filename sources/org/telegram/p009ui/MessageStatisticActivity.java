@@ -466,6 +466,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         private Context mContext;
 
         public ListAdapter(Context context) {
+            MessageStatisticActivity.this = r1;
             this.mContext = context;
         }
 
@@ -489,6 +490,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
 
             C36141(Context context, int i, BaseChartView.SharedUiComponents sharedUiComponents) {
                 super(context, i, sharedUiComponents);
+                ListAdapter.this = r1;
             }
 
             @Override
@@ -667,6 +669,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
 
         public OverviewCell(Context context) {
             super(context);
+            MessageStatisticActivity.this = r8;
             this.primary = new TextView[3];
             this.title = new TextView[3];
             this.cell = new View[3];

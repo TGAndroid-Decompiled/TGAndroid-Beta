@@ -524,6 +524,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public int f1013y;
 
         public DrawingText() {
+            ArticleViewer.this = r1;
         }
 
         public void draw(Canvas canvas, View view) {
@@ -638,6 +639,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public TextSizeCell(Context context) {
             super(context);
+            ArticleViewer.this = r8;
             this.startFontSize = 12;
             this.endFontSize = 30;
             setWillNotDraw(false);
@@ -648,7 +650,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.sizeBar = seekBarView;
             seekBarView.setReportChanges(true);
             this.sizeBar.setSeparatorsCount((this.endFontSize - this.startFontSize) + 1);
-            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate(ArticleViewer.this) {
+            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate(r8) {
                 @Override
                 public void onSeekBarPressed(boolean z) {
                 }
@@ -760,6 +762,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
     public final class CheckForTap implements Runnable {
         private CheckForTap() {
+            ArticleViewer.this = r1;
         }
 
         @Override
@@ -795,6 +798,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public WindowView(Context context) {
             super(context);
+            ArticleViewer.this = r1;
             this.blackPaint = new Paint();
         }
 
@@ -1206,6 +1210,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public int currentPressCount;
 
         CheckForLongPress() {
+            ArticleViewer.this = r1;
         }
 
         @Override
@@ -3602,6 +3607,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         C127313() {
+            ArticleViewer.this = r1;
         }
 
         @Override
@@ -4200,6 +4206,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
     public class C128423 extends AnimatorListenerAdapter {
         C128423() {
+            ArticleViewer.this = r1;
         }
 
         @Override
@@ -4745,6 +4752,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         private HashMap<String, Integer> searchTextOffset = new HashMap<>();
 
         public WebpageAdapter(Context context) {
+            ArticleViewer.this = r1;
             this.context = context;
         }
 
@@ -5494,6 +5502,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockVideoCell(Context context, WebpageAdapter webpageAdapter, int i) {
             super(context);
+            ArticleViewer.this = r5;
             this.parentAdapter = webpageAdapter;
             setWillNotDraw(false);
             ImageReceiver imageReceiver = new ImageReceiver(this);
@@ -5505,7 +5514,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.radialProgress = radialProgress2;
             radialProgress2.setProgressColor(-1);
             this.radialProgress.setColors(1711276032, 2130706432, -1, -2500135);
-            this.TAG = DownloadController.getInstance(ArticleViewer.this.currentAccount).generateObserverTag();
+            this.TAG = DownloadController.getInstance(r5.currentAccount).generateObserverTag();
             BlockChannelCell blockChannelCell = new BlockChannelCell(context, this.parentAdapter, 1);
             this.channelCell = blockChannelCell;
             addView(blockChannelCell, LayoutHelper.createFrame(-1, -2.0f));
@@ -5766,12 +5775,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockAudioCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textY = AndroidUtilities.m35dp(58.0f);
             this.parentAdapter = webpageAdapter;
             RadialProgress2 radialProgress2 = new RadialProgress2(this);
             this.radialProgress = radialProgress2;
             radialProgress2.setCircleRadius(AndroidUtilities.m35dp(24.0f));
-            this.TAG = DownloadController.getInstance(ArticleViewer.this.currentAccount).generateObserverTag();
+            this.TAG = DownloadController.getInstance(r1.currentAccount).generateObserverTag();
             SeekBar seekBar = new SeekBar(this);
             this.seekBar = seekBar;
             seekBar.setDelegate(new SeekBar.SeekBarDelegate() {
@@ -6147,6 +6157,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockEmbedPostCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r3;
             this.parentAdapter = webpageAdapter;
             ImageReceiver imageReceiver = new ImageReceiver(this);
             this.avatarImageView = imageReceiver;
@@ -6345,6 +6356,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockParagraphCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.parentAdapter = webpageAdapter;
         }
 
@@ -6447,6 +6459,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public class TelegramWebviewProxy {
             private TelegramWebviewProxy() {
+                BlockEmbedCell.this = r1;
             }
 
             @JavascriptInterface
@@ -6474,6 +6487,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public class TouchyWebView extends WebView {
             public TouchyWebView(Context context) {
                 super(context);
+                BlockEmbedCell.this = r1;
                 setFocusable(false);
             }
 
@@ -6494,9 +6508,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
         public BlockEmbedCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r5;
             this.parentAdapter = webpageAdapter;
             setWillNotDraw(false);
-            WebPlayerView webPlayerView = new WebPlayerView(context, false, false, new WebPlayerView.WebPlayerViewDelegate(ArticleViewer.this) {
+            WebPlayerView webPlayerView = new WebPlayerView(context, false, false, new WebPlayerView.WebPlayerViewDelegate(r5) {
                 @Override
                 public boolean checkInlinePermissions() {
                     return false;
@@ -6589,7 +6604,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             });
             this.videoView = webPlayerView;
             addView(webPlayerView);
-            ArticleViewer.this.createdWebViews.add(this);
+            r5.createdWebViews.add(this);
             TouchyWebView touchyWebView = new TouchyWebView(context);
             this.webView = touchyWebView;
             touchyWebView.getSettings().setJavaScriptEnabled(true);
@@ -6604,8 +6619,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 this.webView.getSettings().setMixedContentMode(0);
                 CookieManager.getInstance().setAcceptThirdPartyCookies(this.webView, true);
             }
-            this.webView.setWebChromeClient(new C13002(ArticleViewer.this));
-            this.webView.setWebViewClient(new WebViewClient(ArticleViewer.this) {
+            this.webView.setWebChromeClient(new C13002(r5));
+            this.webView.setWebViewClient(new WebViewClient(r5) {
                 @Override
                 public void onLoadResource(WebView webView, String str) {
                     super.onLoadResource(webView, str);
@@ -6630,6 +6645,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public class C13002 extends WebChromeClient {
             C13002(ArticleViewer articleViewer) {
+                BlockEmbedCell.this = r1;
             }
 
             @Override
@@ -6832,8 +6848,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockTableCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r4;
             this.parentAdapter = webpageAdapter;
-            HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context, ArticleViewer.this) {
+            HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context, r4) {
                 @Override
                 public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                     boolean onInterceptTouchEvent = super.onInterceptTouchEvent(motionEvent);
@@ -6882,7 +6899,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             horizontalScrollView.setPadding(AndroidUtilities.m35dp(18.0f), 0, AndroidUtilities.m35dp(18.0f), 0);
             this.scrollView.setClipToPadding(false);
             addView(this.scrollView, LayoutHelper.createFrame(-1, -2.0f));
-            TableLayout tableLayout = new TableLayout(context, this, ArticleViewer.this.textSelectionHelper);
+            TableLayout tableLayout = new TableLayout(context, this, r4.textSelectionHelper);
             this.tableLayout = tableLayout;
             tableLayout.setOrientation(0);
             this.tableLayout.setRowOrderPreserved(true);
@@ -7145,6 +7162,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             private int maxSizeWidth = 1000;
 
             public GroupedMessages() {
+                BlockCollageCell.this = r1;
             }
 
             public class MessageGroupedLayoutAttempt {
@@ -7183,9 +7201,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockCollageCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r9;
             this.group = new GroupedMessages();
             this.parentAdapter = webpageAdapter;
-            RecyclerListView recyclerListView = new RecyclerListView(context, ArticleViewer.this) {
+            RecyclerListView recyclerListView = new RecyclerListView(context, r9) {
                 @Override
                 public void requestLayout() {
                     if (BlockCollageCell.this.inLayout) {
@@ -7195,7 +7214,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
             };
             this.innerListView = recyclerListView;
-            recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration(ArticleViewer.this) {
+            recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration(r9) {
                 @Override
                 public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                     MessageObject.GroupedMessagePosition groupedMessagePosition;
@@ -7240,7 +7259,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     rect.bottom = -dp2;
                 }
             });
-            GridLayoutManagerFixed gridLayoutManagerFixed = new GridLayoutManagerFixed(context, 1000, 1, true, ArticleViewer.this) {
+            GridLayoutManagerFixed gridLayoutManagerFixed = new GridLayoutManagerFixed(context, 1000, 1, true, r9) {
                 @Override
                 public boolean shouldLayoutChildFromOpositeSide(View view) {
                     return false;
@@ -7271,7 +7290,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     return false;
                 }
             };
-            gridLayoutManagerFixed.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup(ArticleViewer.this) {
+            gridLayoutManagerFixed.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup(r9) {
                 @Override
                 public int getSpanSize(int i) {
                     return BlockCollageCell.this.group.positions.get(BlockCollageCell.this.currentBlock.items.get((BlockCollageCell.this.currentBlock.items.size() - i) - 1)).spanSize;
@@ -7279,7 +7298,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             });
             this.innerListView.setLayoutManager(gridLayoutManagerFixed);
             RecyclerListView recyclerListView2 = this.innerListView;
-            RecyclerView.Adapter adapter = new RecyclerView.Adapter(ArticleViewer.this) {
+            RecyclerView.Adapter adapter = new RecyclerView.Adapter(r9) {
                 @Override
                 public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                     View blockPhotoCell;
@@ -7464,13 +7483,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockSlideshowCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r2;
             this.textX = AndroidUtilities.m35dp(18.0f);
             this.parentAdapter = webpageAdapter;
             if (ArticleViewer.dotsPaint == null) {
                 Paint unused = ArticleViewer.dotsPaint = new Paint(1);
                 ArticleViewer.dotsPaint.setColor(-1);
             }
-            ViewPager viewPager = new ViewPager(context, ArticleViewer.this) {
+            ViewPager viewPager = new ViewPager(context, r2) {
                 @Override
                 public boolean onTouchEvent(MotionEvent motionEvent) {
                     return super.onTouchEvent(motionEvent);
@@ -7484,7 +7504,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
             };
             this.innerListView = viewPager;
-            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(ArticleViewer.this) {
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(r2) {
                 @Override
                 public void onPageScrollStateChanged(int i) {
                 }
@@ -7507,7 +7527,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
             });
             ViewPager viewPager2 = this.innerListView;
-            PagerAdapter pagerAdapter = new PagerAdapter(ArticleViewer.this) {
+            PagerAdapter pagerAdapter = new PagerAdapter(r2) {
 
                 class ObjectContainer {
                     private TLRPC$PageBlock block;
@@ -7566,7 +7586,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             viewPager2.setAdapter(pagerAdapter);
             AndroidUtilities.setViewPagerEdgeEffectColor(this.innerListView, Theme.getColor("windowBackgroundWhite"));
             addView(this.innerListView);
-            View view = new View(context, ArticleViewer.this) {
+            View view = new View(context, r2) {
                 @Override
                 protected void onDraw(Canvas canvas) {
                     int i;
@@ -7730,6 +7750,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockListItemCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.parentAdapter = webpageAdapter;
             setWillNotDraw(false);
         }
@@ -7856,6 +7877,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockOrderedListItemCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.parentAdapter = webpageAdapter;
             setWillNotDraw(false);
         }
@@ -7985,6 +8007,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockDetailsCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textX = AndroidUtilities.m35dp(50.0f);
             this.textY = AndroidUtilities.m35dp(11.0f) + 1;
             this.parentAdapter = webpageAdapter;
@@ -8102,6 +8125,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockRelatedArticlesHeaderCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textX = AndroidUtilities.m35dp(18.0f);
             this.parentAdapter = webpageAdapter;
         }
@@ -8172,6 +8196,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockRelatedArticlesCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textX = AndroidUtilities.m35dp(18.0f);
             this.textY = AndroidUtilities.m35dp(10.0f);
             this.parentAdapter = webpageAdapter;
@@ -8326,6 +8351,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockHeaderCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textX = AndroidUtilities.m35dp(18.0f);
             this.textY = AndroidUtilities.m35dp(8.0f);
             this.parentAdapter = webpageAdapter;
@@ -8423,6 +8449,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockSubtitleCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textX = AndroidUtilities.m35dp(18.0f);
             this.textY = AndroidUtilities.m35dp(8.0f);
             this.parentAdapter = webpageAdapter;
@@ -8501,6 +8528,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockPullquoteCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textX = AndroidUtilities.m35dp(18.0f);
             this.textY = AndroidUtilities.m35dp(8.0f);
             this.parentAdapter = webpageAdapter;
@@ -8596,6 +8624,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockBlockquoteCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textY = AndroidUtilities.m35dp(8.0f);
             this.parentAdapter = webpageAdapter;
         }
@@ -8746,6 +8775,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockPhotoCell(Context context, WebpageAdapter webpageAdapter, int i) {
             super(context);
+            ArticleViewer.this = r4;
             this.parentAdapter = webpageAdapter;
             setWillNotDraw(false);
             this.imageView = new ImageReceiver(this);
@@ -8754,7 +8784,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.radialProgress = radialProgress2;
             radialProgress2.setProgressColor(-1);
             this.radialProgress.setColors(1711276032, 2130706432, -1, -2500135);
-            this.TAG = DownloadController.getInstance(ArticleViewer.this.currentAccount).generateObserverTag();
+            this.TAG = DownloadController.getInstance(r4.currentAccount).generateObserverTag();
             addView(this.channelCell, LayoutHelper.createFrame(-1, -2.0f));
             this.currentType = i;
         }
@@ -8977,6 +9007,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockMapCell(Context context, WebpageAdapter webpageAdapter, int i) {
             super(context);
+            ArticleViewer.this = r1;
             this.parentAdapter = webpageAdapter;
             setWillNotDraw(false);
             this.imageView = new ImageReceiver(this);
@@ -9106,6 +9137,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockChannelCell(Context context, WebpageAdapter webpageAdapter, int i) {
             super(context);
+            ArticleViewer.this = r3;
             this.textX = AndroidUtilities.m35dp(18.0f);
             this.textY = AndroidUtilities.m35dp(11.0f);
             this.parentAdapter = webpageAdapter;
@@ -9328,6 +9360,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockAuthorDateCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textY = AndroidUtilities.m35dp(8.0f);
             this.parentAdapter = webpageAdapter;
         }
@@ -9443,6 +9476,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockTitleCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textX = AndroidUtilities.m35dp(18.0f);
             this.parentAdapter = webpageAdapter;
         }
@@ -9525,6 +9559,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockKickerCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textX = AndroidUtilities.m35dp(18.0f);
             this.parentAdapter = webpageAdapter;
         }
@@ -9597,6 +9632,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockFooterCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textX = AndroidUtilities.m35dp(18.0f);
             this.textY = AndroidUtilities.m35dp(8.0f);
             this.parentAdapter = webpageAdapter;
@@ -9683,8 +9719,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockPreformattedCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r4;
             this.parentAdapter = webpageAdapter;
-            HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context, ArticleViewer.this) {
+            HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context, r4) {
                 @Override
                 public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                     if (BlockPreformattedCell.this.textContainer.getMeasuredWidth() > getMeasuredWidth()) {
@@ -9705,7 +9742,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.scrollView = horizontalScrollView;
             horizontalScrollView.setPadding(0, AndroidUtilities.m35dp(8.0f), 0, AndroidUtilities.m35dp(8.0f));
             addView(this.scrollView, LayoutHelper.createFrame(-1, -2.0f));
-            this.textContainer = new View(context, ArticleViewer.this) {
+            this.textContainer = new View(context, r4) {
                 @Override
                 protected void onMeasure(int i, int i2) {
                     int i3 = 0;
@@ -9822,6 +9859,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public BlockSubheaderCell(Context context, WebpageAdapter webpageAdapter) {
             super(context);
+            ArticleViewer.this = r1;
             this.textX = AndroidUtilities.m35dp(18.0f);
             this.textY = AndroidUtilities.m35dp(8.0f);
             this.parentAdapter = webpageAdapter;
@@ -9973,6 +10011,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         private final List<TLRPC$PageBlock> pageBlocks;
 
         private RealPageBlocksAdapter(TLRPC$WebPage tLRPC$WebPage, List<TLRPC$PageBlock> list) {
+            ArticleViewer.this = r1;
             this.page = tLRPC$WebPage;
             this.pageBlocks = list;
         }
@@ -10079,6 +10118,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         private final int[] tempArr = new int[2];
 
         public PageBlocksPhotoViewerProvider(List<TLRPC$PageBlock> list) {
+            ArticleViewer.this = r1;
             this.pageBlocks = list;
         }
 

@@ -509,7 +509,8 @@ public class ReactionsLayoutInBubble {
         ImageReceiver imageReceiver = new ImageReceiver();
 
         public ReactionButton(TLRPC$ReactionCount tLRPC$ReactionCount, boolean z) {
-            this.counterDrawable = new CounterView.CounterDrawable(ReactionsLayoutInBubble.this.parentView, false, null);
+            ReactionsLayoutInBubble.this = r12;
+            this.counterDrawable = new CounterView.CounterDrawable(r12.parentView, false, null);
             this.reactionCount = tLRPC$ReactionCount;
             TLRPC$Reaction tLRPC$Reaction = tLRPC$ReactionCount.reaction;
             this.reaction = tLRPC$Reaction;
@@ -529,7 +530,7 @@ public class ReactionsLayoutInBubble {
                 throw new RuntimeException("unsupported");
             }
             this.countText = Integer.toString(tLRPC$ReactionCount.count);
-            this.imageReceiver.setParentView(ReactionsLayoutInBubble.this.parentView);
+            this.imageReceiver.setParentView(r12.parentView);
             this.isSelected = tLRPC$ReactionCount.chosen;
             CounterView.CounterDrawable counterDrawable = this.counterDrawable;
             counterDrawable.updateVisibility = false;
@@ -537,12 +538,12 @@ public class ReactionsLayoutInBubble {
             if (this.reaction != null) {
                 VisibleReaction visibleReaction = this.visibleReaction;
                 if (visibleReaction.emojicon != null) {
-                    TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(ReactionsLayoutInBubble.this.currentAccount).getReactionsMap().get(this.visibleReaction.emojicon);
+                    TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(r12.currentAccount).getReactionsMap().get(this.visibleReaction.emojicon);
                     if (tLRPC$TL_availableReaction != null) {
                         this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastframe", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, "windowBackgroundGray", 1.0f), "webp", tLRPC$TL_availableReaction, 1);
                     }
                 } else if (visibleReaction.documentId != 0) {
-                    this.animatedEmojiDrawable = new AnimatedEmojiDrawable(3, ReactionsLayoutInBubble.this.currentAccount, this.visibleReaction.documentId);
+                    this.animatedEmojiDrawable = new AnimatedEmojiDrawable(3, r12.currentAccount, this.visibleReaction.documentId);
                 }
             }
             this.counterDrawable.setSize(AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(100.0f));

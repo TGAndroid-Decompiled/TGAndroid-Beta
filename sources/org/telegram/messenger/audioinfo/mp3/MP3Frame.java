@@ -6,7 +6,7 @@ public class MP3Frame {
     private final byte[] bytes;
     private final Header header;
 
-    static final class CRC16 {
+    public static final class CRC16 {
         private short crc = -1;
 
         CRC16() {

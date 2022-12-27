@@ -54,6 +54,9 @@ public class ShareTopicCell extends FrameLayout {
     }
 
     public void setTopic(TLRPC$Dialog tLRPC$Dialog, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, boolean z, CharSequence charSequence) {
+        if (tLRPC$Dialog == null) {
+            return;
+        }
         TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.f863id));
         if (charSequence != null) {
             this.nameTextView.setText(charSequence);

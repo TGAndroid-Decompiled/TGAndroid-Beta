@@ -194,6 +194,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         final Context val$context;
 
         View$OnClickListenerC31461(Context context) {
+            DefaultThemesPreviewCell.this = r1;
             this.val$context = context;
         }
 

@@ -519,6 +519,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
 
         public TranslateSettings(Context context) {
             super(context);
+            LanguageSelectActivity.this = r12;
             this.doNotTranslateCellAnimation = null;
             setFocusable(false);
             setOrientation(1);
@@ -746,6 +747,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         private boolean search;
 
         public ListAdapter(Context context, boolean z) {
+            LanguageSelectActivity.this = r1;
             this.mContext = context;
             this.search = z;
         }

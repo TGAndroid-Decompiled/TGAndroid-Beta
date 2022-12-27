@@ -264,6 +264,7 @@ public class BottomSheet extends Dialog {
 
         public ContainerView(Context context) {
             super(context);
+            BottomSheet.this = r1;
             this.velocityTracker = null;
             this.startedTrackingPointerId = -1;
             this.maybeStartTracking = false;
@@ -1363,6 +1364,7 @@ public class BottomSheet extends Dialog {
         final int val$item;
 
         C11967(int i) {
+            BottomSheet.this = r1;
             this.val$item = i;
         }
 
@@ -1499,6 +1501,7 @@ public class BottomSheet extends Dialog {
 
     public class C11978 extends AnimatorListenerAdapter {
         C11978() {
+            BottomSheet.this = r1;
         }
 
         @Override

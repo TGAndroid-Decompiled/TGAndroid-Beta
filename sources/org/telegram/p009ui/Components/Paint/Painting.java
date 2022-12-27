@@ -226,6 +226,7 @@ public class Painting {
 
     public class C24681 extends AnimatorListenerAdapter {
         C24681() {
+            Painting.this = r1;
         }
 
         @Override
@@ -289,6 +290,7 @@ public class Painting {
 
     public class C24692 extends AnimatorListenerAdapter {
         C24692() {
+            Painting.this = r1;
         }
 
         @Override

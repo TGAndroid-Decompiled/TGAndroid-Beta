@@ -3,6 +3,7 @@ package org.telegram.p009ui;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -19,11 +20,13 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.C1072R;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.p009ui.ActionBar.ActionBarMenu;
 import org.telegram.p009ui.ActionBar.ActionBarMenuItem;
@@ -49,7 +52,15 @@ import org.telegram.p009ui.PhotoViewer;
 import org.telegram.p009ui.Storage.CacheModel;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$FileLocation;
+import org.telegram.tgnet.TLRPC$Peer;
+import org.telegram.tgnet.TLRPC$TL_document;
+import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
+import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
+import org.telegram.tgnet.TLRPC$TL_message;
+import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
+import org.telegram.tgnet.TLRPC$TL_peerUser;
 
 public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifierLayout.ChildLayout {
     private final LinearLayout actionModeLayout;
@@ -70,9 +81,17 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
     ViewPagerFixed viewPagerFixed;
 
     public interface Delegate {
+
+        public final class CC {
+            public static void $default$dismiss(Delegate delegate) {
+            }
+        }
+
         void clear();
 
         void clearSelection();
+
+        void dismiss();
 
         void onItemSelected(CacheControlActivity.DialogFileEntities dialogFileEntities, CacheModel.FileInfo fileInfo, boolean z);
     }
@@ -109,7 +128,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 this.viewPagerFixed = viewPagerFixed;
                 viewPagerFixed.setAllowDisallowInterceptTouch(false);
                 addView(this.viewPagerFixed, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 48.0f, 0.0f, 0.0f));
-                ViewPagerFixed.TabsView createTabsView = this.viewPagerFixed.createTabsView(true);
+                ViewPagerFixed.TabsView createTabsView = this.viewPagerFixed.createTabsView(true, 3);
                 this.tabs = createTabsView;
                 addView(createTabsView, LayoutHelper.createFrame(-1, 48.0f));
                 View view = new View(getContext());
@@ -178,6 +197,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         }
 
         C13341(Context context, BaseFragment baseFragment) {
+            CachedMediaLayout.this = r1;
             this.val$context = context;
             this.val$parentFragment = baseFragment;
         }
@@ -206,19 +226,16 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             recyclerListView.setClipToPadding(false);
             recyclerListView.setPadding(0, 0, 0, CachedMediaLayout.this.bottomPadding);
             recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                {
+                    C13341.this = this;
+                }
+
                 @Override
                 public void onItemClick(View view, int i2) {
                     BaseAdapter baseAdapter = (BaseAdapter) recyclerListView.getAdapter();
                     ItemInner itemInner = baseAdapter.itemInners.get(i2);
                     if (view instanceof SharedPhotoVideoCell2) {
-                        MediaAdapter mediaAdapter = (MediaAdapter) baseAdapter;
-                        PhotoViewer.getInstance().setParentActivity(C13341.this.val$parentFragment);
-                        CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
-                        if (cachedMediaLayout.placeProvider == null) {
-                            cachedMediaLayout.placeProvider = new BasePlaceProvider(cachedMediaLayout, null);
-                        }
-                        CachedMediaLayout.this.placeProvider.setRecyclerListView(recyclerListView);
-                        PhotoViewer.getInstance().openPhotoForSelect(mediaAdapter.getPhotos(), i2, -1, false, CachedMediaLayout.this.placeProvider, null);
+                        CachedMediaLayout.this.openPhoto(itemInner, (MediaAdapter) baseAdapter, recyclerListView, (SharedPhotoVideoCell2) view);
                         return;
                     }
                     Delegate delegate = CachedMediaLayout.this.delegate;
@@ -231,9 +248,9 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
                 @Override
                 public final boolean onItemClick(View view, int i2, float f, float f2) {
-                    boolean lambda$createView$3;
-                    lambda$createView$3 = CachedMediaLayout.C13341.this.lambda$createView$3(recyclerListView, baseFragment, view, i2, f, f2);
-                    return lambda$createView$3;
+                    boolean lambda$createView$5;
+                    lambda$createView$5 = CachedMediaLayout.C13341.this.lambda$createView$5(recyclerListView, baseFragment, view, i2, f, f2);
+                    return lambda$createView$5;
                 }
 
                 @Override
@@ -249,24 +266,41 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             return recyclerListView;
         }
 
-        public boolean lambda$createView$3(RecyclerListView recyclerListView, BaseFragment baseFragment, final View view, int i, float f, float f2) {
+        public boolean lambda$createView$5(final RecyclerListView recyclerListView, final BaseFragment baseFragment, final View view, int i, float f, float f2) {
             int i2;
             String str;
-            final ItemInner itemInner = ((BaseAdapter) recyclerListView.getAdapter()).itemInners.get(i);
-            if (view instanceof CacheCell) {
+            final BaseAdapter baseAdapter = (BaseAdapter) recyclerListView.getAdapter();
+            final ItemInner itemInner = baseAdapter.itemInners.get(i);
+            if ((view instanceof CacheCell) || (view instanceof SharedPhotoVideoCell2)) {
                 ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(CachedMediaLayout.this.getContext());
-                if (((CacheCell) view).container.getChildAt(0) instanceof SharedAudioCell) {
+                if (view instanceof SharedPhotoVideoCell2) {
+                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, C1072R.C1073drawable.msg_view_file, LocaleController.getString("CacheOpenFile", C1072R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view2) {
+                            CachedMediaLayout.C13341.this.lambda$createView$0(itemInner, baseAdapter, recyclerListView, view, view2);
+                        }
+                    });
+                } else if (((CacheCell) view).container.getChildAt(0) instanceof SharedAudioCell) {
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, C1072R.C1073drawable.msg_played, LocaleController.getString("PlayFile", C1072R.string.PlayFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            CachedMediaLayout.C13341.this.lambda$createView$0(itemInner, view, view2);
+                            CachedMediaLayout.C13341.this.lambda$createView$1(itemInner, view, view2);
                         }
                     });
                 } else {
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, C1072R.C1073drawable.msg_view_file, LocaleController.getString("CacheOpenFile", C1072R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            CachedMediaLayout.C13341.this.lambda$createView$1(itemInner, view, view2);
+                            CachedMediaLayout.C13341.this.lambda$createView$2(itemInner, view, view2);
+                        }
+                    });
+                }
+                CacheModel.FileInfo fileInfo = itemInner.file;
+                if (fileInfo.dialogId != 0 && fileInfo.messageId != 0) {
+                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, C1072R.C1073drawable.msg_viewintopic, LocaleController.getString("ViewInChat", C1072R.string.ViewInChat), false, null).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view2) {
+                            CachedMediaLayout.C13341.this.lambda$createView$3(itemInner, baseFragment, view2);
                         }
                     });
                 }
@@ -281,7 +315,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 ActionBarMenuItem.addItem(actionBarPopupWindowLayout, i3, LocaleController.getString(str, i2), false, null).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        CachedMediaLayout.C13341.this.lambda$createView$2(itemInner, view2);
+                        CachedMediaLayout.C13341.this.lambda$createView$4(itemInner, view2);
                     }
                 });
                 this.popupWindow = AlertsCreator.createSimplePopup(baseFragment, actionBarPopupWindowLayout, view, (int) f, (int) f2);
@@ -294,8 +328,8 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             return true;
         }
 
-        public void lambda$createView$0(ItemInner itemInner, View view, View view2) {
-            CachedMediaLayout.this.openItem(itemInner.file, (CacheCell) view);
+        public void lambda$createView$0(ItemInner itemInner, BaseAdapter baseAdapter, RecyclerListView recyclerListView, View view, View view2) {
+            CachedMediaLayout.this.openPhoto(itemInner, (MediaAdapter) baseAdapter, recyclerListView, (SharedPhotoVideoCell2) view);
             ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
             if (actionBarPopupWindow != null) {
                 actionBarPopupWindow.dismiss();
@@ -310,7 +344,32 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             }
         }
 
-        public void lambda$createView$2(ItemInner itemInner, View view) {
+        public void lambda$createView$2(ItemInner itemInner, View view, View view2) {
+            CachedMediaLayout.this.openItem(itemInner.file, (CacheCell) view);
+            ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+            if (actionBarPopupWindow != null) {
+                actionBarPopupWindow.dismiss();
+            }
+        }
+
+        public void lambda$createView$3(ItemInner itemInner, BaseFragment baseFragment, View view) {
+            Bundle bundle = new Bundle();
+            long j = itemInner.file.dialogId;
+            if (j > 0) {
+                bundle.putLong("user_id", j);
+            } else {
+                bundle.putLong("chat_id", -j);
+            }
+            bundle.putInt("message_id", itemInner.file.messageId);
+            baseFragment.presentFragment(new ChatActivity(bundle));
+            CachedMediaLayout.this.delegate.dismiss();
+            ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+            if (actionBarPopupWindow != null) {
+                actionBarPopupWindow.dismiss();
+            }
+        }
+
+        public void lambda$createView$4(ItemInner itemInner, View view) {
             Delegate delegate = CachedMediaLayout.this.delegate;
             if (delegate != null) {
                 delegate.onItemSelected(itemInner.entities, itemInner.file, true);
@@ -340,6 +399,17 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
 
     public void lambda$new$1(View view) {
         this.delegate.clear();
+    }
+
+    public void openPhoto(ItemInner itemInner, MediaAdapter mediaAdapter, RecyclerListView recyclerListView, SharedPhotoVideoCell2 sharedPhotoVideoCell2) {
+        PhotoViewer.getInstance().setParentActivity(this.parentFragment);
+        if (this.placeProvider == null) {
+            this.placeProvider = new BasePlaceProvider(this, null);
+        }
+        this.placeProvider.setRecyclerListView(recyclerListView);
+        if (mediaAdapter.itemInners.indexOf(itemInner) >= 0) {
+            PhotoViewer.getInstance().openPhotoForSelect(mediaAdapter.getPhotos(), mediaAdapter.itemInners.indexOf(itemInner), -1, false, this.placeProvider, null);
+        }
     }
 
     public void openItem(CacheModel.FileInfo fileInfo, CacheCell cacheCell) {
@@ -443,16 +513,13 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
     }
 
     public abstract class BaseAdapter extends AdapterWithDiffUtils {
-        ArrayList<ItemInner> itemInners;
+        ArrayList<ItemInner> itemInners = new ArrayList<>();
+        final int type;
 
         abstract void update();
 
-        private BaseAdapter(CachedMediaLayout cachedMediaLayout) {
-            this.itemInners = new ArrayList<>();
-        }
-
-        BaseAdapter(CachedMediaLayout cachedMediaLayout, C13341 c13341) {
-            this(cachedMediaLayout);
+        protected BaseAdapter(CachedMediaLayout cachedMediaLayout, int i) {
+            this.type = i;
         }
 
         @Override
@@ -466,7 +533,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         }
     }
 
-    private class DialogsAdapter extends BaseAdapter {
+    public class DialogsAdapter extends BaseAdapter {
         ArrayList<ItemInner> old;
 
         @Override
@@ -474,13 +541,14 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             return true;
         }
 
-        private DialogsAdapter() {
-            super(CachedMediaLayout.this, null);
-            this.old = new ArrayList<>();
-        }
-
         DialogsAdapter(CachedMediaLayout cachedMediaLayout, C13341 c13341) {
             this();
+        }
+
+        private DialogsAdapter() {
+            super(r2, 0);
+            CachedMediaLayout.this = r2;
+            this.old = new ArrayList<>();
         }
 
         @Override
@@ -534,9 +602,8 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         }
     }
 
-    private abstract class BaseFilesAdapter extends BaseAdapter {
+    public abstract class BaseFilesAdapter extends BaseAdapter {
         ArrayList<ItemInner> oldItems;
-        final int type;
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
@@ -544,9 +611,9 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         }
 
         protected BaseFilesAdapter(int i) {
-            super(CachedMediaLayout.this, null);
+            super(r1, i);
+            CachedMediaLayout.this = r1;
             this.oldItems = new ArrayList<>();
-            this.type = i;
         }
 
         @Override
@@ -614,7 +681,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         }
     }
 
-    private class MediaAdapter extends BaseFilesAdapter {
+    public class MediaAdapter extends BaseFilesAdapter {
         ArrayList<Object> photoEntries;
         private SharedPhotoVideoCell2.SharedResources sharedResources;
         CombinedDrawable thumb;
@@ -630,6 +697,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
 
         private MediaAdapter() {
             super(1);
+            CachedMediaLayout.this = r2;
             this.photoEntries = new ArrayList<>();
         }
 
@@ -654,6 +722,10 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 this.sharedResources = new SharedPhotoVideoCell2.SharedResources(viewGroup.getContext(), null);
             }
             SharedPhotoVideoCell2 sharedPhotoVideoCell2 = new SharedPhotoVideoCell2(viewGroup.getContext(), this.sharedResources, CachedMediaLayout.this.parentFragment.getCurrentAccount()) {
+                {
+                    MediaAdapter.this = this;
+                }
+
                 @Override
                 public void onCheckBoxPressed() {
                     CachedMediaLayout.this.delegate.onItemSelected(null, (CacheModel.FileInfo) getTag(), true);
@@ -700,6 +772,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
 
         private DocumentsAdapter() {
             super(2);
+            CachedMediaLayout.this = r2;
             this.photoEntries = new ArrayList<>();
         }
 
@@ -722,6 +795,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             CacheCell cacheCell = new CacheCell(viewGroup.getContext()) {
                 {
+                    DocumentsAdapter.this = this;
                     CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
                 }
 
@@ -743,29 +817,32 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             boolean z = fileInfo == viewHolder.itemView.getTag();
             boolean z2 = i != this.itemInners.size() - 1;
             viewHolder.itemView.setTag(fileInfo);
-            sharedDocumentCell.setTextAndValueAndTypeAndThumb(fileInfo.file.getName(), LocaleController.formatDateAudio(fileInfo.file.lastModified(), true), Utilities.getExtension(fileInfo.file.getName()), null, 0, z2);
+            sharedDocumentCell.setTextAndValueAndTypeAndThumb(fileInfo.messageType == 5 ? LocaleController.getString("AttachRound", C1072R.string.AttachRound) : fileInfo.file.getName(), LocaleController.formatDateAudio(fileInfo.file.lastModified(), true), Utilities.getExtension(fileInfo.file.getName()), null, 0, z2);
             if (!z) {
                 sharedDocumentCell.setPhoto(fileInfo.file.getPath());
             }
+            sharedDocumentCell.getImageView().setRoundRadius(AndroidUtilities.m35dp(fileInfo.messageType == 5 ? 20.0f : 4.0f));
             cacheCell.drawDivider = z2;
             cacheCell.sizeTextView.setText(AndroidUtilities.formatFileSize(fileInfo.size));
             cacheCell.checkBox.setChecked(CachedMediaLayout.this.cacheModel.isSelected(fileInfo), z);
         }
     }
 
-    private class MusicAdapter extends BaseFilesAdapter {
+    public class MusicAdapter extends BaseFilesAdapter {
         MusicAdapter(CachedMediaLayout cachedMediaLayout, C13341 c13341) {
             this();
         }
 
         private MusicAdapter() {
             super(3);
+            CachedMediaLayout.this = r2;
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             final CacheCell cacheCell = new CacheCell(viewGroup.getContext()) {
                 {
+                    MusicAdapter.this = this;
                     CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
                 }
 
@@ -776,6 +853,10 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             };
             cacheCell.type = 3;
             SharedAudioCell sharedAudioCell = new SharedAudioCell(viewGroup.getContext(), 0, null) {
+                {
+                    MusicAdapter.this = this;
+                }
+
                 @Override
                 public void didPressedButton() {
                     CachedMediaLayout.this.openItem((CacheModel.FileInfo) cacheCell.getTag(), cacheCell);
@@ -796,14 +877,104 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             cacheCell.setTag(fileInfo);
             CachedMediaLayout.this.checkMessageObjectForAudio(fileInfo, i);
             sharedAudioCell.setMessageObject(fileInfo.messageObject, z2);
+            sharedAudioCell.showName(!fileInfo.metadata.loading, z);
             cacheCell.drawDivider = z2;
             cacheCell.sizeTextView.setText(AndroidUtilities.formatFileSize(fileInfo.size));
             cacheCell.checkBox.setChecked(CachedMediaLayout.this.cacheModel.isSelected(fileInfo), z);
         }
     }
 
-    public void checkMessageObjectForAudio(org.telegram.p009ui.Storage.CacheModel.FileInfo r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.CachedMediaLayout.checkMessageObjectForAudio(org.telegram.ui.Storage.CacheModel$FileInfo, int):void");
+    public void checkMessageObjectForAudio(final CacheModel.FileInfo fileInfo, int i) {
+        if (fileInfo.messageObject == null) {
+            TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
+            tLRPC$TL_message.out = true;
+            tLRPC$TL_message.f881id = i;
+            tLRPC$TL_message.peer_id = new TLRPC$TL_peerUser();
+            TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
+            tLRPC$TL_message.from_id = tLRPC$TL_peerUser;
+            TLRPC$Peer tLRPC$Peer = tLRPC$TL_message.peer_id;
+            long clientUserId = UserConfig.getInstance(this.parentFragment.getCurrentAccount()).getClientUserId();
+            tLRPC$TL_peerUser.user_id = clientUserId;
+            tLRPC$Peer.user_id = clientUserId;
+            tLRPC$TL_message.date = (int) (System.currentTimeMillis() / 1000);
+            tLRPC$TL_message.message = "";
+            tLRPC$TL_message.attachPath = fileInfo.file.getPath();
+            TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = new TLRPC$TL_messageMediaDocument();
+            tLRPC$TL_message.media = tLRPC$TL_messageMediaDocument;
+            tLRPC$TL_messageMediaDocument.flags |= 3;
+            tLRPC$TL_messageMediaDocument.document = new TLRPC$TL_document();
+            tLRPC$TL_message.flags |= 768;
+            String fileExtension = FileLoader.getFileExtension(fileInfo.file);
+            TLRPC$Document tLRPC$Document = tLRPC$TL_message.media.document;
+            tLRPC$Document.f865id = 0L;
+            tLRPC$Document.access_hash = 0L;
+            tLRPC$Document.file_reference = new byte[0];
+            tLRPC$Document.date = tLRPC$TL_message.date;
+            StringBuilder sb = new StringBuilder();
+            sb.append("audio/");
+            if (fileExtension.length() <= 0) {
+                fileExtension = "mp3";
+            }
+            sb.append(fileExtension);
+            tLRPC$Document.mime_type = sb.toString();
+            TLRPC$Document tLRPC$Document2 = tLRPC$TL_message.media.document;
+            tLRPC$Document2.size = fileInfo.size;
+            tLRPC$Document2.dc_id = 0;
+            final TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio = new TLRPC$TL_documentAttributeAudio();
+            if (fileInfo.metadata == null) {
+                CacheModel.FileInfo.FileMetadata fileMetadata = new CacheModel.FileInfo.FileMetadata();
+                fileInfo.metadata = fileMetadata;
+                fileMetadata.loading = true;
+                Utilities.globalQueue.postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        CachedMediaLayout.this.lambda$checkMessageObjectForAudio$3(fileInfo, tLRPC$TL_documentAttributeAudio);
+                    }
+                });
+            }
+            tLRPC$TL_documentAttributeAudio.flags |= 3;
+            tLRPC$TL_message.media.document.attributes.add(tLRPC$TL_documentAttributeAudio);
+            TLRPC$TL_documentAttributeFilename tLRPC$TL_documentAttributeFilename = new TLRPC$TL_documentAttributeFilename();
+            tLRPC$TL_documentAttributeFilename.file_name = fileInfo.file.getName();
+            tLRPC$TL_message.media.document.attributes.add(tLRPC$TL_documentAttributeFilename);
+            MessageObject messageObject = new MessageObject(this.parentFragment.getCurrentAccount(), tLRPC$TL_message, false, false);
+            fileInfo.messageObject = messageObject;
+            messageObject.mediaExists = true;
+        }
+    }
+
+    public void lambda$checkMessageObjectForAudio$3(final org.telegram.p009ui.Storage.CacheModel.FileInfo r12, final org.telegram.tgnet.TLRPC$TL_documentAttributeAudio r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.CachedMediaLayout.lambda$checkMessageObjectForAudio$3(org.telegram.ui.Storage.CacheModel$FileInfo, org.telegram.tgnet.TLRPC$TL_documentAttributeAudio):void");
+    }
+
+    public void lambda$checkMessageObjectForAudio$2(CacheModel.FileInfo fileInfo, TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio, String str, String str2) {
+        CacheModel.FileInfo.FileMetadata fileMetadata = fileInfo.metadata;
+        fileMetadata.loading = false;
+        fileMetadata.title = str;
+        tLRPC$TL_documentAttributeAudio.title = str;
+        fileMetadata.author = str2;
+        tLRPC$TL_documentAttributeAudio.performer = str2;
+        updateRow(fileInfo, 3);
+    }
+
+    private void updateRow(CacheModel.FileInfo fileInfo, int i) {
+        for (int i2 = 0; i2 < this.viewPagerFixed.getViewPages().length; i2++) {
+            RecyclerListView recyclerListView = (RecyclerListView) this.viewPagerFixed.getViewPages()[i2];
+            if (recyclerListView != null && ((BaseAdapter) recyclerListView.getAdapter()).type == i) {
+                BaseAdapter baseAdapter = (BaseAdapter) recyclerListView.getAdapter();
+                int i3 = 0;
+                while (true) {
+                    if (i3 >= baseAdapter.itemInners.size()) {
+                        break;
+                    } else if (baseAdapter.itemInners.get(i3).file == fileInfo) {
+                        baseAdapter.notifyItemChanged(i3);
+                        break;
+                    } else {
+                        i3++;
+                    }
+                }
+            }
+        }
     }
 
     public void setDelegate(Delegate delegate) {
@@ -814,6 +985,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         RecyclerListView recyclerListView;
 
         private BasePlaceProvider() {
+            CachedMediaLayout.this = r1;
         }
 
         BasePlaceProvider(CachedMediaLayout cachedMediaLayout, C13341 c13341) {

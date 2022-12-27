@@ -159,6 +159,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
 
         public SpansContainer(Context context) {
             super(context);
+            UsersSelectActivity.this = r1;
             this.animators = new ArrayList<>();
         }
 
@@ -1087,37 +1088,38 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
 
         public GroupCreateAdapter(Context context) {
             int i;
-            if (UsersSelectActivity.this.type == 0) {
-                i = UsersSelectActivity.this.isInclude ? 7 : 5;
+            UsersSelectActivity.this = r10;
+            if (r10.type == 0) {
+                i = r10.isInclude ? 7 : 5;
             } else {
                 i = 0;
             }
             this.usersStartRow = i;
             this.context = context;
-            ArrayList<TLRPC$Dialog> allDialogs = UsersSelectActivity.this.getMessagesController().getAllDialogs();
+            ArrayList<TLRPC$Dialog> allDialogs = r10.getMessagesController().getAllDialogs();
             int size = allDialogs.size();
             boolean z = false;
             for (int i2 = 0; i2 < size; i2++) {
                 TLRPC$Dialog tLRPC$Dialog = allDialogs.get(i2);
                 if (!DialogObject.isEncryptedDialog(tLRPC$Dialog.f863id)) {
                     if (DialogObject.isUserDialog(tLRPC$Dialog.f863id)) {
-                        TLRPC$User user = UsersSelectActivity.this.getMessagesController().getUser(Long.valueOf(tLRPC$Dialog.f863id));
-                        if (user != null && (UsersSelectActivity.this.type != 1 || !UserObject.isUserSelf(user))) {
+                        TLRPC$User user = r10.getMessagesController().getUser(Long.valueOf(tLRPC$Dialog.f863id));
+                        if (user != null && (r10.type != 1 || !UserObject.isUserSelf(user))) {
                             this.contacts.add(user);
                             if (UserObject.isUserSelf(user)) {
                                 z = true;
                             }
                         }
                     } else {
-                        TLRPC$Chat chat = UsersSelectActivity.this.getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.f863id));
+                        TLRPC$Chat chat = r10.getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.f863id));
                         if (chat != null) {
                             this.contacts.add(chat);
                         }
                     }
                 }
             }
-            if (!z && UsersSelectActivity.this.type != 1) {
-                this.contacts.add(0, UsersSelectActivity.this.getMessagesController().getUser(Long.valueOf(UsersSelectActivity.this.getUserConfig().clientUserId)));
+            if (!z && r10.type != 1) {
+                this.contacts.add(0, r10.getMessagesController().getUser(Long.valueOf(r10.getUserConfig().clientUserId)));
             }
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(false);
             this.searchAdapterHelper = searchAdapterHelper;

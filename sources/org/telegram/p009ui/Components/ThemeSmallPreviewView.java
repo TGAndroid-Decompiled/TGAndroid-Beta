@@ -595,6 +595,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         private final Paint strokePaint;
 
         ThemeDrawable() {
+            ThemeSmallPreviewView.this = r3;
             Paint paint = new Paint(1);
             this.strokePaint = paint;
             this.outBubblePaintSecond = new Paint(1);

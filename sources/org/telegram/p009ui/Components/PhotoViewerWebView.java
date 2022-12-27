@@ -94,6 +94,7 @@ public class PhotoViewerWebView extends FrameLayout {
 
     public class YoutubeProxy {
         private YoutubeProxy() {
+            PhotoViewerWebView.this = r1;
         }
 
         @JavascriptInterface
@@ -333,6 +334,7 @@ public class PhotoViewerWebView extends FrameLayout {
 
     public class C25612 extends WebViewClient {
         C25612() {
+            PhotoViewerWebView.this = r1;
         }
 
         @Override

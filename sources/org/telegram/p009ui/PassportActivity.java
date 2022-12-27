@@ -346,6 +346,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
     public class LinkSpan extends ClickableSpan {
         public LinkSpan() {
+            PassportActivity.this = r1;
         }
 
         @Override
@@ -447,7 +448,8 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
         public SecureDocumentCell(Context context) {
             super(context);
-            this.TAG = DownloadController.getInstance(((BaseFragment) PassportActivity.this).currentAccount).generateObserverTag();
+            PassportActivity.this = r14;
+            this.TAG = DownloadController.getInstance(((BaseFragment) r14).currentAccount).generateObserverTag();
             this.radialProgress = new RadialProgress(this);
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
@@ -938,6 +940,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
     public class C36663 extends C1133ActionBar.ActionBarMenuOnItemClick {
         C36663() {
+            PassportActivity.this = r1;
         }
 
         private boolean onIdentityDone(final java.lang.Runnable r26, final org.telegram.p009ui.PassportActivity.ErrorRunnable r27) {
@@ -1560,6 +1563,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         final byte[] val$x_bytes;
 
         C36738(boolean z, byte[] bArr, TLRPC$TL_account_getPasswordSettings tLRPC$TL_account_getPasswordSettings, String str) {
+            PassportActivity.this = r1;
             this.val$saved = z;
             this.val$x_bytes = bArr;
             this.val$req = tLRPC$TL_account_getPasswordSettings;
@@ -5056,6 +5060,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     final ArrayList val$translationDocuments;
 
                     C36611(ErrorRunnable errorRunnable, String str, TLRPC$TL_account_saveSecureValue tLRPC$TL_account_saveSecureValue, TLRPC$TL_secureRequiredType tLRPC$TL_secureRequiredType, TLRPC$TL_secureRequiredType tLRPC$TL_secureRequiredType2, ArrayList arrayList, SecureDocument secureDocument, SecureDocument secureDocument2, SecureDocument secureDocument3, ArrayList arrayList2, String str2, String str3, Runnable runnable, PassportActivityDelegate passportActivityDelegate, TLRPC$TL_inputSecureValue tLRPC$TL_inputSecureValue) {
+                        C366020.this = r3;
                         this.val$errorRunnable = errorRunnable;
                         this.val$text = str;
                         this.val$req = tLRPC$TL_account_saveSecureValue;
@@ -6882,6 +6887,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
         public PhoneConfirmationView(Context context, int i) {
             super(context);
+            PassportActivity.this = r25;
             this.timerSync = new Object();
             this.time = 60000;
             this.codeTime = 15000;
@@ -6950,7 +6956,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             if (this.verificationType == 3) {
                 this.codeFieldContainer.setVisibility(8);
             }
-            TextView textView3 = new TextView(this, context, PassportActivity.this) {
+            TextView textView3 = new TextView(this, context, r25) {
                 @Override
                 protected void onMeasure(int i2, int i3) {
                     super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(100.0f), Integer.MIN_VALUE));
@@ -6971,7 +6977,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 this.timeText.setGravity(49);
                 addView(this.timeText, LayoutHelper.createLinear(-2, -2, 49));
             }
-            TextView textView4 = new TextView(this, context, PassportActivity.this) {
+            TextView textView4 = new TextView(this, context, r25) {
                 @Override
                 protected void onMeasure(int i2, int i3) {
                     super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(100.0f), Integer.MIN_VALUE));
@@ -7325,6 +7331,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
         public class C36784 extends TimerTask {
             C36784() {
+                PhoneConfirmationView.this = r1;
             }
 
             @Override
@@ -7376,6 +7383,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
         public class C36795 extends TimerTask {
             C36795() {
+                PhoneConfirmationView.this = r1;
             }
 
             @Override

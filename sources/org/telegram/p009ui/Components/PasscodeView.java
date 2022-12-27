@@ -725,6 +725,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
 
         C25212() {
+            PasscodeView.this = r1;
         }
 
         @Override
@@ -1486,6 +1487,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         final int val$y;
 
         ViewTreeObserver$OnGlobalLayoutListenerC25289(int i, int i2, Runnable runnable) {
+            PasscodeView.this = r1;
             this.val$x = i;
             this.val$y = i2;
             this.val$onShow = runnable;

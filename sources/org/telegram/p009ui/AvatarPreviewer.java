@@ -156,6 +156,7 @@ public class AvatarPreviewer {
         }
 
         private MenuItem(String str, int i, String str2, int i2, int i3) {
+            super(str, i);
             this.labelKey = str2;
             this.labelResId = i2;
             this.iconResId = i3;

@@ -766,6 +766,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         public class ViewTreeObserver$OnPreDrawListenerC38411 implements ViewTreeObserver.OnPreDrawListener {
             ViewTreeObserver$OnPreDrawListenerC38411() {
+                TextureView$SurfaceTextureListenerC38407.this = r1;
             }
 
             @Override
@@ -1422,6 +1423,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public class RunnableC38105 implements Runnable {
         RunnableC38105() {
+            PhotoViewer.this = r1;
         }
 
         @Override
@@ -1571,6 +1573,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         private PhotoViewerProvider provider;
 
         public SavedState(int i, ArrayList<MessageObject> arrayList, PhotoViewerProvider photoViewerProvider) {
+            PhotoViewer.this = r1;
             this.messages = arrayList;
             this.index = i;
             this.provider = photoViewerProvider;
@@ -1604,6 +1607,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         public BackgroundDrawable(int i) {
             super(i);
+            PhotoViewer.this = r2;
             this.rect = new RectF();
             this.visibleRect = new RectF();
             Paint paint = new Paint(1);
@@ -1863,6 +1867,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         public PhotoProgressView(View view) {
+            PhotoViewer.this = r5;
             if (PhotoViewer.decelerateInterpolator == null) {
                 DecelerateInterpolator unused = PhotoViewer.decelerateInterpolator = new DecelerateInterpolator(1.5f);
                 Paint unused2 = PhotoViewer.progressPaint = new Paint(1);
@@ -1876,7 +1881,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             PlayPauseDrawable playPauseDrawable = new PlayPauseDrawable(28);
             this.playPauseDrawable = playPauseDrawable;
             playPauseDrawable.setDuration(200);
-            this.playDrawable = new CombinedDrawable(ContextCompat.getDrawable(PhotoViewer.this.parentActivity, C1072R.C1073drawable.circle_big).mutate(), playPauseDrawable);
+            this.playDrawable = new CombinedDrawable(ContextCompat.getDrawable(r5.parentActivity, C1072R.C1073drawable.circle_big).mutate(), playPauseDrawable);
         }
 
         private void updateAnimation(boolean z) {
@@ -2134,10 +2139,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         public FrameLayoutDrawer(Context context) {
             super(context, false);
+            PhotoViewer.this = r1;
             this.paint = new Paint();
             this.adjustPanLayoutHelper = new AdjustPanLayoutHelper(this, false) {
                 @Override
-                protected void onPanTranslationUpdate(float f, float f2, boolean z) {
+                public void onPanTranslationUpdate(float f, float f2, boolean z) {
                     PhotoViewer.this.currentPanTranslationY = f;
                     if (PhotoViewer.this.currentEditMode != 3) {
                         PhotoViewer.this.actionBar.setTranslationY(f);
@@ -2204,7 +2210,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
 
                 @Override
-                protected void onTransitionStart(boolean z, int i) {
+                public void onTransitionStart(boolean z, int i) {
                     int i2;
                     String str;
                     PhotoViewer.this.navigationBar.setVisibility(4);
@@ -2238,7 +2244,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
 
                 @Override
-                protected void onTransitionEnd() {
+                public void onTransitionEnd() {
                     super.onTransitionEnd();
                     PhotoViewer.this.navigationBar.setVisibility(PhotoViewer.this.currentEditMode != 2 ? 0 : 4);
                     if (PhotoViewer.this.captionEditText.getTag() == null) {
@@ -2268,7 +2274,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        protected void onLayout(boolean r16, int r17, int r18, int r19, int r20) {
+        public void onLayout(boolean r16, int r17, int r18, int r19, int r20) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoViewer.FrameLayoutDrawer.onLayout(boolean, int, int, int, int):void");
         }
 
@@ -2501,6 +2507,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         public VideoPlayerControlFrameLayout(Context context) {
             super(context);
+            PhotoViewer.this = r3;
             this.progress = 1.0f;
             this.translationYAnimationEnabled = true;
             this.timeValue = new FloatValueHolder(0.0f);
@@ -2664,6 +2671,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         public CaptionTextViewSwitcher(Context context) {
             super(context);
+            PhotoViewer.this = r1;
             this.inScrollView = false;
             this.alpha = 1.0f;
         }
@@ -2757,6 +2765,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         public CaptionScrollView(Context context) {
             super(context);
+            PhotoViewer.this = r6;
             Paint paint = new Paint(1);
             this.paint = paint;
             this.backgroundAlpha = 1.0f;
@@ -2767,7 +2776,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             setFadingEdgeLength(AndroidUtilities.m35dp(12.0f));
             setVerticalFadingEdgeEnabled(true);
             setWillNotDraw(false);
-            SpringAnimation springAnimation = new SpringAnimation(PhotoViewer.this.captionTextViewSwitcher, DynamicAnimation.TRANSLATION_Y, 0.0f);
+            SpringAnimation springAnimation = new SpringAnimation(r6.captionTextViewSwitcher, DynamicAnimation.TRANSLATION_Y, 0.0f);
             this.springAnimation = springAnimation;
             springAnimation.getSpring().setStiffness(100.0f);
             springAnimation.setMinimumVisibleChange(1.0f);
@@ -2810,7 +2819,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        protected void onMeasure(int i, int i2) {
+        public void onMeasure(int i, int i2) {
             updateTopMargin(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
             super.onMeasure(i, i2);
         }
@@ -4207,7 +4216,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i10) {
                 LinearSmoothScrollerEnd linearSmoothScrollerEnd = new LinearSmoothScrollerEnd(this, recyclerView.getContext()) {
                     @Override
-                    protected int calculateTimeForDeceleration(int i11) {
+                    public int calculateTimeForDeceleration(int i11) {
                         return Math.max(180, super.calculateTimeForDeceleration(i11));
                     }
                 };
@@ -4425,6 +4434,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public class C376310 extends FrameLayout {
         C376310(Context context) {
             super(context);
+            PhotoViewer.this = r1;
         }
 
         @Override
@@ -4649,6 +4659,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         final Theme.ResourcesProvider val$resourcesProvider;
 
         C376713(Theme.ResourcesProvider resourcesProvider) {
+            PhotoViewer.this = r1;
             this.val$resourcesProvider = resourcesProvider;
         }
 
@@ -4742,7 +4753,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     if (charSequence != null) {
                         SendMessagesHelper.getInstance(PhotoViewer.this.currentAccount).sendMessage(charSequence.toString(), j, null, null, null, true, null, null, null, true, 0, null, false);
                     }
-                    SendMessagesHelper.getInstance(PhotoViewer.this.currentAccount).sendMessage((ArrayList<MessageObject>) arrayList, j, false, false, true, 0);
+                    SendMessagesHelper.getInstance(PhotoViewer.this.currentAccount).sendMessage(arrayList, j, false, false, true, 0);
                 }
                 dialogsActivity.finishFragment();
                 if (chatActivity != null) {
@@ -4983,6 +4994,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         private boolean wasPlaying;
 
         C378125() {
+            PhotoViewer.this = r1;
         }
 
         @Override
@@ -5570,6 +5582,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public class C379133 extends RecyclerListView {
         C379133(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
+            PhotoViewer.this = r1;
         }
 
         @Override
@@ -5597,7 +5610,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        protected void onSizeChanged(int i, int i2, int i3, int i4) {
+        public void onSizeChanged(int i, int i2, int i3, int i4) {
             super.onSizeChanged(i, i2, i3, i4);
             if (PhotoViewer.this.mentionListViewVisible && getVisibility() == 0 && PhotoViewer.this.mentionListAnimation == null) {
                 int i5 = i2 - i4;
@@ -5635,6 +5648,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         C379335() {
+            PhotoViewer.this = r1;
         }
 
         @Override
@@ -5997,6 +6011,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public class DialogInterface$OnDismissListenerC379537 implements DialogInterface.OnDismissListener {
         DialogInterface$OnDismissListenerC379537() {
+            PhotoViewer.this = r1;
         }
 
         @Override
@@ -6057,6 +6072,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         DialogC379638(Context context, ChatActivity chatActivity, ArrayList arrayList, String str, String str2, boolean z, String str3, String str4, boolean z2, boolean z3, Theme.ResourcesProvider resourcesProvider, FrameLayout frameLayout, boolean z4) {
             super(context, chatActivity, arrayList, str, str2, z, str3, str4, z2, z3, resourcesProvider);
+            PhotoViewer.this = r14;
             this.val$photoContainerView = frameLayout;
             this.val$finalOpenKeyboardOnShareAlertClose = z4;
         }
@@ -6171,6 +6187,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
             public class C37981 extends AnimatorListenerAdapter {
                 C37981() {
+                    C379739.this = r1;
                 }
 
                 @Override
@@ -6210,6 +6227,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         C380040(Context context) {
             super(context);
+            PhotoViewer.this = r1;
             this.links = new LinkSpanDrawable.LinkCollector(this);
         }
 
@@ -6245,7 +6263,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        protected void onDraw(Canvas canvas) {
+        public void onDraw(Canvas canvas) {
             canvas.save();
             canvas.translate(getPaddingLeft(), 0.0f);
             if (this.links.draw(canvas)) {
@@ -6266,7 +6284,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        protected void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             super.onTextChanged(charSequence, i, i2, i3);
             this.animatedEmojiDrawables = AnimatedEmojiSpan.update(0, this, this.animatedEmojiDrawables, getLayout());
         }
@@ -6507,6 +6525,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public class C380343 extends AnimatorListenerAdapter {
         C380343() {
+            PhotoViewer.this = r1;
         }
 
         @Override
@@ -7934,6 +7953,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         C381554() {
+            PhotoViewer.this = r1;
         }
 
         @Override
@@ -8746,6 +8766,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public class C381957 implements PhotoCropView.PhotoCropViewDelegate {
         C381957() {
+            PhotoViewer.this = r1;
         }
 
         @Override
@@ -11297,6 +11318,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         C383568(int i, boolean z, boolean z2) {
             super(i);
+            PhotoViewer.this = r1;
             this.val$isCurrentCaptionEmpty = z;
             this.val$isCaptionEmpty = z2;
         }
@@ -11334,6 +11356,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         C383367(int i, boolean z, boolean z2) {
             super(i);
+            PhotoViewer.this = r1;
             this.val$isCurrentCaptionEmpty = z;
             this.val$isCaptionEmpty = z2;
         }
@@ -11366,6 +11389,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public class C383769 extends Transition {
         C383769() {
+            PhotoViewer.this = r1;
         }
 
         @Override
@@ -11968,7 +11992,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
 
             {
-                this.thumbHolder = PhotoViewer.this.centerImage.getBitmapSafe();
+                PhotoViewer.this = this;
+                this.thumbHolder = this.centerImage.getBitmapSafe();
             }
 
             @Override
@@ -12391,6 +12416,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         final float val$top;
 
         ViewTreeObserver$OnPreDrawListenerC384371(ClippingImageView[] clippingImageViewArr, ViewGroup.LayoutParams layoutParams, float f, PlaceProviderObject placeProviderObject, float f2, PageBlocksAdapter pageBlocksAdapter, PhotoViewerProvider photoViewerProvider, ArrayList arrayList, Integer num) {
+            PhotoViewer.this = r1;
             this.val$animatingImageViews = clippingImageViewArr;
             this.val$layoutParams = layoutParams;
             this.val$left = f;
@@ -12673,6 +12699,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             final int val$account;
 
             C38441(int i) {
+                ViewTreeObserver$OnPreDrawListenerC384371.this = r1;
                 this.val$account = i;
             }
 
@@ -12834,6 +12861,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public class C384874 extends AnimatorListenerAdapter {
         C384874() {
+            PhotoViewer.this = r1;
         }
 
         @Override
@@ -13602,6 +13630,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         public QualityChooseView(Context context) {
             super(context);
+            PhotoViewer.this = r1;
             this.paint = new Paint(1);
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
@@ -14017,6 +14046,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         final String val$videoPath;
 
         RunnableC385680(String str, int i) {
+            PhotoViewer.this = r1;
             this.val$videoPath = str;
             this.val$compressQality = i;
         }
@@ -14209,6 +14239,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         public ListAdapter(Context context) {
+            PhotoViewer.this = r1;
             this.mContext = context;
         }
 
@@ -14310,6 +14341,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         public FirstFrameView(Context context) {
             super(context);
+            PhotoViewer.this = r1;
             this.gettingFrameIndex = 0;
             this.gettingFrame = false;
             this.hasFrame = false;

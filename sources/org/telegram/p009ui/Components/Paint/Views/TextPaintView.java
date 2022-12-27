@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
 import org.telegram.p009ui.Components.AnimatedEmojiSpan;
 import org.telegram.p009ui.Components.LayoutHelper;
 import org.telegram.p009ui.Components.Paint.PaintTypeface;
@@ -36,6 +37,7 @@ public class TextPaintView extends EntityView {
         this.baseFontSize = i;
         EditTextOutline editTextOutline = new EditTextOutline(context) {
             {
+                TextPaintView.this = this;
                 this.animatedEmojiOffsetX = AndroidUtilities.m35dp(8.0f);
             }
 
@@ -102,6 +104,20 @@ public class TextPaintView extends EntityView {
         this(context, point, textPaintView.baseFontSize, textPaintView.getText(), textPaintView.getSwatch(), textPaintView.currentType);
         setRotation(textPaintView.getRotation());
         setScale(textPaintView.getScale());
+        setTypeface(textPaintView.getTypeface());
+        setAlign(textPaintView.getAlign());
+        int align = getAlign();
+        int i = 2;
+        this.editText.setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
+        if (Build.VERSION.SDK_INT >= 17) {
+            int align2 = getAlign();
+            if (align2 == 1) {
+                i = 4;
+            } else if (align2 == 2 ? !LocaleController.isRTL : LocaleController.isRTL) {
+                i = 3;
+            }
+            this.editText.setTextAlignment(i);
+        }
     }
 
     public int getBaseFontSize() {

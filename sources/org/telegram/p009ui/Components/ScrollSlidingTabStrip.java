@@ -263,6 +263,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         }
 
         C27273() {
+            ScrollSlidingTabStrip.this = r1;
         }
 
         @Override

@@ -1091,6 +1091,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         }
 
         C424810() {
+            VoIPFragment.this = r1;
         }
 
         public void lambda$onFirstFrameRendered$0() {
@@ -1120,6 +1121,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         }
 
         C424911() {
+            VoIPFragment.this = r1;
         }
 
         public void lambda$onFirstFrameRendered$0() {
@@ -1183,6 +1185,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
 
     public class C425012 extends AnimatorListenerAdapter {
         C425012() {
+            VoIPFragment.this = r1;
         }
 
         @Override

@@ -166,7 +166,7 @@ public class ManageLinksActivity extends BaseFragment {
         return true;
     }
 
-    private static class EmptyView extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
+    public static class EmptyView extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
         private final int currentAccount;
         private BackupImageView stickerView;
 
@@ -745,6 +745,7 @@ public class ManageLinksActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
+            ManageLinksActivity.this = r1;
             this.mContext = context;
         }
 
@@ -996,6 +997,7 @@ public class ManageLinksActivity extends BaseFragment {
 
         public LinkCell(Context context) {
             super(context);
+            ManageLinksActivity.this = r9;
             this.paint = new Paint(1);
             this.paint2 = new Paint(1);
             this.rectF = new RectF();
@@ -1330,6 +1332,7 @@ public class ManageLinksActivity extends BaseFragment {
 
     public class C36016 implements LinkEditActivity.Callback {
         C36016() {
+            ManageLinksActivity.this = r1;
         }
 
         @Override
@@ -1419,6 +1422,7 @@ public class ManageLinksActivity extends BaseFragment {
         int oldRowCount;
 
         private DiffCallback() {
+            ManageLinksActivity.this = r1;
             this.oldPositionToItem = new SparseIntArray();
             this.newPositionToItem = new SparseIntArray();
             this.oldLinks = new ArrayList<>();

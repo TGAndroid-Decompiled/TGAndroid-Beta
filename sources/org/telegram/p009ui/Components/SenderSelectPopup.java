@@ -586,9 +586,10 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         }
     }
 
-    private class BackButtonFrameLayout extends FrameLayout {
+    public class BackButtonFrameLayout extends FrameLayout {
         public BackButtonFrameLayout(Context context) {
             super(context);
+            SenderSelectPopup.this = r1;
         }
 
         @Override

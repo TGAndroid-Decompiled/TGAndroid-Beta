@@ -543,12 +543,13 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    class C16906 extends TextInfoPrivacyCell {
+    public class C16906 extends TextInfoPrivacyCell {
         int prevHeight;
         ValueAnimator translateAnimator;
 
         C16906(Context context) {
             super(context);
+            ChatEditTypeActivity.this = r1;
             this.prevHeight = -1;
         }
 
@@ -754,13 +755,14 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
 
         public UsernamesListView(Context context) {
             super(context);
+            ChatEditTypeActivity.this = r3;
             this.needReorder = false;
             this.backgroundPaint = new Paint(1);
             Adapter adapter = new Adapter();
             this.adapter = adapter;
             setAdapter(adapter);
             setLayoutManager(new LinearLayoutManager(context));
-            setOnItemClickListener(new C16921(ChatEditTypeActivity.this));
+            setOnItemClickListener(new C16921(r3));
             ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
             this.itemTouchHelper = itemTouchHelper;
             itemTouchHelper.attachToRecyclerView(this);
@@ -768,6 +770,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
 
         public class C16921 implements RecyclerListView.OnItemClickListener {
             C16921(ChatEditTypeActivity chatEditTypeActivity) {
+                UsernamesListView.this = r1;
             }
 
             @Override
@@ -987,6 +990,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             }
 
             public TouchHelperCallback() {
+                UsernamesListView.this = r1;
             }
 
             @Override
@@ -1074,6 +1078,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
 
         public class Adapter extends RecyclerListView.SelectionAdapter {
             private Adapter() {
+                UsernamesListView.this = r1;
             }
 
             public void swapElements(int i, int i2) {

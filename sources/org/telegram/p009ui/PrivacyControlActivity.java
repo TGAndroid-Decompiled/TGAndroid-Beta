@@ -1504,6 +1504,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         private Context mContext;
 
         public ListAdapter(Context context) {
+            PrivacyControlActivity.this = r1;
             this.mContext = context;
         }
 
@@ -1864,6 +1865,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         int oldRowCount;
 
         private DiffCallback() {
+            PrivacyControlActivity.this = r1;
             this.oldPositionToItem = new SparseIntArray();
             this.newPositionToItem = new SparseIntArray();
         }

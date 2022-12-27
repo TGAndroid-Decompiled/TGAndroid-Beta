@@ -1161,6 +1161,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
 
     public class C237910 extends TimerTask {
         C237910() {
+            InstantCameraView.this = r1;
         }
 
         @Override
@@ -1253,6 +1254,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
 
         public CameraGLThread(SurfaceTexture surfaceTexture, int i, int i2) {
             super("CameraGLThread");
+            InstantCameraView.this = r1;
             this.cameraId = 0;
             this.surfaceTexture = surfaceTexture;
             this.surfaceWidth = i;
@@ -1724,6 +1726,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         private int zeroTimeStamps;
 
         private VideoRecorder() {
+            InstantCameraView.this = r5;
             this.videoConvertFirstWrite = true;
             this.eglDisplay = EGL14.EGL_NO_DISPLAY;
             this.eglContext = EGL14.EGL_NO_CONTEXT;
@@ -1745,6 +1748,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
 
         public class RunnableC23901 implements Runnable {
             RunnableC23901() {
+                VideoRecorder.this = r1;
             }
 
             @Override
@@ -1855,6 +1859,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
 
         public class GenerateKeyframeThumbTask implements Runnable {
             private GenerateKeyframeThumbTask() {
+                VideoRecorder.this = r1;
             }
 
             @Override
@@ -2442,7 +2447,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
 
         public InstantViewCameraContainer(Context context) {
             super(context);
-            InstantCameraView.this.setWillNotDraw(false);
+            InstantCameraView.this = r1;
+            r1.setWillNotDraw(false);
         }
 
         public void setImageReceiver(ImageReceiver imageReceiver) {

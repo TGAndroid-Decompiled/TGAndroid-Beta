@@ -195,6 +195,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.actionBarColor = getColor("windowBackgroundWhite");
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             {
+                BotWebViewSheet.this = this;
                 setWillNotDraw(false);
             }
 
@@ -390,6 +391,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
 
         C18592(Context context, Theme.ResourcesProvider resourcesProvider) {
+            BotWebViewSheet.this = r1;
             this.val$context = context;
             this.val$resourcesProvider = resourcesProvider;
         }

@@ -397,6 +397,7 @@ public class AboutLinkCell extends FrameLayout {
 
     public class RunnableC13682 implements Runnable {
         RunnableC13682() {
+            AboutLinkCell.this = r1;
         }
 
         @Override

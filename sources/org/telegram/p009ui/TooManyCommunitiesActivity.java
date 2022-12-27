@@ -435,6 +435,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         int shadowPosition;
 
         Adapter() {
+            TooManyCommunitiesActivity.this = r1;
         }
 
         @Override
@@ -566,6 +567,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         }
 
         SearchAdapter() {
+            TooManyCommunitiesActivity.this = r1;
         }
 
         @Override

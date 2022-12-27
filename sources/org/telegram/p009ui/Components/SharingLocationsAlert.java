@@ -256,7 +256,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.liveLocationsChanged);
     }
 
-    private class ListAdapter extends RecyclerListView.SelectionAdapter {
+    public class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context context;
 
         @Override
@@ -265,6 +265,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         }
 
         public ListAdapter(Context context) {
+            SharingLocationsAlert.this = r1;
             this.context = context;
         }
 

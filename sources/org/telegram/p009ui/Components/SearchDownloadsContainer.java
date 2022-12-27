@@ -523,6 +523,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
 
     public class DownloadsAdapter extends RecyclerListView.SelectionAdapter {
         private DownloadsAdapter() {
+            SearchDownloadsContainer.this = r1;
         }
 
         @Override
@@ -719,6 +720,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         }
 
         public TouchHelperCallback() {
+            SearchDownloadsContainer.this = r1;
         }
 
         @Override

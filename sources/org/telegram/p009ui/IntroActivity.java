@@ -307,6 +307,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         }
 
         TextureView$SurfaceTextureListenerC33922() {
+            IntroActivity.this = r1;
         }
 
         @Override
@@ -381,6 +382,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         final AlertDialog val$loaderDialog;
 
         C33955(AlertDialog alertDialog) {
+            IntroActivity.this = r1;
             this.val$loaderDialog = alertDialog;
         }
 
@@ -545,6 +547,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         }
 
         private IntroAdapter() {
+            IntroActivity.this = r1;
         }
 
         @Override
@@ -630,6 +633,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
 
         public EGLThread(SurfaceTexture surfaceTexture) {
             super("EGLThread");
+            IntroActivity.this = r1;
             this.textures = new int[24];
             this.telegramMaskProvider = IntroActivity$EGLThread$$ExternalSyntheticLambda2.INSTANCE;
             this.drawRunnable = new Runnable() {

@@ -1142,6 +1142,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         private Context mContext;
 
         public ListAdapter(Context context) {
+            TwoStepVerificationActivity.this = r1;
             this.mContext = context;
         }
 

@@ -99,6 +99,7 @@ public class TableLayout extends View {
         }
 
         public Child(int i) {
+            TableLayout.this = r1;
             this.index = i;
         }
 
@@ -967,6 +968,7 @@ public class TableLayout extends View {
         public boolean trailingMarginsValid;
 
         private Axis(boolean z) {
+            TableLayout.this = r2;
             this.definedCount = Integer.MIN_VALUE;
             this.maxIndex = Integer.MIN_VALUE;
             this.groupBoundsValid = false;
@@ -1157,12 +1159,13 @@ public class TableLayout extends View {
                 int[] visited;
 
                 {
+                    Axis.this = this;
                     this.val$arcs = arcArr;
                     Arc[] arcArr2 = new Arc[arcArr.length];
                     this.result = arcArr2;
                     this.cursor = arcArr2.length - 1;
-                    this.arcsByVertex = Axis.this.groupArcsByFirstVertex(arcArr);
-                    this.visited = new int[Axis.this.getCount() + 1];
+                    this.arcsByVertex = this.groupArcsByFirstVertex(arcArr);
+                    this.visited = new int[this.getCount() + 1];
                 }
 
                 void walk(int i) {
@@ -1927,12 +1930,12 @@ public class TableLayout extends View {
         return new Alignment() {
             @Override
             int getGravityOffset(Child child, int i) {
-                return Alignment.this.getGravityOffset(child, i);
+                return alignment.getGravityOffset(child, i);
             }
 
             @Override
             public int getAlignmentValue(Child child, int i) {
-                return Alignment.this.getAlignmentValue(child, i);
+                return alignment.getAlignmentValue(child, i);
             }
         };
     }

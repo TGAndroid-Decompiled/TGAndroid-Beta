@@ -956,6 +956,7 @@ public class FilterCreateActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
+            FilterCreateActivity.this = r1;
             this.mContext = context;
         }
 

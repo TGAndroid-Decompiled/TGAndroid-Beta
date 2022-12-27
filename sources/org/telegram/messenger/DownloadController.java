@@ -1316,6 +1316,7 @@ public class DownloadController extends BaseController implements NotificationCe
         long f804id;
 
         private DownloadingDocumentEntry() {
+            DownloadController.this = r1;
         }
     }
 

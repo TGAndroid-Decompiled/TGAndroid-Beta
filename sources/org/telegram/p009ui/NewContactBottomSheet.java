@@ -153,6 +153,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
 
     public class C36162 implements CountrySelectActivity.CountrySelectActivityDelegate {
         C36162() {
+            NewContactBottomSheet.this = r1;
         }
 
         @Override

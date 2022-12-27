@@ -146,6 +146,7 @@ public class LocationController extends BaseController implements NotificationCe
         }
 
         private GpsLocationListener() {
+            LocationController.this = r1;
         }
 
         @Override
@@ -165,6 +166,7 @@ public class LocationController extends BaseController implements NotificationCe
 
     public class FusedLocationListener implements ILocationServiceProvider.ILocationListener {
         private FusedLocationListener() {
+            LocationController.this = r1;
         }
 
         @Override

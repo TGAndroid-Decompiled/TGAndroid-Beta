@@ -84,7 +84,7 @@ public class ThemesHorizontalListCell extends RecyclerListView implements Notifi
     protected void updateRows() {
     }
 
-    private class ThemesListAdapter extends RecyclerListView.SelectionAdapter {
+    public class ThemesListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         @Override
@@ -93,6 +93,7 @@ public class ThemesHorizontalListCell extends RecyclerListView implements Notifi
         }
 
         ThemesListAdapter(Context context) {
+            ThemesHorizontalListCell.this = r1;
             this.mContext = context;
         }
 
@@ -160,6 +161,7 @@ public class ThemesHorizontalListCell extends RecyclerListView implements Notifi
 
         public InnerThemeView(Context context) {
             super(context);
+            ThemesHorizontalListCell.this = r8;
             this.rect = new RectF();
             this.paint = new Paint(1);
             this.textPaint = new TextPaint(1);

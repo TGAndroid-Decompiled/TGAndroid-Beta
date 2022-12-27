@@ -941,6 +941,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         private int usersStartRow;
 
         public GroupCreateAdapter(Context context) {
+            GroupCreateFinalActivity.this = r1;
             this.context = context;
         }
 

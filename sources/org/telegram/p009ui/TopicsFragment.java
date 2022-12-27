@@ -329,6 +329,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             private Paint actionBarPaint;
 
             {
+                TopicsFragment.this = this;
                 setWillNotDraw(false);
                 this.actionBarPaint = new Paint();
             }
@@ -494,7 +495,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         });
         this.recyclerListView = new TopicsRecyclerView(context) {
             @Override
-            protected void onLayout(boolean z, int i4, int i5, int i6, int i7) {
+            public void onLayout(boolean z, int i4, int i5, int i6, int i7) {
                 super.onLayout(z, i4, i5, i6, i7);
                 TopicsFragment.this.checkForLoadMore();
             }
@@ -821,6 +822,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         final Context val$context;
 
         C41912(Context context) {
+            TopicsFragment.this = r1;
             this.val$context = context;
         }
 
@@ -1058,6 +1060,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         int scrollAnimationIndex;
 
         C42037() {
+            TopicsFragment.this = r1;
         }
 
         @Override
@@ -1203,6 +1206,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
         C418110(Context context) {
             super(context);
+            TopicsFragment.this = r1;
         }
 
         @Override
@@ -1270,6 +1274,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
     public class View$OnClickListenerC418716 implements View.OnClickListener {
         View$OnClickListenerC418716() {
+            TopicsFragment.this = r1;
         }
 
         @Override
@@ -1409,6 +1414,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
         public TopicsRecyclerView(Context context) {
             super(context);
+            TopicsFragment.this = r1;
             this.firstLayout = true;
             this.paint = new Paint();
             this.rectF = new RectF();
@@ -1719,6 +1725,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         final ArrayList val$topicsToRemove;
 
         DialogInterface$OnClickListenerC419320(HashSet hashSet, ArrayList arrayList, Runnable runnable) {
+            TopicsFragment.this = r1;
             this.val$selectedTopics = hashSet;
             this.val$topicsToRemove = arrayList;
             this.val$runnable = runnable;
@@ -1847,6 +1854,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         C419522(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+            TopicsFragment.this = r1;
             this.val$topic = tLRPC$TL_forumTopic;
         }
 
@@ -1984,7 +1992,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.searchAnimator.cancel();
         }
         if (this.searchTabsView == null) {
-            ViewPagerFixed.TabsView createTabsView = this.searchContainer.createTabsView(false);
+            ViewPagerFixed.TabsView createTabsView = this.searchContainer.createTabsView(false, 8);
             this.searchTabsView = createTabsView;
             if (this.parentDialogsActivity != null) {
                 createTabsView.setBackgroundColor(getThemedColor("windowBackgroundWhite"));
@@ -2301,6 +2309,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         private boolean swipingFolder;
 
         public TouchHelperCallback() {
+            TopicsFragment.this = r1;
         }
 
         @Override
@@ -2653,6 +2662,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
     public class Adapter extends AdapterWithDiffUtils {
         private Adapter() {
+            TopicsFragment.this = r1;
         }
 
         @Override
@@ -2797,9 +2807,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
         public TopicDialogCell(DialogsActivity dialogsActivity, Context context, boolean z, boolean z2) {
             super(dialogsActivity, context, z, z2);
+            TopicsFragment.this = r1;
             this.position = -1;
             this.drawAvatar = false;
-            this.messagePaddingStart = TopicsFragment.this.isInPreviewMode() ? 11 : 50;
+            this.messagePaddingStart = r1.isInPreviewMode() ? 11 : 50;
             this.chekBoxPaddingTop = 24.0f;
             this.heightDefault = 64;
             this.heightThreeLines = 76;
@@ -3050,7 +3061,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    private class EmptyViewContainer extends FrameLayout {
+    public class EmptyViewContainer extends FrameLayout {
         boolean increment;
         float progress;
         TextView textView;
@@ -3138,12 +3149,13 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
         public MessagesSearchContainer(Context context) {
             super(context);
+            TopicsFragment.this = r4;
             this.searchString = "empty";
             this.searchResultTopics = new ArrayList<>();
             this.searchResultMessages = new ArrayList<>();
             this.selectedItems = new ArrayList<>();
             this.searchContainer = new FrameLayout(context);
-            this.chatPreviewDelegate = new SearchViewPager.ChatPreviewDelegate(TopicsFragment.this) {
+            this.chatPreviewDelegate = new SearchViewPager.ChatPreviewDelegate(r4) {
                 @Override
                 public void startChatPreview(RecyclerListView recyclerListView, DialogCell dialogCell) {
                     TopicsFragment.this.showChatPreview(dialogCell);
@@ -3180,7 +3192,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     TopicsFragment.MessagesSearchContainer.this.lambda$new$0(view, i);
                 }
             });
-            this.recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(TopicsFragment.this) {
+            this.recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(r4) {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                     super.onScrolled(recyclerView, i, i2);
@@ -3250,6 +3262,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             ArrayList<Item> items;
 
             public ViewPagerAdapter() {
+                MessagesSearchContainer.this = r5;
                 ArrayList<Item> arrayList = new ArrayList<>();
                 this.items = arrayList;
                 arrayList.add(new Item(0));
@@ -3556,6 +3569,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
         public class SearchAdapter extends RecyclerListView.SelectionAdapter {
             private SearchAdapter() {
+                MessagesSearchContainer.this = r1;
             }
 
             @Override

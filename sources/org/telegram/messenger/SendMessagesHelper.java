@@ -291,6 +291,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         public int timeUntilFinish = ConnectionsManager.DEFAULT_DATACENTER_ID;
 
         public ImportingHistory() {
+            SendMessagesHelper.this = r1;
         }
 
         public void initImport(TLRPC$InputFile tLRPC$InputFile) {
@@ -305,6 +306,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             final TLRPC$TL_messages_initHistoryImport val$req;
 
             C10771(TLRPC$TL_messages_initHistoryImport tLRPC$TL_messages_initHistoryImport) {
+                ImportingHistory.this = r1;
                 this.val$req = tLRPC$TL_messages_initHistoryImport;
             }
 
@@ -435,6 +437,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             final String val$path;
 
             C10782(String str) {
+                ImportingHistory.this = r1;
                 this.val$path = str;
             }
 
@@ -469,6 +472,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             final TLRPC$TL_messages_startHistoryImport val$req;
 
             C10793(TLRPC$TL_messages_startHistoryImport tLRPC$TL_messages_startHistoryImport) {
+                ImportingHistory.this = r1;
                 this.val$req = tLRPC$TL_messages_startHistoryImport;
             }
 
@@ -523,6 +527,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             final Runnable val$onFinish;
 
             C10801(Runnable runnable) {
+                ImportingSticker.this = r1;
                 this.val$onFinish = runnable;
             }
 
@@ -582,6 +587,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         public int timeUntilFinish = ConnectionsManager.DEFAULT_DATACENTER_ID;
 
         public ImportingStickers() {
+            SendMessagesHelper.this = r1;
         }
 
         public void initImport() {
@@ -694,6 +700,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             final TLRPC$TL_stickers_createStickerSet val$req;
 
             C10811(TLRPC$TL_stickers_createStickerSet tLRPC$TL_stickers_createStickerSet) {
+                ImportingStickers.this = r1;
                 this.val$req = tLRPC$TL_stickers_createStickerSet;
             }
 
@@ -779,6 +786,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }
 
             private GpsLocationListener() {
+                LocationProvider.this = r1;
             }
 
             @Override
@@ -894,6 +902,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         public boolean scheduled;
 
         protected DelayedMessageSendAfterRequest() {
+            SendMessagesHelper.this = r1;
         }
     }
 
@@ -929,6 +938,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         public ArrayList<VideoEditedInfo> videoEditedInfos;
 
         public DelayedMessage(long j) {
+            SendMessagesHelper.this = r1;
             this.peer = j;
         }
 
@@ -2809,8 +2819,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         sendMessage(null, null, null, null, null, null, null, null, tLRPC$TL_messageMediaPoll, null, j, null, messageObject, messageObject2, null, true, null, null, tLRPC$ReplyMarkup, hashMap, z, i, 0, null, null, false);
     }
 
-    public void sendMessage(TLRPC$TL_game tLRPC$TL_game, long j, TLRPC$ReplyMarkup tLRPC$ReplyMarkup, HashMap<String, String> hashMap, boolean z, int i) {
-        sendMessage(null, null, null, null, null, null, null, tLRPC$TL_game, null, null, j, null, null, null, null, true, null, null, tLRPC$ReplyMarkup, hashMap, z, i, 0, null, null, false);
+    public void sendMessage(TLRPC$TL_game tLRPC$TL_game, long j, MessageObject messageObject, MessageObject messageObject2, TLRPC$ReplyMarkup tLRPC$ReplyMarkup, HashMap<String, String> hashMap, boolean z, int i) {
+        sendMessage(null, null, null, null, null, null, null, tLRPC$TL_game, null, null, j, null, messageObject, messageObject2, null, true, null, null, tLRPC$ReplyMarkup, hashMap, z, i, 0, null, null, false);
     }
 
     public void sendMessage(TLRPC$TL_photo tLRPC$TL_photo, String str, long j, MessageObject messageObject, MessageObject messageObject2, String str2, ArrayList<TLRPC$MessageEntity> arrayList, TLRPC$ReplyMarkup tLRPC$ReplyMarkup, HashMap<String, String> hashMap, boolean z, int i, int i2, Object obj, boolean z2, boolean z3) {
@@ -4683,7 +4693,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             sendMessagesHelper.sendMessage(tLRPC$TL_document, null, str, j, messageObject, messageObject2, tLRPC$BotInlineMessage.message, tLRPC$BotInlineMessage.entities, tLRPC$BotInlineMessage.reply_markup, hashMap, z, i, 0, tLRPC$BotInlineResult, null, false);
         } else if (tLRPC$TL_photo == null) {
             if (tLRPC$TL_game != null) {
-                accountInstance.getSendMessagesHelper().sendMessage(tLRPC$TL_game, j, tLRPC$BotInlineResult.send_message.reply_markup, hashMap, z, i);
+                accountInstance.getSendMessagesHelper().sendMessage(tLRPC$TL_game, j, messageObject, messageObject2, tLRPC$BotInlineResult.send_message.reply_markup, hashMap, z, i);
             }
         } else {
             SendMessagesHelper sendMessagesHelper2 = accountInstance.getSendMessagesHelper();

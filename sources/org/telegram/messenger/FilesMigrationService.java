@@ -61,6 +61,7 @@ public class FilesMigrationService extends Service {
 
     public class C10191 extends Thread {
         C10191() {
+            FilesMigrationService.this = r1;
         }
 
         @Override

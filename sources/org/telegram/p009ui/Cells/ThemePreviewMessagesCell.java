@@ -227,6 +227,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
 
                 public class C14621 extends GestureDetector.SimpleOnGestureListener {
                     C14621() {
+                        C14611.this = r1;
                     }
 
                     @Override
@@ -247,6 +248,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
 
                     public class ViewTreeObserver$OnPreDrawListenerC14631 implements ViewTreeObserver.OnPreDrawListener {
                         ViewTreeObserver$OnPreDrawListenerC14631() {
+                            C14621.this = r1;
                         }
 
                         @Override
@@ -284,6 +286,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 }
 
                 {
+                    ThemePreviewMessagesCell.this = this;
                     this.val$context = context;
                     this.val$currentAccount = i2;
                     this.val$type = i;

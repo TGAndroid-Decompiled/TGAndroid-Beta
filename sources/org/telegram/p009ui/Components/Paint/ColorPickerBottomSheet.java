@@ -118,6 +118,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
         linearLayout.addView(colorPickerView, LayoutHelper.createLinear(-1, 0));
         ScrollView scrollView = new ScrollView(context) {
             {
+                ColorPickerBottomSheet.this = this;
                 setWillNotDraw(false);
             }
 
@@ -296,7 +297,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             linearLayout.setOrientation(0);
             linearLayout.setGravity(16);
             linearLayout.addView(colorPickerBottomSheet.pipetteView, LayoutHelper.createLinear(28, 28));
-            linearLayout.addView(viewPagerFixed.createTabsView(false), LayoutHelper.createLinear(-1, 40, 1.0f, 16, 12, 0, 12, 0));
+            linearLayout.addView(viewPagerFixed.createTabsView(false, 8), LayoutHelper.createLinear(-1, 40, 1.0f, 16, 12, 0, 12, 0));
             linearLayout.addView(colorPickerBottomSheet.doneView, LayoutHelper.createLinear(28, 28));
             addView(linearLayout, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 0.0f));
         }
@@ -315,6 +316,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
         public GridPickerView(Context context) {
             super(context);
             int blendARGB;
+            ColorPickerBottomSheet.this = r11;
             this.paint = new Paint(1);
             this.colors = new int[]{-16735784, -16752387, -11788361, -6804548, -4707235, -180718, -38656, -152832, -211200, -198077, -2495689, -8996289};
             this.selectorPaint = new Paint(1);
@@ -469,6 +471,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
         public GradientPickerView(Context context) {
             super(context);
+            ColorPickerBottomSheet.this = r5;
             this.gradientPaint = new Paint(1);
             this.whiteBlackPaint = new Paint(1);
             this.outlinePaint = new Paint(1);
@@ -573,6 +576,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
         public SlidersPickerView(Context context) {
             super(context);
+            ColorPickerBottomSheet.this = r18;
             setOrientation(1);
             setPadding(AndroidUtilities.m35dp(14.0f), 0, AndroidUtilities.m35dp(14.0f), 0);
             SliderCell sliderCell = new SliderCell(context);
@@ -608,7 +612,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.hexEdit.setImeOptions(6);
             this.hexEdit.setImeActionLabel(LocaleController.getString(C1072R.string.Done), 6);
             this.hexEdit.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.hexEdit.addTextChangedListener(new TextWatcher(ColorPickerBottomSheet.this) {
+            this.hexEdit.addTextChangedListener(new TextWatcher(r18) {
                 private Pattern pattern = Pattern.compile("^[0-9a-fA-F]*$");
                 private CharSequence previous;
 
@@ -680,6 +684,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
         public SliderCell(Context context) {
             super(context);
+            ColorPickerBottomSheet.this = r11;
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextColor(-1711276033);
@@ -701,7 +706,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.valueView.setImeActionLabel(LocaleController.getString(C1072R.string.Done), 6);
             this.valueView.setInputType(2);
             this.valueView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.valueView.addTextChangedListener(new TextWatcher(ColorPickerBottomSheet.this) {
+            this.valueView.addTextChangedListener(new TextWatcher(r11) {
                 private CharSequence previous;
 
                 @Override
@@ -792,6 +797,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
         public AlphaPickerView(Context context) {
             super(context);
+            ColorPickerBottomSheet.this = r1;
             this.colorPaint = new Paint(1);
             Paint paint = new Paint(1);
             this.outlinePaint = paint;
@@ -877,6 +883,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
         public ColorSliderView(Context context) {
             super(context);
+            ColorPickerBottomSheet.this = r1;
             this.colorPaint = new Paint(1);
             Paint paint = new Paint(1);
             this.outlinePaint = paint;

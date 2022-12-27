@@ -11,7 +11,7 @@ import android.view.ViewConfiguration;
 public class GestureDetectorFixDoubleTap {
     private final GestureDetectorCompatImpl mImpl;
 
-    interface GestureDetectorCompatImpl {
+    public interface GestureDetectorCompatImpl {
         boolean onTouchEvent(MotionEvent motionEvent);
 
         void setIsLongpressEnabled(boolean z);
@@ -25,7 +25,7 @@ public class GestureDetectorFixDoubleTap {
         }
     }
 
-    static class GestureDetectorCompatImplBase implements GestureDetectorCompatImpl {
+    public static class GestureDetectorCompatImplBase implements GestureDetectorCompatImpl {
         private static final int TAP_TIMEOUT = ViewConfiguration.getTapTimeout();
         private boolean mAlwaysInBiggerTapRegion;
         private boolean mAlwaysInTapRegion;
@@ -50,12 +50,14 @@ public class GestureDetectorFixDoubleTap {
         private int mTouchSlopSquare;
         private VelocityTracker mVelocityTracker;
 
-        private class GestureHandler extends Handler {
+        public class GestureHandler extends Handler {
             GestureHandler() {
+                GestureDetectorCompatImplBase.this = r1;
             }
 
             GestureHandler(Handler handler) {
                 super(handler.getLooper());
+                GestureDetectorCompatImplBase.this = r1;
             }
 
             @Override

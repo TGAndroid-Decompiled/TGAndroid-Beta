@@ -415,6 +415,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private String videoId;
 
         public YoutubeVideoTask(String str) {
+            WebPlayerView.this = r2;
             this.videoId = str;
         }
 
@@ -487,6 +488,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private String videoId;
 
         public VimeoVideoTask(String str) {
+            WebPlayerView.this = r1;
             this.videoId = str;
         }
 
@@ -542,6 +544,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private String videoId;
 
         public AparatVideoTask(String str) {
+            WebPlayerView.this = r1;
             this.videoId = str;
         }
 
@@ -598,6 +601,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private String[] results = new String[2];
 
         public TwitchClipVideoTask(String str, String str2) {
+            WebPlayerView.this = r1;
             this.currentUrl = str;
         }
 
@@ -645,6 +649,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private String videoId;
 
         public TwitchStreamVideoTask(String str, String str2) {
+            WebPlayerView.this = r1;
             this.videoId = str2;
         }
 
@@ -704,6 +709,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private String videoId;
 
         public CoubVideoTask(String str) {
+            WebPlayerView.this = r1;
             this.videoId = str;
         }
 
@@ -778,6 +784,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
 
         public ControlsView(Context context) {
             super(context);
+            WebPlayerView.this = r3;
             this.isVisible = true;
             this.hideRunnable = new Runnable() {
                 @Override
@@ -1007,6 +1014,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
 
             public class ViewTreeObserver$OnPreDrawListenerC30241 implements ViewTreeObserver.OnPreDrawListener {
                 ViewTreeObserver$OnPreDrawListenerC30241() {
+                    TextureView$SurfaceTextureListenerC30232.this = r1;
                 }
 
                 @Override

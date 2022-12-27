@@ -90,6 +90,7 @@ public class LauncherIconController {
         }
 
         private LauncherIcon(String str, int i, String str2, int i2, int i3, int i4, boolean z) {
+            super(str, i);
             this.key = str2;
             this.background = i2;
             this.foreground = i3;

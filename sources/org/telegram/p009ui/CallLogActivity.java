@@ -298,6 +298,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
 
         public CallCell(Context context) {
             super(context);
+            CallLogActivity.this = r13;
             setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
             ProfileSearchCell profileSearchCell = new ProfileSearchCell(context);
             this.profileSearchCell = profileSearchCell;
@@ -350,6 +351,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
 
         public GroupCallCell(Context context) {
             super(context);
+            CallLogActivity.this = r8;
             setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
             String string = LocaleController.getString("VoipChatJoin", C1072R.string.VoipChatJoin);
             ProgressButton progressButton = new ProgressButton(context);
@@ -583,6 +585,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
 
     public class C13552 extends RecyclerView.OnScrollListener {
         C13552() {
+            CallLogActivity.this = r1;
         }
 
         @Override
@@ -957,6 +960,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         private int sectionRow;
 
         public ListAdapter(Context context) {
+            CallLogActivity.this = r1;
             this.mContext = context;
         }
 

@@ -59,6 +59,7 @@ public class MediaCodecVideoConvertor {
     public class ConversionCanceledException extends RuntimeException {
         public ConversionCanceledException() {
             super("canceled conversion");
+            MediaCodecVideoConvertor.this = r1;
         }
     }
 }

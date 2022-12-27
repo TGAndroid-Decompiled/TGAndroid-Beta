@@ -212,6 +212,7 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
     public final class HintFadeProperty extends FloatPropertyCompat<Integer> {
         public HintFadeProperty() {
             super("hint_fade");
+            AnimatedPhoneNumberEditText.this = r1;
         }
 
         @Override

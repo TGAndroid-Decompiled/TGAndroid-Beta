@@ -44,6 +44,7 @@ public class RadialProgress2 {
     private float miniIconScale;
     private MediaActionDrawable miniMediaActionDrawable;
     private Paint miniProgressBackgroundPaint;
+    private float overlayImageAlpha;
     private ImageReceiver overlayImageView;
     private Paint overlayPaint;
     private float overrideAlpha;
@@ -68,6 +69,7 @@ public class RadialProgress2 {
         this.overrideCircleAlpha = 1.0f;
         this.drawBackground = true;
         this.overrideAlpha = 1.0f;
+        this.overlayImageAlpha = 1.0f;
         this.resourcesProvider = resourcesProvider;
         this.miniProgressBackgroundPaint = new Paint(1);
         this.parent = view;
@@ -447,7 +449,7 @@ public class RadialProgress2 {
                 }
             }
             if (this.overlayImageView.hasBitmapImage()) {
-                this.overlayImageView.setAlpha(transitionProgress * this.overrideAlpha);
+                this.overlayImageView.setAlpha(transitionProgress * this.overrideAlpha * this.overlayImageAlpha);
                 if ((this.drawMiniIcon || this.circleCrossfadeColorKey != null) && (canvas3 = this.miniDrawCanvas) != null) {
                     this.overlayImageView.draw(canvas3);
                     this.miniDrawCanvas.drawCircle(ceil, ceil2, this.circleRadius, this.overlayPaint);
@@ -543,5 +545,9 @@ public class RadialProgress2 {
 
     public void setMaxIconSize(int i) {
         this.maxIconSize = i;
+    }
+
+    public void setOverlayImageAlpha(float f) {
+        this.overlayImageAlpha = f;
     }
 }

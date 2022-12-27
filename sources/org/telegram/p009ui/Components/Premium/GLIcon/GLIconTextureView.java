@@ -131,6 +131,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         }
 
         GestureDetector$OnGestureListenerC26001() {
+            GLIconTextureView.this = r1;
         }
 
         @Override
@@ -302,6 +303,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
 
     public class RenderThread extends Thread {
         private RenderThread() {
+            GLIconTextureView.this = r1;
         }
 
         RenderThread(GLIconTextureView gLIconTextureView, GestureDetector$OnGestureListenerC26001 gestureDetector$OnGestureListenerC26001) {

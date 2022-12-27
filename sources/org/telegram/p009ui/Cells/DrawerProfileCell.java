@@ -105,7 +105,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         addView(this.avatarImageView, LayoutHelper.createFrame(64, 64.0f, 83, 16.0f, 0.0f, 0.0f, 67.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context) {
             @Override
-            protected void onDraw(Canvas canvas) {
+            public void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
                 if (DrawerProfileCell.this.updateRightDrawable) {
                     DrawerProfileCell.this.updateRightDrawable = false;

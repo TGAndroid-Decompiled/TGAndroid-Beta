@@ -887,6 +887,7 @@ public class PipVideoOverlay {
 
     public class ScaleGestureDetector$OnScaleGestureListenerC25763 implements ScaleGestureDetector.OnScaleGestureListener {
         ScaleGestureDetector$OnScaleGestureListenerC25763() {
+            PipVideoOverlay.this = r1;
         }
 
         @Override
@@ -996,6 +997,7 @@ public class PipVideoOverlay {
         final int val$touchSlop;
 
         C25784(int i) {
+            PipVideoOverlay.this = r1;
             this.val$touchSlop = i;
         }
 
@@ -1218,6 +1220,7 @@ public class PipVideoOverlay {
 
         public VideoProgressView(Context context) {
             super(context);
+            PipVideoOverlay.this = r3;
             this.progressPaint = new Paint();
             this.bufferPaint = new Paint();
             this.progressPaint.setColor(-1);

@@ -952,6 +952,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
 
         C18259(Context context, Context context2) {
             super(context);
+            AudioPlayerAlert.this = r1;
             this.val$context = context2;
         }
 
@@ -1058,7 +1059,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         updateRepeatButton();
     }
 
-    class C180613 extends RLottieImageView {
+    public class C180613 extends RLottieImageView {
         private final Runnable backSeek;
         long lastTime;
         long lastUpdateTime;
@@ -1071,6 +1072,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
 
         C180613(Context context, float f) {
             super(context);
+            AudioPlayerAlert.this = r1;
             this.val$touchSlop = f;
             this.pressedCount = 0;
             this.pressedRunnable = new Runnable() {
@@ -1165,7 +1167,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
     }
 
-    class C180914 extends RLottieImageView {
+    public class C180914 extends RLottieImageView {
         boolean pressed;
         private final Runnable pressedRunnable;
         float startX;
@@ -1174,6 +1176,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
 
         C180914(Context context, float f) {
             super(context);
+            AudioPlayerAlert.this = r1;
             this.val$touchSlop = f;
             this.pressedRunnable = new Runnable() {
                 @Override
@@ -1392,7 +1395,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 } else {
                     j = j2;
                 }
-                SendMessagesHelper.getInstance(this.currentAccount).sendMessage((ArrayList<MessageObject>) arrayList, j, false, false, true, 0);
+                SendMessagesHelper.getInstance(this.currentAccount).sendMessage(arrayList, j, false, false, true, 0);
             }
             dialogsActivity.finishFragment();
             return;
@@ -1943,6 +1946,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
 
         public ListAdapter(Context context) {
+            AudioPlayerAlert.this = r1;
             this.context = context;
         }
 

@@ -566,6 +566,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         int radius;
 
         private BlurBackgroundTask() {
+            SizeNotifierFrameLayout.this = r1;
         }
 
         @Override

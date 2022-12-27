@@ -314,6 +314,7 @@ public class LimitPreviewView extends LinearLayout {
 
         public CounterView(Context context) {
             super(context);
+            LimitPreviewView.this = r1;
             this.path = new Path();
             this.pathEffect = new CornerPathEffect(AndroidUtilities.m35dp(6.0f));
             this.textPaint = new TextPaint(1);

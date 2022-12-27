@@ -45,7 +45,6 @@ public class PaintTypefaceListView extends RecyclerListView {
                 return PaintTypeface.get().size();
             }
         });
-        setOverScrollMode(2);
         setPadding(0, AndroidUtilities.m35dp(8.0f), 0, AndroidUtilities.m35dp(8.0f));
     }
 

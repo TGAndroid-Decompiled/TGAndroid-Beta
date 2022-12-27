@@ -64,8 +64,9 @@ public class WallpaperCell extends FrameLayout {
 
         public WallpaperView(Context context) {
             super(context);
+            WallpaperCell.this = r8;
             setWillNotDraw(false);
-            BackupImageView backupImageView = new BackupImageView(context, WallpaperCell.this) {
+            BackupImageView backupImageView = new BackupImageView(context, r8) {
                 @Override
                 public void onDraw(Canvas canvas) {
                     super.onDraw(canvas);

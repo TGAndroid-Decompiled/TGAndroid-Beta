@@ -633,6 +633,7 @@ public class DataUsageActivity extends BaseFragment {
         private int messagesReceivedRow = -1;
 
         public ListAdapter(Context context, int i) {
+            DataUsageActivity.this = r1;
             this.mContext = context;
             this.currentType = i;
             this.rowCount = 0;

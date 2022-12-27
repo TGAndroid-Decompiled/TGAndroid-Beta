@@ -612,6 +612,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
 
         C23427(Context context) {
             super(context);
+            FragmentContextView.this = r1;
             this.toggleMicRunnable = new Runnable() {
                 @Override
                 public final void run() {

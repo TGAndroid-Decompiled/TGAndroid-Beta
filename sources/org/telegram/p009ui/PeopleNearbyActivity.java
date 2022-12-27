@@ -211,6 +211,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         int oldUsersStartRow;
 
         private DiffCallback() {
+            PeopleNearbyActivity.this = r1;
             this.oldPositionToItem = new SparseIntArray();
             this.newPositionToItem = new SparseIntArray();
             this.oldUsers = new ArrayList<>();
@@ -919,6 +920,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         private Context mContext;
 
         public ListAdapter(Context context) {
+            PeopleNearbyActivity.this = r1;
             this.mContext = context;
         }
 

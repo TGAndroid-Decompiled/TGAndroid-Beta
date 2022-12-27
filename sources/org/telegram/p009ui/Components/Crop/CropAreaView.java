@@ -79,7 +79,7 @@ public class CropAreaView extends ViewGroup {
     public float f1049tx;
     public float f1050ty;
 
-    interface AreaViewListener {
+    public interface AreaViewListener {
         void onAreaChange();
 
         void onAreaChangeBegan();
@@ -87,7 +87,7 @@ public class CropAreaView extends ViewGroup {
         void onAreaChangeEnded();
     }
 
-    private enum Control {
+    public enum Control {
         NONE,
         TOP_LEFT,
         TOP_RIGHT,
@@ -984,7 +984,7 @@ public class CropAreaView extends ViewGroup {
         }
     }
 
-    static class C21663 {
+    public static class C21663 {
         static final int[] $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control;
 
         static {

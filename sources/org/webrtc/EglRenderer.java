@@ -89,6 +89,7 @@ public class EglRenderer implements VideoSink {
         private Object surface;
 
         public EglSurfaceCreation(boolean z) {
+            EglRenderer.this = r1;
             this.background = z;
         }
 

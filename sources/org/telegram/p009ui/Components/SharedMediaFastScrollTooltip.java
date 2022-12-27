@@ -36,7 +36,7 @@ public class SharedMediaFastScrollTooltip extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m35dp(300.0f), View.MeasureSpec.getSize(i) - AndroidUtilities.m35dp(32.0f)), Integer.MIN_VALUE), i2);
     }
 
-    private class TooltipDrawableView extends View {
+    public class TooltipDrawableView extends View {
         Paint fadePaint;
         Paint fadePaintBack;
         float fromProgress;

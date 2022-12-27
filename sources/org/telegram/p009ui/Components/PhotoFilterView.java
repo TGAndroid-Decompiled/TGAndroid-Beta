@@ -235,6 +235,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
 
         TextureView$SurfaceTextureListenerC25521() {
+            PhotoFilterView.this = r1;
         }
 
         @Override
@@ -792,6 +793,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
 
         public ToolsAdapter(Context context) {
+            PhotoFilterView.this = r1;
             this.mContext = context;
         }
 

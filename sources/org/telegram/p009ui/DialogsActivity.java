@@ -184,6 +184,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private boolean afterSignup;
     private boolean allowBots;
     private boolean allowChannels;
+    private boolean allowGlobalSearch;
     private boolean allowGroups;
     private boolean allowMoving;
     private boolean allowSwipeDuringCurrentTouch;
@@ -412,6 +413,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         public ViewPage(Context context) {
             super(context);
+            DialogsActivity.this = r1;
             this.updateListRunnable = new Runnable() {
                 @Override
                 public final void run() {
@@ -468,6 +470,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         public ContentView(Context context) {
             super(context);
+            DialogsActivity.this = r1;
             this.actionBarSearchPaint = new Paint(1);
             this.windowBackgroundPaint = new Paint();
             this.pos = new int[2];
@@ -1176,6 +1179,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         public DialogsRecyclerView(Context context, ViewPage viewPage) {
             super(context);
+            DialogsActivity.this = r1;
             this.firstLayout = true;
             this.paint = new Paint();
             this.rectF = new RectF();
@@ -1573,6 +1577,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         public SwipeController(ViewPage viewPage) {
+            DialogsActivity.this = r1;
             this.parentPage = viewPage;
         }
 
@@ -1843,6 +1848,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         super(bundle);
         this.initialSearchType = -1;
         this.isFirstTab = true;
+        this.allowGlobalSearch = true;
         this.contactsAlpha = 1.0f;
         this.undoView = new UndoView[2];
         this.scrimViewLocation = new int[2];
@@ -1903,6 +1909,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.allowUsers = this.arguments.getBoolean("allowUsers", true);
             this.allowBots = this.arguments.getBoolean("allowBots", true);
             this.closeFragment = this.arguments.getBoolean("closeFragment", true);
+            this.allowGlobalSearch = this.arguments.getBoolean("allowGlobalSearch", true);
         }
         if (this.initialDialogsType == 0) {
             this.askAboutContacts = MessagesController.getGlobalNotificationsSettings().getBoolean("askAboutContacts", true);
@@ -2139,6 +2146,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         final ActionBarMenu val$menu;
 
         C32034(Context context, ActionBarMenu actionBarMenu) {
+            DialogsActivity.this = r1;
             this.val$context = context;
             this.val$menu = actionBarMenu;
         }
@@ -2291,6 +2299,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public class C32136 extends FilterTabsView {
         C32136(Context context) {
             super(context);
+            DialogsActivity.this = r1;
         }
 
         @Override
@@ -2312,7 +2321,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             if (DialogsActivity.this.scrimView != null) {
                 DialogsActivity.this.scrimView.getLocationInWindow(DialogsActivity.this.scrimViewLocation);
@@ -2352,6 +2361,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         C32147(Context context) {
+            DialogsActivity.this = r1;
             this.val$context = context;
         }
 
@@ -2679,6 +2689,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         C317010(Context context, ViewPage viewPage) {
             super(context);
+            DialogsActivity.this = r1;
             this.val$viewPage = viewPage;
         }
 
@@ -2784,6 +2795,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     public class C317818 implements DialogsSearchAdapter.DialogsSearchAdapterDelegate {
         C317818() {
+            DialogsActivity.this = r1;
         }
 
         @Override
@@ -3002,6 +3014,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public class C318928 extends UndoView {
         C318928(Context context) {
             super(context);
+            DialogsActivity.this = r1;
         }
 
         @Override
@@ -3132,6 +3145,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         C319431(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr) {
             super(baseFragment, context, z, num, i, resourcesProvider);
+            DialogsActivity.this = r8;
             this.val$popup = selectAnimatedEmojiDialogWindowArr;
         }
 
@@ -3420,6 +3434,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     public class C319936 extends C1133ActionBar.ActionBarMenuOnItemClick {
         C319936() {
+            DialogsActivity.this = r1;
         }
 
         @Override
@@ -4207,7 +4222,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             ContentView contentView = (ContentView) this.fragmentView;
             ViewPagerFixed.TabsView tabsView = this.searchTabsView;
             if (tabsView == null && !onlyDialogsAdapter) {
-                this.searchTabsView = this.searchViewPager.createTabsView(false);
+                this.searchTabsView = this.searchViewPager.createTabsView(false, 8);
                 if (this.filtersView != null) {
                     i = 0;
                     while (i < contentView.getChildCount()) {
@@ -7772,6 +7787,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             return true;
         }
         return super.closeLastFragment();
+    }
+
+    public boolean getAllowGlobalSearch() {
+        return this.allowGlobalSearch;
     }
 
     @Override

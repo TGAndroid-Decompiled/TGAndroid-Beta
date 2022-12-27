@@ -96,7 +96,6 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         if (this.items.get(i).viewType == 1) {
             Bundle bundle = new Bundle();
             bundle.putBoolean("onlySelect", true);
-            bundle.putBoolean("onlySelect", true);
             bundle.putBoolean("checkCanWrite", false);
             int i2 = this.currentType;
             if (i2 == 1) {
@@ -106,6 +105,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
             } else {
                 bundle.putInt("dialogsType", 4);
             }
+            bundle.putBoolean("allowGlobalSearch", false);
             final DialogsActivity dialogsActivity = new DialogsActivity(bundle);
             dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                 @Override
@@ -293,6 +293,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
 
     public class Adapter extends AdapterWithDiffUtils {
         private Adapter() {
+            CacheChatsExceptionsFragment.this = r1;
         }
 
         @Override
@@ -330,11 +331,17 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
                 String str = null;
                 if (userOrChat instanceof TLRPC$User) {
                     TLRPC$User tLRPC$User = (TLRPC$User) userOrChat;
-                    str = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
+                    if (tLRPC$User.self) {
+                        str = LocaleController.getString("SavedMessages", C1072R.string.SavedMessages);
+                    } else {
+                        str = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
+                    }
                 } else if (userOrChat instanceof TLRPC$Chat) {
                     str = ((TLRPC$Chat) userOrChat).title;
                 }
-                userCell.setData(userOrChat, str, CacheByChatsController.getKeepMediaString(keepMediaException.keepMedia), 0, i == CacheChatsExceptionsFragment.this.items.size() - 1 || CacheChatsExceptionsFragment.this.items.get(i + 1).viewType == 2);
+                String str2 = str;
+                userCell.setSelfAsSavedMessages(true);
+                userCell.setData(userOrChat, str2, CacheByChatsController.getKeepMediaString(keepMediaException.keepMedia), 0, i == CacheChatsExceptionsFragment.this.items.size() - 1 || CacheChatsExceptionsFragment.this.items.get(i + 1).viewType == 2);
             }
         }
 

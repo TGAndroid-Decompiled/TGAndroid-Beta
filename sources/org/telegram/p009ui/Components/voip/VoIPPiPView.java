@@ -479,9 +479,10 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
 
         public FloatingView(Context context) {
             super(context);
+            VoIPPiPView.this = r2;
             this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
             if (Build.VERSION.SDK_INT >= 21) {
-                setOutlineProvider(new ViewOutlineProvider(this, VoIPPiPView.this) {
+                setOutlineProvider(new ViewOutlineProvider(this, r2) {
                     @Override
                     @TargetApi(21)
                     public void getOutline(View view, Outline outline) {
@@ -676,6 +677,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
             final boolean val$expanded;
 
             C30913(boolean z) {
+                FloatingView.this = r1;
                 this.val$expanded = z;
             }
 

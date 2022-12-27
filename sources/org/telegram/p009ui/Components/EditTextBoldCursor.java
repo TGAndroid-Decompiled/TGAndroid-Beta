@@ -134,6 +134,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         private final ActionMode.Callback mWrapped;
 
         public ActionModeCallback2Wrapper(ActionMode.Callback callback) {
+            EditTextBoldCursor.this = r1;
             this.mWrapped = callback;
         }
 
@@ -752,7 +753,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         try {
             super.onAttachedToWindow();
         } catch (Exception e) {

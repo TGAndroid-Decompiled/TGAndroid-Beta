@@ -509,6 +509,7 @@ public class RecyclerListView extends RecyclerView {
 
         public FastScroll(Context context, int i) {
             super(context);
+            RecyclerListView.this = r8;
             this.rect = new RectF();
             this.paint = new Paint(1);
             this.paint2 = new Paint(1);
@@ -728,7 +729,8 @@ public class RecyclerListView extends RecyclerView {
         }
 
         public RecyclerListViewItemClickListener(Context context) {
-            RecyclerListView.this.gestureDetector = new GestureDetectorFixDoubleTap(context, new GestureDetectorFixDoubleTap.OnGestureListener(RecyclerListView.this) {
+            RecyclerListView.this = r3;
+            r3.gestureDetector = new GestureDetectorFixDoubleTap(context, new GestureDetectorFixDoubleTap.OnGestureListener(r3) {
                 private View doubleTapView;
 
                 @Override
@@ -848,7 +850,7 @@ public class RecyclerListView extends RecyclerView {
                     return RecyclerListView.this.onItemLongClickListenerExtended != null;
                 }
             });
-            RecyclerListView.this.gestureDetector.setIsLongpressEnabled(false);
+            r3.gestureDetector.setIsLongpressEnabled(false);
         }
 
         @Override

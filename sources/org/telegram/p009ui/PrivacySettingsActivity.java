@@ -957,6 +957,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         private Context mContext;
 
         public ListAdapter(Context context) {
+            PrivacySettingsActivity.this = r1;
             this.mContext = context;
         }
 

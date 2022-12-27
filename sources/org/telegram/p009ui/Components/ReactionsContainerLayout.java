@@ -373,6 +373,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
 
         C26905(Context context) {
+            ReactionsContainerLayout.this = r1;
             this.val$context = context;
         }
 
@@ -468,7 +469,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             setItems(this.oldItems, this.items);
         }
 
-        class InnerItem extends AdapterWithDiffUtils.Item {
+        public class InnerItem extends AdapterWithDiffUtils.Item {
             ReactionsLayoutInBubble.VisibleReaction reaction;
 
             public InnerItem(C26905 c26905, int i, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
@@ -1130,6 +1131,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         private boolean rightVisible;
 
         private LeftRightShadowsListener() {
+            ReactionsContainerLayout.this = r1;
         }
 
         @Override
@@ -1253,6 +1255,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
 
         ReactionHolderView(Context context, boolean z) {
             super(context);
+            ReactionsContainerLayout.this = r2;
             this.sideScale = 1.0f;
             this.drawSelected = true;
             this.playRunnable = new Runnable() {
@@ -1276,11 +1279,11 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 }
             };
             this.touchable = true;
-            this.enterImageView = new C26982(context, ReactionsContainerLayout.this);
+            this.enterImageView = new C26982(context, r2);
             this.loopImageView = new BackupImageView(context);
             this.enterImageView.getImageReceiver().setAutoRepeat(0);
             this.enterImageView.getImageReceiver().setAllowStartLottieAnimation(false);
-            this.pressedBackupImageView = new BackupImageView(context, ReactionsContainerLayout.this) {
+            this.pressedBackupImageView = new BackupImageView(context, r2) {
                 @Override
                 public void invalidate() {
                     super.invalidate();
@@ -1298,6 +1301,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         public class C26982 extends BackupImageView {
             C26982(Context context, ReactionsContainerLayout reactionsContainerLayout) {
                 super(context);
+                ReactionHolderView.this = r1;
             }
 
             @Override
@@ -1615,11 +1619,12 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
     }
 
-    private class InternalImageView extends ImageView {
+    public class InternalImageView extends ImageView {
         ValueAnimator valueAnimator;
 
         public InternalImageView(Context context) {
             super(context);
+            ReactionsContainerLayout.this = r1;
         }
 
         public void play(int i) {
@@ -1661,6 +1666,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
 
         public CustomReactionsContainer(Context context) {
             super(context);
+            ReactionsContainerLayout.this = r1;
             this.backgroundPaint = new Paint(1);
         }
 

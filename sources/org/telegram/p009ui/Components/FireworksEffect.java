@@ -29,6 +29,7 @@ public class FireworksEffect {
         float f1066y;
 
         private Particle() {
+            FireworksEffect.this = r1;
         }
 
         public void draw(Canvas canvas) {

@@ -97,22 +97,22 @@ public final class FingerprintManagerCompatApi23 {
         return new FingerprintManager.AuthenticationCallback() {
             @Override
             public void onAuthenticationError(int i, CharSequence charSequence) {
-                AuthenticationCallback.this.onAuthenticationError(i, charSequence);
+                authenticationCallback.onAuthenticationError(i, charSequence);
             }
 
             @Override
             public void onAuthenticationHelp(int i, CharSequence charSequence) {
-                AuthenticationCallback.this.onAuthenticationHelp(i, charSequence);
+                authenticationCallback.onAuthenticationHelp(i, charSequence);
             }
 
             @Override
             public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult authenticationResult) {
-                AuthenticationCallback.this.onAuthenticationSucceeded(new AuthenticationResultInternal(FingerprintManagerCompatApi23.unwrapCryptoObject(authenticationResult.getCryptoObject())));
+                authenticationCallback.onAuthenticationSucceeded(new AuthenticationResultInternal(FingerprintManagerCompatApi23.unwrapCryptoObject(authenticationResult.getCryptoObject())));
             }
 
             @Override
             public void onAuthenticationFailed() {
-                AuthenticationCallback.this.onAuthenticationFailed();
+                authenticationCallback.onAuthenticationFailed();
             }
         };
     }

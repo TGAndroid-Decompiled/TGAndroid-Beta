@@ -101,6 +101,7 @@ public class RenderView extends TextureView {
         }
 
         TextureView$SurfaceTextureListenerC24701() {
+            RenderView.this = r1;
         }
 
         @Override
@@ -369,6 +370,7 @@ public class RenderView extends TextureView {
 
         public CanvasInternal(SurfaceTexture surfaceTexture) {
             super("CanvasInternal");
+            RenderView.this = r1;
             this.drawRunnable = new RunnableC24721();
             this.surfaceTexture = surfaceTexture;
         }
@@ -485,6 +487,7 @@ public class RenderView extends TextureView {
 
         public class RunnableC24721 implements Runnable {
             RunnableC24721() {
+                CanvasInternal.this = r1;
             }
 
             @Override

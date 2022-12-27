@@ -127,6 +127,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
             } else {
                 bundle.putInt("dialogsType", 4);
             }
+            bundle.putBoolean("allowGlobalSearch", false);
             final DialogsActivity dialogsActivity = new DialogsActivity(bundle);
             dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                 @Override
@@ -216,6 +217,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
 
         public ExceptionsView(Context context) {
             super(context);
+            KeepMediaPopupView.this = r9;
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.titleView = simpleTextView;
             simpleTextView.setTextSize(16);
@@ -262,7 +264,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         }
     }
 
-    private static class CheckItem {
+    public static class CheckItem {
         final ActionBarMenuSubItem item;
         final int type;
 

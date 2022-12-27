@@ -224,6 +224,7 @@ public class ColorPicker extends FrameLayout {
             private RectF rect = new RectF();
 
             {
+                ColorPicker.this = this;
                 Paint paint2 = new Paint(1);
                 this.paint = paint2;
                 paint2.setColor(Theme.getColor("dialogBackgroundGray"));

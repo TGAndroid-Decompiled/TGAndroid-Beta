@@ -372,6 +372,7 @@ public class EglBase10Impl implements EglBase10 {
         }
 
         FakeSurfaceHolder(Surface surface) {
+            EglBase10Impl.this = r1;
             this.surface = surface;
         }
 

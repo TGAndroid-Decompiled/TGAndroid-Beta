@@ -228,6 +228,7 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         }
 
         private ProgressObserver(String str) {
+            DownloadProgressIcon.this = r1;
             this.fileName = str;
         }
 

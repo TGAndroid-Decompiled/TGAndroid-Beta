@@ -114,6 +114,7 @@ public class PollCreateActivity extends BaseFragment {
         }
 
         public TouchHelperCallback() {
+            PollCreateActivity.this = r1;
         }
 
         @Override
@@ -241,6 +242,7 @@ public class PollCreateActivity extends BaseFragment {
 
     public class C38661 extends C1133ActionBar.ActionBarMenuOnItemClick {
         C38661() {
+            PollCreateActivity.this = r1;
         }
 
         @Override
@@ -599,6 +601,7 @@ public class PollCreateActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
+            PollCreateActivity.this = r1;
             this.mContext = context;
         }
 

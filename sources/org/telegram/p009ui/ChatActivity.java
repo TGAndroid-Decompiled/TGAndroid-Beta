@@ -1968,6 +1968,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final Context val$context;
 
         C154812(Context context) {
+            ChatActivity.this = r1;
             this.val$context = context;
         }
 
@@ -2224,6 +2225,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             final boolean val$canDeleteHistory;
 
             C15491(boolean z) {
+                C154812.this = r1;
                 this.val$canDeleteHistory = z;
             }
 
@@ -2304,6 +2306,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final View val$backButton;
 
         C155013(View view) {
+            ChatActivity.this = r1;
             this.val$backButton = view;
         }
 
@@ -2425,6 +2428,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public class C155114 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
         C155114() {
+            ChatActivity.this = r1;
         }
 
         @Override
@@ -2620,6 +2624,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         C155316(Context context, INavigationLayout iNavigationLayout, Context context2) {
             super(context, iNavigationLayout);
+            ChatActivity.this = r1;
             this.val$context = context2;
             this.inputFieldHeight = 0;
             this.drawTimeAfter = new ArrayList<>();
@@ -2731,7 +2736,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void drawList(Canvas canvas, boolean z) {
+        public void drawList(Canvas canvas, boolean z) {
             float m35dp = (ChatActivity.this.chatListViewPaddingTop - ChatActivity.this.chatListViewPaddingVisibleOffset) - AndroidUtilities.m35dp(4.0f);
             for (int i = 0; i < ChatActivity.this.chatListView.getChildCount(); i++) {
                 View childAt = ChatActivity.this.chatListView.getChildAt(i);
@@ -2780,7 +2785,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void onAttachedToWindow() {
+        public void onAttachedToWindow() {
             super.onAttachedToWindow();
             this.adjustPanLayoutHelper.onAttach();
             ChatActivity.this.chatActivityEnterView.setAdjustPanLayoutHelper(this.adjustPanLayoutHelper);
@@ -2795,7 +2800,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void onDetachedFromWindow() {
+        public void onDetachedFromWindow() {
             super.onDetachedFromWindow();
             this.adjustPanLayoutHelper.onDetach();
             if (ChatActivity.this.pullingDownDrawable != null) {
@@ -2858,7 +2863,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void dispatchDraw(Canvas canvas) {
+        public void dispatchDraw(Canvas canvas) {
             int i;
             int i2;
             int top;
@@ -3321,7 +3326,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void onLayout(boolean r16, int r17, int r18, int r19, int r20) {
+        public void onLayout(boolean r16, int r17, int r18, int r19, int r20) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ChatActivity.C155316.onLayout(boolean, int, int, int, int):void");
         }
 
@@ -3358,7 +3363,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected Drawable getNewDrawable() {
+        public Drawable getNewDrawable() {
             Drawable wallpaperDrawable = ChatActivity.this.themeDelegate.getWallpaperDrawable();
             return wallpaperDrawable != null ? wallpaperDrawable : super.getNewDrawable();
         }
@@ -3404,6 +3409,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         C155517(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
+            ChatActivity.this = r3;
             this.drawTimeAfter = new ArrayList<>();
             this.drawNamesAfter = new ArrayList<>();
             this.drawCaptionAfter = new ArrayList<>();
@@ -4236,6 +4242,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         C155618(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider) {
             super(chatActivity, recyclerListView, resourcesProvider);
+            ChatActivity.this = r1;
         }
 
         @Override
@@ -4263,7 +4270,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void onAllAnimationsDone() {
+        public void onAllAnimationsDone() {
             super.onAllAnimationsDone();
             Runnable runnable = this.finishRunnable;
             if (runnable != null) {
@@ -4330,6 +4337,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         C155719(Context context, int i, int i2, boolean z) {
             super(context, i, i2, z);
+            ChatActivity.this = r1;
         }
 
         @Override
@@ -4576,6 +4584,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         C156324(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
             super(context, sizeNotifierFrameLayout);
+            ChatActivity.this = r1;
             setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view) {
@@ -4840,6 +4849,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public class View$OnClickListenerC156728 implements View.OnClickListener {
         View$OnClickListenerC156728() {
+            ChatActivity.this = r1;
         }
 
         private void loadLastUnreadMention() {
@@ -5254,6 +5264,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         C157939(Activity activity, SizeNotifierFrameLayout sizeNotifierFrameLayout, ChatActivity chatActivity, boolean z, Theme.ResourcesProvider resourcesProvider) {
             super(activity, sizeNotifierFrameLayout, chatActivity, z, resourcesProvider);
+            ChatActivity.this = r7;
         }
 
         @Override
@@ -5427,6 +5438,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final ActionBarMenu val$menu;
 
         C158240(ActionBarMenu actionBarMenu) {
+            ChatActivity.this = r1;
             this.val$menu = actionBarMenu;
         }
 
@@ -6546,6 +6558,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         C160357(Context context, ForwardingMessagesParams forwardingMessagesParams, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, int i, ForwardingPreviewView.ResourcesDelegate resourcesDelegate, boolean z) {
             super(context, forwardingMessagesParams, tLRPC$User, tLRPC$Chat, i, resourcesDelegate);
+            ChatActivity.this = r8;
             this.val$keyboardVisible = z;
         }
 
@@ -6576,7 +6589,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void selectAnotherChat() {
+        public void selectAnotherChat() {
             super.selectAnotherChat();
             dismiss(false);
             if (ChatActivity.this.forwardingMessages != null) {
@@ -6608,7 +6621,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void didSendPressed() {
+        public void didSendPressed() {
             super.didSendPressed();
             dismiss(true);
             ChatActivity.this.chatActivityEnterView.getSendButton().callOnClick();
@@ -6959,6 +6972,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         C160559() {
+            ChatActivity.this = r1;
         }
 
         @Override
@@ -8666,6 +8680,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final SizeNotifierFrameLayout val$frameLayout;
 
         C162274(SizeNotifierFrameLayout sizeNotifierFrameLayout) {
+            ChatActivity.this = r1;
             this.val$frameLayout = sizeNotifierFrameLayout;
         }
 
@@ -8750,6 +8765,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public class C162475 extends AnimatorListenerAdapter {
         C162475() {
+            ChatActivity.this = r1;
         }
 
         @Override
@@ -12003,6 +12019,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     public class DialogC164089 extends GigagroupConvertAlert {
         DialogC164089(Context context, BaseFragment baseFragment) {
             super(context, baseFragment);
+            ChatActivity.this = r1;
         }
 
         @Override
@@ -12896,6 +12913,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public class RunnableC164795 implements Runnable {
         RunnableC164795() {
+            ChatActivity.this = r1;
         }
 
         @Override
@@ -13175,6 +13193,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         public TrackingWidthSimpleTextView(Context context) {
             super(context);
+            ChatActivity.this = r1;
             this.trackWidth = true;
         }
 
@@ -13187,7 +13206,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected boolean createLayout(int i) {
+        public boolean createLayout(int i) {
             boolean createLayout = super.createLayout(i);
             if (this.trackWidth && getVisibility() == 0) {
                 ChatActivity.this.pinnedCounterTextViewX = getTextWidth() + AndroidUtilities.m35dp(4.0f);
@@ -14119,6 +14138,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         AnonymousClass109(int i, SparseArray sparseArray, boolean z, List list, MessageObject messageObject, ReactedHeaderView reactedHeaderView, SparseIntArray sparseIntArray, int i2, ViewPager viewPager, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int[] iArr, int i3) {
+            ChatActivity.this = r1;
             this.val$size = i;
             this.val$cachedViews = sparseArray;
             this.val$showAllReactionsTab = z;
@@ -14579,6 +14599,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final float val$y;
 
         AnonymousClass121(boolean z, int i, boolean z2, ReactionsContainerLayout reactionsContainerLayout, float f, float f2, ReactionsLayoutInBubble.VisibleReaction visibleReaction, MessageObject messageObject) {
+            ChatActivity.this = r1;
             this.val$fromDoubleTap = z;
             this.val$finalMessageIdForCell = i;
             this.val$added = z2;
@@ -15263,6 +15284,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     return;
                 }
             }
+            bundle.putBoolean("historyPreloaded", false);
             addToPulledDialogsMyself();
             ChatActivity chatActivity = new ChatActivity(bundle);
             if (topicKey.topicId != 0) {
@@ -15763,6 +15785,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final Runnable val$openCommentsChat;
 
         AnonymousClass123(int i, Runnable runnable, ChatActivity chatActivity) {
+            ChatActivity.this = r1;
             this.val$commentsClassGuid = i;
             this.val$openCommentsChat = runnable;
             this.val$chatActivity = chatActivity;
@@ -16293,6 +16316,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final CharacterStyle val$span;
 
         AnonymousClass124(ChatMessageCell chatMessageCell, CharacterStyle characterStyle) {
+            ChatActivity.this = r1;
             this.val$cell = chatMessageCell;
             this.val$span = characterStyle;
         }
@@ -16744,8 +16768,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         public ChatActivityAdapter(Context context) {
+            ChatActivity.this = r2;
             this.mContext = context;
-            TLRPC$User tLRPC$User = ChatActivity.this.currentUser;
+            TLRPC$User tLRPC$User = r2.currentUser;
             this.isBot = tLRPC$User != null && tLRPC$User.bot;
             setHasStableIds(true);
         }
@@ -16962,6 +16987,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         final MessageObject val$message;
 
                         C16601(MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
+                            C16593.this = r1;
                             this.val$message = messageObject;
                             this.val$entry = photoEntry;
                         }
@@ -17114,6 +17140,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             C16531() {
+                ChatActivityAdapter.this = r1;
             }
 
             @Override
@@ -18139,10 +18166,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ChatActivity.ChatActivityAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
-        class ViewTreeObserver$OnPreDrawListenerC16614 implements ViewTreeObserver.OnPreDrawListener {
+        public class ViewTreeObserver$OnPreDrawListenerC16614 implements ViewTreeObserver.OnPreDrawListener {
             final ChatMessageCell val$messageCell;
 
             ViewTreeObserver$OnPreDrawListenerC16614(ChatMessageCell chatMessageCell) {
+                ChatActivityAdapter.this = r1;
                 this.val$messageCell = chatMessageCell;
             }
 
@@ -18641,6 +18669,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         private int offset = 0;
 
         public ChatScrollCallback() {
+            ChatActivity.this = r2;
         }
 
         static MessageObject access$38402(ChatScrollCallback chatScrollCallback, MessageObject messageObject) {
@@ -19557,6 +19586,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final ChatActivity val$previousChat;
 
         AnonymousClass125(ChatActivity chatActivity, Runnable runnable) {
+            ChatActivity.this = r1;
             this.val$previousChat = chatActivity;
             this.val$callback = runnable;
         }
@@ -19611,6 +19641,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final boolean val$isOpen;
 
         AnonymousClass127(boolean z, Runnable runnable) {
+            ChatActivity.this = r1;
             this.val$isOpen = z;
             this.val$callback = runnable;
         }
@@ -19800,9 +19831,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         ThemeDelegate() {
+            ChatActivity.this = r6;
             boolean z = false;
             if (isThemeChangeAvailable()) {
-                EmojiThemes dialogTheme = ChatThemeController.getInstance(((BaseFragment) ChatActivity.this).currentAccount).getDialogTheme(ChatActivity.this.dialog_id);
+                EmojiThemes dialogTheme = ChatThemeController.getInstance(((BaseFragment) r6).currentAccount).getDialogTheme(r6.dialog_id);
                 this.chatTheme = dialogTheme;
                 if (dialogTheme != null) {
                     setupChatTheme(dialogTheme, false, true);

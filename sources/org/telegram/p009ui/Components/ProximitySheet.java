@@ -538,6 +538,7 @@ public class ProximitySheet extends FrameLayout {
 
     public class C26586 extends AnimatorListenerAdapter {
         C26586() {
+            ProximitySheet.this = r1;
         }
 
         @Override

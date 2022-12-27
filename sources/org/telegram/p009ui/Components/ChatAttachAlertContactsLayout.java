@@ -599,6 +599,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public ShareAdapter(Context context) {
+            ChatAttachAlertContactsLayout.this = r1;
             this.mContext = context;
         }
 
@@ -739,6 +740,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         private Runnable searchRunnable;
 
         public ShareSearchAdapter(Context context) {
+            ChatAttachAlertContactsLayout.this = r1;
             this.mContext = context;
         }
 

@@ -418,6 +418,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
 
     public class C32466 extends RecyclerView.OnScrollListener {
         C32466() {
+            FilteredSearchView.this = r1;
         }
 
         @Override
@@ -917,6 +918,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
 
         public SharedPhotoVideoAdapter(Context context) {
+            FilteredSearchView.this = r1;
             this.mContext = context;
         }
 
@@ -1123,6 +1125,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
 
         public class C32571 implements SharedLinkCell.SharedLinkCellDelegate {
             C32571() {
+                SharedLinksAdapter.this = r1;
             }
 
             @Override
@@ -1167,6 +1170,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
 
         public SharedLinksAdapter(Context context) {
+            FilteredSearchView.this = r1;
             this.mContext = context;
         }
 
@@ -1303,6 +1307,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
 
         public SharedDocumentsAdapter(Context context, int i) {
+            FilteredSearchView.this = r1;
             this.mContext = context;
             this.currentType = i;
         }
@@ -1563,6 +1568,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
 
         OnlyUserFiltersAdapter() {
+            FilteredSearchView.this = r1;
         }
 
         @Override

@@ -1816,6 +1816,7 @@ public class DialogCell extends BaseCell {
         boolean waitngNewMessageFroTypingAnimation;
 
         private DialogUpdateHelper() {
+            DialogCell.this = r1;
             this.waitngNewMessageFroTypingAnimation = false;
         }
 

@@ -117,6 +117,7 @@ public class JoinCallAlert extends BottomSheet {
 
         public BottomSheetCell(Context context, boolean z) {
             super(context);
+            JoinCallAlert.this = r13;
             this.textView = new TextView[2];
             this.hasBackground = !z;
             setBackground(null);
@@ -743,7 +744,7 @@ public class JoinCallAlert extends BottomSheet {
         }
     }
 
-    private class ListAdapter extends RecyclerListView.SelectionAdapter {
+    public class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context context;
 
         @Override
@@ -757,6 +758,7 @@ public class JoinCallAlert extends BottomSheet {
         }
 
         public ListAdapter(Context context) {
+            JoinCallAlert.this = r1;
             this.context = context;
         }
 

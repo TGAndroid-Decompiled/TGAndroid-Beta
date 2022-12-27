@@ -511,6 +511,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 
     public class RunnableC11201 implements Runnable {
         RunnableC11201() {
+            VoIPService.this = r1;
         }
 
         @Override
@@ -671,6 +672,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
 
         C11245(String str, boolean z) {
+            VoIPService.this = r1;
             this.val$endpointId = str;
             this.val$screencast = z;
         }
@@ -2863,6 +2865,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 
     public class RunnableC11267 implements Runnable {
         RunnableC11267() {
+            VoIPService.this = r1;
         }
 
         @Override
@@ -4951,6 +4954,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 
     public class CallConnection extends Connection {
         public CallConnection() {
+            VoIPService.this = r1;
             setConnectionProperties(ConnectionsManager.RequestFlagNeedQuickAck);
             setAudioModeIsVoip(true);
         }

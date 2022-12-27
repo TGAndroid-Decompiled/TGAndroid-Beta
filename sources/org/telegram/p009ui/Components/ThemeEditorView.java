@@ -143,6 +143,7 @@ public class ThemeEditorView {
 
             public SearchField(Context context) {
                 super(context);
+                EditorAlert.this = r12;
                 View view = new View(context);
                 view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.m35dp(18.0f), -854795));
                 addView(view, LayoutHelper.createFrame(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
@@ -155,7 +156,7 @@ public class ThemeEditorView {
                 this.clearSearchImageView = imageView2;
                 imageView2.setScaleType(ImageView.ScaleType.CENTER);
                 ImageView imageView3 = this.clearSearchImageView;
-                CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2(this, EditorAlert.this) {
+                CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2(this, r12) {
                     @Override
                     public int getCurrentColor() {
                         return -6182737;
@@ -173,7 +174,7 @@ public class ThemeEditorView {
                         ThemeEditorView.EditorAlert.SearchField.this.lambda$new$0(view2);
                     }
                 });
-                EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context, EditorAlert.this) {
+                EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context, r12) {
                     @Override
                     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                         MotionEvent obtain = MotionEvent.obtain(motionEvent);
@@ -198,7 +199,7 @@ public class ThemeEditorView {
                 this.searchEditText.setCursorSize(AndroidUtilities.m35dp(20.0f));
                 this.searchEditText.setCursorWidth(1.5f);
                 addView(this.searchEditText, LayoutHelper.createFrame(-1, 40.0f, 51, 54.0f, 9.0f, 46.0f, 0.0f));
-                this.searchEditText.addTextChangedListener(new TextWatcher(EditorAlert.this) {
+                this.searchEditText.addTextChangedListener(new TextWatcher(r12) {
                     @Override
                     public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                     }
@@ -292,6 +293,7 @@ public class ThemeEditorView {
 
             public ColorPicker(Context context) {
                 super(context);
+                EditorAlert.this = r18;
                 this.paramValueSliderWidth = AndroidUtilities.m35dp(20.0f);
                 this.colorEditText = new EditTextBoldCursor[4];
                 this.colorHSV = new float[]{0.0f, 0.0f, 1.0f};
@@ -339,7 +341,7 @@ public class ThemeEditorView {
                     this.colorEditText[i].setImeOptions((i == 3 ? 6 : 5) | 268435456);
                     this.colorEditText[i].setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
                     this.linearLayout.addView(this.colorEditText[i], LayoutHelper.createLinear(55, 36, 0.0f, 0.0f, i != 3 ? 16.0f : 0.0f, 0.0f));
-                    this.colorEditText[i].addTextChangedListener(new TextWatcher(EditorAlert.this, i) {
+                    this.colorEditText[i].addTextChangedListener(new TextWatcher(r18, i) {
                         final int val$num;
 
                         @Override
@@ -351,6 +353,7 @@ public class ThemeEditorView {
                         }
 
                         {
+                            ColorPicker.this = this;
                             this.val$num = i;
                         }
 
@@ -537,10 +540,11 @@ public class ThemeEditorView {
 
         public EditorAlert(Context context, ArrayList<ThemeDescription> arrayList) {
             super(context, true);
+            ThemeEditorView.this = r17;
             this.shadow = new View[2];
             this.shadowAnimation = new AnimatorSet[2];
             this.shadowDrawable = context.getResources().getDrawable(C1072R.C1073drawable.sheet_shadow_round).mutate();
-            FrameLayout frameLayout = new FrameLayout(context, ThemeEditorView.this) {
+            FrameLayout frameLayout = new FrameLayout(context, r17) {
                 private boolean ignoreLayout = false;
                 private RectF rect1 = new RectF();
                 private Boolean statusBarOpen;
@@ -628,7 +632,7 @@ public class ThemeEditorView {
             SearchField searchField = new SearchField(context);
             this.searchField = searchField;
             this.frameLayout.addView(searchField, LayoutHelper.createFrame(-1, -1, 51));
-            RecyclerListView recyclerListView = new RecyclerListView(context, ThemeEditorView.this) {
+            RecyclerListView recyclerListView = new RecyclerListView(context, r17) {
                 @Override
                 protected boolean allowSelectChildAtPosition(float f, float f2) {
                     return f2 >= ((float) ((EditorAlert.this.scrollOffsetY + AndroidUtilities.m35dp(48.0f)) + (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0)));
@@ -659,7 +663,7 @@ public class ThemeEditorView {
                     ThemeEditorView.EditorAlert.this.lambda$new$0(view, i2);
                 }
             });
-            this.listView.setOnScrollListener(new RecyclerView.OnScrollListener(ThemeEditorView.this) {
+            this.listView.setOnScrollListener(new RecyclerView.OnScrollListener(r17) {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
                     EditorAlert.this.updateLayout();
@@ -1032,6 +1036,7 @@ public class ThemeEditorView {
             }
 
             public SearchAdapter(Context context) {
+                EditorAlert.this = r1;
                 this.context = context;
             }
 
@@ -1356,6 +1361,7 @@ public class ThemeEditorView {
 
         C29331(Context context) {
             super(context);
+            ThemeEditorView.this = r1;
         }
 
         @Override

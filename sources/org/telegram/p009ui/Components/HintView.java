@@ -266,6 +266,7 @@ public class HintView extends FrameLayout {
 
     public class C23711 extends AnimatorListenerAdapter {
         C23711() {
+            HintView.this = r1;
         }
 
         @Override
@@ -320,6 +321,7 @@ public class HintView extends FrameLayout {
 
     public class C23722 extends AnimatorListenerAdapter {
         C23722() {
+            HintView.this = r1;
         }
 
         @Override

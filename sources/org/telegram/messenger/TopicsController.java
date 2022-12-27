@@ -987,6 +987,7 @@ public class TopicsController extends BaseController {
         int lastTopicId;
 
         private TopicsLoadOffset() {
+            TopicsController.this = r1;
         }
     }
 

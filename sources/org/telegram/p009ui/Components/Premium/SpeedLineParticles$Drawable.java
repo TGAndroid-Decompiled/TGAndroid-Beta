@@ -68,7 +68,7 @@ public class SpeedLineParticles$Drawable {
         canvas.drawLines(this.lines, this.paint);
     }
 
-    private class Particle {
+    public class Particle {
         float inProgress;
         private long lifeTime;
         private float vecX;
@@ -77,6 +77,7 @@ public class SpeedLineParticles$Drawable {
         private float f1119y;
 
         private Particle() {
+            SpeedLineParticles$Drawable.this = r1;
         }
 
         public void draw(Canvas canvas, int i, long j) {
