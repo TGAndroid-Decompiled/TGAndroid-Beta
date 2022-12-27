@@ -66,8 +66,8 @@ public class ChartHeaderView extends FrameLayout {
         Drawable drawable = ContextCompat.getDrawable(getContext(), C1072R.C1073drawable.msg_zoomout_stats);
         this.zoomIcon = drawable;
         this.back.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, (Drawable) null, (Drawable) null);
-        this.back.setCompoundDrawablePadding(AndroidUtilities.m35dp(4.0f));
-        this.back.setPadding(AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(4.0f));
+        this.back.setCompoundDrawablePadding(AndroidUtilities.m36dp(4.0f));
+        this.back.setPadding(AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(4.0f));
         this.back.setBackground(Theme.getRoundRectSelectorDrawable(Theme.getColor("featuredStickers_removeButtonText")));
         this.datesTmp.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
@@ -124,7 +124,7 @@ public class ChartHeaderView extends FrameLayout {
             this.back.setScaleX(0.3f);
             this.back.setScaleY(0.3f);
             this.back.setPivotX(0.0f);
-            this.back.setPivotY(AndroidUtilities.m35dp(40.0f));
+            this.back.setPivotY(AndroidUtilities.m36dp(40.0f));
             this.back.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(200L).start();
             this.title.setAlpha(1.0f);
             this.title.setTranslationX(0.0f);
@@ -158,7 +158,7 @@ public class ChartHeaderView extends FrameLayout {
             this.back.setTranslationY(0.0f);
             this.back.setScaleX(1.0f);
             this.back.setScaleY(1.0f);
-            this.back.setPivotY(AndroidUtilities.m35dp(40.0f));
+            this.back.setPivotY(AndroidUtilities.m36dp(40.0f));
             this.back.animate().alpha(0.0f).scaleY(0.3f).scaleX(0.3f).setDuration(200L).start();
             return;
         }

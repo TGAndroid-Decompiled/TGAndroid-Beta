@@ -68,7 +68,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
     private ArrayList<TLRPC$Chat> inactiveChats = new ArrayList<>();
     private ArrayList<String> inactiveChatsSignatures = new ArrayList<>();
     private Set<Long> selectedIds = new HashSet();
-    private int buttonHeight = AndroidUtilities.m35dp(64.0f);
+    private int buttonHeight = AndroidUtilities.m36dp(64.0f);
     Runnable showProgressRunnable = new Runnable() {
         @Override
         public void run() {
@@ -305,7 +305,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             if ((findLastVisibleItemPosition == recyclerListView.getAdapter().getItemCount() - 1 || (findLastVisibleItemPosition == recyclerListView.getAdapter().getItemCount() - 2 && recyclerListView == this.listView)) && (findViewHolderForAdapterPosition = recyclerListView.findViewHolderForAdapterPosition(findLastVisibleItemPosition)) != null) {
                 int bottom = findViewHolderForAdapterPosition.itemView.getBottom();
                 if (findLastVisibleItemPosition == this.adapter.getItemCount() - 2) {
-                    bottom += AndroidUtilities.m35dp(12.0f);
+                    bottom += AndroidUtilities.m36dp(12.0f);
                 }
                 if (recyclerListView.getMeasuredHeight() - bottom <= this.buttonHeight) {
                     recyclerListView.setTranslationY(-(recyclerListView.getMeasuredHeight() - bottom));
@@ -326,7 +326,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                     TooManyCommunitiesActivity.this.buttonAnimation = 0;
                 }
             }).start();
-            this.listView.setPadding(0, 0, 0, this.buttonHeight - AndroidUtilities.m35dp(12.0f));
+            this.listView.setPadding(0, 0, 0, this.buttonHeight - AndroidUtilities.m36dp(12.0f));
             this.searchListView.setPadding(0, 0, 0, this.buttonHeight);
         }
         if (this.selectedIds.isEmpty()) {
@@ -435,7 +435,6 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         int shadowPosition;
 
         Adapter() {
-            TooManyCommunitiesActivity.this = r1;
         }
 
         @Override
@@ -491,8 +490,8 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                 }
                 TooManyCommunitiesActivity.this.hintCell.setMessageText(string);
                 RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(-1, -2);
-                ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin = AndroidUtilities.m35dp(16.0f);
-                ((ViewGroup.MarginLayoutParams) layoutParams).topMargin = AndroidUtilities.m35dp(23.0f);
+                ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin = AndroidUtilities.m36dp(16.0f);
+                ((ViewGroup.MarginLayoutParams) layoutParams).topMargin = AndroidUtilities.m36dp(23.0f);
                 TooManyCommunitiesActivity.this.hintCell.setLayoutParams(layoutParams);
                 headerCell = view;
             } else if (i == 2) {
@@ -507,7 +506,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                 headerCell2.setText(LocaleController.getString("InactiveChats", C1072R.string.InactiveChats));
                 headerCell = headerCell2;
             } else if (i == 5) {
-                headerCell = new EmptyCell(viewGroup.getContext(), AndroidUtilities.m35dp(12.0f));
+                headerCell = new EmptyCell(viewGroup.getContext(), AndroidUtilities.m36dp(12.0f));
             } else {
                 headerCell = new GroupCreateUserCell(viewGroup.getContext(), 1, 0, false);
             }
@@ -567,7 +566,6 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         }
 
         SearchAdapter() {
-            TooManyCommunitiesActivity.this = r1;
         }
 
         @Override

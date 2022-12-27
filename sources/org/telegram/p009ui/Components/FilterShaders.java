@@ -302,7 +302,7 @@ public class FilterShaders {
         return sb.toString();
     }
 
-    public static class BlurProgram {
+    private static class BlurProgram {
         public int blurHeightHandle;
         public int blurInputTexCoordHandle;
         public int blurPositionHandle;
@@ -369,7 +369,7 @@ public class FilterShaders {
         }
     }
 
-    public static class ToneCurve {
+    private static class ToneCurve {
         private float[] blueCurve;
         private int[] curveTexture = new int[1];
         private float[] greenCurve;
@@ -982,8 +982,8 @@ public class FilterShaders {
         GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
         if (iArr[0] == 0) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m33e(GLES20.glGetShaderInfoLog(glCreateShader));
-                FileLog.m33e("shader code:\n " + str);
+                FileLog.m34e(GLES20.glGetShaderInfoLog(glCreateShader));
+                FileLog.m34e("shader code:\n " + str);
             }
             GLES20.glDeleteShader(glCreateShader);
             return 0;
@@ -1457,72 +1457,72 @@ public class FilterShaders {
 
             @Override
             public float getSoftenSkinValue() {
-                return savedFilterState.softenSkinValue / 100.0f;
+                return MediaController.SavedFilterState.this.softenSkinValue / 100.0f;
             }
 
             @Override
             public float getShadowsValue() {
-                return ((savedFilterState.shadowsValue * 0.55f) + 100.0f) / 100.0f;
+                return ((MediaController.SavedFilterState.this.shadowsValue * 0.55f) + 100.0f) / 100.0f;
             }
 
             @Override
             public float getHighlightsValue() {
-                return ((savedFilterState.highlightsValue * 0.75f) + 100.0f) / 100.0f;
+                return ((MediaController.SavedFilterState.this.highlightsValue * 0.75f) + 100.0f) / 100.0f;
             }
 
             @Override
             public float getEnhanceValue() {
-                return savedFilterState.enhanceValue / 100.0f;
+                return MediaController.SavedFilterState.this.enhanceValue / 100.0f;
             }
 
             @Override
             public float getExposureValue() {
-                return savedFilterState.exposureValue / 100.0f;
+                return MediaController.SavedFilterState.this.exposureValue / 100.0f;
             }
 
             @Override
             public float getContrastValue() {
-                return ((savedFilterState.contrastValue / 100.0f) * 0.3f) + 1.0f;
+                return ((MediaController.SavedFilterState.this.contrastValue / 100.0f) * 0.3f) + 1.0f;
             }
 
             @Override
             public float getWarmthValue() {
-                return savedFilterState.warmthValue / 100.0f;
+                return MediaController.SavedFilterState.this.warmthValue / 100.0f;
             }
 
             @Override
             public float getVignetteValue() {
-                return savedFilterState.vignetteValue / 100.0f;
+                return MediaController.SavedFilterState.this.vignetteValue / 100.0f;
             }
 
             @Override
             public float getSharpenValue() {
-                return ((savedFilterState.sharpenValue / 100.0f) * 0.6f) + 0.11f;
+                return ((MediaController.SavedFilterState.this.sharpenValue / 100.0f) * 0.6f) + 0.11f;
             }
 
             @Override
             public float getGrainValue() {
-                return (savedFilterState.grainValue / 100.0f) * 0.04f;
+                return (MediaController.SavedFilterState.this.grainValue / 100.0f) * 0.04f;
             }
 
             @Override
             public float getFadeValue() {
-                return savedFilterState.fadeValue / 100.0f;
+                return MediaController.SavedFilterState.this.fadeValue / 100.0f;
             }
 
             @Override
             public float getTintHighlightsIntensityValue() {
-                return savedFilterState.tintHighlightsColor == 0 ? 0.0f : 0.5f;
+                return MediaController.SavedFilterState.this.tintHighlightsColor == 0 ? 0.0f : 0.5f;
             }
 
             @Override
             public float getTintShadowsIntensityValue() {
-                return savedFilterState.tintShadowsColor == 0 ? 0.0f : 0.5f;
+                return MediaController.SavedFilterState.this.tintShadowsColor == 0 ? 0.0f : 0.5f;
             }
 
             @Override
             public float getSaturationValue() {
-                float f = savedFilterState.saturationValue / 100.0f;
+                float f = MediaController.SavedFilterState.this.saturationValue / 100.0f;
                 if (f > 0.0f) {
                     f *= 1.05f;
                 }
@@ -1531,48 +1531,48 @@ public class FilterShaders {
 
             @Override
             public int getTintHighlightsColor() {
-                return savedFilterState.tintHighlightsColor;
+                return MediaController.SavedFilterState.this.tintHighlightsColor;
             }
 
             @Override
             public int getTintShadowsColor() {
-                return savedFilterState.tintShadowsColor;
+                return MediaController.SavedFilterState.this.tintShadowsColor;
             }
 
             @Override
             public int getBlurType() {
-                return savedFilterState.blurType;
+                return MediaController.SavedFilterState.this.blurType;
             }
 
             @Override
             public float getBlurExcludeSize() {
-                return savedFilterState.blurExcludeSize;
+                return MediaController.SavedFilterState.this.blurExcludeSize;
             }
 
             @Override
             public float getBlurExcludeBlurSize() {
-                return savedFilterState.blurExcludeBlurSize;
+                return MediaController.SavedFilterState.this.blurExcludeBlurSize;
             }
 
             @Override
             public float getBlurAngle() {
-                return savedFilterState.blurAngle;
+                return MediaController.SavedFilterState.this.blurAngle;
             }
 
             @Override
             public Point getBlurExcludePoint() {
-                return savedFilterState.blurExcludePoint;
+                return MediaController.SavedFilterState.this.blurExcludePoint;
             }
 
             @Override
             public boolean shouldDrawCurvesPass() {
-                return !savedFilterState.curvesToolValue.shouldBeSkipped();
+                return !MediaController.SavedFilterState.this.curvesToolValue.shouldBeSkipped();
             }
 
             @Override
             public ByteBuffer fillAndGetCurveBuffer() {
-                savedFilterState.curvesToolValue.fillBuffer();
-                return savedFilterState.curvesToolValue.curveBuffer;
+                MediaController.SavedFilterState.this.curvesToolValue.fillBuffer();
+                return MediaController.SavedFilterState.this.curvesToolValue.curveBuffer;
             }
         };
     }

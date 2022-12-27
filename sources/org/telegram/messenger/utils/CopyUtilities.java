@@ -88,7 +88,7 @@ public class CopyUtilities {
             MediaDataController.addAnimatedEmojiSpans(arrayList, spannableString, null);
             return spannableString;
         } catch (Exception e) {
-            FileLog.m32e("Html.fromHtml", e);
+            FileLog.m33e("Html.fromHtml", e);
             return null;
         }
     }

@@ -131,7 +131,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         if (AndroidUtilities.isTablet()) {
             this.actionBar.setOccupyStatusBar(false);
         }
-        this.actionBar.setExtraHeight(AndroidUtilities.m35dp(44.0f));
+        this.actionBar.setExtraHeight(AndroidUtilities.m36dp(44.0f));
         this.actionBar.setAllowOverlayTitle(false);
         this.actionBar.setAddToContainer(false);
         this.actionBar.setClipContent(true);
@@ -431,8 +431,8 @@ public class DialogOrContactPickerActivity extends BaseFragment {
                                     DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DialogOrContactPickerActivity.this.viewPages[0].selectedType, 1.0f);
                                 }
                                 DialogOrContactPickerActivity.this.tabsAnimationInProgress = false;
-                                C31654.this.maybeStartTracking = false;
-                                C31654.this.startedTracking = false;
+                                C31684.this.maybeStartTracking = false;
+                                C31684.this.startedTracking = false;
                                 ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.setEnabled(true);
                                 DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.setEnabled(true);
                             }
@@ -659,7 +659,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         scrollSlidingTextTabStrip.addTextTab(0, LocaleController.getString("BlockUserChatsTitle", C1072R.string.BlockUserChatsTitle));
         this.scrollSlidingTextTabStrip.addTextTab(1, LocaleController.getString("BlockUserContactsTitle", C1072R.string.BlockUserContactsTitle));
         this.scrollSlidingTextTabStrip.setVisibility(0);
-        this.actionBar.setExtraHeight(AndroidUtilities.m35dp(44.0f));
+        this.actionBar.setExtraHeight(AndroidUtilities.m36dp(44.0f));
         int currentTabId = this.scrollSlidingTextTabStrip.getCurrentTabId();
         if (currentTabId >= 0) {
             this.viewPages[0].selectedType = currentTabId;

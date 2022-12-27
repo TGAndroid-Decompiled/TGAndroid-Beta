@@ -167,13 +167,11 @@ public class DispatchQueueMainThreadSync extends Thread {
         Runnable runnable;
 
         public PostponedTask(Message message, int i) {
-            DispatchQueueMainThreadSync.this = r1;
             this.message = message;
             this.delay = i;
         }
 
         public PostponedTask(Runnable runnable, long j) {
-            DispatchQueueMainThreadSync.this = r1;
             this.runnable = runnable;
             this.delay = j;
         }

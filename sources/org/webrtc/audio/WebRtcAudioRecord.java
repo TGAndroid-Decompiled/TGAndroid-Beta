@@ -75,7 +75,6 @@ public class WebRtcAudioRecord {
 
         public AudioRecordThread(String str) {
             super(str);
-            WebRtcAudioRecord.this = r1;
             this.keepAlive = true;
         }
 

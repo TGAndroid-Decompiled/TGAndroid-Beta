@@ -30,11 +30,11 @@ public class ChatUnreadCell extends FrameLayout {
         this.imageView = imageView;
         imageView.setImageResource(C1072R.C1073drawable.ic_ab_new);
         this.imageView.setColorFilter(new PorterDuffColorFilter(getColor("chat_unreadMessagesStartArrowIcon"), PorterDuff.Mode.MULTIPLY));
-        this.imageView.setPadding(0, AndroidUtilities.m35dp(2.0f), 0, 0);
+        this.imageView.setPadding(0, AndroidUtilities.m36dp(2.0f), 0, 0);
         this.backgroundLayout.addView(this.imageView, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setPadding(0, 0, 0, AndroidUtilities.m35dp(1.0f));
+        textView.setPadding(0, 0, 0, AndroidUtilities.m36dp(1.0f));
         this.textView.setTextSize(1, 14.0f);
         this.textView.setTextColor(getColor("chat_unreadMessagesStartText"));
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -59,7 +59,7 @@ public class ChatUnreadCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(40.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(40.0f), 1073741824));
     }
 
     private int getColor(String str) {

@@ -46,7 +46,7 @@ public class ReactionTabHolderView extends FrameLayout {
         this.bgPaint = new Paint(1);
         new Path();
         this.rect = new RectF();
-        this.radius = AndroidUtilities.m35dp(32.0f);
+        this.radius = AndroidUtilities.m36dp(32.0f);
         View view = new View(context);
         this.overlaySelectorView = view;
         addView(view, LayoutHelper.createFrame(-1, -1.0f));
@@ -65,7 +65,7 @@ public class ReactionTabHolderView extends FrameLayout {
         this.counterView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         addView(this.counterView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 40.0f, 0.0f, 8.0f, 0.0f));
         this.outlinePaint.setStyle(Paint.Style.STROKE);
-        this.outlinePaint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
+        this.outlinePaint.setStrokeWidth(AndroidUtilities.m36dp(1.0f));
         setWillNotDraw(false);
         setOutlineProgress(this.outlineProgress);
     }

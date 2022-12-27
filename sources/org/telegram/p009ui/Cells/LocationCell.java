@@ -37,10 +37,10 @@ public class LocationCell extends FrameLayout {
         this.wrapContent = z;
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
-        ShapeDrawable createCircleDrawable = Theme.createCircleDrawable(AndroidUtilities.m35dp(42.0f), -1);
+        ShapeDrawable createCircleDrawable = Theme.createCircleDrawable(AndroidUtilities.m36dp(42.0f), -1);
         this.circleDrawable = createCircleDrawable;
         backupImageView.setBackground(createCircleDrawable);
-        this.imageView.setSize(AndroidUtilities.m35dp(30.0f), AndroidUtilities.m35dp(30.0f));
+        this.imageView.setSize(AndroidUtilities.m36dp(30.0f), AndroidUtilities.m36dp(30.0f));
         BackupImageView backupImageView2 = this.imageView;
         boolean z2 = LocaleController.isRTL;
         addView(backupImageView2, LayoutHelper.createFrame(42, 42.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 15.0f, 11.0f, z2 ? 15.0f : 0.0f, 0.0f));
@@ -75,9 +75,9 @@ public class LocationCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         if (this.wrapContent) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
         } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
         }
     }
 
@@ -169,17 +169,17 @@ public class LocationCell extends FrameLayout {
             globalGradientView = flickerLoadingView;
             flickerLoadingView.setIsSingleCell(true);
         }
-        globalGradientView.setParentSize(getMeasuredWidth(), getMeasuredHeight(), (-(getParent() instanceof ViewGroup ? ((ViewGroup) getParent()).indexOfChild(this) : 0)) * AndroidUtilities.m35dp(56.0f));
+        globalGradientView.setParentSize(getMeasuredWidth(), getMeasuredHeight(), (-(getParent() instanceof ViewGroup ? ((ViewGroup) getParent()).indexOfChild(this) : 0)) * AndroidUtilities.m36dp(56.0f));
         globalGradientView.setViewType(4);
         globalGradientView.updateColors();
         globalGradientView.updateGradient();
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.enterAlpha) * 255.0f), 31);
-        canvas.translate(AndroidUtilities.m35dp(2.0f), (getMeasuredHeight() - AndroidUtilities.m35dp(56.0f)) / 2);
+        canvas.translate(AndroidUtilities.m36dp(2.0f), (getMeasuredHeight() - AndroidUtilities.m36dp(56.0f)) / 2);
         globalGradientView.draw(canvas);
         canvas.restore();
         super.onDraw(canvas);
         if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(72.0f), getHeight() - 1, LocaleController.isRTL ? getWidth() - AndroidUtilities.m35dp(72.0f) : getWidth(), getHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(72.0f), getHeight() - 1, LocaleController.isRTL ? getWidth() - AndroidUtilities.m36dp(72.0f) : getWidth(), getHeight() - 1, Theme.dividerPaint);
         }
     }
 

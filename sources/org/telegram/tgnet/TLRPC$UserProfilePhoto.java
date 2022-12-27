@@ -58,7 +58,7 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
                                 try {
                                     this.strippedBitmap = new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(this.stripped_thumb, "b"));
                                 } catch (Throwable th) {
-                                    FileLog.m31e(th);
+                                    FileLog.m32e(th);
                                 }
                             }
                         }

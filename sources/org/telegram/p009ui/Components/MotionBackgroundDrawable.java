@@ -314,7 +314,7 @@ public class MotionBackgroundDrawable extends Drawable {
                     this.legacyCanvas2.drawBitmap(this.legacyBitmap, 0.0f, 0.0f, (Paint) null);
                 }
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
                 Bitmap bitmap3 = this.legacyBitmap2;
                 if (bitmap3 != null) {
                     bitmap3.recycle();
@@ -531,7 +531,7 @@ public class MotionBackgroundDrawable extends Drawable {
                 bitmap4.recycle();
                 this.legacyBitmap = null;
             }
-            FileLog.m31e(th);
+            FileLog.m32e(th);
             errorWhileGenerateLegacyBitmap = true;
             this.paint2.setXfermode(null);
         }

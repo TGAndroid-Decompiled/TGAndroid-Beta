@@ -387,7 +387,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 this.searchItem.setVisibility(8);
             }
             if (this.type == 3) {
-                this.doneItem = createMenu.addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m35dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
+                this.doneItem = createMenu.addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m36dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
             }
         }
         FrameLayout frameLayout = new FrameLayout(context) {
@@ -540,14 +540,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ChatUsersActivity.lambda$createView$5(android.content.Context, android.view.View, int):void");
     }
 
-    public class C17318 implements ChatUsersActivityDelegate {
+    public class C17348 implements ChatUsersActivityDelegate {
         @Override
         public void didKickParticipant(long j) {
             ChatUsersActivityDelegate.CC.$default$didKickParticipant(this, j);
         }
 
-        C17318() {
-            ChatUsersActivity.this = r1;
+        C17348() {
         }
 
         @Override
@@ -575,7 +574,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatUsersActivity.C17318.this.lambda$didSelectUser$0(user);
+                        ChatUsersActivity.C17348.this.lambda$didSelectUser$0(user);
                     }
                 }, 200L);
             }
@@ -602,11 +601,10 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public class C17329 implements GroupCreateActivity.ContactsAddActivityDelegate {
+    public class C17359 implements GroupCreateActivity.ContactsAddActivityDelegate {
         final Context val$context;
 
-        C17329(Context context) {
-            ChatUsersActivity.this = r1;
+        C17359(Context context) {
             this.val$context = context;
         }
 
@@ -619,7 +617,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatUsersActivity.C17329.lambda$didSelectUsers$0(arrayList2, size, context);
+                    ChatUsersActivity.C17359.lambda$didSelectUsers$0(arrayList2, size, context);
                 }
             };
             for (int i2 = 0; i2 < size; i2++) {
@@ -627,13 +625,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 ChatUsersActivity.this.getMessagesController().addUserToChat(ChatUsersActivity.this.chatId, tLRPC$User, i, null, ChatUsersActivity.this, false, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatUsersActivity.C17329.this.lambda$didSelectUsers$1(iArr, size, arrayList2, runnable, tLRPC$User);
+                        ChatUsersActivity.C17359.this.lambda$didSelectUsers$1(iArr, size, arrayList2, runnable, tLRPC$User);
                     }
                 }, new MessagesController.ErrorDelegate() {
                     @Override
                     public final boolean run(TLRPC$TL_error tLRPC$TL_error) {
                         boolean lambda$didSelectUsers$2;
-                        lambda$didSelectUsers$2 = ChatUsersActivity.C17329.lambda$didSelectUsers$2(iArr, arrayList2, tLRPC$User, size, runnable, tLRPC$TL_error);
+                        lambda$didSelectUsers$2 = ChatUsersActivity.C17359.lambda$didSelectUsers$2(iArr, arrayList2, tLRPC$User, size, runnable, tLRPC$TL_error);
                         return lambda$didSelectUsers$2;
                     }
                 });
@@ -739,7 +737,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         this.info.antispam = z;
         textCell.setChecked(z);
         textCell.getCheckBox().setIcon((!ChatObject.canUserDoAdminAction(this.currentChat, 13) || ((tLRPC$ChatFull = this.info) != null && tLRPC$ChatFull.antispam && tLRPC$ChatFull.participants_count < getMessagesController().telegramAntispamGroupSizeMin)) ? C1072R.C1073drawable.permission_locked : 0);
-        BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.error, LocaleController.getString("UnknownError", C1072R.string.UnknownError)).show();
+        BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.error, LocaleController.getString("UnknownError", C1072R.string.UnknownError)).show();
     }
 
     public void lambda$createView$3(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -766,17 +764,16 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         this.info.participants_hidden = z;
         textCell.setChecked(z);
         textCell.getCheckBox().setIcon((!ChatObject.canUserDoAdminAction(this.currentChat, 2) || ((tLRPC$ChatFull = this.info) != null && tLRPC$ChatFull.participants_hidden && tLRPC$ChatFull.participants_count < getMessagesController().hiddenMembersGroupSizeMin)) ? C1072R.C1073drawable.permission_locked : 0);
-        BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.error, LocaleController.getString("UnknownError", C1072R.string.UnknownError)).show();
+        BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.error, LocaleController.getString("UnknownError", C1072R.string.UnknownError)).show();
     }
 
-    public class DialogC171510 extends GigagroupConvertAlert {
+    public class DialogC171810 extends GigagroupConvertAlert {
         @Override
         protected void onCancel() {
         }
 
-        DialogC171510(Context context, BaseFragment baseFragment) {
+        DialogC171810(Context context, BaseFragment baseFragment) {
             super(context, baseFragment);
-            ChatUsersActivity.this = r1;
         }
 
         @Override
@@ -784,7 +781,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             ChatUsersActivity.this.getMessagesController().convertToGigaGroup(ChatUsersActivity.this.getParentActivity(), ChatUsersActivity.this.currentChat, ChatUsersActivity.this, new MessagesStorage.BooleanCallback() {
                 @Override
                 public final void run(boolean z) {
-                    ChatUsersActivity.DialogC171510.this.lambda$onCovert$0(z);
+                    ChatUsersActivity.DialogC171810.this.lambda$onCovert$0(z);
                 }
             });
         }
@@ -1881,7 +1878,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 try {
                     i2 = this.type;
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
                 if ((i2 == 0 || i2 == 3 || i2 == 2) && (tLRPC$Chat = this.currentChat) != null && tLRPC$Chat.megagroup) {
                     TLRPC$ChatFull tLRPC$ChatFull = this.info;
@@ -2051,7 +2048,6 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         private int totalCount = 0;
 
         public SearchAdapter(Context context) {
-            ChatUsersActivity.this = r1;
             this.mContext = context;
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
             this.searchAdapterHelper = searchAdapterHelper;
@@ -2325,7 +2321,6 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         private Context mContext;
 
         public ListAdapter(Context context) {
-            ChatUsersActivity.this = r1;
             this.mContext = context;
         }
 
@@ -2453,14 +2448,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     textCell = slideChooseView;
                     break;
                 case 10:
-                    textCell = new LoadingCell(this.mContext, AndroidUtilities.m35dp(40.0f), AndroidUtilities.m35dp(120.0f));
+                    textCell = new LoadingCell(this.mContext, AndroidUtilities.m36dp(40.0f), AndroidUtilities.m36dp(120.0f));
                     break;
                 case 11:
                     FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.mContext);
                     flickerLoadingView.setIsSingleCell(true);
                     flickerLoadingView.setViewType(6);
                     flickerLoadingView.showDate(false);
-                    flickerLoadingView.setPaddingLeft(AndroidUtilities.m35dp(5.0f));
+                    flickerLoadingView.setPaddingLeft(AndroidUtilities.m36dp(5.0f));
                     flickerLoadingView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     flickerLoadingView.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
                     textCell = flickerLoadingView;
@@ -2616,7 +2611,6 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         int oldRowCount;
 
         private DiffCallback() {
-            ChatUsersActivity.this = r1;
             this.oldPositionToItem = new SparseIntArray();
             this.newPositionToItem = new SparseIntArray();
             this.oldParticipants = new ArrayList<>();

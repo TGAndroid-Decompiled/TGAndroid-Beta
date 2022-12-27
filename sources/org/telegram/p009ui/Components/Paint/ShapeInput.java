@@ -36,15 +36,15 @@ public class ShapeInput {
         this.centerPointPaint.setColor(-13840296);
         this.centerPointStrokePaint.setStyle(Paint.Style.STROKE);
         this.centerPointStrokePaint.setColor(-1);
-        this.centerPointStrokePaint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
+        this.centerPointStrokePaint.setStrokeWidth(AndroidUtilities.m36dp(1.0f));
         this.controlPointPaint.setColor(-16745729);
         this.controlPointStrokePaint.setStyle(Paint.Style.STROKE);
         this.controlPointStrokePaint.setColor(-1);
-        this.controlPointStrokePaint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
+        this.controlPointStrokePaint.setStrokeWidth(AndroidUtilities.m36dp(1.0f));
         this.linePaint.setStyle(Paint.Style.STROKE);
         this.linePaint.setColor(-1);
-        this.linePaint.setStrokeWidth(AndroidUtilities.m35dp(0.8f));
-        this.linePaint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f)}, 0.0f));
+        this.linePaint.setStrokeWidth(AndroidUtilities.m36dp(0.8f));
+        this.linePaint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f)}, 0.0f));
         this.linePaint.setShadowLayer(4.0f, 0.0f, 1.5f, 1073741824);
     }
 
@@ -127,7 +127,7 @@ public class ShapeInput {
             double d = sqrt2 - min;
             double d2 = this.shape.thickness / 2.0f;
             Double.isNaN(d2);
-            return d - d2 < ((double) AndroidUtilities.m35dp(30.0f));
+            return d - d2 < ((double) AndroidUtilities.m36dp(30.0f));
         } else if (this.shape.getType() == 1 || this.shape.getType() == 3) {
             Shape shape3 = this.shape;
             float f4 = shape3.centerX;
@@ -170,7 +170,7 @@ public class ShapeInput {
                 Shape shape4 = this.shape;
                 f3 = Math.min(f3, distToLine(f, f2, shape4.centerX, shape4.centerY, shape4.middleX, shape4.middleY));
             }
-            return f3 < ((float) AndroidUtilities.m35dp(30.0f));
+            return f3 < ((float) AndroidUtilities.m36dp(30.0f));
         } else if (this.shape.getType() == 4) {
             Size size = this.renderView.getPainting().getSize();
             Shape shape5 = this.shape;
@@ -250,7 +250,7 @@ public class ShapeInput {
                 float f8 = point7.f1085y;
                 float[] fArr6 = this.tempPoint;
                 double distance = MathUtils.distance(f7, f8, fArr6[0], fArr6[1]);
-                if (distance < AndroidUtilities.m35dp(40.0f) && (point == null || distance < d)) {
+                if (distance < AndroidUtilities.m36dp(40.0f) && (point == null || distance < d)) {
                     point = point7;
                     d = distance;
                 }
@@ -325,7 +325,7 @@ public class ShapeInput {
         shape.radiusY = min;
         shape.radiusX = min;
         this.shape.thickness = this.renderView.getCurrentWeight();
-        this.shape.rounding = AndroidUtilities.m35dp(32.0f);
+        this.shape.rounding = AndroidUtilities.m36dp(32.0f);
         this.shape.fill = PersistColorPalette.getInstance(UserConfig.selectedAccount).getFillShapes();
         if (this.shape.getType() == 4) {
             Shape shape2 = this.shape;
@@ -370,8 +370,7 @@ public class ShapeInput {
             ArrayList<Point> arrayList2 = this.allPoints;
             Point point2 = new Point() {
                 {
-                    super(this);
-                    ShapeInput.this = this;
+                    super(ShapeInput.this);
                 }
 
                 @Override
@@ -392,8 +391,7 @@ public class ShapeInput {
             ArrayList<Point> arrayList3 = this.allPoints;
             Point point3 = new Point() {
                 {
-                    super(this);
-                    ShapeInput.this = this;
+                    super(ShapeInput.this);
                 }
 
                 @Override
@@ -630,18 +628,17 @@ public class ShapeInput {
     }
 
     private void drawPoint(Canvas canvas, Size size, Point point) {
-        canvas.drawCircle((point.f1084x / size.width) * canvas.getWidth(), (point.f1085y / size.height) * canvas.getHeight(), AndroidUtilities.m35dp(5.0f), point.green ? this.centerPointPaint : this.controlPointPaint);
-        canvas.drawCircle((point.f1084x / size.width) * canvas.getWidth(), (point.f1085y / size.height) * canvas.getHeight(), AndroidUtilities.m35dp(5.0f), point.green ? this.centerPointStrokePaint : this.controlPointStrokePaint);
+        canvas.drawCircle((point.f1084x / size.width) * canvas.getWidth(), (point.f1085y / size.height) * canvas.getHeight(), AndroidUtilities.m36dp(5.0f), point.green ? this.centerPointPaint : this.controlPointPaint);
+        canvas.drawCircle((point.f1084x / size.width) * canvas.getWidth(), (point.f1085y / size.height) * canvas.getHeight(), AndroidUtilities.m36dp(5.0f), point.green ? this.centerPointStrokePaint : this.controlPointStrokePaint);
     }
 
-    public class CornerPoint extends Point {
+    private class CornerPoint extends Point {
         public float f1082rx;
         public float f1083ry;
         public Shape shape;
 
         public CornerPoint(Shape shape, boolean z, boolean z2) {
-            super(r1);
-            ShapeInput.this = r1;
+            super(ShapeInput.this);
             this.rotate = false;
             this.shape = shape;
             this.f1082rx = z ? -1.0f : 1.0f;

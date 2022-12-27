@@ -18,7 +18,7 @@ public class CropGestureDetector {
     private VelocityTracker mVelocityTracker;
     private boolean started;
     private long touchTime;
-    private final float mTouchSlop = AndroidUtilities.m35dp(1.0f);
+    private final float mTouchSlop = AndroidUtilities.m36dp(1.0f);
     private int mActivePointerId = -1;
     private int mActivePointerIndex = 0;
 

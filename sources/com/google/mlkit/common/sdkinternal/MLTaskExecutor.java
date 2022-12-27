@@ -44,8 +44,8 @@ public class MLTaskExecutor {
         this.zzc = new com.google.android.gms.internal.mlkit_common.zzb(looper);
     }
 
-    public <ResultT> Task<ResultT> scheduleCallable(Callable<ResultT> callable) {
-        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+    public <ResultT> Task<ResultT> scheduleCallable(final Callable<ResultT> callable) {
+        final TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
         scheduleRunnable(new Runnable(callable, taskCompletionSource) {
             private final Callable zza;
             private final TaskCompletionSource zzb;

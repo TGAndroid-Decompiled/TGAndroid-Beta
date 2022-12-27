@@ -94,12 +94,12 @@ public class C0995PhoneFormat {
                         try {
                             byteArrayOutputStream2.close();
                         } catch (Exception e) {
-                            FileLog.m31e(e);
+                            FileLog.m32e(e);
                         }
                         try {
                             inputStream.close();
                         } catch (Exception e2) {
-                            FileLog.m31e(e2);
+                            FileLog.m32e(e2);
                         }
                         if (str != null && str.length() != 0) {
                             this.defaultCountry = str;
@@ -120,14 +120,14 @@ public class C0995PhoneFormat {
                             try {
                                 byteArrayOutputStream.close();
                             } catch (Exception e4) {
-                                FileLog.m31e(e4);
+                                FileLog.m32e(e4);
                             }
                         }
                         if (inputStream != null) {
                             try {
                                 inputStream.close();
                             } catch (Exception e5) {
-                                FileLog.m31e(e5);
+                                FileLog.m32e(e5);
                             }
                         }
                     } catch (Throwable th) {
@@ -137,14 +137,14 @@ public class C0995PhoneFormat {
                             try {
                                 byteArrayOutputStream.close();
                             } catch (Exception e6) {
-                                FileLog.m31e(e6);
+                                FileLog.m32e(e6);
                             }
                         }
                         if (inputStream != null) {
                             try {
                                 inputStream.close();
                             } catch (Exception e7) {
-                                FileLog.m31e(e7);
+                                FileLog.m32e(e7);
                             }
                         }
                         throw th;
@@ -205,7 +205,7 @@ public class C0995PhoneFormat {
                 }
                 return callingCodeInfo.format(strip);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return str;
             }
         }

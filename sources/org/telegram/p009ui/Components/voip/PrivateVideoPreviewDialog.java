@@ -174,8 +174,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             private Paint[] gradientPaint;
 
             {
-                PrivateVideoPreviewDialog.this = this;
-                this.gradientPaint = new Paint[this.titles.length];
+                this.gradientPaint = new Paint[PrivateVideoPreviewDialog.this.titles.length];
                 int i = 0;
                 while (true) {
                     Paint[] paintArr = this.gradientPaint;
@@ -189,7 +188,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
 
             @Override
             protected void onSizeChanged(int r26, int r27, int r28, int r29) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.voip.PrivateVideoPreviewDialog.C30633.onSizeChanged(int, int, int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.voip.PrivateVideoPreviewDialog.C30663.onSizeChanged(int, int, int, int):void");
             }
 
             @Override
@@ -197,20 +196,20 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 this.gradientPaint[PrivateVideoPreviewDialog.this.currentPage].setAlpha(255);
-                canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), this.gradientPaint[PrivateVideoPreviewDialog.this.currentPage]);
+                canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), this.gradientPaint[PrivateVideoPreviewDialog.this.currentPage]);
                 if (PrivateVideoPreviewDialog.this.pageOffset > 0.0f) {
                     int i = PrivateVideoPreviewDialog.this.currentPage + 1;
                     Paint[] paintArr = this.gradientPaint;
                     if (i < paintArr.length) {
                         paintArr[PrivateVideoPreviewDialog.this.currentPage + 1].setAlpha((int) (PrivateVideoPreviewDialog.this.pageOffset * 255.0f));
-                        canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), this.gradientPaint[PrivateVideoPreviewDialog.this.currentPage + 1]);
+                        canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), this.gradientPaint[PrivateVideoPreviewDialog.this.currentPage + 1]);
                     }
                 }
                 super.onDraw(canvas);
             }
         };
         this.positiveButton = textView;
-        textView.setMinWidth(AndroidUtilities.m35dp(64.0f));
+        textView.setMinWidth(AndroidUtilities.m36dp(64.0f));
         this.positiveButton.setTag(-1);
         this.positiveButton.setTextSize(1, 14.0f);
         this.positiveButton.setTextColor(Theme.getColor("voipgroup_nameText"));
@@ -218,9 +217,9 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         this.positiveButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.positiveButton.setText(LocaleController.getString("VoipShareVideo", C1072R.string.VoipShareVideo));
         if (Build.VERSION.SDK_INT >= 23) {
-            this.positiveButton.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_nameText"), 76)));
+            this.positiveButton.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_nameText"), 76)));
         }
-        this.positiveButton.setPadding(0, AndroidUtilities.m35dp(12.0f), 0, AndroidUtilities.m35dp(12.0f));
+        this.positiveButton.setPadding(0, AndroidUtilities.m36dp(12.0f), 0, AndroidUtilities.m36dp(12.0f));
         this.positiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -241,7 +240,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             this.titles[i].setTextSize(1, 12.0f);
             this.titles[i].setTextColor(-1);
             this.titles[i].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.titles[i].setPadding(AndroidUtilities.m35dp(10.0f), 0, AndroidUtilities.m35dp(10.0f), 0);
+            this.titles[i].setPadding(AndroidUtilities.m36dp(10.0f), 0, AndroidUtilities.m36dp(10.0f), 0);
             this.titles[i].setGravity(16);
             this.titles[i].setSingleLine(true);
             this.titlesLayout.addView(this.titles[i], LayoutHelper.createLinear(-2, -1));
@@ -261,7 +260,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             i++;
         }
         setAlpha(0.0f);
-        setTranslationX(AndroidUtilities.m35dp(32.0f));
+        setTranslationX(AndroidUtilities.m36dp(32.0f));
         animate().alpha(1.0f).translationX(0.0f).setDuration(150L).start();
         setWillNotDraw(false);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -282,10 +281,10 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         if (z) {
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             this.micIconView = rLottieImageView;
-            rLottieImageView.setPadding(AndroidUtilities.m35dp(9.0f), AndroidUtilities.m35dp(9.0f), AndroidUtilities.m35dp(9.0f), AndroidUtilities.m35dp(9.0f));
-            this.micIconView.setBackground(Theme.createCircleDrawable(AndroidUtilities.m35dp(48.0f), ColorUtils.setAlphaComponent(-16777216, 76)));
+            rLottieImageView.setPadding(AndroidUtilities.m36dp(9.0f), AndroidUtilities.m36dp(9.0f), AndroidUtilities.m36dp(9.0f), AndroidUtilities.m36dp(9.0f));
+            this.micIconView.setBackground(Theme.createCircleDrawable(AndroidUtilities.m36dp(48.0f), ColorUtils.setAlphaComponent(-16777216, 76)));
             int i2 = C1072R.raw.voice_mini;
-            final RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(24.0f), true, null);
+            final RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(24.0f), true, null);
             this.micIconView.setAnimation(rLottieDrawable);
             this.micIconView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             this.micEnabled = true;
@@ -329,7 +328,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
     }
 
     public void setBottomPadding(int i) {
-        ((FrameLayout.LayoutParams) this.positiveButton.getLayoutParams()).bottomMargin = AndroidUtilities.m35dp(64.0f) + i;
+        ((FrameLayout.LayoutParams) this.positiveButton.getLayoutParams()).bottomMargin = AndroidUtilities.m36dp(64.0f) + i;
         ((FrameLayout.LayoutParams) this.titlesLayout.getLayoutParams()).bottomMargin = i;
     }
 
@@ -465,7 +464,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         this.isDismissed = true;
         saveLastCameraBitmap();
         onDismiss(z, z2);
-        animate().alpha(0.0f).translationX(AndroidUtilities.m35dp(32.0f)).setDuration(150L).setListener(new AnimatorListenerAdapter() {
+        animate().alpha(0.0f).translationX(AndroidUtilities.m36dp(32.0f)).setDuration(150L).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 super.onAnimationEnd(animator);
@@ -482,29 +481,29 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         boolean z = View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2);
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.positiveButton.getLayoutParams();
         if (z) {
-            int m35dp = AndroidUtilities.m35dp(80.0f);
-            marginLayoutParams.leftMargin = m35dp;
-            marginLayoutParams.rightMargin = m35dp;
+            int m36dp = AndroidUtilities.m36dp(80.0f);
+            marginLayoutParams.leftMargin = m36dp;
+            marginLayoutParams.rightMargin = m36dp;
         } else {
-            int m35dp2 = AndroidUtilities.m35dp(16.0f);
-            marginLayoutParams.leftMargin = m35dp2;
-            marginLayoutParams.rightMargin = m35dp2;
+            int m36dp2 = AndroidUtilities.m36dp(16.0f);
+            marginLayoutParams.leftMargin = m36dp2;
+            marginLayoutParams.rightMargin = m36dp2;
         }
         RLottieImageView rLottieImageView = this.micIconView;
         if (rLottieImageView != null) {
             ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) rLottieImageView.getLayoutParams();
             if (z) {
-                int m35dp3 = AndroidUtilities.m35dp(88.0f);
-                marginLayoutParams2.leftMargin = m35dp3;
-                marginLayoutParams2.rightMargin = m35dp3;
+                int m36dp3 = AndroidUtilities.m36dp(88.0f);
+                marginLayoutParams2.leftMargin = m36dp3;
+                marginLayoutParams2.rightMargin = m36dp3;
             } else {
-                int m35dp4 = AndroidUtilities.m35dp(24.0f);
-                marginLayoutParams2.leftMargin = m35dp4;
-                marginLayoutParams2.rightMargin = m35dp4;
+                int m36dp4 = AndroidUtilities.m36dp(24.0f);
+                marginLayoutParams2.leftMargin = m36dp4;
+                marginLayoutParams2.rightMargin = m36dp4;
             }
         }
         super.onMeasure(i, i2);
-        measureChildWithMargins(this.titlesLayout, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(64.0f), 1073741824), 0);
+        measureChildWithMargins(this.titlesLayout, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(64.0f), 1073741824), 0);
     }
 
     public int getBackgroundColor() {
@@ -530,7 +529,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         }
     }
 
-    public class Adapter extends PagerAdapter {
+    private class Adapter extends PagerAdapter {
         @Override
         public void restoreState(Parcelable parcelable, ClassLoader classLoader) {
         }
@@ -541,7 +540,6 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         }
 
         private Adapter() {
-            PrivateVideoPreviewDialog.this = r1;
         }
 
         @Override
@@ -563,7 +561,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                 TextView textView = new TextView(PrivateVideoPreviewDialog.this.getContext());
                 textView.setText(LocaleController.getString("VoipVideoPrivateScreenSharing", C1072R.string.VoipVideoPrivateScreenSharing));
                 textView.setGravity(17);
-                textView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+                textView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
                 textView.setTextColor(-1);
                 textView.setTextSize(1, 15.0f);
                 textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));

@@ -104,7 +104,6 @@ public class UndoView extends FrameLayout {
 
     public class LinkMovementMethodMy extends LinkMovementMethod {
         public LinkMovementMethodMy() {
-            UndoView.this = r1;
         }
 
         @Override
@@ -124,7 +123,7 @@ public class UndoView extends FrameLayout {
                 }
                 return super.onTouchEvent(textView, spannable, motionEvent);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return false;
             }
         }
@@ -143,7 +142,7 @@ public class UndoView extends FrameLayout {
         this.currentAccount = UserConfig.selectedAccount;
         this.currentAction = -1;
         this.hideAnimationType = 1;
-        this.enterOffsetMargin = AndroidUtilities.m35dp(8.0f);
+        this.enterOffsetMargin = AndroidUtilities.m36dp(8.0f);
         this.timeReplaceProgress = 1.0f;
         this.resourcesProvider = resourcesProvider;
         this.parentFragment = baseFragment;
@@ -186,12 +185,12 @@ public class UndoView extends FrameLayout {
         addView(this.leftImageView, LayoutHelper.createFrame(54, -2.0f, 19, 3.0f, 0.0f, 0.0f, 0.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(15.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(15.0f));
         addView(this.avatarImageView, LayoutHelper.createFrame(30, 30.0f, 19, 15.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.undoButton = linearLayout;
         linearLayout.setOrientation(0);
-        this.undoButton.setBackground(Theme.createRadSelectorDrawable(getThemedColor("undo_cancelColor") & 587202559, AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f)));
+        this.undoButton.setBackground(Theme.createRadSelectorDrawable(getThemedColor("undo_cancelColor") & 587202559, AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f)));
         addView(this.undoButton, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
         this.undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,20 +210,20 @@ public class UndoView extends FrameLayout {
         this.undoTextView.setTextColor(getThemedColor("undo_cancelColor"));
         this.undoTextView.setText(LocaleController.getString("Undo", C1072R.string.Undo));
         this.undoButton.addView(this.undoTextView, LayoutHelper.createLinear(-2, -2, 19, 6, 4, 8, 4));
-        this.rect = new RectF(AndroidUtilities.m35dp(15.0f), AndroidUtilities.m35dp(15.0f), AndroidUtilities.m35dp(33.0f), AndroidUtilities.m35dp(33.0f));
+        this.rect = new RectF(AndroidUtilities.m36dp(15.0f), AndroidUtilities.m36dp(15.0f), AndroidUtilities.m36dp(33.0f), AndroidUtilities.m36dp(33.0f));
         Paint paint = new Paint(1);
         this.progressPaint = paint;
         paint.setStyle(Paint.Style.STROKE);
-        this.progressPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.progressPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         this.progressPaint.setStrokeCap(Paint.Cap.ROUND);
         this.progressPaint.setColor(getThemedColor("undo_infoColor"));
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
-        textPaint.setTextSize(AndroidUtilities.m35dp(12.0f));
+        textPaint.setTextSize(AndroidUtilities.m36dp(12.0f));
         this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textPaint.setColor(getThemedColor("undo_infoColor"));
         setWillNotDraw(false);
-        this.backgroundDrawable = Theme.createRoundRectDrawable(AndroidUtilities.m35dp(10.0f), getThemedColor("undo_background"));
+        this.backgroundDrawable = Theme.createRoundRectDrawable(AndroidUtilities.m36dp(10.0f), getThemedColor("undo_background"));
         setOnTouchListener(UndoView$$ExternalSyntheticLambda3.INSTANCE);
         setVisibility(4);
     }
@@ -406,7 +405,7 @@ public class UndoView extends FrameLayout {
     protected void dispatchDraw(Canvas canvas) {
         if (this.additionalTranslationY != 0.0f) {
             canvas.save();
-            float measuredHeight = (getMeasuredHeight() - this.enterOffset) + AndroidUtilities.m35dp(9.0f);
+            float measuredHeight = (getMeasuredHeight() - this.enterOffset) + AndroidUtilities.m36dp(9.0f);
             if (measuredHeight > 0.0f) {
                 canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), measuredHeight);
                 super.dispatchDraw(canvas);
@@ -421,7 +420,7 @@ public class UndoView extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         if (this.additionalTranslationY != 0.0f) {
             canvas.save();
-            float measuredHeight = (getMeasuredHeight() - this.enterOffset) + this.enterOffsetMargin + AndroidUtilities.m35dp(1.0f);
+            float measuredHeight = (getMeasuredHeight() - this.enterOffset) + this.enterOffsetMargin + AndroidUtilities.m36dp(1.0f);
             if (measuredHeight > 0.0f) {
                 canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), measuredHeight);
                 super.dispatchDraw(canvas);
@@ -463,7 +462,7 @@ public class UndoView extends FrameLayout {
                 if (f3 < 1.0f) {
                     this.textPaint.setAlpha((int) (alpha * (1.0f - f3)));
                     canvas.save();
-                    canvas.translate(this.rect.centerX() - (this.textWidth / 2), AndroidUtilities.m35dp(17.2f) + (AndroidUtilities.m35dp(10.0f) * this.timeReplaceProgress));
+                    canvas.translate(this.rect.centerX() - (this.textWidth / 2), AndroidUtilities.m36dp(17.2f) + (AndroidUtilities.m36dp(10.0f) * this.timeReplaceProgress));
                     this.timeLayoutOut.draw(canvas);
                     this.textPaint.setAlpha(alpha);
                     canvas.restore();
@@ -475,7 +474,7 @@ public class UndoView extends FrameLayout {
                     this.textPaint.setAlpha((int) (alpha * f4));
                 }
                 canvas.save();
-                canvas.translate(this.rect.centerX() - (this.textWidth / 2), AndroidUtilities.m35dp(17.2f) - (AndroidUtilities.m35dp(10.0f) * (1.0f - this.timeReplaceProgress)));
+                canvas.translate(this.rect.centerX() - (this.textWidth / 2), AndroidUtilities.m36dp(17.2f) - (AndroidUtilities.m36dp(10.0f) * (1.0f - this.timeReplaceProgress)));
                 this.timeLayout.draw(canvas);
                 if (this.timeReplaceProgress != 1.0f) {
                     this.textPaint.setAlpha(alpha);
@@ -525,7 +524,7 @@ public class UndoView extends FrameLayout {
     }
 
     private void updatePosition() {
-        setTranslationY(((this.enterOffset - this.enterOffsetMargin) + AndroidUtilities.m35dp(8.0f)) - this.additionalTranslationY);
+        setTranslationY(((this.enterOffset - this.enterOffsetMargin) + AndroidUtilities.m36dp(8.0f)) - this.additionalTranslationY);
         invalidate();
     }
 

@@ -62,10 +62,10 @@ public class LimitPreviewView extends LinearLayout {
         setClipChildren(false);
         setClipToPadding(false);
         if (i != 0) {
-            setPadding(0, AndroidUtilities.m35dp(16.0f), 0, 0);
+            setPadding(0, AndroidUtilities.m36dp(16.0f), 0, 0);
             this.limitIcon = new CounterView(context);
             setIconValue(i2);
-            this.limitIcon.setPadding(AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(14.0f));
+            this.limitIcon.setPadding(AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(14.0f));
             addView(this.limitIcon, LayoutHelper.createLinear(-2, -2, 0.0f, 3));
         }
         LinearLayout linearLayout = new LinearLayout(context) {
@@ -77,7 +77,7 @@ public class LimitPreviewView extends LinearLayout {
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f = 0.0f;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), this.grayPaint);
+                canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), this.grayPaint);
                 canvas.save();
                 canvas.clipRect(getMeasuredWidth() / 2.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 Paint mainGradientPaint = PremiumGradient.getInstance().getMainGradientPaint();
@@ -97,7 +97,7 @@ public class LimitPreviewView extends LinearLayout {
                 } else {
                     PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, LimitPreviewView.this.getMeasuredWidth(), LimitPreviewView.this.getMeasuredHeight(), LimitPreviewView.this.getGlobalXOffset() - getLeft(), -getTop());
                 }
-                canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), mainGradientPaint);
+                canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), mainGradientPaint);
                 canvas.restore();
                 if (LimitPreviewView.this.staticGradient == null) {
                     invalidate();
@@ -113,7 +113,7 @@ public class LimitPreviewView extends LinearLayout {
         textView.setText(LocaleController.getString("LimitFree", C1072R.string.LimitFree));
         textView.setGravity(16);
         textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        textView.setPadding(AndroidUtilities.m35dp(12.0f), 0, 0, 0);
+        textView.setPadding(AndroidUtilities.m36dp(12.0f), 0, 0, 0);
         TextView textView2 = new TextView(context);
         this.defaultCount = textView2;
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -129,7 +129,7 @@ public class LimitPreviewView extends LinearLayout {
         textView3.setText(LocaleController.getString("LimitPremium", C1072R.string.LimitPremium));
         textView3.setGravity(16);
         textView3.setTextColor(-1);
-        textView3.setPadding(AndroidUtilities.m35dp(12.0f), 0, 0, 0);
+        textView3.setPadding(AndroidUtilities.m36dp(12.0f), 0, 0, 0);
         TextView textView4 = new TextView(context);
         this.premiumCount = textView4;
         textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -176,17 +176,17 @@ public class LimitPreviewView extends LinearLayout {
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int m35dp;
+        int m36dp;
         float f;
         float f2;
         CounterView counterView;
         CounterView counterView2;
         super.onLayout(z, i, i2, i3, i4);
         if (!this.wasAnimation && this.limitIcon != null && this.animationCanPlay && !this.premiumLocked) {
-            int m35dp2 = AndroidUtilities.m35dp(14.0f);
-            float measuredWidth = (m35dp2 + ((getMeasuredWidth() - (m35dp2 * 2)) * this.position)) - (this.limitIcon.getMeasuredWidth() / 2.0f);
-            if (measuredWidth > (getMeasuredWidth() - m35dp2) - this.limitIcon.getMeasuredWidth()) {
-                f = (getMeasuredWidth() - m35dp2) - this.limitIcon.getMeasuredWidth();
+            int m36dp2 = AndroidUtilities.m36dp(14.0f);
+            float measuredWidth = (m36dp2 + ((getMeasuredWidth() - (m36dp2 * 2)) * this.position)) - (this.limitIcon.getMeasuredWidth() / 2.0f);
+            if (measuredWidth > (getMeasuredWidth() - m36dp2) - this.limitIcon.getMeasuredWidth()) {
+                f = (getMeasuredWidth() - m36dp2) - this.limitIcon.getMeasuredWidth();
                 f2 = 1.0f;
             } else {
                 f = measuredWidth;
@@ -214,7 +214,7 @@ public class LimitPreviewView extends LinearLayout {
             ofFloat.start();
             this.wasAnimation = true;
         } else if (this.premiumLocked) {
-            float m35dp3 = (AndroidUtilities.m35dp(14.0f) + ((getMeasuredWidth() - (m35dp * 2)) * 0.5f)) - (this.limitIcon.getMeasuredWidth() / 2.0f);
+            float m36dp3 = (AndroidUtilities.m36dp(14.0f) + ((getMeasuredWidth() - (m36dp * 2)) * 0.5f)) - (this.limitIcon.getMeasuredWidth() / 2.0f);
             boolean z2 = this.wasAnimation;
             if (!z2 && this.animationCanPlay) {
                 this.wasAnimation = true;
@@ -228,7 +228,7 @@ public class LimitPreviewView extends LinearLayout {
                 this.limitIcon.setScaleX(1.0f);
                 this.limitIcon.setScaleY(1.0f);
             }
-            this.limitIcon.setTranslationX(m35dp3);
+            this.limitIcon.setTranslationX(m36dp3);
         } else {
             CounterView counterView3 = this.limitIcon;
             if (counterView3 != null) {
@@ -295,7 +295,7 @@ public class LimitPreviewView extends LinearLayout {
 
     public void setPremiumLocked() {
         this.limitsContainer.setVisibility(8);
-        this.limitIcon.setPadding(AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(3.0f));
+        this.limitIcon.setPadding(AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(3.0f));
         this.premiumLocked = true;
     }
 
@@ -314,13 +314,12 @@ public class LimitPreviewView extends LinearLayout {
 
         public CounterView(Context context) {
             super(context);
-            LimitPreviewView.this = r1;
             this.path = new Path();
-            this.pathEffect = new CornerPathEffect(AndroidUtilities.m35dp(6.0f));
+            this.pathEffect = new CornerPathEffect(AndroidUtilities.m36dp(6.0f));
             this.textPaint = new TextPaint(1);
             this.animatedLayouts = new ArrayList<>();
             this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.textPaint.setTextSize(AndroidUtilities.m35dp(22.0f));
+            this.textPaint.setTextSize(AndroidUtilities.m36dp(22.0f));
             this.textPaint.setColor(-1);
         }
 
@@ -329,39 +328,39 @@ public class LimitPreviewView extends LinearLayout {
             TextPaint textPaint = this.textPaint;
             CharSequence charSequence = this.text;
             this.textWidth = textPaint.measureText(charSequence, 0, charSequence.length());
-            this.textLayout = new StaticLayout(this.text, this.textPaint, ((int) this.textWidth) + AndroidUtilities.m35dp(12.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            setMeasuredDimension((int) (this.textWidth + getPaddingRight() + getPaddingLeft()), AndroidUtilities.m35dp(44.0f) + AndroidUtilities.m35dp(8.0f));
+            this.textLayout = new StaticLayout(this.text, this.textPaint, ((int) this.textWidth) + AndroidUtilities.m36dp(12.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            setMeasuredDimension((int) (this.textWidth + getPaddingRight() + getPaddingLeft()), AndroidUtilities.m36dp(44.0f) + AndroidUtilities.m36dp(8.0f));
             updatePath();
         }
 
         private void updatePath() {
-            int measuredHeight = getMeasuredHeight() - AndroidUtilities.m35dp(8.0f);
+            int measuredHeight = getMeasuredHeight() - AndroidUtilities.m36dp(8.0f);
             float measuredWidth = getMeasuredWidth() * this.arrowCenter;
-            float clamp = Utilities.clamp(AndroidUtilities.m35dp(8.0f) + measuredWidth, getMeasuredWidth(), 0.0f);
-            float clamp2 = Utilities.clamp(AndroidUtilities.m35dp(10.0f) + measuredWidth, getMeasuredWidth(), 0.0f);
+            float clamp = Utilities.clamp(AndroidUtilities.m36dp(8.0f) + measuredWidth, getMeasuredWidth(), 0.0f);
+            float clamp2 = Utilities.clamp(AndroidUtilities.m36dp(10.0f) + measuredWidth, getMeasuredWidth(), 0.0f);
             this.path.rewind();
             float f = measuredHeight;
             float f2 = f - (f / 2.0f);
-            this.path.moveTo(measuredWidth - AndroidUtilities.m35dp(24.0f), f2 - AndroidUtilities.m35dp(2.0f));
-            this.path.lineTo(measuredWidth - AndroidUtilities.m35dp(24.0f), f);
-            this.path.lineTo(measuredWidth - AndroidUtilities.m35dp(8.0f), f);
-            this.path.lineTo(measuredWidth, measuredHeight + AndroidUtilities.m35dp(8.0f));
+            this.path.moveTo(measuredWidth - AndroidUtilities.m36dp(24.0f), f2 - AndroidUtilities.m36dp(2.0f));
+            this.path.lineTo(measuredWidth - AndroidUtilities.m36dp(24.0f), f);
+            this.path.lineTo(measuredWidth - AndroidUtilities.m36dp(8.0f), f);
+            this.path.lineTo(measuredWidth, measuredHeight + AndroidUtilities.m36dp(8.0f));
             if (this.arrowCenter < 0.7f) {
                 this.path.lineTo(clamp, f);
             }
             this.path.lineTo(clamp2, f);
-            this.path.lineTo(clamp2, f2 - AndroidUtilities.m35dp(2.0f));
+            this.path.lineTo(clamp2, f2 - AndroidUtilities.m36dp(2.0f));
             this.path.close();
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
-            int measuredHeight = getMeasuredHeight() - AndroidUtilities.m35dp(8.0f);
+            int measuredHeight = getMeasuredHeight() - AndroidUtilities.m36dp(8.0f);
             if (LimitPreviewView.this.premiumLocked) {
                 measuredHeight = getMeasuredHeight();
                 PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, LimitPreviewView.this.getMeasuredWidth(), LimitPreviewView.this.getMeasuredHeight(), LimitPreviewView.this.getGlobalXOffset() - getX(), -getTop());
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, AndroidUtilities.m35dp(3.0f), getMeasuredWidth(), measuredHeight - AndroidUtilities.m35dp(3.0f));
+                rectF.set(0.0f, AndroidUtilities.m36dp(3.0f), getMeasuredWidth(), measuredHeight - AndroidUtilities.m36dp(3.0f));
                 float f = measuredHeight / 2.0f;
                 canvas.drawRoundRect(rectF, f, f, PremiumGradient.getInstance().getMainGradientPaint());
             } else {
@@ -393,7 +392,7 @@ public class LimitPreviewView extends LinearLayout {
                 return;
             }
             canvas.save();
-            canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.m35dp(8.0f));
+            canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.m36dp(8.0f));
             if (this.animatedStableLayout != null) {
                 canvas.save();
                 canvas.translate(measuredWidth, height);
@@ -457,7 +456,7 @@ public class LimitPreviewView extends LinearLayout {
                     spannableStringBuilder.setSpan(new EmptyStubSpan(), i2, i2 + 1, 0);
                 }
             }
-            this.animatedStableLayout = new StaticLayout(spannableStringBuilder, this.textPaint, AndroidUtilities.m35dp(12.0f) + ((int) this.textWidth), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.animatedStableLayout = new StaticLayout(spannableStringBuilder, this.textPaint, AndroidUtilities.m36dp(12.0f) + ((int) this.textWidth), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             for (int i4 = 0; i4 < this.animatedLayouts.size(); i4++) {
                 this.animationInProgress = true;
                 final AnimatedLayout animatedLayout2 = this.animatedLayouts.get(i4);

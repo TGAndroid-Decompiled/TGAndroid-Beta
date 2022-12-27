@@ -101,11 +101,11 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         addView(this.shadowView, LayoutHelper.createFrame(-1, 70, 83));
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
-        backupImageView.getImageReceiver().setRoundRadius(AndroidUtilities.m35dp(32.0f));
+        backupImageView.getImageReceiver().setRoundRadius(AndroidUtilities.m36dp(32.0f));
         addView(this.avatarImageView, LayoutHelper.createFrame(64, 64.0f, 83, 16.0f, 0.0f, 0.0f, 67.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context) {
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
                 if (DrawerProfileCell.this.updateRightDrawable) {
                     DrawerProfileCell.this.updateRightDrawable = false;
@@ -123,7 +123,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
                 DrawerProfileCell.this.lambda$new$0(view);
             }
         });
-        this.nameTextView.setPadding(0, AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f));
+        this.nameTextView.setPadding(0, AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f));
         this.nameTextView.setTextSize(15);
         this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setGravity(19);
@@ -147,7 +147,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         boolean z = sunDrawable == null;
         if (z) {
             int i = C1072R.raw.sun;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(28.0f), true, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.m36dp(28.0f), AndroidUtilities.m36dp(28.0f), true, null);
             sunDrawable = rLottieDrawable;
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
             if (Theme.isCurrentThemeDay()) {
@@ -182,7 +182,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         this.darkThemeView.setScaleType(ImageView.ScaleType.CENTER);
         this.darkThemeView.setAnimation(sunDrawable);
         if (Build.VERSION.SDK_INT >= 21) {
-            this.darkThemeView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 1, AndroidUtilities.m35dp(17.0f)));
+            this.darkThemeView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 1, AndroidUtilities.m36dp(17.0f)));
             Theme.setRippleDrawableForceSoftware((RippleDrawable) this.darkThemeView.getBackground());
         }
         if (!z && sunDrawable.getCustomEndFrame() != sunDrawable.getCurrentFrame()) {
@@ -208,7 +208,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
             this.snowflakesEffect = snowflakesEffect;
             snowflakesEffect.setColorKey("chats_menuName");
         }
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.m35dp(20.0f));
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.m36dp(20.0f));
         this.status = swapAnimatedEmojiDrawable;
         this.nameTextView.setRightDrawable(swapAnimatedEmojiDrawable);
         AnimatedStatusView animatedStatusView = new AnimatedStatusView(context, 20, 60);
@@ -256,7 +256,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(Math.max(this.renderedEffectsSize, Math.max(this.stateSize, this.effectsSize))), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(Math.max(this.renderedEffectsSize, Math.max(this.stateSize, this.effectsSize))), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(Math.max(this.renderedEffectsSize, Math.max(this.stateSize, this.effectsSize))), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(Math.max(this.renderedEffectsSize, Math.max(this.stateSize, this.effectsSize))), 1073741824));
         }
 
         public void translate(float f, float f2) {
@@ -274,18 +274,18 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
 
         @Override
         public void dispatchDraw(Canvas canvas) {
-            int m35dp = AndroidUtilities.m35dp(this.renderedEffectsSize);
-            int m35dp2 = AndroidUtilities.m35dp(this.effectsSize);
+            int m36dp = AndroidUtilities.m36dp(this.renderedEffectsSize);
+            int m36dp2 = AndroidUtilities.m36dp(this.effectsSize);
             for (int i = 0; i < this.animations.size(); i++) {
                 Object obj = this.animations.get(i);
                 if (obj instanceof ImageReceiver) {
                     ImageReceiver imageReceiver = (ImageReceiver) obj;
-                    float f = m35dp2;
-                    imageReceiver.setImageCoords((getMeasuredWidth() - m35dp2) / 2.0f, (getMeasuredHeight() - m35dp2) / 2.0f, f, f);
+                    float f = m36dp2;
+                    imageReceiver.setImageCoords((getMeasuredWidth() - m36dp2) / 2.0f, (getMeasuredHeight() - m36dp2) / 2.0f, f, f);
                     imageReceiver.draw(canvas);
                 } else if (obj instanceof AnimatedEmojiEffect) {
                     AnimatedEmojiEffect animatedEmojiEffect = (AnimatedEmojiEffect) obj;
-                    animatedEmojiEffect.setBounds((int) ((getMeasuredWidth() - m35dp) / 2.0f), (int) ((getMeasuredHeight() - m35dp) / 2.0f), (int) ((getMeasuredWidth() + m35dp) / 2.0f), (int) ((getMeasuredHeight() + m35dp) / 2.0f));
+                    animatedEmojiEffect.setBounds((int) ((getMeasuredWidth() - m36dp) / 2.0f), (int) ((getMeasuredHeight() - m36dp) / 2.0f), (int) ((getMeasuredWidth() + m36dp) / 2.0f), (int) ((getMeasuredHeight() + m36dp) / 2.0f));
                     animatedEmojiEffect.draw(canvas);
                     if (animatedEmojiEffect.done()) {
                         animatedEmojiEffect.removeView(this);
@@ -434,14 +434,14 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     @Override
     protected void onMeasure(int i, int i2) {
         if (Build.VERSION.SDK_INT >= 21) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(148.0f) + AndroidUtilities.statusBarHeight, 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(148.0f) + AndroidUtilities.statusBarHeight, 1073741824));
             return;
         }
         try {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(148.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(148.0f), 1073741824));
         } catch (Exception e) {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m35dp(148.0f));
-            FileLog.m31e(e);
+            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m36dp(148.0f));
+            FileLog.m32e(e);
         }
     }
 
@@ -458,7 +458,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
                 drawable2.minLifeTime = 3000L;
             }
             this.starParticlesDrawable.rect.set(this.avatarImageView.getLeft(), this.avatarImageView.getTop(), this.avatarImageView.getRight(), this.avatarImageView.getBottom());
-            this.starParticlesDrawable.rect.inset(-AndroidUtilities.m35dp(20.0f), -AndroidUtilities.m35dp(20.0f));
+            this.starParticlesDrawable.rect.inset(-AndroidUtilities.m36dp(20.0f), -AndroidUtilities.m36dp(20.0f));
             this.starParticlesDrawable.resetPositions();
         }
     }
@@ -505,7 +505,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         setArrowState(false);
         CharSequence userName = UserObject.getUserName(tLRPC$User);
         try {
-            userName = Emoji.replaceEmoji(userName, this.nameTextView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(22.0f), false);
+            userName = Emoji.replaceEmoji(userName, this.nameTextView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(22.0f), false);
         } catch (Exception unused) {
         }
         this.drawPremium = false;
@@ -513,15 +513,15 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         TLRPC$EmojiStatus tLRPC$EmojiStatus = tLRPC$User.emoji_status;
         if ((tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil) && ((TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus).until > ((int) (System.currentTimeMillis() / 1000))) {
             this.animatedStatus.animate().alpha(1.0f).setDuration(200L).start();
-            this.nameTextView.setDrawablePadding(AndroidUtilities.m35dp(4.0f));
+            this.nameTextView.setDrawablePadding(AndroidUtilities.m36dp(4.0f));
             this.status.set(((TLRPC$TL_emojiStatusUntil) tLRPC$User.emoji_status).document_id, true);
         } else if (tLRPC$User.emoji_status instanceof TLRPC$TL_emojiStatus) {
             this.animatedStatus.animate().alpha(1.0f).setDuration(200L).start();
-            this.nameTextView.setDrawablePadding(AndroidUtilities.m35dp(4.0f));
+            this.nameTextView.setDrawablePadding(AndroidUtilities.m36dp(4.0f));
             this.status.set(((TLRPC$TL_emojiStatus) tLRPC$User.emoji_status).document_id, true);
         } else if (tLRPC$User.premium) {
             this.animatedStatus.animate().alpha(1.0f).setDuration(200L).start();
-            this.nameTextView.setDrawablePadding(AndroidUtilities.m35dp(4.0f));
+            this.nameTextView.setDrawablePadding(AndroidUtilities.m36dp(4.0f));
             if (this.premiumStar == null) {
                 this.premiumStar = getResources().getDrawable(C1072R.C1073drawable.msg_premium_liststar).mutate();
             }

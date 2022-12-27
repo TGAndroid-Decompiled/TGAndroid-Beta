@@ -446,7 +446,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
         CrossfadeDrawable crossfadeDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor("actionBarDefaultIcon")));
         this.doneButtonDrawable = crossfadeDrawable;
-        this.doneButton = createMenu.addItemWithWidth(1, crossfadeDrawable, AndroidUtilities.m35dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
+        this.doneButton = createMenu.addItemWithWidth(1, crossfadeDrawable, AndroidUtilities.m36dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
         int i = this.currentStep;
         if (i == 0) {
             this.actionBar.setTitle(LocaleController.getString("NewChannel", C1072R.string.NewChannel));
@@ -460,7 +460,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     setMeasuredDimension(size, size2);
                     int paddingTop = size2 - getPaddingTop();
                     measureChildWithMargins(((BaseFragment) ChannelCreateActivity.this).actionBar, i2, 0, i3, 0);
-                    if (measureKeyboardHeight() > AndroidUtilities.m35dp(20.0f)) {
+                    if (measureKeyboardHeight() > AndroidUtilities.m36dp(20.0f)) {
                         this.ignoreLayout = true;
                         ChannelCreateActivity.this.nameTextView.hideEmojiView();
                         this.ignoreLayout = false;
@@ -472,7 +472,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                             if (ChannelCreateActivity.this.nameTextView != null && ChannelCreateActivity.this.nameTextView.isPopupView(childAt)) {
                                 if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
                                     if (AndroidUtilities.isTablet()) {
-                                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m35dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), (paddingTop - AndroidUtilities.statusBarHeight) + getPaddingTop()), 1073741824));
+                                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m36dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), (paddingTop - AndroidUtilities.statusBarHeight) + getPaddingTop()), 1073741824));
                                     } else {
                                         childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((paddingTop - AndroidUtilities.statusBarHeight) + getPaddingTop(), 1073741824));
                                     }
@@ -488,7 +488,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
 
                 @Override
                 public void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ChannelCreateActivity.C15242.onLayout(boolean, int, int, int, int):void");
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ChannelCreateActivity.C15262.onLayout(boolean, int, int, int, int):void");
                 }
 
                 @Override
@@ -527,7 +527,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                 }
             };
             this.avatarImage = backupImageView;
-            backupImageView.setRoundRadius(AndroidUtilities.m35dp(32.0f));
+            backupImageView.setRoundRadius(AndroidUtilities.m36dp(32.0f));
             this.avatarDrawable.setInfo(5L, null, null);
             this.avatarImage.setImageDrawable(this.avatarDrawable);
             BackupImageView backupImageView2 = this.avatarImage;
@@ -557,7 +557,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                 }
             });
             int i2 = C1072R.raw.camera;
-            this.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(60.0f), AndroidUtilities.m35dp(60.0f), false, null);
+            this.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m36dp(60.0f), AndroidUtilities.m36dp(60.0f), false, null);
             RLottieImageView rLottieImageView = new RLottieImageView(context) {
                 @Override
                 public void invalidate(int i3, int i4, int i5, int i6) {
@@ -576,13 +576,13 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.avatarEditor.setAnimation(this.cameraDrawable);
             this.avatarEditor.setEnabled(false);
             this.avatarEditor.setClickable(false);
-            this.avatarEditor.setPadding(AndroidUtilities.m35dp(0.0f), 0, 0, AndroidUtilities.m35dp(1.0f));
+            this.avatarEditor.setPadding(AndroidUtilities.m36dp(0.0f), 0, 0, AndroidUtilities.m36dp(1.0f));
             RLottieImageView rLottieImageView2 = this.avatarEditor;
             boolean z3 = LocaleController.isRTL;
             frameLayout.addView(rLottieImageView2, LayoutHelper.createFrame(64, 64.0f, (z3 ? 5 : 3) | 48, z3 ? 0.0f : 15.0f, 12.0f, z3 ? 15.0f : 0.0f, 12.0f));
             RadialProgressView radialProgressView = new RadialProgressView(context);
             this.avatarProgressView = radialProgressView;
-            radialProgressView.setSize(AndroidUtilities.m35dp(30.0f));
+            radialProgressView.setSize(AndroidUtilities.m36dp(30.0f));
             this.avatarProgressView.setProgressColor(-1);
             this.avatarProgressView.setNoProgress(false);
             RadialProgressView radialProgressView2 = this.avatarProgressView;
@@ -618,14 +618,14 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.descriptionTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.descriptionTextView.setBackgroundDrawable(null);
             this.descriptionTextView.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("windowBackgroundWhiteRedText3"));
-            this.descriptionTextView.setPadding(0, 0, 0, AndroidUtilities.m35dp(6.0f));
+            this.descriptionTextView.setPadding(0, 0, 0, AndroidUtilities.m36dp(6.0f));
             this.descriptionTextView.setGravity(LocaleController.isRTL ? 5 : 3);
             this.descriptionTextView.setInputType(180225);
             this.descriptionTextView.setImeOptions(6);
             this.descriptionTextView.setFilters(new InputFilter[]{new InputFilter.LengthFilter(120)});
             this.descriptionTextView.setHint(LocaleController.getString("DescriptionPlaceholder", C1072R.string.DescriptionPlaceholder));
             this.descriptionTextView.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            this.descriptionTextView.setCursorSize(AndroidUtilities.m35dp(20.0f));
+            this.descriptionTextView.setCursorSize(AndroidUtilities.m36dp(20.0f));
             this.descriptionTextView.setCursorWidth(1.5f);
             this.linearLayout.addView(this.descriptionTextView, LayoutHelper.createLinear(-1, -2, 24.0f, 18.0f, 24.0f, 0.0f));
             this.descriptionTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -745,7 +745,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.descriptionTextView.setImeOptions(6);
             this.descriptionTextView.setHint(LocaleController.getString("ChannelUsernamePlaceholder", C1072R.string.ChannelUsernamePlaceholder));
             this.descriptionTextView.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            this.descriptionTextView.setCursorSize(AndroidUtilities.m35dp(20.0f));
+            this.descriptionTextView.setCursorSize(AndroidUtilities.m36dp(20.0f));
             this.descriptionTextView.setCursorWidth(1.5f);
             this.publicContainer.addView(this.descriptionTextView, LayoutHelper.createLinear(-1, 36));
             this.descriptionTextView.addTextChangedListener(new TextWatcher() {
@@ -810,7 +810,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.checkTextView.setTextSize(1, 15.0f);
             this.checkTextView.setGravity(LocaleController.isRTL ? 5 : 3);
             this.checkTextView.setVisibility(8);
-            this.checkTextView.setPadding(AndroidUtilities.m35dp(3.0f), 0, AndroidUtilities.m35dp(3.0f), 0);
+            this.checkTextView.setPadding(AndroidUtilities.m36dp(3.0f), 0, AndroidUtilities.m36dp(3.0f), 0);
             this.linkContainer.addView(this.checkTextView, LayoutHelper.createLinear(-2, -2, LocaleController.isRTL ? 5 : 3, 18, 3, 18, 7));
             TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
             this.typeInfoCell = textInfoPrivacyCell;
@@ -1008,7 +1008,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             headerCell.setText(LocaleController.getString(str2, i2));
             this.publicContainer.setVisibility(this.isPrivate ? 8 : 0);
             this.privateContainer.setVisibility(this.isPrivate ? 0 : 8);
-            this.linkContainer.setPadding(0, 0, 0, this.isPrivate ? 0 : AndroidUtilities.m35dp(7.0f));
+            this.linkContainer.setPadding(0, 0, 0, this.isPrivate ? 0 : AndroidUtilities.m36dp(7.0f));
             LinkActionView linkActionView = this.permanentLinkView;
             TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported = this.invite;
             linkActionView.setLink(tLRPC$TL_chatInviteExported != null ? tLRPC$TL_chatInviteExported.link : null);
@@ -1065,7 +1065,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                         alertDialog.dismiss();
                         this.cancelDialog = null;
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                 }
                 updateDoneProgress(false);
@@ -1207,7 +1207,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     alertDialog.dismiss();
                     this.cancelDialog = null;
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             updateDoneProgress(false);
@@ -1219,7 +1219,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     alertDialog2.dismiss();
                     this.cancelDialog = null;
                 } catch (Exception e2) {
-                    FileLog.m31e(e2);
+                    FileLog.m32e(e2);
                 }
             }
             long longValue = ((Long) objArr[0]).longValue();

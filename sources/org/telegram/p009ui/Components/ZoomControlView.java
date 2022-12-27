@@ -129,27 +129,27 @@ public class ZoomControlView extends View {
         int measuredHeight = getMeasuredHeight() / 2;
         boolean z = getMeasuredWidth() > getMeasuredHeight();
         if (z) {
-            this.minusCx = AndroidUtilities.m35dp(41.0f);
+            this.minusCx = AndroidUtilities.m36dp(41.0f);
             this.minusCy = measuredHeight;
-            this.plusCx = getMeasuredWidth() - AndroidUtilities.m35dp(41.0f);
+            this.plusCx = getMeasuredWidth() - AndroidUtilities.m36dp(41.0f);
             this.plusCy = measuredHeight;
-            this.progressStartX = this.minusCx + AndroidUtilities.m35dp(18.0f);
+            this.progressStartX = this.minusCx + AndroidUtilities.m36dp(18.0f);
             this.progressStartY = measuredHeight;
-            this.progressEndX = this.plusCx - AndroidUtilities.m35dp(18.0f);
+            this.progressEndX = this.plusCx - AndroidUtilities.m36dp(18.0f);
             this.progressEndY = measuredHeight;
         } else {
             this.minusCx = measuredWidth;
-            this.minusCy = AndroidUtilities.m35dp(41.0f);
+            this.minusCy = AndroidUtilities.m36dp(41.0f);
             this.plusCx = measuredWidth;
-            this.plusCy = getMeasuredHeight() - AndroidUtilities.m35dp(41.0f);
+            this.plusCy = getMeasuredHeight() - AndroidUtilities.m36dp(41.0f);
             this.progressStartX = measuredWidth;
-            this.progressStartY = this.minusCy + AndroidUtilities.m35dp(18.0f);
+            this.progressStartY = this.minusCy + AndroidUtilities.m36dp(18.0f);
             this.progressEndX = measuredWidth;
-            this.progressEndY = this.plusCy - AndroidUtilities.m35dp(18.0f);
+            this.progressEndY = this.plusCy - AndroidUtilities.m36dp(18.0f);
         }
-        this.minusDrawable.setBounds(this.minusCx - AndroidUtilities.m35dp(7.0f), this.minusCy - AndroidUtilities.m35dp(7.0f), this.minusCx + AndroidUtilities.m35dp(7.0f), this.minusCy + AndroidUtilities.m35dp(7.0f));
+        this.minusDrawable.setBounds(this.minusCx - AndroidUtilities.m36dp(7.0f), this.minusCy - AndroidUtilities.m36dp(7.0f), this.minusCx + AndroidUtilities.m36dp(7.0f), this.minusCy + AndroidUtilities.m36dp(7.0f));
         this.minusDrawable.draw(canvas);
-        this.plusDrawable.setBounds(this.plusCx - AndroidUtilities.m35dp(7.0f), this.plusCy - AndroidUtilities.m35dp(7.0f), this.plusCx + AndroidUtilities.m35dp(7.0f), this.plusCy + AndroidUtilities.m35dp(7.0f));
+        this.plusDrawable.setBounds(this.plusCx - AndroidUtilities.m36dp(7.0f), this.plusCy - AndroidUtilities.m36dp(7.0f), this.plusCx + AndroidUtilities.m36dp(7.0f), this.plusCy + AndroidUtilities.m36dp(7.0f));
         this.plusDrawable.draw(canvas);
         int i = this.progressEndX;
         int i2 = this.progressStartX;
@@ -159,14 +159,14 @@ public class ZoomControlView extends View {
         int i5 = (int) (i2 + ((i - i2) * f));
         int i6 = (int) (i4 + ((i3 - i4) * f));
         if (z) {
-            this.progressDrawable.setBounds(i2, i4 - AndroidUtilities.m35dp(3.0f), this.progressEndX, this.progressStartY + AndroidUtilities.m35dp(3.0f));
-            this.filledProgressDrawable.setBounds(this.progressStartX, this.progressStartY - AndroidUtilities.m35dp(3.0f), i5, this.progressStartY + AndroidUtilities.m35dp(3.0f));
+            this.progressDrawable.setBounds(i2, i4 - AndroidUtilities.m36dp(3.0f), this.progressEndX, this.progressStartY + AndroidUtilities.m36dp(3.0f));
+            this.filledProgressDrawable.setBounds(this.progressStartX, this.progressStartY - AndroidUtilities.m36dp(3.0f), i5, this.progressStartY + AndroidUtilities.m36dp(3.0f));
         } else {
-            this.progressDrawable.setBounds(i4, 0, i3, AndroidUtilities.m35dp(6.0f));
-            this.filledProgressDrawable.setBounds(this.progressStartY, 0, i6, AndroidUtilities.m35dp(6.0f));
+            this.progressDrawable.setBounds(i4, 0, i3, AndroidUtilities.m36dp(6.0f));
+            this.filledProgressDrawable.setBounds(this.progressStartY, 0, i6, AndroidUtilities.m36dp(6.0f));
             canvas.save();
             canvas.rotate(90.0f);
-            canvas.translate(0.0f, (-this.progressStartX) - AndroidUtilities.m35dp(3.0f));
+            canvas.translate(0.0f, (-this.progressStartX) - AndroidUtilities.m36dp(3.0f));
         }
         this.progressDrawable.draw(canvas);
         this.filledProgressDrawable.draw(canvas);

@@ -544,7 +544,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor8 = database.queryFinalized("SELECT mid, uid, send_state, date, data, ttl, replydata FROM scheduled_messages_v2 WHERE 1", new Object[0]);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 sQLiteCursor8 = null;
             }
             if (sQLiteCursor8 != null) {
@@ -597,7 +597,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor7 = database.queryFinalized("SELECT mid, uid, date, type, data FROM media_v2 WHERE 1", new Object[0]);
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
                 sQLiteCursor7 = null;
             }
             if (sQLiteCursor7 != null) {
@@ -643,7 +643,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor3 = database.queryFinalized("SELECT r.random_id, r.mid, m.uid FROM randoms as r INNER JOIN messages as m ON r.mid = m.mid WHERE 1", new Object[0]);
             } catch (Exception e3) {
-                FileLog.m31e(e3);
+                FileLog.m32e(e3);
                 sQLiteCursor3 = null;
             }
             if (sQLiteCursor3 != null) {
@@ -667,7 +667,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor4 = database.queryFinalized("SELECT p.mid, m.uid, p.id FROM polls as p INNER JOIN messages as m ON p.mid = m.mid WHERE 1", new Object[0]);
             } catch (Exception e4) {
-                FileLog.m31e(e4);
+                FileLog.m32e(e4);
                 sQLiteCursor4 = null;
             }
             if (sQLiteCursor4 != null) {
@@ -691,7 +691,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor5 = database.queryFinalized("SELECT wp.id, wp.mid, m.uid FROM webpage_pending as wp INNER JOIN messages as m ON wp.mid = m.mid WHERE 1", new Object[0]);
             } catch (Exception e5) {
-                FileLog.m31e(e5);
+                FileLog.m32e(e5);
                 sQLiteCursor5 = null;
             }
             if (sQLiteCursor5 != null) {
@@ -715,7 +715,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor6 = database.queryFinalized("SELECT et.mid, m.uid, et.date, et.media FROM enc_tasks_v3 as et INNER JOIN messages as m ON et.mid = m.mid WHERE 1", new Object[0]);
             } catch (Exception e6) {
-                FileLog.m31e(e6);
+                FileLog.m32e(e6);
                 sQLiteCursor6 = null;
             }
             if (sQLiteCursor6 != null) {
@@ -762,7 +762,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor2 = database.queryFinalized("SELECT mid, uid, read_state, send_state, date, data, out, ttl, media, replydata, imp, mention, forwards, replies_data, thread_reply_id FROM messages WHERE 1", new Object[0]);
             } catch (Exception e7) {
-                FileLog.m31e(e7);
+                FileLog.m32e(e7);
                 sQLiteCursor2 = null;
             }
             if (sQLiteCursor2 != null) {
@@ -978,7 +978,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT mid, uid, date, type, data FROM media_v3 WHERE 1", new Object[0]);
             } catch (Exception e8) {
-                FileLog.m31e(e8);
+                FileLog.m32e(e8);
                 sQLiteCursor = null;
             }
             if (sQLiteCursor != null) {

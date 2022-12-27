@@ -103,10 +103,10 @@ public class WallpaperUpdater {
                 }
                 this.parentActivity.startActivityForResult(intent, 10);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
     }
 
@@ -132,7 +132,7 @@ public class WallpaperUpdater {
                         intent.setType("image/*");
                         WallpaperUpdater.this.parentActivity.startActivityForResult(intent, 11);
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                 }
             });
@@ -159,7 +159,7 @@ public class WallpaperUpdater {
                 this.delegate.didSelectWallpaper(this.currentWallpaperPath, loadBitmap, true);
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 

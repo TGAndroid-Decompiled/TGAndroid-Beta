@@ -130,7 +130,7 @@ public class ChatGreetingsView extends LinearLayout {
         }
         if (i == 0) {
             i2 = (int) f2;
-            i = i2 + AndroidUtilities.m35dp(100.0f);
+            i = i2 + AndroidUtilities.m36dp(100.0f);
         }
         int i4 = (int) (i2 * (f2 / i));
         int i5 = (int) f2;

@@ -401,7 +401,7 @@ public class VideoEditedInfo {
             }
             return true;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return false;
         }
     }

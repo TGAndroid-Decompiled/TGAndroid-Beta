@@ -35,7 +35,7 @@ public final class FingerprintManagerCompatApi23 {
             }
             return fingerprintManager.hasEnrolledFingerprints();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return false;
         }
     }
@@ -48,7 +48,7 @@ public final class FingerprintManagerCompatApi23 {
             }
             return fingerprintManager.isHardwareDetected();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return false;
         }
     }
@@ -57,7 +57,7 @@ public final class FingerprintManagerCompatApi23 {
         try {
             getFingerprintManager(context).authenticate(wrapCryptoObject(cryptoObject), (CancellationSignal) obj, i, wrapCallback(authenticationCallback), handler);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -97,22 +97,22 @@ public final class FingerprintManagerCompatApi23 {
         return new FingerprintManager.AuthenticationCallback() {
             @Override
             public void onAuthenticationError(int i, CharSequence charSequence) {
-                authenticationCallback.onAuthenticationError(i, charSequence);
+                AuthenticationCallback.this.onAuthenticationError(i, charSequence);
             }
 
             @Override
             public void onAuthenticationHelp(int i, CharSequence charSequence) {
-                authenticationCallback.onAuthenticationHelp(i, charSequence);
+                AuthenticationCallback.this.onAuthenticationHelp(i, charSequence);
             }
 
             @Override
             public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult authenticationResult) {
-                authenticationCallback.onAuthenticationSucceeded(new AuthenticationResultInternal(FingerprintManagerCompatApi23.unwrapCryptoObject(authenticationResult.getCryptoObject())));
+                AuthenticationCallback.this.onAuthenticationSucceeded(new AuthenticationResultInternal(FingerprintManagerCompatApi23.unwrapCryptoObject(authenticationResult.getCryptoObject())));
             }
 
             @Override
             public void onAuthenticationFailed() {
-                authenticationCallback.onAuthenticationFailed();
+                AuthenticationCallback.this.onAuthenticationFailed();
             }
         };
     }

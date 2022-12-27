@@ -164,7 +164,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
                 if (!z2 || TrendingStickersLayout.this.listView.getAdapter().getItemCount() <= 0) {
                     return;
                 }
-                TrendingStickersLayout.this.layoutManager.scrollToPositionWithOffset(0, (-TrendingStickersLayout.this.listView.getPaddingTop()) + AndroidUtilities.m35dp(58.0f) + TrendingStickersLayout.this.topOffset, false);
+                TrendingStickersLayout.this.layoutManager.scrollToPositionWithOffset(0, (-TrendingStickersLayout.this.listView.getPaddingTop()) + AndroidUtilities.m36dp(58.0f) + TrendingStickersLayout.this.topOffset, false);
             }
 
             @Override
@@ -234,7 +234,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
 
             @Override
             protected boolean allowSelectChildAtPosition(float f, float f2) {
-                return f2 >= ((float) (TrendingStickersLayout.this.topOffset + AndroidUtilities.m35dp(58.0f)));
+                return f2 >= ((float) (TrendingStickersLayout.this.topOffset + AndroidUtilities.m36dp(58.0f)));
             }
         };
         this.listView = recyclerListView;
@@ -256,7 +256,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         recyclerListView.setClipToPadding(false);
         recyclerListView.setItemAnimator(null);
         recyclerListView.setLayoutAnimation(null);
-        FillLastGridLayoutManager fillLastGridLayoutManager = new FillLastGridLayoutManager(context, 5, AndroidUtilities.m35dp(58.0f), recyclerListView) {
+        FillLastGridLayoutManager fillLastGridLayoutManager = new FillLastGridLayoutManager(context, 5, AndroidUtilities.m36dp(58.0f), recyclerListView) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return false;
@@ -297,8 +297,8 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
                         }
                         i4++;
                     }
-                    if (i3 == 0 && (findViewByPosition = TrendingStickersLayout.this.layoutManager.findViewByPosition(i3)) != null && findViewByPosition.getTop() - i2 > AndroidUtilities.m35dp(58.0f)) {
-                        i2 = findViewByPosition.getTop() - AndroidUtilities.m35dp(58.0f);
+                    if (i3 == 0 && (findViewByPosition = TrendingStickersLayout.this.layoutManager.findViewByPosition(i3)) != null && findViewByPosition.getTop() - i2 > AndroidUtilities.m36dp(58.0f)) {
+                        i2 = findViewByPosition.getTop() - AndroidUtilities.m36dp(58.0f);
                     }
                 }
                 return super.scrollVerticallyBy(i2, recycler, state);
@@ -347,7 +347,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         view.setBackgroundColor(getThemedColor("dialogShadowLine"));
         view.setAlpha(0.0f);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight());
-        layoutParams.topMargin = AndroidUtilities.m35dp(58.0f);
+        layoutParams.topMargin = AndroidUtilities.m36dp(58.0f);
         addView(view, layoutParams);
         addView(frameLayout, LayoutHelper.createFrame(-1, 58, 51));
         updateColors();
@@ -386,7 +386,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         if (this.scrollToSet == null || (num = (Integer) this.adapter.setsToPosition.get(this.scrollToSet)) == null) {
             return;
         }
-        this.layoutManager.scrollToPositionWithOffset(num.intValue(), (-this.listView.getPaddingTop()) + AndroidUtilities.m35dp(58.0f));
+        this.layoutManager.scrollToPositionWithOffset(num.intValue(), (-this.listView.getPaddingTop()) + AndroidUtilities.m36dp(58.0f));
     }
 
     @Override
@@ -541,10 +541,10 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
     }
 
     public void setContentViewPaddingTop(int i) {
-        int m35dp = i + AndroidUtilities.m35dp(58.0f);
-        if (this.listView.getPaddingTop() != m35dp) {
+        int m36dp = i + AndroidUtilities.m36dp(58.0f);
+        if (this.listView.getPaddingTop() != m36dp) {
             this.ignoreLayout = true;
-            this.listView.setPadding(0, m35dp, 0, 0);
+            this.listView.setPadding(0, m36dp, 0, 0);
             this.ignoreLayout = false;
         }
     }
@@ -576,12 +576,12 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             }
         }
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-        int top = childAt.getTop() - AndroidUtilities.m35dp(58.0f);
+        int top = childAt.getTop() - AndroidUtilities.m36dp(58.0f);
         int i2 = (top <= 0 || holder == null || holder.getAdapterPosition() != 0) ? 0 : top;
         setShadowVisible(top < 0);
         if (this.topOffset != i2) {
             this.topOffset = i2;
-            this.listView.setTopGlowOffset(i2 + AndroidUtilities.m35dp(58.0f));
+            this.listView.setTopGlowOffset(i2 + AndroidUtilities.m36dp(58.0f));
             this.searchLayout.setTranslationY(this.topOffset);
             this.shadowView.setTranslationY(this.topOffset);
             return true;
@@ -674,7 +674,6 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         private int stickersPerRow = 5;
 
         public TrendingStickersAdapter(Context context) {
-            TrendingStickersLayout.this = r1;
             this.context = context;
         }
 
@@ -725,7 +724,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
                 StickerEmojiCell stickerEmojiCell = new StickerEmojiCell(this, this.context, false) {
                     @Override
                     public void onMeasure(int i2, int i3) {
-                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(82.0f), 1073741824));
+                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(82.0f), 1073741824));
                     }
                 };
                 stickerEmojiCell.getImageView().setLayerNum(3);
@@ -785,7 +784,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             if (itemViewType == 0) {
                 ((StickerEmojiCell) viewHolder.itemView).setSticker((TLRPC$Document) this.cache.get(i), this.positionsToSets.get(i), false);
             } else if (itemViewType == 1) {
-                ((EmptyCell) viewHolder.itemView).setHeight(AndroidUtilities.m35dp(82.0f));
+                ((EmptyCell) viewHolder.itemView).setHeight(AndroidUtilities.m36dp(82.0f));
             } else {
                 if (itemViewType != 2) {
                     if (itemViewType == 4) {
@@ -875,7 +874,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             int i;
             int measuredWidth = TrendingStickersLayout.this.getMeasuredWidth();
             if (measuredWidth != 0) {
-                this.stickersPerRow = Math.max(5, measuredWidth / AndroidUtilities.m35dp(72.0f));
+                this.stickersPerRow = Math.max(5, measuredWidth / AndroidUtilities.m36dp(72.0f));
                 if (TrendingStickersLayout.this.layoutManager.getSpanCount() != this.stickersPerRow) {
                     TrendingStickersLayout.this.layoutManager.setSpanCount(this.stickersPerRow);
                     TrendingStickersLayout.this.loaded = false;

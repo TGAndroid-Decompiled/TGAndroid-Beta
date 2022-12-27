@@ -152,7 +152,7 @@ public class LocationSharingService extends Service implements NotificationCente
             updateNotification(false);
             startForeground(6, this.builder.build());
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
         return 2;
     }

@@ -137,9 +137,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     public void setAutoRepeatTimeout(long j) {
     }
 
-    public class RunnableC26663 implements Runnable {
-        RunnableC26663() {
-            RLottieDrawable.this = r1;
+    public class RunnableC26693 implements Runnable {
+        RunnableC26693() {
         }
 
         @Override
@@ -163,7 +162,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        RLottieDrawable.RunnableC26663.this.lambda$run$0();
+                        RLottieDrawable.RunnableC26693.this.lambda$run$0();
                     }
                 };
                 rLottieDrawable3.cacheGenerateTask = runnable;
@@ -290,7 +289,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 }
             }
         };
-        this.uiRunnableGenerateCache = new RunnableC26663();
+        this.uiRunnableGenerateCache = new RunnableC26693();
         this.uiRunnableCacheFinished = new Runnable() {
             @Override
             public void run() {
@@ -320,7 +319,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                                 RLottieDrawable rLottieDrawable2 = RLottieDrawable.this;
                                 rLottieDrawable2.backgroundBitmap = Bitmap.createBitmap(rLottieDrawable2.width, rLottieDrawable2.height, Bitmap.Config.ARGB_8888);
                             } catch (Throwable th) {
-                                FileLog.m31e(th);
+                                FileLog.m32e(th);
                             }
                         }
                         if (RLottieDrawable.this.backgroundBitmap != null) {
@@ -358,7 +357,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                                     try {
                                         frame = bitmapsCache.getFrame(rLottieDrawable5.currentFrame / i5, rLottieDrawable5.backgroundBitmap);
                                     } catch (Exception e) {
-                                        FileLog.m31e(e);
+                                        FileLog.m32e(e);
                                         frame = 0;
                                     }
                                 } else {
@@ -480,7 +479,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                                     }
                                 }
                             } catch (Exception e2) {
-                                FileLog.m31e(e2);
+                                FileLog.m32e(e2);
                             }
                         }
                         RLottieDrawable.uiHandler.post(RLottieDrawable.this.uiRunnable);
@@ -588,7 +587,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 }
             }
         };
-        this.uiRunnableGenerateCache = new RunnableC26663();
+        this.uiRunnableGenerateCache = new RunnableC26693();
         this.uiRunnableCacheFinished = new Runnable() {
             @Override
             public void run() {
@@ -618,7 +617,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                                 RLottieDrawable rLottieDrawable2 = RLottieDrawable.this;
                                 rLottieDrawable2.backgroundBitmap = Bitmap.createBitmap(rLottieDrawable2.width, rLottieDrawable2.height, Bitmap.Config.ARGB_8888);
                             } catch (Throwable th) {
-                                FileLog.m31e(th);
+                                FileLog.m32e(th);
                             }
                         }
                         if (RLottieDrawable.this.backgroundBitmap != null) {
@@ -656,7 +655,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                                     try {
                                         frame = bitmapsCache.getFrame(rLottieDrawable5.currentFrame / i5, rLottieDrawable5.backgroundBitmap);
                                     } catch (Exception e) {
-                                        FileLog.m31e(e);
+                                        FileLog.m32e(e);
                                         frame = 0;
                                     }
                                 } else {
@@ -778,7 +777,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                                     }
                                 }
                             } catch (Exception e2) {
-                                FileLog.m31e(e2);
+                                FileLog.m32e(e2);
                             }
                         }
                         RLottieDrawable.uiHandler.post(RLottieDrawable.this.uiRunnable);
@@ -888,7 +887,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 }
             }
         };
-        this.uiRunnableGenerateCache = new RunnableC26663();
+        this.uiRunnableGenerateCache = new RunnableC26693();
         this.uiRunnableCacheFinished = new Runnable() {
             @Override
             public void run() {
@@ -918,7 +917,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                                 RLottieDrawable rLottieDrawable2 = RLottieDrawable.this;
                                 rLottieDrawable2.backgroundBitmap = Bitmap.createBitmap(rLottieDrawable2.width, rLottieDrawable2.height, Bitmap.Config.ARGB_8888);
                             } catch (Throwable th) {
-                                FileLog.m31e(th);
+                                FileLog.m32e(th);
                             }
                         }
                         if (RLottieDrawable.this.backgroundBitmap != null) {
@@ -956,7 +955,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                                     try {
                                         frame = bitmapsCache.getFrame(rLottieDrawable5.currentFrame / i5, rLottieDrawable5.backgroundBitmap);
                                     } catch (Exception e) {
-                                        FileLog.m31e(e);
+                                        FileLog.m32e(e);
                                         frame = 0;
                                     }
                                 } else {
@@ -1078,7 +1077,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                                     }
                                 }
                             } catch (Exception e2) {
-                                FileLog.m31e(e2);
+                                FileLog.m32e(e2);
                             }
                         }
                         RLottieDrawable.uiHandler.post(RLottieDrawable.this.uiRunnable);
@@ -1270,7 +1269,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 }
             }
         };
-        this.uiRunnableGenerateCache = new RunnableC26663();
+        this.uiRunnableGenerateCache = new RunnableC26693();
         this.uiRunnableCacheFinished = new Runnable() {
             @Override
             public void run() {
@@ -1300,7 +1299,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                                 RLottieDrawable rLottieDrawable2 = RLottieDrawable.this;
                                 rLottieDrawable2.backgroundBitmap = Bitmap.createBitmap(rLottieDrawable2.width, rLottieDrawable2.height, Bitmap.Config.ARGB_8888);
                             } catch (Throwable th) {
-                                FileLog.m31e(th);
+                                FileLog.m32e(th);
                             }
                         }
                         if (RLottieDrawable.this.backgroundBitmap != null) {
@@ -1338,7 +1337,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                                     try {
                                         frame = bitmapsCache.getFrame(rLottieDrawable5.currentFrame / i5, rLottieDrawable5.backgroundBitmap);
                                     } catch (Exception e) {
-                                        FileLog.m31e(e);
+                                        FileLog.m32e(e);
                                         frame = 0;
                                     }
                                 } else {
@@ -1460,7 +1459,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                                     }
                                 }
                             } catch (Exception e2) {
-                                FileLog.m31e(e2);
+                                FileLog.m32e(e2);
                             }
                         }
                         RLottieDrawable.uiHandler.post(RLottieDrawable.this.uiRunnable);
@@ -1840,7 +1839,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 try {
                     this.frameWaitSync.await();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
                 this.frameWaitSync = null;
             }
@@ -1971,7 +1970,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 this.scaleX = rectF.width() / this.width;
                 this.scaleY = rectF.height() / this.height;
                 this.applyTransformation = false;
-                this.needScale = (Math.abs(rectF.width() - ((float) this.width)) >= ((float) AndroidUtilities.m35dp(1.0f)) || Math.abs(rectF.height() - ((float) this.height)) >= ((float) AndroidUtilities.m35dp(1.0f))) ? true : true;
+                this.needScale = (Math.abs(rectF.width() - ((float) this.width)) >= ((float) AndroidUtilities.m36dp(1.0f)) || Math.abs(rectF.height() - ((float) this.height)) >= ((float) AndroidUtilities.m36dp(1.0f))) ? true : true;
             }
             f = this.scaleX;
             f2 = this.scaleY;
@@ -1979,7 +1978,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         } else {
             float width = rectF.width() / this.width;
             float height = rectF.height() / this.height;
-            z2 = (Math.abs(rectF.width() - ((float) this.width)) >= ((float) AndroidUtilities.m35dp(1.0f)) || Math.abs(rectF.height() - ((float) this.height)) >= ((float) AndroidUtilities.m35dp(1.0f))) ? true : true;
+            z2 = (Math.abs(rectF.width() - ((float) this.width)) >= ((float) AndroidUtilities.m36dp(1.0f)) || Math.abs(rectF.height() - ((float) this.height)) >= ((float) AndroidUtilities.m36dp(1.0f))) ? true : true;
             f = width;
             f2 = height;
         }
@@ -2153,14 +2152,13 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         return this.precache ? this.bitmapsCache != null || this.fallbackCache : this.nativePtr != 0;
     }
 
-    public class NativePtrArgs {
+    private class NativePtrArgs {
         public int[] colorReplacement;
         File file;
         public int fitzModifier;
         String json;
 
         private NativePtrArgs() {
-            RLottieDrawable.this = r1;
         }
     }
 
@@ -2194,7 +2192,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 bitmapsCache.createCache();
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

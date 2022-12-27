@@ -325,7 +325,7 @@ public class PipVideoOverlay {
         if (this.aspectRatio == null) {
             this.aspectRatio = Float.valueOf(this.mVideoHeight / this.mVideoWidth);
             Point point = AndroidUtilities.displaySize;
-            this.maxScaleFactor = (Math.min(point.x, point.y) - AndroidUtilities.m35dp(32.0f)) / getSuggestedWidth();
+            this.maxScaleFactor = (Math.min(point.x, point.y) - AndroidUtilities.m36dp(32.0f)) / getSuggestedWidth();
             this.videoForwardDrawable.setPlayScaleFactor(this.aspectRatio.floatValue() < 1.0f ? 0.6f : 0.45f);
         }
         return this.aspectRatio.floatValue();
@@ -553,14 +553,14 @@ public class PipVideoOverlay {
             float f3 = rect.width;
             float f4 = pipX + (f3 / 2.0f);
             int i = AndroidUtilities.displaySize.x;
-            rect.f1135x = f4 >= ((float) i) / 2.0f ? (i - f3) - AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(16.0f);
+            rect.f1135x = f4 >= ((float) i) / 2.0f ? (i - f3) - AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(16.0f);
         } else {
-            rect.f1135x = (AndroidUtilities.displaySize.x - rect.width) - AndroidUtilities.m35dp(16.0f);
+            rect.f1135x = (AndroidUtilities.displaySize.x - rect.width) - AndroidUtilities.m36dp(16.0f);
         }
         if (pipY != -1.0f) {
-            rect.f1136y = MathUtils.clamp(pipY, AndroidUtilities.m35dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.m35dp(16.0f)) - rect.height) + AndroidUtilities.statusBarHeight;
+            rect.f1136y = MathUtils.clamp(pipY, AndroidUtilities.m36dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.m36dp(16.0f)) - rect.height) + AndroidUtilities.statusBarHeight;
         } else {
-            rect.f1136y = AndroidUtilities.m35dp(16.0f) + AndroidUtilities.statusBarHeight;
+            rect.f1136y = AndroidUtilities.m36dp(16.0f) + AndroidUtilities.statusBarHeight;
         }
         return rect;
     }
@@ -613,7 +613,7 @@ public class PipVideoOverlay {
         });
         Context context = ApplicationLoader.applicationContext;
         int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new ScaleGestureDetector$OnScaleGestureListenerC25763());
+        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new ScaleGestureDetector$OnScaleGestureListenerC25793());
         this.scaleGestureDetector = scaleGestureDetector;
         int i4 = Build.VERSION.SDK_INT;
         if (i4 >= 19) {
@@ -622,7 +622,7 @@ public class PipVideoOverlay {
         if (i4 >= 23) {
             this.scaleGestureDetector.setStylusScaleEnabled(false);
         }
-        this.gestureDetector = new GestureDetectorFixDoubleTap(context, new C25784(scaledTouchSlop));
+        this.gestureDetector = new GestureDetectorFixDoubleTap(context, new C25814(scaledTouchSlop));
         this.contentFrameLayout = new FrameLayout(context) {
             private Path path = new Path();
 
@@ -673,11 +673,11 @@ public class PipVideoOverlay {
                             SpringForce spring = PipVideoOverlay.this.pipXSpring.setStartValue(PipVideoOverlay.this.pipX).getSpring();
                             float f = PipVideoOverlay.this.pipX + (PipVideoOverlay.this.pipWidth / 2.0f);
                             int i5 = AndroidUtilities.displaySize.x;
-                            spring.setFinalPosition(f >= ((float) i5) / 2.0f ? (i5 - PipVideoOverlay.this.pipWidth) - AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(16.0f));
+                            spring.setFinalPosition(f >= ((float) i5) / 2.0f ? (i5 - PipVideoOverlay.this.pipWidth) - AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(16.0f));
                             PipVideoOverlay.this.pipXSpring.start();
                         }
                         if (!PipVideoOverlay.this.pipYSpring.isRunning()) {
-                            PipVideoOverlay.this.pipYSpring.setStartValue(PipVideoOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(PipVideoOverlay.this.pipY, AndroidUtilities.m35dp(16.0f), (AndroidUtilities.displaySize.y - PipVideoOverlay.this.pipHeight) - AndroidUtilities.m35dp(16.0f)));
+                            PipVideoOverlay.this.pipYSpring.setStartValue(PipVideoOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(PipVideoOverlay.this.pipY, AndroidUtilities.m36dp(16.0f), (AndroidUtilities.displaySize.y - PipVideoOverlay.this.pipHeight) - AndroidUtilities.m36dp(16.0f)));
                             PipVideoOverlay.this.pipYSpring.start();
                         }
                     }
@@ -702,9 +702,9 @@ public class PipVideoOverlay {
                 SpringForce spring = PipVideoOverlay.this.pipXSpring.setStartValue(PipVideoOverlay.this.pipX).getSpring();
                 float suggestedWidth = PipVideoOverlay.this.pipX + ((PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor) / 2.0f);
                 int i5 = AndroidUtilities.displaySize.x;
-                spring.setFinalPosition(suggestedWidth >= ((float) i5) / 2.0f ? (i5 - (PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor)) - AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(16.0f));
+                spring.setFinalPosition(suggestedWidth >= ((float) i5) / 2.0f ? (i5 - (PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor)) - AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(16.0f));
                 PipVideoOverlay.this.pipXSpring.start();
-                PipVideoOverlay.this.pipYSpring.setStartValue(PipVideoOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(PipVideoOverlay.this.pipY, AndroidUtilities.m35dp(16.0f), (AndroidUtilities.displaySize.y - (PipVideoOverlay.this.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor)) - AndroidUtilities.m35dp(16.0f)));
+                PipVideoOverlay.this.pipYSpring.setStartValue(PipVideoOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(PipVideoOverlay.this.pipY, AndroidUtilities.m36dp(16.0f), (AndroidUtilities.displaySize.y - (PipVideoOverlay.this.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor)) - AndroidUtilities.m36dp(16.0f)));
                 PipVideoOverlay.this.pipYSpring.start();
             }
 
@@ -726,7 +726,7 @@ public class PipVideoOverlay {
                 this.path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, i5, i6);
-                this.path.addRoundRect(rectF, AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(10.0f), Path.Direction.CW);
+                this.path.addRoundRect(rectF, AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(10.0f), Path.Direction.CW);
             }
         };
         ViewGroup viewGroup = new ViewGroup(context) {
@@ -755,7 +755,7 @@ public class PipVideoOverlay {
             this.contentFrameLayout.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
                 public void getOutline(View view2, Outline outline) {
-                    outline.setRoundRect(0, 0, view2.getMeasuredWidth(), view2.getMeasuredHeight(), AndroidUtilities.m35dp(10.0f));
+                    outline.setRoundRect(0, 0, view2.getMeasuredWidth(), view2.getMeasuredHeight(), AndroidUtilities.m36dp(10.0f));
                 }
             });
             this.contentFrameLayout.setClipToOutline(true);
@@ -791,12 +791,12 @@ public class PipVideoOverlay {
         View view2 = new View(context);
         view2.setBackgroundColor(1275068416);
         this.controlsView.addView(view2, LayoutHelper.createFrame(-1, -1.0f));
-        int m35dp = AndroidUtilities.m35dp(8.0f);
+        int m36dp = AndroidUtilities.m36dp(8.0f);
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(C1072R.C1073drawable.pip_video_close);
         imageView.setColorFilter(Theme.getColor("voipgroup_actionBarItems"), PorterDuff.Mode.MULTIPLY);
         imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
-        imageView.setPadding(m35dp, m35dp, m35dp, m35dp);
+        imageView.setPadding(m36dp, m36dp, m36dp, m36dp);
         imageView.setOnClickListener(PipVideoOverlay$$ExternalSyntheticLambda3.INSTANCE);
         float f = 38;
         float f2 = 4;
@@ -805,7 +805,7 @@ public class PipVideoOverlay {
         imageView2.setImageResource(C1072R.C1073drawable.pip_video_expand);
         imageView2.setColorFilter(Theme.getColor("voipgroup_actionBarItems"), PorterDuff.Mode.MULTIPLY);
         imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
-        imageView2.setPadding(m35dp, m35dp, m35dp, m35dp);
+        imageView2.setPadding(m36dp, m36dp, m36dp, m36dp);
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
@@ -839,24 +839,24 @@ public class PipVideoOverlay {
         createWindowLayoutParams.width = i5;
         createWindowLayoutParams.height = this.pipHeight;
         if (pipX != -1.0f) {
-            float m35dp2 = pipX + (i5 / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (i3 - i5) - AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(16.0f);
-            this.pipX = m35dp2;
-            createWindowLayoutParams.x = (int) m35dp2;
+            float m36dp2 = pipX + (i5 / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (i3 - i5) - AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(16.0f);
+            this.pipX = m36dp2;
+            createWindowLayoutParams.x = (int) m36dp2;
         } else {
-            float m35dp3 = (AndroidUtilities.displaySize.x - i5) - AndroidUtilities.m35dp(16.0f);
-            this.pipX = m35dp3;
-            createWindowLayoutParams.x = (int) m35dp3;
+            float m36dp3 = (AndroidUtilities.displaySize.x - i5) - AndroidUtilities.m36dp(16.0f);
+            this.pipX = m36dp3;
+            createWindowLayoutParams.x = (int) m36dp3;
         }
         if (pipY != -1.0f) {
             WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-            float clamp = MathUtils.clamp(pipY, AndroidUtilities.m35dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.m35dp(16.0f)) - this.pipHeight);
+            float clamp = MathUtils.clamp(pipY, AndroidUtilities.m36dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.m36dp(16.0f)) - this.pipHeight);
             this.pipY = clamp;
             layoutParams.y = (int) clamp;
         } else {
             WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
-            float m35dp4 = AndroidUtilities.m35dp(16.0f);
-            this.pipY = m35dp4;
-            layoutParams2.y = (int) m35dp4;
+            float m36dp4 = AndroidUtilities.m36dp(16.0f);
+            this.pipY = m36dp4;
+            layoutParams2.y = (int) m36dp4;
         }
         WindowManager.LayoutParams layoutParams3 = this.windowLayoutParams;
         layoutParams3.dimAmount = 0.0f;
@@ -885,9 +885,8 @@ public class PipVideoOverlay {
         getPipConfig().setPipY(f);
     }
 
-    public class ScaleGestureDetector$OnScaleGestureListenerC25763 implements ScaleGestureDetector.OnScaleGestureListener {
-        ScaleGestureDetector$OnScaleGestureListenerC25763() {
-            PipVideoOverlay.this = r1;
+    public class ScaleGestureDetector$OnScaleGestureListenerC25793 implements ScaleGestureDetector.OnScaleGestureListener {
+        ScaleGestureDetector$OnScaleGestureListenerC25793() {
         }
 
         @Override
@@ -901,19 +900,19 @@ public class PipVideoOverlay {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PipVideoOverlay.ScaleGestureDetector$OnScaleGestureListenerC25763.this.lambda$onScale$0();
+                    PipVideoOverlay.ScaleGestureDetector$OnScaleGestureListenerC25793.this.lambda$onScale$0();
                 }
             });
             float focusX = scaleGestureDetector.getFocusX();
             int i = AndroidUtilities.displaySize.x;
-            float m35dp = focusX >= ((float) i) / 2.0f ? (i - PipVideoOverlay.this.pipWidth) - AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(16.0f);
+            float m36dp = focusX >= ((float) i) / 2.0f ? (i - PipVideoOverlay.this.pipWidth) - AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(16.0f);
             if (PipVideoOverlay.this.pipXSpring.isRunning()) {
-                PipVideoOverlay.this.pipXSpring.getSpring().setFinalPosition(m35dp);
+                PipVideoOverlay.this.pipXSpring.getSpring().setFinalPosition(m36dp);
             } else {
-                PipVideoOverlay.this.pipXSpring.setStartValue(PipVideoOverlay.this.pipX).getSpring().setFinalPosition(m35dp);
+                PipVideoOverlay.this.pipXSpring.setStartValue(PipVideoOverlay.this.pipX).getSpring().setFinalPosition(m36dp);
             }
             PipVideoOverlay.this.pipXSpring.start();
-            float clamp = MathUtils.clamp(scaleGestureDetector.getFocusY() - (PipVideoOverlay.this.pipHeight / 2.0f), AndroidUtilities.m35dp(16.0f), (AndroidUtilities.displaySize.y - PipVideoOverlay.this.pipHeight) - AndroidUtilities.m35dp(16.0f));
+            float clamp = MathUtils.clamp(scaleGestureDetector.getFocusY() - (PipVideoOverlay.this.pipHeight / 2.0f), AndroidUtilities.m36dp(16.0f), (AndroidUtilities.displaySize.y - PipVideoOverlay.this.pipHeight) - AndroidUtilities.m36dp(16.0f));
             if (PipVideoOverlay.this.pipYSpring.isRunning()) {
                 PipVideoOverlay.this.pipYSpring.getSpring().setFinalPosition(clamp);
             } else {
@@ -953,7 +952,7 @@ public class PipVideoOverlay {
                         dynamicAnimation.removeEndListener(this);
                         arrayList.add((SpringAnimation) dynamicAnimation);
                         if (arrayList.size() == 2) {
-                            ScaleGestureDetector$OnScaleGestureListenerC25763.this.updateLayout();
+                            ScaleGestureDetector$OnScaleGestureListenerC25793.this.updateLayout();
                         }
                     }
                 };
@@ -991,13 +990,12 @@ public class PipVideoOverlay {
         }
     }
 
-    public class C25784 extends GestureDetectorFixDoubleTap.OnGestureListener {
+    public class C25814 extends GestureDetectorFixDoubleTap.OnGestureListener {
         private float startPipX;
         private float startPipY;
         final int val$touchSlop;
 
-        C25784(int i) {
-            PipVideoOverlay.this = r1;
+        C25814(int i) {
             this.val$touchSlop = i;
         }
 
@@ -1039,7 +1037,7 @@ public class PipVideoOverlay {
 
         @Override
         public boolean onDoubleTap(android.view.MotionEvent r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.PipVideoOverlay.C25784.onDoubleTap(android.view.MotionEvent):boolean");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.PipVideoOverlay.C25814.onDoubleTap(android.view.MotionEvent):boolean");
         }
 
         @Override
@@ -1069,9 +1067,9 @@ public class PipVideoOverlay {
             SpringForce spring = PipVideoOverlay.this.pipXSpring.setStartVelocity(f).setStartValue(PipVideoOverlay.this.pipX).getSpring();
             float f3 = PipVideoOverlay.this.pipX + (PipVideoOverlay.this.pipWidth / 2.0f) + (f / 7.0f);
             int i = AndroidUtilities.displaySize.x;
-            spring.setFinalPosition(f3 >= ((float) i) / 2.0f ? (i - PipVideoOverlay.this.pipWidth) - AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(16.0f));
+            spring.setFinalPosition(f3 >= ((float) i) / 2.0f ? (i - PipVideoOverlay.this.pipWidth) - AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(16.0f));
             PipVideoOverlay.this.pipXSpring.start();
-            PipVideoOverlay.this.pipYSpring.setStartVelocity(f).setStartValue(PipVideoOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(PipVideoOverlay.this.pipY + (f2 / 10.0f), AndroidUtilities.m35dp(16.0f), (AndroidUtilities.displaySize.y - PipVideoOverlay.this.pipHeight) - AndroidUtilities.m35dp(16.0f)));
+            PipVideoOverlay.this.pipYSpring.setStartVelocity(f).setStartValue(PipVideoOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(PipVideoOverlay.this.pipY + (f2 / 10.0f), AndroidUtilities.m36dp(16.0f), (AndroidUtilities.displaySize.y - PipVideoOverlay.this.pipHeight) - AndroidUtilities.m36dp(16.0f)));
             PipVideoOverlay.this.pipYSpring.start();
             return true;
         }
@@ -1097,9 +1095,9 @@ public class PipVideoOverlay {
                         float f4 = rawX + (PipVideoOverlay.this.pipWidth / 2.0f);
                         int i2 = AndroidUtilities.displaySize.x;
                         if (f4 >= i2 / 2.0f) {
-                            i = AndroidUtilities.m35dp(16.0f);
+                            i = AndroidUtilities.m36dp(16.0f);
                         } else {
-                            i2 = AndroidUtilities.m35dp(16.0f);
+                            i2 = AndroidUtilities.m36dp(16.0f);
                             i = PipVideoOverlay.this.pipWidth;
                         }
                         spring.setFinalPosition(i2 - i);
@@ -1111,7 +1109,7 @@ public class PipVideoOverlay {
                         PipVideoOverlay.this.pipXSpring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                             @Override
                             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f5, float f6) {
-                                PipVideoOverlay.C25784.this.lambda$onScroll$0(rawX, dynamicAnimation, z, f5, f6);
+                                PipVideoOverlay.C25814.this.lambda$onScroll$0(rawX, dynamicAnimation, z, f5, f6);
                             }
                         });
                         PipVideoOverlay.this.pipXSpring.setStartValue(f3).getSpring().setFinalPosition(rawX);
@@ -1140,7 +1138,7 @@ public class PipVideoOverlay {
             SpringForce spring = PipVideoOverlay.this.pipXSpring.getSpring();
             float f4 = f + (PipVideoOverlay.this.pipWidth / 2.0f);
             int i = AndroidUtilities.displaySize.x;
-            spring.setFinalPosition(f4 >= ((float) i) / 2.0f ? (i - PipVideoOverlay.this.pipWidth) - AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(16.0f));
+            spring.setFinalPosition(f4 >= ((float) i) / 2.0f ? (i - PipVideoOverlay.this.pipWidth) - AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(16.0f));
         }
     }
 
@@ -1220,18 +1218,17 @@ public class PipVideoOverlay {
 
         public VideoProgressView(Context context) {
             super(context);
-            PipVideoOverlay.this = r3;
             this.progressPaint = new Paint();
             this.bufferPaint = new Paint();
             this.progressPaint.setColor(-1);
             this.progressPaint.setStyle(Paint.Style.STROKE);
             this.progressPaint.setStrokeCap(Paint.Cap.ROUND);
-            this.progressPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            this.progressPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
             this.bufferPaint.setColor(this.progressPaint.getColor());
             this.bufferPaint.setAlpha((int) (this.progressPaint.getAlpha() * 0.3f));
             this.bufferPaint.setStyle(Paint.Style.STROKE);
             this.bufferPaint.setStrokeCap(Paint.Cap.ROUND);
-            this.bufferPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            this.bufferPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         }
 
         @Override
@@ -1239,15 +1236,15 @@ public class PipVideoOverlay {
             super.onDraw(canvas);
             if (!PipVideoOverlay.this.isWebView || (PipVideoOverlay.this.photoViewerWebView != null && PipVideoOverlay.this.photoViewerWebView.isControllable())) {
                 int width = getWidth();
-                int m35dp = AndroidUtilities.m35dp(10.0f);
-                float f = (width - m35dp) - m35dp;
-                int i = ((int) (PipVideoOverlay.this.videoProgress * f)) + m35dp;
-                float height = getHeight() - AndroidUtilities.m35dp(8.0f);
+                int m36dp = AndroidUtilities.m36dp(10.0f);
+                float f = (width - m36dp) - m36dp;
+                int i = ((int) (PipVideoOverlay.this.videoProgress * f)) + m36dp;
+                float height = getHeight() - AndroidUtilities.m36dp(8.0f);
                 if (PipVideoOverlay.this.bufferProgress != 0.0f) {
-                    float f2 = m35dp;
+                    float f2 = m36dp;
                     canvas.drawLine(f2, height, f2 + (f * PipVideoOverlay.this.bufferProgress), height, this.bufferPaint);
                 }
-                canvas.drawLine(m35dp, height, i, height, this.progressPaint);
+                canvas.drawLine(m36dp, height, i, height, this.progressPaint);
             }
         }
     }

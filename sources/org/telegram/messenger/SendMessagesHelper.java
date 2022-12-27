@@ -291,7 +291,6 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         public int timeUntilFinish = ConnectionsManager.DEFAULT_DATACENTER_ID;
 
         public ImportingHistory() {
-            SendMessagesHelper.this = r1;
         }
 
         public void initImport(TLRPC$InputFile tLRPC$InputFile) {
@@ -306,7 +305,6 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             final TLRPC$TL_messages_initHistoryImport val$req;
 
             C10771(TLRPC$TL_messages_initHistoryImport tLRPC$TL_messages_initHistoryImport) {
-                ImportingHistory.this = r1;
                 this.val$req = tLRPC$TL_messages_initHistoryImport;
             }
 
@@ -437,7 +435,6 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             final String val$path;
 
             C10782(String str) {
-                ImportingHistory.this = r1;
                 this.val$path = str;
             }
 
@@ -472,7 +469,6 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             final TLRPC$TL_messages_startHistoryImport val$req;
 
             C10793(TLRPC$TL_messages_startHistoryImport tLRPC$TL_messages_startHistoryImport) {
-                ImportingHistory.this = r1;
                 this.val$req = tLRPC$TL_messages_startHistoryImport;
             }
 
@@ -527,7 +523,6 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             final Runnable val$onFinish;
 
             C10801(Runnable runnable) {
-                ImportingSticker.this = r1;
                 this.val$onFinish = runnable;
             }
 
@@ -587,7 +582,6 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         public int timeUntilFinish = ConnectionsManager.DEFAULT_DATACENTER_ID;
 
         public ImportingStickers() {
-            SendMessagesHelper.this = r1;
         }
 
         public void initImport() {
@@ -700,7 +694,6 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             final TLRPC$TL_stickers_createStickerSet val$req;
 
             C10811(TLRPC$TL_stickers_createStickerSet tLRPC$TL_stickers_createStickerSet) {
-                ImportingStickers.this = r1;
                 this.val$req = tLRPC$TL_stickers_createStickerSet;
             }
 
@@ -786,7 +779,6 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }
 
             private GpsLocationListener() {
-                LocationProvider.this = r1;
             }
 
             @Override
@@ -795,7 +787,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("found location " + location);
+                    FileLog.m35d("found location " + location);
                 }
                 LocationProvider.this.lastKnownLocation = location;
                 if (location.getAccuracy() < 100.0f) {
@@ -835,12 +827,12 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             try {
                 this.locationManager.requestLocationUpdates("gps", 1L, 0.0f, this.gpsLocationListener);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             try {
                 this.locationManager.requestLocationUpdates("network", 1L, 0.0f, this.networkLocationListener);
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
             try {
                 Location lastKnownLocation = this.locationManager.getLastKnownLocation("gps");
@@ -849,7 +841,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     this.lastKnownLocation = this.locationManager.getLastKnownLocation("network");
                 }
             } catch (Exception e3) {
-                FileLog.m31e(e3);
+                FileLog.m32e(e3);
             }
             Runnable runnable = this.locationQueryCancelRunnable;
             if (runnable != null) {
@@ -902,7 +894,6 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         public boolean scheduled;
 
         protected DelayedMessageSendAfterRequest() {
-            SendMessagesHelper.this = r1;
         }
     }
 
@@ -938,7 +929,6 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         public ArrayList<VideoEditedInfo> videoEditedInfos;
 
         public DelayedMessage(long j) {
-            SendMessagesHelper.this = r1;
             this.peer = j;
         }
 
@@ -1576,7 +1566,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             return;
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m33e("can't load image " + str + " to file " + file.toString());
+            FileLog.m34e("can't load image " + str + " to file " + file.toString());
         }
         delayedMessage.markAsError();
     }
@@ -1593,7 +1583,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 }
             } catch (Exception e) {
                 document.thumbs.clear();
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1974,7 +1964,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                         tLRPC$TL_document_layer822.thumbs.add(tLRPC$TL_photoCachedSize);
                         tLRPC$TL_document_layer822.flags |= 1;
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                 }
             }
@@ -2589,7 +2579,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 AlertDialog.Builder builder3 = new AlertDialog.Builder(chatActivity.getParentActivity());
                 builder3.setTitle(LocaleController.getString("EditAdminTransferAlertTitle", C1072R.string.EditAdminTransferAlertTitle));
                 LinearLayout linearLayout = new LinearLayout(chatActivity.getParentActivity());
-                linearLayout.setPadding(AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(24.0f), 0);
+                linearLayout.setPadding(AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(24.0f), 0);
                 linearLayout.setOrientation(1);
                 builder3.setView(linearLayout);
                 TextView textView = new TextView(chatActivity.getParentActivity());
@@ -2604,7 +2594,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 ImageView imageView = new ImageView(chatActivity.getParentActivity());
                 int i = C1072R.C1073drawable.list_circle;
                 imageView.setImageResource(i);
-                imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(11.0f) : 0, AndroidUtilities.m35dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.m35dp(11.0f), 0);
+                imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(11.0f) : 0, AndroidUtilities.m36dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.m36dp(11.0f), 0);
                 imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlack"), PorterDuff.Mode.MULTIPLY));
                 TextView textView2 = new TextView(chatActivity.getParentActivity());
                 textView2.setTextColor(Theme.getColor("dialogTextBlack"));
@@ -2623,7 +2613,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
                 ImageView imageView2 = new ImageView(chatActivity.getParentActivity());
                 imageView2.setImageResource(i);
-                imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(11.0f) : 0, AndroidUtilities.m35dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.m35dp(11.0f), 0);
+                imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(11.0f) : 0, AndroidUtilities.m36dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.m36dp(11.0f), 0);
                 imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlack"), PorterDuff.Mode.MULTIPLY));
                 TextView textView3 = new TextView(chatActivity.getParentActivity());
                 textView3.setTextColor(Theme.getColor("dialogTextBlack"));
@@ -2756,7 +2746,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             } catch (Exception e2) {
                 e = e2;
                 nativeByteBuffer2 = nativeByteBuffer;
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 nativeByteBuffer = nativeByteBuffer2;
                 j2 = getMessagesStorage().createPendingTask(nativeByteBuffer);
                 getConnectionsManager().sendRequest(tLRPC$TL_messages_sendMedia, new RequestDelegate() {
@@ -3290,12 +3280,12 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         if (delayedMessage.finalGroupMessage != delayedMessage.messageObjects.get(arrayList.size() - 1).getId()) {
             if (z) {
                 if (BuildVars.DEBUG_VERSION) {
-                    FileLog.m34d("final message not added, add");
+                    FileLog.m35d("final message not added, add");
                 }
                 putToDelayedMessages(str, delayedMessage);
                 return;
             } else if (BuildVars.DEBUG_VERSION) {
-                FileLog.m34d("final message not added");
+                FileLog.m35d("final message not added");
                 return;
             } else {
                 return;
@@ -3310,7 +3300,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 getNotificationCenter().postNotificationName(NotificationCenter.dialogsNeedReload, new Object[0]);
             }
             if (BuildVars.DEBUG_VERSION) {
-                FileLog.m34d("add message");
+                FileLog.m35d("add message");
             }
         }
         TLObject tLObject = delayedMessage.sendRequest;
@@ -3320,7 +3310,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 TLRPC$InputMedia tLRPC$InputMedia = tLRPC$TL_messages_sendMultiMedia.multi_media.get(i).media;
                 if ((tLRPC$InputMedia instanceof TLRPC$TL_inputMediaUploadedPhoto) || (tLRPC$InputMedia instanceof TLRPC$TL_inputMediaUploadedDocument)) {
                     if (BuildVars.DEBUG_VERSION) {
-                        FileLog.m34d("multi media not ready");
+                        FileLog.m35d("multi media not ready");
                         return;
                     }
                     return;
@@ -3334,7 +3324,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     findMaxDelayedMessageForMessageId.requests.addAll(arrayList2);
                 }
                 if (BuildVars.DEBUG_VERSION) {
-                    FileLog.m34d("has maxDelayedMessage, delay");
+                    FileLog.m35d("has maxDelayedMessage, delay");
                     return;
                 }
                 return;
@@ -4229,7 +4219,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         try {
             ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, ImportingService.class));
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -4296,7 +4286,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         try {
             ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, ImportingService.class));
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -4359,7 +4349,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 query.moveToFirst();
                 j = query.getLong(columnIndex);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         return !FileLoader.checkUploadFileSize(accountInstance.getCurrentAccount(), j);
@@ -4550,7 +4540,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 NotificationCenter.getInstance(accountInstance.getCurrentAccount()).postNotificationName(NotificationCenter.currentUserShowLimitReachedDialog, 6);
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -4841,7 +4831,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 Utilities.loadWebpImage(null, map, map.limit(), options, true);
                 randomAccessFile.close();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } else {
             try {
@@ -5001,7 +4991,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         AnimatedFileDrawable.getVideoInfo(str, iArr);
         if (iArr[0] == 0) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("video hasn't avc1 atom");
+                FileLog.m35d("video hasn't avc1 atom");
             }
             return null;
         }
@@ -5020,7 +5010,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }
             if (selectCodec == null) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("no codec info for video/avc");
+                    FileLog.m35d("no codec info for video/avc");
                 }
                 return null;
             }
@@ -5028,13 +5018,13 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             if (!name.equals("OMX.google.h264.encoder") && !name.equals("OMX.ST.VFM.H264Enc") && !name.equals("OMX.Exynos.avc.enc") && !name.equals("OMX.MARVELL.VIDEO.HW.CODA7542ENCODER") && !name.equals("OMX.MARVELL.VIDEO.H264ENCODER") && !name.equals("OMX.k3.video.encoder.avc") && !name.equals("OMX.TI.DUCATI1.VIDEO.H264E")) {
                 if (MediaController.selectColorFormat(selectCodec, MediaController.VIDEO_MIME_TYPE) == 0) {
                     if (BuildVars.LOGS_ENABLED) {
-                        FileLog.m34d("no color format for video/avc");
+                        FileLog.m35d("no color format for video/avc");
                     }
                     return null;
                 }
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("unsupported encoder = " + name);
+                FileLog.m35d("unsupported encoder = " + name);
             }
             return null;
         }

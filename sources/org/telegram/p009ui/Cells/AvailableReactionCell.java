@@ -72,7 +72,7 @@ public class AvailableReactionCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.m35dp(58.0f) + Theme.dividerPaint.getStrokeWidth()), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.m36dp(58.0f) + Theme.dividerPaint.getStrokeWidth()), 1073741824));
     }
 
     public void bind(TLRPC$TL_availableReaction tLRPC$TL_availableReaction, boolean z, int i) {
@@ -125,13 +125,13 @@ public class AvailableReactionCell extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Theme.getColor("windowBackgroundWhite"));
         float strokeWidth = Theme.dividerPaint.getStrokeWidth();
-        int m35dp = AndroidUtilities.m35dp(81.0f);
+        int m36dp = AndroidUtilities.m36dp(81.0f);
         int i = 0;
         if (LocaleController.isRTL) {
-            i = m35dp;
-            m35dp = 0;
+            i = m36dp;
+            m36dp = 0;
         }
-        canvas.drawLine(getPaddingLeft() + m35dp, getHeight() - strokeWidth, (getWidth() - getPaddingRight()) - i, getHeight() - strokeWidth, Theme.dividerPaint);
+        canvas.drawLine(getPaddingLeft() + m36dp, getHeight() - strokeWidth, (getWidth() - getPaddingRight()) - i, getHeight() - strokeWidth, Theme.dividerPaint);
     }
 
     @Override

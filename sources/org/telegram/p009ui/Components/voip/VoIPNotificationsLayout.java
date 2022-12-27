@@ -171,7 +171,7 @@ public class VoIPNotificationsLayout extends LinearLayout {
 
     public int getChildsHight() {
         int childCount = getChildCount();
-        return (childCount > 0 ? AndroidUtilities.m35dp(16.0f) : 0) + (childCount * AndroidUtilities.m35dp(32.0f));
+        return (childCount > 0 ? AndroidUtilities.m36dp(16.0f) : 0) + (childCount * AndroidUtilities.m36dp(32.0f));
     }
 
     public static class NotificationView extends FrameLayout {
@@ -184,7 +184,7 @@ public class VoIPNotificationsLayout extends LinearLayout {
             setFocusable(true);
             setFocusableInTouchMode(true);
             this.iconView = new ImageView(context);
-            setBackground(Theme.createRoundRectDrawable(AndroidUtilities.m35dp(16.0f), ColorUtils.setAlphaComponent(-16777216, 102)));
+            setBackground(Theme.createRoundRectDrawable(AndroidUtilities.m36dp(16.0f), ColorUtils.setAlphaComponent(-16777216, 102)));
             addView(this.iconView, LayoutHelper.createFrame(24, 24.0f, 0, 10.0f, 4.0f, 10.0f, 4.0f));
             TextView textView = new TextView(context);
             this.textView = textView;

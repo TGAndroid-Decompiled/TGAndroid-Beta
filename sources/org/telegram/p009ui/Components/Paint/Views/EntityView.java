@@ -253,7 +253,7 @@ public class EntityView extends FrameLayout {
         View view = (View) getParent();
         if (view != null) {
             if (!this.hasStickyX) {
-                if (Math.abs(this.position.f1103x - (view.getMeasuredWidth() / 2.0f)) <= AndroidUtilities.m35dp(16.0f)) {
+                if (Math.abs(this.position.f1103x - (view.getMeasuredWidth() / 2.0f)) <= AndroidUtilities.m36dp(16.0f)) {
                     this.hasStickyX = true;
                     try {
                         performHapticFeedback(3, 2);
@@ -270,7 +270,7 @@ public class EntityView extends FrameLayout {
                     this.hasFromStickyXAnimation = false;
                     runStickyXAnimator(0.0f, 1.0f);
                 }
-            } else if (Math.abs(this.position.f1103x - (view.getMeasuredWidth() / 2.0f)) > AndroidUtilities.m35dp(48.0f)) {
+            } else if (Math.abs(this.position.f1103x - (view.getMeasuredWidth() / 2.0f)) > AndroidUtilities.m36dp(48.0f)) {
                 this.hasStickyX = false;
                 if (getParent() instanceof EntitiesContainerView) {
                     ((EntitiesContainerView) getParent()).invalidate();
@@ -283,7 +283,7 @@ public class EntityView extends FrameLayout {
                 runStickyXAnimator(1.0f, 0.0f);
             }
             if (!this.hasStickyY) {
-                if (Math.abs(this.position.f1104y - (view.getMeasuredHeight() / 2.0f)) <= AndroidUtilities.m35dp(16.0f)) {
+                if (Math.abs(this.position.f1104y - (view.getMeasuredHeight() / 2.0f)) <= AndroidUtilities.m36dp(16.0f)) {
                     this.hasStickyY = true;
                     try {
                         performHapticFeedback(3, 2);
@@ -300,7 +300,7 @@ public class EntityView extends FrameLayout {
                     this.hasFromStickyYAnimation = false;
                     runStickyYAnimator(0.0f, 1.0f);
                 }
-            } else if (Math.abs(this.position.f1104y - (view.getMeasuredHeight() / 2.0f)) > AndroidUtilities.m35dp(48.0f)) {
+            } else if (Math.abs(this.position.f1104y - (view.getMeasuredHeight() / 2.0f)) > AndroidUtilities.m36dp(48.0f)) {
                 this.hasStickyY = false;
                 if (getParent() instanceof EntitiesContainerView) {
                     ((EntitiesContainerView) getParent()).invalidate();
@@ -516,22 +516,21 @@ public class EntityView extends FrameLayout {
 
         public SelectionView(Context context) {
             super(context);
-            EntityView.this = r8;
             this.paint = new Paint(1);
             this.dotPaint = new Paint(1);
             this.dotStrokePaint = new Paint(1);
             setWillNotDraw(false);
             this.paint.setColor(-1);
             this.paint.setStyle(Paint.Style.STROKE);
-            this.paint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            this.paint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
             this.paint.setStrokeCap(Paint.Cap.ROUND);
-            this.paint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(10.0f)}, 0.5f));
-            this.paint.setShadowLayer(AndroidUtilities.m35dp(0.75f), 0.0f, AndroidUtilities.m35dp(1.0f), 1879048192);
+            this.paint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(10.0f)}, 0.5f));
+            this.paint.setShadowLayer(AndroidUtilities.m36dp(0.75f), 0.0f, AndroidUtilities.m36dp(1.0f), 1879048192);
             this.dotPaint.setColor(-12793105);
             this.dotStrokePaint.setColor(-1);
             this.dotStrokePaint.setStyle(Paint.Style.STROKE);
-            this.dotStrokePaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
-            this.dotStrokePaint.setShadowLayer(AndroidUtilities.m35dp(0.75f), 0.0f, AndroidUtilities.m35dp(1.0f), 1879048192);
+            this.dotStrokePaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
+            this.dotStrokePaint.setShadowLayer(AndroidUtilities.m36dp(0.75f), 0.0f, AndroidUtilities.m36dp(1.0f), 1879048192);
         }
 
         protected void updatePosition() {

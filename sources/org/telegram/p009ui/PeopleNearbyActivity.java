@@ -211,7 +211,6 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         int oldUsersStartRow;
 
         private DiffCallback() {
-            PeopleNearbyActivity.this = r1;
             this.oldPositionToItem = new SparseIntArray();
             this.newPositionToItem = new SparseIntArray();
             this.oldUsers = new ArrayList<>();
@@ -340,7 +339,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {
-                ((FrameLayout.LayoutParams) PeopleNearbyActivity.this.actionBarBackground.getLayoutParams()).height = C1133ActionBar.getCurrentActionBarHeight() + (((BaseFragment) PeopleNearbyActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + AndroidUtilities.m35dp(3.0f);
+                ((FrameLayout.LayoutParams) PeopleNearbyActivity.this.actionBarBackground.getLayoutParams()).height = C1133ActionBar.getCurrentActionBarHeight() + (((BaseFragment) PeopleNearbyActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + AndroidUtilities.m36dp(3.0f);
                 super.onMeasure(i, i2);
             }
 
@@ -391,7 +390,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
             @Override
             protected void onDraw(Canvas canvas) {
                 this.paint.setColor(Theme.getColor("windowBackgroundWhite"));
-                int measuredHeight = getMeasuredHeight() - AndroidUtilities.m35dp(3.0f);
+                int measuredHeight = getMeasuredHeight() - AndroidUtilities.m36dp(3.0f);
                 canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), measuredHeight, this.paint);
                 ((BaseFragment) PeopleNearbyActivity.this).parentLayout.drawHeaderShadow(canvas, measuredHeight);
             }
@@ -543,7 +542,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         try {
             alertDialog.dismiss();
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
         this.loadingDialog = null;
         openGroupCreate();
@@ -614,7 +613,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         if (!z && (location = this.lastLoadedLocation) != null) {
             float distanceTo = location.distanceTo(lastKnownLocation);
             if (BuildVars.DEBUG_VERSION) {
-                FileLog.m34d("located distance = " + distanceTo);
+                FileLog.m35d("located distance = " + distanceTo);
             }
             if (i == 0 && (SystemClock.elapsedRealtime() - this.lastLoadedLocationTime < 3000 || this.lastLoadedLocation.distanceTo(lastKnownLocation) <= 20.0f)) {
                 return;
@@ -781,7 +780,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         try {
             alertDialog.dismiss();
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
         this.loadingDialog = null;
         openGroupCreate();
@@ -875,7 +874,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
             setClipChildren(false);
             RadialProgressView radialProgressView = new RadialProgressView(context);
             this.progressView = radialProgressView;
-            radialProgressView.setSize(AndroidUtilities.m35dp(14.0f));
+            radialProgressView.setSize(AndroidUtilities.m36dp(14.0f));
             this.progressView.setStrokeWidth(2.0f);
             this.progressView.setAlpha(0.0f);
             this.progressView.setProgressColor(Theme.getColor("windowBackgroundWhiteBlueHeader"));
@@ -895,7 +894,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
             int currentActionBarHeight = ((int) ((C1133ActionBar.getCurrentActionBarHeight() + (((BaseFragment) peopleNearbyActivity).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0)) / AndroidUtilities.density)) - 44;
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
-            imageView.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.m35dp(74.0f), Theme.getColor("chats_archiveBackground")));
+            imageView.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.m36dp(74.0f), Theme.getColor("chats_archiveBackground")));
             this.imageView.setImageDrawable(new ShareLocationDrawable(context, 2));
             this.imageView.setScaleType(ImageView.ScaleType.CENTER);
             addView(this.imageView, LayoutHelper.createFrame(74, 74.0f, 49, 0.0f, currentActionBarHeight + 27, 0.0f, 0.0f));
@@ -920,7 +919,6 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         private Context mContext;
 
         public ListAdapter(Context context) {
-            PeopleNearbyActivity.this = r1;
             this.mContext = context;
         }
 
@@ -956,11 +954,11 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
                 TextView textView2 = new TextView(this, this.mContext) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(67.0f), 1073741824));
+                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(67.0f), 1073741824));
                     }
                 };
                 textView2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                textView2.setPadding(0, 0, AndroidUtilities.m35dp(3.0f), 0);
+                textView2.setPadding(0, 0, AndroidUtilities.m36dp(3.0f), 0);
                 textView2.setTextSize(1, 14.0f);
                 textView2.setGravity(17);
                 textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText3"));

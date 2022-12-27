@@ -29,7 +29,6 @@ public class FireworksEffect {
         float f1066y;
 
         private Particle() {
-            FireworksEffect.this = r1;
         }
 
         public void draw(Canvas canvas) {
@@ -37,7 +36,7 @@ public class FireworksEffect {
                 return;
             }
             FireworksEffect.this.particlePaint.setColor(this.color);
-            FireworksEffect.this.particlePaint.setStrokeWidth(AndroidUtilities.m35dp(1.5f) * this.scale);
+            FireworksEffect.this.particlePaint.setStrokeWidth(AndroidUtilities.m36dp(1.5f) * this.scale);
             FireworksEffect.this.particlePaint.setAlpha((int) (this.alpha * 255.0f));
             canvas.drawPoint(this.f1065x, this.f1066y, FireworksEffect.this.particlePaint);
         }
@@ -46,7 +45,7 @@ public class FireworksEffect {
     public FireworksEffect() {
         Paint paint = new Paint(1);
         this.particlePaint = paint;
-        paint.setStrokeWidth(AndroidUtilities.m35dp(1.5f));
+        paint.setStrokeWidth(AndroidUtilities.m36dp(1.5f));
         this.particlePaint.setColor(Theme.getColor("actionBarDefaultTitle") & (-1644826));
         this.particlePaint.setStrokeCap(Paint.Cap.ROUND);
         this.particlePaint.setStyle(Paint.Style.STROKE);
@@ -98,7 +97,7 @@ public class FireworksEffect {
         if (Utilities.random.nextBoolean() && this.particles.size() + 8 < 150) {
             int i2 = Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0;
             float nextFloat = Utilities.random.nextFloat() * view.getMeasuredWidth();
-            float nextFloat2 = i2 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.m35dp(20.0f)) - i2));
+            float nextFloat2 = i2 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.m36dp(20.0f)) - i2));
             int nextInt = Utilities.random.nextInt(4);
             int i3 = nextInt != 0 ? nextInt != 1 ? nextInt != 2 ? nextInt != 3 ? -5752 : -15088582 : -207021 : -843755 : -13357350;
             for (int i4 = 0; i4 < 8; i4++) {

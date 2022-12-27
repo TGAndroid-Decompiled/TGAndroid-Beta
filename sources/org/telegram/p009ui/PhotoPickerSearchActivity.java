@@ -90,7 +90,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         if (AndroidUtilities.isTablet()) {
             this.actionBar.setOccupyStatusBar(false);
         }
-        this.actionBar.setExtraHeight(AndroidUtilities.m35dp(44.0f));
+        this.actionBar.setExtraHeight(AndroidUtilities.m36dp(44.0f));
         this.actionBar.setAllowOverlayTitle(false);
         this.actionBar.setAddToContainer(false);
         this.actionBar.setClipContent(true);
@@ -227,7 +227,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                 int size2 = View.MeasureSpec.getSize(i2);
                 setMeasuredDimension(size, size2);
                 measureChildWithMargins(((BaseFragment) PhotoPickerSearchActivity.this).actionBar, i, 0, i2, 0);
-                if ((SharedConfig.smoothKeyboard ? 0 : measureKeyboardHeight()) <= AndroidUtilities.m35dp(20.0f)) {
+                if ((SharedConfig.smoothKeyboard ? 0 : measureKeyboardHeight()) <= AndroidUtilities.m36dp(20.0f)) {
                     if (!AndroidUtilities.isInMultiwindow) {
                         size2 -= PhotoPickerSearchActivity.this.commentTextView.getEmojiPadding();
                         i2 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
@@ -241,7 +241,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                 this.globalIgnoreLayout = true;
                 for (int i3 = 0; i3 < PhotoPickerSearchActivity.this.viewPages.length; i3++) {
                     if (PhotoPickerSearchActivity.this.viewPages[i3] != null && PhotoPickerSearchActivity.this.viewPages[i3].listView != null) {
-                        PhotoPickerSearchActivity.this.viewPages[i3].listView.setPadding(AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f) + measuredHeight, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f));
+                        PhotoPickerSearchActivity.this.viewPages[i3].listView.setPadding(AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f) + measuredHeight, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f));
                     }
                 }
                 this.globalIgnoreLayout = false;
@@ -252,7 +252,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                         if (PhotoPickerSearchActivity.this.commentTextView != null && PhotoPickerSearchActivity.this.commentTextView.isPopupView(childAt)) {
                             if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
                                 if (AndroidUtilities.isTablet()) {
-                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m35dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), (size2 - AndroidUtilities.statusBarHeight) + getPaddingTop()), 1073741824));
+                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m36dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), (size2 - AndroidUtilities.statusBarHeight) + getPaddingTop()), 1073741824));
                                 } else {
                                     childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - AndroidUtilities.statusBarHeight) + getPaddingTop(), 1073741824));
                                 }
@@ -268,7 +268,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
 
             @Override
             public void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerSearchActivity.C37564.onLayout(boolean, int, int, int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerSearchActivity.C37594.onLayout(boolean, int, int, int, int):void");
             }
 
             @Override
@@ -429,8 +429,8 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                                     PhotoPickerSearchActivity.this.scrollSlidingTextTabStrip.selectTabWithId(PhotoPickerSearchActivity.this.viewPages[0].selectedType, 1.0f);
                                 }
                                 PhotoPickerSearchActivity.this.tabsAnimationInProgress = false;
-                                C37564.this.maybeStartTracking = false;
-                                C37564.this.startedTracking = false;
+                                C37594.this.maybeStartTracking = false;
+                                C37594.this.startedTracking = false;
                                 ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.setEnabled(true);
                                 PhotoPickerSearchActivity.this.scrollSlidingTextTabStrip.setEnabled(true);
                             }
@@ -694,7 +694,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         scrollSlidingTextTabStrip.addTextTab(0, LocaleController.getString("ImagesTab2", C1072R.string.ImagesTab2));
         this.scrollSlidingTextTabStrip.addTextTab(1, LocaleController.getString("GifsTab2", C1072R.string.GifsTab2));
         this.scrollSlidingTextTabStrip.setVisibility(0);
-        this.actionBar.setExtraHeight(AndroidUtilities.m35dp(44.0f));
+        this.actionBar.setExtraHeight(AndroidUtilities.m36dp(44.0f));
         int currentTabId = this.scrollSlidingTextTabStrip.getCurrentTabId();
         if (currentTabId >= 0) {
             this.viewPages[0].selectedType = currentTabId;

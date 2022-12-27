@@ -37,7 +37,7 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
             }
         }
         if (this.icons.size() < 3) {
-            FileLog.m31e(new IllegalArgumentException("There should be at least 3 premium icons!"));
+            FileLog.m32e(new IllegalArgumentException("There should be at least 3 premium icons!"));
             this.isEmpty = true;
             return;
         }
@@ -53,8 +53,8 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
         adaptiveIconImageView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 52.0f, 0.0f, 0.0f));
         adaptiveIconImageView.setForeground(launcherIcon.foreground);
         adaptiveIconImageView.setBackgroundResource(launcherIcon.background);
-        adaptiveIconImageView.setPadding(AndroidUtilities.m35dp(8.0f));
-        adaptiveIconImageView.setBackgroundOuterPadding(AndroidUtilities.m35dp(32.0f));
+        adaptiveIconImageView.setPadding(AndroidUtilities.m36dp(8.0f));
+        adaptiveIconImageView.setBackgroundOuterPadding(AndroidUtilities.m36dp(32.0f));
         addView(adaptiveIconImageView);
         return adaptiveIconImageView;
     }
@@ -66,20 +66,20 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
             return;
         }
         int min = Math.min(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
-        int m35dp = AndroidUtilities.m35dp(76.0f);
+        int m36dp = AndroidUtilities.m36dp(76.0f);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.topIcon.getLayoutParams();
-        layoutParams.height = m35dp;
-        layoutParams.width = m35dp;
-        float f = m35dp;
+        layoutParams.height = m36dp;
+        layoutParams.width = m36dp;
+        float f = m36dp;
         layoutParams.bottomMargin = (int) ((min * 0.1f) + f);
         FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.bottomLeftIcon.getLayoutParams();
-        layoutParams2.height = m35dp;
-        layoutParams2.width = m35dp;
+        layoutParams2.height = m36dp;
+        layoutParams2.width = m36dp;
         int i3 = (int) (f * 0.95f);
         layoutParams2.rightMargin = i3;
         FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.bottomRightIcon.getLayoutParams();
-        layoutParams3.height = m35dp;
-        layoutParams3.width = m35dp;
+        layoutParams3.height = m36dp;
+        layoutParams3.width = m36dp;
         layoutParams3.leftMargin = i3;
     }
 
@@ -90,19 +90,19 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
         }
         float abs = Math.abs(f / getMeasuredWidth());
         float interpolation = CubicBezierInterpolator.EASE_IN.getInterpolation(abs);
-        this.bottomRightIcon.setTranslationX(((getRight() - this.bottomRightIcon.getRight()) + (this.bottomRightIcon.getWidth() * 1.5f) + AndroidUtilities.m35dp(32.0f)) * interpolation);
-        this.bottomRightIcon.setTranslationY(AndroidUtilities.m35dp(16.0f) * interpolation);
+        this.bottomRightIcon.setTranslationX(((getRight() - this.bottomRightIcon.getRight()) + (this.bottomRightIcon.getWidth() * 1.5f) + AndroidUtilities.m36dp(32.0f)) * interpolation);
+        this.bottomRightIcon.setTranslationY(AndroidUtilities.m36dp(16.0f) * interpolation);
         float clamp = Utilities.clamp(AndroidUtilities.lerp(1.0f, 1.5f, interpolation), 1.0f, 0.0f);
         this.bottomRightIcon.setScaleX(clamp);
         this.bottomRightIcon.setScaleY(clamp);
-        this.topIcon.setTranslationY((((getTop() - this.topIcon.getTop()) - (this.topIcon.getHeight() * 1.8f)) - AndroidUtilities.m35dp(32.0f)) * abs);
-        this.topIcon.setTranslationX(AndroidUtilities.m35dp(16.0f) * abs);
+        this.topIcon.setTranslationY((((getTop() - this.topIcon.getTop()) - (this.topIcon.getHeight() * 1.8f)) - AndroidUtilities.m36dp(32.0f)) * abs);
+        this.topIcon.setTranslationX(AndroidUtilities.m36dp(16.0f) * abs);
         float clamp2 = Utilities.clamp(AndroidUtilities.lerp(1.0f, 1.8f, abs), 1.0f, 0.0f);
         this.topIcon.setScaleX(clamp2);
         this.topIcon.setScaleY(clamp2);
         float interpolation2 = CubicBezierInterpolator.EASE_OUT.getInterpolation(abs);
-        this.bottomLeftIcon.setTranslationX((((getLeft() - this.bottomLeftIcon.getLeft()) - (this.bottomLeftIcon.getWidth() * 2.5f)) + AndroidUtilities.m35dp(32.0f)) * interpolation2);
-        this.bottomLeftIcon.setTranslationY(interpolation2 * ((getBottom() - this.bottomLeftIcon.getBottom()) + (this.bottomLeftIcon.getHeight() * 2.5f) + AndroidUtilities.m35dp(32.0f)));
+        this.bottomLeftIcon.setTranslationX((((getLeft() - this.bottomLeftIcon.getLeft()) - (this.bottomLeftIcon.getWidth() * 2.5f)) + AndroidUtilities.m36dp(32.0f)) * interpolation2);
+        this.bottomLeftIcon.setTranslationY(interpolation2 * ((getBottom() - this.bottomLeftIcon.getBottom()) + (this.bottomLeftIcon.getHeight() * 2.5f) + AndroidUtilities.m36dp(32.0f)));
         float clamp3 = Utilities.clamp(AndroidUtilities.lerp(1.0f, 2.5f, abs), 1.0f, 0.0f);
         this.bottomLeftIcon.setScaleX(clamp3);
         this.bottomLeftIcon.setScaleY(clamp3);
@@ -138,10 +138,10 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
 
         @Override
         public void draw(Canvas canvas) {
-            int m35dp = AndroidUtilities.m35dp(10.0f);
-            this.drawable.excludeRect.set(AndroidUtilities.m35dp(5.0f), AndroidUtilities.m35dp(5.0f), getMeasuredWidth() - AndroidUtilities.m35dp(5.0f), getMeasuredHeight() - AndroidUtilities.m35dp(5.0f));
-            float f = -m35dp;
-            this.drawable.rect.set(f, f, getWidth() + m35dp, getHeight() + m35dp);
+            int m36dp = AndroidUtilities.m36dp(10.0f);
+            this.drawable.excludeRect.set(AndroidUtilities.m36dp(5.0f), AndroidUtilities.m36dp(5.0f), getMeasuredWidth() - AndroidUtilities.m36dp(5.0f), getMeasuredHeight() - AndroidUtilities.m36dp(5.0f));
+            float f = -m36dp;
+            this.drawable.rect.set(f, f, getWidth() + m36dp, getHeight() + m36dp);
             canvas.save();
             float f2 = this.particlesScale;
             canvas.scale(1.0f - f2, 1.0f - f2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
@@ -150,7 +150,7 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
             invalidate();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(18.0f), AndroidUtilities.m35dp(18.0f), this.paint);
+            canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(18.0f), AndroidUtilities.m36dp(18.0f), this.paint);
             super.draw(canvas);
         }
     }

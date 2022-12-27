@@ -114,7 +114,7 @@ public class SharedPhotoVideoCell2 extends View {
             checkBoxBase.setColor(null, "sharedMedia_photoPlaceholder", "checkboxCheck");
             this.checkBoxBase.setDrawUnchecked(true);
             this.checkBoxBase.setBackgroundType(0);
-            this.checkBoxBase.setBounds(0, 0, AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(24.0f));
+            this.checkBoxBase.setBounds(0, 0, AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(24.0f));
             if (this.attached) {
                 this.checkBoxBase.onAttachedToWindow();
             }
@@ -262,7 +262,7 @@ public class SharedPhotoVideoCell2 extends View {
         if (this.crossfadeView != null) {
             canvas.save();
             canvas.translate(getX(), getY());
-            this.crossfadeView.setImageScale(((getMeasuredWidth() - AndroidUtilities.m35dp(2.0f)) * this.imageScale) / (this.crossfadeView.getMeasuredWidth() - AndroidUtilities.m35dp(2.0f)), false);
+            this.crossfadeView.setImageScale(((getMeasuredWidth() - AndroidUtilities.m36dp(2.0f)) * this.imageScale) / (this.crossfadeView.getMeasuredWidth() - AndroidUtilities.m36dp(2.0f)), false);
             this.crossfadeView.draw(canvas);
             canvas.restore();
         }
@@ -283,7 +283,7 @@ public class SharedPhotoVideoCell2 extends View {
             checkBoxBase2.setColor(null, "sharedMedia_photoPlaceholder", "checkboxCheck");
             this.checkBoxBase.setDrawUnchecked(false);
             this.checkBoxBase.setBackgroundType(1);
-            this.checkBoxBase.setBounds(0, 0, AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(24.0f));
+            this.checkBoxBase.setBounds(0, 0, AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(24.0f));
             if (this.attached) {
                 this.checkBoxBase.onAttachedToWindow();
             }
@@ -342,7 +342,7 @@ public class SharedPhotoVideoCell2 extends View {
         SparseArray<String> imageFilters = new SparseArray<>();
 
         public SharedResources(Context context, Theme.ResourcesProvider resourcesProvider) {
-            this.textPaint.setTextSize(AndroidUtilities.m35dp(12.0f));
+            this.textPaint.setTextSize(AndroidUtilities.m36dp(12.0f));
             this.textPaint.setColor(-1);
             this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             Drawable drawable = ContextCompat.getDrawable(context, C1072R.C1073drawable.play_mini_video);

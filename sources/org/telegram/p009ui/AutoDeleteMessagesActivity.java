@@ -146,7 +146,6 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
 
     public class RunnableC13152 implements Runnable {
         RunnableC13152() {
-            AutoDeleteMessagesActivity.this = r1;
         }
 
         @Override
@@ -179,9 +178,9 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
                 AutoDeleteMessagesActivity.this.getMessagesController().setDialogHistoryTTL(((Long) arrayList.get(i)).longValue(), AutoDeleteMessagesActivity.this.getSelectedTime() * 60);
             }
             if (AutoDeleteMessagesActivity.this.getSelectedTime() > 0) {
-                BulletinFactory.m13of(AutoDeleteMessagesActivity.this).createSimpleBulletin(C1072R.raw.fire_on, AndroidUtilities.replaceTags(LocaleController.formatString("AutodeleteTimerEnabledForChats", C1072R.string.AutodeleteTimerEnabledForChats, LocaleController.formatTTLString(AutoDeleteMessagesActivity.this.getSelectedTime() * 60), LocaleController.formatPluralString("Chats", arrayList.size(), Integer.valueOf(arrayList.size()))))).show();
+                BulletinFactory.m14of(AutoDeleteMessagesActivity.this).createSimpleBulletin(C1072R.raw.fire_on, AndroidUtilities.replaceTags(LocaleController.formatString("AutodeleteTimerEnabledForChats", C1072R.string.AutodeleteTimerEnabledForChats, LocaleController.formatTTLString(AutoDeleteMessagesActivity.this.getSelectedTime() * 60), LocaleController.formatPluralString("Chats", arrayList.size(), Integer.valueOf(arrayList.size()))))).show();
             } else {
-                BulletinFactory.m13of(AutoDeleteMessagesActivity.this).createSimpleBulletin(C1072R.raw.fire_off, LocaleController.formatString("AutodeleteTimerDisabledForChats", C1072R.string.AutodeleteTimerDisabledForChats, LocaleController.formatPluralString("Chats", arrayList.size(), Integer.valueOf(arrayList.size())))).show();
+                BulletinFactory.m14of(AutoDeleteMessagesActivity.this).createSimpleBulletin(C1072R.raw.fire_off, LocaleController.formatString("AutodeleteTimerDisabledForChats", C1072R.string.AutodeleteTimerDisabledForChats, LocaleController.formatPluralString("Chats", arrayList.size(), Integer.valueOf(arrayList.size())))).show();
             }
         }
     }
@@ -200,7 +199,6 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
 
     public class C13163 implements AlertsCreator.ScheduleDatePickerDelegate {
         C13163() {
-            AutoDeleteMessagesActivity.this = r1;
         }
 
         @Override
@@ -314,7 +312,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         if (!z || (i = ((RadioCellInternal) view).time) <= 0) {
             return;
         }
-        BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.fire_on, AndroidUtilities.replaceTags(LocaleController.formatString("AutoDeleteGlobalTimerEnabled", C1072R.string.AutoDeleteGlobalTimerEnabled, LocaleController.formatTTLString(i * 60)))).show();
+        BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.fire_on, AndroidUtilities.replaceTags(LocaleController.formatString("AutoDeleteGlobalTimerEnabled", C1072R.string.AutoDeleteGlobalTimerEnabled, LocaleController.formatTTLString(i * 60)))).show();
     }
 
     public class RadioCellInternal extends RadioCell {

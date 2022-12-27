@@ -41,9 +41,9 @@ public class VoIPTimerView extends View {
                 VoIPTimerView.this.lambda$new$0();
             }
         };
-        this.textPaint.setTextSize(AndroidUtilities.m35dp(15.0f));
+        this.textPaint.setTextSize(AndroidUtilities.m36dp(15.0f));
         this.textPaint.setColor(-1);
-        this.textPaint.setShadowLayer(AndroidUtilities.m35dp(3.0f), 0.0f, AndroidUtilities.m35dp(0.6666667f), 1275068416);
+        this.textPaint.setShadowLayer(AndroidUtilities.m36dp(3.0f), 0.0f, AndroidUtilities.m36dp(0.6666667f), 1275068416);
         this.activePaint.setColor(ColorUtils.setAlphaComponent(-1, 229));
         this.inactivePaint.setColor(ColorUtils.setAlphaComponent(-1, 102));
     }
@@ -54,7 +54,7 @@ public class VoIPTimerView extends View {
         if (staticLayout != null) {
             setMeasuredDimension(View.MeasureSpec.getSize(i), staticLayout.getHeight());
         } else {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m35dp(15.0f));
+            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m36dp(15.0f));
         }
     }
 
@@ -100,22 +100,22 @@ public class VoIPTimerView extends View {
     protected void onDraw(Canvas canvas) {
         StaticLayout staticLayout = this.timerLayout;
         int i = 0;
-        int width = staticLayout == null ? 0 : staticLayout.getWidth() + AndroidUtilities.m35dp(21.0f);
+        int width = staticLayout == null ? 0 : staticLayout.getWidth() + AndroidUtilities.m36dp(21.0f);
         canvas.save();
         canvas.translate((getMeasuredWidth() - width) / 2.0f, 0.0f);
         canvas.save();
-        canvas.translate(0.0f, (getMeasuredHeight() - AndroidUtilities.m35dp(11.0f)) / 2.0f);
+        canvas.translate(0.0f, (getMeasuredHeight() - AndroidUtilities.m36dp(11.0f)) / 2.0f);
         while (i < 4) {
             int i2 = i + 1;
             Paint paint = i2 > this.signalBarCount ? this.inactivePaint : this.activePaint;
             float f = i;
-            this.rectF.set(AndroidUtilities.dpf2(4.16f) * f, AndroidUtilities.dpf2(2.75f) * (3 - i), (AndroidUtilities.dpf2(4.16f) * f) + AndroidUtilities.dpf2(2.75f), AndroidUtilities.m35dp(11.0f));
+            this.rectF.set(AndroidUtilities.dpf2(4.16f) * f, AndroidUtilities.dpf2(2.75f) * (3 - i), (AndroidUtilities.dpf2(4.16f) * f) + AndroidUtilities.dpf2(2.75f), AndroidUtilities.m36dp(11.0f));
             canvas.drawRoundRect(this.rectF, AndroidUtilities.dpf2(0.7f), AndroidUtilities.dpf2(0.7f), paint);
             i = i2;
         }
         canvas.restore();
         if (staticLayout != null) {
-            canvas.translate(AndroidUtilities.m35dp(21.0f), 0.0f);
+            canvas.translate(AndroidUtilities.m36dp(21.0f), 0.0f);
             staticLayout.draw(canvas);
         }
         canvas.restore();

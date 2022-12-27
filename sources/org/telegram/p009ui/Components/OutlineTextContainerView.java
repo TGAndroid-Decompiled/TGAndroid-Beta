@@ -55,15 +55,15 @@ public class OutlineTextContainerView extends FrameLayout {
         this.textPaint = new TextPaint(1);
         this.selectionSpring = new SpringAnimation(this, SELECTION_PROGRESS_PROPERTY);
         this.errorSpring = new SpringAnimation(this, ERROR_PROGRESS_PROPERTY);
-        this.strokeWidthRegular = Math.max(2, AndroidUtilities.m35dp(0.5f));
-        this.strokeWidthSelected = AndroidUtilities.m35dp(1.5f);
+        this.strokeWidthRegular = Math.max(2, AndroidUtilities.m36dp(0.5f));
+        this.strokeWidthSelected = AndroidUtilities.m36dp(1.5f);
         setWillNotDraw(false);
-        this.textPaint.setTextSize(AndroidUtilities.m35dp(16.0f));
+        this.textPaint.setTextSize(AndroidUtilities.m36dp(16.0f));
         this.outlinePaint.setStyle(Paint.Style.STROKE);
         this.outlinePaint.setStrokeCap(Paint.Cap.ROUND);
         this.outlinePaint.setStrokeWidth(this.strokeWidthRegular);
         updateColor();
-        setPadding(0, AndroidUtilities.m35dp(6.0f), 0, 0);
+        setPadding(0, AndroidUtilities.m36dp(6.0f), 0, 0);
     }
 
     public void setForceUseCenter(boolean z) {
@@ -128,7 +128,7 @@ public class OutlineTextContainerView extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float paddingTop = getPaddingTop() + ((this.textPaint.getTextSize() / 2.0f) - AndroidUtilities.m35dp(1.75f));
+        float paddingTop = getPaddingTop() + ((this.textPaint.getTextSize() / 2.0f) - AndroidUtilities.m36dp(1.75f));
         float height = (getHeight() / 2.0f) + (this.textPaint.getTextSize() / 2.0f);
         EditText editText = this.attachedEditText;
         boolean z = (editText != null && editText.length() == 0 && TextUtils.isEmpty(this.attachedEditText.getHint())) || this.forceUseCenter;
@@ -140,20 +140,20 @@ public class OutlineTextContainerView extends FrameLayout {
         float f2 = z ? 0.75f + ((1.0f - this.selectionProgress) * 0.25f) : 0.75f;
         float measureText = this.textPaint.measureText(this.mText) * f2;
         canvas.save();
-        this.rect.set(getPaddingLeft() + AndroidUtilities.m35dp(10.0f), getPaddingTop(), (getWidth() - AndroidUtilities.m35dp(18.0f)) - getPaddingRight(), getPaddingTop() + (strokeWidth * 2.0f));
+        this.rect.set(getPaddingLeft() + AndroidUtilities.m36dp(10.0f), getPaddingTop(), (getWidth() - AndroidUtilities.m36dp(18.0f)) - getPaddingRight(), getPaddingTop() + (strokeWidth * 2.0f));
         canvas.clipRect(this.rect, Region.Op.DIFFERENCE);
         this.rect.set(getPaddingLeft() + strokeWidth, getPaddingTop() + strokeWidth, (getWidth() - strokeWidth) - getPaddingRight(), (getHeight() - strokeWidth) - getPaddingBottom());
-        canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), this.outlinePaint);
+        canvas.drawRoundRect(this.rect, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), this.outlinePaint);
         canvas.restore();
-        float paddingLeft = getPaddingLeft() + AndroidUtilities.m35dp(10.0f);
+        float paddingLeft = getPaddingLeft() + AndroidUtilities.m36dp(10.0f);
         float paddingTop2 = getPaddingTop() + strokeWidth;
         float f3 = paddingLeft + (measureText / 2.0f);
-        canvas.drawLine(f3 + ((((paddingLeft + measureText) + AndroidUtilities.m35dp(10.0f)) - f3) * (z ? this.selectionProgress : 1.0f)), paddingTop2, ((getWidth() - strokeWidth) - getPaddingRight()) - AndroidUtilities.m35dp(6.0f), paddingTop2, this.outlinePaint);
-        float m35dp = f3 + AndroidUtilities.m35dp(4.0f);
-        canvas.drawLine(paddingLeft, paddingTop2, m35dp + ((paddingLeft - m35dp) * (z ? this.selectionProgress : 1.0f)), paddingTop2, this.outlinePaint);
+        canvas.drawLine(f3 + ((((paddingLeft + measureText) + AndroidUtilities.m36dp(10.0f)) - f3) * (z ? this.selectionProgress : 1.0f)), paddingTop2, ((getWidth() - strokeWidth) - getPaddingRight()) - AndroidUtilities.m36dp(6.0f), paddingTop2, this.outlinePaint);
+        float m36dp = f3 + AndroidUtilities.m36dp(4.0f);
+        canvas.drawLine(paddingLeft, paddingTop2, m36dp + ((paddingLeft - m36dp) * (z ? this.selectionProgress : 1.0f)), paddingTop2, this.outlinePaint);
         canvas.save();
-        canvas.scale(f2, f2, getPaddingLeft() + AndroidUtilities.m35dp(18.0f), f);
-        canvas.drawText(this.mText, getPaddingLeft() + AndroidUtilities.m35dp(14.0f), f, this.textPaint);
+        canvas.scale(f2, f2, getPaddingLeft() + AndroidUtilities.m36dp(18.0f), f);
+        canvas.drawText(this.mText, getPaddingLeft() + AndroidUtilities.m36dp(14.0f), f, this.textPaint);
         canvas.restore();
     }
 }

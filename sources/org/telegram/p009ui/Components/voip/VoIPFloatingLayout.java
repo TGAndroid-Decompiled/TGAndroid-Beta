@@ -128,7 +128,7 @@ public class VoIPFloatingLayout extends FrameLayout {
                             outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
                         }
                     } else if (VoIPFloatingLayout.this.floatingMode) {
-                        outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), VoIPFloatingLayout.this.floatingMode ? AndroidUtilities.m35dp(4.0f) : 0.0f);
+                        outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), VoIPFloatingLayout.this.floatingMode ? AndroidUtilities.m36dp(4.0f) : 0.0f);
                     } else {
                         outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
                     }
@@ -161,7 +161,7 @@ public class VoIPFloatingLayout extends FrameLayout {
         if (getMeasuredHeight() != this.lastH && getMeasuredWidth() != this.lastW) {
             this.path.reset();
             this.rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.path.addRoundRect(this.rectF, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), Path.Direction.CW);
+            this.path.addRoundRect(this.rectF, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), Path.Direction.CW);
             this.path.toggleInverseFillType();
         }
         this.lastH = getMeasuredHeight();
@@ -170,10 +170,10 @@ public class VoIPFloatingLayout extends FrameLayout {
     }
 
     private void updatePadding() {
-        this.leftPadding = AndroidUtilities.m35dp(16.0f);
-        this.rightPadding = AndroidUtilities.m35dp(16.0f);
-        this.topPadding = this.uiVisible ? AndroidUtilities.m35dp(60.0f) : AndroidUtilities.m35dp(16.0f);
-        this.bottomPadding = AndroidUtilities.m35dp(this.uiVisible ? 100.0f : 16.0f) + this.bottomOffset;
+        this.leftPadding = AndroidUtilities.m36dp(16.0f);
+        this.rightPadding = AndroidUtilities.m36dp(16.0f);
+        this.topPadding = this.uiVisible ? AndroidUtilities.m36dp(60.0f) : AndroidUtilities.m36dp(16.0f);
+        this.bottomPadding = AndroidUtilities.m36dp(this.uiVisible ? 100.0f : 16.0f) + this.bottomOffset;
     }
 
     public void setDelegate(VoIPFloatingLayoutDelegate voIPFloatingLayoutDelegate) {
@@ -211,12 +211,12 @@ public class VoIPFloatingLayout extends FrameLayout {
             }
         }
         int measuredWidth = getMeasuredWidth() >> 1;
-        int measuredHeight = getMeasuredHeight() - ((int) ((AndroidUtilities.m35dp(18.0f) * 1.0f) / getScaleY()));
+        int measuredHeight = getMeasuredHeight() - ((int) ((AndroidUtilities.m36dp(18.0f) * 1.0f) / getScaleY()));
         canvas.save();
         float f = measuredWidth;
         float f2 = measuredHeight;
         canvas.scale((1.0f / getScaleX()) * this.toFloatingModeProgress * this.mutedProgress, (1.0f / getScaleY()) * this.toFloatingModeProgress * this.mutedProgress, f, f2);
-        canvas.drawCircle(f, f2, AndroidUtilities.m35dp(14.0f), this.mutedPaint);
+        canvas.drawCircle(f, f2, AndroidUtilities.m36dp(14.0f), this.mutedPaint);
         Drawable drawable = this.mutedDrawable;
         drawable.setBounds(measuredWidth - (drawable.getIntrinsicWidth() / 2), measuredHeight - (this.mutedDrawable.getIntrinsicHeight() / 2), measuredWidth + (this.mutedDrawable.getIntrinsicWidth() / 2), measuredHeight + (this.mutedDrawable.getIntrinsicHeight() / 2));
         this.mutedDrawable.draw(canvas);

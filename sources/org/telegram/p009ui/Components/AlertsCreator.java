@@ -272,7 +272,7 @@ public class AlertsCreator {
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
             context.startActivity(intent);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -298,7 +298,7 @@ public class AlertsCreator {
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
             context.startActivity(intent);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -345,7 +345,7 @@ public class AlertsCreator {
                 context.startActivity(intent);
                 return;
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return;
             }
         }
@@ -378,7 +378,7 @@ public class AlertsCreator {
         try {
             context.startActivity(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + context.getPackageName())));
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -754,7 +754,7 @@ public class AlertsCreator {
         textView.setTextSize(1, 16.0f);
         textView.setLinkTextColor(Theme.getColor("dialogTextLink"));
         textView.setHighlightColor(Theme.getColor("dialogLinkSelection"));
-        textView.setPadding(AndroidUtilities.m35dp(23.0f), 0, AndroidUtilities.m35dp(23.0f), 0);
+        textView.setPadding(AndroidUtilities.m36dp(23.0f), 0, AndroidUtilities.m36dp(23.0f), 0);
         textView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
         builder.setView(textView);
@@ -915,7 +915,7 @@ public class AlertsCreator {
         checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
         checkBoxCellArr[0].setTag(0);
         checkBoxCellArr[0].setText(LocaleController.getString("DeleteReportSpam", C1072R.string.DeleteReportSpam), "", true, false);
-        checkBoxCellArr[0].setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.m35dp(8.0f) : AndroidUtilities.m35dp(16.0f), 0);
+        checkBoxCellArr[0].setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.m36dp(8.0f) : AndroidUtilities.m36dp(16.0f), 0);
         linearLayout.addView(checkBoxCellArr[0], LayoutHelper.createLinear(-1, -2));
         checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1071,10 +1071,10 @@ public class AlertsCreator {
                 textView.setCompoundDrawablesWithIntrinsicBounds(drawable3, drawable2, drawable2, drawable2);
                 textView.setTag(Integer.valueOf(i7));
                 textView.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                textView.setPadding(AndroidUtilities.m35dp(24.0f), 0, AndroidUtilities.m35dp(24.0f), 0);
+                textView.setPadding(AndroidUtilities.m36dp(24.0f), 0, AndroidUtilities.m36dp(24.0f), 0);
                 textView.setSingleLine(r8);
                 textView.setGravity(19);
-                textView.setCompoundDrawablePadding(AndroidUtilities.m35dp(26.0f));
+                textView.setCompoundDrawablePadding(AndroidUtilities.m36dp(26.0f));
                 textView.setText(strArr2[i7]);
                 linearLayout3.addView(textView, LayoutHelper.createLinear(-1, 48, 51));
                 i4 = i7;
@@ -1137,7 +1137,7 @@ public class AlertsCreator {
         builder.setView(linearLayout);
         for (int i3 = 0; i3 < arrayList.size(); i3++) {
             RadioColorCell radioColorCell = new RadioColorCell(context, resourcesProvider);
-            radioColorCell.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+            radioColorCell.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
             radioColorCell.setTag(Integer.valueOf(i3));
             radioColorCell.setCheckColor(Theme.getColor("radioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
             radioColorCell.setTextAndValue((CharSequence) arrayList.get(i3), SharedConfig.mapPreviewType == ((Integer) arrayList2.get(i3)).intValue());
@@ -1232,7 +1232,7 @@ public class AlertsCreator {
         linksTextView.setTextSize(1, 16.0f);
         linksTextView.setLinkTextColor(Theme.getColor("dialogTextLink", resourcesProvider));
         linksTextView.setHighlightColor(Theme.getColor("dialogLinkSelection", resourcesProvider));
-        linksTextView.setPadding(AndroidUtilities.m35dp(23.0f), 0, AndroidUtilities.m35dp(23.0f), 0);
+        linksTextView.setPadding(AndroidUtilities.m36dp(23.0f), 0, AndroidUtilities.m36dp(23.0f), 0);
         linksTextView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
         linksTextView.setTextColor(Theme.getColor("dialogTextBlack", resourcesProvider));
         AlertDialog.Builder builder = new AlertDialog.Builder(baseFragment.getParentActivity(), resourcesProvider);
@@ -1269,7 +1269,7 @@ public class AlertsCreator {
                         tLRPC$User = TLdeserialize;
                     }
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             tLRPC$User = user;
@@ -1334,7 +1334,7 @@ public class AlertsCreator {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         ArrayList<TLRPC$User> arrayList = new ArrayList<>();
         arrayList.add(tLRPC$TL_help_support.user);
@@ -1349,7 +1349,7 @@ public class AlertsCreator {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1371,9 +1371,9 @@ public class AlertsCreator {
         FrameLayout frameLayout = new FrameLayout(parentActivity);
         builder.setView(frameLayout);
         AvatarDrawable avatarDrawable = new AvatarDrawable();
-        avatarDrawable.setTextSize(AndroidUtilities.m35dp(12.0f));
+        avatarDrawable.setTextSize(AndroidUtilities.m36dp(12.0f));
         BackupImageView backupImageView = new BackupImageView(parentActivity);
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(20.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(20.0f));
         frameLayout.addView(backupImageView, LayoutHelper.createFrame(40, 40.0f, (LocaleController.isRTL ? 5 : 3) | 48, 22.0f, 5.0f, 22.0f, 0.0f));
         TextView textView2 = new TextView(parentActivity);
         textView2.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
@@ -1471,7 +1471,7 @@ public class AlertsCreator {
 
     public static void createClearDaysDialogAlert(BaseFragment baseFragment, int i, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, boolean z, final MessagesStorage.BooleanCallback booleanCallback, Theme.ResourcesProvider resourcesProvider) {
         float f;
-        int m35dp;
+        int m36dp;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
@@ -1548,12 +1548,12 @@ public class AlertsCreator {
             CheckBoxCell checkBoxCell = checkBoxCellArr[0];
             if (LocaleController.isRTL) {
                 f = 16.0f;
-                m35dp = AndroidUtilities.m35dp(16.0f);
+                m36dp = AndroidUtilities.m36dp(16.0f);
             } else {
                 f = 16.0f;
-                m35dp = AndroidUtilities.m35dp(8.0f);
+                m36dp = AndroidUtilities.m36dp(8.0f);
             }
-            checkBoxCell.setPadding(m35dp, 0, LocaleController.isRTL ? AndroidUtilities.m35dp(8.0f) : AndroidUtilities.m35dp(f), 0);
+            checkBoxCell.setPadding(m36dp, 0, LocaleController.isRTL ? AndroidUtilities.m36dp(8.0f) : AndroidUtilities.m36dp(f), 0);
             frameLayout.addView(checkBoxCellArr[0], LayoutHelper.createFrame(-1, 48.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
             checkBoxCellArr[0].setChecked(false, false);
             checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
@@ -1619,11 +1619,11 @@ public class AlertsCreator {
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         textView.setText(AndroidUtilities.replaceTags(formatString));
         AvatarDrawable avatarDrawable = new AvatarDrawable();
-        avatarDrawable.setTextSize(AndroidUtilities.m35dp(12.0f));
+        avatarDrawable.setTextSize(AndroidUtilities.m36dp(12.0f));
         avatarDrawable.setScaleSize(1.0f);
         avatarDrawable.setInfo(tLRPC$User);
         BackupImageView backupImageView = new BackupImageView(parentActivity);
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(20.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(20.0f));
         backupImageView.setForUserOrChat(tLRPC$User, avatarDrawable);
         frameLayout.addView(backupImageView, LayoutHelper.createFrame(40, 40.0f, (LocaleController.isRTL ? 5 : 3) | 48, 22.0f, 5.0f, 22.0f, 0.0f));
         TextView textView2 = new TextView(parentActivity);
@@ -1704,7 +1704,7 @@ public class AlertsCreator {
         numberTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText4"));
         numberTextView.setImportantForAccessibility(2);
         frameLayout.addView(numberTextView, LayoutHelper.createFrame(20, 20.0f, LocaleController.isRTL ? 3 : 5, 0.0f, 14.0f, 21.0f, 0.0f));
-        editText.setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(24.0f) : 0, AndroidUtilities.m35dp(8.0f), LocaleController.isRTL ? 0 : AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(8.0f));
+        editText.setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(24.0f) : 0, AndroidUtilities.m36dp(8.0f), LocaleController.isRTL ? 0 : AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(8.0f));
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
@@ -1856,7 +1856,7 @@ public class AlertsCreator {
         }
         editText2.setHint(LocaleController.getString(str4, i3));
         editText2.setBackground(Theme.createEditTextDrawable(context, true));
-        editText2.setPadding(0, AndroidUtilities.m35dp(8.0f), 0, AndroidUtilities.m35dp(8.0f));
+        editText2.setPadding(0, AndroidUtilities.m36dp(8.0f), 0, AndroidUtilities.m36dp(8.0f));
         editText2.requestFocus();
         if (j > 0) {
             editText = new EditText(context);
@@ -1870,7 +1870,7 @@ public class AlertsCreator {
             editText.setImeOptions(6);
             editText.setHint(LocaleController.getString("LastName", C1072R.string.LastName));
             editText.setBackground(Theme.createEditTextDrawable(context, true));
-            editText.setPadding(0, AndroidUtilities.m35dp(8.0f), 0, AndroidUtilities.m35dp(8.0f));
+            editText.setPadding(0, AndroidUtilities.m36dp(8.0f), 0, AndroidUtilities.m36dp(8.0f));
         } else {
             editText = null;
         }
@@ -2009,13 +2009,13 @@ public class AlertsCreator {
         textView.setTextSize(1, 16.0f);
         textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ChatWithAdminMessage", C1072R.string.ChatWithAdminMessage, str, LocaleController.formatDateAudio(i, false))));
         TextView textView2 = new TextView(baseFragment.getParentActivity());
-        textView2.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView2.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView2.setText(LocaleController.getString("IUnderstand", C1072R.string.IUnderstand));
         textView2.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 0, 24, 15, 16, 24));
         builder.setCustomView(linearLayout);
         final BottomSheet show = builder.show();
@@ -2047,7 +2047,7 @@ public class AlertsCreator {
             intent.putExtra("sms_body", ContactsController.getInstance(baseFragment.getCurrentAccount()).getInviteText(1));
             baseFragment.getParentActivity().startActivityForResult(intent, 500);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -2062,7 +2062,7 @@ public class AlertsCreator {
         actionBarPopupWindow.setClippingEnabled(true);
         actionBarPopupWindow.setAnimationStyle(C1072R.style.PopupContextAnimation);
         actionBarPopupWindow.setFocusable(true);
-        view.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE));
+        view.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE));
         actionBarPopupWindow.setInputMethodMode(2);
         actionBarPopupWindow.getContentView().setFocusableInTouchMode(true);
         float f3 = 0.0f;
@@ -2126,7 +2126,7 @@ public class AlertsCreator {
                     }
                     checkBoxCell.setText(LocaleController.getString(str, i2), "", true, false);
                 }
-                checkBoxCellArr[i3].setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.m35dp(8.0f) : AndroidUtilities.m35dp(16.0f), 0);
+                checkBoxCellArr[i3].setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.m36dp(8.0f) : AndroidUtilities.m36dp(16.0f), 0);
                 linearLayout.addView(checkBoxCellArr[i3], LayoutHelper.createLinear(-1, 48));
                 checkBoxCellArr[i3].setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -2464,7 +2464,7 @@ public class AlertsCreator {
         builder.setApplyBottomPadding(false);
         final NumberPicker numberPicker2 = new NumberPicker(context, resourcesProvider);
         numberPicker2.setTextColor(scheduleDatePickerColors.textColor);
-        numberPicker2.setTextOffset(AndroidUtilities.m35dp(10.0f));
+        numberPicker2.setTextOffset(AndroidUtilities.m36dp(10.0f));
         numberPicker2.setItemCount(5);
         final NumberPicker numberPicker3 = new NumberPicker(context, resourcesProvider) {
             @Override
@@ -2476,7 +2476,7 @@ public class AlertsCreator {
         numberPicker3.setAllItemsCount(24);
         numberPicker3.setItemCount(5);
         numberPicker3.setTextColor(scheduleDatePickerColors.textColor);
-        numberPicker3.setTextOffset(-AndroidUtilities.m35dp(10.0f));
+        numberPicker3.setTextOffset(-AndroidUtilities.m36dp(10.0f));
         final NumberPicker numberPicker4 = new NumberPicker(context, resourcesProvider) {
             @Override
             protected CharSequence getContentDescription(int i) {
@@ -2487,7 +2487,7 @@ public class AlertsCreator {
         numberPicker4.setAllItemsCount(60);
         numberPicker4.setItemCount(5);
         numberPicker4.setTextColor(scheduleDatePickerColors.textColor);
-        numberPicker4.setTextOffset(-AndroidUtilities.m35dp(34.0f));
+        numberPicker4.setTextOffset(-AndroidUtilities.m36dp(34.0f));
         LinearLayout linearLayout2 = new LinearLayout(context) {
             boolean ignoreLayout = false;
 
@@ -2499,9 +2499,9 @@ public class AlertsCreator {
                 numberPicker2.setItemCount(i3);
                 numberPicker3.setItemCount(i3);
                 numberPicker4.setItemCount(i3);
-                numberPicker2.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
-                numberPicker3.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
-                numberPicker4.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
+                numberPicker2.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
+                numberPicker3.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
+                numberPicker4.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
                 this.ignoreLayout = false;
                 super.onMeasure(i, i2);
             }
@@ -2626,7 +2626,7 @@ public class AlertsCreator {
         }
         final boolean[] zArr = {true};
         checkScheduleDate(textView2, null, clientUserId == j ? 1 : 0, numberPicker2, numberPicker3, numberPicker6);
-        textView2.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView2.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         textView2.setGravity(17);
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
@@ -2724,7 +2724,7 @@ public class AlertsCreator {
         builder.setApplyBottomPadding(false);
         final NumberPicker numberPicker = new NumberPicker(context);
         numberPicker.setTextColor(scheduleDatePickerColors.textColor);
-        numberPicker.setTextOffset(AndroidUtilities.m35dp(10.0f));
+        numberPicker.setTextOffset(AndroidUtilities.m36dp(10.0f));
         numberPicker.setItemCount(5);
         final NumberPicker numberPicker2 = new NumberPicker(context) {
             @Override
@@ -2734,7 +2734,7 @@ public class AlertsCreator {
         };
         numberPicker2.setItemCount(5);
         numberPicker2.setTextColor(scheduleDatePickerColors.textColor);
-        numberPicker2.setTextOffset(-AndroidUtilities.m35dp(10.0f));
+        numberPicker2.setTextOffset(-AndroidUtilities.m36dp(10.0f));
         final NumberPicker numberPicker3 = new NumberPicker(context) {
             @Override
             protected CharSequence getContentDescription(int i) {
@@ -2743,7 +2743,7 @@ public class AlertsCreator {
         };
         numberPicker3.setItemCount(5);
         numberPicker3.setTextColor(scheduleDatePickerColors.textColor);
-        numberPicker3.setTextOffset(-AndroidUtilities.m35dp(34.0f));
+        numberPicker3.setTextOffset(-AndroidUtilities.m36dp(34.0f));
         final LinearLayout linearLayout2 = new LinearLayout(context) {
             boolean ignoreLayout = false;
 
@@ -2755,9 +2755,9 @@ public class AlertsCreator {
                 numberPicker.setItemCount(i3);
                 numberPicker2.setItemCount(i3);
                 numberPicker3.setItemCount(i3);
-                numberPicker.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
-                numberPicker2.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
-                numberPicker3.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
+                numberPicker.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
+                numberPicker2.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
+                numberPicker3.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
                 this.ignoreLayout = false;
                 super.onMeasure(i, i2);
             }
@@ -2843,12 +2843,12 @@ public class AlertsCreator {
             }
         }
         checkScheduleDate(null, null, 0, numberPicker, numberPicker2, numberPicker3);
-        textView2.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView2.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         textView2.setGravity(17);
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
+        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         textView2.setText(LocaleController.getString("SetTimeLimit", C1072R.string.SetTimeLimit));
         LinearLayout linearLayout4 = linearLayout;
         linearLayout4.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
@@ -2915,7 +2915,7 @@ public class AlertsCreator {
         builder.setApplyBottomPadding(false);
         final NumberPicker numberPicker = new NumberPicker(context);
         numberPicker.setTextColor(scheduleDatePickerColors.textColor);
-        numberPicker.setTextOffset(AndroidUtilities.m35dp(10.0f));
+        numberPicker.setTextOffset(AndroidUtilities.m36dp(10.0f));
         numberPicker.setItemCount(5);
         final NumberPicker numberPicker2 = new NumberPicker(context) {
             @Override
@@ -2925,7 +2925,7 @@ public class AlertsCreator {
         };
         numberPicker2.setItemCount(5);
         numberPicker2.setTextColor(scheduleDatePickerColors.textColor);
-        numberPicker2.setTextOffset(-AndroidUtilities.m35dp(10.0f));
+        numberPicker2.setTextOffset(-AndroidUtilities.m36dp(10.0f));
         final NumberPicker numberPicker3 = new NumberPicker(context) {
             @Override
             protected CharSequence getContentDescription(int i) {
@@ -2934,7 +2934,7 @@ public class AlertsCreator {
         };
         numberPicker3.setItemCount(5);
         numberPicker3.setTextColor(scheduleDatePickerColors.textColor);
-        numberPicker3.setTextOffset(-AndroidUtilities.m35dp(34.0f));
+        numberPicker3.setTextOffset(-AndroidUtilities.m36dp(34.0f));
         final LinearLayout linearLayout2 = new LinearLayout(context) {
             boolean ignoreLayout = false;
 
@@ -2946,9 +2946,9 @@ public class AlertsCreator {
                 numberPicker.setItemCount(i3);
                 numberPicker2.setItemCount(i3);
                 numberPicker3.setItemCount(i3);
-                numberPicker.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
-                numberPicker2.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
-                numberPicker3.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
+                numberPicker.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
+                numberPicker2.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
+                numberPicker3.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
                 this.ignoreLayout = false;
                 super.onMeasure(i, i2);
             }
@@ -3035,12 +3035,12 @@ public class AlertsCreator {
             }
         }
         checkScheduleDate(null, null, 0, numberPicker, numberPicker2, numberPicker3);
-        textView2.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView2.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         textView2.setGravity(17);
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
+        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         textView2.setText(LocaleController.getString("SetEmojiStatusUntilButton", C1072R.string.SetEmojiStatusUntilButton));
         LinearLayout linearLayout4 = linearLayout;
         linearLayout4.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
@@ -3150,7 +3150,7 @@ public class AlertsCreator {
                 Point point = AndroidUtilities.displaySize;
                 int i4 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i4);
-                numberPicker.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i4;
+                numberPicker.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i4;
                 this.ignoreLayout = false;
                 super.onMeasure(i2, i3);
             }
@@ -3187,9 +3187,9 @@ public class AlertsCreator {
         animatedTextView.setPadding(0, 0, 0, 0);
         animatedTextView.setGravity(17);
         animatedTextView.setTextColor(scheduleDatePickerColors.buttonTextColor);
-        animatedTextView.setTextSize(AndroidUtilities.m35dp(14.0f));
+        animatedTextView.setTextSize(AndroidUtilities.m36dp(14.0f));
         animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        animatedTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
+        animatedTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         linearLayout.addView(animatedTextView, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
         animatedTextView.setText(LocaleController.getString("DisableAutoDeleteTimer", C1072R.string.DisableAutoDeleteTimer));
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -3291,11 +3291,11 @@ public class AlertsCreator {
                 Point point = AndroidUtilities.displaySize;
                 int i5 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i5);
-                numberPicker.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i5;
+                numberPicker.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i5;
                 numberPicker2.setItemCount(i5);
-                numberPicker2.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i5;
+                numberPicker2.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i5;
                 numberPicker3.setItemCount(i5);
-                numberPicker3.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i5;
+                numberPicker3.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i5;
                 this.ignoreLayout = false;
                 super.onMeasure(i3, i4);
             }
@@ -3331,12 +3331,12 @@ public class AlertsCreator {
         linearLayout2.addView(numberPicker, LayoutHelper.createLinear(0, 270, 0.4f));
         linearLayout2.addView(numberPicker3, LayoutHelper.createLinear(0, -2, 0.2f, 16));
         linearLayout2.addView(numberPicker2, LayoutHelper.createLinear(0, 270, 0.4f));
-        textView2.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView2.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         textView2.setGravity(17);
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
+        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         textView2.setText(LocaleController.getString("AutoDeleteConfirm", C1072R.string.AutoDeleteConfirm));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
         NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
@@ -3438,7 +3438,7 @@ public class AlertsCreator {
                 Point point = AndroidUtilities.displaySize;
                 int i3 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i3);
-                numberPicker.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
+                numberPicker.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
                 this.ignoreLayout = false;
                 super.onMeasure(i, i2);
             }
@@ -3478,12 +3478,12 @@ public class AlertsCreator {
                 AlertsCreator.lambda$createMuteForPickerDialog$82(linearLayout, numberPicker2, i, i2);
             }
         });
-        textView2.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView2.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         textView2.setGravity(17);
         textView2.setTextColor(scheduleDatePickerColors.buttonTextColor);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
+        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), scheduleDatePickerColors.buttonBackgroundColor, scheduleDatePickerColors.buttonBackgroundPressedColor));
         textView2.setText(LocaleController.getString("AutoDeleteConfirm", C1072R.string.AutoDeleteConfirm));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
         textView2.setOnClickListener(new View.OnClickListener() {
@@ -3570,14 +3570,14 @@ public class AlertsCreator {
         final BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
         builder.setApplyBottomPadding(false);
         final NumberPicker numberPicker = new NumberPicker(context, resourcesProvider);
-        numberPicker.setTextOffset(AndroidUtilities.m35dp(10.0f));
+        numberPicker.setTextOffset(AndroidUtilities.m36dp(10.0f));
         numberPicker.setItemCount(5);
         final NumberPicker numberPicker2 = new NumberPicker(context, resourcesProvider);
         numberPicker2.setItemCount(5);
-        numberPicker2.setTextOffset(-AndroidUtilities.m35dp(10.0f));
+        numberPicker2.setTextOffset(-AndroidUtilities.m36dp(10.0f));
         final NumberPicker numberPicker3 = new NumberPicker(context, resourcesProvider);
         numberPicker3.setItemCount(5);
-        numberPicker3.setTextOffset(-AndroidUtilities.m35dp(24.0f));
+        numberPicker3.setTextOffset(-AndroidUtilities.m36dp(24.0f));
         final LinearLayout linearLayout = new LinearLayout(context) {
             boolean ignoreLayout = false;
 
@@ -3589,9 +3589,9 @@ public class AlertsCreator {
                 numberPicker.setItemCount(i3);
                 numberPicker2.setItemCount(i3);
                 numberPicker3.setItemCount(i3);
-                numberPicker.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
-                numberPicker2.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
-                numberPicker3.getLayoutParams().height = AndroidUtilities.m35dp(42.0f) * i3;
+                numberPicker.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
+                numberPicker2.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
+                numberPicker3.getLayoutParams().height = AndroidUtilities.m36dp(42.0f) * i3;
                 this.ignoreLayout = false;
                 super.onMeasure(i, i2);
             }
@@ -3658,13 +3658,13 @@ public class AlertsCreator {
         numberPicker2.setValue(12);
         numberPicker3.setValue(i2);
         checkCalendarDate(j, numberPicker, numberPicker2, numberPicker3);
-        textView2.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView2.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         textView2.setGravity(17);
         textView2.setTextColor(Theme.getColor("featuredStickers_buttonText", resourcesProvider));
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView2.setText(LocaleController.getString("JumpToDate", C1072R.string.JumpToDate));
-        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), Theme.getColor("featuredStickers_addButton", resourcesProvider), Theme.getColor("featuredStickers_addButtonPressed", resourcesProvider)));
+        textView2.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), Theme.getColor("featuredStickers_addButton", resourcesProvider), Theme.getColor("featuredStickers_addButtonPressed", resourcesProvider)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -3929,7 +3929,7 @@ public class AlertsCreator {
             if (baseFragment instanceof ChatActivity) {
                 ((ChatActivity) baseFragment).getUndoView().showWithAction(0L, 74, (Runnable) null);
             } else {
-                BulletinFactory.m13of(baseFragment).createReportSent(resourcesProvider).show();
+                BulletinFactory.m14of(baseFragment).createReportSent(resourcesProvider).show();
             }
         }
     }
@@ -4274,7 +4274,7 @@ public class AlertsCreator {
         int i4 = 0;
         for (int i5 = 9; i4 < i5; i5 = 9) {
             RadioColorCell radioColorCell = new RadioColorCell(activity, resourcesProvider);
-            radioColorCell.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+            radioColorCell.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
             radioColorCell.setTag(Integer.valueOf(i4));
             int[] iArr2 = TextColorCell.colors;
             radioColorCell.setCheckColor(iArr2[i4], iArr2[i4]);
@@ -4416,7 +4416,7 @@ public class AlertsCreator {
         int i3 = 0;
         while (i3 < strArr2.length) {
             RadioColorCell radioColorCell = new RadioColorCell(activity2, resourcesProvider);
-            radioColorCell.setPadding(AndroidUtilities.m35dp(4.0f), i2, AndroidUtilities.m35dp(4.0f), i2);
+            radioColorCell.setPadding(AndroidUtilities.m36dp(4.0f), i2, AndroidUtilities.m36dp(4.0f), i2);
             radioColorCell.setTag(Integer.valueOf(i3));
             radioColorCell.setCheckColor(Theme.getColor("radioBackground", resourcesProvider), Theme.getColor("dialogRadioBackgroundChecked", resourcesProvider));
             radioColorCell.setTextAndValue(strArr2[i3], iArr[i2] == i3);
@@ -4500,7 +4500,7 @@ public class AlertsCreator {
         int i = 0;
         while (i < 3) {
             RadioColorCell radioColorCell = new RadioColorCell(activity, resourcesProvider);
-            radioColorCell.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+            radioColorCell.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
             radioColorCell.setTag(Integer.valueOf(i));
             radioColorCell.setCheckColor(resourcesProvider != null ? resourcesProvider.getColorOrDefault("radioBackground") : Theme.getColor("radioBackground"), resourcesProvider != null ? resourcesProvider.getColorOrDefault("dialogRadioBackgroundChecked") : Theme.getColor("dialogRadioBackgroundChecked"));
             radioColorCell.setTextAndValue(strArr[i], iArr[0] == i);
@@ -4559,7 +4559,7 @@ public class AlertsCreator {
         frameLayout.setOutlineProvider(new ViewOutlineProvider() {
             @Override
             public void getOutline(View view, Outline outline) {
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f));
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f));
             }
         });
         View view = new View(activity);
@@ -4569,7 +4569,7 @@ public class AlertsCreator {
         view2.setBackground(SvgHelper.getDrawable(readRes2));
         frameLayout.addView(view2, LayoutHelper.createFrame(60, 82.0f, 17, 0.0f, 0.0f, 0.0f, 0.0f));
         BackupImageView backupImageView = new BackupImageView(activity);
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(26.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(26.0f));
         backupImageView.setForUserOrChat(tLRPC$User, new AvatarDrawable(tLRPC$User));
         frameLayout.addView(backupImageView, LayoutHelper.createFrame(52, 52.0f, 17, 0.0f, 0.0f, 0.0f, 11.0f));
         builder.setTopView(frameLayout);
@@ -4605,12 +4605,12 @@ public class AlertsCreator {
             frameLayout.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f));
+                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f));
                 }
             });
         }
         View view = new View(activity);
-        view.setBackground(new BitmapDrawable(SvgHelper.getBitmap(readRes, AndroidUtilities.m35dp(320.0f), AndroidUtilities.m35dp(127.17949f), false)));
+        view.setBackground(new BitmapDrawable(SvgHelper.getBitmap(readRes, AndroidUtilities.m36dp(320.0f), AndroidUtilities.m36dp(127.17949f), false)));
         frameLayout.addView(view, LayoutHelper.createFrame(-1, -1.0f, 0, -1.0f, -1.0f, -1.0f, -1.0f));
         builder.setTopView(frameLayout);
         builder.setTopViewAspectRatio(0.3974359f);
@@ -4630,11 +4630,11 @@ public class AlertsCreator {
         frameLayout.setOutlineProvider(new ViewOutlineProvider() {
             @Override
             public void getOutline(View view, Outline outline) {
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.m35dp(6.0f), AndroidUtilities.dpf2(6.0f));
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.m36dp(6.0f), AndroidUtilities.dpf2(6.0f));
             }
         });
         View view = new View(activity);
-        view.setBackground(new BitmapDrawable(SvgHelper.getBitmap(readRes, AndroidUtilities.m35dp(320.0f), AndroidUtilities.m35dp(161.36752f), false)));
+        view.setBackground(new BitmapDrawable(SvgHelper.getBitmap(readRes, AndroidUtilities.m36dp(320.0f), AndroidUtilities.m36dp(161.36752f), false)));
         frameLayout.addView(view, LayoutHelper.createFrame(-1, -1.0f, 0, -1.0f, -1.0f, -1.0f, -1.0f));
         builder.setTopView(frameLayout);
         builder.setTitle(LocaleController.getString("PermissionDrawAboveOtherAppsTitle", C1072R.string.PermissionDrawAboveOtherAppsTitle));
@@ -4658,7 +4658,7 @@ public class AlertsCreator {
         try {
             activity.startActivity(new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION", Uri.parse("package:" + activity.getPackageName())));
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -4680,11 +4680,11 @@ public class AlertsCreator {
         frameLayout.setOutlineProvider(new ViewOutlineProvider() {
             @Override
             public void getOutline(View view, Outline outline) {
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.m35dp(6.0f), AndroidUtilities.dpf2(6.0f));
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.m36dp(6.0f), AndroidUtilities.dpf2(6.0f));
             }
         });
         View view = new View(context);
-        view.setBackground(new BitmapDrawable(SvgHelper.getBitmap(readRes, AndroidUtilities.m35dp(320.0f), AndroidUtilities.m35dp(184.61539f), false)));
+        view.setBackground(new BitmapDrawable(SvgHelper.getBitmap(readRes, AndroidUtilities.m36dp(320.0f), AndroidUtilities.m36dp(184.61539f), false)));
         frameLayout.addView(view, LayoutHelper.createFrame(-1, -1.0f, 0, -1.0f, -1.0f, -1.0f, -1.0f));
         frameLayout.addView(groupCallPipButton, LayoutHelper.createFrame(117, 117.0f));
         builder.setTopView(frameLayout);
@@ -4715,7 +4715,7 @@ public class AlertsCreator {
                     }
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -4828,7 +4828,7 @@ public class AlertsCreator {
         int i6 = 0;
         while (i6 < strArr.length) {
             RadioColorCell radioColorCell = new RadioColorCell(activity2, resourcesProvider);
-            radioColorCell.setPadding(AndroidUtilities.m35dp(4.0f), i5, AndroidUtilities.m35dp(4.0f), i5);
+            radioColorCell.setPadding(AndroidUtilities.m36dp(4.0f), i5, AndroidUtilities.m36dp(4.0f), i5);
             radioColorCell.setTag(Integer.valueOf(i6));
             radioColorCell.setCheckColor(Theme.getColor("radioBackground", resourcesProvider), Theme.getColor("dialogRadioBackgroundChecked", resourcesProvider));
             radioColorCell.setTextAndValue(strArr[i6], iArr[i5] == i6);
@@ -4916,7 +4916,7 @@ public class AlertsCreator {
         while (i2 < 4) {
             RadioColorCell radioColorCell = new RadioColorCell(activity);
             radioColorCell.setTag(Integer.valueOf(i2));
-            radioColorCell.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+            radioColorCell.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
             radioColorCell.setCheckColor(Theme.getColor("radioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
             radioColorCell.setTextAndValue(strArr[i2], iArr[0] == i2);
             linearLayout.addView(radioColorCell);
@@ -4958,7 +4958,7 @@ public class AlertsCreator {
         int i2 = 0;
         while (i2 < strArr.length) {
             RadioColorCell radioColorCell = new RadioColorCell(activity);
-            radioColorCell.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+            radioColorCell.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
             radioColorCell.setTag(Integer.valueOf(i2));
             radioColorCell.setCheckColor(Theme.getColor("radioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
             radioColorCell.setTextAndValue(strArr[i2], i == i2);
@@ -5073,7 +5073,7 @@ public class AlertsCreator {
             if (UserConfig.getInstance(i).getCurrentUser() != null) {
                 AccountSelectCell accountSelectCell = new AccountSelectCell(activity, false);
                 accountSelectCell.setAccount(i, false);
-                accountSelectCell.setPadding(AndroidUtilities.m35dp(14.0f), 0, AndroidUtilities.m35dp(14.0f), 0);
+                accountSelectCell.setPadding(AndroidUtilities.m36dp(14.0f), 0, AndroidUtilities.m36dp(14.0f), 0);
                 accountSelectCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
                 linearLayout.addView(accountSelectCell, LayoutHelper.createLinear(-1, 50));
                 accountSelectCell.setOnClickListener(new View.OnClickListener() {
@@ -5288,7 +5288,7 @@ public class AlertsCreator {
             textView.setText(LocaleController.getString("EnterThemeName", C1072R.string.EnterThemeName));
         }
         textView.setTextSize(1, 16.0f);
-        textView.setPadding(AndroidUtilities.m35dp(23.0f), AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(23.0f), AndroidUtilities.m35dp(6.0f));
+        textView.setPadding(AndroidUtilities.m36dp(23.0f), AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(23.0f), AndroidUtilities.m36dp(6.0f));
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
         editTextBoldCursor.setTextSize(1, 16.0f);
@@ -5300,9 +5300,9 @@ public class AlertsCreator {
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setImeOptions(6);
         editTextBoldCursor.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        editTextBoldCursor.setCursorSize(AndroidUtilities.m35dp(20.0f));
+        editTextBoldCursor.setCursorSize(AndroidUtilities.m36dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
-        editTextBoldCursor.setPadding(0, AndroidUtilities.m35dp(4.0f), 0, 0);
+        editTextBoldCursor.setPadding(0, AndroidUtilities.m36dp(4.0f), 0, 0);
         linearLayout.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, 36, 51, 24, 6, 24, 0));
         editTextBoldCursor.setOnEditorActionListener(AlertsCreator$$ExternalSyntheticLambda86.INSTANCE);
         editTextBoldCursor.setText(generateThemeName(themeAccent));
@@ -5394,7 +5394,7 @@ public class AlertsCreator {
         try {
             Toast.makeText(baseFragment.getParentActivity(), LocaleController.getString("CreateNewThemeHelp", C1072R.string.CreateNewThemeHelp), 1).show();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5554,7 +5554,7 @@ public class AlertsCreator {
                 return lambda$showPopupMenu$133;
             }
         });
-        actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x - AndroidUtilities.m35dp(40.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
+        actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x - AndroidUtilities.m36dp(40.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
         actionBarPopupWindow.showAsDropDown(view, i, i2);
         actionBarPopupWindowLayout.updateRadialSelectors();
         actionBarPopupWindow.startAnimation();

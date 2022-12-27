@@ -292,7 +292,6 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public class TelegramWebviewProxy {
         private TelegramWebviewProxy() {
-            PaymentFormActivity.this = r1;
         }
 
         @JavascriptInterface
@@ -314,7 +313,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     PaymentFormActivity.this.cardName = jSONObject.getString("title");
                 } catch (Throwable th) {
                     PaymentFormActivity.this.paymentJson = str2;
-                    FileLog.m31e(th);
+                    FileLog.m32e(th);
                 }
                 PaymentFormActivity.this.goToNextStep();
             }
@@ -323,7 +322,6 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public class LinkSpan extends ClickableSpan {
         public LinkSpan() {
-            PaymentFormActivity.this = r1;
         }
 
         @Override
@@ -513,7 +511,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     getParentActivity().getWindow().clearFlags(8192);
                 }
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
         }
     }
@@ -1146,9 +1144,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         this.googlePayButton.setFocusable(true);
         this.googlePayButton.setBackgroundResource(C1072R.C1073drawable.googlepay_button_no_shadow_background);
         if (this.googlePayPublicKey == null) {
-            this.googlePayButton.setPadding(AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(2.0f));
+            this.googlePayButton.setPadding(AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(2.0f));
         } else {
-            this.googlePayButton.setPadding(AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f));
+            this.googlePayButton.setPadding(AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f));
         }
         this.googlePayContainer.addView(this.googlePayButton, LayoutHelper.createFrame(-1, 48.0f));
         this.googlePayButton.setOnClickListener(new View.OnClickListener() {
@@ -1183,11 +1181,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (this.googlePayPublicKey != null && this.googlePayParameters == null) {
                 baseCardPaymentMethod.put("tokenizationSpecification", new JSONObject() {
                     {
-                        PaymentFormActivity.this = this;
                         put("type", "DIRECT");
                         put("parameters", new JSONObject() {
                             {
-                                C369922.this = this;
                                 put("protocolVersion", "ECv2");
                                 put("publicKey", PaymentFormActivity.this.googlePayPublicKey);
                             }
@@ -1197,14 +1193,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             } else {
                 baseCardPaymentMethod.put("tokenizationSpecification", new JSONObject() {
                     {
-                        PaymentFormActivity.this = this;
                         put("type", "PAYMENT_GATEWAY");
-                        if (this.googlePayParameters != null) {
-                            put("parameters", this.googlePayParameters);
+                        if (PaymentFormActivity.this.googlePayParameters != null) {
+                            put("parameters", PaymentFormActivity.this.googlePayParameters);
                         } else {
                             put("parameters", new JSONObject() {
                                 {
-                                    C370123.this = this;
                                     put("gateway", "stripe");
                                     put("stripe:publishableKey", PaymentFormActivity.this.providerApiKey);
                                     put("stripe:version", "3.5.0");
@@ -1235,7 +1229,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 AutoResolveHelper.resolveTask(this.paymentsClient.loadPaymentData(fromJson), getParentActivity(), 991);
             }
         } catch (JSONException e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1421,7 +1415,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         try {
             JSONObject baseRequest = getBaseRequest();
             baseRequest.put("allowedPaymentMethods", new JSONArray().put(getBaseCardPaymentMethod()));
-            return Optional.m574of(baseRequest);
+            return Optional.m575of(baseRequest);
         } catch (JSONException unused) {
             return Optional.empty();
         }
@@ -1453,7 +1447,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             }
             return;
         }
-        FileLog.m32e("isReadyToPay failed", task.getException());
+        FileLog.m33e("isReadyToPay failed", task.getException());
     }
 
     private String getTotalPriceString(ArrayList<TLRPC$TL_labeledPrice> arrayList) {
@@ -1539,7 +1533,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 this.webView.destroy();
                 this.webView = null;
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         try {
@@ -1548,7 +1542,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 getParentActivity().getWindow().clearFlags(8192);
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
         super.onFragmentDestroy();
         this.canceled = true;
@@ -1687,14 +1681,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 }
                 goToNextStep();
             } catch (JSONException e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } else if (i == 1) {
             Status statusFromIntent = AutoResolveHelper.getStatusFromIntent(intent);
             StringBuilder sb = new StringBuilder();
             sb.append("android pay error ");
             sb.append(statusFromIntent != null ? statusFromIntent.getStatusMessage() : "");
-            FileLog.m33e(sb.toString());
+            FileLog.m34e(sb.toString());
         }
         showEditDoneProgress(true, false);
         setDonePressed(false);
@@ -1957,7 +1951,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 try {
                     Toast.makeText(getParentActivity(), LocaleController.getString("PasswordDoNotMatch", C1072R.string.PasswordDoNotMatch), 0).show();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
                 shakeField(1);
                 return;
@@ -2186,12 +2180,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             showEditDoneProgress(true, true);
             try {
                 if ("stripe".equals(this.paymentForm.native_provider)) {
-                    new Stripe(this.providerApiKey).createToken(card, new C370425());
+                    new Stripe(this.providerApiKey).createToken(card, new C370725());
                 } else if ("smartglocal".equals(this.paymentForm.native_provider)) {
                     new AsyncTask<Object, Object, String>() {
                         @Override
                         public java.lang.String doInBackground(java.lang.Object... r13) {
-                            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PaymentFormActivity.AsyncTaskC370526.doInBackground(java.lang.Object[]):java.lang.String");
+                            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PaymentFormActivity.AsyncTaskC370826.doInBackground(java.lang.Object[]):java.lang.String");
                         }
 
                         @Override
@@ -2212,15 +2206,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 }
                 return true;
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return true;
             }
         }
     }
 
-    public class C370425 implements TokenCallback {
-        C370425() {
-            PaymentFormActivity.this = r1;
+    public class C370725 implements TokenCallback {
+        C370725() {
         }
 
         @Override
@@ -2232,7 +2225,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PaymentFormActivity.C370425.this.lambda$onSuccess$0();
+                    PaymentFormActivity.C370725.this.lambda$onSuccess$0();
                 }
             });
         }
@@ -3106,9 +3099,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
         public BottomFrameLayout(Context context, TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm) {
             super(context);
-            PaymentFormActivity.this = r2;
             this.paint = new Paint(1);
-            this.progress = (!tLRPC$TL_payments_paymentForm.invoice.recurring || r2.isAcceptTermsChecked) ? 1.0f : 0.0f;
+            this.progress = (!tLRPC$TL_payments_paymentForm.invoice.recurring || PaymentFormActivity.this.isAcceptTermsChecked) ? 1.0f : 0.0f;
             setWillNotDraw(false);
         }
 
@@ -3117,7 +3109,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             super.onDraw(canvas);
             canvas.drawColor(PaymentFormActivity.this.getThemedColor("switchTrackBlue"));
             this.paint.setColor(PaymentFormActivity.this.getThemedColor("contacts_inviteBackground"));
-            canvas.drawCircle(LocaleController.isRTL ? getWidth() - AndroidUtilities.m35dp(28.0f) : AndroidUtilities.m35dp(28.0f), -AndroidUtilities.m35dp(28.0f), Math.max(getWidth(), getHeight()) * this.progress, this.paint);
+            canvas.drawCircle(LocaleController.isRTL ? getWidth() - AndroidUtilities.m36dp(28.0f) : AndroidUtilities.m36dp(28.0f), -AndroidUtilities.m36dp(28.0f), Math.max(getWidth(), getHeight()) * this.progress, this.paint);
         }
 
         public void setChecked(boolean z) {

@@ -59,7 +59,7 @@ public class TextDetailCell extends FrameLayout {
         });
         this.multiline = z;
         if (z) {
-            setMinimumHeight(AndroidUtilities.m35dp(60.0f));
+            setMinimumHeight(AndroidUtilities.m36dp(60.0f));
         } else {
             linksTextView.setLines(1);
             linksTextView.setSingleLine(true);
@@ -99,7 +99,7 @@ public class TextDetailCell extends FrameLayout {
     protected void onMeasure(int i, int i2) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
         if (!this.multiline) {
-            i2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(60.0f) + (this.needDivider ? 1 : 0), 1073741824);
+            i2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(60.0f) + (this.needDivider ? 1 : 0), 1073741824);
         }
         super.onMeasure(makeMeasureSpec, i2);
     }
@@ -116,7 +116,7 @@ public class TextDetailCell extends FrameLayout {
     }
 
     public void setImage(Drawable drawable, CharSequence charSequence) {
-        ((ViewGroup.MarginLayoutParams) this.valueTextView.getLayoutParams()).rightMargin = (LocaleController.isRTL || drawable == null) ? AndroidUtilities.m35dp(23.0f) : AndroidUtilities.m35dp(58.0f);
+        ((ViewGroup.MarginLayoutParams) this.valueTextView.getLayoutParams()).rightMargin = (LocaleController.isRTL || drawable == null) ? AndroidUtilities.m36dp(23.0f) : AndroidUtilities.m36dp(58.0f);
         this.imageView.setImageDrawable(drawable);
         this.imageView.setFocusable(drawable != null);
         this.imageView.setContentDescription(charSequence);
@@ -124,14 +124,14 @@ public class TextDetailCell extends FrameLayout {
             this.imageView.setBackground(null);
             this.imageView.setImportantForAccessibility(2);
         } else {
-            this.imageView.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(48.0f), 0, Theme.getColor("listSelectorSDK21", this.resourcesProvider)));
+            this.imageView.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m36dp(48.0f), 0, Theme.getColor("listSelectorSDK21", this.resourcesProvider)));
             this.imageView.setImportantForAccessibility(1);
         }
-        int m35dp = AndroidUtilities.m35dp(23.0f) + (drawable != null ? AndroidUtilities.m35dp(48.0f) : 0);
+        int m36dp = AndroidUtilities.m36dp(23.0f) + (drawable != null ? AndroidUtilities.m36dp(48.0f) : 0);
         if (LocaleController.isRTL) {
-            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).leftMargin = m35dp;
+            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).leftMargin = m36dp;
         } else {
-            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).rightMargin = m35dp;
+            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).rightMargin = m36dp;
         }
         this.textView.requestLayout();
     }
@@ -156,7 +156,7 @@ public class TextDetailCell extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }
 

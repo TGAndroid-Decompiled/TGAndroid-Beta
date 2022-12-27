@@ -159,7 +159,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             this.ext = "";
         }
 
-        ListItem(C20381 c20381) {
+        ListItem(C20411 c20411) {
             this();
         }
     }
@@ -171,13 +171,13 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         private HistoryEntry() {
         }
 
-        HistoryEntry(C20381 c20381) {
+        HistoryEntry(C20411 c20411) {
             this();
         }
     }
 
-    public class C20381 extends BroadcastReceiver {
-        C20381() {
+    public class C20411 extends BroadcastReceiver {
+        C20411() {
             ChatAttachAlertDocumentLayout.this = r1;
         }
 
@@ -186,7 +186,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertDocumentLayout.C20381.this.lambda$onReceive$0();
+                    ChatAttachAlertDocumentLayout.C20411.this.lambda$onReceive$0();
                 }
             };
             if ("android.intent.action.MEDIA_UNMOUNTED".equals(intent.getAction())) {
@@ -206,7 +206,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 }
                 ChatAttachAlertDocumentLayout.this.updateSearchButton();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -218,7 +218,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         this.selectedFilesOrder = new ArrayList<>();
         this.selectedMessages = new HashMap<>();
         this.maxSelectedFiles = -1;
-        this.receiver = new C20381();
+        this.receiver = new C20411();
         this.listAdapter = new ListAdapter(context);
         this.allowMusic = i == 1;
         this.isSoundPicker = i == 2;
@@ -343,7 +343,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         recyclerListView.setSectionsType(2);
         this.backgroundListView.setVerticalScrollBarEnabled(false);
         RecyclerListView recyclerListView2 = this.backgroundListView;
-        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.m35dp(56.0f), this.backgroundListView);
+        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.m36dp(56.0f), this.backgroundListView);
         this.backgroundLayoutManager = fillLastLinearLayoutManager;
         recyclerListView2.setLayoutManager(fillLastLinearLayoutManager);
         this.backgroundListView.setClipToPadding(false);
@@ -351,7 +351,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         ListAdapter listAdapter = new ListAdapter(context);
         this.backgroundListAdapter = listAdapter;
         recyclerListView3.setAdapter(listAdapter);
-        this.backgroundListView.setPadding(0, 0, 0, AndroidUtilities.m35dp(48.0f));
+        this.backgroundListView.setPadding(0, 0, 0, AndroidUtilities.m36dp(48.0f));
         addView(this.backgroundListView, LayoutHelper.createFrame(-1, -1.0f));
         this.backgroundListView.setVisibility(8);
         RecyclerListView recyclerListView4 = new RecyclerListView(context, resourcesProvider) {
@@ -379,7 +379,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         recyclerListView4.setSectionsType(2);
         this.listView.setVerticalScrollBarEnabled(false);
         RecyclerListView recyclerListView5 = this.listView;
-        FillLastLinearLayoutManager fillLastLinearLayoutManager2 = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.m35dp(56.0f), this.listView) {
+        FillLastLinearLayoutManager fillLastLinearLayoutManager2 = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.m36dp(56.0f), this.listView) {
             {
                 ChatAttachAlertDocumentLayout.this = this;
             }
@@ -388,12 +388,12 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i3) {
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
                     {
-                        C20436.this = this;
+                        C20466.this = this;
                     }
 
                     @Override
                     public int calculateDyToMakeVisible(View view, int i4) {
-                        return super.calculateDyToMakeVisible(view, i4) - (ChatAttachAlertDocumentLayout.this.listView.getPaddingTop() - AndroidUtilities.m35dp(56.0f));
+                        return super.calculateDyToMakeVisible(view, i4) - (ChatAttachAlertDocumentLayout.this.listView.getPaddingTop() - AndroidUtilities.m36dp(56.0f));
                     }
 
                     @Override
@@ -409,7 +409,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         recyclerListView5.setLayoutManager(fillLastLinearLayoutManager2);
         this.listView.setClipToPadding(false);
         this.listView.setAdapter(this.listAdapter);
-        this.listView.setPadding(0, 0, 0, AndroidUtilities.m35dp(48.0f));
+        this.listView.setPadding(0, 0, 0, AndroidUtilities.m36dp(48.0f));
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.searchAdapter = new SearchAdapter(context);
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -438,10 +438,10 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             public void onScrollStateChanged(RecyclerView recyclerView, int i3) {
                 RecyclerListView.Holder holder;
                 if (i3 == 0) {
-                    int m35dp = AndroidUtilities.m35dp(13.0f);
+                    int m36dp = AndroidUtilities.m36dp(13.0f);
                     int backgroundPaddingTop = ChatAttachAlertDocumentLayout.this.parentAlert.getBackgroundPaddingTop();
-                    if (((ChatAttachAlertDocumentLayout.this.parentAlert.scrollOffsetY[0] - backgroundPaddingTop) - m35dp) + backgroundPaddingTop < C1133ActionBar.getCurrentActionBarHeight() && (holder = (RecyclerListView.Holder) ChatAttachAlertDocumentLayout.this.listView.findViewHolderForAdapterPosition(0)) != null && holder.itemView.getTop() > AndroidUtilities.m35dp(56.0f)) {
-                        ChatAttachAlertDocumentLayout.this.listView.smoothScrollBy(0, holder.itemView.getTop() - AndroidUtilities.m35dp(56.0f));
+                    if (((ChatAttachAlertDocumentLayout.this.parentAlert.scrollOffsetY[0] - backgroundPaddingTop) - m36dp) + backgroundPaddingTop < C1133ActionBar.getCurrentActionBarHeight() && (holder = (RecyclerListView.Holder) ChatAttachAlertDocumentLayout.this.listView.findViewHolderForAdapterPosition(0)) != null && holder.itemView.getTop() > AndroidUtilities.m36dp(56.0f)) {
+                        ChatAttachAlertDocumentLayout.this.listView.smoothScrollBy(0, holder.itemView.getTop() - AndroidUtilities.m36dp(56.0f));
                     }
                 }
                 if (i3 == 1 && ChatAttachAlertDocumentLayout.this.searching && ChatAttachAlertDocumentLayout.this.listView.getAdapter() == ChatAttachAlertDocumentLayout.this.searchAdapter) {
@@ -474,7 +474,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         });
         this.filtersView.setBackgroundColor(getThemedColor("dialogBackground"));
         addView(this.filtersView, LayoutHelper.createFrame(-1, -2, 48));
-        this.filtersView.setTranslationY(-AndroidUtilities.m35dp(44.0f));
+        this.filtersView.setTranslationY(-AndroidUtilities.m36dp(44.0f));
         this.filtersView.setVisibility(4);
         listRoots();
         updateSearchButton();
@@ -612,7 +612,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     private void runAnimation(final int i) {
-        final float m35dp;
+        final float m36dp;
         ValueAnimator valueAnimator = this.listAnimation;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -630,7 +630,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
         }
         if (i == 1) {
-            m35dp = AndroidUtilities.m35dp(150.0f);
+            m36dp = AndroidUtilities.m36dp(150.0f);
             this.backgroundListView.setAlpha(1.0f);
             this.backgroundListView.setScaleX(1.0f);
             this.backgroundListView.setScaleY(1.0f);
@@ -638,11 +638,11 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             removeView(this.backgroundListView);
             addView(this.backgroundListView, i2);
             this.backgroundListView.setVisibility(0);
-            this.listView.setTranslationX(m35dp);
+            this.listView.setTranslationX(m36dp);
             this.listView.setAlpha(0.0f);
             this.listAnimation = ValueAnimator.ofFloat(1.0f, 0.0f);
         } else {
-            m35dp = AndroidUtilities.m35dp(150.0f);
+            m36dp = AndroidUtilities.m36dp(150.0f);
             this.listView.setAlpha(0.0f);
             this.listView.setScaleX(0.95f);
             this.listView.setScaleY(0.95f);
@@ -658,7 +658,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         this.listAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ChatAttachAlertDocumentLayout.this.lambda$runAnimation$4(i, m35dp, valueAnimator2);
+                ChatAttachAlertDocumentLayout.this.lambda$runAnimation$4(i, m36dp, valueAnimator2);
             }
         });
         this.listAnimation.addListener(new AnimatorListenerAdapter() {
@@ -734,7 +734,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 ApplicationLoader.applicationContext.unregisterReceiver(this.receiver);
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         this.parentAlert.actionBar.closeSearchField();
         ActionBarMenu createMenu = this.parentAlert.actionBar.createMenu();
@@ -762,14 +762,14 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         int i = 0;
         View childAt = this.listView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-        int y = ((int) childAt.getY()) - AndroidUtilities.m35dp(8.0f);
+        int y = ((int) childAt.getY()) - AndroidUtilities.m36dp(8.0f);
         if (y > 0 && holder != null && holder.getAdapterPosition() == 0) {
             i = y;
         }
         if (y < 0 || holder == null || holder.getAdapterPosition() != 0) {
             y = i;
         }
-        return y + AndroidUtilities.m35dp(13.0f);
+        return y + AndroidUtilities.m36dp(13.0f);
     }
 
     @Override
@@ -785,7 +785,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
 
     @Override
     int getFirstOffset() {
-        return getListTopPadding() + AndroidUtilities.m35dp(5.0f);
+        return getListTopPadding() + AndroidUtilities.m36dp(5.0f);
     }
 
     @Override
@@ -795,7 +795,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
 
     @Override
     int getButtonsHideOffset() {
-        return AndroidUtilities.m35dp(62.0f);
+        return AndroidUtilities.m36dp(62.0f);
     }
 
     @Override
@@ -900,10 +900,10 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         String fileExtension = FileLoader.getFileExtension(file);
         String mimeTypeFromExtension = fileExtension != null ? MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension) : null;
         if (file.length() == 0 || mimeTypeFromExtension == null || !RingtoneDataStore.ringtoneSupportedMimeType.contains(mimeTypeFromExtension)) {
-            BulletinFactory.m14of(this.parentAlert.getContainer(), null).createErrorBulletinSubtitle(LocaleController.formatString("InvalidFormatError", C1072R.string.InvalidFormatError, new Object[0]), LocaleController.formatString("ErrorInvalidRingtone", C1072R.string.ErrorRingtoneInvalidFormat, new Object[0]), null).show();
+            BulletinFactory.m15of(this.parentAlert.getContainer(), null).createErrorBulletinSubtitle(LocaleController.formatString("InvalidFormatError", C1072R.string.InvalidFormatError, new Object[0]), LocaleController.formatString("ErrorInvalidRingtone", C1072R.string.ErrorRingtoneInvalidFormat, new Object[0]), null).show();
             return false;
         } else if (file.length() > MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax) {
-            BulletinFactory.m14of(this.parentAlert.getContainer(), null).createErrorBulletinSubtitle(LocaleController.formatString("TooLargeError", C1072R.string.TooLargeError, new Object[0]), LocaleController.formatString("ErrorRingtoneSizeTooBig", C1072R.string.ErrorRingtoneSizeTooBig, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax / ConnectionsManager.RequestFlagDoNotWaitFloodWait)), null).show();
+            BulletinFactory.m15of(this.parentAlert.getContainer(), null).createErrorBulletinSubtitle(LocaleController.formatString("TooLargeError", C1072R.string.TooLargeError, new Object[0]), LocaleController.formatString("ErrorRingtoneSizeTooBig", C1072R.string.ErrorRingtoneSizeTooBig, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax / ConnectionsManager.RequestFlagDoNotWaitFloodWait)), null).show();
             return false;
         } else {
             try {
@@ -914,7 +914,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 i = ConnectionsManager.DEFAULT_DATACENTER_ID;
             }
             if (i > MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax * 1000) {
-                BulletinFactory.m14of(this.parentAlert.getContainer(), null).createErrorBulletinSubtitle(LocaleController.formatString("TooLongError", C1072R.string.TooLongError, new Object[0]), LocaleController.formatString("ErrorRingtoneDurationTooLong", C1072R.string.ErrorRingtoneDurationTooLong, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax)), null).show();
+                BulletinFactory.m15of(this.parentAlert.getContainer(), null).createErrorBulletinSubtitle(LocaleController.formatString("TooLongError", C1072R.string.TooLongError, new Object[0]), LocaleController.formatString("ErrorRingtoneDurationTooLong", C1072R.string.ErrorRingtoneDurationTooLong, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax)), null).show();
                 return false;
             }
             return true;
@@ -987,14 +987,14 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                     }
                     query.close();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             } else {
                 checkDirectory(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
                 sortRecentItems();
             }
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
     }
 
@@ -1836,7 +1836,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                         }
                         animatorSet.addListener(new AnimatorListenerAdapter() {
                             {
-                                ViewTreeObserver$OnPreDrawListenerC20503.this = this;
+                                ViewTreeObserver$OnPreDrawListenerC20533.this = this;
                             }
 
                             @Override
@@ -1856,7 +1856,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                                 ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view3, View.ALPHA, view3.getAlpha(), 0.0f);
                                 ofFloat2.addListener(new AnimatorListenerAdapter() {
                                     {
-                                        ViewTreeObserver$OnPreDrawListenerC20503.this = this;
+                                        ViewTreeObserver$OnPreDrawListenerC20533.this = this;
                                     }
 
                                     @Override

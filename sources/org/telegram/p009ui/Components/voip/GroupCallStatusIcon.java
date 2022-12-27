@@ -88,9 +88,9 @@ public class GroupCallStatusIcon {
 
     public GroupCallStatusIcon() {
         int i = C1072R.raw.voice_mini;
-        this.micDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(24.0f), true, null);
+        this.micDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(24.0f), true, null);
         int i2 = C1072R.raw.hand_2;
-        this.shakeHandDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(15.0f), AndroidUtilities.m35dp(15.0f), true, null);
+        this.shakeHandDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m36dp(15.0f), AndroidUtilities.m36dp(15.0f), true, null);
     }
 
     public void lambda$new$2() {

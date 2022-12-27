@@ -29,7 +29,7 @@ public interface Predicate<T> {
 
                 @Override
                 public boolean test(T t) {
-                    return _this.test(t) || predicate.test(t);
+                    return Predicate.this.test(t) || predicate.test(t);
                 }
             };
         }
@@ -53,7 +53,7 @@ public interface Predicate<T> {
 
                 @Override
                 public boolean test(T t) {
-                    return _this.test(t) && predicate.test(t);
+                    return Predicate.this.test(t) && predicate.test(t);
                 }
             };
         }
@@ -77,7 +77,7 @@ public interface Predicate<T> {
 
                 @Override
                 public boolean test(T t) {
-                    return !_this.test(t);
+                    return !Predicate.this.test(t);
                 }
             };
         }

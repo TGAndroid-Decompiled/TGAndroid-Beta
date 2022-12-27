@@ -146,7 +146,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             this.rowCount = i4 + 1;
             this.buttonRow = i4;
         }
-        this.recyclerListView.setPadding(AndroidUtilities.m35dp(6.0f), 0, AndroidUtilities.m35dp(6.0f), 0);
+        this.recyclerListView.setPadding(AndroidUtilities.m36dp(6.0f), 0, AndroidUtilities.m36dp(6.0f), 0);
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i5) {
@@ -330,7 +330,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     }
                 } else {
                     spannableStringBuilder = new SpannableStringBuilder("xxxxxx");
-                    spannableStringBuilder.setSpan(new LoadingSpan(this.titleView[0], AndroidUtilities.m35dp(100.0f)), 0, spannableStringBuilder.length(), 33);
+                    spannableStringBuilder.setSpan(new LoadingSpan(this.titleView[0], AndroidUtilities.m36dp(100.0f)), 0, spannableStringBuilder.length(), 33);
                 }
                 spannableStringBuilder2.replace(indexOf, indexOf + 12, (CharSequence) spannableStringBuilder);
                 spannableStringBuilder2.setSpan(new ClickableSpan(this) {
@@ -459,9 +459,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         return new Adapter();
     }
 
-    public class Adapter extends RecyclerListView.SelectionAdapter {
+    private class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
-            PremiumPreviewBottomSheet.this = r1;
         }
 
         @Override
@@ -576,7 +575,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     @Override
                     public void onMeasure(int i3, int i4) {
                         super.onMeasure(i3, i4);
-                        this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.m35dp(52.0f));
+                        this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.m36dp(52.0f));
                     }
                 };
                 FrameLayout frameLayout = new FrameLayout(context) {
@@ -627,7 +626,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 view = new View(this, context) {
                     @Override
                     protected void onMeasure(int i3, int i4) {
-                        super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(68.0f), 1073741824));
+                        super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(68.0f), 1073741824));
                     }
                 };
             } else if (i != 4) {
@@ -637,7 +636,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                         RectF rectF = AndroidUtilities.rectTmp;
                         rectF.set(this.imageView.getLeft(), this.imageView.getTop(), this.imageView.getRight(), this.imageView.getBottom());
                         PremiumPreviewBottomSheet.this.gradientTools.gradientMatrix(0, 0, getMeasuredWidth(), PremiumPreviewBottomSheet.this.totalGradientHeight, 0.0f, -this.data.yOffset);
-                        canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), PremiumPreviewBottomSheet.this.gradientTools.paint);
+                        canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f), PremiumPreviewBottomSheet.this.gradientTools.paint);
                         super.dispatchDraw(canvas);
                     }
                 };
@@ -814,7 +813,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 PremiumPreviewBottomSheet.this.lambda$onCustomOpenAnimation$7(valueAnimator);
             }
         });
-        this.enterAnimator.addListener(new C26344());
+        this.enterAnimator.addListener(new C26374());
         this.enterAnimator.setDuration(600L);
         this.enterAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.enterAnimator.start();
@@ -826,9 +825,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this.container.invalidate();
     }
 
-    public class C26344 extends AnimatorListenerAdapter {
-        C26344() {
-            PremiumPreviewBottomSheet.this = r1;
+    public class C26374 extends AnimatorListenerAdapter {
+        C26374() {
         }
 
         @Override
@@ -842,7 +840,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PremiumPreviewBottomSheet.C26344.this.lambda$onAnimationEnd$0(rightDrawable, valueAnimator);
+                    PremiumPreviewBottomSheet.C26374.this.lambda$onAnimationEnd$0(rightDrawable, valueAnimator);
                 }
             });
             ofInt.start();

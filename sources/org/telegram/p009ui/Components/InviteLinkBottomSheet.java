@@ -191,7 +191,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
 
             @Override
             protected void onDraw(android.graphics.Canvas r13) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.InviteLinkBottomSheet.C23931.onDraw(android.graphics.Canvas):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.InviteLinkBottomSheet.C23961.onDraw(android.graphics.Canvas):void");
             }
 
             private void updateLightStatusBar(boolean z3) {
@@ -211,7 +211,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         this.containerView = frameLayout;
         frameLayout.setWillNotDraw(false);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 51);
-        layoutParams.topMargin = AndroidUtilities.m35dp(48.0f);
+        layoutParams.topMargin = AndroidUtilities.m36dp(48.0f);
         View view = new View(context);
         this.shadow = view;
         view.setAlpha(0.0f);
@@ -240,7 +240,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     int measuredHeight = getMeasuredHeight();
                     int i3 = this.lastH;
                     int i4 = (int) ((i3 / 5.0f) * 2.0f);
-                    if (i4 < (i3 - measuredHeight) + AndroidUtilities.m35dp(60.0f)) {
+                    if (i4 < (i3 - measuredHeight) + AndroidUtilities.m36dp(60.0f)) {
                         i4 = this.lastH - measuredHeight;
                     }
                     InviteLinkBottomSheet.this.ignoreLayout = true;
@@ -289,7 +289,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         this.titleTextView.setSingleLine(true);
         this.titleTextView.setTextSize(1, 20.0f);
         this.titleTextView.setEllipsize(TextUtils.TruncateAt.END);
-        this.titleTextView.setPadding(AndroidUtilities.m35dp(23.0f), 0, AndroidUtilities.m35dp(23.0f), 0);
+        this.titleTextView.setPadding(AndroidUtilities.m36dp(23.0f), 0, AndroidUtilities.m36dp(23.0f), 0);
         this.titleTextView.setGravity(16);
         this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         if (!z) {
@@ -453,7 +453,6 @@ public class InviteLinkBottomSheet extends BottomSheet {
 
     public class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
-            InviteLinkBottomSheet.this = r1;
         }
 
         @Override
@@ -507,7 +506,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 case 3:
                     InviteLinkBottomSheet inviteLinkBottomSheet = InviteLinkBottomSheet.this;
                     LinkActionView linkActionView = new LinkActionView(context, inviteLinkBottomSheet.fragment, inviteLinkBottomSheet, inviteLinkBottomSheet.chatId, false, InviteLinkBottomSheet.this.isChannel);
-                    linkActionView.setDelegate(new C23981());
+                    linkActionView.setDelegate(new C24011());
                     linkActionView.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                     headerCell = linkActionView;
                     break;
@@ -523,14 +522,14 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     flickerLoadingView.setIsSingleCell(true);
                     flickerLoadingView.setViewType(10);
                     flickerLoadingView.showDate(false);
-                    flickerLoadingView.setPaddingLeft(AndroidUtilities.m35dp(10.0f));
+                    flickerLoadingView.setPaddingLeft(AndroidUtilities.m36dp(10.0f));
                     headerCell = flickerLoadingView;
                     break;
                 case 6:
                     headerCell = new View(this, context) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
-                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(5.0f), 1073741824));
+                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(5.0f), 1073741824));
                         }
                     };
                     break;
@@ -556,14 +555,13 @@ public class InviteLinkBottomSheet extends BottomSheet {
             return new RecyclerListView.Holder(headerCell);
         }
 
-        public class C23981 implements LinkActionView.Delegate {
+        public class C24011 implements LinkActionView.Delegate {
             @Override
             public void showUsersForPermanentLink() {
                 LinkActionView.Delegate.CC.$default$showUsersForPermanentLink(this);
             }
 
-            C23981() {
-                Adapter.this = r1;
+            C24011() {
             }
 
             @Override
@@ -581,7 +579,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     ConnectionsManager.getInstance(((BottomSheet) InviteLinkBottomSheet.this).currentAccount).sendRequest(tLRPC$TL_messages_editExportedChatInvite, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            InviteLinkBottomSheet.Adapter.C23981.this.lambda$revokeLink$1(tLObject, tLRPC$TL_error);
+                            InviteLinkBottomSheet.Adapter.C24011.this.lambda$revokeLink$1(tLObject, tLRPC$TL_error);
                         }
                     });
                 }
@@ -592,7 +590,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteLinkBottomSheet.Adapter.C23981.this.lambda$revokeLink$0(tLRPC$TL_error, tLObject);
+                        InviteLinkBottomSheet.Adapter.C24011.this.lambda$revokeLink$0(tLRPC$TL_error, tLObject);
                     }
                 });
             }
@@ -680,7 +678,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     ConnectionsManager.getInstance(((BottomSheet) InviteLinkBottomSheet.this).currentAccount).sendRequest(tLRPC$TL_messages_deleteExportedChatInvite, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            InviteLinkBottomSheet.Adapter.C23981.this.lambda$removeLink$3(tLObject, tLRPC$TL_error);
+                            InviteLinkBottomSheet.Adapter.C24011.this.lambda$removeLink$3(tLObject, tLRPC$TL_error);
                         }
                     });
                 }
@@ -691,7 +689,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteLinkBottomSheet.Adapter.C23981.this.lambda$removeLink$2(tLRPC$TL_error);
+                        InviteLinkBottomSheet.Adapter.C24011.this.lambda$removeLink$2(tLRPC$TL_error);
                     }
                 });
             }
@@ -1035,7 +1033,6 @@ public class InviteLinkBottomSheet extends BottomSheet {
 
         public TimerPrivacyCell(Context context) {
             super(context);
-            InviteLinkBottomSheet.this = r1;
             this.timerRunnable = new Runnable() {
                 @Override
                 public void run() {
@@ -1088,7 +1085,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(84.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(84.0f), 1073741824));
         }
     }
 

@@ -188,7 +188,6 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
     public class FrameLayoutDrawer extends FrameLayout {
         public FrameLayoutDrawer(Context context) {
             super(context);
-            SecretMediaViewer.this = r1;
             setWillNotDraw(false);
         }
 
@@ -234,13 +233,12 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
         public SecretDeleteTimer(Context context) {
             super(context);
-            SecretMediaViewer.this = r4;
             this.deleteProgressRect = new RectF();
             this.timerParticles = new TimerParticles();
             setWillNotDraw(false);
             Paint paint = new Paint(1);
             this.particlePaint = paint;
-            paint.setStrokeWidth(AndroidUtilities.m35dp(1.5f));
+            paint.setStrokeWidth(AndroidUtilities.m36dp(1.5f));
             this.particlePaint.setColor(-1644826);
             this.particlePaint.setStrokeCap(Paint.Cap.ROUND);
             this.particlePaint.setStyle(Paint.Style.STROKE);
@@ -249,7 +247,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             paint2.setStyle(Paint.Style.STROKE);
             this.afterDeleteProgressPaint.setStrokeCap(Paint.Cap.ROUND);
             this.afterDeleteProgressPaint.setColor(-1644826);
-            this.afterDeleteProgressPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            this.afterDeleteProgressPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
             Paint paint3 = new Paint(1);
             this.circlePaint = paint3;
             paint3.setColor(2130706432);
@@ -266,8 +264,8 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         @Override
         protected void onMeasure(int i, int i2) {
             super.onMeasure(i, i2);
-            int measuredHeight = (getMeasuredHeight() / 2) - (AndroidUtilities.m35dp(28.0f) / 2);
-            this.deleteProgressRect.set(getMeasuredWidth() - AndroidUtilities.m35dp(49.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.m35dp(21.0f), measuredHeight + AndroidUtilities.m35dp(28.0f));
+            int measuredHeight = (getMeasuredHeight() / 2) - (AndroidUtilities.m36dp(28.0f) / 2);
+            this.deleteProgressRect.set(getMeasuredWidth() - AndroidUtilities.m36dp(49.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.m36dp(21.0f), measuredHeight + AndroidUtilities.m36dp(28.0f));
         }
 
         @Override
@@ -276,7 +274,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             if (SecretMediaViewer.this.currentMessageObject == null || SecretMediaViewer.this.currentMessageObject.messageOwner.destroyTime == 0) {
                 return;
             }
-            canvas.drawCircle(getMeasuredWidth() - AndroidUtilities.m35dp(35.0f), getMeasuredHeight() / 2, AndroidUtilities.m35dp(16.0f), this.circlePaint);
+            canvas.drawCircle(getMeasuredWidth() - AndroidUtilities.m36dp(35.0f), getMeasuredHeight() / 2, AndroidUtilities.m36dp(16.0f), this.circlePaint);
             float f = 1.0f;
             if (this.useVideoProgress) {
                 if (SecretMediaViewer.this.videoPlayer != null) {
@@ -289,9 +287,9 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             } else {
                 f = ((float) Math.max(0L, this.destroyTime - (System.currentTimeMillis() + (ConnectionsManager.getInstance(SecretMediaViewer.this.currentAccount).getTimeDifference() * 1000)))) / (((float) this.destroyTtl) * 1000.0f);
             }
-            int measuredWidth = getMeasuredWidth() - AndroidUtilities.m35dp(40.0f);
-            int measuredHeight = ((getMeasuredHeight() - AndroidUtilities.m35dp(14.0f)) / 2) - AndroidUtilities.m35dp(0.5f);
-            this.drawable.setBounds(measuredWidth, measuredHeight, AndroidUtilities.m35dp(10.0f) + measuredWidth, AndroidUtilities.m35dp(14.0f) + measuredHeight);
+            int measuredWidth = getMeasuredWidth() - AndroidUtilities.m36dp(40.0f);
+            int measuredHeight = ((getMeasuredHeight() - AndroidUtilities.m36dp(14.0f)) / 2) - AndroidUtilities.m36dp(0.5f);
+            this.drawable.setBounds(measuredWidth, measuredHeight, AndroidUtilities.m36dp(10.0f) + measuredWidth, AndroidUtilities.m36dp(14.0f) + measuredHeight);
             this.drawable.draw(canvas);
             float f2 = (-360.0f) * f;
             canvas.drawArc(this.deleteProgressRect, -90.0f, f2, false, this.afterDeleteProgressPaint);
@@ -306,7 +304,6 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
         public PhotoBackgroundDrawable(int i) {
             super(i);
-            SecretMediaViewer.this = r1;
         }
 
         @Override
@@ -411,13 +408,13 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             VideoPlayer videoPlayer = new VideoPlayer();
             this.videoPlayer = videoPlayer;
             videoPlayer.setTextureView(this.videoTextureView);
-            this.videoPlayer.setDelegate(new C39981(file));
+            this.videoPlayer.setDelegate(new C40011(file));
         }
         this.videoPlayer.preparePlayer(Uri.fromFile(file), "other");
         this.videoPlayer.setPlayWhenReady(true);
     }
 
-    public class C39981 implements VideoPlayer.VideoPlayerDelegate {
+    public class C40011 implements VideoPlayer.VideoPlayerDelegate {
         final File val$file;
 
         @Override
@@ -444,8 +441,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         }
 
-        C39981(File file) {
-            SecretMediaViewer.this = r1;
+        C40011(File file) {
             this.val$file = file;
         }
 
@@ -458,13 +454,13 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 try {
                     SecretMediaViewer.this.parentActivity.getWindow().clearFlags(ConnectionsManager.RequestFlagNeedQuickAck);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             } else {
                 try {
                     SecretMediaViewer.this.parentActivity.getWindow().addFlags(ConnectionsManager.RequestFlagNeedQuickAck);
                 } catch (Exception e2) {
-                    FileLog.m31e(e2);
+                    FileLog.m32e(e2);
                 }
             }
             if (i == 3 && SecretMediaViewer.this.aspectRatioFrameLayout.getVisibility() != 0) {
@@ -497,12 +493,12 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        SecretMediaViewer.C39981.this.lambda$onError$0(file);
+                        SecretMediaViewer.C40011.this.lambda$onError$0(file);
                     }
                 }, 100L);
                 return;
             }
-            FileLog.m31e(exc);
+            FileLog.m32e(exc);
         }
 
         public void lambda$onError$0(File file) {
@@ -543,7 +539,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 activity.getWindow().clearFlags(ConnectionsManager.RequestFlagNeedQuickAck);
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         AspectRatioFrameLayout aspectRatioFrameLayout = this.aspectRatioFrameLayout;
         if (aspectRatioFrameLayout != null) {
@@ -670,7 +666,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.actionBar.setOccupyStatusBar(i2 >= 21);
         this.actionBar.setItemsBackgroundColor(1090519039, false);
         this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
-        this.actionBar.setTitleRightMargin(AndroidUtilities.m35dp(70.0f));
+        this.actionBar.setTitleRightMargin(AndroidUtilities.m36dp(70.0f));
         this.containerView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
         this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
@@ -868,7 +864,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 ((WindowManager) this.parentActivity.getSystemService("window")).removeView(this.windowView);
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         ((WindowManager) this.parentActivity.getSystemService("window")).addView(this.windowView, this.windowLayoutParams);
         this.secretDeleteTimer.invalidate();
@@ -1014,7 +1010,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 }
                 this.windowView = null;
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         Instance = null;
@@ -1073,11 +1069,10 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         onPhotoClosed(placeProviderObject);
     }
 
-    public class C40047 extends AnimatorListenerAdapter {
+    public class C40077 extends AnimatorListenerAdapter {
         final PhotoViewer.PlaceProviderObject val$object;
 
-        C40047(PhotoViewer.PlaceProviderObject placeProviderObject) {
-            SecretMediaViewer.this = r1;
+        C40077(PhotoViewer.PlaceProviderObject placeProviderObject) {
             this.val$object = placeProviderObject;
         }
 
@@ -1091,7 +1086,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SecretMediaViewer.C40047.this.lambda$onAnimationEnd$0();
+                    SecretMediaViewer.C40077.this.lambda$onAnimationEnd$0();
                 }
             });
         }
@@ -1145,7 +1140,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 ((WindowManager) this.parentActivity.getSystemService("window")).removeView(this.windowView);
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         this.isPhotoVisible = false;
     }

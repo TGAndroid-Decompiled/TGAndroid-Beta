@@ -691,7 +691,7 @@ public class SecretChatHelper extends BaseController {
                 tLRPC$TL_decryptedMessageLayer.out_seq_no = tLRPC$Message.seq_out;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d(tLRPC$DecryptedMessage + " send message with in_seq = " + tLRPC$TL_decryptedMessageLayer.in_seq_no + " out_seq = " + tLRPC$TL_decryptedMessageLayer.out_seq_no);
+                FileLog.m35d(tLRPC$DecryptedMessage + " send message with in_seq = " + tLRPC$TL_decryptedMessageLayer.in_seq_no + " out_seq = " + tLRPC$TL_decryptedMessageLayer.out_seq_no);
             }
             int objectSize = tLRPC$TL_decryptedMessageLayer.getObjectSize();
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(objectSize + 4);
@@ -766,7 +766,7 @@ public class SecretChatHelper extends BaseController {
                 }
             }, 64);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -790,7 +790,7 @@ public class SecretChatHelper extends BaseController {
                     encryptedChat.key_hash = bArr2;
                     getMessagesStorage().updateEncryptedChat(encryptedChat);
                 } catch (Throwable th) {
-                    FileLog.m31e(th);
+                    FileLog.m32e(th);
                 }
             }
             this.sendingNotifyLayer.remove(Integer.valueOf(encryptedChat.f869id));
@@ -883,7 +883,7 @@ public class SecretChatHelper extends BaseController {
                 tLRPC$EncryptedChat.key_hash = bArr2;
                 getMessagesStorage().updateEncryptedChat(tLRPC$EncryptedChat);
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
         }
         tLRPC$EncryptedChat.layer = AndroidUtilities.setPeerLayerVersion(tLRPC$EncryptedChat.layer, i);
@@ -1067,7 +1067,7 @@ public class SecretChatHelper extends BaseController {
                 getMessagesStorage().getDatabase().executeFast(String.format(Locale.US, "REPLACE INTO requested_holes VALUES(%d, %d, %d)", Integer.valueOf(tLRPC$EncryptedChat.f869id), Integer.valueOf(i10), Integer.valueOf(i2))).stepThis().dispose();
             } catch (Exception e) {
                 e = e;
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } catch (Exception e2) {
             e = e2;
@@ -1189,7 +1189,7 @@ public class SecretChatHelper extends BaseController {
                     nativeByteBuffer.writeBool(z);
                 } catch (Exception e2) {
                     e = e2;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     j = getMessagesStorage().createPendingTask(nativeByteBuffer);
                     TLRPC$TL_messages_discardEncryption tLRPC$TL_messages_discardEncryption = new TLRPC$TL_messages_discardEncryption();
                     tLRPC$TL_messages_discardEncryption.chat_id = i;
@@ -1442,7 +1442,7 @@ public class SecretChatHelper extends BaseController {
             }
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1471,7 +1471,7 @@ public class SecretChatHelper extends BaseController {
             try {
                 alertDialog.dismiss();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         TLRPC$EncryptedChat tLRPC$EncryptedChat = (TLRPC$EncryptedChat) tLObject;
@@ -1515,7 +1515,7 @@ public class SecretChatHelper extends BaseController {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(LocaleController.getString("AppName", C1072R.string.AppName));
@@ -1532,7 +1532,7 @@ public class SecretChatHelper extends BaseController {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 

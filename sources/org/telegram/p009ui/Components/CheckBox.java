@@ -60,11 +60,11 @@ public class CheckBox extends View {
             paint4.setColor(-1);
             backgroundPaint.setStyle(Paint.Style.STROKE);
         }
-        eraser2.setStrokeWidth(AndroidUtilities.m35dp(28.0f));
-        backgroundPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        eraser2.setStrokeWidth(AndroidUtilities.m36dp(28.0f));
+        backgroundPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
-        textPaint.setTextSize(AndroidUtilities.m35dp(18.0f));
+        textPaint.setTextSize(AndroidUtilities.m36dp(18.0f));
         this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.checkDrawable = context.getResources().getDrawable(i).mutate();
     }
@@ -74,9 +74,9 @@ public class CheckBox extends View {
         super.setVisibility(i);
         if (i == 0 && this.drawBitmap == null) {
             try {
-                this.drawBitmap = Bitmap.createBitmap(AndroidUtilities.m35dp(this.size), AndroidUtilities.m35dp(this.size), Bitmap.Config.ARGB_4444);
+                this.drawBitmap = Bitmap.createBitmap(AndroidUtilities.m36dp(this.size), AndroidUtilities.m36dp(this.size), Bitmap.Config.ARGB_4444);
                 this.bitmapCanvas = new Canvas(this.drawBitmap);
-                this.checkBitmap = Bitmap.createBitmap(AndroidUtilities.m35dp(this.size), AndroidUtilities.m35dp(this.size), Bitmap.Config.ARGB_4444);
+                this.checkBitmap = Bitmap.createBitmap(AndroidUtilities.m36dp(this.size), AndroidUtilities.m36dp(this.size), Bitmap.Config.ARGB_4444);
                 this.checkCanvas = new Canvas(this.checkBitmap);
             } catch (Throwable unused) {
             }
@@ -107,7 +107,7 @@ public class CheckBox extends View {
     public void setSize(int i) {
         this.size = i;
         if (i == 40) {
-            this.textPaint.setTextSize(AndroidUtilities.m35dp(24.0f));
+            this.textPaint.setTextSize(AndroidUtilities.m36dp(24.0f));
         }
     }
 

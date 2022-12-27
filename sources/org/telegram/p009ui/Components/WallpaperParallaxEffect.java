@@ -53,10 +53,10 @@ public class WallpaperParallaxEffect implements SensorEventListener {
 
     public float getScale(int i, int i2) {
         float f = i;
-        float m35dp = AndroidUtilities.m35dp(16.0f) * 2;
-        float f2 = (f + m35dp) / f;
+        float m36dp = AndroidUtilities.m36dp(16.0f) * 2;
+        float f2 = (f + m36dp) / f;
         float f3 = i2;
-        return Math.max(f2, (m35dp + f3) / f3);
+        return Math.max(f2, (m36dp + f3) / f3);
     }
 
     @Override

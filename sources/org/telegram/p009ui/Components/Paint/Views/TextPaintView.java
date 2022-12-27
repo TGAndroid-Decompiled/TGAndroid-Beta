@@ -37,8 +37,7 @@ public class TextPaintView extends EntityView {
         this.baseFontSize = i;
         EditTextOutline editTextOutline = new EditTextOutline(context) {
             {
-                TextPaintView.this = this;
-                this.animatedEmojiOffsetX = AndroidUtilities.m35dp(8.0f);
+                this.animatedEmojiOffsetX = AndroidUtilities.m36dp(8.0f);
             }
 
             @Override
@@ -53,12 +52,12 @@ public class TextPaintView extends EntityView {
         this.editText = editTextOutline;
         editTextOutline.setGravity(19);
         this.editText.setBackgroundColor(0);
-        this.editText.setPadding(AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(7.0f));
+        this.editText.setPadding(AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(7.0f));
         this.editText.setClickable(false);
         this.editText.setEnabled(false);
         this.editText.setCursorColor(-1);
         this.editText.setTextSize(0, this.baseFontSize);
-        this.editText.setCursorSize(AndroidUtilities.m35dp(this.baseFontSize * 0.4f));
+        this.editText.setCursorSize(AndroidUtilities.m36dp(this.baseFontSize * 0.4f));
         this.editText.setText(charSequence);
         this.editText.setTextColor(swatch.color);
         this.editText.setTypeface(null, 1);
@@ -128,7 +127,7 @@ public class TextPaintView extends EntityView {
         this.baseFontSize = i;
         float f = i;
         this.editText.setTextSize(0, f);
-        this.editText.setCursorSize(AndroidUtilities.m35dp(f * 0.4f));
+        this.editText.setCursorSize(AndroidUtilities.m36dp(f * 0.4f));
         if (this.editText.getText() instanceof Spanned) {
             Editable text = this.editText.getText();
             for (Emoji.EmojiSpan emojiSpan : (Emoji.EmojiSpan[]) text.getSpans(0, text.length(), Emoji.EmojiSpan.class)) {
@@ -275,8 +274,8 @@ public class TextPaintView extends EntityView {
             return new Rect();
         }
         float scaleX = viewGroup.getScaleX();
-        float measuredWidth = (getMeasuredWidth() * getScale()) + (AndroidUtilities.m35dp(64.0f) / scaleX);
-        float measuredHeight = (getMeasuredHeight() * getScale()) + (AndroidUtilities.m35dp(52.0f) / scaleX);
+        float measuredWidth = (getMeasuredWidth() * getScale()) + (AndroidUtilities.m36dp(64.0f) / scaleX);
+        float measuredHeight = (getMeasuredHeight() * getScale()) + (AndroidUtilities.m36dp(52.0f) / scaleX);
         return new Rect((getPositionX() - (measuredWidth / 2.0f)) * scaleX, (getPositionY() - (measuredHeight / 2.0f)) * scaleX, measuredWidth * scaleX, measuredHeight * scaleX);
     }
 
@@ -295,16 +294,16 @@ public class TextPaintView extends EntityView {
 
         @Override
         protected int pointInsideHandle(float f, float f2) {
-            float m35dp = AndroidUtilities.m35dp(19.5f);
-            float m35dp2 = AndroidUtilities.m35dp(1.0f) + m35dp;
-            float f3 = m35dp2 * 2.0f;
+            float m36dp = AndroidUtilities.m36dp(19.5f);
+            float m36dp2 = AndroidUtilities.m36dp(1.0f) + m36dp;
+            float f3 = m36dp2 * 2.0f;
             float measuredWidth = getMeasuredWidth() - f3;
             float measuredHeight = getMeasuredHeight() - f3;
-            float f4 = (measuredHeight / 2.0f) + m35dp2;
-            if (f <= m35dp2 - m35dp || f2 <= f4 - m35dp || f >= m35dp2 + m35dp || f2 >= f4 + m35dp) {
-                float f5 = m35dp2 + measuredWidth;
-                if (f <= f5 - m35dp || f2 <= f4 - m35dp || f >= f5 + m35dp || f2 >= f4 + m35dp) {
-                    return (f <= m35dp2 || f >= measuredWidth || f2 <= m35dp2 || f2 >= measuredHeight) ? 0 : 3;
+            float f4 = (measuredHeight / 2.0f) + m36dp2;
+            if (f <= m36dp2 - m36dp || f2 <= f4 - m36dp || f >= m36dp2 + m36dp || f2 >= f4 + m36dp) {
+                float f5 = m36dp2 + measuredWidth;
+                if (f <= f5 - m36dp || f2 <= f4 - m36dp || f >= f5 + m36dp || f2 >= f4 + m36dp) {
+                    return (f <= m36dp2 || f >= measuredWidth || f2 <= m36dp2 || f2 >= measuredHeight) ? 0 : 3;
                 }
                 return 2;
             }
@@ -314,46 +313,46 @@ public class TextPaintView extends EntityView {
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            float m35dp = AndroidUtilities.m35dp(4.5f);
-            float m35dp2 = AndroidUtilities.m35dp(2.0f) + m35dp + AndroidUtilities.m35dp(15.0f);
-            float f = m35dp2 * 2.0f;
+            float m36dp = AndroidUtilities.m36dp(4.5f);
+            float m36dp2 = AndroidUtilities.m36dp(2.0f) + m36dp + AndroidUtilities.m36dp(15.0f);
+            float f = m36dp2 * 2.0f;
             float measuredWidth = getMeasuredWidth() - f;
             float measuredHeight = getMeasuredHeight() - f;
             RectF rectF = AndroidUtilities.rectTmp;
-            float f2 = m35dp2 + measuredWidth;
-            float f3 = m35dp2 + measuredHeight;
-            rectF.set(m35dp2, m35dp2, f2, f3);
-            float m35dp3 = AndroidUtilities.m35dp(12.0f);
-            float min = Math.min(m35dp3, measuredWidth / 2.0f);
+            float f2 = m36dp2 + measuredWidth;
+            float f3 = m36dp2 + measuredHeight;
+            rectF.set(m36dp2, m36dp2, f2, f3);
+            float m36dp3 = AndroidUtilities.m36dp(12.0f);
+            float min = Math.min(m36dp3, measuredWidth / 2.0f);
             float f4 = measuredHeight / 2.0f;
-            float min2 = Math.min(m35dp3, f4);
+            float min2 = Math.min(m36dp3, f4);
             this.path.rewind();
             float f5 = min * 2.0f;
-            float f6 = m35dp2 + f5;
+            float f6 = m36dp2 + f5;
             float f7 = 2.0f * min2;
-            float f8 = m35dp2 + f7;
-            rectF.set(m35dp2, m35dp2, f6, f8);
+            float f8 = m36dp2 + f7;
+            rectF.set(m36dp2, m36dp2, f6, f8);
             this.path.arcTo(rectF, 180.0f, 90.0f);
             float f9 = f2 - f5;
-            rectF.set(f9, m35dp2, f2, f8);
+            rectF.set(f9, m36dp2, f2, f8);
             this.path.arcTo(rectF, 270.0f, 90.0f);
             canvas.drawPath(this.path, this.paint);
             this.path.rewind();
             float f10 = f3 - f7;
-            rectF.set(m35dp2, f10, f6, f3);
+            rectF.set(m36dp2, f10, f6, f3);
             this.path.arcTo(rectF, 180.0f, -90.0f);
             rectF.set(f9, f10, f2, f3);
             this.path.arcTo(rectF, 90.0f, -90.0f);
             canvas.drawPath(this.path, this.paint);
-            float f11 = m35dp2 + min2;
+            float f11 = m36dp2 + min2;
             float f12 = f3 - min2;
-            canvas.drawLine(m35dp2, f11, m35dp2, f12, this.paint);
+            canvas.drawLine(m36dp2, f11, m36dp2, f12, this.paint);
             canvas.drawLine(f2, f11, f2, f12, this.paint);
-            float f13 = f4 + m35dp2;
-            canvas.drawCircle(m35dp2, f13, m35dp, this.dotPaint);
-            canvas.drawCircle(m35dp2, f13, m35dp, this.dotStrokePaint);
-            canvas.drawCircle(f2, f13, m35dp, this.dotPaint);
-            canvas.drawCircle(f2, f13, m35dp, this.dotStrokePaint);
+            float f13 = f4 + m36dp2;
+            canvas.drawCircle(m36dp2, f13, m36dp, this.dotPaint);
+            canvas.drawCircle(m36dp2, f13, m36dp, this.dotStrokePaint);
+            canvas.drawCircle(f2, f13, m36dp, this.dotPaint);
+            canvas.drawCircle(f2, f13, m36dp, this.dotStrokePaint);
         }
     }
 }

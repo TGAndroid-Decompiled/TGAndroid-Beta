@@ -40,21 +40,21 @@ public class FlatCheckBox extends View {
         this.fillPaint = new Paint(1);
         this.outLinePaint = new Paint(1);
         this.checkPaint = new Paint(1);
-        this.HEIGHT = AndroidUtilities.m35dp(36.0f);
-        this.INNER_PADDING = AndroidUtilities.m35dp(22.0f);
-        this.TRANSLETE_TEXT = AndroidUtilities.m35dp(8.0f);
-        this.f1069P = AndroidUtilities.m35dp(2.0f);
+        this.HEIGHT = AndroidUtilities.m36dp(36.0f);
+        this.INNER_PADDING = AndroidUtilities.m36dp(22.0f);
+        this.TRANSLETE_TEXT = AndroidUtilities.m36dp(8.0f);
+        this.f1069P = AndroidUtilities.m36dp(2.0f);
         this.rectF = new RectF();
         this.progress = 0.0f;
         this.lastW = 0;
-        this.textPaint.setTextSize(AndroidUtilities.m35dp(14.0f));
+        this.textPaint.setTextSize(AndroidUtilities.m36dp(14.0f));
         this.textPaint.setTextAlign(Paint.Align.CENTER);
         this.textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
         this.outLinePaint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
         this.outLinePaint.setStyle(Paint.Style.STROKE);
         this.checkPaint.setStyle(Paint.Style.STROKE);
         this.checkPaint.setStrokeCap(Paint.Cap.ROUND);
-        this.checkPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.checkPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
     }
 
     public void recolor(int i) {
@@ -119,10 +119,10 @@ public class FlatCheckBox extends View {
     @Override
     protected void onMeasure(int i, int i2) {
         String str = this.text;
-        setMeasuredDimension((str == null ? 0 : (int) this.textPaint.measureText(str)) + (this.INNER_PADDING << 1) + (this.f1069P * 2), this.HEIGHT + AndroidUtilities.m35dp(4.0f));
+        setMeasuredDimension((str == null ? 0 : (int) this.textPaint.measureText(str)) + (this.INNER_PADDING << 1) + (this.f1069P * 2), this.HEIGHT + AndroidUtilities.m36dp(4.0f));
         if (getMeasuredWidth() != this.lastW) {
             this.rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.rectF.inset(this.f1069P + (this.outLinePaint.getStrokeWidth() / 2.0f), this.f1069P + (this.outLinePaint.getStrokeWidth() / 2.0f) + AndroidUtilities.m35dp(2.0f));
+            this.rectF.inset(this.f1069P + (this.outLinePaint.getStrokeWidth() / 2.0f), this.f1069P + (this.outLinePaint.getStrokeWidth() / 2.0f) + AndroidUtilities.m36dp(2.0f));
         }
     }
 
@@ -155,12 +155,12 @@ public class FlatCheckBox extends View {
         float f3 = 2.0f - (this.progress / 0.5f);
         canvas.save();
         canvas.scale(0.9f, 0.9f, AndroidUtilities.dpf2(7.0f), measuredHeight);
-        canvas.translate(AndroidUtilities.m35dp(12.0f), measuredHeight - AndroidUtilities.m35dp(9.0f));
+        canvas.translate(AndroidUtilities.m36dp(12.0f), measuredHeight - AndroidUtilities.m36dp(9.0f));
         if (this.progress > 0.5f) {
             this.checkPaint.setColor(this.colorTextActive);
             float f4 = 1.0f - f3;
-            canvas.drawLine(AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) - (AndroidUtilities.m35dp(4.0f) * f4)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.m35dp(4.0f) * f4)), this.checkPaint);
-            canvas.drawLine((int) AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) + (AndroidUtilities.m35dp(8.0f) * f4)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.m35dp(8.0f) * f4)), this.checkPaint);
+            canvas.drawLine(AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) - (AndroidUtilities.m36dp(4.0f) * f4)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.m36dp(4.0f) * f4)), this.checkPaint);
+            canvas.drawLine((int) AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) + (AndroidUtilities.m36dp(8.0f) * f4)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.m36dp(8.0f) * f4)), this.checkPaint);
         }
         canvas.restore();
     }

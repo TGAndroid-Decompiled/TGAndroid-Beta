@@ -47,7 +47,7 @@ public class JoinCallByUrlAlert extends BottomSheet {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(80.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(80.0f), 1073741824));
         }
 
         public void setText(CharSequence charSequence) {
@@ -63,7 +63,7 @@ public class JoinCallByUrlAlert extends BottomSheet {
         linearLayout.setOrientation(1);
         setCustomView(linearLayout);
         BackupImageView backupImageView = new BackupImageView(context);
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(45.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(45.0f));
         linearLayout.addView(backupImageView, LayoutHelper.createLinear(90, 90, 49, 0, 29, 0, 0));
         backupImageView.setForUserOrChat(tLRPC$Chat, new AvatarDrawable(tLRPC$Chat));
         TextView textView = new TextView(context);

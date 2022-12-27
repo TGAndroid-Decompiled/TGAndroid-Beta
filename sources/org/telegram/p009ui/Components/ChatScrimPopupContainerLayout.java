@@ -47,19 +47,19 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
             }
             int totalWidth = this.reactionsLayout.getTotalWidth();
             View childAt = (this.popupWindowLayout.getSwipeBack() != null ? this.popupWindowLayout.getSwipeBack() : this.popupWindowLayout).getChildAt(0);
-            int measuredWidth2 = childAt.getMeasuredWidth() + AndroidUtilities.m35dp(16.0f) + AndroidUtilities.m35dp(16.0f) + AndroidUtilities.m35dp(36.0f);
+            int measuredWidth2 = childAt.getMeasuredWidth() + AndroidUtilities.m36dp(16.0f) + AndroidUtilities.m36dp(16.0f) + AndroidUtilities.m36dp(36.0f);
             if (measuredWidth2 > measuredWidth) {
                 measuredWidth2 = measuredWidth;
             }
-            this.reactionsLayout.bigCircleOffset = AndroidUtilities.m35dp(36.0f);
+            this.reactionsLayout.bigCircleOffset = AndroidUtilities.m36dp(36.0f);
             if (this.reactionsLayout.showCustomEmojiReaction()) {
                 this.reactionsLayout.getLayoutParams().width = totalWidth;
-                this.reactionsLayout.bigCircleOffset = Math.max((totalWidth - childAt.getMeasuredWidth()) - AndroidUtilities.m35dp(36.0f), AndroidUtilities.m35dp(36.0f));
+                this.reactionsLayout.bigCircleOffset = Math.max((totalWidth - childAt.getMeasuredWidth()) - AndroidUtilities.m36dp(36.0f), AndroidUtilities.m36dp(36.0f));
             } else if (totalWidth > measuredWidth2) {
-                int m35dp = ((measuredWidth2 - AndroidUtilities.m35dp(16.0f)) / AndroidUtilities.m35dp(36.0f)) + 1;
-                int m35dp2 = ((AndroidUtilities.m35dp(36.0f) * m35dp) + AndroidUtilities.m35dp(16.0f)) - AndroidUtilities.m35dp(8.0f);
-                if (m35dp2 <= totalWidth && m35dp != this.reactionsLayout.getItemsCount()) {
-                    totalWidth = m35dp2;
+                int m36dp = ((measuredWidth2 - AndroidUtilities.m36dp(16.0f)) / AndroidUtilities.m36dp(36.0f)) + 1;
+                int m36dp2 = ((AndroidUtilities.m36dp(36.0f) * m36dp) + AndroidUtilities.m36dp(16.0f)) - AndroidUtilities.m36dp(8.0f);
+                if (m36dp2 <= totalWidth && m36dp != this.reactionsLayout.getItemsCount()) {
+                    totalWidth = m36dp2;
                 }
                 this.reactionsLayout.getLayoutParams().width = totalWidth;
             } else {
@@ -68,7 +68,7 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
             if (this.reactionsLayout.getMeasuredWidth() != measuredWidth || !this.reactionsLayout.showCustomEmojiReaction()) {
                 int measuredWidth3 = this.popupWindowLayout.getSwipeBack() != null ? this.popupWindowLayout.getSwipeBack().getMeasuredWidth() - this.popupWindowLayout.getSwipeBack().getChildAt(0).getMeasuredWidth() : 0;
                 if (this.reactionsLayout.getLayoutParams().width != -2 && this.reactionsLayout.getLayoutParams().width + measuredWidth3 > measuredWidth) {
-                    measuredWidth3 = (measuredWidth - this.reactionsLayout.getLayoutParams().width) + AndroidUtilities.m35dp(8.0f);
+                    measuredWidth3 = (measuredWidth - this.reactionsLayout.getLayoutParams().width) + AndroidUtilities.m36dp(8.0f);
                 }
                 r2 = measuredWidth3 >= 0 ? measuredWidth3 : 0;
                 ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = r2;
@@ -80,23 +80,23 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
                 ReactionsContainerLayout reactionsContainerLayout2 = this.reactionsLayout;
                 int i4 = (int) (reactionsContainerLayout2.bigCircleOffset - measuredWidth4);
                 reactionsContainerLayout2.bigCircleOffset = i4;
-                if (i4 < AndroidUtilities.m35dp(36.0f)) {
+                if (i4 < AndroidUtilities.m36dp(36.0f)) {
                     this.popupLayoutLeftOffset = 0.0f;
-                    this.reactionsLayout.bigCircleOffset = AndroidUtilities.m35dp(36.0f);
+                    this.reactionsLayout.bigCircleOffset = AndroidUtilities.m36dp(36.0f);
                 }
                 updatePopupTranslation();
             }
             if (this.bottomView != null) {
                 if (this.reactionsLayout.showCustomEmojiReaction()) {
-                    this.bottomView.getLayoutParams().width = childAt.getMeasuredWidth() + AndroidUtilities.m35dp(16.0f);
+                    this.bottomView.getLayoutParams().width = childAt.getMeasuredWidth() + AndroidUtilities.m36dp(16.0f);
                     updatePopupTranslation();
                 } else {
                     this.bottomView.getLayoutParams().width = -1;
                 }
                 if (this.popupWindowLayout.getSwipeBack() != null) {
-                    ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = r2 + AndroidUtilities.m35dp(36.0f);
+                    ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = r2 + AndroidUtilities.m36dp(36.0f);
                 } else {
-                    ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = AndroidUtilities.m35dp(36.0f);
+                    ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = AndroidUtilities.m36dp(36.0f);
                 }
             }
             super.onMeasure(i, i2);

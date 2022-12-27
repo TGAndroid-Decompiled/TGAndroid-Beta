@@ -65,16 +65,16 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
                     y = 0.0f;
                 }
                 BotCommandsMenuContainer.this.scrollYOffset = y;
-                float m35dp = y - AndroidUtilities.m35dp(8.0f);
-                if (m35dp > 0.0f) {
-                    int i = (int) m35dp;
-                    BotCommandsMenuContainer.this.shadowDrawable.setBounds(-AndroidUtilities.m35dp(8.0f), i - AndroidUtilities.m35dp(24.0f), getMeasuredWidth() + AndroidUtilities.m35dp(8.0f), i);
+                float m36dp = y - AndroidUtilities.m36dp(8.0f);
+                if (m36dp > 0.0f) {
+                    int i = (int) m36dp;
+                    BotCommandsMenuContainer.this.shadowDrawable.setBounds(-AndroidUtilities.m36dp(8.0f), i - AndroidUtilities.m36dp(24.0f), getMeasuredWidth() + AndroidUtilities.m36dp(8.0f), i);
                     BotCommandsMenuContainer.this.shadowDrawable.draw(canvas);
                 }
-                canvas.drawRect(0.0f, m35dp, getMeasuredWidth(), getMeasuredHeight() + AndroidUtilities.m35dp(16.0f), BotCommandsMenuContainer.this.backgroundPaint);
+                canvas.drawRect(0.0f, m36dp, getMeasuredWidth(), getMeasuredHeight() + AndroidUtilities.m36dp(16.0f), BotCommandsMenuContainer.this.backgroundPaint);
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set((getMeasuredWidth() / 2.0f) - AndroidUtilities.m35dp(12.0f), m35dp - AndroidUtilities.m35dp(4.0f), (getMeasuredWidth() / 2.0f) + AndroidUtilities.m35dp(12.0f), m35dp);
-                canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), BotCommandsMenuContainer.this.topBackground);
+                rectF.set((getMeasuredWidth() / 2.0f) - AndroidUtilities.m36dp(12.0f), m36dp - AndroidUtilities.m36dp(4.0f), (getMeasuredWidth() / 2.0f) + AndroidUtilities.m36dp(12.0f), m36dp);
+                canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), BotCommandsMenuContainer.this.topBackground);
                 super.dispatchDraw(canvas);
             }
         };
@@ -113,7 +113,7 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
         if (this.dismissed) {
             return;
         }
-        if (this.listView.getTranslationY() > AndroidUtilities.m35dp(16.0f)) {
+        if (this.listView.getTranslationY() > AndroidUtilities.m36dp(16.0f)) {
             dismiss();
         } else {
             playEnterAnim(false);
@@ -186,7 +186,7 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
             return;
         }
         RecyclerListView recyclerListView = this.listView;
-        recyclerListView.setTranslationY((recyclerListView.getMeasuredHeight() - this.listView.getPaddingTop()) + AndroidUtilities.m35dp(16.0f));
+        recyclerListView.setTranslationY((recyclerListView.getMeasuredHeight() - this.listView.getPaddingTop()) + AndroidUtilities.m36dp(16.0f));
         playEnterAnim(true);
         this.entering = false;
     }
@@ -215,7 +215,7 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
         this.dismissed = true;
         cancelCurrentAnimation();
         RecyclerListView recyclerListView = this.listView;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(recyclerListView, FrameLayout.TRANSLATION_Y, recyclerListView.getTranslationY(), (getMeasuredHeight() - this.scrollYOffset) + AndroidUtilities.m35dp(40.0f));
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(recyclerListView, FrameLayout.TRANSLATION_Y, recyclerListView.getTranslationY(), (getMeasuredHeight() - this.scrollYOffset) + AndroidUtilities.m36dp(40.0f));
         this.currentAnimation = ofFloat;
         ofFloat.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -232,7 +232,7 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() != 0 || motionEvent.getY() >= this.scrollYOffset - AndroidUtilities.m35dp(24.0f)) {
+        if (motionEvent.getAction() != 0 || motionEvent.getY() >= this.scrollYOffset - AndroidUtilities.m36dp(24.0f)) {
             return super.dispatchTouchEvent(motionEvent);
         }
         return false;

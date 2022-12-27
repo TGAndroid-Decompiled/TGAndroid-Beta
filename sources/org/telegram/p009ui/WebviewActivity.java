@@ -86,7 +86,6 @@ public class WebviewActivity extends BaseFragment {
 
     public class TelegramWebviewProxy {
         private TelegramWebviewProxy() {
-            WebviewActivity.this = r1;
         }
 
         @JavascriptInterface
@@ -104,7 +103,7 @@ public class WebviewActivity extends BaseFragment {
                 return;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d(str);
+                FileLog.m35d(str);
             }
             str.hashCode();
             if (str.equals("share_game")) {
@@ -155,7 +154,7 @@ public class WebviewActivity extends BaseFragment {
             this.webView.destroy();
             this.webView = null;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -181,7 +180,7 @@ public class WebviewActivity extends BaseFragment {
             }
         });
         ActionBarMenu createMenu = this.actionBar.createMenu();
-        this.progressItem = createMenu.addItemWithWidth(1, C1072R.C1073drawable.share, AndroidUtilities.m35dp(54.0f));
+        this.progressItem = createMenu.addItemWithWidth(1, C1072R.C1073drawable.share, AndroidUtilities.m36dp(54.0f));
         int i = this.type;
         if (i == 0) {
             createMenu.addItem(0, C1072R.C1073drawable.ic_ab_other).addSubItem(2, C1072R.C1073drawable.msg_openin, LocaleController.getString("OpenInExternalApp", C1072R.string.OpenInExternalApp));
@@ -241,7 +240,7 @@ public class WebviewActivity extends BaseFragment {
                         try {
                             WebviewActivity.this.reloadStats(Uri.parse(str.replace("tg:statsrefresh", "tg://telegram.org")).getQueryParameter("params"));
                         } catch (Throwable th) {
-                            FileLog.m31e(th);
+                            FileLog.m32e(th);
                         }
                     } else {
                         WebviewActivity.this.finishFragment(false);
@@ -251,7 +250,7 @@ public class WebviewActivity extends BaseFragment {
                             intent.putExtra("com.android.browser.application_id", ApplicationLoader.applicationContext.getPackageName());
                             ApplicationLoader.applicationContext.startActivity(intent);
                         } catch (Exception e) {
-                            FileLog.m31e(e);
+                            FileLog.m32e(e);
                         }
                     }
                     return true;
@@ -408,7 +407,7 @@ public class WebviewActivity extends BaseFragment {
             Browser.openUrl((Context) activity, str4, false);
             serializedData.cleanup();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 

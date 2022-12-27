@@ -63,7 +63,7 @@ public class ShareDialogCell extends FrameLayout {
         this.currentType = i;
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(28.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(28.0f));
         if (i == 2) {
             addView(this.imageView, LayoutHelper.createFrame(48, 48.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         } else {
@@ -72,7 +72,7 @@ public class ShareDialogCell extends FrameLayout {
         TextView textView = new TextView(this, context) {
             @Override
             public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(10.0f), false), bufferType);
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(10.0f), false), bufferType);
             }
         };
         this.nameTextView = textView;
@@ -104,7 +104,7 @@ public class ShareDialogCell extends FrameLayout {
             }
         });
         addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 49, 19.0f, this.currentType == 2 ? -40.0f : 42.0f, 0.0f, 0.0f));
-        setBackground(Theme.createRadSelectorDrawable(Theme.getColor("listSelectorSDK21"), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f)));
+        setBackground(Theme.createRadSelectorDrawable(Theme.getColor("listSelectorSDK21"), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f)));
     }
 
     public void lambda$new$0(float f) {
@@ -116,7 +116,7 @@ public class ShareDialogCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(this.currentType == 2 ? 95.0f : 103.0f), 1073741824));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(this.currentType == 2 ? 95.0f : 103.0f), 1073741824));
     }
 
     public void setDialog(long j, boolean z, CharSequence charSequence) {
@@ -145,7 +145,7 @@ public class ShareDialogCell extends FrameLayout {
                 }
                 this.imageView.setForUserOrChat(this.user, this.avatarDrawable);
             }
-            this.imageView.setRoundRadius(AndroidUtilities.m35dp(28.0f));
+            this.imageView.setRoundRadius(AndroidUtilities.m36dp(28.0f));
         } else {
             this.user = null;
             TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
@@ -158,7 +158,7 @@ public class ShareDialogCell extends FrameLayout {
             }
             this.avatarDrawable.setInfo(chat);
             this.imageView.setForUserOrChat(chat, this.avatarDrawable);
-            this.imageView.setRoundRadius((chat == null || !chat.forum) ? AndroidUtilities.m35dp(28.0f) : AndroidUtilities.m35dp(16.0f));
+            this.imageView.setRoundRadius((chat == null || !chat.forum) ? AndroidUtilities.m36dp(28.0f) : AndroidUtilities.m36dp(16.0f));
         }
         this.currentDialog = j;
         this.checkBox.setChecked(z, false);
@@ -211,11 +211,11 @@ public class ShareDialogCell extends FrameLayout {
             this.topicTextView.setAlpha(1.0f);
             this.nameTextView.setAlpha(0.0f);
             this.topicTextView.setTranslationX(0.0f);
-            this.nameTextView.setTranslationX(AndroidUtilities.m35dp(10.0f));
+            this.nameTextView.setTranslationX(AndroidUtilities.m36dp(10.0f));
         } else {
             this.topicTextView.setAlpha(0.0f);
             this.nameTextView.setAlpha(1.0f);
-            this.topicTextView.setTranslationX(-AndroidUtilities.m35dp(10.0f));
+            this.topicTextView.setTranslationX(-AndroidUtilities.m36dp(10.0f));
             this.nameTextView.setTranslationX(0.0f);
         }
         this.topicWasVisible = z3;
@@ -226,8 +226,8 @@ public class ShareDialogCell extends FrameLayout {
         this.topicTextView.setAlpha(f3);
         float f4 = 1.0f - f3;
         this.nameTextView.setAlpha(f4);
-        this.topicTextView.setTranslationX(f4 * (-AndroidUtilities.m35dp(10.0f)));
-        this.nameTextView.setTranslationX(f3 * AndroidUtilities.m35dp(10.0f));
+        this.topicTextView.setTranslationX(f4 * (-AndroidUtilities.m36dp(10.0f)));
+        this.nameTextView.setTranslationX(f3 * AndroidUtilities.m36dp(10.0f));
     }
 
     public void lambda$setTopic$2(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
@@ -249,14 +249,14 @@ public class ShareDialogCell extends FrameLayout {
             TLRPC$User tLRPC$User2 = this.user;
             boolean z = (tLRPC$User2.self || tLRPC$User2.bot || (((tLRPC$UserStatus = tLRPC$User2.status) == null || tLRPC$UserStatus.expires <= ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) && !MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.f995id)))) ? false : true;
             if (z || this.onlineProgress != 0.0f) {
-                int bottom = this.imageView.getBottom() - AndroidUtilities.m35dp(6.0f);
-                int right = this.imageView.getRight() - AndroidUtilities.m35dp(10.0f);
+                int bottom = this.imageView.getBottom() - AndroidUtilities.m36dp(6.0f);
+                int right = this.imageView.getRight() - AndroidUtilities.m36dp(10.0f);
                 Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(this.currentType == 1 ? "voipgroup_inviteMembersBackground" : "windowBackgroundWhite"));
                 float f = right;
                 float f2 = bottom;
-                canvas.drawCircle(f, f2, AndroidUtilities.m35dp(7.0f) * this.onlineProgress, Theme.dialogs_onlineCirclePaint);
+                canvas.drawCircle(f, f2, AndroidUtilities.m36dp(7.0f) * this.onlineProgress, Theme.dialogs_onlineCirclePaint);
                 Theme.dialogs_onlineCirclePaint.setColor(getThemedColor("chats_onlineCircle"));
-                canvas.drawCircle(f, f2, AndroidUtilities.m35dp(5.0f) * this.onlineProgress, Theme.dialogs_onlineCirclePaint);
+                canvas.drawCircle(f, f2, AndroidUtilities.m36dp(5.0f) * this.onlineProgress, Theme.dialogs_onlineCirclePaint);
                 if (z) {
                     float f3 = this.onlineProgress;
                     if (f3 < 1.0f) {
@@ -291,9 +291,9 @@ public class ShareDialogCell extends FrameLayout {
         int top = this.imageView.getTop() + (this.imageView.getMeasuredHeight() / 2);
         Theme.checkboxSquare_checkPaint.setColor(getThemedColor("dialogRoundCheckBox"));
         Theme.checkboxSquare_checkPaint.setAlpha((int) (this.checkBox.getProgress() * 255.0f));
-        int m35dp = AndroidUtilities.m35dp(this.currentType == 2 ? 24.0f : 28.0f);
+        int m36dp = AndroidUtilities.m36dp(this.currentType == 2 ? 24.0f : 28.0f);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(left - m35dp, top - m35dp, left + m35dp, top + m35dp);
+        rectF.set(left - m36dp, top - m36dp, left + m36dp, top + m36dp);
         canvas.drawRoundRect(rectF, this.imageView.getRoundRadius()[0], this.imageView.getRoundRadius()[0], Theme.checkboxSquare_checkPaint);
         super.onDraw(canvas);
     }

@@ -100,21 +100,21 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
         for (int i2 = 0; i2 < 4; i2++) {
             this.states[i2] = new WeavingState(i2);
         }
-        this.blobDrawable.maxRadius = AndroidUtilities.m35dp(37.0f);
-        this.blobDrawable.minRadius = AndroidUtilities.m35dp(32.0f);
-        this.blobDrawable2.maxRadius = AndroidUtilities.m35dp(37.0f);
-        this.blobDrawable2.minRadius = AndroidUtilities.m35dp(32.0f);
+        this.blobDrawable.maxRadius = AndroidUtilities.m36dp(37.0f);
+        this.blobDrawable.minRadius = AndroidUtilities.m36dp(32.0f);
+        this.blobDrawable2.maxRadius = AndroidUtilities.m36dp(37.0f);
+        this.blobDrawable2.minRadius = AndroidUtilities.m36dp(32.0f);
         this.blobDrawable.generateBlob();
         this.blobDrawable2.generateBlob();
         int i3 = C1072R.raw.voice_outlined;
-        this.bigMicDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.m35dp(22.0f), AndroidUtilities.m35dp(30.0f), true, null);
+        this.bigMicDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.m36dp(22.0f), AndroidUtilities.m36dp(30.0f), true, null);
         setWillNotDraw(false);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.muteButton = rLottieImageView;
         rLottieImageView.setAnimation(this.bigMicDrawable);
         this.muteButton.setScaleType(ImageView.ScaleType.CENTER);
         addView(this.muteButton);
-        this.prepareToRemoveShader = new LinearGradient(0.0f, 0.0f, AndroidUtilities.m35dp(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
+        this.prepareToRemoveShader = new LinearGradient(0.0f, 0.0f, AndroidUtilities.m36dp(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
         if (z) {
             setState(0);
         }
@@ -177,7 +177,7 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
                     this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color5, color6, color7}, (float[]) null, Shader.TileMode.CLAMP);
                 }
             }
-            int m35dp = AndroidUtilities.m35dp(130.0f);
+            int m36dp = AndroidUtilities.m36dp(130.0f);
             float f2 = this.duration;
             if (f2 == 0.0f || this.time >= f2) {
                 this.duration = Utilities.random.nextInt(700) + 500;
@@ -197,7 +197,7 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
                 this.time = f5;
             }
             float interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(this.time / f5);
-            float f6 = m35dp;
+            float f6 = m36dp;
             float f7 = this.startX;
             float f8 = ((f7 + ((this.targetX - f7) * interpolation)) * f6) - 200.0f;
             float f9 = this.startY;

@@ -102,7 +102,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             parseCurrencies(new JSONObject(new String(Util.toByteArray(open), "UTF-8")));
             open.close();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (BuildVars.useInvoiceBilling()) {
             return;
@@ -228,7 +228,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
 
     @Override
     public void onPurchasesUpdated(final BillingResult billingResult, List<Purchase> list) {
-        FileLog.m34d("Billing purchases updated: " + billingResult + ", " + list);
+        FileLog.m35d("Billing purchases updated: " + billingResult + ", " + list);
         int i = 4;
         if (billingResult.getResponseCode() != 0) {
             if (billingResult.getResponseCode() == 1) {
@@ -304,7 +304,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
 
     @Override
     public void onBillingServiceDisconnected() {
-        FileLog.m34d("Billing service disconnected");
+        FileLog.m35d("Billing service disconnected");
     }
 
     @Override

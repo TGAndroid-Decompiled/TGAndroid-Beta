@@ -517,7 +517,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 bundle2.putInt("type", this.currentType);
                 presentFragment(new NotificationsSoundActivity(bundle2, getResourceProvider()));
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } else if (i == this.messageLedRow) {
             if (!view.isEnabled()) {
@@ -921,7 +921,6 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         }
 
         public SearchAdapter(Context context) {
-            NotificationsCustomSettingsActivity.this = r1;
             this.mContext = context;
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
             this.searchAdapterHelper = searchAdapterHelper;
@@ -1093,7 +1092,6 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         private Context mContext;
 
         public ListAdapter(Context context) {
-            NotificationsCustomSettingsActivity.this = r1;
             this.mContext = context;
         }
 

@@ -117,7 +117,6 @@ public class JoinCallAlert extends BottomSheet {
 
         public BottomSheetCell(Context context, boolean z) {
             super(context);
-            JoinCallAlert.this = r13;
             this.textView = new TextView[2];
             this.hasBackground = !z;
             setBackground(null);
@@ -143,7 +142,7 @@ public class JoinCallAlert extends BottomSheet {
                 }
                 this.textView[i].setImportantForAccessibility(2);
                 this.textView[i].setTextSize(1, 14.0f);
-                this.textView[i].setPadding(0, 0, 0, this.hasBackground ? 0 : AndroidUtilities.m35dp(13.0f));
+                this.textView[i].setPadding(0, 0, 0, this.hasBackground ? 0 : AndroidUtilities.m36dp(13.0f));
                 addView(this.textView[i], LayoutHelper.createFrame(-2, -2.0f, 17, 24.0f, 0.0f, 24.0f, 0.0f));
                 if (i == 1) {
                     this.textView[i].setAlpha(0.0f);
@@ -153,7 +152,7 @@ public class JoinCallAlert extends BottomSheet {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(this.hasBackground ? 80.0f : 50.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(this.hasBackground ? 80.0f : 50.0f), 1073741824));
         }
 
         public void setText(CharSequence charSequence, boolean z) {
@@ -167,7 +166,7 @@ public class JoinCallAlert extends BottomSheet {
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(180L);
             animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.textView[0], View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.textView[0], View.TRANSLATION_Y, 0.0f, -AndroidUtilities.m35dp(10.0f)), ObjectAnimator.ofFloat(this.textView[1], View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.textView[1], View.TRANSLATION_Y, AndroidUtilities.m35dp(10.0f), 0.0f));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this.textView[0], View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.textView[0], View.TRANSLATION_Y, 0.0f, -AndroidUtilities.m36dp(10.0f)), ObjectAnimator.ofFloat(this.textView[1], View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.textView[1], View.TRANSLATION_Y, AndroidUtilities.m36dp(10.0f), 0.0f));
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -227,7 +226,7 @@ public class JoinCallAlert extends BottomSheet {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (tLObject != null) {
             TLRPC$TL_phone_joinAsPeers tLRPC$TL_phone_joinAsPeers = (TLRPC$TL_phone_joinAsPeers) tLObject;
@@ -292,7 +291,7 @@ public class JoinCallAlert extends BottomSheet {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (tLObject != null) {
             TLRPC$TL_phone_joinAsPeers tLRPC$TL_phone_joinAsPeers = (TLRPC$TL_phone_joinAsPeers) tLObject;
@@ -390,7 +389,7 @@ public class JoinCallAlert extends BottomSheet {
                 protected void onMeasure(int i4, int i5) {
                     if (JoinCallAlert.this.currentType == 0) {
                         int size3 = View.MeasureSpec.getSize(i4);
-                        int size4 = JoinCallAlert.this.chats.size() * AndroidUtilities.m35dp(95.0f);
+                        int size4 = JoinCallAlert.this.chats.size() * AndroidUtilities.m36dp(95.0f);
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) JoinCallAlert.this.listView.getLayoutParams();
                         if (size4 > size3) {
                             layoutParams.width = -1;
@@ -447,11 +446,11 @@ public class JoinCallAlert extends BottomSheet {
                     }
                     measureChildWithMargins(JoinCallAlert.this.messageTextView, i4, 0, i5, 0);
                     int measuredHeight = JoinCallAlert.this.messageTextView.getMeasuredHeight();
-                    ((FrameLayout.LayoutParams) JoinCallAlert.this.listView.getLayoutParams()).topMargin = AndroidUtilities.m35dp(65.0f) + measuredHeight;
+                    ((FrameLayout.LayoutParams) JoinCallAlert.this.listView.getLayoutParams()).topMargin = AndroidUtilities.m36dp(65.0f) + measuredHeight;
                     getMeasuredWidth();
-                    int m35dp = AndroidUtilities.m35dp(80.0f) + (JoinCallAlert.this.chats.size() * AndroidUtilities.m35dp(58.0f)) + ((BottomSheet) JoinCallAlert.this).backgroundPaddingTop + AndroidUtilities.m35dp(55.0f) + measuredHeight;
+                    int m36dp = AndroidUtilities.m36dp(80.0f) + (JoinCallAlert.this.chats.size() * AndroidUtilities.m36dp(58.0f)) + ((BottomSheet) JoinCallAlert.this).backgroundPaddingTop + AndroidUtilities.m36dp(55.0f) + measuredHeight;
                     int i6 = size3 / 5;
-                    int i7 = m35dp < i6 * 3 ? size3 - m35dp : i6 * 2;
+                    int i7 = m36dp < i6 * 3 ? size3 - m36dp : i6 * 2;
                     if (JoinCallAlert.this.listView.getPaddingTop() != i7) {
                         JoinCallAlert.this.ignoreLayout = true;
                         JoinCallAlert.this.listView.setPadding(0, i7, 0, 0);
@@ -521,7 +520,7 @@ public class JoinCallAlert extends BottomSheet {
             frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 100.0f, 0.0f, 80.0f));
         } else {
             this.listView.setSelectorDrawableColor(0);
-            this.listView.setPadding(AndroidUtilities.m35dp(10.0f), 0, AndroidUtilities.m35dp(10.0f), 0);
+            this.listView.setPadding(AndroidUtilities.m36dp(10.0f), 0, AndroidUtilities.m36dp(10.0f), 0);
         }
         if (i == 0) {
             RLottieImageView rLottieImageView = new RLottieImageView(context);
@@ -721,13 +720,13 @@ public class JoinCallAlert extends BottomSheet {
         int i = 0;
         View childAt = this.listView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-        int top = childAt.getTop() - AndroidUtilities.m35dp(9.0f);
+        int top = childAt.getTop() - AndroidUtilities.m36dp(9.0f);
         if (top > 0 && holder != null && holder.getAdapterPosition() == 0) {
             i = top;
         }
         if (this.scrollOffsetY != i) {
-            this.textView.setTranslationY(AndroidUtilities.m35dp(19.0f) + top);
-            this.messageTextView.setTranslationY(top + AndroidUtilities.m35dp(56.0f));
+            this.textView.setTranslationY(AndroidUtilities.m36dp(19.0f) + top);
+            this.messageTextView.setTranslationY(top + AndroidUtilities.m36dp(56.0f));
             RecyclerListView recyclerListView2 = this.listView;
             this.scrollOffsetY = i;
             recyclerListView2.setTopGlowOffset(i);
@@ -744,7 +743,7 @@ public class JoinCallAlert extends BottomSheet {
         }
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    private class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context context;
 
         @Override
@@ -758,7 +757,6 @@ public class JoinCallAlert extends BottomSheet {
         }
 
         public ListAdapter(Context context) {
-            JoinCallAlert.this = r1;
             this.context = context;
         }
 
@@ -772,7 +770,7 @@ public class JoinCallAlert extends BottomSheet {
             View groupCreateUserCell;
             if (JoinCallAlert.this.currentType == 0) {
                 groupCreateUserCell = new ShareDialogCell(this.context, 2, null);
-                groupCreateUserCell.setLayoutParams(new RecyclerView.LayoutParams(AndroidUtilities.m35dp(80.0f), AndroidUtilities.m35dp(100.0f)));
+                groupCreateUserCell.setLayoutParams(new RecyclerView.LayoutParams(AndroidUtilities.m36dp(80.0f), AndroidUtilities.m36dp(100.0f)));
             } else {
                 groupCreateUserCell = new GroupCreateUserCell(this.context, 2, 0, false, JoinCallAlert.this.currentType == 2);
             }

@@ -293,7 +293,6 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
 
     public class Adapter extends AdapterWithDiffUtils {
         private Adapter() {
-            CacheChatsExceptionsFragment.this = r1;
         }
 
         @Override

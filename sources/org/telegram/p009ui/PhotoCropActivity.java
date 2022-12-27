@@ -60,7 +60,6 @@ public class PhotoCropActivity extends BaseFragment {
 
         public PhotoCropView(Context context) {
             super(context);
-            PhotoCropActivity.this = r1;
             this.rectPaint = null;
             this.circlePaint = null;
             this.halfPaint = null;
@@ -78,7 +77,7 @@ public class PhotoCropActivity extends BaseFragment {
             Paint paint = new Paint();
             this.rectPaint = paint;
             paint.setColor(1073412858);
-            this.rectPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            this.rectPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
             this.rectPaint.setStyle(Paint.Style.STROKE);
             Paint paint2 = new Paint();
             this.circlePaint = paint2;
@@ -128,25 +127,25 @@ public class PhotoCropActivity extends BaseFragment {
                 this.bitmapWidth = i5;
                 this.bitmapHeight = (int) Math.ceil(height * f8);
             }
-            this.bitmapX = ((this.viewWidth - this.bitmapWidth) / 2) + AndroidUtilities.m35dp(14.0f);
-            int m35dp = ((this.viewHeight - this.bitmapHeight) / 2) + AndroidUtilities.m35dp(14.0f);
-            this.bitmapY = m35dp;
+            this.bitmapX = ((this.viewWidth - this.bitmapWidth) / 2) + AndroidUtilities.m36dp(14.0f);
+            int m36dp = ((this.viewHeight - this.bitmapHeight) / 2) + AndroidUtilities.m36dp(14.0f);
+            this.bitmapY = m36dp;
             if (this.rectX == -1.0f && this.rectY == -1.0f) {
                 if (this.freeform) {
-                    this.rectY = m35dp;
+                    this.rectY = m36dp;
                     this.rectX = this.bitmapX;
                     this.rectSizeX = this.bitmapWidth;
                     this.rectSizeY = this.bitmapHeight;
                 } else {
                     if (this.bitmapWidth > this.bitmapHeight) {
-                        this.rectY = m35dp;
-                        this.rectX = ((this.viewWidth - i2) / 2) + AndroidUtilities.m35dp(14.0f);
+                        this.rectY = m36dp;
+                        this.rectX = ((this.viewWidth - i2) / 2) + AndroidUtilities.m36dp(14.0f);
                         int i7 = this.bitmapHeight;
                         this.rectSizeX = i7;
                         this.rectSizeY = i7;
                     } else {
                         this.rectX = this.bitmapX;
-                        this.rectY = ((this.viewHeight - i) / 2) + AndroidUtilities.m35dp(14.0f);
+                        this.rectY = ((this.viewHeight - i) / 2) + AndroidUtilities.m36dp(14.0f);
                         int i8 = this.bitmapWidth;
                         this.rectSizeX = i8;
                         this.rectSizeY = i8;
@@ -156,7 +155,7 @@ public class PhotoCropActivity extends BaseFragment {
                 int i9 = this.bitmapWidth;
                 this.rectX = (f3 * i9) + this.bitmapX;
                 int i10 = this.bitmapHeight;
-                this.rectY = (f5 * i10) + m35dp;
+                this.rectY = (f5 * i10) + m36dp;
                 this.rectSizeX = f6 * i9;
                 this.rectSizeY = f7 * i10;
             }
@@ -166,8 +165,8 @@ public class PhotoCropActivity extends BaseFragment {
         @Override
         protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
-            this.viewWidth = (i3 - i) - AndroidUtilities.m35dp(28.0f);
-            this.viewHeight = (i4 - i2) - AndroidUtilities.m35dp(28.0f);
+            this.viewWidth = (i3 - i) - AndroidUtilities.m36dp(28.0f);
+            this.viewHeight = (i4 - i2) - AndroidUtilities.m36dp(28.0f);
             updateBitmapSize();
         }
 
@@ -196,12 +195,12 @@ public class PhotoCropActivity extends BaseFragment {
             try {
                 return Bitmaps.createBitmap(PhotoCropActivity.this.imageToCrop, width, height, width2, width3);
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
                 System.gc();
                 try {
                     return Bitmaps.createBitmap(PhotoCropActivity.this.imageToCrop, width, height, width2, width3);
                 } catch (Throwable th2) {
-                    FileLog.m31e(th2);
+                    FileLog.m32e(th2);
                     return null;
                 }
             }
@@ -233,7 +232,7 @@ public class PhotoCropActivity extends BaseFragment {
                 return false;
             }
             if (AndroidUtilities.isTablet()) {
-                max = AndroidUtilities.m35dp(520.0f);
+                max = AndroidUtilities.m36dp(520.0f);
             } else {
                 Point point = AndroidUtilities.displaySize;
                 max = Math.max(point.x, point.y);
@@ -291,7 +290,7 @@ public class PhotoCropActivity extends BaseFragment {
                 }
             }
         });
-        this.actionBar.createMenu().addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m35dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
+        this.actionBar.createMenu().addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m36dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
         PhotoCropView photoCropView = new PhotoCropView(context);
         this.view = photoCropView;
         this.fragmentView = photoCropView;

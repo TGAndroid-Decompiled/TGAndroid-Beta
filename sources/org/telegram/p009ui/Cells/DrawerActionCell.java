@@ -45,7 +45,7 @@ public class DrawerActionCell extends FrameLayout {
         this.textView = animatedTextView;
         animatedTextView.setAnimationProperties(0.6f, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.textView.setTextColor(Theme.getColor("chats_menuItemText"));
-        this.textView.setTextSize(AndroidUtilities.m35dp(15.0f));
+        this.textView.setTextSize(AndroidUtilities.m36dp(15.0f));
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 51, 72.0f, 0.0f, 16.0f, 0.0f));
         setWillNotDraw(false);
@@ -53,14 +53,14 @@ public class DrawerActionCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int m35dp;
+        int m36dp;
         int measuredWidth;
         super.onDraw(canvas);
         if (this.currentId == 8) {
             Set<String> set = MessagesController.getInstance(UserConfig.selectedAccount).pendingSuggestions;
             if (set.contains("VALIDATE_PHONE_NUMBER") || set.contains("VALIDATE_PASSWORD")) {
-                int m35dp2 = AndroidUtilities.m35dp(12.5f);
-                this.rect.set(((getMeasuredWidth() - AndroidUtilities.m35dp(9.0f)) - AndroidUtilities.m35dp(25.0f)) - AndroidUtilities.m35dp(5.5f), m35dp2, measuredWidth + m35dp + AndroidUtilities.m35dp(14.0f), m35dp2 + AndroidUtilities.m35dp(23.0f));
+                int m36dp2 = AndroidUtilities.m36dp(12.5f);
+                this.rect.set(((getMeasuredWidth() - AndroidUtilities.m36dp(9.0f)) - AndroidUtilities.m36dp(25.0f)) - AndroidUtilities.m36dp(5.5f), m36dp2, measuredWidth + m36dp + AndroidUtilities.m36dp(14.0f), m36dp2 + AndroidUtilities.m36dp(23.0f));
                 Theme.chat_docBackPaint.setColor(Theme.getColor("chats_archiveBackground"));
                 RectF rectF = this.rect;
                 float f = AndroidUtilities.density;
@@ -75,7 +75,7 @@ public class DrawerActionCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f), 1073741824));
     }
 
     @Override
@@ -103,7 +103,7 @@ public class DrawerActionCell extends FrameLayout {
             this.lottieImageView.clearAnimationDrawable();
             this.currentLottieId = 0;
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -123,7 +123,7 @@ public class DrawerActionCell extends FrameLayout {
                 this.lottieImageView.playAnimation();
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 

@@ -132,8 +132,8 @@ public class LinkEditActivity extends BaseFragment {
         this.createTextView.setTextColor(Theme.getColor("actionBarDefaultTitle"));
         this.createTextView.setTextSize(1, 14.0f);
         this.createTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.createTextView.setPadding(AndroidUtilities.m35dp(18.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(18.0f), AndroidUtilities.m35dp(8.0f));
-        this.actionBar.addView(this.createTextView, LayoutHelper.createFrame(-2, -2.0f, 8388629, 0.0f, this.actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight / AndroidUtilities.m35dp(2.0f) : 0, 0.0f, 0.0f));
+        this.createTextView.setPadding(AndroidUtilities.m36dp(18.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(18.0f), AndroidUtilities.m36dp(8.0f));
+        this.actionBar.addView(this.createTextView, LayoutHelper.createFrame(-2, -2.0f, 8388629, 0.0f, this.actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight / AndroidUtilities.m36dp(2.0f) : 0, 0.0f, 0.0f));
         this.scrollView = new ScrollView(context);
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             int oldKeyboardHeight;
@@ -188,7 +188,7 @@ public class LinkEditActivity extends BaseFragment {
                 boolean z2 = LinkEditActivity.this.usesEditText.isCursorVisible() || LinkEditActivity.this.nameEditText.isCursorVisible();
                 int i5 = this.oldKeyboardHeight;
                 int i6 = this.keyboardHeight;
-                if (i5 == i6 || i6 <= AndroidUtilities.m35dp(20.0f) || !z2) {
+                if (i5 == i6 || i6 <= AndroidUtilities.m36dp(20.0f) || !z2) {
                     if (LinkEditActivity.this.scrollView.getScrollY() == 0 && !z2) {
                         LinkEditActivity.this.scrollToStart = true;
                         invalidate();
@@ -198,7 +198,7 @@ public class LinkEditActivity extends BaseFragment {
                     invalidate();
                 }
                 int i7 = this.keyboardHeight;
-                if (i7 != 0 && i7 < AndroidUtilities.m35dp(20.0f)) {
+                if (i7 != 0 && i7 < AndroidUtilities.m36dp(20.0f)) {
                     LinkEditActivity.this.usesEditText.clearFocus();
                     LinkEditActivity.this.nameEditText.clearFocus();
                 }
@@ -237,7 +237,7 @@ public class LinkEditActivity extends BaseFragment {
         LinearLayout linearLayout = new LinearLayout(context) {
             @Override
             protected void onMeasure(int i3, int i4) {
-                int m35dp;
+                int m36dp;
                 super.onMeasure(i3, i4);
                 int size = View.MeasureSpec.getSize(i4);
                 int i5 = 0;
@@ -247,17 +247,17 @@ public class LinkEditActivity extends BaseFragment {
                         i5 += childAt.getMeasuredHeight();
                     }
                 }
-                int m35dp2 = size - ((AndroidUtilities.m35dp(48.0f) + AndroidUtilities.m35dp(24.0f)) + AndroidUtilities.m35dp(16.0f));
-                if (i5 >= m35dp2) {
-                    m35dp = AndroidUtilities.m35dp(24.0f);
+                int m36dp2 = size - ((AndroidUtilities.m36dp(48.0f) + AndroidUtilities.m36dp(24.0f)) + AndroidUtilities.m36dp(16.0f));
+                if (i5 >= m36dp2) {
+                    m36dp = AndroidUtilities.m36dp(24.0f);
                 } else {
-                    m35dp = (AndroidUtilities.m35dp(24.0f) + m35dp2) - i5;
+                    m36dp = (AndroidUtilities.m36dp(24.0f) + m36dp2) - i5;
                 }
-                if (((LinearLayout.LayoutParams) LinkEditActivity.this.buttonTextView.getLayoutParams()).topMargin != m35dp) {
+                if (((LinearLayout.LayoutParams) LinkEditActivity.this.buttonTextView.getLayoutParams()).topMargin != m36dp) {
                     int i7 = ((LinearLayout.LayoutParams) LinkEditActivity.this.buttonTextView.getLayoutParams()).topMargin;
-                    ((LinearLayout.LayoutParams) LinkEditActivity.this.buttonTextView.getLayoutParams()).topMargin = m35dp;
+                    ((LinearLayout.LayoutParams) LinkEditActivity.this.buttonTextView.getLayoutParams()).topMargin = m36dp;
                     if (!LinkEditActivity.this.firstLayout) {
-                        LinkEditActivity.this.buttonTextView.setTranslationY(i7 - m35dp);
+                        LinkEditActivity.this.buttonTextView.setTranslationY(i7 - m36dp);
                         LinkEditActivity.this.buttonTextView.animate().translationY(0.0f).setDuration(250L).setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator).start();
                     }
                     super.onMeasure(i3, i4);
@@ -277,7 +277,7 @@ public class LinkEditActivity extends BaseFragment {
         this.scrollView.addView(linearLayout);
         TextView textView2 = new TextView(context);
         this.buttonTextView = textView2;
-        textView2.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView2.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         this.buttonTextView.setGravity(17);
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -333,7 +333,7 @@ public class LinkEditActivity extends BaseFragment {
         linearLayout.addView(slideChooseView);
         TextView textView3 = new TextView(context);
         this.timeEditText = textView3;
-        textView3.setPadding(AndroidUtilities.m35dp(22.0f), 0, AndroidUtilities.m35dp(22.0f), 0);
+        textView3.setPadding(AndroidUtilities.m36dp(22.0f), 0, AndroidUtilities.m36dp(22.0f), 0);
         this.timeEditText.setGravity(16);
         this.timeEditText.setTextSize(1, 16.0f);
         this.timeEditText.setHint(LocaleController.getString("TimeLimitHint", C1072R.string.TimeLimitHint));
@@ -389,7 +389,7 @@ public class LinkEditActivity extends BaseFragment {
             }
         };
         this.usesEditText = editText;
-        editText.setPadding(AndroidUtilities.m35dp(22.0f), 0, AndroidUtilities.m35dp(22.0f), 0);
+        editText.setPadding(AndroidUtilities.m36dp(22.0f), 0, AndroidUtilities.m36dp(22.0f), 0);
         this.usesEditText.setGravity(16);
         this.usesEditText.setTextSize(1, 16.0f);
         this.usesEditText.setHint(LocaleController.getString("UsesLimitHint", C1072R.string.UsesLimitHint));
@@ -469,7 +469,7 @@ public class LinkEditActivity extends BaseFragment {
         this.nameEditText.setHint(LocaleController.getString("LinkNameHint", C1072R.string.LinkNameHint));
         this.nameEditText.setHintTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
         this.nameEditText.setLines(1);
-        this.nameEditText.setPadding(AndroidUtilities.m35dp(22.0f), 0, AndroidUtilities.m35dp(22.0f), 0);
+        this.nameEditText.setPadding(AndroidUtilities.m36dp(22.0f), 0, AndroidUtilities.m36dp(22.0f), 0);
         this.nameEditText.setSingleLine();
         this.nameEditText.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.nameEditText.setTextSize(1, 16.0f);
@@ -513,7 +513,7 @@ public class LinkEditActivity extends BaseFragment {
         this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         this.dividerUses.setBackgroundDrawable(Theme.getThemedDrawable(context, i5, "windowBackgroundGrayShadow"));
         this.divider.setBackgroundDrawable(Theme.getThemedDrawable(context, i4, "windowBackgroundGrayShadow"));
-        this.buttonTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+        this.buttonTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
         this.usesEditText.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.usesEditText.setHintTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
         this.timeEditText.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
@@ -860,7 +860,7 @@ public class LinkEditActivity extends BaseFragment {
             int i = C1072R.C1073drawable.greydivider_bottom;
             textInfoPrivacyCell2.setBackgroundDrawable(Theme.getThemedDrawable(context, i, "windowBackgroundGrayShadow"));
             this.divider.setBackgroundDrawable(Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider, "windowBackgroundGrayShadow"));
-            this.buttonTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+            this.buttonTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
             this.usesEditText.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.usesEditText.setHintTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
             this.timeEditText.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));

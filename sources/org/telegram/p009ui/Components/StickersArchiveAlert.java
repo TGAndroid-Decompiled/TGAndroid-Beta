@@ -43,7 +43,7 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
         textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         textView.setGravity(LayoutHelper.getAbsoluteGravityStart());
         textView.setTextSize(1, 16.0f);
-        textView.setPadding(AndroidUtilities.m35dp(23.0f), AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(23.0f), 0);
+        textView.setPadding(AndroidUtilities.m36dp(23.0f), AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(23.0f), 0);
         if (tLRPC$StickerSetCovered.set.masks) {
             textView.setText(LocaleController.getString("ArchivedMasksAlertInfo", C1072R.string.ArchivedMasksAlertInfo));
         } else {
@@ -54,7 +54,7 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
         recyclerListView.setLayoutManager(new LinearLayoutManager(getContext(), 1, false));
         recyclerListView.setAdapter(new ListAdapter(context));
         recyclerListView.setVerticalScrollBarEnabled(false);
-        recyclerListView.setPadding(AndroidUtilities.m35dp(10.0f), 0, AndroidUtilities.m35dp(10.0f), 0);
+        recyclerListView.setPadding(AndroidUtilities.m36dp(10.0f), 0, AndroidUtilities.m36dp(10.0f), 0);
         recyclerListView.setGlowColor(-657673);
         linearLayout.addView(recyclerListView, LayoutHelper.createLinear(-1, -2, 0.0f, 10.0f, 0.0f, 0.0f));
         setNegativeButton(LocaleController.getString("Close", C1072R.string.Close), StickersArchiveAlert$$ExternalSyntheticLambda1.INSTANCE);
@@ -73,7 +73,7 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
         dialogInterface.dismiss();
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    private class ListAdapter extends RecyclerListView.SelectionAdapter {
         Context context;
 
         @Override
@@ -82,7 +82,6 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
         }
 
         public ListAdapter(Context context) {
-            StickersArchiveAlert.this = r1;
             this.context = context;
         }
 
@@ -94,7 +93,7 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             ArchivedStickerSetCell archivedStickerSetCell = new ArchivedStickerSetCell(this.context, false);
-            archivedStickerSetCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(82.0f)));
+            archivedStickerSetCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m36dp(82.0f)));
             return new RecyclerListView.Holder(archivedStickerSetCell);
         }
 

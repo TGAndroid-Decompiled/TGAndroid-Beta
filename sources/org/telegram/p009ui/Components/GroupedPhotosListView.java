@@ -103,9 +103,9 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
         this.animateBackground = true;
         this.gestureDetector = new GestureDetector(context, this);
         this.scroll = new Scroller(context);
-        this.itemWidth = AndroidUtilities.m35dp(42.0f);
-        this.itemHeight = AndroidUtilities.m35dp(56.0f);
-        this.itemSpacing = AndroidUtilities.m35dp(1.0f);
+        this.itemWidth = AndroidUtilities.m36dp(42.0f);
+        this.itemHeight = AndroidUtilities.m36dp(56.0f);
+        this.itemSpacing = AndroidUtilities.m36dp(1.0f);
         this.itemY = i;
         this.backgroundPaint.setColor(2130706432);
     }
@@ -475,7 +475,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
             int size = this.imagesToDraw.size();
             int i7 = this.drawDx;
             int i8 = (int) (this.itemWidth * 2.0f);
-            int m35dp = AndroidUtilities.m35dp(8.0f);
+            int m36dp = AndroidUtilities.m36dp(8.0f);
             ImageLocation imageLocation = this.currentPhotos.get(this.currentImage);
             if (imageLocation != null && (tLRPC$PhotoSize2 = imageLocation.photoSize) != null) {
                 i = Math.max(this.itemWidth, (int) (tLRPC$PhotoSize2.f888w * (this.itemHeight / tLRPC$PhotoSize2.f887h)));
@@ -483,7 +483,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                 i = this.itemHeight;
             }
             int min = Math.min(i8, i);
-            float f2 = m35dp * 2;
+            float f2 = m36dp * 2;
             float f3 = this.currentItemProgress;
             int i9 = (int) (f2 * f3);
             int i10 = this.itemWidth + ((int) ((min - i2) * f3)) + i9;
@@ -541,7 +541,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                     }
                 }
                 imageReceiver.setAlpha(this.drawAlpha);
-                imageReceiver.setRoundRadius(AndroidUtilities.m35dp(2.0f));
+                imageReceiver.setRoundRadius(AndroidUtilities.m36dp(2.0f));
                 imageReceiver.draw(canvas);
             }
             long currentTimeMillis = System.currentTimeMillis();

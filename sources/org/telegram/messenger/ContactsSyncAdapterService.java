@@ -27,7 +27,7 @@ public class ContactsSyncAdapterService extends Service {
             try {
                 ContactsSyncAdapterService.performSync(this.mContext, account, bundle, str, contentProviderClient, syncResult);
             } catch (OperationCanceledException e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -46,7 +46,7 @@ public class ContactsSyncAdapterService extends Service {
 
     public static void performSync(Context context, Account account, Bundle bundle, String str, ContentProviderClient contentProviderClient, SyncResult syncResult) throws OperationCanceledException {
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("performSync: " + account.toString());
+            FileLog.m35d("performSync: " + account.toString());
         }
     }
 }

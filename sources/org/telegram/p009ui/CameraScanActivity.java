@@ -125,7 +125,7 @@ public class CameraScanActivity extends BaseFragment {
     private float recognizedT = 0.0f;
     private float newRecognizedT = 0.0f;
     private float useRecognizedBounds = 0.0f;
-    private Runnable requestShot = new RunnableC13667();
+    private Runnable requestShot = new RunnableC13677();
     private float averageProcessTime = 0.0f;
     private long processTimesCount = 0;
 
@@ -169,7 +169,7 @@ public class CameraScanActivity extends BaseFragment {
         return showAsSheet(baseFragment.getParentActivity(), z, i, cameraScanActivityDelegate);
     }
 
-    public class DialogC13591 extends BottomSheet {
+    public class DialogC13601 extends BottomSheet {
         CameraScanActivity fragment;
         final INavigationLayout[] val$actionBarLayout;
         final CameraScanActivityDelegate val$cameraDelegate;
@@ -181,7 +181,7 @@ public class CameraScanActivity extends BaseFragment {
             return false;
         }
 
-        DialogC13591(Context context, boolean z, INavigationLayout[] iNavigationLayoutArr, int i, boolean z2, CameraScanActivityDelegate cameraScanActivityDelegate) {
+        DialogC13601(Context context, boolean z, INavigationLayout[] iNavigationLayoutArr, int i, boolean z2, CameraScanActivityDelegate cameraScanActivityDelegate) {
             super(context, z);
             this.val$actionBarLayout = iNavigationLayoutArr;
             this.val$type = i;
@@ -190,18 +190,18 @@ public class CameraScanActivity extends BaseFragment {
             iNavigationLayoutArr[0].setFragmentStack(new ArrayList());
             CameraScanActivity cameraScanActivity = new CameraScanActivity(i) {
                 {
-                    DialogC13591.this = this;
+                    DialogC13601.this = this;
                 }
 
                 @Override
                 public void finishFragment() {
                     setFinishing(true);
-                    DialogC13591.this.dismiss();
+                    DialogC13601.this.dismiss();
                 }
 
                 @Override
                 public void removeSelfFromStack() {
-                    DialogC13591.this.dismiss();
+                    DialogC13601.this.dismiss();
                 }
             };
             this.fragment = cameraScanActivity;
@@ -222,7 +222,7 @@ public class CameraScanActivity extends BaseFragment {
             setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    CameraScanActivity.DialogC13591.this.lambda$new$0(dialogInterface);
+                    CameraScanActivity.DialogC13601.this.lambda$new$0(dialogInterface);
                 }
             });
         }
@@ -253,14 +253,14 @@ public class CameraScanActivity extends BaseFragment {
         if (activity == null) {
             return null;
         }
-        DialogC13591 dialogC13591 = new DialogC13591(activity, false, new INavigationLayout[]{INavigationLayout.CC.newLayout(activity)}, i, z, cameraScanActivityDelegate);
-        dialogC13591.setUseLightStatusBar(false);
-        AndroidUtilities.setLightNavigationBar(dialogC13591.getWindow(), false);
-        AndroidUtilities.setNavigationBarColor(dialogC13591.getWindow(), -16777216, false);
-        dialogC13591.setUseLightStatusBar(false);
-        dialogC13591.getWindow().addFlags(512);
-        dialogC13591.show();
-        return dialogC13591;
+        DialogC13601 dialogC13601 = new DialogC13601(activity, false, new INavigationLayout[]{INavigationLayout.CC.newLayout(activity)}, i, z, cameraScanActivityDelegate);
+        dialogC13601.setUseLightStatusBar(false);
+        AndroidUtilities.setLightNavigationBar(dialogC13601.getWindow(), false);
+        AndroidUtilities.setNavigationBarColor(dialogC13601.getWindow(), -16777216, false);
+        dialogC13601.setUseLightStatusBar(false);
+        dialogC13601.getWindow().addFlags(512);
+        dialogC13601.show();
+        return dialogC13601;
     }
 
     public CameraScanActivity(int i) {
@@ -352,13 +352,13 @@ public class CameraScanActivity extends BaseFragment {
                     }
                     CameraScanActivity.this.recognizedMrzView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                     if (CameraScanActivity.this.galleryButton != null) {
-                        CameraScanActivity.this.galleryButton.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(60.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(60.0f), 1073741824));
+                        CameraScanActivity.this.galleryButton.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(60.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(60.0f), 1073741824));
                     }
-                    CameraScanActivity.this.flashButton.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(60.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(60.0f), 1073741824));
+                    CameraScanActivity.this.flashButton.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(60.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(60.0f), 1073741824));
                 }
-                CameraScanActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.m35dp(72.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                CameraScanActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.m36dp(72.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                 if (CameraScanActivity.this.currentType == 3) {
-                    CameraScanActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.m35dp(72.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                    CameraScanActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.m36dp(72.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                 } else {
                     CameraScanActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec((int) (size * 0.9f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                 }
@@ -368,7 +368,7 @@ public class CameraScanActivity extends BaseFragment {
             @Override
             protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 int measuredHeight;
-                int m35dp;
+                int m36dp;
                 int measuredWidth;
                 int i5 = i3 - i;
                 int i6 = i4 - i2;
@@ -379,7 +379,7 @@ public class CameraScanActivity extends BaseFragment {
                     CameraScanActivity.this.recognizedMrzView.setTextSize(0, i6 / 22);
                     CameraScanActivity.this.recognizedMrzView.setPadding(0, 0, 0, i6 / 15);
                     int i7 = (int) (i6 * 0.65f);
-                    CameraScanActivity.this.titleTextView.layout(AndroidUtilities.m35dp(36.0f), i7, AndroidUtilities.m35dp(36.0f) + CameraScanActivity.this.titleTextView.getMeasuredWidth(), CameraScanActivity.this.titleTextView.getMeasuredHeight() + i7);
+                    CameraScanActivity.this.titleTextView.layout(AndroidUtilities.m36dp(36.0f), i7, AndroidUtilities.m36dp(36.0f) + CameraScanActivity.this.titleTextView.getMeasuredWidth(), CameraScanActivity.this.titleTextView.getMeasuredHeight() + i7);
                 } else {
                     ((BaseFragment) CameraScanActivity.this).actionBar.layout(0, 0, ((BaseFragment) CameraScanActivity.this).actionBar.getMeasuredWidth(), ((BaseFragment) CameraScanActivity.this).actionBar.getMeasuredHeight());
                     if (CameraScanActivity.this.cameraView != null) {
@@ -388,28 +388,28 @@ public class CameraScanActivity extends BaseFragment {
                     int min = (int) (Math.min(i5, i6) / 1.5f);
                     if (CameraScanActivity.this.currentType == 1) {
                         measuredHeight = ((i6 - min) / 2) - CameraScanActivity.this.titleTextView.getMeasuredHeight();
-                        m35dp = AndroidUtilities.m35dp(30.0f);
+                        m36dp = AndroidUtilities.m36dp(30.0f);
                     } else {
                         measuredHeight = ((i6 - min) / 2) - CameraScanActivity.this.titleTextView.getMeasuredHeight();
-                        m35dp = AndroidUtilities.m35dp(64.0f);
+                        m36dp = AndroidUtilities.m36dp(64.0f);
                     }
-                    int i8 = measuredHeight - m35dp;
-                    CameraScanActivity.this.titleTextView.layout(AndroidUtilities.m35dp(36.0f), i8, AndroidUtilities.m35dp(36.0f) + CameraScanActivity.this.titleTextView.getMeasuredWidth(), CameraScanActivity.this.titleTextView.getMeasuredHeight() + i8);
+                    int i8 = measuredHeight - m36dp;
+                    CameraScanActivity.this.titleTextView.layout(AndroidUtilities.m36dp(36.0f), i8, AndroidUtilities.m36dp(36.0f) + CameraScanActivity.this.titleTextView.getMeasuredWidth(), CameraScanActivity.this.titleTextView.getMeasuredHeight() + i8);
                     if (CameraScanActivity.this.currentType == 3) {
-                        int measuredHeight2 = i8 + CameraScanActivity.this.titleTextView.getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
-                        CameraScanActivity.this.descriptionText.layout(AndroidUtilities.m35dp(36.0f), measuredHeight2, AndroidUtilities.m35dp(36.0f) + CameraScanActivity.this.descriptionText.getMeasuredWidth(), CameraScanActivity.this.descriptionText.getMeasuredHeight() + measuredHeight2);
+                        int measuredHeight2 = i8 + CameraScanActivity.this.titleTextView.getMeasuredHeight() + AndroidUtilities.m36dp(8.0f);
+                        CameraScanActivity.this.descriptionText.layout(AndroidUtilities.m36dp(36.0f), measuredHeight2, AndroidUtilities.m36dp(36.0f) + CameraScanActivity.this.descriptionText.getMeasuredWidth(), CameraScanActivity.this.descriptionText.getMeasuredHeight() + measuredHeight2);
                     }
                     CameraScanActivity.this.recognizedMrzView.layout(0, getMeasuredHeight() - CameraScanActivity.this.recognizedMrzView.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
                     if (!CameraScanActivity.this.needGalleryButton) {
                         measuredWidth = (i5 / 2) - (CameraScanActivity.this.flashButton.getMeasuredWidth() / 2);
                     } else {
-                        measuredWidth = (i5 / 2) + AndroidUtilities.m35dp(35.0f);
+                        measuredWidth = (i5 / 2) + AndroidUtilities.m36dp(35.0f);
                     }
-                    int m35dp2 = ((i6 - min) / 2) + min + AndroidUtilities.m35dp(80.0f);
-                    CameraScanActivity.this.flashButton.layout(measuredWidth, m35dp2, CameraScanActivity.this.flashButton.getMeasuredWidth() + measuredWidth, CameraScanActivity.this.flashButton.getMeasuredHeight() + m35dp2);
+                    int m36dp2 = ((i6 - min) / 2) + min + AndroidUtilities.m36dp(80.0f);
+                    CameraScanActivity.this.flashButton.layout(measuredWidth, m36dp2, CameraScanActivity.this.flashButton.getMeasuredWidth() + measuredWidth, CameraScanActivity.this.flashButton.getMeasuredHeight() + m36dp2);
                     if (CameraScanActivity.this.galleryButton != null) {
-                        int m35dp3 = ((i5 / 2) - AndroidUtilities.m35dp(35.0f)) - CameraScanActivity.this.galleryButton.getMeasuredWidth();
-                        CameraScanActivity.this.galleryButton.layout(m35dp3, m35dp2, CameraScanActivity.this.galleryButton.getMeasuredWidth() + m35dp3, CameraScanActivity.this.galleryButton.getMeasuredHeight() + m35dp2);
+                        int m36dp3 = ((i5 / 2) - AndroidUtilities.m36dp(35.0f)) - CameraScanActivity.this.galleryButton.getMeasuredWidth();
+                        CameraScanActivity.this.galleryButton.layout(m36dp3, m36dp2, CameraScanActivity.this.galleryButton.getMeasuredWidth() + m36dp3, CameraScanActivity.this.galleryButton.getMeasuredHeight() + m36dp2);
                     }
                 }
                 if (CameraScanActivity.this.currentType != 3) {
@@ -443,9 +443,9 @@ public class CameraScanActivity extends BaseFragment {
                     canvas.drawRect(f4, f, view.getMeasuredWidth(), f2, CameraScanActivity.this.paint);
                     CameraScanActivity.this.paint.setAlpha((int) (Math.max(0.0f, 1.0f - CameraScanActivity.this.qrAppearingValue) * 255.0f));
                     canvas.drawRect(f3, f, f4, f2, CameraScanActivity.this.paint);
-                    int lerp = AndroidUtilities.lerp(0, AndroidUtilities.m35dp(4.0f), Math.min(1.0f, CameraScanActivity.this.qrAppearingValue * 20.0f));
+                    int lerp = AndroidUtilities.lerp(0, AndroidUtilities.m36dp(4.0f), Math.min(1.0f, CameraScanActivity.this.qrAppearingValue * 20.0f));
                     int i4 = lerp / 2;
-                    int lerp2 = AndroidUtilities.lerp(Math.min(width, height2), AndroidUtilities.m35dp(20.0f), Math.min(1.2f, (float) Math.pow(CameraScanActivity.this.qrAppearingValue, 1.7999999523162842d)));
+                    int lerp2 = AndroidUtilities.lerp(Math.min(width, height2), AndroidUtilities.m36dp(20.0f), Math.min(1.2f, (float) Math.pow(CameraScanActivity.this.qrAppearingValue, 1.7999999523162842d)));
                     CameraScanActivity.this.cornerPaint.setAlpha((int) (Math.min(1.0f, CameraScanActivity.this.qrAppearingValue) * 255.0f));
                     CameraScanActivity.this.path.reset();
                     int i5 = i + lerp2;
@@ -550,7 +550,7 @@ public class CameraScanActivity extends BaseFragment {
                         int spanEnd = spanned.getSpanEnd(uRLSpanNoUnderlineArr[i4]);
                         this.textPath.setCurrentLayout(getLayout(), spanStart, 0.0f);
                         int i5 = getText() != null ? getPaint().baselineShift : 0;
-                        this.textPath.setBaselineShift(i5 != 0 ? i5 + AndroidUtilities.m35dp(i5 > 0 ? 5.0f : -2.0f) : 0);
+                        this.textPath.setBaselineShift(i5 != 0 ? i5 + AndroidUtilities.m36dp(i5 > 0 ? 5.0f : -2.0f) : 0);
                         getLayout().getSelectionPath(spanStart, spanEnd, this.textPath);
                     }
                     this.textPath.setAllowReset(true);
@@ -661,7 +661,7 @@ public class CameraScanActivity extends BaseFragment {
                     }
                     this.titleTextView.setLinkTextColor(-1);
                     this.titleTextView.setTextSize(1, 16.0f);
-                    this.titleTextView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+                    this.titleTextView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
                     this.titleTextView.setPadding(0, 0, 0, 0);
                     this.titleTextView.setText(spannableStringBuilder);
                 }
@@ -671,7 +671,7 @@ public class CameraScanActivity extends BaseFragment {
                 this.descriptionText.setTextColor(-1711276033);
             }
             this.recognizedMrzView.setTextSize(1, 16.0f);
-            this.recognizedMrzView.setPadding(AndroidUtilities.m35dp(10.0f), 0, AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(10.0f));
+            this.recognizedMrzView.setPadding(AndroidUtilities.m36dp(10.0f), 0, AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(10.0f));
             if (!this.needGalleryButton) {
                 this.recognizedMrzView.setText(LocaleController.getString("AuthAnotherClientNotFound", C1072R.string.AuthAnotherClientNotFound));
             }
@@ -681,7 +681,7 @@ public class CameraScanActivity extends BaseFragment {
                 this.galleryButton = imageView;
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
                 this.galleryButton.setImageResource(C1072R.C1073drawable.qr_gallery);
-                this.galleryButton.setBackgroundDrawable(Theme.createSelectorDrawableFromDrawables(Theme.createCircleDrawable(AndroidUtilities.m35dp(60.0f), 587202559), Theme.createCircleDrawable(AndroidUtilities.m35dp(60.0f), 1157627903)));
+                this.galleryButton.setBackgroundDrawable(Theme.createSelectorDrawableFromDrawables(Theme.createCircleDrawable(AndroidUtilities.m36dp(60.0f), 587202559), Theme.createCircleDrawable(AndroidUtilities.m36dp(60.0f), 1157627903)));
                 viewGroup.addView(this.galleryButton);
                 this.galleryButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -694,7 +694,7 @@ public class CameraScanActivity extends BaseFragment {
             this.flashButton = imageView2;
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             this.flashButton.setImageResource(C1072R.C1073drawable.qr_flashlight);
-            this.flashButton.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.m35dp(60.0f), 587202559));
+            this.flashButton.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.m36dp(60.0f), 587202559));
             viewGroup.addView(this.flashButton);
             this.flashButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -744,7 +744,7 @@ public class CameraScanActivity extends BaseFragment {
                         }
                     }
                 } catch (Throwable th) {
-                    FileLog.m31e(th);
+                    FileLog.m32e(th);
                 }
             }
 
@@ -755,7 +755,7 @@ public class CameraScanActivity extends BaseFragment {
                     intent.setType("image/*");
                     CameraScanActivity.this.getParentActivity().startActivityForResult(intent, 11);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
         });
@@ -1012,7 +1012,7 @@ public class CameraScanActivity extends BaseFragment {
                 finishFragment();
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -1029,8 +1029,8 @@ public class CameraScanActivity extends BaseFragment {
         this.backgroundHandlerThread.quitSafely();
     }
 
-    public class RunnableC13667 implements Runnable {
-        RunnableC13667() {
+    public class RunnableC13677 implements Runnable {
+        RunnableC13677() {
             CameraScanActivity.this = r1;
         }
 
@@ -1042,7 +1042,7 @@ public class CameraScanActivity extends BaseFragment {
             CameraScanActivity.this.handler.post(new Runnable() {
                 @Override
                 public final void run() {
-                    CameraScanActivity.RunnableC13667.this.lambda$run$0();
+                    CameraScanActivity.RunnableC13677.this.lambda$run$0();
                 }
             });
         }
@@ -1291,7 +1291,7 @@ public class CameraScanActivity extends BaseFragment {
         private QrResult(CameraScanActivity cameraScanActivity) {
         }
 
-        QrResult(CameraScanActivity cameraScanActivity, DialogC13591 dialogC13591) {
+        QrResult(CameraScanActivity cameraScanActivity, DialogC13601 dialogC13601) {
             this(cameraScanActivity);
         }
     }
@@ -1468,9 +1468,9 @@ public class CameraScanActivity extends BaseFragment {
             }
             QrResult qrResult = new QrResult(this, null);
             if (rectF != null) {
-                float m35dp = AndroidUtilities.m35dp(25.0f);
-                float m35dp2 = AndroidUtilities.m35dp(15.0f);
-                rectF.set(rectF.left - m35dp, rectF.top - m35dp2, rectF.right + m35dp, rectF.bottom + m35dp2);
+                float m36dp = AndroidUtilities.m36dp(25.0f);
+                float m36dp2 = AndroidUtilities.m36dp(15.0f);
+                rectF.set(rectF.left - m36dp, rectF.top - m36dp2, rectF.right + m36dp, rectF.bottom + m36dp2);
                 float f11 = i6;
                 float f12 = i4;
                 rectF.set(rectF.left / f11, rectF.top / f12, rectF.right / f11, rectF.bottom / f12);

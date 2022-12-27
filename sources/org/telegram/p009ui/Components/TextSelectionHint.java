@@ -51,7 +51,7 @@ public class TextSelectionHint extends View {
         super(context);
         this.textPaint = new TextPaint(1);
         this.selectionPaint = new Paint(1);
-        this.padding = AndroidUtilities.m35dp(24.0f);
+        this.padding = AndroidUtilities.m36dp(24.0f);
         this.interpolator = new OvershootInterpolator();
         this.dismissTunnable = new Runnable() {
             @Override
@@ -63,14 +63,14 @@ public class TextSelectionHint extends View {
         this.resourcesProvider = resourcesProvider;
         int themedColor = getThemedColor("undo_infoColor");
         int alpha = Color.alpha(themedColor);
-        this.textPaint.setTextSize(AndroidUtilities.m35dp(15.0f));
+        this.textPaint.setTextSize(AndroidUtilities.m36dp(15.0f));
         this.textPaint.setColor(themedColor);
         this.selectionPaint.setColor(themedColor);
         Paint paint = this.selectionPaint;
         double d = alpha;
         Double.isNaN(d);
         paint.setAlpha((int) (d * 0.14d));
-        setBackground(Theme.createRoundRectDrawable(AndroidUtilities.m35dp(6.0f), getThemedColor("undo_background")));
+        setBackground(Theme.createRoundRectDrawable(AndroidUtilities.m36dp(6.0f), getThemedColor("undo_background")));
     }
 
     @Override
@@ -131,9 +131,9 @@ public class TextSelectionHint extends View {
             this.showOnMeasure = false;
             this.lastW = getMeasuredWidth();
         }
-        int height = this.textLayout.getHeight() + (AndroidUtilities.m35dp(8.0f) * 2);
-        if (height < AndroidUtilities.m35dp(56.0f)) {
-            height = AndroidUtilities.m35dp(56.0f);
+        int height = this.textLayout.getHeight() + (AndroidUtilities.m36dp(8.0f) * 2);
+        if (height < AndroidUtilities.m36dp(56.0f)) {
+            height = AndroidUtilities.m36dp(56.0f);
         }
         setMeasuredDimension(getMeasuredWidth(), height);
     }
@@ -152,7 +152,7 @@ public class TextSelectionHint extends View {
             drawSelection(canvas, this.textLayout, this.currentStart, this.currentEnd);
         }
         this.textLayout.draw(canvas);
-        int m35dp = AndroidUtilities.m35dp(14.0f);
+        int m36dp = AndroidUtilities.m36dp(14.0f);
         int lineForOffset = this.textLayout.getLineForOffset(this.currentEnd);
         this.textLayout.getPrimaryHorizontal(this.currentEnd);
         int lineBottom = this.textLayout.getLineBottom(lineForOffset);
@@ -165,7 +165,7 @@ public class TextSelectionHint extends View {
         float interpolation = this.interpolator.getInterpolation(this.enterValue);
         canvas.save();
         canvas.translate((int) (this.textLayout.getPrimaryHorizontal(this.animateToEnd) + (AndroidUtilities.dpf2(4.0f) * (1.0f - this.endOffsetValue)) + ((this.textLayout.getPrimaryHorizontal(this.end) - this.textLayout.getPrimaryHorizontal(this.animateToEnd)) * this.endOffsetValue)), lineBottom);
-        float f2 = m35dp;
+        float f2 = m36dp;
         float f3 = f2 / 2.0f;
         canvas.scale(interpolation, interpolation, f3, f3);
         this.path.reset();
@@ -179,14 +179,14 @@ public class TextSelectionHint extends View {
         if (this.currentStart == this.animateToStart) {
             i = lineBottom2;
             f = f3;
-            roundedRect(this.path, -AndroidUtilities.m35dp(4.0f), this.textLayout.getLineTop(lineForOffset2), 0.0f, this.textLayout.getLineBottom(lineForOffset2), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), true, false);
+            roundedRect(this.path, -AndroidUtilities.m36dp(4.0f), this.textLayout.getLineTop(lineForOffset2), 0.0f, this.textLayout.getLineBottom(lineForOffset2), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), true, false);
             canvas.drawPath(this.path, this.selectionPaint);
         } else {
             i = lineBottom2;
             f = f3;
         }
         canvas.save();
-        canvas.translate(((int) ((this.textLayout.getPrimaryHorizontal(this.animateToStart) - (AndroidUtilities.m35dp(4.0f) * (1.0f - this.startOffsetValue))) + ((this.textLayout.getPrimaryHorizontal(this.start) - this.textLayout.getPrimaryHorizontal(this.animateToStart)) * this.startOffsetValue))) - m35dp, i);
+        canvas.translate(((int) ((this.textLayout.getPrimaryHorizontal(this.animateToStart) - (AndroidUtilities.m36dp(4.0f) * (1.0f - this.startOffsetValue))) + ((this.textLayout.getPrimaryHorizontal(this.start) - this.textLayout.getPrimaryHorizontal(this.animateToStart)) * this.startOffsetValue))) - m36dp, i);
         float f4 = f;
         canvas.scale(interpolation, interpolation, f4, f4);
         this.path.reset();

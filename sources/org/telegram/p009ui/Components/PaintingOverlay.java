@@ -193,11 +193,11 @@ public class PaintingOverlay extends FrameLayout {
                     }
 
                     {
-                        this.animatedEmojiOffsetX = AndroidUtilities.m35dp(8.0f);
+                        this.animatedEmojiOffsetX = AndroidUtilities.m36dp(8.0f);
                     }
                 };
                 editTextOutline.setBackgroundColor(0);
-                editTextOutline.setPadding(AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(7.0f));
+                editTextOutline.setPadding(AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(7.0f));
                 editTextOutline.setTextSize(0, mediaEntity.fontSize);
                 editTextOutline.setTypeface(mediaEntity.textTypeface.getTypeface());
                 SpannableString spannableString = new SpannableString(Emoji.replaceEmoji(mediaEntity.text, editTextOutline.getPaint().getFontMetricsInt(), (int) (editTextOutline.getTextSize() * 0.8f), false));
@@ -298,7 +298,7 @@ public class PaintingOverlay extends FrameLayout {
     public Bitmap getThumb() {
         float measuredWidth = getMeasuredWidth();
         float measuredHeight = getMeasuredHeight();
-        float max = Math.max(measuredWidth / AndroidUtilities.m35dp(120.0f), measuredHeight / AndroidUtilities.m35dp(120.0f));
+        float max = Math.max(measuredWidth / AndroidUtilities.m36dp(120.0f), measuredHeight / AndroidUtilities.m36dp(120.0f));
         Bitmap createBitmap = Bitmap.createBitmap((int) (measuredWidth / max), (int) (measuredHeight / max), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         float f = 1.0f / max;

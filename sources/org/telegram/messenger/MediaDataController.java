@@ -602,7 +602,7 @@ public class MediaDataController extends BaseController {
         try {
             ShortcutManagerCompat.removeAllDynamicShortcuts(ApplicationLoader.applicationContext);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -708,7 +708,7 @@ public class MediaDataController extends BaseController {
                     sQLiteCursor2 = r0;
                     r0 = sQLiteCursor;
                     j = j4;
-                    FileLog.m30e((Throwable) e, false);
+                    FileLog.m31e((Throwable) e, false);
                     if (r0 != null) {
                         r0.dispose();
                     }
@@ -802,7 +802,7 @@ public class MediaDataController extends BaseController {
                 executeFast2.dispose();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -887,7 +887,7 @@ public class MediaDataController extends BaseController {
                 executeFast2.dispose();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1085,7 +1085,7 @@ public class MediaDataController extends BaseController {
             executeFast2.step();
             executeFast2.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1184,7 +1184,7 @@ public class MediaDataController extends BaseController {
         try {
             getMessagesStorage().getDatabase().executeFast("DELETE FROM web_recent_v3 WHERE type = 3").stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1331,7 +1331,7 @@ public class MediaDataController extends BaseController {
             SQLiteDatabase database = getMessagesStorage().getDatabase();
             database.executeFast("DELETE FROM web_recent_v3 WHERE id = '" + tLRPC$Document.f865id + "' AND type = " + i2).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1389,7 +1389,7 @@ public class MediaDataController extends BaseController {
             SQLiteDatabase database = getMessagesStorage().getDatabase();
             database.executeFast("DELETE FROM web_recent_v3 WHERE id = '" + tLRPC$Document.f865id + "' AND type = 2").stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1456,7 +1456,7 @@ public class MediaDataController extends BaseController {
             SQLiteDatabase database = getMessagesStorage().getDatabase();
             database.executeFast("DELETE FROM web_recent_v3 WHERE id = '" + tLRPC$Document.f865id + "' AND type = 2").stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1704,7 +1704,7 @@ public class MediaDataController extends BaseController {
                 }
             });
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -1759,7 +1759,7 @@ public class MediaDataController extends BaseController {
             nativeByteBuffer.reuse();
             executeFast.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1990,7 +1990,7 @@ public class MediaDataController extends BaseController {
                 }
             });
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -2128,7 +2128,7 @@ public class MediaDataController extends BaseController {
                 database.commitTransaction();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -2358,7 +2358,7 @@ public class MediaDataController extends BaseController {
                     }
                 });
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
             return;
         }
@@ -2446,7 +2446,7 @@ public class MediaDataController extends BaseController {
             executeFast2.step();
             executeFast2.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -2947,7 +2947,7 @@ public class MediaDataController extends BaseController {
             tLRPC$TL_messages_stickerSet = tLRPC$TL_messages_stickerSet3;
             sQLiteCursor = queryFinalized;
             try {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
                 tLRPC$TL_messages_stickerSet2 = tLRPC$TL_messages_stickerSet;
                 i = 0;
                 processLoadedDiceStickers(str, z, tLRPC$TL_messages_stickerSet2, true, i);
@@ -3068,7 +3068,7 @@ public class MediaDataController extends BaseController {
                 executeFast2.dispose();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -3224,7 +3224,7 @@ public class MediaDataController extends BaseController {
             }
         } catch (Throwable th) {
             try {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             } finally {
                 if (sQLiteCursor != null) {
                     sQLiteCursor.dispose();
@@ -3361,7 +3361,7 @@ public class MediaDataController extends BaseController {
             executeFast2.step();
             executeFast2.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -3582,7 +3582,7 @@ public class MediaDataController extends BaseController {
                 }
             });
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
             if (runnable != null) {
                 runnable.run();
             }
@@ -4450,7 +4450,7 @@ public class MediaDataController extends BaseController {
             if (tLRPC$messages_Messages != null && (arrayList = tLRPC$messages_Messages.messages) != null) {
                 i9 = arrayList.size();
             }
-            FileLog.m34d("process load media messagesCount " + i9 + " did " + j + " topicId " + i5 + " count = " + i + " max_id=" + i2 + " min_id=" + i3 + " type = " + i4 + " cache = " + i6 + " classGuid = " + i7);
+            FileLog.m35d("process load media messagesCount " + i9 + " did " + j + " topicId " + i5 + " count = " + i + " max_id=" + i2 + " min_id=" + i3 + " type = " + i4 + " cache = " + i6 + " classGuid = " + i7);
         }
         if (i6 != 0 && (((tLRPC$messages_Messages.messages.isEmpty() && i3 == 0) || (tLRPC$messages_Messages.messages.size() <= 1 && i3 != 0)) && !DialogObject.isEncryptedDialog(j))) {
             if (i6 == 2) {
@@ -4555,7 +4555,7 @@ public class MediaDataController extends BaseController {
             executeFast.step();
             executeFast.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -4600,7 +4600,7 @@ public class MediaDataController extends BaseController {
             }
             processLoadedMediaCount(i4, j, i, i2, i3, true, i5);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -4617,7 +4617,6 @@ public class MediaDataController extends BaseController {
         final long val$uid;
 
         RunnableC10541(int i, long j, int i2, int i3, int i4, int i5, int i6, int i7, boolean z, int i8) {
-            MediaDataController.this = r1;
             this.val$count = i;
             this.val$uid = j;
             this.val$min_id = i2;
@@ -4814,7 +4813,7 @@ public class MediaDataController extends BaseController {
                     tLRPC$TL_messages_messages.messages.clear();
                     tLRPC$TL_messages_messages.chats.clear();
                     tLRPC$TL_messages_messages.users.clear();
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     final int i15 = this.val$classGuid;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
@@ -4925,7 +4924,7 @@ public class MediaDataController extends BaseController {
                     }
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return;
             }
         }
@@ -4996,7 +4995,7 @@ public class MediaDataController extends BaseController {
                     }
                 } catch (Exception e) {
                     e = e;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -5023,7 +5022,7 @@ public class MediaDataController extends BaseController {
                                 arrayList3.add(0, new MessageObject(this.currentAccount, TLdeserialize, false, true));
                             } catch (Exception e2) {
                                 e = e2;
-                                FileLog.m31e(e);
+                                FileLog.m32e(e);
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
@@ -5168,7 +5167,7 @@ public class MediaDataController extends BaseController {
                 }
             });
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5271,7 +5270,7 @@ public class MediaDataController extends BaseController {
                 }
             });
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5412,7 +5411,7 @@ public class MediaDataController extends BaseController {
                 d = i - getUserConfig().ratingLoadTime;
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         final double d2 = d;
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -5482,7 +5481,7 @@ public class MediaDataController extends BaseController {
             executeFast.step();
             executeFast.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5499,7 +5498,7 @@ public class MediaDataController extends BaseController {
         try {
             getMessagesStorage().getDatabase().executeFast(String.format(Locale.US, "DELETE FROM chat_hints WHERE did = %d AND type = %d", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5678,7 +5677,7 @@ public class MediaDataController extends BaseController {
             executeFast.dispose();
             getMessagesStorage().getDatabase().commitTransaction();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5823,7 +5822,7 @@ public class MediaDataController extends BaseController {
                 runnable.run();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5947,7 +5946,7 @@ public class MediaDataController extends BaseController {
                 size2 = i;
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -6062,7 +6061,7 @@ public class MediaDataController extends BaseController {
             }
             getMessagesStorage().getDatabase().commitTransaction();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -6629,7 +6628,7 @@ public class MediaDataController extends BaseController {
                 edit.putString(str, Utilities.bytesToHex(serializedData.toByteArray()));
                 serializedData.cleanup();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         SparseArray<TLRPC$Message> sparseArray4 = this.draftMessages.get(j);
@@ -6728,7 +6727,7 @@ public class MediaDataController extends BaseController {
                 });
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -6902,7 +6901,7 @@ public class MediaDataController extends BaseController {
                 });
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -6953,7 +6952,7 @@ public class MediaDataController extends BaseController {
                 });
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -6989,7 +6988,7 @@ public class MediaDataController extends BaseController {
                 }
             });
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -7032,7 +7031,7 @@ public class MediaDataController extends BaseController {
             nativeByteBuffer.reuse();
             executeFast.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -7068,7 +7067,7 @@ public class MediaDataController extends BaseController {
             nativeByteBuffer.reuse();
             executeFast.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -7329,7 +7328,7 @@ public class MediaDataController extends BaseController {
                 }
             });
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -7405,7 +7404,7 @@ public class MediaDataController extends BaseController {
                 }
             });
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -7521,7 +7520,7 @@ public class MediaDataController extends BaseController {
                     z4 = true;
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         if (!z4) {
@@ -7731,7 +7730,7 @@ public class MediaDataController extends BaseController {
                 }
                 ChatThemeController.chatThemeQueue.postRunnable(new RunnableC10552(arrayList));
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
         }
     }
@@ -7740,7 +7739,6 @@ public class MediaDataController extends BaseController {
         final ArrayList val$previewItems;
 
         RunnableC10552(ArrayList arrayList) {
-            MediaDataController.this = r1;
             this.val$previewItems = arrayList;
         }
 
@@ -7799,7 +7797,6 @@ public class MediaDataController extends BaseController {
         final ArrayList val$previewItems;
 
         RunnableC10563(ArrayList arrayList, int i) {
-            MediaDataController.this = r1;
             this.val$previewItems = arrayList;
             this.val$currentAccount = i;
         }
@@ -7976,7 +7973,7 @@ public class MediaDataController extends BaseController {
             nativeByteBuffer.reuse();
             executeFast.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         this.emojiStatusesFetching[i] = false;
     }
@@ -8091,7 +8088,7 @@ public class MediaDataController extends BaseController {
                 try {
                     arrayList.add(TLRPC$Reaction.TLdeserialize(serializedData, serializedData.readInt32(true), true));
                 } catch (Throwable th) {
-                    FileLog.m31e(th);
+                    FileLog.m32e(th);
                 }
             }
         }

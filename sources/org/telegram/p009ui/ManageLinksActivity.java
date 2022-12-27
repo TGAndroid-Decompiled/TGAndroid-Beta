@@ -158,7 +158,7 @@ public class ManageLinksActivity extends BaseFragment {
         }
     };
     boolean loadRevoked = false;
-    private final LinkEditActivity.Callback linkEditActivityCallback = new C36016();
+    private final LinkEditActivity.Callback linkEditActivityCallback = new C36046();
     int animationIndex = -1;
 
     @Override
@@ -166,14 +166,14 @@ public class ManageLinksActivity extends BaseFragment {
         return true;
     }
 
-    public static class EmptyView extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
+    private static class EmptyView extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
         private final int currentAccount;
         private BackupImageView stickerView;
 
         public EmptyView(Context context) {
             super(context);
             this.currentAccount = UserConfig.selectedAccount;
-            setPadding(0, AndroidUtilities.m35dp(12.0f), 0, AndroidUtilities.m35dp(12.0f));
+            setPadding(0, AndroidUtilities.m36dp(12.0f), 0, AndroidUtilities.m36dp(12.0f));
             setOrientation(1);
             BackupImageView backupImageView = new BackupImageView(context);
             this.stickerView = backupImageView;
@@ -745,7 +745,6 @@ public class ManageLinksActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
-            ManageLinksActivity.this = r1;
             this.mContext = context;
         }
 
@@ -969,7 +968,7 @@ public class ManageLinksActivity extends BaseFragment {
             DiffCallback saveListState = saveListState();
             this.revokedInvites.add(0, tLRPC$TL_chatInviteExported);
             updateRecyclerViewAnimated(saveListState);
-            BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.linkbroken, LocaleController.getString("InviteRevokedHint", C1072R.string.InviteRevokedHint)).show();
+            BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.linkbroken, LocaleController.getString("InviteRevokedHint", C1072R.string.InviteRevokedHint)).show();
         }
     }
 
@@ -997,7 +996,6 @@ public class ManageLinksActivity extends BaseFragment {
 
         public LinkCell(Context context) {
             super(context);
-            ManageLinksActivity.this = r9;
             this.paint = new Paint(1);
             this.paint2 = new Paint(1);
             this.rectF = new RectF();
@@ -1051,7 +1049,7 @@ public class ManageLinksActivity extends BaseFragment {
                     ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.invite.link));
                     BulletinFactory.createCopyLinkBulletin(ManageLinksActivity.this).show();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             } else if (intValue == 1) {
                 try {
@@ -1063,7 +1061,7 @@ public class ManageLinksActivity extends BaseFragment {
                     intent.putExtra("android.intent.extra.TEXT", this.invite.link);
                     ManageLinksActivity.this.startActivityForResult(Intent.createChooser(intent, LocaleController.getString("InviteToGroupByLink", C1072R.string.InviteToGroupByLink)), 500);
                 } catch (Exception e2) {
-                    FileLog.m31e(e2);
+                    FileLog.m32e(e2);
                 }
             } else if (intValue == 2) {
                 ManageLinksActivity.this.editLink(this.invite);
@@ -1107,8 +1105,8 @@ public class ManageLinksActivity extends BaseFragment {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(64.0f), 1073741824));
-            this.paint2.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(64.0f), 1073741824));
+            this.paint2.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         }
 
         @Override
@@ -1186,7 +1184,7 @@ public class ManageLinksActivity extends BaseFragment {
             if (tLRPC$TL_chatInviteExported.permanent && !tLRPC$TL_chatInviteExported.revoked) {
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(formatPluralString);
                 DotDividerSpan dotDividerSpan = new DotDividerSpan();
-                dotDividerSpan.setTopPadding(AndroidUtilities.m35dp(1.5f));
+                dotDividerSpan.setTopPadding(AndroidUtilities.m36dp(1.5f));
                 spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(dotDividerSpan, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
                 spannableStringBuilder2.append((CharSequence) LocaleController.getString("Permanent", C1072R.string.Permanent));
                 this.subtitleView.setText(spannableStringBuilder2);
@@ -1196,7 +1194,7 @@ public class ManageLinksActivity extends BaseFragment {
                 }
                 SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(formatPluralString);
                 DotDividerSpan dotDividerSpan2 = new DotDividerSpan();
-                dotDividerSpan2.setTopPadding(AndroidUtilities.m35dp(1.5f));
+                dotDividerSpan2.setTopPadding(AndroidUtilities.m36dp(1.5f));
                 spannableStringBuilder3.append((CharSequence) "  .  ").setSpan(dotDividerSpan2, spannableStringBuilder3.length() - 3, spannableStringBuilder3.length() - 2, 0);
                 boolean z = tLRPC$TL_chatInviteExported.revoked;
                 if (z || (i3 = tLRPC$TL_chatInviteExported.usage_limit) <= 0 || tLRPC$TL_chatInviteExported.usage < i3) {
@@ -1215,7 +1213,7 @@ public class ManageLinksActivity extends BaseFragment {
             } else if (tLRPC$TL_chatInviteExported.expire_date > 0) {
                 SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(formatPluralString);
                 DotDividerSpan dotDividerSpan3 = new DotDividerSpan();
-                dotDividerSpan3.setTopPadding(AndroidUtilities.m35dp(1.5f));
+                dotDividerSpan3.setTopPadding(AndroidUtilities.m36dp(1.5f));
                 spannableStringBuilder4.append((CharSequence) "  .  ").setSpan(dotDividerSpan3, spannableStringBuilder4.length() - 3, spannableStringBuilder4.length() - 2, 0);
                 long currentTimeMillis = (tLRPC$TL_chatInviteExported.expire_date * 1000) - (System.currentTimeMillis() + (ManageLinksActivity.this.timeDif * 1000));
                 if (currentTimeMillis < 0) {
@@ -1325,14 +1323,13 @@ public class ManageLinksActivity extends BaseFragment {
                 }
             }
             if (getParentActivity() != null) {
-                BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.linkbroken, LocaleController.getString("InviteRevokedHint", C1072R.string.InviteRevokedHint)).show();
+                BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.linkbroken, LocaleController.getString("InviteRevokedHint", C1072R.string.InviteRevokedHint)).show();
             }
         }
     }
 
-    public class C36016 implements LinkEditActivity.Callback {
-        C36016() {
-            ManageLinksActivity.this = r1;
+    public class C36046 implements LinkEditActivity.Callback {
+        C36046() {
         }
 
         @Override
@@ -1341,7 +1338,7 @@ public class ManageLinksActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ManageLinksActivity.C36016.this.lambda$onLinkCreated$0(tLObject);
+                        ManageLinksActivity.C36046.this.lambda$onLinkCreated$0(tLObject);
                     }
                 }, 200L);
             }
@@ -1422,7 +1419,6 @@ public class ManageLinksActivity extends BaseFragment {
         int oldRowCount;
 
         private DiffCallback() {
-            ManageLinksActivity.this = r1;
             this.oldPositionToItem = new SparseIntArray();
             this.newPositionToItem = new SparseIntArray();
             this.oldLinks = new ArrayList<>();

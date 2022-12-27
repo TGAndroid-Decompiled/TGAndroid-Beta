@@ -291,7 +291,6 @@ public class GoogleMapsProvider implements IMapsProvider {
             private Marker marker;
 
             private GoogleMarker(Marker marker) {
-                GoogleMapImpl.this = r1;
                 this.marker = marker;
             }
 
@@ -342,7 +341,6 @@ public class GoogleMapsProvider implements IMapsProvider {
             private Circle circle;
 
             private GoogleCircle(Circle circle) {
-                GoogleMapImpl.this = r1;
                 this.circle = circle;
             }
 
@@ -564,7 +562,6 @@ public class GoogleMapsProvider implements IMapsProvider {
         public class C10281 extends MapView {
             C10281(Context context) {
                 super(context);
-                GoogleMapView.this = r1;
             }
 
             @Override

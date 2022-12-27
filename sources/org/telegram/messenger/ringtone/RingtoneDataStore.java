@@ -45,7 +45,7 @@ public class RingtoneDataStore {
             queryHash = sharedPreferences.getLong("hash", 0L);
             lastReloadTimeMs = sharedPreferences.getLong("lastReload", 0L);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -357,7 +357,7 @@ public class RingtoneDataStore {
                     return this.userRingtones.get(i).document;
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return null;
             }
         }

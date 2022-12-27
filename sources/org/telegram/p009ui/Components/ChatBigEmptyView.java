@@ -26,8 +26,8 @@ public class ChatBigEmptyView extends LinearLayout {
         this.textViews = new ArrayList<>();
         this.imageViews = new ArrayList<>();
         this.resourcesProvider = resourcesProvider;
-        setBackground(Theme.createServiceDrawable(AndroidUtilities.m35dp(18.0f), this, view, getThemedPaint("paintChatActionBackground")));
-        setPadding(AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(12.0f));
+        setBackground(Theme.createServiceDrawable(AndroidUtilities.m36dp(18.0f), this, view, getThemedPaint("paintChatActionBackground")));
+        setPadding(AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(12.0f));
         setOrientation(1);
         if (i == 0) {
             TextView textView = new TextView(context);
@@ -35,7 +35,7 @@ public class ChatBigEmptyView extends LinearLayout {
             textView.setTextSize(1, 15.0f);
             this.statusTextView.setTextColor(getThemedColor("chat_serviceText"));
             this.statusTextView.setGravity(1);
-            this.statusTextView.setMaxWidth(AndroidUtilities.m35dp(210.0f));
+            this.statusTextView.setMaxWidth(AndroidUtilities.m36dp(210.0f));
             this.textViews.add(this.statusTextView);
             addView(this.statusTextView, LayoutHelper.createLinear(-2, -2, 49));
         } else if (i == 1) {
@@ -44,7 +44,7 @@ public class ChatBigEmptyView extends LinearLayout {
             textView2.setTextSize(1, 15.0f);
             this.statusTextView.setTextColor(getThemedColor("chat_serviceText"));
             this.statusTextView.setGravity(1);
-            this.statusTextView.setMaxWidth(AndroidUtilities.m35dp(210.0f));
+            this.statusTextView.setMaxWidth(AndroidUtilities.m36dp(210.0f));
             this.textViews.add(this.statusTextView);
             addView(this.statusTextView, LayoutHelper.createLinear(-2, -2, 49));
         } else {
@@ -69,7 +69,7 @@ public class ChatBigEmptyView extends LinearLayout {
         }
         textView3.setTextColor(getThemedColor("chat_serviceText"));
         this.textViews.add(textView3);
-        textView3.setMaxWidth(AndroidUtilities.m35dp(260.0f));
+        textView3.setMaxWidth(AndroidUtilities.m36dp(260.0f));
         if (i != 2) {
             i2 = LocaleController.isRTL ? 5 : 3;
         } else {
@@ -95,7 +95,7 @@ public class ChatBigEmptyView extends LinearLayout {
             textView4.setTextColor(getThemedColor("chat_serviceText"));
             this.textViews.add(textView4);
             textView4.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            textView4.setMaxWidth(AndroidUtilities.m35dp(260.0f));
+            textView4.setMaxWidth(AndroidUtilities.m36dp(260.0f));
             if (i3 != 0) {
                 if (i3 != 1) {
                     if (i3 != 2) {

@@ -74,7 +74,7 @@ public class ShareActivity extends Activity {
             });
             this.visibleDialog.show();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             finish();
         }
     }
@@ -97,7 +97,7 @@ public class ShareActivity extends Activity {
             this.visibleDialog.dismiss();
             this.visibleDialog = null;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 }

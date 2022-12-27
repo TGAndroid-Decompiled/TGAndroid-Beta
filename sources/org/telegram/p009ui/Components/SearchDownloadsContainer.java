@@ -523,7 +523,6 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
 
     public class DownloadsAdapter extends RecyclerListView.SelectionAdapter {
         private DownloadsAdapter() {
-            SearchDownloadsContainer.this = r1;
         }
 
         @Override
@@ -609,22 +608,22 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         textView2.setText(LocaleController.formatString("DownloadedFilesMessage", C1072R.string.DownloadedFilesMessage, new Object[0]));
         linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
         TextView textView3 = new TextView(parentActivity);
-        textView3.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView3.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         textView3.setGravity(17);
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView3.setText(LocaleController.getString("ManageDeviceStorage", C1072R.string.ManageDeviceStorage));
         textView3.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-        textView3.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("featuredStickers_addButton"), ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), 120)));
+        textView3.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), Theme.getColor("featuredStickers_addButton"), ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), 120)));
         linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
         TextView textView4 = new TextView(parentActivity);
-        textView4.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView4.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         textView4.setGravity(17);
         textView4.setTextSize(1, 14.0f);
         textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView4.setText(LocaleController.getString("ClearDownloadsList", C1072R.string.ClearDownloadsList));
         textView4.setTextColor(Theme.getColor("featuredStickers_addButton"));
-        textView4.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor("featuredStickers_addButton"), 120)));
+        textView4.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor("featuredStickers_addButton"), 120)));
         linearLayout.addView(textView4, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 0.0f, 16.0f, 16.0f));
         NestedScrollView nestedScrollView = new NestedScrollView(parentActivity);
         nestedScrollView.addView(linearLayout);
@@ -720,7 +719,6 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         }
 
         public TouchHelperCallback() {
-            SearchDownloadsContainer.this = r1;
         }
 
         @Override

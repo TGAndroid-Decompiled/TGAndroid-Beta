@@ -262,17 +262,16 @@ public final class FloatingToolbar {
         }
 
         public FloatingToolbarPopup(Context context, View view) {
-            FloatingToolbar.this = r5;
             this.mParent = view;
             this.mContext = context;
-            ViewGroup createContentContainer = r5.createContentContainer(context);
+            ViewGroup createContentContainer = FloatingToolbar.this.createContentContainer(context);
             this.mContentContainer = createContentContainer;
             this.mPopupWindow = FloatingToolbar.createPopupWindow(createContentContainer);
-            this.mMarginHorizontal = AndroidUtilities.m35dp(16.0f);
-            this.mMarginVertical = AndroidUtilities.m35dp(8.0f);
-            this.mLineHeight = AndroidUtilities.m35dp(48.0f);
-            int m35dp = AndroidUtilities.m35dp(8.0f);
-            this.mIconTextSpacing = m35dp;
+            this.mMarginHorizontal = AndroidUtilities.m36dp(16.0f);
+            this.mMarginVertical = AndroidUtilities.m36dp(8.0f);
+            this.mLineHeight = AndroidUtilities.m36dp(48.0f);
+            int m36dp = AndroidUtilities.m36dp(8.0f);
+            this.mIconTextSpacing = m36dp;
             this.mLogAccelerateInterpolator = new LogAccelerateInterpolator();
             this.mFastOutSlowInInterpolator = AnimationUtils.loadInterpolator(context, 17563661);
             this.mLinearOutSlowInInterpolator = AnimationUtils.loadInterpolator(context, 17563662);
@@ -293,7 +292,7 @@ public final class FloatingToolbar {
             this.mOverflowButton = createOverflowButton;
             this.mOverflowButtonSize = measure(createOverflowButton);
             this.mMainPanel = createMainPanel();
-            this.mOverflowPanelViewHelper = new OverflowPanelViewHelper(context, m35dp);
+            this.mOverflowPanelViewHelper = new OverflowPanelViewHelper(context, m36dp);
             this.mOverflowPanel = createOverflowPanel();
             Animation.AnimationListener createOverflowAnimationListener = createOverflowAnimationListener();
             AnimationSet animationSet = new AnimationSet(true);
@@ -303,13 +302,12 @@ public final class FloatingToolbar {
             this.mCloseOverflowAnimation = animationSet2;
             animationSet2.setAnimationListener(createOverflowAnimationListener);
             this.mShowAnimation = FloatingToolbar.createEnterAnimation(createContentContainer);
-            this.mDismissAnimation = FloatingToolbar.createExitAnimation(createContentContainer, ImageReceiver.DEFAULT_CROSSFADE_DURATION, new C12113(r5));
-            this.mHideAnimation = FloatingToolbar.createExitAnimation(createContentContainer, 0, new C12124(r5));
+            this.mDismissAnimation = FloatingToolbar.createExitAnimation(createContentContainer, ImageReceiver.DEFAULT_CROSSFADE_DURATION, new C12113(FloatingToolbar.this));
+            this.mHideAnimation = FloatingToolbar.createExitAnimation(createContentContainer, 0, new C12124(FloatingToolbar.this));
         }
 
         public class C12113 extends AnimatorListenerAdapter {
             C12113(FloatingToolbar floatingToolbar) {
-                FloatingToolbarPopup.this = r1;
             }
 
             @Override
@@ -330,7 +328,6 @@ public final class FloatingToolbar {
 
         public class C12124 extends AnimatorListenerAdapter {
             C12124(FloatingToolbar floatingToolbar) {
-                FloatingToolbarPopup.this = r1;
             }
 
             @Override
@@ -736,9 +733,9 @@ public final class FloatingToolbar {
 
         private int getAdjustedToolbarWidth(int i) {
             refreshViewPort();
-            int width = this.mViewPortOnScreen.width() - (AndroidUtilities.m35dp(16.0f) * 2);
+            int width = this.mViewPortOnScreen.width() - (AndroidUtilities.m36dp(16.0f) * 2);
             if (i <= 0) {
-                i = AndroidUtilities.m35dp(400.0f);
+                i = AndroidUtilities.m36dp(400.0f);
             }
             return Math.min(i, width);
         }
@@ -923,8 +920,8 @@ public final class FloatingToolbar {
         private ImageButton createOverflowButton() {
             int themedColor;
             final ImageButton imageButton = new ImageButton(this.mContext);
-            imageButton.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(48.0f)));
-            imageButton.setPaddingRelative(AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(12.0f));
+            imageButton.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(48.0f)));
+            imageButton.setPaddingRelative(AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(12.0f));
             imageButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             imageButton.setImageDrawable(this.mOverflow);
             if (FloatingToolbar.this.currentStyle == 0) {
@@ -1000,7 +997,6 @@ public final class FloatingToolbar {
             }
 
             animationAnimation$AnimationListenerC120913() {
-                FloatingToolbarPopup.this = r1;
             }
 
             @Override
@@ -1069,7 +1065,7 @@ public final class FloatingToolbar {
                 setOutlineProvider(new ViewOutlineProvider(this, floatingToolbarPopup) {
                     @Override
                     public void getOutline(View view, Outline outline) {
-                        outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f));
+                        outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f));
                     }
                 });
                 setClipToOutline(true);
@@ -1094,7 +1090,7 @@ public final class FloatingToolbar {
             }
         }
 
-        public final class LogAccelerateInterpolator implements Interpolator {
+        private final class LogAccelerateInterpolator implements Interpolator {
             private final float LOGS_SCALE;
 
             private LogAccelerateInterpolator(FloatingToolbarPopup floatingToolbarPopup) {
@@ -1114,11 +1110,10 @@ public final class FloatingToolbar {
         public final class OverflowPanelViewHelper {
             private final Context mContext;
             private final int mIconTextSpacing;
-            private final int mSidePadding = AndroidUtilities.m35dp(18.0f);
+            private final int mSidePadding = AndroidUtilities.m36dp(18.0f);
             private final View mCalculator = createMenuButton(null);
 
             public OverflowPanelViewHelper(Context context, int i) {
-                FloatingToolbarPopup.this = r1;
                 this.mContext = context;
                 this.mIconTextSpacing = i;
             }
@@ -1152,9 +1147,9 @@ public final class FloatingToolbar {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
         linearLayout.setOrientation(0);
-        linearLayout.setMinimumWidth(AndroidUtilities.m35dp(48.0f));
-        linearLayout.setMinimumHeight(AndroidUtilities.m35dp(48.0f));
-        linearLayout.setPaddingRelative(AndroidUtilities.m35dp(16.0f), 0, AndroidUtilities.m35dp(16.0f), 0);
+        linearLayout.setMinimumWidth(AndroidUtilities.m36dp(48.0f));
+        linearLayout.setMinimumHeight(AndroidUtilities.m36dp(48.0f));
+        linearLayout.setPaddingRelative(AndroidUtilities.m36dp(16.0f), 0, AndroidUtilities.m36dp(16.0f), 0);
         TextView textView = new TextView(context);
         textView.setGravity(17);
         textView.setSingleLine(true);
@@ -1179,8 +1174,8 @@ public final class FloatingToolbar {
         } else {
             linearLayout.setBackgroundDrawable(Theme.getSelectorDrawable(color, false));
         }
-        textView.setPaddingRelative(AndroidUtilities.m35dp(11.0f), 0, 0, 0);
-        linearLayout.addView(textView, new LinearLayout.LayoutParams(-2, AndroidUtilities.m35dp(48.0f)));
+        textView.setPaddingRelative(AndroidUtilities.m36dp(11.0f), 0, 0, 0);
+        linearLayout.addView(textView, new LinearLayout.LayoutParams(-2, AndroidUtilities.m36dp(48.0f)));
         if (menuItem != null) {
             updateMenuItemButton(linearLayout, menuItem, i);
         }
@@ -1202,19 +1197,19 @@ public final class FloatingToolbar {
     public ViewGroup createContentContainer(Context context) {
         RelativeLayout relativeLayout = new RelativeLayout(context);
         ViewGroup.MarginLayoutParams marginLayoutParams = new ViewGroup.MarginLayoutParams(-2, -2);
-        int m35dp = AndroidUtilities.m35dp(20.0f);
-        marginLayoutParams.rightMargin = m35dp;
-        marginLayoutParams.topMargin = m35dp;
-        marginLayoutParams.leftMargin = m35dp;
-        marginLayoutParams.bottomMargin = m35dp;
+        int m36dp = AndroidUtilities.m36dp(20.0f);
+        marginLayoutParams.rightMargin = m36dp;
+        marginLayoutParams.topMargin = m36dp;
+        marginLayoutParams.leftMargin = m36dp;
+        marginLayoutParams.bottomMargin = m36dp;
         relativeLayout.setLayoutParams(marginLayoutParams);
-        relativeLayout.setElevation(AndroidUtilities.m35dp(2.0f));
+        relativeLayout.setElevation(AndroidUtilities.m36dp(2.0f));
         relativeLayout.setFocusable(true);
         relativeLayout.setFocusableInTouchMode(true);
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(0);
-        float m35dp2 = AndroidUtilities.m35dp(6.0f);
-        gradientDrawable.setCornerRadii(new float[]{m35dp2, m35dp2, m35dp2, m35dp2, m35dp2, m35dp2, m35dp2, m35dp2});
+        float m36dp2 = AndroidUtilities.m36dp(6.0f);
+        gradientDrawable.setCornerRadii(new float[]{m36dp2, m36dp2, m36dp2, m36dp2, m36dp2, m36dp2, m36dp2, m36dp2});
         int i = this.currentStyle;
         if (i == 0) {
             gradientDrawable.setColor(getThemedColor("dialogBackground"));

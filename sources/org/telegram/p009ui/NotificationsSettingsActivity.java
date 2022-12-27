@@ -350,7 +350,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             }
             NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) view;
             boolean isGlobalNotificationsEnabled = getNotificationsController().isGlobalNotificationsEnabled(i3);
-            if ((LocaleController.isRTL && f <= AndroidUtilities.m35dp(76.0f)) || (!LocaleController.isRTL && f >= view.getMeasuredWidth() - AndroidUtilities.m35dp(76.0f))) {
+            if ((LocaleController.isRTL && f <= AndroidUtilities.m36dp(76.0f)) || (!LocaleController.isRTL && f >= view.getMeasuredWidth() - AndroidUtilities.m36dp(76.0f))) {
                 getNotificationsController().setGlobalNotificationsEnabled(i3, !isGlobalNotificationsEnabled ? 0 : ConnectionsManager.DEFAULT_DATACENTER_ID);
                 showExceptionsAlert(i);
                 notificationsCheckCell.setChecked(!isGlobalNotificationsEnabled, 0);
@@ -379,7 +379,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
                     intent.putExtra("android.intent.extra.ringtone.EXISTING_URI", parcelable);
                     startActivityForResult(intent, i);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             } else if (i == this.resetNotificationsRow) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
@@ -699,7 +699,6 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         private Context mContext;
 
         public ListAdapter(Context context) {
-            NotificationsSettingsActivity.this = r1;
             this.mContext = context;
         }
 

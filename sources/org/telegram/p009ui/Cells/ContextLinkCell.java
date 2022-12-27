@@ -118,8 +118,8 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     public ContextLinkCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.currentAccount = UserConfig.selectedAccount;
-        this.titleY = AndroidUtilities.m35dp(7.0f);
-        this.descriptionY = AndroidUtilities.m35dp(27.0f);
+        this.titleY = AndroidUtilities.m36dp(7.0f);
+        this.descriptionY = AndroidUtilities.m36dp(27.0f);
         this.imageScale = 1.0f;
         this.IMAGE_SCALE = new AnimationProperties.FloatProperty<ContextLinkCell>("animationValue") {
             @Override
@@ -381,7 +381,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         }
         int x = (int) motionEvent.getX();
         int y = (int) motionEvent.getY();
-        AndroidUtilities.m35dp(48.0f);
+        AndroidUtilities.m36dp(48.0f);
         int i = this.documentAttachType;
         boolean z = true;
         if (i == 3 || i == 5) {
@@ -480,21 +480,21 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         }
         if (this.titleLayout != null) {
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.titleY);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.titleY);
             this.titleLayout.draw(canvas);
             canvas.restore();
         }
         if (this.descriptionLayout != null) {
             Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor("windowBackgroundWhiteGrayText2", this.resourcesProvider));
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
             this.descriptionLayout.draw(canvas);
             canvas.restore();
         }
         if (this.linkLayout != null) {
             Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor("windowBackgroundWhiteLinkText", this.resourcesProvider));
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY);
             this.linkLayout.draw(canvas);
             canvas.restore();
         }
@@ -513,9 +513,9 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 if (tLRPC$BotInlineResult != null && tLRPC$BotInlineResult.type.equals("file")) {
                     int intrinsicWidth = Theme.chat_inlineResultFile.getIntrinsicWidth();
                     int intrinsicHeight = Theme.chat_inlineResultFile.getIntrinsicHeight();
-                    int imageX = (int) (this.linkImageView.getImageX() + ((AndroidUtilities.m35dp(52.0f) - intrinsicWidth) / 2));
-                    int imageY = (int) (this.linkImageView.getImageY() + ((AndroidUtilities.m35dp(52.0f) - intrinsicHeight) / 2));
-                    canvas.drawRect(this.linkImageView.getImageX(), this.linkImageView.getImageY(), this.linkImageView.getImageX() + AndroidUtilities.m35dp(52.0f), this.linkImageView.getImageY() + AndroidUtilities.m35dp(52.0f), LetterDrawable.paint);
+                    int imageX = (int) (this.linkImageView.getImageX() + ((AndroidUtilities.m36dp(52.0f) - intrinsicWidth) / 2));
+                    int imageY = (int) (this.linkImageView.getImageY() + ((AndroidUtilities.m36dp(52.0f) - intrinsicHeight) / 2));
+                    canvas.drawRect(this.linkImageView.getImageX(), this.linkImageView.getImageY(), this.linkImageView.getImageX() + AndroidUtilities.m36dp(52.0f), this.linkImageView.getImageY() + AndroidUtilities.m36dp(52.0f), LetterDrawable.paint);
                     Theme.chat_inlineResultFile.setBounds(imageX, imageY, intrinsicWidth + imageX, intrinsicHeight + imageY);
                     Theme.chat_inlineResultFile.draw(canvas);
                 } else {
@@ -523,9 +523,9 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                     if (tLRPC$BotInlineResult2 != null && (tLRPC$BotInlineResult2.type.equals(MediaStreamTrack.AUDIO_TRACK_KIND) || this.inlineResult.type.equals("voice"))) {
                         int intrinsicWidth2 = Theme.chat_inlineResultAudio.getIntrinsicWidth();
                         int intrinsicHeight2 = Theme.chat_inlineResultAudio.getIntrinsicHeight();
-                        int imageX2 = (int) (this.linkImageView.getImageX() + ((AndroidUtilities.m35dp(52.0f) - intrinsicWidth2) / 2));
-                        int imageY2 = (int) (this.linkImageView.getImageY() + ((AndroidUtilities.m35dp(52.0f) - intrinsicHeight2) / 2));
-                        canvas.drawRect(this.linkImageView.getImageX(), this.linkImageView.getImageY(), this.linkImageView.getImageX() + AndroidUtilities.m35dp(52.0f), this.linkImageView.getImageY() + AndroidUtilities.m35dp(52.0f), LetterDrawable.paint);
+                        int imageX2 = (int) (this.linkImageView.getImageX() + ((AndroidUtilities.m36dp(52.0f) - intrinsicWidth2) / 2));
+                        int imageY2 = (int) (this.linkImageView.getImageY() + ((AndroidUtilities.m36dp(52.0f) - intrinsicHeight2) / 2));
+                        canvas.drawRect(this.linkImageView.getImageX(), this.linkImageView.getImageY(), this.linkImageView.getImageX() + AndroidUtilities.m36dp(52.0f), this.linkImageView.getImageY() + AndroidUtilities.m36dp(52.0f), LetterDrawable.paint);
                         Theme.chat_inlineResultAudio.setBounds(imageX2, imageY2, intrinsicWidth2 + imageX2, intrinsicHeight2 + imageY2);
                         Theme.chat_inlineResultAudio.draw(canvas);
                     } else {
@@ -533,9 +533,9 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                         if (tLRPC$BotInlineResult3 != null && (tLRPC$BotInlineResult3.type.equals("venue") || this.inlineResult.type.equals("geo"))) {
                             int intrinsicWidth3 = Theme.chat_inlineResultLocation.getIntrinsicWidth();
                             int intrinsicHeight3 = Theme.chat_inlineResultLocation.getIntrinsicHeight();
-                            int imageX3 = (int) (this.linkImageView.getImageX() + ((AndroidUtilities.m35dp(52.0f) - intrinsicWidth3) / 2));
-                            int imageY3 = (int) (this.linkImageView.getImageY() + ((AndroidUtilities.m35dp(52.0f) - intrinsicHeight3) / 2));
-                            canvas.drawRect(this.linkImageView.getImageX(), this.linkImageView.getImageY(), this.linkImageView.getImageX() + AndroidUtilities.m35dp(52.0f), this.linkImageView.getImageY() + AndroidUtilities.m35dp(52.0f), LetterDrawable.paint);
+                            int imageX3 = (int) (this.linkImageView.getImageX() + ((AndroidUtilities.m36dp(52.0f) - intrinsicWidth3) / 2));
+                            int imageY3 = (int) (this.linkImageView.getImageY() + ((AndroidUtilities.m36dp(52.0f) - intrinsicHeight3) / 2));
+                            canvas.drawRect(this.linkImageView.getImageX(), this.linkImageView.getImageY(), this.linkImageView.getImageX() + AndroidUtilities.m36dp(52.0f), this.linkImageView.getImageY() + AndroidUtilities.m36dp(52.0f), LetterDrawable.paint);
                             Theme.chat_inlineResultLocation.setBounds(imageX3, imageY3, intrinsicWidth3 + imageX3, intrinsicHeight3 + imageY3);
                             Theme.chat_inlineResultLocation.draw(canvas);
                         } else {
@@ -599,13 +599,13 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         }
         if (this.needDivider && !this.mediaWebpage) {
             if (LocaleController.isRTL) {
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.m35dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.m36dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
             } else {
-                canvas.drawLine(AndroidUtilities.m35dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(AndroidUtilities.m36dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         }
         if (this.needShadow) {
-            Theme.chat_contextResult_shadowUnderSwitchDrawable.setBounds(0, 0, getMeasuredWidth(), AndroidUtilities.m35dp(3.0f));
+            Theme.chat_contextResult_shadowUnderSwitchDrawable.setBounds(0, 0, getMeasuredWidth(), AndroidUtilities.m36dp(3.0f));
             Theme.chat_contextResult_shadowUnderSwitchDrawable.draw(canvas);
         }
     }
@@ -635,7 +635,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             int i = this.resolveFileNameId;
             this.resolveFileNameId = i + 1;
             this.resolveFileNameId = i;
-            Utilities.searchQueue.postRunnable(new RunnableC13961(i, z));
+            Utilities.searchQueue.postRunnable(new RunnableC13981(i, z));
             this.radialProgress.setIcon(4, z, false);
         } else if (TextUtils.isEmpty(str)) {
             this.buttonState = -1;
@@ -684,19 +684,18 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         }
     }
 
-    public class RunnableC13961 implements Runnable {
+    public class RunnableC13981 implements Runnable {
         final boolean val$ifSame;
         final int val$localId;
 
-        RunnableC13961(int i, boolean z) {
-            ContextLinkCell.this = r1;
+        RunnableC13981(int i, boolean z) {
             this.val$localId = i;
             this.val$ifSame = z;
         }
 
         @Override
         public void run() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Cells.ContextLinkCell.RunnableC13961.run():void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Cells.ContextLinkCell.RunnableC13981.run():void");
         }
 
         public void lambda$run$0(int i, String str, File file, boolean z, boolean z2) {

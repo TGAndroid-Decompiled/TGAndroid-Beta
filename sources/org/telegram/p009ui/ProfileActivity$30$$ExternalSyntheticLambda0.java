@@ -13,6 +13,6 @@ public final class ProfileActivity$30$$ExternalSyntheticLambda0 implements Reque
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        ProfileActivity.C392530.lambda$onEmojiSelected$0(tLObject, tLRPC$TL_error);
+        ProfileActivity.C392830.lambda$onEmojiSelected$0(tLObject, tLRPC$TL_error);
     }
 }

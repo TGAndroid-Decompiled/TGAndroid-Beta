@@ -20,7 +20,7 @@ public interface ICustomTabsService extends IInterface {
             return (queryLocalInterface == null || !(queryLocalInterface instanceof ICustomTabsService)) ? new Proxy(iBinder) : (ICustomTabsService) queryLocalInterface;
         }
 
-        public static class Proxy implements ICustomTabsService {
+        private static class Proxy implements ICustomTabsService {
             private IBinder mRemote;
 
             Proxy(IBinder iBinder) {

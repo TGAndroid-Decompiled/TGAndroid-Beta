@@ -28,13 +28,13 @@ public class AudioTrackJNI {
         AudioTrack audioTrack = new AudioTrack(0, 48000, i3 == 1 ? 4 : 12, 2, getBufferSize(i4, 48000), 1);
         this.audioTrack = audioTrack;
         if (audioTrack.getState() != 1) {
-            VLog.m21w("Error initializing AudioTrack with 48k, trying 44.1k with resampling");
+            VLog.m22w("Error initializing AudioTrack with 48k, trying 44.1k with resampling");
             try {
                 this.audioTrack.release();
             } catch (Throwable unused) {
             }
             int bufferSize = getBufferSize(i4 * 6, 44100);
-            VLog.m27d("buffer size: " + bufferSize);
+            VLog.m28d("buffer size: " + bufferSize);
             this.audioTrack = new AudioTrack(0, 44100, i3 == 1 ? 4 : 12, 2, bufferSize, 1);
             this.needResampling = true;
         }
@@ -57,7 +57,7 @@ public class AudioTrackJNI {
             try {
                 thread.join();
             } catch (InterruptedException e) {
-                VLog.m24e(e);
+                VLog.m25e(e);
             }
             this.thread = null;
         }
@@ -111,7 +111,7 @@ public class AudioTrackJNI {
                         this.audioTrack.write(this.buffer, 0, 1920);
                     }
                 } catch (Exception e) {
-                    VLog.m24e(e);
+                    VLog.m25e(e);
                 }
                 if (!this.running) {
                     this.audioTrack.stop();
@@ -119,9 +119,9 @@ public class AudioTrackJNI {
                 }
                 continue;
             }
-            VLog.m23i("audiotrack thread exits");
+            VLog.m24i("audiotrack thread exits");
         } catch (Exception e2) {
-            VLog.m25e("error starting AudioTrack", e2);
+            VLog.m26e("error starting AudioTrack", e2);
         }
     }
 }

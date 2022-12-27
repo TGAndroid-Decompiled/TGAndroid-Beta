@@ -65,12 +65,12 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
             progressButton.setProgressColor(Theme.getColor("featuredStickers_buttonProgress"));
             progressButton.setBackgroundRoundRect(Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed"));
             addView(progressButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
-            int m35dp = AndroidUtilities.m35dp(60.0f);
+            int m36dp = AndroidUtilities.m36dp(60.0f);
             ProgressButton progressButton2 = new ProgressButton(context);
             this.deleteButton = progressButton2;
             progressButton2.setAllCaps(false);
-            progressButton2.setMinWidth(m35dp);
-            progressButton2.setMinimumWidth(m35dp);
+            progressButton2.setMinWidth(m36dp);
+            progressButton2.setMinimumWidth(m36dp);
             progressButton2.setTextSize(1, 14.0f);
             progressButton2.setTextColor(Theme.getColor("featuredStickers_removeButtonText"));
             progressButton2.setText(LocaleController.getString("StickersRemove", C1072R.string.StickersRemove));
@@ -126,7 +126,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
     }
 
     @Override

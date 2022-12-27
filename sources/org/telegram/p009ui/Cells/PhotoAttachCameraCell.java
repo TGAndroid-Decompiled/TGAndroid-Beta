@@ -36,12 +36,12 @@ public class PhotoAttachCameraCell extends FrameLayout {
         this.imageView.setImageResource(C1072R.C1073drawable.instant_camera);
         addView(this.imageView, LayoutHelper.createFrame(80, 80.0f));
         setFocusable(true);
-        this.itemSize = AndroidUtilities.m35dp(0.0f);
+        this.itemSize = AndroidUtilities.m36dp(0.0f);
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.m35dp(5.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.m35dp(5.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.m36dp(5.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.m36dp(5.0f), 1073741824));
     }
 
     public void setItemSize(int i) {

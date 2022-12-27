@@ -41,7 +41,7 @@ public class XiaomiUtilities {
             Class cls = Integer.TYPE;
             return ((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) ApplicationLoader.applicationContext.getSystemService("appops"), Integer.valueOf(i), Integer.valueOf(Process.myUid()), ApplicationLoader.applicationContext.getPackageName())).intValue() == 0;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return true;
         }
     }

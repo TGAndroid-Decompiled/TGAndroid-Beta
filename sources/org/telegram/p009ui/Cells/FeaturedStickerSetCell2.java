@@ -87,7 +87,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout {
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView3.setText(LocaleController.getString("StickersRemove", C1072R.string.StickersRemove));
         addView(textView3, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f));
-        PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.m35dp(4.0f), false);
+        PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.m36dp(4.0f), false);
         this.unlockButton = premiumButtonView;
         premiumButtonView.setIcon(C1072R.raw.unlock_icon);
         premiumButtonView.setButton(LocaleController.getString("Unlock", C1072R.string.Unlock), new View.OnClickListener() {
@@ -99,13 +99,13 @@ public class FeaturedStickerSetCell2 extends FrameLayout {
         premiumButtonView.setVisibility(8);
         try {
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) premiumButtonView.getIconView().getLayoutParams();
-            marginLayoutParams.leftMargin = AndroidUtilities.m35dp(1.0f);
-            marginLayoutParams.topMargin = AndroidUtilities.m35dp(1.0f);
-            int m35dp = AndroidUtilities.m35dp(20.0f);
-            marginLayoutParams.height = m35dp;
-            marginLayoutParams.width = m35dp;
-            ((ViewGroup.MarginLayoutParams) premiumButtonView.getTextView().getLayoutParams()).leftMargin = AndroidUtilities.m35dp(3.0f);
-            premiumButtonView.getChildAt(0).setPadding(AndroidUtilities.m35dp(8.0f), 0, AndroidUtilities.m35dp(8.0f), 0);
+            marginLayoutParams.leftMargin = AndroidUtilities.m36dp(1.0f);
+            marginLayoutParams.topMargin = AndroidUtilities.m36dp(1.0f);
+            int m36dp = AndroidUtilities.m36dp(20.0f);
+            marginLayoutParams.height = m36dp;
+            marginLayoutParams.width = m36dp;
+            ((ViewGroup.MarginLayoutParams) premiumButtonView.getTextView().getLayoutParams()).leftMargin = AndroidUtilities.m36dp(3.0f);
+            premiumButtonView.getChildAt(0).setPadding(AndroidUtilities.m36dp(8.0f), 0, AndroidUtilities.m36dp(8.0f), 0);
         } catch (Exception unused) {
         }
         addView(this.unlockButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 10.0f, 0.0f));
@@ -122,14 +122,14 @@ public class FeaturedStickerSetCell2 extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
         int measuredWidth = this.addButton.getMeasuredWidth();
         int measuredWidth2 = this.delButton.getMeasuredWidth();
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.delButton.getLayoutParams();
         if (measuredWidth2 < measuredWidth) {
-            layoutParams.rightMargin = AndroidUtilities.m35dp(14.0f) + ((measuredWidth - measuredWidth2) / 2);
+            layoutParams.rightMargin = AndroidUtilities.m36dp(14.0f) + ((measuredWidth - measuredWidth2) / 2);
         } else {
-            layoutParams.rightMargin = AndroidUtilities.m35dp(14.0f);
+            layoutParams.rightMargin = AndroidUtilities.m36dp(14.0f);
         }
         measureChildWithMargins(this.textView, i, measuredWidth, i2, 0);
     }
@@ -158,7 +158,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(71.0f), getHeight() - 1, getWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(71.0f) : 0), getHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(71.0f), getHeight() - 1, getWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(71.0f) : 0), getHeight() - 1, Theme.dividerPaint);
         }
     }
 

@@ -94,7 +94,6 @@ public class SharedLinkCell extends FrameLayout {
 
     public final class CheckForTap implements Runnable {
         private CheckForTap() {
-            SharedLinkCell.this = r1;
         }
 
         @Override
@@ -113,7 +112,6 @@ public class SharedLinkCell extends FrameLayout {
         public int currentPressCount;
 
         CheckForLongPress() {
-            SharedLinkCell.this = r1;
         }
 
         @Override
@@ -175,13 +173,13 @@ public class SharedLinkCell extends FrameLayout {
         this.spoilersPool = new Stack<>();
         this.path = new Path();
         this.spoilerTypePressed = -1;
-        this.titleY = AndroidUtilities.m35dp(10.0f);
-        this.descriptionY = AndroidUtilities.m35dp(30.0f);
+        this.titleY = AndroidUtilities.m36dp(10.0f);
+        this.descriptionY = AndroidUtilities.m36dp(30.0f);
         this.patchedDescriptionLayout = new AtomicReference<>();
-        this.description2Y = AndroidUtilities.m35dp(30.0f);
+        this.description2Y = AndroidUtilities.m36dp(30.0f);
         this.patchedDescriptionLayout2 = new AtomicReference<>();
-        this.captionY = AndroidUtilities.m35dp(30.0f);
-        this.fromInfoLayoutY = AndroidUtilities.m35dp(30.0f);
+        this.captionY = AndroidUtilities.m36dp(30.0f);
+        this.fromInfoLayoutY = AndroidUtilities.m36dp(30.0f);
         this.resourcesProvider = resourcesProvider;
         this.viewType = i;
         setFocusable(true);
@@ -190,12 +188,12 @@ public class SharedLinkCell extends FrameLayout {
         textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.titleTextPaint.setColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
         this.descriptionTextPaint = new TextPaint(1);
-        this.titleTextPaint.setTextSize(AndroidUtilities.m35dp(14.0f));
-        this.descriptionTextPaint.setTextSize(AndroidUtilities.m35dp(14.0f));
+        this.titleTextPaint.setTextSize(AndroidUtilities.m36dp(14.0f));
+        this.descriptionTextPaint.setTextSize(AndroidUtilities.m36dp(14.0f));
         setWillNotDraw(false);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.linkImageView = imageReceiver;
-        imageReceiver.setRoundRadius(AndroidUtilities.m35dp(4.0f));
+        imageReceiver.setRoundRadius(AndroidUtilities.m36dp(4.0f));
         this.letterDrawable = new LetterDrawable(resourcesProvider, 0);
         CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
         this.checkBox = checkBox2;
@@ -209,11 +207,11 @@ public class SharedLinkCell extends FrameLayout {
         if (i == 1) {
             TextPaint textPaint2 = new TextPaint(1);
             this.description2TextPaint = textPaint2;
-            textPaint2.setTextSize(AndroidUtilities.m35dp(13.0f));
+            textPaint2.setTextSize(AndroidUtilities.m36dp(13.0f));
         }
         TextPaint textPaint3 = new TextPaint(1);
         this.captionTextPaint = textPaint3;
-        textPaint3.setTextSize(AndroidUtilities.m35dp(13.0f));
+        textPaint3.setTextSize(AndroidUtilities.m36dp(13.0f));
     }
 
     @Override
@@ -265,7 +263,7 @@ public class SharedLinkCell extends FrameLayout {
     }
 
     private void startSpoilerRipples(int i, int i2, int i3) {
-        int m35dp = AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
+        int m36dp = AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
         resetPressedLink();
         this.spoilerPressed.setOnRippleEndCallback(new Runnable() {
             @Override
@@ -273,7 +271,7 @@ public class SharedLinkCell extends FrameLayout {
                 SharedLinkCell.this.lambda$startSpoilerRipples$1();
             }
         });
-        int i4 = i - m35dp;
+        int i4 = i - m36dp;
         float sqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
         float f = 0.0f;
         int i5 = this.spoilerTypePressed;
@@ -377,39 +375,39 @@ public class SharedLinkCell extends FrameLayout {
         }
         if (this.dateLayout != null) {
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline) + (LocaleController.isRTL ? 0 : this.dateLayoutX), this.titleY);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline) + (LocaleController.isRTL ? 0 : this.dateLayoutX), this.titleY);
             this.dateLayout.draw(canvas);
             canvas.restore();
         }
         if (this.titleLayout != null) {
             canvas.save();
-            float m35dp = AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
+            float m36dp = AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
             if (LocaleController.isRTL) {
-                m35dp += this.dateLayout == null ? 0.0f : staticLayout.getWidth() + AndroidUtilities.m35dp(4.0f);
+                m36dp += this.dateLayout == null ? 0.0f : staticLayout.getWidth() + AndroidUtilities.m36dp(4.0f);
             }
-            canvas.translate(m35dp, this.titleY);
+            canvas.translate(m36dp, this.titleY);
             this.titleLayout.draw(canvas);
             canvas.restore();
         }
         if (this.captionLayout != null) {
             this.captionTextPaint.setColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.captionY);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.captionY);
             this.captionLayout.draw(canvas);
             canvas.restore();
         }
         if (this.descriptionLayout != null) {
             this.descriptionTextPaint.setColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
-            SpoilerEffect.renderWithRipple(this, false, this.descriptionTextPaint.getColor(), -AndroidUtilities.m35dp(2.0f), this.patchedDescriptionLayout, this.descriptionLayout, this.descriptionLayoutSpoilers, canvas, false);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
+            SpoilerEffect.renderWithRipple(this, false, this.descriptionTextPaint.getColor(), -AndroidUtilities.m36dp(2.0f), this.patchedDescriptionLayout, this.descriptionLayout, this.descriptionLayoutSpoilers, canvas, false);
             canvas.restore();
         }
         if (this.descriptionLayout2 != null) {
             this.descriptionTextPaint.setColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.description2Y);
-            SpoilerEffect.renderWithRipple(this, false, this.descriptionTextPaint.getColor(), -AndroidUtilities.m35dp(2.0f), this.patchedDescriptionLayout2, this.descriptionLayout2, this.descriptionLayout2Spoilers, canvas, false);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.description2Y);
+            SpoilerEffect.renderWithRipple(this, false, this.descriptionTextPaint.getColor(), -AndroidUtilities.m36dp(2.0f), this.patchedDescriptionLayout2, this.descriptionLayout2, this.descriptionLayout2Spoilers, canvas, false);
             canvas.restore();
         }
         if (!this.linkLayout.isEmpty()) {
@@ -420,7 +418,7 @@ public class SharedLinkCell extends FrameLayout {
                 List<SpoilerEffect> list = this.linkSpoilers.get(i2);
                 if (staticLayout2.getLineCount() > 0) {
                     canvas.save();
-                    canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY + i);
+                    canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY + i);
                     this.path.rewind();
                     if (list != null) {
                         for (SpoilerEffect spoilerEffect : list) {
@@ -456,7 +454,7 @@ public class SharedLinkCell extends FrameLayout {
         }
         if (this.fromInfoLayout != null) {
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.fromInfoLayoutY);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.fromInfoLayoutY);
             this.fromInfoLayout.draw(canvas);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.fromInfoLayout, this.fromInfoLayoutEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
@@ -467,9 +465,9 @@ public class SharedLinkCell extends FrameLayout {
         }
         if (this.needDivider) {
             if (LocaleController.isRTL) {
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.m35dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.m36dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
             } else {
-                canvas.drawLine(AndroidUtilities.m35dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(AndroidUtilities.m36dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         }
     }

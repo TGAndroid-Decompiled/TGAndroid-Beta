@@ -28,7 +28,7 @@ public class PickerBottomLayoutViewer extends FrameLayout {
         this.cancelButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
         this.cancelButton.setGravity(17);
         this.cancelButton.setBackgroundDrawable(Theme.createSelectorDrawable(this.isDarkTheme ? -12763843 : 788529152, 0));
-        this.cancelButton.setPadding(AndroidUtilities.m35dp(20.0f), 0, AndroidUtilities.m35dp(20.0f), 0);
+        this.cancelButton.setPadding(AndroidUtilities.m36dp(20.0f), 0, AndroidUtilities.m36dp(20.0f), 0);
         this.cancelButton.setText(LocaleController.getString("Cancel", C1072R.string.Cancel).toUpperCase());
         this.cancelButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         addView(this.cancelButton, LayoutHelper.createFrame(-2, -1, 51));
@@ -38,7 +38,7 @@ public class PickerBottomLayoutViewer extends FrameLayout {
         this.doneButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
         this.doneButton.setGravity(17);
         this.doneButton.setBackgroundDrawable(Theme.createSelectorDrawable(this.isDarkTheme ? -12763843 : 788529152, 0));
-        this.doneButton.setPadding(AndroidUtilities.m35dp(20.0f), 0, AndroidUtilities.m35dp(20.0f), 0);
+        this.doneButton.setPadding(AndroidUtilities.m36dp(20.0f), 0, AndroidUtilities.m36dp(20.0f), 0);
         this.doneButton.setText(LocaleController.getString("Send", C1072R.string.Send).toUpperCase());
         this.doneButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         addView(this.doneButton, LayoutHelper.createFrame(-2, -1, 53));
@@ -49,8 +49,8 @@ public class PickerBottomLayoutViewer extends FrameLayout {
         this.doneButtonBadgeTextView.setTextColor(-1);
         this.doneButtonBadgeTextView.setGravity(17);
         this.doneButtonBadgeTextView.setBackgroundResource(this.isDarkTheme ? C1072R.C1073drawable.photobadge : C1072R.C1073drawable.bluecounter);
-        this.doneButtonBadgeTextView.setMinWidth(AndroidUtilities.m35dp(23.0f));
-        this.doneButtonBadgeTextView.setPadding(AndroidUtilities.m35dp(8.0f), 0, AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(1.0f));
+        this.doneButtonBadgeTextView.setMinWidth(AndroidUtilities.m36dp(23.0f));
+        this.doneButtonBadgeTextView.setPadding(AndroidUtilities.m36dp(8.0f), 0, AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(1.0f));
         addView(this.doneButtonBadgeTextView, LayoutHelper.createFrame(-2, 23.0f, 53, 0.0f, 0.0f, 7.0f, 0.0f));
     }
 

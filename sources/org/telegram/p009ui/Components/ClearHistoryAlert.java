@@ -52,7 +52,7 @@ public class ClearHistoryAlert extends BottomSheet {
             this.resourcesProvider = resourcesProvider;
             View view = new View(context);
             this.background = view;
-            view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
+            view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
             addView(this.background, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
             TextView textView = new TextView(context);
             this.textView = textView;
@@ -69,7 +69,7 @@ public class ClearHistoryAlert extends BottomSheet {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(80.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(80.0f), 1073741824));
         }
 
         public void setText(CharSequence charSequence) {
@@ -153,7 +153,7 @@ public class ClearHistoryAlert extends BottomSheet {
 
     public void updateLayout() {
         this.linearLayout.getChildAt(0).getLocationInWindow(this.location);
-        int max = Math.max(this.location[1] - AndroidUtilities.m35dp(this.autoDeleteOnly ? 6.0f : 19.0f), 0);
+        int max = Math.max(this.location[1] - AndroidUtilities.m36dp(this.autoDeleteOnly ? 6.0f : 19.0f), 0);
         if (this.scrollOffsetY != max) {
             this.scrollOffsetY = max;
             this.containerView.invalidate();

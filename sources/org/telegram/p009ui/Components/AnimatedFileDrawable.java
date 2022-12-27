@@ -138,9 +138,8 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         return i;
     }
 
-    public class RunnableC17882 implements Runnable {
-        RunnableC17882() {
-            AnimatedFileDrawable.this = r1;
+    public class RunnableC17912 implements Runnable {
+        RunnableC17912() {
         }
 
         @Override
@@ -165,7 +164,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedFileDrawable.RunnableC17882.this.lambda$run$1();
+                    AnimatedFileDrawable.RunnableC17912.this.lambda$run$1();
                 }
             };
             animatedFileDrawable3.cacheGenRunnable = runnable;
@@ -177,7 +176,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedFileDrawable.RunnableC17882.this.lambda$run$0();
+                    AnimatedFileDrawable.RunnableC17912.this.lambda$run$0();
                 }
             });
         }
@@ -314,22 +313,16 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         if (!z) {
             seekToMs(this.nativePtr, j, z);
         }
-        if (this.backgroundBitmap == null) {
-            int[] iArr = this.metaData;
-            float f = this.scaleFactor;
-            this.backgroundBitmap = Bitmap.createBitmap((int) (iArr[0] * f), (int) (iArr[1] * f), Bitmap.Config.ARGB_8888);
-        }
+        int[] iArr = this.metaData;
+        float f = this.scaleFactor;
+        Bitmap createBitmap = Bitmap.createBitmap((int) (iArr[0] * f), (int) (iArr[1] * f), Bitmap.Config.ARGB_8888);
         if (z) {
-            long j2 = this.nativePtr;
-            Bitmap bitmap = this.backgroundBitmap;
-            videoFrame = getFrameAtTime(j2, j, bitmap, this.metaData, bitmap.getRowBytes());
+            videoFrame = getFrameAtTime(this.nativePtr, j, createBitmap, this.metaData, createBitmap.getRowBytes());
         } else {
-            long j3 = this.nativePtr;
-            Bitmap bitmap2 = this.backgroundBitmap;
-            videoFrame = getVideoFrame(j3, bitmap2, this.metaData, bitmap2.getRowBytes(), true, 0.0f, 0.0f);
+            videoFrame = getVideoFrame(this.nativePtr, createBitmap, this.metaData, createBitmap.getRowBytes(), true, 0.0f, 0.0f);
         }
         if (videoFrame != 0) {
-            return this.backgroundBitmap;
+            return createBitmap;
         }
         return null;
     }
@@ -617,7 +610,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             i = (iArr[2] == 90 || iArr[2] == 270) ? iArr[0] : iArr[1];
         }
         if (i == 0) {
-            return AndroidUtilities.m35dp(100.0f);
+            return AndroidUtilities.m36dp(100.0f);
         }
         return (int) (i * this.scaleFactor);
     }
@@ -630,7 +623,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             i = (iArr[2] == 90 || iArr[2] == 270) ? iArr[1] : iArr[0];
         }
         if (i == 0) {
-            return AndroidUtilities.m35dp(100.0f);
+            return AndroidUtilities.m36dp(100.0f);
         }
         return (int) (i * this.scaleFactor);
     }
@@ -674,7 +667,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             int[] iArr = this.metaData;
             i = (iArr[2] == 90 || iArr[2] == 270) ? iArr[0] : iArr[1];
         }
-        return i == 0 ? AndroidUtilities.m35dp(100.0f) : i;
+        return i == 0 ? AndroidUtilities.m36dp(100.0f) : i;
     }
 
     @Override
@@ -684,7 +677,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             int[] iArr = this.metaData;
             i = (iArr[2] == 90 || iArr[2] == 270) ? iArr[1] : iArr[0];
         }
-        return i == 0 ? AndroidUtilities.m35dp(100.0f) : i;
+        return i == 0 ? AndroidUtilities.m36dp(100.0f) : i;
     }
 
     public Bitmap getBackgroundBitmap() {

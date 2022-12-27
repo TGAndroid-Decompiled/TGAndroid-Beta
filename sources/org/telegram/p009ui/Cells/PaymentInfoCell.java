@@ -28,7 +28,7 @@ public class PaymentInfoCell extends FrameLayout {
         super(context);
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
-        backupImageView.getImageReceiver().setRoundRadius(AndroidUtilities.m35dp(8.0f));
+        backupImageView.getImageReceiver().setRoundRadius(AndroidUtilities.m36dp(8.0f));
         addView(this.imageView, LayoutHelper.createFrame(100, 100.0f, LocaleController.isRTL ? 5 : 3, 10.0f, 10.0f, 10.0f, 0.0f));
         TextView textView = new TextView(context);
         this.nameTextView = textView;
@@ -71,11 +71,11 @@ public class PaymentInfoCell extends FrameLayout {
     protected void onMeasure(int i, int i2) {
         int i3;
         if (this.imageView.getVisibility() != 8) {
-            i3 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(120.0f), 1073741824);
+            i3 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(120.0f), 1073741824);
         } else {
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
             measureChildWithMargins(this.detailTextView, i, 0, i2, 0);
-            ((FrameLayout.LayoutParams) this.detailExTextView.getLayoutParams()).topMargin = AndroidUtilities.m35dp(33.0f) + this.detailTextView.getMeasuredHeight() + AndroidUtilities.m35dp(3.0f);
+            ((FrameLayout.LayoutParams) this.detailExTextView.getLayoutParams()).topMargin = AndroidUtilities.m36dp(33.0f) + this.detailTextView.getMeasuredHeight() + AndroidUtilities.m36dp(3.0f);
             i3 = makeMeasureSpec;
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i3);
@@ -93,9 +93,9 @@ public class PaymentInfoCell extends FrameLayout {
             min = Math.min(point.x, point.y);
         }
         float f = 640;
-        float m35dp = f / (((int) (min * 0.7f)) - AndroidUtilities.m35dp(2.0f));
-        int i = (int) (f / m35dp);
-        int i2 = (int) (360 / m35dp);
+        float m36dp = f / (((int) (min * 0.7f)) - AndroidUtilities.m36dp(2.0f));
+        int i = (int) (f / m36dp);
+        int i2 = (int) (360 / m36dp);
         if (tLRPC$WebDocument != null && tLRPC$WebDocument.mime_type.startsWith("image/")) {
             TextView textView = this.nameTextView;
             boolean z = LocaleController.isRTL;

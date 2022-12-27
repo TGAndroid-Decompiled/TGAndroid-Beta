@@ -126,7 +126,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         } else if (i == 5) {
             view = new DrawerAddCell(this.mContext);
         } else {
-            view = new EmptyCell(this.mContext, AndroidUtilities.m35dp(8.0f));
+            view = new EmptyCell(this.mContext, AndroidUtilities.m36dp(8.0f));
         }
         view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
         return new RecyclerListView.Holder(view);

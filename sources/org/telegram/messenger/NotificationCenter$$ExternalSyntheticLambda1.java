@@ -9,6 +9,6 @@ public final class NotificationCenter$$ExternalSyntheticLambda1 implements Runna
 
     @Override
     public final void run() {
-        this.f$0.checkForExpiredNotifications();
+        NotificationCenter.$r8$lambda$qfLoSVnI6RSAMmhz7SoulpZLung(this.f$0);
     }
 }

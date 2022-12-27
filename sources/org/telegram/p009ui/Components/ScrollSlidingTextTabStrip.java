@@ -137,7 +137,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         };
         this.tabsContainer = linearLayout;
         linearLayout.setOrientation(0);
-        this.tabsContainer.setPadding(AndroidUtilities.m35dp(7.0f), 0, AndroidUtilities.m35dp(7.0f), 0);
+        this.tabsContainer.setPadding(AndroidUtilities.m36dp(7.0f), 0, AndroidUtilities.m36dp(7.0f), 0);
         this.tabsContainer.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
         addView(this.tabsContainer);
     }
@@ -271,7 +271,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
             textView.setTextSize(1, 15.0f);
             textView.setSingleLine(true);
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            textView.setPadding(AndroidUtilities.m35dp(16.0f), 0, AndroidUtilities.m35dp(16.0f), 0);
+            textView.setPadding(AndroidUtilities.m36dp(16.0f), 0, AndroidUtilities.m36dp(16.0f), 0);
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -382,7 +382,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i) - AndroidUtilities.m35dp(22.0f);
+        int size = View.MeasureSpec.getSize(i) - AndroidUtilities.m36dp(22.0f);
         int childCount = this.tabsContainer.getChildCount();
         for (int i3 = 0; i3 < childCount; i3++) {
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) this.tabsContainer.getChildAt(i3).getLayoutParams();
@@ -421,12 +421,12 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         int scrollX = getScrollX();
         int left = textView.getLeft();
         int measuredWidth = textView.getMeasuredWidth();
-        if (left - AndroidUtilities.m35dp(50.0f) < scrollX) {
-            smoothScrollTo(left - AndroidUtilities.m35dp(50.0f), 0);
+        if (left - AndroidUtilities.m36dp(50.0f) < scrollX) {
+            smoothScrollTo(left - AndroidUtilities.m36dp(50.0f), 0);
             return;
         }
         int i2 = left + measuredWidth;
-        if (AndroidUtilities.m35dp(21.0f) + i2 > scrollX + getWidth()) {
+        if (AndroidUtilities.m36dp(21.0f) + i2 > scrollX + getWidth()) {
             smoothScrollTo(i2, 0);
         }
     }
@@ -534,7 +534,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
     private int getChildWidth(TextView textView) {
         Layout layout = textView.getLayout();
         if (layout != null) {
-            return ((int) Math.ceil(layout.getLineWidth(0))) + AndroidUtilities.m35dp(2.0f);
+            return ((int) Math.ceil(layout.getLineWidth(0))) + AndroidUtilities.m36dp(2.0f);
         }
         return textView.getMeasuredWidth();
     }

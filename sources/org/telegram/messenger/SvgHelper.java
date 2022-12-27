@@ -314,10 +314,10 @@ public class SvgHelper {
                 this.currentColorKey = str;
                 iArr[z ? 1 : 0] = color;
                 gradientWidth = AndroidUtilities.displaySize.x * 2;
-                float m35dp = AndroidUtilities.m35dp(180.0f) / gradientWidth;
+                float m36dp = AndroidUtilities.m36dp(180.0f) / gradientWidth;
                 int argb = Color.argb((int) ((Color.alpha(color) / 2) * this.colorAlpha), Color.red(color), Color.green(color), Color.blue(color));
-                float f2 = (1.0f - m35dp) / 2.0f;
-                float f3 = m35dp / 2.0f;
+                float f2 = (1.0f - m36dp) / 2.0f;
+                float f3 = m36dp / 2.0f;
                 this.placeholderGradient[z ? 1 : 0] = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{0, 0, argb, 0, 0}, new float[]{0.0f, f2 - f3, f2, f2 + f3, 1.0f}, Shader.TileMode.REPEAT);
                 int i = Build.VERSION.SDK_INT;
                 if (i >= 28) {
@@ -401,7 +401,7 @@ public class SvgHelper {
             }
             return bitmap;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -417,7 +417,7 @@ public class SvgHelper {
             fileInputStream.close();
             return bitmap;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -430,7 +430,7 @@ public class SvgHelper {
             xMLReader.parse(new InputSource(new StringReader(str)));
             return sVGHandler.getBitmap();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -443,7 +443,7 @@ public class SvgHelper {
             xMLReader.parse(new InputSource(new StringReader(str)));
             return sVGHandler.getDrawable();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -456,7 +456,7 @@ public class SvgHelper {
             xMLReader.parse(new InputSource(ApplicationLoader.applicationContext.getResources().openRawResource(i)));
             return sVGHandler.getDrawable();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -471,7 +471,7 @@ public class SvgHelper {
             svgDrawable.height = i2;
             return svgDrawable;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -487,7 +487,7 @@ public class SvgHelper {
             canvas.drawPath(doPath, paint);
             return createBitmap;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -1578,7 +1578,7 @@ public class SvgHelper {
             sb.append('z');
             return sb.toString();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "";
         }
     }

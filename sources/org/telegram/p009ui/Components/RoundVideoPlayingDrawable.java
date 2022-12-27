@@ -103,9 +103,9 @@ public class RoundVideoPlayingDrawable extends Drawable {
         int i2 = getBounds().left;
         int i3 = getBounds().top;
         for (int i4 = 0; i4 < 3; i4++) {
-            canvas.drawRect(AndroidUtilities.m35dp(2.0f) + i2, AndroidUtilities.m35dp((this.progress1 * 7.0f) + 2.0f) + i3, AndroidUtilities.m35dp(4.0f) + i2, AndroidUtilities.m35dp(10.0f) + i3, this.paint);
-            canvas.drawRect(AndroidUtilities.m35dp(5.0f) + i2, AndroidUtilities.m35dp((this.progress2 * 7.0f) + 2.0f) + i3, AndroidUtilities.m35dp(7.0f) + i2, AndroidUtilities.m35dp(10.0f) + i3, this.paint);
-            canvas.drawRect(AndroidUtilities.m35dp(8.0f) + i2, AndroidUtilities.m35dp((this.progress3 * 7.0f) + 2.0f) + i3, AndroidUtilities.m35dp(10.0f) + i2, AndroidUtilities.m35dp(10.0f) + i3, this.paint);
+            canvas.drawRect(AndroidUtilities.m36dp(2.0f) + i2, AndroidUtilities.m36dp((this.progress1 * 7.0f) + 2.0f) + i3, AndroidUtilities.m36dp(4.0f) + i2, AndroidUtilities.m36dp(10.0f) + i3, this.paint);
+            canvas.drawRect(AndroidUtilities.m36dp(5.0f) + i2, AndroidUtilities.m36dp((this.progress2 * 7.0f) + 2.0f) + i3, AndroidUtilities.m36dp(7.0f) + i2, AndroidUtilities.m36dp(10.0f) + i3, this.paint);
+            canvas.drawRect(AndroidUtilities.m36dp(8.0f) + i2, AndroidUtilities.m36dp((this.progress3 * 7.0f) + 2.0f) + i3, AndroidUtilities.m36dp(10.0f) + i2, AndroidUtilities.m36dp(10.0f) + i3, this.paint);
         }
         if (this.started) {
             update();
@@ -119,12 +119,12 @@ public class RoundVideoPlayingDrawable extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        return AndroidUtilities.m35dp(12.0f);
+        return AndroidUtilities.m36dp(12.0f);
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return AndroidUtilities.m35dp(12.0f);
+        return AndroidUtilities.m36dp(12.0f);
     }
 
     private int getThemedColor(String str) {

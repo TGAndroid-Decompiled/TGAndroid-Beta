@@ -104,7 +104,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             try {
                 getWindow().setFlags(8192, 8192);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         super.onCreate(bundle);
@@ -422,7 +422,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (tLObject != null) {
             MessagesController.getInstance(i).putUsers(tLRPC$TL_account_authorizationForm.users, false);
@@ -468,7 +468,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
                 finish();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -518,8 +518,8 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             this.layersActionBarLayout.getView().setLayoutParams(layoutParams);
             if (!AndroidUtilities.isSmallTablet() || getResources().getConfiguration().orientation == 2) {
                 int i2 = (AndroidUtilities.displaySize.x / 100) * 35;
-                if (i2 < AndroidUtilities.m35dp(320.0f)) {
-                    i2 = AndroidUtilities.m35dp(320.0f);
+                if (i2 < AndroidUtilities.m36dp(320.0f)) {
+                    i2 = AndroidUtilities.m36dp(320.0f);
                 }
                 RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) this.actionBarLayout.getView().getLayoutParams();
                 layoutParams2.width = i2;
@@ -615,11 +615,11 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
                     if (ExternalActionActivity.this.lockRunnable == this) {
                         if (AndroidUtilities.needShowPasscode(true)) {
                             if (BuildVars.LOGS_ENABLED) {
-                                FileLog.m34d("lock app");
+                                FileLog.m35d("lock app");
                             }
                             ExternalActionActivity.this.showPasscodeActivity();
                         } else if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m34d("didn't pass lock check");
+                            FileLog.m35d("didn't pass lock check");
                         }
                         ExternalActionActivity.this.lockRunnable = null;
                     }

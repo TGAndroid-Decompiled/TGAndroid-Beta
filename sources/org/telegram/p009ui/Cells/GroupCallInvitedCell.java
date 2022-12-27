@@ -45,7 +45,7 @@ public class GroupCallInvitedCell extends FrameLayout {
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(24.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(24.0f));
         BackupImageView backupImageView2 = this.avatarImageView;
         boolean z = LocaleController.isRTL;
         addView(backupImageView2, LayoutHelper.createFrame(46, 46.0f, (z ? 5 : 3) | 48, z ? 0.0f : 11.0f, 6.0f, z ? 11.0f : 0.0f, 0.0f));
@@ -72,7 +72,7 @@ public class GroupCallInvitedCell extends FrameLayout {
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         this.muteButton.setImageResource(C1072R.C1073drawable.msg_invited);
         this.muteButton.setImportantForAccessibility(2);
-        this.muteButton.setPadding(0, 0, AndroidUtilities.m35dp(4.0f), 0);
+        this.muteButton.setPadding(0, 0, AndroidUtilities.m36dp(4.0f), 0);
         this.muteButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(this.grayIconColor), PorterDuff.Mode.MULTIPLY));
         addView(this.muteButton, LayoutHelper.createFrame(48, -1.0f, (LocaleController.isRTL ? 3 : 5) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
         setWillNotDraw(false);
@@ -116,13 +116,13 @@ public class GroupCallInvitedCell extends FrameLayout {
 
     @Override
     public void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(58.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(58.0f), 1073741824));
     }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
         if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(68.0f) : 0), getMeasuredHeight() - 1, this.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(68.0f) : 0), getMeasuredHeight() - 1, this.dividerPaint);
         }
         super.dispatchDraw(canvas);
     }

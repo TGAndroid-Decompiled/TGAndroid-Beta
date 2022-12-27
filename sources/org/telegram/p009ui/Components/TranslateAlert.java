@@ -157,16 +157,16 @@ public class TranslateAlert extends Dialog {
         this.titleView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9473f, min));
         this.titleView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9473f, min));
         FrameLayout.LayoutParams layoutParams = this.titleLayout;
-        int m35dp = AndroidUtilities.m35dp(AndroidUtilities.lerp(22, 72, min));
-        int m35dp2 = AndroidUtilities.m35dp(AndroidUtilities.lerp(22, 8, min));
+        int m36dp = AndroidUtilities.m36dp(AndroidUtilities.lerp(22, 72, min));
+        int m36dp2 = AndroidUtilities.m36dp(AndroidUtilities.lerp(22, 8, min));
         FrameLayout.LayoutParams layoutParams2 = this.titleLayout;
-        layoutParams.setMargins(m35dp, m35dp2, layoutParams2.rightMargin, layoutParams2.bottomMargin);
+        layoutParams.setMargins(m36dp, m36dp2, layoutParams2.rightMargin, layoutParams2.bottomMargin);
         this.titleView.setLayoutParams(this.titleLayout);
         FrameLayout.LayoutParams layoutParams3 = this.subtitleLayout;
-        int m35dp3 = AndroidUtilities.m35dp(AndroidUtilities.lerp(22, 72, min)) - LoadingTextView2.paddingHorizontal;
-        int m35dp4 = AndroidUtilities.m35dp(AndroidUtilities.lerp(47, 30, min)) - LoadingTextView2.paddingVertical;
+        int m36dp3 = AndroidUtilities.m36dp(AndroidUtilities.lerp(22, 72, min)) - LoadingTextView2.paddingHorizontal;
+        int m36dp4 = AndroidUtilities.m36dp(AndroidUtilities.lerp(47, 30, min)) - LoadingTextView2.paddingVertical;
         FrameLayout.LayoutParams layoutParams4 = this.subtitleLayout;
-        layoutParams3.setMargins(m35dp3, m35dp4, layoutParams4.rightMargin, layoutParams4.bottomMargin);
+        layoutParams3.setMargins(m36dp3, m36dp4, layoutParams4.rightMargin, layoutParams4.bottomMargin);
         this.subtitleView.setLayoutParams(this.subtitleLayout);
         this.backButton.setAlpha(min);
         float f2 = (0.25f * min) + 0.75f;
@@ -174,11 +174,11 @@ public class TranslateAlert extends Dialog {
         this.backButton.setScaleY(f2);
         this.backButton.setClickable(min > 0.5f);
         this.headerShadowView.setAlpha(this.scrollView.getScrollY() <= 0 ? min : 1.0f);
-        this.headerLayout.height = AndroidUtilities.lerp(AndroidUtilities.m35dp(70.0f), AndroidUtilities.m35dp(56.0f), min);
+        this.headerLayout.height = AndroidUtilities.lerp(AndroidUtilities.m36dp(70.0f), AndroidUtilities.m36dp(56.0f), min);
         this.header.setLayoutParams(this.headerLayout);
         FrameLayout.LayoutParams layoutParams5 = this.scrollViewLayout;
         int i = layoutParams5.leftMargin;
-        int lerp = AndroidUtilities.lerp(AndroidUtilities.m35dp(70.0f), AndroidUtilities.m35dp(56.0f), min);
+        int lerp = AndroidUtilities.lerp(AndroidUtilities.m36dp(70.0f), AndroidUtilities.m36dp(56.0f), min);
         FrameLayout.LayoutParams layoutParams6 = this.scrollViewLayout;
         layoutParams5.setMargins(i, lerp, layoutParams6.rightMargin, layoutParams6.bottomMargin);
         this.scrollView.setLayoutParams(this.scrollViewLayout);
@@ -244,11 +244,11 @@ public class TranslateAlert extends Dialog {
     private int minHeight(boolean z) {
         TextBlocksLayout textBlocksLayout = this.textsView;
         int measuredHeight = textBlocksLayout == null ? 0 : textBlocksLayout.getMeasuredHeight();
-        int m35dp = AndroidUtilities.m35dp(147.0f) + measuredHeight;
+        int m36dp = AndroidUtilities.m36dp(147.0f) + measuredHeight;
         if (this.firstMinHeight < 0 && measuredHeight > 0) {
-            this.firstMinHeight = m35dp;
+            this.firstMinHeight = m36dp;
         }
-        return (this.firstMinHeight <= 0 || this.textBlocks.size() <= 1 || z) ? m35dp : this.firstMinHeight;
+        return (this.firstMinHeight <= 0 || this.textBlocks.size() <= 1 || z) ? m36dp : this.firstMinHeight;
     }
 
     public boolean canExpand() {
@@ -343,7 +343,7 @@ public class TranslateAlert extends Dialog {
         }
         final Paint paint = new Paint();
         paint.setColor(Theme.getColor("dialogBackground"));
-        paint.setShadowLayer(AndroidUtilities.m35dp(2.0f), 0.0f, AndroidUtilities.m35dp(-0.66f), 503316480);
+        paint.setShadowLayer(AndroidUtilities.m36dp(2.0f), 0.0f, AndroidUtilities.m36dp(-0.66f), 503316480);
         FrameLayout frameLayout2 = new FrameLayout(context) {
             private RectF containerRect;
             private int contentHeight = ConnectionsManager.DEFAULT_DATACENTER_ID;
@@ -366,7 +366,7 @@ public class TranslateAlert extends Dialog {
                 int min = Math.min(i6, TranslateAlert.this.minHeight());
                 int i7 = (int) (min + ((AndroidUtilities.displayMetrics.heightPixels - min) * TranslateAlert.this.containerOpenAnimationT));
                 TranslateAlert.this.updateCanExpand();
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.max(size * 0.8f, Math.min(AndroidUtilities.m35dp(480.0f), size)), View.MeasureSpec.getMode(i4)), View.MeasureSpec.makeMeasureSpec(i7, 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.max(size * 0.8f, Math.min(AndroidUtilities.m36dp(480.0f), size)), View.MeasureSpec.getMode(i4)), View.MeasureSpec.makeMeasureSpec(i7, 1073741824));
             }
 
             @Override
@@ -379,11 +379,11 @@ public class TranslateAlert extends Dialog {
             protected void onDraw(Canvas canvas) {
                 int width = getWidth();
                 int height = getHeight();
-                int m35dp = AndroidUtilities.m35dp((1.0f - TranslateAlert.this.containerOpenAnimationT) * 12.0f);
+                int m36dp = AndroidUtilities.m36dp((1.0f - TranslateAlert.this.containerOpenAnimationT) * 12.0f);
                 canvas.clipRect(0, 0, width, height);
-                this.containerRect.set(0.0f, 0.0f, width, height + m35dp);
+                this.containerRect.set(0.0f, 0.0f, width, height + m36dp);
                 canvas.translate(0.0f, (1.0f - TranslateAlert.this.openingT) * height);
-                float f = m35dp;
+                float f = m36dp;
                 canvas.drawRoundRect(this.containerRect, f, f, paint);
                 super.onDraw(canvas);
             }
@@ -400,7 +400,7 @@ public class TranslateAlert extends Dialog {
         this.titleView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.titleView.setTextColor(Theme.getColor("dialogTextBlack"));
-        this.titleView.setTextSize(0, AndroidUtilities.m35dp(19.0f));
+        this.titleView.setTextSize(0, AndroidUtilities.m36dp(19.0f));
         FrameLayout frameLayout3 = this.header;
         View view = this.titleView;
         FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, -2.0f, 55, 22.0f, 22.0f, 22.0f, 0.0f);
@@ -420,7 +420,7 @@ public class TranslateAlert extends Dialog {
         }
         this.subtitleView.setGravity(LocaleController.isRTL ? 5 : 3);
         String languageName = languageName(str);
-        InlineLoadingTextView inlineLoadingTextView = new InlineLoadingTextView(context, languageName == null ? languageName(str2) : languageName, AndroidUtilities.m35dp(14.0f), Theme.getColor("player_actionBarSubtitle")) {
+        InlineLoadingTextView inlineLoadingTextView = new InlineLoadingTextView(context, languageName == null ? languageName(str2) : languageName, AndroidUtilities.m36dp(14.0f), Theme.getColor("player_actionBarSubtitle")) {
             {
                 TranslateAlert.this = this;
             }
@@ -430,9 +430,9 @@ public class TranslateAlert extends Dialog {
                 ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) TranslateAlert.this.subtitleFromView.getLayoutParams();
                 if (marginLayoutParams != null) {
                     if (LocaleController.isRTL) {
-                        marginLayoutParams.leftMargin = AndroidUtilities.m35dp(2.0f - (f * 6.0f));
+                        marginLayoutParams.leftMargin = AndroidUtilities.m36dp(2.0f - (f * 6.0f));
                     } else {
-                        marginLayoutParams.rightMargin = AndroidUtilities.m35dp(2.0f - (f * 6.0f));
+                        marginLayoutParams.rightMargin = AndroidUtilities.m36dp(2.0f - (f * 6.0f));
                     }
                     TranslateAlert.this.subtitleFromView.setLayoutParams(marginLayoutParams);
                 }
@@ -451,7 +451,7 @@ public class TranslateAlert extends Dialog {
         this.subtitleToView = textView2;
         textView2.setLines(1);
         this.subtitleToView.setTextColor(Theme.getColor("player_actionBarSubtitle"));
-        this.subtitleToView.setTextSize(0, AndroidUtilities.m35dp(14.0f));
+        this.subtitleToView.setTextSize(0, AndroidUtilities.m36dp(14.0f));
         this.subtitleToView.setText(languageName(str2));
         if (LocaleController.isRTL) {
             this.subtitleView.setPadding(InlineLoadingTextView.paddingHorizontal, 0, 0, 0);
@@ -480,7 +480,7 @@ public class TranslateAlert extends Dialog {
         imageView2.setImageResource(C1072R.C1073drawable.ic_ab_back);
         this.backButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlack"), PorterDuff.Mode.MULTIPLY));
         this.backButton.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        this.backButton.setPadding(AndroidUtilities.m35dp(16.0f), 0, AndroidUtilities.m35dp(16.0f), 0);
+        this.backButton.setPadding(AndroidUtilities.m36dp(16.0f), 0, AndroidUtilities.m36dp(16.0f), 0);
         this.backButton.setBackground(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector")));
         this.backButton.setClickable(false);
         this.backButton.setAlpha(0.0f);
@@ -551,7 +551,7 @@ public class TranslateAlert extends Dialog {
             public boolean onTextContextMenuItem(int i6) {
                 if (i6 == 16908321 && isFocused()) {
                     ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", getText().subSequence(Math.max(0, Math.min(getSelectionStart(), getSelectionEnd())), Math.max(0, Math.max(getSelectionStart(), getSelectionEnd())))));
-                    BulletinFactory.m14of(TranslateAlert.this.bulletinContainer, null).createCopyBulletin(LocaleController.getString("TextCopied", C1072R.string.TextCopied)).show();
+                    BulletinFactory.m15of(TranslateAlert.this.bulletinContainer, null).createCopyBulletin(LocaleController.getString("TextCopied", C1072R.string.TextCopied)).show();
                     clearFocus();
                     return true;
                 }
@@ -580,13 +580,13 @@ public class TranslateAlert extends Dialog {
         }
         this.allTextsView.setFocusable(true);
         this.allTextsView.setMovementMethod(new LinkMovementMethod());
-        TextBlocksLayout textBlocksLayout = new TextBlocksLayout(context, AndroidUtilities.m35dp(16.0f), Theme.getColor("dialogTextBlack"), this.allTextsView);
+        TextBlocksLayout textBlocksLayout = new TextBlocksLayout(context, AndroidUtilities.m36dp(16.0f), Theme.getColor("dialogTextBlack"), this.allTextsView);
         this.textsView = textBlocksLayout;
-        int m35dp = AndroidUtilities.m35dp(22.0f);
+        int m36dp = AndroidUtilities.m36dp(22.0f);
         int i6 = LoadingTextView2.paddingHorizontal;
-        int m35dp2 = AndroidUtilities.m35dp(12.0f);
+        int m36dp2 = AndroidUtilities.m36dp(12.0f);
         int i7 = LoadingTextView2.paddingVertical;
-        textBlocksLayout.setPadding(m35dp - i6, m35dp2 - i7, AndroidUtilities.m35dp(22.0f) - i6, AndroidUtilities.m35dp(12.0f) - i7);
+        textBlocksLayout.setPadding(m36dp - i6, m36dp2 - i7, AndroidUtilities.m36dp(22.0f) - i6, AndroidUtilities.m36dp(12.0f) - i7);
         Iterator<CharSequence> it = this.textBlocks.iterator();
         while (it.hasNext()) {
             this.textsView.addBlock(it.next());
@@ -772,12 +772,12 @@ public class TranslateAlert extends Dialog {
                 } else if (this.maybeScrolling && (motionEvent.getAction() == 2 || motionEvent.getAction() == 1)) {
                     float f2 = this.fromY - y;
                     if (this.fromScrollRect) {
-                        f2 = -Math.max(0.0f, (-(this.fromScrollViewY + AndroidUtilities.m35dp(48.0f))) - f2);
+                        f2 = -Math.max(0.0f, (-(this.fromScrollViewY + AndroidUtilities.m36dp(48.0f))) - f2);
                         if (f2 < 0.0f) {
                             this.scrolling = true;
                             this.allTextsView.setTextIsSelectable(false);
                         }
-                    } else if (Math.abs(f2) > AndroidUtilities.m35dp(4.0f) && !this.fromScrollRect) {
+                    } else if (Math.abs(f2) > AndroidUtilities.m36dp(4.0f) && !this.fromScrollRect) {
                         this.scrolling = true;
                         this.allTextsView.setTextIsSelectable(false);
                         this.scrollView.stopNestedScroll();
@@ -799,7 +799,7 @@ public class TranslateAlert extends Dialog {
                             this.allTextsView.setTextIsSelectable(!this.noforwards);
                             this.maybeScrolling = false;
                             this.allowScroll = true;
-                            if (Math.abs(f2) > AndroidUtilities.m35dp(16.0f)) {
+                            if (Math.abs(f2) > AndroidUtilities.m36dp(16.0f)) {
                                 round = Math.round(this.fromScrollY) + ((f5 > this.fromScrollY ? 1.0f : -1.0f) * ((float) Math.ceil(Math.abs(f - f5))));
                             } else {
                                 round = Math.round(this.fromScrollY);
@@ -936,7 +936,7 @@ public class TranslateAlert extends Dialog {
         try {
             super.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1061,7 +1061,7 @@ public class TranslateAlert extends Dialog {
                     }, spanStart2, spanEnd2, 33);
                 }
             }
-            spannableStringBuilder = (Spannable) Emoji.replaceEmoji(spannableStringBuilder, this.allTextsView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(14.0f), false);
+            spannableStringBuilder = (Spannable) Emoji.replaceEmoji(spannableStringBuilder, this.allTextsView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(14.0f), false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1177,7 +1177,7 @@ public class TranslateAlert extends Dialog {
                 }
             });
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1211,7 +1211,7 @@ public class TranslateAlert extends Dialog {
                 }
             });
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1248,7 +1248,7 @@ public class TranslateAlert extends Dialog {
     }
 
     public static class TextBlocksLayout extends ViewGroup {
-        private static final int gap = ((-LoadingTextView2.paddingVertical) * 4) + AndroidUtilities.m35dp(0.48f);
+        private static final int gap = ((-LoadingTextView2.paddingVertical) * 4) + AndroidUtilities.m36dp(0.48f);
         private final int fontSize;
         private final int textColor;
         private TextView wholeTextView;
@@ -1365,7 +1365,7 @@ public class TranslateAlert extends Dialog {
     }
 
     public static class InlineLoadingTextView extends ViewGroup {
-        public static final int paddingHorizontal = AndroidUtilities.m35dp(6.0f);
+        public static final int paddingHorizontal = AndroidUtilities.m36dp(6.0f);
         private final TextView fromTextView;
         private final float gradientWidth;
         private final Path inPath;
@@ -1404,8 +1404,8 @@ public class TranslateAlert extends Dialog {
             this.shadePath = new Path();
             Paint paint = new Paint();
             this.loadingPaint = paint;
-            float m35dp = AndroidUtilities.m35dp(350.0f);
-            this.gradientWidth = m35dp;
+            float m36dp = AndroidUtilities.m36dp(350.0f);
+            this.gradientWidth = m36dp;
             int i3 = paddingHorizontal;
             setPadding(i3, 0, i3, 0);
             setClipChildren(false);
@@ -1444,7 +1444,7 @@ public class TranslateAlert extends Dialog {
             textView2.setFocusable(true);
             addView(textView2);
             int color = Theme.getColor("dialogBackground");
-            paint.setShader(new LinearGradient(0.0f, 0.0f, m35dp, 0.0f, new int[]{color, Theme.getColor("dialogBackgroundGray"), color}, new float[]{0.0f, 0.67f, 1.0f}, Shader.TileMode.REPEAT));
+            paint.setShader(new LinearGradient(0.0f, 0.0f, m36dp, 0.0f, new int[]{color, Theme.getColor("dialogBackgroundGray"), color}, new float[]{0.0f, 0.67f, 1.0f}, Shader.TileMode.REPEAT));
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.loadingAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -1578,7 +1578,7 @@ public class TranslateAlert extends Dialog {
             this.shadePath.addRect(0.0f, 0.0f, width, height, Path.Direction.CW);
             this.loadingPath.reset();
             this.rect.set(0.0f, 0.0f, width, height);
-            this.loadingPath.addRoundRect(this.rect, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), Path.Direction.CW);
+            this.loadingPath.addRoundRect(this.rect, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), Path.Direction.CW);
             canvas.clipPath(this.loadingPath);
             canvas.translate(-elapsedRealtime, 0.0f);
             this.shadePath.offset(elapsedRealtime, 0.0f, this.tempPath);
@@ -1610,8 +1610,8 @@ public class TranslateAlert extends Dialog {
     }
 
     public static class LoadingTextView2 extends ViewGroup {
-        public static final int paddingHorizontal = AndroidUtilities.m35dp(6.0f);
-        public static final int paddingVertical = AndroidUtilities.m35dp(1.5f);
+        public static final int paddingHorizontal = AndroidUtilities.m36dp(6.0f);
+        public static final int paddingVertical = AndroidUtilities.m36dp(1.5f);
         private RectF fetchedPathRect;
         private final TextView fromTextView;
         private final float gradientWidth;
@@ -1653,8 +1653,8 @@ public class TranslateAlert extends Dialog {
             this.shadePath = new Path();
             Paint paint = new Paint();
             this.loadingPaint = paint;
-            float m35dp = AndroidUtilities.m35dp(350.0f);
-            this.gradientWidth = m35dp;
+            float m36dp = AndroidUtilities.m36dp(350.0f);
+            this.gradientWidth = m36dp;
             int i3 = paddingHorizontal;
             int i4 = paddingVertical;
             setPadding(i3, i4, i3, i4);
@@ -1696,7 +1696,7 @@ public class TranslateAlert extends Dialog {
             textView2.setImportantForAccessibility(2);
             addView(textView2);
             int color = Theme.getColor("dialogBackground");
-            paint.setShader(new LinearGradient(0.0f, 0.0f, m35dp, 0.0f, new int[]{color, Theme.getColor("dialogBackgroundGray"), color}, new float[]{0.0f, 0.67f, 1.0f}, Shader.TileMode.REPEAT));
+            paint.setShader(new LinearGradient(0.0f, 0.0f, m36dp, 0.0f, new int[]{color, Theme.getColor("dialogBackgroundGray"), color}, new float[]{0.0f, 0.67f, 1.0f}, Shader.TileMode.REPEAT));
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.loadingAnimator = ofFloat;
             if (z) {
@@ -1859,7 +1859,7 @@ public class TranslateAlert extends Dialog {
                         int lineTop = layout.getLineTop(i);
                         int i3 = paddingVertical;
                         rectF.set(min - i2, lineTop - i3, max + i2, layout.getLineBottom(i) + i3);
-                        this.loadingPath.addRoundRect(this.fetchedPathRect, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), Path.Direction.CW);
+                        this.loadingPath.addRoundRect(this.fetchedPathRect, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), Path.Direction.CW);
                     }
                 }
             }

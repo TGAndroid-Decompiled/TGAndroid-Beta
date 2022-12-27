@@ -82,7 +82,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
             FrameLayout frameLayout = new FrameLayout(this, context) {
                 @Override
                 protected void onMeasure(int i2, int i3) {
-                    super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(86.0f), 1073741824));
+                    super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(86.0f), 1073741824));
                 }
             };
             LinearLayout linearLayout = new LinearLayout(context);

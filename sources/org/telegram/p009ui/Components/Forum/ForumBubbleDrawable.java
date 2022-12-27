@@ -63,7 +63,7 @@ public class ForumBubbleDrawable extends Drawable {
         this.topPaint = paint;
         Paint paint2 = new Paint(1);
         this.strokePaint = paint2;
-        paint2.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
+        paint2.setStrokeWidth(AndroidUtilities.m36dp(1.0f));
         paint2.setStyle(Paint.Style.STROKE);
         this.svgDrawable.setPaint(paint, 1);
         this.svgDrawable.setPaint(paint2, 2);
@@ -81,12 +81,12 @@ public class ForumBubbleDrawable extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        return AndroidUtilities.m35dp(24.0f);
+        return AndroidUtilities.m36dp(24.0f);
     }
 
     @Override
     public int getIntrinsicWidth() {
-        return AndroidUtilities.m35dp(24.0f);
+        return AndroidUtilities.m36dp(24.0f);
     }
 
     public int colorDistance(int i, int i2) {

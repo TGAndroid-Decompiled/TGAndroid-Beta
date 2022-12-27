@@ -157,7 +157,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
             frameLayout.addView(this.divider, LayoutHelper.createFrame(-1, 72.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         frameLayout.addView(this.premiumButtonView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
-        this.recyclerListView.setPadding(0, 0, 0, AndroidUtilities.m35dp(72.0f));
+        this.recyclerListView.setPadding(0, 0, 0, AndroidUtilities.m36dp(72.0f));
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i) {
@@ -338,7 +338,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
                     flickerLoadingView = new ShadowSectionCell(context, 12, Theme.getColor("windowBackgroundGray"));
                 } else if (i == 3) {
                     View headerCell = new HeaderCell(context);
-                    headerCell.setPadding(0, 0, 0, AndroidUtilities.m35dp(8.0f));
+                    headerCell.setPadding(0, 0, 0, AndroidUtilities.m36dp(8.0f));
                     flickerLoadingView = headerCell;
                 } else if (i == 4) {
                     flickerLoadingView = new GroupCreateUserCell(context, 1, 8, false);
@@ -423,7 +423,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
             float f2;
             float f3;
             setOrientation(1);
-            setPadding(AndroidUtilities.m35dp(6.0f), 0, AndroidUtilities.m35dp(6.0f), 0);
+            setPadding(AndroidUtilities.m36dp(6.0f), 0, AndroidUtilities.m36dp(6.0f), 0);
             LimitParams limitParams = LimitReachedBottomSheet.getLimitParams(limitReachedBottomSheet.type, ((BottomSheet) limitReachedBottomSheet).currentAccount);
             limitReachedBottomSheet.limitParams = limitParams;
             int i = limitParams.icon;

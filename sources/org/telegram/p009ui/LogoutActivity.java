@@ -209,7 +209,6 @@ public class LogoutActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
-            LogoutActivity.this = r1;
             this.mContext = context;
         }
 

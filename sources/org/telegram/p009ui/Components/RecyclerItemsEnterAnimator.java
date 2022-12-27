@@ -68,17 +68,16 @@ public class RecyclerItemsEnterAnimator {
             ofFloat.start();
             i--;
         }
-        ViewTreeObserver$OnPreDrawListenerC27102 viewTreeObserver$OnPreDrawListenerC27102 = new ViewTreeObserver$OnPreDrawListenerC27102(progressView, i);
-        this.preDrawListeners.add(viewTreeObserver$OnPreDrawListenerC27102);
-        this.listView.getViewTreeObserver().addOnPreDrawListener(viewTreeObserver$OnPreDrawListenerC27102);
+        ViewTreeObserver$OnPreDrawListenerC27132 viewTreeObserver$OnPreDrawListenerC27132 = new ViewTreeObserver$OnPreDrawListenerC27132(progressView, i);
+        this.preDrawListeners.add(viewTreeObserver$OnPreDrawListenerC27132);
+        this.listView.getViewTreeObserver().addOnPreDrawListener(viewTreeObserver$OnPreDrawListenerC27132);
     }
 
-    public class ViewTreeObserver$OnPreDrawListenerC27102 implements ViewTreeObserver.OnPreDrawListener {
+    public class ViewTreeObserver$OnPreDrawListenerC27132 implements ViewTreeObserver.OnPreDrawListener {
         final int val$finalFrom;
         final View val$finalProgressView;
 
-        ViewTreeObserver$OnPreDrawListenerC27102(View view, int i) {
-            RecyclerItemsEnterAnimator.this = r1;
+        ViewTreeObserver$OnPreDrawListenerC27132(View view, int i) {
             this.val$finalProgressView = view;
             this.val$finalFrom = i;
         }
@@ -101,7 +100,7 @@ public class RecyclerItemsEnterAnimator {
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            RecyclerItemsEnterAnimator.ViewTreeObserver$OnPreDrawListenerC27102.this.lambda$onPreDraw$0(childAdapterPosition, valueAnimator);
+                            RecyclerItemsEnterAnimator.ViewTreeObserver$OnPreDrawListenerC27132.this.lambda$onPreDraw$0(childAdapterPosition, valueAnimator);
                         }
                     });
                     ofFloat.addListener(new AnimatorListenerAdapter() {

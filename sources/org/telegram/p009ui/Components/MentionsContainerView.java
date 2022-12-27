@@ -108,10 +108,10 @@ public class MentionsContainerView extends BlurredFrameLayout {
         this.isTopView = false;
         setVisibility(8);
         setWillNotDraw(false);
-        this.listViewPadding = (int) Math.min(AndroidUtilities.m35dp(126.0f), AndroidUtilities.displaySize.y * 0.22f);
+        this.listViewPadding = (int) Math.min(AndroidUtilities.m36dp(126.0f), AndroidUtilities.displaySize.y * 0.22f);
         MentionsListView mentionsListView = new MentionsListView(context, resourcesProvider);
         this.listView = mentionsListView;
-        mentionsListView.setTranslationY(AndroidUtilities.m35dp(6.0f));
+        mentionsListView.setTranslationY(AndroidUtilities.m36dp(6.0f));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
@@ -121,7 +121,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
             @Override
             public void setReverseLayout(boolean z) {
                 super.setReverseLayout(z);
-                MentionsContainerView.this.listView.setTranslationY((z ? -1 : 1) * AndroidUtilities.m35dp(6.0f));
+                MentionsContainerView.this.listView.setTranslationY((z ? -1 : 1) * AndroidUtilities.m36dp(6.0f));
             }
         };
         this.linearLayoutManager = linearLayoutManager;
@@ -342,8 +342,8 @@ public class MentionsContainerView extends BlurredFrameLayout {
         float min;
         PaddedListAdapter paddedListAdapter2;
         boolean isReversed = isReversed();
-        this.containerPadding = AndroidUtilities.m35dp(((this.adapter.isStickers() || this.adapter.isBotContext()) && this.adapter.isMediaLayout() && this.adapter.getBotContextSwitch() == null ? 2 : 0) + 2);
-        float m35dp = AndroidUtilities.m35dp(4.0f);
+        this.containerPadding = AndroidUtilities.m36dp(((this.adapter.isStickers() || this.adapter.isBotContext()) && this.adapter.isMediaLayout() && this.adapter.getBotContextSwitch() == null ? 2 : 0) + 2);
+        float m36dp = AndroidUtilities.m36dp(4.0f);
         if (isReversed) {
             float min2 = Math.min(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? paddedListAdapter2.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
             Rect rect = this.rect;
@@ -351,14 +351,14 @@ public class MentionsContainerView extends BlurredFrameLayout {
             int measuredWidth = getMeasuredWidth();
             this.containerBottom = min2;
             rect.set(0, (int) 0.0f, measuredWidth, (int) min2);
-            min = Math.min(m35dp, Math.abs(getMeasuredHeight() - this.containerBottom));
+            min = Math.min(m36dp, Math.abs(getMeasuredHeight() - this.containerBottom));
             if (min > 0.0f) {
                 this.rect.top -= (int) min;
             }
         } else {
             if (this.listView.getLayoutManager() == this.gridLayoutManager) {
-                this.containerPadding += AndroidUtilities.m35dp(2.0f);
-                m35dp += AndroidUtilities.m35dp(2.0f);
+                this.containerPadding += AndroidUtilities.m36dp(2.0f);
+                m36dp += AndroidUtilities.m36dp(2.0f);
             }
             float max = Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? paddedListAdapter.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding;
             this.containerTop = max;
@@ -369,7 +369,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
             float measuredHeight = getMeasuredHeight();
             this.containerBottom = measuredHeight;
             rect2.set(0, (int) max2, measuredWidth2, (int) measuredHeight);
-            min = Math.min(m35dp, Math.abs(this.containerTop));
+            min = Math.min(m36dp, Math.abs(this.containerTop));
             if (min > 0.0f) {
                 this.rect.bottom += (int) min;
             }
@@ -378,7 +378,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
         if (this.paint == null) {
             Paint paint = new Paint(1);
             this.paint = paint;
-            paint.setShadowLayer(AndroidUtilities.m35dp(4.0f), 0.0f, 0.0f, 503316480);
+            paint.setShadowLayer(AndroidUtilities.m36dp(4.0f), 0.0f, 0.0f, 503316480);
         }
         Paint paint2 = this.paint;
         Integer num = this.color;
@@ -446,7 +446,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
                 if (getVisibility() == 8) {
                     this.hideT = 1.0f;
                     MentionsListView mentionsListView = this.listView;
-                    mentionsListView.setTranslationY(isReversed ? -(this.listViewPadding + AndroidUtilities.m35dp(12.0f)) : mentionsListView.computeVerticalScrollOffset() + this.listViewPadding);
+                    mentionsListView.setTranslationY(isReversed ? -(this.listViewPadding + AndroidUtilities.m36dp(12.0f)) : mentionsListView.computeVerticalScrollOffset() + this.listViewPadding);
                 }
             }
             setVisibility(0);
@@ -482,7 +482,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
         }
         boolean isReversed = isReversed();
         if (z) {
-            computeVerticalScrollRange = (-this.containerPadding) - AndroidUtilities.m35dp(6.0f);
+            computeVerticalScrollRange = (-this.containerPadding) - AndroidUtilities.m36dp(6.0f);
         } else {
             computeVerticalScrollRange = (this.listView.computeVerticalScrollRange() - this.paddedAdapter.getPadding()) + this.containerPadding;
         }
@@ -572,8 +572,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
 
         public MentionsListView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
-            MentionsContainerView.this = r1;
-            setOnScrollListener(new RecyclerView.OnScrollListener(r1) {
+            setOnScrollListener(new RecyclerView.OnScrollListener(MentionsContainerView.this) {
                 @Override
                 public void onScrollStateChanged(RecyclerView recyclerView, int i) {
                     MentionsListView.this.isScrolling = i != 0;
@@ -590,7 +589,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
                     MentionsContainerView.this.onScrolled(!mentionsListView.canScrollVertically(-1), true ^ MentionsListView.this.canScrollVertically(1));
                 }
             });
-            addItemDecoration(new RecyclerView.ItemDecoration(r1) {
+            addItemDecoration(new RecyclerView.ItemDecoration(MentionsContainerView.this) {
                 @Override
                 public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                     int childAdapterPosition;
@@ -606,16 +605,16 @@ public class MentionsContainerView extends BlurredFrameLayout {
                         return;
                     }
                     if (MentionsContainerView.this.adapter.getBotContextSwitch() == null) {
-                        rect.top = AndroidUtilities.m35dp(2.0f);
+                        rect.top = AndroidUtilities.m36dp(2.0f);
                     } else if (i == 0) {
                         return;
                     } else {
                         i--;
                         if (!MentionsContainerView.this.gridLayoutManager.isFirstRow(i)) {
-                            rect.top = AndroidUtilities.m35dp(2.0f);
+                            rect.top = AndroidUtilities.m36dp(2.0f);
                         }
                     }
-                    rect.right = MentionsContainerView.this.gridLayoutManager.isLastInRow(i) ? 0 : AndroidUtilities.m35dp(2.0f);
+                    rect.right = MentionsContainerView.this.gridLayoutManager.isLastInRow(i) ? 0 : AndroidUtilities.m36dp(2.0f);
                 }
             });
         }
@@ -699,7 +698,7 @@ public class MentionsContainerView extends BlurredFrameLayout {
             if (MentionsContainerView.this.paddedAdapter != null) {
                 MentionsContainerView.this.paddedAdapter.setPadding(size);
             }
-            MentionsContainerView.this.listViewPadding = (int) Math.min(AndroidUtilities.m35dp(126.0f), AndroidUtilities.displaySize.y * 0.22f);
+            MentionsContainerView.this.listViewPadding = (int) Math.min(AndroidUtilities.m36dp(126.0f), AndroidUtilities.displaySize.y * 0.22f);
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size + ((int) MentionsContainerView.this.listViewPadding), 1073741824));
         }
 

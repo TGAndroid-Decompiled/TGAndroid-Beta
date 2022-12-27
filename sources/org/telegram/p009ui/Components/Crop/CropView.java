@@ -103,7 +103,6 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         public float f1052y;
 
         private CropState(int i, int i2, int i3) {
-            CropView.this = r1;
             this.width = i;
             this.height = i2;
             this.f1051x = 0.0f;
@@ -965,7 +964,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
             try {
                 bitmap2.eraseColor(0);
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
                 return;
             }
         }
@@ -1118,7 +1117,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         try {
             AndroidUtilities.copyFile(new File(str), file);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return file.getAbsolutePath();
     }
@@ -1171,7 +1170,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         float f3 = cropState3.minimumScale * cropWidth;
         mediaEditState.cropState.transformRotation = cropState3.getOrientationOnly();
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("set transformRotation = " + mediaEditState.cropState.transformRotation);
+            FileLog.m35d("set transformRotation = " + mediaEditState.cropState.transformRotation);
         }
         while (true) {
             cropState = mediaEditState.cropState;

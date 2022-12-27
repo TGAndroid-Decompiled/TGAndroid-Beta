@@ -126,12 +126,12 @@ public class MaxFileSizeCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(80.0f), 1073741824));
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m35dp(80.0f));
-        int measuredWidth = getMeasuredWidth() - AndroidUtilities.m35dp(42.0f);
-        this.sizeTextView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(30.0f), 1073741824));
-        this.textView.measure(View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.m35dp(10.0f), (measuredWidth - this.sizeTextView.getMeasuredWidth()) - AndroidUtilities.m35dp(8.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(30.0f), 1073741824));
-        this.seekBarView.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth() - AndroidUtilities.m35dp(20.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(30.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(80.0f), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m36dp(80.0f));
+        int measuredWidth = getMeasuredWidth() - AndroidUtilities.m36dp(42.0f);
+        this.sizeTextView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(30.0f), 1073741824));
+        this.textView.measure(View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.m36dp(10.0f), (measuredWidth - this.sizeTextView.getMeasuredWidth()) - AndroidUtilities.m36dp(8.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(30.0f), 1073741824));
+        this.seekBarView.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth() - AndroidUtilities.m36dp(20.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(30.0f), 1073741824));
     }
 
     @Override
@@ -209,6 +209,6 @@ public class MaxFileSizeCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+        canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
     }
 }

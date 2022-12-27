@@ -17,7 +17,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.p009ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.BackButtonMenu;
-import org.telegram.p009ui.LNavigation.C3411LNavigation;
+import org.telegram.p009ui.LNavigation.C3414LNavigation;
 
 public interface INavigationLayout {
 
@@ -193,7 +193,7 @@ public interface INavigationLayout {
         }
 
         public static INavigationLayout newLayout(Context context) {
-            return SharedConfig.useLNavigation ? new C3411LNavigation(context) : new ActionBarLayout(context);
+            return SharedConfig.useLNavigation ? new C3414LNavigation(context) : new ActionBarLayout(context);
         }
 
         public static void $default$rebuildFragments(INavigationLayout _this, int i) {

@@ -82,11 +82,11 @@ public class JoinGroupAlert extends BottomSheet {
                 JoinGroupAlert.this.lambda$new$0(view);
             }
         });
-        int m35dp = AndroidUtilities.m35dp(8.0f);
-        imageView.setPadding(m35dp, m35dp, m35dp, m35dp);
+        int m36dp = AndroidUtilities.m36dp(8.0f);
+        imageView.setPadding(m36dp, m36dp, m36dp, m36dp);
         frameLayout.addView(imageView, LayoutHelper.createFrame(36, 36.0f, 8388661, 6.0f, 8.0f, 6.0f, 0.0f));
         BackupImageView backupImageView = new BackupImageView(context);
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(35.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(35.0f));
         linearLayout.addView(backupImageView, LayoutHelper.createLinear(70, 70, 49, 0, 29, 0, 0));
         TLRPC$ChatInvite tLRPC$ChatInvite = this.chatInvite;
         if (tLRPC$ChatInvite != null) {
@@ -159,7 +159,7 @@ public class JoinGroupAlert extends BottomSheet {
             if (tLRPC$ChatInvite5 != null) {
                 if (!tLRPC$ChatInvite5.participants.isEmpty()) {
                     RecyclerListView recyclerListView = new RecyclerListView(context);
-                    recyclerListView.setPadding(0, 0, 0, AndroidUtilities.m35dp(8.0f));
+                    recyclerListView.setPadding(0, 0, 0, AndroidUtilities.m36dp(8.0f));
                     recyclerListView.setNestedScrollingEnabled(false);
                     recyclerListView.setClipToPadding(false);
                     recyclerListView.setLayoutManager(new LinearLayoutManager(getContext(), 0, false));
@@ -174,7 +174,7 @@ public class JoinGroupAlert extends BottomSheet {
                 linearLayout.addView(view, new LinearLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight()));
                 PickerBottomLayout pickerBottomLayout = new PickerBottomLayout(context, false, resourcesProvider);
                 linearLayout.addView(pickerBottomLayout, LayoutHelper.createFrame(-1, 48, 83));
-                pickerBottomLayout.cancelButton.setPadding(AndroidUtilities.m35dp(18.0f), 0, AndroidUtilities.m35dp(18.0f), 0);
+                pickerBottomLayout.cancelButton.setPadding(AndroidUtilities.m36dp(18.0f), 0, AndroidUtilities.m36dp(18.0f), 0);
                 pickerBottomLayout.cancelButton.setTextColor(getThemedColor("dialogTextBlue2"));
                 pickerBottomLayout.cancelButton.setText(LocaleController.getString("Cancel", C1072R.string.Cancel).toUpperCase());
                 pickerBottomLayout.cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -183,7 +183,7 @@ public class JoinGroupAlert extends BottomSheet {
                         JoinGroupAlert.this.lambda$new$8(view2);
                     }
                 });
-                pickerBottomLayout.doneButton.setPadding(AndroidUtilities.m35dp(18.0f), 0, AndroidUtilities.m35dp(18.0f), 0);
+                pickerBottomLayout.doneButton.setPadding(AndroidUtilities.m36dp(18.0f), 0, AndroidUtilities.m36dp(18.0f), 0);
                 pickerBottomLayout.doneButton.setVisibility(0);
                 pickerBottomLayout.doneButtonBadgeTextView.setVisibility(8);
                 pickerBottomLayout.doneButtonTextView.setTextColor(getThemedColor("dialogTextBlue2"));
@@ -208,12 +208,12 @@ public class JoinGroupAlert extends BottomSheet {
         RadialProgressView radialProgressView = new RadialProgressView(getContext(), resourcesProvider);
         this.requestProgressView = radialProgressView;
         radialProgressView.setProgressColor(getThemedColor("featuredStickers_addButton"));
-        this.requestProgressView.setSize(AndroidUtilities.m35dp(32.0f));
+        this.requestProgressView.setSize(AndroidUtilities.m36dp(32.0f));
         this.requestProgressView.setVisibility(4);
         frameLayout2.addView(this.requestProgressView, LayoutHelper.createFrame(48, 48, 17));
         TextView textView4 = new TextView(getContext());
         this.requestTextView = textView4;
-        textView4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
+        textView4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
         this.requestTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.requestTextView.setGravity(17);
         this.requestTextView.setSingleLine(true);
@@ -416,7 +416,7 @@ public class JoinGroupAlert extends BottomSheet {
         Bulletin.make(baseFragment, twoLineLottieLayout, 2750).show();
     }
 
-    public class UsersAdapter extends RecyclerListView.SelectionAdapter {
+    private class UsersAdapter extends RecyclerListView.SelectionAdapter {
         private Context context;
 
         @Override
@@ -435,7 +435,6 @@ public class JoinGroupAlert extends BottomSheet {
         }
 
         public UsersAdapter(Context context) {
-            JoinGroupAlert.this = r1;
             this.context = context;
         }
 
@@ -448,7 +447,7 @@ public class JoinGroupAlert extends BottomSheet {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             JoinSheetUserCell joinSheetUserCell = new JoinSheetUserCell(this.context);
-            joinSheetUserCell.setLayoutParams(new RecyclerView.LayoutParams(AndroidUtilities.m35dp(100.0f), AndroidUtilities.m35dp(90.0f)));
+            joinSheetUserCell.setLayoutParams(new RecyclerView.LayoutParams(AndroidUtilities.m36dp(100.0f), AndroidUtilities.m36dp(90.0f)));
             return new RecyclerListView.Holder(joinSheetUserCell);
         }
 

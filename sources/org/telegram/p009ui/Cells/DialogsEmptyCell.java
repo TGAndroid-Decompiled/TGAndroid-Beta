@@ -96,7 +96,7 @@ public class DialogsEmptyCell extends LinearLayout {
         textView.setTextColor(Theme.getColor("chats_message"));
         textView.setTextSize(1, 14.0f);
         textView.setGravity(17);
-        textView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+        textView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
         return textView;
     }
 
@@ -291,7 +291,7 @@ public class DialogsEmptyCell extends LinearLayout {
         if (getParent() instanceof BlurredRecyclerView) {
             size -= ((BlurredRecyclerView) getParent()).blurTopPadding;
         }
-        return (int) (size + ((AndroidUtilities.m35dp(320.0f) - size) * this.utyanCollapseProgress));
+        return (int) (size + ((AndroidUtilities.m36dp(320.0f) - size) * this.utyanCollapseProgress));
     }
 
     @Override
@@ -318,11 +318,11 @@ public class DialogsEmptyCell extends LinearLayout {
             }
             ArrayList<TLRPC$RecentMeUrl> arrayList = MessagesController.getInstance(this.currentAccount).hintDialogs;
             if (!arrayList.isEmpty()) {
-                size -= (((AndroidUtilities.m35dp(72.0f) * arrayList.size()) + arrayList.size()) - 1) + AndroidUtilities.m35dp(50.0f);
+                size -= (((AndroidUtilities.m36dp(72.0f) * arrayList.size()) + arrayList.size()) - 1) + AndroidUtilities.m36dp(50.0f);
             }
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
         } else {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(166.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(166.0f), 1073741824));
         }
     }
 }

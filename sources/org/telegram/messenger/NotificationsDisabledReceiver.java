@@ -29,11 +29,11 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                 return;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("received disabled notification channel event for " + stringExtra + " state = " + booleanExtra);
+                FileLog.m35d("received disabled notification channel event for " + stringExtra + " state = " + booleanExtra);
             }
             if (SystemClock.elapsedRealtime() - AccountInstance.getInstance(intValue).getNotificationsController().lastNotificationChannelCreateTime <= 1000) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("received disable notification event right after creating notification channel, ignoring");
+                    FileLog.m35d("received disable notification event right after creating notification channel, ignoring");
                     return;
                 }
                 return;
@@ -46,7 +46,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("apply channel " + stringExtra + " state");
+                    FileLog.m35d("apply channel " + stringExtra + " state");
                 }
                 notificationsSettings.edit().putInt(NotificationsController.getGlobalNotificationsKey(2), booleanExtra ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0).commit();
                 AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(2);
@@ -55,7 +55,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("apply channel " + stringExtra + " state");
+                    FileLog.m35d("apply channel " + stringExtra + " state");
                 }
                 SharedPreferences.Editor edit = notificationsSettings.edit();
                 String globalNotificationsKey = NotificationsController.getGlobalNotificationsKey(0);
@@ -69,7 +69,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("apply channel " + stringExtra + " state");
+                    FileLog.m35d("apply channel " + stringExtra + " state");
                 }
                 notificationsSettings.edit().putInt(NotificationsController.getGlobalNotificationsKey(1), booleanExtra ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0).commit();
                 AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(1);
@@ -83,7 +83,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("apply channel " + stringExtra + " state");
+                    FileLog.m35d("apply channel " + stringExtra + " state");
                 }
                 SharedPreferences.Editor edit2 = notificationsSettings.edit();
                 edit2.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey, booleanExtra ? 2 : 0);

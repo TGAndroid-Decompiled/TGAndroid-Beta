@@ -33,22 +33,22 @@ public class MsgClockDrawable extends Drawable {
         this.colorAlpha = 255;
         paint.setStyle(Paint.Style.STROKE);
         this.paint.setStrokeCap(Paint.Cap.ROUND);
-        this.paint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
+        this.paint.setStrokeWidth(AndroidUtilities.m36dp(1.0f));
         this.startTime = System.currentTimeMillis();
     }
 
     @Override
     public void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        canvas.drawCircle(bounds.centerX(), bounds.centerY(), (Math.min(bounds.width(), bounds.height()) >> 1) - AndroidUtilities.m35dp(0.5f), this.paint);
+        canvas.drawCircle(bounds.centerX(), bounds.centerY(), (Math.min(bounds.width(), bounds.height()) >> 1) - AndroidUtilities.m36dp(0.5f), this.paint);
         long currentTimeMillis = System.currentTimeMillis();
         canvas.save();
         canvas.rotate(((((float) (currentTimeMillis - this.startTime)) % 1500.0f) * 360.0f) / 1500.0f, bounds.centerX(), bounds.centerY());
-        canvas.drawLine(bounds.centerX(), bounds.centerY(), bounds.centerX(), bounds.centerY() - AndroidUtilities.m35dp(3.0f), this.paint);
+        canvas.drawLine(bounds.centerX(), bounds.centerY(), bounds.centerX(), bounds.centerY() - AndroidUtilities.m36dp(3.0f), this.paint);
         canvas.restore();
         canvas.save();
         canvas.rotate(((((float) (currentTimeMillis - this.startTime)) % 4500.0f) * 360.0f) / 4500.0f, bounds.centerX(), bounds.centerY());
-        canvas.drawLine(bounds.centerX(), bounds.centerY(), bounds.centerX() + AndroidUtilities.m35dp(2.3f), bounds.centerY(), this.paint);
+        canvas.drawLine(bounds.centerX(), bounds.centerY(), bounds.centerX() + AndroidUtilities.m36dp(2.3f), bounds.centerY(), this.paint);
         canvas.restore();
     }
 
@@ -63,12 +63,12 @@ public class MsgClockDrawable extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        return AndroidUtilities.m35dp(12.0f);
+        return AndroidUtilities.m36dp(12.0f);
     }
 
     @Override
     public int getIntrinsicWidth() {
-        return AndroidUtilities.m35dp(12.0f);
+        return AndroidUtilities.m36dp(12.0f);
     }
 
     @Override

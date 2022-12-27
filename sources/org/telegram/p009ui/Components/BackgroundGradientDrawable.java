@@ -69,7 +69,7 @@ public class BackgroundGradientDrawable extends GradientDrawable {
             }
         }
 
-        public static Sizes m15of(int i, int i2, int... iArr) {
+        public static Sizes m16of(int i, int i2, int... iArr) {
             return new Sizes(i, i2, iArr);
         }
 
@@ -90,12 +90,12 @@ public class BackgroundGradientDrawable extends GradientDrawable {
             int i = (int) (point.x * f);
             int i2 = (int) (point.y * f);
             if (i == i2) {
-                return m15of(i, i2, new int[0]);
+                return m16of(i, i2, new int[0]);
             }
             if (orientation == Orientation.BOTH) {
-                return m15of(i, i2, i2, i);
+                return m16of(i, i2, i2, i);
             }
-            return (orientation == Orientation.PORTRAIT) == (i < i2) ? m15of(i, i2, new int[0]) : m15of(i2, i, new int[0]);
+            return (orientation == Orientation.PORTRAIT) == (i < i2) ? m16of(i, i2, new int[0]) : m16of(i2, i, new int[0]);
         }
     }
 
@@ -364,7 +364,7 @@ public class BackgroundGradientDrawable extends GradientDrawable {
         return bitmap;
     }
 
-    public static class C18322 {
+    public static class C18352 {
         static final int[] f1036x8f1352bc;
 
         static {
@@ -403,7 +403,7 @@ public class BackgroundGradientDrawable extends GradientDrawable {
 
     public static Rect getGradientPoints(GradientDrawable.Orientation orientation, int i, int i2) {
         Rect rect = new Rect();
-        switch (C18322.f1036x8f1352bc[orientation.ordinal()]) {
+        switch (C18352.f1036x8f1352bc[orientation.ordinal()]) {
             case 1:
                 int i3 = i / 2;
                 rect.left = i3;

@@ -269,11 +269,11 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
         setOpenProgress(this.openedProgress);
         View view = this.currentFragmentView;
         if (view != null) {
-            view.setTranslationX((getMeasuredWidth() - AndroidUtilities.m35dp(getRightPaddingSize())) * (1.0f - this.openedProgress));
+            view.setTranslationX((getMeasuredWidth() - AndroidUtilities.m36dp(getRightPaddingSize())) * (1.0f - this.openedProgress));
         }
         C1133ActionBar c1133ActionBar = this.currentActionBarView;
         if (c1133ActionBar != null) {
-            c1133ActionBar.setTranslationX(AndroidUtilities.m35dp(48.0f) * (1.0f - this.openedProgress));
+            c1133ActionBar.setTranslationX(AndroidUtilities.m36dp(48.0f) * (1.0f - this.openedProgress));
         }
         BaseFragment baseFragment = this.currentFragment;
         if (baseFragment != null) {
@@ -288,7 +288,7 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
         View view = this.currentFragmentView;
         if (view != null) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-            layoutParams.leftMargin = AndroidUtilities.m35dp(getRightPaddingSize());
+            layoutParams.leftMargin = AndroidUtilities.m36dp(getRightPaddingSize());
             layoutParams.topMargin = C1133ActionBar.getCurrentActionBarHeight() + i3 + this.fragmentViewPadding;
         }
         C1133ActionBar c1133ActionBar = this.currentActionBarView;

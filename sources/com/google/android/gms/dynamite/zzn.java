@@ -2,7 +2,7 @@ package com.google.android.gms.dynamite;
 
 import android.database.Cursor;
 
-public final class zzn {
+final class zzn {
     public Cursor zza;
 
     private zzn() {

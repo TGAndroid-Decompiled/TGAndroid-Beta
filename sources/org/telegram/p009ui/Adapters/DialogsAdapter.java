@@ -170,23 +170,23 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     public int fixScrollGap(RecyclerListView recyclerListView, int i, int i2, boolean z, boolean z2) {
-        int m35dp;
+        int m36dp;
         int itemCount = getItemCount() - i;
-        int m35dp2 = AndroidUtilities.m35dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
-        int paddingTop = (((recyclerListView.getPaddingTop() + i2) + (itemCount * m35dp2)) + itemCount) - 1;
-        int paddingTop2 = ((recyclerListView.getPaddingTop() + i2) - (i * m35dp2)) - i;
+        int m36dp2 = AndroidUtilities.m36dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
+        int paddingTop = (((recyclerListView.getPaddingTop() + i2) + (itemCount * m36dp2)) + itemCount) - 1;
+        int paddingTop2 = ((recyclerListView.getPaddingTop() + i2) - (i * m36dp2)) - i;
         if (z2) {
-            m35dp = paddingTop - AndroidUtilities.m35dp(44.0f);
+            m36dp = paddingTop - AndroidUtilities.m36dp(44.0f);
         } else {
-            m35dp = paddingTop + AndroidUtilities.m35dp(44.0f);
+            m36dp = paddingTop + AndroidUtilities.m36dp(44.0f);
         }
         if (z) {
-            paddingTop2 += m35dp2;
+            paddingTop2 += m36dp2;
         }
         if (paddingTop2 > recyclerListView.getPaddingTop()) {
             return (i2 + recyclerListView.getPaddingTop()) - paddingTop2;
         }
-        return m35dp < recyclerListView.getMeasuredHeight() ? i2 + (recyclerListView.getMeasuredHeight() - m35dp) : i2;
+        return m36dp < recyclerListView.getMeasuredHeight() ? i2 + (recyclerListView.getMeasuredHeight() - m36dp) : i2;
     }
 
     public class ItemInternal extends AdapterWithDiffUtils.Item {
@@ -292,7 +292,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                         notifyDataSetChanged();
                     }
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
         }
@@ -343,7 +343,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             if (view != null) {
                 float top = (view.getTop() - recyclerListView.getPaddingTop()) + f;
                 if (z && i2 == 0) {
-                    if ((view.getTop() - recyclerListView.getPaddingTop()) + f < AndroidUtilities.m35dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f)) {
+                    if ((view.getTop() - recyclerListView.getPaddingTop()) + f < AndroidUtilities.m36dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f)) {
                         i2 = 1;
                         linearLayoutManager.scrollToPositionWithOffset(i2, (int) f);
                     }
@@ -432,7 +432,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     dialogCell.setIgnoreHeightCheck(true);
                 }
                 if (i == 13) {
-                    dialogCell.setItemsCount((int) ((AndroidUtilities.displaySize.y * 0.5f) / AndroidUtilities.m35dp(64.0f)));
+                    dialogCell.setItemsCount((int) ((AndroidUtilities.displaySize.y * 0.5f) / AndroidUtilities.m36dp(64.0f)));
                     break;
                 }
                 break;
@@ -457,7 +457,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 FrameLayout frameLayout = new FrameLayout(this, this.mContext) {
                     @Override
                     protected void onMeasure(int i3, int i4) {
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(12.0f), 1073741824));
+                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(12.0f), 1073741824));
                     }
                 };
                 frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
@@ -477,7 +477,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 break;
             case 7:
                 dialogCell = new HeaderCell(this.mContext);
-                dialogCell.setPadding(0, 0, 0, AndroidUtilities.m35dp(12.0f));
+                dialogCell.setPadding(0, 0, 0, AndroidUtilities.m36dp(12.0f));
                 break;
             case 8:
                 shadowSectionCell = new ShadowSectionCell(this.mContext);
@@ -515,10 +515,10 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     protected void onTextDraw() {
                         if (DialogsAdapter.this.arrowDrawable != null) {
                             Rect bounds = DialogsAdapter.this.arrowDrawable.getBounds();
-                            int m35dp = (int) (this.moveProgress * AndroidUtilities.m35dp(3.0f));
+                            int m36dp = (int) (this.moveProgress * AndroidUtilities.m36dp(3.0f));
                             this.originalX = bounds.left;
                             this.originalY = bounds.top;
-                            DialogsAdapter.this.arrowDrawable.setBounds(this.originalX + m35dp, this.originalY + AndroidUtilities.m35dp(1.0f), this.originalX + m35dp + bounds.width(), this.originalY + AndroidUtilities.m35dp(1.0f) + bounds.height());
+                            DialogsAdapter.this.arrowDrawable.setBounds(this.originalX + m36dp, this.originalY + AndroidUtilities.m36dp(1.0f), this.originalX + m36dp + bounds.width(), this.originalY + AndroidUtilities.m36dp(1.0f) + bounds.height());
                             long elapsedRealtime = SystemClock.elapsedRealtime();
                             long j = elapsedRealtime - this.lastUpdateTime;
                             if (j > 17) {
@@ -712,7 +712,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayText4"), PorterDuff.Mode.MULTIPLY));
             }
             TextView textView = textInfoPrivacyCell.getTextView();
-            textView.setCompoundDrawablePadding(AndroidUtilities.m35dp(4.0f));
+            textView.setCompoundDrawablePadding(AndroidUtilities.m36dp(4.0f));
             textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, this.arrowDrawable, (Drawable) null);
             textView.getLayoutParams().width = -2;
         } else if (itemViewType == 12) {
@@ -877,7 +877,6 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             final long val$dialog_id;
 
             C12401(long j) {
-                DialogsPreloader.this = r1;
                 this.val$dialog_id = j;
             }
 
@@ -974,7 +973,6 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
         public LastEmptyView(Context context) {
             super(context);
-            DialogsAdapter.this = r1;
         }
 
         @Override
@@ -994,18 +992,18 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     size2 = (AndroidUtilities.displaySize.y - C1133ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
                 }
                 int i5 = size2 - i4;
-                int m35dp = AndroidUtilities.m35dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
+                int m36dp = AndroidUtilities.m36dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
                 int i6 = 0;
                 for (int i7 = 0; i7 < size; i7++) {
                     if (DialogsAdapter.this.itemInternals.get(i7).viewType == 0) {
-                        i6 = (!DialogsAdapter.this.itemInternals.get(i7).isForumCell || DialogsAdapter.this.collapsedView) ? i6 + m35dp : i6 + AndroidUtilities.m35dp(SharedConfig.useThreeLinesLayout ? 86.0f : 91.0f);
+                        i6 = (!DialogsAdapter.this.itemInternals.get(i7).isForumCell || DialogsAdapter.this.collapsedView) ? i6 + m36dp : i6 + AndroidUtilities.m36dp(SharedConfig.useThreeLinesLayout ? 86.0f : 91.0f);
                     }
                 }
                 int i8 = i6 + (size - 1);
                 if (DialogsAdapter.this.onlineContacts != null) {
-                    i8 += (DialogsAdapter.this.onlineContacts.size() * AndroidUtilities.m35dp(58.0f)) + (DialogsAdapter.this.onlineContacts.size() - 1) + AndroidUtilities.m35dp(52.0f);
+                    i8 += (DialogsAdapter.this.onlineContacts.size() * AndroidUtilities.m36dp(58.0f)) + (DialogsAdapter.this.onlineContacts.size() - 1) + AndroidUtilities.m36dp(52.0f);
                 }
-                int i9 = z ? m35dp + 1 : 0;
+                int i9 = z ? m36dp + 1 : 0;
                 if (i8 < i5) {
                     int i10 = (i5 - i8) + i9;
                     if (paddingTop == 0 || (i10 = i10 - AndroidUtilities.statusBarHeight) >= 0) {

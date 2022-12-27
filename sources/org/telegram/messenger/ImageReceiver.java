@@ -1304,7 +1304,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                                 }
                             } catch (Exception e) {
                                 onBitmapException(bitmapDrawable2);
-                                FileLog.m31e(e);
+                                FileLog.m32e(e);
                             }
                         }
                     }
@@ -1436,7 +1436,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                                 if (backgroundThreadDrawHolder == null) {
                                     onBitmapException(bitmapDrawable);
                                 }
-                                FileLog.m31e(e2);
+                                FileLog.m32e(e2);
                             }
                         }
                     }
@@ -1475,7 +1475,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                             if (backgroundThreadDrawHolder == null) {
                                 onBitmapException(bitmapDrawable2);
                             }
-                            FileLog.m31e(e3);
+                            FileLog.m32e(e3);
                         }
                     }
                     canvas.restore();
@@ -1530,7 +1530,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                                     if (backgroundThreadDrawHolder == null) {
                                         onBitmapException(bitmapDrawable2);
                                     }
-                                    FileLog.m31e(e4);
+                                    FileLog.m32e(e4);
                                 }
                             }
                             drawBitmapDrawable(canvas, bitmapDrawable2, backgroundThreadDrawHolder, i);
@@ -1576,7 +1576,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                                     }
                                 } catch (Exception e5) {
                                     onBitmapException(bitmapDrawable2);
-                                    FileLog.m31e(e5);
+                                    FileLog.m32e(e5);
                                 }
                             }
                             drawBitmapDrawable(canvas, bitmapDrawable2, backgroundThreadDrawHolder, i);
@@ -1630,7 +1630,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             }
             drawable.draw(canvas);
         } catch (Exception e6) {
-            FileLog.m31e(e6);
+            FileLog.m32e(e6);
         }
     }
 

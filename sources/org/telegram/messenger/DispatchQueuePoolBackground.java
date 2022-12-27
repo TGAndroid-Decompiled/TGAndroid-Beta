@@ -119,7 +119,7 @@ public class DispatchQueuePoolBackground {
     public static void execute(Runnable runnable, boolean z) {
         if (Thread.currentThread() != ApplicationLoader.applicationHandler.getLooper().getThread()) {
             if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                FileLog.m31e(new RuntimeException("wrong thread"));
+                FileLog.m32e(new RuntimeException("wrong thread"));
                 return;
             }
             return;

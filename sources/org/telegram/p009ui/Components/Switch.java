@@ -87,7 +87,7 @@ public class Switch extends View {
         this.paint2 = paint;
         paint.setStyle(Paint.Style.STROKE);
         this.paint2.setStrokeCap(Paint.Cap.ROUND);
-        this.paint2.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.paint2.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         setHapticFeedbackEnabled(true);
     }
 
@@ -168,12 +168,12 @@ public class Switch extends View {
                 @Override
                 public void draw(Canvas canvas) {
                     Rect bounds = getBounds();
-                    canvas.drawCircle(bounds.centerX(), bounds.centerY(), AndroidUtilities.m35dp(18.0f), Switch.this.ripplePaint);
+                    canvas.drawCircle(bounds.centerX(), bounds.centerY(), AndroidUtilities.m36dp(18.0f), Switch.this.ripplePaint);
                 }
             });
             this.rippleDrawable = rippleDrawable;
             if (i >= 23) {
-                rippleDrawable.setRadius(AndroidUtilities.m35dp(18.0f));
+                rippleDrawable.setRadius(AndroidUtilities.m36dp(18.0f));
             }
             this.rippleDrawable.setCallback(this);
         }
@@ -190,7 +190,7 @@ public class Switch extends View {
             this.colorSet = this.isChecked ? 2 : 1;
         }
         if (i >= 28 && z) {
-            this.rippleDrawable.setHotspot(this.isChecked ? 0.0f : AndroidUtilities.m35dp(100.0f), AndroidUtilities.m35dp(18.0f));
+            this.rippleDrawable.setHotspot(this.isChecked ? 0.0f : AndroidUtilities.m36dp(100.0f), AndroidUtilities.m36dp(18.0f));
         }
         this.rippleDrawable.setState(z ? this.pressedState : StateSet.NOTHING);
         invalidate();

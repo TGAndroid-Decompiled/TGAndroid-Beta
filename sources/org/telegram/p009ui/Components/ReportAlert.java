@@ -46,7 +46,7 @@ public class ReportAlert extends BottomSheet {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(80.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(80.0f), 1073741824));
         }
 
         public void setText(CharSequence charSequence) {
@@ -107,7 +107,7 @@ public class ReportAlert extends BottomSheet {
         this.editText.setImeOptions(6);
         this.editText.setHint(LocaleController.getString("ReportHint", C1072R.string.ReportHint));
         this.editText.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        this.editText.setCursorSize(AndroidUtilities.m35dp(20.0f));
+        this.editText.setCursorSize(AndroidUtilities.m36dp(20.0f));
         this.editText.setCursorWidth(1.5f);
         this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

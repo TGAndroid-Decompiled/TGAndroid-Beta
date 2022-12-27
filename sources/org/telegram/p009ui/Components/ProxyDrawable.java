@@ -35,7 +35,7 @@ public class ProxyDrawable extends Drawable {
         this.emptyDrawable = context.getResources().getDrawable(C1072R.C1073drawable.proxy_off);
         this.fullDrawable = context.getResources().getDrawable(C1072R.C1073drawable.proxy_on);
         this.outerPaint.setStyle(Paint.Style.STROKE);
-        this.outerPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.outerPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         this.outerPaint.setStrokeCap(Paint.Cap.ROUND);
         this.lastUpdateTime = SystemClock.elapsedRealtime();
     }
@@ -66,9 +66,9 @@ public class ProxyDrawable extends Drawable {
             this.radOffset = (int) (this.radOffset + (((float) (360 * j)) / 1000.0f));
             int width = getBounds().width();
             int height = getBounds().height();
-            int m35dp = (width / 2) - AndroidUtilities.m35dp(3.0f);
-            int m35dp2 = (height / 2) - AndroidUtilities.m35dp(3.0f);
-            this.cicleRect.set(m35dp, m35dp2, m35dp + AndroidUtilities.m35dp(6.0f), m35dp2 + AndroidUtilities.m35dp(6.0f));
+            int m36dp = (width / 2) - AndroidUtilities.m36dp(3.0f);
+            int m36dp2 = (height / 2) - AndroidUtilities.m36dp(3.0f);
+            this.cicleRect.set(m36dp, m36dp2, m36dp + AndroidUtilities.m36dp(6.0f), m36dp2 + AndroidUtilities.m36dp(6.0f));
             canvas.drawArc(this.cicleRect, this.radOffset - 90, 90.0f, false, this.outerPaint);
             invalidateSelf();
         }
@@ -112,11 +112,11 @@ public class ProxyDrawable extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        return AndroidUtilities.m35dp(24.0f);
+        return AndroidUtilities.m36dp(24.0f);
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return AndroidUtilities.m35dp(24.0f);
+        return AndroidUtilities.m36dp(24.0f);
     }
 }

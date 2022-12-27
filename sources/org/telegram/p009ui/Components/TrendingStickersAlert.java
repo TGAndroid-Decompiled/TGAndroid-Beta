@@ -38,7 +38,7 @@ public class TrendingStickersAlert extends BottomSheet {
 
     public TrendingStickersAlert(Context context, BaseFragment baseFragment, TrendingStickersLayout trendingStickersLayout, Theme.ResourcesProvider resourcesProvider) {
         super(context, true, resourcesProvider);
-        this.topOffset = AndroidUtilities.m35dp(12.0f);
+        this.topOffset = AndroidUtilities.m36dp(12.0f);
         this.shapeDrawable = new GradientDrawable();
         AlertContainerView alertContainerView = new AlertContainerView(context);
         this.alertContainerView = alertContainerView;
@@ -59,7 +59,7 @@ public class TrendingStickersAlert extends BottomSheet {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                 this.scrolledY += i2;
-                if (recyclerView.getScrollState() == 1 && Math.abs(this.scrolledY) > AndroidUtilities.m35dp(96.0f)) {
+                if (recyclerView.getScrollState() == 1 && Math.abs(this.scrolledY) > AndroidUtilities.m36dp(96.0f)) {
                     View findFocus = TrendingStickersAlert.this.layout.findFocus();
                     if (findFocus == null) {
                         findFocus = TrendingStickersAlert.this.layout;
@@ -139,7 +139,6 @@ public class TrendingStickersAlert extends BottomSheet {
 
         public AlertContainerView(Context context) {
             super(context);
-            TrendingStickersAlert.this = r3;
             this.paint = new Paint(1);
             this.gluedToTop = false;
             this.ignoreLayout = false;
@@ -147,8 +146,8 @@ public class TrendingStickersAlert extends BottomSheet {
             this.statusBarAlpha = 0.0f;
             this.radii = new float[8];
             setWillNotDraw(false);
-            setPadding(((BottomSheet) r3).backgroundPaddingLeft, 0, ((BottomSheet) r3).backgroundPaddingLeft, 0);
-            setDelegate(new SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate(r3) {
+            setPadding(((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, 0, ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, 0);
+            setDelegate(new SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate(TrendingStickersAlert.this) {
                 private boolean lastIsWidthGreater;
                 private int lastKeyboardHeight;
 
@@ -159,7 +158,7 @@ public class TrendingStickersAlert extends BottomSheet {
                     }
                     this.lastKeyboardHeight = i;
                     this.lastIsWidthGreater = z;
-                    if (i <= AndroidUtilities.m35dp(20.0f) || AlertContainerView.this.gluedToTop) {
+                    if (i <= AndroidUtilities.m36dp(20.0f) || AlertContainerView.this.gluedToTop) {
                         return;
                     }
                     TrendingStickersAlert.this.setAllowNestedScroll(false);
@@ -204,7 +203,7 @@ public class TrendingStickersAlert extends BottomSheet {
             int measureKeyboardHeight = measureKeyboardHeight();
             int size = (int) (((View.MeasureSpec.getSize(getMeasuredHeight()) - i5) + measureKeyboardHeight) * 0.2f);
             this.ignoreLayout = true;
-            if (measureKeyboardHeight > AndroidUtilities.m35dp(20.0f)) {
+            if (measureKeyboardHeight > AndroidUtilities.m36dp(20.0f)) {
                 TrendingStickersAlert.this.layout.glueToTop(true);
                 TrendingStickersAlert.this.setAllowNestedScroll(false);
                 this.gluedToTop = true;
@@ -241,15 +240,15 @@ public class TrendingStickersAlert extends BottomSheet {
             ((BottomSheet) TrendingStickersAlert.this).shadowDrawable.setBounds(0, (TrendingStickersAlert.this.scrollOffsetY - ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingTop) + i, getMeasuredWidth(), getMeasuredHeight() + (i2 < 0 ? -i2 : 0));
             ((BottomSheet) TrendingStickersAlert.this).shadowDrawable.draw(canvas);
             if (fraction > 0.0f && fraction < 1.0f) {
-                float m35dp = AndroidUtilities.m35dp(12.0f) * fraction;
+                float m36dp = AndroidUtilities.m36dp(12.0f) * fraction;
                 TrendingStickersAlert.this.shapeDrawable.setColor(TrendingStickersAlert.this.getThemedColor("dialogBackground"));
                 float[] fArr = this.radii;
-                fArr[3] = m35dp;
-                fArr[2] = m35dp;
-                fArr[1] = m35dp;
-                fArr[0] = m35dp;
+                fArr[3] = m36dp;
+                fArr[2] = m36dp;
+                fArr[1] = m36dp;
+                fArr[0] = m36dp;
                 TrendingStickersAlert.this.shapeDrawable.setCornerRadii(this.radii);
-                TrendingStickersAlert.this.shapeDrawable.setBounds(((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, TrendingStickersAlert.this.scrollOffsetY + i, getWidth() - ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, TrendingStickersAlert.this.scrollOffsetY + i + AndroidUtilities.m35dp(24.0f));
+                TrendingStickersAlert.this.shapeDrawable.setBounds(((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, TrendingStickersAlert.this.scrollOffsetY + i, getWidth() - ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, TrendingStickersAlert.this.scrollOffsetY + i + AndroidUtilities.m36dp(24.0f));
                 TrendingStickersAlert.this.shapeDrawable.draw(canvas);
             }
             canvas.restore();
@@ -274,19 +273,19 @@ public class TrendingStickersAlert extends BottomSheet {
             updateLightStatusBar(this.statusBarAlpha > 0.5f);
             if (this.statusBarAlpha > 0.0f) {
                 this.paint.setColor(TrendingStickersAlert.this.getThemedColor("dialogBackground"));
-                int max = (int) Math.max(0.0f, TrendingStickersAlert.this.scrollOffsetY + (TrendingStickersAlert.this.topOffset * (1.0f - getFraction())) + AndroidUtilities.m35dp(24.0f) + TrendingStickersAlert.this.layout.getTranslationY() + ((Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0) - TrendingStickersAlert.this.topOffset));
+                int max = (int) Math.max(0.0f, TrendingStickersAlert.this.scrollOffsetY + (TrendingStickersAlert.this.topOffset * (1.0f - getFraction())) + AndroidUtilities.m36dp(24.0f) + TrendingStickersAlert.this.layout.getTranslationY() + ((Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0) - TrendingStickersAlert.this.topOffset));
                 canvas.drawRect(((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, AndroidUtilities.lerp(max, -AndroidUtilities.statusBarHeight, this.statusBarAlpha), getMeasuredWidth() - ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, max, this.paint);
             }
             super.dispatchDraw(canvas);
             canvas.save();
             canvas.translate(0.0f, (TrendingStickersAlert.this.layout.getTranslationY() + (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0)) - TrendingStickersAlert.this.topOffset);
-            int m35dp = AndroidUtilities.m35dp(36.0f);
-            int m35dp2 = AndroidUtilities.m35dp(4.0f);
-            int i = (int) (m35dp2 * 2.0f * (1.0f - fraction));
-            TrendingStickersAlert.this.shapeDrawable.setCornerRadius(AndroidUtilities.m35dp(2.0f));
+            int m36dp = AndroidUtilities.m36dp(36.0f);
+            int m36dp2 = AndroidUtilities.m36dp(4.0f);
+            int i = (int) (m36dp2 * 2.0f * (1.0f - fraction));
+            TrendingStickersAlert.this.shapeDrawable.setCornerRadius(AndroidUtilities.m36dp(2.0f));
             int themedColor = TrendingStickersAlert.this.getThemedColor("key_sheet_scrollUp");
             TrendingStickersAlert.this.shapeDrawable.setColor(ColorUtils.setAlphaComponent(themedColor, (int) (Color.alpha(themedColor) * fraction)));
-            TrendingStickersAlert.this.shapeDrawable.setBounds((getWidth() - m35dp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.m35dp(10.0f) + i, (getWidth() + m35dp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.m35dp(10.0f) + i + m35dp2);
+            TrendingStickersAlert.this.shapeDrawable.setBounds((getWidth() - m36dp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.m36dp(10.0f) + i, (getWidth() + m36dp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.m36dp(10.0f) + i + m36dp2);
             TrendingStickersAlert.this.shapeDrawable.draw(canvas);
             canvas.restore();
         }

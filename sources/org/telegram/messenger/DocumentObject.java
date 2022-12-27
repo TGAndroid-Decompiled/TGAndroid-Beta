@@ -92,7 +92,7 @@ public class DocumentObject {
             svgDrawable.setupGradient(str, f2, false);
             return svgDrawable;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }

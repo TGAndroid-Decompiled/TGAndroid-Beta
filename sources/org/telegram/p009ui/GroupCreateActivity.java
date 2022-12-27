@@ -151,7 +151,6 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
 
         public SpansContainer(Context context) {
             super(context);
-            GroupCreateActivity.this = r1;
             this.animators = new ArrayList<>();
             this.animationIndex = -1;
         }
@@ -163,38 +162,38 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             char c;
             int childCount = getChildCount();
             int size = View.MeasureSpec.getSize(i);
-            int m35dp = size - AndroidUtilities.m35dp(26.0f);
-            int m35dp2 = AndroidUtilities.m35dp(10.0f);
-            int m35dp3 = AndroidUtilities.m35dp(10.0f);
+            int m36dp = size - AndroidUtilities.m36dp(26.0f);
+            int m36dp2 = AndroidUtilities.m36dp(10.0f);
+            int m36dp3 = AndroidUtilities.m36dp(10.0f);
             int i3 = 0;
             int i4 = 0;
             for (int i5 = 0; i5 < childCount; i5++) {
                 View childAt = getChildAt(i5);
                 if (childAt instanceof GroupCreateSpan) {
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(32.0f), 1073741824));
-                    if (childAt != this.removingSpan && childAt.getMeasuredWidth() + i3 > m35dp) {
-                        m35dp2 += childAt.getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(32.0f), 1073741824));
+                    if (childAt != this.removingSpan && childAt.getMeasuredWidth() + i3 > m36dp) {
+                        m36dp2 += childAt.getMeasuredHeight() + AndroidUtilities.m36dp(8.0f);
                         i3 = 0;
                     }
-                    if (childAt.getMeasuredWidth() + i4 > m35dp) {
-                        m35dp3 += childAt.getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
+                    if (childAt.getMeasuredWidth() + i4 > m36dp) {
+                        m36dp3 += childAt.getMeasuredHeight() + AndroidUtilities.m36dp(8.0f);
                         i4 = 0;
                     }
-                    int m35dp4 = AndroidUtilities.m35dp(13.0f) + i3;
+                    int m36dp4 = AndroidUtilities.m36dp(13.0f) + i3;
                     if (!this.animationStarted) {
                         View view = this.removingSpan;
                         if (childAt == view) {
-                            childAt.setTranslationX(AndroidUtilities.m35dp(13.0f) + i4);
-                            childAt.setTranslationY(m35dp3);
+                            childAt.setTranslationX(AndroidUtilities.m36dp(13.0f) + i4);
+                            childAt.setTranslationY(m36dp3);
                         } else if (view != null) {
-                            float f = m35dp4;
+                            float f = m36dp4;
                             if (childAt.getTranslationX() != f) {
                                 c = 0;
                                 this.animators.add(ObjectAnimator.ofFloat(childAt, "translationX", f));
                             } else {
                                 c = 0;
                             }
-                            float f2 = m35dp2;
+                            float f2 = m36dp2;
                             if (childAt.getTranslationY() != f2) {
                                 ArrayList<Animator> arrayList = this.animators;
                                 float[] fArr = new float[1];
@@ -202,46 +201,46 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                                 arrayList.add(ObjectAnimator.ofFloat(childAt, "translationY", fArr));
                             }
                         } else {
-                            childAt.setTranslationX(m35dp4);
-                            childAt.setTranslationY(m35dp2);
+                            childAt.setTranslationX(m36dp4);
+                            childAt.setTranslationY(m36dp2);
                         }
                     }
                     if (childAt != this.removingSpan) {
-                        i3 += childAt.getMeasuredWidth() + AndroidUtilities.m35dp(9.0f);
+                        i3 += childAt.getMeasuredWidth() + AndroidUtilities.m36dp(9.0f);
                     }
-                    i4 += childAt.getMeasuredWidth() + AndroidUtilities.m35dp(9.0f);
+                    i4 += childAt.getMeasuredWidth() + AndroidUtilities.m36dp(9.0f);
                 }
             }
             if (AndroidUtilities.isTablet()) {
-                min = AndroidUtilities.m35dp(372.0f) / 3;
+                min = AndroidUtilities.m36dp(372.0f) / 3;
             } else {
                 Point point = AndroidUtilities.displaySize;
-                min = (Math.min(point.x, point.y) - AndroidUtilities.m35dp(158.0f)) / 3;
+                min = (Math.min(point.x, point.y) - AndroidUtilities.m36dp(158.0f)) / 3;
             }
-            if (m35dp - i3 < min) {
-                m35dp2 += AndroidUtilities.m35dp(40.0f);
+            if (m36dp - i3 < min) {
+                m36dp2 += AndroidUtilities.m36dp(40.0f);
                 i3 = 0;
             }
-            if (m35dp - i4 < min) {
-                m35dp3 += AndroidUtilities.m35dp(40.0f);
+            if (m36dp - i4 < min) {
+                m36dp3 += AndroidUtilities.m36dp(40.0f);
             }
-            GroupCreateActivity.this.editText.measure(View.MeasureSpec.makeMeasureSpec(m35dp - i3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(32.0f), 1073741824));
+            GroupCreateActivity.this.editText.measure(View.MeasureSpec.makeMeasureSpec(m36dp - i3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(32.0f), 1073741824));
             if (this.animationStarted) {
                 if (GroupCreateActivity.this.currentAnimation != null && !GroupCreateActivity.this.ignoreScrollEvent && this.removingSpan == null) {
                     GroupCreateActivity.this.editText.bringPointIntoView(GroupCreateActivity.this.editText.getSelectionStart());
                 }
             } else {
-                int m35dp5 = m35dp3 + AndroidUtilities.m35dp(42.0f);
-                int m35dp6 = i3 + AndroidUtilities.m35dp(16.0f);
-                GroupCreateActivity.this.fieldY = m35dp2;
+                int m36dp5 = m36dp3 + AndroidUtilities.m36dp(42.0f);
+                int m36dp6 = i3 + AndroidUtilities.m36dp(16.0f);
+                GroupCreateActivity.this.fieldY = m36dp2;
                 if (GroupCreateActivity.this.currentAnimation != null) {
-                    int m35dp7 = m35dp2 + AndroidUtilities.m35dp(42.0f);
-                    if (GroupCreateActivity.this.containerHeight != m35dp7) {
-                        this.animators.add(ObjectAnimator.ofInt(GroupCreateActivity.this, "containerHeight", m35dp7));
+                    int m36dp7 = m36dp2 + AndroidUtilities.m36dp(42.0f);
+                    if (GroupCreateActivity.this.containerHeight != m36dp7) {
+                        this.animators.add(ObjectAnimator.ofInt(GroupCreateActivity.this, "containerHeight", m36dp7));
                     }
                     GroupCreateActivity groupCreateActivity = GroupCreateActivity.this;
-                    groupCreateActivity.measuredContainerHeight = Math.max(groupCreateActivity.containerHeight, m35dp7);
-                    float f3 = m35dp6;
+                    groupCreateActivity.measuredContainerHeight = Math.max(groupCreateActivity.containerHeight, m36dp7);
+                    float f3 = m36dp6;
                     if (GroupCreateActivity.this.editText.getTranslationX() != f3) {
                         this.animators.add(ObjectAnimator.ofFloat(GroupCreateActivity.this.editText, "translationX", f3));
                     }
@@ -265,8 +264,8 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                     this.animationStarted = true;
                 } else {
                     GroupCreateActivity groupCreateActivity2 = GroupCreateActivity.this;
-                    groupCreateActivity2.measuredContainerHeight = groupCreateActivity2.containerHeight = m35dp5;
-                    GroupCreateActivity.this.editText.setTranslationX(m35dp6);
+                    groupCreateActivity2.measuredContainerHeight = groupCreateActivity2.containerHeight = m36dp5;
+                    GroupCreateActivity.this.editText.setTranslationX(m36dp6);
                     GroupCreateActivity.this.editText.setTranslationY(GroupCreateActivity.this.fieldY);
                 }
             }
@@ -493,16 +492,16 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 int size2 = View.MeasureSpec.getSize(i6);
                 setMeasuredDimension(size, size2);
                 if (AndroidUtilities.isTablet() || size2 > size) {
-                    GroupCreateActivity.this.maxSize = AndroidUtilities.m35dp(144.0f);
+                    GroupCreateActivity.this.maxSize = AndroidUtilities.m36dp(144.0f);
                 } else {
-                    GroupCreateActivity.this.maxSize = AndroidUtilities.m35dp(56.0f);
+                    GroupCreateActivity.this.maxSize = AndroidUtilities.m36dp(56.0f);
                 }
                 GroupCreateActivity.this.scrollView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(GroupCreateActivity.this.maxSize, Integer.MIN_VALUE));
                 GroupCreateActivity.this.listView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - GroupCreateActivity.this.scrollView.getMeasuredHeight(), 1073741824));
                 GroupCreateActivity.this.emptyView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - GroupCreateActivity.this.scrollView.getMeasuredHeight(), 1073741824));
                 if (GroupCreateActivity.this.floatingButton != null) {
-                    int m35dp = AndroidUtilities.m35dp(Build.VERSION.SDK_INT < 21 ? 60.0f : 56.0f);
-                    GroupCreateActivity.this.floatingButton.measure(View.MeasureSpec.makeMeasureSpec(m35dp, 1073741824), View.MeasureSpec.makeMeasureSpec(m35dp, 1073741824));
+                    int m36dp = AndroidUtilities.m36dp(Build.VERSION.SDK_INT < 21 ? 60.0f : 56.0f);
+                    GroupCreateActivity.this.floatingButton.measure(View.MeasureSpec.makeMeasureSpec(m36dp, 1073741824), View.MeasureSpec.makeMeasureSpec(m36dp, 1073741824));
                 }
             }
 
@@ -512,9 +511,9 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 GroupCreateActivity.this.listView.layout(0, GroupCreateActivity.this.scrollView.getMeasuredHeight(), GroupCreateActivity.this.listView.getMeasuredWidth(), GroupCreateActivity.this.scrollView.getMeasuredHeight() + GroupCreateActivity.this.listView.getMeasuredHeight());
                 GroupCreateActivity.this.emptyView.layout(0, GroupCreateActivity.this.scrollView.getMeasuredHeight(), GroupCreateActivity.this.emptyView.getMeasuredWidth(), GroupCreateActivity.this.scrollView.getMeasuredHeight() + GroupCreateActivity.this.emptyView.getMeasuredHeight());
                 if (GroupCreateActivity.this.floatingButton != null) {
-                    int m35dp = LocaleController.isRTL ? AndroidUtilities.m35dp(14.0f) : ((i7 - i5) - AndroidUtilities.m35dp(14.0f)) - GroupCreateActivity.this.floatingButton.getMeasuredWidth();
-                    int m35dp2 = ((i8 - i6) - AndroidUtilities.m35dp(14.0f)) - GroupCreateActivity.this.floatingButton.getMeasuredHeight();
-                    GroupCreateActivity.this.floatingButton.layout(m35dp, m35dp2, GroupCreateActivity.this.floatingButton.getMeasuredWidth() + m35dp, GroupCreateActivity.this.floatingButton.getMeasuredHeight() + m35dp2);
+                    int m36dp = LocaleController.isRTL ? AndroidUtilities.m36dp(14.0f) : ((i7 - i5) - AndroidUtilities.m36dp(14.0f)) - GroupCreateActivity.this.floatingButton.getMeasuredWidth();
+                    int m36dp2 = ((i8 - i6) - AndroidUtilities.m36dp(14.0f)) - GroupCreateActivity.this.floatingButton.getMeasuredHeight();
+                    GroupCreateActivity.this.floatingButton.layout(m36dp, m36dp2, GroupCreateActivity.this.floatingButton.getMeasuredWidth() + m36dp, GroupCreateActivity.this.floatingButton.getMeasuredHeight() + m36dp2);
                 }
             }
 
@@ -563,8 +562,8 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                     return false;
                 }
                 rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-                rect.top += GroupCreateActivity.this.fieldY + AndroidUtilities.m35dp(20.0f);
-                rect.bottom += GroupCreateActivity.this.fieldY + AndroidUtilities.m35dp(50.0f);
+                rect.top += GroupCreateActivity.this.fieldY + AndroidUtilities.m36dp(20.0f);
+                rect.bottom += GroupCreateActivity.this.fieldY + AndroidUtilities.m36dp(50.0f);
                 return super.requestChildRectangleOnScreen(view, rect, z);
             }
         };
@@ -732,13 +731,13 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         ImageView imageView = new ImageView(context);
         this.floatingButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
+        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m36dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
         int i5 = Build.VERSION.SDK_INT;
         if (i5 < 21) {
             Drawable mutate = context.getResources().getDrawable(C1072R.C1073drawable.floating_shadow).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
-            combinedDrawable.setIconSize(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+            combinedDrawable.setIconSize(AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
             createSimpleSelectorCircleDrawable = combinedDrawable;
         }
         this.floatingButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
@@ -752,14 +751,14 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         }
         if (i5 >= 21) {
             StateListAnimator stateListAnimator = new StateListAnimator();
-            stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.floatingButton, "translationZ", AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(4.0f)).setDuration(200L));
-            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButton, "translationZ", AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(2.0f)).setDuration(200L));
+            stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.floatingButton, "translationZ", AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(4.0f)).setDuration(200L));
+            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButton, "translationZ", AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(2.0f)).setDuration(200L));
             this.floatingButton.setStateListAnimator(stateListAnimator);
             this.floatingButton.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view, Outline outline) {
-                    outline.setOval(0, 0, AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+                    outline.setOval(0, 0, AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
                 }
             });
         }
@@ -830,10 +829,10 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                             long j2 = this.channelId;
                             if (j2 == 0 && tLRPC$User.bot_nochats) {
                                 try {
-                                    BulletinFactory.m13of(this).createErrorBulletin(LocaleController.getString("BotCantJoinGroups", C1072R.string.BotCantJoinGroups)).show();
+                                    BulletinFactory.m14of(this).createErrorBulletin(LocaleController.getString("BotCantJoinGroups", C1072R.string.BotCantJoinGroups)).show();
                                     return;
                                 } catch (Exception e) {
-                                    FileLog.m31e(e);
+                                    FileLog.m32e(e);
                                     return;
                                 }
                             } else if (j2 != 0) {
@@ -1084,7 +1083,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                     } else {
                         checkBoxCellArr[0].setText(LocaleController.getString("AddMembersForwardMessages", C1072R.string.AddMembersForwardMessages), "", true, false);
                     }
-                    checkBoxCellArr[0].setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.m35dp(8.0f) : AndroidUtilities.m35dp(16.0f), 0);
+                    checkBoxCellArr[0].setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.m36dp(8.0f) : AndroidUtilities.m36dp(16.0f), 0);
                     linearLayout.addView(checkBoxCellArr[0], LayoutHelper.createLinear(-1, -2));
                     checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -1248,25 +1247,24 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
 
         public GroupCreateAdapter(Context context) {
             TLRPC$Chat chat;
-            GroupCreateActivity.this = r8;
             this.context = context;
-            ArrayList<TLRPC$TL_contact> arrayList = r8.getContactsController().contacts;
+            ArrayList<TLRPC$TL_contact> arrayList = GroupCreateActivity.this.getContactsController().contacts;
             for (int i = 0; i < arrayList.size(); i++) {
-                TLRPC$User user = r8.getMessagesController().getUser(Long.valueOf(arrayList.get(i).user_id));
+                TLRPC$User user = GroupCreateActivity.this.getMessagesController().getUser(Long.valueOf(arrayList.get(i).user_id));
                 if (user != null && !user.self && !user.deleted) {
                     this.contacts.add(user);
                 }
             }
-            if (r8.isNeverShare || r8.isAlwaysShare) {
-                ArrayList<TLRPC$Dialog> allDialogs = r8.getMessagesController().getAllDialogs();
+            if (GroupCreateActivity.this.isNeverShare || GroupCreateActivity.this.isAlwaysShare) {
+                ArrayList<TLRPC$Dialog> allDialogs = GroupCreateActivity.this.getMessagesController().getAllDialogs();
                 int size = allDialogs.size();
                 for (int i2 = 0; i2 < size; i2++) {
                     TLRPC$Dialog tLRPC$Dialog = allDialogs.get(i2);
-                    if (DialogObject.isChatDialog(tLRPC$Dialog.f863id) && (chat = r8.getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.f863id))) != null && chat.migrated_to == null && (!ChatObject.isChannel(chat) || chat.megagroup)) {
+                    if (DialogObject.isChatDialog(tLRPC$Dialog.f863id) && (chat = GroupCreateActivity.this.getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.f863id))) != null && chat.migrated_to == null && (!ChatObject.isChannel(chat) || chat.megagroup)) {
                         this.contacts.add(chat);
                     }
                 }
-                Collections.sort(this.contacts, new Comparator<TLObject>(this, r8) {
+                Collections.sort(this.contacts, new Comparator<TLObject>(this, GroupCreateActivity.this) {
                     private String getName(TLObject tLObject) {
                         if (tLObject instanceof TLRPC$User) {
                             TLRPC$User tLRPC$User = (TLRPC$User) tLObject;

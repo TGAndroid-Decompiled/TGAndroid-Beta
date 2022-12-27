@@ -5,10 +5,10 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_error;
 
-public final class C3680x3891375b implements RequestDelegate {
-    public static final C3680x3891375b INSTANCE = new C3680x3891375b();
+public final class C3683x3891375b implements RequestDelegate {
+    public static final C3683x3891375b INSTANCE = new C3683x3891375b();
 
-    private C3680x3891375b() {
+    private C3683x3891375b() {
     }
 
     @Override

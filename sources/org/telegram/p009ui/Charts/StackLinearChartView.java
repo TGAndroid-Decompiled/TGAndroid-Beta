@@ -48,7 +48,7 @@ public class StackLinearChartView<T extends StackLinearViewData> extends BaseCha
 
     private int quarterForPoint(float f, float f2) {
         float centerX = this.chartArea.centerX();
-        float centerY = this.chartArea.centerY() + AndroidUtilities.m35dp(16.0f);
+        float centerY = this.chartArea.centerY() + AndroidUtilities.m36dp(16.0f);
         if (f < centerX || f2 > centerY) {
             if (f < centerX || f2 < centerY) {
                 return (f >= centerX || f2 < centerY) ? 3 : 2;

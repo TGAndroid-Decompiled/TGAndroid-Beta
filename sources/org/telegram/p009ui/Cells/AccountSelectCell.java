@@ -33,10 +33,10 @@ public class AccountSelectCell extends FrameLayout {
         super(context);
         AvatarDrawable avatarDrawable = new AvatarDrawable();
         this.avatarDrawable = avatarDrawable;
-        avatarDrawable.setTextSize(AndroidUtilities.m35dp(12.0f));
+        avatarDrawable.setTextSize(AndroidUtilities.m36dp(12.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(18.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(18.0f));
         addView(this.imageView, LayoutHelper.createFrame(36, 36.0f, 51, 10.0f, 10.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.textView = textView;
@@ -58,7 +58,7 @@ public class AccountSelectCell extends FrameLayout {
             this.infoTextView.setLines(1);
             this.infoTextView.setMaxLines(1);
             this.infoTextView.setSingleLine(true);
-            this.infoTextView.setMaxWidth(AndroidUtilities.m35dp(320.0f));
+            this.infoTextView.setMaxWidth(AndroidUtilities.m36dp(320.0f));
             this.infoTextView.setGravity(51);
             this.infoTextView.setEllipsize(TextUtils.TruncateAt.END);
             addView(this.infoTextView, LayoutHelper.createFrame(-2, -2.0f, 51, 61.0f, 27.0f, 8.0f, 0.0f));
@@ -77,9 +77,9 @@ public class AccountSelectCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         if (this.checkImageView != null || (this.infoTextView != null && getLayoutParams().width != -2)) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(56.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(56.0f), 1073741824));
         } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(56.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(56.0f), 1073741824));
         }
     }
 

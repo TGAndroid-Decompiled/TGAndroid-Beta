@@ -200,7 +200,7 @@ public class AdjustPanLayoutHelper {
                             AdjustPanLayoutHelper.this.usingInsetAnimator = false;
                         }
                         return true;
-                    } else if (!adjustPanLayoutHelper.heightAnimationEnabled() || Math.abs(AdjustPanLayoutHelper.this.previousHeight - height) < AndroidUtilities.m35dp(20.0f)) {
+                    } else if (!adjustPanLayoutHelper.heightAnimationEnabled() || Math.abs(AdjustPanLayoutHelper.this.previousHeight - height) < AndroidUtilities.m36dp(20.0f)) {
                         AdjustPanLayoutHelper adjustPanLayoutHelper3 = AdjustPanLayoutHelper.this;
                         adjustPanLayoutHelper3.previousHeight = height;
                         adjustPanLayoutHelper3.previousContentHeight = adjustPanLayoutHelper3.contentView.getHeight();

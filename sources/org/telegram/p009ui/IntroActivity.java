@@ -124,22 +124,22 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 super.onLayout(z, i, i2, i3, i4);
                 int i5 = (i4 - i2) / 4;
                 int i6 = i5 * 3;
-                int m35dp = (i6 - AndroidUtilities.m35dp(275.0f)) / 2;
-                IntroActivity.this.frameLayout2.layout(0, m35dp, IntroActivity.this.frameLayout2.getMeasuredWidth(), IntroActivity.this.frameLayout2.getMeasuredHeight() + m35dp);
-                int m35dp2 = m35dp + AndroidUtilities.m35dp(150.0f) + AndroidUtilities.m35dp(122.0f);
+                int m36dp = (i6 - AndroidUtilities.m36dp(275.0f)) / 2;
+                IntroActivity.this.frameLayout2.layout(0, m36dp, IntroActivity.this.frameLayout2.getMeasuredWidth(), IntroActivity.this.frameLayout2.getMeasuredHeight() + m36dp);
+                int m36dp2 = m36dp + AndroidUtilities.m36dp(150.0f) + AndroidUtilities.m36dp(122.0f);
                 int measuredWidth = (getMeasuredWidth() - IntroActivity.this.bottomPages.getMeasuredWidth()) / 2;
-                IntroActivity.this.bottomPages.layout(measuredWidth, m35dp2, IntroActivity.this.bottomPages.getMeasuredWidth() + measuredWidth, IntroActivity.this.bottomPages.getMeasuredHeight() + m35dp2);
+                IntroActivity.this.bottomPages.layout(measuredWidth, m36dp2, IntroActivity.this.bottomPages.getMeasuredWidth() + measuredWidth, IntroActivity.this.bottomPages.getMeasuredHeight() + m36dp2);
                 IntroActivity.this.viewPager.layout(0, 0, IntroActivity.this.viewPager.getMeasuredWidth(), IntroActivity.this.viewPager.getMeasuredHeight());
                 int measuredHeight = i6 + ((i5 - IntroActivity.this.startMessagingButton.getMeasuredHeight()) / 2);
                 int measuredWidth2 = (getMeasuredWidth() - IntroActivity.this.startMessagingButton.getMeasuredWidth()) / 2;
                 IntroActivity.this.startMessagingButton.layout(measuredWidth2, measuredHeight, IntroActivity.this.startMessagingButton.getMeasuredWidth() + measuredWidth2, IntroActivity.this.startMessagingButton.getMeasuredHeight() + measuredHeight);
-                int m35dp3 = measuredHeight - AndroidUtilities.m35dp(30.0f);
+                int m36dp3 = measuredHeight - AndroidUtilities.m36dp(30.0f);
                 int measuredWidth3 = (getMeasuredWidth() - IntroActivity.this.switchLanguageTextView.getMeasuredWidth()) / 2;
-                IntroActivity.this.switchLanguageTextView.layout(measuredWidth3, m35dp3 - IntroActivity.this.switchLanguageTextView.getMeasuredHeight(), IntroActivity.this.switchLanguageTextView.getMeasuredWidth() + measuredWidth3, m35dp3);
+                IntroActivity.this.switchLanguageTextView.layout(measuredWidth3, m36dp3 - IntroActivity.this.switchLanguageTextView.getMeasuredHeight(), IntroActivity.this.switchLanguageTextView.getMeasuredWidth() + measuredWidth3, m36dp3);
                 ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) frameLayout.getLayoutParams();
-                int m35dp4 = AndroidUtilities.m35dp(r4) + (AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight);
-                if (marginLayoutParams.topMargin != m35dp4) {
-                    marginLayoutParams.topMargin = m35dp4;
+                int m36dp4 = AndroidUtilities.m36dp(r4) + (AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight);
+                if (marginLayoutParams.topMargin != m36dp4) {
+                    marginLayoutParams.topMargin = m36dp4;
                     frameLayout.requestLayout();
                 }
             }
@@ -147,7 +147,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.frameContainerView = frameLayout2;
         scrollView.addView(frameLayout2, LayoutHelper.createScroll(-1, -2, 51));
         int i = C1072R.raw.sun;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(28.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.m36dp(28.0f), AndroidUtilities.m36dp(28.0f), true, null);
         this.darkThemeDrawable = rLottieDrawable;
         rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
         this.darkThemeDrawable.beginApplyLayerColors();
@@ -168,7 +168,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.frameContainerView.addView(frameLayout3, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 78.0f, 0.0f, 0.0f));
         TextureView textureView = new TextureView(context);
         this.frameLayout2.addView(textureView, LayoutHelper.createFrame(200, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, 17));
-        textureView.setSurfaceTextureListener(new TextureView$SurfaceTextureListenerC33922());
+        textureView.setSurfaceTextureListener(new TextureView$SurfaceTextureListenerC33952());
         ViewPager viewPager = new ViewPager(context);
         this.viewPager = viewPager;
         viewPager.setAdapter(new IntroAdapter());
@@ -224,14 +224,14 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 this.cellFlickerDrawable.setParentWidth(getMeasuredWidth());
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.m35dp(4.0f), null);
+                this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.m36dp(4.0f), null);
                 invalidate();
             }
 
             @Override
             protected void onMeasure(int i2, int i3) {
-                if (View.MeasureSpec.getSize(i2) > AndroidUtilities.m35dp(260.0f)) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(320.0f), 1073741824), i3);
+                if (View.MeasureSpec.getSize(i2) > AndroidUtilities.m36dp(260.0f)) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(320.0f), 1073741824), i3);
                 } else {
                     super.onMeasure(i2, i3);
                 }
@@ -242,7 +242,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.startMessagingButton.setGravity(17);
         this.startMessagingButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.startMessagingButton.setTextSize(1, 15.0f);
-        this.startMessagingButton.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        this.startMessagingButton.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         this.frameContainerView.addView(this.startMessagingButton, LayoutHelper.createFrame(-1, 50.0f, 81, 16.0f, 0.0f, 16.0f, 76.0f));
         this.startMessagingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -301,13 +301,12 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         rLottieImageView.setContentDescription(LocaleController.getString(C1072R.string.AccDescrSwitchToDayTheme));
     }
 
-    public class TextureView$SurfaceTextureListenerC33922 implements TextureView.SurfaceTextureListener {
+    public class TextureView$SurfaceTextureListenerC33952 implements TextureView.SurfaceTextureListener {
         @Override
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         }
 
-        TextureView$SurfaceTextureListenerC33922() {
-            IntroActivity.this = r1;
+        TextureView$SurfaceTextureListenerC33952() {
         }
 
         @Override
@@ -320,7 +319,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             IntroActivity.this.eglThread.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    IntroActivity.TextureView$SurfaceTextureListenerC33922.this.lambda$onSurfaceTextureAvailable$0();
+                    IntroActivity.TextureView$SurfaceTextureListenerC33952.this.lambda$onSurfaceTextureAvailable$0();
                 }
             });
             IntroActivity.this.eglThread.postRunnable(IntroActivity.this.eglThread.drawRunnable);
@@ -374,15 +373,14 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         AlertDialog alertDialog = new AlertDialog(view.getContext(), 3);
         alertDialog.setCanCancel(false);
         alertDialog.showDelayed(1000L);
-        NotificationCenter.getGlobalInstance().addObserver(new C33955(alertDialog), NotificationCenter.reloadInterface);
+        NotificationCenter.getGlobalInstance().addObserver(new C33985(alertDialog), NotificationCenter.reloadInterface);
         LocaleController.getInstance().applyLanguage(this.localeInfo, true, false, this.currentAccount);
     }
 
-    public class C33955 implements NotificationCenter.NotificationCenterDelegate {
+    public class C33985 implements NotificationCenter.NotificationCenterDelegate {
         final AlertDialog val$loaderDialog;
 
-        C33955(AlertDialog alertDialog) {
-            IntroActivity.this = r1;
+        C33985(AlertDialog alertDialog) {
             this.val$loaderDialog = alertDialog;
         }
 
@@ -394,7 +392,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        IntroActivity.C33955.this.lambda$didReceivedNotification$0();
+                        IntroActivity.C33985.this.lambda$didReceivedNotification$0();
                     }
                 }, 100L);
             }
@@ -547,7 +545,6 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         }
 
         private IntroAdapter() {
-            IntroActivity.this = r1;
         }
 
         @Override
@@ -564,14 +561,14 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             FrameLayout frameLayout = new FrameLayout(this, viewGroup.getContext()) {
                 @Override
                 protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-                    int m35dp = (((((i5 - i3) / 4) * 3) - AndroidUtilities.m35dp(275.0f)) / 2) + AndroidUtilities.m35dp(150.0f) + AndroidUtilities.m35dp(16.0f);
-                    int m35dp2 = AndroidUtilities.m35dp(18.0f);
+                    int m36dp = (((((i5 - i3) / 4) * 3) - AndroidUtilities.m36dp(275.0f)) / 2) + AndroidUtilities.m36dp(150.0f) + AndroidUtilities.m36dp(16.0f);
+                    int m36dp2 = AndroidUtilities.m36dp(18.0f);
                     TextView textView3 = textView;
-                    textView3.layout(m35dp2, m35dp, textView3.getMeasuredWidth() + m35dp2, textView.getMeasuredHeight() + m35dp);
-                    int textSize = ((int) (m35dp + textView.getTextSize())) + AndroidUtilities.m35dp(16.0f);
-                    int m35dp3 = AndroidUtilities.m35dp(16.0f);
+                    textView3.layout(m36dp2, m36dp, textView3.getMeasuredWidth() + m36dp2, textView.getMeasuredHeight() + m36dp);
+                    int textSize = ((int) (m36dp + textView.getTextSize())) + AndroidUtilities.m36dp(16.0f);
+                    int m36dp3 = AndroidUtilities.m36dp(16.0f);
                     TextView textView4 = textView2;
-                    textView4.layout(m35dp3, textSize, textView4.getMeasuredWidth() + m35dp3, textView2.getMeasuredHeight() + textSize);
+                    textView4.layout(m36dp3, textSize, textView4.getMeasuredWidth() + m36dp3, textView2.getMeasuredHeight() + textSize);
                 }
             };
             textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
@@ -621,19 +618,18 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         private int[] textures;
 
         public static Bitmap lambda$new$0(Void r6) {
-            int m35dp = AndroidUtilities.m35dp(150.0f);
-            Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.m35dp(200.0f), m35dp, Bitmap.Config.ARGB_8888);
+            int m36dp = AndroidUtilities.m36dp(150.0f);
+            Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.m36dp(200.0f), m36dp, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(createBitmap);
             canvas.drawColor(Theme.getColor("windowBackgroundWhite"));
             Paint paint = new Paint(1);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, m35dp / 2.0f, paint);
+            canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, m36dp / 2.0f, paint);
             return createBitmap;
         }
 
         public EGLThread(SurfaceTexture surfaceTexture) {
             super("EGLThread");
-            IntroActivity.this = r1;
             this.textures = new int[24];
             this.telegramMaskProvider = IntroActivity$EGLThread$$ExternalSyntheticLambda2.INSTANCE;
             this.drawRunnable = new Runnable() {
@@ -666,7 +662,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                             EGLThread eGLThread = EGLThread.this;
                             eGLThread.postRunnable(eGLThread.drawRunnable, Math.max((1000.0f / EGLThread.this.maxRefreshRate) - currentTimeMillis2, 0L));
                         } else if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m33e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(EGLThread.this.egl10.eglGetError()));
+                            FileLog.m34e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(EGLThread.this.egl10.eglGetError()));
                         }
                     }
                 }
@@ -681,14 +677,14 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             this.eglDisplay = eglGetDisplay;
             if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m33e("eglGetDisplay failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+                    FileLog.m34e("eglGetDisplay failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
                 }
                 finish();
                 return false;
             }
             if (!this.egl10.eglInitialize(eglGetDisplay, new int[2])) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m33e("eglInitialize failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+                    FileLog.m34e("eglInitialize failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
                 }
                 finish();
                 return false;
@@ -697,7 +693,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             EGLConfig[] eGLConfigArr = new EGLConfig[1];
             if (!this.egl10.eglChooseConfig(this.eglDisplay, EmuDetector.with(IntroActivity.this.getParentActivity()).detect() ? new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12344} : new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12326, 0, 12338, 1, 12337, 2, 12344}, eGLConfigArr, 1, iArr)) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m33e("eglChooseConfig failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+                    FileLog.m34e("eglChooseConfig failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
                 }
                 finish();
                 return false;
@@ -708,7 +704,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 this.eglContext = eglCreateContext;
                 if (eglCreateContext == null) {
                     if (BuildVars.LOGS_ENABLED) {
-                        FileLog.m33e("eglCreateContext failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+                        FileLog.m34e("eglCreateContext failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
                     }
                     finish();
                     return false;
@@ -719,13 +715,13 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                     this.eglSurface = eglCreateWindowSurface;
                     if (eglCreateWindowSurface == null || eglCreateWindowSurface == EGL10.EGL_NO_SURFACE) {
                         if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m33e("createWindowSurface failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+                            FileLog.m34e("createWindowSurface failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
                         }
                         finish();
                         return false;
                     } else if (!this.egl10.eglMakeCurrent(this.eglDisplay, eglCreateWindowSurface, eglCreateWindowSurface, this.eglContext)) {
                         if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m33e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+                            FileLog.m34e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
                         }
                         finish();
                         return false;
@@ -774,7 +770,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 return false;
             } else {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m33e("eglConfig not initialized");
+                    FileLog.m34e("eglConfig not initialized");
                 }
                 finish();
                 return false;
@@ -784,9 +780,9 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         public static Bitmap lambda$initGL$1(Void r4) {
             Paint paint = new Paint(1);
             paint.setColor(-13851168);
-            int m35dp = AndroidUtilities.m35dp(150.0f);
-            Bitmap createBitmap = Bitmap.createBitmap(m35dp, m35dp, Bitmap.Config.ARGB_8888);
-            float f = m35dp / 2.0f;
+            int m36dp = AndroidUtilities.m36dp(150.0f);
+            Bitmap createBitmap = Bitmap.createBitmap(m36dp, m36dp, Bitmap.Config.ARGB_8888);
+            float f = m36dp / 2.0f;
             new Canvas(createBitmap).drawCircle(f, f, f, paint);
             return createBitmap;
         }
@@ -923,7 +919,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.fragmentView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
         this.switchLanguageTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText4"));
         this.startMessagingButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-        this.startMessagingButton.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("changephoneinfo_image2"), Theme.getColor("chats_actionPressedBackground")));
+        this.startMessagingButton.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), Theme.getColor("changephoneinfo_image2"), Theme.getColor("chats_actionPressedBackground")));
         this.darkThemeDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("changephoneinfo_image2"), PorterDuff.Mode.SRC_IN));
         this.bottomPages.invalidate();
         if (z) {

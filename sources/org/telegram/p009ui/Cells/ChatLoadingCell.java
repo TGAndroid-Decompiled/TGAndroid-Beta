@@ -19,18 +19,18 @@ public class ChatLoadingCell extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         FrameLayout frameLayout = new FrameLayout(context);
         this.frameLayout = frameLayout;
-        frameLayout.setBackground(Theme.createServiceDrawable(AndroidUtilities.m35dp(18.0f), this.frameLayout, view, getThemedPaint("paintChatActionBackground")));
+        frameLayout.setBackground(Theme.createServiceDrawable(AndroidUtilities.m36dp(18.0f), this.frameLayout, view, getThemedPaint("paintChatActionBackground")));
         addView(this.frameLayout, LayoutHelper.createFrame(36, 36, 17));
         RadialProgressView radialProgressView = new RadialProgressView(context, resourcesProvider);
         this.progressBar = radialProgressView;
-        radialProgressView.setSize(AndroidUtilities.m35dp(28.0f));
+        radialProgressView.setSize(AndroidUtilities.m36dp(28.0f));
         this.progressBar.setProgressColor(getThemedColor("chat_serviceText"));
         this.frameLayout.addView(this.progressBar, LayoutHelper.createFrame(32, 32, 17));
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(44.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(44.0f), 1073741824));
     }
 
     public void setProgressVisible(boolean z) {

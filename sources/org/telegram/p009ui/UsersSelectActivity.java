@@ -137,7 +137,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                 View childAt2 = i < childCount + (-1) ? recyclerView.getChildAt(i + 1) : null;
                 if (recyclerView.getChildAdapterPosition(childAt) >= this.skipRows && !(childAt instanceof GraySectionCell) && !(childAt2 instanceof GraySectionCell)) {
                     float bottom = childAt.getBottom();
-                    canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(72.0f), bottom, width - (LocaleController.isRTL ? AndroidUtilities.m35dp(72.0f) : 0), bottom, Theme.dividerPaint);
+                    canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(72.0f), bottom, width - (LocaleController.isRTL ? AndroidUtilities.m36dp(72.0f) : 0), bottom, Theme.dividerPaint);
                 }
                 i++;
             }
@@ -159,7 +159,6 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
 
         public SpansContainer(Context context) {
             super(context);
-            UsersSelectActivity.this = r1;
             this.animators = new ArrayList<>();
         }
 
@@ -168,77 +167,77 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             int min;
             int childCount = getChildCount();
             int size = View.MeasureSpec.getSize(i);
-            int m35dp = size - AndroidUtilities.m35dp(26.0f);
-            int m35dp2 = AndroidUtilities.m35dp(10.0f);
-            int m35dp3 = AndroidUtilities.m35dp(10.0f);
+            int m36dp = size - AndroidUtilities.m36dp(26.0f);
+            int m36dp2 = AndroidUtilities.m36dp(10.0f);
+            int m36dp3 = AndroidUtilities.m36dp(10.0f);
             int i3 = 0;
             int i4 = 0;
             for (int i5 = 0; i5 < childCount; i5++) {
                 View childAt = getChildAt(i5);
                 if (childAt instanceof GroupCreateSpan) {
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(32.0f), 1073741824));
-                    if (childAt != this.removingSpan && childAt.getMeasuredWidth() + i3 > m35dp) {
-                        m35dp2 += childAt.getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(32.0f), 1073741824));
+                    if (childAt != this.removingSpan && childAt.getMeasuredWidth() + i3 > m36dp) {
+                        m36dp2 += childAt.getMeasuredHeight() + AndroidUtilities.m36dp(8.0f);
                         i3 = 0;
                     }
-                    if (childAt.getMeasuredWidth() + i4 > m35dp) {
-                        m35dp3 += childAt.getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
+                    if (childAt.getMeasuredWidth() + i4 > m36dp) {
+                        m36dp3 += childAt.getMeasuredHeight() + AndroidUtilities.m36dp(8.0f);
                         i4 = 0;
                     }
-                    int m35dp4 = AndroidUtilities.m35dp(13.0f) + i3;
+                    int m36dp4 = AndroidUtilities.m36dp(13.0f) + i3;
                     if (!this.animationStarted) {
                         View view = this.removingSpan;
                         if (childAt == view) {
-                            childAt.setTranslationX(AndroidUtilities.m35dp(13.0f) + i4);
-                            childAt.setTranslationY(m35dp3);
+                            childAt.setTranslationX(AndroidUtilities.m36dp(13.0f) + i4);
+                            childAt.setTranslationY(m36dp3);
                         } else if (view != null) {
-                            float f = m35dp4;
+                            float f = m36dp4;
                             if (childAt.getTranslationX() != f) {
                                 this.animators.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_X, f));
                             }
-                            float f2 = m35dp2;
+                            float f2 = m36dp2;
                             if (childAt.getTranslationY() != f2) {
                                 this.animators.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_Y, f2));
                             }
                         } else {
-                            childAt.setTranslationX(m35dp4);
-                            childAt.setTranslationY(m35dp2);
+                            childAt.setTranslationX(m36dp4);
+                            childAt.setTranslationY(m36dp2);
                         }
                     }
                     if (childAt != this.removingSpan) {
-                        i3 += childAt.getMeasuredWidth() + AndroidUtilities.m35dp(9.0f);
+                        i3 += childAt.getMeasuredWidth() + AndroidUtilities.m36dp(9.0f);
                     }
-                    i4 += childAt.getMeasuredWidth() + AndroidUtilities.m35dp(9.0f);
+                    i4 += childAt.getMeasuredWidth() + AndroidUtilities.m36dp(9.0f);
                 }
             }
             if (AndroidUtilities.isTablet()) {
-                min = AndroidUtilities.m35dp(372.0f) / 3;
+                min = AndroidUtilities.m36dp(372.0f) / 3;
             } else {
                 Point point = AndroidUtilities.displaySize;
-                min = (Math.min(point.x, point.y) - AndroidUtilities.m35dp(158.0f)) / 3;
+                min = (Math.min(point.x, point.y) - AndroidUtilities.m36dp(158.0f)) / 3;
             }
-            if (m35dp - i3 < min) {
-                m35dp2 += AndroidUtilities.m35dp(40.0f);
+            if (m36dp - i3 < min) {
+                m36dp2 += AndroidUtilities.m36dp(40.0f);
                 i3 = 0;
             }
-            if (m35dp - i4 < min) {
-                m35dp3 += AndroidUtilities.m35dp(40.0f);
+            if (m36dp - i4 < min) {
+                m36dp3 += AndroidUtilities.m36dp(40.0f);
             }
-            UsersSelectActivity.this.editText.measure(View.MeasureSpec.makeMeasureSpec(m35dp - i3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(32.0f), 1073741824));
+            UsersSelectActivity.this.editText.measure(View.MeasureSpec.makeMeasureSpec(m36dp - i3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(32.0f), 1073741824));
             if (!this.animationStarted) {
-                int m35dp5 = m35dp3 + AndroidUtilities.m35dp(42.0f);
-                int m35dp6 = i3 + AndroidUtilities.m35dp(16.0f);
-                UsersSelectActivity.this.fieldY = m35dp2;
+                int m36dp5 = m36dp3 + AndroidUtilities.m36dp(42.0f);
+                int m36dp6 = i3 + AndroidUtilities.m36dp(16.0f);
+                UsersSelectActivity.this.fieldY = m36dp2;
                 if (this.currentAnimation == null) {
-                    UsersSelectActivity.this.containerHeight = m35dp5;
-                    UsersSelectActivity.this.editText.setTranslationX(m35dp6);
+                    UsersSelectActivity.this.containerHeight = m36dp5;
+                    UsersSelectActivity.this.editText.setTranslationX(m36dp6);
                     UsersSelectActivity.this.editText.setTranslationY(UsersSelectActivity.this.fieldY);
                 } else {
-                    int m35dp7 = m35dp2 + AndroidUtilities.m35dp(42.0f);
-                    if (UsersSelectActivity.this.containerHeight != m35dp7) {
-                        this.animators.add(ObjectAnimator.ofInt(UsersSelectActivity.this, "containerHeight", m35dp7));
+                    int m36dp7 = m36dp2 + AndroidUtilities.m36dp(42.0f);
+                    if (UsersSelectActivity.this.containerHeight != m36dp7) {
+                        this.animators.add(ObjectAnimator.ofInt(UsersSelectActivity.this, "containerHeight", m36dp7));
                     }
-                    float f3 = m35dp6;
+                    float f3 = m36dp6;
                     if (UsersSelectActivity.this.editText.getTranslationX() != f3) {
                         this.animators.add(ObjectAnimator.ofFloat(UsersSelectActivity.this.editText, View.TRANSLATION_X, f3));
                     }
@@ -450,21 +449,21 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         ViewGroup viewGroup = new ViewGroup(context) {
             @Override
             protected void onMeasure(int i3, int i4) {
-                int m35dp;
+                int m36dp;
                 int size = View.MeasureSpec.getSize(i3);
                 int size2 = View.MeasureSpec.getSize(i4);
                 setMeasuredDimension(size, size2);
                 if (AndroidUtilities.isTablet() || size2 > size) {
-                    m35dp = AndroidUtilities.m35dp(144.0f);
+                    m36dp = AndroidUtilities.m36dp(144.0f);
                 } else {
-                    m35dp = AndroidUtilities.m35dp(56.0f);
+                    m36dp = AndroidUtilities.m36dp(56.0f);
                 }
-                UsersSelectActivity.this.scrollView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(m35dp, Integer.MIN_VALUE));
+                UsersSelectActivity.this.scrollView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(m36dp, Integer.MIN_VALUE));
                 UsersSelectActivity.this.listView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - UsersSelectActivity.this.scrollView.getMeasuredHeight(), 1073741824));
                 UsersSelectActivity.this.emptyView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - UsersSelectActivity.this.scrollView.getMeasuredHeight(), 1073741824));
                 if (UsersSelectActivity.this.floatingButton != null) {
-                    int m35dp2 = AndroidUtilities.m35dp(Build.VERSION.SDK_INT < 21 ? 60.0f : 56.0f);
-                    UsersSelectActivity.this.floatingButton.measure(View.MeasureSpec.makeMeasureSpec(m35dp2, 1073741824), View.MeasureSpec.makeMeasureSpec(m35dp2, 1073741824));
+                    int m36dp2 = AndroidUtilities.m36dp(Build.VERSION.SDK_INT < 21 ? 60.0f : 56.0f);
+                    UsersSelectActivity.this.floatingButton.measure(View.MeasureSpec.makeMeasureSpec(m36dp2, 1073741824), View.MeasureSpec.makeMeasureSpec(m36dp2, 1073741824));
                 }
             }
 
@@ -474,9 +473,9 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                 UsersSelectActivity.this.listView.layout(0, UsersSelectActivity.this.scrollView.getMeasuredHeight(), UsersSelectActivity.this.listView.getMeasuredWidth(), UsersSelectActivity.this.scrollView.getMeasuredHeight() + UsersSelectActivity.this.listView.getMeasuredHeight());
                 UsersSelectActivity.this.emptyView.layout(0, UsersSelectActivity.this.scrollView.getMeasuredHeight(), UsersSelectActivity.this.emptyView.getMeasuredWidth(), UsersSelectActivity.this.scrollView.getMeasuredHeight() + UsersSelectActivity.this.emptyView.getMeasuredHeight());
                 if (UsersSelectActivity.this.floatingButton != null) {
-                    int m35dp = LocaleController.isRTL ? AndroidUtilities.m35dp(14.0f) : ((i5 - i3) - AndroidUtilities.m35dp(14.0f)) - UsersSelectActivity.this.floatingButton.getMeasuredWidth();
-                    int m35dp2 = ((i6 - i4) - AndroidUtilities.m35dp(14.0f)) - UsersSelectActivity.this.floatingButton.getMeasuredHeight();
-                    UsersSelectActivity.this.floatingButton.layout(m35dp, m35dp2, UsersSelectActivity.this.floatingButton.getMeasuredWidth() + m35dp, UsersSelectActivity.this.floatingButton.getMeasuredHeight() + m35dp2);
+                    int m36dp = LocaleController.isRTL ? AndroidUtilities.m36dp(14.0f) : ((i5 - i3) - AndroidUtilities.m36dp(14.0f)) - UsersSelectActivity.this.floatingButton.getMeasuredWidth();
+                    int m36dp2 = ((i6 - i4) - AndroidUtilities.m36dp(14.0f)) - UsersSelectActivity.this.floatingButton.getMeasuredHeight();
+                    UsersSelectActivity.this.floatingButton.layout(m36dp, m36dp2, UsersSelectActivity.this.floatingButton.getMeasuredWidth() + m36dp, UsersSelectActivity.this.floatingButton.getMeasuredHeight() + m36dp2);
                 }
             }
 
@@ -499,8 +498,8 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                     return false;
                 }
                 rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-                rect.top += UsersSelectActivity.this.fieldY + AndroidUtilities.m35dp(20.0f);
-                rect.bottom += UsersSelectActivity.this.fieldY + AndroidUtilities.m35dp(50.0f);
+                rect.top += UsersSelectActivity.this.fieldY + AndroidUtilities.m36dp(20.0f);
+                rect.bottom += UsersSelectActivity.this.fieldY + AndroidUtilities.m36dp(50.0f);
                 return super.requestChildRectangleOnScreen(view, rect, z2);
             }
         };
@@ -671,13 +670,13 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         ImageView imageView = new ImageView(context);
         this.floatingButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
+        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m36dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
         int i3 = Build.VERSION.SDK_INT;
         if (i3 < 21) {
             Drawable mutate = context.getResources().getDrawable(C1072R.C1073drawable.floating_shadow).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
-            combinedDrawable.setIconSize(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+            combinedDrawable.setIconSize(AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
             createSimpleSelectorCircleDrawable = combinedDrawable;
         }
         this.floatingButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
@@ -687,14 +686,14 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             StateListAnimator stateListAnimator = new StateListAnimator();
             ImageView imageView2 = this.floatingButton;
             Property property = View.TRANSLATION_Z;
-            stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(imageView2, property, AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(4.0f)).setDuration(200L));
-            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButton, property, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(2.0f)).setDuration(200L));
+            stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(imageView2, property, AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(4.0f)).setDuration(200L));
+            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButton, property, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(2.0f)).setDuration(200L));
             this.floatingButton.setStateListAnimator(stateListAnimator);
             this.floatingButton.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view, Outline outline) {
-                    outline.setOval(0, 0, AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+                    outline.setOval(0, 0, AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
                 }
             });
         }
@@ -816,7 +815,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                 TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) object;
                 j = -tLRPC$Chat.f857id;
                 if (this.type == 1 && !ChatObject.canUserDoAdminAction(tLRPC$Chat, 13)) {
-                    BulletinFactory.m13of(this).createErrorBulletin(LocaleController.getString("NeedAdminRightForSetAutoDeleteTimer", C1072R.string.NeedAdminRightForSetAutoDeleteTimer)).show();
+                    BulletinFactory.m14of(this).createErrorBulletin(LocaleController.getString("NeedAdminRightForSetAutoDeleteTimer", C1072R.string.NeedAdminRightForSetAutoDeleteTimer)).show();
                     return;
                 }
             }
@@ -1088,38 +1087,37 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
 
         public GroupCreateAdapter(Context context) {
             int i;
-            UsersSelectActivity.this = r10;
-            if (r10.type == 0) {
-                i = r10.isInclude ? 7 : 5;
+            if (UsersSelectActivity.this.type == 0) {
+                i = UsersSelectActivity.this.isInclude ? 7 : 5;
             } else {
                 i = 0;
             }
             this.usersStartRow = i;
             this.context = context;
-            ArrayList<TLRPC$Dialog> allDialogs = r10.getMessagesController().getAllDialogs();
+            ArrayList<TLRPC$Dialog> allDialogs = UsersSelectActivity.this.getMessagesController().getAllDialogs();
             int size = allDialogs.size();
             boolean z = false;
             for (int i2 = 0; i2 < size; i2++) {
                 TLRPC$Dialog tLRPC$Dialog = allDialogs.get(i2);
                 if (!DialogObject.isEncryptedDialog(tLRPC$Dialog.f863id)) {
                     if (DialogObject.isUserDialog(tLRPC$Dialog.f863id)) {
-                        TLRPC$User user = r10.getMessagesController().getUser(Long.valueOf(tLRPC$Dialog.f863id));
-                        if (user != null && (r10.type != 1 || !UserObject.isUserSelf(user))) {
+                        TLRPC$User user = UsersSelectActivity.this.getMessagesController().getUser(Long.valueOf(tLRPC$Dialog.f863id));
+                        if (user != null && (UsersSelectActivity.this.type != 1 || !UserObject.isUserSelf(user))) {
                             this.contacts.add(user);
                             if (UserObject.isUserSelf(user)) {
                                 z = true;
                             }
                         }
                     } else {
-                        TLRPC$Chat chat = r10.getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.f863id));
+                        TLRPC$Chat chat = UsersSelectActivity.this.getMessagesController().getChat(Long.valueOf(-tLRPC$Dialog.f863id));
                         if (chat != null) {
                             this.contacts.add(chat);
                         }
                     }
                 }
             }
-            if (!z && r10.type != 1) {
-                this.contacts.add(0, r10.getMessagesController().getUser(Long.valueOf(r10.getUserConfig().clientUserId)));
+            if (!z && UsersSelectActivity.this.type != 1) {
+                this.contacts.add(0, UsersSelectActivity.this.getMessagesController().getUser(Long.valueOf(UsersSelectActivity.this.getUserConfig().clientUserId)));
             }
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(false);
             this.searchAdapterHelper = searchAdapterHelper;

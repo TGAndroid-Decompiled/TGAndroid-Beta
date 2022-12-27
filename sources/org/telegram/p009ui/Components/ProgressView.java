@@ -8,7 +8,7 @@ public class ProgressView {
     public int height;
     public int width;
     public float currentProgress = 0.0f;
-    public float progressHeight = AndroidUtilities.m35dp(2.0f);
+    public float progressHeight = AndroidUtilities.m36dp(2.0f);
     private Paint innerPaint = new Paint();
     private Paint outerPaint = new Paint();
 

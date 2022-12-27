@@ -27,7 +27,7 @@ public class JoinSheetUserCell extends FrameLayout {
         this.result = new int[1];
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(27.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(27.0f));
         addView(this.imageView, LayoutHelper.createFrame(54, 54.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.nameTextView = textView;
@@ -43,7 +43,7 @@ public class JoinSheetUserCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(100.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(90.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(100.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(90.0f), 1073741824));
     }
 
     public void setUser(TLRPC$User tLRPC$User) {

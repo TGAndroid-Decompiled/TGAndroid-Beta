@@ -86,7 +86,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
     private boolean joinToSendProgress = false;
     private boolean joinRequestProgress = false;
 
-    public static class EmptyView extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
+    private static class EmptyView extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
         private int currentAccount;
         private LoadingStickerDrawable drawable;
         private BackupImageView stickerView;
@@ -94,10 +94,10 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         public EmptyView(Context context) {
             super(context);
             this.currentAccount = UserConfig.selectedAccount;
-            setPadding(0, AndroidUtilities.m35dp(12.0f), 0, AndroidUtilities.m35dp(12.0f));
+            setPadding(0, AndroidUtilities.m36dp(12.0f), 0, AndroidUtilities.m36dp(12.0f));
             setOrientation(1);
             this.stickerView = new BackupImageView(context);
-            LoadingStickerDrawable loadingStickerDrawable = new LoadingStickerDrawable(this.stickerView, "M476.1,397.4c25.8-47.2,0.3-105.9-50.9-120c-2.5-6.9-7.8-12.7-15-16.4l0.4-229.4c0-12.3-10-22.4-22.4-22.4H128.5c-12.3,0-22.4,10-22.4,22.4l-0.4,229.8v0c0,6.7,2.9,12.6,7.6,16.7c-51.6,15.9-79.2,77.2-48.1,116.4c-8.7,11.7-13.4,27.5-14,47.2c-1.7,34.5,21.6,45.8,55.9,45.8c52.3,0,99.1,4.6,105.1-36.2c16.5,0.9,7.1-37.3-6.5-53.3c18.4-22.4,18.3-52.9,4.9-78.2c-0.7-5.3-3.8-9.8-8.1-12.6c-1.5-2-1.6-2-2.1-2.7c0.2-1,1.2-11.8-3.4-20.9h138.5c-4.8,8.8-4.7,17-2.9,22.1c-5.3,4.8-6.8,12.3-5.2,17c-11.4,24.9-10,53.8,4.3,77.5c-6.8,9.7-11.2,21.7-12.6,31.6c-0.2-0.2-0.4-0.3-0.6-0.5c0.8-3.3,0.4-6.4-1.3-7.8c9.3-12.1-4.5-29.2-17-21.7c-3.8-2.8-10.6-3.2-18.1-0.5c-2.4-10.6-21.1-10.6-28.6-1c-1.3,0.3-2.9,0.8-4.5,1.9c-5.2-0.9-10.9,0.1-14.1,4.4c-6.9,3-9.5,10.4-7.8,17c-0.9,1.8-1.1,4-0.8,6.3c-1.6,1.2-2.3,3.1-2,4.9c0.1,0.6,10.4,56.6,11.2,62c0.3,1.8,1.5,3.2,3.1,3.9c8.7,3.4,12,3.8,30.1,9.4c2.7,0.8,2.4,0.8,6.7-0.1c16.4-3.5,30.2-8.9,30.8-9.2c1.6-0.6,2.7-2,3.1-3.7c0.1-0.4,6.8-36.5,10-53.2c0.9,4.2,3.3,7.3,7.4,7.5c1.2,7.8,4.4,14.5,9.5,19.9c16.4,17.3,44.9,15.7,64.9,16.1c38.3,0.8,74.5,1.5,84.4-24.4C488.9,453.5,491.3,421.3,476.1,397.4z", AndroidUtilities.m35dp(104.0f), AndroidUtilities.m35dp(104.0f));
+            LoadingStickerDrawable loadingStickerDrawable = new LoadingStickerDrawable(this.stickerView, "M476.1,397.4c25.8-47.2,0.3-105.9-50.9-120c-2.5-6.9-7.8-12.7-15-16.4l0.4-229.4c0-12.3-10-22.4-22.4-22.4H128.5c-12.3,0-22.4,10-22.4,22.4l-0.4,229.8v0c0,6.7,2.9,12.6,7.6,16.7c-51.6,15.9-79.2,77.2-48.1,116.4c-8.7,11.7-13.4,27.5-14,47.2c-1.7,34.5,21.6,45.8,55.9,45.8c52.3,0,99.1,4.6,105.1-36.2c16.5,0.9,7.1-37.3-6.5-53.3c18.4-22.4,18.3-52.9,4.9-78.2c-0.7-5.3-3.8-9.8-8.1-12.6c-1.5-2-1.6-2-2.1-2.7c0.2-1,1.2-11.8-3.4-20.9h138.5c-4.8,8.8-4.7,17-2.9,22.1c-5.3,4.8-6.8,12.3-5.2,17c-11.4,24.9-10,53.8,4.3,77.5c-6.8,9.7-11.2,21.7-12.6,31.6c-0.2-0.2-0.4-0.3-0.6-0.5c0.8-3.3,0.4-6.4-1.3-7.8c9.3-12.1-4.5-29.2-17-21.7c-3.8-2.8-10.6-3.2-18.1-0.5c-2.4-10.6-21.1-10.6-28.6-1c-1.3,0.3-2.9,0.8-4.5,1.9c-5.2-0.9-10.9,0.1-14.1,4.4c-6.9,3-9.5,10.4-7.8,17c-0.9,1.8-1.1,4-0.8,6.3c-1.6,1.2-2.3,3.1-2,4.9c0.1,0.6,10.4,56.6,11.2,62c0.3,1.8,1.5,3.2,3.1,3.9c8.7,3.4,12,3.8,30.1,9.4c2.7,0.8,2.4,0.8,6.7-0.1c16.4-3.5,30.2-8.9,30.8-9.2c1.6-0.6,2.7-2,3.1-3.7c0.1-0.4,6.8-36.5,10-53.2c0.9,4.2,3.3,7.3,7.4,7.5c1.2,7.8,4.4,14.5,9.5,19.9c16.4,17.3,44.9,15.7,64.9,16.1c38.3,0.8,74.5,1.5,84.4-24.4C488.9,453.5,491.3,421.3,476.1,397.4z", AndroidUtilities.m36dp(104.0f), AndroidUtilities.m36dp(104.0f));
             this.drawable = loadingStickerDrawable;
             this.stickerView.setImageDrawable(loadingStickerDrawable);
             addView(this.stickerView, LayoutHelper.createLinear(104, 104, 49, 0, 2, 0, 0));
@@ -560,9 +560,9 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         FrameLayout frameLayout = new FrameLayout(getParentActivity());
         builder.setView(frameLayout);
         AvatarDrawable avatarDrawable = new AvatarDrawable();
-        avatarDrawable.setTextSize(AndroidUtilities.m35dp(12.0f));
+        avatarDrawable.setTextSize(AndroidUtilities.m36dp(12.0f));
         BackupImageView backupImageView = new BackupImageView(getParentActivity());
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(20.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(20.0f));
         frameLayout.addView(backupImageView, LayoutHelper.createFrame(40, 40.0f, (LocaleController.isRTL ? 5 : 3) | 48, 22.0f, 5.0f, 22.0f, 0.0f));
         TextView textView2 = new TextView(getParentActivity());
         textView2.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
@@ -828,7 +828,6 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         }
 
         public SearchAdapter(Context context) {
-            ChatLinkActivity.this = r1;
             this.mContext = context;
         }
 
@@ -954,7 +953,6 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         private Context mContext;
 
         public ListAdapter(Context context) {
-            ChatLinkActivity.this = r1;
             this.mContext = context;
         }
 
@@ -972,12 +970,11 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             return 0;
         }
 
-        public class C17031 extends JoinToSendSettingsView {
+        public class C17061 extends JoinToSendSettingsView {
             final TLRPC$Chat val$chat;
 
-            C17031(Context context, TLRPC$Chat tLRPC$Chat, TLRPC$Chat tLRPC$Chat2) {
+            C17061(Context context, TLRPC$Chat tLRPC$Chat, TLRPC$Chat tLRPC$Chat2) {
                 super(context, tLRPC$Chat);
-                ListAdapter.this = r1;
                 this.val$chat = tLRPC$Chat2;
             }
 
@@ -986,7 +983,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                     ChatLinkActivity.this.getMessagesController().convertToMegaGroup(ChatLinkActivity.this.getParentActivity(), this.val$chat.f857id, ChatLinkActivity.this, new MessagesStorage.LongCallback() {
                         @Override
                         public final void run(long j) {
-                            ChatLinkActivity.ListAdapter.C17031.this.lambda$migrateIfNeeded$0(runnable2, j);
+                            ChatLinkActivity.ListAdapter.C17061.this.lambda$migrateIfNeeded$0(runnable2, j);
                         }
                     }, runnable);
                 } else {
@@ -1018,7 +1015,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 migrateIfNeeded(overrideCancel, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17031.this.lambda$onJoinRequestToggle$3(tLRPC$Chat, z, runnable);
+                        ChatLinkActivity.ListAdapter.C17061.this.lambda$onJoinRequestToggle$3(tLRPC$Chat, z, runnable);
                     }
                 });
                 return true;
@@ -1029,12 +1026,12 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 ChatLinkActivity.this.getMessagesController().toggleChatJoinRequest(tLRPC$Chat.f857id, z, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17031.this.lambda$onJoinRequestToggle$1();
+                        ChatLinkActivity.ListAdapter.C17061.this.lambda$onJoinRequestToggle$1();
                     }
                 }, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17031.this.lambda$onJoinRequestToggle$2(runnable);
+                        ChatLinkActivity.ListAdapter.C17061.this.lambda$onJoinRequestToggle$2(runnable);
                     }
                 });
             }
@@ -1052,7 +1049,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 return new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17031.this.lambda$overrideCancel$4(runnable);
+                        ChatLinkActivity.ListAdapter.C17061.this.lambda$overrideCancel$4(runnable);
                     }
                 };
             }
@@ -1074,7 +1071,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 migrateIfNeeded(overrideCancel, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17031.this.lambda$onJoinToSendToggle$9(tLRPC$Chat, z, runnable);
+                        ChatLinkActivity.ListAdapter.C17061.this.lambda$onJoinToSendToggle$9(tLRPC$Chat, z, runnable);
                     }
                 });
                 return true;
@@ -1085,12 +1082,12 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 ChatLinkActivity.this.getMessagesController().toggleChatJoinToSend(tLRPC$Chat.f857id, z, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17031.this.lambda$onJoinToSendToggle$7(z, tLRPC$Chat);
+                        ChatLinkActivity.ListAdapter.C17061.this.lambda$onJoinToSendToggle$7(z, tLRPC$Chat);
                     }
                 }, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17031.this.lambda$onJoinToSendToggle$8(runnable);
+                        ChatLinkActivity.ListAdapter.C17061.this.lambda$onJoinToSendToggle$8(runnable);
                     }
                 });
             }
@@ -1105,12 +1102,12 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 ChatLinkActivity.this.getMessagesController().toggleChatJoinRequest(tLRPC$Chat.f857id, false, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17031.this.lambda$onJoinToSendToggle$5();
+                        ChatLinkActivity.ListAdapter.C17061.this.lambda$onJoinToSendToggle$5();
                     }
                 }, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17031.this.lambda$onJoinToSendToggle$6(tLRPC$Chat);
+                        ChatLinkActivity.ListAdapter.C17061.this.lambda$onJoinToSendToggle$6(tLRPC$Chat);
                     }
                 });
             }
@@ -1147,7 +1144,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                     manageChatUserCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                 } else if (i == 4) {
                     TLRPC$Chat tLRPC$Chat = ChatLinkActivity.this.isChannel ? (TLRPC$Chat) ChatLinkActivity.this.chats.get(0) : ChatLinkActivity.this.currentChat;
-                    view = ChatLinkActivity.this.joinToSendSettings = new C17031(this.mContext, tLRPC$Chat, tLRPC$Chat);
+                    view = ChatLinkActivity.this.joinToSendSettings = new C17061(this.mContext, tLRPC$Chat, tLRPC$Chat);
                 } else {
                     view = new HintInnerCell(ChatLinkActivity.this, this.mContext);
                 }

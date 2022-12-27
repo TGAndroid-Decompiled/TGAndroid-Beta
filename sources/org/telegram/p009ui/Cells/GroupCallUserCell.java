@@ -142,21 +142,21 @@ public class GroupCallUserCell extends FrameLayout {
 
     public void setProgressToAvatarPreview(float f) {
         this.progressToAvatarPreview = f;
-        this.nameTextView.setTranslationX((LocaleController.isRTL ? AndroidUtilities.m35dp(53.0f) : -AndroidUtilities.m35dp(53.0f)) * f);
+        this.nameTextView.setTranslationX((LocaleController.isRTL ? AndroidUtilities.m36dp(53.0f) : -AndroidUtilities.m36dp(53.0f)) * f);
         boolean z = true;
         if (isSelfUser() && f > 0.0f) {
             float f2 = 1.0f - f;
-            this.fullAboutTextView.setTranslationX((LocaleController.isRTL ? -AndroidUtilities.m35dp(53.0f) : AndroidUtilities.m35dp(53.0f)) * f2);
+            this.fullAboutTextView.setTranslationX((LocaleController.isRTL ? -AndroidUtilities.m36dp(53.0f) : AndroidUtilities.m36dp(53.0f)) * f2);
             this.fullAboutTextView.setVisibility(0);
             this.fullAboutTextView.setAlpha(f);
             this.statusTextView[4].setAlpha(f2);
             SimpleTextView simpleTextView = this.statusTextView[4];
             boolean z2 = LocaleController.isRTL;
-            int m35dp = AndroidUtilities.m35dp(53.0f);
+            int m36dp = AndroidUtilities.m36dp(53.0f);
             if (!z2) {
-                m35dp = -m35dp;
+                m36dp = -m36dp;
             }
-            simpleTextView.setTranslationX(m35dp * f);
+            simpleTextView.setTranslationX(m36dp * f);
         } else {
             this.fullAboutTextView.setVisibility(8);
             int i = 0;
@@ -166,12 +166,12 @@ public class GroupCallUserCell extends FrameLayout {
                     break;
                 }
                 if (!TextUtils.isEmpty(simpleTextViewArr[4].getText()) && this.statusTextView[4].getLineCount() > 1) {
-                    this.statusTextView[i].setFullLayoutAdditionalWidth(AndroidUtilities.m35dp(92.0f), LocaleController.isRTL ? AndroidUtilities.m35dp(48.0f) : AndroidUtilities.m35dp(53.0f));
+                    this.statusTextView[i].setFullLayoutAdditionalWidth(AndroidUtilities.m36dp(92.0f), LocaleController.isRTL ? AndroidUtilities.m36dp(48.0f) : AndroidUtilities.m36dp(53.0f));
                     this.statusTextView[i].setFullAlpha(f);
                     this.statusTextView[i].setTranslationX(0.0f);
                     this.statusTextView[i].invalidate();
                 } else {
-                    this.statusTextView[i].setTranslationX((LocaleController.isRTL ? AndroidUtilities.m35dp(53.0f) : -AndroidUtilities.m35dp(53.0f)) * f);
+                    this.statusTextView[i].setTranslationX((LocaleController.isRTL ? AndroidUtilities.m36dp(53.0f) : -AndroidUtilities.m36dp(53.0f)) * f);
                     this.statusTextView[i].setFullLayoutAdditionalWidth(0, 0);
                 }
                 i++;
@@ -206,7 +206,7 @@ public class GroupCallUserCell extends FrameLayout {
         }
     }
 
-    public static class VerifiedDrawable extends Drawable {
+    private static class VerifiedDrawable extends Drawable {
         private Drawable[] drawables;
 
         @Override
@@ -305,7 +305,7 @@ public class GroupCallUserCell extends FrameLayout {
         setClipChildren(false);
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(24.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(24.0f));
         BackupImageView backupImageView2 = this.avatarImageView;
         boolean z = LocaleController.isRTL;
         addView(backupImageView2, LayoutHelper.createFrame(46, 46.0f, (z ? 5 : 3) | 48, z ? 0.0f : 11.0f, 6.0f, z ? 11.0f : 0.0f, 0.0f));
@@ -313,7 +313,6 @@ public class GroupCallUserCell extends FrameLayout {
             private Paint paint;
 
             {
-                GroupCallUserCell.this = this;
                 Paint paint2 = new Paint(1);
                 this.paint = paint2;
                 paint2.setColor(1426063360);
@@ -330,7 +329,7 @@ public class GroupCallUserCell extends FrameLayout {
             }
         };
         this.avatarProgressView = radialProgressView;
-        radialProgressView.setSize(AndroidUtilities.m35dp(26.0f));
+        radialProgressView.setSize(AndroidUtilities.m36dp(26.0f));
         this.avatarProgressView.setProgressColor(-1);
         this.avatarProgressView.setNoProgress(false);
         RadialProgressView radialProgressView2 = this.avatarProgressView;
@@ -342,12 +341,12 @@ public class GroupCallUserCell extends FrameLayout {
         simpleTextView.setTextColor(Theme.getColor("voipgroup_nameText"));
         this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setTextSize(16);
-        this.nameTextView.setDrawablePadding(AndroidUtilities.m35dp(6.0f));
+        this.nameTextView.setDrawablePadding(AndroidUtilities.m36dp(6.0f));
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         SimpleTextView simpleTextView2 = this.nameTextView;
         boolean z3 = LocaleController.isRTL;
         addView(simpleTextView2, LayoutHelper.createFrame(-1, 20.0f, (z3 ? 5 : 3) | 48, z3 ? 54.0f : 67.0f, 10.0f, z3 ? 67.0f : 54.0f, 0.0f));
-        this.rightDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.nameTextView, AndroidUtilities.m35dp(20.0f), 9);
+        this.rightDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.nameTextView, AndroidUtilities.m36dp(20.0f), 9);
         Drawable drawable = context.getResources().getDrawable(C1072R.C1073drawable.voice_volume_mini);
         this.speakingDrawable = drawable;
         drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("voipgroup_speakingText"), PorterDuff.Mode.MULTIPLY));
@@ -415,7 +414,7 @@ public class GroupCallUserCell extends FrameLayout {
                 } else if (i == 1) {
                     this.statusTextView[i].setTextColor(Theme.getColor("voipgroup_speakingText"));
                     this.statusTextView[i].setText(LocaleController.getString("Speaking", C1072R.string.Speaking));
-                    this.statusTextView[i].setDrawablePadding(AndroidUtilities.m35dp(2.0f));
+                    this.statusTextView[i].setDrawablePadding(AndroidUtilities.m36dp(2.0f));
                 } else if (i == 2) {
                     this.statusTextView[i].setTextColor(Theme.getColor("voipgroup_mutedByAdminIcon"));
                     this.statusTextView[i].setText(LocaleController.getString("VoipGroupMutedForMe", C1072R.string.VoipGroupMutedForMe));
@@ -437,9 +436,9 @@ public class GroupCallUserCell extends FrameLayout {
         this.fullAboutTextView.setVisibility(8);
         addView(this.fullAboutTextView, LayoutHelper.createFrame(-1, 60.0f, (LocaleController.isRTL ? 5 : 3) | 48, 14.0f, 32.0f, 14.0f, 0.0f));
         int i2 = C1072R.raw.voice_outlined2;
-        this.muteDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(34.0f), AndroidUtilities.m35dp(32.0f), true, null);
+        this.muteDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m36dp(34.0f), AndroidUtilities.m36dp(32.0f), true, null);
         int i3 = C1072R.raw.hand_1;
-        this.shakeHandDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.m35dp(34.0f), AndroidUtilities.m35dp(32.0f), true, null);
+        this.shakeHandDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.m36dp(34.0f), AndroidUtilities.m36dp(32.0f), true, null);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.muteButton = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -457,7 +456,7 @@ public class GroupCallUserCell extends FrameLayout {
                 GroupCallUserCell.this.lambda$new$5(view);
             }
         });
-        this.avatarWavesDrawable = new AvatarWavesDrawable(AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(29.0f));
+        this.avatarWavesDrawable = new AvatarWavesDrawable(AndroidUtilities.m36dp(26.0f), AndroidUtilities.m36dp(29.0f));
         setWillNotDraw(false);
         setFocusable(true);
     }
@@ -470,7 +469,7 @@ public class GroupCallUserCell extends FrameLayout {
             simpleTextView = this.statusTextView[4];
         }
         if (simpleTextView.getLineCount() > 1) {
-            return simpleTextView.getTop() + simpleTextView.getTextHeight() + AndroidUtilities.m35dp(8.0f);
+            return simpleTextView.getTop() + simpleTextView.getTextHeight() + AndroidUtilities.m36dp(8.0f);
         }
         return getMeasuredHeight();
     }
@@ -552,11 +551,11 @@ public class GroupCallUserCell extends FrameLayout {
                 if (tLRPC$User2 != null && tLRPC$User2.premium) {
                     if (this.premiumDrawable == null) {
                         this.premiumDrawable = getContext().getResources().getDrawable(C1072R.C1073drawable.msg_premium_liststar).mutate();
-                        this.premiumDrawable = new AnimatedEmojiDrawable.WrapSizeDrawable(this, this.premiumDrawable, AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(14.0f)) {
+                        this.premiumDrawable = new AnimatedEmojiDrawable.WrapSizeDrawable(this, this.premiumDrawable, AndroidUtilities.m36dp(14.0f), AndroidUtilities.m36dp(14.0f)) {
                             @Override
                             public void draw(Canvas canvas) {
                                 canvas.save();
-                                canvas.translate(AndroidUtilities.m35dp(-2.0f), AndroidUtilities.m35dp(0.0f));
+                                canvas.translate(AndroidUtilities.m36dp(-2.0f), AndroidUtilities.m36dp(0.0f));
                                 super.draw(canvas);
                                 canvas.restore();
                             }
@@ -653,7 +652,7 @@ public class GroupCallUserCell extends FrameLayout {
 
     @Override
     public void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(58.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(58.0f), 1073741824));
     }
 
     public void applyParticipantChanges(boolean z) {
@@ -702,7 +701,7 @@ public class GroupCallUserCell extends FrameLayout {
     }
 
     public void applyStatus(int i) {
-        float m35dp;
+        float m36dp;
         int i2 = 0;
         if (i == 0) {
             while (true) {
@@ -710,7 +709,7 @@ public class GroupCallUserCell extends FrameLayout {
                 if (i2 >= simpleTextViewArr.length) {
                     return;
                 }
-                simpleTextViewArr[i2].setTranslationY(i2 == i ? 0.0f : AndroidUtilities.m35dp(-2.0f));
+                simpleTextViewArr[i2].setTranslationY(i2 == i ? 0.0f : AndroidUtilities.m36dp(-2.0f));
                 this.statusTextView[i2].setAlpha(i2 == i ? 1.0f : 0.0f);
                 i2++;
             }
@@ -722,11 +721,11 @@ public class GroupCallUserCell extends FrameLayout {
                 }
                 SimpleTextView simpleTextView = simpleTextViewArr2[i2];
                 if (i2 == i) {
-                    m35dp = 0.0f;
+                    m36dp = 0.0f;
                 } else {
-                    m35dp = AndroidUtilities.m35dp(i2 == 0 ? 2.0f : -2.0f);
+                    m36dp = AndroidUtilities.m36dp(i2 == 0 ? 2.0f : -2.0f);
                 }
-                simpleTextView.setTranslationY(m35dp);
+                simpleTextView.setTranslationY(m36dp);
                 this.statusTextView[i2].setAlpha(i2 == i ? 1.0f : 0.0f);
                 i2++;
             }
@@ -742,7 +741,7 @@ public class GroupCallUserCell extends FrameLayout {
             } else {
                 this.dividerPaint.setAlpha((int) ((1.0f - this.statusTextView[4].getFullAlpha()) * 255.0f));
             }
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(68.0f) : 0), getMeasuredHeight() - 1, this.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(68.0f) : 0), getMeasuredHeight() - 1, this.dividerPaint);
         }
         int left = this.avatarImageView.getLeft() + (this.avatarImageView.getMeasuredWidth() / 2);
         int top = this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2);

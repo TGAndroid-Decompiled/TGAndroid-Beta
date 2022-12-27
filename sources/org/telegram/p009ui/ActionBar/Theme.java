@@ -639,11 +639,11 @@ public class Theme {
             return this.topY;
         }
 
-        private int m20dp(float f) {
+        private int m21dp(float f) {
             if (this.currentType == 2) {
                 return (int) Math.ceil(f * 3.0f);
             }
-            return AndroidUtilities.m35dp(f);
+            return AndroidUtilities.m36dp(f);
         }
 
         public Paint getPaint() {
@@ -660,7 +660,7 @@ public class Theme {
             int i = this.overrideRoundRadius;
             boolean z = false;
             if (i == 0) {
-                i = this.overrideRounding > 0.0f ? 0 : AndroidUtilities.m35dp(SharedConfig.bubbleRadius);
+                i = this.overrideRounding > 0.0f ? 0 : AndroidUtilities.m36dp(SharedConfig.bubbleRadius);
             }
             boolean z2 = this.isTopNear;
             if (z2 && this.isBottomNear) {
@@ -676,13 +676,13 @@ public class Theme {
             if (this.lastDrawWithShadow != z4 || this.currentBackgroundDrawableRadius[z3 ? 1 : 0][c] != i || (z4 && this.shadowDrawableColor[c] != color2)) {
                 this.currentBackgroundDrawableRadius[z3 ? 1 : 0][c] = i;
                 try {
-                    Bitmap createBitmap = Bitmap.createBitmap(m20dp(50.0f), m20dp(40.0f), Bitmap.Config.ARGB_8888);
+                    Bitmap createBitmap = Bitmap.createBitmap(m21dp(50.0f), m21dp(40.0f), Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(createBitmap);
                     this.backupRect.set(getBounds());
                     if (z4) {
                         this.shadowDrawableColor[c] = color2;
                         Paint paint = new Paint(1);
-                        paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, m20dp(40.0f), new int[]{358573417, 694117737}, (float[]) null, Shader.TileMode.CLAMP));
+                        paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, m21dp(40.0f), new int[]{358573417, 694117737}, (float[]) null, Shader.TileMode.CLAMP));
                         paint.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.MULTIPLY));
                         paint.setShadowLayer(2.0f, 0.0f, 1.0f, -1);
                         if (AndroidUtilities.density > 1.0f) {
@@ -728,7 +728,7 @@ public class Theme {
 
         public Drawable getTransitionDrawable(int i) {
             if (this.transitionDrawable == null) {
-                Bitmap createBitmap = Bitmap.createBitmap(m20dp(50.0f), m20dp(40.0f), Bitmap.Config.ARGB_8888);
+                Bitmap createBitmap = Bitmap.createBitmap(m21dp(50.0f), m21dp(40.0f), Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 this.backupRect.set(getBounds());
                 Paint paint = new Paint(1);
@@ -760,7 +760,7 @@ public class Theme {
             if (this.gradientShader == null && !this.isSelected && this.crossfadeFromDrawable == null) {
                 return null;
             }
-            int m35dp = AndroidUtilities.m35dp(SharedConfig.bubbleRadius);
+            int m36dp = AndroidUtilities.m36dp(SharedConfig.bubbleRadius);
             boolean z = this.isTopNear;
             boolean z2 = false;
             if (z && this.isBottomNear) {
@@ -771,17 +771,17 @@ public class Theme {
                 c = this.isBottomNear ? (char) 1 : (char) 0;
             }
             int[] iArr = this.currentShadowDrawableRadius;
-            if (iArr[c] != m35dp) {
-                iArr[c] = m35dp;
+            if (iArr[c] != m36dp) {
+                iArr[c] = m36dp;
                 Bitmap[] bitmapArr = this.shadowDrawableBitmap;
                 if (bitmapArr[c] != null) {
                     bitmapArr[c].recycle();
                 }
                 try {
-                    Bitmap createBitmap = Bitmap.createBitmap(m20dp(50.0f), m20dp(40.0f), Bitmap.Config.ARGB_8888);
+                    Bitmap createBitmap = Bitmap.createBitmap(m21dp(50.0f), m21dp(40.0f), Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(createBitmap);
                     Paint paint = new Paint(1);
-                    paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, m20dp(40.0f), new int[]{358573417, 694117737}, (float[]) null, Shader.TileMode.CLAMP));
+                    paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, m21dp(40.0f), new int[]{358573417, 694117737}, (float[]) null, Shader.TileMode.CLAMP));
                     paint.setShadowLayer(2.0f, 0.0f, 1.0f, -1);
                     if (AndroidUtilities.density > 1.0f) {
                         setBounds(-1, -1, createBitmap.getWidth() + 1, createBitmap.getHeight() + 1);
@@ -1238,7 +1238,7 @@ public class Theme {
                 }
             } catch (Throwable th2) {
                 th = th2;
-                FileLog.m31e(th);
+                FileLog.m32e(th);
                 return bitmap2;
             }
             return bitmap2;
@@ -1536,7 +1536,7 @@ public class Theme {
                     AndroidUtilities.copyFile(file, new File(filesDirFixed, generateWallpaperName));
                 } catch (Exception e) {
                     this.fileName = "";
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             } else {
                 this.fileName = "";
@@ -1552,7 +1552,7 @@ public class Theme {
                         return;
                     } catch (Exception e2) {
                         this.originalFileName = "";
-                        FileLog.m31e(e2);
+                        FileLog.m32e(e2);
                         return;
                     }
                 }
@@ -1616,7 +1616,7 @@ public class Theme {
                 edit.putString(key, jSONObject.toString());
                 edit.commit();
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
         }
 
@@ -1755,7 +1755,7 @@ public class Theme {
                 jSONObject.put("loaded", this.loaded);
                 return jSONObject;
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return null;
             }
         }
@@ -1803,7 +1803,7 @@ public class Theme {
                     overrideWallpaperInfo.slug = "d";
                 }
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
         }
 
@@ -2023,7 +2023,7 @@ public class Theme {
                 }
                 return themeInfo;
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return null;
             }
         }
@@ -2356,7 +2356,7 @@ public class Theme {
         public boolean createBackground(File file, String str) {
             int patternColor;
             try {
-                Bitmap scaledBitmap = AndroidUtilities.getScaledBitmap(AndroidUtilities.m35dp(640.0f), AndroidUtilities.m35dp(360.0f), file.getAbsolutePath(), null, 0);
+                Bitmap scaledBitmap = AndroidUtilities.getScaledBitmap(AndroidUtilities.m36dp(640.0f), AndroidUtilities.m36dp(360.0f), file.getAbsolutePath(), null, 0);
                 if (scaledBitmap != null && this.patternBgColor != 0) {
                     Bitmap createBitmap = Bitmap.createBitmap(scaledBitmap.getWidth(), scaledBitmap.getHeight(), scaledBitmap.getConfig());
                     Canvas canvas = new Canvas(createBitmap);
@@ -2390,7 +2390,7 @@ public class Theme {
                 fileOutputStream.close();
                 return true;
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
                 return false;
             }
         }
@@ -2728,7 +2728,7 @@ public class Theme {
         paint.setColor(-1);
         if (i2 == 1) {
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            paint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         } else if (i2 == 2) {
             paint.setAlpha(0);
         }
@@ -2858,7 +2858,7 @@ public class Theme {
     }
 
     public static Drawable getRoundRectSelectorDrawable(int i) {
-        return getRoundRectSelectorDrawable(AndroidUtilities.m35dp(3.0f), i);
+        return getRoundRectSelectorDrawable(AndroidUtilities.m36dp(3.0f), i);
     }
 
     public static Drawable getRoundRectSelectorDrawable(int i, int i2) {
@@ -3087,21 +3087,21 @@ public class Theme {
 
             @Override
             public void draw(Canvas canvas) {
-                int m35dp;
+                int m36dp;
                 Rect bounds = getBounds();
                 if (Math.abs(this.radius - (-1.0f)) < 0.01f) {
-                    m35dp = Math.max(bounds.width(), bounds.height()) / 2;
+                    m36dp = Math.max(bounds.width(), bounds.height()) / 2;
                 } else if (Math.abs(this.radius - (-2.0f)) < 0.01f) {
-                    m35dp = (int) Math.ceil(Math.sqrt(((bounds.left - bounds.centerX()) * (bounds.left - bounds.centerX())) + ((bounds.top - bounds.centerY()) * (bounds.top - bounds.centerY()))));
+                    m36dp = (int) Math.ceil(Math.sqrt(((bounds.left - bounds.centerX()) * (bounds.left - bounds.centerX())) + ((bounds.top - bounds.centerY()) * (bounds.top - bounds.centerY()))));
                 } else {
-                    m35dp = AndroidUtilities.m35dp(this.radius);
+                    m36dp = AndroidUtilities.m36dp(this.radius);
                 }
-                canvas.drawCircle(bounds.centerX(), bounds.centerY(), m35dp, this.paint);
+                canvas.drawCircle(bounds.centerX(), bounds.centerY(), m36dp, this.paint);
             }
         }
 
         private static float[] calcRadii(float... fArr) {
-            return fArr.length == 0 ? new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f} : fArr.length == 1 ? new float[]{AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[0])} : fArr.length == 2 ? new float[]{AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[1]), AndroidUtilities.m35dp(fArr[1]), AndroidUtilities.m35dp(fArr[1]), AndroidUtilities.m35dp(fArr[1])} : fArr.length == 3 ? new float[]{AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[1]), AndroidUtilities.m35dp(fArr[1]), AndroidUtilities.m35dp(fArr[2]), AndroidUtilities.m35dp(fArr[2]), AndroidUtilities.m35dp(fArr[2]), AndroidUtilities.m35dp(fArr[2])} : fArr.length < 8 ? new float[]{AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[1]), AndroidUtilities.m35dp(fArr[1]), AndroidUtilities.m35dp(fArr[2]), AndroidUtilities.m35dp(fArr[2]), AndroidUtilities.m35dp(fArr[3]), AndroidUtilities.m35dp(fArr[3])} : new float[]{AndroidUtilities.m35dp(fArr[0]), AndroidUtilities.m35dp(fArr[1]), AndroidUtilities.m35dp(fArr[2]), AndroidUtilities.m35dp(fArr[3]), AndroidUtilities.m35dp(fArr[4]), AndroidUtilities.m35dp(fArr[5]), AndroidUtilities.m35dp(fArr[6]), AndroidUtilities.m35dp(fArr[7])};
+            return fArr.length == 0 ? new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f} : fArr.length == 1 ? new float[]{AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[0])} : fArr.length == 2 ? new float[]{AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[1]), AndroidUtilities.m36dp(fArr[1]), AndroidUtilities.m36dp(fArr[1]), AndroidUtilities.m36dp(fArr[1])} : fArr.length == 3 ? new float[]{AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[1]), AndroidUtilities.m36dp(fArr[1]), AndroidUtilities.m36dp(fArr[2]), AndroidUtilities.m36dp(fArr[2]), AndroidUtilities.m36dp(fArr[2]), AndroidUtilities.m36dp(fArr[2])} : fArr.length < 8 ? new float[]{AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[1]), AndroidUtilities.m36dp(fArr[1]), AndroidUtilities.m36dp(fArr[2]), AndroidUtilities.m36dp(fArr[2]), AndroidUtilities.m36dp(fArr[3]), AndroidUtilities.m36dp(fArr[3])} : new float[]{AndroidUtilities.m36dp(fArr[0]), AndroidUtilities.m36dp(fArr[1]), AndroidUtilities.m36dp(fArr[2]), AndroidUtilities.m36dp(fArr[3]), AndroidUtilities.m36dp(fArr[4]), AndroidUtilities.m36dp(fArr[5]), AndroidUtilities.m36dp(fArr[6]), AndroidUtilities.m36dp(fArr[7])};
         }
 
         private static boolean hasNonzeroRadii(float... fArr) {
@@ -3150,70 +3150,70 @@ public class Theme {
 
         public RippleRadMaskDrawable(float f, float f2) {
             this.radii = r0;
-            float m35dp = AndroidUtilities.m35dp(f);
-            float[] fArr = {m35dp, m35dp, m35dp, m35dp};
+            float m36dp = AndroidUtilities.m36dp(f);
+            float[] fArr = {m36dp, m36dp, m36dp, m36dp};
             float[] fArr2 = this.radii;
-            float m35dp2 = AndroidUtilities.m35dp(f2);
-            fArr2[7] = m35dp2;
-            fArr2[6] = m35dp2;
-            fArr2[5] = m35dp2;
-            fArr2[4] = m35dp2;
+            float m36dp2 = AndroidUtilities.m36dp(f2);
+            fArr2[7] = m36dp2;
+            fArr2[6] = m36dp2;
+            fArr2[5] = m36dp2;
+            fArr2[4] = m36dp2;
         }
 
         public RippleRadMaskDrawable(float f, float f2, float f3, float f4) {
             float[] fArr = new float[8];
             this.radii = fArr;
-            float m35dp = AndroidUtilities.m35dp(f);
-            fArr[1] = m35dp;
-            fArr[0] = m35dp;
+            float m36dp = AndroidUtilities.m36dp(f);
+            fArr[1] = m36dp;
+            fArr[0] = m36dp;
             float[] fArr2 = this.radii;
-            float m35dp2 = AndroidUtilities.m35dp(f2);
-            fArr2[3] = m35dp2;
-            fArr2[2] = m35dp2;
+            float m36dp2 = AndroidUtilities.m36dp(f2);
+            fArr2[3] = m36dp2;
+            fArr2[2] = m36dp2;
             float[] fArr3 = this.radii;
-            float m35dp3 = AndroidUtilities.m35dp(f3);
-            fArr3[5] = m35dp3;
-            fArr3[4] = m35dp3;
+            float m36dp3 = AndroidUtilities.m36dp(f3);
+            fArr3[5] = m36dp3;
+            fArr3[4] = m36dp3;
             float[] fArr4 = this.radii;
-            float m35dp4 = AndroidUtilities.m35dp(f4);
-            fArr4[7] = m35dp4;
-            fArr4[6] = m35dp4;
+            float m36dp4 = AndroidUtilities.m36dp(f4);
+            fArr4[7] = m36dp4;
+            fArr4[6] = m36dp4;
         }
 
         public void setRadius(float f, float f2) {
             float[] fArr = this.radii;
-            float m35dp = AndroidUtilities.m35dp(f);
-            fArr[3] = m35dp;
-            fArr[2] = m35dp;
-            fArr[1] = m35dp;
-            fArr[0] = m35dp;
+            float m36dp = AndroidUtilities.m36dp(f);
+            fArr[3] = m36dp;
+            fArr[2] = m36dp;
+            fArr[1] = m36dp;
+            fArr[0] = m36dp;
             float[] fArr2 = this.radii;
-            float m35dp2 = AndroidUtilities.m35dp(f2);
-            fArr2[7] = m35dp2;
-            fArr2[6] = m35dp2;
-            fArr2[5] = m35dp2;
-            fArr2[4] = m35dp2;
+            float m36dp2 = AndroidUtilities.m36dp(f2);
+            fArr2[7] = m36dp2;
+            fArr2[6] = m36dp2;
+            fArr2[5] = m36dp2;
+            fArr2[4] = m36dp2;
             this.invalidatePath = true;
             invalidateSelf();
         }
 
         public void setRadius(float f, float f2, float f3, float f4) {
             float[] fArr = this.radii;
-            float m35dp = AndroidUtilities.m35dp(f);
-            fArr[1] = m35dp;
-            fArr[0] = m35dp;
+            float m36dp = AndroidUtilities.m36dp(f);
+            fArr[1] = m36dp;
+            fArr[0] = m36dp;
             float[] fArr2 = this.radii;
-            float m35dp2 = AndroidUtilities.m35dp(f2);
-            fArr2[3] = m35dp2;
-            fArr2[2] = m35dp2;
+            float m36dp2 = AndroidUtilities.m36dp(f2);
+            fArr2[3] = m36dp2;
+            fArr2[2] = m36dp2;
             float[] fArr3 = this.radii;
-            float m35dp3 = AndroidUtilities.m35dp(f3);
-            fArr3[5] = m35dp3;
-            fArr3[4] = m35dp3;
+            float m36dp3 = AndroidUtilities.m36dp(f3);
+            fArr3[5] = m36dp3;
+            fArr3[4] = m36dp3;
             float[] fArr4 = this.radii;
-            float m35dp4 = AndroidUtilities.m35dp(f4);
-            fArr4[7] = m35dp4;
-            fArr4[6] = m35dp4;
+            float m36dp4 = AndroidUtilities.m36dp(f4);
+            fArr4[7] = m36dp4;
+            fArr4[6] = m36dp4;
             this.invalidatePath = true;
             invalidateSelf();
         }
@@ -3415,7 +3415,7 @@ public class Theme {
             }
             return themeInfo;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -3469,7 +3469,7 @@ public class Theme {
             applyTheme(themeInfo2, true, true, false);
             return themeInfo2;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -3577,7 +3577,7 @@ public class Theme {
             currentTheme = themeInfo;
             refreshThemeColors();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (previousTheme == null && z2 && !switchingNightTheme) {
             MessagesController.getInstance(themeInfo.account).saveTheme(themeInfo, themeInfo.getAccent(false), z, false);
@@ -3946,7 +3946,7 @@ public class Theme {
                 sensorManager.unregisterListener(ambientSensorListener, lightSensor);
                 lightSensorRegistered = false;
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("light sensor unregistered");
+                    FileLog.m35d("light sensor unregistered");
                 }
             }
         }
@@ -3995,7 +3995,7 @@ public class Theme {
                 sensorManager.registerListener(sensorEventListener, sensor, 500000);
                 lightSensorRegistered = true;
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("light sensor registered");
+                    FileLog.m35d("light sensor registered");
                 }
             }
             if (lastBrightnessValue <= autoNightBrighnessThreshold) {
@@ -4394,7 +4394,7 @@ public class Theme {
                     AndroidUtilities.copyFile(file, file2);
                     themeInfo.pathToFile = file2.getAbsolutePath();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             if (z) {
@@ -4415,7 +4415,7 @@ public class Theme {
             j = open.available();
             open.close();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             j = 0;
         }
         if (!file.exists() || (j != 0 && file.length() != j)) {
@@ -4426,7 +4426,7 @@ public class Theme {
                     open2.close();
                 }
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
         }
         return file;
@@ -4543,7 +4543,7 @@ public class Theme {
                         th = th;
                         fileInputStream = fileInputStream2;
                         try {
-                            FileLog.m31e(th);
+                            FileLog.m32e(th);
                             if (fileInputStream != null) {
                                 fileInputStream.close();
                             }
@@ -4553,7 +4553,7 @@ public class Theme {
                                 try {
                                     fileInputStream.close();
                                 } catch (Exception e) {
-                                    FileLog.m31e(e);
+                                    FileLog.m32e(e);
                                 }
                             }
                             throw th2;
@@ -4566,7 +4566,7 @@ public class Theme {
                 th = th3;
             }
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
         return hashMap;
     }
@@ -4583,7 +4583,7 @@ public class Theme {
             Paint paint3 = new Paint(1);
             checkboxSquare_checkPaint = paint3;
             paint3.setStyle(Paint.Style.STROKE);
-            checkboxSquare_checkPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            checkboxSquare_checkPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
             checkboxSquare_checkPaint.setStrokeCap(Paint.Cap.ROUND);
             Paint paint4 = new Paint(1);
             checkboxSquare_eraserPaint = paint4;
@@ -4634,19 +4634,19 @@ public class Theme {
             if (rLottieDrawable6 != null) {
                 rLottieDrawable6.recycle();
             }
-            dialogs_archiveAvatarDrawable = new RLottieDrawable(C1072R.raw.chats_archiveavatar, "chats_archiveavatar", AndroidUtilities.m35dp(36.0f), AndroidUtilities.m35dp(36.0f), false, null);
-            dialogs_archiveDrawable = new RLottieDrawable(C1072R.raw.chats_archive, "chats_archive", AndroidUtilities.m35dp(36.0f), AndroidUtilities.m35dp(36.0f));
-            dialogs_unarchiveDrawable = new RLottieDrawable(C1072R.raw.chats_unarchive, "chats_unarchive", AndroidUtilities.m35dp(AndroidUtilities.m35dp(36.0f)), AndroidUtilities.m35dp(36.0f));
-            dialogs_pinArchiveDrawable = new RLottieDrawable(C1072R.raw.chats_hide, "chats_hide", AndroidUtilities.m35dp(36.0f), AndroidUtilities.m35dp(36.0f));
-            dialogs_unpinArchiveDrawable = new RLottieDrawable(C1072R.raw.chats_unhide, "chats_unhide", AndroidUtilities.m35dp(36.0f), AndroidUtilities.m35dp(36.0f));
-            dialogs_hidePsaDrawable = new RLottieDrawable(C1072R.raw.chat_audio_record_delete, "chats_psahide", AndroidUtilities.m35dp(30.0f), AndroidUtilities.m35dp(30.0f));
-            dialogs_swipeMuteDrawable = new RLottieDrawable(C1072R.raw.swipe_mute, "swipe_mute", AndroidUtilities.m35dp(36.0f), AndroidUtilities.m35dp(36.0f));
-            dialogs_swipeUnmuteDrawable = new RLottieDrawable(C1072R.raw.swipe_unmute, "swipe_unmute", AndroidUtilities.m35dp(36.0f), AndroidUtilities.m35dp(36.0f));
-            dialogs_swipeReadDrawable = new RLottieDrawable(C1072R.raw.swipe_read, "swipe_read", AndroidUtilities.m35dp(36.0f), AndroidUtilities.m35dp(36.0f));
-            dialogs_swipeUnreadDrawable = new RLottieDrawable(C1072R.raw.swipe_unread, "swipe_unread", AndroidUtilities.m35dp(36.0f), AndroidUtilities.m35dp(36.0f));
-            dialogs_swipeDeleteDrawable = new RLottieDrawable(C1072R.raw.swipe_delete, "swipe_delete", AndroidUtilities.m35dp(36.0f), AndroidUtilities.m35dp(36.0f));
-            dialogs_swipeUnpinDrawable = new RLottieDrawable(C1072R.raw.swipe_unpin, "swipe_unpin", AndroidUtilities.m35dp(36.0f), AndroidUtilities.m35dp(36.0f));
-            dialogs_swipePinDrawable = new RLottieDrawable(C1072R.raw.swipe_pin, "swipe_pin", AndroidUtilities.m35dp(36.0f), AndroidUtilities.m35dp(36.0f));
+            dialogs_archiveAvatarDrawable = new RLottieDrawable(C1072R.raw.chats_archiveavatar, "chats_archiveavatar", AndroidUtilities.m36dp(36.0f), AndroidUtilities.m36dp(36.0f), false, null);
+            dialogs_archiveDrawable = new RLottieDrawable(C1072R.raw.chats_archive, "chats_archive", AndroidUtilities.m36dp(36.0f), AndroidUtilities.m36dp(36.0f));
+            dialogs_unarchiveDrawable = new RLottieDrawable(C1072R.raw.chats_unarchive, "chats_unarchive", AndroidUtilities.m36dp(AndroidUtilities.m36dp(36.0f)), AndroidUtilities.m36dp(36.0f));
+            dialogs_pinArchiveDrawable = new RLottieDrawable(C1072R.raw.chats_hide, "chats_hide", AndroidUtilities.m36dp(36.0f), AndroidUtilities.m36dp(36.0f));
+            dialogs_unpinArchiveDrawable = new RLottieDrawable(C1072R.raw.chats_unhide, "chats_unhide", AndroidUtilities.m36dp(36.0f), AndroidUtilities.m36dp(36.0f));
+            dialogs_hidePsaDrawable = new RLottieDrawable(C1072R.raw.chat_audio_record_delete, "chats_psahide", AndroidUtilities.m36dp(30.0f), AndroidUtilities.m36dp(30.0f));
+            dialogs_swipeMuteDrawable = new RLottieDrawable(C1072R.raw.swipe_mute, "swipe_mute", AndroidUtilities.m36dp(36.0f), AndroidUtilities.m36dp(36.0f));
+            dialogs_swipeUnmuteDrawable = new RLottieDrawable(C1072R.raw.swipe_unmute, "swipe_unmute", AndroidUtilities.m36dp(36.0f), AndroidUtilities.m36dp(36.0f));
+            dialogs_swipeReadDrawable = new RLottieDrawable(C1072R.raw.swipe_read, "swipe_read", AndroidUtilities.m36dp(36.0f), AndroidUtilities.m36dp(36.0f));
+            dialogs_swipeUnreadDrawable = new RLottieDrawable(C1072R.raw.swipe_unread, "swipe_unread", AndroidUtilities.m36dp(36.0f), AndroidUtilities.m36dp(36.0f));
+            dialogs_swipeDeleteDrawable = new RLottieDrawable(C1072R.raw.swipe_delete, "swipe_delete", AndroidUtilities.m36dp(36.0f), AndroidUtilities.m36dp(36.0f));
+            dialogs_swipeUnpinDrawable = new RLottieDrawable(C1072R.raw.swipe_unpin, "swipe_unpin", AndroidUtilities.m36dp(36.0f), AndroidUtilities.m36dp(36.0f));
+            dialogs_swipePinDrawable = new RLottieDrawable(C1072R.raw.swipe_pin, "swipe_pin", AndroidUtilities.m36dp(36.0f), AndroidUtilities.m36dp(36.0f));
             applyCommonTheme();
         }
     }
@@ -4717,7 +4717,7 @@ public class Theme {
             dialogs_reactionsCountPaint = new Paint(1);
             dialogs_onlineCirclePaint = new Paint(1);
         }
-        dialogs_countTextPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
+        dialogs_countTextPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
     }
 
     public static void createDialogsResources(Context context) {
@@ -4784,29 +4784,29 @@ public class Theme {
             RectF rectF = new RectF();
             chat_updatePath[0] = new Path();
             chat_updatePath[2] = new Path();
-            float m35dp = AndroidUtilities.m35dp(12.0f);
-            float m35dp2 = AndroidUtilities.m35dp(12.0f);
-            rectF.set(m35dp - AndroidUtilities.m35dp(5.0f), m35dp2 - AndroidUtilities.m35dp(5.0f), AndroidUtilities.m35dp(5.0f) + m35dp, AndroidUtilities.m35dp(5.0f) + m35dp2);
+            float m36dp = AndroidUtilities.m36dp(12.0f);
+            float m36dp2 = AndroidUtilities.m36dp(12.0f);
+            rectF.set(m36dp - AndroidUtilities.m36dp(5.0f), m36dp2 - AndroidUtilities.m36dp(5.0f), AndroidUtilities.m36dp(5.0f) + m36dp, AndroidUtilities.m36dp(5.0f) + m36dp2);
             chat_updatePath[2].arcTo(rectF, -160.0f, -110.0f, true);
             chat_updatePath[2].arcTo(rectF, 20.0f, -110.0f, true);
-            chat_updatePath[0].moveTo(m35dp, AndroidUtilities.m35dp(8.0f) + m35dp2);
-            chat_updatePath[0].lineTo(m35dp, AndroidUtilities.m35dp(2.0f) + m35dp2);
-            chat_updatePath[0].lineTo(AndroidUtilities.m35dp(3.0f) + m35dp, AndroidUtilities.m35dp(5.0f) + m35dp2);
+            chat_updatePath[0].moveTo(m36dp, AndroidUtilities.m36dp(8.0f) + m36dp2);
+            chat_updatePath[0].lineTo(m36dp, AndroidUtilities.m36dp(2.0f) + m36dp2);
+            chat_updatePath[0].lineTo(AndroidUtilities.m36dp(3.0f) + m36dp, AndroidUtilities.m36dp(5.0f) + m36dp2);
             chat_updatePath[0].close();
-            chat_updatePath[0].moveTo(m35dp, m35dp2 - AndroidUtilities.m35dp(8.0f));
-            chat_updatePath[0].lineTo(m35dp, m35dp2 - AndroidUtilities.m35dp(2.0f));
-            chat_updatePath[0].lineTo(m35dp - AndroidUtilities.m35dp(3.0f), m35dp2 - AndroidUtilities.m35dp(5.0f));
+            chat_updatePath[0].moveTo(m36dp, m36dp2 - AndroidUtilities.m36dp(8.0f));
+            chat_updatePath[0].lineTo(m36dp, m36dp2 - AndroidUtilities.m36dp(2.0f));
+            chat_updatePath[0].lineTo(m36dp - AndroidUtilities.m36dp(3.0f), m36dp2 - AndroidUtilities.m36dp(5.0f));
             chat_updatePath[0].close();
             applyDialogsTheme();
         }
-        dialogs_messageNamePaint.setTextSize(AndroidUtilities.m35dp(14.0f));
-        dialogs_timePaint.setTextSize(AndroidUtilities.m35dp(13.0f));
-        dialogs_archiveTextPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
-        dialogs_archiveTextPaintSmall.setTextSize(AndroidUtilities.m35dp(11.0f));
-        dialogs_onlinePaint.setTextSize(AndroidUtilities.m35dp(15.0f));
-        dialogs_offlinePaint.setTextSize(AndroidUtilities.m35dp(15.0f));
-        dialogs_searchNamePaint.setTextSize(AndroidUtilities.m35dp(16.0f));
-        dialogs_searchNameEncryptedPaint.setTextSize(AndroidUtilities.m35dp(16.0f));
+        dialogs_messageNamePaint.setTextSize(AndroidUtilities.m36dp(14.0f));
+        dialogs_timePaint.setTextSize(AndroidUtilities.m36dp(13.0f));
+        dialogs_archiveTextPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
+        dialogs_archiveTextPaintSmall.setTextSize(AndroidUtilities.m36dp(11.0f));
+        dialogs_onlinePaint.setTextSize(AndroidUtilities.m36dp(15.0f));
+        dialogs_offlinePaint.setTextSize(AndroidUtilities.m36dp(15.0f));
+        dialogs_searchNamePaint.setTextSize(AndroidUtilities.m36dp(16.0f));
+        dialogs_searchNameEncryptedPaint.setTextSize(AndroidUtilities.m36dp(16.0f));
     }
 
     public static void applyDialogsTheme() {
@@ -4912,23 +4912,23 @@ public class Theme {
                 TextPaint[] textPaintArr = chat_msgTextPaintEmoji;
                 if (i < textPaintArr.length) {
                     textPaintArr[i] = new TextPaint(1);
-                    chat_msgTextPaintEmoji[i].setTextSize(AndroidUtilities.m35dp(fArr[i] * 120.0f));
+                    chat_msgTextPaintEmoji[i].setTextSize(AndroidUtilities.m36dp(fArr[i] * 120.0f));
                     i++;
                 } else {
-                    chat_msgTextPaintOneEmoji.setTextSize(AndroidUtilities.m35dp(46.0f));
-                    chat_msgTextPaintTwoEmoji.setTextSize(AndroidUtilities.m35dp(38.0f));
-                    chat_msgTextPaintThreeEmoji.setTextSize(AndroidUtilities.m35dp(30.0f));
-                    chat_msgTextPaint.setTextSize(AndroidUtilities.m35dp(SharedConfig.fontSize));
-                    chat_msgGameTextPaint.setTextSize(AndroidUtilities.m35dp(14.0f));
-                    chat_msgBotButtonPaint.setTextSize(AndroidUtilities.m35dp(15.0f));
+                    chat_msgTextPaintOneEmoji.setTextSize(AndroidUtilities.m36dp(46.0f));
+                    chat_msgTextPaintTwoEmoji.setTextSize(AndroidUtilities.m36dp(38.0f));
+                    chat_msgTextPaintThreeEmoji.setTextSize(AndroidUtilities.m36dp(30.0f));
+                    chat_msgTextPaint.setTextSize(AndroidUtilities.m36dp(SharedConfig.fontSize));
+                    chat_msgGameTextPaint.setTextSize(AndroidUtilities.m36dp(14.0f));
+                    chat_msgBotButtonPaint.setTextSize(AndroidUtilities.m36dp(15.0f));
                     float f = ((SharedConfig.fontSize * 2) + 10) / 3.0f;
-                    chat_namePaint.setTextSize(AndroidUtilities.m35dp(f));
-                    chat_replyNamePaint.setTextSize(AndroidUtilities.m35dp(f));
-                    chat_replyTextPaint.setTextSize(AndroidUtilities.m35dp(f));
+                    chat_namePaint.setTextSize(AndroidUtilities.m36dp(f));
+                    chat_replyNamePaint.setTextSize(AndroidUtilities.m36dp(f));
+                    chat_replyTextPaint.setTextSize(AndroidUtilities.m36dp(f));
                     float f2 = f - 1.0f;
-                    chat_topicTextPaint.setTextSize(AndroidUtilities.m35dp(f2));
-                    chat_forwardNamePaint.setTextSize(AndroidUtilities.m35dp(f));
-                    chat_adminPaint.setTextSize(AndroidUtilities.m35dp(f2));
+                    chat_topicTextPaint.setTextSize(AndroidUtilities.m36dp(f2));
+                    chat_forwardNamePaint.setTextSize(AndroidUtilities.m36dp(f));
+                    chat_adminPaint.setTextSize(AndroidUtilities.m36dp(f2));
                 }
             }
         }
@@ -5173,85 +5173,85 @@ public class Theme {
             chat_gradientLeftDrawable = resources.getDrawable(C1072R.C1073drawable.gradient_left);
             chat_gradientRightDrawable = resources.getDrawable(C1072R.C1073drawable.gradient_right);
             chat_contextResult_shadowUnderSwitchDrawable = resources.getDrawable(C1072R.C1073drawable.header_shadow).mutate();
-            chat_attachButtonDrawables[0] = new RLottieDrawable(C1072R.raw.attach_gallery, "attach_gallery", AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(26.0f));
-            chat_attachButtonDrawables[1] = new RLottieDrawable(C1072R.raw.attach_music, "attach_music", AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(26.0f));
-            chat_attachButtonDrawables[2] = new RLottieDrawable(C1072R.raw.attach_file, "attach_file", AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(26.0f));
-            chat_attachButtonDrawables[3] = new RLottieDrawable(C1072R.raw.attach_contact, "attach_contact", AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(26.0f));
-            chat_attachButtonDrawables[4] = new RLottieDrawable(C1072R.raw.attach_location, "attach_location", AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(26.0f));
-            chat_attachButtonDrawables[5] = new RLottieDrawable(C1072R.raw.attach_poll, "attach_poll", AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(26.0f));
+            chat_attachButtonDrawables[0] = new RLottieDrawable(C1072R.raw.attach_gallery, "attach_gallery", AndroidUtilities.m36dp(26.0f), AndroidUtilities.m36dp(26.0f));
+            chat_attachButtonDrawables[1] = new RLottieDrawable(C1072R.raw.attach_music, "attach_music", AndroidUtilities.m36dp(26.0f), AndroidUtilities.m36dp(26.0f));
+            chat_attachButtonDrawables[2] = new RLottieDrawable(C1072R.raw.attach_file, "attach_file", AndroidUtilities.m36dp(26.0f), AndroidUtilities.m36dp(26.0f));
+            chat_attachButtonDrawables[3] = new RLottieDrawable(C1072R.raw.attach_contact, "attach_contact", AndroidUtilities.m36dp(26.0f), AndroidUtilities.m36dp(26.0f));
+            chat_attachButtonDrawables[4] = new RLottieDrawable(C1072R.raw.attach_location, "attach_location", AndroidUtilities.m36dp(26.0f), AndroidUtilities.m36dp(26.0f));
+            chat_attachButtonDrawables[5] = new RLottieDrawable(C1072R.raw.attach_poll, "attach_poll", AndroidUtilities.m36dp(26.0f), AndroidUtilities.m36dp(26.0f));
             chat_attachEmptyDrawable = resources.getDrawable(C1072R.C1073drawable.nophotos3);
             chat_shareIconDrawable = resources.getDrawable(C1072R.C1073drawable.share_arrow).mutate();
             chat_replyIconDrawable = resources.getDrawable(C1072R.C1073drawable.fast_reply);
             chat_goIconDrawable = resources.getDrawable(C1072R.C1073drawable.message_arrow);
-            int m35dp = AndroidUtilities.m35dp(2.0f);
+            int m36dp = AndroidUtilities.m36dp(2.0f);
             RectF rectF = new RectF();
             chat_filePath[0] = new Path();
-            chat_filePath[0].moveTo(AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(3.0f));
-            chat_filePath[0].lineTo(AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(3.0f));
-            chat_filePath[0].lineTo(AndroidUtilities.m35dp(21.0f), AndroidUtilities.m35dp(10.0f));
-            chat_filePath[0].lineTo(AndroidUtilities.m35dp(21.0f), AndroidUtilities.m35dp(20.0f));
-            int i16 = m35dp * 2;
-            rectF.set(AndroidUtilities.m35dp(21.0f) - i16, AndroidUtilities.m35dp(19.0f) - m35dp, AndroidUtilities.m35dp(21.0f), AndroidUtilities.m35dp(19.0f) + m35dp);
+            chat_filePath[0].moveTo(AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(3.0f));
+            chat_filePath[0].lineTo(AndroidUtilities.m36dp(14.0f), AndroidUtilities.m36dp(3.0f));
+            chat_filePath[0].lineTo(AndroidUtilities.m36dp(21.0f), AndroidUtilities.m36dp(10.0f));
+            chat_filePath[0].lineTo(AndroidUtilities.m36dp(21.0f), AndroidUtilities.m36dp(20.0f));
+            int i16 = m36dp * 2;
+            rectF.set(AndroidUtilities.m36dp(21.0f) - i16, AndroidUtilities.m36dp(19.0f) - m36dp, AndroidUtilities.m36dp(21.0f), AndroidUtilities.m36dp(19.0f) + m36dp);
             chat_filePath[0].arcTo(rectF, 0.0f, 90.0f, false);
-            chat_filePath[0].lineTo(AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(21.0f));
-            rectF.set(AndroidUtilities.m35dp(5.0f), AndroidUtilities.m35dp(19.0f) - m35dp, AndroidUtilities.m35dp(5.0f) + i16, AndroidUtilities.m35dp(19.0f) + m35dp);
+            chat_filePath[0].lineTo(AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(21.0f));
+            rectF.set(AndroidUtilities.m36dp(5.0f), AndroidUtilities.m36dp(19.0f) - m36dp, AndroidUtilities.m36dp(5.0f) + i16, AndroidUtilities.m36dp(19.0f) + m36dp);
             chat_filePath[0].arcTo(rectF, 90.0f, 90.0f, false);
-            chat_filePath[0].lineTo(AndroidUtilities.m35dp(5.0f), AndroidUtilities.m35dp(4.0f));
-            rectF.set(AndroidUtilities.m35dp(5.0f), AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(5.0f) + i16, AndroidUtilities.m35dp(3.0f) + i16);
+            chat_filePath[0].lineTo(AndroidUtilities.m36dp(5.0f), AndroidUtilities.m36dp(4.0f));
+            rectF.set(AndroidUtilities.m36dp(5.0f), AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(5.0f) + i16, AndroidUtilities.m36dp(3.0f) + i16);
             chat_filePath[0].arcTo(rectF, 180.0f, 90.0f, false);
             chat_filePath[0].close();
             chat_filePath[1] = new Path();
-            chat_filePath[1].moveTo(AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(5.0f));
-            chat_filePath[1].lineTo(AndroidUtilities.m35dp(19.0f), AndroidUtilities.m35dp(10.0f));
-            chat_filePath[1].lineTo(AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(10.0f));
+            chat_filePath[1].moveTo(AndroidUtilities.m36dp(14.0f), AndroidUtilities.m36dp(5.0f));
+            chat_filePath[1].lineTo(AndroidUtilities.m36dp(19.0f), AndroidUtilities.m36dp(10.0f));
+            chat_filePath[1].lineTo(AndroidUtilities.m36dp(14.0f), AndroidUtilities.m36dp(10.0f));
             chat_filePath[1].close();
             int i17 = C1072R.C1073drawable.burn;
             chat_flameIcon = resources.getDrawable(i17).mutate();
             int i18 = C1072R.C1073drawable.msg_round_gif_m;
             chat_gifIcon = resources.getDrawable(i18).mutate();
             Drawable[] drawableArr3 = chat_fileStatesDrawable[0];
-            int m35dp2 = AndroidUtilities.m35dp(44.0f);
+            int m36dp2 = AndroidUtilities.m36dp(44.0f);
             int i19 = C1072R.C1073drawable.msg_round_play_m;
-            drawableArr3[0] = createCircleDrawableWithIcon(m35dp2, i19);
-            chat_fileStatesDrawable[0][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i19);
+            drawableArr3[0] = createCircleDrawableWithIcon(m36dp2, i19);
+            chat_fileStatesDrawable[0][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i19);
             Drawable[] drawableArr4 = chat_fileStatesDrawable[1];
-            int m35dp3 = AndroidUtilities.m35dp(44.0f);
+            int m36dp3 = AndroidUtilities.m36dp(44.0f);
             int i20 = C1072R.C1073drawable.msg_round_pause_m;
-            drawableArr4[0] = createCircleDrawableWithIcon(m35dp3, i20);
-            chat_fileStatesDrawable[1][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i20);
+            drawableArr4[0] = createCircleDrawableWithIcon(m36dp3, i20);
+            chat_fileStatesDrawable[1][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i20);
             Drawable[] drawableArr5 = chat_fileStatesDrawable[2];
-            int m35dp4 = AndroidUtilities.m35dp(44.0f);
+            int m36dp4 = AndroidUtilities.m36dp(44.0f);
             int i21 = C1072R.C1073drawable.msg_round_load_m;
-            drawableArr5[0] = createCircleDrawableWithIcon(m35dp4, i21);
-            chat_fileStatesDrawable[2][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i21);
+            drawableArr5[0] = createCircleDrawableWithIcon(m36dp4, i21);
+            chat_fileStatesDrawable[2][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i21);
             Drawable[] drawableArr6 = chat_fileStatesDrawable[3];
-            int m35dp5 = AndroidUtilities.m35dp(44.0f);
+            int m36dp5 = AndroidUtilities.m36dp(44.0f);
             int i22 = C1072R.C1073drawable.msg_round_file_s;
-            drawableArr6[0] = createCircleDrawableWithIcon(m35dp5, i22);
-            chat_fileStatesDrawable[3][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i22);
+            drawableArr6[0] = createCircleDrawableWithIcon(m36dp5, i22);
+            chat_fileStatesDrawable[3][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i22);
             Drawable[] drawableArr7 = chat_fileStatesDrawable[4];
-            int m35dp6 = AndroidUtilities.m35dp(44.0f);
+            int m36dp6 = AndroidUtilities.m36dp(44.0f);
             int i23 = C1072R.C1073drawable.msg_round_cancel_m;
-            drawableArr7[0] = createCircleDrawableWithIcon(m35dp6, i23);
-            chat_fileStatesDrawable[4][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i23);
-            chat_fileStatesDrawable[5][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i19);
-            chat_fileStatesDrawable[5][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i19);
-            chat_fileStatesDrawable[6][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i20);
-            chat_fileStatesDrawable[6][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i20);
-            chat_fileStatesDrawable[7][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i21);
-            chat_fileStatesDrawable[7][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i21);
-            chat_fileStatesDrawable[8][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i22);
-            chat_fileStatesDrawable[8][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i22);
-            chat_fileStatesDrawable[9][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i23);
-            chat_fileStatesDrawable[9][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i23);
-            chat_photoStatesDrawables[0][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i21);
-            chat_photoStatesDrawables[0][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i21);
-            chat_photoStatesDrawables[1][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i23);
-            chat_photoStatesDrawables[1][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i23);
-            chat_photoStatesDrawables[2][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i18);
-            chat_photoStatesDrawables[2][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i18);
-            chat_photoStatesDrawables[3][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i19);
-            chat_photoStatesDrawables[3][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i19);
+            drawableArr7[0] = createCircleDrawableWithIcon(m36dp6, i23);
+            chat_fileStatesDrawable[4][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i23);
+            chat_fileStatesDrawable[5][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i19);
+            chat_fileStatesDrawable[5][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i19);
+            chat_fileStatesDrawable[6][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i20);
+            chat_fileStatesDrawable[6][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i20);
+            chat_fileStatesDrawable[7][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i21);
+            chat_fileStatesDrawable[7][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i21);
+            chat_fileStatesDrawable[8][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i22);
+            chat_fileStatesDrawable[8][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i22);
+            chat_fileStatesDrawable[9][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i23);
+            chat_fileStatesDrawable[9][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i23);
+            chat_photoStatesDrawables[0][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i21);
+            chat_photoStatesDrawables[0][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i21);
+            chat_photoStatesDrawables[1][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i23);
+            chat_photoStatesDrawables[1][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i23);
+            chat_photoStatesDrawables[2][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i18);
+            chat_photoStatesDrawables[2][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i18);
+            chat_photoStatesDrawables[3][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i19);
+            chat_photoStatesDrawables[3][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i19);
             Drawable[][] drawableArr8 = chat_photoStatesDrawables;
             Drawable[] drawableArr9 = drawableArr8[4];
             Drawable[] drawableArr10 = drawableArr8[4];
@@ -5270,19 +5270,19 @@ public class Theme {
             Drawable drawable3 = resources.getDrawable(C1072R.C1073drawable.photocheck);
             drawableArr16[1] = drawable3;
             drawableArr15[0] = drawable3;
-            chat_photoStatesDrawables[7][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i21);
-            chat_photoStatesDrawables[7][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i21);
-            chat_photoStatesDrawables[8][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i23);
-            chat_photoStatesDrawables[8][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i23);
-            chat_photoStatesDrawables[10][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i21);
-            chat_photoStatesDrawables[10][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i21);
-            chat_photoStatesDrawables[11][0] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i23);
-            chat_photoStatesDrawables[11][1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(48.0f), i23);
+            chat_photoStatesDrawables[7][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i21);
+            chat_photoStatesDrawables[7][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i21);
+            chat_photoStatesDrawables[8][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i23);
+            chat_photoStatesDrawables[8][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i23);
+            chat_photoStatesDrawables[10][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i21);
+            chat_photoStatesDrawables[10][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i21);
+            chat_photoStatesDrawables[11][0] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i23);
+            chat_photoStatesDrawables[11][1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(48.0f), i23);
             Drawable[] drawableArr17 = chat_contactDrawable;
-            int m35dp7 = AndroidUtilities.m35dp(44.0f);
+            int m36dp7 = AndroidUtilities.m36dp(44.0f);
             int i24 = C1072R.C1073drawable.msg_contact;
-            drawableArr17[0] = createCircleDrawableWithIcon(m35dp7, i24);
-            chat_contactDrawable[1] = createCircleDrawableWithIcon(AndroidUtilities.m35dp(44.0f), i24);
+            drawableArr17[0] = createCircleDrawableWithIcon(m36dp7, i24);
+            chat_contactDrawable[1] = createCircleDrawableWithIcon(AndroidUtilities.m36dp(44.0f), i24);
             Drawable[] drawableArr18 = chat_locationDrawable;
             int i25 = C1072R.C1073drawable.msg_location;
             drawableArr18[0] = resources.getDrawable(i25).mutate();
@@ -5290,18 +5290,18 @@ public class Theme {
             chat_composeShadowDrawable = context.getResources().getDrawable(C1072R.C1073drawable.compose_panel_shadow).mutate();
             chat_composeShadowRoundDrawable = context.getResources().getDrawable(C1072R.C1073drawable.sheet_shadow_round).mutate();
             try {
-                int m35dp8 = AndroidUtilities.roundMessageSize + AndroidUtilities.m35dp(6.0f);
-                Bitmap createBitmap = Bitmap.createBitmap(m35dp8, m35dp8, Bitmap.Config.ARGB_8888);
+                int m36dp8 = AndroidUtilities.roundMessageSize + AndroidUtilities.m36dp(6.0f);
+                Bitmap createBitmap = Bitmap.createBitmap(m36dp8, m36dp8, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 Paint paint2 = new Paint(1);
                 paint2.setColor(0);
                 paint2.setStyle(Paint.Style.FILL);
                 paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 Paint paint3 = new Paint(1);
-                paint3.setShadowLayer(AndroidUtilities.m35dp(4.0f), 0.0f, 0.0f, 1593835520);
+                paint3.setShadowLayer(AndroidUtilities.m36dp(4.0f), 0.0f, 0.0f, 1593835520);
                 int i26 = 0;
                 while (i26 < 2) {
-                    canvas.drawCircle(m35dp8 / 2, m35dp8 / 2, (AndroidUtilities.roundMessageSize / 2) - AndroidUtilities.m35dp(1.0f), i26 == 0 ? paint3 : paint2);
+                    canvas.drawCircle(m36dp8 / 2, m36dp8 / 2, (AndroidUtilities.roundMessageSize / 2) - AndroidUtilities.m36dp(1.0f), i26 == 0 ? paint3 : paint2);
                     i26++;
                 }
                 try {
@@ -5364,43 +5364,43 @@ public class Theme {
         if (z || (paint = chat_botProgressPaint) == null) {
             return;
         }
-        paint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
-        chat_infoPaint.setTextSize(AndroidUtilities.m35dp(12.0f));
-        chat_stickerCommentCountPaint.setTextSize(AndroidUtilities.m35dp(11.0f));
-        chat_docNamePaint.setTextSize(AndroidUtilities.m35dp(15.0f));
-        chat_locationTitlePaint.setTextSize(AndroidUtilities.m35dp(15.0f));
-        chat_locationAddressPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
-        chat_audioTimePaint.setTextSize(AndroidUtilities.m35dp(12.0f));
-        chat_livePaint.setTextSize(AndroidUtilities.m35dp(12.0f));
-        chat_audioTitlePaint.setTextSize(AndroidUtilities.m35dp(16.0f));
-        chat_audioPerformerPaint.setTextSize(AndroidUtilities.m35dp(15.0f));
-        chat_botButtonPaint.setTextSize(AndroidUtilities.m35dp(15.0f));
-        chat_contactNamePaint.setTextSize(AndroidUtilities.m35dp(15.0f));
-        chat_contactPhonePaint.setTextSize(AndroidUtilities.m35dp(13.0f));
-        chat_durationPaint.setTextSize(AndroidUtilities.m35dp(12.0f));
+        paint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
+        chat_infoPaint.setTextSize(AndroidUtilities.m36dp(12.0f));
+        chat_stickerCommentCountPaint.setTextSize(AndroidUtilities.m36dp(11.0f));
+        chat_docNamePaint.setTextSize(AndroidUtilities.m36dp(15.0f));
+        chat_locationTitlePaint.setTextSize(AndroidUtilities.m36dp(15.0f));
+        chat_locationAddressPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
+        chat_audioTimePaint.setTextSize(AndroidUtilities.m36dp(12.0f));
+        chat_livePaint.setTextSize(AndroidUtilities.m36dp(12.0f));
+        chat_audioTitlePaint.setTextSize(AndroidUtilities.m36dp(16.0f));
+        chat_audioPerformerPaint.setTextSize(AndroidUtilities.m36dp(15.0f));
+        chat_botButtonPaint.setTextSize(AndroidUtilities.m36dp(15.0f));
+        chat_contactNamePaint.setTextSize(AndroidUtilities.m36dp(15.0f));
+        chat_contactPhonePaint.setTextSize(AndroidUtilities.m36dp(13.0f));
+        chat_durationPaint.setTextSize(AndroidUtilities.m36dp(12.0f));
         float f = ((SharedConfig.fontSize * 2) + 10) / 3.0f;
-        chat_namePaint.setTextSize(AndroidUtilities.m35dp(f));
-        chat_replyNamePaint.setTextSize(AndroidUtilities.m35dp(f));
-        chat_replyTextPaint.setTextSize(AndroidUtilities.m35dp(f));
+        chat_namePaint.setTextSize(AndroidUtilities.m36dp(f));
+        chat_replyNamePaint.setTextSize(AndroidUtilities.m36dp(f));
+        chat_replyTextPaint.setTextSize(AndroidUtilities.m36dp(f));
         float f2 = f - 1.0f;
-        chat_topicTextPaint.setTextSize(AndroidUtilities.m35dp(f2));
-        chat_forwardNamePaint.setTextSize(AndroidUtilities.m35dp(f));
-        chat_adminPaint.setTextSize(AndroidUtilities.m35dp(f2));
+        chat_topicTextPaint.setTextSize(AndroidUtilities.m36dp(f2));
+        chat_forwardNamePaint.setTextSize(AndroidUtilities.m36dp(f));
+        chat_adminPaint.setTextSize(AndroidUtilities.m36dp(f2));
         int i27 = SharedConfig.fontSize;
-        chat_timePaint.setTextSize(AndroidUtilities.m35dp(12.0f));
-        chat_gamePaint.setTextSize(AndroidUtilities.m35dp(13.0f));
-        chat_shipmentPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
-        chat_instantViewPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
-        chat_instantViewRectPaint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
-        chat_pollTimerPaint.setStrokeWidth(AndroidUtilities.m35dp(1.1f));
-        chat_actionTextPaint.setTextSize(AndroidUtilities.m35dp(Math.max(16, SharedConfig.fontSize) - 2));
-        chat_actionTextPaint2.setTextSize(AndroidUtilities.m35dp(Math.max(16, SharedConfig.fontSize) - 2));
-        chat_unlockExtendedMediaTextPaint.setTextSize(AndroidUtilities.m35dp(Math.max(16, SharedConfig.fontSize)));
-        chat_contextResult_titleTextPaint.setTextSize(AndroidUtilities.m35dp(15.0f));
-        chat_contextResult_descriptionTextPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
-        chat_radialProgressPaint.setStrokeWidth(AndroidUtilities.m35dp(3.0f));
-        chat_radialProgress2Paint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
-        chat_commentTextPaint.setTextSize(AndroidUtilities.m35dp(14.0f));
+        chat_timePaint.setTextSize(AndroidUtilities.m36dp(12.0f));
+        chat_gamePaint.setTextSize(AndroidUtilities.m36dp(13.0f));
+        chat_shipmentPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
+        chat_instantViewPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
+        chat_instantViewRectPaint.setStrokeWidth(AndroidUtilities.m36dp(1.0f));
+        chat_pollTimerPaint.setStrokeWidth(AndroidUtilities.m36dp(1.1f));
+        chat_actionTextPaint.setTextSize(AndroidUtilities.m36dp(Math.max(16, SharedConfig.fontSize) - 2));
+        chat_actionTextPaint2.setTextSize(AndroidUtilities.m36dp(Math.max(16, SharedConfig.fontSize) - 2));
+        chat_unlockExtendedMediaTextPaint.setTextSize(AndroidUtilities.m36dp(Math.max(16, SharedConfig.fontSize)));
+        chat_contextResult_titleTextPaint.setTextSize(AndroidUtilities.m36dp(15.0f));
+        chat_contextResult_descriptionTextPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
+        chat_radialProgressPaint.setStrokeWidth(AndroidUtilities.m36dp(3.0f));
+        chat_radialProgress2Paint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
+        chat_commentTextPaint.setTextSize(AndroidUtilities.m36dp(14.0f));
         chat_commentTextPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
     }
 
@@ -5788,7 +5788,7 @@ public class Theme {
             profile_verifiedCheckDrawable = resources.getDrawable(C1072R.C1073drawable.verified_check).mutate();
             applyProfileTheme();
         }
-        profile_aboutTextPaint.setTextSize(AndroidUtilities.m35dp(16.0f));
+        profile_aboutTextPaint.setTextSize(AndroidUtilities.m36dp(16.0f));
     }
 
     public static void applyProfileTheme() {
@@ -6387,7 +6387,7 @@ public class Theme {
                 }
                 return decodeStream;
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (fileInputStream != null) {
                     try {
                         fileInputStream.close();
@@ -6429,7 +6429,7 @@ public class Theme {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return getCachedWallpaperNonBlocking();
     }

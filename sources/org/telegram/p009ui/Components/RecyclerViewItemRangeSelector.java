@@ -20,7 +20,7 @@ public class RecyclerViewItemRangeSelector implements RecyclerView.OnItemTouchLi
     private int initialSelection;
     private RecyclerView recyclerView;
     private int lastDraggedIndex = -1;
-    private int hotspotHeight = AndroidUtilities.m35dp(80.0f);
+    private int hotspotHeight = AndroidUtilities.m36dp(80.0f);
     private Runnable autoScrollRunnable = new Runnable() {
         @Override
         public void run() {

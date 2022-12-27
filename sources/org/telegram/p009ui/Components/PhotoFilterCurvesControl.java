@@ -43,16 +43,16 @@ public class PhotoFilterCurvesControl extends View {
         setWillNotDraw(false);
         this.curveValue = curvesToolValue;
         this.paint.setColor(-1711276033);
-        this.paint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
+        this.paint.setStrokeWidth(AndroidUtilities.m36dp(1.0f));
         this.paint.setStyle(Paint.Style.STROKE);
         this.paintDash.setColor(-1711276033);
-        this.paintDash.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.paintDash.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         this.paintDash.setStyle(Paint.Style.STROKE);
         this.paintCurve.setColor(-1);
-        this.paintCurve.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.paintCurve.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         this.paintCurve.setStyle(Paint.Style.STROKE);
         this.textPaint.setColor(-4210753);
-        this.textPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
+        this.textPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
     }
 
     public void setDelegate(PhotoFilterCurvesControlDelegate photoFilterCurvesControlDelegate) {
@@ -177,7 +177,7 @@ public class PhotoFilterCurvesControl extends View {
             }
             float measureText = this.textPaint.measureText(format);
             Rect rect3 = this.actualArea;
-            canvas.drawText(format, rect3.f1135x + ((f - measureText) / 2.0f) + (i3 * f), (rect3.f1136y + rect3.height) - AndroidUtilities.m35dp(4.0f), this.textPaint);
+            canvas.drawText(format, rect3.f1135x + ((f - measureText) / 2.0f) + (i3 * f), (rect3.f1136y + rect3.height) - AndroidUtilities.m36dp(4.0f), this.textPaint);
             i3++;
         }
         float[] interpolateCurve = curvesValue.interpolateCurve();

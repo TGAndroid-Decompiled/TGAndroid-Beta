@@ -482,7 +482,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         BlurBitmap blurBitmap;
         if (this.blurIsRunning && !this.blurGeneratingTuskIsRunning && this.invalidateBlur && SharedConfig.chatBlurEnabled() && Color.alpha(Theme.getColor("chat_BlurAlpha")) != 255) {
             int measuredWidth = getMeasuredWidth();
-            int currentActionBarHeight = C1133ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.m35dp(100.0f);
+            int currentActionBarHeight = C1133ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.m36dp(100.0f);
             if (measuredWidth == 0 || currentActionBarHeight == 0) {
                 return;
             }
@@ -566,7 +566,6 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         int radius;
 
         private BlurBackgroundTask() {
-            SizeNotifierFrameLayout.this = r1;
         }
 
         @Override
@@ -588,7 +587,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                 sb.append("chat blur generating average time");
                 SizeNotifierFrameLayout sizeNotifierFrameLayout3 = SizeNotifierFrameLayout.this;
                 sb.append(sizeNotifierFrameLayout3.times / sizeNotifierFrameLayout3.count);
-                FileLog.m34d(sb.toString());
+                FileLog.m35d(sb.toString());
                 SizeNotifierFrameLayout sizeNotifierFrameLayout4 = SizeNotifierFrameLayout.this;
                 sizeNotifierFrameLayout4.count = 0;
                 sizeNotifierFrameLayout4.times = 0;

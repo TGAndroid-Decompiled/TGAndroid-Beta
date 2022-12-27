@@ -45,13 +45,13 @@ public class CellFlickerDrawable {
         this.frameInside = false;
         this.repeatProgress = 1.2f;
         this.animationSpeedScale = 1.0f;
-        this.size = AndroidUtilities.m35dp(160.0f);
+        this.size = AndroidUtilities.m36dp(160.0f);
         this.gradientShader = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(-1, i), 0}, (float[]) null, Shader.TileMode.CLAMP);
         this.gradientShader2 = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(-1, i2), 0}, (float[]) null, Shader.TileMode.CLAMP);
         this.paint.setShader(this.gradientShader);
         this.paintOutline.setShader(this.gradientShader2);
         this.paintOutline.setStyle(Paint.Style.STROKE);
-        this.paintOutline.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.paintOutline.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
     }
 
     public void setColors(int i, int i2, int i3) {
@@ -194,7 +194,6 @@ public class CellFlickerDrawable {
         }
 
         public DrawableInterface(SvgHelper.SvgDrawable svgDrawable) {
-            CellFlickerDrawable.this = r1;
             this.svgDrawable = svgDrawable;
         }
 

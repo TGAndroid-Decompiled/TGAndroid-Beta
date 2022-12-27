@@ -177,9 +177,9 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 int size = View.MeasureSpec.getSize(i3);
                 int size2 = View.MeasureSpec.getSize(i4);
                 if (AndroidUtilities.isTablet() || size2 > size) {
-                    InviteMembersBottomSheet.this.maxSize = AndroidUtilities.m35dp(144.0f);
+                    InviteMembersBottomSheet.this.maxSize = AndroidUtilities.m36dp(144.0f);
                 } else {
-                    InviteMembersBottomSheet.this.maxSize = AndroidUtilities.m35dp(56.0f);
+                    InviteMembersBottomSheet.this.maxSize = AndroidUtilities.m36dp(56.0f);
                 }
                 super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(InviteMembersBottomSheet.this.maxSize, Integer.MIN_VALUE));
             }
@@ -192,13 +192,13 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         ImageView imageView = new ImageView(context);
         this.floatingButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
+        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m36dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
         int i3 = Build.VERSION.SDK_INT;
         if (i3 < 21) {
             Drawable mutate = context.getResources().getDrawable(C1072R.C1073drawable.floating_shadow).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
-            combinedDrawable.setIconSize(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+            combinedDrawable.setIconSize(AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
             createSimpleSelectorCircleDrawable = combinedDrawable;
         }
         imageView.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
@@ -206,14 +206,14 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         imageView.setImageResource(C1072R.C1073drawable.floating_check);
         if (i3 >= 21) {
             StateListAnimator stateListAnimator = new StateListAnimator();
-            stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(imageView, "translationZ", AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(4.0f)).setDuration(200L));
-            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(imageView, "translationZ", AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(2.0f)).setDuration(200L));
+            stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(imageView, "translationZ", AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(4.0f)).setDuration(200L));
+            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(imageView, "translationZ", AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(2.0f)).setDuration(200L));
             imageView.setStateListAnimator(stateListAnimator);
             imageView.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view, Outline outline) {
-                    outline.setOval(0, 0, AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+                    outline.setOval(0, 0, AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
                 }
             });
         }
@@ -229,9 +229,9 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         imageView.setAlpha(0.0f);
         imageView.setContentDescription(LocaleController.getString("Next", C1072R.string.Next));
         this.containerView.addView(imageView, LayoutHelper.createFrame(i3 >= 21 ? 56 : 60, i3 < 21 ? 60 : 56, 85, 14.0f, 14.0f, 14.0f, 14.0f));
-        ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).topMargin = AndroidUtilities.m35dp(20.0f);
-        ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).leftMargin = AndroidUtilities.m35dp(4.0f);
-        ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).rightMargin = AndroidUtilities.m35dp(4.0f);
+        ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).topMargin = AndroidUtilities.m36dp(20.0f);
+        ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).leftMargin = AndroidUtilities.m36dp(4.0f);
+        ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).rightMargin = AndroidUtilities.m36dp(4.0f);
     }
 
     public void lambda$new$0(long r4, org.telegram.p009ui.ActionBar.BaseFragment r6, androidx.collection.LongSparseArray r7, android.content.Context r8, android.view.View r9, int r10) {
@@ -472,7 +472,6 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
 
     public class ListAdapter extends RecyclerListView.SelectionAdapter {
         private ListAdapter() {
-            InviteMembersBottomSheet.this = r1;
         }
 
         @Override
@@ -483,7 +482,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 manageChatTextCell = new View(context) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f) + InviteMembersBottomSheet.this.additionalHeight, 1073741824));
+                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f) + InviteMembersBottomSheet.this.additionalHeight, 1073741824));
                     }
                 };
             } else if (i == 3) {
@@ -595,7 +594,6 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         private Runnable searchRunnable;
 
         public SearchAdapter() {
-            InviteMembersBottomSheet.this = r2;
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(false);
             this.searchAdapterHelper = searchAdapterHelper;
             searchAdapterHelper.setDelegate(new SearchAdapterHelper.SearchAdapterHelperDelegate() {
@@ -649,7 +647,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 groupCreateUserCell = new View(context) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f) + InviteMembersBottomSheet.this.additionalHeight + InviteMembersBottomSheet.this.searchAdditionalHeight, 1073741824));
+                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f) + InviteMembersBottomSheet.this.additionalHeight + InviteMembersBottomSheet.this.searchAdditionalHeight, 1073741824));
                     }
                 };
             } else if (i != 4) {
@@ -830,7 +828,6 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
 
         public SpansContainer(Context context) {
             super(context);
-            InviteMembersBottomSheet.this = r1;
             this.animators = new ArrayList<>();
         }
 
@@ -839,55 +836,55 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             RecyclerView.ViewHolder findViewHolderForAdapterPosition;
             int childCount = getChildCount();
             int size = View.MeasureSpec.getSize(i);
-            int m35dp = size - AndroidUtilities.m35dp(26.0f);
-            int m35dp2 = AndroidUtilities.m35dp(10.0f);
-            int m35dp3 = AndroidUtilities.m35dp(10.0f);
+            int m36dp = size - AndroidUtilities.m36dp(26.0f);
+            int m36dp2 = AndroidUtilities.m36dp(10.0f);
+            int m36dp3 = AndroidUtilities.m36dp(10.0f);
             int i3 = 0;
             int i4 = 0;
             for (int i5 = 0; i5 < childCount; i5++) {
                 View childAt = getChildAt(i5);
                 if (childAt instanceof GroupCreateSpan) {
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(32.0f), 1073741824));
-                    if (childAt != this.removingSpan && childAt.getMeasuredWidth() + i3 > m35dp) {
-                        m35dp2 += childAt.getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(32.0f), 1073741824));
+                    if (childAt != this.removingSpan && childAt.getMeasuredWidth() + i3 > m36dp) {
+                        m36dp2 += childAt.getMeasuredHeight() + AndroidUtilities.m36dp(8.0f);
                         i3 = 0;
                     }
-                    if (childAt.getMeasuredWidth() + i4 > m35dp) {
-                        m35dp3 += childAt.getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
+                    if (childAt.getMeasuredWidth() + i4 > m36dp) {
+                        m36dp3 += childAt.getMeasuredHeight() + AndroidUtilities.m36dp(8.0f);
                         i4 = 0;
                     }
-                    int m35dp4 = AndroidUtilities.m35dp(13.0f) + i3;
+                    int m36dp4 = AndroidUtilities.m36dp(13.0f) + i3;
                     if (!this.animationStarted) {
                         View view = this.removingSpan;
                         if (childAt == view) {
-                            childAt.setTranslationX(AndroidUtilities.m35dp(13.0f) + i4);
-                            childAt.setTranslationY(m35dp3);
+                            childAt.setTranslationX(AndroidUtilities.m36dp(13.0f) + i4);
+                            childAt.setTranslationY(m36dp3);
                         } else if (view != null) {
-                            float f = m35dp4;
+                            float f = m36dp4;
                             if (childAt.getTranslationX() != f) {
                                 this.animators.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_X, f));
                             }
-                            float f2 = m35dp2;
+                            float f2 = m36dp2;
                             if (childAt.getTranslationY() != f2) {
                                 this.animators.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_Y, f2));
                             }
                         } else {
-                            childAt.setTranslationX(m35dp4);
-                            childAt.setTranslationY(m35dp2);
+                            childAt.setTranslationX(m36dp4);
+                            childAt.setTranslationY(m36dp2);
                         }
                     }
                     if (childAt != this.removingSpan) {
-                        i3 += childAt.getMeasuredWidth() + AndroidUtilities.m35dp(9.0f);
+                        i3 += childAt.getMeasuredWidth() + AndroidUtilities.m36dp(9.0f);
                     }
-                    i4 += childAt.getMeasuredWidth() + AndroidUtilities.m35dp(9.0f);
+                    i4 += childAt.getMeasuredWidth() + AndroidUtilities.m36dp(9.0f);
                 }
             }
-            int m35dp5 = m35dp3 + AndroidUtilities.m35dp(42.0f);
-            final int m35dp6 = m35dp2 + AndroidUtilities.m35dp(42.0f);
-            int min = InviteMembersBottomSheet.this.dialogsDelegate != null ? InviteMembersBottomSheet.this.spanEnter ? Math.min(InviteMembersBottomSheet.this.maxSize, m35dp6) : 0 : Math.max(0, Math.min(InviteMembersBottomSheet.this.maxSize, m35dp6) - AndroidUtilities.m35dp(52.0f));
+            int m36dp5 = m36dp3 + AndroidUtilities.m36dp(42.0f);
+            final int m36dp6 = m36dp2 + AndroidUtilities.m36dp(42.0f);
+            int min = InviteMembersBottomSheet.this.dialogsDelegate != null ? InviteMembersBottomSheet.this.spanEnter ? Math.min(InviteMembersBottomSheet.this.maxSize, m36dp6) : 0 : Math.max(0, Math.min(InviteMembersBottomSheet.this.maxSize, m36dp6) - AndroidUtilities.m36dp(52.0f));
             int i6 = InviteMembersBottomSheet.this.searchAdditionalHeight;
             InviteMembersBottomSheet inviteMembersBottomSheet = InviteMembersBottomSheet.this;
-            inviteMembersBottomSheet.searchAdditionalHeight = (inviteMembersBottomSheet.dialogsDelegate != null || InviteMembersBottomSheet.this.selectedContacts.size() <= 0) ? 0 : AndroidUtilities.m35dp(56.0f);
+            inviteMembersBottomSheet.searchAdditionalHeight = (inviteMembersBottomSheet.dialogsDelegate != null || InviteMembersBottomSheet.this.selectedContacts.size() <= 0) ? 0 : AndroidUtilities.m36dp(56.0f);
             if (min != InviteMembersBottomSheet.this.additionalHeight || i6 != InviteMembersBottomSheet.this.searchAdditionalHeight) {
                 InviteMembersBottomSheet.this.additionalHeight = min;
                 if (InviteMembersBottomSheet.this.listView.getAdapter() != null && InviteMembersBottomSheet.this.listView.getAdapter().getItemCount() > 0 && (findViewHolderForAdapterPosition = InviteMembersBottomSheet.this.listView.findViewHolderForAdapterPosition(0)) != null) {
@@ -905,7 +902,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                     }
                 }
             }
-            int min2 = Math.min(InviteMembersBottomSheet.this.maxSize, m35dp6);
+            int min2 = Math.min(InviteMembersBottomSheet.this.maxSize, m36dp6);
             if (InviteMembersBottomSheet.this.scrollViewH != min2) {
                 ValueAnimator ofInt = ValueAnimator.ofInt(InviteMembersBottomSheet.this.scrollViewH, min2);
                 ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -916,18 +913,18 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 });
                 this.animators.add(ofInt);
             }
-            if (this.addAnimation && m35dp6 > InviteMembersBottomSheet.this.maxSize) {
+            if (this.addAnimation && m36dp6 > InviteMembersBottomSheet.this.maxSize) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteMembersBottomSheet.SpansContainer.this.lambda$onMeasure$1(m35dp6);
+                        InviteMembersBottomSheet.SpansContainer.this.lambda$onMeasure$1(m36dp6);
                     }
                 });
-            } else if (!this.addAnimation && InviteMembersBottomSheet.this.spansScrollView.getScrollY() + InviteMembersBottomSheet.this.spansScrollView.getMeasuredHeight() > m35dp6) {
+            } else if (!this.addAnimation && InviteMembersBottomSheet.this.spansScrollView.getScrollY() + InviteMembersBottomSheet.this.spansScrollView.getMeasuredHeight() > m36dp6) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteMembersBottomSheet.SpansContainer.this.lambda$onMeasure$2(m35dp6);
+                        InviteMembersBottomSheet.SpansContainer.this.lambda$onMeasure$2(m36dp6);
                     }
                 });
             }
@@ -947,7 +944,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 InviteMembersBottomSheet.this.scrollViewH = min2;
                 ((BottomSheet) InviteMembersBottomSheet.this).containerView.invalidate();
             }
-            setMeasuredDimension(size, Math.max(m35dp6, m35dp5));
+            setMeasuredDimension(size, Math.max(m36dp6, m36dp5));
             InviteMembersBottomSheet.this.listView.setTranslationY(0.0f);
         }
 
@@ -1055,10 +1052,10 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 InviteMembersBottomSheet inviteMembersBottomSheet;
                 InviteMembersBottomSheet inviteMembersBottomSheet2 = InviteMembersBottomSheet.this;
-                InviteMembersBottomSheet.this.spansScrollView.setTranslationY((inviteMembersBottomSheet2.scrollOffsetY - ((BottomSheet) inviteMembersBottomSheet2).backgroundPaddingTop) + AndroidUtilities.m35dp(6.0f) + AndroidUtilities.m35dp(64.0f));
+                InviteMembersBottomSheet.this.spansScrollView.setTranslationY((inviteMembersBottomSheet2.scrollOffsetY - ((BottomSheet) inviteMembersBottomSheet2).backgroundPaddingTop) + AndroidUtilities.m36dp(6.0f) + AndroidUtilities.m36dp(64.0f));
                 float f = InviteMembersBottomSheet.this.additionalHeight + InviteMembersBottomSheet.this.searchAdditionalHeight;
                 if (InviteMembersBottomSheet.this.emptyView.getVisibility() != 0) {
                     this.emptyViewOffset = f;
@@ -1089,7 +1086,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             protected boolean drawChild(Canvas canvas, View view, long j) {
                 if (view == InviteMembersBottomSheet.this.spansScrollView) {
                     canvas.save();
-                    canvas.clipRect(0.0f, view.getY() - AndroidUtilities.m35dp(4.0f), getMeasuredWidth(), view.getY() + InviteMembersBottomSheet.this.scrollViewH + 1.0f);
+                    canvas.clipRect(0.0f, view.getY() - AndroidUtilities.m36dp(4.0f), getMeasuredWidth(), view.getY() + InviteMembersBottomSheet.this.scrollViewH + 1.0f);
                     canvas.drawColor(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), (int) (InviteMembersBottomSheet.this.spansEnterProgress * 255.0f)));
                     this.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor("divider"), (int) (InviteMembersBottomSheet.this.spansEnterProgress * 255.0f)));
                     canvas.drawRect(0.0f, view.getY() + InviteMembersBottomSheet.this.scrollViewH, getMeasuredWidth(), view.getY() + InviteMembersBottomSheet.this.scrollViewH + 1.0f, this.paint);
@@ -1103,7 +1100,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     }
 
     @Override
-    public void search(String str) {
+    protected void search(String str) {
         this.searchAdapter.searchDialogs(str);
     }
 
@@ -1118,7 +1115,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         updateRows();
     }
 
-    public class ItemAnimator extends DefaultItemAnimator {
+    private class ItemAnimator extends DefaultItemAnimator {
         public ItemAnimator(InviteMembersBottomSheet inviteMembersBottomSheet) {
             this.translationInterpolator = CubicBezierInterpolator.DEFAULT;
             setMoveDuration(150L);

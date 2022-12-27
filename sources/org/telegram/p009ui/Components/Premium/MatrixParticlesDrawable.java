@@ -22,7 +22,7 @@ public class MatrixParticlesDrawable {
     Paint paint = new Paint();
 
     public void init() {
-        this.size = AndroidUtilities.m35dp(16.0f);
+        this.size = AndroidUtilities.m36dp(16.0f);
         TextPaint textPaint = new TextPaint(65);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         textPaint.setTextSize(this.size);
@@ -53,7 +53,7 @@ public class MatrixParticlesDrawable {
         }
         long currentTimeMillis = System.currentTimeMillis();
         ArrayList<Particle>[] arrayListArr = this.particles;
-        C26161 c26161 = null;
+        C26191 c26191 = null;
         int i3 = 0;
         if (arrayListArr == null || arrayListArr.length != width + 1) {
             this.particles = new ArrayList[width + 1];
@@ -123,16 +123,16 @@ public class MatrixParticlesDrawable {
                     i9 = 1;
                 }
                 i8 = i11 + 1;
-                c26161 = null;
+                c26191 = null;
                 i3 = 0;
             }
             i7++;
-            c26161 = null;
+            c26191 = null;
             i3 = 0;
         }
     }
 
-    public class Particle {
+    private class Particle {
         int len;
         long time;
         int f1110y;
@@ -154,13 +154,12 @@ public class MatrixParticlesDrawable {
         }
     }
 
-    public class MatrixTextParticle {
+    private class MatrixTextParticle {
         int index;
         int nextIndex;
         long nextUpdateTime;
 
         private MatrixTextParticle() {
-            MatrixParticlesDrawable.this = r1;
         }
 
         public void init(long j) {

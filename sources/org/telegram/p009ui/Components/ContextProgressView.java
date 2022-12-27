@@ -26,9 +26,9 @@ public class ContextProgressView extends View {
         this.cicleRect = new RectF();
         this.radOffset = 0;
         this.innerPaint.setStyle(Paint.Style.STROKE);
-        this.innerPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.innerPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         this.outerPaint.setStyle(Paint.Style.STROKE);
-        this.outerPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.outerPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         this.outerPaint.setStrokeCap(Paint.Cap.ROUND);
         if (i == 0) {
             this.innerKey = "contextProgressInner1";
@@ -93,10 +93,10 @@ public class ContextProgressView extends View {
         long j = currentTimeMillis - this.lastUpdateTime;
         this.lastUpdateTime = currentTimeMillis;
         this.radOffset = (int) (this.radOffset + (((float) (j * 360)) / 1000.0f));
-        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.m35dp(9.0f);
-        int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.m35dp(9.0f);
-        this.cicleRect.set(measuredWidth, measuredHeight, measuredWidth + AndroidUtilities.m35dp(18.0f), measuredHeight + AndroidUtilities.m35dp(18.0f));
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.m35dp(9.0f), this.innerPaint);
+        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.m36dp(9.0f);
+        int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.m36dp(9.0f);
+        this.cicleRect.set(measuredWidth, measuredHeight, measuredWidth + AndroidUtilities.m36dp(18.0f), measuredHeight + AndroidUtilities.m36dp(18.0f));
+        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.m36dp(9.0f), this.innerPaint);
         canvas.drawArc(this.cicleRect, this.radOffset - 90, 90.0f, false, this.outerPaint);
         invalidate();
     }

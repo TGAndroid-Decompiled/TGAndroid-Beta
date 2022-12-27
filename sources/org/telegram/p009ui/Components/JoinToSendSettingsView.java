@@ -169,14 +169,14 @@ public class JoinToSendSettingsView extends LinearLayout {
         this.toggleValue = f;
         this.joinRequestCell.setAlpha(f);
         float f2 = 1.0f - f;
-        this.joinRequestCell.setTranslationY((-AndroidUtilities.m35dp(16.0f)) * f2);
+        this.joinRequestCell.setTranslationY((-AndroidUtilities.m36dp(16.0f)) * f2);
         this.joinRequestCell.setScaleY(1.0f - (0.1f * f2));
-        int m35dp = this.joinRequestCell.getMeasuredHeight() <= 0 ? AndroidUtilities.m35dp(50.0f) : this.joinRequestCell.getMeasuredHeight();
+        int m36dp = this.joinRequestCell.getMeasuredHeight() <= 0 ? AndroidUtilities.m36dp(50.0f) : this.joinRequestCell.getMeasuredHeight();
         this.joinToSendInfoCell.setAlpha(f2);
-        float f3 = (-m35dp) * f2;
-        this.joinToSendInfoCell.setTranslationY(((-AndroidUtilities.m35dp(4.0f)) * f) + f3);
+        float f3 = (-m36dp) * f2;
+        this.joinToSendInfoCell.setTranslationY(((-AndroidUtilities.m36dp(4.0f)) * f) + f3);
         this.joinRequestInfoCell.setAlpha(f);
-        this.joinRequestInfoCell.setTranslationY(f3 + (AndroidUtilities.m35dp(4.0f) * f2));
+        this.joinRequestInfoCell.setTranslationY(f3 + (AndroidUtilities.m36dp(4.0f) * f2));
         requestLayout();
     }
 

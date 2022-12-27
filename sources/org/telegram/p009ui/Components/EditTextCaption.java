@@ -163,7 +163,7 @@ public class EditTextCaption extends EditTextBoldCursor {
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, getContext()) {
             @Override
             public void onMeasure(int i, int i2) {
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(64.0f), 1073741824));
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(64.0f), 1073741824));
             }
         };
         editTextBoldCursor.setTextSize(1, 18.0f);
@@ -206,10 +206,10 @@ public class EditTextCaption extends EditTextBoldCursor {
             if (marginLayoutParams instanceof FrameLayout.LayoutParams) {
                 ((FrameLayout.LayoutParams) marginLayoutParams).gravity = 1;
             }
-            int m35dp = AndroidUtilities.m35dp(24.0f);
-            marginLayoutParams.leftMargin = m35dp;
-            marginLayoutParams.rightMargin = m35dp;
-            marginLayoutParams.height = AndroidUtilities.m35dp(36.0f);
+            int m36dp = AndroidUtilities.m36dp(24.0f);
+            marginLayoutParams.leftMargin = m36dp;
+            marginLayoutParams.rightMargin = m36dp;
+            marginLayoutParams.height = AndroidUtilities.m36dp(36.0f);
             editTextBoldCursor.setLayoutParams(marginLayoutParams);
         }
         editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
@@ -280,7 +280,7 @@ public class EditTextCaption extends EditTextBoldCursor {
             try {
                 super.onWindowFocusChanged(z);
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
         }
     }
@@ -404,8 +404,8 @@ public class EditTextCaption extends EditTextBoldCursor {
             }
             this.isInitLineCount = false;
         } catch (Exception e) {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m35dp(51.0f));
-            FileLog.m31e(e);
+            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m36dp(51.0f));
+            FileLog.m32e(e);
         }
         this.captionLayout = null;
         String str = this.caption;
@@ -430,9 +430,9 @@ public class EditTextCaption extends EditTextBoldCursor {
             if (staticLayout.getLineCount() > 0) {
                 this.xOffset = (int) (this.xOffset + (-this.captionLayout.getLineLeft(0)));
             }
-            this.yOffset = ((getMeasuredHeight() - this.captionLayout.getLineBottom(0)) / 2) + AndroidUtilities.m35dp(0.5f);
+            this.yOffset = ((getMeasuredHeight() - this.captionLayout.getLineBottom(0)) / 2) + AndroidUtilities.m36dp(0.5f);
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
     }
 
@@ -473,7 +473,7 @@ public class EditTextCaption extends EditTextBoldCursor {
                 paint.setColor(color);
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         canvas.restore();
     }
@@ -529,7 +529,7 @@ public class EditTextCaption extends EditTextBoldCursor {
             if (primaryClip != null && primaryClip.getItemCount() == 1 && primaryClip.getDescription().hasMimeType("text/html")) {
                 try {
                     Spannable fromHTML = CopyUtilities.fromHTML(primaryClip.getItemAt(0).getHtmlText());
-                    Emoji.replaceEmoji(fromHTML, getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false, null, true);
+                    Emoji.replaceEmoji(fromHTML, getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false, null, true);
                     AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) fromHTML.getSpans(0, fromHTML.length(), AnimatedEmojiSpan.class);
                     if (animatedEmojiSpanArr != null) {
                         for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
@@ -541,7 +541,7 @@ public class EditTextCaption extends EditTextBoldCursor {
                     setSelection(fromHTML.length() + max, max + fromHTML.length());
                     return true;
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
         } else {

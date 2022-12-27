@@ -111,7 +111,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         setOpaque(false);
         setRenderer(new GLIconRenderer(context, i));
         initialize(context);
-        GestureDetector gestureDetector = new GestureDetector(context, new GestureDetector$OnGestureListenerC26001());
+        GestureDetector gestureDetector = new GestureDetector(context, new GestureDetector$OnGestureListenerC26031());
         this.gestureDetector = gestureDetector;
         gestureDetector.setIsLongpressEnabled(true);
         for (int i2 = 0; i2 < 5; i2++) {
@@ -120,7 +120,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         Collections.shuffle(this.animationIndexes);
     }
 
-    public class GestureDetector$OnGestureListenerC26001 implements GestureDetector.OnGestureListener {
+    public class GestureDetector$OnGestureListenerC26031 implements GestureDetector.OnGestureListener {
         @Override
         public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
             return false;
@@ -130,8 +130,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         public void onShowPress(MotionEvent motionEvent) {
         }
 
-        GestureDetector$OnGestureListenerC26001() {
-            GLIconTextureView.this = r1;
+        GestureDetector$OnGestureListenerC26031() {
         }
 
         @Override
@@ -161,7 +160,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GLIconTextureView.GestureDetector$OnGestureListenerC26001.this.lambda$onSingleTapUp$0(nextInt, nextInt2);
+                    GLIconTextureView.GestureDetector$OnGestureListenerC26031.this.lambda$onSingleTapUp$0(nextInt, nextInt2);
                 }
             }, 16L);
             return true;
@@ -303,10 +302,9 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
 
     public class RenderThread extends Thread {
         private RenderThread() {
-            GLIconTextureView.this = r1;
         }
 
-        RenderThread(GLIconTextureView gLIconTextureView, GestureDetector$OnGestureListenerC26001 gestureDetector$OnGestureListenerC26001) {
+        RenderThread(GLIconTextureView gLIconTextureView, GestureDetector$OnGestureListenerC26031 gestureDetector$OnGestureListenerC26031) {
             this();
         }
 
@@ -395,14 +393,14 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
 
     private void checkEglError() {
         if (this.mEgl.eglGetError() != 12288) {
-            FileLog.m33e("cannot swap buffers!");
+            FileLog.m34e("cannot swap buffers!");
         }
     }
 
     public void checkGlError() {
         int glGetError = this.mGl.glGetError();
         if (glGetError != 0) {
-            FileLog.m33e("GL error = 0x" + Integer.toHexString(glGetError));
+            FileLog.m34e("GL error = 0x" + Integer.toHexString(glGetError));
         }
     }
 
@@ -439,7 +437,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         if (eGLSurface == null || eGLSurface == EGL10.EGL_NO_SURFACE) {
             int eglGetError = this.mEgl.eglGetError();
             if (eglGetError == 12299) {
-                FileLog.m33e("eglCreateWindowSurface returned EGL10.EGL_BAD_NATIVE_WINDOW");
+                FileLog.m34e("eglCreateWindowSurface returned EGL10.EGL_BAD_NATIVE_WINDOW");
                 return;
             }
             throw new RuntimeException("eglCreateWindowSurface failed " + GLUtils.getEGLErrorString(eglGetError));

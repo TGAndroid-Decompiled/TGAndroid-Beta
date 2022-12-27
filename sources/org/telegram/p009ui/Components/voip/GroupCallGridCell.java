@@ -38,7 +38,7 @@ public class GroupCallGridCell extends FrameLayout {
             size = View.MeasureSpec.getSize(i);
         }
         float f2 = size;
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) ((GroupCallActivity.isTabletMode ? f2 / 2.0f : f2 / f) + AndroidUtilities.m35dp(4.0f)), 1073741824));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) ((GroupCallActivity.isTabletMode ? f2 / 2.0f : f2 / f) + AndroidUtilities.m36dp(4.0f)), 1073741824));
     }
 
     public void setData(AccountInstance accountInstance, ChatObject.VideoParticipant videoParticipant, ChatObject.Call call, long j) {

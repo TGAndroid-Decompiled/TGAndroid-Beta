@@ -56,7 +56,7 @@ public class StarParticlesView extends View {
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         int measuredWidth = getMeasuredWidth() << (getMeasuredHeight() + 16);
-        this.drawable.rect.set(0.0f, 0.0f, AndroidUtilities.m35dp(140.0f), AndroidUtilities.m35dp(140.0f));
+        this.drawable.rect.set(0.0f, 0.0f, AndroidUtilities.m36dp(140.0f), AndroidUtilities.m36dp(140.0f));
         this.drawable.rect.offset((getMeasuredWidth() - this.drawable.rect.width()) / 2.0f, (getMeasuredHeight() - this.drawable.rect.height()) / 2.0f);
         this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         if (this.size != measuredWidth) {
@@ -177,7 +177,7 @@ public class StarParticlesView extends View {
         }
 
         private void generateBitmaps() {
-            int m35dp;
+            int m36dp;
             int i;
             int i2;
             int i3;
@@ -185,15 +185,15 @@ public class StarParticlesView extends View {
             for (int i5 = 0; i5 < 3; i5++) {
                 float f = this.f1124k1;
                 if (i5 == 0) {
-                    m35dp = AndroidUtilities.m35dp(this.size1);
+                    m36dp = AndroidUtilities.m36dp(this.size1);
                 } else if (i5 == 1) {
                     f = this.f1125k2;
-                    m35dp = AndroidUtilities.m35dp(this.size2);
+                    m36dp = AndroidUtilities.m36dp(this.size2);
                 } else {
                     f = this.f1126k3;
-                    m35dp = AndroidUtilities.m35dp(this.size3);
+                    m36dp = AndroidUtilities.m36dp(this.size3);
                 }
-                int i6 = m35dp;
+                int i6 = m36dp;
                 int i7 = this.type;
                 if (i7 == 9) {
                     if (i5 == 0) {
@@ -269,7 +269,7 @@ public class StarParticlesView extends View {
                         path.close();
                         Paint paint = new Paint();
                         if (this.useGradient) {
-                            if (i6 >= AndroidUtilities.m35dp(10.0f)) {
+                            if (i6 >= AndroidUtilities.m36dp(10.0f)) {
                                 PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, i6, i6, i6 * (-2), 0.0f);
                             } else {
                                 PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, i6, i6, i6 * (-4), 0.0f);
@@ -383,7 +383,6 @@ public class StarParticlesView extends View {
             private float f1130y2;
 
             public Particle() {
-                Drawable.this = r1;
             }
 
             public void updatePoint() {
@@ -474,9 +473,9 @@ public class StarParticlesView extends View {
                 if (Drawable.this.paused) {
                     return;
                 }
-                float m35dp = AndroidUtilities.m35dp(4.0f) * (Drawable.this.f1123dt / 660.0f);
+                float m36dp = AndroidUtilities.m36dp(4.0f) * (Drawable.this.f1123dt / 660.0f);
                 Drawable drawable3 = Drawable.this;
-                float f5 = m35dp * drawable3.speedScale;
+                float f5 = m36dp * drawable3.speedScale;
                 this.f1127x += this.vecX * f5;
                 this.f1129y += this.vecY * f5;
                 float f6 = this.inProgress;

@@ -12,7 +12,7 @@ public class DotDividerSpan extends ReplacementSpan {
 
     @Override
     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        return AndroidUtilities.m35dp(3.0f);
+        return AndroidUtilities.m36dp(3.0f);
     }
 
     @Override

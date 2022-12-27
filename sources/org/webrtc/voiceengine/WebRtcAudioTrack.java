@@ -104,7 +104,6 @@ public class WebRtcAudioTrack {
 
         public AudioTrackThread(String str) {
             super(str);
-            WebRtcAudioTrack.this = r1;
             this.keepAlive = true;
         }
 

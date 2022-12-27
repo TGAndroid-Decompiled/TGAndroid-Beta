@@ -28,7 +28,7 @@ public class PremiumGiftHeaderCell extends LinearLayout {
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(50.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(50.0f));
         addView(this.avatarImageView, LayoutHelper.createLinear(100, 100, 1, 0, 28, 0, 0));
         TextView textView = new TextView(context);
         this.titleView = textView;
@@ -56,9 +56,9 @@ public class PremiumGiftHeaderCell extends LinearLayout {
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         float x = this.avatarImageView.getX() + (this.avatarImageView.getWidth() / 2.0f);
-        float paddingTop = ((this.avatarImageView.getPaddingTop() + this.avatarImageView.getY()) + (this.avatarImageView.getHeight() / 2.0f)) - AndroidUtilities.m35dp(3.0f);
-        float m35dp = AndroidUtilities.m35dp(32.0f);
-        this.drawable.rect.set(x - m35dp, paddingTop - m35dp, x + m35dp, paddingTop + m35dp);
+        float paddingTop = ((this.avatarImageView.getPaddingTop() + this.avatarImageView.getY()) + (this.avatarImageView.getHeight() / 2.0f)) - AndroidUtilities.m36dp(3.0f);
+        float m36dp = AndroidUtilities.m36dp(32.0f);
+        this.drawable.rect.set(x - m36dp, paddingTop - m36dp, x + m36dp, paddingTop + m36dp);
         if (z) {
             this.drawable.resetPositions();
         }

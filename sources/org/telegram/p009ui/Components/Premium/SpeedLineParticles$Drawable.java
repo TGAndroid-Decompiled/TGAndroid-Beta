@@ -68,7 +68,7 @@ public class SpeedLineParticles$Drawable {
         canvas.drawLines(this.lines, this.paint);
     }
 
-    public class Particle {
+    private class Particle {
         float inProgress;
         private long lifeTime;
         private float vecX;
@@ -77,21 +77,20 @@ public class SpeedLineParticles$Drawable {
         private float f1119y;
 
         private Particle() {
-            SpeedLineParticles$Drawable.this = r1;
         }
 
         public void draw(Canvas canvas, int i, long j) {
             int i2 = i * 4;
             SpeedLineParticles$Drawable.this.lines[i2] = this.f1118x;
             SpeedLineParticles$Drawable.this.lines[i2 + 1] = this.f1119y;
-            SpeedLineParticles$Drawable.this.lines[i2 + 2] = this.f1118x + (AndroidUtilities.m35dp(30.0f) * this.vecX);
-            SpeedLineParticles$Drawable.this.lines[i2 + 3] = this.f1119y + (AndroidUtilities.m35dp(30.0f) * this.vecY);
+            SpeedLineParticles$Drawable.this.lines[i2 + 2] = this.f1118x + (AndroidUtilities.m36dp(30.0f) * this.vecX);
+            SpeedLineParticles$Drawable.this.lines[i2 + 3] = this.f1119y + (AndroidUtilities.m36dp(30.0f) * this.vecY);
             if (SpeedLineParticles$Drawable.this.paused) {
                 return;
             }
-            float m35dp = AndroidUtilities.m35dp(4.0f) * (SpeedLineParticles$Drawable.this.f1117dt / 660.0f);
+            float m36dp = AndroidUtilities.m36dp(4.0f) * (SpeedLineParticles$Drawable.this.f1117dt / 660.0f);
             SpeedLineParticles$Drawable speedLineParticles$Drawable = SpeedLineParticles$Drawable.this;
-            float f = m35dp * speedLineParticles$Drawable.speedScale;
+            float f = m36dp * speedLineParticles$Drawable.speedScale;
             this.f1118x += this.vecX * f;
             this.f1119y += this.vecY * f;
             float f2 = this.inProgress;

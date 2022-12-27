@@ -87,7 +87,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
         mutate.setColorFilter(new PorterDuffColorFilter(-14342875, PorterDuff.Mode.MULTIPLY));
         final LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        linearLayout.setPadding(0, AndroidUtilities.m35dp(16.0f), 0, 0);
+        linearLayout.setPadding(0, AndroidUtilities.m36dp(16.0f), 0, 0);
         ImageView imageView = new ImageView(context);
         this.pipetteView = imageView;
         imageView.setImageResource(C1072R.C1073drawable.picker);
@@ -118,25 +118,24 @@ public class ColorPickerBottomSheet extends BottomSheet {
         linearLayout.addView(colorPickerView, LayoutHelper.createLinear(-1, 0));
         ScrollView scrollView = new ScrollView(context) {
             {
-                ColorPickerBottomSheet.this = this;
                 setWillNotDraw(false);
             }
 
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, i2);
-                ((LinearLayout.LayoutParams) ColorPickerBottomSheet.this.pickerView.getLayoutParams()).height = (int) (((View.MeasureSpec.getSize(i) - AndroidUtilities.m35dp(24.0f)) * 0.8333333f) + AndroidUtilities.m35dp(88.0f));
+                ((LinearLayout.LayoutParams) ColorPickerBottomSheet.this.pickerView.getLayoutParams()).height = (int) (((View.MeasureSpec.getSize(i) - AndroidUtilities.m36dp(24.0f)) * 0.8333333f) + AndroidUtilities.m36dp(88.0f));
             }
 
             @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
-                float y = linearLayout.getY() + AndroidUtilities.m35dp(1.0f);
-                int m35dp = AndroidUtilities.m35dp(36.0f);
+                float y = linearLayout.getY() + AndroidUtilities.m36dp(1.0f);
+                int m36dp = AndroidUtilities.m36dp(36.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set((getMeasuredWidth() - m35dp) / 2.0f, y, (getMeasuredWidth() + m35dp) / 2.0f, AndroidUtilities.m35dp(4.0f) + y);
+                rectF.set((getMeasuredWidth() - m36dp) / 2.0f, y, (getMeasuredWidth() + m36dp) / 2.0f, AndroidUtilities.m36dp(4.0f) + y);
                 Theme.dialogs_onlineCirclePaint.setColor(-10790053);
-                canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), Theme.dialogs_onlineCirclePaint);
+                canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f), Theme.dialogs_onlineCirclePaint);
             }
         };
         scrollView.addView(linearLayout);
@@ -316,7 +315,6 @@ public class ColorPickerBottomSheet extends BottomSheet {
         public GridPickerView(Context context) {
             super(context);
             int blendARGB;
-            ColorPickerBottomSheet.this = r11;
             this.paint = new Paint(1);
             this.colors = new int[]{-16735784, -16752387, -11788361, -6804548, -4707235, -180718, -38656, -152832, -211200, -198077, -2495689, -8996289};
             this.selectorPaint = new Paint(1);
@@ -325,7 +323,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.selectorPath = new Path();
             this.radii = new float[8];
             this.colorMap = new HashMap();
-            setPadding(AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(3.0f));
+            setPadding(AndroidUtilities.m36dp(14.0f), AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(14.0f), AndroidUtilities.m36dp(3.0f));
             this.selectorPaint.setColor(-1);
             this.selectorPaint.setStyle(Paint.Style.STROKE);
             this.selectorPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -392,7 +390,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
             canvas.save();
             ColorPickerBottomSheet.this.path.rewind();
-            ColorPickerBottomSheet.this.path.addRoundRect(rectF, AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(10.0f), Path.Direction.CW);
+            ColorPickerBottomSheet.this.path.addRoundRect(rectF, AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(10.0f), Path.Direction.CW);
             canvas.clipPath(ColorPickerBottomSheet.this.path);
             float width = ((getWidth() - getPaddingLeft()) - getPaddingRight()) / 12.0f;
             float height = ((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10.0f;
@@ -423,26 +421,26 @@ public class ColorPickerBottomSheet extends BottomSheet {
                 if (num2 != null) {
                     this.selectorPaint.setColor(AndroidUtilities.computePerceivedBrightness(num2.intValue()) > 0.721f ? -15658735 : -1);
                 }
-                this.selectorPaint.setStrokeWidth(CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(max) * AndroidUtilities.m35dp(3.0f));
+                this.selectorPaint.setStrokeWidth(CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(max) * AndroidUtilities.m36dp(3.0f));
                 this.selectorPath.rewind();
                 RectF rectF3 = AndroidUtilities.rectTmp;
                 rectF3.set(getPaddingLeft() + (i4 * width), getPaddingTop() + (i5 * height), getPaddingLeft() + ((i4 + 1) * width), getPaddingTop() + ((i5 + 1) * height));
                 float[] fArr = this.radii;
-                float m35dp = (i4 == 0 && i5 == 0) ? AndroidUtilities.m35dp(10.0f) : 0.0f;
-                fArr[1] = m35dp;
-                fArr[0] = m35dp;
+                float m36dp = (i4 == 0 && i5 == 0) ? AndroidUtilities.m36dp(10.0f) : 0.0f;
+                fArr[1] = m36dp;
+                fArr[0] = m36dp;
                 float[] fArr2 = this.radii;
-                float m35dp2 = (i4 == 11 && i5 == 0) ? AndroidUtilities.m35dp(10.0f) : 0.0f;
-                fArr2[3] = m35dp2;
-                fArr2[2] = m35dp2;
+                float m36dp2 = (i4 == 11 && i5 == 0) ? AndroidUtilities.m36dp(10.0f) : 0.0f;
+                fArr2[3] = m36dp2;
+                fArr2[2] = m36dp2;
                 float[] fArr3 = this.radii;
-                float m35dp3 = (i4 == 11 && i5 == 9) ? AndroidUtilities.m35dp(10.0f) : 0.0f;
-                fArr3[5] = m35dp3;
-                fArr3[4] = m35dp3;
+                float m36dp3 = (i4 == 11 && i5 == 9) ? AndroidUtilities.m36dp(10.0f) : 0.0f;
+                fArr3[5] = m36dp3;
+                fArr3[4] = m36dp3;
                 float[] fArr4 = this.radii;
-                float m35dp4 = (i4 == 0 && i5 == 9) ? AndroidUtilities.m35dp(10.0f) : 0.0f;
-                fArr4[7] = m35dp4;
-                fArr4[6] = m35dp4;
+                float m36dp4 = (i4 == 0 && i5 == 9) ? AndroidUtilities.m36dp(10.0f) : 0.0f;
+                fArr4[7] = m36dp4;
+                fArr4[6] = m36dp4;
                 this.selectorPath.addRoundRect(rectF3, this.radii, Path.Direction.CW);
                 canvas.drawPath(this.selectorPath, this.selectorPaint);
                 if (max <= 0.0f && this.selected != keyAt) {
@@ -471,15 +469,14 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
         public GradientPickerView(Context context) {
             super(context);
-            ColorPickerBottomSheet.this = r5;
             this.gradientPaint = new Paint(1);
             this.whiteBlackPaint = new Paint(1);
             this.outlinePaint = new Paint(1);
             this.hsv = new float[3];
-            setPadding(AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(3.0f));
+            setPadding(AndroidUtilities.m36dp(14.0f), AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(14.0f), AndroidUtilities.m36dp(3.0f));
             this.outlinePaint.setColor(-1);
             this.outlinePaint.setStyle(Paint.Style.FILL_AND_STROKE);
-            this.outlinePaint.setStrokeWidth(AndroidUtilities.m35dp(3.0f));
+            this.outlinePaint.setStrokeWidth(AndroidUtilities.m36dp(3.0f));
             this.shadowDrawable = ContextCompat.getDrawable(context, C1072R.C1073drawable.knob_shadow);
         }
 
@@ -495,24 +492,24 @@ public class ColorPickerBottomSheet extends BottomSheet {
             super.onDraw(canvas);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-            canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), this.gradientPaint);
-            canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), this.whiteBlackPaint);
-            float m35dp = AndroidUtilities.m35dp(13.0f);
-            float m35dp2 = AndroidUtilities.m35dp(16.0f);
+            canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f), this.gradientPaint);
+            canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f), this.whiteBlackPaint);
+            float m36dp = AndroidUtilities.m36dp(13.0f);
+            float m36dp2 = AndroidUtilities.m36dp(16.0f);
             int width = (getWidth() - getPaddingLeft()) - getPaddingRight();
             int height = (getHeight() - getPaddingTop()) - getPaddingBottom();
             float f = width;
-            float paddingLeft = getPaddingLeft() + MathUtils.clamp(this.positionX * f, m35dp2, f - m35dp2);
+            float paddingLeft = getPaddingLeft() + MathUtils.clamp(this.positionX * f, m36dp2, f - m36dp2);
             float f2 = height;
-            float paddingTop = getPaddingTop() + MathUtils.clamp(this.positionY * f2, m35dp2, f2 - m35dp2);
+            float paddingTop = getPaddingTop() + MathUtils.clamp(this.positionY * f2, m36dp2, f2 - m36dp2);
             Drawable drawable = this.shadowDrawable;
             Rect rect = AndroidUtilities.rectTmp2;
             drawable.getPadding(rect);
             int i = rect.bottom;
-            this.shadowDrawable.setBounds((int) ((paddingLeft - m35dp) - rect.left), (int) ((paddingTop - m35dp) - rect.top), (int) (paddingLeft + m35dp + i), (int) (paddingTop + m35dp + i));
+            this.shadowDrawable.setBounds((int) ((paddingLeft - m36dp) - rect.left), (int) ((paddingTop - m36dp) - rect.top), (int) (paddingLeft + m36dp + i), (int) (paddingTop + m36dp + i));
             this.shadowDrawable.draw(canvas);
-            canvas.drawCircle(paddingLeft, paddingTop, m35dp, this.outlinePaint);
-            PaintColorsListView.drawColorCircle(canvas, paddingLeft, paddingTop, m35dp - (this.outlinePaint.getStrokeWidth() / 2.0f), ColorUtils.setAlphaComponent(ColorPickerBottomSheet.this.mColor, 255));
+            canvas.drawCircle(paddingLeft, paddingTop, m36dp, this.outlinePaint);
+            PaintColorsListView.drawColorCircle(canvas, paddingLeft, paddingTop, m36dp - (this.outlinePaint.getStrokeWidth() / 2.0f), ColorUtils.setAlphaComponent(ColorPickerBottomSheet.this.mColor, 255));
         }
 
         @Override
@@ -576,9 +573,8 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
         public SlidersPickerView(Context context) {
             super(context);
-            ColorPickerBottomSheet.this = r18;
             setOrientation(1);
-            setPadding(AndroidUtilities.m35dp(14.0f), 0, AndroidUtilities.m35dp(14.0f), 0);
+            setPadding(AndroidUtilities.m36dp(14.0f), 0, AndroidUtilities.m36dp(14.0f), 0);
             SliderCell sliderCell = new SliderCell(context);
             this.red = sliderCell;
             sliderCell.bind(0);
@@ -604,7 +600,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
             this.hexEdit = editTextBoldCursor;
             editTextBoldCursor.setTextSize(1, 16.0f);
-            this.hexEdit.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.m35dp(10.0f), 436207615));
+            this.hexEdit.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.m36dp(10.0f), 436207615));
             this.hexEdit.setPadding(0, 0, 0, 0);
             this.hexEdit.setTextColor(-1);
             this.hexEdit.setGravity(17);
@@ -612,7 +608,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.hexEdit.setImeOptions(6);
             this.hexEdit.setImeActionLabel(LocaleController.getString(C1072R.string.Done), 6);
             this.hexEdit.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.hexEdit.addTextChangedListener(new TextWatcher(r18) {
+            this.hexEdit.addTextChangedListener(new TextWatcher(ColorPickerBottomSheet.this) {
                 private Pattern pattern = Pattern.compile("^[0-9a-fA-F]*$");
                 private CharSequence previous;
 
@@ -627,7 +623,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
                 @Override
                 public void afterTextChanged(android.text.Editable r6) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Paint.ColorPickerBottomSheet.SlidersPickerView.C24631.afterTextChanged(android.text.Editable):void");
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Paint.ColorPickerBottomSheet.SlidersPickerView.C24661.afterTextChanged(android.text.Editable):void");
                 }
             });
             this.hexEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -636,7 +632,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
                     ColorPickerBottomSheet.SlidersPickerView.this.lambda$new$0(view, z);
                 }
             });
-            this.hexEdit.setOnEditorActionListener(C2465x8f669e74.INSTANCE);
+            this.hexEdit.setOnEditorActionListener(C2468x8f669e74.INSTANCE);
             linearLayout.addView(this.hexEdit, LayoutHelper.createLinear(72, 36));
         }
 
@@ -684,7 +680,6 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
         public SliderCell(Context context) {
             super(context);
-            ColorPickerBottomSheet.this = r11;
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextColor(-1711276033);
@@ -697,7 +692,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
             this.valueView = editTextBoldCursor;
             editTextBoldCursor.setTextSize(1, 16.0f);
-            this.valueView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.m35dp(10.0f), 436207615));
+            this.valueView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.m36dp(10.0f), 436207615));
             this.valueView.setPadding(0, 0, 0, 0);
             this.valueView.setTextColor(-1);
             this.valueView.setGravity(17);
@@ -706,7 +701,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.valueView.setImeActionLabel(LocaleController.getString(C1072R.string.Done), 6);
             this.valueView.setInputType(2);
             this.valueView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.valueView.addTextChangedListener(new TextWatcher(r11) {
+            this.valueView.addTextChangedListener(new TextWatcher(ColorPickerBottomSheet.this) {
                 private CharSequence previous;
 
                 @Override
@@ -756,7 +751,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(52.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(52.0f), 1073741824));
         }
 
         public void bind(int i) {
@@ -797,13 +792,12 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
         public AlphaPickerView(Context context) {
             super(context);
-            ColorPickerBottomSheet.this = r1;
             this.colorPaint = new Paint(1);
             Paint paint = new Paint(1);
             this.outlinePaint = paint;
             paint.setColor(-1);
             this.outlinePaint.setStyle(Paint.Style.FILL_AND_STROKE);
-            this.outlinePaint.setStrokeWidth(AndroidUtilities.m35dp(3.0f));
+            this.outlinePaint.setStrokeWidth(AndroidUtilities.m36dp(3.0f));
         }
 
         @Override
@@ -843,8 +837,8 @@ public class ColorPickerBottomSheet extends BottomSheet {
         }
 
         private void updatePosition(float f) {
-            float m35dp = AndroidUtilities.m35dp(6.0f);
-            this.alpha = MathUtils.clamp(((f - m35dp) + (AndroidUtilities.m35dp(13.0f) - (this.outlinePaint.getStrokeWidth() / 2.0f))) / (getWidth() - (m35dp * 2.0f)), 0.0f, 1.0f);
+            float m36dp = AndroidUtilities.m36dp(6.0f);
+            this.alpha = MathUtils.clamp(((f - m36dp) + (AndroidUtilities.m36dp(13.0f) - (this.outlinePaint.getStrokeWidth() / 2.0f))) / (getWidth() - (m36dp * 2.0f)), 0.0f, 1.0f);
             ColorPickerBottomSheet colorPickerBottomSheet = ColorPickerBottomSheet.this;
             colorPickerBottomSheet.onSetColor(ColorUtils.setAlphaComponent(colorPickerBottomSheet.mColor, (int) (this.alpha * 255.0f)), 1);
             invalidate();
@@ -854,23 +848,23 @@ public class ColorPickerBottomSheet extends BottomSheet {
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             float height = getHeight() / 2.0f;
-            float m35dp = AndroidUtilities.m35dp(6.0f);
+            float m36dp = AndroidUtilities.m36dp(6.0f);
             RectF rectF = AndroidUtilities.rectTmp;
-            float f = height - m35dp;
-            float f2 = height + m35dp;
-            rectF.set(m35dp, f, getWidth() - m35dp, f2);
+            float f = height - m36dp;
+            float f2 = height + m36dp;
+            rectF.set(m36dp, f, getWidth() - m36dp, f2);
             canvas.save();
             ColorPickerBottomSheet.this.path.rewind();
-            ColorPickerBottomSheet.this.path.addRoundRect(rectF, AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), Path.Direction.CW);
+            ColorPickerBottomSheet.this.path.addRoundRect(rectF, AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), Path.Direction.CW);
             canvas.clipPath(ColorPickerBottomSheet.this.path);
-            PaintColorsListView.drawCheckerboard(canvas, rectF, AndroidUtilities.m35dp(6.0f));
+            PaintColorsListView.drawCheckerboard(canvas, rectF, AndroidUtilities.m36dp(6.0f));
             canvas.restore();
-            rectF.set(m35dp, f, getWidth() - m35dp, f2);
-            canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), this.colorPaint);
-            float m35dp2 = AndroidUtilities.m35dp(13.0f);
-            float strokeWidth = m35dp2 - (this.outlinePaint.getStrokeWidth() / 2.0f);
-            float max = Math.max(m35dp + strokeWidth, (m35dp + ((getWidth() - (2.0f * m35dp)) * this.alpha)) - strokeWidth);
-            canvas.drawCircle(max, height, m35dp2, this.outlinePaint);
+            rectF.set(m36dp, f, getWidth() - m36dp, f2);
+            canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), this.colorPaint);
+            float m36dp2 = AndroidUtilities.m36dp(13.0f);
+            float strokeWidth = m36dp2 - (this.outlinePaint.getStrokeWidth() / 2.0f);
+            float max = Math.max(m36dp + strokeWidth, (m36dp + ((getWidth() - (2.0f * m36dp)) * this.alpha)) - strokeWidth);
+            canvas.drawCircle(max, height, m36dp2, this.outlinePaint);
             PaintColorsListView.drawColorCircle(canvas, max, height, strokeWidth, ColorUtils.setAlphaComponent(ColorPickerBottomSheet.this.mColor, (int) (this.alpha * 255.0f)));
         }
     }
@@ -883,13 +877,12 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
         public ColorSliderView(Context context) {
             super(context);
-            ColorPickerBottomSheet.this = r1;
             this.colorPaint = new Paint(1);
             Paint paint = new Paint(1);
             this.outlinePaint = paint;
             paint.setColor(-1);
             this.outlinePaint.setStyle(Paint.Style.FILL_AND_STROKE);
-            this.outlinePaint.setStrokeWidth(AndroidUtilities.m35dp(3.0f));
+            this.outlinePaint.setStrokeWidth(AndroidUtilities.m36dp(3.0f));
         }
 
         @Override
@@ -946,8 +939,8 @@ public class ColorPickerBottomSheet extends BottomSheet {
         }
 
         private void updatePosition(float f) {
-            float m35dp = AndroidUtilities.m35dp(6.0f);
-            float clamp = MathUtils.clamp(((f - m35dp) + (AndroidUtilities.m35dp(13.0f) - (this.outlinePaint.getStrokeWidth() / 2.0f))) / (getWidth() - (m35dp * 2.0f)), 0.0f, 1.0f);
+            float m36dp = AndroidUtilities.m36dp(6.0f);
+            float clamp = MathUtils.clamp(((f - m36dp) + (AndroidUtilities.m36dp(13.0f) - (this.outlinePaint.getStrokeWidth() / 2.0f))) / (getWidth() - (m36dp * 2.0f)), 0.0f, 1.0f);
             int i = this.mode;
             int argb = i != 1 ? i != 2 ? Color.argb(255, (int) (clamp * 255.0f), Color.green(ColorPickerBottomSheet.this.mColor), Color.blue(ColorPickerBottomSheet.this.mColor)) : Color.argb(255, Color.red(ColorPickerBottomSheet.this.mColor), Color.green(ColorPickerBottomSheet.this.mColor), (int) (clamp * 255.0f)) : Color.argb(255, Color.red(ColorPickerBottomSheet.this.mColor), (int) (clamp * 255.0f), Color.blue(ColorPickerBottomSheet.this.mColor));
             ColorPickerBottomSheet colorPickerBottomSheet = ColorPickerBottomSheet.this;
@@ -959,16 +952,16 @@ public class ColorPickerBottomSheet extends BottomSheet {
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             float height = getHeight() / 2.0f;
-            float m35dp = AndroidUtilities.m35dp(6.0f);
+            float m36dp = AndroidUtilities.m36dp(6.0f);
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(m35dp, height - m35dp, getWidth() - m35dp, height + m35dp);
-            canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), this.colorPaint);
+            rectF.set(m36dp, height - m36dp, getWidth() - m36dp, height + m36dp);
+            canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), this.colorPaint);
             int i = this.mode;
             float red = (i != 1 ? i != 2 ? Color.red(ColorPickerBottomSheet.this.mColor) : Color.blue(ColorPickerBottomSheet.this.mColor) : Color.green(ColorPickerBottomSheet.this.mColor)) / 255.0f;
-            float m35dp2 = AndroidUtilities.m35dp(13.0f);
-            float strokeWidth = m35dp2 - (this.outlinePaint.getStrokeWidth() / 2.0f);
-            float max = Math.max(m35dp + strokeWidth, (m35dp + ((getWidth() - (2.0f * m35dp)) * red)) - strokeWidth);
-            canvas.drawCircle(max, height, m35dp2, this.outlinePaint);
+            float m36dp2 = AndroidUtilities.m36dp(13.0f);
+            float strokeWidth = m36dp2 - (this.outlinePaint.getStrokeWidth() / 2.0f);
+            float max = Math.max(m36dp + strokeWidth, (m36dp + ((getWidth() - (2.0f * m36dp)) * red)) - strokeWidth);
+            canvas.drawCircle(max, height, m36dp2, this.outlinePaint);
             PaintColorsListView.drawColorCircle(canvas, max, height, strokeWidth, this.filledColor);
         }
     }

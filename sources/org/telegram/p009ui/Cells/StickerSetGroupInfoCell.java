@@ -24,7 +24,7 @@ public class StickerSetGroupInfoCell extends LinearLayout {
         addView(textView, LayoutHelper.createLinear(-1, -2, 51, 17, 4, 17, 0));
         TextView textView2 = new TextView(context);
         this.addButton = textView2;
-        textView2.setPadding(AndroidUtilities.m35dp(17.0f), 0, AndroidUtilities.m35dp(17.0f), 0);
+        textView2.setPadding(AndroidUtilities.m36dp(17.0f), 0, AndroidUtilities.m36dp(17.0f), 0);
         this.addButton.setGravity(17);
         this.addButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         this.addButton.setTextSize(1, 14.0f);
@@ -39,7 +39,7 @@ public class StickerSetGroupInfoCell extends LinearLayout {
         View view;
         int measuredHeight;
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-        if (!this.isLast || (view = (View) getParent()) == null || getMeasuredHeight() >= (measuredHeight = ((view.getMeasuredHeight() - view.getPaddingBottom()) - view.getPaddingTop()) - AndroidUtilities.m35dp(24.0f))) {
+        if (!this.isLast || (view = (View) getParent()) == null || getMeasuredHeight() >= (measuredHeight = ((view.getMeasuredHeight() - view.getPaddingBottom()) - view.getPaddingTop()) - AndroidUtilities.m36dp(24.0f))) {
             return;
         }
         setMeasuredDimension(getMeasuredWidth(), measuredHeight);

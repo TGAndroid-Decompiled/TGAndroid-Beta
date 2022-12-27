@@ -261,13 +261,13 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                         placeProviderObject.parentView.getLocationInWindow(iArr);
                         placeProviderObject.clipTopAddition = 0;
                         if (PhotoViewer.isShowingImage(messageObject) && (pinnedHeader = recyclerListView.getPinnedHeader()) != null) {
-                            int m35dp = (childAt instanceof SharedDocumentCell ? AndroidUtilities.m35dp(8.0f) + 0 : 0) - placeProviderObject.viewY;
-                            if (m35dp > childAt.getHeight()) {
-                                recyclerListView.scrollBy(0, -(m35dp + pinnedHeader.getHeight()));
+                            int m36dp = (childAt instanceof SharedDocumentCell ? AndroidUtilities.m36dp(8.0f) + 0 : 0) - placeProviderObject.viewY;
+                            if (m36dp > childAt.getHeight()) {
+                                recyclerListView.scrollBy(0, -(m36dp + pinnedHeader.getHeight()));
                             } else {
                                 int height = placeProviderObject.viewY - recyclerListView.getHeight();
                                 if (childAt instanceof SharedDocumentCell) {
-                                    height -= AndroidUtilities.m35dp(8.0f);
+                                    height -= AndroidUtilities.m36dp(8.0f);
                                 }
                                 if (height >= 0) {
                                     recyclerListView.scrollBy(0, height + childAt.getHeight());
@@ -308,7 +308,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                     for (int i = 0; i < getChildCount(); i++) {
                         if (getChildViewHolder(getChildAt(i)).getItemViewType() == 1) {
                             canvas.save();
-                            canvas.translate(getChildAt(i).getX(), (getChildAt(i).getY() - getChildAt(i).getMeasuredHeight()) + AndroidUtilities.m35dp(2.0f));
+                            canvas.translate(getChildAt(i).getX(), (getChildAt(i).getY() - getChildAt(i).getMeasuredHeight()) + AndroidUtilities.m36dp(2.0f));
                             getChildAt(i).draw(canvas);
                             canvas.restore();
                             invalidate();
@@ -367,7 +367,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 FilteredSearchView.this.chatPreviewDelegate.finish();
             }
         });
-        this.recyclerListView.setPadding(0, 0, 0, AndroidUtilities.m35dp(3.0f));
+        this.recyclerListView.setPadding(0, 0, 0, AndroidUtilities.m36dp(3.0f));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(parentActivity);
         this.layoutManager = linearLayoutManager;
         this.recyclerListView.setLayoutManager(linearLayoutManager);
@@ -381,13 +381,13 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         addView(flickerLoadingView);
         addView(this.recyclerListView);
         this.recyclerListView.setSectionsType(2);
-        this.recyclerListView.setOnScrollListener(new C32466());
+        this.recyclerListView.setOnScrollListener(new C32496());
         ChatActionCell chatActionCell = new ChatActionCell(parentActivity);
         this.floatingDateView = chatActionCell;
         chatActionCell.setCustomDate((int) (System.currentTimeMillis() / 1000), false, false);
         chatActionCell.setAlpha(0.0f);
         chatActionCell.setOverrideColor("chat_mediaTimeBackground", "chat_mediaTimeText");
-        chatActionCell.setTranslationY(-AndroidUtilities.m35dp(48.0f));
+        chatActionCell.setTranslationY(-AndroidUtilities.m36dp(48.0f));
         addView(chatActionCell, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
         this.dialogsAdapter = new OnlyUserFiltersAdapter();
         this.sharedPhotoVideoAdapter = new SharedPhotoVideoAdapter(getContext());
@@ -416,9 +416,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
     }
 
-    public class C32466 extends RecyclerView.OnScrollListener {
-        C32466() {
-            FilteredSearchView.this = r1;
+    public class C32496 extends RecyclerView.OnScrollListener {
+        C32496() {
         }
 
         @Override
@@ -444,7 +443,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            FilteredSearchView.C32466.this.lambda$onScrolled$0();
+                            FilteredSearchView.C32496.this.lambda$onScrolled$0();
                         }
                     });
                 }
@@ -495,7 +494,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             if (ChatObject.isForum(chat2) && (findTopic2 = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat2.f857id, MessageObject.getTopicId(messageObject.messageOwner, true))) != null) {
                 charSequence = ForumUtilities.getTopicSpannedName(findTopic2, null);
             }
-            CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, null, AndroidUtilities.m35dp(12.0f), false);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, null, AndroidUtilities.m36dp(12.0f), false);
             r0 = new SpannableStringBuilder();
             r0.append(ContactsController.formatName(user.first_name, user.last_name)).append(' ').append((CharSequence) arrowSpan).append(' ').append(replaceEmoji);
         } else if (user != null) {
@@ -505,7 +504,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             if (ChatObject.isForum(chat) && (findTopic = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat.f857id, MessageObject.getTopicId(messageObject.messageOwner, true))) != null) {
                 charSequence2 = ForumUtilities.getTopicSpannedName(findTopic, null);
             }
-            r0 = Emoji.replaceEmoji(charSequence2, null, AndroidUtilities.m35dp(12.0f), false);
+            r0 = Emoji.replaceEmoji(charSequence2, null, AndroidUtilities.m36dp(12.0f), false);
         }
         return r0 == 0 ? "" : r0;
     }
@@ -880,7 +879,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                                 public void onAnimationEnd(Animator animator) {
                                     view.setAlpha(1.0f);
                                     layoutManager.stopIgnoringView(view);
-                                    ViewTreeObserver$OnPreDrawListenerC32477 viewTreeObserver$OnPreDrawListenerC32477 = ViewTreeObserver$OnPreDrawListenerC32477.this;
+                                    ViewTreeObserver$OnPreDrawListenerC32507 viewTreeObserver$OnPreDrawListenerC32507 = ViewTreeObserver$OnPreDrawListenerC32507.this;
                                     FilteredSearchView.this.recyclerListView.removeView(view);
                                 }
                             });
@@ -918,7 +917,6 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
 
         public SharedPhotoVideoAdapter(Context context) {
-            FilteredSearchView.this = r1;
             this.mContext = context;
         }
 
@@ -1067,7 +1065,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                             openUrl(str);
                         }
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                 }
             } else if (view instanceof SharedDocumentCell) {
@@ -1106,7 +1104,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
 
     public class SharedLinksAdapter extends RecyclerListView.SectionsAdapter {
         private Context mContext;
-        private final SharedLinkCell.SharedLinkCellDelegate sharedLinkCellDelegate = new C32571();
+        private final SharedLinkCell.SharedLinkCellDelegate sharedLinkCellDelegate = new C32601();
 
         @Override
         public Object getItem(int i, int i2) {
@@ -1123,9 +1121,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             return true;
         }
 
-        public class C32571 implements SharedLinkCell.SharedLinkCellDelegate {
-            C32571() {
-                SharedLinksAdapter.this = r1;
+        public class C32601 implements SharedLinkCell.SharedLinkCellDelegate {
+            C32601() {
             }
 
             @Override
@@ -1149,7 +1146,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 builder.setItems(new CharSequence[]{LocaleController.getString("Open", C1072R.string.Open), LocaleController.getString("Copy", C1072R.string.Copy)}, new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        FilteredSearchView.SharedLinksAdapter.C32571.this.lambda$onLinkPress$0(str, dialogInterface, i);
+                        FilteredSearchView.SharedLinksAdapter.C32601.this.lambda$onLinkPress$0(str, dialogInterface, i);
                     }
                 });
                 FilteredSearchView.this.parentFragment.showDialog(builder.create());
@@ -1170,7 +1167,6 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
 
         public SharedLinksAdapter(Context context) {
-            FilteredSearchView.this = r1;
             this.mContext = context;
         }
 
@@ -1307,7 +1303,6 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
 
         public SharedDocumentsAdapter(Context context, int i) {
-            FilteredSearchView.this = r1;
             this.mContext = context;
             this.currentType = i;
         }
@@ -1568,7 +1563,6 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
 
         OnlyUserFiltersAdapter() {
-            FilteredSearchView.this = r1;
         }
 
         @Override
@@ -1714,7 +1708,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.floatingDateAnimation = animatorSet2;
             animatorSet2.setDuration(180L);
-            this.floatingDateAnimation.playTogether(ObjectAnimator.ofFloat(this.floatingDateView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.floatingDateView, View.TRANSLATION_Y, -AndroidUtilities.m35dp(48.0f)));
+            this.floatingDateAnimation.playTogether(ObjectAnimator.ofFloat(this.floatingDateView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.floatingDateView, View.TRANSLATION_Y, -AndroidUtilities.m36dp(48.0f)));
             this.floatingDateAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
             this.floatingDateAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override

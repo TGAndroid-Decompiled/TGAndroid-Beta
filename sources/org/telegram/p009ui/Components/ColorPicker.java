@@ -166,22 +166,22 @@ public class ColorPicker extends FrameLayout {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(30.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(30.0f), 1073741824));
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
-            float m35dp = AndroidUtilities.m35dp(15.0f);
+            float m36dp = AndroidUtilities.m36dp(15.0f);
             float measuredWidth = getMeasuredWidth() * 0.5f;
             float measuredHeight = getMeasuredHeight() * 0.5f;
             this.paint.setColor(this.currentColor);
             this.paint.setStyle(Paint.Style.STROKE);
-            this.paint.setStrokeWidth(AndroidUtilities.m35dp(3.0f));
+            this.paint.setStrokeWidth(AndroidUtilities.m36dp(3.0f));
             this.paint.setAlpha(Math.round(this.checkedState * 255.0f));
-            canvas.drawCircle(measuredWidth, measuredHeight, m35dp - (this.paint.getStrokeWidth() * 0.5f), this.paint);
+            canvas.drawCircle(measuredWidth, measuredHeight, m36dp - (this.paint.getStrokeWidth() * 0.5f), this.paint);
             this.paint.setAlpha(255);
             this.paint.setStyle(Paint.Style.FILL);
-            canvas.drawCircle(measuredWidth, measuredHeight, m35dp - (AndroidUtilities.m35dp(5.0f) * this.checkedState), this.paint);
+            canvas.drawCircle(measuredWidth, measuredHeight, m36dp - (AndroidUtilities.m36dp(5.0f) * this.checkedState), this.paint);
         }
 
         @Override
@@ -224,7 +224,6 @@ public class ColorPicker extends FrameLayout {
             private RectF rect = new RectF();
 
             {
-                ColorPicker.this = this;
                 Paint paint2 = new Paint(1);
                 this.paint = paint2;
                 paint2.setColor(Theme.getColor("dialogBackgroundGray"));
@@ -232,9 +231,9 @@ public class ColorPicker extends FrameLayout {
 
             @Override
             protected void onDraw(Canvas canvas) {
-                int left = ColorPicker.this.colorEditText[0].getLeft() - AndroidUtilities.m35dp(13.0f);
-                this.rect.set(left, AndroidUtilities.m35dp(5.0f), left + ((int) (AndroidUtilities.m35dp(91.0f) + (ColorPicker.this.clearButton.getVisibility() == 0 ? AndroidUtilities.m35dp(25.0f) * ColorPicker.this.clearButton.getAlpha() : 0.0f))), AndroidUtilities.m35dp(37.0f));
-                canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), this.paint);
+                int left = ColorPicker.this.colorEditText[0].getLeft() - AndroidUtilities.m36dp(13.0f);
+                this.rect.set(left, AndroidUtilities.m36dp(5.0f), left + ((int) (AndroidUtilities.m36dp(91.0f) + (ColorPicker.this.clearButton.getVisibility() == 0 ? AndroidUtilities.m36dp(25.0f) * ColorPicker.this.clearButton.getAlpha() : 0.0f))), AndroidUtilities.m36dp(37.0f));
+                canvas.drawRoundRect(this.rect, AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), this.paint);
             }
         };
         this.linearLayout = linearLayout;
@@ -282,7 +281,7 @@ public class ColorPicker extends FrameLayout {
                 this.colorEditText[i2].setText("#");
                 this.colorEditText[i2].setEnabled(false);
                 this.colorEditText[i2].setFocusable(false);
-                this.colorEditText[i2].setPadding(0, AndroidUtilities.m35dp(5.0f), 0, AndroidUtilities.m35dp(16.0f));
+                this.colorEditText[i2].setPadding(0, AndroidUtilities.m36dp(5.0f), 0, AndroidUtilities.m36dp(16.0f));
                 this.linearLayout.addView(this.colorEditText[i2], LayoutHelper.createLinear(-2, -1, 0.0f, 0.0f, 0.0f, 0.0f));
             } else {
                 editTextBoldCursorArr[i2] = new EditTextBoldCursor(context) {
@@ -302,7 +301,7 @@ public class ColorPicker extends FrameLayout {
                     @Override
                     public boolean getGlobalVisibleRect(Rect rect, Point point) {
                         boolean globalVisibleRect = super.getGlobalVisibleRect(rect, point);
-                        rect.bottom += AndroidUtilities.m35dp(40.0f);
+                        rect.bottom += AndroidUtilities.m36dp(40.0f);
                         return globalVisibleRect;
                     }
 
@@ -315,7 +314,7 @@ public class ColorPicker extends FrameLayout {
                 this.colorEditText[i2].setBackgroundDrawable(null);
                 this.colorEditText[i2].setFilters(new InputFilter[]{new InputFilter.LengthFilter(6)});
                 this.colorEditText[i2].setHint("8BC6ED");
-                this.colorEditText[i2].setPadding(0, AndroidUtilities.m35dp(5.0f), 0, AndroidUtilities.m35dp(16.0f));
+                this.colorEditText[i2].setPadding(0, AndroidUtilities.m36dp(5.0f), 0, AndroidUtilities.m36dp(16.0f));
                 this.linearLayout.addView(this.colorEditText[i2], LayoutHelper.createLinear(71, -1, 0.0f, 0.0f, 0.0f, 0.0f));
                 this.colorEditText[i2].addTextChangedListener(new TextWatcher() {
                     @Override
@@ -364,7 +363,7 @@ public class ColorPicker extends FrameLayout {
             this.colorEditText[i2].setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
             this.colorEditText[i2].setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.colorEditText[i2].setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            this.colorEditText[i2].setCursorSize(AndroidUtilities.m35dp(18.0f));
+            this.colorEditText[i2].setCursorSize(AndroidUtilities.m36dp(18.0f));
             this.colorEditText[i2].setCursorWidth(1.5f);
             this.colorEditText[i2].setSingleLine(true);
             this.colorEditText[i2].setGravity(19);
@@ -422,7 +421,7 @@ public class ColorPicker extends FrameLayout {
         textView.setTextSize(1, 15.0f);
         this.resetButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.resetButton.setGravity(17);
-        this.resetButton.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+        this.resetButton.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
         this.resetButton.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         addView(this.resetButton, LayoutHelper.createFrame(-2, 36.0f, 53, 0.0f, 3.0f, 14.0f, 0.0f));
         this.resetButton.setOnClickListener(ColorPicker$$ExternalSyntheticLambda4.INSTANCE);
@@ -435,7 +434,7 @@ public class ColorPicker extends FrameLayout {
             this.menuItem.addSubItem(1, C1072R.C1073drawable.msg_edit, LocaleController.getString("OpenInEditor", C1072R.string.OpenInEditor));
             this.menuItem.addSubItem(2, C1072R.C1073drawable.msg_share, LocaleController.getString("ShareTheme", C1072R.string.ShareTheme));
             this.menuItem.addSubItem(3, C1072R.C1073drawable.msg_delete, LocaleController.getString("DeleteTheme", C1072R.string.DeleteTheme));
-            this.menuItem.setMenuYOffset(-AndroidUtilities.m35dp(80.0f));
+            this.menuItem.setMenuYOffset(-AndroidUtilities.m36dp(80.0f));
             this.menuItem.setSubMenuOpenSide(2);
             this.menuItem.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
                 @Override
@@ -443,8 +442,8 @@ public class ColorPicker extends FrameLayout {
                     ColorPicker.this.lambda$new$5(i3);
                 }
             });
-            this.menuItem.setAdditionalYOffset(AndroidUtilities.m35dp(72.0f));
-            this.menuItem.setTranslationX(AndroidUtilities.m35dp(6.0f));
+            this.menuItem.setAdditionalYOffset(AndroidUtilities.m36dp(72.0f));
+            this.menuItem.setTranslationX(AndroidUtilities.m36dp(6.0f));
             this.menuItem.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 1));
             addView(this.menuItem, LayoutHelper.createFrame(30, 30.0f, 53, 0.0f, 2.0f, 10.0f, 0.0f));
             this.menuItem.setOnClickListener(new View.OnClickListener() {
@@ -529,9 +528,9 @@ public class ColorPicker extends FrameLayout {
             arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.ALPHA, 1.0f));
             arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.SCALE_X, 1.0f));
             arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.SCALE_Y, 1.0f));
-            arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.TRANSLATION_X, (AndroidUtilities.m35dp(30.0f) * (this.colorsCount - 1)) + (AndroidUtilities.m35dp(13.0f) * (this.colorsCount - 1))));
+            arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.TRANSLATION_X, (AndroidUtilities.m36dp(30.0f) * (this.colorsCount - 1)) + (AndroidUtilities.m36dp(13.0f) * (this.colorsCount - 1))));
         } else {
-            arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.TRANSLATION_X, (AndroidUtilities.m35dp(30.0f) * (this.colorsCount - 1)) + (AndroidUtilities.m35dp(13.0f) * (this.colorsCount - 1))));
+            arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.TRANSLATION_X, (AndroidUtilities.m36dp(30.0f) * (this.colorsCount - 1)) + (AndroidUtilities.m36dp(13.0f) * (this.colorsCount - 1))));
             arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.ALPHA, 0.0f));
             arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.SCALE_X, 0.0f));
             arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.SCALE_Y, 0.0f));
@@ -579,12 +578,12 @@ public class ColorPicker extends FrameLayout {
             arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.TRANSLATION_X, 0.0f));
         } else if (i == 3) {
             this.colorsCount = 2;
-            arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.TRANSLATION_X, AndroidUtilities.m35dp(30.0f) + AndroidUtilities.m35dp(13.0f)));
+            arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.TRANSLATION_X, AndroidUtilities.m36dp(30.0f) + AndroidUtilities.m36dp(13.0f)));
         } else if (i != 4) {
             return;
         } else {
             this.colorsCount = 3;
-            arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.TRANSLATION_X, (AndroidUtilities.m35dp(30.0f) * 2) + (AndroidUtilities.m35dp(13.0f) * 2)));
+            arrayList.add(ObjectAnimator.ofFloat(this.addButton, View.TRANSLATION_X, (AndroidUtilities.m36dp(30.0f) * 2) + (AndroidUtilities.m36dp(13.0f) * 2)));
         }
         if (this.colorsCount < this.maxColorsCount) {
             this.addButton.setVisibility(0);
@@ -667,9 +666,9 @@ public class ColorPicker extends FrameLayout {
 
     private void updateColorsPosition(ArrayList<Animator> arrayList, int i, boolean z, int i2) {
         int i3 = this.colorsCount;
-        int left = this.radioContainer.getLeft() + (AndroidUtilities.m35dp(30.0f) * i3) + ((i3 - 1) * AndroidUtilities.m35dp(13.0f));
-        int m35dp = i2 - AndroidUtilities.m35dp(this.currentResetType == 1 ? 50.0f : 0.0f);
-        float f = left > m35dp ? left - m35dp : 0.0f;
+        int left = this.radioContainer.getLeft() + (AndroidUtilities.m36dp(30.0f) * i3) + ((i3 - 1) * AndroidUtilities.m36dp(13.0f));
+        int m36dp = i2 - AndroidUtilities.m36dp(this.currentResetType == 1 ? 50.0f : 0.0f);
+        float f = left > m36dp ? left - m36dp : 0.0f;
         if (arrayList != null) {
             arrayList.add(ObjectAnimator.ofFloat(this.radioContainer, View.TRANSLATION_X, -f));
         } else {
@@ -726,7 +725,7 @@ public class ColorPicker extends FrameLayout {
                 }
                 this.radioButton[i4].setTag(i6, null);
             }
-            i5 += AndroidUtilities.m35dp(30.0f) + AndroidUtilities.m35dp(13.0f);
+            i5 += AndroidUtilities.m36dp(30.0f) + AndroidUtilities.m36dp(13.0f);
             i4++;
         }
     }
@@ -749,22 +748,22 @@ public class ColorPicker extends FrameLayout {
     }
 
     private void drawPointerArrow(Canvas canvas, int i, int i2, int i3, boolean z) {
-        int m35dp = AndroidUtilities.m35dp(z ? 12.0f : 16.0f);
-        this.circleDrawable.setBounds(i - m35dp, i2 - m35dp, i + m35dp, m35dp + i2);
+        int m36dp = AndroidUtilities.m36dp(z ? 12.0f : 16.0f);
+        this.circleDrawable.setBounds(i - m36dp, i2 - m36dp, i + m36dp, m36dp + i2);
         this.circleDrawable.draw(canvas);
         this.circlePaint.setColor(-1);
         float f = i;
         float f2 = i2;
-        canvas.drawCircle(f, f2, AndroidUtilities.m35dp(z ? 11.0f : 15.0f), this.circlePaint);
+        canvas.drawCircle(f, f2, AndroidUtilities.m36dp(z ? 11.0f : 15.0f), this.circlePaint);
         this.circlePaint.setColor(i3);
-        canvas.drawCircle(f, f2, AndroidUtilities.m35dp(z ? 9.0f : 13.0f), this.circlePaint);
+        canvas.drawCircle(f, f2, AndroidUtilities.m36dp(z ? 9.0f : 13.0f), this.circlePaint);
     }
 
     @Override
     protected void onSizeChanged(int i, int i2, int i3, int i4) {
         if (this.colorWheelWidth != i) {
             this.colorWheelWidth = i;
-            this.colorWheelBitmap = createColorWheelBitmap(i, AndroidUtilities.m35dp(180.0f));
+            this.colorWheelBitmap = createColorWheelBitmap(i, AndroidUtilities.m36dp(180.0f));
             this.colorGradient = null;
         }
     }
@@ -853,11 +852,11 @@ public class ColorPicker extends FrameLayout {
         if (i3 == 1) {
             this.addButton.setTranslationX(0.0f);
         } else if (i3 == 2) {
-            this.addButton.setTranslationX(AndroidUtilities.m35dp(30.0f) + AndroidUtilities.m35dp(13.0f));
+            this.addButton.setTranslationX(AndroidUtilities.m36dp(30.0f) + AndroidUtilities.m36dp(13.0f));
         } else if (i3 == 3) {
-            this.addButton.setTranslationX((AndroidUtilities.m35dp(30.0f) * 2) + (AndroidUtilities.m35dp(13.0f) * 2));
+            this.addButton.setTranslationX((AndroidUtilities.m36dp(30.0f) * 2) + (AndroidUtilities.m36dp(13.0f) * 2));
         } else {
-            this.addButton.setTranslationX((AndroidUtilities.m35dp(30.0f) * 3) + (AndroidUtilities.m35dp(13.0f) * 3));
+            this.addButton.setTranslationX((AndroidUtilities.m36dp(30.0f) * 3) + (AndroidUtilities.m36dp(13.0f) * 3));
         }
         ActionBarMenuItem actionBarMenuItem = this.menuItem;
         if (actionBarMenuItem != null) {

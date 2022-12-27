@@ -363,7 +363,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             try {
                 getWindow().setFlags(8192, 8192);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         super.onCreate(bundle);
@@ -393,9 +393,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             this.themeSwitchImageView = imageView;
             imageView.setVisibility(8);
         }
-        C34433 c34433 = new C34433(this);
-        this.drawerLayoutContainer = c34433;
-        c34433.setBehindKeyboardColor(Theme.getColor("windowBackgroundWhite"));
+        C34463 c34463 = new C34463(this);
+        this.drawerLayoutContainer = c34463;
+        c34463.setBehindKeyboardColor(Theme.getColor("windowBackgroundWhite"));
         this.frameLayout.addView(this.drawerLayoutContainer, LayoutHelper.createFrame(-1, -1.0f));
         if (i2 >= 21) {
             View view = new View(this) {
@@ -424,7 +424,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
 
             @Override
-            public void onStop() {
+            protected void onStop() {
                 super.onStop();
                 setVisibility(8);
             }
@@ -473,7 +473,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.drawerLayoutContainer.setDrawerLayout(this.sideMenuContainer);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.sideMenuContainer.getLayoutParams();
         Point realScreenSize = AndroidUtilities.getRealScreenSize();
-        layoutParams.width = AndroidUtilities.isTablet() ? AndroidUtilities.m35dp(320.0f) : Math.min(AndroidUtilities.m35dp(320.0f), Math.min(realScreenSize.x, realScreenSize.y) - AndroidUtilities.m35dp(56.0f));
+        layoutParams.width = AndroidUtilities.isTablet() ? AndroidUtilities.m36dp(320.0f) : Math.min(AndroidUtilities.m36dp(320.0f), Math.min(realScreenSize.x, realScreenSize.y) - AndroidUtilities.m36dp(56.0f));
         layoutParams.height = -1;
         this.sideMenuContainer.setLayoutParams(layoutParams);
         this.sideMenu.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
@@ -522,7 +522,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     LaunchActivity.this.sideMenu.cancelClickRunnables(false);
                     view2.setBackgroundColor(Theme.getColor("dialogBackground"));
                     if (Build.VERSION.SDK_INT >= 21) {
-                        ObjectAnimator.ofFloat(view2, "elevation", AndroidUtilities.m35dp(1.0f)).setDuration(150L).start();
+                        ObjectAnimator.ofFloat(view2, "elevation", AndroidUtilities.m36dp(1.0f)).setDuration(150L).start();
                     }
                 }
             }
@@ -702,7 +702,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         }
                     }
                 } catch (Exception e2) {
-                    FileLog.m31e(e2);
+                    FileLog.m32e(e2);
                 }
             }
         } else {
@@ -732,7 +732,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             String lowerCase2 = str != null ? str.toLowerCase() : "";
             String lowerCase3 = str2 != null ? lowerCase2.toLowerCase() : "";
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("OS name " + lowerCase2 + " " + lowerCase3);
+                FileLog.m35d("OS name " + lowerCase2 + " " + lowerCase3);
             }
             if ((lowerCase2.contains("flyme") || lowerCase3.contains("flyme")) && Build.VERSION.SDK_INT <= 24) {
                 AndroidUtilities.incorrectDisplaySizeFix = true;
@@ -748,7 +748,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 viewTreeObserver.addOnGlobalLayoutListener(onGlobalLayoutListener);
             }
         } catch (Exception e3) {
-            FileLog.m31e(e3);
+            FileLog.m32e(e3);
         }
         MediaController.getInstance().setBaseActivity(this, true);
         ApplicationLoader.startAppCenter(this);
@@ -776,16 +776,15 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class C34433 extends DrawerLayoutContainer {
+    public class C34463 extends DrawerLayoutContainer {
         private boolean wasPortrait;
 
-        C34433(Context context) {
+        C34463(Context context) {
             super(context);
-            LaunchActivity.this = r1;
         }
 
         @Override
-        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             setDrawerPosition(getDrawerPosition());
             boolean z2 = i4 - i2 > i3 - i;
@@ -793,7 +792,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        LaunchActivity.C34433.this.lambda$onLayout$0();
+                        LaunchActivity.C34463.this.lambda$onLayout$0();
                     }
                 });
                 this.wasPortrait = z2;
@@ -935,7 +934,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                             z = false;
                         }
                     } catch (Throwable th) {
-                        FileLog.m31e(th);
+                        FileLog.m32e(th);
                     }
                 }
                 if (z) {
@@ -998,19 +997,19 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public static void lambda$onCreate$5(View view) {
         int measuredHeight = view.getMeasuredHeight();
-        FileLog.m34d("height = " + measuredHeight + " displayHeight = " + AndroidUtilities.displaySize.y);
+        FileLog.m35d("height = " + measuredHeight + " displayHeight = " + AndroidUtilities.displaySize.y);
         if (Build.VERSION.SDK_INT >= 21) {
             measuredHeight -= AndroidUtilities.statusBarHeight;
         }
-        if (measuredHeight <= AndroidUtilities.m35dp(100.0f) || measuredHeight >= AndroidUtilities.displaySize.y) {
+        if (measuredHeight <= AndroidUtilities.m36dp(100.0f) || measuredHeight >= AndroidUtilities.displaySize.y) {
             return;
         }
-        int m35dp = AndroidUtilities.m35dp(100.0f) + measuredHeight;
+        int m36dp = AndroidUtilities.m36dp(100.0f) + measuredHeight;
         Point point = AndroidUtilities.displaySize;
-        if (m35dp > point.y) {
+        if (m36dp > point.y) {
             point.y = measuredHeight;
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("fix display size y to " + AndroidUtilities.displaySize.y);
+                FileLog.m35d("fix display size y to " + AndroidUtilities.displaySize.y);
             }
         }
     }
@@ -1046,7 +1045,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 private boolean inLayout;
 
                 {
-                    LaunchActivity.this = this;
                     new Path();
                 }
 
@@ -1070,16 +1068,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     } else {
                         LaunchActivity.this.tabletFullSize = false;
                         int i3 = (size / 100) * 35;
-                        if (i3 < AndroidUtilities.m35dp(320.0f)) {
-                            i3 = AndroidUtilities.m35dp(320.0f);
+                        if (i3 < AndroidUtilities.m36dp(320.0f)) {
+                            i3 = AndroidUtilities.m36dp(320.0f);
                         }
                         LaunchActivity.this.actionBarLayout.getView().measure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                        LaunchActivity.this.shadowTabletSide.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                        LaunchActivity.this.shadowTabletSide.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
                         LaunchActivity.this.rightActionBarLayout.getView().measure(View.MeasureSpec.makeMeasureSpec(size - i3, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
                     }
                     LaunchActivity.this.backgroundTablet.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
                     LaunchActivity.this.shadowTablet.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                    LaunchActivity.this.layersActionBarLayout.getView().measure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m35dp(530.0f), size - AndroidUtilities.m35dp(16.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - AndroidUtilities.statusBarHeight) - AndroidUtilities.m35dp(16.0f), 1073741824));
+                    LaunchActivity.this.layersActionBarLayout.getView().measure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m36dp(530.0f), size - AndroidUtilities.m36dp(16.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - AndroidUtilities.statusBarHeight) - AndroidUtilities.m36dp(16.0f), 1073741824));
                     this.inLayout = false;
                 }
 
@@ -1091,8 +1089,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         LaunchActivity.this.actionBarLayout.getView().layout(0, 0, LaunchActivity.this.actionBarLayout.getView().getMeasuredWidth(), LaunchActivity.this.actionBarLayout.getView().getMeasuredHeight());
                     } else {
                         int i7 = (i5 / 100) * 35;
-                        if (i7 < AndroidUtilities.m35dp(320.0f)) {
-                            i7 = AndroidUtilities.m35dp(320.0f);
+                        if (i7 < AndroidUtilities.m36dp(320.0f)) {
+                            i7 = AndroidUtilities.m36dp(320.0f);
                         }
                         LaunchActivity.this.shadowTabletSide.layout(i7, 0, LaunchActivity.this.shadowTabletSide.getMeasuredWidth() + i7, LaunchActivity.this.shadowTabletSide.getMeasuredHeight());
                         LaunchActivity.this.actionBarLayout.getView().layout(0, 0, LaunchActivity.this.actionBarLayout.getView().getMeasuredWidth(), LaunchActivity.this.actionBarLayout.getView().getMeasuredHeight());
@@ -1237,12 +1235,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
             Rect rect = AndroidUtilities.rectTmp2;
             drawerProfileCell.getEmojiStatusLocation(rect);
-            int m35dp = (-(childAt.getHeight() - rect.centerY())) - AndroidUtilities.m35dp(16.0f);
+            int m36dp = (-(childAt.getHeight() - rect.centerY())) - AndroidUtilities.m36dp(16.0f);
             i = rect.centerX();
             if (Build.VERSION.SDK_INT >= 23 && getWindow() != null && getWindow().getDecorView() != null && getWindow().getDecorView().getRootWindowInsets() != null) {
                 i -= getWindow().getDecorView().getRootWindowInsets().getStableInsetLeft();
             }
-            i2 = m35dp;
+            i2 = m36dp;
             swapAnimatedEmojiDrawable = emojiStatusDrawable;
             view = emojiStatusDrawableParent;
         } else {
@@ -1252,17 +1250,17 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             swapAnimatedEmojiDrawable = null;
         }
         View view2 = view;
-        C343012 c343012 = new C343012(lastFragment, this, true, Integer.valueOf(i), 0, null, selectAnimatedEmojiDialogWindowArr);
+        C343312 c343312 = new C343312(lastFragment, this, true, Integer.valueOf(i), 0, null, selectAnimatedEmojiDialogWindowArr);
         if (user != null) {
             TLRPC$EmojiStatus tLRPC$EmojiStatus = user.emoji_status;
             if ((tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil) && ((TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus).until > ((int) (System.currentTimeMillis() / 1000))) {
-                c343012.setExpireDateHint(((TLRPC$TL_emojiStatusUntil) user.emoji_status).until);
+                c343312.setExpireDateHint(((TLRPC$TL_emojiStatusUntil) user.emoji_status).until);
             }
         }
-        c343012.setSelected((swapAnimatedEmojiDrawable == null || !(swapAnimatedEmojiDrawable.getDrawable() instanceof AnimatedEmojiDrawable)) ? null : Long.valueOf(((AnimatedEmojiDrawable) swapAnimatedEmojiDrawable.getDrawable()).getDocumentId()));
-        c343012.setSaveState(2);
-        c343012.setScrimDrawable(swapAnimatedEmojiDrawable, view2);
-        SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(c343012, -2, -2) {
+        c343312.setSelected((swapAnimatedEmojiDrawable == null || !(swapAnimatedEmojiDrawable.getDrawable() instanceof AnimatedEmojiDrawable)) ? null : Long.valueOf(((AnimatedEmojiDrawable) swapAnimatedEmojiDrawable.getDrawable()).getDocumentId()));
+        c343312.setSaveState(2);
+        c343312.setScrimDrawable(swapAnimatedEmojiDrawable, view2);
+        SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(c343312, -2, -2) {
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -1275,12 +1273,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         selectAnimatedEmojiDialogWindowArr[0].dimBehind();
     }
 
-    public class C343012 extends SelectAnimatedEmojiDialog {
+    public class C343312 extends SelectAnimatedEmojiDialog {
         final SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] val$popup;
 
-        C343012(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr) {
+        C343312(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr) {
             super(baseFragment, context, z, num, i, resourcesProvider);
-            LaunchActivity.this = r8;
             this.val$popup = selectAnimatedEmojiDialogWindowArr;
         }
 
@@ -1652,7 +1649,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             this.termsOfServiceView = termsOfServiceView;
             termsOfServiceView.setAlpha(0.0f);
             this.drawerLayoutContainer.addView(this.termsOfServiceView, LayoutHelper.createFrame(-1, -1.0f));
-            this.termsOfServiceView.setDelegate(new C343315());
+            this.termsOfServiceView.setDelegate(new C343615());
         }
         TLRPC$TL_help_termsOfService tLRPC$TL_help_termsOfService2 = UserConfig.getInstance(i).unacceptedTermsOfService;
         if (tLRPC$TL_help_termsOfService2 != tLRPC$TL_help_termsOfService && (tLRPC$TL_help_termsOfService2 == null || !tLRPC$TL_help_termsOfService2.f915id.data.equals(tLRPC$TL_help_termsOfService.f915id.data))) {
@@ -1664,9 +1661,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.termsOfServiceView.animate().alpha(1.0f).setDuration(150L).setInterpolator(AndroidUtilities.decelerateInterpolator).setListener(null).start();
     }
 
-    public class C343315 implements TermsOfServiceView.TermsOfServiceViewDelegate {
-        C343315() {
-            LaunchActivity.this = r1;
+    public class C343615 implements TermsOfServiceView.TermsOfServiceViewDelegate {
+        C343615() {
         }
 
         @Override
@@ -1680,7 +1676,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             LaunchActivity.this.termsOfServiceView.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.C343315.this.lambda$onAcceptTerms$0();
+                    LaunchActivity.C343615.this.lambda$onAcceptTerms$0();
                 }
             }).start();
         }
@@ -2055,17 +2051,17 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             try {
                 if (!mainFragmentsStack.isEmpty()) {
                     ArrayList<BaseFragment> arrayList2 = mainFragmentsStack;
-                    BulletinFactory.m13of(arrayList2.get(arrayList2.size() - 1)).createErrorBulletin(LocaleController.getString("ChannelPostDeleted", C1072R.string.ChannelPostDeleted)).show();
+                    BulletinFactory.m14of(arrayList2.get(arrayList2.size() - 1)).createErrorBulletin(LocaleController.getString("ChannelPostDeleted", C1072R.string.ChannelPostDeleted)).show();
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         if (runnable2 != null) {
             try {
                 runnable2.run();
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
                 return;
             }
         }
@@ -2147,7 +2143,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         try {
                             openInputStream.close();
                         } catch (Exception e) {
-                            FileLog.m31e(e);
+                            FileLog.m32e(e);
                         }
                     }
                     TLRPC$TL_messages_checkHistoryImport tLRPC$TL_messages_checkHistoryImport = new TLRPC$TL_messages_checkHistoryImport();
@@ -2171,12 +2167,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 } catch (Exception e2) {
                     e = e2;
                     inputStream = openInputStream;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     if (inputStream != null) {
                         try {
                             inputStream.close();
                         } catch (Exception e3) {
-                            FileLog.m31e(e3);
+                            FileLog.m32e(e3);
                         }
                     }
                 } catch (Throwable th) {
@@ -2186,7 +2182,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         try {
                             inputStream.close();
                         } catch (Exception e4) {
-                            FileLog.m31e(e4);
+                            FileLog.m32e(e4);
                         }
                     }
                     throw th;
@@ -2288,7 +2284,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -2341,14 +2337,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             sb.append(str);
             sb.append(" err=");
             sb.append(tLRPC$TL_error == null ? null : tLRPC$TL_error.text);
-            FileLog.m33e(sb.toString());
+            FileLog.m34e(sb.toString());
             ArrayList<BaseFragment> arrayList = mainFragmentsStack;
-            BulletinFactory.m13of(arrayList.get(arrayList.size() - 1)).createErrorBulletin(LocaleController.getString(C1072R.string.NoUsernameFound)).show();
+            BulletinFactory.m14of(arrayList.get(arrayList.size() - 1)).createErrorBulletin(LocaleController.getString(C1072R.string.NoUsernameFound)).show();
         }
         try {
             runnable.run();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -2365,7 +2361,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         PaymentFormActivity paymentFormActivity;
         if (tLRPC$TL_error != null) {
             ArrayList<BaseFragment> arrayList = mainFragmentsStack;
-            BulletinFactory.m13of(arrayList.get(arrayList.size() - 1)).createErrorBulletin(LocaleController.getString(C1072R.string.PaymentInvoiceLinkInvalid)).show();
+            BulletinFactory.m14of(arrayList.get(arrayList.size() - 1)).createErrorBulletin(LocaleController.getString(C1072R.string.PaymentInvoiceLinkInvalid)).show();
         } else if (!isFinishing()) {
             if (tLObject instanceof TLRPC$TL_payments_paymentForm) {
                 TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm = (TLRPC$TL_payments_paymentForm) tLObject;
@@ -2391,7 +2387,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             runnable.run();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -2438,11 +2434,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         });
                     } else {
                         ArrayList<BaseFragment> arrayList = mainFragmentsStack;
-                        BulletinFactory.m13of(arrayList.get(arrayList.size() - 1)).createErrorBulletin(LocaleController.getString(C1072R.string.BotCantAddToAttachMenu)).show();
+                        BulletinFactory.m14of(arrayList.get(arrayList.size() - 1)).createErrorBulletin(LocaleController.getString(C1072R.string.BotCantAddToAttachMenu)).show();
                     }
                 } else {
                     ArrayList<BaseFragment> arrayList2 = mainFragmentsStack;
-                    BulletinFactory.m13of(arrayList2.get(arrayList2.size() - 1)).createErrorBulletin(LocaleController.getString(C1072R.string.BotSetAttachLinkNotBot)).show();
+                    BulletinFactory.m14of(arrayList2.get(arrayList2.size() - 1)).createErrorBulletin(LocaleController.getString(C1072R.string.BotSetAttachLinkNotBot)).show();
                 }
             } else if (num != null && ((num2 != null || num3 != null) && !tLRPC$TL_contacts_resolvedPeer.chats.isEmpty())) {
                 iArr[0] = runCommentRequest(i, runnable, num, num2, num3, tLRPC$TL_contacts_resolvedPeer.chats.get(0));
@@ -2490,10 +2486,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                             return;
                         }
                         ArrayList<BaseFragment> arrayList3 = mainFragmentsStack;
-                        BulletinFactory.m13of(arrayList3.get(arrayList3.size() - 1)).createErrorBulletin(LocaleController.getString("BotCantJoinGroups", C1072R.string.BotCantJoinGroups)).show();
+                        BulletinFactory.m14of(arrayList3.get(arrayList3.size() - 1)).createErrorBulletin(LocaleController.getString("BotCantJoinGroups", C1072R.string.BotCantJoinGroups)).show();
                         return;
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         return;
                     }
                 }
@@ -2583,12 +2579,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                             try {
                                 runnable.run();
                             } catch (Exception e2) {
-                                FileLog.m31e(e2);
+                                FileLog.m32e(e2);
                             }
                         }
                     } else {
                         long j3 = j;
-                        MessagesController.getInstance(i).ensureMessagesLoaded(j3, num == null ? 0 : num.intValue(), new C343618(runnable, str3, chatActivity, j3, num, bundle3));
+                        MessagesController.getInstance(i).ensureMessagesLoaded(j3, num == null ? 0 : num.intValue(), new C343918(runnable, str3, chatActivity, j3, num, bundle3));
                     }
                     z2 = false;
                 }
@@ -2602,22 +2598,22 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         ((ChatActivity) baseFragment).shakeContent();
                     }
                     if (tLRPC$TL_error != null && (str12 = tLRPC$TL_error.text) != null && str12.startsWith("FLOOD_WAIT")) {
-                        BulletinFactory.m13of(baseFragment).createErrorBulletin(LocaleController.getString("FloodWait", C1072R.string.FloodWait)).show();
+                        BulletinFactory.m14of(baseFragment).createErrorBulletin(LocaleController.getString("FloodWait", C1072R.string.FloodWait)).show();
                     } else if (AndroidUtilities.isNumeric(str11)) {
-                        BulletinFactory.m13of(baseFragment).createErrorBulletin(LocaleController.getString("NoPhoneFound", C1072R.string.NoPhoneFound)).show();
+                        BulletinFactory.m14of(baseFragment).createErrorBulletin(LocaleController.getString("NoPhoneFound", C1072R.string.NoPhoneFound)).show();
                     } else {
-                        BulletinFactory.m13of(baseFragment).createErrorBulletin(LocaleController.getString("NoUsernameFound", C1072R.string.NoUsernameFound)).show();
+                        BulletinFactory.m14of(baseFragment).createErrorBulletin(LocaleController.getString("NoUsernameFound", C1072R.string.NoUsernameFound)).show();
                     }
                 }
             } catch (Exception e3) {
-                FileLog.m31e(e3);
+                FileLog.m32e(e3);
             }
         }
         if (z2) {
             try {
                 runnable.run();
             } catch (Exception e4) {
-                FileLog.m31e(e4);
+                FileLog.m32e(e4);
             }
         }
     }
@@ -2674,14 +2670,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 } else if (baseFragment instanceof ChatActivity) {
                     ChatActivity chatActivity = (ChatActivity) baseFragment;
                     if (!MediaDataController.canShowAttachMenuBot(tLRPC$TL_attachMenuBot, chatActivity.getCurrentUser() != null ? chatActivity.getCurrentUser() : chatActivity.getCurrentChat())) {
-                        BulletinFactory.m13of(baseFragment).createErrorBulletin(LocaleController.getString(C1072R.string.BotAlreadyAddedToAttachMenu)).show();
+                        BulletinFactory.m14of(baseFragment).createErrorBulletin(LocaleController.getString(C1072R.string.BotAlreadyAddedToAttachMenu)).show();
                         return;
                     } else {
                         chatActivity.openAttachBotLayout(tLRPC$User.f995id, str2);
                         return;
                     }
                 } else {
-                    BulletinFactory.m13of(baseFragment).createErrorBulletin(LocaleController.getString(C1072R.string.BotAlreadyAddedToAttachMenu)).show();
+                    BulletinFactory.m14of(baseFragment).createErrorBulletin(LocaleController.getString(C1072R.string.BotAlreadyAddedToAttachMenu)).show();
                     return;
                 }
             }
@@ -2702,7 +2698,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 checkBoxCell.setBackground(Theme.getSelectorDrawable(false));
                 checkBoxCell.setMultiline(true);
                 checkBoxCell.setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", C1072R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), "", true, false);
-                checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.m35dp(8.0f) : AndroidUtilities.m35dp(16.0f), 0);
+                checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.m36dp(8.0f) : AndroidUtilities.m36dp(16.0f), 0);
                 checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -2716,7 +2712,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             return;
         }
         ArrayList<BaseFragment> arrayList3 = mainFragmentsStack;
-        BulletinFactory.m13of(arrayList3.get(arrayList3.size() - 1)).createErrorBulletin(LocaleController.getString(C1072R.string.BotCantAddToAttachMenu)).show();
+        BulletinFactory.m14of(arrayList3.get(arrayList3.size() - 1)).createErrorBulletin(LocaleController.getString(C1072R.string.BotCantAddToAttachMenu)).show();
     }
 
     public void lambda$runLinkRequest$41(TLRPC$User tLRPC$User, String str, int i, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z) {
@@ -3053,11 +3049,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             runnable.run();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
-    public class C343618 implements MessagesController.MessagesLoadedCallback {
+    public class C343918 implements MessagesController.MessagesLoadedCallback {
         final Bundle val$args;
         final long val$dialog_id;
         final Runnable val$dismissLoading;
@@ -3065,8 +3061,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final String val$livestream;
         final Integer val$messageId;
 
-        C343618(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
-            LaunchActivity.this = r1;
+        C343918(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -3081,7 +3076,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             try {
                 this.val$dismissLoading.run();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             if (LaunchActivity.this.isFinishing()) {
                 return;
@@ -3096,7 +3091,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            LaunchActivity.C343618.this.lambda$onMessagesLoaded$2(str, j, baseFragment2);
+                            LaunchActivity.C343918.this.lambda$onMessagesLoaded$2(str, j, baseFragment2);
                         }
                     }, 150L);
                 }
@@ -3125,7 +3120,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.C343618.this.lambda$onMessagesLoaded$2(str2, j2, baseFragment22);
+                    LaunchActivity.C343918.this.lambda$onMessagesLoaded$2(str2, j2, baseFragment22);
                 }
             }, 150L);
         }
@@ -3143,7 +3138,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 if (chatFull != null) {
                     if (chatFull.call == null) {
                         if (baseFragment.getParentActivity() != null) {
-                            BulletinFactory.m13of(baseFragment).createSimpleBulletin(C1072R.raw.linkbroken, LocaleController.getString("InviteExpired", C1072R.string.InviteExpired)).show();
+                            BulletinFactory.m14of(baseFragment).createSimpleBulletin(C1072R.raw.linkbroken, LocaleController.getString("InviteExpired", C1072R.string.InviteExpired)).show();
                             return;
                         }
                         return;
@@ -3151,7 +3146,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     accountInstance.getMessagesController().getGroupCall(j2, true, new Runnable() {
                         @Override
                         public final void run() {
-                            LaunchActivity.C343618.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
+                            LaunchActivity.C343918.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
                         }
                     });
                 }
@@ -3162,7 +3157,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.C343618.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
+                    LaunchActivity.C343918.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
                 }
             });
         }
@@ -3182,7 +3177,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             try {
                 this.val$dismissLoading.run();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -3223,7 +3218,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             runnable.run();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (tLRPC$TL_error == null) {
             if (this.actionBarLayout != null) {
@@ -3316,7 +3311,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             runnable.run();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (tLObject != null) {
             MessagesController.getInstance(i).putUsers(tLRPC$TL_account_authorizationForm.users, false);
@@ -3333,7 +3328,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("ErrorOccurred", C1072R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -3350,7 +3345,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             runnable.run();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (tLObject instanceof TLRPC$TL_help_deepLinkInfo) {
             TLRPC$TL_help_deepLinkInfo tLRPC$TL_help_deepLinkInfo = (TLRPC$TL_help_deepLinkInfo) tLObject;
@@ -3371,7 +3366,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             runnable.run();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (tLObject instanceof TLRPC$TL_langPackLanguage) {
             showAlertDialog(AlertsCreator.createLanguageAlert(this, (TLRPC$TL_langPackLanguage) tLObject));
@@ -3397,7 +3392,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             runnable.run();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (tLObject instanceof TLRPC$TL_wallPaper) {
             TLRPC$TL_wallPaper tLRPC$TL_wallPaper2 = (TLRPC$TL_wallPaper) tLObject;
@@ -3471,7 +3466,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     try {
                         runnable.run();
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                     openThemeAccentPreview(tLRPC$TL_theme, tLRPC$TL_wallPaper, theme);
                 }
@@ -3497,7 +3492,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             try {
                 runnable.run();
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
             if (c == 1) {
                 showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("Theme", C1072R.string.Theme), LocaleController.getString("ThemeNotSupported", C1072R.string.ThemeNotSupported)));
@@ -3524,7 +3519,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             runnable.run();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -3557,7 +3552,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             runnable.run();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         boolean z = true;
         if (tLObject instanceof TLRPC$TL_messages_chats) {
@@ -3692,7 +3687,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.updateLayout = frameLayout;
         frameLayout.setWillNotDraw(false);
         this.updateLayout.setVisibility(4);
-        this.updateLayout.setTranslationY(AndroidUtilities.m35dp(44.0f));
+        this.updateLayout.setTranslationY(AndroidUtilities.m36dp(44.0f));
         if (Build.VERSION.SDK_INT >= 21) {
             this.updateLayout.setBackground(Theme.getSelectorDrawable(1090519039, false));
         }
@@ -3706,8 +3701,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         RadialProgress2 radialProgress2 = new RadialProgress2(this.updateLayout);
         this.updateLayoutIcon = radialProgress2;
         radialProgress2.setColors(-1, -1, -1, -1);
-        this.updateLayoutIcon.setProgressRect(AndroidUtilities.m35dp(22.0f), AndroidUtilities.m35dp(11.0f), AndroidUtilities.m35dp(44.0f), AndroidUtilities.m35dp(33.0f));
-        this.updateLayoutIcon.setCircleRadius(AndroidUtilities.m35dp(11.0f));
+        this.updateLayoutIcon.setProgressRect(AndroidUtilities.m36dp(22.0f), AndroidUtilities.m36dp(11.0f), AndroidUtilities.m36dp(44.0f), AndroidUtilities.m36dp(33.0f));
+        this.updateLayoutIcon.setCircleRadius(AndroidUtilities.m36dp(11.0f));
         this.updateLayoutIcon.setAsMini();
         SimpleTextView simpleTextView = new SimpleTextView(this);
         this.updateTextView = simpleTextView;
@@ -3798,7 +3793,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 try {
                     new UpdateAppAlertDialog(this, tLRPC$TL_help_appUpdate, i).show();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.appUpdateAvailable, new Object[0]);
@@ -3813,7 +3808,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 this.visibleDialog = null;
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         try {
             AlertDialog show = builder.show();
@@ -3827,7 +3822,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             });
             return this.visibleDialog;
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
             return null;
         }
     }
@@ -3839,7 +3834,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 try {
                     Toast.makeText(this, getStringForLanguageAlert(LocaleController.getInstance().getCurrentLocaleInfo().shortName.equals("en") ? this.englishLocaleStrings : this.systemLocaleStrings, "ChangeLanguageLater", C1072R.string.ChangeLanguageLater), 1).show();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
                 this.localeDialog = null;
             } else if (alertDialog == this.proxyErrorDialog) {
@@ -3871,7 +3866,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             baseFragment = arrayList3.get(arrayList3.size() - 1);
         }
         if (BulletinFactory.canShowBulletin(baseFragment)) {
-            function.apply(BulletinFactory.m13of(baseFragment)).show();
+            function.apply(BulletinFactory.m14of(baseFragment)).show();
         }
     }
 
@@ -4117,7 +4112,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -4207,7 +4202,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (SharedConfig.passcodeHash.length() != 0 && SharedConfig.lastPauseTime != 0) {
             SharedConfig.lastPauseTime = 0;
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("reset lastPauseTime onActivityResult");
+                FileLog.m35d("reset lastPauseTime onActivityResult");
             }
             UserConfig.getInstance(this.currentAccount).saveConfig(false);
         }
@@ -4421,14 +4416,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 this.visibleDialog = null;
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         try {
             if (this.onGlobalLayoutListener != null) {
                 getWindow().getDecorView().getRootView().getViewTreeObserver().removeOnGlobalLayoutListener(this.onGlobalLayoutListener);
             }
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
         super.onDestroy();
         onFinish();
@@ -4964,7 +4959,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     final String str2 = MessagesController.getInstance(this.currentAccount).suggestedLangCode;
                     if (!z && string.equals(str2)) {
                         if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m34d("alert already showed for " + string);
+                            FileLog.m35d("alert already showed for " + string);
                             return;
                         }
                         return;
@@ -4992,7 +4987,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     }
                     if (localeInfoArr[0] != null && localeInfoArr[1] != null && localeInfoArr[0] != localeInfoArr[1]) {
                         if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m34d("show lang alert for " + localeInfoArr[0].getKey() + " and " + localeInfoArr[1].getKey());
+                            FileLog.m35d("show lang alert for " + localeInfoArr[0].getKey() + " and " + localeInfoArr[1].getKey());
                         }
                         this.systemLocaleStrings = null;
                         this.englishLocaleStrings = null;
@@ -5024,7 +5019,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     }
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -5082,7 +5077,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private void onPasscodePause() {
         if (this.lockRunnable != null) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("cancel lockRunnable onPasscodePause");
+                FileLog.m35d("cancel lockRunnable onPasscodePause");
             }
             AndroidUtilities.cancelRunOnUIThread(this.lockRunnable);
             this.lockRunnable = null;
@@ -5095,11 +5090,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     if (LaunchActivity.this.lockRunnable == this) {
                         if (AndroidUtilities.needShowPasscode(true)) {
                             if (BuildVars.LOGS_ENABLED) {
-                                FileLog.m34d("lock app");
+                                FileLog.m35d("lock app");
                             }
                             LaunchActivity.this.showPasscodeActivity(true, false, -1, -1, null, null);
                         } else if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m34d("didn't pass lock check");
+                            FileLog.m35d("didn't pass lock check");
                         }
                         LaunchActivity.this.lockRunnable = null;
                     }
@@ -5109,11 +5104,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             if (SharedConfig.appLocked) {
                 AndroidUtilities.runOnUIThread(runnable, 1000L);
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("schedule app lock in 1000");
+                    FileLog.m35d("schedule app lock in 1000");
                 }
             } else if (SharedConfig.autoLockIn != 0) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("schedule app lock in " + ((SharedConfig.autoLockIn * 1000) + 1000));
+                    FileLog.m35d("schedule app lock in " + ((SharedConfig.autoLockIn * 1000) + 1000));
                 }
                 AndroidUtilities.runOnUIThread(this.lockRunnable, (SharedConfig.autoLockIn * 1000) + 1000);
             }
@@ -5126,7 +5121,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private void onPasscodeResume() {
         if (this.lockRunnable != null) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("cancel lockRunnable onPasscodeResume");
+                FileLog.m35d("cancel lockRunnable onPasscodeResume");
             }
             AndroidUtilities.cancelRunOnUIThread(this.lockRunnable);
             this.lockRunnable = null;
@@ -5138,7 +5133,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             SharedConfig.lastPauseTime = 0;
             SharedConfig.saveConfig();
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("reset lastPauseTime onPasscodeResume");
+                FileLog.m35d("reset lastPauseTime onPasscodeResume");
             }
         }
     }
@@ -5252,7 +5247,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 baseFragment.saveSelfArgs(bundle);
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5316,7 +5311,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 this.layersActionBarLayout.extendActionMode(menu);
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (Build.VERSION.SDK_INT < 23 || actionMode.getType() != 1) {
             this.actionBarLayout.onActionModeStarted(actionMode);
@@ -5391,7 +5386,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             super.dispatchKeyEvent(keyEvent);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return false;
     }

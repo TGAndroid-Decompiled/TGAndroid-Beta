@@ -81,7 +81,7 @@ public class AcceptDeclineView extends View {
         this.declineRect = new Rect();
         this.linePaint = new Paint(1);
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        this.buttonWidth = AndroidUtilities.m35dp(60.0f);
+        this.buttonWidth = AndroidUtilities.m36dp(60.0f);
         FabBackgroundDrawable fabBackgroundDrawable = new FabBackgroundDrawable();
         this.acceptDrawable = fabBackgroundDrawable;
         fabBackgroundDrawable.setColor(-12531895);
@@ -95,7 +95,7 @@ public class AcceptDeclineView extends View {
         int i2 = this.buttonWidth;
         fabBackgroundDrawable4.setBounds(0, 0, i2, i2);
         TextPaint textPaint = new TextPaint(1);
-        textPaint.setTextSize(AndroidUtilities.m35dp(11.0f));
+        textPaint.setTextSize(AndroidUtilities.m36dp(11.0f));
         textPaint.setColor(-1);
         String string = LocaleController.getString("AcceptCall", C1072R.string.AcceptCall);
         String string2 = LocaleController.getString("DeclineCall", C1072R.string.DeclineCall);
@@ -108,7 +108,7 @@ public class AcceptDeclineView extends View {
         this.cancelDrawable = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         this.acceptCirclePaint.setColor(1061534797);
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(52.0f), 0, ColorUtils.setAlphaComponent(-1, 76));
+        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m36dp(52.0f), 0, ColorUtils.setAlphaComponent(-1, 76));
         this.rippleDrawable = createSimpleSelectorCircleDrawable;
         createSimpleSelectorCircleDrawable.setCallback(this);
         this.arrowDrawable = ContextCompat.getDrawable(context, C1072R.C1073drawable.call_arrow_right);
@@ -117,11 +117,11 @@ public class AcceptDeclineView extends View {
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        this.maxOffset = (getMeasuredWidth() / 2.0f) - ((this.buttonWidth / 2.0f) + AndroidUtilities.m35dp(46.0f));
-        int m35dp = (this.buttonWidth - AndroidUtilities.m35dp(28.0f)) / 2;
-        this.callDrawable.setBounds(m35dp, m35dp, AndroidUtilities.m35dp(28.0f) + m35dp, AndroidUtilities.m35dp(28.0f) + m35dp);
-        this.cancelDrawable.setBounds(m35dp, m35dp, AndroidUtilities.m35dp(28.0f) + m35dp, AndroidUtilities.m35dp(28.0f) + m35dp);
-        this.linePaint.setStrokeWidth(AndroidUtilities.m35dp(3.0f));
+        this.maxOffset = (getMeasuredWidth() / 2.0f) - ((this.buttonWidth / 2.0f) + AndroidUtilities.m36dp(46.0f));
+        int m36dp = (this.buttonWidth - AndroidUtilities.m36dp(28.0f)) / 2;
+        this.callDrawable.setBounds(m36dp, m36dp, AndroidUtilities.m36dp(28.0f) + m36dp, AndroidUtilities.m36dp(28.0f) + m36dp);
+        this.cancelDrawable.setBounds(m36dp, m36dp, AndroidUtilities.m36dp(28.0f) + m36dp, AndroidUtilities.m36dp(28.0f) + m36dp);
+        this.linePaint.setStrokeWidth(AndroidUtilities.m36dp(3.0f));
         this.linePaint.setColor(-1);
     }
 
@@ -147,32 +147,32 @@ public class AcceptDeclineView extends View {
         float f;
         if (!this.retryMod) {
             if (this.expandSmallRadius) {
-                float m35dp = this.smallRadius + (AndroidUtilities.m35dp(2.0f) * 0.04f);
-                this.smallRadius = m35dp;
-                if (m35dp > AndroidUtilities.m35dp(4.0f)) {
-                    this.smallRadius = AndroidUtilities.m35dp(4.0f);
+                float m36dp = this.smallRadius + (AndroidUtilities.m36dp(2.0f) * 0.04f);
+                this.smallRadius = m36dp;
+                if (m36dp > AndroidUtilities.m36dp(4.0f)) {
+                    this.smallRadius = AndroidUtilities.m36dp(4.0f);
                     this.expandSmallRadius = false;
                 }
             } else {
-                float m35dp2 = this.smallRadius - (AndroidUtilities.m35dp(2.0f) * 0.04f);
-                this.smallRadius = m35dp2;
-                if (m35dp2 < 0.0f) {
+                float m36dp2 = this.smallRadius - (AndroidUtilities.m36dp(2.0f) * 0.04f);
+                this.smallRadius = m36dp2;
+                if (m36dp2 < 0.0f) {
                     this.smallRadius = 0.0f;
                     this.expandSmallRadius = true;
                 }
             }
             if (this.expandBigRadius) {
-                float m35dp3 = this.bigRadius + (AndroidUtilities.m35dp(4.0f) * 0.03f);
-                this.bigRadius = m35dp3;
-                if (m35dp3 > AndroidUtilities.m35dp(10.0f)) {
-                    this.bigRadius = AndroidUtilities.m35dp(10.0f);
+                float m36dp3 = this.bigRadius + (AndroidUtilities.m36dp(4.0f) * 0.03f);
+                this.bigRadius = m36dp3;
+                if (m36dp3 > AndroidUtilities.m36dp(10.0f)) {
+                    this.bigRadius = AndroidUtilities.m36dp(10.0f);
                     this.expandBigRadius = false;
                 }
             } else {
-                float m35dp4 = this.bigRadius - (AndroidUtilities.m35dp(5.0f) * 0.03f);
-                this.bigRadius = m35dp4;
-                if (m35dp4 < AndroidUtilities.m35dp(5.0f)) {
-                    this.bigRadius = AndroidUtilities.m35dp(5.0f);
+                float m36dp4 = this.bigRadius - (AndroidUtilities.m36dp(5.0f) * 0.03f);
+                this.bigRadius = m36dp4;
+                if (m36dp4 < AndroidUtilities.m36dp(5.0f)) {
+                    this.bigRadius = AndroidUtilities.m36dp(5.0f);
                     this.expandBigRadius = true;
                 }
             }
@@ -185,61 +185,61 @@ public class AcceptDeclineView extends View {
             if (f3 > 1.0f) {
                 this.arrowProgress = 0.0f;
             }
-            int m35dp5 = (int) (AndroidUtilities.m35dp(40.0f) + (this.buttonWidth / 2.0f));
-            float m35dp6 = AndroidUtilities.m35dp(46.0f) + this.buttonWidth + AndroidUtilities.m35dp(8.0f);
-            float measuredWidth = (getMeasuredWidth() / 2.0f) - AndroidUtilities.m35dp(8.0f);
-            float m35dp7 = AndroidUtilities.m35dp(10.0f);
+            int m36dp5 = (int) (AndroidUtilities.m36dp(40.0f) + (this.buttonWidth / 2.0f));
+            float m36dp6 = AndroidUtilities.m36dp(46.0f) + this.buttonWidth + AndroidUtilities.m36dp(8.0f);
+            float measuredWidth = (getMeasuredWidth() / 2.0f) - AndroidUtilities.m36dp(8.0f);
+            float m36dp7 = AndroidUtilities.m36dp(10.0f);
             float f4 = 0.13333333f;
             int i = 0;
             while (i < 3) {
                 float f5 = i;
-                float f6 = ((((measuredWidth - m35dp6) - m35dp7) / 3.0f) * f5) + m35dp6;
+                float f6 = ((((measuredWidth - m36dp6) - m36dp7) / 3.0f) * f5) + m36dp6;
                 int i2 = (int) f6;
                 float f7 = f5 * f4;
                 float f8 = this.arrowProgress;
                 float f9 = 0.5f;
                 if (f8 <= f7 || f8 >= f7 + f2) {
-                    f = m35dp7;
+                    f = m36dp7;
                 } else {
                     float f10 = (f8 - f7) / f2;
-                    f = m35dp7;
+                    f = m36dp7;
                     if (f10 > 0.5d) {
                         f10 = 1.0f - f10;
                     }
                     f9 = f10 + 0.5f;
                 }
                 canvas.save();
-                canvas.clipRect(this.leftOffsetX + AndroidUtilities.m35dp(46.0f) + (this.buttonWidth / 2), 0.0f, getMeasuredHeight(), getMeasuredWidth() >> 1);
+                canvas.clipRect(this.leftOffsetX + AndroidUtilities.m36dp(46.0f) + (this.buttonWidth / 2), 0.0f, getMeasuredHeight(), getMeasuredWidth() >> 1);
                 this.arrowDrawable.setAlpha((int) (255.0f * f9));
                 Drawable drawable = this.arrowDrawable;
-                drawable.setBounds(i2, m35dp5 - (drawable.getIntrinsicHeight() / 2), this.arrowDrawable.getIntrinsicWidth() + i2, (this.arrowDrawable.getIntrinsicHeight() / 2) + m35dp5);
+                drawable.setBounds(i2, m36dp5 - (drawable.getIntrinsicHeight() / 2), this.arrowDrawable.getIntrinsicWidth() + i2, (this.arrowDrawable.getIntrinsicHeight() / 2) + m36dp5);
                 this.arrowDrawable.draw(canvas);
                 canvas.restore();
                 int measuredWidth2 = (int) (getMeasuredWidth() - f6);
                 canvas.save();
-                canvas.clipRect(getMeasuredWidth() >> 1, 0.0f, ((this.rigthOffsetX + getMeasuredWidth()) - AndroidUtilities.m35dp(46.0f)) - (this.buttonWidth / 2), getMeasuredHeight());
-                canvas.rotate(180.0f, measuredWidth2 - (this.arrowDrawable.getIntrinsicWidth() / 2.0f), m35dp5);
+                canvas.clipRect(getMeasuredWidth() >> 1, 0.0f, ((this.rigthOffsetX + getMeasuredWidth()) - AndroidUtilities.m36dp(46.0f)) - (this.buttonWidth / 2), getMeasuredHeight());
+                canvas.rotate(180.0f, measuredWidth2 - (this.arrowDrawable.getIntrinsicWidth() / 2.0f), m36dp5);
                 Drawable drawable2 = this.arrowDrawable;
-                drawable2.setBounds(measuredWidth2 - drawable2.getIntrinsicWidth(), m35dp5 - (this.arrowDrawable.getIntrinsicHeight() / 2), measuredWidth2, (this.arrowDrawable.getIntrinsicHeight() / 2) + m35dp5);
+                drawable2.setBounds(measuredWidth2 - drawable2.getIntrinsicWidth(), m36dp5 - (this.arrowDrawable.getIntrinsicHeight() / 2), measuredWidth2, (this.arrowDrawable.getIntrinsicHeight() / 2) + m36dp5);
                 this.arrowDrawable.draw(canvas);
                 canvas.restore();
                 i++;
-                m35dp7 = f;
+                m36dp7 = f;
                 f2 = 0.6f;
                 f4 = 0.13333333f;
             }
             invalidate();
         }
-        this.bigRadius += AndroidUtilities.m35dp(8.0f) * 0.005f;
+        this.bigRadius += AndroidUtilities.m36dp(8.0f) * 0.005f;
         canvas.save();
-        canvas.translate(0.0f, AndroidUtilities.m35dp(40.0f));
+        canvas.translate(0.0f, AndroidUtilities.m36dp(40.0f));
         canvas.save();
-        canvas.translate(this.leftOffsetX + AndroidUtilities.m35dp(46.0f), 0.0f);
+        canvas.translate(this.leftOffsetX + AndroidUtilities.m36dp(46.0f), 0.0f);
         this.declineDrawable.draw(canvas);
         canvas.save();
-        canvas.translate((this.buttonWidth / 2.0f) - (this.declineLayout.getWidth() / 2.0f), this.buttonWidth + AndroidUtilities.m35dp(8.0f));
+        canvas.translate((this.buttonWidth / 2.0f) - (this.declineLayout.getWidth() / 2.0f), this.buttonWidth + AndroidUtilities.m36dp(8.0f));
         this.declineLayout.draw(canvas);
-        this.declineRect.set(AndroidUtilities.m35dp(46.0f), AndroidUtilities.m35dp(40.0f), AndroidUtilities.m35dp(46.0f) + this.buttonWidth, AndroidUtilities.m35dp(40.0f) + this.buttonWidth);
+        this.declineRect.set(AndroidUtilities.m36dp(46.0f), AndroidUtilities.m36dp(40.0f), AndroidUtilities.m36dp(46.0f) + this.buttonWidth, AndroidUtilities.m36dp(40.0f) + this.buttonWidth);
         canvas.restore();
         if (this.retryMod) {
             this.cancelDrawable.draw(canvas);
@@ -247,38 +247,38 @@ public class AcceptDeclineView extends View {
             this.callDrawable.draw(canvas);
         }
         if (this.leftDrag) {
-            this.rippleDrawable.setBounds(AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), this.buttonWidth - AndroidUtilities.m35dp(4.0f), this.buttonWidth - AndroidUtilities.m35dp(4.0f));
+            this.rippleDrawable.setBounds(AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), this.buttonWidth - AndroidUtilities.m36dp(4.0f), this.buttonWidth - AndroidUtilities.m36dp(4.0f));
             this.rippleDrawable.draw(canvas);
         }
         canvas.restore();
         canvas.save();
-        canvas.translate(((this.rigthOffsetX + getMeasuredWidth()) - AndroidUtilities.m35dp(46.0f)) - this.buttonWidth, 0.0f);
+        canvas.translate(((this.rigthOffsetX + getMeasuredWidth()) - AndroidUtilities.m36dp(46.0f)) - this.buttonWidth, 0.0f);
         if (!this.retryMod) {
             int i3 = this.buttonWidth;
-            canvas.drawCircle(i3 / 2.0f, i3 / 2.0f, ((i3 / 2.0f) - AndroidUtilities.m35dp(4.0f)) + this.bigRadius, this.acceptCirclePaint);
+            canvas.drawCircle(i3 / 2.0f, i3 / 2.0f, ((i3 / 2.0f) - AndroidUtilities.m36dp(4.0f)) + this.bigRadius, this.acceptCirclePaint);
             int i4 = this.buttonWidth;
-            canvas.drawCircle(i4 / 2.0f, i4 / 2.0f, ((i4 / 2.0f) - AndroidUtilities.m35dp(4.0f)) + this.smallRadius, this.acceptCirclePaint);
+            canvas.drawCircle(i4 / 2.0f, i4 / 2.0f, ((i4 / 2.0f) - AndroidUtilities.m36dp(4.0f)) + this.smallRadius, this.acceptCirclePaint);
         }
         this.acceptDrawable.draw(canvas);
-        this.acceptRect.set((getMeasuredWidth() - AndroidUtilities.m35dp(46.0f)) - this.buttonWidth, AndroidUtilities.m35dp(40.0f), getMeasuredWidth() - AndroidUtilities.m35dp(46.0f), AndroidUtilities.m35dp(40.0f) + this.buttonWidth);
+        this.acceptRect.set((getMeasuredWidth() - AndroidUtilities.m36dp(46.0f)) - this.buttonWidth, AndroidUtilities.m36dp(40.0f), getMeasuredWidth() - AndroidUtilities.m36dp(46.0f), AndroidUtilities.m36dp(40.0f) + this.buttonWidth);
         if (this.retryMod) {
             canvas.save();
-            canvas.translate((this.buttonWidth / 2.0f) - (this.retryLayout.getWidth() / 2.0f), this.buttonWidth + AndroidUtilities.m35dp(8.0f));
+            canvas.translate((this.buttonWidth / 2.0f) - (this.retryLayout.getWidth() / 2.0f), this.buttonWidth + AndroidUtilities.m36dp(8.0f));
             this.retryLayout.draw(canvas);
             canvas.restore();
         } else {
             canvas.save();
-            canvas.translate((this.buttonWidth / 2.0f) - (this.acceptLayout.getWidth() / 2.0f), this.buttonWidth + AndroidUtilities.m35dp(8.0f));
+            canvas.translate((this.buttonWidth / 2.0f) - (this.acceptLayout.getWidth() / 2.0f), this.buttonWidth + AndroidUtilities.m36dp(8.0f));
             this.acceptLayout.draw(canvas);
             canvas.restore();
         }
         canvas.save();
-        canvas.translate(-AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(1.0f));
+        canvas.translate(-AndroidUtilities.m36dp(1.0f), AndroidUtilities.m36dp(1.0f));
         canvas.rotate(-135.0f, this.callDrawable.getBounds().centerX(), this.callDrawable.getBounds().centerY());
         this.callDrawable.draw(canvas);
         canvas.restore();
         if (!this.leftDrag) {
-            this.rippleDrawable.setBounds(AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), this.buttonWidth - AndroidUtilities.m35dp(4.0f), this.buttonWidth - AndroidUtilities.m35dp(4.0f));
+            this.rippleDrawable.setBounds(AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), this.buttonWidth - AndroidUtilities.m36dp(4.0f), this.buttonWidth - AndroidUtilities.m36dp(4.0f));
             this.rippleDrawable.draw(canvas);
         }
         canvas.restore();

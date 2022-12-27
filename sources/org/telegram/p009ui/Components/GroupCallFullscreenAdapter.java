@@ -126,7 +126,7 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
         }
         for (int i = 0; i < this.videoParticipants.size(); i++) {
             if (this.videoParticipants.get(i).equals(videoParticipant)) {
-                linearLayoutManager.scrollToPositionWithOffset(i, AndroidUtilities.m35dp(13.0f));
+                linearLayoutManager.scrollToPositionWithOffset(i, AndroidUtilities.m36dp(13.0f));
                 return;
             }
         }
@@ -161,25 +161,24 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
 
         public GroupCallUserCell(Context context) {
             super(context);
-            GroupCallFullscreenAdapter.this = r9;
             this.avatarDrawable = new AvatarDrawable();
             this.backgroundPaint = new Paint(1);
             this.selectionPaint = new Paint(1);
             this.progress = 1.0f;
             this.textPaint = new TextPaint(1);
-            this.avatarWavesDrawable = new GroupCallUserCell.AvatarWavesDrawable(AndroidUtilities.m35dp(26.0f), AndroidUtilities.m35dp(29.0f));
-            this.avatarDrawable.setTextSize((int) (AndroidUtilities.m35dp(18.0f) / 1.15f));
+            this.avatarWavesDrawable = new GroupCallUserCell.AvatarWavesDrawable(AndroidUtilities.m36dp(26.0f), AndroidUtilities.m36dp(29.0f));
+            this.avatarDrawable.setTextSize((int) (AndroidUtilities.m36dp(18.0f) / 1.15f));
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarImageView = backupImageView;
-            backupImageView.setRoundRadius(AndroidUtilities.m35dp(20.0f));
+            backupImageView.setRoundRadius(AndroidUtilities.m36dp(20.0f));
             addView(this.avatarImageView, LayoutHelper.createFrame(40, 40.0f, 1, 0.0f, 9.0f, 0.0f, 9.0f));
             setWillNotDraw(false);
             this.backgroundPaint.setColor(Theme.getColor("voipgroup_listViewBackground"));
             this.selectionPaint.setColor(Theme.getColor("voipgroup_speakingText"));
             this.selectionPaint.setStyle(Paint.Style.STROKE);
-            this.selectionPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            this.selectionPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
             this.textPaint.setColor(-1);
-            RLottieImageView rLottieImageView = new RLottieImageView(context, r9) {
+            RLottieImageView rLottieImageView = new RLottieImageView(context, GroupCallFullscreenAdapter.this) {
                 @Override
                 public void invalidate() {
                     super.invalidate();
@@ -193,13 +192,13 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
 
         @Override
         protected void onMeasure(int i, int i2) {
-            this.textPaint.setTextSize(AndroidUtilities.m35dp(12.0f));
+            this.textPaint.setTextSize(AndroidUtilities.m36dp(12.0f));
             if (this.name != null) {
-                int min = (int) Math.min(AndroidUtilities.m35dp(46.0f), this.textPaint.measureText(this.name));
+                int min = (int) Math.min(AndroidUtilities.m36dp(46.0f), this.textPaint.measureText(this.name));
                 this.nameWidth = min;
                 this.drawingName = TextUtils.ellipsize(this.name, this.textPaint, min, TextUtils.TruncateAt.END).toString();
             }
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(80.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(80.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(80.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(80.0f), 1073741824));
         }
 
         public void setParticipant(ChatObject.VideoParticipant videoParticipant, TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant) {
@@ -271,10 +270,10 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             }
             float top = (this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2.0f)) - (getMeasuredHeight() / 2.0f);
             float f2 = 1.0f - f;
-            float m35dp = ((AndroidUtilities.m35dp(46.0f) / AndroidUtilities.m35dp(40.0f)) * f2) + (1.0f * f);
+            float m36dp = ((AndroidUtilities.m36dp(46.0f) / AndroidUtilities.m36dp(40.0f)) * f2) + (1.0f * f);
             this.avatarImageView.setTranslationY((-top) * f2);
-            this.avatarImageView.setScaleX(m35dp);
-            this.avatarImageView.setScaleY(m35dp);
+            this.avatarImageView.setScaleX(m36dp);
+            this.avatarImageView.setScaleY(m36dp);
             this.backgroundPaint.setAlpha((int) (f * 255.0f));
             invalidate();
             GroupCallMiniTextureView groupCallMiniTextureView2 = this.renderer;
@@ -294,16 +293,16 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
                 float measuredWidth = (getMeasuredWidth() / 2.0f) * (1.0f - this.progress);
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(measuredWidth, measuredWidth, getMeasuredWidth() - measuredWidth, getMeasuredHeight() - measuredWidth);
-                canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(13.0f), AndroidUtilities.m35dp(13.0f), this.backgroundPaint);
+                canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(13.0f), AndroidUtilities.m36dp(13.0f), this.backgroundPaint);
                 drawSelection(canvas);
             }
             float x = this.avatarImageView.getX() + (this.avatarImageView.getMeasuredWidth() / 2);
             float y = this.avatarImageView.getY() + (this.avatarImageView.getMeasuredHeight() / 2);
             this.avatarWavesDrawable.update();
             this.avatarWavesDrawable.draw(canvas, x, y, this);
-            float m35dp = AndroidUtilities.m35dp(46.0f) / AndroidUtilities.m35dp(40.0f);
+            float m36dp = AndroidUtilities.m36dp(46.0f) / AndroidUtilities.m36dp(40.0f);
             float f = this.progress;
-            float f2 = (m35dp * (1.0f - f)) + (f * 1.0f);
+            float f2 = (m36dp * (1.0f - f)) + (f * 1.0f);
             this.avatarImageView.setScaleX(this.avatarWavesDrawable.getAvatarScale() * f2);
             this.avatarImageView.setScaleY(this.avatarWavesDrawable.getAvatarScale() * f2);
             super.dispatchDraw(canvas);
@@ -395,12 +394,12 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
         public void drawOverlays(Canvas canvas) {
             if (this.drawingName != null) {
                 canvas.save();
-                int measuredWidth = ((getMeasuredWidth() - this.nameWidth) - AndroidUtilities.m35dp(24.0f)) / 2;
+                int measuredWidth = ((getMeasuredWidth() - this.nameWidth) - AndroidUtilities.m36dp(24.0f)) / 2;
                 this.textPaint.setAlpha((int) (this.progress * 255.0f * getAlpha()));
-                canvas.drawText(this.drawingName, AndroidUtilities.m35dp(22.0f) + measuredWidth, AndroidUtilities.m35dp(69.0f), this.textPaint);
+                canvas.drawText(this.drawingName, AndroidUtilities.m36dp(22.0f) + measuredWidth, AndroidUtilities.m36dp(69.0f), this.textPaint);
                 canvas.restore();
                 canvas.save();
-                canvas.translate(measuredWidth, AndroidUtilities.m35dp(53.0f));
+                canvas.translate(measuredWidth, AndroidUtilities.m36dp(53.0f));
                 if (this.muteButton.getDrawable() != null) {
                     this.muteButton.getDrawable().setAlpha((int) (this.progress * 255.0f * getAlpha()));
                     this.muteButton.draw(canvas);

@@ -145,7 +145,7 @@ public abstract class JobIntentService extends Service {
         }
     }
 
-    public static final class JobServiceEngineImpl extends JobServiceEngine implements CompatJobEngine {
+    static final class JobServiceEngineImpl extends JobServiceEngine implements CompatJobEngine {
         static final boolean DEBUG = false;
         static final String TAG = "JobServiceEngineImpl";
         final Object mLock;
@@ -156,7 +156,6 @@ public abstract class JobIntentService extends Service {
             final JobWorkItem mJobWork;
 
             WrapperWorkItem(JobWorkItem jobWorkItem) {
-                JobServiceEngineImpl.this = r1;
                 this.mJobWork = jobWorkItem;
             }
 
@@ -247,7 +246,6 @@ public abstract class JobIntentService extends Service {
         final int mStartId;
 
         CompatWorkItem(Intent intent, int i) {
-            JobIntentService.this = r1;
             this.mIntent = intent;
             this.mStartId = i;
         }
@@ -265,7 +263,6 @@ public abstract class JobIntentService extends Service {
 
     public final class CommandProcessor extends AsyncTask<Void, Void, Void> {
         CommandProcessor() {
-            JobIntentService.this = r1;
         }
 
         @Override

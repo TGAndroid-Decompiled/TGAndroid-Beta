@@ -122,12 +122,11 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
 
         public SearchField(Context context, int i) {
             super(context);
-            StickerMasksAlert.this = r13;
             View view = new View(context);
             view.setBackgroundColor(-14342875);
-            addView(view, new FrameLayout.LayoutParams(-1, r13.searchFieldHeight));
+            addView(view, new FrameLayout.LayoutParams(-1, StickerMasksAlert.this.searchFieldHeight));
             View view2 = new View(context);
-            view2.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.m35dp(18.0f), -13224394));
+            view2.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.m36dp(18.0f), -13224394));
             addView(view2, LayoutHelper.createFrame(-1, 36.0f, 51, 14.0f, 14.0f, 14.0f, 0.0f));
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -138,7 +137,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
             this.clearSearchImageView = imageView2;
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             ImageView imageView3 = this.clearSearchImageView;
-            CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2(this, r13) {
+            CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2(this, StickerMasksAlert.this) {
                 @Override
                 public int getCurrentColor() {
                     return -8947849;
@@ -146,7 +145,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
             };
             this.progressDrawable = closeProgressDrawable2;
             imageView3.setImageDrawable(closeProgressDrawable2);
-            this.progressDrawable.setSide(AndroidUtilities.m35dp(7.0f));
+            this.progressDrawable.setSide(AndroidUtilities.m36dp(7.0f));
             this.clearSearchImageView.setScaleX(0.1f);
             this.clearSearchImageView.setScaleY(0.1f);
             this.clearSearchImageView.setAlpha(0.0f);
@@ -157,7 +156,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                     StickerMasksAlert.SearchField.this.lambda$new$0(view3);
                 }
             });
-            EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context, r13) {
+            EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context, StickerMasksAlert.this) {
                 @Override
                 public boolean onTouchEvent(MotionEvent motionEvent) {
                     if (motionEvent.getAction() == 0) {
@@ -185,10 +184,10 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                 this.searchEditText.setHint(LocaleController.getString("SearchGifsTitle", C1072R.string.SearchGifsTitle));
             }
             this.searchEditText.setCursorColor(-1);
-            this.searchEditText.setCursorSize(AndroidUtilities.m35dp(20.0f));
+            this.searchEditText.setCursorSize(AndroidUtilities.m36dp(20.0f));
             this.searchEditText.setCursorWidth(1.5f);
             addView(this.searchEditText, LayoutHelper.createFrame(-1, 40.0f, 51, 54.0f, 12.0f, 46.0f, 0.0f));
-            this.searchEditText.addTextChangedListener(new TextWatcher(r13) {
+            this.searchEditText.addTextChangedListener(new TextWatcher(StickerMasksAlert.this) {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                 }
@@ -318,7 +317,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
 
             @Override
             protected void onMeasure(int i, int i2) {
-                int m35dp;
+                int m36dp;
                 int size = View.MeasureSpec.getSize(i2);
                 if (Build.VERSION.SDK_INT >= 21 && !((BottomSheet) StickerMasksAlert.this).isFullscreen) {
                     this.ignoreLayout = true;
@@ -326,16 +325,16 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                     this.ignoreLayout = false;
                 }
                 int paddingTop = size - getPaddingTop();
-                if (measureKeyboardHeight() > AndroidUtilities.m35dp(20.0f)) {
+                if (measureKeyboardHeight() > AndroidUtilities.m36dp(20.0f)) {
                     this.statusBarProgress = 1.0f;
-                    m35dp = 0;
+                    m36dp = 0;
                 } else {
-                    m35dp = (paddingTop - ((paddingTop / 5) * 3)) + AndroidUtilities.m35dp(16.0f);
+                    m36dp = (paddingTop - ((paddingTop / 5) * 3)) + AndroidUtilities.m36dp(16.0f);
                 }
-                if (StickerMasksAlert.this.gridView.getPaddingTop() != m35dp) {
+                if (StickerMasksAlert.this.gridView.getPaddingTop() != m36dp) {
                     this.ignoreLayout = true;
-                    StickerMasksAlert.this.gridView.setPinnedSectionOffsetY(-m35dp);
-                    StickerMasksAlert.this.gridView.setPadding(AndroidUtilities.m35dp(4.0f), m35dp, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(48.0f));
+                    StickerMasksAlert.this.gridView.setPinnedSectionOffsetY(-m36dp);
+                    StickerMasksAlert.this.gridView.setPadding(AndroidUtilities.m36dp(4.0f), m36dp, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(48.0f));
                     this.ignoreLayout = false;
                 }
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
@@ -349,7 +348,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
 
             @Override
             public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-                if (motionEvent.getAction() == 0 && StickerMasksAlert.this.scrollOffsetY != 0 && motionEvent.getY() < StickerMasksAlert.this.scrollOffsetY + AndroidUtilities.m35dp(12.0f)) {
+                if (motionEvent.getAction() == 0 && StickerMasksAlert.this.scrollOffsetY != 0 && motionEvent.getY() < StickerMasksAlert.this.scrollOffsetY + AndroidUtilities.m36dp(12.0f)) {
                     StickerMasksAlert.this.dismiss();
                     return true;
                 }
@@ -372,20 +371,20 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
             @Override
             protected void onDraw(Canvas canvas) {
                 float f;
-                int m35dp = AndroidUtilities.m35dp(13.0f);
-                int i = (StickerMasksAlert.this.scrollOffsetY - ((BottomSheet) StickerMasksAlert.this).backgroundPaddingTop) - m35dp;
+                int m36dp = AndroidUtilities.m36dp(13.0f);
+                int i = (StickerMasksAlert.this.scrollOffsetY - ((BottomSheet) StickerMasksAlert.this).backgroundPaddingTop) - m36dp;
                 if (((BottomSheet) StickerMasksAlert.this).currentSheetAnimationType == 1) {
                     i = (int) (i + StickerMasksAlert.this.gridView.getTranslationY());
                 }
-                int m35dp2 = AndroidUtilities.m35dp(20.0f) + i;
-                int measuredHeight = getMeasuredHeight() + AndroidUtilities.m35dp(15.0f) + ((BottomSheet) StickerMasksAlert.this).backgroundPaddingTop;
-                int m35dp3 = AndroidUtilities.m35dp(12.0f);
-                if (((BottomSheet) StickerMasksAlert.this).backgroundPaddingTop + i < m35dp3) {
-                    float m35dp4 = m35dp + AndroidUtilities.m35dp(4.0f);
-                    float min = Math.min(1.0f, ((m35dp3 - i) - ((BottomSheet) StickerMasksAlert.this).backgroundPaddingTop) / m35dp4);
-                    int i2 = (int) ((m35dp3 - m35dp4) * min);
+                int m36dp2 = AndroidUtilities.m36dp(20.0f) + i;
+                int measuredHeight = getMeasuredHeight() + AndroidUtilities.m36dp(15.0f) + ((BottomSheet) StickerMasksAlert.this).backgroundPaddingTop;
+                int m36dp3 = AndroidUtilities.m36dp(12.0f);
+                if (((BottomSheet) StickerMasksAlert.this).backgroundPaddingTop + i < m36dp3) {
+                    float m36dp4 = m36dp + AndroidUtilities.m36dp(4.0f);
+                    float min = Math.min(1.0f, ((m36dp3 - i) - ((BottomSheet) StickerMasksAlert.this).backgroundPaddingTop) / m36dp4);
+                    int i2 = (int) ((m36dp3 - m36dp4) * min);
                     i -= i2;
-                    m35dp2 -= i2;
+                    m36dp2 -= i2;
                     measuredHeight += i2;
                     f = 1.0f - min;
                 } else {
@@ -394,14 +393,14 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                 if (Build.VERSION.SDK_INT >= 21) {
                     int i3 = AndroidUtilities.statusBarHeight;
                     i += i3;
-                    m35dp2 += i3;
+                    m36dp2 += i3;
                 }
                 StickerMasksAlert.this.shadowDrawable.setBounds(0, i, getMeasuredWidth(), measuredHeight);
                 StickerMasksAlert.this.shadowDrawable.draw(canvas);
                 if (f != 1.0f) {
                     Theme.dialogs_onlineCirclePaint.setColor(-14342875);
-                    this.rect.set(((BottomSheet) StickerMasksAlert.this).backgroundPaddingLeft, ((BottomSheet) StickerMasksAlert.this).backgroundPaddingTop + i, getMeasuredWidth() - ((BottomSheet) StickerMasksAlert.this).backgroundPaddingLeft, ((BottomSheet) StickerMasksAlert.this).backgroundPaddingTop + i + AndroidUtilities.m35dp(24.0f));
-                    canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(12.0f) * f, AndroidUtilities.m35dp(12.0f) * f, Theme.dialogs_onlineCirclePaint);
+                    this.rect.set(((BottomSheet) StickerMasksAlert.this).backgroundPaddingLeft, ((BottomSheet) StickerMasksAlert.this).backgroundPaddingTop + i, getMeasuredWidth() - ((BottomSheet) StickerMasksAlert.this).backgroundPaddingLeft, ((BottomSheet) StickerMasksAlert.this).backgroundPaddingTop + i + AndroidUtilities.m36dp(24.0f));
+                    canvas.drawRoundRect(this.rect, AndroidUtilities.m36dp(12.0f) * f, AndroidUtilities.m36dp(12.0f) * f, Theme.dialogs_onlineCirclePaint);
                 }
                 long elapsedRealtime = SystemClock.elapsedRealtime();
                 long j = elapsedRealtime - this.lastUpdateTime;
@@ -410,12 +409,12 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                 }
                 this.lastUpdateTime = elapsedRealtime;
                 if (f > 0.0f) {
-                    int m35dp5 = AndroidUtilities.m35dp(36.0f);
-                    this.rect.set((getMeasuredWidth() - m35dp5) / 2, m35dp2, (getMeasuredWidth() + m35dp5) / 2, m35dp2 + AndroidUtilities.m35dp(4.0f));
+                    int m36dp5 = AndroidUtilities.m36dp(36.0f);
+                    this.rect.set((getMeasuredWidth() - m36dp5) / 2, m36dp2, (getMeasuredWidth() + m36dp5) / 2, m36dp2 + AndroidUtilities.m36dp(4.0f));
                     int alpha = Color.alpha(-11842741);
                     Theme.dialogs_onlineCirclePaint.setColor(-11842741);
                     Theme.dialogs_onlineCirclePaint.setAlpha((int) (alpha * 1.0f * f));
-                    canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), Theme.dialogs_onlineCirclePaint);
+                    canvas.drawRoundRect(this.rect, AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f), Theme.dialogs_onlineCirclePaint);
                     float f2 = this.statusBarProgress;
                     if (f2 > 0.0f) {
                         float f3 = f2 - (((float) j) / 180.0f);
@@ -447,7 +446,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         ViewGroup viewGroup = this.containerView;
         int i = this.backgroundPaddingLeft;
         viewGroup.setPadding(i, 0, i, 0);
-        this.searchFieldHeight = AndroidUtilities.m35dp(64.0f);
+        this.searchFieldHeight = AndroidUtilities.m36dp(64.0f);
         this.stickerIcons = new Drawable[]{Theme.createEmojiIconSelectorDrawable(context, C1072R.C1073drawable.stickers_recent, -11842741, -9520403), Theme.createEmojiIconSelectorDrawable(context, C1072R.C1073drawable.stickers_favorites, -11842741, -9520403)};
         MediaDataController.getInstance(this.currentAccount).checkStickers(0);
         MediaDataController.getInstance(this.currentAccount).checkStickers(1);
@@ -561,7 +560,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
                     @Override
                     public int calculateDyToMakeVisible(View view, int i3) {
-                        return super.calculateDyToMakeVisible(view, i3) - (StickerMasksAlert.this.gridView.getPaddingTop() - AndroidUtilities.m35dp(7.0f));
+                        return super.calculateDyToMakeVisible(view, i3) - (StickerMasksAlert.this.gridView.getPaddingTop() - AndroidUtilities.m36dp(7.0f));
                     }
 
                     @Override
@@ -613,7 +612,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                 }
             }
         });
-        this.gridView.setPadding(AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(48.0f));
+        this.gridView.setPadding(AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(48.0f));
         this.gridView.setClipToPadding(false);
         this.gridView.setHorizontalScrollBarEnabled(false);
         this.gridView.setVerticalScrollBarEnabled(false);
@@ -693,8 +692,8 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         this.bottomTabContainer.addView(this.shadowLine, new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight()));
         View view2 = new View(context);
         view2.setBackgroundColor(-14342875);
-        this.bottomTabContainer.addView(view2, new FrameLayout.LayoutParams(-1, AndroidUtilities.m35dp(48.0f), 83));
-        this.containerView.addView(this.bottomTabContainer, new FrameLayout.LayoutParams(-1, AndroidUtilities.m35dp(48.0f) + AndroidUtilities.getShadowHeight(), 83));
+        this.bottomTabContainer.addView(view2, new FrameLayout.LayoutParams(-1, AndroidUtilities.m36dp(48.0f), 83));
+        this.containerView.addView(this.bottomTabContainer, new FrameLayout.LayoutParams(-1, AndroidUtilities.m36dp(48.0f) + AndroidUtilities.getShadowHeight(), 83));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         ImageView imageView = new ImageView(this, context) {
@@ -828,7 +827,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         if (this.stickersLayoutManager.findFirstVisibleItemPosition() == positionForPack) {
             return;
         }
-        scrollEmojisToPosition(positionForPack, (-this.gridView.getPaddingTop()) + this.searchFieldHeight + AndroidUtilities.m35dp(48.0f));
+        scrollEmojisToPosition(positionForPack, (-this.gridView.getPaddingTop()) + this.searchFieldHeight + AndroidUtilities.m36dp(48.0f));
     }
 
     public void lambda$new$3(View view) {
@@ -917,17 +916,17 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         View childAt = this.gridView.getChildAt(0);
         RecyclerListView.Holder holder2 = (RecyclerListView.Holder) this.gridView.findContainingViewHolder(childAt);
         int top = childAt.getTop();
-        int m35dp = AndroidUtilities.m35dp(7.0f);
-        if (top < AndroidUtilities.m35dp(7.0f) || holder2 == null || holder2.getAdapterPosition() != 0) {
-            top = m35dp;
+        int m36dp = AndroidUtilities.m36dp(7.0f);
+        if (top < AndroidUtilities.m36dp(7.0f) || holder2 == null || holder2.getAdapterPosition() != 0) {
+            top = m36dp;
         }
-        int i = top + (-AndroidUtilities.m35dp(11.0f));
+        int i = top + (-AndroidUtilities.m36dp(11.0f));
         if (this.scrollOffsetY != i) {
             RecyclerListView recyclerListView2 = this.gridView;
             this.scrollOffsetY = i;
             recyclerListView2.setTopGlowOffset(i);
             this.stickersTab.setTranslationY(i);
-            this.stickersSearchField.setTranslationY(i + AndroidUtilities.m35dp(32.0f));
+            this.stickersSearchField.setTranslationY(i + AndroidUtilities.m36dp(32.0f));
             this.containerView.invalidate();
         }
         RecyclerListView.Holder holder3 = (RecyclerListView.Holder) this.gridView.findViewHolderForAdapterPosition(0);
@@ -941,7 +940,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         if (adapter == stickersSearchGridAdapter && (holder = (RecyclerListView.Holder) this.gridView.findViewHolderForAdapterPosition(stickersSearchGridAdapter.getItemCount() - 1)) != null && holder.getItemViewType() == 5) {
             FrameLayout frameLayout = (FrameLayout) holder.itemView;
             int childCount = frameLayout.getChildCount();
-            float f = (-((frameLayout.getTop() - this.searchFieldHeight) - AndroidUtilities.m35dp(48.0f))) / 2;
+            float f = (-((frameLayout.getTop() - this.searchFieldHeight) - AndroidUtilities.m36dp(48.0f))) / 2;
             for (int i2 = 0; i2 < childCount; i2++) {
                 frameLayout.getChildAt(i2).setTranslationY(f);
             }
@@ -949,14 +948,13 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         checkPanels();
     }
 
-    public class DrawingInBackgroundLine extends DrawingInBackgroundThreadDrawable {
+    private class DrawingInBackgroundLine extends DrawingInBackgroundThreadDrawable {
         ArrayList<ImageViewEmoji> drawInBackgroundViews;
         ArrayList<ImageViewEmoji> imageViewEmojis;
         public int position;
         public int startOffset;
 
         private DrawingInBackgroundLine() {
-            StickerMasksAlert.this = r2;
             this.drawInBackgroundViews = new ArrayList<>();
             new OvershootInterpolator(3.0f);
         }
@@ -1133,7 +1131,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         View view = null;
         for (int i = 0; i < childCount; i++) {
             view = this.gridView.getChildAt(i);
-            if (view.getBottom() > this.searchFieldHeight + AndroidUtilities.m35dp(48.0f)) {
+            if (view.getBottom() > this.searchFieldHeight + AndroidUtilities.m36dp(48.0f)) {
                 break;
             }
         }
@@ -1249,7 +1247,6 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         private SparseIntArray positionToRow = new SparseIntArray();
 
         public StickersGridAdapter(Context context) {
-            StickerMasksAlert.this = r1;
             this.context = context;
         }
 
@@ -1300,7 +1297,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                 if (measuredWidth == 0) {
                     measuredWidth = AndroidUtilities.displaySize.x;
                 }
-                this.stickersPerRow = measuredWidth / AndroidUtilities.m35dp(StickerMasksAlert.this.currentType == 5 ? 45.0f : 72.0f);
+                this.stickersPerRow = measuredWidth / AndroidUtilities.m36dp(StickerMasksAlert.this.currentType == 5 ? 45.0f : 72.0f);
                 this.stickersPerRowType = StickerMasksAlert.this.currentType;
             }
             int i2 = this.positionToRow.get(i, Integer.MIN_VALUE);
@@ -1330,7 +1327,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                         if (StickerMasksAlert.this.currentType == 5) {
                             super.onMeasure(i2, i2);
                         } else {
-                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(82.0f), 1073741824));
+                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(82.0f), 1073741824));
                         }
                     }
                 };
@@ -1344,7 +1341,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                 stickerSetNameCell = null;
             } else {
                 View view = new View(this.context);
-                view.setLayoutParams(new RecyclerView.LayoutParams(-1, StickerMasksAlert.this.searchFieldHeight + AndroidUtilities.m35dp(48.0f)));
+                view.setLayoutParams(new RecyclerView.LayoutParams(-1, StickerMasksAlert.this.searchFieldHeight + AndroidUtilities.m36dp(48.0f)));
                 stickerSetNameCell = view;
             }
             return new RecyclerListView.Holder(stickerSetNameCell);
@@ -1423,15 +1420,15 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                         emptyCell.setHeight(1);
                         return;
                     } else if (!arrayList.isEmpty()) {
-                        int height = StickerMasksAlert.this.gridView.getHeight() - (((int) Math.ceil(arrayList.size() / this.stickersPerRow)) * AndroidUtilities.m35dp(82.0f));
+                        int height = StickerMasksAlert.this.gridView.getHeight() - (((int) Math.ceil(arrayList.size() / this.stickersPerRow)) * AndroidUtilities.m36dp(82.0f));
                         emptyCell.setHeight(height > 0 ? height : 1);
                         return;
                     } else {
-                        emptyCell.setHeight(AndroidUtilities.m35dp(8.0f));
+                        emptyCell.setHeight(AndroidUtilities.m36dp(8.0f));
                         return;
                     }
                 }
-                emptyCell.setHeight(AndroidUtilities.m35dp(82.0f));
+                emptyCell.setHeight(AndroidUtilities.m36dp(82.0f));
             }
         }
 
@@ -1452,10 +1449,9 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
 
         public ImageViewEmoji(Context context) {
             super(context);
-            StickerMasksAlert.this = r4;
             this.backgroundThreadDrawHolder = new ImageReceiver.BackgroundThreadDrawHolder[2];
-            setPadding(AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(3.0f));
-            setBackground(Theme.createRadSelectorDrawable(r4.getThemedColor("listSelectorSDK21"), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f)));
+            setPadding(AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(3.0f));
+            setBackground(Theme.createRadSelectorDrawable(StickerMasksAlert.this.getThemedColor("listSelectorSDK21"), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f)));
         }
 
         private void setDrawable(AnimatedEmojiDrawable animatedEmojiDrawable) {
@@ -1574,7 +1570,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         private HashMap<TLRPC$TL_messages_stickerSet, Integer> localPacksByName = new HashMap<>();
         private HashMap<ArrayList<TLRPC$Document>, String> emojiStickers = new HashMap<>();
         private ArrayList<ArrayList<TLRPC$Document>> emojiArrays = new ArrayList<>();
-        private Runnable searchRunnable = new RunnableC28871();
+        private Runnable searchRunnable = new RunnableC28901();
 
         static int access$5604(StickersSearchGridAdapter stickersSearchGridAdapter) {
             int i = stickersSearchGridAdapter.emojiSearchId + 1;
@@ -1582,9 +1578,8 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
             return i;
         }
 
-        public class RunnableC28871 implements Runnable {
-            RunnableC28871() {
-                StickersSearchGridAdapter.this = r1;
+        public class RunnableC28901 implements Runnable {
+            RunnableC28901() {
             }
 
             private void clear() {
@@ -1602,7 +1597,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
 
             @Override
             public void run() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.StickerMasksAlert.StickersSearchGridAdapter.RunnableC28871.run():void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.StickerMasksAlert.StickersSearchGridAdapter.RunnableC28901.run():void");
             }
 
             public void lambda$run$0(int i, HashMap hashMap, ArrayList arrayList, String str) {
@@ -1638,7 +1633,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StickerMasksAlert.StickersSearchGridAdapter.RunnableC28871.this.lambda$run$1(tLRPC$TL_messages_getStickers, tLObject, arrayList, longSparseArray);
+                        StickerMasksAlert.StickersSearchGridAdapter.RunnableC28901.this.lambda$run$1(tLRPC$TL_messages_getStickers, tLObject, arrayList, longSparseArray);
                     }
                 });
             }
@@ -1673,7 +1668,6 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         }
 
         public StickersSearchGridAdapter(Context context) {
-            StickerMasksAlert.this = r1;
             this.context = context;
         }
 
@@ -1743,7 +1737,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                         if (StickerMasksAlert.this.currentType == 5) {
                             super.onMeasure(i2, i2);
                         } else {
-                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(82.0f), 1073741824));
+                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(82.0f), 1073741824));
                         }
                     }
                 };
@@ -1752,7 +1746,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
             } else if (i != 2) {
                 if (i == 4) {
                     View view = new View(this.context);
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, StickerMasksAlert.this.searchFieldHeight + AndroidUtilities.m35dp(48.0f)));
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, StickerMasksAlert.this.searchFieldHeight + AndroidUtilities.m36dp(48.0f)));
                     frameLayout = view;
                 } else if (i != 5) {
                     imageViewEmoji = null;
@@ -1760,7 +1754,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                     FrameLayout frameLayout2 = new FrameLayout(this.context) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
-                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(((StickerMasksAlert.this.gridView.getMeasuredHeight() - StickerMasksAlert.this.searchFieldHeight) - AndroidUtilities.m35dp(48.0f)) - AndroidUtilities.m35dp(48.0f), 1073741824));
+                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(((StickerMasksAlert.this.gridView.getMeasuredHeight() - StickerMasksAlert.this.searchFieldHeight) - AndroidUtilities.m36dp(48.0f)) - AndroidUtilities.m36dp(48.0f), 1073741824));
                         }
                     };
                     ImageView imageView = new ImageView(this.context);
@@ -1854,15 +1848,15 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                     emptyCell.setHeight(1);
                     return;
                 } else if (num.intValue() != 0) {
-                    int height = StickerMasksAlert.this.gridView.getHeight() - (((int) Math.ceil(num.intValue() / StickerMasksAlert.this.stickersGridAdapter.stickersPerRow)) * AndroidUtilities.m35dp(82.0f));
+                    int height = StickerMasksAlert.this.gridView.getHeight() - (((int) Math.ceil(num.intValue() / StickerMasksAlert.this.stickersGridAdapter.stickersPerRow)) * AndroidUtilities.m36dp(82.0f));
                     emptyCell.setHeight(height > 0 ? height : 1);
                     return;
                 } else {
-                    emptyCell.setHeight(AndroidUtilities.m35dp(8.0f));
+                    emptyCell.setHeight(AndroidUtilities.m36dp(8.0f));
                     return;
                 }
             }
-            emptyCell.setHeight(AndroidUtilities.m35dp(82.0f));
+            emptyCell.setHeight(AndroidUtilities.m36dp(82.0f));
         }
 
         @Override

@@ -41,7 +41,7 @@ public class PremiumButtonView extends FrameLayout {
     private boolean showOverlay;
 
     public PremiumButtonView(Context context, boolean z) {
-        this(context, AndroidUtilities.m35dp(8.0f), z);
+        this(context, AndroidUtilities.m36dp(8.0f), z);
     }
 
     public PremiumButtonView(Context context, int i, boolean z) {
@@ -60,7 +60,7 @@ public class PremiumButtonView extends FrameLayout {
         this.buttonTextView = animatedTextView;
         animatedTextView.setGravity(17);
         this.buttonTextView.setTextColor(-1);
-        this.buttonTextView.setTextSize(AndroidUtilities.m35dp(14.0f));
+        this.buttonTextView.setTextSize(AndroidUtilities.m36dp(14.0f));
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.iconView = rLottieImageView;
@@ -76,12 +76,12 @@ public class PremiumButtonView extends FrameLayout {
         if (z) {
             TextView textView = new TextView(context);
             this.overlayTextView = textView;
-            textView.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+            textView.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
             this.overlayTextView.setGravity(17);
             this.overlayTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             this.overlayTextView.setTextSize(1, 14.0f);
             this.overlayTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.overlayTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(8.0f), 0, ColorUtils.setAlphaComponent(-1, 120)));
+            this.overlayTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(8.0f), 0, ColorUtils.setAlphaComponent(-1, 120)));
             addView(this.overlayTextView);
             this.paintOverlayPaint.setColor(Theme.getColor("featuredStickers_addButton"));
             updateOverlayProgress();
@@ -192,9 +192,9 @@ public class PremiumButtonView extends FrameLayout {
 
     public void updateOverlayProgress() {
         this.overlayTextView.setAlpha(this.overlayProgress);
-        this.overlayTextView.setTranslationY(AndroidUtilities.m35dp(12.0f) * (1.0f - this.overlayProgress));
+        this.overlayTextView.setTranslationY(AndroidUtilities.m36dp(12.0f) * (1.0f - this.overlayProgress));
         this.buttonLayout.setAlpha(1.0f - this.overlayProgress);
-        this.buttonLayout.setTranslationY((-AndroidUtilities.m35dp(12.0f)) * this.overlayProgress);
+        this.buttonLayout.setTranslationY((-AndroidUtilities.m36dp(12.0f)) * this.overlayProgress);
         this.buttonLayout.setVisibility(this.overlayProgress == 1.0f ? 4 : 0);
         this.overlayTextView.setVisibility(this.overlayProgress != 0.0f ? 0 : 4);
         invalidate();

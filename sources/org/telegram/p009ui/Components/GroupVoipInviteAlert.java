@@ -387,7 +387,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                     });
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         if (this.delayResults <= 0) {
@@ -462,11 +462,10 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         private int totalCount;
 
         public SearchAdapter(Context context) {
-            GroupVoipInviteAlert.this = r2;
             this.mContext = context;
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
             this.searchAdapterHelper = searchAdapterHelper;
-            searchAdapterHelper.setDelegate(new SearchAdapterHelper.SearchAdapterHelperDelegate(r2) {
+            searchAdapterHelper.setDelegate(new SearchAdapterHelper.SearchAdapterHelperDelegate(GroupVoipInviteAlert.this) {
                 @Override
                 public boolean canApplySearchResults(int i) {
                     return SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$canApplySearchResults(this, i);
@@ -678,7 +677,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 manageChatUserCell = graySectionCell;
             } else if (i == 2) {
                 ?? view = new View(this.mContext);
-                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(56.0f)));
+                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m36dp(56.0f)));
                 manageChatUserCell = view;
             } else {
                 manageChatUserCell = new View(this.mContext);
@@ -711,11 +710,10 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         }
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    private class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         public ListAdapter(Context context) {
-            GroupVoipInviteAlert.this = r1;
             this.mContext = context;
         }
 
@@ -758,7 +756,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             } else {
                 if (i == 3) {
                     view = new View(this.mContext);
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(56.0f)));
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m36dp(56.0f)));
                 } else if (i == 5) {
                     FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.mContext);
                     flickerLoadingView.setViewType(6);
@@ -861,7 +859,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
     }
 
     @Override
-    public void search(String str) {
+    protected void search(String str) {
         this.searchAdapter.searchUsers(str);
     }
 

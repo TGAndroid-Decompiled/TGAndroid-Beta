@@ -53,18 +53,18 @@ public class GroupCallRecordAlert extends BottomSheet {
                 boolean z2 = View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2);
                 ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) GroupCallRecordAlert.this.positiveButton.getLayoutParams();
                 if (z2) {
-                    int m35dp = AndroidUtilities.m35dp(80.0f);
-                    marginLayoutParams.leftMargin = m35dp;
-                    marginLayoutParams.rightMargin = m35dp;
+                    int m36dp = AndroidUtilities.m36dp(80.0f);
+                    marginLayoutParams.leftMargin = m36dp;
+                    marginLayoutParams.rightMargin = m36dp;
                 } else {
-                    int m35dp2 = AndroidUtilities.m35dp(16.0f);
-                    marginLayoutParams.leftMargin = m35dp2;
-                    marginLayoutParams.rightMargin = m35dp2;
+                    int m36dp2 = AndroidUtilities.m36dp(16.0f);
+                    marginLayoutParams.leftMargin = m36dp2;
+                    marginLayoutParams.rightMargin = m36dp2;
                 }
-                int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.m35dp(200.0f)) / 2;
+                int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.m36dp(200.0f)) / 2;
                 GroupCallRecordAlert.this.viewPager.setPadding(size, 0, size, 0);
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(370.0f), 1073741824));
-                measureChildWithMargins(GroupCallRecordAlert.this.titlesLayout, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(64.0f), 1073741824), 0);
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(370.0f), 1073741824));
+                measureChildWithMargins(GroupCallRecordAlert.this.titlesLayout, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(64.0f), 1073741824), 0);
             }
 
             @Override
@@ -141,8 +141,7 @@ public class GroupCallRecordAlert extends BottomSheet {
             private Paint[] gradientPaint;
 
             {
-                GroupCallRecordAlert.this = this;
-                this.gradientPaint = new Paint[this.titles.length];
+                this.gradientPaint = new Paint[GroupCallRecordAlert.this.titles.length];
                 int i2 = 0;
                 while (true) {
                     Paint[] paintArr = this.gradientPaint;
@@ -156,7 +155,7 @@ public class GroupCallRecordAlert extends BottomSheet {
 
             @Override
             protected void onSizeChanged(int r26, int r27, int r28, int r29) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.GroupCallRecordAlert.C23663.onSizeChanged(int, int, int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.GroupCallRecordAlert.C23693.onSizeChanged(int, int, int, int):void");
             }
 
             @Override
@@ -164,20 +163,20 @@ public class GroupCallRecordAlert extends BottomSheet {
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 this.gradientPaint[GroupCallRecordAlert.this.currentPage].setAlpha(255);
-                canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), this.gradientPaint[GroupCallRecordAlert.this.currentPage]);
+                canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), this.gradientPaint[GroupCallRecordAlert.this.currentPage]);
                 if (GroupCallRecordAlert.this.pageOffset > 0.0f) {
                     int i2 = GroupCallRecordAlert.this.currentPage + 1;
                     Paint[] paintArr = this.gradientPaint;
                     if (i2 < paintArr.length) {
                         paintArr[GroupCallRecordAlert.this.currentPage + 1].setAlpha((int) (GroupCallRecordAlert.this.pageOffset * 255.0f));
-                        canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), this.gradientPaint[GroupCallRecordAlert.this.currentPage + 1]);
+                        canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), this.gradientPaint[GroupCallRecordAlert.this.currentPage + 1]);
                     }
                 }
                 super.onDraw(canvas);
             }
         };
         this.positiveButton = textView3;
-        textView3.setMinWidth(AndroidUtilities.m35dp(64.0f));
+        textView3.setMinWidth(AndroidUtilities.m36dp(64.0f));
         this.positiveButton.setTag(-1);
         this.positiveButton.setTextSize(1, 14.0f);
         this.positiveButton.setTextColor(Theme.getColor("voipgroup_nameText"));
@@ -185,9 +184,9 @@ public class GroupCallRecordAlert extends BottomSheet {
         this.positiveButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.positiveButton.setText(LocaleController.getString("VoipRecordStart", C1072R.string.VoipRecordStart));
         if (Build.VERSION.SDK_INT >= 23) {
-            this.positiveButton.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_nameText"), 76)));
+            this.positiveButton.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_nameText"), 76)));
         }
-        this.positiveButton.setPadding(0, AndroidUtilities.m35dp(12.0f), 0, AndroidUtilities.m35dp(12.0f));
+        this.positiveButton.setPadding(0, AndroidUtilities.m36dp(12.0f), 0, AndroidUtilities.m36dp(12.0f));
         this.positiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
@@ -208,7 +207,7 @@ public class GroupCallRecordAlert extends BottomSheet {
             this.titles[i2].setTextSize(1, 12.0f);
             this.titles[i2].setTextColor(-1);
             this.titles[i2].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.titles[i2].setPadding(AndroidUtilities.m35dp(10.0f), 0, AndroidUtilities.m35dp(10.0f), 0);
+            this.titles[i2].setPadding(AndroidUtilities.m36dp(10.0f), 0, AndroidUtilities.m36dp(10.0f), 0);
             this.titles[i2].setGravity(16);
             this.titles[i2].setSingleLine(true);
             this.titlesLayout.addView(this.titles[i2], LayoutHelper.createLinear(-2, -1));
@@ -293,7 +292,6 @@ public class GroupCallRecordAlert extends BottomSheet {
         }
 
         private Adapter() {
-            GroupCallRecordAlert.this = r1;
         }
 
         @Override
@@ -321,9 +319,9 @@ public class GroupCallRecordAlert extends BottomSheet {
             });
             imageView.setFocusable(true);
             imageView.setTag(Integer.valueOf(i));
-            imageView.setPadding(AndroidUtilities.m35dp(18.0f), 0, AndroidUtilities.m35dp(18.0f), 0);
+            imageView.setPadding(AndroidUtilities.m36dp(18.0f), 0, AndroidUtilities.m36dp(18.0f), 0);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            imageView.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.m35dp(200.0f), -1));
+            imageView.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.m36dp(200.0f), -1));
             if (i == 0) {
                 imageView.setContentDescription(LocaleController.getString("VoipRecordAudio", C1072R.string.VoipRecordAudio));
             } else if (i == 1) {

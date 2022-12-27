@@ -61,8 +61,8 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
         super(context);
         this.currentSelection = -1;
         this.rectF = new RectF();
-        this.MIN_TEXT_SIZE = AndroidUtilities.m35dp(9.0f);
-        this.MAX_TEXT_SIZE = AndroidUtilities.m35dp(13.0f);
+        this.MIN_TEXT_SIZE = AndroidUtilities.m36dp(9.0f);
+        this.MAX_TEXT_SIZE = AndroidUtilities.m36dp(13.0f);
         this.lookupTable = new String[FileLoader.MEDIA_DIR_VIDEO_PUBLIC];
         this.emptyDataAlpha = 1.0f;
         this.oldW = 0;
@@ -134,7 +134,7 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
             canvas3.scale(f13, f13, this.chartArea.centerX(), this.chartArea.centerY());
         }
         float height = (int) ((this.chartArea.width() > this.chartArea.height() ? this.chartArea.height() : this.chartArea.width()) * 0.45f);
-        this.rectF.set(this.chartArea.centerX() - height, (this.chartArea.centerY() + AndroidUtilities.m35dp(16.0f)) - height, this.chartArea.centerX() + height, this.chartArea.centerY() + AndroidUtilities.m35dp(16.0f) + height);
+        this.rectF.set(this.chartArea.centerX() - height, (this.chartArea.centerY() + AndroidUtilities.m36dp(16.0f)) - height, this.chartArea.centerX() + height, this.chartArea.centerY() + AndroidUtilities.m36dp(16.0f) + height);
         int size = this.lines.size();
         float f14 = 0.0f;
         for (int i6 = 0; i6 < size; i6++) {
@@ -170,17 +170,17 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
                         if (canvas3 != null) {
                             double cos = Math.cos(Math.toRadians(d));
                             f4 = f14;
-                            double m35dp = AndroidUtilities.m35dp(8.0f);
-                            Double.isNaN(m35dp);
-                            double d2 = cos * m35dp;
+                            double m36dp = AndroidUtilities.m36dp(8.0f);
+                            Double.isNaN(m36dp);
+                            double d2 = cos * m36dp;
                             double d3 = interpolation;
                             Double.isNaN(d3);
                             i3 = i5;
                             double sin = Math.sin(Math.toRadians(d));
-                            double m35dp2 = AndroidUtilities.m35dp(8.0f);
-                            Double.isNaN(m35dp2);
+                            double m36dp2 = AndroidUtilities.m36dp(8.0f);
+                            Double.isNaN(m36dp2);
                             Double.isNaN(d3);
-                            canvas3.translate((float) (d2 * d3), (float) (sin * m35dp2 * d3));
+                            canvas3.translate((float) (d2 * d3), (float) (sin * m36dp2 * d3));
                             ((PieChartViewData) this.lines.get(i7)).paint.setStyle(Paint.Style.FILL_AND_STROKE);
                             ((PieChartViewData) this.lines.get(i7)).paint.setStrokeWidth(1.0f);
                             ((PieChartViewData) this.lines.get(i7)).paint.setAntiAlias(!BaseChartView.USE_LINES);
@@ -236,17 +236,17 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
                     if (((PieChartViewData) this.lines.get(i9)).selectionA > 0.0f) {
                         float interpolation2 = BaseChartView.INTERPOLATOR.getInterpolation(((PieChartViewData) this.lines.get(i9)).selectionA);
                         double cos2 = Math.cos(Math.toRadians(d4));
-                        double m35dp3 = AndroidUtilities.m35dp(f2);
-                        Double.isNaN(m35dp3);
-                        double d5 = cos2 * m35dp3;
+                        double m36dp3 = AndroidUtilities.m36dp(f2);
+                        Double.isNaN(m36dp3);
+                        double d5 = cos2 * m36dp3;
                         double d6 = interpolation2;
                         Double.isNaN(d6);
                         float f20 = (float) (d5 * d6);
                         double sin2 = Math.sin(Math.toRadians(d4));
-                        double m35dp4 = AndroidUtilities.m35dp(f2);
-                        Double.isNaN(m35dp4);
+                        double m36dp4 = AndroidUtilities.m36dp(f2);
+                        Double.isNaN(m36dp4);
                         Double.isNaN(d6);
-                        canvas3.translate(f20, (float) (sin2 * m35dp4 * d6));
+                        canvas3.translate(f20, (float) (sin2 * m36dp4 * d6));
                     }
                     int i10 = (int) (100.0f * f19);
                     if (f19 < 0.02f || i10 <= 0 || i10 > 100) {
@@ -462,7 +462,7 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
         if (this.chartData == 0 || this.isEmpty) {
             return;
         }
-        float degrees = (float) (Math.toDegrees(Math.atan2((this.chartArea.centerY() + AndroidUtilities.m35dp(16.0f)) - i2, this.chartArea.centerX() - i)) - 90.0d);
+        float degrees = (float) (Math.toDegrees(Math.atan2((this.chartArea.centerY() + AndroidUtilities.m36dp(16.0f)) - i2, this.chartArea.centerX() - i)) - 90.0d);
         float f = 0.0f;
         if (degrees < 0.0f) {
             double d = degrees;
@@ -514,8 +514,8 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
             if (min < 0) {
                 min = 0;
             }
-            if (this.pieLegendView.getMeasuredWidth() + min > getMeasuredWidth() - AndroidUtilities.m35dp(16.0f)) {
-                min -= (this.pieLegendView.getMeasuredWidth() + min) - (getMeasuredWidth() - AndroidUtilities.m35dp(16.0f));
+            if (this.pieLegendView.getMeasuredWidth() + min > getMeasuredWidth() - AndroidUtilities.m36dp(16.0f)) {
+                min -= (this.pieLegendView.getMeasuredWidth() + min) - (getMeasuredWidth() - AndroidUtilities.m36dp(16.0f));
             }
             double centerY = this.rectF.centerY();
             double sin = Math.sin(Math.toRadians(d4));
@@ -526,7 +526,7 @@ public class PieChartView extends StackLinearChartView<PieChartViewData> {
             double sin2 = Math.sin(Math.toRadians(d2));
             Double.isNaN(width);
             Double.isNaN(centerY2);
-            int min2 = ((int) Math.min(this.rectF.centerY(), (int) Math.min(d5, centerY2 + (width * sin2)))) - AndroidUtilities.m35dp(50.0f);
+            int min2 = ((int) Math.min(this.rectF.centerY(), (int) Math.min(d5, centerY2 + (width * sin2)))) - AndroidUtilities.m36dp(50.0f);
             this.pieLegendView.setTranslationX(min);
             this.pieLegendView.setTranslationY(min2);
             if (!(Build.VERSION.SDK_INT >= 27 ? performHapticFeedback(9, 2) : false)) {

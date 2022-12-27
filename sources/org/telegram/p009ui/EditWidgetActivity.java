@@ -94,7 +94,6 @@ public class EditWidgetActivity extends BaseFragment {
         }
 
         public TouchHelperCallback() {
-            EditWidgetActivity.this = r1;
         }
 
         @Override
@@ -177,13 +176,12 @@ public class EditWidgetActivity extends BaseFragment {
 
         public WidgetPreviewCell(Context context) {
             super(context);
-            EditWidgetActivity.this = r19;
             this.roundPaint = new Paint(1);
             this.bitmapRect = new RectF();
             this.cells = new ViewGroup[2];
             int i = 0;
             setWillNotDraw(false);
-            setPadding(0, AndroidUtilities.m35dp(24.0f), 0, AndroidUtilities.m35dp(24.0f));
+            setPadding(0, AndroidUtilities.m36dp(24.0f), 0, AndroidUtilities.m36dp(24.0f));
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(1);
             addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
@@ -194,23 +192,23 @@ public class EditWidgetActivity extends BaseFragment {
             linearLayout2.setOrientation(1);
             linearLayout2.setBackgroundResource(C1072R.C1073drawable.widget_bg);
             linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, -2, 17, 10, 0, 10, 0));
-            r19.previewImageView = new ImageView(context);
-            if (r19.widgetType == 0) {
+            EditWidgetActivity.this.previewImageView = new ImageView(context);
+            if (EditWidgetActivity.this.widgetType == 0) {
                 while (i < 2) {
-                    this.cells[i] = (ViewGroup) r19.getParentActivity().getLayoutInflater().inflate(C1072R.layout.shortcut_widget_item, (ViewGroup) null);
+                    this.cells[i] = (ViewGroup) EditWidgetActivity.this.getParentActivity().getLayoutInflater().inflate(C1072R.layout.shortcut_widget_item, (ViewGroup) null);
                     linearLayout2.addView(this.cells[i], LayoutHelper.createLinear(-1, -2));
                     i++;
                 }
-                linearLayout2.addView(r19.previewImageView, LayoutHelper.createLinear(218, 160, 17));
-                r19.previewImageView.setImageResource(C1072R.C1073drawable.chats_widget_preview);
-            } else if (r19.widgetType == 1) {
+                linearLayout2.addView(EditWidgetActivity.this.previewImageView, LayoutHelper.createLinear(218, 160, 17));
+                EditWidgetActivity.this.previewImageView.setImageResource(C1072R.C1073drawable.chats_widget_preview);
+            } else if (EditWidgetActivity.this.widgetType == 1) {
                 while (i < 2) {
-                    this.cells[i] = (ViewGroup) r19.getParentActivity().getLayoutInflater().inflate(C1072R.layout.contacts_widget_item, (ViewGroup) null);
+                    this.cells[i] = (ViewGroup) EditWidgetActivity.this.getParentActivity().getLayoutInflater().inflate(C1072R.layout.contacts_widget_item, (ViewGroup) null);
                     linearLayout2.addView(this.cells[i], LayoutHelper.createLinear(160, -2));
                     i++;
                 }
-                linearLayout2.addView(r19.previewImageView, LayoutHelper.createLinear(160, 160, 17));
-                r19.previewImageView.setImageResource(C1072R.C1073drawable.contacts_widget_preview);
+                linearLayout2.addView(EditWidgetActivity.this.previewImageView, LayoutHelper.createLinear(160, 160, 17));
+                EditWidgetActivity.this.previewImageView.setImageResource(C1072R.C1073drawable.contacts_widget_preview);
             }
             updateDialogs();
             this.shadowDrawable = Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow");
@@ -222,7 +220,7 @@ public class EditWidgetActivity extends BaseFragment {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(264.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(264.0f), 1073741824));
         }
 
         @Override
@@ -383,7 +381,7 @@ public class EditWidgetActivity extends BaseFragment {
                 } else if (i == 1 && EditWidgetActivity.this.getParentActivity() != null) {
                     ArrayList<MessagesStorage.TopicKey> arrayList = new ArrayList<>();
                     for (int i2 = 0; i2 < EditWidgetActivity.this.selectedDialogs.size(); i2++) {
-                        arrayList.add(MessagesStorage.TopicKey.m28of(((Long) EditWidgetActivity.this.selectedDialogs.get(i2)).longValue(), 0));
+                        arrayList.add(MessagesStorage.TopicKey.m29of(((Long) EditWidgetActivity.this.selectedDialogs.get(i2)).longValue(), 0));
                     }
                     EditWidgetActivity.this.getMessagesStorage().putWidgetDialogs(EditWidgetActivity.this.currentWidgetId, arrayList);
                     SharedPreferences.Editor edit = EditWidgetActivity.this.getParentActivity().getSharedPreferences("shortcut_widget", 0).edit();
@@ -424,7 +422,7 @@ public class EditWidgetActivity extends BaseFragment {
                 EditWidgetActivity.this.lambda$createView$1(context, view, i);
             }
         });
-        this.listView.setOnItemLongClickListener(new C32302());
+        this.listView.setOnItemLongClickListener(new C32332());
         return this.fragmentView;
     }
 
@@ -452,7 +450,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
     }
 
-    public class C32302 implements RecyclerListView.OnItemLongClickListenerExtended {
+    public class C32332 implements RecyclerListView.OnItemLongClickListenerExtended {
         private Rect rect = new Rect();
 
         @Override
@@ -463,8 +461,7 @@ public class EditWidgetActivity extends BaseFragment {
         public void onMove(float f, float f2) {
         }
 
-        C32302() {
-            EditWidgetActivity.this = r1;
+        C32332() {
         }
 
         @Override
@@ -476,7 +473,7 @@ public class EditWidgetActivity extends BaseFragment {
                     builder.setItems(new CharSequence[]{LocaleController.getString("Delete", C1072R.string.Delete)}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i2) {
-                            EditWidgetActivity.C32302.this.lambda$onItemClick$0(i, dialogInterface, i2);
+                            EditWidgetActivity.C32332.this.lambda$onItemClick$0(i, dialogInterface, i2);
                         }
                     });
                     EditWidgetActivity.this.showDialog(builder.create());
@@ -514,7 +511,6 @@ public class EditWidgetActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
-            EditWidgetActivity.this = r1;
             this.mContext = context;
         }
 
@@ -609,7 +605,7 @@ public class EditWidgetActivity extends BaseFragment {
                 drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("switchTrackChecked"), PorterDuff.Mode.MULTIPLY));
                 drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("checkboxCheck"), PorterDuff.Mode.MULTIPLY));
                 textCell.setTextAndIcon(LocaleController.getString("SelectChats", C1072R.string.SelectChats), new CombinedDrawable(drawable, drawable2), EditWidgetActivity.this.chatsStartRow != -1);
-                textCell.getImageView().setPadding(0, AndroidUtilities.m35dp(7.0f), 0, 0);
+                textCell.getImageView().setPadding(0, AndroidUtilities.m36dp(7.0f), 0, 0);
             }
         }
 

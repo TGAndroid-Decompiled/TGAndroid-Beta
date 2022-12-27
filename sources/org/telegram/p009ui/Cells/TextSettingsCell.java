@@ -75,7 +75,7 @@ public class TextSettingsCell extends FrameLayout {
         AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, !LocaleController.isRTL);
         this.valueTextView = animatedTextView;
         animatedTextView.setAnimationProperties(0.55f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.valueTextView.setTextSize(AndroidUtilities.m35dp(16.0f));
+        this.valueTextView.setTextSize(AndroidUtilities.m36dp(16.0f));
         this.valueTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
         this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteValueText", resourcesProvider));
         addView(this.valueTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, f, 0.0f, f, 0.0f));
@@ -99,8 +99,8 @@ public class TextSettingsCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m35dp(50.0f) + (this.needDivider ? 1 : 0));
-        int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.m35dp(34.0f);
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m36dp(50.0f) + (this.needDivider ? 1 : 0));
+        int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.m36dp(34.0f);
         int i3 = measuredWidth / 2;
         if (this.valueImageView.getVisibility() == 0) {
             this.valueImageView.measure(View.MeasureSpec.makeMeasureSpec(i3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
@@ -114,13 +114,13 @@ public class TextSettingsCell extends FrameLayout {
         }
         if (this.valueTextView.getVisibility() == 0) {
             this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(i3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-            measuredWidth = (measuredWidth - this.valueTextView.getMeasuredWidth()) - AndroidUtilities.m35dp(8.0f);
+            measuredWidth = (measuredWidth - this.valueTextView.getMeasuredWidth()) - AndroidUtilities.m36dp(8.0f);
             if (this.valueImageView.getVisibility() == 0) {
                 ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.valueImageView.getLayoutParams();
                 if (LocaleController.isRTL) {
-                    marginLayoutParams.leftMargin = AndroidUtilities.m35dp(this.padding + 4) + this.valueTextView.getMeasuredWidth();
+                    marginLayoutParams.leftMargin = AndroidUtilities.m36dp(this.padding + 4) + this.valueTextView.getMeasuredWidth();
                 } else {
-                    marginLayoutParams.rightMargin = AndroidUtilities.m35dp(this.padding + 4) + this.valueTextView.getMeasuredWidth();
+                    marginLayoutParams.rightMargin = AndroidUtilities.m36dp(this.padding + 4) + this.valueTextView.getMeasuredWidth();
                 }
             }
         }
@@ -187,19 +187,19 @@ public class TextSettingsCell extends FrameLayout {
         if (i == 0) {
             this.imageView.setVisibility(8);
             if (LocaleController.isRTL) {
-                marginLayoutParams.rightMargin = AndroidUtilities.m35dp(this.padding);
+                marginLayoutParams.rightMargin = AndroidUtilities.m36dp(this.padding);
                 return;
             } else {
-                marginLayoutParams.leftMargin = AndroidUtilities.m35dp(this.padding);
+                marginLayoutParams.leftMargin = AndroidUtilities.m36dp(this.padding);
                 return;
             }
         }
         this.imageView.setImageResource(i);
         this.imageView.setVisibility(0);
         if (LocaleController.isRTL) {
-            marginLayoutParams.rightMargin = AndroidUtilities.m35dp(71.0f);
+            marginLayoutParams.rightMargin = AndroidUtilities.m36dp(71.0f);
         } else {
-            marginLayoutParams.leftMargin = AndroidUtilities.m35dp(71.0f);
+            marginLayoutParams.leftMargin = AndroidUtilities.m36dp(71.0f);
         }
     }
 
@@ -299,19 +299,19 @@ public class TextSettingsCell extends FrameLayout {
             this.paint.setAlpha((int) (((this.loadingProgress * 0.4f) + 0.6f) * this.drawLoadingProgress * 255.0f));
             int measuredHeight = getMeasuredHeight() >> 1;
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((getMeasuredWidth() - AndroidUtilities.m35dp(this.padding)) - AndroidUtilities.m35dp(this.loadingSize), measuredHeight - AndroidUtilities.m35dp(3.0f), getMeasuredWidth() - AndroidUtilities.m35dp(this.padding), measuredHeight + AndroidUtilities.m35dp(3.0f));
+            rectF.set((getMeasuredWidth() - AndroidUtilities.m36dp(this.padding)) - AndroidUtilities.m36dp(this.loadingSize), measuredHeight - AndroidUtilities.m36dp(3.0f), getMeasuredWidth() - AndroidUtilities.m36dp(this.padding), measuredHeight + AndroidUtilities.m36dp(3.0f));
             if (LocaleController.isRTL) {
                 rectF.left = getMeasuredWidth() - rectF.left;
                 rectF.right = getMeasuredWidth() - rectF.right;
             }
-            canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(3.0f), this.paint);
+            canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(3.0f), this.paint);
             invalidate();
         }
         this.valueTextView.setAlpha(1.0f - this.drawLoadingProgress);
         super.dispatchDraw(canvas);
         if (this.needDivider) {
-            int m35dp = AndroidUtilities.m35dp(this.imageView.getVisibility() == 0 ? 71.0f : 20.0f);
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : m35dp, getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? m35dp : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            int m36dp = AndroidUtilities.m36dp(this.imageView.getVisibility() == 0 ? 71.0f : 20.0f);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : m36dp, getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? m36dp : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }
 

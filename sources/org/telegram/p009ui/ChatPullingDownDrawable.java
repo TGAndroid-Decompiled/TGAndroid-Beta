@@ -93,9 +93,9 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         CounterView.CounterDrawable counterDrawable3 = this.counterDrawable;
         TextPaint textPaint = this.textPaint;
         counterDrawable3.textPaint = textPaint;
-        textPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
+        textPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
         this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.textPaint2.setTextSize(AndroidUtilities.m35dp(14.0f));
+        this.textPaint2.setTextSize(AndroidUtilities.m36dp(14.0f));
         this.xRefPaint.setColor(-16777216);
         this.xRefPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         updateDialog();
@@ -132,13 +132,13 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         String string2;
         int i2;
         if (i != this.lastWidth) {
-            this.circleRadius = AndroidUtilities.m35dp(56.0f) / 2.0f;
+            this.circleRadius = AndroidUtilities.m36dp(56.0f) / 2.0f;
             this.lastWidth = i;
             TLRPC$Chat tLRPC$Chat = this.nextChat;
             String string3 = tLRPC$Chat != null ? tLRPC$Chat.title : LocaleController.getString("SwipeToGoNextChannelEnd", C1072R.string.SwipeToGoNextChannelEnd);
             int measureText = (int) this.textPaint.measureText(string3);
             this.chatNameWidth = measureText;
-            this.chatNameWidth = Math.min(measureText, this.lastWidth - AndroidUtilities.m35dp(60.0f));
+            this.chatNameWidth = Math.min(measureText, this.lastWidth - AndroidUtilities.m36dp(60.0f));
             this.chatNameLayout = new StaticLayout(string3, this.textPaint, this.chatNameWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             boolean z = this.drawFolderBackground;
             if (z && (i2 = this.dialogFolderId) != this.folderId && i2 != 0) {
@@ -155,15 +155,15 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             String str2 = string2;
             int measureText2 = (int) this.textPaint2.measureText(str);
             this.layout1Width = measureText2;
-            this.layout1Width = Math.min(measureText2, this.lastWidth - AndroidUtilities.m35dp(60.0f));
+            this.layout1Width = Math.min(measureText2, this.lastWidth - AndroidUtilities.m36dp(60.0f));
             this.layout1 = new StaticLayout(str, this.textPaint2, this.layout1Width, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
             int measureText3 = (int) this.textPaint2.measureText(str2);
             this.layout2Width = measureText3;
-            this.layout2Width = Math.min(measureText3, this.lastWidth - AndroidUtilities.m35dp(60.0f));
+            this.layout2Width = Math.min(measureText3, this.lastWidth - AndroidUtilities.m36dp(60.0f));
             this.layout2 = new StaticLayout(str2, this.textPaint2, this.layout2Width, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-            this.imageReceiver.setImageCoords((this.lastWidth / 2.0f) - (AndroidUtilities.m35dp(40.0f) / 2.0f), (AndroidUtilities.m35dp(12.0f) + this.circleRadius) - (AndroidUtilities.m35dp(40.0f) / 2.0f), AndroidUtilities.m35dp(40.0f), AndroidUtilities.m35dp(40.0f));
-            this.imageReceiver.setRoundRadius((int) (AndroidUtilities.m35dp(40.0f) / 2.0f));
-            this.counterDrawable.setSize(AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(100.0f));
+            this.imageReceiver.setImageCoords((this.lastWidth / 2.0f) - (AndroidUtilities.m36dp(40.0f) / 2.0f), (AndroidUtilities.m36dp(12.0f) + this.circleRadius) - (AndroidUtilities.m36dp(40.0f) / 2.0f), AndroidUtilities.m36dp(40.0f), AndroidUtilities.m36dp(40.0f));
+            this.imageReceiver.setRoundRadius((int) (AndroidUtilities.m36dp(40.0f) / 2.0f));
+            this.counterDrawable.setSize(AndroidUtilities.m36dp(28.0f), AndroidUtilities.m36dp(100.0f));
         }
     }
 
@@ -175,12 +175,12 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         float f4;
         this.parentView = view;
         this.counterDrawable.setParent(view);
-        float m35dp = AndroidUtilities.m35dp(110.0f) * f;
-        if (m35dp < AndroidUtilities.m35dp(8.0f)) {
+        float m36dp = AndroidUtilities.m36dp(110.0f) * f;
+        if (m36dp < AndroidUtilities.m36dp(8.0f)) {
             return;
         }
         float f5 = f < 0.2f ? 5.0f * f * f2 : f2;
-        Theme.applyServiceShaderMatrix(this.lastWidth, view.getMeasuredHeight(), 0.0f, view.getMeasuredHeight() - m35dp);
+        Theme.applyServiceShaderMatrix(this.lastWidth, view.getMeasuredHeight(), 0.0f, view.getMeasuredHeight() - m36dp);
         this.textPaint.setColor(getThemedColor("chat_serviceText"));
         this.arrowPaint.setColor(getThemedColor("chat_serviceText"));
         this.textPaint2.setColor(getThemedColor("chat_messagePanelHint"));
@@ -215,92 +215,92 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             showReleaseState(false, view);
         }
         float f6 = this.lastWidth / 2.0f;
-        float f7 = this.bounceProgress * (-AndroidUtilities.m35dp(4.0f));
+        float f7 = this.bounceProgress * (-AndroidUtilities.m36dp(4.0f));
         if (this.emptyStub) {
-            m35dp -= f7;
+            m36dp -= f7;
         }
-        float f8 = m35dp / 2.0f;
-        float max = Math.max(0.0f, Math.min(this.circleRadius, (f8 - (AndroidUtilities.m35dp(16.0f) * f)) - AndroidUtilities.m35dp(4.0f)));
-        float max2 = ((Math.max(0.0f, Math.min(this.circleRadius * f, f8 - (AndroidUtilities.m35dp(8.0f) * f))) * 2.0f) - AndroidUtilities.dp2(16.0f)) * (1.0f - this.swipeToReleaseProgress);
+        float f8 = m36dp / 2.0f;
+        float max = Math.max(0.0f, Math.min(this.circleRadius, (f8 - (AndroidUtilities.m36dp(16.0f) * f)) - AndroidUtilities.m36dp(4.0f)));
+        float max2 = ((Math.max(0.0f, Math.min(this.circleRadius * f, f8 - (AndroidUtilities.m36dp(8.0f) * f))) * 2.0f) - AndroidUtilities.dp2(16.0f)) * (1.0f - this.swipeToReleaseProgress);
         float f9 = this.swipeToReleaseProgress;
-        float m35dp2 = max2 + (AndroidUtilities.m35dp(56.0f) * f9);
+        float m36dp2 = max2 + (AndroidUtilities.m36dp(56.0f) * f9);
         if (f9 < 1.0f || this.emptyStub) {
-            float f10 = -m35dp;
+            float f10 = -m36dp;
             i2 = alpha3;
             i3 = alpha2;
-            float m35dp3 = ((-AndroidUtilities.m35dp(8.0f)) * (1.0f - this.swipeToReleaseProgress)) + ((AndroidUtilities.m35dp(56.0f) + f10) * this.swipeToReleaseProgress);
+            float m36dp3 = ((-AndroidUtilities.m36dp(8.0f)) * (1.0f - this.swipeToReleaseProgress)) + ((AndroidUtilities.m36dp(56.0f) + f10) * this.swipeToReleaseProgress);
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(f6 - max, f10, max + f6, m35dp3);
+            rectF.set(f6 - max, f10, max + f6, m36dp3);
             if (this.swipeToReleaseProgress > 0.0f && !this.emptyStub) {
-                float m35dp4 = AndroidUtilities.m35dp(16.0f) * this.swipeToReleaseProgress;
-                rectF.inset(m35dp4, m35dp4);
+                float m36dp4 = AndroidUtilities.m36dp(16.0f) * this.swipeToReleaseProgress;
+                rectF.inset(m36dp4, m36dp4);
             }
             drawBackground(canvas, rectF);
-            float m35dp5 = ((AndroidUtilities.m35dp(24.0f) + f10) + (AndroidUtilities.m35dp(8.0f) * (1.0f - f))) - (AndroidUtilities.m35dp(36.0f) * this.swipeToReleaseProgress);
+            float m36dp5 = ((AndroidUtilities.m36dp(24.0f) + f10) + (AndroidUtilities.m36dp(8.0f) * (1.0f - f))) - (AndroidUtilities.m36dp(36.0f) * this.swipeToReleaseProgress);
             canvas.save();
-            f3 = m35dp;
-            rectF.inset(AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(1.0f));
+            f3 = m36dp;
+            rectF.inset(AndroidUtilities.m36dp(1.0f), AndroidUtilities.m36dp(1.0f));
             canvas.clipRect(rectF);
             float f11 = this.swipeToReleaseProgress;
             if (f11 > 0.0f) {
                 this.arrowPaint.setAlpha((int) ((1.0f - f11) * 255.0f));
             }
-            drawArrow(canvas, f6, m35dp5, AndroidUtilities.m35dp(24.0f) * f);
+            drawArrow(canvas, f6, m36dp5, AndroidUtilities.m36dp(24.0f) * f);
             if (this.emptyStub) {
-                float dp2 = ((((-AndroidUtilities.m35dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - m35dp2) * (1.0f - this.swipeToReleaseProgress)) + ((f10 - AndroidUtilities.m35dp(2.0f)) * this.swipeToReleaseProgress) + f7;
+                float dp2 = ((((-AndroidUtilities.m36dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - m36dp2) * (1.0f - this.swipeToReleaseProgress)) + ((f10 - AndroidUtilities.m36dp(2.0f)) * this.swipeToReleaseProgress) + f7;
                 this.arrowPaint.setAlpha(alpha4);
                 canvas.save();
-                canvas.scale(f, f, f6, AndroidUtilities.m35dp(28.0f) + dp2);
-                drawCheck(canvas, f6, dp2 + AndroidUtilities.m35dp(28.0f));
+                canvas.scale(f, f, f6, AndroidUtilities.m36dp(28.0f) + dp2);
+                drawCheck(canvas, f6, dp2 + AndroidUtilities.m36dp(28.0f));
                 canvas.restore();
             }
             canvas.restore();
         } else {
-            f3 = m35dp;
+            f3 = m36dp;
             i3 = alpha2;
             i2 = alpha3;
         }
         if (this.chatNameLayout != null && this.swipeToReleaseProgress > 0.0f) {
             getThemedPaint("paintChatActionBackground").setAlpha(i4);
             this.textPaint.setAlpha(i5);
-            float m35dp6 = ((AndroidUtilities.m35dp(20.0f) * (1.0f - this.swipeToReleaseProgress)) - (AndroidUtilities.m35dp(36.0f) * this.swipeToReleaseProgress)) + f7;
+            float m36dp6 = ((AndroidUtilities.m36dp(20.0f) * (1.0f - this.swipeToReleaseProgress)) - (AndroidUtilities.m36dp(36.0f) * this.swipeToReleaseProgress)) + f7;
             RectF rectF2 = AndroidUtilities.rectTmp;
             int i6 = this.lastWidth;
             int i7 = this.chatNameWidth;
-            rectF2.set((i6 - i7) / 2.0f, m35dp6, i6 - ((i6 - i7) / 2.0f), this.chatNameLayout.getHeight() + m35dp6);
-            rectF2.inset(-AndroidUtilities.m35dp(8.0f), -AndroidUtilities.m35dp(4.0f));
-            canvas.drawRoundRect(rectF2, AndroidUtilities.m35dp(15.0f), AndroidUtilities.m35dp(15.0f), getThemedPaint("paintChatActionBackground"));
+            rectF2.set((i6 - i7) / 2.0f, m36dp6, i6 - ((i6 - i7) / 2.0f), this.chatNameLayout.getHeight() + m36dp6);
+            rectF2.inset(-AndroidUtilities.m36dp(8.0f), -AndroidUtilities.m36dp(4.0f));
+            canvas.drawRoundRect(rectF2, AndroidUtilities.m36dp(15.0f), AndroidUtilities.m36dp(15.0f), getThemedPaint("paintChatActionBackground"));
             if (hasGradientService()) {
-                canvas.drawRoundRect(rectF2, AndroidUtilities.m35dp(15.0f), AndroidUtilities.m35dp(15.0f), Theme.chat_actionBackgroundGradientDarkenPaint);
+                canvas.drawRoundRect(rectF2, AndroidUtilities.m36dp(15.0f), AndroidUtilities.m36dp(15.0f), Theme.chat_actionBackgroundGradientDarkenPaint);
             }
             canvas.save();
-            canvas.translate((this.lastWidth - this.chatNameWidth) / 2.0f, m35dp6);
+            canvas.translate((this.lastWidth - this.chatNameWidth) / 2.0f, m36dp6);
             this.chatNameLayout.draw(canvas);
             canvas.restore();
         }
-        if (this.emptyStub || m35dp2 <= 0.0f) {
+        if (this.emptyStub || m36dp2 <= 0.0f) {
             f4 = 1.0f;
         } else {
-            float dp22 = ((((-AndroidUtilities.m35dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - m35dp2) * (1.0f - this.swipeToReleaseProgress)) + (((-f3) + AndroidUtilities.m35dp(4.0f)) * this.swipeToReleaseProgress) + f7;
-            float f12 = m35dp2 / 2.0f;
+            float dp22 = ((((-AndroidUtilities.m36dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - m36dp2) * (1.0f - this.swipeToReleaseProgress)) + (((-f3) + AndroidUtilities.m36dp(4.0f)) * this.swipeToReleaseProgress) + f7;
+            float f12 = m36dp2 / 2.0f;
             this.imageReceiver.setRoundRadius((int) f12);
-            this.imageReceiver.setImageCoords(f6 - f12, dp22, m35dp2, m35dp2);
+            this.imageReceiver.setImageCoords(f6 - f12, dp22, m36dp2, m36dp2);
             if (this.swipeToReleaseProgress > 0.0f) {
                 f4 = 1.0f;
                 canvas.saveLayerAlpha(this.imageReceiver.getImageX(), this.imageReceiver.getImageY(), this.imageReceiver.getImageWidth() + this.imageReceiver.getImageX(), this.imageReceiver.getImageHeight() + this.imageReceiver.getImageY(), 255, 31);
                 this.imageReceiver.draw(canvas);
                 float f13 = this.swipeToReleaseProgress;
-                canvas.scale(f13, f13, AndroidUtilities.m35dp(12.0f) + f6 + this.counterDrawable.getCenterX(), (dp22 - AndroidUtilities.m35dp(6.0f)) + AndroidUtilities.m35dp(14.0f));
-                canvas.translate(AndroidUtilities.m35dp(12.0f) + f6, dp22 - AndroidUtilities.m35dp(6.0f));
+                canvas.scale(f13, f13, AndroidUtilities.m36dp(12.0f) + f6 + this.counterDrawable.getCenterX(), (dp22 - AndroidUtilities.m36dp(6.0f)) + AndroidUtilities.m36dp(14.0f));
+                canvas.translate(AndroidUtilities.m36dp(12.0f) + f6, dp22 - AndroidUtilities.m36dp(6.0f));
                 this.counterDrawable.updateBackgroundRect();
-                this.counterDrawable.rectF.inset(-AndroidUtilities.m35dp(2.0f), -AndroidUtilities.m35dp(2.0f));
+                this.counterDrawable.rectF.inset(-AndroidUtilities.m36dp(2.0f), -AndroidUtilities.m36dp(2.0f));
                 RectF rectF3 = this.counterDrawable.rectF;
                 canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, this.counterDrawable.rectF.height() / 2.0f, this.xRefPaint);
                 canvas.restore();
                 canvas.save();
                 float f14 = this.swipeToReleaseProgress;
-                canvas.scale(f14, f14, AndroidUtilities.m35dp(12.0f) + f6 + this.counterDrawable.getCenterX(), (dp22 - AndroidUtilities.m35dp(6.0f)) + AndroidUtilities.m35dp(14.0f));
-                canvas.translate(f6 + AndroidUtilities.m35dp(12.0f), dp22 - AndroidUtilities.m35dp(6.0f));
+                canvas.scale(f14, f14, AndroidUtilities.m36dp(12.0f) + f6 + this.counterDrawable.getCenterX(), (dp22 - AndroidUtilities.m36dp(6.0f)) + AndroidUtilities.m36dp(14.0f));
+                canvas.translate(f6 + AndroidUtilities.m36dp(12.0f), dp22 - AndroidUtilities.m36dp(6.0f));
                 this.counterDrawable.draw(canvas);
                 canvas.restore();
             } else {
@@ -330,18 +330,18 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             float f7 = f5 < 0.5f ? 0.0f : (f5 - 0.5f) / 0.5f;
             canvas.save();
             canvas.clipRect(AndroidUtilities.rectTmp);
-            canvas.translate(f - AndroidUtilities.m35dp(24.0f), f2 - AndroidUtilities.m35dp(24.0f));
-            float m35dp = AndroidUtilities.m35dp(16.0f);
-            float m35dp2 = AndroidUtilities.m35dp(26.0f);
-            float m35dp3 = AndroidUtilities.m35dp(22.0f);
-            float m35dp4 = AndroidUtilities.m35dp(32.0f);
-            float m35dp5 = AndroidUtilities.m35dp(32.0f);
-            float m35dp6 = AndroidUtilities.m35dp(20.0f);
+            canvas.translate(f - AndroidUtilities.m36dp(24.0f), f2 - AndroidUtilities.m36dp(24.0f));
+            float m36dp = AndroidUtilities.m36dp(16.0f);
+            float m36dp2 = AndroidUtilities.m36dp(26.0f);
+            float m36dp3 = AndroidUtilities.m36dp(22.0f);
+            float m36dp4 = AndroidUtilities.m36dp(32.0f);
+            float m36dp5 = AndroidUtilities.m36dp(32.0f);
+            float m36dp6 = AndroidUtilities.m36dp(20.0f);
             float f8 = 1.0f - f6;
-            canvas.drawLine(m35dp, m35dp2, (m35dp * f8) + (m35dp3 * f6), (f8 * m35dp2) + (f6 * m35dp4), this.arrowPaint);
+            canvas.drawLine(m36dp, m36dp2, (m36dp * f8) + (m36dp3 * f6), (f8 * m36dp2) + (f6 * m36dp4), this.arrowPaint);
             if (f7 > 0.0f) {
                 float f9 = 1.0f - f7;
-                canvas.drawLine(m35dp3, m35dp4, (m35dp3 * f9) + (m35dp5 * f7), (f9 * m35dp4) + (m35dp6 * f7), this.arrowPaint);
+                canvas.drawLine(m36dp3, m36dp4, (m36dp3 * f9) + (m36dp5 * f7), (f9 * m36dp4) + (m36dp6 * f7), this.arrowPaint);
             }
             canvas.restore();
         }
@@ -504,8 +504,8 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     private void drawArrow(Canvas canvas, float f, float f2, float f3) {
         canvas.save();
         float dpf2 = f3 / AndroidUtilities.dpf2(24.0f);
-        canvas.scale(dpf2, dpf2, f, f2 - AndroidUtilities.m35dp(20.0f));
-        canvas.translate(f - AndroidUtilities.dp2(12.0f), f2 - AndroidUtilities.m35dp(12.0f));
+        canvas.scale(dpf2, dpf2, f, f2 - AndroidUtilities.m36dp(20.0f));
+        canvas.translate(f - AndroidUtilities.dp2(12.0f), f2 - AndroidUtilities.m36dp(12.0f));
         canvas.drawLine(AndroidUtilities.dpf2(12.5f), AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(12.5f), AndroidUtilities.dpf2(22.0f), this.arrowPaint);
         canvas.drawLine(AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.5f), AndroidUtilities.dpf2(3.5f), this.arrowPaint);
         canvas.drawLine(AndroidUtilities.dpf2(21.5f), AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.5f), AndroidUtilities.dpf2(3.5f), this.arrowPaint);

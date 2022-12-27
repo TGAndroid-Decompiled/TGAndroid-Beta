@@ -219,19 +219,19 @@ public class NotificationsController extends BaseController {
         try {
             audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         try {
             this.alarmManager = (AlarmManager) ApplicationLoader.applicationContext.getSystemService("alarm");
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
         try {
             PowerManager.WakeLock newWakeLock = ((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).newWakeLock(1, "telegram:notification_delay_lock");
             this.notificationDelayWakelock = newWakeLock;
             newWakeLock.setReferenceCounted(false);
         } catch (Exception e3) {
-            FileLog.m31e(e3);
+            FileLog.m32e(e3);
         }
         this.notificationDelayRunnable = new Runnable() {
             @Override
@@ -244,7 +244,7 @@ public class NotificationsController extends BaseController {
 
     public void lambda$new$0() {
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("delay reached");
+            FileLog.m35d("delay reached");
         }
         if (!this.delayedPushMessages.isEmpty()) {
             showOrUpdateNotification(true);
@@ -255,7 +255,7 @@ public class NotificationsController extends BaseController {
                 this.notificationDelayWakelock.release();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -291,7 +291,7 @@ public class NotificationsController extends BaseController {
             try {
                 systemNotificationManager.createNotificationChannel(notificationChannel2);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -370,7 +370,7 @@ public class NotificationsController extends BaseController {
                 this.notificationDelayWakelock.release();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         dismissNotification();
         setBadge(getTotalAllUnreadCount());
@@ -392,15 +392,15 @@ public class NotificationsController extends BaseController {
                         try {
                             systemNotificationManager.deleteNotificationChannel(id);
                         } catch (Exception e2) {
-                            FileLog.m31e(e2);
+                            FileLog.m32e(e2);
                         }
                         if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m34d("delete channel cleanup " + id);
+                            FileLog.m35d("delete channel cleanup " + id);
                         }
                     }
                 }
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
         }
     }
@@ -451,7 +451,7 @@ public class NotificationsController extends BaseController {
 
     public void lambda$setLastOnlineFromOtherDevice$4(int i) {
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("set last online from other device = " + i);
+            FileLog.m35d("set last online from other device = " + i);
         }
         this.lastOnlineFromOtherDevice = i;
     }
@@ -1127,7 +1127,7 @@ public class NotificationsController extends BaseController {
                                     }
                                 }
                             } catch (Exception e) {
-                                FileLog.m31e(e);
+                                FileLog.m32e(e);
                             }
                         } else {
                             size = notificationsController.total_unread_count;
@@ -1142,7 +1142,7 @@ public class NotificationsController extends BaseController {
                                 }
                             }
                         } catch (Exception e2) {
-                            FileLog.m31e(e2);
+                            FileLog.m32e(e2);
                         }
                     } else {
                         size = notificationsController.pushDialogs.size();
@@ -1214,7 +1214,7 @@ public class NotificationsController extends BaseController {
                 this.alarmManager.cancel(service);
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1278,7 +1278,7 @@ public class NotificationsController extends BaseController {
             this.wearNotificationsIds.clear();
             AndroidUtilities.runOnUIThread(NotificationsController$$ExternalSyntheticLambda40.INSTANCE);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1295,7 +1295,7 @@ public class NotificationsController extends BaseController {
                 return;
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         try {
             if (getNotifyOverride(getAccountInstance().getNotificationsSettings(), this.openedDialogId, this.openedTopicId) == 2) {
@@ -1308,7 +1308,7 @@ public class NotificationsController extends BaseController {
                 }
             });
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
     }
 
@@ -1331,11 +1331,11 @@ public class NotificationsController extends BaseController {
                 try {
                     this.soundPool.play(i, 1.0f, 1.0f, 1, 0, 1.0f);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
     }
 
@@ -1344,7 +1344,7 @@ public class NotificationsController extends BaseController {
             try {
                 soundPool.play(i, 1.0f, 1.0f, 1, 0, 1.0f);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -1352,13 +1352,13 @@ public class NotificationsController extends BaseController {
     private void scheduleNotificationDelay(boolean z) {
         try {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("delay notification start, onlineReason = " + z);
+                FileLog.m35d("delay notification start, onlineReason = " + z);
             }
             this.notificationDelayWakelock.acquire(10000L);
             notificationsQueue.cancelRunnable(this.notificationDelayRunnable);
             notificationsQueue.postRunnable(this.notificationDelayRunnable, z ? 3000 : 1000);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             showOrUpdateNotification(this.notifyCheck);
         }
     }
@@ -1416,10 +1416,10 @@ public class NotificationsController extends BaseController {
                     try {
                         systemNotificationManager.deleteNotificationChannel(string);
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                     if (BuildVars.LOGS_ENABLED) {
-                        FileLog.m34d("delete channel internal " + string);
+                        FileLog.m35d("delete channel internal " + string);
                     }
                 }
             }
@@ -1431,16 +1431,16 @@ public class NotificationsController extends BaseController {
                     try {
                         systemNotificationManager.deleteNotificationChannel(string2);
                     } catch (Exception e2) {
-                        FileLog.m31e(e2);
+                        FileLog.m32e(e2);
                     }
                     if (BuildVars.LOGS_ENABLED) {
-                        FileLog.m34d("delete channel internal " + string2);
+                        FileLog.m35d("delete channel internal " + string2);
                     }
                 }
             }
             edit.commit();
         } catch (Exception e3) {
-            FileLog.m31e(e3);
+            FileLog.m32e(e3);
         }
     }
 
@@ -1476,10 +1476,10 @@ public class NotificationsController extends BaseController {
                     try {
                         systemNotificationManager.deleteNotificationChannel(string);
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                     if (BuildVars.LOGS_ENABLED) {
-                        FileLog.m34d("delete channel global internal " + string);
+                        FileLog.m35d("delete channel global internal " + string);
                     }
                 }
             }
@@ -1492,17 +1492,17 @@ public class NotificationsController extends BaseController {
                     try {
                         systemNotificationManager.deleteNotificationChannel(string2);
                     } catch (Exception e2) {
-                        FileLog.m31e(e2);
+                        FileLog.m32e(e2);
                     }
                     if (BuildVars.LOGS_ENABLED) {
-                        FileLog.m34d("delete channel global internal " + string2);
+                        FileLog.m35d("delete channel global internal " + string2);
                     }
                 }
             }
             edit.remove(i == 2 ? "overwrite_channel" : i == 0 ? "overwrite_group" : "overwrite_private");
             edit.commit();
         } catch (Exception e3) {
-            FileLog.m31e(e3);
+            FileLog.m32e(e3);
         }
     }
 
@@ -1542,7 +1542,7 @@ public class NotificationsController extends BaseController {
                         String str = (String) entry.getValue();
                         systemNotificationManager.deleteNotificationChannel(str);
                         if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m34d("delete all channel " + str);
+                            FileLog.m35d("delete all channel " + str);
                         }
                     }
                     edit.remove(key);
@@ -1550,7 +1550,7 @@ public class NotificationsController extends BaseController {
             }
             edit.commit();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1614,7 +1614,7 @@ public class NotificationsController extends BaseController {
                     editor.commit();
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             notificationsSettings.edit().putBoolean("groupsCreated4", true).commit();
             this.groupsCreated = Boolean.TRUE;
@@ -1748,7 +1748,6 @@ public class NotificationsController extends BaseController {
         final long[] val$vibrationPattern;
 
         C1NotificationHolder(int i, long j, int i2, String str, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, NotificationCompat.Builder builder, int i3, String str2, long[] jArr, int i4, Uri uri, int i5, boolean z, boolean z2, boolean z3, int i6) {
-            NotificationsController.this = r4;
             this.val$lastTopicId = i3;
             this.val$chatName = str2;
             this.val$vibrationPattern = jArr;
@@ -1770,12 +1769,12 @@ public class NotificationsController extends BaseController {
 
         void call() {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m29w("show dialog notification with id " + this.f822id + " " + this.dialogId + " user=" + this.user + " chat=" + this.chat);
+                FileLog.m30w("show dialog notification with id " + this.f822id + " " + this.dialogId + " user=" + this.user + " chat=" + this.chat);
             }
             try {
                 NotificationsController.notificationManager.notify(this.f822id, this.notification.build());
             } catch (SecurityException e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 NotificationsController.this.resetNotificationSound(this.notification, this.dialogId, this.val$lastTopicId, this.val$chatName, this.val$vibrationPattern, this.val$ledColor, this.val$sound, this.val$importance, this.val$isDefault, this.val$isInApp, this.val$isSilent, this.val$chatType);
             }
         }
@@ -1822,7 +1821,7 @@ public class NotificationsController extends BaseController {
                 return;
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         notificationsQueue.postRunnable(new Runnable() {
             @Override
@@ -1852,11 +1851,11 @@ public class NotificationsController extends BaseController {
                 try {
                     this.soundPool.play(i, 1.0f, 1.0f, 1, 0, 1.0f);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
     }
 
@@ -1865,7 +1864,7 @@ public class NotificationsController extends BaseController {
             try {
                 soundPool.play(i, 1.0f, 1.0f, 1, 0, 1.0f);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }

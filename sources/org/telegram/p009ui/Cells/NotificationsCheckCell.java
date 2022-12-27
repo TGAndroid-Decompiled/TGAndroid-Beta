@@ -115,7 +115,7 @@ public class NotificationsCheckCell extends FrameLayout {
         if (this.isMultiline) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
         } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(this.currentHeight), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(this.currentHeight), 1073741824));
         }
     }
 
@@ -139,7 +139,7 @@ public class NotificationsCheckCell extends FrameLayout {
             this.valueTextView.setMaxLines(0);
             this.valueTextView.setSingleLine(false);
             this.valueTextView.setEllipsize(null);
-            this.valueTextView.setPadding(0, 0, 0, AndroidUtilities.m35dp(14.0f));
+            this.valueTextView.setPadding(0, 0, 0, AndroidUtilities.m36dp(14.0f));
         } else {
             this.valueTextView.setLines(1);
             this.valueTextView.setMaxLines(1);
@@ -169,12 +169,12 @@ public class NotificationsCheckCell extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
         if (this.drawLine) {
-            int m35dp = LocaleController.isRTL ? AndroidUtilities.m35dp(76.0f) : (getMeasuredWidth() - AndroidUtilities.m35dp(76.0f)) - 1;
-            int measuredHeight = (getMeasuredHeight() - AndroidUtilities.m35dp(22.0f)) / 2;
-            canvas.drawRect(m35dp, measuredHeight, m35dp + 2, measuredHeight + AndroidUtilities.m35dp(22.0f), Theme.dividerPaint);
+            int m36dp = LocaleController.isRTL ? AndroidUtilities.m36dp(76.0f) : (getMeasuredWidth() - AndroidUtilities.m36dp(76.0f)) - 1;
+            int measuredHeight = (getMeasuredHeight() - AndroidUtilities.m36dp(22.0f)) / 2;
+            canvas.drawRect(m36dp, measuredHeight, m36dp + 2, measuredHeight + AndroidUtilities.m36dp(22.0f), Theme.dividerPaint);
         }
     }
 

@@ -45,9 +45,9 @@ public class GraySectionCell extends FrameLayout {
             }
         };
         this.rightTextView = animatedTextView;
-        animatedTextView.setPadding(AndroidUtilities.m35dp(2.0f), 0, AndroidUtilities.m35dp(2.0f), 0);
+        animatedTextView.setPadding(AndroidUtilities.m36dp(2.0f), 0, AndroidUtilities.m36dp(2.0f), 0);
         this.rightTextView.setAnimationProperties(1.0f, 0L, 400L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.rightTextView.setTextSize(AndroidUtilities.m35dp(14.0f));
+        this.rightTextView.setTextSize(AndroidUtilities.m36dp(14.0f));
         this.rightTextView.setTextColor(getThemedColor("key_graySectionText"));
         this.rightTextView.setGravity(LocaleController.isRTL ? 3 : 5);
         addView(this.rightTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
@@ -56,7 +56,7 @@ public class GraySectionCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(32.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(32.0f), 1073741824));
     }
 
     public void setTextColor(String str) {

@@ -122,7 +122,7 @@ public class VoIPHelper {
             try {
                 positiveButton.show();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } else if (Build.VERSION.SDK_INT >= 23) {
             ArrayList arrayList = new ArrayList();
@@ -187,7 +187,7 @@ public class VoIPHelper {
             try {
                 positiveButton.show();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } else if (Build.VERSION.SDK_INT >= 23) {
             ArrayList arrayList = new ArrayList();
@@ -400,7 +400,7 @@ public class VoIPHelper {
                 try {
                     activity.startService(intent);
                 } catch (Throwable th) {
-                    FileLog.m31e(th);
+                    FileLog.m32e(th);
                 }
             }
         }
@@ -529,8 +529,8 @@ public class VoIPHelper {
         final int[] iArr = {0};
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        int m35dp = AndroidUtilities.m35dp(16.0f);
-        linearLayout.setPadding(m35dp, m35dp, m35dp, 0);
+        int m36dp = AndroidUtilities.m36dp(16.0f);
+        linearLayout.setPadding(m36dp, m36dp, m36dp, 0);
         final TextView textView = new TextView(context);
         textView.setTextSize(2, 16.0f);
         textView.setTextColor(Theme.getColor("dialogTextBlack"));
@@ -607,7 +607,7 @@ public class VoIPHelper {
         editTextBoldCursor.setHintTextColor(Theme.getColor("dialogTextHint"));
         editTextBoldCursor.setBackground(null);
         editTextBoldCursor.setLineColors(Theme.getColor("dialogInputField"), Theme.getColor("dialogInputFieldActivated"), Theme.getColor("dialogTextRed2"));
-        editTextBoldCursor.setPadding(0, AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f));
+        editTextBoldCursor.setPadding(0, AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f));
         editTextBoldCursor.setTextSize(1, 18.0f);
         editTextBoldCursor.setVisibility(8);
         linearLayout.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 8.0f, 8.0f, 8.0f, 0.0f));
@@ -627,7 +627,7 @@ public class VoIPHelper {
         textView2.setTextSize(2, 14.0f);
         textView2.setTextColor(Theme.getColor("dialogTextGray3"));
         textView2.setText(LocaleController.getString("CallReportLogsExplain", C1072R.string.CallReportLogsExplain));
-        textView2.setPadding(AndroidUtilities.m35dp(8.0f), 0, AndroidUtilities.m35dp(8.0f), 0);
+        textView2.setPadding(AndroidUtilities.m36dp(8.0f), 0, AndroidUtilities.m36dp(8.0f), 0);
         textView2.setOnClickListener(onClickListener);
         linearLayout.addView(textView2);
         checkBoxCell2.setVisibility(8);
@@ -855,7 +855,7 @@ public class VoIPHelper {
                     return 2;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m29w("Invalid call data saving preset configuration: " + z + "/" + z2 + "/" + z3);
+                    FileLog.m30w("Invalid call data saving preset configuration: " + z + "/" + z2 + "/" + z3);
                 }
                 return 0;
             }

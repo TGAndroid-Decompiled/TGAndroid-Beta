@@ -21,7 +21,7 @@ public class DividerCell extends View {
         super(context);
         this.paint = new Paint();
         this.resourcesProvider = resourcesProvider;
-        setPadding(0, AndroidUtilities.m35dp(8.0f), 0, AndroidUtilities.m35dp(8.0f));
+        setPadding(0, AndroidUtilities.m36dp(8.0f), 0, AndroidUtilities.m36dp(8.0f));
     }
 
     @Override

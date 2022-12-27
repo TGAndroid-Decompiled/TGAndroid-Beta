@@ -3,10 +3,10 @@ package org.telegram.p009ui.Components;
 import org.telegram.p009ui.Components.ChatAttachAlertBotWebViewLayout;
 import org.telegram.p009ui.Components.SimpleFloatPropertyCompat;
 
-public final class C2021xea937caa implements SimpleFloatPropertyCompat.Getter {
-    public static final C2021xea937caa INSTANCE = new C2021xea937caa();
+public final class C2024xea937caa implements SimpleFloatPropertyCompat.Getter {
+    public static final C2024xea937caa INSTANCE = new C2024xea937caa();
 
-    private C2021xea937caa() {
+    private C2024xea937caa() {
     }
 
     @Override

@@ -94,7 +94,6 @@ public class PhotoViewerWebView extends FrameLayout {
 
     public class YoutubeProxy {
         private YoutubeProxy() {
-            PhotoViewerWebView.this = r1;
         }
 
         @JavascriptInterface
@@ -293,7 +292,7 @@ public class PhotoViewerWebView extends FrameLayout {
             this.webView.getSettings().setMixedContentMode(0);
             CookieManager.getInstance().setAcceptThirdPartyCookies(this.webView, true);
         }
-        this.webView.setWebViewClient(new C25612());
+        this.webView.setWebViewClient(new C25642());
         addView(this.webView, LayoutHelper.createFrame(-1, -1, 51));
         LinearLayout linearLayout = new LinearLayout(context);
         this.errorLayout = linearLayout;
@@ -311,7 +310,7 @@ public class PhotoViewerWebView extends FrameLayout {
         this.errorButton = textView2;
         textView2.setTextSize(1, 16.0f);
         this.errorButton.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText"));
-        this.errorButton.setPadding(AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(8.0f));
+        this.errorButton.setPadding(AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(8.0f));
         this.errorButton.setBackground(Theme.AdaptiveRipple.rect("windowBackgroundWhiteBlueText", 12.0f));
         this.errorButton.setVisibility(8);
         this.errorLayout.addView(this.errorButton, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
@@ -332,9 +331,8 @@ public class PhotoViewerWebView extends FrameLayout {
         addView(this.progressBar, LayoutHelper.createFrame(-2, -2, 17));
     }
 
-    public class C25612 extends WebViewClient {
-        C25612() {
-            PhotoViewerWebView.this = r1;
+    public class C25642 extends WebViewClient {
+        C25642() {
         }
 
         @Override
@@ -355,7 +353,7 @@ public class PhotoViewerWebView extends FrameLayout {
                 Utilities.externalNetworkQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        PhotoViewerWebView.C25612.this.lambda$shouldInterceptRequest$0(uri, webResourceRequest);
+                        PhotoViewerWebView.C25642.this.lambda$shouldInterceptRequest$0(uri, webResourceRequest);
                     }
                 });
                 return null;
@@ -401,7 +399,7 @@ public class PhotoViewerWebView extends FrameLayout {
                     PhotoViewerWebView.this.processYoutubeStoryboards(optString);
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
 
@@ -577,7 +575,7 @@ public class PhotoViewerWebView extends FrameLayout {
             WebView webView = this.webView;
             webView.loadUrl("javascript:" + str);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -701,7 +699,7 @@ public class PhotoViewerWebView extends FrameLayout {
             try {
                 getContext().startService(new Intent(ApplicationLoader.applicationContext, BringAppForegroundService.class));
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
         }
         this.progressBarBlackBackground.setVisibility(0);

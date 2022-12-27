@@ -143,7 +143,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
                 ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.invite.link));
                 BulletinFactory.createCopyLinkBulletin(this).show();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } else if (i == this.shareLinkRow) {
             if (this.invite == null) {
@@ -155,7 +155,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
                 intent.putExtra("android.intent.extra.TEXT", this.invite.link);
                 getParentActivity().startActivityForResult(Intent.createChooser(intent, LocaleController.getString("InviteToGroupByLink", C1072R.string.InviteToGroupByLink)), 500);
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
         } else if (i == this.revokeLinkRow) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
@@ -252,7 +252,6 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         private Context mContext;
 
         public ListAdapter(Context context) {
-            GroupInviteActivity.this = r1;
             this.mContext = context;
         }
 

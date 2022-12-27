@@ -17,7 +17,7 @@ public class PaintDoneView extends View {
         paint.setColor(-1);
         this.paint.setStyle(Paint.Style.STROKE);
         this.paint.setStrokeCap(Paint.Cap.ROUND);
-        this.paint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.paint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
     }
 
     public void setProgress(float f) {
@@ -28,7 +28,7 @@ public class PaintDoneView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.m35dp(AndroidUtilities.lerp(-6.7f, -7.0f, this.progress)), (getHeight() / 2.0f) + AndroidUtilities.m35dp(AndroidUtilities.lerp(0.71f, 0.0f, this.progress)), (getWidth() / 2.0f) + AndroidUtilities.m35dp(AndroidUtilities.lerp(-2.45f, 7.0f, this.progress)), (getHeight() / 2.0f) + AndroidUtilities.m35dp(AndroidUtilities.lerp(4.79f, 0.0f, this.progress)), this.paint);
-        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.m35dp(AndroidUtilities.lerp(-2.45f, 0.0f, this.progress)), (getHeight() / 2.0f) + AndroidUtilities.m35dp(AndroidUtilities.lerp(4.79f, 7.0f, this.progress)), (getWidth() / 2.0f) + AndroidUtilities.m35dp(AndroidUtilities.lerp(6.59f, 0.0f, this.progress)), (getHeight() / 2.0f) + AndroidUtilities.m35dp(AndroidUtilities.lerp(-4.27f, -7.0f, this.progress)), this.paint);
+        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.m36dp(AndroidUtilities.lerp(-6.7f, -7.0f, this.progress)), (getHeight() / 2.0f) + AndroidUtilities.m36dp(AndroidUtilities.lerp(0.71f, 0.0f, this.progress)), (getWidth() / 2.0f) + AndroidUtilities.m36dp(AndroidUtilities.lerp(-2.45f, 7.0f, this.progress)), (getHeight() / 2.0f) + AndroidUtilities.m36dp(AndroidUtilities.lerp(4.79f, 0.0f, this.progress)), this.paint);
+        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.m36dp(AndroidUtilities.lerp(-2.45f, 0.0f, this.progress)), (getHeight() / 2.0f) + AndroidUtilities.m36dp(AndroidUtilities.lerp(4.79f, 7.0f, this.progress)), (getWidth() / 2.0f) + AndroidUtilities.m36dp(AndroidUtilities.lerp(6.59f, 0.0f, this.progress)), (getHeight() / 2.0f) + AndroidUtilities.m36dp(AndroidUtilities.lerp(-4.27f, -7.0f, this.progress)), this.paint);
     }
 }

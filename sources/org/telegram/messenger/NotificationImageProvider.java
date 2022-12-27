@@ -110,7 +110,7 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
                 while (!file.exists()) {
                     if (System.currentTimeMillis() - longValue >= 3000) {
                         if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m29w("Waiting for " + str2 + " to download timed out");
+                            FileLog.m30w("Waiting for " + str2 + " to download timed out");
                         }
                         if (TextUtils.isEmpty(queryParameter2)) {
                             throw new FileNotFoundException("Download timed out");

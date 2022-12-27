@@ -30,7 +30,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
                 RLottieDrawable rLottieDrawable = (RLottieDrawable) super.get(obj);
                 if (rLottieDrawable == null) {
                     int i = ((TransitState) obj).resource;
-                    return new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.m35dp(32.0f), AndroidUtilities.m35dp(32.0f));
+                    return new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.m36dp(32.0f), AndroidUtilities.m36dp(32.0f));
                 }
                 return rLottieDrawable;
             }
@@ -67,7 +67,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
             setAnimation(rLottieDrawable2);
             AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda2(rLottieDrawable2));
         }
-        int i = C19672.f1042x9047a843[state.ordinal()];
+        int i = C19702.f1042x9047a843[state.ordinal()];
         if (i == 1) {
             setContentDescription(LocaleController.getString("AccDescrVoiceMessage", C1072R.string.AccDescrVoiceMessage));
         } else if (i != 2) {
@@ -80,7 +80,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         this.animatingState = null;
     }
 
-    public static class C19672 {
+    public static class C19702 {
         static final int[] f1042x9047a843;
 
         static {
@@ -178,7 +178,6 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         }
 
         private TransitState(String str, int i, State state, State state2, int i2) {
-            super(str, i);
             this.firstState = state;
             this.secondState = state2;
             this.resource = i2;

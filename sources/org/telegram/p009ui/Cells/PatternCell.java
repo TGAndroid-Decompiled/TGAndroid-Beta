@@ -77,19 +77,19 @@ public class PatternCell extends BackupImageView implements DownloadController.F
         super(context);
         this.rect = new RectF();
         this.currentAccount = UserConfig.selectedAccount;
-        setRoundRadius(AndroidUtilities.m35dp(6.0f));
+        setRoundRadius(AndroidUtilities.m36dp(6.0f));
         this.maxWallpaperSize = i;
         this.delegate = patternCellDelegate;
         RadialProgress2 radialProgress2 = new RadialProgress2(this);
         this.radialProgress = radialProgress2;
-        radialProgress2.setProgressRect(AndroidUtilities.m35dp(30.0f), AndroidUtilities.m35dp(30.0f), AndroidUtilities.m35dp(70.0f), AndroidUtilities.m35dp(70.0f));
+        radialProgress2.setProgressRect(AndroidUtilities.m36dp(30.0f), AndroidUtilities.m36dp(30.0f), AndroidUtilities.m36dp(70.0f), AndroidUtilities.m36dp(70.0f));
         this.backgroundPaint = new Paint(3);
         this.TAG = DownloadController.getInstance(this.currentAccount).generateObserverTag();
         if (Build.VERSION.SDK_INT >= 21) {
             setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
                 public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(1.0f), view.getMeasuredWidth() - AndroidUtilities.m35dp(1.0f), view.getMeasuredHeight() - AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(6.0f));
+                    outline.setRoundRect(AndroidUtilities.m36dp(1.0f), AndroidUtilities.m36dp(1.0f), view.getMeasuredWidth() - AndroidUtilities.m36dp(1.0f), view.getMeasuredHeight() - AndroidUtilities.m36dp(1.0f), AndroidUtilities.m36dp(6.0f));
                 }
             });
             setClipToOutline(true);
@@ -99,7 +99,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
     public void setPattern(TLRPC$TL_wallPaper tLRPC$TL_wallPaper) {
         this.currentPattern = tLRPC$TL_wallPaper;
         if (tLRPC$TL_wallPaper != null) {
-            setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_wallPaper.document.thumbs, AndroidUtilities.m35dp(100.0f)), tLRPC$TL_wallPaper.document), "100_100", null, null, "png", 0L, 1, tLRPC$TL_wallPaper);
+            setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_wallPaper.document.thumbs, AndroidUtilities.m36dp(100.0f)), tLRPC$TL_wallPaper.document), "100_100", null, null, "png", 0L, 1, tLRPC$TL_wallPaper);
         } else {
             setImageDrawable(null);
         }
@@ -202,7 +202,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
                     } else {
                         MotionBackgroundDrawable motionBackgroundDrawable2 = new MotionBackgroundDrawable(backgroundColor, backgroundGradientColor1, backgroundGradientColor2, backgroundGradientColor3, true);
                         this.backgroundDrawable = motionBackgroundDrawable2;
-                        motionBackgroundDrawable2.setRoundRadius(AndroidUtilities.m35dp(6.0f));
+                        motionBackgroundDrawable2.setRoundRadius(AndroidUtilities.m36dp(6.0f));
                         this.backgroundDrawable.setParentView(this);
                     }
                     if (intensity < 0.0f) {
@@ -237,7 +237,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
                 this.backgroundPaint.setColor(backgroundColor);
             }
             this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), this.backgroundPaint);
+            canvas.drawRoundRect(this.rect, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), this.backgroundPaint);
         }
         super.onDraw(canvas);
         if (this.radialProgress.getIcon() != 4) {
@@ -248,7 +248,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
 
     @Override
     protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(AndroidUtilities.m35dp(100.0f), AndroidUtilities.m35dp(100.0f));
+        setMeasuredDimension(AndroidUtilities.m36dp(100.0f), AndroidUtilities.m36dp(100.0f));
     }
 
     @Override

@@ -33,7 +33,7 @@ public class PremiumFeatureCell extends FrameLayout {
         this.description = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
-        textView2.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+        textView2.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 1, 0, 0));
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 0, 62.0f, 8.0f, 48.0f, 9.0f));
         ImageView imageView = new ImageView(context);
@@ -59,7 +59,7 @@ public class PremiumFeatureCell extends FrameLayout {
     public void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.drawDivider) {
-            canvas.drawRect(AndroidUtilities.m35dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
+            canvas.drawRect(AndroidUtilities.m36dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
         }
     }
 }

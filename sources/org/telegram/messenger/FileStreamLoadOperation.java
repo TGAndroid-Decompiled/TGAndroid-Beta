@@ -152,7 +152,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
             try {
                 randomAccessFile.close();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             this.file = null;
         }

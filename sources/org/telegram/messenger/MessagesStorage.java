@@ -395,7 +395,7 @@ public class MessagesStorage extends BaseController {
             this.database.executeFast("PRAGMA journal_size_limit = 10485760").stepThis().dispose();
             if (z) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("create new database");
+                    FileLog.m35d("create new database");
                 }
                 this.database.executeFast("CREATE TABLE messages_holes(uid INTEGER, start INTEGER, end INTEGER, PRIMARY KEY(uid, start));").stepThis().dispose();
                 this.database.executeFast("CREATE INDEX IF NOT EXISTS uid_end_messages_holes ON messages_holes(uid, end);").stepThis().dispose();
@@ -525,7 +525,7 @@ public class MessagesStorage extends BaseController {
             } else {
                 int intValue = this.database.executeInt("PRAGMA user_version", new Object[0]).intValue();
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("current db version = " + intValue);
+                    FileLog.m35d("current db version = " + intValue);
                 }
                 if (intValue == 0) {
                     throw new Exception("malformed");
@@ -551,7 +551,7 @@ public class MessagesStorage extends BaseController {
                     }
                     queryFinalized.dispose();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     if (e.getMessage() != null && e.getMessage().contains("malformed")) {
                         throw new RuntimeException("malformed");
                     }
@@ -559,7 +559,7 @@ public class MessagesStorage extends BaseController {
                         this.database.executeFast("CREATE TABLE IF NOT EXISTS params(id INTEGER PRIMARY KEY, seq INTEGER, pts INTEGER, date INTEGER, qts INTEGER, lsv INTEGER, sg INTEGER, pbytes BLOB)").stepThis().dispose();
                         this.database.executeFast("INSERT INTO params VALUES(1, 0, 0, 0, 0, 0, 0, NULL)").stepThis().dispose();
                     } catch (Exception e2) {
-                        FileLog.m31e(e2);
+                        FileLog.m32e(e2);
                     }
                 }
                 if (intValue < LAST_DB_VERSION) {
@@ -569,13 +569,13 @@ public class MessagesStorage extends BaseController {
                         if (BuildVars.DEBUG_PRIVATE_VERSION) {
                             throw e3;
                         }
-                        FileLog.m31e(e3);
+                        FileLog.m32e(e3);
                         throw new RuntimeException("malformed");
                     }
                 }
             }
         } catch (Exception e4) {
-            FileLog.m31e(e4);
+            FileLog.m32e(e4);
             if (BuildVars.DEBUG_PRIVATE_VERSION) {
                 throw new RuntimeException(e4);
             }
@@ -637,12 +637,12 @@ public class MessagesStorage extends BaseController {
                 MessagesStorage.this.lambda$updateDbToLastVersion$3();
             }
         });
-        FileLog.m34d("MessagesStorage start db migration from " + i + " to " + LAST_DB_VERSION);
+        FileLog.m35d("MessagesStorage start db migration from " + i + " to " + LAST_DB_VERSION);
         int migrate = DatabaseMigrationHelper.migrate(this, i);
         StringBuilder sb = new StringBuilder();
         sb.append("MessagesStorage db migration finished to varsion ");
         sb.append(migrate);
-        FileLog.m34d(sb.toString());
+        FileLog.m35d(sb.toString());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -665,7 +665,7 @@ public class MessagesStorage extends BaseController {
         try {
             this.database.executeFast(str).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -761,7 +761,7 @@ public class MessagesStorage extends BaseController {
             executeFast.dispose();
             nativeByteBuffer.reuse();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -811,10 +811,10 @@ public class MessagesStorage extends BaseController {
                 executeFast.dispose();
                 this.database.commitTransaction();
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -841,7 +841,7 @@ public class MessagesStorage extends BaseController {
                 executeFast.step();
                 executeFast.dispose();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } finally {
             nativeByteBuffer.reuse();
@@ -862,7 +862,7 @@ public class MessagesStorage extends BaseController {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM pending_tasks WHERE id = " + j).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1162,7 +1162,7 @@ public class MessagesStorage extends BaseController {
             }
             queryFinalized.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1259,7 +1259,7 @@ public class MessagesStorage extends BaseController {
             executeFast.step();
             executeFast.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1280,7 +1280,7 @@ public class MessagesStorage extends BaseController {
             this.lastSavedDate = i3;
             this.lastSavedQts = i4;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1327,7 +1327,7 @@ public class MessagesStorage extends BaseController {
             this.database.executeFast(String.format(Locale.US, "REPLACE INTO dialog_settings VALUES(%d, %d)", Long.valueOf(j), Long.valueOf(j2))).stepThis().dispose();
             resetAllUnreadCounters(true);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1378,7 +1378,7 @@ public class MessagesStorage extends BaseController {
             nativeByteBuffer.reuse();
             executeFast.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1454,7 +1454,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLitePreparedStatement = executeFast;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         if (sQLitePreparedStatement != null) {
                             sQLitePreparedStatement.dispose();
                         }
@@ -1613,7 +1613,7 @@ public class MessagesStorage extends BaseController {
                 }
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -1658,7 +1658,7 @@ public class MessagesStorage extends BaseController {
                 }
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -1696,7 +1696,7 @@ public class MessagesStorage extends BaseController {
             try {
                 this.database.executeFast(String.format(Locale.US, "UPDATE topics SET read_outbox = max((SELECT read_outbox FROM topics WHERE did = %d AND topic_id = %d), %d) WHERE did = %d AND topic_id = %d", Long.valueOf(topicKey.dialogId), Integer.valueOf(topicKey.topicId), Integer.valueOf(((Integer) hashMap.get(topicKey)).intValue()), Long.valueOf(topicKey.dialogId), Integer.valueOf(topicKey.topicId))).stepThis().dispose();
             } catch (SQLiteException e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -1714,7 +1714,7 @@ public class MessagesStorage extends BaseController {
         try {
             this.database.executeFast(String.format(Locale.US, "UPDATE dialogs SET ttl_period = %d WHERE did = %d", Integer.valueOf(i), Long.valueOf(j))).stepThis().dispose();
         } catch (SQLiteException e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1786,7 +1786,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         sQLiteCursor = queryFinalized;
                         e = e;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         if (sQLiteCursor != null) {
                             sQLiteCursor.dispose();
                             return;
@@ -1940,7 +1940,7 @@ public class MessagesStorage extends BaseController {
                 } catch (Exception e) {
                     e = e;
                     sQLitePreparedStatement3 = sQLitePreparedStatement2;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     SQLiteDatabase sQLiteDatabase4 = this.database;
                     if (sQLiteDatabase4 != null) {
                         sQLiteDatabase4.commitTransaction();
@@ -2082,7 +2082,7 @@ public class MessagesStorage extends BaseController {
             SQLiteDatabase sQLiteDatabase3 = this.database;
             sQLiteDatabase3.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f819id).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -2142,7 +2142,7 @@ public class MessagesStorage extends BaseController {
                 }
                 sQLitePreparedStatement.dispose();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement != null) {
                     sQLitePreparedStatement.dispose();
                 }
@@ -2248,7 +2248,7 @@ public class MessagesStorage extends BaseController {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM wallpapers2 WHERE uid = " + j).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -2284,7 +2284,7 @@ public class MessagesStorage extends BaseController {
                     }
                 });
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLiteCursor == null) {
                     return;
                 }
@@ -2340,7 +2340,7 @@ public class MessagesStorage extends BaseController {
                     sQLitePreparedStatement.dispose();
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement == null) {
                     return;
                 }
@@ -2499,7 +2499,7 @@ public class MessagesStorage extends BaseController {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM media_counts_v2 WHERE uid = " + j).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -2549,7 +2549,7 @@ public class MessagesStorage extends BaseController {
                 } catch (Exception e) {
                     e = e;
                     sQLiteCursor = sQLiteCursor2;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     if (sQLiteCursor != null) {
                         sQLiteCursor.dispose();
                     }
@@ -2587,7 +2587,7 @@ public class MessagesStorage extends BaseController {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM user_photos WHERE uid = " + j).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -2605,7 +2605,7 @@ public class MessagesStorage extends BaseController {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM user_photos WHERE uid = " + j + " AND id = " + j2).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -2676,7 +2676,7 @@ public class MessagesStorage extends BaseController {
                 }
                 sQLitePreparedStatement.dispose();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement != null) {
                     sQLitePreparedStatement.dispose();
                 }
@@ -2713,7 +2713,7 @@ public class MessagesStorage extends BaseController {
                 nativeByteBuffer.reuse();
                 sQLitePreparedStatement.dispose();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement != null) {
                     sQLitePreparedStatement.dispose();
                 }
@@ -2819,7 +2819,7 @@ public class MessagesStorage extends BaseController {
                                     } catch (Exception e2) {
                                         e = e2;
                                         sQLiteCursor = sQLiteCursor2;
-                                        FileLog.m31e(e);
+                                        FileLog.m32e(e);
                                         if (sQLiteCursor == null) {
                                             return;
                                         }
@@ -2974,7 +2974,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLiteCursor = queryFinalized;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         SQLiteDatabase sQLiteDatabase = this.database;
                         if (sQLiteDatabase != null) {
                             sQLiteDatabase.commitTransaction();
@@ -3055,7 +3055,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLitePreparedStatement = executeFast;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         SQLiteDatabase sQLiteDatabase = this.database;
                         if (sQLiteDatabase != null) {
                             sQLiteDatabase.commitTransaction();
@@ -3133,7 +3133,7 @@ public class MessagesStorage extends BaseController {
                 } catch (Exception e) {
                     e = e;
                     sQLitePreparedStatement = executeFast;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     SQLiteDatabase sQLiteDatabase2 = this.database;
                     if (sQLiteDatabase2 != null) {
                         sQLiteDatabase2.commitTransaction();
@@ -3208,7 +3208,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLitePreparedStatement = executeFast;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         SQLiteDatabase sQLiteDatabase = this.database;
                         if (sQLiteDatabase != null) {
                             sQLiteDatabase.commitTransaction();
@@ -3284,7 +3284,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLitePreparedStatement = executeFast;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         SQLiteDatabase sQLiteDatabase = this.database;
                         if (sQLiteDatabase != null) {
                             sQLiteDatabase.commitTransaction();
@@ -3347,7 +3347,7 @@ public class MessagesStorage extends BaseController {
                 } catch (SQLiteException e) {
                     e = e;
                     sQLiteCursor = queryFinalized;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     if (sQLiteCursor != null) {
                         sQLiteCursor.dispose();
                     }
@@ -3426,7 +3426,7 @@ public class MessagesStorage extends BaseController {
                         } catch (Exception e) {
                             sQLiteCursor3 = sQLiteCursor2;
                             e = e;
-                            FileLog.m31e(e);
+                            FileLog.m32e(e);
                             if (sQLiteCursor3 != null) {
                                 sQLiteCursor3.dispose();
                                 return;
@@ -3479,7 +3479,7 @@ public class MessagesStorage extends BaseController {
         try {
             this.database.executeFast(String.format(Locale.US, "UPDATE messages_v2 SET mention = 1, read_state = read_state & ~2 WHERE mid = %d AND uid = %d", Integer.valueOf(i), Long.valueOf(j))).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -3520,7 +3520,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLiteCursor = queryFinalized;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         if (sQLiteCursor != null) {
                             sQLiteCursor.dispose();
                             return;
@@ -3591,7 +3591,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLitePreparedStatement = executeFast;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         if (sQLitePreparedStatement != null) {
                             sQLitePreparedStatement.dispose();
                             return;
@@ -3755,7 +3755,7 @@ public class MessagesStorage extends BaseController {
                 } catch (Exception e) {
                     e = e;
                     sQLiteCursor = queryFinalized;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     if (sQLiteCursor != null) {
                         sQLiteCursor.dispose();
                     }
@@ -3814,7 +3814,7 @@ public class MessagesStorage extends BaseController {
                 } catch (Exception e) {
                     e = e;
                     sQLiteCursor = queryFinalized;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     if (sQLiteCursor != null) {
                         sQLiteCursor.dispose();
                     }
@@ -3865,7 +3865,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLitePreparedStatement = executeFast;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         SQLiteDatabase sQLiteDatabase2 = this.database;
                         if (sQLiteDatabase2 != null) {
                             sQLiteDatabase2.commitTransaction();
@@ -3944,7 +3944,7 @@ public class MessagesStorage extends BaseController {
                 } catch (Exception e) {
                     e = e;
                     sQLitePreparedStatement = executeFast;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     SQLiteDatabase sQLiteDatabase2 = this.database;
                     if (sQLiteDatabase2 != null) {
                         sQLiteDatabase2.commitTransaction();
@@ -4021,7 +4021,7 @@ public class MessagesStorage extends BaseController {
                 } catch (Exception e) {
                     e = e;
                     sQLitePreparedStatement = executeFast;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     if (sQLitePreparedStatement != null) {
                         sQLitePreparedStatement.dispose();
                         return;
@@ -4111,7 +4111,7 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement.step();
                 sQLitePreparedStatement.dispose();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement == null) {
                     return;
                 }
@@ -4145,7 +4145,7 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement.step();
                 sQLitePreparedStatement.dispose();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement != null) {
                     sQLitePreparedStatement.dispose();
                 }
@@ -4191,7 +4191,7 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement.step();
                 sQLitePreparedStatement.dispose();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement != null) {
                     sQLitePreparedStatement.dispose();
                 }
@@ -4323,7 +4323,7 @@ public class MessagesStorage extends BaseController {
                 } catch (Exception e) {
                     e = e;
                     sQLiteCursor = queryFinalized;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     if (sQLiteCursor != null) {
                         sQLiteCursor.dispose();
                     }
@@ -4362,7 +4362,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return zArr[0];
     }
@@ -4388,7 +4388,7 @@ public class MessagesStorage extends BaseController {
                 } catch (Exception e) {
                     e = e;
                     sQLiteCursor = queryFinalized;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     if (sQLiteCursor != null) {
                         sQLiteCursor.dispose();
                     }
@@ -4423,7 +4423,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return (TLRPC$Message) atomicReference.get();
     }
@@ -4444,7 +4444,7 @@ public class MessagesStorage extends BaseController {
                 }
                 sQLiteCursor.dispose();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLiteCursor != null) {
                     sQLiteCursor.dispose();
                 }
@@ -4471,7 +4471,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return zArr[0];
     }
@@ -4500,7 +4500,7 @@ public class MessagesStorage extends BaseController {
                 }
                 sQLiteCursor.dispose();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLiteCursor != null) {
                     sQLiteCursor.dispose();
                 }
@@ -4595,7 +4595,7 @@ public class MessagesStorage extends BaseController {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM contacts WHERE uid IN(" + join + ")").stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -4620,7 +4620,7 @@ public class MessagesStorage extends BaseController {
                 this.database.executeFast(String.format(Locale.US, "UPDATE user_phones_v7 SET deleted = 1 WHERE sphone IN(%s)", str2)).stepThis().dispose();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -4692,7 +4692,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return zArr[0];
     }
@@ -4713,7 +4713,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return zArr[0];
     }
@@ -4751,7 +4751,7 @@ public class MessagesStorage extends BaseController {
                     }
                 });
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLiteCursor == null) {
                     return;
                 }
@@ -4788,7 +4788,7 @@ public class MessagesStorage extends BaseController {
                     }
                 });
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } finally {
             sQLiteCursor.dispose();
@@ -4840,7 +4840,7 @@ public class MessagesStorage extends BaseController {
                             arrayList.add(TLdeserialize);
                         }
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                     if (byteBufferValue != null) {
                         byteBufferValue.reuse();
@@ -4894,7 +4894,7 @@ public class MessagesStorage extends BaseController {
         try {
             this.database.executeFast("DELETE FROM sent_files_v2 WHERE 1").stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -4913,7 +4913,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (objArr[0] != null) {
             return objArr;
@@ -4943,7 +4943,7 @@ public class MessagesStorage extends BaseController {
                     queryFinalized.dispose();
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } finally {
             countDownLatch.countDown();
@@ -4972,7 +4972,7 @@ public class MessagesStorage extends BaseController {
             }
             queryFinalized.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5011,7 +5011,7 @@ public class MessagesStorage extends BaseController {
             executeFast.dispose();
             this.database.commitTransaction();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5029,7 +5029,7 @@ public class MessagesStorage extends BaseController {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM shortcut_widget WHERE id = " + i).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5044,7 +5044,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5071,7 +5071,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLiteCursor = queryFinalized;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         if (sQLiteCursor != null) {
                             sQLiteCursor.dispose();
                         }
@@ -5148,7 +5148,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -5175,7 +5175,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLiteCursor = queryFinalized;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         if (sQLiteCursor != null) {
                             sQLiteCursor.dispose();
                         }
@@ -5325,7 +5325,7 @@ public class MessagesStorage extends BaseController {
                     return;
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement == null) {
                     return;
                 }
@@ -5368,7 +5368,7 @@ public class MessagesStorage extends BaseController {
                     this.database.executeFast(String.format(Locale.US, "DELETE FROM messages_v2 WHERE mid IN (SELECT m.mid FROM messages_v2 as m LEFT JOIN messages_seq as s ON m.mid = s.mid WHERE m.uid = %d AND m.date = 0 AND m.mid < 0 AND s.seq_out <= %d) AND uid = %d", Long.valueOf(encryptedChatId), Integer.valueOf(tLRPC$EncryptedChat.in_seq_no), Long.valueOf(encryptedChatId))).stepThis().dispose();
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement == null) {
                     return;
                 }
@@ -5403,7 +5403,7 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement.bindInteger(2, tLRPC$EncryptedChat.f869id);
                 sQLitePreparedStatement.step();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement == null) {
                     return;
                 }
@@ -5438,7 +5438,7 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement.bindInteger(2, tLRPC$EncryptedChat.f869id);
                 sQLitePreparedStatement.step();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement == null) {
                     return;
                 }
@@ -5524,7 +5524,7 @@ public class MessagesStorage extends BaseController {
                 nativeByteBuffer4.reuse();
                 nativeByteBuffer5.reuse();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement == null) {
                     return;
                 }
@@ -5563,7 +5563,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return zArr[0];
     }
@@ -5599,7 +5599,7 @@ public class MessagesStorage extends BaseController {
                     }
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } finally {
             countDownLatch.countDown();
@@ -5692,7 +5692,7 @@ public class MessagesStorage extends BaseController {
                             }
                         }
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                 }
                 queryFinalized.dispose();
@@ -5765,7 +5765,7 @@ public class MessagesStorage extends BaseController {
                                 j.dispose();
                             } catch (Exception e) {
                                 e = e;
-                                FileLog.m31e(e);
+                                FileLog.m32e(e);
                                 if (sQLiteCursor != null) {
                                     sQLiteCursor.dispose();
                                 }
@@ -5853,7 +5853,7 @@ public class MessagesStorage extends BaseController {
                             }
                         }
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                 }
                 queryFinalized.dispose();
@@ -5881,7 +5881,7 @@ public class MessagesStorage extends BaseController {
         if (exc == null || exc.getMessage() == null || !exc.getMessage().contains("malformed") || this.malformedCleanupCount >= 3) {
             return;
         }
-        FileLog.m33e("detected database malformed error, cleaning up...");
+        FileLog.m34e("detected database malformed error, cleaning up...");
         this.malformedCleanupCount++;
         cleanup(false);
     }
@@ -5906,7 +5906,7 @@ public class MessagesStorage extends BaseController {
                     }
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 checkMalformed(e);
             }
         }
@@ -5929,7 +5929,7 @@ public class MessagesStorage extends BaseController {
                     }
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 checkMalformed(e);
             }
         }
@@ -5977,7 +5977,7 @@ public class MessagesStorage extends BaseController {
                     }
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         queryFinalized.dispose();
@@ -5990,7 +5990,7 @@ public class MessagesStorage extends BaseController {
                 try {
                     this.database.beginTransaction();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     sQLiteDatabase = this.database;
                     if (sQLiteDatabase == null) {
                         return;
@@ -6054,7 +6054,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLiteCursor = queryFinalized;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         if (sQLiteCursor != null) {
                             sQLiteCursor.dispose();
                         }
@@ -6102,7 +6102,7 @@ public class MessagesStorage extends BaseController {
                 this.database.executeFast(String.format(Locale.US, "DELETE FROM download_queue WHERE type = %d", Integer.valueOf(i))).stepThis().dispose();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -6150,7 +6150,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLiteCursor = queryFinalized;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         if (sQLiteCursor != null) {
                             sQLiteCursor.dispose();
                             return;
@@ -6291,7 +6291,7 @@ public class MessagesStorage extends BaseController {
             th = th2;
             sQLiteCursor = queryFinalized;
             try {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             } finally {
                 if (sQLiteCursor != null) {
                     sQLiteCursor.dispose();
@@ -6367,7 +6367,7 @@ public class MessagesStorage extends BaseController {
                         e = e;
                         sQLitePreparedStatement = executeFast;
                         z = true;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         if (z && (sQLiteDatabase2 = this.database) != null) {
                             sQLiteDatabase2.commitTransaction();
                         }
@@ -6513,7 +6513,7 @@ public class MessagesStorage extends BaseController {
                 this.database.executeFast(String.format(locale, "UPDATE messages_topics SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(tLRPC$Message)))).stepThis().dispose();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -6537,7 +6537,7 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement.bindInteger(3, i3);
                 sQLitePreparedStatement.step();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement == null) {
                     return;
                 }
@@ -6602,7 +6602,7 @@ public class MessagesStorage extends BaseController {
                     } catch (Exception e) {
                         e = e;
                         sQLitePreparedStatement = executeFast;
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         checkMalformed(e);
                         SQLiteDatabase sQLiteDatabase = this.database;
                         if (sQLiteDatabase != null) {
@@ -6726,7 +6726,7 @@ public class MessagesStorage extends BaseController {
                         } catch (Exception e) {
                             e = e;
                             sQLiteCursor = queryFinalized;
-                            FileLog.m31e(e);
+                            FileLog.m32e(e);
                             if (sQLiteCursor != null) {
                                 sQLiteCursor.dispose();
                                 return;
@@ -6832,7 +6832,7 @@ public class MessagesStorage extends BaseController {
                 } catch (Exception e) {
                     e = e;
                     sQLiteCursor = queryFinalized;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     if (sQLiteCursor != null) {
                         sQLiteCursor.dispose();
                     }
@@ -6860,7 +6860,7 @@ public class MessagesStorage extends BaseController {
         try {
             this.database.executeFast(String.format(Locale.US, "DELETE FROM unread_push_messages WHERE uid = %d AND mid IN(%s)", Long.valueOf(j), TextUtils.join(",", arrayList))).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -6881,7 +6881,7 @@ public class MessagesStorage extends BaseController {
                 } catch (Exception e) {
                     e = e;
                     sQLiteCursor = queryFinalized;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     if (sQLiteCursor != null) {
                         sQLiteCursor.dispose();
                     }
@@ -7467,7 +7467,7 @@ public class MessagesStorage extends BaseController {
                     return;
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLiteCursor == null) {
                     return;
                 }
@@ -7542,7 +7542,7 @@ public class MessagesStorage extends BaseController {
                 } catch (Exception e) {
                     e = e;
                     sQLitePreparedStatement = executeFast;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     SQLiteDatabase sQLiteDatabase2 = this.database;
                     if (sQLiteDatabase2 != null) {
                         sQLiteDatabase2.commitTransaction();
@@ -7597,7 +7597,7 @@ public class MessagesStorage extends BaseController {
                     sQLiteDatabase.executeFast("DELETE FROM dialogs WHERE did = " + DialogObject.makeFolderDialogId(i)).stepThis().dispose();
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLiteCursor == null) {
                     return;
                 }
@@ -7701,7 +7701,7 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement.step();
                 sQLitePreparedStatement.dispose();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement != null) {
                     sQLitePreparedStatement.dispose();
                 }
@@ -7737,7 +7737,7 @@ public class MessagesStorage extends BaseController {
                 }
                 sQLitePreparedStatement.dispose();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (sQLitePreparedStatement != null) {
                     sQLitePreparedStatement.dispose();
                 }
@@ -7767,7 +7767,7 @@ public class MessagesStorage extends BaseController {
         try {
             loadUnreadMessages();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -7800,7 +7800,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return numArr[0].intValue();
     }
@@ -7821,7 +7821,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return numArr[0].intValue();
     }
@@ -7842,7 +7842,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return tLRPC$UserArr[0];
     }
@@ -7864,7 +7864,7 @@ public class MessagesStorage extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return tLRPC$ChatArr[0];
     }
@@ -7883,7 +7883,7 @@ public class MessagesStorage extends BaseController {
             }
             return arrayList.get(0);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -7894,7 +7894,7 @@ public class MessagesStorage extends BaseController {
             getUsersInternal(TextUtils.join(",", arrayList), arrayList2);
         } catch (Exception e) {
             arrayList2.clear();
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return arrayList2;
     }
@@ -7908,7 +7908,7 @@ public class MessagesStorage extends BaseController {
             }
             return arrayList.get(0);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -7922,7 +7922,7 @@ public class MessagesStorage extends BaseController {
             }
             return arrayList.get(0);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -8005,7 +8005,7 @@ public class MessagesStorage extends BaseController {
         public long dialogId;
         public int topicId;
 
-        public static TopicKey m28of(long j, int i) {
+        public static TopicKey m29of(long j, int i) {
             TopicKey topicKey = new TopicKey();
             topicKey.dialogId = j;
             topicKey.topicId = i;

@@ -13,7 +13,7 @@ public class AboutPremiumView extends LinearLayout {
     public AboutPremiumView(Context context) {
         super(context);
         setOrientation(1);
-        setPadding(AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f));
+        setPadding(AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f));
         TextView textView = new TextView(context);
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));

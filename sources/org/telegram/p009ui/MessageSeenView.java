@@ -76,12 +76,12 @@ public class MessageSeenView extends FrameLayout {
         this.titleView = simpleTextView;
         simpleTextView.setTextSize(16);
         this.titleView.setEllipsizeByGradient(true);
-        this.titleView.setRightPadding(AndroidUtilities.m35dp(62.0f));
+        this.titleView.setRightPadding(AndroidUtilities.m36dp(62.0f));
         addView(this.titleView, LayoutHelper.createFrame(0, -2.0f, 19, 40.0f, 0.0f, 0.0f, 0.0f));
         AvatarsImageView avatarsImageView = new AvatarsImageView(context, false);
         this.avatarsImageView = avatarsImageView;
         avatarsImageView.setStyle(11);
-        this.avatarsImageView.setAvatarsTextSize(AndroidUtilities.m35dp(22.0f));
+        this.avatarsImageView.setAvatarsTextSize(AndroidUtilities.m36dp(22.0f));
         addView(this.avatarsImageView, LayoutHelper.createFrame(56, -1.0f, 21, 0.0f, 0.0f, 0.0f, 0.0f));
         this.titleView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
         TLRPC$TL_messages_getMessageReadParticipants tLRPC$TL_messages_getMessageReadParticipants = new TLRPC$TL_messages_getMessageReadParticipants();
@@ -245,7 +245,7 @@ public class MessageSeenView extends FrameLayout {
             this.flickerLoadingView.setVisibility(0);
         }
         this.titleView.setVisibility(0);
-        this.titleView.getLayoutParams().width = getMeasuredWidth() - AndroidUtilities.m35dp(40.0f);
+        this.titleView.getLayoutParams().width = getMeasuredWidth() - AndroidUtilities.m36dp(40.0f);
         this.ignoreLayout = false;
         super.onMeasure(i, i2);
     }
@@ -260,13 +260,13 @@ public class MessageSeenView extends FrameLayout {
             }
         }
         if (this.users.size() == 1) {
-            this.avatarsImageView.setTranslationX(AndroidUtilities.m35dp(24.0f));
+            this.avatarsImageView.setTranslationX(AndroidUtilities.m36dp(24.0f));
         } else if (this.users.size() == 2) {
-            this.avatarsImageView.setTranslationX(AndroidUtilities.m35dp(12.0f));
+            this.avatarsImageView.setTranslationX(AndroidUtilities.m36dp(12.0f));
         } else {
             this.avatarsImageView.setTranslationX(0.0f);
         }
-        this.titleView.setRightPadding(AndroidUtilities.m35dp((Math.min(2, this.users.size() - 1) * 12) + 32 + 6));
+        this.titleView.setRightPadding(AndroidUtilities.m36dp((Math.min(2, this.users.size() - 1) * 12) + 32 + 6));
         this.avatarsImageView.commitTransition(false);
         if (this.peerIds.size() == 1 && this.users.get(0) != null) {
             this.titleView.setText(ContactsController.formatName(this.users.get(0).first_name, this.users.get(0).last_name));
@@ -285,9 +285,9 @@ public class MessageSeenView extends FrameLayout {
             @Override
             public void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i2);
-                int m35dp = AndroidUtilities.m35dp(8.0f) + (AndroidUtilities.m35dp(44.0f) * getAdapter().getItemCount());
-                if (m35dp <= size) {
-                    size = m35dp;
+                int m36dp = AndroidUtilities.m36dp(8.0f) + (AndroidUtilities.m36dp(44.0f) * getAdapter().getItemCount());
+                if (m36dp <= size) {
+                    size = m36dp;
                 }
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
             }
@@ -298,10 +298,10 @@ public class MessageSeenView extends FrameLayout {
             public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                 int childAdapterPosition = recyclerView.getChildAdapterPosition(view);
                 if (childAdapterPosition == 0) {
-                    rect.top = AndroidUtilities.m35dp(4.0f);
+                    rect.top = AndroidUtilities.m36dp(4.0f);
                 }
                 if (childAdapterPosition == MessageSeenView.this.users.size() - 1) {
-                    rect.bottom = AndroidUtilities.m35dp(4.0f);
+                    rect.bottom = AndroidUtilities.m36dp(4.0f);
                 }
             }
         });
@@ -342,7 +342,7 @@ public class MessageSeenView extends FrameLayout {
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarImageView = backupImageView;
             addView(backupImageView, LayoutHelper.createFrame(32, 32.0f, 16, 13.0f, 0.0f, 0.0f, 0.0f));
-            this.avatarImageView.setRoundRadius(AndroidUtilities.m35dp(16.0f));
+            this.avatarImageView.setRoundRadius(AndroidUtilities.m36dp(16.0f));
             TextView textView = new TextView(context);
             this.nameView = textView;
             textView.setTextSize(1, 16.0f);
@@ -355,7 +355,7 @@ public class MessageSeenView extends FrameLayout {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(44.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(44.0f), 1073741824));
         }
 
         public void setUser(TLRPC$User tLRPC$User) {

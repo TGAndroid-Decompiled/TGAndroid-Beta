@@ -447,7 +447,7 @@ public class PinchToZoomHelper {
                                 i5 = Math.max(i5, roundRadius[i6]);
                             }
                             this.rect.set(0.0f, 0.0f, i, i2);
-                            ZoomOverlayView.this.aspectPath.addRoundRect(this.rect, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), Path.Direction.CW);
+                            ZoomOverlayView.this.aspectPath.addRoundRect(this.rect, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), Path.Direction.CW);
                         }
                         ZoomOverlayView.this.aspectPath.toggleInverseFillType();
                     }

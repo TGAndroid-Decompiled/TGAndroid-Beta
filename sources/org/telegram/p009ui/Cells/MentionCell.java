@@ -41,10 +41,10 @@ public class MentionCell extends LinearLayout {
         setOrientation(0);
         AvatarDrawable avatarDrawable = new AvatarDrawable();
         this.avatarDrawable = avatarDrawable;
-        avatarDrawable.setTextSize(AndroidUtilities.m35dp(18.0f));
+        avatarDrawable.setTextSize(AndroidUtilities.m36dp(18.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(14.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(14.0f));
         addView(this.imageView, LayoutHelper.createLinear(28, 28, 12.0f, 4.0f, 0.0f, 0.0f));
         TextView textView = new TextView(this, context) {
             @Override
@@ -72,7 +72,7 @@ public class MentionCell extends LinearLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(36.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(36.0f), 1073741824));
     }
 
     public void setUser(TLRPC$User tLRPC$User) {
@@ -113,7 +113,7 @@ public class MentionCell extends LinearLayout {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.needsDivider) {
-            canvas.drawLine(AndroidUtilities.m35dp(52.0f), getHeight() - 1, getWidth() - AndroidUtilities.m35dp(8.0f), getHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(AndroidUtilities.m36dp(52.0f), getHeight() - 1, getWidth() - AndroidUtilities.m36dp(8.0f), getHeight() - 1, Theme.dividerPaint);
         }
     }
 
@@ -201,7 +201,7 @@ public class MentionCell extends LinearLayout {
             textView.setText(sb);
             return;
         }
-        this.nameTextView.setPadding(AndroidUtilities.m35dp(22.0f), 0, 0, 0);
+        this.nameTextView.setPadding(AndroidUtilities.m36dp(22.0f), 0, 0, 0);
         TextView textView2 = this.nameTextView;
         StringBuilder sb2 = new StringBuilder();
         sb2.append(":  ");
@@ -214,9 +214,9 @@ public class MentionCell extends LinearLayout {
         super.dispatchDraw(canvas);
         Drawable drawable = this.emojiDrawable;
         if (drawable != null) {
-            int m35dp = AndroidUtilities.m35dp(drawable instanceof AnimatedEmojiDrawable ? 24.0f : 20.0f);
-            int m35dp2 = AndroidUtilities.m35dp(this.emojiDrawable instanceof AnimatedEmojiDrawable ? -2.0f : 0.0f);
-            this.emojiDrawable.setBounds(this.nameTextView.getLeft() + m35dp2, ((this.nameTextView.getTop() + this.nameTextView.getBottom()) - m35dp) / 2, this.nameTextView.getLeft() + m35dp2 + m35dp, ((this.nameTextView.getTop() + this.nameTextView.getBottom()) + m35dp) / 2);
+            int m36dp = AndroidUtilities.m36dp(drawable instanceof AnimatedEmojiDrawable ? 24.0f : 20.0f);
+            int m36dp2 = AndroidUtilities.m36dp(this.emojiDrawable instanceof AnimatedEmojiDrawable ? -2.0f : 0.0f);
+            this.emojiDrawable.setBounds(this.nameTextView.getLeft() + m36dp2, ((this.nameTextView.getTop() + this.nameTextView.getBottom()) - m36dp) / 2, this.nameTextView.getLeft() + m36dp2 + m36dp, ((this.nameTextView.getTop() + this.nameTextView.getBottom()) + m36dp) / 2);
             Drawable drawable2 = this.emojiDrawable;
             if (drawable2 instanceof AnimatedEmojiDrawable) {
                 ((AnimatedEmojiDrawable) drawable2).setTime(System.currentTimeMillis());
@@ -242,7 +242,7 @@ public class MentionCell extends LinearLayout {
         this.usernameTextView.setVisibility(0);
         this.nameTextView.setText(str);
         TextView textView = this.usernameTextView;
-        textView.setText(Emoji.replaceEmoji(str2, textView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false));
+        textView.setText(Emoji.replaceEmoji(str2, textView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false));
     }
 
     public void setIsDarkTheme(boolean z) {

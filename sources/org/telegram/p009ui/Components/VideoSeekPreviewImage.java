@@ -76,7 +76,7 @@ public class VideoSeekPreviewImage extends View {
         this.ytPath = new Path();
         setVisibility(4);
         this.frameDrawable = context.getResources().getDrawable(C1072R.C1073drawable.videopreview);
-        this.textPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
+        this.textPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
         this.textPaint.setColor(-1);
         this.delegate = videoSeekPreviewImageDelegate;
         ImageReceiver imageReceiver = new ImageReceiver();
@@ -100,7 +100,7 @@ public class VideoSeekPreviewImage extends View {
         if (!z || this.webView == null) {
             return;
         }
-        int m35dp = AndroidUtilities.m35dp(150.0f);
+        int m36dp = AndroidUtilities.m36dp(150.0f);
         int youtubeStoryboardImageCount = this.webView.getYoutubeStoryboardImageCount(this.lastYoutubePosition);
         float bitmapWidth = this.youtubeBoardsReceiver.getBitmapWidth() / Math.min(youtubeStoryboardImageCount, 5);
         float bitmapHeight = this.youtubeBoardsReceiver.getBitmapHeight() / ((int) Math.ceil(youtubeStoryboardImageCount / 5.0f));
@@ -111,16 +111,16 @@ public class VideoSeekPreviewImage extends View {
         this.ytImageHeight = (int) bitmapHeight;
         float f = bitmapWidth / bitmapHeight;
         if (f > 1.0f) {
-            i = (int) (m35dp / f);
+            i = (int) (m36dp / f);
         } else {
-            i = m35dp;
-            m35dp = (int) (m35dp * f);
+            i = m36dp;
+            m36dp = (int) (m36dp * f);
         }
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
-        if (getVisibility() == 0 && layoutParams.width == m35dp && layoutParams.height == i) {
+        if (getVisibility() == 0 && layoutParams.width == m36dp && layoutParams.height == i) {
             return;
         }
-        layoutParams.width = m35dp;
+        layoutParams.width = m36dp;
         layoutParams.height = i;
         setVisibility(0);
         requestLayout();
@@ -205,7 +205,7 @@ public class VideoSeekPreviewImage extends View {
             this.pendingProgress = f;
             return;
         }
-        int max = Math.max(200, AndroidUtilities.m35dp(100.0f));
+        int max = Math.max(200, AndroidUtilities.m36dp(100.0f));
         final Bitmap frameAtTime = this.fileDrawable.getFrameAtTime(j);
         if (frameAtTime != null) {
             int width = frameAtTime.getWidth();
@@ -254,17 +254,17 @@ public class VideoSeekPreviewImage extends View {
             bitmapShader.setLocalMatrix(this.matrix);
             this.bitmapPaint.setShader(this.bitmapShader);
             invalidate();
-            int m35dp = AndroidUtilities.m35dp(150.0f);
+            int m36dp = AndroidUtilities.m36dp(150.0f);
             float width = bitmap.getWidth() / bitmap.getHeight();
             if (width > 1.0f) {
-                i = (int) (m35dp / width);
+                i = (int) (m36dp / width);
             } else {
-                m35dp = (int) (m35dp * width);
-                i = m35dp;
+                m36dp = (int) (m36dp * width);
+                i = m36dp;
             }
             ViewGroup.LayoutParams layoutParams = getLayoutParams();
-            if (getVisibility() != 0 || layoutParams.width != m35dp || layoutParams.height != i) {
-                layoutParams.width = m35dp;
+            if (getVisibility() != 0 || layoutParams.width != m36dp || layoutParams.height != i) {
+                layoutParams.width = m36dp;
                 layoutParams.height = i;
                 setVisibility(0);
                 requestLayout();
@@ -353,16 +353,16 @@ public class VideoSeekPreviewImage extends View {
             float measuredWidth = getMeasuredWidth() / this.bitmapToDraw.getWidth();
             this.matrix.preScale(measuredWidth, measuredWidth);
             this.bitmapRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            canvas.drawRoundRect(this.bitmapRect, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), this.bitmapPaint);
+            canvas.drawRoundRect(this.bitmapRect, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), this.bitmapPaint);
             this.frameDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.frameDrawable.draw(canvas);
-            canvas.drawText(this.frameTime, (getMeasuredWidth() - this.timeWidth) / 2.0f, getMeasuredHeight() - AndroidUtilities.m35dp(9.0f), this.textPaint);
+            canvas.drawText(this.frameTime, (getMeasuredWidth() - this.timeWidth) / 2.0f, getMeasuredHeight() - AndroidUtilities.m36dp(9.0f), this.textPaint);
         } else if (this.isYoutube) {
             canvas.save();
             this.ytPath.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.ytPath.addRoundRect(rectF, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), Path.Direction.CW);
+            this.ytPath.addRoundRect(rectF, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), Path.Direction.CW);
             canvas.clipPath(this.ytPath);
             canvas.scale(getWidth() / this.ytImageWidth, getHeight() / this.ytImageHeight);
             canvas.translate(-this.ytImageX, -this.ytImageY);
@@ -372,7 +372,7 @@ public class VideoSeekPreviewImage extends View {
             canvas.restore();
             this.frameDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.frameDrawable.draw(canvas);
-            canvas.drawText(this.frameTime, (getMeasuredWidth() - this.timeWidth) / 2.0f, getMeasuredHeight() - AndroidUtilities.m35dp(9.0f), this.textPaint);
+            canvas.drawText(this.frameTime, (getMeasuredWidth() - this.timeWidth) / 2.0f, getMeasuredHeight() - AndroidUtilities.m36dp(9.0f), this.textPaint);
         }
     }
 

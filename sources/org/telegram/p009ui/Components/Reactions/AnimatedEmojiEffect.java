@@ -140,7 +140,7 @@ public class AnimatedEmojiEffect {
             return;
         }
         int i = C1072R.raw.custom_emoji_reaction;
-        this.effectImageReceiver.setImageBitmap(new RLottieDrawable(i, "" + i, AndroidUtilities.m35dp(60.0f), AndroidUtilities.m35dp(60.0f), false, null));
+        this.effectImageReceiver.setImageBitmap(new RLottieDrawable(i, "" + i, AndroidUtilities.m36dp(60.0f), AndroidUtilities.m36dp(60.0f), false, null));
     }
 
     public void removeView(View view) {
@@ -166,7 +166,6 @@ public class AnimatedEmojiEffect {
         float toY2;
 
         private Particle() {
-            AnimatedEmojiEffect.this = r1;
         }
 
         public void generate() {

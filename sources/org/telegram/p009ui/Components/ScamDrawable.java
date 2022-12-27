@@ -36,10 +36,10 @@ public class ScamDrawable extends Drawable {
         this.colorAlpha = 255;
         this.alpha = 255;
         this.currentType = i2;
-        textPaint.setTextSize(AndroidUtilities.m35dp(i));
+        textPaint.setTextSize(AndroidUtilities.m36dp(i));
         this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.paint.setStyle(Paint.Style.STROKE);
-        this.paint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
+        this.paint.setStrokeWidth(AndroidUtilities.m36dp(1.0f));
         if (i2 == 0) {
             this.text = LocaleController.getString("ScamMessage", C1072R.string.ScamMessage);
         } else {
@@ -79,18 +79,18 @@ public class ScamDrawable extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        return this.textWidth + AndroidUtilities.m35dp(10.0f);
+        return this.textWidth + AndroidUtilities.m36dp(10.0f);
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return AndroidUtilities.m35dp(16.0f);
+        return AndroidUtilities.m36dp(16.0f);
     }
 
     @Override
     public void draw(Canvas canvas) {
         this.rect.set(getBounds());
-        canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), this.paint);
-        canvas.drawText(this.text, this.rect.left + AndroidUtilities.m35dp(5.0f), this.rect.top + AndroidUtilities.m35dp(12.0f), this.textPaint);
+        canvas.drawRoundRect(this.rect, AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f), this.paint);
+        canvas.drawText(this.text, this.rect.left + AndroidUtilities.m36dp(5.0f), this.rect.top + AndroidUtilities.m36dp(12.0f), this.textPaint);
     }
 }

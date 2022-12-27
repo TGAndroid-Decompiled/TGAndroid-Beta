@@ -120,7 +120,7 @@ public class GLIconSettingsView extends LinearLayout {
                 }) {
                     @Override
                     protected void onMeasure(int i, int i2) {
-                        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(300.0f), 1073741824));
+                        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(300.0f), 1073741824));
                     }
                 };
                 colorPicker.setColor(gLIconRenderer.star.specColor, 0);
@@ -235,7 +235,7 @@ public class GLIconSettingsView extends LinearLayout {
                 }) {
                     @Override
                     protected void onMeasure(int i, int i2) {
-                        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(300.0f), 1073741824));
+                        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(300.0f), 1073741824));
                     }
                 };
                 colorPicker.setColor(gLIconRenderer.star.normalSpecColor, 0);

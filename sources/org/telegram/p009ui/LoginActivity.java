@@ -343,10 +343,10 @@ public class LoginActivity extends BaseFragment {
 
     public void lambda$createView$0(int i, boolean z) {
         Runnable runnable;
-        if (i > AndroidUtilities.m35dp(20.0f) && isCustomKeyboardVisible()) {
+        if (i > AndroidUtilities.m36dp(20.0f) && isCustomKeyboardVisible()) {
             AndroidUtilities.hideKeyboard(this.fragmentView);
         }
-        if (i > AndroidUtilities.m35dp(20.0f) || (runnable = this.keyboardHideCallback) == null) {
+        if (i > AndroidUtilities.m36dp(20.0f) || (runnable = this.keyboardHideCallback) == null) {
             return;
         }
         runnable.run();
@@ -448,13 +448,13 @@ public class LoginActivity extends BaseFragment {
     public void lambda$setCustomKeyboardVisible$4(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.keyboardView.setAlpha(floatValue);
-        this.keyboardView.setTranslationY((1.0f - floatValue) * AndroidUtilities.m35dp(230.0f));
+        this.keyboardView.setTranslationY((1.0f - floatValue) * AndroidUtilities.m36dp(230.0f));
     }
 
     public void lambda$setCustomKeyboardVisible$5(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.keyboardView.setAlpha(floatValue);
-        this.keyboardView.setTranslationY((1.0f - floatValue) * AndroidUtilities.m35dp(230.0f));
+        this.keyboardView.setTranslationY((1.0f - floatValue) * AndroidUtilities.m36dp(230.0f));
     }
 
     @Override
@@ -486,7 +486,7 @@ public class LoginActivity extends BaseFragment {
                 }
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         int i3 = this.currentViewNum;
         if (i3 == 0 && !this.needRequestPermissions && (slideView = this.views[i3]) != null) {
@@ -576,7 +576,7 @@ public class LoginActivity extends BaseFragment {
             }
             return bundle;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -709,24 +709,24 @@ public class LoginActivity extends BaseFragment {
             final OutlineTextContainerView outlineTextContainerView = (OutlineTextContainerView) view;
             AtomicReference atomicReference = new AtomicReference();
             final EditText attachedEditText = outlineTextContainerView.getAttachedEditText();
-            final C34868 c34868 = new C34868(this, attachedEditText, atomicReference);
+            final C34898 c34898 = new C34898(this, attachedEditText, atomicReference);
             outlineTextContainerView.animateError(1.0f);
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.lambda$onFieldError$9(OutlineTextContainerView.this, view, attachedEditText, c34868);
+                    LoginActivity.lambda$onFieldError$9(OutlineTextContainerView.this, view, attachedEditText, c34898);
                 }
             };
             atomicReference.set(runnable2);
             view.postDelayed(runnable2, 2000L);
             view.setTag(i, runnable2);
             if (attachedEditText != null) {
-                attachedEditText.addTextChangedListener(c34868);
+                attachedEditText.addTextChangedListener(c34898);
             }
         }
     }
 
-    public class C34868 implements TextWatcher {
+    public class C34898 implements TextWatcher {
         final EditText val$editText;
         final AtomicReference val$timeoutCallbackRef;
 
@@ -738,7 +738,7 @@ public class LoginActivity extends BaseFragment {
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         }
 
-        C34868(LoginActivity loginActivity, EditText editText, AtomicReference atomicReference) {
+        C34898(LoginActivity loginActivity, EditText editText, AtomicReference atomicReference) {
             this.val$editText = editText;
             this.val$timeoutCallbackRef = atomicReference;
         }
@@ -750,7 +750,7 @@ public class LoginActivity extends BaseFragment {
             editText.post(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.C34868.this.lambda$beforeTextChanged$0(editText, atomicReference);
+                    LoginActivity.C34898.this.lambda$beforeTextChanged$0(editText, atomicReference);
                 }
             });
         }
@@ -1267,7 +1267,7 @@ public class LoginActivity extends BaseFragment {
             putBundleToEditor(bundle2, edit, null);
             edit.commit();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1448,7 +1448,6 @@ public class LoginActivity extends BaseFragment {
 
         public PhoneView(final Context context) {
             super(context);
-            LoginActivity.this = r27;
             this.countryState = 0;
             this.countriesArray = new ArrayList<>();
             this.codesMap = new HashMap<>();
@@ -1466,16 +1465,16 @@ public class LoginActivity extends BaseFragment {
             this.titleView = textView;
             textView.setTextSize(1, 18.0f);
             this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.titleView.setText(LocaleController.getString(r27.activityMode == 2 ? C1072R.string.ChangePhoneNewNumber : C1072R.string.YourNumber));
+            this.titleView.setText(LocaleController.getString(LoginActivity.this.activityMode == 2 ? C1072R.string.ChangePhoneNewNumber : C1072R.string.YourNumber));
             this.titleView.setGravity(17);
-            this.titleView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+            this.titleView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
             addView(this.titleView, LayoutHelper.createFrame(-1, -2.0f, 1, 32.0f, 0.0f, 32.0f, 0.0f));
             TextView textView2 = new TextView(context);
             this.subtitleView = textView2;
-            textView2.setText(LocaleController.getString(r27.activityMode == 2 ? C1072R.string.ChangePhoneHelp : C1072R.string.StartText));
+            textView2.setText(LocaleController.getString(LoginActivity.this.activityMode == 2 ? C1072R.string.ChangePhoneHelp : C1072R.string.StartText));
             this.subtitleView.setTextSize(1, 14.0f);
             this.subtitleView.setGravity(17);
-            this.subtitleView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+            this.subtitleView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
             addView(this.subtitleView, LayoutHelper.createLinear(-1, -2, 1, 32, 8, 32, 0));
             TextViewSwitcher textViewSwitcher = new TextViewSwitcher(context);
             this.countryButton = textViewSwitcher;
@@ -1534,7 +1533,7 @@ public class LoginActivity extends BaseFragment {
             this.plusTextView.setTextSize(1, 16.0f);
             this.plusTextView.setFocusable(false);
             linearLayout2.addView(this.plusTextView, LayoutHelper.createLinear(-2, -2));
-            AnimatedPhoneNumberEditText animatedPhoneNumberEditText = new AnimatedPhoneNumberEditText(context, r27) {
+            AnimatedPhoneNumberEditText animatedPhoneNumberEditText = new AnimatedPhoneNumberEditText(context, LoginActivity.this) {
                 @Override
                 public void onFocusChanged(boolean z, int i3, Rect rect) {
                     super.onFocusChanged(z, i3, rect);
@@ -1546,9 +1545,9 @@ public class LoginActivity extends BaseFragment {
             };
             this.codeField = animatedPhoneNumberEditText;
             animatedPhoneNumberEditText.setInputType(3);
-            this.codeField.setCursorSize(AndroidUtilities.m35dp(20.0f));
+            this.codeField.setCursorSize(AndroidUtilities.m36dp(20.0f));
             this.codeField.setCursorWidth(1.5f);
-            this.codeField.setPadding(AndroidUtilities.m35dp(10.0f), 0, 0, 0);
+            this.codeField.setPadding(AndroidUtilities.m36dp(10.0f), 0, 0, 0);
             this.codeField.setTextSize(1, 16.0f);
             this.codeField.setMaxLines(1);
             this.codeField.setGravity(19);
@@ -1556,11 +1555,11 @@ public class LoginActivity extends BaseFragment {
             this.codeField.setBackground(null);
             int i3 = Build.VERSION.SDK_INT;
             if (i3 >= 21) {
-                this.codeField.setShowSoftInputOnFocus(!hasCustomKeyboard() || r27.isCustomKeyboardForceDisabled());
+                this.codeField.setShowSoftInputOnFocus(!hasCustomKeyboard() || LoginActivity.this.isCustomKeyboardForceDisabled());
             }
             this.codeField.setContentDescription(LocaleController.getString(C1072R.string.LoginAccessibilityCountryCode));
             linearLayout2.addView(this.codeField, LayoutHelper.createLinear(55, 36, -9.0f, 0.0f, 0.0f, 0.0f));
-            this.codeField.addTextChangedListener(new TextWatcher(r27) {
+            this.codeField.addTextChangedListener(new TextWatcher(LoginActivity.this) {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
                 }
@@ -1710,9 +1709,9 @@ public class LoginActivity extends BaseFragment {
             });
             this.codeDividerView = new View(context);
             LinearLayout.LayoutParams createLinear = LayoutHelper.createLinear(0, -1, 4.0f, 8.0f, 12.0f, 8.0f);
-            createLinear.width = Math.max(2, AndroidUtilities.m35dp(0.5f));
+            createLinear.width = Math.max(2, AndroidUtilities.m36dp(0.5f));
             linearLayout2.addView(this.codeDividerView, createLinear);
-            AnimatedPhoneNumberEditText animatedPhoneNumberEditText2 = new AnimatedPhoneNumberEditText(context, r27) {
+            AnimatedPhoneNumberEditText animatedPhoneNumberEditText2 = new AnimatedPhoneNumberEditText(context, LoginActivity.this) {
                 @Override
                 public boolean onKeyDown(int i4, KeyEvent keyEvent) {
                     if (i4 == 67 && PhoneView.this.phoneField.length() == 0) {
@@ -1750,7 +1749,7 @@ public class LoginActivity extends BaseFragment {
             this.phoneField = animatedPhoneNumberEditText2;
             animatedPhoneNumberEditText2.setInputType(3);
             this.phoneField.setPadding(0, 0, 0, 0);
-            this.phoneField.setCursorSize(AndroidUtilities.m35dp(20.0f));
+            this.phoneField.setCursorSize(AndroidUtilities.m36dp(20.0f));
             this.phoneField.setCursorWidth(1.5f);
             this.phoneField.setTextSize(1, 16.0f);
             this.phoneField.setMaxLines(1);
@@ -1758,11 +1757,11 @@ public class LoginActivity extends BaseFragment {
             this.phoneField.setImeOptions(268435461);
             this.phoneField.setBackground(null);
             if (i3 >= 21) {
-                this.phoneField.setShowSoftInputOnFocus(!hasCustomKeyboard() || r27.isCustomKeyboardForceDisabled());
+                this.phoneField.setShowSoftInputOnFocus(!hasCustomKeyboard() || LoginActivity.this.isCustomKeyboardForceDisabled());
             }
             this.phoneField.setContentDescription(LocaleController.getString(i2));
             linearLayout2.addView(this.phoneField, LayoutHelper.createFrame(-1, 36.0f));
-            this.phoneField.addTextChangedListener(new TextWatcher(r27) {
+            this.phoneField.addTextChangedListener(new TextWatcher(LoginActivity.this) {
                 private int actionPosition;
                 private int characterAction = -1;
 
@@ -1884,10 +1883,10 @@ public class LoginActivity extends BaseFragment {
             });
             int i4 = 72;
             int i5 = 56;
-            if (r27.newAccount && r27.activityMode == 0) {
+            if (LoginActivity.this.newAccount && LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell = new CheckBoxCell(context, 2);
                 this.syncContactsBox = checkBoxCell;
-                checkBoxCell.setText(LocaleController.getString("SyncContacts", C1072R.string.SyncContacts), "", r27.syncContacts, false);
+                checkBoxCell.setText(LocaleController.getString("SyncContacts", C1072R.string.SyncContacts), "", LoginActivity.this.syncContacts, false);
                 addView(this.syncContactsBox, LayoutHelper.createLinear(-2, -1, 51, 16, 0, 16 + ((LocaleController.isRTL && AndroidUtilities.isSmallScreen()) ? i3 >= 21 ? 56 : 60 : 0), 0));
                 i4 = 48;
                 this.syncContactsBox.setOnClickListener(new View.OnClickListener() {
@@ -1897,10 +1896,10 @@ public class LoginActivity extends BaseFragment {
                     }
                 });
             }
-            if (BuildVars.DEBUG_PRIVATE_VERSION && r27.activityMode == 0) {
+            if (BuildVars.DEBUG_PRIVATE_VERSION && LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell2 = new CheckBoxCell(context, 2);
                 this.testBackendCheckBox = checkBoxCell2;
-                checkBoxCell2.setText(LocaleController.getString(C1072R.string.DebugTestBackend), "", r27.testBackend, false);
+                checkBoxCell2.setText(LocaleController.getString(C1072R.string.DebugTestBackend), "", LoginActivity.this.testBackend, false);
                 View view = this.testBackendCheckBox;
                 if (!LocaleController.isRTL || !AndroidUtilities.isSmallScreen()) {
                     i5 = 0;
@@ -1918,7 +1917,7 @@ public class LoginActivity extends BaseFragment {
             }
             if (i4 > 0 && !AndroidUtilities.isSmallScreen()) {
                 Space space = new Space(context);
-                space.setMinimumHeight(AndroidUtilities.m35dp(i4));
+                space.setMinimumHeight(AndroidUtilities.m36dp(i4));
                 addView(space, LayoutHelper.createLinear(-2, -2));
             }
             final HashMap hashMap = new HashMap();
@@ -1951,15 +1950,15 @@ public class LoginActivity extends BaseFragment {
                 }
                 bufferedReader.close();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             Collections.sort(this.countriesArray, Comparator$CC.comparing(LoginActivity$PhoneView$$ExternalSyntheticLambda17.INSTANCE));
             try {
                 TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
-            r27.getAccountInstance().getConnectionsManager().sendRequest(new TLObject() {
+            LoginActivity.this.getAccountInstance().getConnectionsManager().sendRequest(new TLObject() {
                 public static int constructor = 531836966;
 
                 @Override
@@ -1994,7 +1993,7 @@ public class LoginActivity extends BaseFragment {
 
         public static View lambda$new$0(Context context) {
             TextView textView = new TextView(context);
-            textView.setPadding(AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(12.0f));
+            textView.setPadding(AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(12.0f));
             textView.setTextSize(1, 16.0f);
             textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             textView.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
@@ -2067,9 +2066,9 @@ public class LoginActivity extends BaseFragment {
             loginActivity.syncContacts = !loginActivity.syncContacts;
             ((CheckBoxCell) view).setChecked(LoginActivity.this.syncContacts, true);
             if (LoginActivity.this.syncContacts) {
-                BulletinFactory.m14of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(C1072R.raw.contacts_sync_on, LocaleController.getString("SyncContactsOn", C1072R.string.SyncContactsOn)).show();
+                BulletinFactory.m15of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(C1072R.raw.contacts_sync_on, LocaleController.getString("SyncContactsOn", C1072R.string.SyncContactsOn)).show();
             } else {
-                BulletinFactory.m14of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(C1072R.raw.contacts_sync_off, LocaleController.getString("SyncContactsOff", C1072R.string.SyncContactsOff)).show();
+                BulletinFactory.m15of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(C1072R.raw.contacts_sync_off, LocaleController.getString("SyncContactsOff", C1072R.string.SyncContactsOff)).show();
             }
         }
 
@@ -2282,12 +2281,12 @@ public class LoginActivity extends BaseFragment {
 
                     @Override
                     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-                        return AndroidUtilities.m35dp(16.0f);
+                        return AndroidUtilities.m36dp(16.0f);
                     }
                 }, languageFlag.length(), languageFlag.length() + 1, 0);
             }
             spannableStringBuilder.append((CharSequence) country.name);
-            setCountryButtonText(Emoji.replaceEmoji(spannableStringBuilder, this.countryButton.getCurrentView().getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false));
+            setCountryButtonText(Emoji.replaceEmoji(spannableStringBuilder, this.countryButton.getCurrentView().getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false));
             this.countryCodeForHint = str;
             this.wasCountryHintIndex = -1;
             invalidateCountryHint();
@@ -2359,11 +2358,10 @@ public class LoginActivity extends BaseFragment {
             }, 200L);
         }
 
-        public class C35196 implements PhoneNumberConfirmView.IConfirmDialogCallback {
+        public class C35226 implements PhoneNumberConfirmView.IConfirmDialogCallback {
             final String val$code;
 
-            C35196(String str) {
-                PhoneView.this = r1;
+            C35226(String str) {
                 this.val$code = str;
             }
 
@@ -2419,7 +2417,7 @@ public class LoginActivity extends BaseFragment {
                                     LoginActivity.this.getParentActivity().requestPermissions((String[]) LoginActivity.this.permissionsItems.toArray(new String[0]), 6);
                                     return;
                                 } catch (Exception e) {
-                                    FileLog.m31e(e);
+                                    FileLog.m32e(e);
                                     return;
                                 }
                             }
@@ -2448,7 +2446,7 @@ public class LoginActivity extends BaseFragment {
                 phoneNumberConfirmView.animateProgress(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.PhoneView.C35196.this.lambda$onConfirm$1(phoneNumberConfirmView, str);
+                        LoginActivity.PhoneView.C35226.this.lambda$onConfirm$1(phoneNumberConfirmView, str);
                     }
                 });
             }
@@ -2458,7 +2456,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.PhoneView.C35196.this.lambda$onConfirm$0(str, phoneNumberConfirmView);
+                        LoginActivity.PhoneView.C35226.this.lambda$onConfirm$0(str, phoneNumberConfirmView);
                     }
                 }, 150L);
             }
@@ -2803,7 +2801,7 @@ public class LoginActivity extends BaseFragment {
             try {
                 getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(this.url)));
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
 
@@ -3117,12 +3115,11 @@ public class LoginActivity extends BaseFragment {
             this.codeTime = 15000;
             this.codeTimer = new Timer();
             this.lastCodeTime = System.currentTimeMillis();
-            this.codeTimer.schedule(new C35095(), 0L, 1000L);
+            this.codeTimer.schedule(new C35125(), 0L, 1000L);
         }
 
-        public class C35095 extends TimerTask {
-            C35095() {
-                LoginActivitySmsView.this = r1;
+        public class C35125 extends TimerTask {
+            C35125() {
             }
 
             @Override
@@ -3130,7 +3127,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.LoginActivitySmsView.C35095.this.lambda$run$0();
+                        LoginActivity.LoginActivitySmsView.C35125.this.lambda$run$0();
                     }
                 });
             }
@@ -3159,7 +3156,7 @@ public class LoginActivity extends BaseFragment {
                     }
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
 
@@ -3171,12 +3168,11 @@ public class LoginActivity extends BaseFragment {
             this.timeText.setTag(C1072R.C1074id.color_key_tag, "windowBackgroundWhiteGrayText6");
             Timer timer = new Timer();
             this.timeTimer = timer;
-            timer.schedule(new C35106(), 0L, 1000L);
+            timer.schedule(new C35136(), 0L, 1000L);
         }
 
-        public class C35106 extends TimerTask {
-            C35106() {
-                LoginActivitySmsView.this = r1;
+        public class C35136 extends TimerTask {
+            C35136() {
             }
 
             @Override
@@ -3187,7 +3183,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.LoginActivitySmsView.C35106.this.lambda$run$0();
+                        LoginActivity.LoginActivitySmsView.C35136.this.lambda$run$0();
                     }
                 });
             }
@@ -3236,7 +3232,7 @@ public class LoginActivity extends BaseFragment {
                     }
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
 
@@ -4155,7 +4151,6 @@ public class LoginActivity extends BaseFragment {
 
         public LoginActivityResetWaitView(Context context) {
             super(context);
-            LoginActivity.this = r21;
             setOrientation(1);
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(1);
@@ -4177,13 +4172,13 @@ public class LoginActivity extends BaseFragment {
             int i = C1072R.string.ResetAccount;
             textView2.setText(LocaleController.getString(i));
             this.titleView.setGravity(17);
-            this.titleView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+            this.titleView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
             linearLayout.addView(this.titleView, LayoutHelper.createFrame(-1, -2.0f, 1, 32.0f, 16.0f, 32.0f, 0.0f));
             TextView textView3 = new TextView(context);
             this.confirmTextView = textView3;
             textView3.setTextSize(1, 14.0f);
             this.confirmTextView.setGravity(1);
-            this.confirmTextView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+            this.confirmTextView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
             linearLayout.addView(this.confirmTextView, LayoutHelper.createLinear(-2, -2, 1, 12, 8, 12, 0));
             addView(linearLayout, LayoutHelper.createLinear(-1, 0, 1.0f));
             TextView textView4 = new TextView(context);
@@ -4191,14 +4186,14 @@ public class LoginActivity extends BaseFragment {
             textView4.setGravity(1);
             this.resetAccountText.setText(LocaleController.getString("ResetAccountStatus", C1072R.string.ResetAccountStatus));
             this.resetAccountText.setTextSize(1, 14.0f);
-            this.resetAccountText.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+            this.resetAccountText.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
             addView(this.resetAccountText, LayoutHelper.createLinear(-2, -2, 49, 0, 24, 0, 0));
             TextView textView5 = new TextView(context);
             this.resetAccountTime = textView5;
             textView5.setGravity(1);
             this.resetAccountTime.setTextSize(1, 20.0f);
             this.resetAccountTime.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.resetAccountTime.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+            this.resetAccountTime.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
             addView(this.resetAccountTime, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
             TextView textView6 = new TextView(context);
             this.resetAccountButton = textView6;
@@ -4206,8 +4201,8 @@ public class LoginActivity extends BaseFragment {
             this.resetAccountButton.setText(LocaleController.getString(i));
             this.resetAccountButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.resetAccountButton.setTextSize(1, 15.0f);
-            this.resetAccountButton.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
-            this.resetAccountButton.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+            this.resetAccountButton.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
+            this.resetAccountButton.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
             this.resetAccountButton.setTextColor(-1);
             addView(this.resetAccountButton, LayoutHelper.createLinear(-1, 50, 1, 16, 32, 16, 48));
             this.resetAccountButton.setOnClickListener(new View.OnClickListener() {
@@ -4277,7 +4272,7 @@ public class LoginActivity extends BaseFragment {
             this.confirmTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.resetAccountText.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.resetAccountTime.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            this.resetAccountButton.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("changephoneinfo_image2"), Theme.getColor("chats_actionPressedBackground")));
+            this.resetAccountButton.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), Theme.getColor("changephoneinfo_image2"), Theme.getColor("chats_actionPressedBackground")));
         }
 
         @Override
@@ -4422,7 +4417,7 @@ public class LoginActivity extends BaseFragment {
                             LoginActivitySetupEmail.this.googleAccount = GoogleSignIn.getSignedInAccountFromIntent(intent).getResult(ApiException.class);
                             LoginActivitySetupEmail.this.onNextPressed(null);
                         } catch (ApiException e) {
-                            FileLog.m31e(e);
+                            FileLog.m32e(e);
                         }
                     }
                 }
@@ -4739,7 +4734,7 @@ public class LoginActivity extends BaseFragment {
                             LoginActivityEmailCodeView.this.googleAccount = GoogleSignIn.getSignedInAccountFromIntent(intent).getResult(ApiException.class);
                             LoginActivityEmailCodeView.this.onNextPressed(null);
                         } catch (ApiException e) {
-                            FileLog.m31e(e);
+                            FileLog.m32e(e);
                         }
                     }
                 }
@@ -5551,7 +5546,6 @@ public class LoginActivity extends BaseFragment {
         public LoginActivityNewPasswordView(Context context, int i) {
             super(context);
             int i2;
-            LoginActivity.this = r25;
             this.currentStage = i;
             setOrientation(1);
             EditTextBoldCursor[] editTextBoldCursorArr = new EditTextBoldCursor[i == 1 ? 1 : 2];
@@ -5562,7 +5556,7 @@ public class LoginActivity extends BaseFragment {
             float f = 18.0f;
             textView.setTextSize(1, 18.0f);
             this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.titleTextView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+            this.titleTextView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
             this.titleTextView.setGravity(49);
             this.titleTextView.setText(LocaleController.getString(C1072R.string.SetNewPassword));
             addView(this.titleTextView, LayoutHelper.createLinear(-2, -2, 1, 8, AndroidUtilities.isSmallScreen() ? 16 : 72, 8, 0));
@@ -5570,7 +5564,7 @@ public class LoginActivity extends BaseFragment {
             this.confirmTextView = textView2;
             textView2.setTextSize(1, 16.0f);
             this.confirmTextView.setGravity(1);
-            this.confirmTextView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+            this.confirmTextView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
             addView(this.confirmTextView, LayoutHelper.createLinear(-2, -2, 1, 8, 6, 8, 16));
             final int i3 = 0;
             while (i3 < this.codeField.length) {
@@ -5583,14 +5577,14 @@ public class LoginActivity extends BaseFragment {
                 }
                 outlineTextContainerView.setText(LocaleController.getString(i2));
                 this.codeField[i3] = new EditTextBoldCursor(context);
-                this.codeField[i3].setCursorSize(AndroidUtilities.m35dp(20.0f));
+                this.codeField[i3].setCursorSize(AndroidUtilities.m36dp(20.0f));
                 this.codeField[i3].setCursorWidth(1.5f);
                 this.codeField[i3].setImeOptions(268435461);
                 this.codeField[i3].setTextSize(1, f);
                 this.codeField[i3].setMaxLines(1);
                 this.codeField[i3].setBackground(null);
-                int m35dp = AndroidUtilities.m35dp(16.0f);
-                this.codeField[i3].setPadding(m35dp, m35dp, m35dp, m35dp);
+                int m36dp = AndroidUtilities.m36dp(16.0f);
+                this.codeField[i3].setPadding(m36dp, m36dp, m36dp, m36dp);
                 if (i == 0) {
                     this.codeField[i3].setInputType(129);
                     this.codeField[i3].setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -5599,7 +5593,7 @@ public class LoginActivity extends BaseFragment {
                 this.codeField[i3].setGravity(LocaleController.isRTL ? 5 : 3);
                 EditTextBoldCursor editTextBoldCursor = this.codeField[i3];
                 boolean z = i3 == 0 && i == 0;
-                editTextBoldCursor.addTextChangedListener(new TextWatcher(r25, z) {
+                editTextBoldCursor.addTextChangedListener(new TextWatcher(LoginActivity.this, z) {
                     final boolean val$showPasswordButton;
 
                     @Override
@@ -5611,7 +5605,6 @@ public class LoginActivity extends BaseFragment {
                     }
 
                     {
-                        LoginActivityNewPasswordView.this = this;
                         this.val$showPasswordButton = z;
                     }
 
@@ -5680,8 +5673,8 @@ public class LoginActivity extends BaseFragment {
             this.cancelButton = textView3;
             textView3.setGravity(19);
             this.cancelButton.setTextSize(1, 15.0f);
-            this.cancelButton.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
-            this.cancelButton.setPadding(AndroidUtilities.m35dp(16.0f), 0, AndroidUtilities.m35dp(16.0f), 0);
+            this.cancelButton.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
+            this.cancelButton.setPadding(AndroidUtilities.m36dp(16.0f), 0, AndroidUtilities.m36dp(16.0f), 0);
             this.cancelButton.setText(LocaleController.getString(C1072R.string.YourEmailSkip));
             FrameLayout frameLayout = new FrameLayout(context);
             frameLayout.addView(this.cancelButton, LayoutHelper.createFrame(-1, Build.VERSION.SDK_INT >= 21 ? 56 : 60, 80, 0.0f, 0.0f, 0.0f, 32.0f));
@@ -6074,7 +6067,6 @@ public class LoginActivity extends BaseFragment {
 
         public class LinkSpan extends ClickableSpan {
             public LinkSpan() {
-                LoginActivityRegisterView.this = r1;
             }
 
             @Override
@@ -6153,7 +6145,6 @@ public class LoginActivity extends BaseFragment {
 
         public LoginActivityRegisterView(Context context) {
             super(context);
-            LoginActivity.this = r26;
             this.nextPressed = false;
             this.isCameraWaitAnimationAllowed = true;
             setOrientation(1);
@@ -6163,12 +6154,12 @@ public class LoginActivity extends BaseFragment {
             this.imageUpdater.setSearchAvailable(false);
             this.imageUpdater.setUploadAfterSelect(false);
             ImageUpdater imageUpdater2 = this.imageUpdater;
-            imageUpdater2.parentFragment = r26;
+            imageUpdater2.parentFragment = LoginActivity.this;
             imageUpdater2.setDelegate(this);
             FrameLayout frameLayout = new FrameLayout(context);
             addView(frameLayout, LayoutHelper.createLinear(78, 78, 1));
             this.avatarDrawable = new AvatarDrawable();
-            BackupImageView backupImageView = new BackupImageView(context, r26) {
+            BackupImageView backupImageView = new BackupImageView(context, LoginActivity.this) {
                 @Override
                 public void invalidate() {
                     if (LoginActivityRegisterView.this.avatarOverlay != null) {
@@ -6186,18 +6177,17 @@ public class LoginActivity extends BaseFragment {
                 }
             };
             this.avatarImage = backupImageView;
-            backupImageView.setRoundRadius(AndroidUtilities.m35dp(64.0f));
+            backupImageView.setRoundRadius(AndroidUtilities.m36dp(64.0f));
             this.avatarDrawable.setAvatarType(13);
             this.avatarDrawable.setInfo(5L, null, null);
             this.avatarImage.setImageDrawable(this.avatarDrawable);
             frameLayout.addView(this.avatarImage, LayoutHelper.createFrame(-1, -1.0f));
             Paint paint = new Paint(1);
             paint.setColor(1426063360);
-            View view = new View(context, r26, paint) {
+            View view = new View(context, LoginActivity.this, paint) {
                 final Paint val$paint;
 
                 {
-                    LoginActivityRegisterView.this = this;
                     this.val$paint = paint;
                 }
 
@@ -6219,10 +6209,10 @@ public class LoginActivity extends BaseFragment {
                 }
             });
             int i = C1072R.raw.camera;
-            this.cameraDrawable = new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.m35dp(70.0f), AndroidUtilities.m35dp(70.0f), false, null);
+            this.cameraDrawable = new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.m36dp(70.0f), AndroidUtilities.m36dp(70.0f), false, null);
             int i2 = C1072R.raw.camera_wait;
-            this.cameraWaitDrawable = new RLottieDrawable(i2, String.valueOf(i2), AndroidUtilities.m35dp(70.0f), AndroidUtilities.m35dp(70.0f), false, null);
-            RLottieImageView rLottieImageView = new RLottieImageView(context, r26) {
+            this.cameraWaitDrawable = new RLottieDrawable(i2, String.valueOf(i2), AndroidUtilities.m36dp(70.0f), AndroidUtilities.m36dp(70.0f), false, null);
+            RLottieImageView rLottieImageView = new RLottieImageView(context, LoginActivity.this) {
                 @Override
                 public void invalidate(int i3, int i4, int i5, int i6) {
                     super.invalidate(i3, i4, i5, i6);
@@ -6241,8 +6231,8 @@ public class LoginActivity extends BaseFragment {
             this.avatarEditor.setEnabled(false);
             this.avatarEditor.setClickable(false);
             frameLayout.addView(this.avatarEditor, LayoutHelper.createFrame(-1, -1.0f));
-            this.avatarEditor.addOnAttachStateChangeListener(new View$OnAttachStateChangeListenerC34994(r26));
-            RadialProgressView radialProgressView = new RadialProgressView(context, r26) {
+            this.avatarEditor.addOnAttachStateChangeListener(new View$OnAttachStateChangeListenerC35024(LoginActivity.this));
+            RadialProgressView radialProgressView = new RadialProgressView(context, LoginActivity.this) {
                 @Override
                 public void setAlpha(float f) {
                     super.setAlpha(f);
@@ -6250,7 +6240,7 @@ public class LoginActivity extends BaseFragment {
                 }
             };
             this.avatarProgressView = radialProgressView;
-            radialProgressView.setSize(AndroidUtilities.m35dp(30.0f));
+            radialProgressView.setSize(AndroidUtilities.m36dp(30.0f));
             this.avatarProgressView.setProgressColor(-1);
             frameLayout.addView(this.avatarProgressView, LayoutHelper.createFrame(-1, -1.0f));
             showAvatarProgress(false, false);
@@ -6259,7 +6249,7 @@ public class LoginActivity extends BaseFragment {
             textView.setText(LocaleController.getString(C1072R.string.RegistrationProfileInfo));
             this.titleTextView.setTextSize(1, 18.0f);
             this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.titleTextView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+            this.titleTextView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
             this.titleTextView.setGravity(1);
             addView(this.titleTextView, LayoutHelper.createLinear(-2, -2, 1, 8, 12, 8, 0));
             TextView textView2 = new TextView(context);
@@ -6267,7 +6257,7 @@ public class LoginActivity extends BaseFragment {
             textView2.setText(LocaleController.getString("RegisterText2", C1072R.string.RegisterText2));
             this.descriptionTextView.setGravity(1);
             this.descriptionTextView.setTextSize(1, 14.0f);
-            this.descriptionTextView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+            this.descriptionTextView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
             addView(this.descriptionTextView, LayoutHelper.createLinear(-2, -2, 1, 8, 6, 8, 0));
             FrameLayout frameLayout2 = new FrameLayout(context);
             this.editTextContainer = frameLayout2;
@@ -6277,7 +6267,7 @@ public class LoginActivity extends BaseFragment {
             outlineTextContainerView.setText(LocaleController.getString(C1072R.string.FirstName));
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
             this.firstNameField = editTextBoldCursor;
-            editTextBoldCursor.setCursorSize(AndroidUtilities.m35dp(20.0f));
+            editTextBoldCursor.setCursorSize(AndroidUtilities.m36dp(20.0f));
             this.firstNameField.setCursorWidth(1.5f);
             this.firstNameField.setImeOptions(268435461);
             this.firstNameField.setTextSize(1, 17.0f);
@@ -6290,7 +6280,7 @@ public class LoginActivity extends BaseFragment {
                 }
             });
             this.firstNameField.setBackground(null);
-            this.firstNameField.setPadding(AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f));
+            this.firstNameField.setPadding(AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f));
             this.firstNameOutlineView.attachEditText(this.firstNameField);
             this.firstNameOutlineView.addView(this.firstNameField, LayoutHelper.createFrame(-1, -2, 48));
             this.firstNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -6306,7 +6296,7 @@ public class LoginActivity extends BaseFragment {
             outlineTextContainerView2.setText(LocaleController.getString(C1072R.string.LastName));
             EditTextBoldCursor editTextBoldCursor2 = new EditTextBoldCursor(context);
             this.lastNameField = editTextBoldCursor2;
-            editTextBoldCursor2.setCursorSize(AndroidUtilities.m35dp(20.0f));
+            editTextBoldCursor2.setCursorSize(AndroidUtilities.m36dp(20.0f));
             this.lastNameField.setCursorWidth(1.5f);
             this.lastNameField.setImeOptions(268435462);
             this.lastNameField.setTextSize(1, 17.0f);
@@ -6319,7 +6309,7 @@ public class LoginActivity extends BaseFragment {
                 }
             });
             this.lastNameField.setBackground(null);
-            this.lastNameField.setPadding(AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f));
+            this.lastNameField.setPadding(AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f));
             this.lastNameOutlineView.attachEditText(this.lastNameField);
             this.lastNameOutlineView.addView(this.lastNameField, LayoutHelper.createFrame(-1, -2, 48));
             this.lastNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -6336,8 +6326,8 @@ public class LoginActivity extends BaseFragment {
             textView3.setText(LocaleController.getString("CancelRegistration", C1072R.string.CancelRegistration));
             this.wrongNumber.setGravity((LocaleController.isRTL ? 5 : 3) | 1);
             this.wrongNumber.setTextSize(1, 14.0f);
-            this.wrongNumber.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
-            this.wrongNumber.setPadding(0, AndroidUtilities.m35dp(24.0f), 0, 0);
+            this.wrongNumber.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
+            this.wrongNumber.setPadding(0, AndroidUtilities.m36dp(24.0f), 0, 0);
             this.wrongNumber.setVisibility(8);
             addView(this.wrongNumber, LayoutHelper.createLinear(-2, -2, (LocaleController.isRTL ? 5 : 3) | 48, 0, 20, 0, 0));
             this.wrongNumber.setOnClickListener(new View.OnClickListener() {
@@ -6352,7 +6342,7 @@ public class LoginActivity extends BaseFragment {
             this.privacyView = textView4;
             textView4.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
             this.privacyView.setTextSize(1, AndroidUtilities.isSmallScreen() ? 13.0f : 14.0f);
-            this.privacyView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+            this.privacyView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
             this.privacyView.setGravity(16);
             frameLayout3.addView(this.privacyView, LayoutHelper.createFrame(-2, Build.VERSION.SDK_INT >= 21 ? 56.0f : 60.0f, 83, 14.0f, 0.0f, 70.0f, 32.0f));
             VerticalPositionAutoAnimator.attach(this.privacyView);
@@ -6419,18 +6409,17 @@ public class LoginActivity extends BaseFragment {
             this.isCameraWaitAnimationAllowed = true;
         }
 
-        public class View$OnAttachStateChangeListenerC34994 implements View.OnAttachStateChangeListener {
+        public class View$OnAttachStateChangeListenerC35024 implements View.OnAttachStateChangeListener {
             private boolean isAttached;
             private long lastRun = System.currentTimeMillis();
             private Runnable cameraWaitCallback = new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC34994.this.lambda$$2();
+                    LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC35024.this.lambda$$2();
                 }
             };
 
-            View$OnAttachStateChangeListenerC34994(LoginActivity loginActivity) {
-                LoginActivityRegisterView.this = r1;
+            View$OnAttachStateChangeListenerC35024(LoginActivity loginActivity) {
             }
 
             public void lambda$$2() {
@@ -6441,7 +6430,7 @@ public class LoginActivity extends BaseFragment {
                         LoginActivityRegisterView.this.cameraWaitDrawable.setOnAnimationEndListener(new Runnable() {
                             @Override
                             public final void run() {
-                                LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC34994.this.lambda$$1();
+                                LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC35024.this.lambda$$1();
                             }
                         });
                         LoginActivityRegisterView.this.avatarEditor.playAnimation();
@@ -6455,7 +6444,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC34994.this.lambda$$0();
+                        LoginActivity.LoginActivityRegisterView.View$OnAttachStateChangeListenerC35024.this.lambda$$0();
                     }
                 });
             }
@@ -6836,7 +6825,7 @@ public class LoginActivity extends BaseFragment {
                     serializedData.cleanup();
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             String string2 = bundle.getString("registerview_first");
             if (string2 != null) {
@@ -6892,7 +6881,7 @@ public class LoginActivity extends BaseFragment {
         transformableLoginButtonView.setTranslationX(f);
         transformableLoginButtonView.setTranslationY(f2);
         final int width2 = (((getParentLayout().getView().getWidth() - this.floatingButtonIcon.getLayoutParams().width) - ((ViewGroup.MarginLayoutParams) this.floatingButtonContainer.getLayoutParams()).rightMargin) - getParentLayout().getView().getPaddingLeft()) - getParentLayout().getView().getPaddingRight();
-        final int height2 = ((((getParentLayout().getView().getHeight() - this.floatingButtonIcon.getLayoutParams().height) - ((ViewGroup.MarginLayoutParams) this.floatingButtonContainer.getLayoutParams()).bottomMargin) - (isCustomKeyboardVisible() ? AndroidUtilities.m35dp(230.0f) : 0)) - getParentLayout().getView().getPaddingTop()) - getParentLayout().getView().getPaddingBottom();
+        final int height2 = ((((getParentLayout().getView().getHeight() - this.floatingButtonIcon.getLayoutParams().height) - ((ViewGroup.MarginLayoutParams) this.floatingButtonContainer.getLayoutParams()).bottomMargin) - (isCustomKeyboardVisible() ? AndroidUtilities.m36dp(230.0f) : 0)) - getParentLayout().getView().getPaddingTop()) - getParentLayout().getView().getPaddingBottom();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -6940,13 +6929,13 @@ public class LoginActivity extends BaseFragment {
         this.keyboardLinearLayout.setAlpha(floatValue);
         this.fragmentView.setBackgroundColor(ColorUtils.setAlphaComponent(i, (int) (i2 * floatValue)));
         float f3 = 1.0f - floatValue;
-        this.slideViewsContainer.setTranslationY(AndroidUtilities.m35dp(20.0f) * f3);
+        this.slideViewsContainer.setTranslationY(AndroidUtilities.m36dp(20.0f) * f3);
         if (!isCustomKeyboardForceDisabled()) {
             CustomPhoneKeyboardView customPhoneKeyboardView = this.keyboardView;
             customPhoneKeyboardView.setTranslationY(customPhoneKeyboardView.getLayoutParams().height * f3);
             this.floatingButtonContainer.setTranslationY(this.keyboardView.getLayoutParams().height * f3);
         }
-        this.introView.setTranslationY((-AndroidUtilities.m35dp(20.0f)) * floatValue);
+        this.introView.setTranslationY((-AndroidUtilities.m36dp(20.0f)) * floatValue);
         float f4 = (f3 * 0.05f) + 0.95f;
         this.introView.setScaleX(f4);
         this.introView.setScaleY(f4);
@@ -6961,12 +6950,12 @@ public class LoginActivity extends BaseFragment {
     public void updateColors() {
         this.fragmentView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
         Activity parentActivity = getParentActivity();
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
+        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m36dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
         if (Build.VERSION.SDK_INT < 21) {
             Drawable mutate = parentActivity.getResources().getDrawable(C1072R.C1073drawable.floating_shadow).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
-            combinedDrawable.setIconSize(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+            combinedDrawable.setIconSize(AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
             createSimpleSelectorCircleDrawable = combinedDrawable;
         }
         this.floatingButtonContainer.setBackground(createSimpleSelectorCircleDrawable);
@@ -7126,7 +7115,7 @@ public class LoginActivity extends BaseFragment {
             });
             RadialProgressView radialProgressView = new RadialProgressView(context);
             this.floatingProgressView = radialProgressView;
-            radialProgressView.setSize(AndroidUtilities.m35dp(22.0f));
+            radialProgressView.setSize(AndroidUtilities.m36dp(22.0f));
             this.floatingProgressView.setAlpha(0.0f);
             this.floatingProgressView.setScaleX(0.1f);
             this.floatingProgressView.setScaleY(0.1f);
@@ -7151,13 +7140,13 @@ public class LoginActivity extends BaseFragment {
             this.numberView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.numberView.setSingleLine();
             this.popupLayout.addView(this.numberView, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 24.0f, 48.0f, 24.0f, 0.0f));
-            int m35dp = AndroidUtilities.m35dp(16.0f);
+            int m36dp = AndroidUtilities.m36dp(16.0f);
             TextView textView3 = new TextView(context);
             this.editTextView = textView3;
             textView3.setText(LocaleController.getString(C1072R.string.Edit));
             this.editTextView.setSingleLine();
             this.editTextView.setTextSize(1, 16.0f);
-            this.editTextView.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("changephoneinfo_image2")));
+            this.editTextView.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.m36dp(6.0f), Theme.getColor("changephoneinfo_image2")));
             this.editTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view5) {
@@ -7165,8 +7154,8 @@ public class LoginActivity extends BaseFragment {
                 }
             });
             this.editTextView.setTypeface(Typeface.DEFAULT_BOLD);
-            int i2 = m35dp / 2;
-            this.editTextView.setPadding(m35dp, i2, m35dp, i2);
+            int i2 = m36dp / 2;
+            this.editTextView.setPadding(m36dp, i2, m36dp, i2);
             float f = 8;
             this.popupLayout.addView(this.editTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, f, f, f, f));
             TextView textView4 = new TextView(context);
@@ -7174,7 +7163,7 @@ public class LoginActivity extends BaseFragment {
             textView4.setText(LocaleController.getString(C1072R.string.CheckPhoneNumberYes));
             this.confirmTextView.setSingleLine();
             this.confirmTextView.setTextSize(1, 16.0f);
-            this.confirmTextView.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("changephoneinfo_image2")));
+            this.confirmTextView.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.m36dp(6.0f), Theme.getColor("changephoneinfo_image2")));
             this.confirmTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view5) {
@@ -7182,7 +7171,7 @@ public class LoginActivity extends BaseFragment {
                 }
             });
             this.confirmTextView.setTypeface(Typeface.DEFAULT_BOLD);
-            this.confirmTextView.setPadding(m35dp, i2, m35dp, i2);
+            this.confirmTextView.setPadding(m36dp, i2, m36dp, i2);
             this.popupLayout.addView(this.confirmTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 80, f, f, f, f));
             updateFabPosition();
             updateColors();
@@ -7218,12 +7207,12 @@ public class LoginActivity extends BaseFragment {
         public void updateColors() {
             this.fabTransform.setColor(Theme.getColor("chats_actionIcon"));
             this.fabTransform.setBackgroundColor(Theme.getColor("chats_actionBackground"));
-            this.popupLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.m35dp(12.0f), Theme.getColor("dialogBackground")));
+            this.popupLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.m36dp(12.0f), Theme.getColor("dialogBackground")));
             this.confirmMessageView.setTextColor(Theme.getColor("dialogTextGray2"));
             this.numberView.setTextColor(Theme.getColor("dialogTextBlack"));
             this.editTextView.setTextColor(Theme.getColor("changephoneinfo_image2"));
             this.confirmTextView.setTextColor(Theme.getColor("changephoneinfo_image2"));
-            this.popupFabContainer.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground")));
+            this.popupFabContainer.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m36dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground")));
             this.floatingProgressView.setProgressColor(Theme.getColor("chats_actionIcon"));
         }
 
@@ -7231,7 +7220,7 @@ public class LoginActivity extends BaseFragment {
         protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             int measuredHeight = this.popupLayout.getMeasuredHeight();
-            int translationY = (int) (this.popupFabContainer.getTranslationY() - AndroidUtilities.m35dp(32.0f));
+            int translationY = (int) (this.popupFabContainer.getTranslationY() - AndroidUtilities.m36dp(32.0f));
             FrameLayout frameLayout = this.popupLayout;
             frameLayout.layout(frameLayout.getLeft(), translationY - measuredHeight, this.popupLayout.getRight(), translationY);
         }
@@ -7333,7 +7322,7 @@ public class LoginActivity extends BaseFragment {
                         ((ViewGroup) PhoneNumberConfirmView.this.getParent()).removeView(PhoneNumberConfirmView.this);
                     }
                     if (Build.VERSION.SDK_INT >= 21) {
-                        ObjectAnimator.ofFloat(PhoneNumberConfirmView.this.fabContainer, View.TRANSLATION_Z, 0.0f, AndroidUtilities.m35dp(2.0f)).setDuration(150L).start();
+                        ObjectAnimator.ofFloat(PhoneNumberConfirmView.this.fabContainer, View.TRANSLATION_Z, 0.0f, AndroidUtilities.m36dp(2.0f)).setDuration(150L).start();
                     }
                     PhoneNumberConfirmView.this.fabContainer.setVisibility(0);
                 }

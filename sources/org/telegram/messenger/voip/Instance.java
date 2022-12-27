@@ -99,7 +99,7 @@ public final class Instance {
             }
         } catch (JSONException e) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m32e("failed to parse tgvoip server config", e);
+                FileLog.m33e("failed to parse tgvoip server config", e);
             }
         }
     }

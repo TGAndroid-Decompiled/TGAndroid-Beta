@@ -160,16 +160,16 @@ public class AvatarPreviewPagerIndicator extends View implements ProfileGalleryV
         super.onMeasure(i, i2);
         this.path.reset();
         this.rectF.set(0.0f, 0.0f, getMeasuredHeight(), getMeasuredWidth());
-        this.path.addRoundRect(this.rectF, new float[]{AndroidUtilities.m35dp(13.0f), AndroidUtilities.m35dp(13.0f), AndroidUtilities.m35dp(13.0f), AndroidUtilities.m35dp(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
+        this.path.addRoundRect(this.rectF, new float[]{AndroidUtilities.m36dp(13.0f), AndroidUtilities.m36dp(13.0f), AndroidUtilities.m36dp(13.0f), AndroidUtilities.m36dp(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
     }
 
     @Override
     protected void onSizeChanged(int i, int i2, int i3, int i4) {
         int currentActionBarHeight = C1133ActionBar.getCurrentActionBarHeight() + 0;
         this.topOverlayRect.set(0, 0, i, (int) (currentActionBarHeight * 0.5f));
-        this.bottomOverlayRect.set(0, (int) (i2 - (AndroidUtilities.m35dp(72.0f) * 0.5f)), i, i2);
-        this.topOverlayGradient.setBounds(0, this.topOverlayRect.bottom, i, currentActionBarHeight + AndroidUtilities.m35dp(16.0f));
-        this.bottomOverlayGradient.setBounds(0, (i2 - AndroidUtilities.m35dp(72.0f)) - AndroidUtilities.m35dp(24.0f), i, this.bottomOverlayRect.top);
+        this.bottomOverlayRect.set(0, (int) (i2 - (AndroidUtilities.m36dp(72.0f) * 0.5f)), i, i2);
+        this.topOverlayGradient.setBounds(0, this.topOverlayRect.bottom, i, currentActionBarHeight + AndroidUtilities.m36dp(16.0f));
+        this.bottomOverlayGradient.setBounds(0, (i2 - AndroidUtilities.m36dp(72.0f)) - AndroidUtilities.m36dp(24.0f), i, this.bottomOverlayRect.top);
         int i5 = i / 5;
         this.pressedOverlayGradient[0].setBounds(0, 0, i5, i2);
         this.pressedOverlayGradient[1].setBounds(i - i5, 0, i, i2);

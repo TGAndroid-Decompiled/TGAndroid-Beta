@@ -43,7 +43,7 @@ public class MemberRequestCell extends FrameLayout {
         this.nameTextView = simpleTextView;
         SimpleTextView simpleTextView2 = new SimpleTextView(getContext());
         this.statusTextView = simpleTextView2;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(23.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(23.0f));
         addView(backupImageView, LayoutHelper.createFrame(46, 46.0f, LocaleController.isRTL ? 5 : 3, 12.0f, 8.0f, 12.0f, 0.0f));
         simpleTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         simpleTextView.setMaxLines(1);
@@ -58,12 +58,12 @@ public class MemberRequestCell extends FrameLayout {
         simpleTextView2.setTextSize(14);
         boolean z3 = LocaleController.isRTL;
         addView(simpleTextView2, LayoutHelper.createFrame(-1, -2.0f, 48, z3 ? 12.0f : 74.0f, 36.0f, z3 ? 74.0f : 12.0f, 0.0f));
-        int m35dp = AndroidUtilities.m35dp(17.0f);
+        int m36dp = AndroidUtilities.m36dp(17.0f);
         TextView textView = new TextView(getContext());
         textView.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView.setMaxLines(1);
-        textView.setPadding(m35dp, 0, m35dp, 0);
+        textView.setPadding(m36dp, 0, m36dp, 0);
         if (z) {
             i = C1072R.string.AddToChannel;
             str = "AddToChannel";
@@ -83,12 +83,12 @@ public class MemberRequestCell extends FrameLayout {
         });
         boolean z4 = LocaleController.isRTL;
         addView(textView, LayoutHelper.createFrame(-2, 32.0f, z4 ? 5 : 3, z4 ? 0.0f : 73.0f, 62.0f, z4 ? 73.0f : 0.0f, 0.0f));
-        float measureText = textView.getPaint().measureText(textView.getText().toString()) + (m35dp * 2);
+        float measureText = textView.getPaint().measureText(textView.getText().toString()) + (m36dp * 2);
         TextView textView2 = new TextView(getContext());
-        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), 0, Theme.getColor("listSelectorSDK21"), -16777216));
+        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), 0, Theme.getColor("listSelectorSDK21"), -16777216));
         textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView2.setMaxLines(1);
-        textView2.setPadding(m35dp, 0, m35dp, 0);
+        textView2.setPadding(m36dp, 0, m36dp, 0);
         textView2.setText(LocaleController.getString("Dismiss", C1072R.string.Dismiss));
         textView2.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText"));
         textView2.setTextSize(14.0f);
@@ -99,10 +99,10 @@ public class MemberRequestCell extends FrameLayout {
                 MemberRequestCell.this.lambda$new$1(onClickListener, view);
             }
         });
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, AndroidUtilities.m35dp(32.0f), LocaleController.isRTL ? 5 : 3);
-        layoutParams.topMargin = AndroidUtilities.m35dp(62.0f);
-        layoutParams.leftMargin = LocaleController.isRTL ? 0 : (int) (AndroidUtilities.m35dp(79.0f) + measureText);
-        layoutParams.rightMargin = LocaleController.isRTL ? (int) (measureText + AndroidUtilities.m35dp(79.0f)) : 0;
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, AndroidUtilities.m36dp(32.0f), LocaleController.isRTL ? 5 : 3);
+        layoutParams.topMargin = AndroidUtilities.m36dp(62.0f);
+        layoutParams.leftMargin = LocaleController.isRTL ? 0 : (int) (AndroidUtilities.m36dp(79.0f) + measureText);
+        layoutParams.rightMargin = LocaleController.isRTL ? (int) (measureText + AndroidUtilities.m36dp(79.0f)) : 0;
         addView(textView2, layoutParams);
     }
 
@@ -158,14 +158,14 @@ public class MemberRequestCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(107.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(107.0f), 1073741824));
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.isNeedDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(72.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(72.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }
 }

@@ -47,8 +47,8 @@ public class SenderSelectView extends View {
         this.avatarDrawable = new AvatarDrawable();
         this.backgroundPaint = new Paint(1);
         this.menuPaint = new Paint(1);
-        this.avatarImage.setRoundRadius(AndroidUtilities.m35dp(28.0f));
-        this.menuPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.avatarImage.setRoundRadius(AndroidUtilities.m36dp(28.0f));
+        this.menuPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         this.menuPaint.setStrokeCap(Paint.Cap.ROUND);
         this.menuPaint.setStyle(Paint.Style.STROKE);
         updateColors();
@@ -58,7 +58,7 @@ public class SenderSelectView extends View {
     private void updateColors() {
         this.backgroundPaint.setColor(Theme.getColor("chat_messagePanelVoiceBackground"));
         this.menuPaint.setColor(Theme.getColor("chat_messagePanelVoicePressed"));
-        Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(16.0f), 0, Theme.getColor("windowBackgroundWhite"));
+        Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(16.0f), 0, Theme.getColor("windowBackgroundWhite"));
         this.selectorDrawable = createSimpleSelectorRoundRectDrawable;
         createSimpleSelectorRoundRectDrawable.setCallback(this);
     }
@@ -98,9 +98,9 @@ public class SenderSelectView extends View {
         canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth(), getHeight()) / 2.0f, this.backgroundPaint);
         canvas.save();
         this.menuPaint.setAlpha(i);
-        float m35dp = AndroidUtilities.m35dp(9.0f) + this.menuPaint.getStrokeWidth();
-        canvas.drawLine(m35dp, m35dp, getWidth() - m35dp, getHeight() - m35dp, this.menuPaint);
-        canvas.drawLine(m35dp, getHeight() - m35dp, getWidth() - m35dp, m35dp, this.menuPaint);
+        float m36dp = AndroidUtilities.m36dp(9.0f) + this.menuPaint.getStrokeWidth();
+        canvas.drawLine(m36dp, m36dp, getWidth() - m36dp, getHeight() - m36dp, this.menuPaint);
+        canvas.drawLine(m36dp, getHeight() - m36dp, getWidth() - m36dp, m36dp, this.menuPaint);
         canvas.restore();
         this.selectorDrawable.setBounds(0, 0, getWidth(), getHeight());
         this.selectorDrawable.draw(canvas);

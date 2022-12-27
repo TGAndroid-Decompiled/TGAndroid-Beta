@@ -276,7 +276,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                         try {
                             z = Settings.Secure.getInt(ApplicationLoader.applicationContext.getContentResolver(), "location_mode", 0) != 0;
                         } catch (Throwable th) {
-                            FileLog.m31e(th);
+                            FileLog.m32e(th);
                         }
                     }
                     if (!z) {
@@ -370,7 +370,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             intent.putExtra("sms_body", ContactsController.getInstance(this.currentAccount).getInviteText(1));
             getParentActivity().startActivityForResult(intent, 500);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -387,10 +387,10 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             if (tLRPC$User.bot) {
                 if (tLRPC$User.bot_nochats) {
                     try {
-                        BulletinFactory.m13of(this).createErrorBulletin(LocaleController.getString("BotCantJoinGroups", C1072R.string.BotCantJoinGroups)).show();
+                        BulletinFactory.m14of(this).createErrorBulletin(LocaleController.getString("BotCantJoinGroups", C1072R.string.BotCantJoinGroups)).show();
                         return;
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         return;
                     }
                 } else if (this.channelId != 0) {
@@ -462,7 +462,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                                 }
                             }
                         } catch (Exception e2) {
-                            FileLog.m31e(e2);
+                            FileLog.m32e(e2);
                         }
                     }
                 });
@@ -483,10 +483,10 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                     if (marginLayoutParams instanceof FrameLayout.LayoutParams) {
                         ((FrameLayout.LayoutParams) marginLayoutParams).gravity = 1;
                     }
-                    int m35dp = AndroidUtilities.m35dp(24.0f);
-                    marginLayoutParams.leftMargin = m35dp;
-                    marginLayoutParams.rightMargin = m35dp;
-                    marginLayoutParams.height = AndroidUtilities.m35dp(36.0f);
+                    int m36dp = AndroidUtilities.m36dp(24.0f);
+                    marginLayoutParams.leftMargin = m36dp;
+                    marginLayoutParams.rightMargin = m36dp;
+                    marginLayoutParams.height = AndroidUtilities.m36dp(36.0f);
                     editTextBoldCursor.setLayoutParams(marginLayoutParams);
                 }
                 editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
@@ -567,7 +567,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             frameLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
-                    ContactsActivity.this.floatingButtonContainer.setTranslationY(ContactsActivity.this.floatingHidden ? AndroidUtilities.m35dp(100.0f) : 0);
+                    ContactsActivity.this.floatingButtonContainer.setTranslationY(ContactsActivity.this.floatingHidden ? AndroidUtilities.m36dp(100.0f) : 0);
                     ContactsActivity.this.floatingButtonContainer.setClickable(!ContactsActivity.this.floatingHidden);
                     if (ContactsActivity.this.floatingButtonContainer != null) {
                         ContactsActivity.this.floatingButtonContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
@@ -610,7 +610,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         try {
             parentActivity.requestPermissions((String[]) arrayList.toArray(new String[0]), 1);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -641,7 +641,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                             getParentActivity().startActivity(intent);
                             return;
                         } catch (Exception e) {
-                            FileLog.m31e(e);
+                            FileLog.m32e(e);
                             return;
                         }
                     }
@@ -716,7 +716,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         FrameLayout frameLayout = this.floatingButtonContainer;
         Property property = View.TRANSLATION_Y;
         float[] fArr = new float[1];
-        fArr[0] = this.floatingHidden ? AndroidUtilities.m35dp(100.0f) : 0;
+        fArr[0] = this.floatingHidden ? AndroidUtilities.m36dp(100.0f) : 0;
         animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, property, fArr);
         animatorSet.playTogether(animatorArr);
         animatorSet.setDuration(300L);
@@ -779,7 +779,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         }
         final RLottieImageView floatingButton = dialogsActivity.getFloatingButton();
         final View view = floatingButton.getParent() != null ? (View) floatingButton.getParent() : null;
-        if (this.floatingButtonContainer == null || view == null || floatingButton.getVisibility() != 0 || Math.abs(view.getTranslationY()) > AndroidUtilities.m35dp(4.0f) || Math.abs(this.floatingButtonContainer.getTranslationY()) > AndroidUtilities.m35dp(4.0f)) {
+        if (this.floatingButtonContainer == null || view == null || floatingButton.getVisibility() != 0 || Math.abs(view.getTranslationY()) > AndroidUtilities.m36dp(4.0f) || Math.abs(this.floatingButtonContainer.getTranslationY()) > AndroidUtilities.m36dp(4.0f)) {
             this.floatingButton.setAnimation(C1072R.raw.write_contacts_fab_icon, 52, 52);
             this.floatingButton.getAnimatedDrawable().setCurrentFrame(this.floatingButton.getAnimatedDrawable().getFramesCount() - 1);
             return null;
@@ -833,7 +833,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
 
     public static void lambda$onCustomTransitionAnimation$7(ValueAnimator valueAnimator, ViewGroup viewGroup, ValueAnimator valueAnimator2) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        viewGroup.setTranslationX(AndroidUtilities.m35dp(48.0f) * floatValue);
+        viewGroup.setTranslationX(AndroidUtilities.m36dp(48.0f) * floatValue);
         viewGroup.setAlpha(1.0f - floatValue);
     }
 

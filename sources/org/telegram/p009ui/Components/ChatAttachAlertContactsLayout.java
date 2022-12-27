@@ -90,14 +90,14 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             this.avatarDrawable = new AvatarDrawable(resourcesProvider);
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarImageView = backupImageView;
-            backupImageView.setRoundRadius(AndroidUtilities.m35dp(23.0f));
+            backupImageView.setRoundRadius(AndroidUtilities.m36dp(23.0f));
             BackupImageView backupImageView2 = this.avatarImageView;
             boolean z = LocaleController.isRTL;
             addView(backupImageView2, LayoutHelper.createFrame(46, 46.0f, (z ? 5 : 3) | 48, z ? 0.0f : 14.0f, 9.0f, z ? 14.0f : 0.0f, 0.0f));
             SimpleTextView simpleTextView = new SimpleTextView(this, context) {
                 @Override
                 public boolean setText(CharSequence charSequence, boolean z2) {
-                    return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(14.0f), false), z2);
+                    return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(14.0f), false), z2);
                 }
             };
             this.nameTextView = simpleTextView;
@@ -205,7 +205,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
         }
 
         public void update(int r12) {
@@ -215,7 +215,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         @Override
         protected void onDraw(Canvas canvas) {
             if (this.needDivider) {
-                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(70.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(70.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(70.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(70.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         }
 
@@ -263,7 +263,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             @Override
             public void processTouchEvent(MotionEvent motionEvent) {
                 MotionEvent obtain = MotionEvent.obtain(motionEvent);
-                obtain.setLocation(obtain.getRawX(), (obtain.getRawY() - ChatAttachAlertContactsLayout.this.parentAlert.getSheetContainer().getTranslationY()) - AndroidUtilities.m35dp(58.0f));
+                obtain.setLocation(obtain.getRawX(), (obtain.getRawY() - ChatAttachAlertContactsLayout.this.parentAlert.getSheetContainer().getTranslationY()) - AndroidUtilities.m36dp(58.0f));
                 ChatAttachAlertContactsLayout.this.listView.dispatchTouchEvent(obtain);
                 obtain.recycle();
             }
@@ -284,19 +284,19 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             @Override
             protected boolean allowSelectChildAtPosition(float f, float f2) {
-                return f2 >= ((float) ((ChatAttachAlertContactsLayout.this.parentAlert.scrollOffsetY[0] + AndroidUtilities.m35dp(30.0f)) + ((Build.VERSION.SDK_INT < 21 || ChatAttachAlertContactsLayout.this.parentAlert.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight)));
+                return f2 >= ((float) ((ChatAttachAlertContactsLayout.this.parentAlert.scrollOffsetY[0] + AndroidUtilities.m36dp(30.0f)) + ((Build.VERSION.SDK_INT < 21 || ChatAttachAlertContactsLayout.this.parentAlert.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight)));
             }
         };
         this.listView = recyclerListView;
         recyclerListView.setClipToPadding(false);
         RecyclerListView recyclerListView2 = this.listView;
-        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(getContext(), 1, false, AndroidUtilities.m35dp(9.0f), this.listView) {
+        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(getContext(), 1, false, AndroidUtilities.m36dp(9.0f), this.listView) {
             @Override
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i) {
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
                     @Override
                     public int calculateDyToMakeVisible(View view, int i2) {
-                        return super.calculateDyToMakeVisible(view, i2) - (ChatAttachAlertContactsLayout.this.listView.getPaddingTop() - AndroidUtilities.m35dp(8.0f));
+                        return super.calculateDyToMakeVisible(view, i2) - (ChatAttachAlertContactsLayout.this.listView.getPaddingTop() - AndroidUtilities.m36dp(8.0f));
                     }
 
                     @Override
@@ -334,7 +334,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             }
         });
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 51);
-        layoutParams.topMargin = AndroidUtilities.m35dp(58.0f);
+        layoutParams.topMargin = AndroidUtilities.m36dp(58.0f);
         View view = new View(context);
         this.shadow = view;
         view.setBackgroundColor(getThemedColor("dialogShadowLine"));
@@ -420,7 +420,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
         View childAt = this.listView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-        int top = childAt.getTop() - AndroidUtilities.m35dp(8.0f);
+        int top = childAt.getTop() - AndroidUtilities.m36dp(8.0f);
         int i = (top <= 0 || holder == null || holder.getAdapterPosition() != 0) ? 0 : top;
         if (top >= 0 && holder != null && holder.getAdapterPosition() == 0) {
             runShadowAnimation(false);
@@ -429,12 +429,12 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             top = i;
         }
         this.frameLayout.setTranslationY(top);
-        return top + AndroidUtilities.m35dp(12.0f);
+        return top + AndroidUtilities.m36dp(12.0f);
     }
 
     @Override
     int getFirstOffset() {
-        return getListTopPadding() + AndroidUtilities.m35dp(4.0f);
+        return getListTopPadding() + AndroidUtilities.m36dp(4.0f);
     }
 
     @Override
@@ -451,8 +451,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     @Override
     void onPreMeasure(int i, int i2) {
         int i3;
-        if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.m35dp(20.0f)) {
-            i3 = AndroidUtilities.m35dp(8.0f);
+        if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.m36dp(20.0f)) {
+            i3 = AndroidUtilities.m36dp(8.0f);
             this.parentAlert.setAllowNestedScroll(false);
         } else {
             if (!AndroidUtilities.isTablet()) {
@@ -599,7 +599,6 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public ShareAdapter(Context context) {
-            ChatAttachAlertContactsLayout.this = r1;
             this.mContext = context;
         }
 
@@ -654,7 +653,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                 userCell = new UserCell(this.mContext, ChatAttachAlertContactsLayout.this.resourcesProvider);
             } else if (i == 1) {
                 userCell = new View(this.mContext);
-                userCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(56.0f)));
+                userCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m36dp(56.0f)));
             } else {
                 userCell = new View(this.mContext);
             }
@@ -740,7 +739,6 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         private Runnable searchRunnable;
 
         public ShareSearchAdapter(Context context) {
-            ChatAttachAlertContactsLayout.this = r1;
             this.mContext = context;
         }
 
@@ -834,7 +832,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                 userCell = new UserCell(this.mContext, ChatAttachAlertContactsLayout.this.resourcesProvider);
             } else if (i == 1) {
                 userCell = new View(this.mContext);
-                userCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(56.0f)));
+                userCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m36dp(56.0f)));
             } else {
                 userCell = new View(this.mContext);
             }

@@ -442,7 +442,7 @@ public class ChatRightsEditActivity extends BaseFragment {
             Drawable mutate = context.getResources().getDrawable(C1072R.C1073drawable.ic_ab_done).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
             this.doneDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor("actionBarDefaultIcon")));
-            createMenu.addItemWithWidth(1, 0, AndroidUtilities.m35dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
+            createMenu.addItemWithWidth(1, 0, AndroidUtilities.m36dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
             createMenu.getItem(1).setIcon(this.doneDrawable);
         }
         FrameLayout frameLayout = new FrameLayout(context) {
@@ -453,7 +453,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                 super.onLayout(z, i2, i3, i4, i5);
                 int i6 = i5 - i3;
                 int i7 = this.previousHeight;
-                if (i7 != -1 && Math.abs(i7 - i6) > AndroidUtilities.m35dp(20.0f)) {
+                if (i7 != -1 && Math.abs(i7 - i6) > AndroidUtilities.m36dp(20.0f)) {
                     ChatRightsEditActivity.this.listView.smoothScrollToPosition(ChatRightsEditActivity.this.rowCount - 1);
                 }
                 this.previousHeight = i6;
@@ -581,7 +581,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                 BottomSheet.BottomSheetCell[] bottomSheetCellArr = new BottomSheet.BottomSheetCell[5];
                 for (int i3 = 0; i3 < 5; i3++) {
                     bottomSheetCellArr[i3] = new BottomSheet.BottomSheetCell(context, 0);
-                    bottomSheetCellArr[i3].setPadding(AndroidUtilities.m35dp(7.0f), 0, AndroidUtilities.m35dp(7.0f), 0);
+                    bottomSheetCellArr[i3].setPadding(AndroidUtilities.m36dp(7.0f), 0, AndroidUtilities.m36dp(7.0f), 0);
                     bottomSheetCellArr[i3].setTag(Integer.valueOf(i3));
                     bottomSheetCellArr[i3].setBackgroundDrawable(Theme.getSelectorDrawable(false));
                     if (i3 == 0) {
@@ -848,7 +848,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                 }
                 showDialog(datePickerDialog);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         builder.getDismissRunnable().run();
@@ -870,7 +870,7 @@ public class ChatRightsEditActivity extends BaseFragment {
             timePickerDialog.setButton(-2, LocaleController.getString("Cancel", C1072R.string.Cancel), ChatRightsEditActivity$$ExternalSyntheticLambda9.INSTANCE);
             showDialog(timePickerDialog);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -999,7 +999,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(getParentActivity());
                 builder2.setTitle(LocaleController.getString("EditAdminTransferAlertTitle", C1072R.string.EditAdminTransferAlertTitle));
                 LinearLayout linearLayout = new LinearLayout(getParentActivity());
-                linearLayout.setPadding(AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(24.0f), 0);
+                linearLayout.setPadding(AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(24.0f), 0);
                 linearLayout.setOrientation(1);
                 builder2.setView(linearLayout);
                 TextView textView = new TextView(getParentActivity());
@@ -1018,7 +1018,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                 ImageView imageView = new ImageView(getParentActivity());
                 int i = C1072R.C1073drawable.list_circle;
                 imageView.setImageResource(i);
-                imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(11.0f) : 0, AndroidUtilities.m35dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.m35dp(11.0f), 0);
+                imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(11.0f) : 0, AndroidUtilities.m36dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.m36dp(11.0f), 0);
                 imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlack"), PorterDuff.Mode.MULTIPLY));
                 TextView textView2 = new TextView(getParentActivity());
                 textView2.setTextColor(Theme.getColor("dialogTextBlack"));
@@ -1037,7 +1037,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                 linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
                 ImageView imageView2 = new ImageView(getParentActivity());
                 imageView2.setImageResource(i);
-                imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(11.0f) : 0, AndroidUtilities.m35dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.m35dp(11.0f), 0);
+                imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(11.0f) : 0, AndroidUtilities.m36dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.m36dp(11.0f), 0);
                 imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlack"), PorterDuff.Mode.MULTIPLY));
                 TextView textView3 = new TextView(getParentActivity());
                 textView3.setTextColor(Theme.getColor("dialogTextBlack"));
@@ -1533,8 +1533,7 @@ public class ChatRightsEditActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
-            ChatRightsEditActivity.this = r2;
-            if (r2.currentType == 2) {
+            if (ChatRightsEditActivity.this.currentType == 2) {
                 setHasStableIds(true);
             }
             this.mContext = context;
@@ -1772,7 +1771,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                     ChatRightsEditActivity.this.addBotButtonText = new AnimatedTextView(this.mContext, true, false, false);
                     ChatRightsEditActivity.this.addBotButtonText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                     ChatRightsEditActivity.this.addBotButtonText.setTextColor(-1);
-                    ChatRightsEditActivity.this.addBotButtonText.setTextSize(AndroidUtilities.m35dp(14.0f));
+                    ChatRightsEditActivity.this.addBotButtonText.setTextSize(AndroidUtilities.m36dp(14.0f));
                     ChatRightsEditActivity.this.addBotButtonText.setGravity(17);
                     AnimatedTextView animatedTextView = ChatRightsEditActivity.this.addBotButtonText;
                     StringBuilder sb = new StringBuilder();

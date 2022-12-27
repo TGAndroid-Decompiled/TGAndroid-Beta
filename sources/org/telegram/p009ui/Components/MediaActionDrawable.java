@@ -71,11 +71,11 @@ public class MediaActionDrawable extends Drawable {
     public MediaActionDrawable() {
         this.paint.setColor(-1);
         this.paint.setStrokeCap(Paint.Cap.ROUND);
-        this.paint.setStrokeWidth(AndroidUtilities.m35dp(3.0f));
+        this.paint.setStrokeWidth(AndroidUtilities.m36dp(3.0f));
         this.paint.setStyle(Paint.Style.STROKE);
         this.paint3.setColor(-1);
         this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.textPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
+        this.textPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
         this.textPaint.setColor(-1);
         this.paint2.setColor(-1);
     }
@@ -107,7 +107,7 @@ public class MediaActionDrawable extends Drawable {
 
     public void setMini(boolean z) {
         this.isMini = z;
-        this.paint.setStrokeWidth(AndroidUtilities.m35dp(z ? 2.0f : 3.0f));
+        this.paint.setStrokeWidth(AndroidUtilities.m36dp(z ? 2.0f : 3.0f));
     }
 
     public void setDelegate(MediaActionDrawableDelegate mediaActionDrawableDelegate) {
@@ -219,7 +219,7 @@ public class MediaActionDrawable extends Drawable {
         float intrinsicWidth = (i3 - i) / getIntrinsicWidth();
         this.scale = intrinsicWidth;
         if (intrinsicWidth < 0.7f) {
-            this.paint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            this.paint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         }
     }
 
@@ -257,21 +257,21 @@ public class MediaActionDrawable extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        return AndroidUtilities.m35dp(48.0f);
+        return AndroidUtilities.m36dp(48.0f);
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return AndroidUtilities.m35dp(48.0f);
+        return AndroidUtilities.m36dp(48.0f);
     }
 
     @Override
     public int getMinimumWidth() {
-        return AndroidUtilities.m35dp(48.0f);
+        return AndroidUtilities.m36dp(48.0f);
     }
 
     @Override
     public int getMinimumHeight() {
-        return AndroidUtilities.m35dp(48.0f);
+        return AndroidUtilities.m36dp(48.0f);
     }
 }

@@ -68,7 +68,7 @@ public class NumberTextView extends View {
     }
 
     public void setTextSize(int i) {
-        this.textPaint.setTextSize(AndroidUtilities.m35dp(i));
+        this.textPaint.setTextSize(AndroidUtilities.m36dp(i));
         this.oldLetters.clear();
         this.letters.clear();
         setNumber(this.currentNumber, false);
@@ -98,7 +98,7 @@ public class NumberTextView extends View {
             return;
         }
         float height = this.letters.get(0).getHeight();
-        float m35dp = this.addNumber ? AndroidUtilities.m35dp(4.0f) : height;
+        float m36dp = this.addNumber ? AndroidUtilities.m36dp(4.0f) : height;
         if (this.center) {
             f = (getMeasuredWidth() - this.textWidth) / 2.0f;
             f2 = ((getMeasuredWidth() - this.oldTextWidth) / 2.0f) - f;
@@ -119,12 +119,12 @@ public class NumberTextView extends View {
                 if (staticLayout != null) {
                     this.textPaint.setAlpha((int) (f3 * 255.0f));
                     canvas.save();
-                    canvas.translate(f2, (this.progress - 1.0f) * m35dp);
+                    canvas.translate(f2, (this.progress - 1.0f) * m36dp);
                     staticLayout.draw(canvas);
                     canvas.restore();
                     if (staticLayout2 != null) {
                         this.textPaint.setAlpha((int) ((1.0f - this.progress) * 255.0f));
-                        canvas.translate(0.0f, this.progress * m35dp);
+                        canvas.translate(0.0f, this.progress * m36dp);
                     }
                 } else {
                     this.textPaint.setAlpha(255);
@@ -133,14 +133,14 @@ public class NumberTextView extends View {
                 if (staticLayout != null) {
                     this.textPaint.setAlpha((int) ((-f3) * 255.0f));
                     canvas.save();
-                    canvas.translate(f2, (this.progress + 1.0f) * m35dp);
+                    canvas.translate(f2, (this.progress + 1.0f) * m36dp);
                     staticLayout.draw(canvas);
                     canvas.restore();
                 }
                 if (staticLayout2 != null) {
                     if (i == max - 1 || staticLayout != null) {
                         this.textPaint.setAlpha((int) ((this.progress + 1.0f) * 255.0f));
-                        canvas.translate(0.0f, this.progress * m35dp);
+                        canvas.translate(0.0f, this.progress * m36dp);
                     } else {
                         this.textPaint.setAlpha(255);
                     }
@@ -152,7 +152,7 @@ public class NumberTextView extends View {
                 staticLayout2.draw(canvas);
             }
             canvas.restore();
-            canvas.translate(staticLayout2 != null ? staticLayout2.getLineWidth(0) : staticLayout.getLineWidth(0) + AndroidUtilities.m35dp(1.0f), 0.0f);
+            canvas.translate(staticLayout2 != null ? staticLayout2.getLineWidth(0) : staticLayout.getLineWidth(0) + AndroidUtilities.m36dp(1.0f), 0.0f);
             if (staticLayout2 != null && staticLayout != null) {
                 f2 += staticLayout.getLineWidth(0) - staticLayout2.getLineWidth(0);
             }

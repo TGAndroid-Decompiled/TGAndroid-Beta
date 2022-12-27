@@ -275,7 +275,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                 }
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -300,7 +300,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         final LocaleController.LocaleInfo localeInfo;
         try {
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (getParentActivity() != null && this.parentLayout != null && (view instanceof TextRadioCell)) {
             boolean z = this.listView.getAdapter() == this.searchListViewAdapter;
@@ -519,7 +519,6 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
 
         public TranslateSettings(Context context) {
             super(context);
-            LanguageSelectActivity.this = r12;
             this.doNotTranslateCellAnimation = null;
             setFocusable(false);
             setOrientation(1);
@@ -673,7 +672,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             this.doNotTranslateCell.setAlpha(floatValue);
             float f = 1.0f - floatValue;
-            this.doNotTranslateCell.setTranslationY((-AndroidUtilities.m35dp(8.0f)) * f);
+            this.doNotTranslateCell.setTranslationY((-AndroidUtilities.m36dp(8.0f)) * f);
             this.info.setTranslationY((-this.doNotTranslateCell.getHeight()) * f);
             this.info2.setAlpha(f);
             this.info2.setTranslationY((-this.doNotTranslateCell.getHeight()) * f);
@@ -709,7 +708,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         }
 
         int height() {
-            return Math.max(AndroidUtilities.m35dp(40.0f), this.header.getMeasuredHeight()) + Math.max(AndroidUtilities.m35dp(50.0f), this.showButtonCheck.getMeasuredHeight()) + Math.max(Math.max(AndroidUtilities.m35dp(50.0f), this.doNotTranslateCell.getMeasuredHeight()), this.info2.getMeasuredHeight() <= 0 ? AndroidUtilities.m35dp(51.0f) : this.info2.getMeasuredHeight()) + (this.info.getMeasuredHeight() <= 0 ? AndroidUtilities.m35dp(62.0f) : this.info.getMeasuredHeight());
+            return Math.max(AndroidUtilities.m36dp(40.0f), this.header.getMeasuredHeight()) + Math.max(AndroidUtilities.m36dp(50.0f), this.showButtonCheck.getMeasuredHeight()) + Math.max(Math.max(AndroidUtilities.m36dp(50.0f), this.doNotTranslateCell.getMeasuredHeight()), this.info2.getMeasuredHeight() <= 0 ? AndroidUtilities.m36dp(51.0f) : this.info2.getMeasuredHeight()) + (this.info.getMeasuredHeight() <= 0 ? AndroidUtilities.m36dp(62.0f) : this.info.getMeasuredHeight());
         }
 
         @Override
@@ -747,7 +746,6 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         private boolean search;
 
         public ListAdapter(Context context, boolean z) {
-            LanguageSelectActivity.this = r1;
             this.mContext = context;
             this.search = z;
         }

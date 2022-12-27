@@ -49,7 +49,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         super(context);
         this.availableIcons = new ArrayList();
         this.currentAccount = i;
-        setPadding(0, AndroidUtilities.m35dp(12.0f), 0, AndroidUtilities.m35dp(12.0f));
+        setPadding(0, AndroidUtilities.m36dp(12.0f), 0, AndroidUtilities.m36dp(12.0f));
         setFocusable(false);
         setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
         setItemAnimator(null);
@@ -68,7 +68,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
                 IconHolderView iconHolderView = (IconHolderView) viewHolder.itemView;
                 LauncherIconController.LauncherIcon launcherIcon = (LauncherIconController.LauncherIcon) AppIconsSelectorCell.this.availableIcons.get(i2);
                 iconHolderView.bind(launcherIcon);
-                iconHolderView.iconView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(18.0f), 0, Theme.getColor("listSelectorSDK21"), -16777216));
+                iconHolderView.iconView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(18.0f), 0, Theme.getColor("listSelectorSDK21"), -16777216));
                 iconHolderView.iconView.setForeground(launcherIcon.foreground);
             }
 
@@ -82,17 +82,17 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
             public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                 int adapterPosition = recyclerView.getChildViewHolder(view).getAdapterPosition();
                 if (adapterPosition == 0) {
-                    rect.left = AndroidUtilities.m35dp(18.0f);
+                    rect.left = AndroidUtilities.m36dp(18.0f);
                 }
                 if (adapterPosition == AppIconsSelectorCell.this.getAdapter().getItemCount() - 1) {
-                    rect.right = AndroidUtilities.m35dp(18.0f);
+                    rect.right = AndroidUtilities.m36dp(18.0f);
                     return;
                 }
                 int itemCount = AppIconsSelectorCell.this.getAdapter().getItemCount();
                 if (itemCount == 4) {
-                    rect.right = ((AppIconsSelectorCell.this.getWidth() - AndroidUtilities.m35dp(36.0f)) - (AndroidUtilities.m35dp(58.0f) * itemCount)) / (itemCount - 1);
+                    rect.right = ((AppIconsSelectorCell.this.getWidth() - AndroidUtilities.m36dp(36.0f)) - (AndroidUtilities.m36dp(58.0f) * itemCount)) / (itemCount - 1);
                 } else {
-                    rect.right = AndroidUtilities.m35dp(24.0f);
+                    rect.right = AndroidUtilities.m36dp(24.0f);
                 }
             }
         });
@@ -114,7 +114,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
             LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(this, context) {
                 @Override
                 public int calculateDtToFit(int i2, int i3, int i4, int i5, int i6) {
-                    return (i4 - i2) + AndroidUtilities.m35dp(16.0f);
+                    return (i4 - i2) + AndroidUtilities.m36dp(16.0f);
                 }
 
                 @Override
@@ -154,7 +154,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         invalidateItemDecorations();
         for (int i2 = 0; i2 < this.availableIcons.size(); i2++) {
             if (LauncherIconController.isEnabled(this.availableIcons.get(i2))) {
-                this.linearLayoutManager.scrollToPositionWithOffset(i2, AndroidUtilities.m35dp(16.0f));
+                this.linearLayoutManager.scrollToPositionWithOffset(i2, AndroidUtilities.m36dp(16.0f));
                 return;
             }
         }
@@ -205,7 +205,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
             setWillNotDraw(false);
             AdaptiveIconImageView adaptiveIconImageView = new AdaptiveIconImageView(context);
             this.iconView = adaptiveIconImageView;
-            adaptiveIconImageView.setPadding(AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f));
+            adaptiveIconImageView.setPadding(AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f));
             addView(this.iconView, LayoutHelper.createLinear(58, 58, 1));
             TextView textView = new TextView(context);
             this.titleView = textView;
@@ -214,7 +214,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
             this.titleView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             addView(this.titleView, LayoutHelper.createLinear(-2, -2, 1, 0, 4, 0, 0));
             this.outlinePaint.setStyle(Paint.Style.STROKE);
-            this.outlinePaint.setStrokeWidth(Math.max(2, AndroidUtilities.m35dp(0.5f)));
+            this.outlinePaint.setStrokeWidth(Math.max(2, AndroidUtilities.m36dp(0.5f)));
             this.fillPaint.setColor(-1);
         }
 
@@ -223,16 +223,16 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
             float strokeWidth = this.outlinePaint.getStrokeWidth();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(this.iconView.getLeft() + strokeWidth, this.iconView.getTop() + strokeWidth, this.iconView.getRight() - strokeWidth, this.iconView.getBottom() - strokeWidth);
-            canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(18.0f), AndroidUtilities.m35dp(18.0f), this.fillPaint);
+            canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(18.0f), AndroidUtilities.m36dp(18.0f), this.fillPaint);
             super.draw(canvas);
-            canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(18.0f), AndroidUtilities.m35dp(18.0f), this.outlinePaint);
+            canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(18.0f), AndroidUtilities.m36dp(18.0f), this.outlinePaint);
         }
 
         private void setProgress(float f) {
             this.progress = f;
             this.titleView.setTextColor(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteBlackText"), Theme.getColor("windowBackgroundWhiteValueText"), f));
             this.outlinePaint.setColor(ColorUtils.blendARGB(ColorUtils.setAlphaComponent(Theme.getColor("switchTrack"), 63), Theme.getColor("windowBackgroundWhiteValueText"), f));
-            this.outlinePaint.setStrokeWidth(Math.max(2, AndroidUtilities.m35dp(AndroidUtilities.lerp(0.5f, 2.0f, f))));
+            this.outlinePaint.setStrokeWidth(Math.max(2, AndroidUtilities.m36dp(AndroidUtilities.lerp(0.5f, 2.0f, f))));
             invalidate();
         }
 
@@ -268,9 +268,9 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
                 SpannableString spannableString = new SpannableString("d " + LocaleController.getString(launcherIcon.title));
                 ColoredImageSpan coloredImageSpan = new ColoredImageSpan(C1072R.C1073drawable.msg_mini_premiumlock);
                 coloredImageSpan.setTopOffset(1);
-                coloredImageSpan.setSize(AndroidUtilities.m35dp(13.0f));
+                coloredImageSpan.setSize(AndroidUtilities.m36dp(13.0f));
                 spannableString.setSpan(coloredImageSpan, 0, 1, 33);
-                marginLayoutParams.rightMargin = AndroidUtilities.m35dp(4.0f);
+                marginLayoutParams.rightMargin = AndroidUtilities.m36dp(4.0f);
                 this.titleView.setText(spannableString);
             } else {
                 marginLayoutParams.rightMargin = 0;
@@ -289,8 +289,8 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         public AdaptiveIconImageView(Context context) {
             super(context);
             this.path = new Path();
-            this.outerPadding = AndroidUtilities.m35dp(5.0f);
-            this.backgroundOuterPadding = AndroidUtilities.m35dp(42.0f);
+            this.outerPadding = AndroidUtilities.m36dp(5.0f);
+            this.backgroundOuterPadding = AndroidUtilities.m36dp(42.0f);
         }
 
         public void setForeground(int i) {

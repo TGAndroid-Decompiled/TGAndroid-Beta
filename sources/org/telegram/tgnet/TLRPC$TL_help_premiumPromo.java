@@ -204,10 +204,9 @@ public class TLRPC$TL_help_premiumPromo extends TLObject {
             if (tLRPC$TL_help_premiumPromo.currency != null) {
                 tLRPC$TL_help_premiumPromo.period_options.add(new TLRPC$TL_premiumSubscriptionOption() {
                     {
-                        TLRPC$TL_help_premiumPromo.this = tLRPC$TL_help_premiumPromo;
                         this.months = 1;
-                        this.currency = tLRPC$TL_help_premiumPromo.currency;
-                        this.amount = tLRPC$TL_help_premiumPromo.monthly_amount;
+                        this.currency = TLRPC$TL_help_premiumPromo.this.currency;
+                        this.amount = TLRPC$TL_help_premiumPromo.this.monthly_amount;
                         this.store_product = BillingController.PREMIUM_PRODUCT_ID;
                     }
                 });

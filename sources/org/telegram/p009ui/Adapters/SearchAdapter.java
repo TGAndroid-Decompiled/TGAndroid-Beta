@@ -112,7 +112,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                 timer.cancel();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         this.searchResult.clear();
         this.unregistredContacts.clear();
@@ -133,7 +133,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                     SearchAdapter.this.searchTimer.cancel();
                     SearchAdapter.this.searchTimer = null;
                 } catch (Exception e2) {
-                    FileLog.m31e(e2);
+                    FileLog.m32e(e2);
                 }
                 SearchAdapter.this.processSearch(str);
             }
@@ -480,7 +480,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                     }
                     spannableStringBuilder = spannableStringBuilder2;
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     spannableStringBuilder = str;
                 }
             }

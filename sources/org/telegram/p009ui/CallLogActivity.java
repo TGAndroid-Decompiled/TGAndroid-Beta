@@ -177,7 +177,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             this.emptyTextView2.setTextColor(Theme.getColor("emptyListPlaceholder"));
             this.emptyTextView2.setTextSize(1, 14.0f);
             this.emptyTextView2.setGravity(17);
-            this.emptyTextView2.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+            this.emptyTextView2.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
             addView(this.emptyTextView2, LayoutHelper.createFrame(-1, -2.0f, 17, 17.0f, 80.0f, 17.0f, 0.0f));
             view.setAlpha(0.0f);
             this.imageView.setAlpha(0.0f);
@@ -298,12 +298,11 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
 
         public CallCell(Context context) {
             super(context);
-            CallLogActivity.this = r13;
             setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
             ProfileSearchCell profileSearchCell = new ProfileSearchCell(context);
             this.profileSearchCell = profileSearchCell;
-            profileSearchCell.setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(32.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.m35dp(32.0f), 0);
-            this.profileSearchCell.setSublabelOffset(AndroidUtilities.m35dp(LocaleController.isRTL ? 2.0f : -2.0f), -AndroidUtilities.m35dp(4.0f));
+            profileSearchCell.setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(32.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.m36dp(32.0f), 0);
+            this.profileSearchCell.setSublabelOffset(AndroidUtilities.m36dp(LocaleController.isRTL ? 2.0f : -2.0f), -AndroidUtilities.m36dp(4.0f));
             addView(this.profileSearchCell, LayoutHelper.createFrame(-1, -1.0f));
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
@@ -351,7 +350,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
 
         public GroupCallCell(Context context) {
             super(context);
-            CallLogActivity.this = r8;
             setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
             String string = LocaleController.getString("VoipChatJoin", C1072R.string.VoipChatJoin);
             ProgressButton progressButton = new ProgressButton(context);
@@ -359,15 +357,15 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             int ceil = (int) Math.ceil(progressButton.getPaint().measureText(string));
             ProfileSearchCell profileSearchCell = new ProfileSearchCell(context);
             this.profileSearchCell = profileSearchCell;
-            profileSearchCell.setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(44.0f) + ceil : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.m35dp(44.0f) + ceil, 0);
-            this.profileSearchCell.setSublabelOffset(0, -AndroidUtilities.m35dp(1.0f));
+            profileSearchCell.setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(44.0f) + ceil : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.m36dp(44.0f) + ceil, 0);
+            this.profileSearchCell.setSublabelOffset(0, -AndroidUtilities.m36dp(1.0f));
             addView(this.profileSearchCell, LayoutHelper.createFrame(-1, -1.0f));
             this.button.setText(string);
             this.button.setTextSize(1, 14.0f);
             this.button.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             this.button.setProgressColor(Theme.getColor("featuredStickers_buttonProgress"));
             this.button.setBackgroundRoundRect(Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed"), 16.0f);
-            this.button.setPadding(AndroidUtilities.m35dp(14.0f), 0, AndroidUtilities.m35dp(14.0f), 0);
+            this.button.setPadding(AndroidUtilities.m36dp(14.0f), 0, AndroidUtilities.m36dp(14.0f), 0);
             addView(this.button, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f));
             this.button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -502,7 +500,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 return lambda$createView$1;
             }
         });
-        this.listView.setOnScrollListener(new C13552());
+        this.listView.setOnScrollListener(new C13562());
         if (this.loading) {
             this.emptyView.showProgress();
         } else {
@@ -512,13 +510,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         this.floatingButton = imageView;
         imageView.setVisibility(0);
         this.floatingButton.setScaleType(ImageView.ScaleType.CENTER);
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
+        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m36dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
         int i2 = Build.VERSION.SDK_INT;
         if (i2 < 21) {
             Drawable mutate4 = context.getResources().getDrawable(C1072R.C1073drawable.floating_shadow).mutate();
             mutate4.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate4, createSimpleSelectorCircleDrawable, 0, 0);
-            combinedDrawable.setIconSize(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+            combinedDrawable.setIconSize(AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
             createSimpleSelectorCircleDrawable = combinedDrawable;
         }
         this.floatingButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
@@ -527,14 +525,14 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         this.floatingButton.setContentDescription(LocaleController.getString("Call", C1072R.string.Call));
         if (i2 >= 21) {
             StateListAnimator stateListAnimator = new StateListAnimator();
-            stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.floatingButton, "translationZ", AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(4.0f)).setDuration(200L));
-            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButton, "translationZ", AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(2.0f)).setDuration(200L));
+            stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.floatingButton, "translationZ", AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(4.0f)).setDuration(200L));
+            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButton, "translationZ", AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(2.0f)).setDuration(200L));
             this.floatingButton.setStateListAnimator(stateListAnimator);
             this.floatingButton.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view, Outline outline) {
-                    outline.setOval(0, 0, AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+                    outline.setOval(0, 0, AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
                 }
             });
         }
@@ -583,14 +581,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    public class C13552 extends RecyclerView.OnScrollListener {
-        C13552() {
-            CallLogActivity.this = r1;
+    public class C13562 extends RecyclerView.OnScrollListener {
+        C13562() {
         }
 
         @Override
         public void onScrolled(androidx.recyclerview.widget.RecyclerView r5, int r6, int r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.CallLogActivity.C13552.onScrolled(androidx.recyclerview.widget.RecyclerView, int, int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.CallLogActivity.C13562.onScrolled(androidx.recyclerview.widget.RecyclerView, int, int):void");
         }
 
         public void lambda$onScrolled$0(CallLogRow callLogRow) {
@@ -636,7 +633,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         CheckBoxCell checkBoxCell = new CheckBoxCell(getParentActivity(), 1);
         checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
         checkBoxCell.setText(LocaleController.getString("DeleteCallsForEveryone", C1072R.string.DeleteCallsForEveryone), "", false, false);
-        checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(8.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.m35dp(8.0f), 0);
+        checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(8.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.m36dp(8.0f), 0);
         frameLayout.addView(checkBoxCell, LayoutHelper.createFrame(-1, 48.0f, 51, 8.0f, 0.0f, 8.0f, 0.0f));
         checkBoxCell.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -740,7 +737,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         this.selectedDialogsCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon"));
         createActionMode.addView(this.selectedDialogsCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
         this.selectedDialogsCountTextView.setOnTouchListener(CallLogActivity$$ExternalSyntheticLambda3.INSTANCE);
-        this.actionModeViews.add(createActionMode.addItemWithWidth(2, C1072R.C1073drawable.msg_delete, AndroidUtilities.m35dp(54.0f), LocaleController.getString("Delete", C1072R.string.Delete)));
+        this.actionModeViews.add(createActionMode.addItemWithWidth(2, C1072R.C1073drawable.msg_delete, AndroidUtilities.m36dp(54.0f), LocaleController.getString("Delete", C1072R.string.Delete)));
     }
 
     private boolean addOrRemoveSelectedDialog(ArrayList<TLRPC$Message> arrayList, CallCell callCell) {
@@ -801,7 +798,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         this.floatingHidden = z;
         ImageView imageView = this.floatingButton;
         float[] fArr = new float[1];
-        fArr[0] = z ? AndroidUtilities.m35dp(100.0f) : 0.0f;
+        fArr[0] = z ? AndroidUtilities.m36dp(100.0f) : 0.0f;
         ObjectAnimator duration = ObjectAnimator.ofFloat(imageView, "translationY", fArr).setDuration(300L);
         duration.setInterpolator(this.floatingInterpolator);
         this.floatingButton.setClickable(!z);
@@ -960,7 +957,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         private int sectionRow;
 
         public ListAdapter(Context context) {
-            CallLogActivity.this = r1;
             this.mContext = context;
         }
 

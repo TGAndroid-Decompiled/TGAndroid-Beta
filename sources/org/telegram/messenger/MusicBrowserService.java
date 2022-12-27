@@ -193,7 +193,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                 }
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -269,14 +269,13 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             }
             return null;
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
             return null;
         }
     }
 
     private final class MediaSessionCallback extends MediaSession.Callback {
         private MediaSessionCallback() {
-            MusicBrowserService.this = r1;
         }
 
         @Override
@@ -319,7 +318,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                 arrayList = (ArrayList) MusicBrowserService.this.musicObjects.get(parseLong);
                 arrayList2 = (ArrayList) MusicBrowserService.this.musicQueues.get(parseLong);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             if (arrayList != null && parseInt >= 0 && parseInt < arrayList.size()) {
                 MusicBrowserService.this.lastSelectedDialog = parseLong;
@@ -446,7 +445,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             try {
                 startService(new Intent(getApplicationContext(), MusicBrowserService.class));
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
             this.serviceStarted = true;
         }

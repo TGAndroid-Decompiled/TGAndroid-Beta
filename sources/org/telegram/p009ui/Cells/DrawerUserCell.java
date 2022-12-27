@@ -42,14 +42,14 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
         this.rect = new RectF();
         AvatarDrawable avatarDrawable = new AvatarDrawable();
         this.avatarDrawable = avatarDrawable;
-        avatarDrawable.setTextSize(AndroidUtilities.m35dp(20.0f));
+        avatarDrawable.setTextSize(AndroidUtilities.m36dp(20.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(18.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(18.0f));
         addView(this.imageView, LayoutHelper.createFrame(36, 36.0f, 51, 14.0f, 6.0f, 0.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.textView = simpleTextView;
-        simpleTextView.setPadding(0, AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f));
+        simpleTextView.setPadding(0, AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f));
         this.textView.setTextColor(Theme.getColor("chats_menuItemText"));
         this.textView.setTextSize(15);
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -57,14 +57,14 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
         this.textView.setGravity(19);
         this.textView.setEllipsizeByGradient(24);
         addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 19, 72.0f, 0.0f, 14.0f, 0.0f));
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.textView, AndroidUtilities.m35dp(20.0f));
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.textView, AndroidUtilities.m36dp(20.0f));
         this.status = swapAnimatedEmojiDrawable;
         this.textView.setRightDrawable(swapAnimatedEmojiDrawable);
         GroupCreateCheckBox groupCreateCheckBox = new GroupCreateCheckBox(context);
         this.checkBox = groupCreateCheckBox;
         groupCreateCheckBox.setChecked(true, false);
         this.checkBox.setCheckScale(0.9f);
-        this.checkBox.setInnerRadDiff(AndroidUtilities.m35dp(1.5f));
+        this.checkBox.setInnerRadDiff(AndroidUtilities.m36dp(1.5f));
         this.checkBox.setColorKeysOverrides("chats_unreadCounterText", "chats_unreadCounter", "chats_menuBackground");
         addView(this.checkBox, LayoutHelper.createFrame(18, 18.0f, 51, 37.0f, 27.0f, 0.0f, 0.0f));
         setWillNotDraw(false);
@@ -72,7 +72,7 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f), 1073741824));
     }
 
     @Override
@@ -126,21 +126,21 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
         this.avatarDrawable.setInfo(currentUser);
         CharSequence formatName = ContactsController.formatName(currentUser.first_name, currentUser.last_name);
         try {
-            formatName = Emoji.replaceEmoji(formatName, this.textView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false);
+            formatName = Emoji.replaceEmoji(formatName, this.textView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false);
         } catch (Exception unused) {
         }
         this.textView.setText(formatName);
         TLRPC$EmojiStatus tLRPC$EmojiStatus = currentUser.emoji_status;
         if ((tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil) && ((TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus).until > ((int) (System.currentTimeMillis() / 1000))) {
-            this.textView.setDrawablePadding(AndroidUtilities.m35dp(4.0f));
+            this.textView.setDrawablePadding(AndroidUtilities.m36dp(4.0f));
             this.status.set(((TLRPC$TL_emojiStatusUntil) currentUser.emoji_status).document_id, true);
             this.textView.setRightDrawableOutside(true);
         } else if (currentUser.emoji_status instanceof TLRPC$TL_emojiStatus) {
-            this.textView.setDrawablePadding(AndroidUtilities.m35dp(4.0f));
+            this.textView.setDrawablePadding(AndroidUtilities.m36dp(4.0f));
             this.status.set(((TLRPC$TL_emojiStatus) currentUser.emoji_status).document_id, true);
             this.textView.setRightDrawableOutside(true);
         } else if (MessagesController.getInstance(i).isPremiumUser(currentUser)) {
-            this.textView.setDrawablePadding(AndroidUtilities.m35dp(6.0f));
+            this.textView.setDrawablePadding(AndroidUtilities.m36dp(6.0f));
             this.status.set(PremiumGradient.getInstance().premiumStarDrawableMini, true);
             this.textView.setRightDrawableOutside(true);
         } else {
@@ -169,17 +169,17 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
             return;
         }
         String format = String.format("%d", Integer.valueOf(mainUnreadCount));
-        int m35dp = AndroidUtilities.m35dp(12.5f);
+        int m36dp = AndroidUtilities.m36dp(12.5f);
         int ceil = (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(format));
-        int max = Math.max(AndroidUtilities.m35dp(10.0f), ceil);
-        int measuredWidth = ((getMeasuredWidth() - max) - AndroidUtilities.m35dp(25.0f)) - AndroidUtilities.m35dp(5.5f);
-        this.rect.set(measuredWidth, m35dp, measuredWidth + max + AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(23.0f) + m35dp);
+        int max = Math.max(AndroidUtilities.m36dp(10.0f), ceil);
+        int measuredWidth = ((getMeasuredWidth() - max) - AndroidUtilities.m36dp(25.0f)) - AndroidUtilities.m36dp(5.5f);
+        this.rect.set(measuredWidth, m36dp, measuredWidth + max + AndroidUtilities.m36dp(14.0f), AndroidUtilities.m36dp(23.0f) + m36dp);
         RectF rectF = this.rect;
         float f = AndroidUtilities.density;
         canvas.drawRoundRect(rectF, f * 11.5f, f * 11.5f, Theme.dialogs_countPaint);
         RectF rectF2 = this.rect;
-        canvas.drawText(format, rectF2.left + ((rectF2.width() - ceil) / 2.0f), m35dp + AndroidUtilities.m35dp(16.0f), Theme.dialogs_countTextPaint);
-        this.textView.setRightPadding(max + AndroidUtilities.m35dp(26.0f));
+        canvas.drawText(format, rectF2.left + ((rectF2.width() - ceil) / 2.0f), m36dp + AndroidUtilities.m36dp(16.0f), Theme.dialogs_countTextPaint);
+        this.textView.setRightPadding(max + AndroidUtilities.m36dp(26.0f));
     }
 
     @Override

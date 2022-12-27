@@ -68,7 +68,7 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
         this.lastTimeString = null;
         TextPaint textPaint = new TextPaint(1);
         this.timePaint = textPaint;
-        textPaint.setTextSize(AndroidUtilities.m35dp(16.0f));
+        textPaint.setTextSize(AndroidUtilities.m36dp(16.0f));
         this.TAG = DownloadController.getInstance(this.currentAccount).generateObserverTag();
         SeekBar seekBar = new SeekBar(this);
         this.seekBar = seekBar;
@@ -94,7 +94,7 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
 
     @Override
     protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m35dp(56.0f));
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m36dp(56.0f));
     }
 
     @Override
@@ -102,14 +102,14 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
         if (this.currentMessageObject == null) {
             return;
         }
-        this.seekBarX = AndroidUtilities.m35dp(54.0f);
-        this.buttonX = AndroidUtilities.m35dp(10.0f);
-        this.timeX = (getMeasuredWidth() - this.timeWidth) - AndroidUtilities.m35dp(16.0f);
-        this.seekBar.setSize((getMeasuredWidth() - AndroidUtilities.m35dp(70.0f)) - this.timeWidth, AndroidUtilities.m35dp(30.0f));
-        this.progressView.width = (getMeasuredWidth() - AndroidUtilities.m35dp(94.0f)) - this.timeWidth;
-        this.progressView.height = AndroidUtilities.m35dp(30.0f);
-        this.seekBarY = AndroidUtilities.m35dp(13.0f);
-        this.buttonY = AndroidUtilities.m35dp(10.0f);
+        this.seekBarX = AndroidUtilities.m36dp(54.0f);
+        this.buttonX = AndroidUtilities.m36dp(10.0f);
+        this.timeX = (getMeasuredWidth() - this.timeWidth) - AndroidUtilities.m36dp(16.0f);
+        this.seekBar.setSize((getMeasuredWidth() - AndroidUtilities.m36dp(70.0f)) - this.timeWidth, AndroidUtilities.m36dp(30.0f));
+        this.progressView.width = (getMeasuredWidth() - AndroidUtilities.m36dp(94.0f)) - this.timeWidth;
+        this.progressView.height = AndroidUtilities.m36dp(30.0f);
+        this.seekBarY = AndroidUtilities.m36dp(13.0f);
+        this.buttonY = AndroidUtilities.m36dp(10.0f);
         updateProgress();
         if (z || !this.wasLayout) {
             this.wasLayout = true;
@@ -151,17 +151,17 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
             canvas.translate(this.seekBarX, this.seekBarY);
             this.seekBar.draw(canvas);
         } else {
-            canvas.translate(this.seekBarX + AndroidUtilities.m35dp(12.0f), this.seekBarY);
+            canvas.translate(this.seekBarX + AndroidUtilities.m36dp(12.0f), this.seekBarY);
             this.progressView.draw(canvas);
         }
         canvas.restore();
         this.timePaint.setColor(-6182221);
         Drawable drawable = Theme.chat_fileStatesDrawable[this.buttonState + 5][this.buttonPressed];
-        int m35dp = AndroidUtilities.m35dp(36.0f);
-        BaseCell.setDrawableBounds(drawable, ((m35dp - drawable.getIntrinsicWidth()) / 2) + this.buttonX, ((m35dp - drawable.getIntrinsicHeight()) / 2) + this.buttonY);
+        int m36dp = AndroidUtilities.m36dp(36.0f);
+        BaseCell.setDrawableBounds(drawable, ((m36dp - drawable.getIntrinsicWidth()) / 2) + this.buttonX, ((m36dp - drawable.getIntrinsicHeight()) / 2) + this.buttonY);
         drawable.draw(canvas);
         canvas.save();
-        canvas.translate(this.timeX, AndroidUtilities.m35dp(18.0f));
+        canvas.translate(this.timeX, AndroidUtilities.m36dp(18.0f));
         this.timeLayout.draw(canvas);
         canvas.restore();
     }

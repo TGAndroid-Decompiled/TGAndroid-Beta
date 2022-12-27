@@ -34,7 +34,7 @@ public class LocationPoweredCell extends FrameLayout {
         this.imageView = imageView;
         imageView.setImageResource(C1072R.C1073drawable.foursquare);
         this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("windowBackgroundWhiteGrayText3"), PorterDuff.Mode.MULTIPLY));
-        this.imageView.setPadding(0, AndroidUtilities.m35dp(2.0f), 0, 0);
+        this.imageView.setPadding(0, AndroidUtilities.m36dp(2.0f), 0, 0);
         linearLayout.addView(this.imageView, LayoutHelper.createLinear(35, -2));
         TextView textView2 = new TextView(context);
         this.textView2 = textView2;
@@ -46,7 +46,7 @@ public class LocationPoweredCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(56.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(56.0f), 1073741824));
     }
 
     private int getThemedColor(String str) {

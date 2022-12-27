@@ -27,7 +27,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                 AppCenter.setUserId("uid=" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId);
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -40,7 +40,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             lastUpdateCheckTime = SystemClock.elapsedRealtime();
             Distribute.checkForUpdate();
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 

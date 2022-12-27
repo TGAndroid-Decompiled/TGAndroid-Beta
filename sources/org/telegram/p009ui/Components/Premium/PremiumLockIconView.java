@@ -79,11 +79,11 @@ public class PremiumLockIconView extends ImageView {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             this.path.addCircle(rectF.width() / 2.0f, rectF.centerY(), rectF.width() / 2.0f, Path.Direction.CW);
-            rectF.set((getMeasuredWidth() / 2.0f) + AndroidUtilities.m35dp(2.5f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(5.7f), getMeasuredWidth() - AndroidUtilities.dpf2(0.2f), getMeasuredHeight());
-            this.path.addRoundRect(rectF, AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), Path.Direction.CW);
+            rectF.set((getMeasuredWidth() / 2.0f) + AndroidUtilities.m36dp(2.5f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(5.7f), getMeasuredWidth() - AndroidUtilities.dpf2(0.2f), getMeasuredHeight());
+            this.path.addRoundRect(rectF, AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f), Path.Direction.CW);
             this.path.close();
             this.starParticles.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.starParticles.rect.inset(AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f));
+            this.starParticles.rect.inset(AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f));
             return;
         }
         updateGradient();
@@ -117,7 +117,7 @@ public class PremiumLockIconView extends ImageView {
             if (this.currentColor != 0) {
                 canvas.drawPath(this.path, this.paint);
             } else {
-                PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), -AndroidUtilities.m35dp(24.0f), 0.0f);
+                PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), -AndroidUtilities.m36dp(24.0f), 0.0f);
                 canvas.drawPath(this.path, PremiumGradient.getInstance().getMainGradientPaint());
             }
             this.cellFlickerDrawable.setParentWidth(getMeasuredWidth() / 2);

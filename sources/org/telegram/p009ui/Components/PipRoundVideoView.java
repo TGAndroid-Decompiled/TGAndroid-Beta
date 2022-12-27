@@ -152,18 +152,18 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
                 Drawable drawable = Theme.chat_roundVideoShadow;
                 if (drawable != null) {
                     drawable.setAlpha((int) (getAlpha() * 255.0f));
-                    Theme.chat_roundVideoShadow.setBounds(AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(125.0f), AndroidUtilities.m35dp(125.0f));
+                    Theme.chat_roundVideoShadow.setBounds(AndroidUtilities.m36dp(1.0f), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(125.0f), AndroidUtilities.m36dp(125.0f));
                     Theme.chat_roundVideoShadow.draw(canvas);
                     Theme.chat_docBackPaint.setColor(Theme.getColor("chat_inBubble"));
                     Theme.chat_docBackPaint.setAlpha((int) (getAlpha() * 255.0f));
-                    canvas.drawCircle(AndroidUtilities.m35dp(63.0f), AndroidUtilities.m35dp(63.0f), AndroidUtilities.m35dp(59.5f), Theme.chat_docBackPaint);
+                    canvas.drawCircle(AndroidUtilities.m36dp(63.0f), AndroidUtilities.m36dp(63.0f), AndroidUtilities.m36dp(59.5f), Theme.chat_docBackPaint);
                 }
             }
         };
         this.windowView = frameLayout;
         frameLayout.setWillNotDraw(false);
-        this.videoWidth = AndroidUtilities.m35dp(126.0f);
-        this.videoHeight = AndroidUtilities.m35dp(126.0f);
+        this.videoWidth = AndroidUtilities.m36dp(126.0f);
+        this.videoHeight = AndroidUtilities.m36dp(126.0f);
         if (Build.VERSION.SDK_INT >= 21) {
             AspectRatioFrameLayout aspectRatioFrameLayout = new AspectRatioFrameLayout(activity) {
                 @Override
@@ -182,7 +182,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
                 @Override
                 @TargetApi(21)
                 public void getOutline(View view, Outline outline) {
-                    outline.setOval(0, 0, AndroidUtilities.m35dp(120.0f), AndroidUtilities.m35dp(120.0f));
+                    outline.setOval(0, 0, AndroidUtilities.m36dp(120.0f), AndroidUtilities.m36dp(120.0f));
                 }
             });
             this.aspectRatioFrameLayout.setClipToOutline(true);
@@ -267,7 +267,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
             NotificationCenter.getInstance(i4).addObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
             runShowHideAnimation(true);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -282,11 +282,11 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         }
         int i4 = i3 - i2;
         if (i == 0) {
-            round = AndroidUtilities.m35dp(10.0f);
+            round = AndroidUtilities.m36dp(10.0f);
         } else if (i == 1) {
-            round = i4 - AndroidUtilities.m35dp(10.0f);
+            round = i4 - AndroidUtilities.m36dp(10.0f);
         } else {
-            round = Math.round((i4 - AndroidUtilities.m35dp(20.0f)) * f) + AndroidUtilities.m35dp(10.0f);
+            round = Math.round((i4 - AndroidUtilities.m36dp(20.0f)) * f) + AndroidUtilities.m36dp(10.0f);
         }
         return !z ? round + C1133ActionBar.getCurrentActionBarHeight() : round;
     }

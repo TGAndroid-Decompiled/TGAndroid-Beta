@@ -81,7 +81,7 @@ public class AvatarDrawable extends Drawable {
         TextPaint textPaint = new TextPaint(1);
         this.namePaint = textPaint;
         textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.namePaint.setTextSize(AndroidUtilities.m35dp(18.0f));
+        this.namePaint.setTextSize(AndroidUtilities.m36dp(18.0f));
     }
 
     public AvatarDrawable(TLRPC$User tLRPC$User) {
@@ -321,7 +321,7 @@ public class AvatarDrawable extends Drawable {
         }
         if (this.stringBuilder.length() > 0) {
             try {
-                StaticLayout staticLayout = new StaticLayout(Emoji.replaceEmoji(this.stringBuilder.toString().toUpperCase(), this.namePaint.getFontMetricsInt(), AndroidUtilities.m35dp(16.0f), true), this.namePaint, AndroidUtilities.m35dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                StaticLayout staticLayout = new StaticLayout(Emoji.replaceEmoji(this.stringBuilder.toString().toUpperCase(), this.namePaint.getFontMetricsInt(), AndroidUtilities.m36dp(16.0f), true), this.namePaint, AndroidUtilities.m36dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.textLayout = staticLayout;
                 if (staticLayout.getLineCount() > 0) {
                     this.textLeft = this.textLayout.getLineLeft(0);
@@ -331,7 +331,7 @@ public class AvatarDrawable extends Drawable {
                 }
                 return;
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return;
             }
         }
@@ -449,10 +449,10 @@ public class AvatarDrawable extends Drawable {
                 if (drawableArr[1] != null) {
                     int intrinsicWidth3 = drawableArr[1].getIntrinsicWidth();
                     int intrinsicHeight3 = Theme.avatarDrawables[1].getIntrinsicHeight();
-                    if (intrinsicWidth3 > width - AndroidUtilities.m35dp(6.0f) || intrinsicHeight3 > width - AndroidUtilities.m35dp(6.0f)) {
-                        float m35dp = width / AndroidUtilities.m35dp(50.0f);
-                        intrinsicWidth3 = (int) (intrinsicWidth3 * m35dp);
-                        intrinsicHeight3 = (int) (intrinsicHeight3 * m35dp);
+                    if (intrinsicWidth3 > width - AndroidUtilities.m36dp(6.0f) || intrinsicHeight3 > width - AndroidUtilities.m36dp(6.0f)) {
+                        float m36dp = width / AndroidUtilities.m36dp(50.0f);
+                        intrinsicWidth3 = (int) (intrinsicWidth3 * m36dp);
+                        intrinsicHeight3 = (int) (intrinsicHeight3 * m36dp);
                     }
                     int i8 = (width - intrinsicWidth3) / 2;
                     int i9 = (width - intrinsicHeight3) / 2;
@@ -462,9 +462,9 @@ public class AvatarDrawable extends Drawable {
             }
             if (this.textLayout != null) {
                 float f4 = width;
-                float m35dp2 = f4 / AndroidUtilities.m35dp(50.0f);
+                float m36dp2 = f4 / AndroidUtilities.m36dp(50.0f);
                 float f5 = f4 / 2.0f;
-                canvas.scale(m35dp2, m35dp2, f5, f5);
+                canvas.scale(m36dp2, m36dp2, f5, f5);
                 canvas.translate(((f4 - this.textWidth) / 2.0f) - this.textLeft, (f4 - this.textHeight) / 2.0f);
                 this.textLayout.draw(canvas);
             }

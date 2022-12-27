@@ -213,7 +213,7 @@ public class ChatObject {
                             sb.append(keyAt);
                             sb.append(" ");
                             sb.append(user != null ? user.first_name : null);
-                            Log.m664d("GroupCall", sb.toString());
+                            Log.m665d("GroupCall", sb.toString());
                         } else {
                             TLRPC$Chat chat = MessagesController.getInstance(Call.this.currentAccount.getCurrentAccount()).getChat(Long.valueOf(-keyAt));
                             StringBuilder sb2 = new StringBuilder();
@@ -221,7 +221,7 @@ public class ChatObject {
                             sb2.append(keyAt);
                             sb2.append(" ");
                             sb2.append(chat != null ? chat.title : null);
-                            Log.m664d("GroupCall", sb2.toString());
+                            Log.m665d("GroupCall", sb2.toString());
                         }
                         i--;
                         z = true;
@@ -410,7 +410,7 @@ public class ChatObject {
                 tLRPC$GroupCall.version = i;
                 tLRPC$GroupCall.participants_count = i2;
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("new participants count " + this.call.participants_count);
+                    FileLog.m35d("new participants count " + this.call.participants_count);
                 }
             }
             long elapsedRealtime = SystemClock.elapsedRealtime();
@@ -790,7 +790,7 @@ public class ChatObject {
                                 sb.append(peerId);
                                 sb.append(" ");
                                 sb.append(user == null ? null : user.first_name);
-                                Log.m664d("GroupCall", sb.toString());
+                                Log.m665d("GroupCall", sb.toString());
                                 i = currentTime;
                                 j = elapsedRealtime;
                             } else {
@@ -802,7 +802,7 @@ public class ChatObject {
                                 sb2.append(peerId);
                                 sb2.append(" ");
                                 sb2.append(chat == null ? null : chat.title);
-                                Log.m664d("GroupCall", sb2.toString());
+                                Log.m665d("GroupCall", sb2.toString());
                             }
                             this.currentSpeakingPeers.put(peerId, tLRPC$TL_groupCallParticipant);
                             z4 = true;
@@ -826,7 +826,7 @@ public class ChatObject {
                                 sb3.append(peerId);
                                 sb3.append(" ");
                                 sb3.append(user2 == null ? null : user2.first_name);
-                                Log.m664d("GroupCall", sb3.toString());
+                                Log.m665d("GroupCall", sb3.toString());
                             } else {
                                 TLRPC$Chat chat2 = MessagesController.getInstance(this.currentAccount.getCurrentAccount()).getChat(Long.valueOf(-peerId));
                                 StringBuilder sb4 = new StringBuilder();
@@ -834,7 +834,7 @@ public class ChatObject {
                                 sb4.append(peerId);
                                 sb4.append(" ");
                                 sb4.append(chat2 == null ? null : chat2.title);
-                                Log.m664d("GroupCall", sb4.toString());
+                                Log.m665d("GroupCall", sb4.toString());
                             }
                             z4 = true;
                         }
@@ -967,7 +967,7 @@ public class ChatObject {
                     } else if (isValidUpdate == 1) {
                         if (this.updatesStartWaitTime != 0 && (z || Math.abs(System.currentTimeMillis() - this.updatesStartWaitTime) <= 1500)) {
                             if (BuildVars.LOGS_ENABLED) {
-                                FileLog.m34d("HOLE IN GROUP CALL UPDATES QUEUE - will wait more time");
+                                FileLog.m35d("HOLE IN GROUP CALL UPDATES QUEUE - will wait more time");
                             }
                             if (z) {
                                 this.updatesStartWaitTime = System.currentTimeMillis();
@@ -976,7 +976,7 @@ public class ChatObject {
                             return;
                         }
                         if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m34d("HOLE IN GROUP CALL UPDATES QUEUE - reload participants");
+                            FileLog.m35d("HOLE IN GROUP CALL UPDATES QUEUE - reload participants");
                         }
                         this.updatesStartWaitTime = 0L;
                         this.updatesQueue.clear();
@@ -989,7 +989,7 @@ public class ChatObject {
                 }
                 this.updatesQueue.clear();
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("GROUP CALL UPDATES QUEUE PROCEED - OK");
+                    FileLog.m35d("GROUP CALL UPDATES QUEUE PROCEED - OK");
                 }
             }
             this.updatesStartWaitTime = 0L;
@@ -999,7 +999,7 @@ public class ChatObject {
             this.checkQueueRunnable = null;
             if (this.updatesStartWaitTime != 0 && System.currentTimeMillis() - this.updatesStartWaitTime >= 1500) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("QUEUE GROUP CALL UPDATES WAIT TIMEOUT - CHECK QUEUE");
+                    FileLog.m35d("QUEUE GROUP CALL UPDATES WAIT TIMEOUT - CHECK QUEUE");
                 }
                 processUpdatesQueue();
             }
@@ -1084,7 +1084,7 @@ public class ChatObject {
                 if (i != i2) {
                     tLRPC$GroupCall.participants_count = i2;
                     if (BuildVars.LOGS_ENABLED) {
-                        FileLog.m34d("new participants reload count " + this.call.participants_count);
+                        FileLog.m35d("new participants reload count " + this.call.participants_count);
                     }
                     this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.f872id), Boolean.FALSE);
                 }

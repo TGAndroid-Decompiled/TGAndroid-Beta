@@ -556,7 +556,7 @@ public class FileLoadOperation {
                 });
                 notifyStreamListeners();
             } else if (BuildVars.LOGS_ENABLED) {
-                FileLog.m33e(this.cacheFileFinal + " downloaded duplicate file part " + j + " - " + j2);
+                FileLog.m34e(this.cacheFileFinal + " downloaded duplicate file part " + j + " - " + j2);
             }
         }
     }
@@ -568,7 +568,7 @@ public class FileLoadOperation {
             if (AndroidUtilities.isENOSPC(e)) {
                 LaunchActivity.checkFreeDiscSpaceStatic(1);
             } else {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         synchronized (this) {
@@ -614,7 +614,7 @@ public class FileLoadOperation {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return fileArr[0];
     }
@@ -760,7 +760,7 @@ public class FileLoadOperation {
                     this.requestsCount--;
                 }
                 if (BuildVars.DEBUG_VERSION) {
-                    FileLog.m34d("frame get cancel request at offset " + this.priorityRequestInfo.offset);
+                    FileLog.m35d("frame get cancel request at offset " + this.priorityRequestInfo.offset);
                 }
                 this.priorityRequestInfo = null;
             }
@@ -888,7 +888,7 @@ public class FileLoadOperation {
                         this.cacheFileFinal.deleteOnExit();
                     }
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             File file2 = this.cacheFileTemp;
@@ -898,7 +898,7 @@ public class FileLoadOperation {
                         this.cacheFileTemp.deleteOnExit();
                     }
                 } catch (Exception e2) {
-                    FileLog.m31e(e2);
+                    FileLog.m32e(e2);
                 }
             }
             File file3 = this.cacheFileParts;
@@ -908,7 +908,7 @@ public class FileLoadOperation {
                         this.cacheFileParts.deleteOnExit();
                     }
                 } catch (Exception e3) {
-                    FileLog.m31e(e3);
+                    FileLog.m32e(e3);
                 }
             }
             File file4 = this.cacheIvTemp;
@@ -918,7 +918,7 @@ public class FileLoadOperation {
                         this.cacheIvTemp.deleteOnExit();
                     }
                 } catch (Exception e4) {
-                    FileLog.m31e(e4);
+                    FileLog.m32e(e4);
                 }
             }
             File file5 = this.cacheFilePreload;
@@ -929,7 +929,7 @@ public class FileLoadOperation {
                     }
                     this.cacheFilePreload.deleteOnExit();
                 } catch (Exception e5) {
-                    FileLog.m31e(e5);
+                    FileLog.m32e(e5);
                 }
             }
         }
@@ -942,13 +942,13 @@ public class FileLoadOperation {
                 try {
                     randomAccessFile.getChannel().close();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
                 this.fileOutputStream.close();
                 this.fileOutputStream = null;
             }
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
         try {
             RandomAccessFile randomAccessFile2 = this.preloadStream;
@@ -956,13 +956,13 @@ public class FileLoadOperation {
                 try {
                     randomAccessFile2.getChannel().close();
                 } catch (Exception e3) {
-                    FileLog.m31e(e3);
+                    FileLog.m32e(e3);
                 }
                 this.preloadStream.close();
                 this.preloadStream = null;
             }
         } catch (Exception e4) {
-            FileLog.m31e(e4);
+            FileLog.m32e(e4);
         }
         try {
             RandomAccessFile randomAccessFile3 = this.fileReadStream;
@@ -970,13 +970,13 @@ public class FileLoadOperation {
                 try {
                     randomAccessFile3.getChannel().close();
                 } catch (Exception e5) {
-                    FileLog.m31e(e5);
+                    FileLog.m32e(e5);
                 }
                 this.fileReadStream.close();
                 this.fileReadStream = null;
             }
         } catch (Exception e6) {
-            FileLog.m31e(e6);
+            FileLog.m32e(e6);
         }
         try {
             if (this.filePartsStream != null) {
@@ -984,14 +984,14 @@ public class FileLoadOperation {
                     try {
                         this.filePartsStream.getChannel().close();
                     } catch (Exception e7) {
-                        FileLog.m31e(e7);
+                        FileLog.m32e(e7);
                     }
                     this.filePartsStream.close();
                     this.filePartsStream = null;
                 }
             }
         } catch (Exception e8) {
-            FileLog.m31e(e8);
+            FileLog.m32e(e8);
         }
         try {
             RandomAccessFile randomAccessFile4 = this.fiv;
@@ -1000,7 +1000,7 @@ public class FileLoadOperation {
                 this.fiv = null;
             }
         } catch (Exception e9) {
-            FileLog.m31e(e9);
+            FileLog.m32e(e9);
         }
         if (this.delayedRequestInfos != null) {
             for (int i = 0; i < this.delayedRequestInfos.size(); i++) {
@@ -1030,7 +1030,7 @@ public class FileLoadOperation {
         if (this.isPreloadVideoOperation) {
             this.preloadFinished = true;
             if (BuildVars.DEBUG_VERSION) {
-                FileLog.m34d("finished preloading file to " + this.cacheFileTemp + " loaded " + this.totalPreloadedBytes + " of " + this.totalBytesCount);
+                FileLog.m35d("finished preloading file to " + this.cacheFileTemp + " loaded " + this.totalPreloadedBytes + " of " + this.totalBytesCount);
             }
             if (this.fileMetadata != null) {
                 if (this.cacheFileTemp != null) {
@@ -1076,7 +1076,7 @@ public class FileLoadOperation {
 
     public void lambda$onFinishLoadingFile$11(boolean z) {
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("finished downloading file to " + this.cacheFileFinal + " time = " + (System.currentTimeMillis() - this.startTime));
+            FileLog.m35d("finished downloading file to " + this.cacheFileFinal + " time = " + (System.currentTimeMillis() - this.startTime));
         }
         if (z) {
             int i = this.currentType;
@@ -1371,7 +1371,7 @@ public class FileLoadOperation {
                     }
                     this.requestedPreloadedBytesRanges.put(Long.valueOf(j5), Integer.valueOf(i2));
                     if (BuildVars.DEBUG_VERSION) {
-                        FileLog.m34d("start next preload from " + j5 + " size " + this.totalBytesCount + " for " + this.cacheFilePreload);
+                        FileLog.m35d("start next preload from " + j5 + " size " + this.totalBytesCount + " for " + this.cacheFilePreload);
                     }
                     this.preloadNotRequestedBytesCount -= this.currentDownloadChunkSize;
                     j2 = j5;
@@ -1488,7 +1488,7 @@ public class FileLoadOperation {
                 }
                 if (this.streamPriorityStartOffset != 0) {
                     if (BuildVars.DEBUG_VERSION) {
-                        FileLog.m34d("frame get offset = " + this.streamPriorityStartOffset);
+                        FileLog.m35d("frame get offset = " + this.streamPriorityStartOffset);
                     }
                     j3 = 0;
                     this.streamPriorityStartOffset = 0L;
@@ -1528,7 +1528,7 @@ public class FileLoadOperation {
         if (this.requestInfos.contains(requestInfo)) {
             if (requestInfo == this.priorityRequestInfo) {
                 if (BuildVars.DEBUG_VERSION) {
-                    FileLog.m34d("frame get request completed " + this.priorityRequestInfo.offset);
+                    FileLog.m35d("frame get request completed " + this.priorityRequestInfo.offset);
                 }
                 this.priorityRequestInfo = null;
             }

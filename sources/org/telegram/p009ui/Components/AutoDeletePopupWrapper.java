@@ -101,7 +101,7 @@ public class AutoDeletePopupWrapper {
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
             this.textView = linksTextView;
             linksTextView.setTag(i2, 1);
-            this.textView.setPadding(AndroidUtilities.m35dp(13.0f), 0, AndroidUtilities.m35dp(13.0f), AndroidUtilities.m35dp(8.0f));
+            this.textView.setPadding(AndroidUtilities.m36dp(13.0f), 0, AndroidUtilities.m36dp(13.0f), AndroidUtilities.m36dp(8.0f));
             this.textView.setTextSize(1, 13.0f);
             this.textView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
             this.textView.setMovementMethod(LinkMovementMethod.getInstance());

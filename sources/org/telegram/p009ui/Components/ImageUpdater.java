@@ -622,7 +622,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             }
             this.parentFragment.startActivityForResult(intent, 13);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -656,7 +656,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             }
             this.parentFragment.startActivityForResult(intent, 15);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -700,7 +700,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     intent.setType("image/*");
                     ImageUpdater.this.parentFragment.startActivityForResult(intent, 14);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
         });
@@ -732,7 +732,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             photoCropActivity.setDelegate(this);
             launchActivity.lambda$runLinkRequest$71(photoCropActivity);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             processBitmap(ImageLoader.loadBitmap(str, uri, 800.0f, 800.0f, true), null);
         }
     }
@@ -794,7 +794,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 try {
                     attributeInt = new ExifInterface(this.currentPicturePath).getAttributeInt("Orientation", 1);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
                 if (attributeInt == 3) {
                     i3 = 180;

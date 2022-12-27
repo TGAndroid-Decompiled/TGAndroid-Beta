@@ -89,7 +89,6 @@ public class EglRenderer implements VideoSink {
         private Object surface;
 
         public EglSurfaceCreation(boolean z) {
-            EglRenderer.this = r1;
             this.background = z;
         }
 
@@ -205,7 +204,7 @@ public class EglRenderer implements VideoSink {
                 if (handler != null) {
                     handler.post(this.eglSurfaceBackgroundCreationRunnable);
                 } else {
-                    FileLog.m34d("can't create background surface. render thread is null");
+                    FileLog.m35d("can't create background surface. render thread is null");
                 }
             }
             return;
@@ -505,7 +504,7 @@ public class EglRenderer implements VideoSink {
                     });
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }

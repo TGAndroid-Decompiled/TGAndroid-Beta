@@ -400,7 +400,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
                 timer.cancel();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         processSearch(str);
     }
@@ -441,7 +441,6 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
         private boolean search;
 
         public ListAdapter(Context context, boolean z) {
-            RestrictedLanguagesSelectActivity.this = r1;
             this.mContext = context;
             this.search = z;
         }

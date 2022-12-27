@@ -115,7 +115,7 @@ public class ReactedUsersListView extends FrameLayout {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         this.listView.setLayoutManager(linearLayoutManager);
         if (z) {
-            this.listView.setPadding(0, 0, 0, AndroidUtilities.m35dp(8.0f));
+            this.listView.setPadding(0, 0, 0, AndroidUtilities.m36dp(8.0f));
             this.listView.setClipToPadding(false);
         }
         if (Build.VERSION.SDK_INT >= 29) {
@@ -190,7 +190,7 @@ public class ReactedUsersListView extends FrameLayout {
                 if (ReactedUsersListView.this.customReactionsEmoji.isEmpty() || (messageContainsEmojiButton = ReactedUsersListView.this.messageContainsEmojiButton) == null) {
                     return 0;
                 }
-                return messageContainsEmojiButton.getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
+                return messageContainsEmojiButton.getMeasuredHeight() + AndroidUtilities.m36dp(8.0f);
             }
         };
         this.loadingView = flickerLoadingView;
@@ -404,15 +404,15 @@ public class ReactedUsersListView extends FrameLayout {
             if (size == 0) {
                 size = this.predictiveCount;
             }
-            int m35dp = AndroidUtilities.m35dp(size * 48);
+            int m36dp = AndroidUtilities.m36dp(size * 48);
             MessageContainsEmojiButton messageContainsEmojiButton = this.messageContainsEmojiButton;
             if (messageContainsEmojiButton != null) {
-                m35dp += messageContainsEmojiButton.getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
+                m36dp += messageContainsEmojiButton.getMeasuredHeight() + AndroidUtilities.m36dp(8.0f);
             }
             if (this.listView.getMeasuredHeight() != 0) {
-                m35dp = Math.min(this.listView.getMeasuredHeight(), m35dp);
+                m36dp = Math.min(this.listView.getMeasuredHeight(), m36dp);
             }
-            this.onHeightChangedListener.onHeightChanged(this, m35dp);
+            this.onHeightChangedListener.onHeightChanged(this, m36dp);
         }
     }
 
@@ -429,17 +429,16 @@ public class ReactedUsersListView extends FrameLayout {
 
         ReactedUserHolderView(Context context) {
             super(context);
-            ReactedUsersListView.this = r12;
             this.avatarDrawable = new AvatarDrawable();
-            setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(48.0f)));
+            setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m36dp(48.0f)));
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarView = backupImageView;
-            backupImageView.setRoundRadius(AndroidUtilities.m35dp(32.0f));
+            backupImageView.setRoundRadius(AndroidUtilities.m36dp(32.0f));
             addView(this.avatarView, LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388627, 8.0f, 0.0f, 0.0f, 0.0f));
-            SimpleTextView simpleTextView = new SimpleTextView(this, context, r12) {
+            SimpleTextView simpleTextView = new SimpleTextView(this, context, ReactedUsersListView.this) {
                 @Override
                 public boolean setText(CharSequence charSequence) {
-                    return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(14.0f), false));
+                    return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(14.0f), false));
                 }
             };
             this.titleView = simpleTextView;
@@ -448,9 +447,9 @@ public class ReactedUsersListView extends FrameLayout {
             this.titleView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
             this.titleView.setEllipsizeByGradient(true);
             this.titleView.setImportantForAccessibility(2);
-            this.titleView.setPadding(0, AndroidUtilities.m35dp(12.0f), 0, AndroidUtilities.m35dp(12.0f));
-            this.titleView.setRightPadding(AndroidUtilities.m35dp(30.0f));
-            this.titleView.setTranslationX(LocaleController.isRTL ? AndroidUtilities.m35dp(30.0f) : 0.0f);
+            this.titleView.setPadding(0, AndroidUtilities.m36dp(12.0f), 0, AndroidUtilities.m36dp(12.0f));
+            this.titleView.setRightPadding(AndroidUtilities.m36dp(30.0f));
+            this.titleView.setTranslationX(LocaleController.isRTL ? AndroidUtilities.m36dp(30.0f) : 0.0f);
             addView(this.titleView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 23, 58.0f, 0.0f, 12.0f, 0.0f));
             BackupImageView backupImageView2 = new BackupImageView(context);
             this.reactView = backupImageView2;
@@ -503,17 +502,17 @@ public class ReactedUsersListView extends FrameLayout {
                 setContentDescription(LocaleController.formatString("AccDescrPersonHasSeen", C1072R.string.AccDescrPersonHasSeen, UserObject.getUserName(user)));
             }
             float f = 0.0f;
-            this.titleView.setRightPadding(AndroidUtilities.m35dp(z2 ? 30.0f : 0.0f));
+            this.titleView.setRightPadding(AndroidUtilities.m36dp(z2 ? 30.0f : 0.0f));
             SimpleTextView simpleTextView = this.titleView;
             if (z2 && LocaleController.isRTL) {
-                f = AndroidUtilities.m35dp(30.0f);
+                f = AndroidUtilities.m36dp(30.0f);
             }
             simpleTextView.setTranslationX(f);
         }
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f), 1073741824));
         }
 
         @Override
@@ -559,22 +558,22 @@ public class ReactedUsersListView extends FrameLayout {
                         if (recyclerListView.getAdapter().getItemCount() == recyclerListView.getChildCount()) {
                             int childCount = recyclerListView.getChildCount();
                             for (int i5 = 0; i5 < childCount; i5++) {
-                                recyclerListView.getChildAt(i5).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), 0), i2);
+                                recyclerListView.getChildAt(i5).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), 0), i2);
                                 if (recyclerListView.getChildAt(i5).getMeasuredWidth() > i3) {
                                     i3 = recyclerListView.getChildAt(i5).getMeasuredWidth();
                                 }
                             }
-                            i3 += AndroidUtilities.m35dp(16.0f);
+                            i3 += AndroidUtilities.m36dp(16.0f);
                         }
                     }
                 }
             }
             int size = View.MeasureSpec.getSize(i);
-            if (size < AndroidUtilities.m35dp(240.0f)) {
-                size = AndroidUtilities.m35dp(240.0f);
+            if (size < AndroidUtilities.m36dp(240.0f)) {
+                size = AndroidUtilities.m36dp(240.0f);
             }
-            if (size > AndroidUtilities.m35dp(280.0f)) {
-                size = AndroidUtilities.m35dp(280.0f);
+            if (size > AndroidUtilities.m36dp(280.0f)) {
+                size = AndroidUtilities.m36dp(280.0f);
             }
             if (size < 0) {
                 size = 0;

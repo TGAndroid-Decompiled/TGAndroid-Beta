@@ -34,7 +34,7 @@ public class BetterRatingView extends View {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        setMeasuredDimension((this.numStars * AndroidUtilities.m35dp(32.0f)) + ((this.numStars - 1) * AndroidUtilities.m35dp(16.0f)), AndroidUtilities.m35dp(32.0f));
+        setMeasuredDimension((this.numStars * AndroidUtilities.m36dp(32.0f)) + ((this.numStars - 1) * AndroidUtilities.m36dp(16.0f)), AndroidUtilities.m36dp(32.0f));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class BetterRatingView extends View {
         int i = 0;
         while (i < this.numStars) {
             this.paint.setColor(Theme.getColor(i < this.selectedRating ? "dialogTextBlue" : "dialogTextHint"));
-            canvas.drawBitmap(i < this.selectedRating ? this.filledStar : this.hollowStar, AndroidUtilities.m35dp(48.0f) * i, 0.0f, this.paint);
+            canvas.drawBitmap(i < this.selectedRating ? this.filledStar : this.hollowStar, AndroidUtilities.m36dp(48.0f) * i, 0.0f, this.paint);
             i++;
         }
     }
@@ -50,9 +50,9 @@ public class BetterRatingView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         int i;
-        float m35dp = AndroidUtilities.m35dp(-8.0f);
+        float m36dp = AndroidUtilities.m36dp(-8.0f);
         for (int i2 = 0; i2 < this.numStars; i2++) {
-            if (motionEvent.getX() > m35dp && motionEvent.getX() < AndroidUtilities.m35dp(48.0f) + m35dp && this.selectedRating != (i = i2 + 1)) {
+            if (motionEvent.getX() > m36dp && motionEvent.getX() < AndroidUtilities.m36dp(48.0f) + m36dp && this.selectedRating != (i = i2 + 1)) {
                 this.selectedRating = i;
                 OnRatingChangeListener onRatingChangeListener = this.listener;
                 if (onRatingChangeListener != null) {
@@ -61,7 +61,7 @@ public class BetterRatingView extends View {
                 invalidate();
                 return true;
             }
-            m35dp += AndroidUtilities.m35dp(48.0f);
+            m36dp += AndroidUtilities.m36dp(48.0f);
         }
         return true;
     }

@@ -143,8 +143,8 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         imageView.setImageResource(C1072R.C1073drawable.msg_clear_input);
         this.backButton.setColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.backButton.setBackground(getButtonDrawable());
-        int m35dp = AndroidUtilities.m35dp(11.0f);
-        this.backButton.setPadding(m35dp, m35dp, m35dp, m35dp);
+        int m36dp = AndroidUtilities.m36dp(11.0f);
+        this.backButton.setPadding(m36dp, m36dp, m36dp, m36dp);
         this.backButton.setOnClickListener(CustomPhoneKeyboardView$$ExternalSyntheticLambda1.INSTANCE);
         View[] viewArr = this.views;
         ImageView imageView2 = this.backButton;
@@ -224,14 +224,14 @@ public class CustomPhoneKeyboardView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int width = (getWidth() - AndroidUtilities.m35dp(32.0f)) / 3;
-        int height = (getHeight() - AndroidUtilities.m35dp(42.0f)) / 4;
+        int width = (getWidth() - AndroidUtilities.m36dp(32.0f)) / 3;
+        int height = (getHeight() - AndroidUtilities.m36dp(42.0f)) / 4;
         for (int i5 = 0; i5 < this.views.length; i5++) {
-            int m35dp = ((i5 % 3) * (AndroidUtilities.m35dp(6.0f) + width)) + AndroidUtilities.m35dp(10.0f);
-            int m35dp2 = ((i5 / 3) * (AndroidUtilities.m35dp(6.0f) + height)) + AndroidUtilities.m35dp(10.0f);
+            int m36dp = ((i5 % 3) * (AndroidUtilities.m36dp(6.0f) + width)) + AndroidUtilities.m36dp(10.0f);
+            int m36dp2 = ((i5 / 3) * (AndroidUtilities.m36dp(6.0f) + height)) + AndroidUtilities.m36dp(10.0f);
             View[] viewArr = this.views;
             if (viewArr[i5] != null) {
-                viewArr[i5].layout(m35dp, m35dp2, m35dp + width, m35dp2 + height);
+                viewArr[i5].layout(m36dp, m36dp2, m36dp + width, m36dp2 + height);
             }
         }
     }
@@ -240,8 +240,8 @@ public class CustomPhoneKeyboardView extends ViewGroup {
     protected void onMeasure(int i, int i2) {
         View[] viewArr;
         setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
-        int width = (getWidth() - AndroidUtilities.m35dp(32.0f)) / 3;
-        int height = (getHeight() - AndroidUtilities.m35dp(42.0f)) / 4;
+        int width = (getWidth() - AndroidUtilities.m36dp(32.0f)) / 3;
+        int height = (getHeight() - AndroidUtilities.m36dp(42.0f)) / 4;
         for (View view : this.views) {
             if (view != null) {
                 view.measure(View.MeasureSpec.makeMeasureSpec(width, 1073741824), View.MeasureSpec.makeMeasureSpec(height, 1073741824));
@@ -250,7 +250,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
     }
 
     public static Drawable getButtonDrawable() {
-        return Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("listSelectorSDK21"), ColorUtils.setAlphaComponent(Theme.getColor("listSelectorSDK21"), 60));
+        return Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), Theme.getColor("listSelectorSDK21"), ColorUtils.setAlphaComponent(Theme.getColor("listSelectorSDK21"), 60));
     }
 
     public void updateColors() {
@@ -266,7 +266,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         }
     }
 
-    public static final class NumberButtonView extends View {
+    private static final class NumberButtonView extends View {
         private String mNumber;
         private String mSymbols;
         private TextPaint numberTextPaint;
@@ -280,8 +280,8 @@ public class CustomPhoneKeyboardView extends ViewGroup {
             this.rect = new Rect();
             this.mNumber = str;
             this.mSymbols = str2;
-            this.numberTextPaint.setTextSize(AndroidUtilities.m35dp(24.0f));
-            this.symbolsTextPaint.setTextSize(AndroidUtilities.m35dp(14.0f));
+            this.numberTextPaint.setTextSize(AndroidUtilities.m36dp(24.0f));
+            this.symbolsTextPaint.setTextSize(AndroidUtilities.m36dp(14.0f));
             setBackground(CustomPhoneKeyboardView.getButtonDrawable());
             updateColors();
         }

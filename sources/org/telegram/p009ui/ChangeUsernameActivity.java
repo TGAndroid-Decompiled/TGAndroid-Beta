@@ -111,7 +111,6 @@ public class ChangeUsernameActivity extends BaseFragment {
         private String url;
 
         public LinkSpan(String str) {
-            ChangeUsernameActivity.this = r1;
             this.url = str;
         }
 
@@ -129,7 +128,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                     BulletinFactory.createCopyLinkBulletin(ChangeUsernameActivity.this).show();
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -151,7 +150,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 }
             }
         });
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m35dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m36dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
         TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).getClientUserId()));
         if (user == null) {
             user = UserConfig.getInstance(this.currentAccount).getCurrentUser();
@@ -227,7 +226,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         itemTouchHelper.attachToRecyclerView(this.listView);
         ((FrameLayout) this.fragmentView).addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.fragmentView.setOnTouchListener(ChangeUsernameActivity$$ExternalSyntheticLambda1.INSTANCE);
-        this.listView.setOnItemClickListener(new C14833());
+        this.listView.setOnItemClickListener(new C14853());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -237,9 +236,8 @@ public class ChangeUsernameActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public class C14833 implements RecyclerListView.OnItemClickListener {
-        C14833() {
-            ChangeUsernameActivity.this = r1;
+    public class C14853 implements RecyclerListView.OnItemClickListener {
+        C14853() {
         }
 
         @Override
@@ -288,7 +286,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 message.setPositiveButton(LocaleController.getString(str3, i4), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i5) {
-                        ChangeUsernameActivity.C14833.this.lambda$onItemClick$3(tLRPC$TL_username, i, view, dialogInterface, i5);
+                        ChangeUsernameActivity.C14853.this.lambda$onItemClick$3(tLRPC$TL_username, i, view, dialogInterface, i5);
                     }
                 }).setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), ChangeUsernameActivity$3$$ExternalSyntheticLambda2.INSTANCE).show();
             } else if (view instanceof InputCell) {
@@ -304,7 +302,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             ChangeUsernameActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_account_toggleUsername, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChangeUsernameActivity.C14833.this.lambda$onItemClick$2(tLRPC$TL_account_toggleUsername, i, tLRPC$TL_username, z, tLObject, tLRPC$TL_error);
+                    ChangeUsernameActivity.C14853.this.lambda$onItemClick$2(tLRPC$TL_account_toggleUsername, i, tLRPC$TL_username, z, tLObject, tLRPC$TL_error);
                 }
             });
             ChangeUsernameActivity.this.loadingUsernames.add(tLRPC$TL_username.username);
@@ -315,7 +313,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChangeUsernameActivity.C14833.this.lambda$onItemClick$1(tLRPC$TL_account_toggleUsername, tLObject, i, tLRPC$TL_error, tLRPC$TL_username, z);
+                    ChangeUsernameActivity.C14853.this.lambda$onItemClick$1(tLRPC$TL_account_toggleUsername, tLObject, i, tLRPC$TL_error, tLRPC$TL_username, z);
                 }
             });
         }
@@ -331,7 +329,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 new AlertDialog.Builder(ChangeUsernameActivity.this.getContext(), ChangeUsernameActivity.this.getResourceProvider()).setTitle(LocaleController.getString("UsernameActivateErrorTitle", C1072R.string.UsernameActivateErrorTitle)).setMessage(LocaleController.getString("UsernameActivateErrorMessage", C1072R.string.UsernameActivateErrorMessage)).setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
-                        ChangeUsernameActivity.C14833.this.lambda$onItemClick$0(tLRPC$TL_username, z, dialogInterface, i2);
+                        ChangeUsernameActivity.C14853.this.lambda$onItemClick$0(tLRPC$TL_username, z, dialogInterface, i2);
                     }
                 }).show();
             } else {
@@ -387,7 +385,6 @@ public class ChangeUsernameActivity extends BaseFragment {
 
     public class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
-            ChangeUsernameActivity.this = r1;
         }
 
         @Override
@@ -408,7 +405,6 @@ public class ChangeUsernameActivity extends BaseFragment {
                 } else {
                     return new RecyclerListView.Holder(new UsernameCell(ChangeUsernameActivity.this.getContext(), ChangeUsernameActivity.this.getResourceProvider()) {
                         {
-                            Adapter.this = this;
                             this.isProfile = true;
                         }
 
@@ -566,9 +562,8 @@ public class ChangeUsernameActivity extends BaseFragment {
 
         public UsernameHelpCell(Context context) {
             super(context);
-            ChangeUsernameActivity.this = r13;
-            r13.helpCell = this;
-            setPadding(AndroidUtilities.m35dp(18.0f), AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(18.0f), AndroidUtilities.m35dp(17.0f));
+            ChangeUsernameActivity.this.helpCell = this;
+            setPadding(AndroidUtilities.m36dp(18.0f), AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(18.0f), AndroidUtilities.m36dp(17.0f));
             setBackgroundDrawable(Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
             setClipChildren(false);
             TextView textView = new TextView(context);
@@ -578,8 +573,8 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.text1View.setGravity(LocaleController.isRTL ? 5 : 3);
             this.text1View.setLinkTextColor(Theme.getColor("windowBackgroundWhiteLinkText"));
             this.text1View.setHighlightColor(Theme.getColor("windowBackgroundWhiteLinkSelection"));
-            this.text1View.setPadding(AndroidUtilities.m35dp(3.0f), 0, AndroidUtilities.m35dp(3.0f), 0);
-            LinkSpanDrawable.LinksTextView linksTextView = r13.statusTextView = new LinkSpanDrawable.LinksTextView(context, r13) {
+            this.text1View.setPadding(AndroidUtilities.m36dp(3.0f), 0, AndroidUtilities.m36dp(3.0f), 0);
+            LinkSpanDrawable.LinksTextView linksTextView = ChangeUsernameActivity.this.statusTextView = new LinkSpanDrawable.LinksTextView(context, ChangeUsernameActivity.this) {
                 @Override
                 public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                     if (charSequence != 0) {
@@ -616,7 +611,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.text2View.setGravity(LocaleController.isRTL ? 5 : 3);
             this.text2View.setLinkTextColor(Theme.getColor("windowBackgroundWhiteLinkText"));
             this.text2View.setHighlightColor(Theme.getColor("windowBackgroundWhiteLinkSelection"));
-            this.text2View.setPadding(AndroidUtilities.m35dp(3.0f), 0, AndroidUtilities.m35dp(3.0f), 0);
+            this.text2View.setPadding(AndroidUtilities.m36dp(3.0f), 0, AndroidUtilities.m36dp(3.0f), 0);
             addView(this.text1View, LayoutHelper.createFrame(-1, -2, 48));
             addView(this.text2View, LayoutHelper.createFrame(-1, -2, 48));
             this.text1View.setText(AndroidUtilities.replaceTags(LocaleController.getString("UsernameHelp", C1072R.string.UsernameHelp)));
@@ -641,15 +636,15 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
             Integer num = this.height;
             final int measuredHeight = num == null ? getMeasuredHeight() : num.intValue();
-            final int m35dp = AndroidUtilities.m35dp(27.0f) + this.text1View.getHeight() + ((this.text2View.getVisibility() != 0 || TextUtils.isEmpty(this.text2View.getText())) ? 0 : this.text2View.getMeasuredHeight() + AndroidUtilities.m35dp(8.0f));
+            final int m36dp = AndroidUtilities.m36dp(27.0f) + this.text1View.getHeight() + ((this.text2View.getVisibility() != 0 || TextUtils.isEmpty(this.text2View.getText())) ? 0 : this.text2View.getMeasuredHeight() + AndroidUtilities.m36dp(8.0f));
             final float translationY = this.text1View.getTranslationY();
-            final float measuredHeight2 = (this.text2View.getVisibility() != 0 || TextUtils.isEmpty(this.text2View.getText())) ? 0.0f : this.text2View.getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
+            final float measuredHeight2 = (this.text2View.getVisibility() != 0 || TextUtils.isEmpty(this.text2View.getText())) ? 0.0f : this.text2View.getMeasuredHeight() + AndroidUtilities.m36dp(8.0f);
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.heightUpdateAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ChangeUsernameActivity.UsernameHelpCell.this.lambda$update$0(translationY, measuredHeight2, measuredHeight, m35dp, valueAnimator2);
+                    ChangeUsernameActivity.UsernameHelpCell.this.lambda$update$0(translationY, measuredHeight2, measuredHeight, m36dp, valueAnimator2);
                 }
             });
             this.heightUpdateAnimator.setDuration(200L);
@@ -671,7 +666,6 @@ public class ChangeUsernameActivity extends BaseFragment {
 
         public InputCell(Context context) {
             super(context);
-            ChangeUsernameActivity.this = r21;
             LinearLayout linearLayout = new LinearLayout(getContext());
             linearLayout.setOrientation(0);
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
@@ -689,7 +683,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.field.setImeOptions(6);
             this.field.setHint(LocaleController.getString("UsernameLinkPlaceholder", C1072R.string.UsernameLinkPlaceholder));
             this.field.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            this.field.setCursorSize(AndroidUtilities.m35dp(19.0f));
+            this.field.setCursorSize(AndroidUtilities.m36dp(19.0f));
             this.field.setCursorWidth(1.5f);
             this.field.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
@@ -699,8 +693,8 @@ public class ChangeUsernameActivity extends BaseFragment {
                     return lambda$new$0;
                 }
             });
-            this.field.setText(r21.username);
-            this.field.addTextChangedListener(new TextWatcher(r21) {
+            this.field.setText(ChangeUsernameActivity.this.username);
+            this.field.addTextChangedListener(new TextWatcher(ChangeUsernameActivity.this) {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                     String str = ChangeUsernameActivity.this.username;
@@ -751,15 +745,15 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.tme.setPadding(0, 0, 0, 0);
             this.tme.setSingleLine(true);
             TextView textView2 = this.tme;
-            textView2.setText(r21.getMessagesController().linkPrefix + "/");
+            textView2.setText(ChangeUsernameActivity.this.getMessagesController().linkPrefix + "/");
             this.tme.setTextSize(1, 17.0f);
             this.tme.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.tme.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-            this.tme.setTranslationY(-AndroidUtilities.m35dp(3.0f));
+            this.tme.setTranslationY(-AndroidUtilities.m36dp(3.0f));
             linearLayout.addView(this.tme, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 21, 15, 0, 15));
             linearLayout.addView(this.field, LayoutHelper.createLinear(-2, -2, 1.0f, 16, 0, 15, 21, 15));
             addView(linearLayout, LayoutHelper.createFrame(-1, -1, 48));
-            setBackgroundColor(r21.getThemedColor("windowBackgroundWhite"));
+            setBackgroundColor(ChangeUsernameActivity.this.getThemedColor("windowBackgroundWhite"));
         }
 
         public boolean lambda$new$0(TextView textView, int i, KeyEvent keyEvent) {
@@ -772,7 +766,7 @@ public class ChangeUsernameActivity extends BaseFragment {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(50.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(50.0f), 1073741824));
         }
     }
 
@@ -814,18 +808,18 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.usernameView.setEllipsizeByGradient(true);
             addView(this.usernameView, LayoutHelper.createFrame(-1, -2.0f, 48, 70.0f, 9.0f, 0.0f, 50.0f));
             this.loadingView = new ImageView(getContext());
-            CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(1.35f), Theme.getColor("windowBackgroundWhiteBlueText", resourcesProvider));
+            CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(1.35f), Theme.getColor("windowBackgroundWhiteBlueText", resourcesProvider));
             this.loadingDrawable = circularProgressDrawable;
             this.loadingView.setImageDrawable(circularProgressDrawable);
             this.loadingView.setAlpha(0.0f);
             this.loadingView.setVisibility(0);
-            this.loadingDrawable.setBounds(0, 0, AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(14.0f));
+            this.loadingDrawable.setBounds(0, 0, AndroidUtilities.m36dp(14.0f), AndroidUtilities.m36dp(14.0f));
             addView(this.loadingView, LayoutHelper.createFrame(14, 14.0f, 48, 70.0f, 35.0f, 0.0f, 0.0f));
             AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), false, true, true);
             this.activeView = animatedTextView;
             animatedTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2", resourcesProvider));
             this.activeView.setAnimationProperties(0.4f, 0L, 120L, CubicBezierInterpolator.EASE_OUT);
-            this.activeView.setTextSize(AndroidUtilities.m35dp(13.0f));
+            this.activeView.setTextSize(AndroidUtilities.m36dp(13.0f));
             addView(this.activeView, LayoutHelper.createFrame(-1, -2.0f, 48, 70.0f, 23.0f, 0.0f, 0.0f));
             Drawable[] drawableArr = {ContextCompat.getDrawable(context, C1072R.C1073drawable.msg_link_1).mutate(), ContextCompat.getDrawable(context, C1072R.C1073drawable.msg_link_2).mutate()};
             this.linkDrawables = drawableArr;
@@ -869,7 +863,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         public void lambda$setLoading$0(ValueAnimator valueAnimator) {
             float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             this.loadingFloat = floatValue;
-            this.activeView.setTranslationX(floatValue * AndroidUtilities.m35dp(16.0f));
+            this.activeView.setTranslationX(floatValue * AndroidUtilities.m36dp(16.0f));
             this.loadingView.setAlpha(this.loadingFloat);
         }
 
@@ -981,7 +975,7 @@ public class ChangeUsernameActivity extends BaseFragment {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(58.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(58.0f), 1073741824));
         }
 
         @Override
@@ -989,33 +983,33 @@ public class ChangeUsernameActivity extends BaseFragment {
             super.onDraw(canvas);
             float f = this.activeFloat.set(this.active ? 1.0f : 0.0f);
             if (f < 1.0f) {
-                canvas.drawCircle(AndroidUtilities.m35dp(35.0f), AndroidUtilities.m35dp(29.0f), AndroidUtilities.m35dp(16.0f), ChangeUsernameActivity.linkBackgroundInactive);
+                canvas.drawCircle(AndroidUtilities.m36dp(35.0f), AndroidUtilities.m36dp(29.0f), AndroidUtilities.m36dp(16.0f), ChangeUsernameActivity.linkBackgroundInactive);
                 this.linkDrawables[1].setAlpha((int) ((1.0f - f) * 255.0f));
-                this.linkDrawables[1].setBounds(AndroidUtilities.m35dp(35.0f) - (this.linkDrawables[1].getIntrinsicWidth() / 2), AndroidUtilities.m35dp(29.0f) - (this.linkDrawables[1].getIntrinsicHeight() / 2), AndroidUtilities.m35dp(35.0f) + (this.linkDrawables[1].getIntrinsicWidth() / 2), AndroidUtilities.m35dp(29.0f) + (this.linkDrawables[1].getIntrinsicHeight() / 2));
+                this.linkDrawables[1].setBounds(AndroidUtilities.m36dp(35.0f) - (this.linkDrawables[1].getIntrinsicWidth() / 2), AndroidUtilities.m36dp(29.0f) - (this.linkDrawables[1].getIntrinsicHeight() / 2), AndroidUtilities.m36dp(35.0f) + (this.linkDrawables[1].getIntrinsicWidth() / 2), AndroidUtilities.m36dp(29.0f) + (this.linkDrawables[1].getIntrinsicHeight() / 2));
                 this.linkDrawables[1].draw(canvas);
             }
             if (f > 0.0f) {
                 int i = (int) (255.0f * f);
                 ChangeUsernameActivity.linkBackgroundActive.setAlpha(i);
-                canvas.drawCircle(AndroidUtilities.m35dp(35.0f), AndroidUtilities.m35dp(29.0f), AndroidUtilities.m35dp(16.0f) * f, ChangeUsernameActivity.linkBackgroundActive);
+                canvas.drawCircle(AndroidUtilities.m36dp(35.0f), AndroidUtilities.m36dp(29.0f), AndroidUtilities.m36dp(16.0f) * f, ChangeUsernameActivity.linkBackgroundActive);
                 this.linkDrawables[0].setAlpha(i);
-                this.linkDrawables[0].setBounds(AndroidUtilities.m35dp(35.0f) - (this.linkDrawables[0].getIntrinsicWidth() / 2), AndroidUtilities.m35dp(29.0f) - (this.linkDrawables[0].getIntrinsicHeight() / 2), AndroidUtilities.m35dp(35.0f) + (this.linkDrawables[0].getIntrinsicWidth() / 2), AndroidUtilities.m35dp(29.0f) + (this.linkDrawables[0].getIntrinsicHeight() / 2));
+                this.linkDrawables[0].setBounds(AndroidUtilities.m36dp(35.0f) - (this.linkDrawables[0].getIntrinsicWidth() / 2), AndroidUtilities.m36dp(29.0f) - (this.linkDrawables[0].getIntrinsicHeight() / 2), AndroidUtilities.m36dp(35.0f) + (this.linkDrawables[0].getIntrinsicWidth() / 2), AndroidUtilities.m36dp(29.0f) + (this.linkDrawables[0].getIntrinsicHeight() / 2));
                 this.linkDrawables[0].draw(canvas);
             }
             float f2 = this.useDividerAlpha.set(this.useDivider ? 1.0f : 0.0f);
             if (f2 > 0.0f) {
                 int alpha = Theme.dividerPaint.getAlpha();
                 Theme.dividerPaint.setAlpha((int) (alpha * f2));
-                canvas.drawRect(AndroidUtilities.m35dp(70.0f), getHeight() - 1, getWidth(), getHeight(), Theme.dividerPaint);
+                canvas.drawRect(AndroidUtilities.m36dp(70.0f), getHeight() - 1, getWidth(), getHeight(), Theme.dividerPaint);
                 Theme.dividerPaint.setAlpha(alpha);
             }
             ChangeUsernameActivity.dragPaint.setColor(Theme.getColor("stickers_menu"));
             ChangeUsernameActivity.dragPaint.setAlpha((int) (ChangeUsernameActivity.dragPaint.getAlpha() * f));
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(getWidth() - AndroidUtilities.m35dp(37.0f), AndroidUtilities.m35dp(25.0f), getWidth() - AndroidUtilities.m35dp(21.0f), AndroidUtilities.m35dp(27.0f));
-            canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(0.3f), AndroidUtilities.m35dp(0.3f), ChangeUsernameActivity.dragPaint);
-            rectF.set(getWidth() - AndroidUtilities.m35dp(37.0f), AndroidUtilities.m35dp(31.0f), getWidth() - AndroidUtilities.m35dp(21.0f), AndroidUtilities.m35dp(33.0f));
-            canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(0.3f), AndroidUtilities.m35dp(0.3f), ChangeUsernameActivity.dragPaint);
+            rectF.set(getWidth() - AndroidUtilities.m36dp(37.0f), AndroidUtilities.m36dp(25.0f), getWidth() - AndroidUtilities.m36dp(21.0f), AndroidUtilities.m36dp(27.0f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(0.3f), AndroidUtilities.m36dp(0.3f), ChangeUsernameActivity.dragPaint);
+            rectF.set(getWidth() - AndroidUtilities.m36dp(37.0f), AndroidUtilities.m36dp(31.0f), getWidth() - AndroidUtilities.m36dp(21.0f), AndroidUtilities.m36dp(33.0f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(0.3f), AndroidUtilities.m36dp(0.3f), ChangeUsernameActivity.dragPaint);
         }
     }
 
@@ -1030,7 +1024,6 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
 
         public TouchHelperCallback() {
-            ChangeUsernameActivity.this = r1;
         }
 
         @Override
@@ -1375,7 +1368,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         ArrayList<TLRPC$User> arrayList = new ArrayList<>();
         arrayList.add(tLRPC$User);
@@ -1389,7 +1382,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         finishFragment();
     }
@@ -1398,7 +1391,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         shakeIfOff();
     }
@@ -1407,7 +1400,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, this, tLRPC$TL_account_updateUsername, new Object[0]);
         shakeIfOff();

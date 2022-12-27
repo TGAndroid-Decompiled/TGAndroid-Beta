@@ -51,7 +51,7 @@ public class EmptyTextProgressView extends FrameLayout {
         this.progressView = view2;
         LinearLayout linearLayout = new LinearLayout(context);
         this.textViewLayout = linearLayout;
-        linearLayout.setPadding(AndroidUtilities.m35dp(20.0f), 0, AndroidUtilities.m35dp(20.0f), 0);
+        linearLayout.setPadding(AndroidUtilities.m36dp(20.0f), 0, AndroidUtilities.m36dp(20.0f), 0);
         this.textViewLayout.setGravity(1);
         this.textViewLayout.setClipChildren(false);
         this.textViewLayout.setClipToPadding(false);
@@ -122,7 +122,7 @@ public class EmptyTextProgressView extends FrameLayout {
             mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor("emptyListPlaceholder"), PorterDuff.Mode.MULTIPLY));
         }
         this.textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
-        this.textView.setCompoundDrawablePadding(AndroidUtilities.m35dp(1.0f));
+        this.textView.setCompoundDrawablePadding(AndroidUtilities.m36dp(1.0f));
     }
 
     public void setTextSize(int i) {
@@ -156,7 +156,7 @@ public class EmptyTextProgressView extends FrameLayout {
                 } else {
                     int i8 = this.showAtPos;
                     if (i8 == 2) {
-                        measuredHeight = (AndroidUtilities.m35dp(100.0f) - childAt.getMeasuredHeight()) / 2;
+                        measuredHeight = (AndroidUtilities.m36dp(100.0f) - childAt.getMeasuredHeight()) / 2;
                         paddingTop = getPaddingTop();
                     } else if (i8 == 1) {
                         measuredHeight = ((i6 / 2) - childAt.getMeasuredHeight()) / 2;

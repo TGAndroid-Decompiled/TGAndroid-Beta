@@ -103,7 +103,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
         this.description = linksTextView;
         linksTextView.setTag(C1072R.C1074id.fit_width_tag, 1);
-        linksTextView.setPadding(AndroidUtilities.m35dp(13.0f), 0, AndroidUtilities.m35dp(13.0f), AndroidUtilities.m35dp(8.0f));
+        linksTextView.setPadding(AndroidUtilities.m36dp(13.0f), 0, AndroidUtilities.m36dp(13.0f), AndroidUtilities.m36dp(8.0f));
         linksTextView.setTextSize(1, 13.0f);
         linksTextView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
         linksTextView.setMovementMethod(LinkMovementMethod.getInstance());
@@ -184,14 +184,14 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         this.exceptions = keepMediaExceptions;
         if (keepMediaExceptions.isEmpty()) {
             this.exceptionsView.titleView.setText(LocaleController.getString("AddAnException", C1072R.string.AddAnException));
-            this.exceptionsView.titleView.setRightPadding(AndroidUtilities.m35dp(8.0f));
+            this.exceptionsView.titleView.setRightPadding(AndroidUtilities.m36dp(8.0f));
             this.exceptionsView.avatarsImageView.setObject(0, this.parentFragment.getCurrentAccount(), null);
             this.exceptionsView.avatarsImageView.setObject(1, this.parentFragment.getCurrentAccount(), null);
             this.exceptionsView.avatarsImageView.setObject(2, this.parentFragment.getCurrentAccount(), null);
             this.exceptionsView.avatarsImageView.commitTransition(false);
         } else {
             int min = Math.min(3, this.exceptions.size());
-            this.exceptionsView.titleView.setRightPadding(AndroidUtilities.m35dp((Math.max(0, min - 1) * 12) + 64));
+            this.exceptionsView.titleView.setRightPadding(AndroidUtilities.m36dp((Math.max(0, min - 1) * 12) + 64));
             this.exceptionsView.titleView.setText(LocaleController.formatPluralString("ExceptionShort", this.exceptions.size(), Integer.valueOf(this.exceptions.size())));
             for (int i2 = 0; i2 < min; i2++) {
                 this.exceptionsView.avatarsImageView.setObject(i2, this.parentFragment.getCurrentAccount(), this.parentFragment.getMessagesController().getUserOrChat(this.exceptions.get(i2).dialogId));
@@ -217,18 +217,18 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
 
         public ExceptionsView(Context context) {
             super(context);
-            KeepMediaPopupView.this = r9;
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.titleView = simpleTextView;
             simpleTextView.setTextSize(16);
             this.titleView.setEllipsizeByGradient(true);
-            this.titleView.setRightPadding(AndroidUtilities.m35dp(68.0f));
+            this.titleView.setRightPadding(AndroidUtilities.m36dp(68.0f));
             this.titleView.setTextColor(Theme.getColor("dialogTextBlack"));
             addView(this.titleView, LayoutHelper.createFrame(0, -2.0f, 19, 19.0f, 0.0f, 19.0f, 0.0f));
             AvatarsImageView avatarsImageView = new AvatarsImageView(context, false);
             this.avatarsImageView = avatarsImageView;
-            avatarsImageView.setStyle(11);
-            this.avatarsImageView.setAvatarsTextSize(AndroidUtilities.m35dp(22.0f));
+            avatarsImageView.avatarsDrawable.setShowSavedMessages(true);
+            this.avatarsImageView.setStyle(11);
+            this.avatarsImageView.setAvatarsTextSize(AndroidUtilities.m36dp(22.0f));
             addView(this.avatarsImageView, LayoutHelper.createFrame(56, -1.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
             setBackground(Theme.createRadSelectorDrawable(Theme.getColor("listSelectorSDK21"), 0, 4));
         }
@@ -260,11 +260,11 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
 
     public void updateAvatarsPosition() {
         if (this.exceptions != null) {
-            this.exceptionsView.avatarsImageView.setTranslationX(AndroidUtilities.m35dp(12.0f) * (3 - Math.min(3, this.exceptions.size())));
+            this.exceptionsView.avatarsImageView.setTranslationX(AndroidUtilities.m36dp(12.0f) * (3 - Math.min(3, this.exceptions.size())));
         }
     }
 
-    public static class CheckItem {
+    private static class CheckItem {
         final ActionBarMenuSubItem item;
         final int type;
 

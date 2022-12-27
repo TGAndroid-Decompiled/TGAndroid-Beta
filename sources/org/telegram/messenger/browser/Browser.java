@@ -81,7 +81,7 @@ public class Browser {
                     try {
                         Browser.customTabsClient.warmup(0L);
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                 }
 
@@ -96,7 +96,7 @@ public class Browser {
             }
             customTabsServiceConnection = null;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 

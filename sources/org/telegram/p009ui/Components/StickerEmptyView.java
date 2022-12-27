@@ -268,22 +268,22 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
                 z = false;
             }
             this.keyboardSize = i;
-            float m35dp = (-(i >> 1)) + (i > 0 ? AndroidUtilities.m35dp(20.0f) : 0);
+            float m36dp = (-(i >> 1)) + (i > 0 ? AndroidUtilities.m36dp(20.0f) : 0);
             if (z) {
-                ViewPropertyAnimator translationY = this.linearLayout.animate().translationY(m35dp);
+                ViewPropertyAnimator translationY = this.linearLayout.animate().translationY(m36dp);
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
                 translationY.setInterpolator(cubicBezierInterpolator).setDuration(250L);
                 RadialProgressView radialProgressView = this.progressBar;
                 if (radialProgressView != null) {
-                    radialProgressView.animate().translationY(m35dp).setInterpolator(cubicBezierInterpolator).setDuration(250L);
+                    radialProgressView.animate().translationY(m36dp).setInterpolator(cubicBezierInterpolator).setDuration(250L);
                     return;
                 }
                 return;
             }
-            this.linearLayout.setTranslationY(m35dp);
+            this.linearLayout.setTranslationY(m36dp);
             RadialProgressView radialProgressView2 = this.progressBar;
             if (radialProgressView2 != null) {
-                radialProgressView2.setTranslationY(m35dp);
+                radialProgressView2.setTranslationY(m36dp);
             }
         }
     }

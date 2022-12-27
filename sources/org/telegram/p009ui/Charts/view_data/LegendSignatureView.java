@@ -67,7 +67,7 @@ public class LegendSignatureView extends FrameLayout {
                 LegendSignatureView.this.progressView.animate().setDuration(120L).alpha(1.0f).start();
             }
         };
-        setPadding(AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f));
+        setPadding(AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f));
         LinearLayout linearLayout = new LinearLayout(getContext());
         this.content = linearLayout;
         linearLayout.setOrientation(1);
@@ -84,8 +84,8 @@ public class LegendSignatureView extends FrameLayout {
         imageView.setImageResource(C1072R.C1073drawable.ic_chevron_right_black_18dp);
         RadialProgressView radialProgressView = new RadialProgressView(context);
         this.progressView = radialProgressView;
-        radialProgressView.setSize(AndroidUtilities.m35dp(12.0f));
-        this.progressView.setStrokeWidth(AndroidUtilities.m35dp(0.5f));
+        radialProgressView.setSize(AndroidUtilities.m36dp(12.0f));
+        this.progressView.setStrokeWidth(AndroidUtilities.m36dp(0.5f));
         this.progressView.setVisibility(8);
         addView(this.content, LayoutHelper.createFrame(-2, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));
         addView(this.time, LayoutHelper.createFrame(-2, -2.0f, 8388611, 4.0f, 0.0f, 4.0f, 0.0f));
@@ -101,8 +101,8 @@ public class LegendSignatureView extends FrameLayout {
         this.chevron.setColorFilter(Theme.getColor("statisticChartChevronColor"));
         this.progressView.setProgressColor(Theme.getColor("statisticChartChevronColor"));
         this.shadowDrawable = getContext().getResources().getDrawable(C1072R.C1073drawable.stats_tooltip).mutate();
-        this.backgroundDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), Theme.getColor("dialogBackground"), Theme.getColor("listSelectorSDK21"), -16777216);
-        CombinedDrawable combinedDrawable = new CombinedDrawable(this.shadowDrawable, this.backgroundDrawable, AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(3.0f));
+        this.backgroundDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), Theme.getColor("dialogBackground"), Theme.getColor("listSelectorSDK21"), -16777216);
+        CombinedDrawable combinedDrawable = new CombinedDrawable(this.shadowDrawable, this.backgroundDrawable, AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(3.0f));
         combinedDrawable.setFullsize(true);
         setBackground(combinedDrawable);
     }
@@ -244,12 +244,12 @@ public class LegendSignatureView extends FrameLayout {
         Holder(LegendSignatureView legendSignatureView) {
             LinearLayout linearLayout = new LinearLayout(legendSignatureView.getContext());
             this.root = linearLayout;
-            linearLayout.setPadding(AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(2.0f));
+            linearLayout.setPadding(AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(2.0f));
             if (legendSignatureView.showPercentage) {
                 TextView textView = new TextView(legendSignatureView.getContext());
                 this.percentage = textView;
                 linearLayout.addView(textView);
-                this.percentage.getLayoutParams().width = AndroidUtilities.m35dp(36.0f);
+                this.percentage.getLayoutParams().width = AndroidUtilities.m36dp(36.0f);
                 this.percentage.setVisibility(8);
                 this.percentage.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 this.percentage.setTextSize(1, 13.0f);
@@ -257,7 +257,7 @@ public class LegendSignatureView extends FrameLayout {
             TextView textView2 = new TextView(legendSignatureView.getContext());
             this.signature = textView2;
             linearLayout.addView(textView2);
-            textView2.getLayoutParams().width = AndroidUtilities.m35dp(legendSignatureView.showPercentage ? 80.0f : 96.0f);
+            textView2.getLayoutParams().width = AndroidUtilities.m36dp(legendSignatureView.showPercentage ? 80.0f : 96.0f);
             TextView textView3 = new TextView(legendSignatureView.getContext());
             this.value = textView3;
             linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2));

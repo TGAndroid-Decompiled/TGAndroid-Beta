@@ -104,7 +104,7 @@ public class TopicsController extends BaseController {
             return;
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("load topics " + j + " fromCache=" + z + " loadType=" + i);
+            FileLog.m35d("load topics " + j + " fromCache=" + z + " loadType=" + i);
         }
         this.topicsIsLoading.put(j, 1);
         if (z) {
@@ -132,7 +132,7 @@ public class TopicsController extends BaseController {
             tLRPC$TL_channels_getForumTopics.offset_id = loadOffset.lastMessageId;
             tLRPC$TL_channels_getForumTopics.offset_topic = loadOffset.lastTopicId;
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("offset_date=" + loadOffset.lastMessageDate + " offset_id=" + loadOffset.lastMessageId + " offset_topic=" + loadOffset.lastTopicId);
+                FileLog.m35d("offset_date=" + loadOffset.lastMessageDate + " offset_id=" + loadOffset.lastMessageId + " offset_topic=" + loadOffset.lastTopicId);
             }
         }
         getConnectionsManager().sendRequest(tLRPC$TL_channels_getForumTopics, new RequestDelegate() {
@@ -159,7 +159,7 @@ public class TopicsController extends BaseController {
             sb.append(j);
             sb.append(" topics_count=");
             sb.append(arrayList == null ? 0 : arrayList.size());
-            FileLog.m34d(sb.toString());
+            FileLog.m35d(sb.toString());
         }
         this.topicsIsLoading.put(j, 0);
         processTopics(j, arrayList, null, z, i, -1);
@@ -987,7 +987,6 @@ public class TopicsController extends BaseController {
         int lastTopicId;
 
         private TopicsLoadOffset() {
-            TopicsController.this = r1;
         }
     }
 

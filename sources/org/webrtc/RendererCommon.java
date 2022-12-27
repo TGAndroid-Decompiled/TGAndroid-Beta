@@ -101,7 +101,7 @@ public class RendererCommon {
         fArr[13] = fArr[13] + 0.5f;
     }
 
-    public static class C43241 {
+    public static class C43271 {
         static final int[] $SwitchMap$org$webrtc$RendererCommon$ScalingType;
 
         static {
@@ -123,7 +123,7 @@ public class RendererCommon {
     }
 
     public static float convertScalingTypeToVisibleFraction(ScalingType scalingType) {
-        int i = C43241.$SwitchMap$org$webrtc$RendererCommon$ScalingType[scalingType.ordinal()];
+        int i = C43271.$SwitchMap$org$webrtc$RendererCommon$ScalingType[scalingType.ordinal()];
         if (i != 1) {
             if (i != 2) {
                 if (i == 3) {

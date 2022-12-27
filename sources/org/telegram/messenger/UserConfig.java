@@ -239,7 +239,7 @@ public class UserConfig extends BaseController {
                 }
                 edit.commit();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }

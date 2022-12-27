@@ -29,8 +29,8 @@ public class CircularProgressDrawable extends Drawable {
     }
 
     public CircularProgressDrawable(int i) {
-        this.size = AndroidUtilities.m35dp(18.0f);
-        this.thickness = AndroidUtilities.m35dp(2.25f);
+        this.size = AndroidUtilities.m36dp(18.0f);
+        this.thickness = AndroidUtilities.m36dp(2.25f);
         this.start = -1L;
         this.segment = new float[2];
         Paint paint = new Paint();
@@ -41,8 +41,8 @@ public class CircularProgressDrawable extends Drawable {
     }
 
     public CircularProgressDrawable(float f, float f2, int i) {
-        this.size = AndroidUtilities.m35dp(18.0f);
-        this.thickness = AndroidUtilities.m35dp(2.25f);
+        this.size = AndroidUtilities.m36dp(18.0f);
+        this.thickness = AndroidUtilities.m36dp(2.25f);
         this.start = -1L;
         this.segment = new float[2];
         Paint paint = new Paint();

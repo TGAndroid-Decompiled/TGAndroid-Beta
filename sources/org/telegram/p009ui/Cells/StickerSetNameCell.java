@@ -141,7 +141,7 @@ public class StickerSetNameCell extends FrameLayout {
             updateTextSearchSpan();
         } else {
             TextView textView = this.textView;
-            textView.setText(Emoji.replaceEmoji(charSequence, textView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(14.0f), false));
+            textView.setText(Emoji.replaceEmoji(charSequence, textView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(14.0f), false));
         }
         if (i != 0) {
             this.buttonView.setImageResource(i);
@@ -164,7 +164,7 @@ public class StickerSetNameCell extends FrameLayout {
         } catch (Exception unused) {
         }
         TextView textView = this.textView;
-        textView.setText(Emoji.replaceEmoji(spannableStringBuilder, textView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(14.0f), false));
+        textView.setText(Emoji.replaceEmoji(spannableStringBuilder, textView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(14.0f), false));
     }
 
     public void setOnIconClickListener(View.OnClickListener onClickListener) {
@@ -182,14 +182,14 @@ public class StickerSetNameCell extends FrameLayout {
         if (this.empty) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(1, 1073741824));
         } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(this.isEmoji ? 32.0f : 24.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(this.isEmoji ? 32.0f : 24.0f), 1073741824));
         }
     }
 
     @Override
     protected void measureChildWithMargins(View view, int i, int i2, int i3, int i4) {
         if (view == this.urlTextView) {
-            i2 += this.textView.getMeasuredWidth() + AndroidUtilities.m35dp(16.0f);
+            i2 += this.textView.getMeasuredWidth() + AndroidUtilities.m36dp(16.0f);
         }
         super.measureChildWithMargins(view, i, i2, i3, i4);
     }

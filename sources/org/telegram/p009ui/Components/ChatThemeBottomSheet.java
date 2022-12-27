@@ -123,12 +123,12 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         textView.setTextColor(getThemedColor("dialogTextBlack"));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView.setPadding(AndroidUtilities.m35dp(21.0f), AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(21.0f), AndroidUtilities.m35dp(8.0f));
+        textView.setPadding(AndroidUtilities.m36dp(21.0f), AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(21.0f), AndroidUtilities.m36dp(8.0f));
         this.rootLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 8388659, 0.0f, 0.0f, 62.0f, 0.0f));
         int themedColor = getThemedColor("featuredStickers_addButton");
-        int m35dp = AndroidUtilities.m35dp(28.0f);
+        int m36dp = AndroidUtilities.m36dp(28.0f);
         int i2 = C1072R.raw.sun_outline;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, m35dp, m35dp, false, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, m36dp, m36dp, false, null);
         this.darkThemeDrawable = rLottieDrawable;
         this.forceDark = Theme.getActiveTheme().isDark() ^ true;
         setForceDark(Theme.getActiveTheme().isDark(), false);
@@ -173,7 +173,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), 0, false);
         this.layoutManager = linearLayoutManager;
         recyclerListView.setLayoutManager(linearLayoutManager);
-        recyclerListView.setPadding(AndroidUtilities.m35dp(12.0f), 0, AndroidUtilities.m35dp(12.0f), 0);
+        recyclerListView.setPadding(AndroidUtilities.m36dp(12.0f), 0, AndroidUtilities.m36dp(12.0f), 0);
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
@@ -188,7 +188,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         this.rootLayout.addView(recyclerListView, LayoutHelper.createFrame(-1, 104.0f, 8388611, 0.0f, 44.0f, 0.0f, 0.0f));
         View view = new View(getContext());
         this.applyButton = view;
-        view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
+        view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
         view.setEnabled(false);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -330,7 +330,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         this.hintView = hintView;
         hintView.setVisibility(4);
         this.hintView.setShowingDuration(5000L);
-        this.hintView.setBottomOffset(-AndroidUtilities.m35dp(8.0f));
+        this.hintView.setBottomOffset(-AndroidUtilities.m36dp(8.0f));
         this.hintView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ChatThemeDayNightSwitchTooltip", C1072R.string.ChatThemeDayNightSwitchTooltip, this.chatActivity.getCurrentUser().first_name)));
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -996,7 +996,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
                 }
                 fileInputStream.close();
             } catch (Throwable th5) {
-                FileLog.m31e(th5);
+                FileLog.m32e(th5);
             }
             if (themeInfo.pathToWallpaper != null && !themeInfo.badWallpaper && !new File(themeInfo.pathToWallpaper).exists()) {
                 if (this.loadingWallpapers.containsKey(themeInfo)) {

@@ -285,7 +285,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.totalDeviceSize = blockCount * blockSize;
             this.totalDeviceFreeSize = availableBlocks * blockSize;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -308,28 +308,28 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         if (cacheChart != null) {
             boolean z = this.calculating;
             if (!z && this.totalSize > 0) {
-                long[] jArr = new long[9];
+                CacheChart.SegmentSize[] segmentSizeArr = new CacheChart.SegmentSize[9];
                 for (int i = 0; i < this.itemInners.size(); i++) {
                     ItemInner itemInner = this.itemInners.get(i);
                     if (itemInner.viewType == 11) {
                         int i2 = itemInner.index;
                         if (i2 < 0) {
-                            if (this.collapsed && this.selected[8]) {
-                                jArr[8] = itemInner.size;
+                            if (this.collapsed) {
+                                segmentSizeArr[8] = CacheChart.SegmentSize.m13of(itemInner.size, this.selected[8]);
                             }
-                        } else if (this.selected[i2]) {
-                            jArr[i2] = itemInner.size;
+                        } else {
+                            segmentSizeArr[i2] = CacheChart.SegmentSize.m13of(itemInner.size, this.selected[i2]);
                         }
                     }
                 }
                 if (System.currentTimeMillis() - this.fragmentCreateTime < 80) {
                     this.cacheChart.loadingFloat.set(0.0f, true);
                 }
-                this.cacheChart.setSegments(this.totalSize, jArr);
+                this.cacheChart.setSegments(this.totalSize, segmentSizeArr);
             } else if (z) {
-                cacheChart.setSegments(-1L, new long[0]);
+                cacheChart.setSegments(-1L, new CacheChart.SegmentSize[0]);
             } else {
-                cacheChart.setSegments(0L, new long[0]);
+                cacheChart.setSegments(0L, new CacheChart.SegmentSize[0]);
             }
         }
         ClearCacheButtonInternal clearCacheButtonInternal = this.clearCacheButton;
@@ -390,14 +390,14 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             try {
                 getMessagesStorage().getUsersInternal(TextUtils.join(",", arrayList), arrayList4);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         if (!arrayList2.isEmpty()) {
             try {
                 getMessagesStorage().getChatsInternal(TextUtils.join(",", arrayList2), arrayList5);
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
         }
         int i = 0;
@@ -767,7 +767,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 this.progressDialog = null;
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         getMediaDataController().ringtoneDataStore.checkRingtoneSoundsLoaded();
         this.cacheRemovedTooltip.setInfoText(LocaleController.formatString("CacheWasCleared", C1072R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j)));
@@ -883,20 +883,20 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         this.actionModeTitle = animatedTextView;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         animatedTextView.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
-        this.actionModeTitle.setTextSize(AndroidUtilities.m35dp(18.0f));
+        this.actionModeTitle.setTextSize(AndroidUtilities.m36dp(18.0f));
         this.actionModeTitle.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.actionModeTitle.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         frameLayout.addView(this.actionModeTitle, LayoutHelper.createFrame(-1, 18.0f, 19, 0.0f, -11.0f, 0.0f, 0.0f));
         AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true);
         this.actionModeSubtitle = animatedTextView2;
         animatedTextView2.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
-        this.actionModeSubtitle.setTextSize(AndroidUtilities.m35dp(14.0f));
+        this.actionModeSubtitle.setTextSize(AndroidUtilities.m36dp(14.0f));
         this.actionModeSubtitle.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
         frameLayout.addView(this.actionModeSubtitle, LayoutHelper.createFrame(-1, 18.0f, 19, 0.0f, 10.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.actionModeClearButton = textView;
         textView.setTextSize(1, 14.0f);
-        this.actionModeClearButton.setPadding(AndroidUtilities.m35dp(14.0f), 0, AndroidUtilities.m35dp(14.0f), 0);
+        this.actionModeClearButton.setPadding(AndroidUtilities.m36dp(14.0f), 0, AndroidUtilities.m36dp(14.0f), 0);
         this.actionModeClearButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         this.actionModeClearButton.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 6.0f));
         this.actionModeClearButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -917,7 +917,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         this.listAdapter = new ListAdapter(context);
         NestedSizeNotifierLayout nestedSizeNotifierLayout = new NestedSizeNotifierLayout(context) {
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 boolean z = !isPinnedToTop();
                 if (z || CacheControlActivity.this.actionBarShadowAlpha == 0.0f) {
@@ -941,11 +941,16 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         nestedSizeNotifierLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 if (CacheControlActivity.this.sectionsStartRow >= 0 && CacheControlActivity.this.sectionsEndRow >= 0) {
                     drawSectionBackgroundExclusive(canvas, CacheControlActivity.this.sectionsStartRow - 1, CacheControlActivity.this.sectionsEndRow, Theme.getColor("windowBackgroundWhite"));
                 }
                 super.dispatchDraw(canvas);
+            }
+
+            @Override
+            protected boolean allowSelectChildAtPosition(View view) {
+                return view != CacheControlActivity.this.cacheChart;
             }
         };
         this.listView = recyclerListView;
@@ -1012,45 +1017,19 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$createView$12(View view, int i, float f, float f2) {
-        int childAdapterPosition;
         if (getParentActivity() == null) {
             return;
         }
         ItemInner itemInner = this.itemInners.get(i);
         if (itemInner.viewType == 11 && (view instanceof CheckBoxCell)) {
-            int i2 = itemInner.index;
-            if (i2 < 0) {
+            if (itemInner.index < 0) {
                 this.collapsed = !this.collapsed;
                 updateRows();
                 updateChart();
                 return;
-            } else if (this.selected[i2] && sectionsSelected() <= 1) {
-                BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                AndroidUtilities.shakeViewSpring(view, -3.0f);
-                return;
-            } else {
-                boolean[] zArr = this.selected;
-                int i3 = itemInner.index;
-                boolean z = !zArr[i3];
-                zArr[i3] = z;
-                ((CheckBoxCell) view).setChecked(z, true);
-                if (itemInner.pad) {
-                    int i4 = 0;
-                    while (true) {
-                        if (i4 >= this.listView.getChildCount()) {
-                            break;
-                        }
-                        View childAt = this.listView.getChildAt(i4);
-                        if ((childAt instanceof CheckBoxCell) && (childAdapterPosition = this.listView.getChildAdapterPosition(childAt)) >= 0 && childAdapterPosition < this.itemInners.size() && this.itemInners.get(childAdapterPosition).index < 0) {
-                            ((CheckBoxCell) childAt).setChecked(isOtherSelected(), true);
-                            break;
-                        }
-                        i4++;
-                    }
-                }
-                updateChart();
-                return;
             }
+            toggleSection(itemInner, view);
+            return;
         }
         DialogFileEntities dialogFileEntities = itemInner.entities;
         if (dialogFileEntities != null) {
@@ -1062,8 +1041,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             keepMediaPopupView.setParentWindow(createSimplePopup);
             keepMediaPopupView.setCallback(new KeepMediaPopupView.Callback() {
                 @Override
-                public final void onKeepMediaChange(int i5, int i6) {
-                    CacheControlActivity.this.lambda$createView$11(i5, i6);
+                public final void onKeepMediaChange(int i2, int i3) {
+                    CacheControlActivity.this.lambda$createView$11(i2, i3);
                 }
             });
         }
@@ -1268,7 +1247,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1322,7 +1301,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     alertDialog.dismiss();
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             this.progressDialog = null;
             if (this.listAdapter != null) {
@@ -1353,7 +1332,6 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
         public CacheChartHeader(Context context) {
             super(context);
-            CacheControlActivity.this = r20;
             this.subtitle = new TextView[3];
             this.progressRect = new RectF();
             this.loadingDrawable = new LoadingDrawable();
@@ -1369,7 +1347,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.title = animatedTextView;
             animatedTextView.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
             this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.title.setTextSize(AndroidUtilities.m35dp(20.0f));
+            this.title.setTextSize(AndroidUtilities.m36dp(20.0f));
             this.title.setText(LocaleController.getString("StorageUsage", C1072R.string.StorageUsage));
             this.title.setGravity(17);
             this.title.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
@@ -1379,7 +1357,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 this.subtitle[i] = new TextView(context);
                 this.subtitle[i].setTextSize(1, 13.0f);
                 this.subtitle[i].setGravity(17);
-                this.subtitle[i].setPadding(AndroidUtilities.m35dp(24.0f), 0, AndroidUtilities.m35dp(24.0f), 0);
+                this.subtitle[i].setPadding(AndroidUtilities.m36dp(24.0f), 0, AndroidUtilities.m36dp(24.0f), 0);
                 if (i == 0) {
                     this.subtitle[i].setText(LocaleController.getString("StorageUsageCalculating", C1072R.string.StorageUsageCalculating));
                 } else if (i == 1) {
@@ -1400,7 +1378,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.bottomImage.setBackground(mutate);
             FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, 24, 87);
             ((ViewGroup.MarginLayoutParams) createFrame).leftMargin = -this.bottomImage.getPaddingLeft();
-            ((ViewGroup.MarginLayoutParams) createFrame).bottomMargin = -AndroidUtilities.m35dp(11.0f);
+            ((ViewGroup.MarginLayoutParams) createFrame).bottomMargin = -AndroidUtilities.m36dp(11.0f);
             ((ViewGroup.MarginLayoutParams) createFrame).rightMargin = -this.bottomImage.getPaddingRight();
             addView(this.bottomImage, createFrame);
             this.loadingDrawable.setColors(Theme.getColor("actionBarActionModeDefaultSelector"), Theme.multAlpha(Theme.getColor("windowBackgroundWhiteGrayText4"), 0.2f));
@@ -1446,9 +1424,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             int size = View.MeasureSpec.getSize(i);
             double d = size;
             Double.isNaN(d);
-            int min = (int) Math.min(AndroidUtilities.m35dp(174.0f), d * 0.8d);
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(90.0f), 1073741824));
-            this.progressRect.set((size - min) / 2.0f, AndroidUtilities.m35dp(60.0f), (size + min) / 2.0f, AndroidUtilities.m35dp(64.0f));
+            int min = (int) Math.min(AndroidUtilities.m36dp(174.0f), d * 0.8d);
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(90.0f), 1073741824));
+            this.progressRect.set((size - min) / 2.0f, AndroidUtilities.m36dp(60.0f), (size + min) / 2.0f, AndroidUtilities.m36dp(64.0f));
         }
 
         @Override
@@ -1466,11 +1444,11 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             paint.setAlpha((int) (paint.getAlpha() * max));
             RectF rectF = AndroidUtilities.rectTmp;
             float f6 = 1.0f - f;
-            float max2 = Math.max(this.progressRect.left + (Math.max(AndroidUtilities.m35dp(4.0f), this.progressRect.width() * f5) * f6), this.progressRect.left + (Math.max(AndroidUtilities.m35dp(4.0f), this.progressRect.width() * f3) * f6)) + AndroidUtilities.m35dp(1.0f);
+            float max2 = Math.max(this.progressRect.left + (Math.max(AndroidUtilities.m36dp(4.0f), this.progressRect.width() * f5) * f6), this.progressRect.left + (Math.max(AndroidUtilities.m36dp(4.0f), this.progressRect.width() * f3) * f6)) + AndroidUtilities.m36dp(1.0f);
             RectF rectF2 = this.progressRect;
             rectF.set(max2, rectF2.top, rectF2.right, rectF2.bottom);
-            if (rectF.left < rectF.right && rectF.width() > AndroidUtilities.m35dp(3.0f)) {
-                drawRoundRect(canvas, rectF, AndroidUtilities.m35dp(AndroidUtilities.lerp(1, 2, f)), AndroidUtilities.m35dp(2.0f), this.loadingBackgroundPaint);
+            if (rectF.left < rectF.right && rectF.width() > AndroidUtilities.m36dp(3.0f)) {
+                drawRoundRect(canvas, rectF, AndroidUtilities.m36dp(AndroidUtilities.lerp(1, 2, f)), AndroidUtilities.m36dp(2.0f), this.loadingBackgroundPaint);
             }
             this.loadingDrawable.setBounds(this.progressRect);
             this.loadingDrawable.setAlpha((int) (255.0f * max * f));
@@ -1478,19 +1456,19 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.usedPercentPaint.setColor(Theme.percentSV(Theme.getColor("radioBackgroundChecked"), Theme.getColor("actionBarActionModeDefaultSelector"), 0.922f, 1.8f));
             Paint paint2 = this.usedPercentPaint;
             paint2.setAlpha((int) (paint2.getAlpha() * max));
-            float max3 = this.progressRect.left + (Math.max(AndroidUtilities.m35dp(4.0f), this.progressRect.width() * f3) * f6) + AndroidUtilities.m35dp(1.0f);
+            float max3 = this.progressRect.left + (Math.max(AndroidUtilities.m36dp(4.0f), this.progressRect.width() * f3) * f6) + AndroidUtilities.m36dp(1.0f);
             RectF rectF3 = this.progressRect;
-            rectF.set(max3, rectF3.top, rectF3.left + (Math.max(AndroidUtilities.m35dp(4.0f), this.progressRect.width() * f5) * f6), this.progressRect.bottom);
-            if (rectF.width() > AndroidUtilities.m35dp(3.0f)) {
-                drawRoundRect(canvas, rectF, AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(f5 > 0.97f ? 2.0f : 1.0f), this.usedPercentPaint);
+            rectF.set(max3, rectF3.top, rectF3.left + (Math.max(AndroidUtilities.m36dp(4.0f), this.progressRect.width() * f5) * f6), this.progressRect.bottom);
+            if (rectF.width() > AndroidUtilities.m36dp(3.0f)) {
+                drawRoundRect(canvas, rectF, AndroidUtilities.m36dp(1.0f), AndroidUtilities.m36dp(f5 > 0.97f ? 2.0f : 1.0f), this.usedPercentPaint);
             }
             this.percentPaint.setColor(Theme.getColor("radioBackgroundChecked"));
             Paint paint3 = this.percentPaint;
             paint3.setAlpha((int) (paint3.getAlpha() * max));
             RectF rectF4 = this.progressRect;
             float f7 = rectF4.left;
-            rectF.set(f7, rectF4.top, (f6 * Math.max(AndroidUtilities.m35dp(4.0f), this.progressRect.width() * f3)) + f7, this.progressRect.bottom);
-            drawRoundRect(canvas, rectF, AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(f3 > 0.97f ? 2.0f : 1.0f), this.percentPaint);
+            rectF.set(f7, rectF4.top, (f6 * Math.max(AndroidUtilities.m36dp(4.0f), this.progressRect.width() * f3)) + f7, this.progressRect.bottom);
+            drawRoundRect(canvas, rectF, AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(f3 > 0.97f ? 2.0f : 1.0f), this.percentPaint);
             if (f > 0.0f || this.percentAnimated.isInProgress()) {
                 invalidate();
             }
@@ -1524,7 +1502,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     public class ClearCacheButtonInternal extends ClearCacheButton {
         public ClearCacheButtonInternal(Context context) {
             super(context);
-            CacheControlActivity.this = r1;
+            ((ViewGroup.MarginLayoutParams) this.button.getLayoutParams()).topMargin = AndroidUtilities.m36dp(5.0f);
             this.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -1569,14 +1547,14 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             FrameLayout frameLayout = new FrameLayout(context) {
                 @Override
                 protected void dispatchDraw(Canvas canvas) {
-                    int measuredWidth = (((getMeasuredWidth() - AndroidUtilities.m35dp(8.0f)) - ClearCacheButton.this.valueTextView.getCurrentWidth()) + ClearCacheButton.this.textView.getCurrentWidth()) / 2;
+                    int measuredWidth = (((getMeasuredWidth() - AndroidUtilities.m36dp(8.0f)) - ClearCacheButton.this.valueTextView.getCurrentWidth()) + ClearCacheButton.this.textView.getCurrentWidth()) / 2;
                     if (LocaleController.isRTL) {
                         super.dispatchDraw(canvas);
                         return;
                     }
                     ClearCacheButton.this.textView.setBounds(0, 0, measuredWidth, getHeight());
                     ClearCacheButton.this.textView.draw(canvas);
-                    ClearCacheButton.this.valueTextView.setBounds(measuredWidth + AndroidUtilities.m35dp(8.0f), 0, getWidth(), getHeight());
+                    ClearCacheButton.this.valueTextView.setBounds(measuredWidth + AndroidUtilities.m36dp(8.0f), 0, getWidth(), getHeight());
                     ClearCacheButton.this.valueTextView.draw(canvas);
                 }
 
@@ -1603,7 +1581,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             animatedTextDrawable.setAnimationProperties(0.25f, 0L, 300L, cubicBezierInterpolator);
             this.textView.setCallback(this.button);
-            this.textView.setTextSize(AndroidUtilities.m35dp(14.0f));
+            this.textView.setTextSize(AndroidUtilities.m36dp(14.0f));
             this.textView.setText(LocaleController.getString("ClearCache", C1072R.string.ClearCache));
             this.textView.setGravity(5);
             this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -1612,7 +1590,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.valueTextView = animatedTextDrawable2;
             animatedTextDrawable2.setAnimationProperties(0.25f, 0L, 300L, cubicBezierInterpolator);
             this.valueTextView.setCallback(this.button);
-            this.valueTextView.setTextSize(AndroidUtilities.m35dp(14.0f));
+            this.valueTextView.setTextSize(AndroidUtilities.m36dp(14.0f));
             this.valueTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.valueTextView.setTextColor(Theme.adaptHSV(Theme.getColor("featuredStickers_addButton"), -0.46f, 0.08f));
             this.valueTextView.setText("");
@@ -1664,6 +1642,55 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         return true;
     }
 
+    private void toggleSection(ItemInner itemInner, View view) {
+        boolean[] zArr;
+        int i;
+        int childAdapterPosition;
+        int i2 = itemInner.index;
+        if (i2 < 0) {
+            toggleOtherSelected(view);
+        } else if (this.selected[i2] && sectionsSelected() <= 1) {
+            BotWebViewVibrationEffect.APP_ERROR.vibrate();
+            if (view != null) {
+                AndroidUtilities.shakeViewSpring(view, -3.0f);
+            }
+        } else {
+            int i3 = 0;
+            if (view instanceof CheckBoxCell) {
+                boolean[] zArr2 = this.selected;
+                int i4 = itemInner.index;
+                boolean z = !zArr2[i4];
+                zArr2[i4] = z;
+                ((CheckBoxCell) view).setChecked(z, true);
+            } else {
+                this.selected[itemInner.index] = !zArr[i];
+                int indexOf = this.itemInners.indexOf(itemInner);
+                if (indexOf >= 0) {
+                    for (int i5 = 0; i5 < this.listView.getChildCount(); i5++) {
+                        View childAt = this.listView.getChildAt(i5);
+                        if ((childAt instanceof CheckBoxCell) && indexOf == this.listView.getChildAdapterPosition(childAt)) {
+                            ((CheckBoxCell) childAt).setChecked(this.selected[itemInner.index], true);
+                        }
+                    }
+                }
+            }
+            if (itemInner.pad) {
+                while (true) {
+                    if (i3 >= this.listView.getChildCount()) {
+                        break;
+                    }
+                    View childAt2 = this.listView.getChildAt(i3);
+                    if ((childAt2 instanceof CheckBoxCell) && (childAdapterPosition = this.listView.getChildAdapterPosition(childAt2)) >= 0 && childAdapterPosition < this.itemInners.size() && this.itemInners.get(childAdapterPosition).index < 0) {
+                        ((CheckBoxCell) childAt2).setChecked(isOtherSelected(), true);
+                        break;
+                    }
+                    i3++;
+                }
+            }
+            updateChart();
+        }
+    }
+
     public void toggleOtherSelected(View view) {
         int i;
         int childAdapterPosition;
@@ -1687,7 +1714,10 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             }
             if (!z) {
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                AndroidUtilities.shakeViewSpring(view, -3.0f);
+                if (view != null) {
+                    AndroidUtilities.shakeViewSpring(view, -3.0f);
+                    return;
+                }
                 return;
             }
         }
@@ -1734,7 +1764,6 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         private Context mContext;
 
         public ListAdapter(Context context) {
-            CacheControlActivity.this = r1;
             this.mContext = context;
         }
 
@@ -1757,6 +1786,57 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 SharedConfig.setKeepMedia(1);
             } else if (i == 3) {
                 SharedConfig.setKeepMedia(2);
+            }
+        }
+
+        class C13311 extends CacheChart {
+            public static int lambda$onSectionDown$0(int i) {
+                return i;
+            }
+
+            @Override
+            protected void onSectionClick(int i) {
+            }
+
+            C13311(Context context) {
+                super(context);
+            }
+
+            @Override
+            protected void onSectionDown(int i, boolean z) {
+                if (!z) {
+                    CacheControlActivity.this.listView.removeHighlightRow();
+                    return;
+                }
+                final int i2 = -1;
+                if (i == 8) {
+                    i = -1;
+                }
+                int i3 = 0;
+                while (true) {
+                    if (i3 < CacheControlActivity.this.itemInners.size()) {
+                        ItemInner itemInner = (ItemInner) CacheControlActivity.this.itemInners.get(i3);
+                        if (itemInner != null && itemInner.viewType == 11 && itemInner.index == i) {
+                            i2 = i3;
+                            break;
+                        }
+                        i3++;
+                    } else {
+                        break;
+                    }
+                }
+                if (i2 >= 0) {
+                    CacheControlActivity.this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
+                        @Override
+                        public final int run() {
+                            int lambda$onSectionDown$0;
+                            lambda$onSectionDown$0 = CacheControlActivity.ListAdapter.C13311.lambda$onSectionDown$0(i2);
+                            return lambda$onSectionDown$0;
+                        }
+                    }, 0);
+                } else {
+                    CacheControlActivity.this.listView.removeHighlightRow();
+                }
             }
         }
 
@@ -1810,12 +1890,12 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     case 8:
                         FrameLayout frameLayout2 = CacheControlActivity.this.cachedMediaLayout = new CachedMediaLayout(this.mContext, CacheControlActivity.this) {
                             @Override
-                            public void onMeasure(int i3, int i4) {
+                            protected void onMeasure(int i3, int i4) {
                                 super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4) - (C1133ActionBar.getCurrentActionBarHeight() / 2), 1073741824));
                             }
 
                             @Override
-                            public void showActionMode(boolean z) {
+                            protected void showActionMode(boolean z) {
                                 if (z) {
                                     CacheControlActivity.this.updateActionBar(true);
                                     ((BaseFragment) CacheControlActivity.this).actionBar.showActionMode();
@@ -1872,7 +1952,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         frameLayout = frameLayout2;
                         break;
                     case 9:
-                        view = CacheControlActivity.this.cacheChart = new CacheChart(this.mContext);
+                        view = CacheControlActivity.this.cacheChart = new C13311(this.mContext);
                         break;
                     case 10:
                         view = CacheControlActivity.this.cacheChartHeader = new CacheChartHeader(this.mContext);
@@ -2188,7 +2268,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, !LocaleController.isRTL);
             this.valueTextView = animatedTextView;
             animatedTextView.setAnimationProperties(0.55f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.valueTextView.setTextSize(AndroidUtilities.m35dp(16.0f));
+            this.valueTextView.setTextSize(AndroidUtilities.m36dp(16.0f));
             this.valueTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
             this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteValueText", resourcesProvider));
             AnimatedTextView animatedTextView2 = this.valueTextView;
@@ -2202,17 +2282,17 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
         @Override
         protected void onMeasure(int i, int i2) {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m35dp(50.0f) + (this.needDivider ? 1 : 0));
-            int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.m35dp(34.0f);
+            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m36dp(50.0f) + (this.needDivider ? 1 : 0));
+            int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.m36dp(34.0f);
             int i3 = measuredWidth / 2;
             if (this.imageView.getVisibility() == 0) {
-                this.imageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(38.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(38.0f), 1073741824));
+                this.imageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(38.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(38.0f), 1073741824));
             }
             if (this.valueTextView.getVisibility() == 0) {
                 this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(i3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-                measuredWidth = (measuredWidth - this.valueTextView.getMeasuredWidth()) - AndroidUtilities.m35dp(8.0f);
+                measuredWidth = (measuredWidth - this.valueTextView.getMeasuredWidth()) - AndroidUtilities.m36dp(8.0f);
             }
-            int measuredWidth2 = this.valueTextView.getMeasuredWidth() + AndroidUtilities.m35dp(12.0f);
+            int measuredWidth2 = this.valueTextView.getMeasuredWidth() + AndroidUtilities.m36dp(12.0f);
             if (LocaleController.isRTL) {
                 ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).leftMargin = measuredWidth2;
             } else {
@@ -2221,7 +2301,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.textView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth - measuredWidth2, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
             CheckBox2 checkBox2 = this.checkBox;
             if (checkBox2 != null) {
-                checkBox2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(24.0f), 1073741824));
+                checkBox2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(24.0f), 1073741824));
             }
         }
 
@@ -2254,7 +2334,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
 
         public void setTextAndValue(CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
-            this.textView.setText(Emoji.replaceEmoji(charSequence, this.textView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(16.0f), false));
+            this.textView.setText(Emoji.replaceEmoji(charSequence, this.textView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(16.0f), false));
             if (charSequence2 != null) {
                 this.valueTextView.setText(charSequence2, z);
                 this.valueTextView.setVisibility(0);
@@ -2280,7 +2360,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         protected void dispatchDraw(Canvas canvas) {
             super.dispatchDraw(canvas);
             if (this.needDivider) {
-                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(72.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(72.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         }
 

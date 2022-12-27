@@ -89,8 +89,8 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         if (!AndroidUtilities.isTablet() || AndroidUtilities.isInMultiwindow || AndroidUtilities.isSmallTablet()) {
             return;
         }
-        iArr[0] = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m35dp(530.0f), View.MeasureSpec.getSize(iArr[0])), 1073741824);
-        iArr[1] = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m35dp(528.0f), View.MeasureSpec.getSize(iArr[1])), 1073741824);
+        iArr[0] = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m36dp(530.0f), View.MeasureSpec.getSize(iArr[0])), 1073741824);
+        iArr[1] = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m36dp(528.0f), View.MeasureSpec.getSize(iArr[1])), 1073741824);
     }
 
     @Override
@@ -152,7 +152,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         return true;
     }
 
-    public static final class EmptyFragment extends BaseFragment {
+    private static final class EmptyFragment extends BaseFragment {
         private EmptyFragment() {
         }
 

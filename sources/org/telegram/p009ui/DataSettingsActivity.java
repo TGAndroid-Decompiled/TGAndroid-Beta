@@ -273,7 +273,7 @@ public class DataSettingsActivity extends BaseFragment {
             SharedConfig.toggleSaveToGalleryFlag(i4);
             ((TextCheckCell) view).setChecked((SharedConfig.saveToGalleryFlags & i4) != 0);
         } else if (i == this.mobileRow || i == this.roamingRow || i == this.wifiRow) {
-            if ((LocaleController.isRTL && f <= AndroidUtilities.m35dp(76.0f)) || (!LocaleController.isRTL && f >= view.getMeasuredWidth() - AndroidUtilities.m35dp(76.0f))) {
+            if ((LocaleController.isRTL && f <= AndroidUtilities.m36dp(76.0f)) || (!LocaleController.isRTL && f >= view.getMeasuredWidth() - AndroidUtilities.m36dp(76.0f))) {
                 boolean isRowEnabled = this.listAdapter.isRowEnabled(this.resetDownloadRow);
                 NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) view;
                 boolean isChecked = notificationsCheckCell.isChecked();
@@ -402,7 +402,7 @@ public class DataSettingsActivity extends BaseFragment {
             for (int i9 = 0; i9 < size2; i9++) {
                 final String absolutePath3 = this.storageDirs.get(i9).getAbsolutePath();
                 RadioColorCell radioColorCell = new RadioColorCell(context);
-                radioColorCell.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+                radioColorCell.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
                 radioColorCell.setTag(Integer.valueOf(i9));
                 radioColorCell.setCheckColor(Theme.getColor("radioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
                 radioColorCell.setTextAndValue(absolutePath3, absolutePath3.startsWith(absolutePath));
@@ -576,7 +576,6 @@ public class DataSettingsActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
-            DataSettingsActivity.this = r1;
             this.mContext = context;
         }
 

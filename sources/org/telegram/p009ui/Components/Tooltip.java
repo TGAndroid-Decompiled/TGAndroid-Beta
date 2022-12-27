@@ -35,10 +35,10 @@ public class Tooltip extends TextView {
                 Tooltip.this.lambda$new$0();
             }
         };
-        setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.m35dp(3.0f), i));
+        setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.m36dp(3.0f), i));
         setTextColor(i2);
         setTextSize(1, 14.0f);
-        setPadding(AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(7.0f));
+        setPadding(AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(7.0f));
         setGravity(16);
         viewGroup.addView(this, LayoutHelper.createFrame(-2, -2.0f, 51, 5.0f, 0.0f, 5.0f, 3.0f));
         setVisibility(8);
@@ -64,7 +64,7 @@ public class Tooltip extends TextView {
         }
         int width = (i2 + (this.anchor.getWidth() / 2)) - (getMeasuredWidth() / 2);
         if (width >= 0) {
-            i = getMeasuredWidth() + width > view.getMeasuredWidth() ? (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.m35dp(16.0f) : width;
+            i = getMeasuredWidth() + width > view.getMeasuredWidth() ? (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.m36dp(16.0f) : width;
         }
         setTranslationX(i);
         setTranslationY(i3 - getMeasuredHeight());

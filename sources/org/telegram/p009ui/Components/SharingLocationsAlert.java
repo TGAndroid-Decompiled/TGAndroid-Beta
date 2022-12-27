@@ -74,22 +74,22 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
                     size -= AndroidUtilities.statusBarHeight;
                 }
                 getMeasuredWidth();
-                int m35dp = AndroidUtilities.m35dp(56.0f) + AndroidUtilities.m35dp(56.0f) + 1 + (LocationController.getLocationsCount() * AndroidUtilities.m35dp(54.0f));
+                int m36dp = AndroidUtilities.m36dp(56.0f) + AndroidUtilities.m36dp(56.0f) + 1 + (LocationController.getLocationsCount() * AndroidUtilities.m36dp(54.0f));
                 int i4 = size / 5;
-                if (m35dp < i4 * 3) {
-                    i3 = AndroidUtilities.m35dp(8.0f);
+                if (m36dp < i4 * 3) {
+                    i3 = AndroidUtilities.m36dp(8.0f);
                 } else {
                     i3 = i4 * 2;
-                    if (m35dp < size) {
-                        i3 -= size - m35dp;
+                    if (m36dp < size) {
+                        i3 -= size - m36dp;
                     }
                 }
                 if (SharingLocationsAlert.this.listView.getPaddingTop() != i3) {
                     SharingLocationsAlert.this.ignoreLayout = true;
-                    SharingLocationsAlert.this.listView.setPadding(0, i3, 0, AndroidUtilities.m35dp(8.0f));
+                    SharingLocationsAlert.this.listView.setPadding(0, i3, 0, AndroidUtilities.m36dp(8.0f));
                     SharingLocationsAlert.this.ignoreLayout = false;
                 }
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min(m35dp, size), 1073741824));
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min(m36dp, size), 1073741824));
             }
 
             @Override
@@ -160,7 +160,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         PickerBottomLayout pickerBottomLayout = new PickerBottomLayout(context, false);
         pickerBottomLayout.setBackgroundColor(getThemedColor("dialogBackground"));
         this.containerView.addView(pickerBottomLayout, LayoutHelper.createFrame(-1, 48, 83));
-        pickerBottomLayout.cancelButton.setPadding(AndroidUtilities.m35dp(18.0f), 0, AndroidUtilities.m35dp(18.0f), 0);
+        pickerBottomLayout.cancelButton.setPadding(AndroidUtilities.m36dp(18.0f), 0, AndroidUtilities.m36dp(18.0f), 0);
         pickerBottomLayout.cancelButton.setTextColor(getThemedColor("dialogTextRed"));
         pickerBottomLayout.cancelButton.setText(LocaleController.getString("StopAllLocationSharings", C1072R.string.StopAllLocationSharings));
         pickerBottomLayout.cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -171,7 +171,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         });
         pickerBottomLayout.doneButtonTextView.setTextColor(getThemedColor("dialogTextBlue2"));
         pickerBottomLayout.doneButtonTextView.setText(LocaleController.getString("Close", C1072R.string.Close).toUpperCase());
-        pickerBottomLayout.doneButton.setPadding(AndroidUtilities.m35dp(18.0f), 0, AndroidUtilities.m35dp(18.0f), 0);
+        pickerBottomLayout.doneButton.setPadding(AndroidUtilities.m36dp(18.0f), 0, AndroidUtilities.m36dp(18.0f), 0);
         pickerBottomLayout.doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -215,7 +215,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         int i = 0;
         View childAt = this.listView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-        int top = childAt.getTop() - AndroidUtilities.m35dp(8.0f);
+        int top = childAt.getTop() - AndroidUtilities.m36dp(8.0f);
         if (top > 0 && holder != null && holder.getAdapterPosition() == 0) {
             i = top;
         }
@@ -256,7 +256,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.liveLocationsChanged);
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+    private class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context context;
 
         @Override
@@ -265,7 +265,6 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
         }
 
         public ListAdapter(Context context) {
-            SharingLocationsAlert.this = r1;
             this.context = context;
         }
 
@@ -288,12 +287,12 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
                 sharingLiveLocationCell = new FrameLayout(this, this.context) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f) + 1, 1073741824));
+                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f) + 1, 1073741824));
                     }
 
                     @Override
                     protected void onDraw(Canvas canvas) {
-                        canvas.drawLine(0.0f, AndroidUtilities.m35dp(40.0f), getMeasuredWidth(), AndroidUtilities.m35dp(40.0f), Theme.dividerPaint);
+                        canvas.drawLine(0.0f, AndroidUtilities.m36dp(40.0f), getMeasuredWidth(), AndroidUtilities.m36dp(40.0f), Theme.dividerPaint);
                     }
                 };
                 sharingLiveLocationCell.setWillNotDraw(false);
@@ -301,7 +300,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
                 SharingLocationsAlert.this.textView.setTextColor(SharingLocationsAlert.this.getThemedColor("dialogIcon"));
                 SharingLocationsAlert.this.textView.setTextSize(1, 14.0f);
                 SharingLocationsAlert.this.textView.setGravity(17);
-                SharingLocationsAlert.this.textView.setPadding(0, 0, 0, AndroidUtilities.m35dp(8.0f));
+                SharingLocationsAlert.this.textView.setPadding(0, 0, 0, AndroidUtilities.m36dp(8.0f));
                 sharingLiveLocationCell.addView(SharingLocationsAlert.this.textView, LayoutHelper.createFrame(-1, 40.0f));
             }
             return new RecyclerListView.Holder(sharingLiveLocationCell);

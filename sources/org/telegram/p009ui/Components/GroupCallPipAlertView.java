@@ -103,12 +103,12 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
             }
         };
         this.groupInfoContainer = frameLayout;
-        frameLayout.setPadding(AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(8.0f));
+        frameLayout.setPadding(AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(22.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(22.0f));
         this.groupInfoContainer.addView(this.avatarImageView, LayoutHelper.createFrame(44, 44.0f));
-        this.groupInfoContainer.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), 0, ColorUtils.setAlphaComponent(-1, 76)));
+        this.groupInfoContainer.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), 0, ColorUtils.setAlphaComponent(-1, 76)));
         this.groupInfoContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -199,7 +199,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
                     }
                     return;
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     return;
                 }
             }
@@ -224,7 +224,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(230.0f), 1073741824), i2);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(230.0f), 1073741824), i2);
     }
 
     @Override

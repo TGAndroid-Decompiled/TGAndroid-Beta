@@ -211,28 +211,27 @@ public class SessionBottomSheet extends BottomSheet {
         linearLayout.addView(itemView5);
         if (!z) {
             TextView textView3 = new TextView(parentActivity);
-            textView3.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+            textView3.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
             textView3.setGravity(17);
             textView3.setTextSize(1, 14.0f);
             textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView3.setText(LocaleController.getString("TerminateSession", C1072R.string.TerminateSession));
             textView3.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-            textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("chat_attachAudioBackground"), ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), 120)));
+            textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), Theme.getColor("chat_attachAudioBackground"), ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), 120)));
             linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
-            textView3.setOnClickListener(new View$OnClickListenerC40718(callback, tLRPC$TL_authorization, baseFragment));
+            textView3.setOnClickListener(new View$OnClickListenerC40748(callback, tLRPC$TL_authorization, baseFragment));
         }
         ScrollView scrollView = new ScrollView(parentActivity);
         scrollView.addView(linearLayout);
         setCustomView(scrollView);
     }
 
-    public class View$OnClickListenerC40718 implements View.OnClickListener {
+    public class View$OnClickListenerC40748 implements View.OnClickListener {
         final Callback val$callback;
         final BaseFragment val$fragment;
         final TLRPC$TL_authorization val$session;
 
-        View$OnClickListenerC40718(Callback callback, TLRPC$TL_authorization tLRPC$TL_authorization, BaseFragment baseFragment) {
-            SessionBottomSheet.this = r1;
+        View$OnClickListenerC40748(Callback callback, TLRPC$TL_authorization tLRPC$TL_authorization, BaseFragment baseFragment) {
             this.val$callback = callback;
             this.val$session = tLRPC$TL_authorization;
             this.val$fragment = baseFragment;
@@ -249,7 +248,7 @@ public class SessionBottomSheet extends BottomSheet {
             builder.setPositiveButton(string, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    SessionBottomSheet.View$OnClickListenerC40718.this.lambda$onClick$0(callback, tLRPC$TL_authorization, dialogInterface, i);
+                    SessionBottomSheet.View$OnClickListenerC40748.this.lambda$onClick$0(callback, tLRPC$TL_authorization, dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
@@ -295,14 +294,14 @@ public class SessionBottomSheet extends BottomSheet {
 
     public void lambda$copyText$1(String str, DialogInterface dialogInterface, int i) {
         ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", str));
-        BulletinFactory.m14of(getContainer(), null).createCopyBulletin(LocaleController.getString("TextCopied", C1072R.string.TextCopied)).show();
+        BulletinFactory.m15of(getContainer(), null).createCopyBulletin(LocaleController.getString("TextCopied", C1072R.string.TextCopied)).show();
     }
 
     private void setAnimation(org.telegram.tgnet.TLRPC$TL_authorization r11, org.telegram.p009ui.Components.RLottieImageView r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.SessionBottomSheet.setAnimation(org.telegram.tgnet.TLRPC$TL_authorization, org.telegram.ui.Components.RLottieImageView):void");
     }
 
-    public static class ItemView extends FrameLayout {
+    private static class ItemView extends FrameLayout {
         TextView descriptionText;
         ImageView iconView;
         boolean needDivider;
@@ -331,7 +330,7 @@ public class SessionBottomSheet extends BottomSheet {
             this.descriptionText.setGravity(3);
             this.descriptionText.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
             linearLayout.addView(this.descriptionText, LayoutHelper.createLinear(-1, -2, 0, 0, 4, z ? 46 : 0, 0));
-            setPadding(0, AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f));
+            setPadding(0, AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f));
             if (z) {
                 Switch r2 = new Switch(context);
                 this.switchView = r2;
@@ -344,7 +343,7 @@ public class SessionBottomSheet extends BottomSheet {
         protected void dispatchDraw(Canvas canvas) {
             super.dispatchDraw(canvas);
             if (this.needDivider) {
-                canvas.drawRect(AndroidUtilities.m35dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
+                canvas.drawRect(AndroidUtilities.m36dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
             }
         }
 

@@ -113,7 +113,7 @@ public class FileUploadOperation {
         this.preferences = ApplicationLoader.applicationContext.getSharedPreferences("uploadinfo", 0);
         this.slowNetwork = ApplicationLoader.isConnectionSlow();
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("start upload on slow network = " + this.slowNetwork);
+            FileLog.m35d("start upload on slow network = " + this.slowNetwork);
         }
         int i = this.slowNetwork ? 1 : 8;
         for (int i2 = 0; i2 < i; i2++) {
@@ -137,7 +137,7 @@ public class FileUploadOperation {
         if (this.slowNetwork != z) {
             this.slowNetwork = z;
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("network changed to slow = " + this.slowNetwork);
+                FileLog.m35d("network changed to slow = " + this.slowNetwork);
             }
             int i = 0;
             while (true) {
@@ -211,7 +211,7 @@ public class FileUploadOperation {
                 this.stream = null;
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 

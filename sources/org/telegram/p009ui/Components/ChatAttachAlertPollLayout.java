@@ -129,7 +129,6 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         public TouchHelperCallback() {
-            ChatAttachAlertPollLayout.this = r1;
         }
 
         @Override
@@ -192,7 +191,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
             @Override
             public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
-                rect.bottom += AndroidUtilities.m35dp(60.0f);
+                rect.bottom += AndroidUtilities.m36dp(60.0f);
                 return super.requestChildRectangleOnScreen(view, rect, z);
             }
         };
@@ -212,13 +211,13 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         this.listView.setVerticalScrollBarEnabled(false);
         ((DefaultItemAnimator) this.listView.getItemAnimator()).setDelayAnimations(false);
         RecyclerListView recyclerListView2 = this.listView;
-        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.m35dp(53.0f), this.listView) {
+        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.m36dp(53.0f), this.listView) {
             @Override
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i) {
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
                     @Override
                     public int calculateDyToMakeVisible(View view, int i2) {
-                        return super.calculateDyToMakeVisible(view, i2) - (ChatAttachAlertPollLayout.this.topPadding - AndroidUtilities.m35dp(7.0f));
+                        return super.calculateDyToMakeVisible(view, i2) - (ChatAttachAlertPollLayout.this.topPadding - AndroidUtilities.m36dp(7.0f));
                     }
 
                     @Override
@@ -275,12 +274,12 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             public void onScrollStateChanged(RecyclerView recyclerView, int i) {
                 RecyclerListView.Holder holder;
                 if (i == 0) {
-                    int m35dp = AndroidUtilities.m35dp(13.0f);
+                    int m36dp = AndroidUtilities.m36dp(13.0f);
                     int backgroundPaddingTop = ChatAttachAlertPollLayout.this.parentAlert.getBackgroundPaddingTop();
-                    if (((ChatAttachAlertPollLayout.this.parentAlert.scrollOffsetY[0] - backgroundPaddingTop) - m35dp) + backgroundPaddingTop >= C1133ActionBar.getCurrentActionBarHeight() || (holder = (RecyclerListView.Holder) ChatAttachAlertPollLayout.this.listView.findViewHolderForAdapterPosition(1)) == null || holder.itemView.getTop() <= AndroidUtilities.m35dp(53.0f)) {
+                    if (((ChatAttachAlertPollLayout.this.parentAlert.scrollOffsetY[0] - backgroundPaddingTop) - m36dp) + backgroundPaddingTop >= C1133ActionBar.getCurrentActionBarHeight() || (holder = (RecyclerListView.Holder) ChatAttachAlertPollLayout.this.listView.findViewHolderForAdapterPosition(1)) == null || holder.itemView.getTop() <= AndroidUtilities.m36dp(53.0f)) {
                         return;
                     }
-                    ChatAttachAlertPollLayout.this.listView.smoothScrollBy(0, holder.itemView.getTop() - AndroidUtilities.m35dp(53.0f));
+                    ChatAttachAlertPollLayout.this.listView.smoothScrollBy(0, holder.itemView.getTop() - AndroidUtilities.m36dp(53.0f));
                 }
             }
         });
@@ -372,7 +371,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         PollEditTextCell pollEditTextCell = (PollEditTextCell) view2;
                         pollEditTextCell.setShowCheckBox(this.quizPoll, true);
                         pollEditTextCell.setChecked(this.answersChecks[i5 - this.answerStartRow], z2);
-                        if (pollEditTextCell.getTop() > AndroidUtilities.m35dp(40.0f) && i == this.quizRow && !this.hintShowed) {
+                        if (pollEditTextCell.getTop() > AndroidUtilities.m36dp(40.0f) && i == this.quizRow && !this.hintShowed) {
                             this.hintView.showForView(pollEditTextCell.getCheckBox(), true);
                             this.hintShowed = true;
                         }
@@ -479,19 +478,19 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         View childAt;
         if (this.listView.getChildCount() > 1 && (childAt = this.listView.getChildAt(1)) != null) {
             RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-            int y = ((int) childAt.getY()) - AndroidUtilities.m35dp(8.0f);
+            int y = ((int) childAt.getY()) - AndroidUtilities.m36dp(8.0f);
             int i = (y <= 0 || holder == null || holder.getAdapterPosition() != 1) ? 0 : y;
             if (y < 0 || holder == null || holder.getAdapterPosition() != 1) {
                 y = i;
             }
-            return y + AndroidUtilities.m35dp(25.0f);
+            return y + AndroidUtilities.m36dp(25.0f);
         }
         return ConnectionsManager.DEFAULT_DATACENTER_ID;
     }
 
     @Override
     int getFirstOffset() {
-        return getListTopPadding() + AndroidUtilities.m35dp(17.0f);
+        return getListTopPadding() + AndroidUtilities.m36dp(17.0f);
     }
 
     @Override
@@ -512,7 +511,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
     @Override
     int getButtonsHideOffset() {
-        return AndroidUtilities.m35dp(70.0f);
+        return AndroidUtilities.m36dp(70.0f);
     }
 
     @Override
@@ -550,7 +549,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 View view = findViewHolderForAdapterPosition.itemView;
                 if (view instanceof PollEditTextCell) {
                     PollEditTextCell pollEditTextCell = (PollEditTextCell) view;
-                    if (pollEditTextCell.getTop() > AndroidUtilities.m35dp(40.0f)) {
+                    if (pollEditTextCell.getTop() > AndroidUtilities.m36dp(40.0f)) {
                         this.hintView.showForView(pollEditTextCell.getCheckBox(), true);
                         return;
                     }
@@ -795,7 +794,6 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         private Context mContext;
 
         public ListAdapter(Context context) {
-            ChatAttachAlertPollLayout.this = r1;
             this.mContext = context;
         }
 

@@ -45,12 +45,12 @@ public class PaintTypefaceListView extends RecyclerListView {
                 return PaintTypeface.get().size();
             }
         });
-        setPadding(0, AndroidUtilities.m35dp(8.0f), 0, AndroidUtilities.m35dp(8.0f));
+        setPadding(0, AndroidUtilities.m36dp(8.0f), 0, AndroidUtilities.m36dp(8.0f));
     }
 
     @Override
     public void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((Math.min(PaintTypeface.get().size(), 6) * AndroidUtilities.m35dp(48.0f)) + AndroidUtilities.m35dp(16.0f), 1073741824));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((Math.min(PaintTypeface.get().size(), 6) * AndroidUtilities.m36dp(48.0f)) + AndroidUtilities.m36dp(16.0f), 1073741824));
     }
 
     @Override

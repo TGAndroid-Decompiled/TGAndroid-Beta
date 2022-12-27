@@ -172,7 +172,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             try {
                 alertDialog.dismiss();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             this.progressDialog = null;
         }
@@ -763,7 +763,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         this.progressDialog = null;
     }
@@ -1142,7 +1142,6 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         private Context mContext;
 
         public ListAdapter(Context context) {
-            TwoStepVerificationActivity.this = r1;
             this.mContext = context;
         }
 

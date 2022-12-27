@@ -54,7 +54,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
         this.iconColor = getThemedColor("actionBarDefaultSubmenuItemIcon");
         this.selectorColor = getThemedColor("dialogButtonSelector");
         updateBackground();
-        setPadding(AndroidUtilities.m35dp(18.0f), 0, AndroidUtilities.m35dp(18.0f), 0);
+        setPadding(AndroidUtilities.m36dp(18.0f), 0, AndroidUtilities.m36dp(18.0f), 0);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -81,7 +81,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(this.itemHeight), 1073741824));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(this.itemHeight), 1073741824));
     }
 
     public void setItemHeight(int i) {
@@ -124,7 +124,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
             }
             addView(this.rightIcon, LayoutHelper.createFrame(24, -1, (LocaleController.isRTL ? 3 : 5) | 16));
         }
-        setPadding(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : 18.0f), 0, AndroidUtilities.m35dp(LocaleController.isRTL ? 18.0f : 8.0f), 0);
+        setPadding(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : 18.0f), 0, AndroidUtilities.m36dp(LocaleController.isRTL ? 18.0f : 8.0f), 0);
         this.rightIcon.setImageResource(i);
     }
 
@@ -148,7 +148,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
                 this.imageView.setImageResource(i);
             }
             this.imageView.setVisibility(0);
-            this.textView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.m35dp(43.0f), 0, LocaleController.isRTL ? AndroidUtilities.m35dp(43.0f) : 0, 0);
+            this.textView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.m36dp(43.0f), 0, LocaleController.isRTL ? AndroidUtilities.m36dp(43.0f) : 0, 0);
             return;
         }
         this.imageView.setVisibility(4);
@@ -210,14 +210,14 @@ public class ActionBarMenuSubItem extends FrameLayout {
             this.subtextView.setTextColor(-8617338);
             this.subtextView.setVisibility(8);
             this.subtextView.setTextSize(1, 13.0f);
-            this.subtextView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.m35dp(43.0f), 0, LocaleController.isRTL ? AndroidUtilities.m35dp(43.0f) : 0, 0);
+            this.subtextView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.m36dp(43.0f), 0, LocaleController.isRTL ? AndroidUtilities.m36dp(43.0f) : 0, 0);
             addView(this.subtextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 16, 0.0f, 10.0f, 0.0f, 0.0f));
         }
         boolean z = !TextUtils.isEmpty(str);
         if (z != (this.subtextView.getVisibility() == 0)) {
             this.subtextView.setVisibility(z ? 0 : 8);
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textView.getLayoutParams();
-            layoutParams.bottomMargin = z ? AndroidUtilities.m35dp(10.0f) : 0;
+            layoutParams.bottomMargin = z ? AndroidUtilities.m36dp(10.0f) : 0;
             this.textView.setLayoutParams(layoutParams);
         }
         this.subtextView.setText(str);

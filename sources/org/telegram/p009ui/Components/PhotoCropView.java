@@ -128,7 +128,7 @@ public class PhotoCropView extends FrameLayout {
                 }
             }
         });
-        this.cropView.setBottomPadding(AndroidUtilities.m35dp(64.0f));
+        this.cropView.setBottomPadding(AndroidUtilities.m36dp(64.0f));
         addView(this.cropView);
         this.thumbImageView = new ImageReceiver(this);
         CropRotationWheel cropRotationWheel = new CropRotationWheel(context);
@@ -206,16 +206,16 @@ public class PhotoCropView extends FrameLayout {
         boolean drawChild = super.drawChild(canvas, view, j);
         if (this.thumbImageVisible && view == (cropView = this.cropView)) {
             RectF actualRect = cropView.getActualRect();
-            int m35dp = AndroidUtilities.m35dp(32.0f);
-            int i = m35dp / 2;
-            int videoThumbX = (this.delegate.getVideoThumbX() - i) + AndroidUtilities.m35dp(2.0f);
-            int measuredHeight = getMeasuredHeight() - AndroidUtilities.m35dp(156.0f);
+            int m36dp = AndroidUtilities.m36dp(32.0f);
+            int i = m36dp / 2;
+            int videoThumbX = (this.delegate.getVideoThumbX() - i) + AndroidUtilities.m36dp(2.0f);
+            int measuredHeight = getMeasuredHeight() - AndroidUtilities.m36dp(156.0f);
             float f = actualRect.left;
             float f2 = this.thumbAnimationProgress;
             float f3 = f + ((videoThumbX - f) * f2);
             float f4 = actualRect.top;
             float f5 = f4 + ((measuredHeight - f4) * f2);
-            float width = actualRect.width() + ((m35dp - actualRect.width()) * this.thumbAnimationProgress);
+            float width = actualRect.width() + ((m36dp - actualRect.width()) * this.thumbAnimationProgress);
             this.thumbImageView.setRoundRadius((int) (width / 2.0f));
             this.thumbImageView.setImageCoords(f3, f5, width, width);
             this.thumbImageView.setAlpha(this.thumbImageVisibleProgress);
@@ -227,7 +227,7 @@ public class PhotoCropView extends FrameLayout {
             }
             this.circlePaint.setColor(getThemedColor("dialogFloatingButton"));
             this.circlePaint.setAlpha(Math.min(255, (int) (this.thumbAnimationProgress * 255.0f * this.thumbImageVisibleProgress)));
-            canvas.drawCircle(videoThumbX + i, measuredHeight + m35dp + AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(3.0f), this.circlePaint);
+            canvas.drawCircle(videoThumbX + i, measuredHeight + m36dp + AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(3.0f), this.circlePaint);
         }
         return drawChild;
     }
@@ -376,11 +376,11 @@ public class PhotoCropView extends FrameLayout {
     }
 
     public float getRectX() {
-        return this.cropView.getCropLeft() - AndroidUtilities.m35dp(14.0f);
+        return this.cropView.getCropLeft() - AndroidUtilities.m36dp(14.0f);
     }
 
     public float getRectY() {
-        return (this.cropView.getCropTop() - AndroidUtilities.m35dp(14.0f)) - ((Build.VERSION.SDK_INT < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight);
+        return (this.cropView.getCropTop() - AndroidUtilities.m36dp(14.0f)) - ((Build.VERSION.SDK_INT < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight);
     }
 
     public float getRectSizeX() {

@@ -67,14 +67,14 @@ public class GroupCreateUserCell extends FrameLayout {
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(24.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(24.0f));
         BackupImageView backupImageView2 = this.avatarImageView;
         boolean z3 = LocaleController.isRTL;
         addView(backupImageView2, LayoutHelper.createFrame(46, 46.0f, (z3 ? 5 : 3) | 48, z3 ? 0.0f : this.padding + 13, 6.0f, z3 ? this.padding + 13 : 0.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(this, context) {
             @Override
             public boolean setText(CharSequence charSequence, boolean z4) {
-                return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(14.0f), false), z4);
+                return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(14.0f), false), z4);
             }
         };
         this.nameTextView = simpleTextView;
@@ -112,7 +112,7 @@ public class GroupCreateUserCell extends FrameLayout {
             Paint paint = new Paint(1);
             this.paint = paint;
             paint.setStyle(Paint.Style.STROKE);
-            this.paint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            this.paint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         }
         setWillNotDraw(false);
     }
@@ -206,7 +206,7 @@ public class GroupCreateUserCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(this.currentObject instanceof String ? 50.0f : 58.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(this.currentObject instanceof String ? 50.0f : 58.0f), 1073741824));
     }
 
     public void recycle() {
@@ -222,17 +222,17 @@ public class GroupCreateUserCell extends FrameLayout {
         super.onDraw(canvas);
         if (this.checkBoxType == 2 && (this.isChecked || this.checkProgress > 0.0f)) {
             this.paint.setColor(Theme.getColor("checkboxSquareBackground"));
-            canvas.drawCircle(this.avatarImageView.getLeft() + (this.avatarImageView.getMeasuredWidth() / 2), this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2), AndroidUtilities.m35dp(18.0f) + (AndroidUtilities.m35dp(4.0f) * this.checkProgress), this.paint);
+            canvas.drawCircle(this.avatarImageView.getLeft() + (this.avatarImageView.getMeasuredWidth() / 2), this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2), AndroidUtilities.m36dp(18.0f) + (AndroidUtilities.m36dp(4.0f) * this.checkProgress), this.paint);
         }
         if (this.drawDivider) {
-            int m35dp = AndroidUtilities.m35dp(LocaleController.isRTL ? 0.0f : this.padding + 72);
-            int measuredWidth = getMeasuredWidth() - AndroidUtilities.m35dp(LocaleController.isRTL ? this.padding + 72 : 0.0f);
+            int m36dp = AndroidUtilities.m36dp(LocaleController.isRTL ? 0.0f : this.padding + 72);
+            int measuredWidth = getMeasuredWidth() - AndroidUtilities.m36dp(LocaleController.isRTL ? this.padding + 72 : 0.0f);
             if (this.forceDarkTheme) {
                 Theme.dividerExtraPaint.setColor(Theme.getColor("voipgroup_actionBar"));
-                canvas.drawRect(m35dp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.dividerExtraPaint);
+                canvas.drawRect(m36dp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.dividerExtraPaint);
                 return;
             }
-            canvas.drawRect(m35dp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.dividerPaint);
+            canvas.drawRect(m36dp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.dividerPaint);
         }
     }
 

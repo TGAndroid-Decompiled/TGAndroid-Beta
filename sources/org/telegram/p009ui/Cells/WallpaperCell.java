@@ -64,9 +64,8 @@ public class WallpaperCell extends FrameLayout {
 
         public WallpaperView(Context context) {
             super(context);
-            WallpaperCell.this = r8;
             setWillNotDraw(false);
-            BackupImageView backupImageView = new BackupImageView(context, r8) {
+            BackupImageView backupImageView = new BackupImageView(context, WallpaperCell.this) {
                 @Override
                 public void onDraw(Canvas canvas) {
                     super.onDraw(canvas);
@@ -80,7 +79,7 @@ public class WallpaperCell extends FrameLayout {
                         WallpaperCell.this.circlePaint.setColor(Theme.serviceMessageColorBackup);
                         int measuredWidth = getMeasuredWidth() / 2;
                         int measuredHeight = getMeasuredHeight() / 2;
-                        canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.m35dp(20.0f), WallpaperCell.this.circlePaint);
+                        canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.m36dp(20.0f), WallpaperCell.this.circlePaint);
                         WallpaperCell.this.checkDrawable.setBounds(measuredWidth - (WallpaperCell.this.checkDrawable.getIntrinsicWidth() / 2), measuredHeight - (WallpaperCell.this.checkDrawable.getIntrinsicHeight() / 2), measuredWidth + (WallpaperCell.this.checkDrawable.getIntrinsicWidth() / 2), measuredHeight + (WallpaperCell.this.checkDrawable.getIntrinsicHeight() / 2));
                         WallpaperCell.this.checkDrawable.draw(canvas);
                     }
@@ -129,8 +128,8 @@ public class WallpaperCell extends FrameLayout {
             String str2 = "100_100_b";
             if (obj instanceof TLRPC$TL_wallPaper) {
                 TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) obj;
-                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_wallPaper.document.thumbs, AndroidUtilities.m35dp(100));
-                TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_wallPaper.document.thumbs, AndroidUtilities.m35dp(180));
+                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_wallPaper.document.thumbs, AndroidUtilities.m36dp(100));
+                TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_wallPaper.document.thumbs, AndroidUtilities.m36dp(180));
                 tLRPC$PhotoSize = closestPhotoSizeWithSize2 != closestPhotoSizeWithSize ? closestPhotoSizeWithSize2 : null;
                 long j = tLRPC$PhotoSize != null ? tLRPC$PhotoSize.size : tLRPC$TL_wallPaper.document.size;
                 if (!tLRPC$TL_wallPaper.pattern) {
@@ -236,8 +235,8 @@ public class WallpaperCell extends FrameLayout {
                 MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
                 TLRPC$Photo tLRPC$Photo = searchImage.photo;
                 if (tLRPC$Photo != null) {
-                    TLRPC$PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, AndroidUtilities.m35dp(100));
-                    TLRPC$PhotoSize closestPhotoSizeWithSize5 = FileLoader.getClosestPhotoSizeWithSize(searchImage.photo.sizes, AndroidUtilities.m35dp(180));
+                    TLRPC$PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, AndroidUtilities.m36dp(100));
+                    TLRPC$PhotoSize closestPhotoSizeWithSize5 = FileLoader.getClosestPhotoSizeWithSize(searchImage.photo.sizes, AndroidUtilities.m36dp(180));
                     tLRPC$PhotoSize = closestPhotoSizeWithSize5 != closestPhotoSizeWithSize4 ? closestPhotoSizeWithSize5 : null;
                     this.imageView.setImage(ImageLocation.getForPhoto(tLRPC$PhotoSize, searchImage.photo), str, ImageLocation.getForPhoto(closestPhotoSizeWithSize4, searchImage.photo), str2, "jpg", tLRPC$PhotoSize != null ? tLRPC$PhotoSize.size : 0, 1, searchImage);
                     return;
@@ -377,31 +376,31 @@ public class WallpaperCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
-        int m35dp = size - AndroidUtilities.m35dp(((this.spanCount - 1) * 6) + 28);
-        int i3 = m35dp / this.spanCount;
-        int m35dp2 = this.currentType == 0 ? AndroidUtilities.m35dp(180.0f) : i3;
+        int m36dp = size - AndroidUtilities.m36dp(((this.spanCount - 1) * 6) + 28);
+        int i3 = m36dp / this.spanCount;
+        int m36dp2 = this.currentType == 0 ? AndroidUtilities.m36dp(180.0f) : i3;
         int i4 = 0;
-        setMeasuredDimension(size, (this.isTop ? AndroidUtilities.m35dp(14.0f) : 0) + m35dp2 + AndroidUtilities.m35dp(this.isBottom ? 14.0f : 6.0f));
+        setMeasuredDimension(size, (this.isTop ? AndroidUtilities.m36dp(14.0f) : 0) + m36dp2 + AndroidUtilities.m36dp(this.isBottom ? 14.0f : 6.0f));
         while (true) {
             int i5 = this.spanCount;
             if (i4 >= i5) {
                 return;
             }
-            this.wallpaperViews[i4].measure(View.MeasureSpec.makeMeasureSpec(i4 == i5 + (-1) ? m35dp : i3, 1073741824), View.MeasureSpec.makeMeasureSpec(m35dp2, 1073741824));
-            m35dp -= i3;
+            this.wallpaperViews[i4].measure(View.MeasureSpec.makeMeasureSpec(i4 == i5 + (-1) ? m36dp : i3, 1073741824), View.MeasureSpec.makeMeasureSpec(m36dp2, 1073741824));
+            m36dp -= i3;
             i4++;
         }
     }
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int m35dp = AndroidUtilities.m35dp(14.0f);
-        int m35dp2 = this.isTop ? AndroidUtilities.m35dp(14.0f) : 0;
+        int m36dp = AndroidUtilities.m36dp(14.0f);
+        int m36dp2 = this.isTop ? AndroidUtilities.m36dp(14.0f) : 0;
         for (int i5 = 0; i5 < this.spanCount; i5++) {
             int measuredWidth = this.wallpaperViews[i5].getMeasuredWidth();
             WallpaperView[] wallpaperViewArr = this.wallpaperViews;
-            wallpaperViewArr[i5].layout(m35dp, m35dp2, m35dp + measuredWidth, wallpaperViewArr[i5].getMeasuredHeight() + m35dp2);
-            m35dp += measuredWidth + AndroidUtilities.m35dp(6.0f);
+            wallpaperViewArr[i5].layout(m36dp, m36dp2, m36dp + measuredWidth, wallpaperViewArr[i5].getMeasuredHeight() + m36dp2);
+            m36dp += measuredWidth + AndroidUtilities.m36dp(6.0f);
         }
     }
 

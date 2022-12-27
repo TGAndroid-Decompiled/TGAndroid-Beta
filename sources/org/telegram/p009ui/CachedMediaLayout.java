@@ -136,7 +136,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 view.setBackgroundColor(Theme.getColor("divider"));
                 addView(view, LayoutHelper.createFrame(-1, 1.0f, 0, 0.0f, 48.0f, 0.0f, 0.0f));
                 view.getLayoutParams().height = 1;
-                this.viewPagerFixed.setAdapter(new C13341(context, baseFragment));
+                this.viewPagerFixed.setAdapter(new C13351(context, baseFragment));
                 LinearLayout linearLayout = new LinearLayout(context);
                 this.actionModeLayout = linearLayout;
                 linearLayout.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
@@ -153,7 +153,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 backDrawable.setColor(Theme.getColor("actionBarActionModeDefaultIcon"));
                 imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor("actionBarActionModeDefaultSelector"), 1));
                 imageView.setContentDescription(LocaleController.getString("Close", C1072R.string.Close));
-                linearLayout.addView(imageView, new LinearLayout.LayoutParams(AndroidUtilities.m35dp(54.0f), -1));
+                linearLayout.addView(imageView, new LinearLayout.LayoutParams(AndroidUtilities.m36dp(54.0f), -1));
                 this.actionModeViews.add(imageView);
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -163,7 +163,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 });
                 AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
                 this.selectedMessagesCountTextView = animatedTextView;
-                animatedTextView.setTextSize(AndroidUtilities.m35dp(18.0f));
+                animatedTextView.setTextSize(AndroidUtilities.m36dp(18.0f));
                 animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 animatedTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon"));
                 linearLayout.addView(animatedTextView, LayoutHelper.createLinear(0, -1, 1.0f, 18, 0, 0, 0));
@@ -173,7 +173,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 actionBarMenuItem.setIcon(C1072R.C1073drawable.msg_clear);
                 actionBarMenuItem.setContentDescription(LocaleController.getString("Delete", C1072R.string.Delete));
                 actionBarMenuItem.setDuplicateParentStateEnabled(false);
-                linearLayout.addView(actionBarMenuItem, new LinearLayout.LayoutParams(AndroidUtilities.m35dp(54.0f), -1));
+                linearLayout.addView(actionBarMenuItem, new LinearLayout.LayoutParams(AndroidUtilities.m36dp(54.0f), -1));
                 this.actionModeViews.add(actionBarMenuItem);
                 actionBarMenuItem.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -186,7 +186,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         }
     }
 
-    public class C13341 extends ViewPagerFixed.Adapter {
+    public class C13351 extends ViewPagerFixed.Adapter {
         private ActionBarPopupWindow popupWindow;
         final Context val$context;
         final BaseFragment val$parentFragment;
@@ -196,7 +196,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             return true;
         }
 
-        C13341(Context context, BaseFragment baseFragment) {
+        C13351(Context context, BaseFragment baseFragment) {
             CachedMediaLayout.this = r1;
             this.val$context = context;
             this.val$parentFragment = baseFragment;
@@ -227,7 +227,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             recyclerListView.setPadding(0, 0, 0, CachedMediaLayout.this.bottomPadding);
             recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 {
-                    C13341.this = this;
+                    C13351.this = this;
                 }
 
                 @Override
@@ -249,7 +249,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 @Override
                 public final boolean onItemClick(View view, int i2, float f, float f2) {
                     boolean lambda$createView$5;
-                    lambda$createView$5 = CachedMediaLayout.C13341.this.lambda$createView$5(recyclerListView, baseFragment, view, i2, f, f2);
+                    lambda$createView$5 = CachedMediaLayout.C13351.this.lambda$createView$5(recyclerListView, baseFragment, view, i2, f, f2);
                     return lambda$createView$5;
                 }
 
@@ -277,21 +277,21 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, C1072R.C1073drawable.msg_view_file, LocaleController.getString("CacheOpenFile", C1072R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            CachedMediaLayout.C13341.this.lambda$createView$0(itemInner, baseAdapter, recyclerListView, view, view2);
+                            CachedMediaLayout.C13351.this.lambda$createView$0(itemInner, baseAdapter, recyclerListView, view, view2);
                         }
                     });
                 } else if (((CacheCell) view).container.getChildAt(0) instanceof SharedAudioCell) {
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, C1072R.C1073drawable.msg_played, LocaleController.getString("PlayFile", C1072R.string.PlayFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            CachedMediaLayout.C13341.this.lambda$createView$1(itemInner, view, view2);
+                            CachedMediaLayout.C13351.this.lambda$createView$1(itemInner, view, view2);
                         }
                     });
                 } else {
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, C1072R.C1073drawable.msg_view_file, LocaleController.getString("CacheOpenFile", C1072R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            CachedMediaLayout.C13341.this.lambda$createView$2(itemInner, view, view2);
+                            CachedMediaLayout.C13351.this.lambda$createView$2(itemInner, view, view2);
                         }
                     });
                 }
@@ -300,7 +300,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, C1072R.C1073drawable.msg_viewintopic, LocaleController.getString("ViewInChat", C1072R.string.ViewInChat), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            CachedMediaLayout.C13341.this.lambda$createView$3(itemInner, baseFragment, view2);
+                            CachedMediaLayout.C13351.this.lambda$createView$3(itemInner, baseFragment, view2);
                         }
                     });
                 }
@@ -315,7 +315,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 ActionBarMenuItem.addItem(actionBarPopupWindowLayout, i3, LocaleController.getString(str, i2), false, null).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        CachedMediaLayout.C13341.this.lambda$createView$4(itemInner, view2);
+                        CachedMediaLayout.C13351.this.lambda$createView$4(itemInner, view2);
                     }
                 });
                 this.popupWindow = AlertsCreator.createSimplePopup(baseFragment, actionBarPopupWindowLayout, view, (int) f, (int) f2);
@@ -501,7 +501,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         public final String title;
         public final int type;
 
-        Page(CachedMediaLayout cachedMediaLayout, String str, int i, BaseAdapter baseAdapter, C13341 c13341) {
+        Page(CachedMediaLayout cachedMediaLayout, String str, int i, BaseAdapter baseAdapter, C13351 c13351) {
             this(cachedMediaLayout, str, i, baseAdapter);
         }
 
@@ -541,7 +541,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             return true;
         }
 
-        DialogsAdapter(CachedMediaLayout cachedMediaLayout, C13341 c13341) {
+        DialogsAdapter(CachedMediaLayout cachedMediaLayout, C13351 c13351) {
             this();
         }
 
@@ -596,7 +596,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 dialogPhotoTitle = DialogObject.setDialogPhotoTitle(userCell.getImageView(), userOrChat);
             }
             userCell.dialogFileEntities = dialogFileEntities;
-            userCell.getImageView().setRoundRadius(AndroidUtilities.m35dp(((userOrChat instanceof TLRPC$Chat) && ((TLRPC$Chat) userOrChat).forum) ? 12.0f : 19.0f));
+            userCell.getImageView().setRoundRadius(AndroidUtilities.m36dp(((userOrChat instanceof TLRPC$Chat) && ((TLRPC$Chat) userOrChat).forum) ? 12.0f : 19.0f));
             userCell.setTextAndValue(dialogPhotoTitle, AndroidUtilities.formatFileSize(dialogFileEntities.totalSize), i < getItemCount() + (-2));
             userCell.setChecked(CachedMediaLayout.this.cacheModel.isSelected(dialogFileEntities.dialogId), z);
         }
@@ -691,7 +691,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             return false;
         }
 
-        MediaAdapter(CachedMediaLayout cachedMediaLayout, C13341 c13341) {
+        MediaAdapter(CachedMediaLayout cachedMediaLayout, C13351 c13351) {
             this();
         }
 
@@ -766,7 +766,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
     public class DocumentsAdapter extends BaseFilesAdapter {
         ArrayList<Object> photoEntries;
 
-        DocumentsAdapter(CachedMediaLayout cachedMediaLayout, C13341 c13341) {
+        DocumentsAdapter(CachedMediaLayout cachedMediaLayout, C13351 c13351) {
             this();
         }
 
@@ -821,7 +821,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             if (!z) {
                 sharedDocumentCell.setPhoto(fileInfo.file.getPath());
             }
-            sharedDocumentCell.getImageView().setRoundRadius(AndroidUtilities.m35dp(fileInfo.messageType == 5 ? 20.0f : 4.0f));
+            sharedDocumentCell.getImageView().setRoundRadius(AndroidUtilities.m36dp(fileInfo.messageType == 5 ? 20.0f : 4.0f));
             cacheCell.drawDivider = z2;
             cacheCell.sizeTextView.setText(AndroidUtilities.formatFileSize(fileInfo.size));
             cacheCell.checkBox.setChecked(CachedMediaLayout.this.cacheModel.isSelected(fileInfo), z);
@@ -829,7 +829,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
     }
 
     public class MusicAdapter extends BaseFilesAdapter {
-        MusicAdapter(CachedMediaLayout cachedMediaLayout, C13341 c13341) {
+        MusicAdapter(CachedMediaLayout cachedMediaLayout, C13351 c13351) {
             this();
         }
 
@@ -988,7 +988,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             CachedMediaLayout.this = r1;
         }
 
-        BasePlaceProvider(CachedMediaLayout cachedMediaLayout, C13341 c13341) {
+        BasePlaceProvider(CachedMediaLayout cachedMediaLayout, C13351 c13351) {
             this();
         }
 
@@ -1060,7 +1060,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         protected void dispatchDraw(Canvas canvas) {
             super.dispatchDraw(canvas);
             if (this.drawDivider) {
-                canvas.drawLine(getMeasuredWidth() - AndroidUtilities.m35dp(90.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(getMeasuredWidth() - AndroidUtilities.m36dp(90.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         }
     }

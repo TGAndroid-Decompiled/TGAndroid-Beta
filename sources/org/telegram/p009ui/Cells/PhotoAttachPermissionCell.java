@@ -39,7 +39,7 @@ public class PhotoAttachPermissionCell extends FrameLayout {
         this.textView.setTextSize(1, 12.0f);
         this.textView.setGravity(17);
         addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 17, 5.0f, 13.0f, 5.0f, 0.0f));
-        this.itemSize = AndroidUtilities.m35dp(80.0f);
+        this.itemSize = AndroidUtilities.m36dp(80.0f);
     }
 
     public void setItemSize(int i) {
@@ -64,7 +64,7 @@ public class PhotoAttachPermissionCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.m35dp(5.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.m36dp(5.0f), 1073741824));
     }
 
     private int getThemedColor(String str) {

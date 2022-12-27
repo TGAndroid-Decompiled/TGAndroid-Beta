@@ -44,7 +44,7 @@ public class ActionBarMenu extends LinearLayout {
     }
 
     public ActionBarMenuItem addItem(int i, Drawable drawable) {
-        return addItem(i, 0, null, this.isActionMode ? this.parentActionBar.itemsActionModeBackgroundColor : this.parentActionBar.itemsBackgroundColor, drawable, AndroidUtilities.m35dp(48.0f), null);
+        return addItem(i, 0, null, this.isActionMode ? this.parentActionBar.itemsActionModeBackgroundColor : this.parentActionBar.itemsBackgroundColor, drawable, AndroidUtilities.m36dp(48.0f), null);
     }
 
     public ActionBarMenuItem addItem(int i, int i2) {
@@ -60,7 +60,7 @@ public class ActionBarMenu extends LinearLayout {
     }
 
     public ActionBarMenuItem addItem(int i, int i2, int i3, Theme.ResourcesProvider resourcesProvider) {
-        return addItem(i, i2, null, i3, null, AndroidUtilities.m35dp(48.0f), null, resourcesProvider);
+        return addItem(i, i2, null, i3, null, AndroidUtilities.m36dp(48.0f), null, resourcesProvider);
     }
 
     public ActionBarMenuItem addItemWithWidth(int i, int i2, int i3) {
@@ -89,9 +89,9 @@ public class ActionBarMenu extends LinearLayout {
                 i5 = -2;
             }
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(i5, -1);
-            int m35dp = AndroidUtilities.m35dp(14.0f);
-            layoutParams.rightMargin = m35dp;
-            layoutParams.leftMargin = m35dp;
+            int m36dp = AndroidUtilities.m36dp(14.0f);
+            layoutParams.rightMargin = m36dp;
+            layoutParams.leftMargin = m36dp;
             addView(actionBarMenuItem, layoutParams);
         } else {
             if (drawable != null) {

@@ -85,8 +85,8 @@ public class VoIPToggleButton extends FrameLayout {
         this.textView[1].setVisibility(8);
         this.xRefPaint.setColor(-16777216);
         this.xRefPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        this.xRefPaint.setStrokeWidth(AndroidUtilities.m35dp(3.0f));
-        this.crossPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.xRefPaint.setStrokeWidth(AndroidUtilities.m36dp(3.0f));
+        this.crossPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         this.crossPaint.setStrokeCap(Paint.Cap.ROUND);
         this.bitmapPaint.setFilterBitmap(true);
     }
@@ -139,11 +139,11 @@ public class VoIPToggleButton extends FrameLayout {
         }
         if (this.rippleDrawable == null || z) {
             if (Color.alpha(i3) == 255 && AndroidUtilities.computePerceivedBrightness(i3) > 0.5d) {
-                Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(this.radius), 0, ColorUtils.setAlphaComponent(-16777216, (int) (f * 25.5f)));
+                Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m36dp(this.radius), 0, ColorUtils.setAlphaComponent(-16777216, (int) (f * 25.5f)));
                 this.rippleDrawable = createSimpleSelectorCircleDrawable;
                 createSimpleSelectorCircleDrawable.setCallback(this);
             } else {
-                Drawable createSimpleSelectorCircleDrawable2 = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(this.radius), 0, ColorUtils.setAlphaComponent(-1, (int) (f * 76.5f)));
+                Drawable createSimpleSelectorCircleDrawable2 = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m36dp(this.radius), 0, ColorUtils.setAlphaComponent(-1, (int) (f * 76.5f)));
                 this.rippleDrawable = createSimpleSelectorCircleDrawable2;
                 createSimpleSelectorCircleDrawable2.setCallback(this);
             }

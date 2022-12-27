@@ -60,7 +60,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
     public AnimatedEmojiSpan(long j, float f, Paint.FontMetricsInt fontMetricsInt) {
         this.full = false;
         this.top = false;
-        this.size = AndroidUtilities.m35dp(20.0f);
+        this.size = AndroidUtilities.m36dp(20.0f);
         this.cacheType = -1;
         this.recordPositions = true;
         this.documentId = j;
@@ -70,7 +70,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
             float abs = Math.abs(fontMetricsInt.descent) + Math.abs(fontMetricsInt.ascent);
             this.size = abs;
             if (abs == 0.0f) {
-                this.size = AndroidUtilities.m35dp(20.0f);
+                this.size = AndroidUtilities.m36dp(20.0f);
             }
         }
     }
@@ -97,7 +97,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
             float abs = Math.abs(fontMetricsInt.descent) + Math.abs(this.fontMetrics.ascent);
             this.size = abs;
             if (abs == 0.0f) {
-                this.size = AndroidUtilities.m35dp(20.0f);
+                this.size = AndroidUtilities.m36dp(20.0f);
             }
         }
     }
@@ -127,13 +127,13 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
         Paint.FontMetricsInt fontMetricsInt2 = this.fontMetrics;
         if (fontMetricsInt2 == null) {
             int i5 = (int) this.size;
-            int m35dp = AndroidUtilities.m35dp(8.0f);
-            int m35dp2 = AndroidUtilities.m35dp(10.0f);
+            int m36dp = AndroidUtilities.m36dp(8.0f);
+            int m36dp2 = AndroidUtilities.m36dp(10.0f);
             if (fontMetricsInt != null) {
-                float f = (-m35dp2) - m35dp;
+                float f = (-m36dp2) - m36dp;
                 float f2 = this.scale;
                 fontMetricsInt.top = (int) (f * f2);
-                float f3 = m35dp2 - m35dp;
+                float f3 = m36dp2 - m36dp;
                 fontMetricsInt.bottom = (int) (f3 * f2);
                 fontMetricsInt.ascent = (int) (f * f2);
                 fontMetricsInt.descent = (int) (f3 * f2);
@@ -195,7 +195,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
             z = false;
         } else {
             canvas.save();
-            canvas.translate(0.0f, Emoji.emojiDrawingYOffset + AndroidUtilities.m35dp(20.0f * f));
+            canvas.translate(0.0f, Emoji.emojiDrawingYOffset + AndroidUtilities.m36dp(20.0f * f));
             z = true;
         }
         long currentTimeMillis = System.currentTimeMillis();
@@ -225,7 +225,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
             z = false;
         } else {
             canvas.save();
-            canvas.translate(0.0f, Emoji.emojiDrawingYOffset + AndroidUtilities.m35dp(f * 20.0f));
+            canvas.translate(0.0f, Emoji.emojiDrawingYOffset + AndroidUtilities.m36dp(f * 20.0f));
             z = true;
         }
         EmojiGroupedSpans.access$008(emojiGroupedSpans);
@@ -762,7 +762,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
                     }
                 };
                 this.backgroundThreadDrawable = drawingInBackgroundThreadDrawable2;
-                drawingInBackgroundThreadDrawable2.padding = AndroidUtilities.m35dp(3.0f);
+                drawingInBackgroundThreadDrawable2.padding = AndroidUtilities.m36dp(3.0f);
                 this.backgroundThreadDrawable.onAttachToWindow();
             } else if (this.holders.size() >= 10 || (drawingInBackgroundThreadDrawable = this.backgroundThreadDrawable) == null) {
             } else {
@@ -797,7 +797,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
             }
             DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable = this.backgroundThreadDrawable;
             if (drawingInBackgroundThreadDrawable != null) {
-                drawingInBackgroundThreadDrawable.draw(canvas, j, this.layout.getWidth(), this.layout.getHeight() + AndroidUtilities.m35dp(2.0f), f4);
+                drawingInBackgroundThreadDrawable.draw(canvas, j, this.layout.getWidth(), this.layout.getHeight() + AndroidUtilities.m36dp(2.0f), f4);
             }
         }
     }

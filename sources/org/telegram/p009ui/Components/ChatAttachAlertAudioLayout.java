@@ -124,7 +124,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             @Override
             public void processTouchEvent(MotionEvent motionEvent) {
                 MotionEvent obtain = MotionEvent.obtain(motionEvent);
-                obtain.setLocation(obtain.getRawX(), (obtain.getRawY() - ChatAttachAlertAudioLayout.this.parentAlert.getSheetContainer().getTranslationY()) - AndroidUtilities.m35dp(58.0f));
+                obtain.setLocation(obtain.getRawX(), (obtain.getRawY() - ChatAttachAlertAudioLayout.this.parentAlert.getSheetContainer().getTranslationY()) - AndroidUtilities.m36dp(58.0f));
                 ChatAttachAlertAudioLayout.this.listView.dispatchTouchEvent(obtain);
                 obtain.recycle();
             }
@@ -159,31 +159,31 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         this.emptyTitleTextView.setGravity(17);
         this.emptyTitleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.emptyTitleTextView.setTextSize(1, 17.0f);
-        this.emptyTitleTextView.setPadding(AndroidUtilities.m35dp(40.0f), 0, AndroidUtilities.m35dp(40.0f), 0);
+        this.emptyTitleTextView.setPadding(AndroidUtilities.m36dp(40.0f), 0, AndroidUtilities.m36dp(40.0f), 0);
         this.emptyView.addView(this.emptyTitleTextView, LayoutHelper.createLinear(-2, -2, 17, 0, 11, 0, 0));
         TextView textView2 = new TextView(context);
         this.emptySubtitleTextView = textView2;
         textView2.setTextColor(getThemedColor("dialogEmptyText"));
         this.emptySubtitleTextView.setGravity(17);
         this.emptySubtitleTextView.setTextSize(1, 15.0f);
-        this.emptySubtitleTextView.setPadding(AndroidUtilities.m35dp(40.0f), 0, AndroidUtilities.m35dp(40.0f), 0);
+        this.emptySubtitleTextView.setPadding(AndroidUtilities.m36dp(40.0f), 0, AndroidUtilities.m36dp(40.0f), 0);
         this.emptyView.addView(this.emptySubtitleTextView, LayoutHelper.createLinear(-2, -2, 17, 0, 6, 0, 0));
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             @Override
             protected boolean allowSelectChildAtPosition(float f, float f2) {
-                return f2 >= ((float) ((ChatAttachAlertAudioLayout.this.parentAlert.scrollOffsetY[0] + AndroidUtilities.m35dp(30.0f)) + ((Build.VERSION.SDK_INT < 21 || ChatAttachAlertAudioLayout.this.parentAlert.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight)));
+                return f2 >= ((float) ((ChatAttachAlertAudioLayout.this.parentAlert.scrollOffsetY[0] + AndroidUtilities.m36dp(30.0f)) + ((Build.VERSION.SDK_INT < 21 || ChatAttachAlertAudioLayout.this.parentAlert.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight)));
             }
         };
         this.listView = recyclerListView;
         recyclerListView.setClipToPadding(false);
         RecyclerListView recyclerListView2 = this.listView;
-        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(getContext(), 1, false, AndroidUtilities.m35dp(9.0f), this.listView) {
+        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(getContext(), 1, false, AndroidUtilities.m36dp(9.0f), this.listView) {
             @Override
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i) {
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
                     @Override
                     public int calculateDyToMakeVisible(View view, int i2) {
-                        return super.calculateDyToMakeVisible(view, i2) - (ChatAttachAlertAudioLayout.this.listView.getPaddingTop() - AndroidUtilities.m35dp(7.0f));
+                        return super.calculateDyToMakeVisible(view, i2) - (ChatAttachAlertAudioLayout.this.listView.getPaddingTop() - AndroidUtilities.m36dp(7.0f));
                     }
 
                     @Override
@@ -229,7 +229,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         });
         this.searchAdapter = new SearchAdapter(context);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 51);
-        layoutParams.topMargin = AndroidUtilities.m35dp(58.0f);
+        layoutParams.topMargin = AndroidUtilities.m36dp(58.0f);
         View view = new View(context);
         this.shadow = view;
         view.setBackgroundColor(getThemedColor("dialogShadowLine"));
@@ -315,7 +315,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         }
         View childAt = this.listView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-        int top = childAt.getTop() - AndroidUtilities.m35dp(8.0f);
+        int top = childAt.getTop() - AndroidUtilities.m36dp(8.0f);
         int i = (top <= 0 || holder == null || holder.getAdapterPosition() != 0) ? 0 : top;
         if (top >= 0 && holder != null && holder.getAdapterPosition() == 0) {
             runShadowAnimation(false);
@@ -324,12 +324,12 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             top = i;
         }
         this.frameLayout.setTranslationY(top);
-        return top + AndroidUtilities.m35dp(12.0f);
+        return top + AndroidUtilities.m36dp(12.0f);
     }
 
     @Override
     int getFirstOffset() {
-        return getListTopPadding() + AndroidUtilities.m35dp(4.0f);
+        return getListTopPadding() + AndroidUtilities.m36dp(4.0f);
     }
 
     @Override
@@ -360,8 +360,8 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     @Override
     void onPreMeasure(int i, int i2) {
         int i3;
-        if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.m35dp(20.0f)) {
-            i3 = AndroidUtilities.m35dp(8.0f);
+        if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.m36dp(20.0f)) {
+            i3 = AndroidUtilities.m36dp(8.0f);
             this.parentAlert.setAllowNestedScroll(false);
         } else {
             if (!AndroidUtilities.isTablet()) {
@@ -376,7 +376,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         }
         if (this.listView.getPaddingTop() != i3) {
             this.ignoreLayout = true;
-            this.listView.setPadding(0, i3, 0, AndroidUtilities.m35dp(48.0f));
+            this.listView.setPadding(0, i3, 0, AndroidUtilities.m36dp(48.0f));
             this.ignoreLayout = false;
         }
     }
@@ -602,7 +602,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             }
             query.close();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -627,7 +627,6 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         public ListAdapter(Context context) {
-            ChatAttachAlertAudioLayout.this = r1;
             this.mContext = context;
         }
 
@@ -658,7 +657,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                 view = sharedAudioCell;
             } else if (i == 1) {
                 view = new View(this.mContext);
-                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(56.0f)));
+                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m36dp(56.0f)));
             } else {
                 view = new View(this.mContext);
             }
@@ -699,7 +698,6 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         private Runnable searchRunnable;
 
         public SearchAdapter(Context context) {
-            ChatAttachAlertAudioLayout.this = r1;
             this.mContext = context;
         }
 
@@ -835,7 +833,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                 view = sharedAudioCell;
             } else if (i == 1) {
                 view = new View(this.mContext);
-                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(56.0f)));
+                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m36dp(56.0f)));
             } else {
                 view = new View(this.mContext);
             }

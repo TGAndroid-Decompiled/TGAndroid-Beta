@@ -151,7 +151,7 @@ public class FileLoader extends BaseController {
                     }
                     return null;
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     return null;
                 }
             }
@@ -484,7 +484,6 @@ public class FileLoader extends BaseController {
         final boolean val$small;
 
         C10141(boolean z, String str, boolean z2) {
-            FileLoader.this = r1;
             this.val$encrypted = z;
             this.val$location = str;
             this.val$small = z2;
@@ -861,7 +860,7 @@ public class FileLoader extends BaseController {
         try {
             countDownLatch.await();
         } catch (Exception e) {
-            FileLog.m30e((Throwable) e, false);
+            FileLog.m31e((Throwable) e, false);
         }
         return fileLoadOperationArr[0];
     }
@@ -1263,7 +1262,7 @@ public class FileLoader extends BaseController {
                         file2.deleteOnExit();
                     }
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
                 try {
                     File internalCacheDir = getInternalCacheDir();
@@ -1272,7 +1271,7 @@ public class FileLoader extends BaseController {
                         file3.deleteOnExit();
                     }
                 } catch (Exception e2) {
-                    FileLog.m31e(e2);
+                    FileLog.m32e(e2);
                 }
             } else if (file.exists()) {
                 try {
@@ -1280,7 +1279,7 @@ public class FileLoader extends BaseController {
                         file.deleteOnExit();
                     }
                 } catch (Exception e3) {
-                    FileLog.m31e(e3);
+                    FileLog.m32e(e3);
                 }
             }
             try {
@@ -1290,7 +1289,7 @@ public class FileLoader extends BaseController {
                     file4.deleteOnExit();
                 }
             } catch (Exception e4) {
-                FileLog.m31e(e4);
+                FileLog.m32e(e4);
             }
         }
         if (i == 2) {

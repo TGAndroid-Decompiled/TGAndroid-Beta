@@ -39,7 +39,7 @@ public class TopicSearchCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f), 1073741824));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f), 1073741824));
     }
 
     public void setTopic(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
@@ -65,11 +65,11 @@ public class TopicSearchCell extends FrameLayout {
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.drawDivider) {
-            int m35dp = AndroidUtilities.m35dp(56.0f);
+            int m36dp = AndroidUtilities.m36dp(56.0f);
             if (LocaleController.isRTL) {
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - m35dp, getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - m36dp, getMeasuredHeight() - 1, Theme.dividerPaint);
             } else {
-                canvas.drawLine(m35dp, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(m36dp, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         }
     }

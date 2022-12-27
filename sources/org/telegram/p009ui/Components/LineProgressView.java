@@ -32,7 +32,7 @@ public class LineProgressView extends View {
             Paint paint = new Paint(1);
             progressPaint = paint;
             paint.setStrokeCap(Paint.Cap.ROUND);
-            progressPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            progressPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         }
     }
 

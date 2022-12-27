@@ -4,10 +4,10 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 import org.telegram.p009ui.Components.ThemeEditorView;
 
-public final class C2947x6ea38e02 implements TextView.OnEditorActionListener {
-    public static final C2947x6ea38e02 INSTANCE = new C2947x6ea38e02();
+public final class C2950x6ea38e02 implements TextView.OnEditorActionListener {
+    public static final C2950x6ea38e02 INSTANCE = new C2950x6ea38e02();
 
-    private C2947x6ea38e02() {
+    private C2950x6ea38e02() {
     }
 
     @Override

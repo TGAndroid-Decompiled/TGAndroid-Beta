@@ -114,7 +114,7 @@ public class CropRotationWheel extends FrameLayout {
         TextPaint textPaint = new TextPaint(1);
         this.degreesTextPaint = textPaint;
         textPaint.setColor(-1);
-        this.degreesTextPaint.setTextSize(AndroidUtilities.m35dp(14.0f));
+        this.degreesTextPaint.setTextSize(AndroidUtilities.m36dp(14.0f));
         setWillNotDraw(false);
         setRotation(0.0f, false);
     }
@@ -155,7 +155,7 @@ public class CropRotationWheel extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), AndroidUtilities.m35dp(400.0f)), 1073741824), i2);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), AndroidUtilities.m36dp(400.0f)), 1073741824), i2);
     }
 
     public void reset(boolean z) {
@@ -257,22 +257,22 @@ public class CropRotationWheel extends FrameLayout {
             i = i2 + 1;
         }
         this.bluePaint.setAlpha(255);
-        this.tempRect.left = (width - AndroidUtilities.m35dp(2.5f)) / 2;
-        this.tempRect.top = (height - AndroidUtilities.m35dp(22.0f)) / 2;
-        this.tempRect.right = (AndroidUtilities.m35dp(2.5f) + width) / 2;
-        this.tempRect.bottom = (height + AndroidUtilities.m35dp(22.0f)) / 2;
-        canvas.drawRoundRect(this.tempRect, AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), this.bluePaint);
-        canvas.drawText(this.degreesText, (width - this.degreesTextPaint.measureText(this.degreesText)) / 2.0f, AndroidUtilities.m35dp(14.0f), this.degreesTextPaint);
+        this.tempRect.left = (width - AndroidUtilities.m36dp(2.5f)) / 2;
+        this.tempRect.top = (height - AndroidUtilities.m36dp(22.0f)) / 2;
+        this.tempRect.right = (AndroidUtilities.m36dp(2.5f) + width) / 2;
+        this.tempRect.bottom = (height + AndroidUtilities.m36dp(22.0f)) / 2;
+        canvas.drawRoundRect(this.tempRect, AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f), this.bluePaint);
+        canvas.drawText(this.degreesText, (width - this.degreesTextPaint.measureText(this.degreesText)) / 2.0f, AndroidUtilities.m36dp(14.0f), this.degreesTextPaint);
     }
 
     protected void drawLine(Canvas canvas, int i, float f, int i2, int i3, boolean z, Paint paint) {
         int i4;
-        int m35dp = (int) ((i2 / 2.0f) - AndroidUtilities.m35dp(70.0f));
-        double d = m35dp;
+        int m36dp = (int) ((i2 / 2.0f) - AndroidUtilities.m36dp(70.0f));
+        double d = m36dp;
         double cos = Math.cos(Math.toRadians(90.0f - ((i * 5) + f)));
         Double.isNaN(d);
         int i5 = (i2 / 2) + ((int) (d * cos));
-        float abs = Math.abs(i4) / m35dp;
+        float abs = Math.abs(i4) / m36dp;
         int min = Math.min(255, Math.max(0, (int) ((1.0f - (abs * abs)) * 255.0f)));
         if (z) {
             paint = this.bluePaint;
@@ -280,8 +280,8 @@ public class CropRotationWheel extends FrameLayout {
         Paint paint2 = paint;
         paint2.setAlpha(min);
         int i6 = z ? 4 : 2;
-        int m35dp2 = AndroidUtilities.m35dp(z ? 16.0f : 12.0f);
+        int m36dp2 = AndroidUtilities.m36dp(z ? 16.0f : 12.0f);
         int i7 = i6 / 2;
-        canvas.drawRect(i5 - i7, (i3 - m35dp2) / 2, i5 + i7, (i3 + m35dp2) / 2, paint2);
+        canvas.drawRect(i5 - i7, (i3 - m36dp2) / 2, i5 + i7, (i3 + m36dp2) / 2, paint2);
     }
 }

@@ -25,8 +25,8 @@ public class CreateTopicEmptyView extends LinearLayout {
     public CreateTopicEmptyView(Context context, FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;
-        setBackground(Theme.createServiceDrawable(AndroidUtilities.m35dp(18.0f), this, frameLayout, getThemedPaint("paintChatActionBackground")));
-        setPadding(AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(12.0f));
+        setBackground(Theme.createServiceDrawable(AndroidUtilities.m36dp(18.0f), this, frameLayout, getThemedPaint("paintChatActionBackground")));
+        setPadding(AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(12.0f));
         setOrientation(1);
         this.backupImageView = new BackupImageView(context);
         TextView textView = new TextView(context);
@@ -34,13 +34,13 @@ public class CreateTopicEmptyView extends LinearLayout {
         textView.setTextSize(1, 15.0f);
         textView.setTextColor(getThemedColor("chat_serviceText"));
         textView.setGravity(1);
-        textView.setMaxWidth(AndroidUtilities.m35dp(210.0f));
+        textView.setMaxWidth(AndroidUtilities.m36dp(210.0f));
         textView.setText(LocaleController.getString(C1072R.string.AlmostDone));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 13.0f);
         textView2.setTextColor(getThemedColor("chat_serviceText"));
         textView2.setGravity(1);
-        textView2.setMaxWidth(AndroidUtilities.m35dp(160.0f));
+        textView2.setMaxWidth(AndroidUtilities.m36dp(160.0f));
         textView2.setText(LocaleController.getString(C1072R.string.TopicEmptyViewDescription));
         addView(this.backupImageView, LayoutHelper.createLinear(58, 58, 1, 0, 8, 0, 8));
         addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 0, 2, 0));

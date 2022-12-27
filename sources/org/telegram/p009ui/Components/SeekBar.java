@@ -50,7 +50,7 @@ public class SeekBar {
     private int thumbDX = 0;
     private boolean pressed = false;
     private RectF rect = new RectF();
-    private int lineHeight = AndroidUtilities.m35dp(2.0f);
+    private int lineHeight = AndroidUtilities.m36dp(2.0f);
     private float alpha = 1.0f;
     private float timestampsAppearing = 0.0f;
     private int currentTimestamp = -1;
@@ -86,8 +86,8 @@ public class SeekBar {
             paint = new Paint(1);
         }
         this.parentView = view;
-        thumbWidth = AndroidUtilities.m35dp(24.0f);
-        this.currentRadius = AndroidUtilities.m35dp(6.0f);
+        thumbWidth = AndroidUtilities.m36dp(24.0f);
+        this.currentRadius = AndroidUtilities.m36dp(6.0f);
     }
 
     public void setDelegate(SeekBarDelegate seekBarDelegate) {
@@ -240,24 +240,24 @@ public class SeekBar {
         paint.setColor(this.progressColor);
         drawProgressBar(canvas, this.rect, paint);
         paint.setColor(this.circleColor);
-        float m35dp = AndroidUtilities.m35dp(this.pressed ? 8.0f : 6.0f);
-        if (this.currentRadius != m35dp) {
+        float m36dp = AndroidUtilities.m36dp(this.pressed ? 8.0f : 6.0f);
+        if (this.currentRadius != m36dp) {
             long elapsedRealtime = SystemClock.elapsedRealtime() - this.lastUpdateTime;
             if (elapsedRealtime > 18) {
                 elapsedRealtime = 16;
             }
             float f3 = this.currentRadius;
-            if (f3 < m35dp) {
-                float m35dp2 = f3 + (AndroidUtilities.m35dp(1.0f) * (((float) elapsedRealtime) / 60.0f));
-                this.currentRadius = m35dp2;
-                if (m35dp2 > m35dp) {
-                    this.currentRadius = m35dp;
+            if (f3 < m36dp) {
+                float m36dp2 = f3 + (AndroidUtilities.m36dp(1.0f) * (((float) elapsedRealtime) / 60.0f));
+                this.currentRadius = m36dp2;
+                if (m36dp2 > m36dp) {
+                    this.currentRadius = m36dp;
                 }
             } else {
-                float m35dp3 = f3 - (AndroidUtilities.m35dp(1.0f) * (((float) elapsedRealtime) / 60.0f));
-                this.currentRadius = m35dp3;
-                if (m35dp3 < m35dp) {
-                    this.currentRadius = m35dp;
+                float m36dp3 = f3 - (AndroidUtilities.m36dp(1.0f) * (((float) elapsedRealtime) / 60.0f));
+                this.currentRadius = m36dp3;
+                if (m36dp3 < m36dp) {
+                    this.currentRadius = m36dp;
                 }
             }
             View view = this.parentView;
@@ -332,23 +332,23 @@ public class SeekBar {
             if (this.timestampLabelPaint == null) {
                 TextPaint textPaint = new TextPaint(1);
                 this.timestampLabelPaint = textPaint;
-                textPaint.setTextSize(AndroidUtilities.m35dp(12.0f));
+                textPaint.setTextSize(AndroidUtilities.m36dp(12.0f));
                 this.timestampLabelPaint.setColor(-1);
             }
             for (URLSpanNoUnderline uRLSpanNoUnderline : uRLSpanNoUnderlineArr) {
                 try {
                     if (uRLSpanNoUnderline != null && uRLSpanNoUnderline.getURL() != null && uRLSpanNoUnderline.label != null && uRLSpanNoUnderline.getURL().startsWith("audio?") && (parseInt = Utilities.parseInt((CharSequence) uRLSpanNoUnderline.getURL().substring(6))) != null && parseInt.intValue() >= 0) {
                         float intValue = ((float) (parseInt.intValue() * 1000)) / ((float) l.longValue());
-                        Emoji.replaceEmoji(new SpannableStringBuilder(uRLSpanNoUnderline.label), this.timestampLabelPaint.getFontMetricsInt(), AndroidUtilities.m35dp(14.0f), false);
+                        Emoji.replaceEmoji(new SpannableStringBuilder(uRLSpanNoUnderline.label), this.timestampLabelPaint.getFontMetricsInt(), AndroidUtilities.m36dp(14.0f), false);
                         this.timestamps.add(new Pair<>(Float.valueOf(intValue), uRLSpanNoUnderline));
                     }
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             Collections.sort(this.timestamps, SeekBar$$ExternalSyntheticLambda0.INSTANCE);
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
             this.timestamps = null;
             this.currentTimestamp = -1;
             this.timestampsAppearing = 0.0f;
@@ -382,19 +382,19 @@ public class SeekBar {
         float f5 = i2 / 2.0f;
         float f6 = this.width - (i2 / 2.0f);
         AndroidUtilities.rectTmp.set(rectF);
-        float m35dp = AndroidUtilities.m35dp(this.timestampsAppearing * 1.0f) / 2.0f;
+        float m36dp = AndroidUtilities.m36dp(this.timestampsAppearing * 1.0f) / 2.0f;
         if (tmpPath == null) {
             tmpPath = new Path();
         }
         tmpPath.reset();
-        float m35dp2 = AndroidUtilities.m35dp(4.0f) / (f6 - f5);
+        float m36dp2 = AndroidUtilities.m36dp(4.0f) / (f6 - f5);
         int i3 = 0;
         while (true) {
             i = -1;
             if (i3 >= this.timestamps.size()) {
                 i3 = -1;
                 break;
-            } else if (((Float) this.timestamps.get(i3).first).floatValue() >= m35dp2) {
+            } else if (((Float) this.timestamps.get(i3).first).floatValue() >= m36dp2) {
                 break;
             } else {
                 i3++;
@@ -408,7 +408,7 @@ public class SeekBar {
         while (true) {
             if (size < 0) {
                 break;
-            } else if (1.0f - ((Float) this.timestamps.get(size).first).floatValue() >= m35dp2) {
+            } else if (1.0f - ((Float) this.timestamps.get(size).first).floatValue() >= m36dp2) {
                 i = size + 1;
                 break;
             } else {
@@ -422,13 +422,13 @@ public class SeekBar {
         while (i5 <= i) {
             float floatValue = i5 == i3 ? 0.0f : ((Float) this.timestamps.get(i5 - 1).first).floatValue();
             float floatValue2 = i5 == i ? 1.0f : ((Float) this.timestamps.get(i5).first).floatValue();
-            while (i5 != i && i5 != 0 && i5 < this.timestamps.size() - i4 && ((Float) this.timestamps.get(i5).first).floatValue() - floatValue <= m35dp2) {
+            while (i5 != i && i5 != 0 && i5 < this.timestamps.size() - i4 && ((Float) this.timestamps.get(i5).first).floatValue() - floatValue <= m36dp2) {
                 i5++;
                 floatValue2 = ((Float) this.timestamps.get(i5).first).floatValue();
             }
             RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.left = AndroidUtilities.lerp(f5, f6, floatValue) + (i5 > 0 ? m35dp : 0.0f);
-            float lerp = AndroidUtilities.lerp(f5, f6, floatValue2) - (i5 < i ? m35dp : 0.0f);
+            rectF2.left = AndroidUtilities.lerp(f5, f6, floatValue) + (i5 > 0 ? m36dp : 0.0f);
+            float lerp = AndroidUtilities.lerp(f5, f6, floatValue2) - (i5 < i ? m36dp : 0.0f);
             rectF2.right = lerp;
             float f7 = rectF.right;
             boolean z = lerp > f7;
@@ -438,8 +438,8 @@ public class SeekBar {
             float f8 = rectF2.right;
             float f9 = rectF.left;
             if (f8 < f9) {
-                f = m35dp2;
-                f2 = m35dp;
+                f = m36dp2;
+                f2 = m36dp;
             } else {
                 if (rectF2.left < f9) {
                     rectF2.left = f9;
@@ -448,8 +448,8 @@ public class SeekBar {
                     tmpRadii = new float[8];
                 }
                 if (i5 == i3 || (z && rectF2.left >= rectF.left)) {
-                    f = m35dp2;
-                    f2 = m35dp;
+                    f = m36dp2;
+                    f2 = m36dp;
                     float[] fArr = tmpRadii;
                     fArr[7] = f3;
                     fArr[6] = f3;
@@ -462,7 +462,7 @@ public class SeekBar {
                     fArr[2] = f10;
                 } else if (i5 >= i) {
                     float[] fArr2 = tmpRadii;
-                    f = m35dp2;
+                    f = m36dp2;
                     float f11 = 0.7f * f3 * this.timestampsAppearing;
                     fArr2[7] = f11;
                     fArr2[6] = f11;
@@ -472,11 +472,11 @@ public class SeekBar {
                     fArr2[4] = f3;
                     fArr2[3] = f3;
                     fArr2[2] = f3;
-                    f2 = m35dp;
+                    f2 = m36dp;
                 } else {
-                    f = m35dp2;
+                    f = m36dp2;
                     float[] fArr3 = tmpRadii;
-                    f2 = m35dp;
+                    f2 = m36dp;
                     float f12 = 0.7f * f3 * this.timestampsAppearing;
                     fArr3[5] = f12;
                     fArr3[4] = f12;
@@ -493,8 +493,8 @@ public class SeekBar {
                 }
             }
             i5++;
-            m35dp2 = f;
-            m35dp = f2;
+            m36dp2 = f;
+            m36dp = f2;
             i4 = 1;
         }
         canvas.drawPath(tmpPath, paint2);
@@ -523,7 +523,7 @@ public class SeekBar {
         }
         int i = thumbWidth;
         Math.abs((i / 2.0f) - (this.width - (i / 2.0f)));
-        AndroidUtilities.m35dp(66.0f);
+        AndroidUtilities.m36dp(66.0f);
         if (size != this.currentTimestamp) {
             if (this.pressed && (view = this.parentView) != null) {
                 try {

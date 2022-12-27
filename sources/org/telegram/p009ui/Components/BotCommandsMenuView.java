@@ -59,7 +59,7 @@ public class BotCommandsMenuView extends View {
         };
         this.backDrawable = menuDrawable;
         int i = C1072R.raw.bot_webview_sheet_to_cross;
-        this.webViewAnimation = new RLottieDrawable(i, String.valueOf(i) + hashCode(), AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(20.0f)) {
+        this.webViewAnimation = new RLottieDrawable(i, String.valueOf(i) + hashCode(), AndroidUtilities.m36dp(20.0f), AndroidUtilities.m36dp(20.0f)) {
             @Override
             public void invalidateSelf() {
                 super.invalidateSelf();
@@ -67,7 +67,7 @@ public class BotCommandsMenuView extends View {
             }
 
             @Override
-            public void invalidateInternal() {
+            protected void invalidateInternal() {
                 super.invalidateInternal();
                 BotCommandsMenuView.this.invalidate();
             }
@@ -81,7 +81,7 @@ public class BotCommandsMenuView extends View {
         menuDrawable.setCallback(this);
         textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         menuDrawable.setRoundCap();
-        Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(16.0f), 0, Theme.getColor("featuredStickers_addButtonPressed"));
+        Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(16.0f), 0, Theme.getColor("featuredStickers_addButtonPressed"));
         this.backgroundDrawable = createSimpleSelectorRoundRectDrawable;
         createSimpleSelectorRoundRectDrawable.setCallback(this);
         setContentDescription(LocaleController.getString("AccDescrBotMenu", C1072R.string.AccDescrBotMenu));
@@ -123,17 +123,17 @@ public class BotCommandsMenuView extends View {
         int size = (View.MeasureSpec.getSize(i) + View.MeasureSpec.getSize(i2)) << 16;
         if (this.lastSize != size || this.menuTextLayout == null) {
             this.backDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            this.textPaint.setTextSize(AndroidUtilities.m35dp(15.0f));
+            this.textPaint.setTextSize(AndroidUtilities.m36dp(15.0f));
             this.lastSize = size;
             int measureText = (int) this.textPaint.measureText(this.menuText);
             this.menuTextLayout = StaticLayoutEx.createStaticLayout(this.menuText, this.textPaint, measureText, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, measureText, 1);
         }
-        onTranslationChanged((this.menuTextLayout.getWidth() + AndroidUtilities.m35dp(4.0f)) * this.expandProgress);
-        int m35dp = AndroidUtilities.m35dp(40.0f);
+        onTranslationChanged((this.menuTextLayout.getWidth() + AndroidUtilities.m36dp(4.0f)) * this.expandProgress);
+        int m36dp = AndroidUtilities.m36dp(40.0f);
         if (this.expanded) {
-            m35dp += this.menuTextLayout.getWidth() + AndroidUtilities.m35dp(4.0f);
+            m36dp += this.menuTextLayout.getWidth() + AndroidUtilities.m36dp(4.0f);
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(m35dp, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(32.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(m36dp, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(32.0f), 1073741824));
     }
 
     @Override
@@ -242,7 +242,7 @@ public class BotCommandsMenuView extends View {
         public BotCommandView(Context context) {
             super(context);
             setOrientation(0);
-            setPadding(AndroidUtilities.m35dp(16.0f), 0, AndroidUtilities.m35dp(16.0f), 0);
+            setPadding(AndroidUtilities.m36dp(16.0f), 0, AndroidUtilities.m36dp(16.0f), 0);
             TextView textView = new TextView(context);
             this.description = textView;
             textView.setTextSize(1, 16.0f);
@@ -250,7 +250,7 @@ public class BotCommandsMenuView extends View {
             this.description.setTag("windowBackgroundWhiteBlackText");
             this.description.setLines(1);
             this.description.setEllipsize(TextUtils.TruncateAt.END);
-            addView(this.description, LayoutHelper.createLinear(-1, -2, 1.0f, 16, 0, 0, AndroidUtilities.m35dp(8.0f), 0));
+            addView(this.description, LayoutHelper.createLinear(-1, -2, 1.0f, 16, 0, 0, AndroidUtilities.m36dp(8.0f), 0));
             TextView textView2 = new TextView(context);
             this.command = textView2;
             textView2.setTextSize(1, 14.0f);
@@ -261,7 +261,7 @@ public class BotCommandsMenuView extends View {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(36.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(36.0f), 1073741824));
         }
 
         public String getCommand() {

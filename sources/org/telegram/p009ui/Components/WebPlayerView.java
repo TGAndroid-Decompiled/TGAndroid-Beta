@@ -381,7 +381,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
             } catch (Exception e) {
                 this.codeLines.clear();
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             return TextUtils.join("", this.codeLines);
         }
@@ -415,7 +415,6 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private String videoId;
 
         public YoutubeVideoTask(String str) {
-            WebPlayerView.this = r2;
             this.videoId = str;
         }
 
@@ -439,7 +438,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 WebView webView = WebPlayerView.this.webView;
                 webView.loadUrl("data:text/html;charset=utf-8;base64," + encodeToString);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
 
@@ -463,7 +462,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         public void onPostExecute(String[] strArr) {
             if (strArr[0] != null) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("start play youtube video " + strArr[1] + " " + strArr[0]);
+                    FileLog.m35d("start play youtube video " + strArr[1] + " " + strArr[0]);
                 }
                 WebPlayerView.this.initied = true;
                 WebPlayerView.this.playVideoUrl = strArr[0];
@@ -488,7 +487,6 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private String videoId;
 
         public VimeoVideoTask(String str) {
-            WebPlayerView.this = r1;
             this.videoId = str;
         }
 
@@ -513,7 +511,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     this.results[0] = jSONObject.getJSONArray("progressive").getJSONObject(0).getString("url");
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             if (isCancelled()) {
                 return null;
@@ -544,7 +542,6 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private String videoId;
 
         public AparatVideoTask(String str) {
-            WebPlayerView.this = r1;
             this.videoId = str;
         }
 
@@ -570,7 +567,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     }
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             if (isCancelled()) {
                 return null;
@@ -601,7 +598,6 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private String[] results = new String[2];
 
         public TwitchClipVideoTask(String str, String str2) {
-            WebPlayerView.this = r1;
             this.currentUrl = str;
         }
 
@@ -618,7 +614,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     this.results[1] = "other";
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             if (isCancelled()) {
                 return null;
@@ -649,7 +645,6 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private String videoId;
 
         public TwitchStreamVideoTask(String str, String str2) {
-            WebPlayerView.this = r1;
             this.videoId = str2;
         }
 
@@ -678,7 +673,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 strArr[0] = format;
                 strArr[1] = "hls";
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             if (isCancelled()) {
                 return null;
@@ -709,7 +704,6 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private String videoId;
 
         public CoubVideoTask(String str) {
-            WebPlayerView.this = r1;
             this.videoId = str;
         }
 
@@ -731,7 +725,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     strArr[3] = "other";
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             if (isCancelled()) {
                 return null;
@@ -784,7 +778,6 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
 
         public ControlsView(Context context) {
             super(context);
-            WebPlayerView.this = r3;
             this.isVisible = true;
             this.hideRunnable = new Runnable() {
                 @Override
@@ -796,7 +789,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
             textPaint.setColor(-1);
-            this.textPaint.setTextSize(AndroidUtilities.m35dp(12.0f));
+            this.textPaint.setTextSize(AndroidUtilities.m36dp(12.0f));
             Paint paint = new Paint(1);
             this.progressPaint = paint;
             paint.setColor(-15095832);
@@ -814,7 +807,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 return;
             }
             this.duration = i;
-            StaticLayout staticLayout = new StaticLayout(AndroidUtilities.formatShortDuration(this.duration), this.textPaint, AndroidUtilities.m35dp(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(AndroidUtilities.formatShortDuration(this.duration), this.textPaint, AndroidUtilities.m36dp(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.durationLayout = staticLayout;
             if (staticLayout.getLineCount() > 0) {
                 this.durationWidth = (int) Math.ceil(this.durationLayout.getLineWidth(0));
@@ -832,7 +825,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 return;
             }
             this.progress = i;
-            this.progressLayout = new StaticLayout(AndroidUtilities.formatShortDuration(this.progress), this.textPaint, AndroidUtilities.m35dp(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.progressLayout = new StaticLayout(AndroidUtilities.formatShortDuration(this.progress), this.textPaint, AndroidUtilities.m36dp(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             invalidate();
         }
 
@@ -911,12 +904,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             int measuredHeight;
             int i;
             if (WebPlayerView.this.inFullscreen) {
-                i = AndroidUtilities.m35dp(36.0f) + this.durationWidth;
-                measuredWidth = (getMeasuredWidth() - AndroidUtilities.m35dp(76.0f)) - this.durationWidth;
-                measuredHeight = getMeasuredHeight() - AndroidUtilities.m35dp(28.0f);
+                i = AndroidUtilities.m36dp(36.0f) + this.durationWidth;
+                measuredWidth = (getMeasuredWidth() - AndroidUtilities.m36dp(76.0f)) - this.durationWidth;
+                measuredHeight = getMeasuredHeight() - AndroidUtilities.m36dp(28.0f);
             } else {
                 measuredWidth = getMeasuredWidth();
-                measuredHeight = getMeasuredHeight() - AndroidUtilities.m35dp(12.0f);
+                measuredHeight = getMeasuredHeight() - AndroidUtilities.m36dp(12.0f);
                 i = 0;
             }
             int i2 = this.duration;
@@ -926,7 +919,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     if (this.duration != 0) {
                         int x = (int) motionEvent.getX();
                         int y = (int) motionEvent.getY();
-                        if (x >= i3 - AndroidUtilities.m35dp(10.0f) && x <= AndroidUtilities.m35dp(10.0f) + i3 && y >= measuredHeight - AndroidUtilities.m35dp(10.0f) && y <= measuredHeight + AndroidUtilities.m35dp(10.0f)) {
+                        if (x >= i3 - AndroidUtilities.m36dp(10.0f) && x <= AndroidUtilities.m36dp(10.0f) + i3 && y >= measuredHeight - AndroidUtilities.m36dp(10.0f) && y <= measuredHeight + AndroidUtilities.m36dp(10.0f)) {
                             this.progressPressed = true;
                             this.lastProgressX = x;
                             this.currentProgressX = i3;
@@ -1012,9 +1005,8 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 return true;
             }
 
-            public class ViewTreeObserver$OnPreDrawListenerC30241 implements ViewTreeObserver.OnPreDrawListener {
-                ViewTreeObserver$OnPreDrawListenerC30241() {
-                    TextureView$SurfaceTextureListenerC30232.this = r1;
+            public class ViewTreeObserver$OnPreDrawListenerC30271 implements ViewTreeObserver.OnPreDrawListener {
+                ViewTreeObserver$OnPreDrawListenerC30271() {
                 }
 
                 @Override
@@ -1031,7 +1023,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            WebPlayerView.TextureView$SurfaceTextureListenerC30232.ViewTreeObserver$OnPreDrawListenerC30241.this.lambda$onPreDraw$0();
+                            WebPlayerView.TextureView$SurfaceTextureListenerC30262.ViewTreeObserver$OnPreDrawListenerC30271.this.lambda$onPreDraw$0();
                         }
                     });
                     WebPlayerView.this.waitingForFirstTextureUpload = 0;
@@ -1046,7 +1038,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             @Override
             public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
                 if (WebPlayerView.this.waitingForFirstTextureUpload == 1) {
-                    WebPlayerView.this.changedTextureView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC30241());
+                    WebPlayerView.this.changedTextureView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC30271());
                     WebPlayerView.this.changedTextureView.invalidate();
                 }
             }
@@ -1070,7 +1062,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                             WebPlayerView.this.currentBitmap.recycle();
                             WebPlayerView.this.currentBitmap = null;
                         }
-                        FileLog.m31e(th);
+                        FileLog.m32e(th);
                     }
                     if (WebPlayerView.this.currentBitmap != null) {
                         WebPlayerView.this.textureImageView.setVisibility(0);
@@ -1269,7 +1261,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 viewGroup.removeView(this.aspectRatioFrameLayout);
             }
             addView(this.aspectRatioFrameLayout, 0, LayoutHelper.createFrame(-1, -1, 17));
-            this.aspectRatioFrameLayout.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight() - AndroidUtilities.m35dp(10.0f), 1073741824));
+            this.aspectRatioFrameLayout.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight() - AndroidUtilities.m36dp(10.0f), 1073741824));
         }
         Bitmap bitmap = this.currentBitmap;
         if (bitmap != null) {
@@ -1333,7 +1325,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 bitmap.recycle();
                 this.currentBitmap = null;
             }
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
         if (this.currentBitmap != null) {
             this.textureImageView.setVisibility(0);
@@ -1374,12 +1366,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.m35dp(10.0f), this.backgroundPaint);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.m36dp(10.0f), this.backgroundPaint);
     }
 
     @Override
     public void onError(VideoPlayer videoPlayer, Exception exc) {
-        FileLog.m31e(exc);
+        FileLog.m32e(exc);
         onInitFailed();
     }
 
@@ -1450,9 +1442,9 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         int i5 = i3 - i;
         int measuredWidth = (i5 - this.aspectRatioFrameLayout.getMeasuredWidth()) / 2;
         int i6 = i4 - i2;
-        int m35dp = ((i6 - AndroidUtilities.m35dp(10.0f)) - this.aspectRatioFrameLayout.getMeasuredHeight()) / 2;
+        int m36dp = ((i6 - AndroidUtilities.m36dp(10.0f)) - this.aspectRatioFrameLayout.getMeasuredHeight()) / 2;
         AspectRatioFrameLayout aspectRatioFrameLayout = this.aspectRatioFrameLayout;
-        aspectRatioFrameLayout.layout(measuredWidth, m35dp, aspectRatioFrameLayout.getMeasuredWidth() + measuredWidth, this.aspectRatioFrameLayout.getMeasuredHeight() + m35dp);
+        aspectRatioFrameLayout.layout(measuredWidth, m36dp, aspectRatioFrameLayout.getMeasuredWidth() + measuredWidth, this.aspectRatioFrameLayout.getMeasuredHeight() + m36dp);
         if (this.controlsView.getParent() == this) {
             ControlsView controlsView = this.controlsView;
             controlsView.layout(0, 0, controlsView.getMeasuredWidth(), this.controlsView.getMeasuredHeight());
@@ -1461,18 +1453,18 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         int measuredHeight = (i6 - this.progressView.getMeasuredHeight()) / 2;
         RadialProgressView radialProgressView = this.progressView;
         radialProgressView.layout(measuredWidth2, measuredHeight, radialProgressView.getMeasuredWidth() + measuredWidth2, this.progressView.getMeasuredHeight() + measuredHeight);
-        this.controlsView.imageReceiver.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.m35dp(10.0f));
+        this.controlsView.imageReceiver.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.m36dp(10.0f));
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
-        this.aspectRatioFrameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - AndroidUtilities.m35dp(10.0f), 1073741824));
+        this.aspectRatioFrameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - AndroidUtilities.m36dp(10.0f), 1073741824));
         if (this.controlsView.getParent() == this) {
             this.controlsView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
-        this.progressView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(44.0f), 1073741824));
+        this.progressView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(44.0f), 1073741824));
         setMeasuredDimension(size, size2);
     }
 
@@ -1716,7 +1708,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     return true;
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             try {
                 Matcher matcher2 = vimeoIdRegex.matcher(str);
@@ -1724,7 +1716,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     return true;
                 }
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
             try {
                 Matcher matcher3 = aparatIdRegex.matcher(str);
@@ -1732,7 +1724,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     return true;
                 }
             } catch (Exception e3) {
-                FileLog.m31e(e3);
+                FileLog.m32e(e3);
             }
             try {
                 Matcher matcher4 = twitchClipIdRegex.matcher(str);
@@ -1740,7 +1732,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     return true;
                 }
             } catch (Exception e4) {
-                FileLog.m31e(e4);
+                FileLog.m32e(e4);
             }
             try {
                 Matcher matcher5 = twitchStreamIdRegex.matcher(str);
@@ -1748,13 +1740,13 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     return true;
                 }
             } catch (Exception e5) {
-                FileLog.m31e(e5);
+                FileLog.m32e(e5);
             }
             try {
                 Matcher matcher6 = coubIdRegex.matcher(str);
                 return (matcher6.find() ? matcher6.group(1) : null) != null;
             } catch (Exception e6) {
-                FileLog.m31e(e6);
+                FileLog.m32e(e6);
                 return false;
             }
         }
@@ -1780,7 +1772,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             Matcher matcher = coubIdRegex.matcher(str);
             group = matcher.find() ? matcher.group(1) : null;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (group != null) {
             return group;

@@ -358,7 +358,6 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
         private Context mContext;
 
         public ListAdapter(Context context) {
-            ArchivedStickersActivity.this = r1;
             this.mContext = context;
         }
 

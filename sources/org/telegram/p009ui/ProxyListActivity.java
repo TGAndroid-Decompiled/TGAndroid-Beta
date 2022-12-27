@@ -71,7 +71,6 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
 
         public TextDetailProxyCell(Context context) {
             super(context);
-            ProxyListActivity.this = r14;
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
@@ -91,7 +90,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
             this.valueTextView.setLines(1);
             this.valueTextView.setMaxLines(1);
             this.valueTextView.setSingleLine(true);
-            this.valueTextView.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
+            this.valueTextView.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
             this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
             this.valueTextView.setPadding(0, 0, 0, 0);
             TextView textView4 = this.valueTextView;
@@ -119,7 +118,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(64.0f) + 1, 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(64.0f) + 1, 1073741824));
         }
 
         public void setProxy(SharedConfig.ProxyInfo proxyInfo) {
@@ -204,7 +203,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
 
         @Override
         protected void onDraw(Canvas canvas) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }
 
@@ -556,7 +555,6 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
         private Context mContext;
 
         public ListAdapter(Context context) {
-            ProxyListActivity.this = r1;
             this.mContext = context;
         }
 

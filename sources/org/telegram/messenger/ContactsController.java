@@ -142,7 +142,6 @@ public class ContactsController extends BaseController {
 
         public MyContentObserver() {
             super(null);
-            ContactsController.this = r1;
             this.checkRunnable = ContactsController$MyContentObserver$$ExternalSyntheticLambda0.INSTANCE;
         }
 
@@ -478,7 +477,7 @@ public class ContactsController extends BaseController {
     public void lambda$checkContacts$4() {
         if (checkContactsInternal()) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("detected contacts change");
+                FileLog.m35d("detected contacts change");
             }
             performSyncPhoneBook(getContactsCopy(this.contactsBook), true, false, true, false, true, false);
         }
@@ -495,7 +494,7 @@ public class ContactsController extends BaseController {
 
     public void lambda$forceImportContacts$5() {
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("force import contacts");
+            FileLog.m35d("force import contacts");
         }
         performSyncPhoneBook(new HashMap<>(), true, true, true, true, false, false);
     }
@@ -511,7 +510,7 @@ public class ContactsController extends BaseController {
 
     public void lambda$syncPhoneBookByAlert$6(HashMap hashMap, boolean z, boolean z2, boolean z3) {
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("sync contacts by alert");
+            FileLog.m35d("sync contacts by alert");
         }
         performSyncPhoneBook(hashMap, true, z, z2, false, false, z3);
     }
@@ -621,7 +620,7 @@ public class ContactsController extends BaseController {
         boolean z = false;
         try {
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (hasContactsPermission()) {
             try {
@@ -641,7 +640,7 @@ public class ContactsController extends BaseController {
                     query.close();
                 }
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
             return z;
         }
@@ -755,7 +754,7 @@ public class ContactsController extends BaseController {
             }
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("migrated contacts " + hashMap.size() + " of " + sparseArray.size());
+            FileLog.m35d("migrated contacts " + hashMap.size() + " of " + sparseArray.size());
         }
         getMessagesStorage().putCachedPhoneBook(hashMap, true, false);
     }
@@ -805,7 +804,7 @@ public class ContactsController extends BaseController {
                     }
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         if (arrayList.isEmpty()) {
@@ -850,7 +849,7 @@ public class ContactsController extends BaseController {
         this.completedRequestsCount++;
         if (tLRPC$TL_error == null) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("contacts imported");
+                FileLog.m35d("contacts imported");
             }
             TLRPC$TL_contacts_importedContacts tLRPC$TL_contacts_importedContacts = (TLRPC$TL_contacts_importedContacts) tLObject;
             if (!tLRPC$TL_contacts_importedContacts.retry_contacts.isEmpty()) {
@@ -859,7 +858,7 @@ public class ContactsController extends BaseController {
                 }
                 zArr[0] = true;
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("result has retry contacts");
+                    FileLog.m35d("result has retry contacts");
                 }
             }
             for (int i3 = 0; i3 < tLRPC$TL_contacts_importedContacts.popular_invites.size(); i3++) {
@@ -883,7 +882,7 @@ public class ContactsController extends BaseController {
             }
             zArr[0] = true;
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("import contacts error " + tLRPC$TL_error.text);
+                FileLog.m35d("import contacts error " + tLRPC$TL_error.text);
             }
         }
         if (this.completedRequestsCount == i) {
@@ -1021,13 +1020,13 @@ public class ContactsController extends BaseController {
         }
         if (z) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("load contacts from cache");
+                FileLog.m35d("load contacts from cache");
             }
             getMessagesStorage().getContacts();
             return;
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("load contacts from server");
+            FileLog.m35d("load contacts from server");
         }
         TLRPC$TL_contacts_getContacts tLRPC$TL_contacts_getContacts = new TLRPC$TL_contacts_getContacts();
         tLRPC$TL_contacts_getContacts.hash = j;
@@ -1057,7 +1056,7 @@ public class ContactsController extends BaseController {
                     }
                 });
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("load contacts don't change");
+                    FileLog.m35d("load contacts don't change");
                     return;
                 }
                 return;
@@ -1121,7 +1120,7 @@ public class ContactsController extends BaseController {
         ArrayList arrayList3 = arrayList;
         final LongSparseArray longSparseArray2 = longSparseArray;
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("done loading contacts");
+            FileLog.m35d("done loading contacts");
         }
         if (i == 1 && (arrayList.isEmpty() || Math.abs((System.currentTimeMillis() / 1000) - getUserConfig().lastContactsSyncTime) >= 86400)) {
             loadContacts(false, getContactsHash(arrayList3));
@@ -1144,7 +1143,7 @@ public class ContactsController extends BaseController {
             if (longSparseArray2.get(tLRPC$TL_contact.user_id) == null && tLRPC$TL_contact.user_id != getUserConfig().getClientUserId()) {
                 loadContacts(false, 0L);
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("contacts are broken, load from server");
+                    FileLog.m35d("contacts are broken, load from server");
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -1337,7 +1336,7 @@ public class ContactsController extends BaseController {
                 reloadContactsStatuses();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1345,7 +1344,7 @@ public class ContactsController extends BaseController {
         try {
             MessagesController.getMainSettings(this.currentAccount).edit().putLong("lastReloadStatusTime", System.currentTimeMillis()).commit();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1555,7 +1554,7 @@ public class ContactsController extends BaseController {
         try {
             query = ApplicationLoader.applicationContext.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, this.projectionPhones, null, null, null);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (query != null && query.getCount() != 0) {
             query.close();
@@ -1565,7 +1564,7 @@ public class ContactsController extends BaseController {
             try {
                 query.close();
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
         }
         return false;
@@ -1610,7 +1609,7 @@ public class ContactsController extends BaseController {
             } catch (Exception e2) {
                 e = e2;
                 cursor = query;
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 if (cursor == null) {
                     return;
                 }
@@ -1655,7 +1654,7 @@ public class ContactsController extends BaseController {
             }
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("process update - contacts add = " + arrayList2.size() + " delete = " + arrayList3.size());
+            FileLog.m35d("process update - contacts add = " + arrayList2.size() + " delete = " + arrayList3.size());
         }
         StringBuilder sb = new StringBuilder();
         StringBuilder sb2 = new StringBuilder();
@@ -1797,7 +1796,7 @@ public class ContactsController extends BaseController {
         if (!this.contactsLoaded || !this.contactsBookLoaded) {
             this.delayedContactsUpdate.addAll(arrayList);
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("delay update - contacts add = " + arrayList2.size() + " delete = " + arrayList3.size());
+                FileLog.m35d("delay update - contacts add = " + arrayList2.size() + " delete = " + arrayList3.size());
                 return;
             }
             return;
@@ -1886,7 +1885,7 @@ public class ContactsController extends BaseController {
                 Uri build = ContactsContract.RawContacts.CONTENT_URI.buildUpon().appendQueryParameter("caller_is_syncadapter", "true").appendQueryParameter("account_name", this.systemAccount.name).appendQueryParameter("account_type", this.systemAccount.type).build();
                 contentResolver.delete(build, "sync2 = " + j, null);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             synchronized (this.observerLock) {
                 this.ignoreChanges = false;
@@ -2485,7 +2484,7 @@ public class ContactsController extends BaseController {
                 }
                 contentResolver.applyBatch("com.android.contacts", arrayList);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -2518,7 +2517,7 @@ public class ContactsController extends BaseController {
                 Uri uri = ContactsContract.RawContacts.CONTENT_URI;
                 contentResolver.delete(uri, "_id=?", new String[]{i2 + ""});
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }

@@ -97,7 +97,7 @@ public class StickerSetCell extends FrameLayout {
             RadialProgressView radialProgressView = new RadialProgressView(getContext());
             this.progressView = radialProgressView;
             radialProgressView.setProgressColor(Theme.getColor("dialogProgressCircle"));
-            this.progressView.setSize(AndroidUtilities.m35dp(30.0f));
+            this.progressView.setSize(AndroidUtilities.m36dp(30.0f));
             RadialProgressView radialProgressView2 = this.progressView;
             boolean z2 = LocaleController.isRTL;
             addView(radialProgressView2, LayoutHelper.createFrame(48, 48.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 12.0f, 5.0f, z2 ? 12.0f : 0.0f, 0.0f));
@@ -144,7 +144,7 @@ public class StickerSetCell extends FrameLayout {
         this.addButtonView.setText(LocaleController.getString("Add", C1072R.string.Add));
         this.addButtonView.setTextColor(Theme.getColor("featuredStickers_buttonText", resourcesProvider));
         this.addButtonView.setBackground(Theme.AdaptiveRipple.createRect(Theme.getColor("featuredStickers_addButton", resourcesProvider), Theme.getColor("featuredStickers_addButtonPressed", resourcesProvider), 4.0f));
-        this.addButtonView.setPadding(AndroidUtilities.m35dp(14.0f), 0, AndroidUtilities.m35dp(14.0f), 0);
+        this.addButtonView.setPadding(AndroidUtilities.m36dp(14.0f), 0, AndroidUtilities.m36dp(14.0f), 0);
         this.addButtonView.setGravity(17);
         this.addButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,7 +160,7 @@ public class StickerSetCell extends FrameLayout {
         this.removeButtonView.setText(LocaleController.getString("StickersRemove", C1072R.string.StickersRemove));
         this.removeButtonView.setTextColor(Theme.getColor("featuredStickers_removeButtonText", resourcesProvider));
         this.removeButtonView.setBackground(Theme.AdaptiveRipple.createRect(0, Theme.getColor("featuredStickers_addButton", resourcesProvider) & 452984831, 4.0f));
-        this.removeButtonView.setPadding(AndroidUtilities.m35dp(12.0f), 0, AndroidUtilities.m35dp(12.0f), 0);
+        this.removeButtonView.setPadding(AndroidUtilities.m36dp(12.0f), 0, AndroidUtilities.m36dp(12.0f), 0);
         this.removeButtonView.setGravity(17);
         this.removeButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,7 +169,7 @@ public class StickerSetCell extends FrameLayout {
             }
         });
         this.sideButtons.addView(this.removeButtonView, LayoutHelper.createFrameRelatively(-2.0f, 32.0f, (LocaleController.isRTL ? 3 : 5) | 16, 0.0f, -2.0f, 0.0f, 0.0f));
-        PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.m35dp(4.0f), false);
+        PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.m36dp(4.0f), false);
         this.premiumButtonView = premiumButtonView;
         premiumButtonView.setIcon(C1072R.raw.unlock_icon);
         this.premiumButtonView.setButton(LocaleController.getString("Unlock", C1072R.string.Unlock), new View.OnClickListener() {
@@ -180,17 +180,17 @@ public class StickerSetCell extends FrameLayout {
         });
         try {
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.premiumButtonView.getIconView().getLayoutParams();
-            marginLayoutParams.leftMargin = AndroidUtilities.m35dp(1.0f);
-            marginLayoutParams.topMargin = AndroidUtilities.m35dp(1.0f);
-            int m35dp = AndroidUtilities.m35dp(20.0f);
-            marginLayoutParams.height = m35dp;
-            marginLayoutParams.width = m35dp;
-            ((ViewGroup.MarginLayoutParams) this.premiumButtonView.getTextView().getLayoutParams()).leftMargin = AndroidUtilities.m35dp(3.0f);
-            this.premiumButtonView.getChildAt(0).setPadding(AndroidUtilities.m35dp(8.0f), 0, AndroidUtilities.m35dp(8.0f), 0);
+            marginLayoutParams.leftMargin = AndroidUtilities.m36dp(1.0f);
+            marginLayoutParams.topMargin = AndroidUtilities.m36dp(1.0f);
+            int m36dp = AndroidUtilities.m36dp(20.0f);
+            marginLayoutParams.height = m36dp;
+            marginLayoutParams.width = m36dp;
+            ((ViewGroup.MarginLayoutParams) this.premiumButtonView.getTextView().getLayoutParams()).leftMargin = AndroidUtilities.m36dp(3.0f);
+            this.premiumButtonView.getChildAt(0).setPadding(AndroidUtilities.m36dp(8.0f), 0, AndroidUtilities.m36dp(8.0f), 0);
         } catch (Exception unused) {
         }
         this.sideButtons.addView(this.premiumButtonView, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, (LocaleController.isRTL ? 3 : 5) | 16));
-        this.sideButtons.setPadding(AndroidUtilities.m35dp(10.0f), 0, AndroidUtilities.m35dp(10.0f), 0);
+        this.sideButtons.setPadding(AndroidUtilities.m36dp(10.0f), 0, AndroidUtilities.m36dp(10.0f), 0);
         addView(this.sideButtons, LayoutHelper.createFrame(-2, -1.0f, LocaleController.isRTL ? 3 : 5, 0.0f, 0.0f, 0.0f, 0.0f));
         this.sideButtons.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,7 +201,7 @@ public class StickerSetCell extends FrameLayout {
         TextView textView3 = new TextView(this, context) {
             @Override
             public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(14.0f), false), bufferType);
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(14.0f), false), bufferType);
             }
         };
         this.textView = textView3;
@@ -251,7 +251,7 @@ public class StickerSetCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(58.0f) + (this.needDivider ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(58.0f) + (this.needDivider ? 1 : 0), 1073741824));
     }
 
     public void setNeedDivider(boolean z) {
@@ -561,12 +561,12 @@ public class StickerSetCell extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(71.0f), getHeight() - 1, (getWidth() - getPaddingRight()) - (LocaleController.isRTL ? AndroidUtilities.m35dp(71.0f) : 0), getHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(71.0f), getHeight() - 1, (getWidth() - getPaddingRight()) - (LocaleController.isRTL ? AndroidUtilities.m36dp(71.0f) : 0), getHeight() - 1, Theme.dividerPaint);
         }
     }
 
     public void updateRightMargin() {
-        this.sideButtons.measure(View.MeasureSpec.makeMeasureSpec(999999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(58.0f), 1073741824));
+        this.sideButtons.measure(View.MeasureSpec.makeMeasureSpec(999999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(58.0f), 1073741824));
         int measuredWidth = this.sideButtons.getMeasuredWidth();
         if (LocaleController.isRTL) {
             ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).leftMargin = measuredWidth;

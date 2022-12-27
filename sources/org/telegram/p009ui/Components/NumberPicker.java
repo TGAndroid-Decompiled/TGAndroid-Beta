@@ -232,7 +232,7 @@ public class NumberPicker extends LinearLayout {
         this.mLastHandledDownDpadKeyCode = -1;
         this.drawDividers = true;
         this.resourcesProvider = resourcesProvider;
-        this.mTextSize = AndroidUtilities.m35dp(i);
+        this.mTextSize = AndroidUtilities.m36dp(i);
         init();
     }
 
@@ -1008,7 +1008,6 @@ public class NumberPicker extends LinearLayout {
         private int mMode;
 
         PressedStateHelper() {
-            NumberPicker.this = r1;
         }
 
         public void cancel() {
@@ -1083,7 +1082,6 @@ public class NumberPicker extends LinearLayout {
         private boolean mIncrement;
 
         ChangeCurrentByOneFromLongPressCommand() {
-            NumberPicker.this = r1;
         }
 
         public void setStep(boolean z) {

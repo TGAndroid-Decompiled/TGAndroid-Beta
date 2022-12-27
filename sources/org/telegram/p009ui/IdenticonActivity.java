@@ -66,7 +66,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
             try {
                 return super.onTouchEvent(textView, spannable, motionEvent);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return false;
             }
         }
@@ -113,7 +113,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
         this.linearLayout.setWeightSum(100.0f);
         frameLayout2.addView(this.linearLayout, LayoutHelper.createFrame(-1, -1.0f));
         FrameLayout frameLayout3 = new FrameLayout(context);
-        frameLayout3.setPadding(AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(20.0f));
+        frameLayout3.setPadding(AndroidUtilities.m36dp(20.0f), AndroidUtilities.m36dp(20.0f), AndroidUtilities.m36dp(20.0f), AndroidUtilities.m36dp(20.0f));
         this.linearLayout.addView(frameLayout3, LayoutHelper.createLinear(-1, -1, 50.0f));
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -124,7 +124,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
                 super.onLayout(z, i, i2, i3, i4);
                 if (IdenticonActivity.this.codeTextView != null) {
                     int left = (IdenticonActivity.this.codeTextView.getLeft() + (IdenticonActivity.this.codeTextView.getMeasuredWidth() / 2)) - (IdenticonActivity.this.emojiTextView.getMeasuredWidth() / 2);
-                    int measuredHeight = (((IdenticonActivity.this.codeTextView.getMeasuredHeight() - IdenticonActivity.this.emojiTextView.getMeasuredHeight()) / 2) + IdenticonActivity.this.linearLayout1.getTop()) - AndroidUtilities.m35dp(16.0f);
+                    int measuredHeight = (((IdenticonActivity.this.codeTextView.getMeasuredHeight() - IdenticonActivity.this.emojiTextView.getMeasuredHeight()) / 2) + IdenticonActivity.this.linearLayout1.getTop()) - AndroidUtilities.m36dp(16.0f);
                     IdenticonActivity.this.emojiTextView.layout(left, measuredHeight, IdenticonActivity.this.emojiTextView.getMeasuredWidth() + left, IdenticonActivity.this.emojiTextView.getMeasuredHeight() + measuredHeight);
                 }
             }
@@ -135,7 +135,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.linearLayout1 = linearLayout2;
         linearLayout2.setOrientation(1);
-        this.linearLayout1.setPadding(AndroidUtilities.m35dp(10.0f), 0, AndroidUtilities.m35dp(10.0f), 0);
+        this.linearLayout1.setPadding(AndroidUtilities.m36dp(10.0f), 0, AndroidUtilities.m36dp(10.0f), 0);
         this.container.addView(this.linearLayout1, LayoutHelper.createFrame(-2, -2, 17));
         TextView textView = new TextView(context);
         this.codeTextView = textView;
@@ -316,7 +316,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
             return;
         }
         TextView textView = this.emojiTextView;
-        textView.setText(Emoji.replaceEmoji(str, textView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(32.0f), false));
+        textView.setText(Emoji.replaceEmoji(str, textView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(32.0f), false));
     }
 
     @Override

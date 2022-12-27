@@ -133,7 +133,7 @@ public class FilterCreateActivity extends BaseFragment {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(156.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(156.0f), 1073741824));
         }
     }
 
@@ -331,8 +331,8 @@ public class FilterCreateActivity extends BaseFragment {
             this.actionBar.setTitle(LocaleController.getString("FilterNew", C1072R.string.FilterNew));
         } else {
             TextPaint textPaint = new TextPaint(1);
-            textPaint.setTextSize(AndroidUtilities.m35dp(20.0f));
-            this.actionBar.setTitle(Emoji.replaceEmoji(this.filter.name, textPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false));
+            textPaint.setTextSize(AndroidUtilities.m36dp(20.0f));
+            this.actionBar.setTitle(Emoji.replaceEmoji(this.filter.name, textPaint.getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false));
         }
         this.actionBar.setActionBarMenuOnItemClick(new C1133ActionBar.ActionBarMenuOnItemClick() {
             @Override
@@ -497,7 +497,7 @@ public class FilterCreateActivity extends BaseFragment {
             try {
                 alertDialog.dismiss();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         getMessagesController().removeFilter(this.filter);
@@ -874,7 +874,7 @@ public class FilterCreateActivity extends BaseFragment {
                 try {
                     alertDialog.dismiss();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             processAddFilter(dialogFilter, i, str, arrayList, arrayList2, z2, z3, z4, z5, baseFragment, runnable);
@@ -956,7 +956,6 @@ public class FilterCreateActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
-            FilterCreateActivity.this = r1;
             this.mContext = context;
         }
 

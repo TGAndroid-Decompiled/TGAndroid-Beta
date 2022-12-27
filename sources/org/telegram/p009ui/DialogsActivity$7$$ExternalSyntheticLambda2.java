@@ -10,6 +10,6 @@ public final class DialogsActivity$7$$ExternalSyntheticLambda2 implements Runnab
 
     @Override
     public final void run() {
-        DialogsActivity.C32147.lambda$showDeleteAlert$0();
+        DialogsActivity.C32177.lambda$showDeleteAlert$0();
     }
 }

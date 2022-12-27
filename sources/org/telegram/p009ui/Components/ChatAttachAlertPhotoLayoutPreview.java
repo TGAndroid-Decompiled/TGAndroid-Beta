@@ -139,8 +139,8 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.header.setTextColor(getThemedColor("dialogTextBlack"));
         this.header.setText(LocaleController.getString("AttachMediaPreview", C1072R.string.AttachMediaPreview));
         this.header.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.header.setCompoundDrawablePadding(AndroidUtilities.m35dp(4.0f));
-        this.header.setPadding(0, 0, AndroidUtilities.m35dp(10.0f), 0);
+        this.header.setCompoundDrawablePadding(AndroidUtilities.m36dp(4.0f));
+        this.header.setPadding(0, 0, AndroidUtilities.m36dp(10.0f), 0);
         this.header.setAlpha(0.0f);
         actionBarMenuItem.addView(this.header, LayoutHelper.createFrame(-2, -2.0f, 16, 16.0f, 0.0f, 0.0f, 0.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context, this.resourcesProvider) {
@@ -193,7 +193,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.listView.setClipToPadding(false);
         this.listView.setOverScrollMode(2);
         this.listView.setVerticalScrollBarEnabled(false);
-        this.listView.setPadding(0, 0, 0, AndroidUtilities.m35dp(46.0f));
+        this.listView.setPadding(0, 0, 0, AndroidUtilities.m36dp(46.0f));
         PreviewGroupsView previewGroupsView = new PreviewGroupsView(context);
         this.groupsView = previewGroupsView;
         previewGroupsView.setClipToPadding(true);
@@ -204,7 +204,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.groupsView.fromPhotoLayout(this.photoLayout);
         UndoView undoView = new UndoView(context, null, false, this.parentAlert.parentThemeDelegate);
         this.undoView = undoView;
-        undoView.setEnterOffsetMargin(AndroidUtilities.m35dp(32.0f));
+        undoView.setEnterOffsetMargin(AndroidUtilities.m36dp(32.0f));
         addView(this.undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 52.0f));
         this.videoPlayImage = context.getResources().getDrawable(C1072R.C1073drawable.play_mini_video);
     }
@@ -261,7 +261,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         int currentItemTop = attachAlertLayout.getCurrentItemTop();
         int listTopPadding = attachAlertLayout.getListTopPadding();
         RecyclerListView recyclerListView = this.listView;
-        if (currentItemTop > AndroidUtilities.m35dp(7.0f)) {
+        if (currentItemTop > AndroidUtilities.m36dp(7.0f)) {
             listTopPadding -= currentItemTop;
         }
         recyclerListView.scrollBy(0, listTopPadding);
@@ -319,7 +319,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
 
     @Override
     int getFirstOffset() {
-        return getListTopPadding() + AndroidUtilities.m35dp(56.0f);
+        return getListTopPadding() + AndroidUtilities.m36dp(56.0f);
     }
 
     @Override
@@ -369,7 +369,6 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         public GroupCalculator(ArrayList<MediaController.PhotoEntry> arrayList) {
-            ChatAttachAlertPhotoLayoutPreview.this = r1;
             this.photos = arrayList;
             calculate();
         }
@@ -479,9 +478,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         View childAt = this.listView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
         int top = childAt.getTop();
-        int m35dp = AndroidUtilities.m35dp(8.0f);
-        if (top < AndroidUtilities.m35dp(8.0f) || holder == null || holder.getAdapterPosition() != 0) {
-            top = m35dp;
+        int m36dp = AndroidUtilities.m36dp(8.0f);
+        if (top < AndroidUtilities.m36dp(8.0f) || holder == null || holder.getAdapterPosition() != 0) {
+            top = m36dp;
         }
         this.listView.setTopGlowOffset(top);
         return top;
@@ -534,7 +533,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 i = point.x > point.y ? 6 : 12;
             }
             if (currentItemTop < C1133ActionBar.getCurrentActionBarHeight()) {
-                currentItemTop -= AndroidUtilities.m35dp((1.0f - (currentItemTop / C1133ActionBar.getCurrentActionBarHeight())) * i);
+                currentItemTop -= AndroidUtilities.m36dp((1.0f - (currentItemTop / C1133ActionBar.getCurrentActionBarHeight())) * i);
             }
             int max = Math.max(0, currentItemTop);
             canvas.save();
@@ -609,11 +608,10 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
 
         public PreviewGroupsView(Context context) {
             super(context);
-            ChatAttachAlertPhotoLayoutPreview.this = r5;
             this.groupCells = new ArrayList<>();
             this.deletedPhotos = new HashMap<>();
-            this.paddingTop = AndroidUtilities.m35dp(16.0f);
-            this.paddingBottom = AndroidUtilities.m35dp(64.0f);
+            this.paddingTop = AndroidUtilities.m36dp(16.0f);
+            this.paddingBottom = AndroidUtilities.m36dp(64.0f);
             this.lastMeasuredHeight = 0;
             this.lastGroupSeen = null;
             this.tapTime = 0L;
@@ -625,23 +623,23 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             this.scroller = new Runnable() {
                 @Override
                 public void run() {
-                    float m35dp;
+                    float m36dp;
                     if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell == null || ChatAttachAlertPhotoLayoutPreview.this.draggingCellHiding) {
                         return;
                     }
                     int computeVerticalScrollOffset = ChatAttachAlertPhotoLayoutPreview.this.listView.computeVerticalScrollOffset();
                     boolean z = ChatAttachAlertPhotoLayoutPreview.this.listView.computeVerticalScrollExtent() + computeVerticalScrollOffset >= (PreviewGroupsView.this.measurePureHeight() - PreviewGroupsView.this.paddingBottom) + PreviewGroupsView.this.paddingTop;
-                    float max = Math.max(0.0f, (ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchY - Math.max(0, computeVerticalScrollOffset - ChatAttachAlertPhotoLayoutPreview.this.getListTopPadding())) - AndroidUtilities.m35dp(52.0f));
-                    float max2 = Math.max(0.0f, ((ChatAttachAlertPhotoLayoutPreview.this.listView.getMeasuredHeight() - (ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchY - computeVerticalScrollOffset)) - ChatAttachAlertPhotoLayoutPreview.this.getListTopPadding()) - AndroidUtilities.m35dp(84.0f));
-                    float m35dp2 = AndroidUtilities.m35dp(32.0f);
-                    if (max < m35dp2 && computeVerticalScrollOffset > ChatAttachAlertPhotoLayoutPreview.this.getListTopPadding()) {
-                        m35dp = (-(1.0f - (max / m35dp2))) * AndroidUtilities.m35dp(6.0f);
+                    float max = Math.max(0.0f, (ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchY - Math.max(0, computeVerticalScrollOffset - ChatAttachAlertPhotoLayoutPreview.this.getListTopPadding())) - AndroidUtilities.m36dp(52.0f));
+                    float max2 = Math.max(0.0f, ((ChatAttachAlertPhotoLayoutPreview.this.listView.getMeasuredHeight() - (ChatAttachAlertPhotoLayoutPreview.this.draggingCellTouchY - computeVerticalScrollOffset)) - ChatAttachAlertPhotoLayoutPreview.this.getListTopPadding()) - AndroidUtilities.m36dp(84.0f));
+                    float m36dp2 = AndroidUtilities.m36dp(32.0f);
+                    if (max < m36dp2 && computeVerticalScrollOffset > ChatAttachAlertPhotoLayoutPreview.this.getListTopPadding()) {
+                        m36dp = (-(1.0f - (max / m36dp2))) * AndroidUtilities.m36dp(6.0f);
                     } else {
-                        m35dp = max2 < m35dp2 ? AndroidUtilities.m35dp(6.0f) * (1.0f - (max2 / m35dp2)) : 0.0f;
+                        m36dp = max2 < m36dp2 ? AndroidUtilities.m36dp(6.0f) * (1.0f - (max2 / m36dp2)) : 0.0f;
                     }
-                    int i = (int) m35dp;
-                    if (Math.abs(i) > 0 && ChatAttachAlertPhotoLayoutPreview.this.listView.canScrollVertically(i) && (m35dp <= 0.0f || !z)) {
-                        ChatAttachAlertPhotoLayoutPreview.access$1416(ChatAttachAlertPhotoLayoutPreview.this, m35dp);
+                    int i = (int) m36dp;
+                    if (Math.abs(i) > 0 && ChatAttachAlertPhotoLayoutPreview.this.listView.canScrollVertically(i) && (m36dp <= 0.0f || !z)) {
+                        ChatAttachAlertPhotoLayoutPreview.access$1416(ChatAttachAlertPhotoLayoutPreview.this, m36dp);
                         ChatAttachAlertPhotoLayoutPreview.this.listView.scrollBy(0, i);
                         PreviewGroupsView.this.invalidate();
                     }
@@ -653,7 +651,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             this.undoViewId = 0;
             new HashMap();
             setWillNotDraw(false);
-            ChatActionCell chatActionCell = new ChatActionCell(context, true, r5.themeDelegate);
+            ChatActionCell chatActionCell = new ChatActionCell(context, true, ChatAttachAlertPhotoLayoutPreview.this.themeDelegate);
             this.hintView = chatActionCell;
             chatActionCell.setCustomText(LocaleController.getString("AttachMediaDragHint", C1072R.string.AttachMediaDragHint));
             addView(this.hintView);
@@ -805,7 +803,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         private int measureHeight() {
-            return Math.max(measurePureHeight(), (AndroidUtilities.displaySize.y - C1133ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.m35dp(45.0f));
+            return Math.max(measurePureHeight(), (AndroidUtilities.displaySize.y - C1133ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.m36dp(45.0f));
         }
 
         @Override
@@ -1025,7 +1023,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             invalidate();
         }
 
-        public class GroupingPhotoViewerProvider extends PhotoViewer.EmptyPhotoViewerProvider {
+        class GroupingPhotoViewerProvider extends PhotoViewer.EmptyPhotoViewerProvider {
             private ArrayList<MediaController.PhotoEntry> photos = new ArrayList<>();
 
             @Override
@@ -1034,7 +1032,6 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             }
 
             GroupingPhotoViewerProvider() {
-                PreviewGroupsView.this = r1;
             }
 
             public void init(ArrayList<MediaController.PhotoEntry> arrayList) {
@@ -1312,7 +1309,6 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             public float f1044y;
 
             private PreviewGroupCell() {
-                PreviewGroupsView.this = r4;
                 this.f1044y = 0.0f;
                 this.indexStart = 0;
                 this.lastMediaUpdate = 0L;
@@ -1322,10 +1318,10 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 this.previousGroupHeight = 0.0f;
                 this.media = new ArrayList<>();
                 this.interpolator = CubicBezierInterpolator.EASE_BOTH;
-                this.padding = AndroidUtilities.m35dp(4.0f);
-                int m35dp = AndroidUtilities.m35dp(2.0f);
-                this.gap = m35dp;
-                this.halfGap = m35dp / 2;
+                this.padding = AndroidUtilities.m36dp(4.0f);
+                int m36dp = AndroidUtilities.m36dp(2.0f);
+                this.gap = m36dp;
+                this.halfGap = m36dp / 2;
                 this.messageBackground = (Theme.MessageDrawable) ChatAttachAlertPhotoLayoutPreview.this.getThemedDrawable("drawableMsgOutMedia");
                 this.backgroundCacheParams = new Theme.MessageDrawable.PathDrawParams();
             }
@@ -1373,8 +1369,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 public boolean wasSpoiler;
 
                 private MediaCell() {
-                    PreviewGroupCell.this = r6;
-                    this.groupCell = r6;
+                    this.groupCell = PreviewGroupCell.this;
                     this.fromRect = null;
                     this.rect = new RectF();
                     this.lastUpdate = 0L;
@@ -1537,17 +1532,17 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     float f6 = groupedMessagePosition.f815ph / f4;
                     this.scale = 1.0f;
                     this.rect.set(f2, f5, (groupedMessagePosition.f816pw / i) + f2, f6 + f5);
-                    float m35dp = AndroidUtilities.m35dp(2.0f);
-                    float m35dp2 = AndroidUtilities.m35dp(SharedConfig.bubbleRadius - 1);
+                    float m36dp = AndroidUtilities.m36dp(2.0f);
+                    float m36dp2 = AndroidUtilities.m36dp(SharedConfig.bubbleRadius - 1);
                     RectF rectF4 = this.roundRadiuses;
                     int i2 = this.positionFlags;
-                    float f7 = (i2 & 5) == 5 ? m35dp2 : m35dp;
-                    float f8 = (i2 & 6) == 6 ? m35dp2 : m35dp;
-                    float f9 = (i2 & 10) == 10 ? m35dp2 : m35dp;
+                    float f7 = (i2 & 5) == 5 ? m36dp2 : m36dp;
+                    float f8 = (i2 & 6) == 6 ? m36dp2 : m36dp;
+                    float f9 = (i2 & 10) == 10 ? m36dp2 : m36dp;
                     if ((i2 & 9) == 9) {
-                        m35dp = m35dp2;
+                        m36dp = m36dp2;
                     }
-                    rectF4.set(f7, f8, f9, m35dp);
+                    rectF4.set(f7, f8, f9, m36dp);
                     if (this.fromRect == null) {
                         RectF rectF5 = new RectF();
                         this.fromRect = rectF5;
@@ -1631,10 +1626,10 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
 
                 private void drawPhotoIndex(Canvas canvas, float f, float f2, String str, float f3, float f4) {
                     String str2;
-                    int m35dp = AndroidUtilities.m35dp(12.0f);
-                    int m35dp2 = AndroidUtilities.m35dp(1.2f);
-                    int i = (m35dp + m35dp2) * 2;
-                    int i2 = m35dp2 * 4;
+                    int m36dp = AndroidUtilities.m36dp(12.0f);
+                    int m36dp2 = AndroidUtilities.m36dp(1.2f);
+                    int i = (m36dp + m36dp2) * 2;
+                    int i2 = m36dp2 * 4;
                     if (str != null && (this.indexBitmap == null || (str2 = this.indexBitmapText) == null || !str2.equals(str))) {
                         if (this.indexBitmap == null) {
                             this.indexBitmap = Bitmap.createBitmap(i, i, Bitmap.Config.ARGB_8888);
@@ -1649,17 +1644,17 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         this.textPaint.setColor(ChatAttachAlertPhotoLayoutPreview.this.getThemedColor("chat_attachCheckBoxCheck"));
                         int length = str.length();
                         float f5 = (length == 0 || length == 1 || length == 2) ? 14.0f : length != 3 ? 8.0f : 10.0f;
-                        this.textPaint.setTextSize(AndroidUtilities.m35dp(f5));
+                        this.textPaint.setTextSize(AndroidUtilities.m36dp(f5));
                         float f6 = i / 2.0f;
                         this.paint.setColor(ChatAttachAlertPhotoLayoutPreview.this.getThemedColor("chat_attachCheckBoxBackground"));
                         float f7 = (int) f6;
-                        float f8 = m35dp;
+                        float f8 = m36dp;
                         canvas2.drawCircle(f7, f7, f8, this.paint);
                         this.strokePaint.setColor(AndroidUtilities.getOffsetColor(-1, ChatAttachAlertPhotoLayoutPreview.this.getThemedColor("chat_attachCheckBoxCheck"), 1.0f, 1.0f));
                         this.strokePaint.setStyle(Paint.Style.STROKE);
-                        this.strokePaint.setStrokeWidth(m35dp2);
+                        this.strokePaint.setStrokeWidth(m36dp2);
                         canvas2.drawCircle(f7, f7, f8, this.strokePaint);
-                        canvas2.drawText(str, f6 - (this.textPaint.measureText(str) / 2.0f), f6 + AndroidUtilities.m35dp(1.0f) + AndroidUtilities.m35dp(f5 / 4.0f), this.textPaint);
+                        canvas2.drawText(str, f6 - (this.textPaint.measureText(str) / 2.0f), f6 + AndroidUtilities.m36dp(1.0f) + AndroidUtilities.m36dp(f5 / 4.0f), this.textPaint);
                         this.indexIn.set(0, 0, i, i);
                         this.indexBitmapText = str;
                     }
@@ -1683,10 +1678,10 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                                 textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                                 this.videoDurationTextPaint.setColor(-1);
                             }
-                            float m35dp = AndroidUtilities.m35dp(12.0f);
-                            this.videoDurationTextPaint.setTextSize(m35dp);
-                            float intrinsicWidth = ChatAttachAlertPhotoLayoutPreview.this.videoPlayImage.getIntrinsicWidth() + this.videoDurationTextPaint.measureText(str) + AndroidUtilities.m35dp(15.0f);
-                            float max = Math.max(m35dp, ChatAttachAlertPhotoLayoutPreview.this.videoPlayImage.getIntrinsicHeight() + AndroidUtilities.m35dp(4.0f));
+                            float m36dp = AndroidUtilities.m36dp(12.0f);
+                            this.videoDurationTextPaint.setTextSize(m36dp);
+                            float intrinsicWidth = ChatAttachAlertPhotoLayoutPreview.this.videoPlayImage.getIntrinsicWidth() + this.videoDurationTextPaint.measureText(str) + AndroidUtilities.m36dp(15.0f);
+                            float max = Math.max(m36dp, ChatAttachAlertPhotoLayoutPreview.this.videoPlayImage.getIntrinsicHeight() + AndroidUtilities.m36dp(4.0f));
                             int ceil = (int) Math.ceil(intrinsicWidth);
                             int ceil2 = (int) Math.ceil(max);
                             Bitmap bitmap = this.videoDurationBitmap;
@@ -1700,12 +1695,12 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                             Canvas canvas2 = new Canvas(this.videoDurationBitmap);
                             RectF rectF = AndroidUtilities.rectTmp;
                             rectF.set(0.0f, 0.0f, intrinsicWidth, max);
-                            canvas2.drawRoundRect(rectF, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), Theme.chat_timeBackgroundPaint);
-                            int m35dp2 = AndroidUtilities.m35dp(5.0f);
+                            canvas2.drawRoundRect(rectF, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), Theme.chat_timeBackgroundPaint);
+                            int m36dp2 = AndroidUtilities.m36dp(5.0f);
                             int intrinsicHeight = (int) ((max - ChatAttachAlertPhotoLayoutPreview.this.videoPlayImage.getIntrinsicHeight()) / 2.0f);
-                            ChatAttachAlertPhotoLayoutPreview.this.videoPlayImage.setBounds(m35dp2, intrinsicHeight, ChatAttachAlertPhotoLayoutPreview.this.videoPlayImage.getIntrinsicWidth() + m35dp2, ChatAttachAlertPhotoLayoutPreview.this.videoPlayImage.getIntrinsicHeight() + intrinsicHeight);
+                            ChatAttachAlertPhotoLayoutPreview.this.videoPlayImage.setBounds(m36dp2, intrinsicHeight, ChatAttachAlertPhotoLayoutPreview.this.videoPlayImage.getIntrinsicWidth() + m36dp2, ChatAttachAlertPhotoLayoutPreview.this.videoPlayImage.getIntrinsicHeight() + intrinsicHeight);
                             ChatAttachAlertPhotoLayoutPreview.this.videoPlayImage.draw(canvas2);
-                            canvas2.drawText(str, AndroidUtilities.m35dp(18.0f), m35dp + AndroidUtilities.m35dp(-0.7f), this.videoDurationTextPaint);
+                            canvas2.drawText(str, AndroidUtilities.m36dp(18.0f), m36dp + AndroidUtilities.m36dp(-0.7f), this.videoDurationTextPaint);
                             this.durationIn.set(0, 0, ceil, ceil2);
                             this.videoDurationBitmapText = str;
                         }

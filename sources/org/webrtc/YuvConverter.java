@@ -16,7 +16,7 @@ public class YuvConverter {
     private final ThreadUtils.ThreadChecker threadChecker;
     private final VideoFrameDrawer videoFrameDrawer;
 
-    public static class ShaderCallbacks implements GlGenericDrawer.ShaderCallbacks {
+    private static class ShaderCallbacks implements GlGenericDrawer.ShaderCallbacks {
         private float[] coeffs;
         private int coeffsLoc;
         private float stepSize;
@@ -108,7 +108,7 @@ public class YuvConverter {
             } catch (Exception e) {
                 e = e;
                 i = 0;
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 int i6 = (i2 * height) + i;
                 int i7 = i2 / 2;
                 int i8 = i6 + i7;
@@ -139,7 +139,7 @@ public class YuvConverter {
             GLES20.glBindFramebuffer(36160, 0);
         } catch (Exception e3) {
             e = e3;
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             int i62 = (i2 * height) + i;
             int i72 = i2 / 2;
             int i82 = i62 + i72;

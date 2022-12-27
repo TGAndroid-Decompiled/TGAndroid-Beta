@@ -178,10 +178,9 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
 
         private GpsLocationListener() {
-            ThemeActivity.this = r1;
         }
 
-        GpsLocationListener(ThemeActivity themeActivity, C41101 c41101) {
+        GpsLocationListener(ThemeActivity themeActivity, C41131 c41131) {
             this();
         }
 
@@ -205,18 +204,17 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
         public TextSizeCell(Context context) {
             super(context);
-            ThemeActivity.this = r10;
             this.startFontSize = 12;
             this.endFontSize = 30;
             setWillNotDraw(false);
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
-            textPaint.setTextSize(AndroidUtilities.m35dp(16.0f));
+            textPaint.setTextSize(AndroidUtilities.m36dp(16.0f));
             SeekBarView seekBarView = new SeekBarView(context);
             this.sizeBar = seekBarView;
             seekBarView.setReportChanges(true);
             this.sizeBar.setSeparatorsCount((this.endFontSize - this.startFontSize) + 1);
-            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate(r10) {
+            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate(ThemeActivity.this) {
                 @Override
                 public void onSeekBarPressed(boolean z) {
                 }
@@ -239,7 +237,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             });
             this.sizeBar.setImportantForAccessibility(2);
             addView(this.sizeBar, LayoutHelper.createFrame(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
-            ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(context, ((BaseFragment) r10).parentLayout, 0);
+            ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(context, ((BaseFragment) ThemeActivity.this).parentLayout, 0);
             this.messagesCell = themePreviewMessagesCell;
             if (Build.VERSION.SDK_INT >= 19) {
                 themePreviewMessagesCell.setImportantForAccessibility(4);
@@ -250,7 +248,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         @Override
         protected void onDraw(Canvas canvas) {
             this.textPaint.setColor(Theme.getColor("windowBackgroundWhiteValueText"));
-            canvas.drawText("" + SharedConfig.fontSize, getMeasuredWidth() - AndroidUtilities.m35dp(39.0f), AndroidUtilities.m35dp(28.0f), this.textPaint);
+            canvas.drawText("" + SharedConfig.fontSize, getMeasuredWidth() - AndroidUtilities.m36dp(39.0f), AndroidUtilities.m36dp(28.0f), this.textPaint);
         }
 
         @Override
@@ -293,18 +291,17 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
         public BubbleRadiusCell(Context context) {
             super(context);
-            ThemeActivity.this = r8;
             this.startRadius = 0;
             this.endRadius = 17;
             setWillNotDraw(false);
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
-            textPaint.setTextSize(AndroidUtilities.m35dp(16.0f));
+            textPaint.setTextSize(AndroidUtilities.m36dp(16.0f));
             SeekBarView seekBarView = new SeekBarView(context);
             this.sizeBar = seekBarView;
             seekBarView.setReportChanges(true);
             this.sizeBar.setSeparatorsCount((this.endRadius - this.startRadius) + 1);
-            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate(r8) {
+            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate(ThemeActivity.this) {
                 @Override
                 public void onSeekBarPressed(boolean z) {
                 }
@@ -332,7 +329,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         @Override
         protected void onDraw(Canvas canvas) {
             this.textPaint.setColor(Theme.getColor("windowBackgroundWhiteValueText"));
-            canvas.drawText("" + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.m35dp(39.0f), AndroidUtilities.m35dp(28.0f), this.textPaint);
+            canvas.drawText("" + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.m36dp(39.0f), AndroidUtilities.m36dp(28.0f), this.textPaint);
         }
 
         @Override
@@ -960,7 +957,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             this.actionBar.setTitle(LocaleController.getString("BrowseThemes", C1072R.string.BrowseThemes));
             ActionBarMenu createMenu = this.actionBar.createMenu();
             int i2 = C1072R.raw.sun;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(28.0f), true, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m36dp(28.0f), AndroidUtilities.m36dp(28.0f), true, null);
             this.sunDrawable = rLottieDrawable;
             if (this.lastIsDarkTheme) {
                 rLottieDrawable.setCurrentFrame(rLottieDrawable.getFramesCount() - 1);
@@ -981,7 +978,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         } else {
             this.actionBar.setTitle(LocaleController.getString("AutoNightTheme", C1072R.string.AutoNightTheme));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C41101());
+        this.actionBar.setActionBarMenuOnItemClick(new C41131());
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
@@ -1012,14 +1009,13 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         return this.fragmentView;
     }
 
-    public class C41101 extends C1133ActionBar.ActionBarMenuOnItemClick {
-        C41101() {
-            ThemeActivity.this = r1;
+    public class C41131 extends C1133ActionBar.ActionBarMenuOnItemClick {
+        C41131() {
         }
 
         @Override
         public void onItemClick(int r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ThemeActivity.C41101.onItemClick(int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ThemeActivity.C41131.onItemClick(int):void");
         }
 
         public void lambda$onItemClick$0(DialogInterface dialogInterface, int i) {
@@ -1111,7 +1107,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 final int i4 = 0;
                 for (int i5 = 3; i4 < i5; i5 = 3) {
                     RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
-                    radioColorCell.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+                    radioColorCell.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
                     radioColorCell.setCheckColor(Theme.getColor("radioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
                     radioColorCell.setTextAndValue(charSequenceArr[i4], i4 == SharedConfig.distanceSystemType);
                     radioColorCell.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 2));
@@ -1135,7 +1131,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 LinearLayout linearLayout2 = new LinearLayout(context);
                 linearLayout2.setOrientation(1);
                 RadioColorCell radioColorCell2 = new RadioColorCell(getParentActivity());
-                radioColorCell2.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+                radioColorCell2.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
                 radioColorCell2.setCheckColor(Theme.getColor("radioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
                 radioColorCell2.setTextAndValue(LocaleController.getString(C1072R.string.MicrophoneForVoiceMessagesBuiltIn), !SharedConfig.recordViaSco);
                 radioColorCell2.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 2));
@@ -1147,7 +1143,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     }
                 });
                 RadioColorCell radioColorCell3 = new RadioColorCell(getParentActivity());
-                radioColorCell3.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+                radioColorCell3.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
                 radioColorCell3.setCheckColor(Theme.getColor("radioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
                 radioColorCell3.setTextAndText2AndValue(LocaleController.getString(C1072R.string.MicrophoneForVoiceMessagesScoIfConnected), LocaleController.getString(C1072R.string.MicrophoneForVoiceMessagesScoHint), SharedConfig.recordViaSco);
                 radioColorCell3.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 2));
@@ -1192,7 +1188,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         ((TextCheckCell) view).setChecked(SharedConfig.chatBlurEnabled());
                     }
                 } else if (i == this.nightThemeRow) {
-                    if ((LocaleController.isRTL && f <= AndroidUtilities.m35dp(76.0f)) || (!LocaleController.isRTL && f >= view.getMeasuredWidth() - AndroidUtilities.m35dp(76.0f))) {
+                    if ((LocaleController.isRTL && f <= AndroidUtilities.m36dp(76.0f)) || (!LocaleController.isRTL && f >= view.getMeasuredWidth() - AndroidUtilities.m36dp(76.0f))) {
                         NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) view;
                         if (Theme.selectedAutoNightType == 0) {
                             Theme.selectedAutoNightType = 2;
@@ -1438,7 +1434,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     return;
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         try {
@@ -1450,7 +1446,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 location = locationManager.getLastKnownLocation("passive");
             }
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
         if (location == null || z) {
             startLocationUpdate();
@@ -1538,12 +1534,12 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         try {
             locationManager.requestLocationUpdates("gps", 1L, 0.0f, this.gpsLocationListener);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         try {
             locationManager.requestLocationUpdates("network", 1L, 0.0f, this.networkLocationListener);
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
     }
 
@@ -1619,35 +1615,35 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(62.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(62.0f), 1073741824));
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
-            float m35dp = AndroidUtilities.m35dp(20.0f);
+            float m36dp = AndroidUtilities.m36dp(20.0f);
             float measuredWidth = getMeasuredWidth() * 0.5f;
             float measuredHeight = getMeasuredHeight() * 0.5f;
             this.paint.setColor(this.currentAccent.accentColor);
             this.paint.setStyle(Paint.Style.STROKE);
-            this.paint.setStrokeWidth(AndroidUtilities.m35dp(3.0f));
+            this.paint.setStrokeWidth(AndroidUtilities.m36dp(3.0f));
             this.paint.setAlpha(Math.round(this.checkedState * 255.0f));
-            canvas.drawCircle(measuredWidth, measuredHeight, m35dp - (this.paint.getStrokeWidth() * 0.5f), this.paint);
+            canvas.drawCircle(measuredWidth, measuredHeight, m36dp - (this.paint.getStrokeWidth() * 0.5f), this.paint);
             this.paint.setAlpha(255);
             this.paint.setStyle(Paint.Style.FILL);
-            canvas.drawCircle(measuredWidth, measuredHeight, m35dp - (AndroidUtilities.m35dp(5.0f) * this.checkedState), this.paint);
+            canvas.drawCircle(measuredWidth, measuredHeight, m36dp - (AndroidUtilities.m36dp(5.0f) * this.checkedState), this.paint);
             if (this.checkedState != 0.0f) {
                 this.paint.setColor(-1);
                 this.paint.setAlpha(Math.round(this.checkedState * 255.0f));
-                canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.m35dp(2.0f), this.paint);
-                canvas.drawCircle(measuredWidth - (AndroidUtilities.m35dp(7.0f) * this.checkedState), measuredHeight, AndroidUtilities.m35dp(2.0f), this.paint);
-                canvas.drawCircle((AndroidUtilities.m35dp(7.0f) * this.checkedState) + measuredWidth, measuredHeight, AndroidUtilities.m35dp(2.0f), this.paint);
+                canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.m36dp(2.0f), this.paint);
+                canvas.drawCircle(measuredWidth - (AndroidUtilities.m36dp(7.0f) * this.checkedState), measuredHeight, AndroidUtilities.m36dp(2.0f), this.paint);
+                canvas.drawCircle((AndroidUtilities.m36dp(7.0f) * this.checkedState) + measuredWidth, measuredHeight, AndroidUtilities.m36dp(2.0f), this.paint);
             }
             int i = this.currentAccent.myMessagesAccentColor;
             if (i == 0 || this.checkedState == 1.0f) {
                 return;
             }
             this.paint.setColor(i);
-            canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.m35dp(8.0f) * (1.0f - this.checkedState), this.paint);
+            canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.m36dp(8.0f) * (1.0f - this.checkedState), this.paint);
         }
 
         @Override
@@ -1681,24 +1677,24 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(62.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(62.0f), 1073741824));
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
             float measuredWidth = getMeasuredWidth() * 0.5f;
             float measuredHeight = getMeasuredHeight() * 0.5f;
-            float m35dp = AndroidUtilities.m35dp(5.0f);
-            float m35dp2 = AndroidUtilities.m35dp(20.0f) - m35dp;
+            float m36dp = AndroidUtilities.m36dp(5.0f);
+            float m36dp2 = AndroidUtilities.m36dp(20.0f) - m36dp;
             this.paint.setStyle(Paint.Style.FILL);
             int i = 0;
             this.paint.setColor(this.colors[0]);
-            canvas.drawCircle(measuredWidth, measuredHeight, m35dp, this.paint);
+            canvas.drawCircle(measuredWidth, measuredHeight, m36dp, this.paint);
             double d = 0.0d;
             while (i < 6) {
                 i++;
                 this.paint.setColor(this.colors[i]);
-                canvas.drawCircle((((float) Math.sin(d)) * m35dp2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * m35dp2), m35dp, this.paint);
+                canvas.drawCircle((((float) Math.sin(d)) * m36dp2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * m36dp2), m36dp, this.paint);
                 d += 1.0471975511965976d;
             }
         }
@@ -1723,7 +1719,6 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
 
         ThemeAccentsListAdapter(Context context) {
-            ThemeActivity.this = r1;
             this.mContext = context;
             notifyDataSetChanged();
         }
@@ -1777,7 +1772,6 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         private Context mContext;
 
         public ListAdapter(Context context) {
-            ThemeActivity.this = r1;
             this.mContext = context;
         }
 
@@ -1873,12 +1867,12 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             int left = view.getLeft();
             int right = view.getRight();
-            int m35dp = AndroidUtilities.m35dp(52.0f);
-            int i5 = left - m35dp;
+            int m36dp = AndroidUtilities.m36dp(52.0f);
+            int i5 = left - m36dp;
             if (i5 < 0) {
                 recyclerListView.smoothScrollBy(i5, 0);
             } else {
-                int i6 = right + m35dp;
+                int i6 = right + m36dp;
                 if (i6 > recyclerListView.getMeasuredWidth()) {
                     recyclerListView.smoothScrollBy(i6 - recyclerListView.getMeasuredWidth(), 0);
                 }
@@ -2062,7 +2056,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     ThemeActivity.this.themesHorizontalListCell.setDrawDivider(ThemeActivity.this.hasThemeAccents);
                     ThemeActivity.this.themesHorizontalListCell.setFocusable(false);
                     View view3 = ThemeActivity.this.themesHorizontalListCell;
-                    view3.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(148.0f)));
+                    view3.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m36dp(148.0f)));
                     defaultThemesPreviewCell = view3;
                     themePreviewMessagesCell = defaultThemesPreviewCell;
                     break;
@@ -2080,7 +2074,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     tintRecyclerListView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     tintRecyclerListView.setItemAnimator(null);
                     tintRecyclerListView.setLayoutAnimation(null);
-                    tintRecyclerListView.setPadding(AndroidUtilities.m35dp(11.0f), 0, AndroidUtilities.m35dp(11.0f), 0);
+                    tintRecyclerListView.setPadding(AndroidUtilities.m36dp(11.0f), 0, AndroidUtilities.m36dp(11.0f), 0);
                     tintRecyclerListView.setClipToPadding(false);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.mContext);
                     linearLayoutManager.setOrientation(0);
@@ -2101,7 +2095,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                             return lambda$onCreateViewHolder$5;
                         }
                     });
-                    tintRecyclerListView.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(62.0f)));
+                    tintRecyclerListView.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m36dp(62.0f)));
                     defaultThemesPreviewCell = tintRecyclerListView;
                     themePreviewMessagesCell = defaultThemesPreviewCell;
                     break;
@@ -2385,7 +2379,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         findCurrentAccent = themeAccentsListAdapter.getItemCount() - 1;
                     }
                     if (findCurrentAccent != -1) {
-                        ((LinearLayoutManager) recyclerListView.getLayoutManager()).scrollToPositionWithOffset(findCurrentAccent, (ThemeActivity.this.listView.getMeasuredWidth() / 2) - AndroidUtilities.m35dp(42.0f));
+                        ((LinearLayoutManager) recyclerListView.getLayoutManager()).scrollToPositionWithOffset(findCurrentAccent, (ThemeActivity.this.listView.getMeasuredWidth() / 2) - AndroidUtilities.m36dp(42.0f));
                         return;
                     }
                     return;
@@ -2492,7 +2486,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public static abstract class TintRecyclerListView extends RecyclerListView {
+    private static abstract class TintRecyclerListView extends RecyclerListView {
         TintRecyclerListView(Context context) {
             super(context);
         }

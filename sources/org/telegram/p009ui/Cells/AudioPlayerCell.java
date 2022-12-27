@@ -60,8 +60,8 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
 
     public AudioPlayerCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.titleY = AndroidUtilities.m35dp(9.0f);
-        this.descriptionY = AndroidUtilities.m35dp(29.0f);
+        this.titleY = AndroidUtilities.m36dp(9.0f);
+        this.descriptionY = AndroidUtilities.m36dp(29.0f);
         this.currentAccount = UserConfig.selectedAccount;
         this.resourcesProvider = resourcesProvider;
         this.viewType = i;
@@ -82,34 +82,34 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
     protected void onMeasure(int i, int i2) {
         this.descriptionLayout = null;
         this.titleLayout = null;
-        int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.m35dp(AndroidUtilities.leftBaseline)) - AndroidUtilities.m35dp(28.0f);
+        int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.m36dp(AndroidUtilities.leftBaseline)) - AndroidUtilities.m36dp(28.0f);
         try {
             String musicTitle = this.currentMessageObject.getMusicTitle();
-            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(musicTitle.replace('\n', ' '), Theme.chat_contextResult_titleTextPaint, Math.min((int) Math.ceil(Theme.chat_contextResult_titleTextPaint.measureText(musicTitle)), size), TextUtils.TruncateAt.END), Theme.chat_contextResult_titleTextPaint, size + AndroidUtilities.m35dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(musicTitle.replace('\n', ' '), Theme.chat_contextResult_titleTextPaint, Math.min((int) Math.ceil(Theme.chat_contextResult_titleTextPaint.measureText(musicTitle)), size), TextUtils.TruncateAt.END), Theme.chat_contextResult_titleTextPaint, size + AndroidUtilities.m36dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.titleLayout = staticLayout;
             this.titleLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.titleLayoutEmojis, staticLayout);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         try {
             CharSequence replace = this.currentMessageObject.getMusicAuthor().replace('\n', ' ');
             if (this.viewType == 1) {
                 replace = new SpannableStringBuilder(replace).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject));
             }
-            StaticLayout staticLayout2 = new StaticLayout(TextUtils.ellipsize(replace, Theme.chat_contextResult_descriptionTextPaint, size, TextUtils.TruncateAt.END), Theme.chat_contextResult_descriptionTextPaint, size + AndroidUtilities.m35dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout2 = new StaticLayout(TextUtils.ellipsize(replace, Theme.chat_contextResult_descriptionTextPaint, size, TextUtils.TruncateAt.END), Theme.chat_contextResult_descriptionTextPaint, size + AndroidUtilities.m36dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.descriptionLayout = staticLayout2;
             this.descriptionLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.descriptionLayoutEmojis, staticLayout2);
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m35dp(56.0f));
-        int size2 = LocaleController.isRTL ? (View.MeasureSpec.getSize(i) - AndroidUtilities.m35dp(8.0f)) - AndroidUtilities.m35dp(52.0f) : AndroidUtilities.m35dp(8.0f);
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m36dp(56.0f));
+        int size2 = LocaleController.isRTL ? (View.MeasureSpec.getSize(i) - AndroidUtilities.m36dp(8.0f)) - AndroidUtilities.m36dp(52.0f) : AndroidUtilities.m36dp(8.0f);
         RadialProgress2 radialProgress2 = this.radialProgress;
-        int m35dp = AndroidUtilities.m35dp(4.0f) + size2;
-        this.buttonX = m35dp;
-        int m35dp2 = AndroidUtilities.m35dp(6.0f);
-        this.buttonY = m35dp2;
-        radialProgress2.setProgressRect(m35dp, m35dp2, size2 + AndroidUtilities.m35dp(48.0f), AndroidUtilities.m35dp(50.0f));
+        int m36dp = AndroidUtilities.m36dp(4.0f) + size2;
+        this.buttonX = m36dp;
+        int m36dp2 = AndroidUtilities.m36dp(6.0f);
+        this.buttonY = m36dp2;
+        radialProgress2.setProgressRect(m36dp, m36dp2, size2 + AndroidUtilities.m36dp(48.0f), AndroidUtilities.m36dp(50.0f));
     }
 
     public void setMessageObject(MessageObject messageObject) {
@@ -228,7 +228,7 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
     protected void onDraw(Canvas canvas) {
         if (this.titleLayout != null) {
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.titleY);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.titleY);
             this.titleLayout.draw(canvas);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.titleLayout, this.titleLayoutEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
@@ -236,7 +236,7 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
         if (this.descriptionLayout != null) {
             Theme.chat_contextResult_descriptionTextPaint.setColor(getThemedColor("windowBackgroundWhiteGrayText2"));
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
             this.descriptionLayout.draw(canvas);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.descriptionLayout, this.descriptionLayoutEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();

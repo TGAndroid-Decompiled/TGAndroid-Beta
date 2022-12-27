@@ -105,7 +105,6 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
 
     public class RunnableC12641 implements Runnable {
         RunnableC12641() {
-            StickersSearchAdapter.this = r1;
         }
 
         private void clear() {
@@ -283,7 +282,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
             StickerEmojiCell stickerEmojiCell = new StickerEmojiCell(this, this.context, false) {
                 @Override
                 public void onMeasure(int i2, int i3) {
-                    super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(82.0f), 1073741824));
+                    super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(82.0f), 1073741824));
                 }
             };
             stickerEmojiCell.getImageView().setLayerNum(3);
@@ -323,7 +322,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
                 this.emptyTextView.setTextSize(1, 16.0f);
                 this.emptyTextView.setTextColor(getThemedColor("chat_emojiPanelEmptyText"));
                 linearLayout2.addView(this.emptyTextView, LayoutHelper.createLinear(-2, -2));
-                linearLayout2.setMinimumHeight(AndroidUtilities.m35dp(112.0f));
+                linearLayout2.setMinimumHeight(AndroidUtilities.m36dp(112.0f));
                 linearLayout2.setLayoutParams(LayoutHelper.createFrame(-1, -1.0f));
                 linearLayout = linearLayout2;
             }

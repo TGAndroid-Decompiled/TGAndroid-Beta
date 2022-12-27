@@ -76,7 +76,7 @@ public class DataUsageActivity extends BaseFragment {
         if (AndroidUtilities.isTablet()) {
             this.actionBar.setOccupyStatusBar(false);
         }
-        this.actionBar.setExtraHeight(AndroidUtilities.m35dp(44.0f));
+        this.actionBar.setExtraHeight(AndroidUtilities.m36dp(44.0f));
         this.actionBar.setAllowOverlayTitle(false);
         this.actionBar.setAddToContainer(false);
         this.actionBar.setClipContent(true);
@@ -175,7 +175,7 @@ public class DataUsageActivity extends BaseFragment {
                 this.globalIgnoreLayout = true;
                 for (int i3 = 0; i3 < DataUsageActivity.this.viewPages.length; i3++) {
                     if (DataUsageActivity.this.viewPages[i3] != null && DataUsageActivity.this.viewPages[i3].listView != null) {
-                        DataUsageActivity.this.viewPages[i3].listView.setPadding(0, measuredHeight, 0, AndroidUtilities.m35dp(4.0f));
+                        DataUsageActivity.this.viewPages[i3].listView.setPadding(0, measuredHeight, 0, AndroidUtilities.m36dp(4.0f));
                     }
                 }
                 this.globalIgnoreLayout = false;
@@ -348,8 +348,8 @@ public class DataUsageActivity extends BaseFragment {
                                     DataUsageActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DataUsageActivity.this.viewPages[0].selectedType, 1.0f);
                                 }
                                 DataUsageActivity.this.tabsAnimationInProgress = false;
-                                C31403.this.maybeStartTracking = false;
-                                C31403.this.startedTracking = false;
+                                C31433.this.maybeStartTracking = false;
+                                C31433.this.startedTracking = false;
                                 ((BaseFragment) DataUsageActivity.this).actionBar.setEnabled(true);
                                 DataUsageActivity.this.scrollSlidingTextTabStrip.setEnabled(true);
                             }
@@ -546,7 +546,7 @@ public class DataUsageActivity extends BaseFragment {
         this.scrollSlidingTextTabStrip.addTextTab(1, LocaleController.getString("NetworkUsageWiFiTab", C1072R.string.NetworkUsageWiFiTab));
         this.scrollSlidingTextTabStrip.addTextTab(2, LocaleController.getString("NetworkUsageRoamingTab", C1072R.string.NetworkUsageRoamingTab));
         this.scrollSlidingTextTabStrip.setVisibility(0);
-        this.actionBar.setExtraHeight(AndroidUtilities.m35dp(44.0f));
+        this.actionBar.setExtraHeight(AndroidUtilities.m36dp(44.0f));
         int currentTabId = this.scrollSlidingTextTabStrip.getCurrentTabId();
         if (currentTabId >= 0) {
             this.viewPages[0].selectedType = currentTabId;
@@ -633,7 +633,6 @@ public class DataUsageActivity extends BaseFragment {
         private int messagesReceivedRow = -1;
 
         public ListAdapter(Context context, int i) {
-            DataUsageActivity.this = r1;
             this.mContext = context;
             this.currentType = i;
             this.rowCount = 0;

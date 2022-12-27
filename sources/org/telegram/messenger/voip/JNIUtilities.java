@@ -87,7 +87,7 @@ public class JNIUtilities {
             }
             return null;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }

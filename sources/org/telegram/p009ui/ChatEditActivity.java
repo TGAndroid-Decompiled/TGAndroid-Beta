@@ -501,13 +501,13 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             } else {
                 replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("ChannelTopicsForbidden", getMessagesController().forumUpgradeParticipantsMin, new Object[0]));
             }
-            BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.topics, replaceTags).show();
+            BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.topics, replaceTags).show();
             frameLayout.performHapticFeedback(3);
             return;
         }
         boolean z = !this.forum;
         this.forum = z;
-        this.avatarImage.animateToRoundRadius(AndroidUtilities.m35dp(z ? 16.0f : 32.0f));
+        this.avatarImage.animateToRoundRadius(AndroidUtilities.m36dp(z ? 16.0f : 32.0f));
         ((TextCell) view).setChecked(this.forum);
         updateFields(false, true);
     }
@@ -617,10 +617,10 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             }
             if (this.cameraDrawable == null) {
                 int i = C1072R.raw.camera_outline;
-                this.cameraDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.m35dp(50.0f), AndroidUtilities.m35dp(50.0f), false, null);
+                this.cameraDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.m36dp(50.0f), AndroidUtilities.m36dp(50.0f), false, null);
             }
-            this.setAvatarCell.imageView.setTranslationY(-AndroidUtilities.m35dp(9.0f));
-            this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.m35dp(8.0f));
+            this.setAvatarCell.imageView.setTranslationY(-AndroidUtilities.m36dp(9.0f));
+            this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.m36dp(8.0f));
             this.setAvatarCell.imageView.setAnimation(this.cameraDrawable);
         }
         if (PhotoViewer.hasInstance() && PhotoViewer.getInstance().isVisible()) {
@@ -712,7 +712,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                         this.progressDialog = null;
                     }
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
                 this.donePressed = false;
                 this.doneButton.performClick();
@@ -724,10 +724,10 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         this.setAvatarCell.setTextAndIcon(LocaleController.getString("ChatSetNewPhoto", C1072R.string.ChatSetNewPhoto), C1072R.C1073drawable.msg_addphoto, true);
         if (this.cameraDrawable == null) {
             int i = C1072R.raw.camera_outline;
-            this.cameraDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.m35dp(50.0f), AndroidUtilities.m35dp(50.0f), false, null);
+            this.cameraDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.m36dp(50.0f), AndroidUtilities.m36dp(50.0f), false, null);
         }
-        this.setAvatarCell.imageView.setTranslationY(-AndroidUtilities.m35dp(9.0f));
-        this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.m35dp(8.0f));
+        this.setAvatarCell.imageView.setTranslationY(-AndroidUtilities.m36dp(9.0f));
+        this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.m36dp(8.0f));
         this.setAvatarCell.imageView.setAnimation(this.cameraDrawable);
         showAvatarProgress(true, false);
     }

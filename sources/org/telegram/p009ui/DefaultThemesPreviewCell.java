@@ -77,7 +77,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         recyclerListView.setNestedScrollingEnabled(false);
         updateLayoutManager();
         recyclerListView.setFocusable(false);
-        recyclerListView.setPadding(AndroidUtilities.m35dp(12.0f), 0, AndroidUtilities.m35dp(12.0f), 0);
+        recyclerListView.setPadding(AndroidUtilities.m36dp(12.0f), 0, AndroidUtilities.m36dp(12.0f), 0);
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
@@ -99,7 +99,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         recyclerListView.setAnimateEmptyView(true, 0);
         if (this.currentType == 0) {
             int i2 = C1072R.raw.sun_outline;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(28.0f), true, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m36dp(28.0f), AndroidUtilities.m36dp(28.0f), true, null);
             this.darkThemeDrawable = rLottieDrawable;
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
             this.darkThemeDrawable.beginApplyLayerColors();
@@ -114,7 +114,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             this.browseThemesCell = textCell3;
             textCell3.setTextAndIcon(LocaleController.getString("SettingsBrowseThemes", C1072R.string.SettingsBrowseThemes), C1072R.C1073drawable.msg_colors, false);
             addView(this.browseThemesCell, LayoutHelper.createFrame(-1, -2.0f));
-            this.dayNightCell.setOnClickListener(new View$OnClickListenerC31461(context));
+            this.dayNightCell.setOnClickListener(new View$OnClickListenerC31491(context));
             this.darkThemeDrawable.setPlayInDirectionOfCustomEndFrame(true);
             this.browseThemesCell.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -148,7 +148,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         if (i3 < 0 || (linearLayoutManager = this.layoutManager) == null) {
             return;
         }
-        linearLayoutManager.scrollToPositionWithOffset(i3, AndroidUtilities.m35dp(16.0f));
+        linearLayoutManager.scrollToPositionWithOffset(i3, AndroidUtilities.m36dp(16.0f));
     }
 
     public void lambda$new$0(BaseFragment baseFragment, View view, int i) {
@@ -190,25 +190,24 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         }
     }
 
-    public class View$OnClickListenerC31461 implements View.OnClickListener {
+    public class View$OnClickListenerC31491 implements View.OnClickListener {
         final Context val$context;
 
-        View$OnClickListenerC31461(Context context) {
-            DefaultThemesPreviewCell.this = r1;
+        View$OnClickListenerC31491(Context context) {
             this.val$context = context;
         }
 
         @Override
         @android.annotation.SuppressLint({"NotifyDataSetChanged"})
         public void onClick(android.view.View r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DefaultThemesPreviewCell.View$OnClickListenerC31461.onClick(android.view.View):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DefaultThemesPreviewCell.View$OnClickListenerC31491.onClick(android.view.View):void");
         }
 
         public void lambda$onClick$1(final int i, final Context context, final int i2, final boolean z) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DefaultThemesPreviewCell.View$OnClickListenerC31461.this.lambda$onClick$0(i, context, i2, z);
+                    DefaultThemesPreviewCell.View$OnClickListenerC31491.this.lambda$onClick$0(i, context, i2, z);
                 }
             });
         }

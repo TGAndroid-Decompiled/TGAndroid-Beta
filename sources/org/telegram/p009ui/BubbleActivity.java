@@ -85,7 +85,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
             try {
                 getWindow().setFlags(8192, 8192);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         super.onCreate(bundle);
@@ -290,11 +290,11 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
                     if (BubbleActivity.this.lockRunnable == this) {
                         if (AndroidUtilities.needShowPasscode(true)) {
                             if (BuildVars.LOGS_ENABLED) {
-                                FileLog.m34d("lock app");
+                                FileLog.m35d("lock app");
                             }
                             BubbleActivity.this.showPasscodeActivity();
                         } else if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m34d("didn't pass lock check");
+                            FileLog.m35d("didn't pass lock check");
                         }
                         BubbleActivity.this.lockRunnable = null;
                     }

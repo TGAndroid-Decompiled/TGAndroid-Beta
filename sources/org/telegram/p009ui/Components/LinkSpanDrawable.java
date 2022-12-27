@@ -117,7 +117,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
 
     public boolean draw(Canvas canvas) {
         float f;
-        boolean z = this.cornerRadius != AndroidUtilities.m35dp(4.0f);
+        boolean z = this.cornerRadius != AndroidUtilities.m36dp(4.0f);
         if (this.mSelectionPaint == null) {
             Paint paint = new Paint(1);
             this.mSelectionPaint = paint;
@@ -133,7 +133,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
             this.mRippleAlpha = Color.alpha(this.color);
         }
         if (z) {
-            this.cornerRadius = AndroidUtilities.m35dp(4.0f);
+            this.cornerRadius = AndroidUtilities.m36dp(4.0f);
             this.mSelectionPaint.setPathEffect(new CornerPathEffect(this.cornerRadius));
             this.mRipplePaint.setPathEffect(new CornerPathEffect(this.cornerRadius));
         }
@@ -172,12 +172,12 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         float f2 = 1.0f - min;
         this.mSelectionPaint.setAlpha((int) (this.mSelectionAlpha * 0.2f * Math.min(1.0f, interpolation * 5.0f) * f2));
         float f3 = 1.0f - f;
-        this.mSelectionPaint.setStrokeWidth(Math.min(1.0f, f3) * AndroidUtilities.m35dp(5.0f));
+        this.mSelectionPaint.setStrokeWidth(Math.min(1.0f, f3) * AndroidUtilities.m36dp(5.0f));
         for (int i2 = 0; i2 < this.mPathesCount; i2++) {
             canvas.drawPath(this.mPathes.get(i2), this.mSelectionPaint);
         }
         this.mRipplePaint.setAlpha((int) (this.mRippleAlpha * 0.8f * f2));
-        this.mRipplePaint.setStrokeWidth(Math.min(1.0f, f3) * AndroidUtilities.m35dp(5.0f));
+        this.mRipplePaint.setStrokeWidth(Math.min(1.0f, f3) * AndroidUtilities.m36dp(5.0f));
         if (interpolation < 1.0f) {
             canvas.save();
             this.circlePath.reset();
@@ -543,7 +543,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getPaddingLeft() + getTextWidth() + getPaddingRight(), getHeight());
                 this.linkBackgroundPaint.setColor(getLinkColor());
-                canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), this.linkBackgroundPaint);
+                canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), this.linkBackgroundPaint);
             }
             super.onDraw(canvas);
             if (isClickable() && this.links.draw(canvas)) {

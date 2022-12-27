@@ -45,7 +45,7 @@ public class FabBackgroundDrawable extends Drawable {
             canvas.drawBitmap(bitmap, getBounds().centerX() - (this.shadowBitmap.getWidth() / 2), getBounds().centerY() - (this.shadowBitmap.getHeight() / 2), this.shadowPaint);
         }
         float f = min / 2;
-        canvas.drawCircle(f, f, i - AndroidUtilities.m35dp(4.0f), this.bgPaint);
+        canvas.drawCircle(f, f, i - AndroidUtilities.m36dp(4.0f), this.bgPaint);
     }
 
     @Override
@@ -59,9 +59,9 @@ public class FabBackgroundDrawable extends Drawable {
         this.shadowBitmap = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
         Canvas canvas = new Canvas(this.shadowBitmap);
         Paint paint = new Paint(1);
-        paint.setShadowLayer(AndroidUtilities.m35dp(3.33333f), 0.0f, AndroidUtilities.m35dp(0.666f), -1);
+        paint.setShadowLayer(AndroidUtilities.m36dp(3.33333f), 0.0f, AndroidUtilities.m36dp(0.666f), -1);
         float f = min / 2;
-        canvas.drawCircle(f, f, i - AndroidUtilities.m35dp(4.0f), paint);
+        canvas.drawCircle(f, f, i - AndroidUtilities.m36dp(4.0f), paint);
     }
 
     @Keep
@@ -72,8 +72,8 @@ public class FabBackgroundDrawable extends Drawable {
 
     @Override
     public boolean getPadding(Rect rect) {
-        int m35dp = AndroidUtilities.m35dp(4.0f);
-        rect.set(m35dp, m35dp, m35dp, m35dp);
+        int m36dp = AndroidUtilities.m36dp(4.0f);
+        rect.set(m36dp, m36dp, m36dp, m36dp);
         return true;
     }
 }

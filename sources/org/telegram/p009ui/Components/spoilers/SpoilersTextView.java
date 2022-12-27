@@ -129,7 +129,7 @@ public class SpoilersTextView extends TextView {
         } else {
             canvas.save();
         }
-        canvas.translate(getPaddingLeft(), getPaddingTop() + AndroidUtilities.m35dp(2.0f));
+        canvas.translate(getPaddingLeft(), getPaddingTop() + AndroidUtilities.m36dp(2.0f));
         for (SpoilerEffect spoilerEffect2 : this.spoilers) {
             spoilerEffect2.setColor(getPaint().getColor());
             spoilerEffect2.draw(canvas);

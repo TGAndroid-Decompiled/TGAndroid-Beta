@@ -181,7 +181,6 @@ public class ImageLoader {
         private boolean canRetry = true;
 
         public HttpFileTask(String str, File file, String str2, int i) {
-            ImageLoader.this = r1;
             this.url = str;
             this.tempFile = file;
             this.ext = str2;
@@ -242,7 +241,6 @@ public class ImageLoader {
         private boolean small;
 
         public ArtworkLoadTask(CacheImage cacheImage) {
-            ImageLoader.this = r2;
             this.cacheImage = cacheImage;
             this.small = Uri.parse(cacheImage.imageLocation.path).getQueryParameter("s") != null;
         }
@@ -268,7 +266,7 @@ public class ImageLoader {
                             this.canRetry = false;
                         }
                     } catch (Exception e) {
-                        FileLog.m30e((Throwable) e, false);
+                        FileLog.m31e((Throwable) e, false);
                     }
                     inputStream2 = this.httpConnection.getInputStream();
                     try {
@@ -304,7 +302,7 @@ public class ImageLoader {
                         try {
                             inputStream2.close();
                         } catch (Throwable th3) {
-                            FileLog.m31e(th3);
+                            FileLog.m32e(th3);
                         }
                     }
                     byteArrayOutputStream2.close();
@@ -322,7 +320,7 @@ public class ImageLoader {
                         try {
                             inputStream2.close();
                         } catch (Throwable th4) {
-                            FileLog.m31e(th4);
+                            FileLog.m32e(th4);
                         }
                     }
                     try {
@@ -343,7 +341,7 @@ public class ImageLoader {
                     try {
                         inputStream2.close();
                     } catch (Throwable th5) {
-                        FileLog.m31e(th5);
+                        FileLog.m32e(th5);
                     }
                 }
                 try {
@@ -369,7 +367,7 @@ public class ImageLoader {
                     } else if (th instanceof FileNotFoundException) {
                         this.canRetry = false;
                     }
-                    FileLog.m30e(th, false);
+                    FileLog.m31e(th, false);
                     try {
                         HttpURLConnection httpURLConnection6 = this.httpConnection;
                         if (httpURLConnection6 != null) {
@@ -381,7 +379,7 @@ public class ImageLoader {
                         try {
                             inputStream.close();
                         } catch (Throwable th7) {
-                            FileLog.m31e(th7);
+                            FileLog.m32e(th7);
                         }
                     }
                     if (byteArrayOutputStream != null) {
@@ -400,7 +398,7 @@ public class ImageLoader {
                         try {
                             inputStream.close();
                         } catch (Throwable th9) {
-                            FileLog.m31e(th9);
+                            FileLog.m32e(th9);
                         }
                     }
                     if (byteArrayOutputStream != null) {
@@ -473,13 +471,11 @@ public class ImageLoader {
         }
 
         public HttpImageTask(CacheImage cacheImage, long j) {
-            ImageLoader.this = r1;
             this.cacheImage = cacheImage;
             this.imageSize = j;
         }
 
         public HttpImageTask(CacheImage cacheImage, int i, String str) {
-            ImageLoader.this = r1;
             this.cacheImage = cacheImage;
             this.imageSize = i;
             this.overrideUrl = str;
@@ -610,7 +606,6 @@ public class ImageLoader {
         private File originalPath;
 
         public ThumbGenerateTask(int i, File file, ThumbGenerateInfo thumbGenerateInfo) {
-            ImageLoader.this = r1;
             this.mediaType = i;
             this.originalPath = file;
             this.info = thumbGenerateInfo;
@@ -700,7 +695,7 @@ public class ImageLoader {
                         try {
                             fileOutputStream.close();
                         } catch (Exception e) {
-                            FileLog.m31e(e);
+                            FileLog.m32e(e);
                         }
                         final BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
                         final ArrayList arrayList = new ArrayList(this.info.imageReceiverArray);
@@ -718,7 +713,7 @@ public class ImageLoader {
                 }
                 removeTask();
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
                 removeTask();
             }
         }
@@ -775,7 +770,6 @@ public class ImageLoader {
         private final Object sync = new Object();
 
         public CacheOutTask(CacheImage cacheImage) {
-            ImageLoader.this = r1;
             this.cacheImage = cacheImage;
         }
 
@@ -1009,7 +1003,6 @@ public class ImageLoader {
         protected String url;
 
         private CacheImage() {
-            ImageLoader.this = r1;
             this.priority = 1;
             this.imageReceiverArray = new ArrayList<>();
             this.imageReceiverGuidsArray = new ArrayList<>();
@@ -1254,7 +1247,7 @@ public class ImageLoader {
             try {
                 cacheDir.mkdirs();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         AndroidUtilities.createEmptyFile(new File(cacheDir, ".nomedia"));
@@ -1286,7 +1279,6 @@ public class ImageLoader {
         final int val$currentAccount;
 
         C10335(int i) {
-            ImageLoader.this = r1;
             this.val$currentAccount = i;
         }
 
@@ -1433,13 +1425,12 @@ public class ImageLoader {
 
     public class C10346 extends BroadcastReceiver {
         C10346() {
-            ImageLoader.this = r1;
         }
 
         @Override
         public void onReceive(Context context, Intent intent) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("file system changed");
+                FileLog.m35d("file system changed");
             }
             Runnable runnable = new Runnable() {
                 @Override
@@ -1511,7 +1502,7 @@ public class ImageLoader {
                     });
                     convert.close();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
         }
@@ -1526,7 +1517,7 @@ public class ImageLoader {
         try {
             Files.move(path, file2.toPath(), new CopyOption[0]);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1572,13 +1563,13 @@ public class ImageLoader {
                 } catch (Exception e) {
                     e = e;
                     randomAccessFile = randomAccessFile2;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     if (randomAccessFile != null) {
                         try {
                             randomAccessFile.close();
                             return false;
                         } catch (Exception e2) {
-                            FileLog.m31e(e2);
+                            FileLog.m32e(e2);
                             return false;
                         }
                     }
@@ -1590,7 +1581,7 @@ public class ImageLoader {
                         try {
                             randomAccessFile.close();
                         } catch (Exception e3) {
-                            FileLog.m31e(e3);
+                            FileLog.m32e(e3);
                         }
                     }
                     throw th;
@@ -2209,7 +2200,7 @@ public class ImageLoader {
                 try {
                     str = AndroidUtilities.getPath(uri);
                 } catch (Throwable th) {
-                    FileLog.m31e(th);
+                    FileLog.m32e(th);
                 }
             }
         }
@@ -2221,7 +2212,7 @@ public class ImageLoader {
                 BitmapFactory.decodeStream(openInputStream, null, options);
                 openInputStream.close();
             } catch (Throwable th2) {
-                FileLog.m31e(th2);
+                FileLog.m32e(th2);
                 return false;
             }
         }
@@ -2246,7 +2237,7 @@ public class ImageLoader {
                         randomAccessFile.readFully(bArr2, 0, bArr2.length);
                     }
                 } catch (Throwable th) {
-                    FileLog.m31e(th);
+                    FileLog.m32e(th);
                 }
             }
         }
@@ -2311,13 +2302,13 @@ public class ImageLoader {
                         try {
                             return scaleAndSaveImageInternal(tLRPC$PhotoSize, bitmap, compressFormat, z, i4, i5, width, height, f3, i, z2, z4, z3);
                         } catch (Throwable th) {
-                            FileLog.m31e(th);
+                            FileLog.m32e(th);
                             getInstance().clearMemory();
                             System.gc();
                             try {
                                 return scaleAndSaveImageInternal(tLRPC$PhotoSize, bitmap, compressFormat, z, i4, i5, width, height, f3, i, z2, z4, z3);
                             } catch (Throwable th2) {
-                                FileLog.m31e(th2);
+                                FileLog.m32e(th2);
                             }
                         }
                     }
@@ -2386,7 +2377,7 @@ public class ImageLoader {
                     byte[] bArr4 = findPhotoCachedSize.bytes;
                     Utilities.aesCtrDecryptionByteArray(bArr4, bArr2, bArr3, 0, bArr4.length, 0);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             RandomAccessFile randomAccessFile2 = new RandomAccessFile(pathToAttach, "rws");

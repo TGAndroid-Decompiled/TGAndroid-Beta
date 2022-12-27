@@ -130,18 +130,18 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         this.content = new FrameLayout(getContext()) {
             @Override
             protected void onMeasure(int i4, int i5) {
-                super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(PremiumFeatureBottomSheet.this.contentHeight + AndroidUtilities.m35dp(2.0f), 1073741824));
+                super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(PremiumFeatureBottomSheet.this.contentHeight + AndroidUtilities.m36dp(2.0f), 1073741824));
             }
 
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 gradientTools.gradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), 0.0f, 0.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, AndroidUtilities.m35dp(2.0f), getMeasuredWidth(), getMeasuredHeight() + AndroidUtilities.m35dp(18.0f));
+                rectF.set(0.0f, AndroidUtilities.m36dp(2.0f), getMeasuredWidth(), getMeasuredHeight() + AndroidUtilities.m36dp(18.0f));
                 canvas.save();
                 canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
                 gradientTools.paint.setAlpha(PremiumFeatureBottomSheet.this.gradientAlpha);
-                canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(12.0f) - 1, AndroidUtilities.m35dp(12.0f) - 1, gradientTools.paint);
+                canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(12.0f) - 1, AndroidUtilities.m36dp(12.0f) - 1, gradientTools.paint);
                 canvas.restore();
                 super.dispatchDraw(canvas);
             }
@@ -149,7 +149,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         this.closeLayout = new FrameLayout(getContext());
         ImageView imageView = new ImageView(getContext());
         imageView.setImageResource(C1072R.C1073drawable.msg_close);
-        imageView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(12.0f), ColorUtils.setAlphaComponent(-1, 40), ColorUtils.setAlphaComponent(-1, 100)));
+        imageView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(12.0f), ColorUtils.setAlphaComponent(-1, 40), ColorUtils.setAlphaComponent(-1, 100)));
         this.closeLayout.addView(imageView, LayoutHelper.createFrame(24, 24, 17));
         this.closeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,12 +161,12 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         ViewPager viewPager = new ViewPager(getContext()) {
             @Override
             public void onMeasure(int i4, int i5) {
-                int m35dp = AndroidUtilities.m35dp(100.0f);
+                int m36dp = AndroidUtilities.m36dp(100.0f);
                 if (getChildCount() > 0) {
                     getChildAt(0).measure(i4, View.MeasureSpec.makeMeasureSpec(0, 0));
-                    m35dp = getChildAt(0).getMeasuredHeight();
+                    m36dp = getChildAt(0).getMeasuredHeight();
                 }
-                super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(m35dp + PremiumFeatureBottomSheet.this.topGlobalOffset, 1073741824));
+                super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(m36dp + PremiumFeatureBottomSheet.this.topGlobalOffset, 1073741824));
             }
 
             @Override
@@ -358,7 +358,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             protected void dispatchDraw(Canvas canvas) {
                 Drawable drawable = ((BottomSheet) PremiumFeatureBottomSheet.this).shadowDrawable;
                 PremiumFeatureBottomSheet premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
-                drawable.setBounds(0, (premiumFeatureBottomSheet.topCurrentOffset - ((BottomSheet) premiumFeatureBottomSheet).backgroundPaddingTop) + AndroidUtilities.m35dp(2.0f), getMeasuredWidth(), getMeasuredHeight());
+                drawable.setBounds(0, (premiumFeatureBottomSheet.topCurrentOffset - ((BottomSheet) premiumFeatureBottomSheet).backgroundPaddingTop) + AndroidUtilities.m36dp(2.0f), getMeasuredWidth(), getMeasuredHeight());
                 ((BottomSheet) PremiumFeatureBottomSheet.this).shadowDrawable.draw(canvas);
                 super.dispatchDraw(canvas);
                 C1133ActionBar c1133ActionBar = PremiumFeatureBottomSheet.this.actionBar;
@@ -374,7 +374,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             protected boolean drawChild(Canvas canvas, View view, long j) {
                 if (view == scrollView) {
                     canvas.save();
-                    canvas.clipRect(0, PremiumFeatureBottomSheet.this.topCurrentOffset + AndroidUtilities.m35dp(2.0f), getMeasuredWidth(), getMeasuredHeight());
+                    canvas.clipRect(0, PremiumFeatureBottomSheet.this.topCurrentOffset + AndroidUtilities.m36dp(2.0f), getMeasuredWidth(), getMeasuredHeight());
                     super.drawChild(canvas, view, j);
                     canvas.restore();
                     return true;
@@ -387,7 +387,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 if (motionEvent.getAction() == 0) {
                     float y = motionEvent.getY();
                     PremiumFeatureBottomSheet premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
-                    if (y < (premiumFeatureBottomSheet.topCurrentOffset - ((BottomSheet) premiumFeatureBottomSheet).backgroundPaddingTop) + AndroidUtilities.m35dp(2.0f)) {
+                    if (y < (premiumFeatureBottomSheet.topCurrentOffset - ((BottomSheet) premiumFeatureBottomSheet).backgroundPaddingTop) + AndroidUtilities.m36dp(2.0f)) {
                         PremiumFeatureBottomSheet.this.dismiss();
                     }
                 }
@@ -532,9 +532,8 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
 
         public ViewPage(Context context, int i) {
             super(context);
-            PremiumFeatureBottomSheet.this = r10;
             setOrientation(1);
-            View viewForPosition = r10.getViewForPosition(context, i);
+            View viewForPosition = PremiumFeatureBottomSheet.this.getViewForPosition(context, i);
             this.topView = viewForPosition;
             addView(viewForPosition);
             this.topHeader = (PagerHeaderView) this.topView;
@@ -550,7 +549,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             textView2.setGravity(1);
             this.description.setTextSize(1, 15.0f);
             this.description.setTextColor(Theme.getColor("dialogTextBlack"));
-            if (!r10.onlySelectedType) {
+            if (!PremiumFeatureBottomSheet.this.onlySelectedType) {
                 this.description.setLines(2);
             }
             addView(this.description, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 10.0f, 21.0f, 16.0f));
@@ -570,17 +569,17 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             this.description.setVisibility(((BottomSheet) premiumFeatureBottomSheet).isPortrait ? 0 : 8);
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.title.getLayoutParams();
             if (((BottomSheet) PremiumFeatureBottomSheet.this).isPortrait) {
-                marginLayoutParams.topMargin = AndroidUtilities.m35dp(20.0f);
+                marginLayoutParams.topMargin = AndroidUtilities.m36dp(20.0f);
                 marginLayoutParams.bottomMargin = 0;
             } else {
-                marginLayoutParams.topMargin = AndroidUtilities.m35dp(10.0f);
-                marginLayoutParams.bottomMargin = AndroidUtilities.m35dp(10.0f);
+                marginLayoutParams.topMargin = AndroidUtilities.m36dp(10.0f);
+                marginLayoutParams.bottomMargin = AndroidUtilities.m36dp(10.0f);
             }
             ((ViewGroup.MarginLayoutParams) this.topView.getLayoutParams()).bottomMargin = 0;
             super.onMeasure(i, i2);
             if (this.topViewOnFullHeight) {
-                this.topView.getLayoutParams().height = getMeasuredHeight() - AndroidUtilities.m35dp(16.0f);
-                ((ViewGroup.MarginLayoutParams) this.topView.getLayoutParams()).bottomMargin = AndroidUtilities.m35dp(16.0f);
+                this.topView.getLayoutParams().height = getMeasuredHeight() - AndroidUtilities.m36dp(16.0f);
+                ((ViewGroup.MarginLayoutParams) this.topView.getLayoutParams()).bottomMargin = AndroidUtilities.m36dp(16.0f);
                 this.title.setVisibility(8);
                 this.description.setVisibility(8);
                 super.onMeasure(i, i2);
@@ -758,7 +757,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             this.content.setTranslationY(this.topCurrentOffset);
             this.closeLayout.setTranslationY(this.topCurrentOffset);
             this.containerView.invalidate();
-            AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, this.topCurrentOffset < AndroidUtilities.m35dp(30.0f), 1.0f, true);
+            AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, this.topCurrentOffset < AndroidUtilities.m36dp(30.0f), 1.0f, true);
         }
     }
 

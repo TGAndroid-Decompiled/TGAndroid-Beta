@@ -54,7 +54,7 @@ public class TextInfoPrivacyCell extends FrameLayout {
         this.links = linkCollector;
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, linkCollector, resourcesProvider) {
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 TextInfoPrivacyCell.this.onTextDraw();
                 super.onDraw(canvas);
                 TextInfoPrivacyCell.this.afterTextDraw();
@@ -63,7 +63,7 @@ public class TextInfoPrivacyCell extends FrameLayout {
         this.textView = linksTextView;
         linksTextView.setTextSize(1, 14.0f);
         this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        this.textView.setPadding(0, AndroidUtilities.m35dp(10.0f), 0, AndroidUtilities.m35dp(17.0f));
+        this.textView.setPadding(0, AndroidUtilities.m36dp(10.0f), 0, AndroidUtilities.m36dp(17.0f));
         this.textView.setMovementMethod(LinkMovementMethod.getInstance());
         this.textView.setTextColor(getThemedColor("windowBackgroundWhiteGrayText4"));
         this.textView.setLinkTextColor(getThemedColor(this.linkTextColorKey));
@@ -93,7 +93,7 @@ public class TextInfoPrivacyCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         if (this.fixedSize != 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(this.fixedSize), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(this.fixedSize), 1073741824));
         } else {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
         }
@@ -117,9 +117,9 @@ public class TextInfoPrivacyCell extends FrameLayout {
         }
         this.text = charSequence;
         if (charSequence == null) {
-            this.textView.setPadding(0, AndroidUtilities.m35dp(2.0f), 0, 0);
+            this.textView.setPadding(0, AndroidUtilities.m36dp(2.0f), 0, 0);
         } else {
-            this.textView.setPadding(0, AndroidUtilities.m35dp(this.topPadding), 0, AndroidUtilities.m35dp(this.bottomPadding));
+            this.textView.setPadding(0, AndroidUtilities.m36dp(this.topPadding), 0, AndroidUtilities.m36dp(this.bottomPadding));
         }
         SpannableString spannableString = null;
         if (charSequence != null) {

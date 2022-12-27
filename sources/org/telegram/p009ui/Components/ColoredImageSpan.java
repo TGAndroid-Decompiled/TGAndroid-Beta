@@ -81,7 +81,7 @@ public class ColoredImageSpan extends ReplacementSpan {
             if (i10 == 0) {
                 i10 = this.drawable.getIntrinsicHeight();
             }
-            i6 = AndroidUtilities.m35dp(this.topOffset) + i3 + ((i9 - i10) / 2);
+            i6 = AndroidUtilities.m36dp(this.topOffset) + i3 + ((i9 - i10) / 2);
         }
         canvas.translate(f, i6);
         Drawable drawable3 = this.drawable;

@@ -147,7 +147,7 @@ public class PollEditTextCell extends FrameLayout {
         editTextBoldCursor.setImeOptions(editTextBoldCursor.getImeOptions() | 268435456);
         EditTextBoldCursor editTextBoldCursor2 = this.textView;
         editTextBoldCursor2.setInputType(editTextBoldCursor2.getInputType() | 16384);
-        this.textView.setPadding(AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(11.0f));
+        this.textView.setPadding(AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(11.0f));
         if (onClickListener != null) {
             EditTextBoldCursor editTextBoldCursor3 = this.textView;
             boolean z2 = LocaleController.isRTL;
@@ -222,33 +222,33 @@ public class PollEditTextCell extends FrameLayout {
         int size = View.MeasureSpec.getSize(i);
         ImageView imageView = this.deleteImageView;
         if (imageView != null) {
-            imageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f), 1073741824));
+            imageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f), 1073741824));
         }
         ImageView imageView2 = this.moveImageView;
         if (imageView2 != null) {
-            imageView2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f), 1073741824));
+            imageView2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f), 1073741824));
         }
         SimpleTextView simpleTextView = this.textView2;
         if (simpleTextView != null) {
-            simpleTextView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(24.0f), 1073741824));
+            simpleTextView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(24.0f), 1073741824));
         }
         CheckBox2 checkBox2 = this.checkBox;
         if (checkBox2 != null) {
-            checkBox2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(48.0f), 1073741824));
+            checkBox2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(48.0f), 1073741824));
         }
         if (this.textView2 == null) {
             i3 = 42;
         } else {
             i3 = this.deleteImageView == null ? 70 : 122;
         }
-        this.textView.measure(View.MeasureSpec.makeMeasureSpec(((size - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.m35dp(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+        this.textView.measure(View.MeasureSpec.makeMeasureSpec(((size - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.m36dp(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
         int measuredHeight = this.textView.getMeasuredHeight();
-        setMeasuredDimension(size, Math.max(AndroidUtilities.m35dp(50.0f), this.textView.getMeasuredHeight()) + (this.needDivider ? 1 : 0));
+        setMeasuredDimension(size, Math.max(AndroidUtilities.m36dp(50.0f), this.textView.getMeasuredHeight()) + (this.needDivider ? 1 : 0));
         SimpleTextView simpleTextView2 = this.textView2;
         if (simpleTextView2 == null || this.alwaysShowText2) {
             return;
         }
-        simpleTextView2.setAlpha(measuredHeight >= AndroidUtilities.m35dp(52.0f) ? 1.0f : 0.0f);
+        simpleTextView2.setAlpha(measuredHeight >= AndroidUtilities.m36dp(52.0f) ? 1.0f : 0.0f);
     }
 
     @Override
@@ -362,22 +362,22 @@ public class PollEditTextCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float m35dp;
+        float m36dp;
         int i;
         if (this.needDivider && drawDivider()) {
             if (LocaleController.isRTL) {
-                m35dp = 0.0f;
+                m36dp = 0.0f;
             } else {
-                m35dp = AndroidUtilities.m35dp(this.moveImageView != null ? 63.0f : 20.0f);
+                m36dp = AndroidUtilities.m36dp(this.moveImageView != null ? 63.0f : 20.0f);
             }
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (LocaleController.isRTL) {
-                i = AndroidUtilities.m35dp(this.moveImageView == null ? 20.0f : 63.0f);
+                i = AndroidUtilities.m36dp(this.moveImageView == null ? 20.0f : 63.0f);
             } else {
                 i = 0;
             }
-            canvas.drawLine(m35dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(m36dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }
 }

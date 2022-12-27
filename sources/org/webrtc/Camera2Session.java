@@ -56,7 +56,6 @@ public class Camera2Session implements CameraSession {
 
     public class CameraStateCallback extends CameraDevice.StateCallback {
         private CameraStateCallback() {
-            Camera2Session.this = r1;
         }
 
         private String getErrorDescription(int i) {
@@ -122,7 +121,6 @@ public class Camera2Session implements CameraSession {
 
     public class CaptureSessionCallback extends CameraCaptureSession.StateCallback {
         private CaptureSessionCallback() {
-            Camera2Session.this = r1;
         }
 
         @Override

@@ -53,8 +53,8 @@ public class Emoji {
         emojiColor = new HashMap<>();
         invalidateUiRunnable = Emoji$$ExternalSyntheticLambda1.INSTANCE;
         emojiDrawingUseAlpha = true;
-        drawImgSize = AndroidUtilities.m35dp(20.0f);
-        bigImgSize = AndroidUtilities.m35dp(AndroidUtilities.isTablet() ? 40.0f : 34.0f);
+        drawImgSize = AndroidUtilities.m36dp(20.0f);
+        bigImgSize = AndroidUtilities.m36dp(AndroidUtilities.isTablet() ? 40.0f : 34.0f);
         int i = 0;
         while (true) {
             Bitmap[][] bitmapArr = emojiBmp;
@@ -128,7 +128,7 @@ public class Emoji {
             AndroidUtilities.runOnUIThread(invalidateUiRunnable);
         } catch (Throwable th) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m32e("Error loading emoji", th);
+                FileLog.m33e("Error loading emoji", th);
             }
         }
     }
@@ -355,7 +355,7 @@ public class Emoji {
     }
 
     public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, boolean z) {
-        return replaceEmoji(charSequence, fontMetricsInt, AndroidUtilities.m35dp(16.0f), z, null);
+        return replaceEmoji(charSequence, fontMetricsInt, AndroidUtilities.m36dp(16.0f), z, null);
     }
 
     public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, int i, boolean z) {
@@ -389,7 +389,7 @@ public class Emoji {
             try {
                 emojiSpanRange = parseEmojis.get(i2);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             if (animatedEmojiSpanArr != null) {
                 int i4 = 0;
@@ -432,13 +432,13 @@ public class Emoji {
 
         public EmojiSpan(Drawable drawable, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
             super(drawable, i);
-            this.size = AndroidUtilities.m35dp(20.0f);
+            this.size = AndroidUtilities.m36dp(20.0f);
             this.fontMetrics = fontMetricsInt;
             if (fontMetricsInt != null) {
                 int abs = Math.abs(fontMetricsInt.descent) + Math.abs(this.fontMetrics.ascent);
                 this.size = abs;
                 if (abs == 0) {
-                    this.size = AndroidUtilities.m35dp(20.0f);
+                    this.size = AndroidUtilities.m36dp(20.0f);
                 }
             }
         }
@@ -454,7 +454,7 @@ public class Emoji {
                 int abs = Math.abs(fontMetricsInt.descent) + Math.abs(this.fontMetrics.ascent);
                 this.size = abs;
                 if (abs == 0) {
-                    this.size = AndroidUtilities.m35dp(20.0f);
+                    this.size = AndroidUtilities.m36dp(20.0f);
                 }
             }
         }
@@ -467,11 +467,11 @@ public class Emoji {
             Paint.FontMetricsInt fontMetricsInt2 = this.fontMetrics;
             if (fontMetricsInt2 == null) {
                 int size = super.getSize(paint, charSequence, i, i2, fontMetricsInt);
-                int m35dp = AndroidUtilities.m35dp(8.0f);
-                int m35dp2 = AndroidUtilities.m35dp(10.0f);
-                int i3 = (-m35dp2) - m35dp;
+                int m36dp = AndroidUtilities.m36dp(8.0f);
+                int m36dp2 = AndroidUtilities.m36dp(10.0f);
+                int i3 = (-m36dp2) - m36dp;
                 fontMetricsInt.top = i3;
-                int i4 = m35dp2 - m35dp;
+                int i4 = m36dp2 - m36dp;
                 fontMetricsInt.bottom = i4;
                 fontMetricsInt.ascent = i3;
                 fontMetricsInt.leading = 0;
@@ -637,7 +637,7 @@ public class Emoji {
             }
             sortEmoji();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         try {
             String string3 = globalEmojiSettings.getString("color", "");
@@ -649,7 +649,7 @@ public class Emoji {
                 emojiColor.put(split3[0], split3[1]);
             }
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
     }
 

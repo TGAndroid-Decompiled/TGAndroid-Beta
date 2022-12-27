@@ -82,7 +82,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         this.parentLayout = iNavigationLayout;
         setWillNotDraw(false);
         setOrientation(1);
-        setPadding(0, AndroidUtilities.m35dp(11.0f), 0, AndroidUtilities.m35dp(11.0f));
+        setPadding(0, AndroidUtilities.m36dp(11.0f), 0, AndroidUtilities.m36dp(11.0f));
         this.shadowDrawable = Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow");
         int currentTimeMillis = ((int) (System.currentTimeMillis() / 1000)) - 3600;
         if (i == 2) {
@@ -225,30 +225,28 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 final int val$currentAccount;
                 final int val$type;
 
-                public class C14621 extends GestureDetector.SimpleOnGestureListener {
-                    C14621() {
-                        C14611.this = r1;
+                public class C14641 extends GestureDetector.SimpleOnGestureListener {
+                    C14641() {
                     }
 
                     @Override
                     public boolean onDoubleTap(MotionEvent motionEvent) {
-                        boolean selectReaction = getMessageObject().selectReaction(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(C14611.this.val$currentAccount).getDoubleTapReaction()), false, false);
-                        C14611 c14611 = C14611.this;
-                        c14611.setMessageObject(c14611.getMessageObject(), null, false, false);
+                        boolean selectReaction = getMessageObject().selectReaction(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(C14631.this.val$currentAccount).getDoubleTapReaction()), false, false);
+                        C14631 c14631 = C14631.this;
+                        c14631.setMessageObject(c14631.getMessageObject(), null, false, false);
                         requestLayout();
                         ReactionsEffectOverlay.removeCurrent(false);
                         if (selectReaction) {
                             ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
-                            ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], null, motionEvent.getX(), motionEvent.getY(), ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(C14611.this.val$currentAccount).getDoubleTapReaction()), C14611.this.val$currentAccount, 0);
+                            ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], null, motionEvent.getX(), motionEvent.getY(), ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(C14631.this.val$currentAccount).getDoubleTapReaction()), C14631.this.val$currentAccount, 0);
                             ReactionsEffectOverlay.startAnimation();
                         }
-                        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC14631());
+                        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC14651());
                         return true;
                     }
 
-                    public class ViewTreeObserver$OnPreDrawListenerC14631 implements ViewTreeObserver.OnPreDrawListener {
-                        ViewTreeObserver$OnPreDrawListenerC14631() {
-                            C14621.this = r1;
+                    public class ViewTreeObserver$OnPreDrawListenerC14651 implements ViewTreeObserver.OnPreDrawListener {
+                        ViewTreeObserver$OnPreDrawListenerC14651() {
                         }
 
                         @Override
@@ -262,7 +260,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                    ThemePreviewMessagesCell.C14611.C14621.ViewTreeObserver$OnPreDrawListenerC14631.this.lambda$onPreDraw$0(valueAnimator);
+                                    ThemePreviewMessagesCell.C14631.C14641.ViewTreeObserver$OnPreDrawListenerC14651.this.lambda$onPreDraw$0(valueAnimator);
                                 }
                             });
                             ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -286,11 +284,10 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 }
 
                 {
-                    ThemePreviewMessagesCell.this = this;
                     this.val$context = context;
                     this.val$currentAccount = i2;
                     this.val$type = i;
-                    this.gestureDetector = new GestureDetector(context, new C14621());
+                    this.gestureDetector = new GestureDetector(context, new C14641());
                 }
 
                 @Override
@@ -302,7 +299,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 @Override
                 protected void dispatchDraw(Canvas canvas) {
                     if (getAvatarImage() != null && getAvatarImage().getImageHeight() != 0.0f) {
-                        getAvatarImage().setImageCoords(getAvatarImage().getImageX(), (getMeasuredHeight() - getAvatarImage().getImageHeight()) - AndroidUtilities.m35dp(4.0f), getAvatarImage().getImageWidth(), getAvatarImage().getImageHeight());
+                        getAvatarImage().setImageCoords(getAvatarImage().getImageX(), (getMeasuredHeight() - getAvatarImage().getImageHeight()) - AndroidUtilities.m36dp(4.0f), getAvatarImage().getImageWidth(), getAvatarImage().getImageHeight());
                         getAvatarImage().setRoundRadius((int) (getAvatarImage().getImageHeight() / 2.0f));
                         getAvatarImage().draw(canvas);
                     } else if (this.val$type == 2) {

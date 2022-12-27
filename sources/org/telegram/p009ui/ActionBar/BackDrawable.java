@@ -30,9 +30,9 @@ public class BackDrawable extends Drawable {
     }
 
     public BackDrawable(boolean z) {
-        this.paint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.paint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         this.paint.setStrokeCap(Paint.Cap.ROUND);
-        this.prevPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.prevPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         this.prevPaint.setColor(-65536);
         this.alwaysClose = z;
     }
@@ -115,12 +115,12 @@ public class BackDrawable extends Drawable {
             f = f3;
         }
         float f4 = 1.0f - f;
-        canvas.drawLine(AndroidUtilities.m35dp(AndroidUtilities.lerp(-6.75f, -8.0f, f)), 0.0f, AndroidUtilities.m35dp(8.0f) - ((this.paint.getStrokeWidth() / 2.0f) * f4), 0.0f, this.paint);
-        float m35dp = AndroidUtilities.m35dp(-0.25f);
-        float m35dp2 = AndroidUtilities.m35dp(AndroidUtilities.lerp(7.0f, 8.0f, f)) - ((this.paint.getStrokeWidth() / 4.0f) * f4);
-        float m35dp3 = AndroidUtilities.m35dp(AndroidUtilities.lerp(-7.25f, 0.0f, f));
-        canvas.drawLine(m35dp3, -m35dp, 0.0f, -m35dp2, this.paint);
-        canvas.drawLine(m35dp3, m35dp, 0.0f, m35dp2, this.paint);
+        canvas.drawLine(AndroidUtilities.m36dp(AndroidUtilities.lerp(-6.75f, -8.0f, f)), 0.0f, AndroidUtilities.m36dp(8.0f) - ((this.paint.getStrokeWidth() / 2.0f) * f4), 0.0f, this.paint);
+        float m36dp = AndroidUtilities.m36dp(-0.25f);
+        float m36dp2 = AndroidUtilities.m36dp(AndroidUtilities.lerp(7.0f, 8.0f, f)) - ((this.paint.getStrokeWidth() / 4.0f) * f4);
+        float m36dp3 = AndroidUtilities.m36dp(AndroidUtilities.lerp(-7.25f, 0.0f, f));
+        canvas.drawLine(m36dp3, -m36dp, 0.0f, -m36dp2, this.paint);
+        canvas.drawLine(m36dp3, m36dp, 0.0f, m36dp2, this.paint);
         canvas.restore();
     }
 
@@ -136,11 +136,11 @@ public class BackDrawable extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        return AndroidUtilities.m35dp(24.0f);
+        return AndroidUtilities.m36dp(24.0f);
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return AndroidUtilities.m35dp(24.0f);
+        return AndroidUtilities.m36dp(24.0f);
     }
 }

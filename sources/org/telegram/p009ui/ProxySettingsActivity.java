@@ -184,7 +184,7 @@ public class ProxySettingsActivity extends BaseFragment {
                 }
             }
         });
-        ActionBarMenuItem addItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m35dp(56.0f));
+        ActionBarMenuItem addItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m36dp(56.0f));
         this.doneItem = addItemWithWidth;
         addItemWithWidth.setContentDescription(LocaleController.getString("Done", C1072R.string.Done));
         FrameLayout frameLayout = new FrameLayout(context);
@@ -227,7 +227,7 @@ public class ProxySettingsActivity extends BaseFragment {
         linearLayout2.setOrientation(1);
         this.inputFieldsContainer.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
         if (Build.VERSION.SDK_INT >= 21) {
-            this.inputFieldsContainer.setElevation(AndroidUtilities.m35dp(1.0f));
+            this.inputFieldsContainer.setElevation(AndroidUtilities.m36dp(1.0f));
             this.inputFieldsContainer.setOutlineProvider(null);
         }
         this.linearLayout2.addView(this.inputFieldsContainer, LayoutHelper.createLinear(-1, -2));
@@ -243,7 +243,7 @@ public class ProxySettingsActivity extends BaseFragment {
             this.inputFields[i2].setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.inputFields[i2].setBackground(null);
             this.inputFields[i2].setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            this.inputFields[i2].setCursorSize(AndroidUtilities.m35dp(20.0f));
+            this.inputFields[i2].setCursorSize(AndroidUtilities.m36dp(20.0f));
             this.inputFields[i2].setCursorWidth(1.5f);
             this.inputFields[i2].setSingleLine(true);
             this.inputFields[i2].setGravity((LocaleController.isRTL ? 5 : 3) | 16);
@@ -523,7 +523,7 @@ public class ProxySettingsActivity extends BaseFragment {
                 return;
             }
             QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(context, str + sb.toString(), LocaleController.getString("QRCodeLinkHelpProxy", C1072R.string.QRCodeLinkHelpProxy), true);
-            qRCodeBottomSheet.setCenterImage(SvgHelper.getBitmap(RLottieDrawable.readRes(null, C1072R.raw.qr_dog), AndroidUtilities.m35dp(60.0f), AndroidUtilities.m35dp(60.0f), false));
+            qRCodeBottomSheet.setCenterImage(SvgHelper.getBitmap(RLottieDrawable.readRes(null, C1072R.raw.qr_dog), AndroidUtilities.m36dp(60.0f), AndroidUtilities.m36dp(60.0f), false));
             showDialog(qRCodeBottomSheet);
         } catch (Exception unused) {
         }

@@ -185,7 +185,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             try {
                 countDownLatch.await();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             if (arrayList.size() != arrayList2.size() || arrayList2.isEmpty()) {
                 return false;
@@ -304,7 +304,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                 setMeasuredDimension(size, size2);
                 int paddingTop = size2 - getPaddingTop();
                 measureChildWithMargins(((BaseFragment) GroupCreateFinalActivity.this).actionBar, i2, 0, i3, 0);
-                if (measureKeyboardHeight() > AndroidUtilities.m35dp(20.0f) && !GroupCreateFinalActivity.this.editText.isPopupShowing()) {
+                if (measureKeyboardHeight() > AndroidUtilities.m36dp(20.0f) && !GroupCreateFinalActivity.this.editText.isPopupShowing()) {
                     this.ignoreLayout = true;
                     GroupCreateFinalActivity.this.editText.hideEmojiView();
                     this.ignoreLayout = false;
@@ -316,7 +316,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                         if (GroupCreateFinalActivity.this.editText != null && GroupCreateFinalActivity.this.editText.isPopupView(childAt)) {
                             if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
                                 if (AndroidUtilities.isTablet()) {
-                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m35dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), (paddingTop - AndroidUtilities.statusBarHeight) + getPaddingTop()), 1073741824));
+                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m36dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), (paddingTop - AndroidUtilities.statusBarHeight) + getPaddingTop()), 1073741824));
                                 } else {
                                     childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((paddingTop - AndroidUtilities.statusBarHeight) + getPaddingTop(), 1073741824));
                                 }
@@ -332,7 +332,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
 
             @Override
             public void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.GroupCreateFinalActivity.C33732.onLayout(boolean, int, int, int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.GroupCreateFinalActivity.C33762.onLayout(boolean, int, int, int, int):void");
             }
 
             @Override
@@ -382,7 +382,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             }
         };
         this.avatarImage = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(32.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(32.0f));
         this.avatarDrawable.setInfo(5L, null, null);
         this.avatarImage.setImageDrawable(this.avatarDrawable);
         this.avatarImage.setContentDescription(LocaleController.getString("ChoosePhoto", C1072R.string.ChoosePhoto));
@@ -413,7 +413,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             }
         });
         int i2 = C1072R.raw.camera;
-        this.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(60.0f), AndroidUtilities.m35dp(60.0f), false, null);
+        this.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m36dp(60.0f), AndroidUtilities.m36dp(60.0f), false, null);
         RLottieImageView rLottieImageView = new RLottieImageView(context) {
             @Override
             public void invalidate(int i3, int i4, int i5, int i6) {
@@ -432,7 +432,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         this.avatarEditor.setAnimation(this.cameraDrawable);
         this.avatarEditor.setEnabled(false);
         this.avatarEditor.setClickable(false);
-        this.avatarEditor.setPadding(AndroidUtilities.m35dp(0.0f), 0, 0, AndroidUtilities.m35dp(1.0f));
+        this.avatarEditor.setPadding(AndroidUtilities.m36dp(0.0f), 0, 0, AndroidUtilities.m36dp(1.0f));
         FrameLayout frameLayout4 = this.editTextContainer;
         RLottieImageView rLottieImageView2 = this.avatarEditor;
         boolean z3 = LocaleController.isRTL;
@@ -445,7 +445,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             }
         };
         this.avatarProgressView = radialProgressView;
-        radialProgressView.setSize(AndroidUtilities.m35dp(30.0f));
+        radialProgressView.setSize(AndroidUtilities.m36dp(30.0f));
         this.avatarProgressView.setProgressColor(-1);
         this.avatarProgressView.setNoProgress(false);
         FrameLayout frameLayout5 = this.editTextContainer;
@@ -509,27 +509,27 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             }
         });
         this.floatingButtonContainer = new FrameLayout(context);
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
+        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m36dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
         int i4 = Build.VERSION.SDK_INT;
         if (i4 < 21) {
             Drawable mutate = context.getResources().getDrawable(C1072R.C1073drawable.floating_shadow).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
-            combinedDrawable.setIconSize(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+            combinedDrawable.setIconSize(AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
             createSimpleSelectorCircleDrawable = combinedDrawable;
         }
         this.floatingButtonContainer.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
         if (i4 >= 21) {
             StateListAnimator stateListAnimator = new StateListAnimator();
             sizeNotifierFrameLayout = sizeNotifierFrameLayout2;
-            stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.floatingButtonIcon, "translationZ", AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(4.0f)).setDuration(200L));
-            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButtonIcon, "translationZ", AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(2.0f)).setDuration(200L));
+            stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.floatingButtonIcon, "translationZ", AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(4.0f)).setDuration(200L));
+            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButtonIcon, "translationZ", AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(2.0f)).setDuration(200L));
             this.floatingButtonContainer.setStateListAnimator(stateListAnimator);
             this.floatingButtonContainer.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view2, Outline outline) {
-                    outline.setOval(0, 0, AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+                    outline.setOval(0, 0, AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
                 }
             });
         } else {
@@ -552,7 +552,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         this.floatingButtonIcon.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chats_actionIcon"), PorterDuff.Mode.MULTIPLY));
         this.floatingButtonIcon.setImageResource(C1072R.C1073drawable.checkbig);
-        this.floatingButtonIcon.setPadding(0, AndroidUtilities.m35dp(2.0f), 0, 0);
+        this.floatingButtonIcon.setPadding(0, AndroidUtilities.m36dp(2.0f), 0, 0);
         this.floatingButtonContainer.setContentDescription(LocaleController.getString("Done", C1072R.string.Done));
         this.floatingButtonContainer.addView(this.floatingButtonIcon, LayoutHelper.createFrame(i4 >= 21 ? 56 : 60, i4 >= 21 ? 56.0f : 60.0f));
         ContextProgressView contextProgressView = new ContextProgressView(context, 1);
@@ -648,7 +648,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                 this.popupWindow.setClippingEnabled(true);
                 this.popupWindow.setAnimationStyle(C1072R.style.PopupContextAnimation);
                 this.popupWindow.setFocusable(true);
-                autoDeletePopupWrapper.windowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE));
+                autoDeletePopupWrapper.windowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE));
                 this.popupWindow.setInputMethodMode(2);
                 this.popupWindow.getContentView().setFocusableInTouchMode(true);
                 this.popupWindow.showAtLocation(getFragmentView(), 0, (int) (view.getX() + f), (int) (view.getY() + f2 + (autoDeletePopupWrapper.windowLayout.getMeasuredHeight() / 2.0f)));
@@ -941,7 +941,6 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         private int usersStartRow;
 
         public GroupCreateAdapter(Context context) {
-            GroupCreateFinalActivity.this = r1;
             this.context = context;
         }
 

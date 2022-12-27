@@ -46,7 +46,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
             this.resourcesProvider = resourcesProvider;
             View view = new View(context);
             this.background = view;
-            view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
+            view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
             addView(this.background, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
             LinearLayout linearLayout = new LinearLayout(context);
             this.linearLayout = linearLayout;
@@ -54,7 +54,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
             addView(this.linearLayout, LayoutHelper.createFrame(-2, -2, 17));
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             this.imageView = rLottieImageView;
-            rLottieImageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.m35dp(20.0f), getThemedColor("featuredStickers_buttonText")));
+            rLottieImageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.m36dp(20.0f), getThemedColor("featuredStickers_buttonText")));
             this.imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("featuredStickers_addButton"), PorterDuff.Mode.MULTIPLY));
             this.imageView.setAnimation(C1072R.raw.import_check, 26, 26);
@@ -76,7 +76,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(80.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(80.0f), 1073741824));
         }
 
         public void setTextColor(int i) {
@@ -131,7 +131,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         textView.setEllipsize(TextUtils.TruncateAt.END);
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 17.0f, 20.0f, 17.0f, 0.0f));
         int i = C1072R.raw.import_finish;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.m35dp(120.0f), AndroidUtilities.m35dp(120.0f), false, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.m36dp(120.0f), AndroidUtilities.m36dp(120.0f), false, null);
         this.completedDrawable = rLottieDrawable;
         rLottieDrawable.setAllowDecodeSingleFrame(true);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
@@ -163,7 +163,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
                 ImportingAlert.this.lambda$new$1(view);
             }
         });
-        this.cell.background.setPivotY(AndroidUtilities.m35dp(48.0f));
+        this.cell.background.setPivotY(AndroidUtilities.m36dp(48.0f));
         this.cell.background.setScaleY(0.04f);
         frameLayout.addView(this.cell, LayoutHelper.createFrame(-1, 50.0f, 51, 34.0f, 247.0f, 34.0f, 0.0f));
         for (int i2 = 0; i2 < 2; i2++) {
@@ -181,9 +181,9 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
                 this.infoTextView[i2].setText(LocaleController.getString("ImportImportingInfo", C1072R.string.ImportImportingInfo));
             } else {
                 this.infoTextView[i2].setAlpha(0.0f);
-                this.infoTextView[i2].setTranslationY(AndroidUtilities.m35dp(10.0f));
+                this.infoTextView[i2].setTranslationY(AndroidUtilities.m36dp(10.0f));
                 this.importCountTextView[i2].setAlpha(0.0f);
-                this.importCountTextView[i2].setTranslationY(AndroidUtilities.m35dp(10.0f));
+                this.importCountTextView[i2].setTranslationY(AndroidUtilities.m36dp(10.0f));
             }
         }
         if (this.parentFragment != null) {
@@ -218,7 +218,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(250L);
         animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.percentTextView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.percentTextView, View.TRANSLATION_Y, -AndroidUtilities.m35dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[0], View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.infoTextView[0], View.TRANSLATION_Y, -AndroidUtilities.m35dp(10.0f)), ObjectAnimator.ofFloat(this.importCountTextView[0], View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[0], View.TRANSLATION_Y, -AndroidUtilities.m35dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[1], View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.infoTextView[1], View.TRANSLATION_Y, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], View.TRANSLATION_Y, 0.0f), ObjectAnimator.ofFloat(this.lineProgressView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.cell.linearLayout, View.TRANSLATION_Y, AndroidUtilities.m35dp(8.0f), 0.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this.percentTextView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.percentTextView, View.TRANSLATION_Y, -AndroidUtilities.m36dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[0], View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.infoTextView[0], View.TRANSLATION_Y, -AndroidUtilities.m36dp(10.0f)), ObjectAnimator.ofFloat(this.importCountTextView[0], View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[0], View.TRANSLATION_Y, -AndroidUtilities.m36dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[1], View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.infoTextView[1], View.TRANSLATION_Y, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], View.TRANSLATION_Y, 0.0f), ObjectAnimator.ofFloat(this.lineProgressView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.cell.linearLayout, View.TRANSLATION_Y, AndroidUtilities.m36dp(8.0f), 0.0f));
         this.cell.background.animate().scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.02f)).setDuration(250L).start();
         this.cell.imageView.animate().scaleY(1.0f).scaleX(1.0f).setInterpolator(new OvershootInterpolator(1.02f)).setDuration(250L).start();
         this.cell.imageView.playAnimation();

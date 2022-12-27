@@ -94,11 +94,11 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             this.addButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.addButton.setBackgroundDrawable(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
             this.addButton.setText(LocaleController.getString("Add", C1072R.string.Add));
-            this.addButton.setPadding(AndroidUtilities.m35dp(17.0f), 0, AndroidUtilities.m35dp(17.0f), 0);
+            this.addButton.setPadding(AndroidUtilities.m36dp(17.0f), 0, AndroidUtilities.m36dp(17.0f), 0);
             View view = this.addButton;
             boolean z3 = LocaleController.isRTL;
             addView(view, LayoutHelper.createFrame(-2, 28.0f, (z3 ? 3 : 5) | 48, z3 ? 14.0f : 0.0f, 15.0f, z3 ? 0.0f : 14.0f, 0.0f));
-            i3 = (int) Math.ceil((this.addButton.getPaint().measureText(this.addButton.getText().toString()) + AndroidUtilities.m35dp(48.0f)) / AndroidUtilities.density);
+            i3 = (int) Math.ceil((this.addButton.getPaint().measureText(this.addButton.getText().toString()) + AndroidUtilities.m36dp(48.0f)) / AndroidUtilities.density);
         } else {
             i3 = 0;
         }
@@ -107,7 +107,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(24.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(24.0f));
         View view2 = this.avatarImageView;
         boolean z4 = LocaleController.isRTL;
         addView(view2, LayoutHelper.createFrame(46, 46.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : i + 7, 6.0f, z4 ? i + 7 : 0.0f, 0.0f));
@@ -132,7 +132,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             i5 = (i2 != 2 ? 0 : 18) + 28 + i3;
         }
         addView(view3, LayoutHelper.createFrame(-1, 20.0f, i6, f, 10.0f, i5, 0.0f));
-        this.emojiStatus = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.nameTextView, AndroidUtilities.m35dp(20.0f));
+        this.emojiStatus = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.nameTextView, AndroidUtilities.m36dp(20.0f));
         SimpleTextView simpleTextView2 = new SimpleTextView(context);
         this.statusTextView = simpleTextView2;
         simpleTextView2.setTextSize(15);
@@ -178,8 +178,8 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         int i2;
         float f;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.avatarImageView.getLayoutParams();
-        layoutParams.leftMargin = AndroidUtilities.m35dp(LocaleController.isRTL ? 0.0f : i + 7);
-        layoutParams.rightMargin = AndroidUtilities.m35dp(LocaleController.isRTL ? i + 7 : 0.0f);
+        layoutParams.leftMargin = AndroidUtilities.m36dp(LocaleController.isRTL ? 0.0f : i + 7);
+        layoutParams.rightMargin = AndroidUtilities.m36dp(LocaleController.isRTL ? i + 7 : 0.0f);
         this.avatarImageView.setLayoutParams(layoutParams);
         FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.nameTextView.getLayoutParams();
         if (LocaleController.isRTL) {
@@ -187,21 +187,21 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         } else {
             i2 = i + 64;
         }
-        layoutParams2.leftMargin = AndroidUtilities.m35dp(i2);
+        layoutParams2.leftMargin = AndroidUtilities.m36dp(i2);
         if (LocaleController.isRTL) {
             f = i + 64;
         } else {
             f = (this.checkBoxBig == null ? 0 : 18) + 28;
         }
-        layoutParams2.rightMargin = AndroidUtilities.m35dp(f);
+        layoutParams2.rightMargin = AndroidUtilities.m36dp(f);
         FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.statusTextView.getLayoutParams();
-        layoutParams3.leftMargin = AndroidUtilities.m35dp(LocaleController.isRTL ? 28.0f : i + 64);
-        layoutParams3.rightMargin = AndroidUtilities.m35dp(LocaleController.isRTL ? i + 64 : 28.0f);
+        layoutParams3.leftMargin = AndroidUtilities.m36dp(LocaleController.isRTL ? 28.0f : i + 64);
+        layoutParams3.rightMargin = AndroidUtilities.m36dp(LocaleController.isRTL ? i + 64 : 28.0f);
         CheckBox checkBox = this.checkBox;
         if (checkBox != null) {
             FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) checkBox.getLayoutParams();
-            layoutParams4.leftMargin = AndroidUtilities.m35dp(LocaleController.isRTL ? 0.0f : i + 37);
-            layoutParams4.rightMargin = AndroidUtilities.m35dp(LocaleController.isRTL ? i + 37 : 0.0f);
+            layoutParams4.leftMargin = AndroidUtilities.m36dp(LocaleController.isRTL ? 0.0f : i + 37);
+            layoutParams4.rightMargin = AndroidUtilities.m36dp(LocaleController.isRTL ? i + 37 : 0.0f);
         }
     }
 
@@ -223,7 +223,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         if (str != null) {
             CharSequence text = this.adminTextView.getText();
             int ceil = (int) Math.ceil(this.adminTextView.getPaint().measureText(text, 0, text.length()));
-            this.nameTextView.setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(6.0f) + ceil : 0, 0, !LocaleController.isRTL ? ceil + AndroidUtilities.m35dp(6.0f) : 0, 0);
+            this.nameTextView.setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(6.0f) + ceil : 0, 0, !LocaleController.isRTL ? ceil + AndroidUtilities.m36dp(6.0f) : 0, 0);
             return;
         }
         this.nameTextView.setPadding(0, 0, 0, 0);
@@ -256,7 +256,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             try {
                 SimpleTextView simpleTextView = this.nameTextView;
                 if (simpleTextView != null) {
-                    charSequence = Emoji.replaceEmoji(charSequence, simpleTextView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(18.0f), false);
+                    charSequence = Emoji.replaceEmoji(charSequence, simpleTextView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(18.0f), false);
                 }
             } catch (Exception unused) {
             }
@@ -363,7 +363,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(58.0f) + (this.needDivider ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(58.0f) + (this.needDivider ? 1 : 0), 1073741824));
     }
 
     @Override
@@ -386,7 +386,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     @Override
     protected void onDraw(Canvas canvas) {
         if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(68.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(68.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }
 

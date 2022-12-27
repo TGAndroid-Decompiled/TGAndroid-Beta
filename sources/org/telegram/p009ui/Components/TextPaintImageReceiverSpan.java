@@ -42,21 +42,21 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
         if (fontMetricsInt != null) {
             if (this.alignTop) {
-                int m35dp = (fontMetricsInt.descent - fontMetricsInt.ascent) - AndroidUtilities.m35dp(4.0f);
-                int i3 = this.height - m35dp;
+                int m36dp = (fontMetricsInt.descent - fontMetricsInt.ascent) - AndroidUtilities.m36dp(4.0f);
+                int i3 = this.height - m36dp;
                 fontMetricsInt.descent = i3;
                 fontMetricsInt.bottom = i3;
-                int i4 = 0 - m35dp;
+                int i4 = 0 - m36dp;
                 fontMetricsInt.ascent = i4;
                 fontMetricsInt.top = i4;
             } else {
-                int m35dp2 = ((-this.height) / 2) - AndroidUtilities.m35dp(4.0f);
-                fontMetricsInt.ascent = m35dp2;
-                fontMetricsInt.top = m35dp2;
+                int m36dp2 = ((-this.height) / 2) - AndroidUtilities.m36dp(4.0f);
+                fontMetricsInt.ascent = m36dp2;
+                fontMetricsInt.top = m36dp2;
                 int i5 = this.height;
-                int m35dp3 = (i5 - (i5 / 2)) - AndroidUtilities.m35dp(4.0f);
-                fontMetricsInt.descent = m35dp3;
-                fontMetricsInt.bottom = m35dp3;
+                int m36dp3 = (i5 - (i5 / 2)) - AndroidUtilities.m36dp(4.0f);
+                fontMetricsInt.descent = m36dp3;
+                fontMetricsInt.bottom = m36dp3;
             }
         }
         return this.width;
@@ -69,7 +69,7 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
             this.imageReceiver.setImageCoords((int) f, i3 - 1, this.width, this.height);
         } else {
             int i6 = this.height;
-            this.imageReceiver.setImageCoords((int) f, i3 + ((((i5 - AndroidUtilities.m35dp(4.0f)) - i3) - i6) / 2), this.width, i6);
+            this.imageReceiver.setImageCoords((int) f, i3 + ((((i5 - AndroidUtilities.m36dp(4.0f)) - i3) - i6) / 2), this.width, i6);
         }
         this.imageReceiver.draw(canvas);
         canvas.restore();

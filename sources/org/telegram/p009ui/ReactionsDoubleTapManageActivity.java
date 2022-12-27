@@ -102,7 +102,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                     View view = new View(this, context) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
-                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(16.0f), 1073741824));
+                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(16.0f), 1073741824));
                         }
                     };
                     view.setBackground(Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
@@ -179,15 +179,14 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
 
         public SetDefaultReactionCell(Context context) {
             super(context);
-            ReactionsDoubleTapManageActivity.this = r8;
-            setBackgroundColor(r8.getThemedColor("windowBackgroundWhite"));
+            setBackgroundColor(ReactionsDoubleTapManageActivity.this.getThemedColor("windowBackgroundWhite"));
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTextSize(1, 16.0f);
-            this.textView.setTextColor(r8.getThemedColor("windowBackgroundWhiteBlackText"));
+            this.textView.setTextColor(ReactionsDoubleTapManageActivity.this.getThemedColor("windowBackgroundWhiteBlackText"));
             this.textView.setText(LocaleController.getString("DoubleTapSetting", C1072R.string.DoubleTapSetting));
             addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 23, 20.0f, 0.0f, 48.0f, 0.0f));
-            this.imageDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.m35dp(24.0f));
+            this.imageDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.m36dp(24.0f));
         }
 
         public void update(boolean z) {
@@ -206,7 +205,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
         }
 
         public void updateImageBounds() {
-            this.imageDrawable.setBounds((getWidth() - this.imageDrawable.getIntrinsicWidth()) - AndroidUtilities.m35dp(21.0f), (getHeight() - this.imageDrawable.getIntrinsicHeight()) / 2, getWidth() - AndroidUtilities.m35dp(21.0f), (getHeight() + this.imageDrawable.getIntrinsicHeight()) / 2);
+            this.imageDrawable.setBounds((getWidth() - this.imageDrawable.getIntrinsicWidth()) - AndroidUtilities.m36dp(21.0f), (getHeight() - this.imageDrawable.getIntrinsicHeight()) / 2, getWidth() - AndroidUtilities.m36dp(21.0f), (getHeight() + this.imageDrawable.getIntrinsicHeight()) / 2);
         }
 
         @Override
@@ -218,7 +217,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(50.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(50.0f), 1073741824));
         }
 
         @Override

@@ -18,9 +18,9 @@ public class ReadAllMentionsMenu {
         int i2;
         String str;
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(activity);
-        actionBarPopupWindowLayout.setMinimumWidth(AndroidUtilities.m35dp(200.0f));
+        actionBarPopupWindowLayout.setMinimumWidth(AndroidUtilities.m36dp(200.0f));
         ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem((Context) activity, true, true, resourcesProvider);
-        actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.m35dp(200.0f));
+        actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.m36dp(200.0f));
         if (i == 0) {
             i2 = C1072R.string.ReadAllReactions;
             str = "ReadAllReactions";
@@ -43,11 +43,11 @@ public class ReadAllMentionsMenu {
         actionBarPopupWindow.setClippingEnabled(true);
         actionBarPopupWindow.setAnimationStyle(C1072R.style.PopupContextAnimation);
         actionBarPopupWindow.setFocusable(true);
-        actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE));
+        actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE));
         actionBarPopupWindow.setInputMethodMode(2);
         actionBarPopupWindow.setSoftInputMode(0);
         actionBarPopupWindow.getContentView().setFocusableInTouchMode(true);
-        float x = ((view.getX() + view.getWidth()) - actionBarPopupWindowLayout.getMeasuredWidth()) + AndroidUtilities.m35dp(8.0f);
+        float x = ((view.getX() + view.getWidth()) - actionBarPopupWindowLayout.getMeasuredWidth()) + AndroidUtilities.m36dp(8.0f);
         float y = view.getY() - actionBarPopupWindowLayout.getMeasuredHeight();
         if (AndroidUtilities.isTablet()) {
             ViewGroup view2 = iNavigationLayout.getView();

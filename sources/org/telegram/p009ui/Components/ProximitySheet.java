@@ -105,7 +105,7 @@ public class ProximitySheet extends FrameLayout {
         };
         this.containerView = frameLayout;
         frameLayout.setBackgroundDrawable(mutate);
-        this.containerView.setPadding(this.backgroundPaddingLeft, (AndroidUtilities.m35dp(8.0f) + rect.top) - 1, this.backgroundPaddingLeft, 0);
+        this.containerView.setPadding(this.backgroundPaddingLeft, (AndroidUtilities.m36dp(8.0f) + rect.top) - 1, this.backgroundPaddingLeft, 0);
         this.containerView.setVisibility(4);
         addView(this.containerView, 0, LayoutHelper.createFrame(-1, -2, 80));
         this.useImperialSystem = LocaleController.getUseImperialSystemType();
@@ -113,12 +113,12 @@ public class ProximitySheet extends FrameLayout {
         this.onRadiusChange = onradiuspickerchange;
         NumberPicker numberPicker = new NumberPicker(context);
         this.kmPicker = numberPicker;
-        numberPicker.setTextOffset(AndroidUtilities.m35dp(10.0f));
+        numberPicker.setTextOffset(AndroidUtilities.m36dp(10.0f));
         this.kmPicker.setItemCount(5);
         NumberPicker numberPicker2 = new NumberPicker(context);
         this.mPicker = numberPicker2;
         numberPicker2.setItemCount(5);
-        this.mPicker.setTextOffset(-AndroidUtilities.m35dp(10.0f));
+        this.mPicker.setTextOffset(-AndroidUtilities.m36dp(10.0f));
         LinearLayout linearLayout = new LinearLayout(context) {
             boolean ignoreLayout = false;
 
@@ -129,8 +129,8 @@ public class ProximitySheet extends FrameLayout {
                 int i3 = point.x > point.y ? 3 : 5;
                 ProximitySheet.this.kmPicker.setItemCount(i3);
                 ProximitySheet.this.mPicker.setItemCount(i3);
-                ProximitySheet.this.kmPicker.getLayoutParams().height = AndroidUtilities.m35dp(54.0f) * i3;
-                ProximitySheet.this.mPicker.getLayoutParams().height = AndroidUtilities.m35dp(54.0f) * i3;
+                ProximitySheet.this.kmPicker.getLayoutParams().height = AndroidUtilities.m36dp(54.0f) * i3;
+                ProximitySheet.this.mPicker.getLayoutParams().height = AndroidUtilities.m36dp(54.0f) * i3;
                 this.ignoreLayout = false;
                 ProximitySheet.this.totalWidth = View.MeasureSpec.getSize(i);
                 if (ProximitySheet.this.totalWidth != 0) {
@@ -183,7 +183,7 @@ public class ProximitySheet extends FrameLayout {
         this.kmPicker.setMinValue(0);
         this.kmPicker.setMaxValue(10);
         this.kmPicker.setWrapSelectorWheel(false);
-        this.kmPicker.setTextOffset(AndroidUtilities.m35dp(20.0f));
+        this.kmPicker.setTextOffset(AndroidUtilities.m36dp(20.0f));
         NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
             @Override
             public final void onValueChange(NumberPicker numberPicker3, int i, int i2) {
@@ -194,7 +194,7 @@ public class ProximitySheet extends FrameLayout {
         this.mPicker.setMinValue(0);
         this.mPicker.setMaxValue(10);
         this.mPicker.setWrapSelectorWheel(false);
-        this.mPicker.setTextOffset(-AndroidUtilities.m35dp(20.0f));
+        this.mPicker.setTextOffset(-AndroidUtilities.m36dp(20.0f));
         linearLayout2.addView(this.mPicker, LayoutHelper.createLinear(0, 270, 0.5f));
         this.mPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
@@ -208,7 +208,7 @@ public class ProximitySheet extends FrameLayout {
         this.kmPicker.setValue(0);
         this.mPicker.setValue(6);
         this.customView.addView(frameLayout3, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
-        this.buttonTextView.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        this.buttonTextView.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         this.buttonTextView.setGravity(17);
         this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         this.buttonTextView.setTextSize(1, 14.0f);
@@ -222,7 +222,7 @@ public class ProximitySheet extends FrameLayout {
                 ProximitySheet.this.lambda$new$4(onradiuspickerchange2, view);
             }
         });
-        this.infoTextView.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        this.infoTextView.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         this.infoTextView.setGravity(17);
         this.infoTextView.setTextColor(Theme.getColor("dialogTextGray2"));
         this.infoTextView.setTextSize(1, 14.0f);
@@ -294,7 +294,7 @@ public class ProximitySheet extends FrameLayout {
                 this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonGroup", C1072R.string.LocationNotifiationButtonGroup, formatDistance));
             } else {
                 int i = C1072R.string.LocationNotifiationButtonUser;
-                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonUser", i, TextUtils.ellipsize(UserObject.getFirstName(this.currentUser), this.buttonTextView.getPaint(), Math.max(AndroidUtilities.m35dp(10.0f), (int) (((this.totalWidth - AndroidUtilities.m35dp(94.0f)) * 1.5f) - ((int) Math.ceil(this.buttonTextView.getPaint().measureText(LocaleController.getString("LocationNotifiationButtonUser", i)))))), TextUtils.TruncateAt.END), formatDistance));
+                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonUser", i, TextUtils.ellipsize(UserObject.getFirstName(this.currentUser), this.buttonTextView.getPaint(), Math.max(AndroidUtilities.m36dp(10.0f), (int) (((this.totalWidth - AndroidUtilities.m36dp(94.0f)) * 1.5f) - ((int) Math.ceil(this.buttonTextView.getPaint().measureText(LocaleController.getString("LocationNotifiationButtonUser", i)))))), TextUtils.TruncateAt.END), formatDistance));
             }
             if (this.buttonTextView.getTag() != null) {
                 this.buttonTextView.setTag(null);
@@ -522,7 +522,7 @@ public class ProximitySheet extends FrameLayout {
         cancelSheetAnimation();
         AnimatorSet animatorSet = new AnimatorSet();
         this.currentSheetAnimation = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, View.TRANSLATION_Y, viewGroup.getMeasuredHeight() + AndroidUtilities.m35dp(10.0f)));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, View.TRANSLATION_Y, viewGroup.getMeasuredHeight() + AndroidUtilities.m36dp(10.0f)));
         if (this.useFastDismiss) {
             float measuredHeight = this.containerView.getMeasuredHeight();
             this.currentSheetAnimation.setDuration(Math.max(60, (int) (((measuredHeight - this.containerView.getTranslationY()) * 250.0f) / measuredHeight)));
@@ -531,14 +531,13 @@ public class ProximitySheet extends FrameLayout {
             this.currentSheetAnimation.setDuration(250L);
         }
         this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.currentSheetAnimation.addListener(new C26586());
+        this.currentSheetAnimation.addListener(new C26616());
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
         this.currentSheetAnimation.start();
     }
 
-    public class C26586 extends AnimatorListenerAdapter {
-        C26586() {
-            ProximitySheet.this = r1;
+    public class C26616 extends AnimatorListenerAdapter {
+        C26616() {
         }
 
         @Override
@@ -549,7 +548,7 @@ public class ProximitySheet extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProximitySheet.C26586.this.lambda$onAnimationEnd$0();
+                        ProximitySheet.C26616.this.lambda$onAnimationEnd$0();
                     }
                 });
             }
@@ -560,7 +559,7 @@ public class ProximitySheet extends FrameLayout {
             try {
                 ProximitySheet.this.dismissInternal();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
 

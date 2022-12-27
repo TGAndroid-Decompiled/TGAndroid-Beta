@@ -219,9 +219,9 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             }
         });
         if (this.currentType == 0) {
-            C40743 c40743 = new C40743(context);
-            this.undoView = c40743;
-            frameLayout2.addView(c40743, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
+            C40773 c40773 = new C40773(context);
+            this.undoView = c40773;
+            frameLayout2.addView(c40773, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
         }
         updateRows();
         return this.fragmentView;
@@ -247,7 +247,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             int i4 = 0;
             while (i4 < 4) {
                 RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
-                radioColorCell.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+                radioColorCell.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
                 radioColorCell.setTag(Integer.valueOf(i4));
                 radioColorCell.setCheckColor(Theme.getColor("radioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
                 radioColorCell.setTextAndValue(strArr[i4], i3 == i4);
@@ -324,7 +324,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 CheckBoxCell checkBoxCell = new CheckBoxCell(getParentActivity(), 1);
                 checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
                 checkBoxCell.setText(LocaleController.formatString("TerminateWebSessionStop", C1072R.string.TerminateWebSessionStop, firstName), "", false, false);
-                checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.m35dp(8.0f) : AndroidUtilities.m35dp(16.0f), 0);
+                checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.m36dp(8.0f) : AndroidUtilities.m36dp(16.0f), 0);
                 frameLayout.addView(checkBoxCell, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
                 checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -437,7 +437,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
 
     public void lambda$createView$2(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (getParentActivity() != null && tLRPC$TL_error == null && (tLObject instanceof TLRPC$TL_boolTrue)) {
-            BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.contact_check, LocaleController.getString("AllSessionsTerminated", C1072R.string.AllSessionsTerminated)).show();
+            BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.contact_check, LocaleController.getString("AllSessionsTerminated", C1072R.string.AllSessionsTerminated)).show();
             lambda$loadSessions$17(false);
         }
     }
@@ -456,9 +456,9 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             return;
         }
         if (tLRPC$TL_error == null && (tLObject instanceof TLRPC$TL_boolTrue)) {
-            BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.contact_check, LocaleController.getString("AllWebSessionsTerminated", C1072R.string.AllWebSessionsTerminated)).show();
+            BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.contact_check, LocaleController.getString("AllWebSessionsTerminated", C1072R.string.AllWebSessionsTerminated)).show();
         } else {
-            BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.error, LocaleController.getString("UnknownError", C1072R.string.UnknownError)).show();
+            BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.error, LocaleController.getString("UnknownError", C1072R.string.UnknownError)).show();
         }
         lambda$loadSessions$17(false);
     }
@@ -522,7 +522,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (tLRPC$TL_error == null) {
             this.sessions.remove(tLRPC$TL_authorization);
@@ -548,7 +548,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (tLRPC$TL_error == null) {
             this.sessions.remove(tLRPC$TL_webAuthorization);
@@ -560,10 +560,9 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public class C40743 extends UndoView {
-        C40743(Context context) {
+    public class C40773 extends UndoView {
+        C40773(Context context) {
             super(context);
-            SessionsActivity.this = r1;
         }
 
         @Override
@@ -575,7 +574,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 ConnectionsManager.getInstance(((BaseFragment) SessionsActivity.this).currentAccount).sendRequest(tLRPC$TL_account_resetAuthorization, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        SessionsActivity.C40743.this.lambda$hide$1(tLRPC$TL_authorization, tLObject, tLRPC$TL_error);
+                        SessionsActivity.C40773.this.lambda$hide$1(tLRPC$TL_authorization, tLObject, tLRPC$TL_error);
                     }
                 });
             }
@@ -586,7 +585,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SessionsActivity.C40743.this.lambda$hide$0(tLRPC$TL_error, tLRPC$TL_authorization);
+                    SessionsActivity.C40773.this.lambda$hide$0(tLRPC$TL_error, tLRPC$TL_authorization);
                 }
             });
         }
@@ -604,12 +603,11 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public class C40754 implements SessionBottomSheet.Callback {
+    public class C40784 implements SessionBottomSheet.Callback {
         public static void lambda$onSessionTerminated$0() {
         }
 
-        C40754() {
-            SessionsActivity.this = r1;
+        C40784() {
         }
 
         @Override
@@ -634,7 +632,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         if (tLRPC$TL_authorization == null) {
             return;
         }
-        new SessionBottomSheet(this, tLRPC$TL_authorization, z, new C40754()).show();
+        new SessionBottomSheet(this, tLRPC$TL_authorization, z, new C40784()).show();
     }
 
     @Override
@@ -919,7 +917,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         private Context mContext;
 
         public ListAdapter(Context context) {
-            SessionsActivity.this = r1;
             this.mContext = context;
             setHasStableIds(true);
         }
@@ -1165,7 +1162,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
 
         public ScanQRCodeView(Context context) {
             super(context);
-            SessionsActivity.this = r14;
             this.flickerDrawable = new CellFlickerDrawable();
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
@@ -1173,7 +1169,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             CellFlickerDrawable cellFlickerDrawable = this.flickerDrawable;
             cellFlickerDrawable.repeatEnabled = false;
             cellFlickerDrawable.animationSpeedScale = 1.2f;
-            this.imageView.setOnClickListener(new View.OnClickListener(r14) {
+            this.imageView.setOnClickListener(new View.OnClickListener(SessionsActivity.this) {
                 @Override
                 public void onClick(View view) {
                     if (ScanQRCodeView.this.imageView.getImageReceiver().getLottieAnimation() == null || ScanQRCodeView.this.imageView.getImageReceiver().getLottieAnimation().isRunning()) {
@@ -1218,7 +1214,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("AuthAnotherWebClientUrl", C1072R.string.AuthAnotherWebClientUrl)), indexOf3, indexOf4 - 1, 33);
             }
             this.textView.setText(spannableStringBuilder);
-            TextView textView = new TextView(context, r14) {
+            TextView textView = new TextView(context, SessionsActivity.this) {
                 @Override
                 public void draw(Canvas canvas) {
                     super.draw(canvas);
@@ -1227,13 +1223,13 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                         RectF rectF = AndroidUtilities.rectTmp;
                         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                         ScanQRCodeView.this.flickerDrawable.setParentWidth(getMeasuredWidth());
-                        ScanQRCodeView.this.flickerDrawable.draw(canvas, rectF, AndroidUtilities.m35dp(8.0f), null);
+                        ScanQRCodeView.this.flickerDrawable.draw(canvas, rectF, AndroidUtilities.m36dp(8.0f), null);
                         invalidate();
                     }
                 }
             };
             this.buttonTextView = textView;
-            textView.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+            textView.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
             this.buttonTextView.setGravity(17);
             this.buttonTextView.setTextSize(1, 14.0f);
             this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -1242,7 +1238,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             spannableStringBuilder3.setSpan(new ColoredImageSpan(ContextCompat.getDrawable(getContext(), C1072R.C1073drawable.msg_mini_qr)), 0, 1, 0);
             this.buttonTextView.setText(spannableStringBuilder3);
             this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-            this.buttonTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+            this.buttonTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
             this.buttonTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -1266,7 +1262,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(276.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(276.0f), 1073741824));
         }
 
         @Override
@@ -1309,7 +1305,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public class C40765 implements CameraScanActivity.CameraScanActivityDelegate {
+    public class C40795 implements CameraScanActivity.CameraScanActivityDelegate {
         private TLObject response = null;
         private TLRPC$TL_error error = null;
 
@@ -1328,8 +1324,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             CameraScanActivity.CameraScanActivityDelegate.CC.$default$onDismiss(this);
         }
 
-        C40765() {
-            SessionsActivity.this = r1;
+        C40795() {
         }
 
         @Override
@@ -1351,7 +1346,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        SessionsActivity.C40765.this.lambda$didFindQr$0();
+                        SessionsActivity.C40795.this.lambda$didFindQr$0();
                     }
                 });
             }
@@ -1375,7 +1370,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SessionsActivity.C40765.this.lambda$processQr$4(str, runnable);
+                    SessionsActivity.C40795.this.lambda$processQr$4(str, runnable);
                 }
             }, 750L);
             return true;
@@ -1389,15 +1384,15 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 SessionsActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_auth_acceptLoginToken, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        SessionsActivity.C40765.this.lambda$processQr$2(runnable, tLObject, tLRPC$TL_error);
+                        SessionsActivity.C40795.this.lambda$processQr$2(runnable, tLObject, tLRPC$TL_error);
                     }
                 });
             } catch (Exception e) {
-                FileLog.m32e("Failed to pass qr code auth", e);
+                FileLog.m33e("Failed to pass qr code auth", e);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        SessionsActivity.C40765.this.lambda$processQr$3();
+                        SessionsActivity.C40795.this.lambda$processQr$3();
                     }
                 });
                 runnable.run();
@@ -1408,7 +1403,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SessionsActivity.C40765.this.lambda$processQr$1(tLObject, tLRPC$TL_error, runnable);
+                    SessionsActivity.C40795.this.lambda$processQr$1(tLObject, tLRPC$TL_error, runnable);
                 }
             });
         }
@@ -1425,7 +1420,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
     }
 
     public void openCameraScanActivity() {
-        CameraScanActivity.showAsSheet((BaseFragment) this, false, 2, (CameraScanActivity.CameraScanActivityDelegate) new C40765());
+        CameraScanActivity.showAsSheet((BaseFragment) this, false, 2, (CameraScanActivity.CameraScanActivityDelegate) new C40795());
     }
 
     @Override
@@ -1483,7 +1478,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
             getParentActivity().startActivity(intent);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 

@@ -69,7 +69,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         if (z3) {
             NestedSizeNotifierLayout nestedSizeNotifierLayout = new NestedSizeNotifierLayout(parentActivity) {
                 @Override
-                public void onMeasure(int i, int i2) {
+                protected void onMeasure(int i, int i2) {
                     BottomSheetWithRecyclerListView.this.contentHeight = View.MeasureSpec.getSize(i2);
                     BottomSheetWithRecyclerListView.this.onPreMeasure(i, i2);
                     super.onMeasure(i, i2);
@@ -178,7 +178,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                                 BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
                                 int i5 = bottomSheetWithRecyclerListView.contentHeight;
                                 if (i5 == 0) {
-                                    i4 = AndroidUtilities.m35dp(300.0f);
+                                    i4 = AndroidUtilities.m36dp(300.0f);
                                 } else {
                                     i4 = (int) (i5 * bottomSheetWithRecyclerListView.topPadding);
                                 }
@@ -295,18 +295,18 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
             return;
         }
         RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(0);
-        int i = -AndroidUtilities.m35dp(16.0f);
+        int i = -AndroidUtilities.m36dp(16.0f);
         if (findViewHolderForAdapterPosition != null) {
-            i = findViewHolderForAdapterPosition.itemView.getBottom() - AndroidUtilities.m35dp(16.0f);
+            i = findViewHolderForAdapterPosition.itemView.getBottom() - AndroidUtilities.m36dp(16.0f);
         }
-        float m35dp = 1.0f - ((AndroidUtilities.m35dp(16.0f) + i) / AndroidUtilities.m35dp(56.0f));
-        if (m35dp < 0.0f) {
-            m35dp = 0.0f;
+        float m36dp = 1.0f - ((AndroidUtilities.m36dp(16.0f) + i) / AndroidUtilities.m36dp(56.0f));
+        if (m36dp < 0.0f) {
+            m36dp = 0.0f;
         }
-        AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, m35dp != 0.0f, 1.0f, this.wasDrawn);
+        AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, m36dp != 0.0f, 1.0f, this.wasDrawn);
         this.shadowDrawable.setBounds(0, i, view.getMeasuredWidth(), view.getMeasuredHeight());
         this.shadowDrawable.draw(canvas);
-        onPreDraw(canvas, i, m35dp);
+        onPreDraw(canvas, i, m36dp);
     }
 
     private boolean isLightStatusBar() {

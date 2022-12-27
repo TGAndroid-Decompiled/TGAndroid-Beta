@@ -78,7 +78,7 @@ public class WebRtcAudioManager {
         return z;
     }
 
-    public static class VolumeLogger {
+    private static class VolumeLogger {
         private static final String THREAD_NAME = "WebRtcVolumeLevelLoggerThread";
         private static final int TIMER_PERIOD_IN_SECONDS = 30;
         private final AudioManager audioManager;
@@ -99,7 +99,6 @@ public class WebRtcAudioManager {
             private final int maxVoiceCallVolume;
 
             LogVolumeTask(int i, int i2) {
-                VolumeLogger.this = r1;
                 this.maxRingVolume = i;
                 this.maxVoiceCallVolume = i2;
             }

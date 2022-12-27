@@ -12,7 +12,7 @@ public class LoadingCell extends FrameLayout {
     private RadialProgressView progressBar;
 
     public LoadingCell(Context context) {
-        this(context, AndroidUtilities.m35dp(40.0f), AndroidUtilities.m35dp(54.0f));
+        this(context, AndroidUtilities.m36dp(40.0f), AndroidUtilities.m36dp(54.0f));
     }
 
     public LoadingCell(Context context, int i, int i2) {

@@ -190,7 +190,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                 int size = View.MeasureSpec.getSize(i);
                 int size2 = View.MeasureSpec.getSize(i2);
                 setMeasuredDimension(size, size2);
-                if ((SharedConfig.smoothKeyboard ? 0 : measureKeyboardHeight()) <= AndroidUtilities.m35dp(20.0f)) {
+                if ((SharedConfig.smoothKeyboard ? 0 : measureKeyboardHeight()) <= AndroidUtilities.m36dp(20.0f)) {
                     if (!AndroidUtilities.isInMultiwindow) {
                         size2 -= PhotoAlbumPickerActivity.this.commentTextView.getEmojiPadding();
                         i2 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
@@ -207,7 +207,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                         if (PhotoAlbumPickerActivity.this.commentTextView != null && PhotoAlbumPickerActivity.this.commentTextView.isPopupView(childAt)) {
                             if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
                                 if (AndroidUtilities.isTablet()) {
-                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m35dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), (size2 - AndroidUtilities.statusBarHeight) + getPaddingTop()), 1073741824));
+                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.m36dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), (size2 - AndroidUtilities.statusBarHeight) + getPaddingTop()), 1073741824));
                                 } else {
                                     childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - AndroidUtilities.statusBarHeight) + getPaddingTop(), 1073741824));
                                 }
@@ -223,7 +223,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
 
             @Override
             public void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoAlbumPickerActivity.C37272.onLayout(boolean, int, int, int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoAlbumPickerActivity.C37302.onLayout(boolean, int, int, int, int):void");
             }
 
             @Override
@@ -240,7 +240,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.actionBar.setTitle(LocaleController.getString("Gallery", C1072R.string.Gallery));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        recyclerListView.setPadding(AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(54.0f));
+        recyclerListView.setPadding(AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(54.0f));
         this.listView.setClipToPadding(false);
         this.listView.setHorizontalScrollBarEnabled(false);
         this.listView.setVerticalScrollBarEnabled(false);
@@ -271,13 +271,13 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         View view = new View(context);
         this.shadow = view;
         view.setBackgroundResource(C1072R.C1073drawable.header_shadow_reverse);
-        this.shadow.setTranslationY(AndroidUtilities.m35dp(48.0f));
+        this.shadow.setTranslationY(AndroidUtilities.m36dp(48.0f));
         this.sizeNotifierFrameLayout.addView(this.shadow, LayoutHelper.createFrame(-1, 3.0f, 83, 0.0f, 0.0f, 0.0f, 48.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.frameLayout2 = frameLayout2;
         frameLayout2.setBackgroundColor(Theme.getColor("dialogBackground"));
         this.frameLayout2.setVisibility(4);
-        this.frameLayout2.setTranslationY(AndroidUtilities.m35dp(48.0f));
+        this.frameLayout2.setTranslationY(AndroidUtilities.m36dp(48.0f));
         this.sizeNotifierFrameLayout.addView(this.frameLayout2, LayoutHelper.createFrame(-1, 48, 83));
         this.frameLayout2.setOnTouchListener(PhotoAlbumPickerActivity$$ExternalSyntheticLambda4.INSTANCE);
         EditTextEmoji editTextEmoji = this.commentTextView;
@@ -314,15 +314,15 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.writeButtonContainer.setAlpha(0.0f);
         this.sizeNotifierFrameLayout.addView(this.writeButtonContainer, LayoutHelper.createFrame(60, 60.0f, 85, 0.0f, 0.0f, 12.0f, 10.0f));
         this.writeButton = new ImageView(context);
-        int m35dp = AndroidUtilities.m35dp(56.0f);
+        int m36dp = AndroidUtilities.m36dp(56.0f);
         int color = Theme.getColor("dialogFloatingButton");
         int i = Build.VERSION.SDK_INT;
-        this.writeButtonDrawable = Theme.createSimpleSelectorCircleDrawable(m35dp, color, Theme.getColor(i >= 21 ? "dialogFloatingButtonPressed" : "dialogFloatingButton"));
+        this.writeButtonDrawable = Theme.createSimpleSelectorCircleDrawable(m36dp, color, Theme.getColor(i >= 21 ? "dialogFloatingButtonPressed" : "dialogFloatingButton"));
         if (i < 21) {
             Drawable mutate = context.getResources().getDrawable(C1072R.C1073drawable.floating_shadow_profile).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, this.writeButtonDrawable, 0, 0);
-            combinedDrawable.setIconSize(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+            combinedDrawable.setIconSize(AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
             this.writeButtonDrawable = combinedDrawable;
         }
         this.writeButton.setBackgroundDrawable(this.writeButtonDrawable);
@@ -335,7 +335,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view2, Outline outline) {
-                    outline.setOval(0, 0, AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+                    outline.setOval(0, 0, AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
                 }
             });
         }
@@ -354,14 +354,14 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                 return lambda$createView$7;
             }
         });
-        this.textPaint.setTextSize(AndroidUtilities.m35dp(12.0f));
+        this.textPaint.setTextSize(AndroidUtilities.m36dp(12.0f));
         this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         View view2 = new View(context) {
             @Override
             protected void onDraw(Canvas canvas) {
                 String format = String.format("%d", Integer.valueOf(Math.max(1, PhotoAlbumPickerActivity.this.selectedPhotosOrder.size())));
                 int ceil = (int) Math.ceil(PhotoAlbumPickerActivity.this.textPaint.measureText(format));
-                int max = Math.max(AndroidUtilities.m35dp(16.0f) + ceil, AndroidUtilities.m35dp(24.0f));
+                int max = Math.max(AndroidUtilities.m36dp(16.0f) + ceil, AndroidUtilities.m36dp(24.0f));
                 int measuredWidth = getMeasuredWidth() / 2;
                 int measuredHeight = getMeasuredHeight() / 2;
                 PhotoAlbumPickerActivity.this.textPaint.setColor(Theme.getColor("dialogRoundCheckBoxCheck"));
@@ -370,11 +370,11 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                 int i3 = measuredWidth - i2;
                 int i4 = i2 + measuredWidth;
                 PhotoAlbumPickerActivity.this.rect.set(i3, 0.0f, i4, getMeasuredHeight());
-                canvas.drawRoundRect(PhotoAlbumPickerActivity.this.rect, AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(12.0f), PhotoAlbumPickerActivity.this.paint);
+                canvas.drawRoundRect(PhotoAlbumPickerActivity.this.rect, AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(12.0f), PhotoAlbumPickerActivity.this.paint);
                 PhotoAlbumPickerActivity.this.paint.setColor(Theme.getColor("dialogRoundCheckBox"));
-                PhotoAlbumPickerActivity.this.rect.set(i3 + AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), i4 - AndroidUtilities.m35dp(2.0f), getMeasuredHeight() - AndroidUtilities.m35dp(2.0f));
-                canvas.drawRoundRect(PhotoAlbumPickerActivity.this.rect, AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(10.0f), PhotoAlbumPickerActivity.this.paint);
-                canvas.drawText(format, measuredWidth - (ceil / 2), AndroidUtilities.m35dp(16.2f), PhotoAlbumPickerActivity.this.textPaint);
+                PhotoAlbumPickerActivity.this.rect.set(i3 + AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f), i4 - AndroidUtilities.m36dp(2.0f), getMeasuredHeight() - AndroidUtilities.m36dp(2.0f));
+                canvas.drawRoundRect(PhotoAlbumPickerActivity.this.rect, AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(10.0f), PhotoAlbumPickerActivity.this.paint);
+                canvas.drawText(format, measuredWidth - (ceil / 2), AndroidUtilities.m36dp(16.2f), PhotoAlbumPickerActivity.this.textPaint);
             }
         };
         this.selectedCountView = view2;
@@ -461,7 +461,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                         } else {
                             this.itemCells[i].setTextAndIcon(LocaleController.getString("SendWithoutSound", C1072R.string.SendWithoutSound), C1072R.C1073drawable.input_notify_off);
                         }
-                        this.itemCells[i].setMinimumWidth(AndroidUtilities.m35dp(196.0f));
+                        this.itemCells[i].setMinimumWidth(AndroidUtilities.m36dp(196.0f));
                         this.sendPopupLayout.addView((View) this.itemCells[i], LayoutHelper.createLinear(-1, 48));
                         this.itemCells[i].setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -483,11 +483,11 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                 this.sendPopupWindow.setSoftInputMode(0);
                 this.sendPopupWindow.getContentView().setFocusableInTouchMode(true);
             }
-            this.sendPopupLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE));
+            this.sendPopupLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE));
             this.sendPopupWindow.setFocusable(true);
             int[] iArr = new int[2];
             view.getLocationInWindow(iArr);
-            this.sendPopupWindow.showAtLocation(view, 51, ((iArr[0] + view.getMeasuredWidth()) - this.sendPopupLayout.getMeasuredWidth()) + AndroidUtilities.m35dp(8.0f), (iArr[1] - this.sendPopupLayout.getMeasuredHeight()) - AndroidUtilities.m35dp(2.0f));
+            this.sendPopupWindow.showAtLocation(view, 51, ((iArr[0] + view.getMeasuredWidth()) - this.sendPopupLayout.getMeasuredWidth()) + AndroidUtilities.m36dp(8.0f), (iArr[1] - this.sendPopupLayout.getMeasuredHeight()) - AndroidUtilities.m36dp(2.0f));
             this.sendPopupWindow.dimBehind();
             view.performHapticFeedback(3, 2);
         }
@@ -704,8 +704,8 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.selectedCountView.setScaleX(z ? 1.0f : 0.2f);
         this.selectedCountView.setScaleY(z ? 1.0f : 0.2f);
         this.selectedCountView.setAlpha(z ? 1.0f : 0.0f);
-        this.frameLayout2.setTranslationY(z ? 0.0f : AndroidUtilities.m35dp(48.0f));
-        this.shadow.setTranslationY(z ? 0.0f : AndroidUtilities.m35dp(48.0f));
+        this.frameLayout2.setTranslationY(z ? 0.0f : AndroidUtilities.m36dp(48.0f));
+        this.shadow.setTranslationY(z ? 0.0f : AndroidUtilities.m36dp(48.0f));
         return true;
     }
 
@@ -852,7 +852,6 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         }
 
         public ListAdapter(Context context) {
-            PhotoAlbumPickerActivity.this = r1;
             this.mContext = context;
         }
 

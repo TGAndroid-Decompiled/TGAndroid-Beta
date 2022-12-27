@@ -99,17 +99,17 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         View view = new View(context);
         this.dimView = view;
         view.setBackgroundColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
-        final int m35dp = AndroidUtilities.m35dp(450.0f);
+        final int m36dp = AndroidUtilities.m36dp(450.0f);
         final int width = (int) (chatActivity.contentView.getWidth() * 0.75f);
         LinearLayout linearLayout = new LinearLayout(this, context) {
             @Override
             protected void onMeasure(int i, int i2) {
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), width), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i2), m35dp), View.MeasureSpec.getMode(i2)));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), width), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i2), m36dp), View.MeasureSpec.getMode(i2)));
             }
 
             @Override
             protected int getSuggestedMinimumWidth() {
-                return AndroidUtilities.m35dp(260.0f);
+                return AndroidUtilities.m36dp(260.0f);
             }
         };
         this.recyclerContainer = linearLayout;
@@ -120,8 +120,8 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         this.headerText.setTextSize(1, 16.0f);
         this.headerText.setText(LocaleController.getString("SendMessageAsTitle", C1072R.string.SendMessageAsTitle));
         this.headerText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 1);
-        int m35dp2 = AndroidUtilities.m35dp(18.0f);
-        this.headerText.setPadding(m35dp2, AndroidUtilities.m35dp(12.0f), m35dp2, AndroidUtilities.m35dp(12.0f));
+        int m36dp2 = AndroidUtilities.m36dp(18.0f);
+        this.headerText.setPadding(m36dp2, AndroidUtilities.m36dp(12.0f), m36dp2, AndroidUtilities.m36dp(12.0f));
         this.recyclerContainer.addView(this.headerText);
         FrameLayout frameLayout = new FrameLayout(context);
         final ArrayList<TLRPC$TL_sendAsPeer> arrayList = tLRPC$TL_channels_sendAsPeers.peers;
@@ -158,10 +158,10 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
                     TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j2));
                     if (chat != null) {
                         if (tLRPC$TL_sendAsPeer.premium_required) {
-                            SpannableString spannableString = new SpannableString(((Object) TextUtils.ellipsize(chat.title, senderView.title.getPaint(), width - AndroidUtilities.m35dp(100.0f), TextUtils.TruncateAt.END)) + " d");
+                            SpannableString spannableString = new SpannableString(((Object) TextUtils.ellipsize(chat.title, senderView.title.getPaint(), width - AndroidUtilities.m36dp(100.0f), TextUtils.TruncateAt.END)) + " d");
                             ColoredImageSpan coloredImageSpan = new ColoredImageSpan(C1072R.C1073drawable.msg_mini_premiumlock);
                             coloredImageSpan.setTopOffset(1);
-                            coloredImageSpan.setSize(AndroidUtilities.m35dp(14.0f));
+                            coloredImageSpan.setSize(AndroidUtilities.m36dp(14.0f));
                             coloredImageSpan.setColorKey("windowBackgroundWhiteGrayText5");
                             spannableString.setSpan(coloredImageSpan, spannableString.length() - 1, spannableString.length(), 33);
                             senderView.title.setEllipsize(null);
@@ -391,9 +391,9 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
             springAnimation.cancel();
         }
         this.springAnimations.clear();
-        this.scrimPopupContainerLayout.setPivotX(AndroidUtilities.m35dp(8.0f));
+        this.scrimPopupContainerLayout.setPivotX(AndroidUtilities.m36dp(8.0f));
         FrameLayout frameLayout = this.scrimPopupContainerLayout;
-        frameLayout.setPivotY(frameLayout.getMeasuredHeight() - AndroidUtilities.m35dp(8.0f));
+        frameLayout.setPivotY(frameLayout.getMeasuredHeight() - AndroidUtilities.m36dp(8.0f));
         this.recyclerContainer.setPivotX(0.0f);
         this.recyclerContainer.setPivotY(0.0f);
         ArrayList<TLRPC$TL_sendAsPeer> arrayList = this.sendAsPeers.peers;
@@ -402,8 +402,8 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
             tLRPC$Peer = null;
         }
         if (tLRPC$Peer != null) {
-            int m35dp = AndroidUtilities.m35dp(54.0f);
-            int size = arrayList.size() * m35dp;
+            int m36dp = AndroidUtilities.m36dp(54.0f);
+            int size = arrayList.size() * m36dp;
             int i = 0;
             while (i < arrayList.size()) {
                 TLRPC$Peer tLRPC$Peer2 = arrayList.get(i).peer;
@@ -417,7 +417,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
                         }
                     }
                 }
-                this.layoutManager.scrollToPositionWithOffset(i, ((i == arrayList.size() - 1 || this.recyclerView.getMeasuredHeight() >= size) ? 0 : this.recyclerView.getMeasuredHeight() % m35dp) + AndroidUtilities.m35dp(7.0f) + (size - ((arrayList.size() - 2) * m35dp)));
+                this.layoutManager.scrollToPositionWithOffset(i, ((i == arrayList.size() - 1 || this.recyclerView.getMeasuredHeight() >= size) ? 0 : this.recyclerView.getMeasuredHeight() % m36dp) + AndroidUtilities.m36dp(7.0f) + (size - ((arrayList.size() - 2) * m36dp)));
                 if (this.recyclerView.computeVerticalScrollOffset() > 0) {
                     this.headerShadow.animate().cancel();
                     this.headerShadow.animate().alpha(1.0f).setDuration(150L).start();
@@ -474,9 +474,9 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
             ((SpringAnimation) it.next()).cancel();
         }
         this.springAnimations.clear();
-        this.scrimPopupContainerLayout.setPivotX(AndroidUtilities.m35dp(8.0f));
+        this.scrimPopupContainerLayout.setPivotX(AndroidUtilities.m36dp(8.0f));
         FrameLayout frameLayout = this.scrimPopupContainerLayout;
-        frameLayout.setPivotY(frameLayout.getMeasuredHeight() - AndroidUtilities.m35dp(8.0f));
+        frameLayout.setPivotY(frameLayout.getMeasuredHeight() - AndroidUtilities.m36dp(8.0f));
         this.recyclerContainer.setPivotX(0.0f);
         this.recyclerContainer.setPivotY(0.0f);
         this.scrimPopupContainerLayout.setScaleX(1.0f);
@@ -559,9 +559,9 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
             setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             setOrientation(0);
             setGravity(16);
-            int m35dp = AndroidUtilities.m35dp(14.0f);
-            int i = m35dp / 2;
-            setPadding(m35dp, i, m35dp, i);
+            int m36dp = AndroidUtilities.m36dp(14.0f);
+            int i = m36dp / 2;
+            setPadding(m36dp, i, m36dp, i);
             SimpleAvatarView simpleAvatarView = new SimpleAvatarView(context);
             this.avatar = simpleAvatarView;
             addView(simpleAvatarView, LayoutHelper.createFrame(40, 40.0f));
@@ -586,10 +586,9 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         }
     }
 
-    public class BackButtonFrameLayout extends FrameLayout {
+    private class BackButtonFrameLayout extends FrameLayout {
         public BackButtonFrameLayout(Context context) {
             super(context);
-            SenderSelectPopup.this = r1;
         }
 
         @Override

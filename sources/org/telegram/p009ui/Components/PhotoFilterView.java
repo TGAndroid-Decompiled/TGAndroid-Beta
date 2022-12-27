@@ -229,13 +229,12 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         filterGLThread.setFilterGLThreadDelegate(this);
     }
 
-    public class TextureView$SurfaceTextureListenerC25521 implements TextureView.SurfaceTextureListener {
+    public class TextureView$SurfaceTextureListenerC25551 implements TextureView.SurfaceTextureListener {
         @Override
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         }
 
-        TextureView$SurfaceTextureListenerC25521() {
-            PhotoFilterView.this = r1;
+        TextureView$SurfaceTextureListenerC25551() {
         }
 
         @Override
@@ -257,7 +256,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 PhotoFilterView.this.eglThread.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        PhotoFilterView.TextureView$SurfaceTextureListenerC25521.this.lambda$onSurfaceTextureSizeChanged$0();
+                        PhotoFilterView.TextureView$SurfaceTextureListenerC25551.this.lambda$onSurfaceTextureSizeChanged$0();
                     }
                 });
             }
@@ -551,10 +550,10 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         float f3;
         float ceil;
         float f4;
-        int m35dp = i - AndroidUtilities.m35dp(28.0f);
-        int m35dp2 = AndroidUtilities.m35dp(214.0f);
+        int m36dp = i - AndroidUtilities.m36dp(28.0f);
+        int m36dp2 = AndroidUtilities.m36dp(214.0f);
         int i3 = Build.VERSION.SDK_INT;
-        int i4 = i2 - (m35dp2 + ((i3 < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight));
+        int i4 = i2 - (m36dp2 + ((i3 < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight));
         Bitmap bitmap = this.bitmapToEdit;
         if (bitmap != null) {
             int i5 = this.orientation;
@@ -569,7 +568,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             width = this.textureView.getWidth();
             height = this.textureView.getHeight();
         }
-        float f5 = m35dp;
+        float f5 = m36dp;
         float f6 = i4;
         if (f5 / width > f6 / height) {
             f4 = (int) Math.ceil(width * f3);
@@ -578,8 +577,8 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             ceil = (int) Math.ceil(f * f2);
             f4 = f5;
         }
-        int ceil2 = (int) Math.ceil(((f5 - f4) / 2.0f) + AndroidUtilities.m35dp(14.0f));
-        int ceil3 = (int) Math.ceil(((f6 - ceil) / 2.0f) + AndroidUtilities.m35dp(14.0f) + ((i3 < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight));
+        int ceil2 = (int) Math.ceil(((f5 - f4) / 2.0f) + AndroidUtilities.m36dp(14.0f));
+        int ceil3 = (int) Math.ceil(((f6 - ceil) / 2.0f) + AndroidUtilities.m36dp(14.0f) + ((i3 < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight));
         int i6 = (int) f4;
         int i7 = (int) ceil;
         if (this.ownsTextureView) {
@@ -593,14 +592,14 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         float f8 = i7;
         this.curvesControl.setActualArea(ceil2, ceil3 - ((i3 < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight), f7, f8);
         this.blurControl.setActualAreaSize(f7, f8);
-        ((FrameLayout.LayoutParams) this.blurControl.getLayoutParams()).height = AndroidUtilities.m35dp(38.0f) + i4;
-        ((FrameLayout.LayoutParams) this.curvesControl.getLayoutParams()).height = i4 + AndroidUtilities.m35dp(28.0f);
+        ((FrameLayout.LayoutParams) this.blurControl.getLayoutParams()).height = AndroidUtilities.m36dp(38.0f) + i4;
+        ((FrameLayout.LayoutParams) this.curvesControl.getLayoutParams()).height = i4 + AndroidUtilities.m36dp(28.0f);
         if (AndroidUtilities.isTablet()) {
-            int m35dp3 = AndroidUtilities.m35dp(86.0f) * 10;
+            int m36dp3 = AndroidUtilities.m36dp(86.0f) * 10;
             FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.recyclerListView.getLayoutParams();
-            if (m35dp3 < m35dp) {
-                layoutParams2.width = m35dp3;
-                layoutParams2.leftMargin = (m35dp - m35dp3) / 2;
+            if (m36dp3 < m36dp) {
+                layoutParams2.width = m36dp3;
+                layoutParams2.leftMargin = (m36dp - m36dp3) / 2;
                 return;
             }
             layoutParams2.width = -1;
@@ -793,7 +792,6 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
 
         public ToolsAdapter(Context context) {
-            PhotoFilterView.this = r1;
             this.mContext = context;
         }
 

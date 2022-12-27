@@ -14,6 +14,6 @@ public class FixedHeightEmptyCell extends View {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(this.heightInDp), 1073741824));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(this.heightInDp), 1073741824));
     }
 }

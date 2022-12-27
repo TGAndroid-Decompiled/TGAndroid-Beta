@@ -27,8 +27,8 @@ public class SimpleAvatarView extends View {
         this.avatarImage = new ImageReceiver(this);
         this.avatarDrawable = new AvatarDrawable();
         this.selectPaint = new Paint(1);
-        this.avatarImage.setRoundRadius(AndroidUtilities.m35dp(28.0f));
-        this.selectPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.avatarImage.setRoundRadius(AndroidUtilities.m36dp(28.0f));
+        this.selectPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         this.selectPaint.setStyle(Paint.Style.STROKE);
     }
 

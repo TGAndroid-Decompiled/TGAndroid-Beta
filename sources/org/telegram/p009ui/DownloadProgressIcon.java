@@ -42,10 +42,10 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         this.downloadImageReceiver = new ImageReceiver(this);
         this.downloadCompleteImageReceiver = new ImageReceiver(this);
         this.currentAccount = i;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(C1072R.raw.download_progress, "download_progress", AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(28.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(C1072R.raw.download_progress, "download_progress", AndroidUtilities.m36dp(28.0f), AndroidUtilities.m36dp(28.0f), true, null);
         this.downloadDrawable = rLottieDrawable;
         rLottieDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
-        RLottieDrawable rLottieDrawable2 = new RLottieDrawable(C1072R.raw.download_finish, "download_finish", AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(28.0f), true, null);
+        RLottieDrawable rLottieDrawable2 = new RLottieDrawable(C1072R.raw.download_finish, "download_finish", AndroidUtilities.m36dp(28.0f), AndroidUtilities.m36dp(28.0f), true, null);
         this.downloadCompleteDrawable = rLottieDrawable2;
         rLottieDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
         this.downloadImageReceiver.setImageBitmap(this.downloadDrawable);
@@ -58,9 +58,9 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
-        int m35dp = AndroidUtilities.m35dp(15.0f);
-        float f = m35dp;
-        int i3 = m35dp * 2;
+        int m36dp = AndroidUtilities.m36dp(15.0f);
+        float f = m36dp;
+        int i3 = m36dp * 2;
         this.downloadImageReceiver.setImageCoords(f, f, getMeasuredWidth() - i3, getMeasuredHeight() - i3);
         this.downloadCompleteImageReceiver.setImageCoords(f, f, getMeasuredWidth() - i3, getMeasuredHeight() - i3);
     }
@@ -93,16 +93,16 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
                 invalidate();
             }
         }
-        float m35dp = AndroidUtilities.m35dp(1.0f);
-        float m35dp2 = AndroidUtilities.m35dp(16.0f);
+        float m36dp = AndroidUtilities.m36dp(1.0f);
+        float m36dp2 = AndroidUtilities.m36dp(16.0f);
         RectF rectF = AndroidUtilities.rectTmp;
-        float measuredHeight = (getMeasuredHeight() / 2) + AndroidUtilities.m35dp(8.0f);
-        float f5 = measuredHeight - m35dp;
-        float f6 = measuredHeight + m35dp;
-        rectF.set(m35dp2, f5, getMeasuredWidth() - m35dp2, f6);
-        canvas.drawRoundRect(rectF, m35dp, m35dp, this.paint2);
-        rectF.set(m35dp2, f5, ((getMeasuredWidth() - (2.0f * m35dp2)) * this.currentProgress) + m35dp2, f6);
-        canvas.drawRoundRect(rectF, m35dp, m35dp, this.paint);
+        float measuredHeight = (getMeasuredHeight() / 2) + AndroidUtilities.m36dp(8.0f);
+        float f5 = measuredHeight - m36dp;
+        float f6 = measuredHeight + m36dp;
+        rectF.set(m36dp2, f5, getMeasuredWidth() - m36dp2, f6);
+        canvas.drawRoundRect(rectF, m36dp, m36dp, this.paint2);
+        rectF.set(m36dp2, f5, ((getMeasuredWidth() - (2.0f * m36dp2)) * this.currentProgress) + m36dp2, f6);
+        canvas.drawRoundRect(rectF, m36dp, m36dp, this.paint);
         canvas.save();
         canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), f5);
         if (this.progress != 1.0f) {
@@ -228,7 +228,6 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         }
 
         private ProgressObserver(String str) {
-            DownloadProgressIcon.this = r1;
             this.fileName = str;
         }
 

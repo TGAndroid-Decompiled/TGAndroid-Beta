@@ -154,7 +154,7 @@ public class PhotoUtilities {
             if (runnable != null) {
                 runnable.run();
             }
-            BulletinFactory.m13of(iNavigationLayout.getLastFragment()).createUsersBulletin(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString("ApplyAvatarHint", C1072R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString("ApplyAvatarHint", C1072R.string.ApplyAvatarHint), new Runnable() {
+            BulletinFactory.m14of(iNavigationLayout.getLastFragment()).createUsersBulletin(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString("ApplyAvatarHint", C1072R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString("ApplyAvatarHint", C1072R.string.ApplyAvatarHint), new Runnable() {
                 @Override
                 public final void run() {
                     PhotoUtilities.lambda$setImageAsAvatar$0(i, iNavigationLayout);

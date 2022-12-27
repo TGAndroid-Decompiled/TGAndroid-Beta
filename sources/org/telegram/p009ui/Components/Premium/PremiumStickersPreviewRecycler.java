@@ -254,7 +254,7 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
         }
     }
 
-    public class Adapter extends RecyclerListView.SelectionAdapter {
+    private class Adapter extends RecyclerListView.SelectionAdapter {
         @Override
         public int getItemCount() {
             return ConnectionsManager.DEFAULT_DATACENTER_ID;
@@ -266,7 +266,6 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
         }
 
         private Adapter() {
-            PremiumStickersPreviewRecycler.this = r1;
         }
 
         @Override
@@ -352,9 +351,8 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
 
         public StickerView(Context context) {
             super(context);
-            PremiumStickersPreviewRecycler.this = r3;
             this.animateImage = true;
-            this.view = new View(context, r3) {
+            this.view = new View(context, PremiumStickersPreviewRecycler.this) {
                 @Override
                 public void draw(Canvas canvas) {
                     super.draw(canvas);
@@ -453,9 +451,9 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
             int i3 = (int) (PremiumStickersPreviewRecycler.this.size * 0.6f);
             ViewGroup.LayoutParams layoutParams = this.view.getLayoutParams();
             ViewGroup.LayoutParams layoutParams2 = this.view.getLayoutParams();
-            int m35dp = i3 - AndroidUtilities.m35dp(16.0f);
-            layoutParams2.height = m35dp;
-            layoutParams.width = m35dp;
+            int m36dp = i3 - AndroidUtilities.m36dp(16.0f);
+            layoutParams2.height = m36dp;
+            layoutParams.width = m36dp;
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (i3 * 0.7f), 1073741824));
         }
 

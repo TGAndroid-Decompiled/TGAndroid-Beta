@@ -98,7 +98,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
         PremiumGradient.GradientTools gradientTools2 = new PremiumGradient.GradientTools("premiumGradient1", "premiumGradient2", "premiumGradient3", "premiumGradient4");
         this.outlineGradient = gradientTools2;
         gradientTools2.paint.setStyle(Paint.Style.STROKE);
-        this.outlineGradient.paint.setStrokeWidth(AndroidUtilities.m35dp(1.5f));
+        this.outlineGradient.paint.setStrokeWidth(AndroidUtilities.m36dp(1.5f));
         this.dummyCell = new PremiumGiftTierCell(getContext());
         TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(tLRPC$User.f995id);
         if (userFull != null) {
@@ -247,8 +247,8 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
         path.rewind();
         Rect selectorRect = this.recyclerListView.getSelectorRect();
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(selectorRect.left + AndroidUtilities.m35dp(20.0f), selectorRect.top + AndroidUtilities.m35dp(3.0f), selectorRect.right - AndroidUtilities.m35dp(20.0f), selectorRect.bottom - AndroidUtilities.m35dp(3.0f));
-        path.addRoundRect(rectF, AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(12.0f), Path.Direction.CW);
+        rectF.set(selectorRect.left + AndroidUtilities.m36dp(20.0f), selectorRect.top + AndroidUtilities.m36dp(3.0f), selectorRect.right - AndroidUtilities.m36dp(20.0f), selectorRect.bottom - AndroidUtilities.m36dp(3.0f));
+        path.addRoundRect(rectF, AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(12.0f), Path.Direction.CW);
         canvas.clipPath(path);
     }
 
@@ -418,9 +418,8 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
         return LocaleController.getString(C1072R.string.GiftTelegramPremiumTitle);
     }
 
-    public class C26081 extends RecyclerListView.SelectionAdapter {
-        C26081() {
-            GiftPremiumBottomSheet.this = r1;
+    public class C26111 extends RecyclerListView.SelectionAdapter {
+        C26111() {
         }
 
         @Override
@@ -441,15 +440,15 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
                             RectF rectF = AndroidUtilities.rectTmp;
                             rectF.set(this.discountView.getLeft(), this.discountView.getTop(), this.discountView.getRight(), this.discountView.getBottom());
                             GiftPremiumBottomSheet.this.gradientTools.gradientMatrix(0, 0, getMeasuredWidth(), GiftPremiumBottomSheet.this.totalGradientHeight, 0.0f, -this.tier.yOffset);
-                            canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), GiftPremiumBottomSheet.this.gradientTools.paint);
+                            canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), GiftPremiumBottomSheet.this.gradientTools.paint);
                         }
                         float floatValue = ((Float) atomicReference.get()).floatValue();
                         int alpha = GiftPremiumBottomSheet.this.outlineGradient.paint.getAlpha();
                         GiftPremiumBottomSheet.this.outlineGradient.paint.setAlpha((int) (floatValue * alpha));
                         RectF rectF2 = AndroidUtilities.rectTmp;
-                        rectF2.set(AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(3.0f), getWidth() - AndroidUtilities.m35dp(20.0f), getHeight() - AndroidUtilities.m35dp(3.0f));
+                        rectF2.set(AndroidUtilities.m36dp(20.0f), AndroidUtilities.m36dp(3.0f), getWidth() - AndroidUtilities.m36dp(20.0f), getHeight() - AndroidUtilities.m36dp(3.0f));
                         GiftPremiumBottomSheet.this.outlineGradient.gradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), 0.0f, 0.0f);
-                        canvas.drawRoundRect(rectF2, AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(12.0f), GiftPremiumBottomSheet.this.outlineGradient.paint);
+                        canvas.drawRoundRect(rectF2, AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(12.0f), GiftPremiumBottomSheet.this.outlineGradient.paint);
                         GiftPremiumBottomSheet.this.outlineGradient.paint.setAlpha(alpha);
                         super.dispatchDraw(canvas);
                     }
@@ -458,14 +457,14 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
                     @Override
                     public final Object provide(Object obj) {
                         Paint lambda$onCreateViewHolder$0;
-                        lambda$onCreateViewHolder$0 = GiftPremiumBottomSheet.C26081.this.lambda$onCreateViewHolder$0(premiumGiftTierCell2, (Void) obj);
+                        lambda$onCreateViewHolder$0 = GiftPremiumBottomSheet.C26111.this.lambda$onCreateViewHolder$0(premiumGiftTierCell2, (Void) obj);
                         return lambda$onCreateViewHolder$0;
                     }
                 });
                 premiumGiftTierCell2.setProgressDelegate(new CheckBoxBase.ProgressDelegate() {
                     @Override
                     public final void setProgress(float f) {
-                        GiftPremiumBottomSheet.C26081.lambda$onCreateViewHolder$1(atomicReference, premiumGiftTierCell2, f);
+                        GiftPremiumBottomSheet.C26111.lambda$onCreateViewHolder$1(atomicReference, premiumGiftTierCell2, f);
                     }
                 });
                 premiumGiftTierCell = premiumGiftTierCell2;
@@ -483,7 +482,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
                 } else {
                     textInfoPrivacyCell.setText(string);
                 }
-                textInfoPrivacyCell.setPadding(AndroidUtilities.m35dp(21.0f), 0, AndroidUtilities.m35dp(21.0f), 0);
+                textInfoPrivacyCell.setPadding(AndroidUtilities.m36dp(21.0f), 0, AndroidUtilities.m36dp(21.0f), 0);
                 premiumGiftTierCell = textInfoPrivacyCell;
             } else {
                 if (i != 3) {
@@ -492,7 +491,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
                     view = new View(this, GiftPremiumBottomSheet.this.getContext()) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
-                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(68.0f), 1073741824));
+                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(68.0f), 1073741824));
                         }
                     };
                 }
@@ -546,15 +545,14 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
 
     @Override
     protected RecyclerListView.SelectionAdapter createAdapter() {
-        return new C26081();
+        return new C26111();
     }
 
     private final class LinkSpan extends ClickableSpan {
         private LinkSpan() {
-            GiftPremiumBottomSheet.this = r1;
         }
 
-        LinkSpan(GiftPremiumBottomSheet giftPremiumBottomSheet, C26081 c26081) {
+        LinkSpan(GiftPremiumBottomSheet giftPremiumBottomSheet, C26111 c26111) {
             this();
         }
 

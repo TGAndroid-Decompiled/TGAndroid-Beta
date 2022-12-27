@@ -56,10 +56,10 @@ public class StorageUsageView extends FrameLayout {
         this.cellFlickerDrawable = new CellFlickerDrawable(220, 255);
         setWillNotDraw(false);
         this.cellFlickerDrawable.drawFrame = false;
-        this.paintFill.setStrokeWidth(AndroidUtilities.m35dp(6.0f));
-        this.paintCalculcating.setStrokeWidth(AndroidUtilities.m35dp(6.0f));
-        this.paintProgress.setStrokeWidth(AndroidUtilities.m35dp(6.0f));
-        this.paintProgress2.setStrokeWidth(AndroidUtilities.m35dp(6.0f));
+        this.paintFill.setStrokeWidth(AndroidUtilities.m36dp(6.0f));
+        this.paintCalculcating.setStrokeWidth(AndroidUtilities.m36dp(6.0f));
+        this.paintProgress.setStrokeWidth(AndroidUtilities.m36dp(6.0f));
+        this.paintProgress2.setStrokeWidth(AndroidUtilities.m36dp(6.0f));
         this.paintFill.setStrokeCap(Paint.Cap.ROUND);
         this.paintCalculcating.setStrokeCap(Paint.Cap.ROUND);
         this.paintProgress.setStrokeCap(Paint.Cap.ROUND);
@@ -81,10 +81,10 @@ public class StorageUsageView extends FrameLayout {
                 for (int i6 = 0; i6 < childCount; i6++) {
                     if (getChildAt(i6).getVisibility() != 8) {
                         if (getChildAt(i6).getMeasuredWidth() + i4 > View.MeasureSpec.getSize(i)) {
-                            i5 += getChildAt(i6).getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
+                            i5 += getChildAt(i6).getMeasuredHeight() + AndroidUtilities.m36dp(8.0f);
                             i4 = 0;
                         }
-                        i4 += getChildAt(i6).getMeasuredWidth() + AndroidUtilities.m35dp(16.0f);
+                        i4 += getChildAt(i6).getMeasuredWidth() + AndroidUtilities.m36dp(16.0f);
                         i3 = getChildAt(i6).getMeasuredHeight() + i5;
                     }
                 }
@@ -99,11 +99,11 @@ public class StorageUsageView extends FrameLayout {
                 for (int i7 = 0; i7 < childCount; i7++) {
                     if (getChildAt(i7).getVisibility() != 8) {
                         if (getChildAt(i7).getMeasuredWidth() + i5 > getMeasuredWidth()) {
-                            i6 += getChildAt(i7).getMeasuredHeight() + AndroidUtilities.m35dp(8.0f);
+                            i6 += getChildAt(i7).getMeasuredHeight() + AndroidUtilities.m36dp(8.0f);
                             i5 = 0;
                         }
                         getChildAt(i7).layout(i5, i6, getChildAt(i7).getMeasuredWidth() + i5, getChildAt(i7).getMeasuredHeight() + i6);
-                        i5 += getChildAt(i7).getMeasuredWidth() + AndroidUtilities.m35dp(16.0f);
+                        i5 += getChildAt(i7).getMeasuredWidth() + AndroidUtilities.m36dp(16.0f);
                     }
                 }
             }
@@ -126,29 +126,29 @@ public class StorageUsageView extends FrameLayout {
         }
         TextView textView2 = new TextView(context);
         this.telegramCacheTextView = textView2;
-        textView2.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
+        textView2.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
         this.telegramCacheTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
         TextView textView3 = new TextView(context);
         this.telegramDatabaseTextView = textView3;
-        textView3.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
+        textView3.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
         this.telegramDatabaseTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
         TextView textView4 = new TextView(context);
         this.freeSizeTextView = textView4;
-        textView4.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
+        textView4.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
         this.freeSizeTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
         TextView textView5 = new TextView(context);
         this.totlaSizeTextView = textView5;
-        textView5.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
+        textView5.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
         this.totlaSizeTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
         this.lastProgressColor = Theme.getColor("player_progress");
-        this.telegramCacheTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m35dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
-        this.telegramCacheTextView.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
-        this.freeSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m35dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
-        this.freeSizeTextView.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
-        this.totlaSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m35dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
-        this.totlaSizeTextView.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
-        this.telegramDatabaseTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m35dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
-        this.telegramDatabaseTextView.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
+        this.telegramCacheTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m36dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
+        this.telegramCacheTextView.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
+        this.freeSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m36dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
+        this.freeSizeTextView.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
+        this.totlaSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m36dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
+        this.totlaSizeTextView.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
+        this.telegramDatabaseTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m36dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
+        this.telegramDatabaseTextView.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
         this.legendLayout.addView(this.calculatingTextView, LayoutHelper.createFrame(-2, -2.0f));
         this.legendLayout.addView(this.telegramDatabaseTextView, LayoutHelper.createFrame(-2, -2.0f));
         this.legendLayout.addView(this.telegramCacheTextView, LayoutHelper.createFrame(-2, -2.0f));
@@ -259,14 +259,14 @@ public class StorageUsageView extends FrameLayout {
         this.progressView.invalidate();
         if (this.lastProgressColor != Theme.getColor("player_progress")) {
             this.lastProgressColor = Theme.getColor("player_progress");
-            this.telegramCacheTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m35dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
-            this.telegramCacheTextView.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
-            this.telegramDatabaseTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m35dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
-            this.telegramDatabaseTextView.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
-            this.freeSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m35dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
-            this.freeSizeTextView.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
-            this.totlaSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m35dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
-            this.totlaSizeTextView.setCompoundDrawablePadding(AndroidUtilities.m35dp(6.0f));
+            this.telegramCacheTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m36dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
+            this.telegramCacheTextView.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
+            this.telegramDatabaseTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m36dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
+            this.telegramDatabaseTextView.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
+            this.freeSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m36dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
+            this.freeSizeTextView.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
+            this.totlaSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.m36dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
+            this.totlaSizeTextView.setCompoundDrawablePadding(AndroidUtilities.m36dp(6.0f));
         }
         this.textSettingsCell.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.divider.setBackgroundColor(Theme.getColor("divider"));
@@ -275,12 +275,11 @@ public class StorageUsageView extends FrameLayout {
     public class ProgressView extends View {
         public ProgressView(Context context) {
             super(context);
-            StorageUsageView.this = r1;
         }
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(40.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(40.0f), 1073741824));
         }
 
         @Override
@@ -294,7 +293,7 @@ public class StorageUsageView extends FrameLayout {
             StorageUsageView.this.paintProgress2.setAlpha(82);
             StorageUsageView.this.paintFill.setAlpha(46);
             StorageUsageView.this.bgPaint.setColor(Theme.getColor("windowBackgroundWhite"));
-            canvas.drawLine(AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(20.0f), getMeasuredWidth() - AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(20.0f), StorageUsageView.this.paintFill);
+            canvas.drawLine(AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(20.0f), getMeasuredWidth() - AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(20.0f), StorageUsageView.this.paintFill);
             if (StorageUsageView.this.calculating || StorageUsageView.this.calculatingProgress != 0.0f) {
                 if (StorageUsageView.this.calculating) {
                     StorageUsageView storageUsageView = StorageUsageView.this;
@@ -323,27 +322,27 @@ public class StorageUsageView extends FrameLayout {
                 }
                 invalidate();
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(17.0f), getMeasuredWidth() - AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(23.0f));
+                rectF.set(AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(17.0f), getMeasuredWidth() - AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(23.0f));
                 StorageUsageView.this.cellFlickerDrawable.setParentWidth(getMeasuredWidth());
-                StorageUsageView.this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.m35dp(3.0f), null);
+                StorageUsageView.this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.m36dp(3.0f), null);
             }
-            int m35dp = AndroidUtilities.m35dp(24.0f);
+            int m36dp = AndroidUtilities.m36dp(24.0f);
             if (!StorageUsageView.this.calculating) {
-                int measuredWidth = (int) ((getMeasuredWidth() - (AndroidUtilities.m35dp(24.0f) * 2)) * StorageUsageView.this.progress2);
-                int m35dp2 = AndroidUtilities.m35dp(24.0f) + measuredWidth;
-                canvas.drawLine(m35dp, AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(24.0f) + measuredWidth, AndroidUtilities.m35dp(20.0f), StorageUsageView.this.paintProgress2);
-                canvas.drawRect(m35dp2, AndroidUtilities.m35dp(20.0f) - AndroidUtilities.m35dp(3.0f), m35dp2 + AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(20.0f) + AndroidUtilities.m35dp(3.0f), StorageUsageView.this.bgPaint);
+                int measuredWidth = (int) ((getMeasuredWidth() - (AndroidUtilities.m36dp(24.0f) * 2)) * StorageUsageView.this.progress2);
+                int m36dp2 = AndroidUtilities.m36dp(24.0f) + measuredWidth;
+                canvas.drawLine(m36dp, AndroidUtilities.m36dp(20.0f), AndroidUtilities.m36dp(24.0f) + measuredWidth, AndroidUtilities.m36dp(20.0f), StorageUsageView.this.paintProgress2);
+                canvas.drawRect(m36dp2, AndroidUtilities.m36dp(20.0f) - AndroidUtilities.m36dp(3.0f), m36dp2 + AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(20.0f) + AndroidUtilities.m36dp(3.0f), StorageUsageView.this.bgPaint);
             }
             if (StorageUsageView.this.calculating) {
                 return;
             }
-            int measuredWidth2 = (int) ((getMeasuredWidth() - (AndroidUtilities.m35dp(24.0f) * 2)) * StorageUsageView.this.progress);
-            if (measuredWidth2 < AndroidUtilities.m35dp(1.0f)) {
-                measuredWidth2 = AndroidUtilities.m35dp(1.0f);
+            int measuredWidth2 = (int) ((getMeasuredWidth() - (AndroidUtilities.m36dp(24.0f) * 2)) * StorageUsageView.this.progress);
+            if (measuredWidth2 < AndroidUtilities.m36dp(1.0f)) {
+                measuredWidth2 = AndroidUtilities.m36dp(1.0f);
             }
-            int m35dp3 = AndroidUtilities.m35dp(24.0f) + measuredWidth2;
-            canvas.drawLine(m35dp, AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(24.0f) + measuredWidth2, AndroidUtilities.m35dp(20.0f), StorageUsageView.this.paintProgress);
-            canvas.drawRect(m35dp3, AndroidUtilities.m35dp(20.0f) - AndroidUtilities.m35dp(3.0f), m35dp3 + AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(20.0f) + AndroidUtilities.m35dp(3.0f), StorageUsageView.this.bgPaint);
+            int m36dp3 = AndroidUtilities.m36dp(24.0f) + measuredWidth2;
+            canvas.drawLine(m36dp, AndroidUtilities.m36dp(20.0f), AndroidUtilities.m36dp(24.0f) + measuredWidth2, AndroidUtilities.m36dp(20.0f), StorageUsageView.this.paintProgress);
+            canvas.drawRect(m36dp3, AndroidUtilities.m36dp(20.0f) - AndroidUtilities.m36dp(3.0f), m36dp3 + AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(20.0f) + AndroidUtilities.m36dp(3.0f), StorageUsageView.this.bgPaint);
         }
     }
 

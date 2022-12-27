@@ -36,7 +36,7 @@ public class PremiumNotAvailableBottomSheet extends BottomSheet {
         textView2.setTextColor(Theme.getColor("dialogTextBlack"));
         linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
         TextView textView3 = new TextView(parentActivity);
-        textView3.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView3.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         textView3.setGravity(17);
         textView3.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         textView3.setTextSize(1, 14.0f);
@@ -59,7 +59,7 @@ public class PremiumNotAvailableBottomSheet extends BottomSheet {
         try {
             view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id=org.telegram.messenger")));
         } catch (ActivityNotFoundException e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 }

@@ -54,9 +54,8 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
     private StaticLayout secondPartTextLayout;
     private TextPaint textPaint;
 
-    public class BoldAndAccent extends CharacterStyle {
+    private class BoldAndAccent extends CharacterStyle {
         private BoldAndAccent() {
-            MessageContainsEmojiButton.this = r1;
         }
 
         @Override
@@ -86,7 +85,7 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
         setBackground(Theme.createRadSelectorDrawable(Theme.getColor("listSelectorSDK21", resourcesProvider), 0, 6));
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
-        textPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
+        textPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
         this.textPaint.setColor(Theme.getColor("actionBarDefaultSubmenuItem", resourcesProvider));
         if (arrayList.size() > 1) {
             if (i2 == 0) {
@@ -181,10 +180,10 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
                 this.mainTextLayout = staticLayout2;
                 if (this.loadingDrawable != null && this.loadingBoundsTo == null) {
                     int lineCount = staticLayout2.getLineCount() - 1;
-                    this.lastLineMargin = ((int) this.mainTextLayout.getPrimaryHorizontal(this.mainText.length())) + AndroidUtilities.m35dp(2.0f);
+                    this.lastLineMargin = ((int) this.mainTextLayout.getPrimaryHorizontal(this.mainText.length())) + AndroidUtilities.m36dp(2.0f);
                     this.lastLineTop = this.mainTextLayout.getLineTop(lineCount);
                     this.lastLineHeight = r1 - this.lastLineTop;
-                    float min = Math.min(AndroidUtilities.m35dp(100.0f), this.mainTextLayout.getWidth() - this.lastLineMargin);
+                    float min = Math.min(AndroidUtilities.m36dp(100.0f), this.mainTextLayout.getWidth() - this.lastLineMargin);
                     if (this.loadingBoundsFrom == null) {
                         this.loadingBoundsFrom = new Rect();
                     }
@@ -225,7 +224,7 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
     @Override
     protected void onMeasure(int i, int i2) {
         int i3;
-        setPadding(AndroidUtilities.m35dp(13.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(13.0f), AndroidUtilities.m35dp(8.0f));
+        setPadding(AndroidUtilities.m36dp(13.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(13.0f), AndroidUtilities.m36dp(8.0f));
         int size = View.MeasureSpec.getSize(i);
         if (this.checkWidth && (i3 = this.lastWidth) > 0) {
             size = Math.min(size, i3);

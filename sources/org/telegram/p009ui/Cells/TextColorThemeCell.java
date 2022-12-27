@@ -31,7 +31,7 @@ public class TextColorThemeCell extends FrameLayout {
         this.textView.setMaxLines(1);
         this.textView.setSingleLine(true);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.textView.setPadding(0, 0, 0, AndroidUtilities.m35dp(3.0f));
+        this.textView.setPadding(0, 0, 0, AndroidUtilities.m36dp(3.0f));
         TextView textView2 = this.textView;
         boolean z = LocaleController.isRTL;
         addView(textView2, LayoutHelper.createFrame(-1, -1.0f, (z ? 5 : 3) | 48, z ? 21 : 57, 0.0f, z ? 57 : 21, 0.0f));
@@ -50,7 +50,7 @@ public class TextColorThemeCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
     }
 
     public void setTextAndColor(CharSequence charSequence, int i) {
@@ -66,7 +66,7 @@ public class TextColorThemeCell extends FrameLayout {
         if (i != 0) {
             colorPaint.setColor(i);
             colorPaint.setAlpha((int) (this.alpha * 255.0f));
-            canvas.drawCircle(!LocaleController.isRTL ? AndroidUtilities.m35dp(28.0f) : getMeasuredWidth() - AndroidUtilities.m35dp(28.0f), getMeasuredHeight() / 2, AndroidUtilities.m35dp(10.0f), colorPaint);
+            canvas.drawCircle(!LocaleController.isRTL ? AndroidUtilities.m36dp(28.0f) : getMeasuredWidth() - AndroidUtilities.m36dp(28.0f), getMeasuredHeight() / 2, AndroidUtilities.m36dp(10.0f), colorPaint);
         }
     }
 }

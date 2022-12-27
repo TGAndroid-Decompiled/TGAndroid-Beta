@@ -1053,7 +1053,7 @@ public class DownloadController extends BaseController implements NotificationCe
                     }
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -1135,7 +1135,7 @@ public class DownloadController extends BaseController implements NotificationCe
             executeFast.dispose();
             nativeByteBuffer.reuse();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1227,7 +1227,7 @@ public class DownloadController extends BaseController implements NotificationCe
                 executeFast.dispose();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1282,7 +1282,7 @@ public class DownloadController extends BaseController implements NotificationCe
             executeFast.step();
             executeFast.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1316,7 +1316,6 @@ public class DownloadController extends BaseController implements NotificationCe
         long f804id;
 
         private DownloadingDocumentEntry() {
-            DownloadController.this = r1;
         }
     }
 
@@ -1355,7 +1354,7 @@ public class DownloadController extends BaseController implements NotificationCe
             }
             queryFinalized.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         getFileLoader().checkMediaExistance(arrayList);
         getFileLoader().checkMediaExistance(arrayList2);
@@ -1407,7 +1406,7 @@ public class DownloadController extends BaseController implements NotificationCe
         try {
             getMessagesStorage().getDatabase().executeFast("DELETE FROM downloading_documents WHERE state = 1").stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1464,12 +1463,12 @@ public class DownloadController extends BaseController implements NotificationCe
                 try {
                     FileLoader.getInstance(this.currentAccount).getPathToMessage(((MessageObject) arrayList.get(i)).messageOwner).delete();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             executeFast.dispose();
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
     }
 

@@ -32,7 +32,7 @@ public class SendingFileDrawable extends StatusDrawable {
             this.currentPaint = paint;
             paint.setStyle(Paint.Style.STROKE);
             this.currentPaint.setStrokeCap(Paint.Cap.ROUND);
-            this.currentPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            this.currentPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         }
     }
 
@@ -94,15 +94,15 @@ public class SendingFileDrawable extends StatusDrawable {
             } else {
                 paint.setAlpha(255);
             }
-            float m35dp = (AndroidUtilities.m35dp(5.0f) * i) + (AndroidUtilities.m35dp(5.0f) * this.progress);
+            float m36dp = (AndroidUtilities.m36dp(5.0f) * i) + (AndroidUtilities.m36dp(5.0f) * this.progress);
             float f = 7.0f;
-            canvas.drawLine(m35dp, AndroidUtilities.m35dp(this.isChat ? 3.0f : 4.0f), m35dp + AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(this.isChat ? 7.0f : 8.0f), paint);
-            float m35dp2 = AndroidUtilities.m35dp(this.isChat ? 11.0f : 12.0f);
-            float m35dp3 = m35dp + AndroidUtilities.m35dp(4.0f);
+            canvas.drawLine(m36dp, AndroidUtilities.m36dp(this.isChat ? 3.0f : 4.0f), m36dp + AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(this.isChat ? 7.0f : 8.0f), paint);
+            float m36dp2 = AndroidUtilities.m36dp(this.isChat ? 11.0f : 12.0f);
+            float m36dp3 = m36dp + AndroidUtilities.m36dp(4.0f);
             if (!this.isChat) {
                 f = 8.0f;
             }
-            canvas.drawLine(m35dp, m35dp2, m35dp3, AndroidUtilities.m35dp(f), paint);
+            canvas.drawLine(m36dp, m36dp2, m36dp3, AndroidUtilities.m36dp(f), paint);
         }
         if (this.started) {
             update();
@@ -111,11 +111,11 @@ public class SendingFileDrawable extends StatusDrawable {
 
     @Override
     public int getIntrinsicWidth() {
-        return AndroidUtilities.m35dp(18.0f);
+        return AndroidUtilities.m36dp(18.0f);
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return AndroidUtilities.m35dp(14.0f);
+        return AndroidUtilities.m36dp(14.0f);
     }
 }

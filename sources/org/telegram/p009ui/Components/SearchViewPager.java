@@ -407,16 +407,16 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             this.selectedMessagesCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon"));
             this.actionMode.addView(this.selectedMessagesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
             this.selectedMessagesCountTextView.setOnTouchListener(SearchViewPager$$ExternalSyntheticLambda2.INSTANCE);
-            ActionBarMenuItem addItemWithWidth = this.actionMode.addItemWithWidth(203, C1072R.C1073drawable.avd_speed, AndroidUtilities.m35dp(54.0f), LocaleController.getString("AccDescrPremiumSpeed", C1072R.string.AccDescrPremiumSpeed));
+            ActionBarMenuItem addItemWithWidth = this.actionMode.addItemWithWidth(203, C1072R.C1073drawable.avd_speed, AndroidUtilities.m36dp(54.0f), LocaleController.getString("AccDescrPremiumSpeed", C1072R.string.AccDescrPremiumSpeed));
             this.speedItem = addItemWithWidth;
             addItemWithWidth.getIconView().setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarActionModeDefaultIcon"), PorterDuff.Mode.SRC_IN));
-            this.gotoItem = this.actionMode.addItemWithWidth(200, C1072R.C1073drawable.msg_message, AndroidUtilities.m35dp(54.0f), LocaleController.getString("AccDescrGoToMessage", C1072R.string.AccDescrGoToMessage));
-            this.forwardItem = this.actionMode.addItemWithWidth(201, C1072R.C1073drawable.msg_forward, AndroidUtilities.m35dp(54.0f), LocaleController.getString("Forward", C1072R.string.Forward));
-            this.deleteItem = this.actionMode.addItemWithWidth(202, C1072R.C1073drawable.msg_delete, AndroidUtilities.m35dp(54.0f), LocaleController.getString("Delete", C1072R.string.Delete));
+            this.gotoItem = this.actionMode.addItemWithWidth(200, C1072R.C1073drawable.msg_message, AndroidUtilities.m36dp(54.0f), LocaleController.getString("AccDescrGoToMessage", C1072R.string.AccDescrGoToMessage));
+            this.forwardItem = this.actionMode.addItemWithWidth(201, C1072R.C1073drawable.msg_forward, AndroidUtilities.m36dp(54.0f), LocaleController.getString("Forward", C1072R.string.Forward));
+            this.deleteItem = this.actionMode.addItemWithWidth(202, C1072R.C1073drawable.msg_delete, AndroidUtilities.m36dp(54.0f), LocaleController.getString("Delete", C1072R.string.Delete));
         }
         if (this.selectedMessagesCountTextView != null) {
             DialogsSearchAdapter dialogsSearchAdapter = this.dialogsSearchAdapter;
-            ((ViewGroup.MarginLayoutParams) this.selectedMessagesCountTextView.getLayoutParams()).leftMargin = AndroidUtilities.m35dp((dialogsSearchAdapter != null && (dialogsSearchAdapterDelegate = dialogsSearchAdapter.delegate) != null && (dialogsSearchAdapterDelegate.getSearchForumDialogId() > 0L ? 1 : (dialogsSearchAdapterDelegate.getSearchForumDialogId() == 0L ? 0 : -1)) != 0 ? 56 : 0) + 72);
+            ((ViewGroup.MarginLayoutParams) this.selectedMessagesCountTextView.getLayoutParams()).leftMargin = AndroidUtilities.m36dp((dialogsSearchAdapter != null && (dialogsSearchAdapterDelegate = dialogsSearchAdapter.delegate) != null && (dialogsSearchAdapterDelegate.getSearchForumDialogId() > 0L ? 1 : (dialogsSearchAdapterDelegate.getSearchForumDialogId() == 0L ? 0 : -1)) != 0 ? 56 : 0) + 72);
             NumberTextView numberTextView2 = this.selectedMessagesCountTextView;
             numberTextView2.setLayoutParams(numberTextView2.getLayoutParams());
         }
@@ -876,7 +876,6 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         ArrayList<Item> items = new ArrayList<>();
 
         public ViewPagerAdapter() {
-            SearchViewPager.this = r1;
             updateItems();
         }
 

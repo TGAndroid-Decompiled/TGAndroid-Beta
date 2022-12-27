@@ -31,6 +31,7 @@ public class AvatarsDrawable {
     private int overrideSize;
     View parent;
     Random random;
+    private boolean showSavedMessages;
     private boolean transitionInProgress;
     ValueAnimator transitionProgressAnimator;
     boolean updateAfterTransition;
@@ -248,14 +249,14 @@ public class AvatarsDrawable {
         for (int i = 0; i < 3; i++) {
             this.currentStates[i] = new DrawingState();
             this.currentStates[i].imageReceiver = new ImageReceiver(view);
-            this.currentStates[i].imageReceiver.setRoundRadius(AndroidUtilities.m35dp(12.0f));
+            this.currentStates[i].imageReceiver.setRoundRadius(AndroidUtilities.m36dp(12.0f));
             this.currentStates[i].avatarDrawable = new AvatarDrawable();
-            this.currentStates[i].avatarDrawable.setTextSize(AndroidUtilities.m35dp(12.0f));
+            this.currentStates[i].avatarDrawable.setTextSize(AndroidUtilities.m36dp(12.0f));
             this.animatingStates[i] = new DrawingState();
             this.animatingStates[i].imageReceiver = new ImageReceiver(view);
-            this.animatingStates[i].imageReceiver.setRoundRadius(AndroidUtilities.m35dp(12.0f));
+            this.animatingStates[i].imageReceiver.setRoundRadius(AndroidUtilities.m36dp(12.0f));
             this.animatingStates[i].avatarDrawable = new AvatarDrawable();
-            this.animatingStates[i].avatarDrawable.setTextSize(AndroidUtilities.m35dp(12.0f));
+            this.animatingStates[i].avatarDrawable.setTextSize(AndroidUtilities.m36dp(12.0f));
         }
         this.isInCall = z;
         this.xRefP.setColor(0);
@@ -316,13 +317,13 @@ public class AvatarsDrawable {
             tLRPC$Chat = chat;
         } else if (tLObject instanceof TLRPC$User) {
             TLRPC$User tLRPC$User2 = (TLRPC$User) tLObject;
-            if (tLRPC$User2.self) {
-                this.animatingStates[i].avatarDrawable.setAvatarType(1);
-                this.animatingStates[i].avatarDrawable.setScaleSize(0.6f);
-            } else {
+            if (!tLRPC$User2.self || !this.showSavedMessages) {
                 this.animatingStates[i].avatarDrawable.setAvatarType(0);
                 this.animatingStates[i].avatarDrawable.setScaleSize(1.0f);
                 this.animatingStates[i].avatarDrawable.setInfo(tLRPC$User2);
+            } else {
+                this.animatingStates[i].avatarDrawable.setAvatarType(1);
+                this.animatingStates[i].avatarDrawable.setScaleSize(0.6f);
             }
             this.animatingStates[i].f1035id = tLRPC$User2.f995id;
             tLRPC$User = tLRPC$User2;
@@ -336,16 +337,16 @@ public class AvatarsDrawable {
         }
         if (tLRPC$User == null) {
             this.animatingStates[i].imageReceiver.setForUserOrChat(tLRPC$Chat, this.animatingStates[i].avatarDrawable);
-        } else if (tLRPC$User.self) {
-            this.animatingStates[i].imageReceiver.setImageBitmap(this.animatingStates[i].avatarDrawable);
-        } else {
+        } else if (!tLRPC$User.self || !this.showSavedMessages) {
             this.animatingStates[i].imageReceiver.setForUserOrChat(tLRPC$User, this.animatingStates[i].avatarDrawable);
+        } else {
+            this.animatingStates[i].imageReceiver.setImageBitmap(this.animatingStates[i].avatarDrawable);
         }
         int i3 = this.currentStyle;
         if (i3 != 4 && i3 != 10) {
             z = false;
         }
-        this.animatingStates[i].imageReceiver.setRoundRadius(AndroidUtilities.m35dp(z ? 16.0f : 12.0f));
+        this.animatingStates[i].imageReceiver.setRoundRadius(AndroidUtilities.m36dp(z ? 16.0f : 12.0f));
         float size = getSize();
         this.animatingStates[i].imageReceiver.setImageCoords(0.0f, 0.0f, size, size);
         invalidate();
@@ -361,7 +362,7 @@ public class AvatarsDrawable {
             return i;
         }
         int i2 = this.currentStyle;
-        return AndroidUtilities.m35dp(i2 == 4 || i2 == 10 ? 32.0f : 24.0f);
+        return AndroidUtilities.m36dp(i2 == 4 || i2 == 10 ? 32.0f : 24.0f);
     }
 
     public void onDetachedFromWindow() {
@@ -398,5 +399,9 @@ public class AvatarsDrawable {
         for (int i = 0; i < this.animatingStates.length; i++) {
             setObject(0, 0, null);
         }
+    }
+
+    public void setShowSavedMessages(boolean z) {
+        this.showSavedMessages = z;
     }
 }

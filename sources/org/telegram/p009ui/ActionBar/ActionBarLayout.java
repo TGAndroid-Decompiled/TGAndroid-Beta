@@ -270,7 +270,6 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
         public LayoutContainer(Context context) {
             super(context);
-            ActionBarLayout.this = r1;
             this.rect = new Rect();
             this.backgroundPaint = new Paint();
             setWillNotDraw(false);
@@ -428,7 +427,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.pressY = motionEvent.getY();
                 this.allowToPressByHover = false;
             } else if ((motionEvent.getAction() == 2 || motionEvent.getAction() == 1) && ActionBarLayout.this.previewMenu != null && ActionBarLayout.this.highlightActionButtons) {
-                if (!this.allowToPressByHover && Math.sqrt(Math.pow(this.pressX - motionEvent.getX(), 2.0d) + Math.pow(this.pressY - motionEvent.getY(), 2.0d)) > AndroidUtilities.m35dp(30.0f)) {
+                if (!this.allowToPressByHover && Math.sqrt(Math.pow(this.pressX - motionEvent.getX(), 2.0d) + Math.pow(this.pressY - motionEvent.getY(), 2.0d)) > AndroidUtilities.m36dp(30.0f)) {
                     this.allowToPressByHover = true;
                 }
                 if (this.allowToPressByHover && (ActionBarLayout.this.previewMenu.getSwipeBack() == null || !ActionBarLayout.this.previewMenu.getSwipeBack().isForegroundOpen())) {
@@ -691,7 +690,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         int paddingLeft = getPaddingLeft();
         int paddingLeft2 = getPaddingLeft() + width;
         if (view == this.containerViewBack) {
-            paddingLeft2 = AndroidUtilities.m35dp(1.0f) + paddingRight;
+            paddingLeft2 = AndroidUtilities.m36dp(1.0f) + paddingRight;
         } else if (view == this.containerView) {
             paddingLeft = paddingRight;
         }
@@ -710,7 +709,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 i = width - paddingRight;
             }
             if (view == this.containerView) {
-                float clamp = MathUtils.clamp(i / AndroidUtilities.m35dp(20.0f), 0.0f, 1.0f);
+                float clamp = MathUtils.clamp(i / AndroidUtilities.m36dp(20.0f), 0.0f, 1.0f);
                 Drawable drawable = layerShadowDrawable;
                 drawable.setBounds(paddingRight - drawable.getIntrinsicWidth(), view.getTop(), paddingRight, view.getBottom());
                 layerShadowDrawable.setAlpha((int) (clamp * 255.0f));
@@ -777,11 +776,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             this.previewBackgroundDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.previewBackgroundDrawable.draw(canvas);
             if (this.previewMenu == null) {
-                int m35dp = AndroidUtilities.m35dp(32.0f);
-                int i = m35dp / 2;
-                int measuredWidth = (getMeasuredWidth() - m35dp) / 2;
-                int top = (int) ((childAt.getTop() + viewGroup.getTranslationY()) - AndroidUtilities.m35dp((Build.VERSION.SDK_INT < 21 ? 20 : 0) + 12));
-                Theme.moveUpDrawable.setBounds(measuredWidth, top, m35dp + measuredWidth, i + top);
+                int m36dp = AndroidUtilities.m36dp(32.0f);
+                int i = m36dp / 2;
+                int measuredWidth = (getMeasuredWidth() - m36dp) / 2;
+                int top = (int) ((childAt.getTop() + viewGroup.getTranslationY()) - AndroidUtilities.m36dp((Build.VERSION.SDK_INT < 21 ? 20 : 0) + 12));
+                Theme.moveUpDrawable.setBounds(measuredWidth, top, m36dp + measuredWidth, i + top);
                 Theme.moveUpDrawable.draw(canvas);
             }
         }
@@ -1134,11 +1133,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 try {
                     viewGroup2.removeViewInLayout(baseFragment.fragmentView);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     try {
                         viewGroup2.removeView(baseFragment.fragmentView);
                     } catch (Exception e2) {
-                        FileLog.m31e(e2);
+                        FileLog.m32e(e2);
                     }
                 }
             }
@@ -1201,8 +1200,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         ActionBarLayout.this.containerView.setScaleY(f);
                         if (ActionBarLayout.this.previewMenu != null) {
                             float f2 = 1.0f - interpolation;
-                            ActionBarLayout.this.containerView.setTranslationY(AndroidUtilities.m35dp(40.0f) * f2);
-                            ActionBarLayout.this.previewMenu.setTranslationY((-AndroidUtilities.m35dp(70.0f)) * f2);
+                            ActionBarLayout.this.containerView.setTranslationY(AndroidUtilities.m36dp(40.0f) * f2);
+                            ActionBarLayout.this.previewMenu.setTranslationY((-AndroidUtilities.m36dp(70.0f)) * f2);
                             float f3 = (interpolation * 0.05f) + 0.95f;
                             ActionBarLayout.this.previewMenu.setScaleX(f3);
                             ActionBarLayout.this.previewMenu.setScaleY(f3);
@@ -1212,7 +1211,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         ActionBarLayout.this.containerView.invalidate();
                         ActionBarLayout.this.invalidate();
                     } else {
-                        ActionBarLayout.this.containerView.setTranslationX(AndroidUtilities.m35dp(48.0f) * (1.0f - interpolation));
+                        ActionBarLayout.this.containerView.setTranslationX(AndroidUtilities.m36dp(48.0f) * (1.0f - interpolation));
                     }
                 } else {
                     float f4 = 1.0f - interpolation;
@@ -1229,7 +1228,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         ActionBarLayout.this.containerView.invalidate();
                         ActionBarLayout.this.invalidate();
                     } else {
-                        ActionBarLayout.this.containerViewBack.setTranslationX(AndroidUtilities.m35dp(48.0f) * interpolation);
+                        ActionBarLayout.this.containerViewBack.setTranslationX(AndroidUtilities.m36dp(48.0f) * interpolation);
                     }
                 }
                 if (ActionBarLayout.this.animationProgress < 1.0f) {
@@ -1317,11 +1316,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         if (actionBarPopupWindowLayout != null) {
             this.containerViewBack.addView(actionBarPopupWindowLayout);
             actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
-            i = actionBarPopupWindowLayout.getMeasuredHeight() + AndroidUtilities.m35dp(24.0f);
+            i = actionBarPopupWindowLayout.getMeasuredHeight() + AndroidUtilities.m36dp(24.0f);
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) actionBarPopupWindowLayout.getLayoutParams();
             layoutParams.width = -2;
             layoutParams.height = -2;
-            layoutParams.topMargin = (getMeasuredHeight() - i) - AndroidUtilities.m35dp(6.0f);
+            layoutParams.topMargin = (getMeasuredHeight() - i) - AndroidUtilities.m36dp(6.0f);
             actionBarPopupWindowLayout.setLayoutParams(layoutParams);
         } else {
             i = 0;
@@ -1336,17 +1335,17 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 layoutParams2.height = previewHeight;
                 layoutParams2.topMargin = i2 + (((getMeasuredHeight() - i2) - previewHeight) / 2);
             } else {
-                int m35dp = AndroidUtilities.m35dp(actionBarPopupWindowLayout != null ? 0.0f : 24.0f);
-                layoutParams2.bottomMargin = m35dp;
-                layoutParams2.topMargin = m35dp;
-                layoutParams2.topMargin = m35dp + AndroidUtilities.statusBarHeight;
+                int m36dp = AndroidUtilities.m36dp(actionBarPopupWindowLayout != null ? 0.0f : 24.0f);
+                layoutParams2.bottomMargin = m36dp;
+                layoutParams2.topMargin = m36dp;
+                layoutParams2.topMargin = m36dp + AndroidUtilities.statusBarHeight;
             }
             if (actionBarPopupWindowLayout != null) {
-                layoutParams2.bottomMargin += i + AndroidUtilities.m35dp(8.0f);
+                layoutParams2.bottomMargin += i + AndroidUtilities.m36dp(8.0f);
             }
-            int m35dp2 = AndroidUtilities.m35dp(8.0f);
-            layoutParams2.leftMargin = m35dp2;
-            layoutParams2.rightMargin = m35dp2;
+            int m36dp2 = AndroidUtilities.m36dp(8.0f);
+            layoutParams2.leftMargin = m36dp2;
+            layoutParams2.rightMargin = m36dp2;
         } else {
             layoutParams2.leftMargin = 0;
             layoutParams2.rightMargin = 0;
@@ -1386,11 +1385,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     @Override
                     @TargetApi(21)
                     public void getOutline(View view2, Outline outline) {
-                        outline.setRoundRect(0, AndroidUtilities.statusBarHeight, view2.getMeasuredWidth(), view2.getMeasuredHeight(), AndroidUtilities.m35dp(6.0f));
+                        outline.setRoundRect(0, AndroidUtilities.statusBarHeight, view2.getMeasuredWidth(), view2.getMeasuredHeight(), AndroidUtilities.m36dp(6.0f));
                     }
                 });
                 view.setClipToOutline(true);
-                view.setElevation(AndroidUtilities.m35dp(4.0f));
+                view.setElevation(AndroidUtilities.m36dp(4.0f));
             }
             if (this.previewBackgroundDrawable == null) {
                 this.previewBackgroundDrawable = new ColorDrawable(771751936);
@@ -1766,7 +1765,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         try {
                             viewGroup.removeView(view);
                         } catch (Exception e) {
-                            FileLog.m31e(e);
+                            FileLog.m32e(e);
                         }
                     }
                     this.containerView.addView(view);

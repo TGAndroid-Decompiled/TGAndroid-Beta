@@ -49,7 +49,7 @@ public class TimerDrawable extends Drawable {
         this.context = context;
         this.resourcesProvider = resourcesProvider;
         this.timePaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
-        this.linePaint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
+        this.linePaint.setStrokeWidth(AndroidUtilities.m36dp(1.0f));
         this.linePaint.setStyle(Paint.Style.STROKE);
     }
 
@@ -105,15 +105,15 @@ public class TimerDrawable extends Drawable {
                 }
             }
             String str2 = str;
-            this.timePaint.setTextSize(AndroidUtilities.m35dp(11.0f));
+            this.timePaint.setTextSize(AndroidUtilities.m36dp(11.0f));
             float measureText = this.timePaint.measureText(str2);
             this.timeWidth = measureText;
-            if (measureText > AndroidUtilities.m35dp(13.0f)) {
-                this.timePaint.setTextSize(AndroidUtilities.m35dp(9.0f));
+            if (measureText > AndroidUtilities.m36dp(13.0f)) {
+                this.timePaint.setTextSize(AndroidUtilities.m36dp(9.0f));
                 this.timeWidth = this.timePaint.measureText(str2);
             }
-            if (this.timeWidth > AndroidUtilities.m35dp(13.0f)) {
-                this.timePaint.setTextSize(AndroidUtilities.m35dp(6.0f));
+            if (this.timeWidth > AndroidUtilities.m36dp(13.0f)) {
+                this.timePaint.setTextSize(AndroidUtilities.m36dp(6.0f));
                 this.timeWidth = this.timePaint.measureText(str2);
             }
             try {
@@ -122,7 +122,7 @@ public class TimerDrawable extends Drawable {
                 this.timeHeight = staticLayout.getHeight();
             } catch (Exception e) {
                 this.timeLayout = null;
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             invalidateSelf();
         }
@@ -171,7 +171,7 @@ public class TimerDrawable extends Drawable {
                 this.currentTtlIcon.draw(canvas);
             } else {
                 Rect rect = AndroidUtilities.rectTmp2;
-                rect.set(getBounds().centerX() - AndroidUtilities.m35dp(10.5f), getBounds().centerY() - AndroidUtilities.m35dp(10.5f), (getBounds().centerX() - AndroidUtilities.m35dp(10.5f)) + this.currentTtlIcon.getIntrinsicWidth(), (getBounds().centerY() - AndroidUtilities.m35dp(10.5f)) + this.currentTtlIcon.getIntrinsicHeight());
+                rect.set(getBounds().centerX() - AndroidUtilities.m36dp(10.5f), getBounds().centerY() - AndroidUtilities.m36dp(10.5f), (getBounds().centerX() - AndroidUtilities.m36dp(10.5f)) + this.currentTtlIcon.getIntrinsicWidth(), (getBounds().centerY() - AndroidUtilities.m36dp(10.5f)) + this.currentTtlIcon.getIntrinsicHeight());
                 this.currentTtlIcon.setBounds(rect);
                 this.currentTtlIcon.draw(canvas);
             }
@@ -207,12 +207,12 @@ public class TimerDrawable extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        return AndroidUtilities.m35dp(23.0f);
+        return AndroidUtilities.m36dp(23.0f);
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return AndroidUtilities.m35dp(23.0f);
+        return AndroidUtilities.m36dp(23.0f);
     }
 
     public void setBackgroundColor(int i) {

@@ -163,12 +163,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             @Override
             protected void onDraw(Canvas canvas) {
                 this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), Theme.chat_timeBackgroundPaint);
+                canvas.drawRoundRect(this.rect, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), Theme.chat_timeBackgroundPaint);
             }
         };
         this.videoInfoContainer = frameLayout2;
         frameLayout2.setWillNotDraw(false);
-        this.videoInfoContainer.setPadding(AndroidUtilities.m35dp(5.0f), 0, AndroidUtilities.m35dp(5.0f), 0);
+        this.videoInfoContainer.setPadding(AndroidUtilities.m36dp(5.0f), 0, AndroidUtilities.m36dp(5.0f), 0);
         this.container.addView(this.videoInfoContainer, LayoutHelper.createFrame(-2, 17.0f, 83, 4.0f, 0.0f, 0.0f, 4.0f));
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(C1072R.C1073drawable.play_mini_video);
@@ -190,7 +190,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.checkFrame = frameLayout3;
         addView(frameLayout3, LayoutHelper.createFrame(42, 42.0f, 51, 38.0f, 0.0f, 0.0f, 0.0f));
-        this.itemSize = AndroidUtilities.m35dp(80.0f);
+        this.itemSize = AndroidUtilities.m36dp(80.0f);
     }
 
     public void setHasSpoiler(boolean z) {
@@ -238,9 +238,9 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.checkBox.getLayoutParams();
         layoutParams3.gravity = 53;
         layoutParams3.leftMargin = 0;
-        int m35dp = AndroidUtilities.m35dp(5.0f);
-        layoutParams3.topMargin = m35dp;
-        layoutParams3.rightMargin = m35dp;
+        int m36dp = AndroidUtilities.m36dp(5.0f);
+        layoutParams3.topMargin = m36dp;
+        layoutParams3.rightMargin = m36dp;
         this.checkBox.setDrawBackgroundAsArc(6);
         this.itemSizeChanged = true;
     }
@@ -248,13 +248,13 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         if (this.itemSizeChanged) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.m35dp(5.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.m36dp(5.0f), 1073741824));
             return;
         }
         if (this.isVertical) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(80.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp((this.isLast ? 0 : 6) + 80), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(80.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp((this.isLast ? 0 : 6) + 80), 1073741824));
         } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp((this.isLast ? 0 : 6) + 80), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(80.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp((this.isLast ? 0 : 6) + 80), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(80.0f), 1073741824));
         }
     }
 

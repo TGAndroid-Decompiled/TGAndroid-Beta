@@ -58,7 +58,7 @@ public class HeaderCell extends FrameLayout {
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.textView.setMinHeight(AndroidUtilities.m35dp(this.height - i2));
+        this.textView.setMinHeight(AndroidUtilities.m36dp(this.height - i2));
         this.textView.setTextColor(getThemedColor(str));
         this.textView.setTag(str);
         float f = i;
@@ -76,20 +76,20 @@ public class HeaderCell extends FrameLayout {
     public void setHeight(int i) {
         TextView textView = this.textView;
         this.height = i;
-        textView.setMinHeight(AndroidUtilities.m35dp(i) - ((FrameLayout.LayoutParams) this.textView.getLayoutParams()).topMargin);
+        textView.setMinHeight(AndroidUtilities.m36dp(i) - ((FrameLayout.LayoutParams) this.textView.getLayoutParams()).topMargin);
     }
 
     public void setTopMargin(int i) {
-        ((FrameLayout.LayoutParams) this.textView.getLayoutParams()).topMargin = AndroidUtilities.m35dp(i);
+        ((FrameLayout.LayoutParams) this.textView.getLayoutParams()).topMargin = AndroidUtilities.m36dp(i);
         setHeight(this.height);
     }
 
     public void setBottomMargin(int i) {
         float f = i;
-        ((FrameLayout.LayoutParams) this.textView.getLayoutParams()).bottomMargin = AndroidUtilities.m35dp(f);
+        ((FrameLayout.LayoutParams) this.textView.getLayoutParams()).bottomMargin = AndroidUtilities.m36dp(f);
         SimpleTextView simpleTextView = this.textView2;
         if (simpleTextView != null) {
-            ((FrameLayout.LayoutParams) simpleTextView.getLayoutParams()).bottomMargin = AndroidUtilities.m35dp(f);
+            ((FrameLayout.LayoutParams) simpleTextView.getLayoutParams()).bottomMargin = AndroidUtilities.m36dp(f);
         }
     }
 

@@ -614,22 +614,21 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.patternsListView.invalidateViews();
         int left = view.getLeft();
         int right = view.getRight();
-        int m35dp = AndroidUtilities.m35dp(52.0f);
-        int i2 = left - m35dp;
+        int m36dp = AndroidUtilities.m36dp(52.0f);
+        int i2 = left - m36dp;
         if (i2 < 0) {
             this.patternsListView.smoothScrollBy(i2, 0);
             return;
         }
-        int i3 = right + m35dp;
+        int i3 = right + m36dp;
         if (i3 > this.patternsListView.getMeasuredWidth()) {
             RecyclerListView recyclerListView = this.patternsListView;
             recyclerListView.smoothScrollBy(i3 - recyclerListView.getMeasuredWidth(), 0);
         }
     }
 
-    public class C413122 implements ColorPicker.ColorPickerDelegate {
-        C413122() {
-            ThemePreviewActivity.this = r1;
+    public class C413422 implements ColorPicker.ColorPickerDelegate {
+        C413422() {
         }
 
         @Override
@@ -668,7 +667,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             builder.setPositiveButton(LocaleController.getString("Delete", C1072R.string.Delete), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    ThemePreviewActivity.C413122.this.lambda$deleteTheme$0(dialogInterface, i);
+                    ThemePreviewActivity.C413422.this.lambda$deleteTheme$0(dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
@@ -869,7 +868,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             } else {
                 this.messagesAdapter.notifyItemChanged(0);
             }
-            this.listView2.smoothScrollBy(0, AndroidUtilities.m35dp(60.0f));
+            this.listView2.smoothScrollBy(0, AndroidUtilities.m36dp(60.0f));
         } else if (i == 3) {
             this.dropDown.setText(LocaleController.getString("ColorPickerMyMessages", C1072R.string.ColorPickerMyMessages));
             Theme.ThemeAccent themeAccent2 = this.accent;
@@ -904,7 +903,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             } else if (i3 == 2) {
                 this.messagesAdapter.notifyItemRemoved(0);
             }
-            this.listView2.smoothScrollBy(0, AndroidUtilities.m35dp(60.0f));
+            this.listView2.smoothScrollBy(0, AndroidUtilities.m36dp(60.0f));
             showAnimationHint();
         }
         if (i == 1 || i == 3) {
@@ -1064,7 +1063,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 fileOutputStream2.close();
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -1923,7 +1922,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             this.animationHint.setAlpha(0.0f);
             this.animationHint.setVisibility(4);
             this.animationHint.setText(LocaleController.getString("BackgroundAnimateInfo", C1072R.string.BackgroundAnimateInfo));
-            this.animationHint.setExtraTranslationY(AndroidUtilities.m35dp(6.0f));
+            this.animationHint.setExtraTranslationY(AndroidUtilities.m36dp(6.0f));
             this.frameLayout.addView(this.animationHint, LayoutHelper.createFrame(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1996,7 +1995,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             this.backgroundCheckBoxView[0].setVisibility(0);
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
-        int m35dp = (((FrameLayout.LayoutParams) this.backgroundCheckBoxView[1].getLayoutParams()).width + AndroidUtilities.m35dp(9.0f)) / 2;
+        int m36dp = (((FrameLayout.LayoutParams) this.backgroundCheckBoxView[1].getLayoutParams()).width + AndroidUtilities.m36dp(9.0f)) / 2;
         Animator[] animatorArr2 = new Animator[1];
         WallpaperCheckBoxView wallpaperCheckBoxView3 = this.backgroundCheckBoxView[0];
         Property property3 = View.ALPHA;
@@ -2008,14 +2007,14 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         WallpaperCheckBoxView wallpaperCheckBoxView4 = this.backgroundCheckBoxView[0];
         Property property4 = View.TRANSLATION_X;
         float[] fArr4 = new float[1];
-        fArr4[0] = this.selectedPattern != null ? 0.0f : m35dp;
+        fArr4[0] = this.selectedPattern != null ? 0.0f : m36dp;
         animatorArr3[0] = ObjectAnimator.ofFloat(wallpaperCheckBoxView4, property4, fArr4);
         animatorSet2.playTogether(animatorArr3);
         Animator[] animatorArr4 = new Animator[1];
         WallpaperCheckBoxView wallpaperCheckBoxView5 = this.backgroundCheckBoxView[1];
         Property property5 = View.TRANSLATION_X;
         float[] fArr5 = new float[1];
-        fArr5[0] = this.selectedPattern == null ? -m35dp : 0.0f;
+        fArr5[0] = this.selectedPattern == null ? -m36dp : 0.0f;
         animatorArr4[0] = ObjectAnimator.ofFloat(wallpaperCheckBoxView5, property5, fArr5);
         animatorSet2.playTogether(animatorArr4);
         animatorSet2.setInterpolator(CubicBezierInterpolator.EASE_OUT);
@@ -2064,7 +2063,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     } else {
                         indexOf = arrayList.indexOf(tLRPC$TL_wallPaper) + (this.screenType == 2 ? 1 : 0);
                     }
-                    this.patternsLayoutManager.scrollToPositionWithOffset(indexOf, (this.patternsListView.getMeasuredWidth() - AndroidUtilities.m35dp(124.0f)) / 2);
+                    this.patternsLayoutManager.scrollToPositionWithOffset(indexOf, (this.patternsListView.getMeasuredWidth() - AndroidUtilities.m36dp(124.0f)) / 2);
                 }
             }
         }
@@ -2091,7 +2090,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     RecyclerListView recyclerListView = this.listView2;
                     Property property = View.TRANSLATION_Y;
                     float[] fArr = new float[1];
-                    fArr[0] = i == 1 ? -AndroidUtilities.m35dp(21.0f) : 0.0f;
+                    fArr[0] = i == 1 ? -AndroidUtilities.m36dp(21.0f) : 0.0f;
                     arrayList2.add(ObjectAnimator.ofFloat(recyclerListView, property, fArr));
                     WallpaperCheckBoxView wallpaperCheckBoxView = this.backgroundCheckBoxView[2];
                     Property property2 = View.ALPHA;
@@ -2111,7 +2110,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
                     this.colorPicker.hideKeyboard();
                 } else if (i8 == 2) {
-                    arrayList2.add(ObjectAnimator.ofFloat(this.listView2, View.TRANSLATION_Y, (-this.patternLayout[i].getMeasuredHeight()) + AndroidUtilities.m35dp(48.0f)));
+                    arrayList2.add(ObjectAnimator.ofFloat(this.listView2, View.TRANSLATION_Y, (-this.patternLayout[i].getMeasuredHeight()) + AndroidUtilities.m36dp(48.0f)));
                     WallpaperCheckBoxView wallpaperCheckBoxView3 = this.backgroundCheckBoxView[2];
                     Property property4 = View.ALPHA;
                     float[] fArr4 = new float[1];
@@ -2177,7 +2176,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             this.patternLayout[i].setVisibility(0);
             int i10 = this.screenType;
             if (i10 == 1) {
-                this.listView2.setTranslationY(i == 1 ? -AndroidUtilities.m35dp(21.0f) : 0.0f);
+                this.listView2.setTranslationY(i == 1 ? -AndroidUtilities.m36dp(21.0f) : 0.0f);
                 this.backgroundCheckBoxView[2].setAlpha(z3 ? 1.0f : 0.0f);
                 this.backgroundCheckBoxView[0].setAlpha(z3 ? 0.0f : 1.0f);
                 if (i == 1) {
@@ -2188,7 +2187,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 }
                 this.colorPicker.hideKeyboard();
             } else if (i10 == 2) {
-                this.listView2.setTranslationY((-AndroidUtilities.m35dp(i == 0 ? 343.0f : 316.0f)) + AndroidUtilities.m35dp(48.0f));
+                this.listView2.setTranslationY((-AndroidUtilities.m36dp(i == 0 ? 343.0f : 316.0f)) + AndroidUtilities.m36dp(48.0f));
                 this.backgroundCheckBoxView[2].setAlpha(z3 ? 1.0f : 0.0f);
                 this.backgroundCheckBoxView[0].setAlpha(z3 ? 0.0f : 1.0f);
                 this.backgroundImage.setAlpha(0.0f);
@@ -2767,13 +2766,12 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         public MessagesAdapter(Context context) {
-            ThemePreviewActivity.this = r17;
-            this.showSecretMessages = r17.screenType == 0 && Utilities.random.nextInt(100) <= 1;
+            this.showSecretMessages = ThemePreviewActivity.this.screenType == 0 && Utilities.random.nextInt(100) <= 1;
             this.mContext = context;
             this.messages = new ArrayList<>();
             int currentTimeMillis = ((int) (System.currentTimeMillis() / 1000)) - 3600;
-            if (r17.screenType != 2) {
-                if (r17.screenType == 1) {
+            if (ThemePreviewActivity.this.screenType != 2) {
+                if (ThemePreviewActivity.this.screenType == 1) {
                     TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
                     TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = new TLRPC$TL_messageMediaDocument();
                     tLRPC$TL_message.media = tLRPC$TL_messageMediaDocument;
@@ -2899,7 +2897,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     TLRPC$TL_peerUser tLRPC$TL_peerUser8 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message5.peer_id = tLRPC$TL_peerUser8;
                     tLRPC$TL_peerUser8.user_id = 0L;
-                    MessageObject messageObject5 = new MessageObject(((BaseFragment) r17).currentAccount, tLRPC$TL_message5, true, false);
+                    MessageObject messageObject5 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message5, true, false);
                     messageObject5.audioProgressSec = 1;
                     messageObject5.audioProgress = 0.3f;
                     messageObject5.useCustomPhoto = true;
@@ -2915,7 +2913,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     ArrayList<TLRPC$User> arrayList = new ArrayList<>();
                     arrayList.add(tLRPC$TL_user);
                     arrayList.add(tLRPC$TL_user2);
-                    MessagesController.getInstance(((BaseFragment) r17).currentAccount).putUsers(arrayList, true);
+                    MessagesController.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).putUsers(arrayList, true);
                     TLRPC$TL_message tLRPC$TL_message6 = new TLRPC$TL_message();
                     tLRPC$TL_message6.message = "Guess why Half-Life 3 was never released.";
                     int i2 = currentTimeMillis + 960;
@@ -2931,7 +2929,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     TLRPC$TL_peerUser tLRPC$TL_peerUser9 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message6.from_id = tLRPC$TL_peerUser9;
                     tLRPC$TL_peerUser9.user_id = tLRPC$TL_user2.f995id;
-                    this.messages.add(new MessageObject(((BaseFragment) r17).currentAccount, tLRPC$TL_message6, true, false));
+                    this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message6, true, false));
                     TLRPC$TL_message tLRPC$TL_message7 = new TLRPC$TL_message();
                     tLRPC$TL_message7.message = "No.\nAnd every unnecessary ping of the dev delays the release for 10 days.\nEvery request for ETA delays the release for 2 weeks.";
                     tLRPC$TL_message7.date = i2;
@@ -2946,7 +2944,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     TLRPC$TL_peerUser tLRPC$TL_peerUser10 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message7.from_id = tLRPC$TL_peerUser10;
                     tLRPC$TL_peerUser10.user_id = tLRPC$TL_user2.f995id;
-                    this.messages.add(new MessageObject(((BaseFragment) r17).currentAccount, tLRPC$TL_message7, true, false));
+                    this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message7, true, false));
                     TLRPC$TL_message tLRPC$TL_message8 = new TLRPC$TL_message();
                     tLRPC$TL_message8.message = "Is source code for Android coming anytime soon?";
                     tLRPC$TL_message8.date = currentTimeMillis + 600;
@@ -2961,7 +2959,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     TLRPC$TL_peerUser tLRPC$TL_peerUser11 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message8.from_id = tLRPC$TL_peerUser11;
                     tLRPC$TL_peerUser11.user_id = tLRPC$TL_user.f995id;
-                    this.messages.add(new MessageObject(((BaseFragment) r17).currentAccount, tLRPC$TL_message8, true, false));
+                    this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message8, true, false));
                     return;
                 } else {
                     TLRPC$TL_message tLRPC$TL_message9 = new TLRPC$TL_message();
@@ -2972,14 +2970,14 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     tLRPC$TL_message9.flags = 259;
                     TLRPC$TL_peerUser tLRPC$TL_peerUser12 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message9.from_id = tLRPC$TL_peerUser12;
-                    tLRPC$TL_peerUser12.user_id = UserConfig.getInstance(((BaseFragment) r17).currentAccount).getClientUserId();
+                    tLRPC$TL_peerUser12.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
                     tLRPC$TL_message9.f881id = 1;
                     tLRPC$TL_message9.media = new TLRPC$TL_messageMediaEmpty();
                     tLRPC$TL_message9.out = true;
                     TLRPC$TL_peerUser tLRPC$TL_peerUser13 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message9.peer_id = tLRPC$TL_peerUser13;
                     tLRPC$TL_peerUser13.user_id = 0L;
-                    MessageObject messageObject6 = new MessageObject(((BaseFragment) r17).currentAccount, tLRPC$TL_message9, true, false);
+                    MessageObject messageObject6 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message9, true, false);
                     TLRPC$TL_message tLRPC$TL_message10 = new TLRPC$TL_message();
                     tLRPC$TL_message10.message = LocaleController.getString("ThemePreviewLine2", C1072R.string.ThemePreviewLine2);
                     tLRPC$TL_message10.date = currentTimeMillis + 960;
@@ -2987,14 +2985,14 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     tLRPC$TL_message10.flags = 259;
                     TLRPC$TL_peerUser tLRPC$TL_peerUser14 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message10.from_id = tLRPC$TL_peerUser14;
-                    tLRPC$TL_peerUser14.user_id = UserConfig.getInstance(((BaseFragment) r17).currentAccount).getClientUserId();
+                    tLRPC$TL_peerUser14.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
                     tLRPC$TL_message10.f881id = 1;
                     tLRPC$TL_message10.media = new TLRPC$TL_messageMediaEmpty();
                     tLRPC$TL_message10.out = true;
                     TLRPC$TL_peerUser tLRPC$TL_peerUser15 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message10.peer_id = tLRPC$TL_peerUser15;
                     tLRPC$TL_peerUser15.user_id = 0L;
-                    this.messages.add(new MessageObject(((BaseFragment) r17).currentAccount, tLRPC$TL_message10, true, false));
+                    this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message10, true, false));
                     TLRPC$TL_message tLRPC$TL_message11 = new TLRPC$TL_message();
                     tLRPC$TL_message11.date = currentTimeMillis + 130;
                     tLRPC$TL_message11.dialog_id = 1L;
@@ -3016,8 +3014,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     tLRPC$TL_message11.out = false;
                     TLRPC$TL_peerUser tLRPC$TL_peerUser16 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message11.peer_id = tLRPC$TL_peerUser16;
-                    tLRPC$TL_peerUser16.user_id = UserConfig.getInstance(((BaseFragment) r17).currentAccount).getClientUserId();
-                    this.messages.add(new MessageObject(((BaseFragment) r17).currentAccount, tLRPC$TL_message11, true, false));
+                    tLRPC$TL_peerUser16.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                    this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message11, true, false));
                     TLRPC$TL_message tLRPC$TL_message12 = new TLRPC$TL_message();
                     tLRPC$TL_message12.message = LocaleController.getString("ThemePreviewLine3", C1072R.string.ThemePreviewLine3);
                     tLRPC$TL_message12.date = i3;
@@ -3032,8 +3030,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     tLRPC$TL_message12.out = false;
                     TLRPC$TL_peerUser tLRPC$TL_peerUser17 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message12.peer_id = tLRPC$TL_peerUser17;
-                    tLRPC$TL_peerUser17.user_id = UserConfig.getInstance(((BaseFragment) r17).currentAccount).getClientUserId();
-                    MessageObject messageObject7 = new MessageObject(((BaseFragment) r17).currentAccount, tLRPC$TL_message12, true, false);
+                    tLRPC$TL_peerUser17.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                    MessageObject messageObject7 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message12, true, false);
                     messageObject7.customReplyName = LocaleController.getString("ThemePreviewLine3Reply", C1072R.string.ThemePreviewLine3Reply);
                     messageObject7.replyMessageObject = messageObject6;
                     this.messages.add(messageObject7);
@@ -3043,7 +3041,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     tLRPC$TL_message13.flags = 259;
                     TLRPC$TL_peerUser tLRPC$TL_peerUser18 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message13.from_id = tLRPC$TL_peerUser18;
-                    tLRPC$TL_peerUser18.user_id = UserConfig.getInstance(((BaseFragment) r17).currentAccount).getClientUserId();
+                    tLRPC$TL_peerUser18.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
                     tLRPC$TL_message13.f881id = 1;
                     TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument4 = new TLRPC$TL_messageMediaDocument();
                     tLRPC$TL_message13.media = tLRPC$TL_messageMediaDocument4;
@@ -3062,7 +3060,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     TLRPC$TL_peerUser tLRPC$TL_peerUser19 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message13.peer_id = tLRPC$TL_peerUser19;
                     tLRPC$TL_peerUser19.user_id = 0L;
-                    MessageObject messageObject8 = new MessageObject(((BaseFragment) r17).currentAccount, tLRPC$TL_message13, true, false);
+                    MessageObject messageObject8 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message13, true, false);
                     messageObject8.audioProgressSec = 1;
                     messageObject8.audioProgress = 0.3f;
                     messageObject8.useCustomPhoto = true;
@@ -3095,15 +3093,15 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     tLRPC$TL_message14.out = false;
                     TLRPC$TL_peerUser tLRPC$TL_peerUser20 = new TLRPC$TL_peerUser();
                     tLRPC$TL_message14.peer_id = tLRPC$TL_peerUser20;
-                    tLRPC$TL_peerUser20.user_id = UserConfig.getInstance(((BaseFragment) r17).currentAccount).getClientUserId();
-                    MessageObject messageObject9 = new MessageObject(((BaseFragment) r17).currentAccount, tLRPC$TL_message14, true, false);
+                    tLRPC$TL_peerUser20.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                    MessageObject messageObject9 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message14, true, false);
                     messageObject9.useCustomPhoto = true;
                     this.messages.add(messageObject9);
                     return;
                 }
             }
             TLRPC$TL_message tLRPC$TL_message15 = new TLRPC$TL_message();
-            if (r17.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
+            if (ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
                 tLRPC$TL_message15.message = LocaleController.getString("BackgroundColorSinglePreviewLine2", C1072R.string.BackgroundColorSinglePreviewLine2);
             } else {
                 tLRPC$TL_message15.message = LocaleController.getString("BackgroundPreviewLine2", C1072R.string.BackgroundPreviewLine2);
@@ -3114,19 +3112,19 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             tLRPC$TL_message15.flags = 259;
             TLRPC$TL_peerUser tLRPC$TL_peerUser21 = new TLRPC$TL_peerUser();
             tLRPC$TL_message15.from_id = tLRPC$TL_peerUser21;
-            tLRPC$TL_peerUser21.user_id = UserConfig.getInstance(((BaseFragment) r17).currentAccount).getClientUserId();
+            tLRPC$TL_peerUser21.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
             tLRPC$TL_message15.f881id = 1;
             tLRPC$TL_message15.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message15.out = true;
             TLRPC$TL_peerUser tLRPC$TL_peerUser22 = new TLRPC$TL_peerUser();
             tLRPC$TL_message15.peer_id = tLRPC$TL_peerUser22;
             tLRPC$TL_peerUser22.user_id = 0L;
-            MessageObject messageObject10 = new MessageObject(((BaseFragment) r17).currentAccount, tLRPC$TL_message15, true, false);
+            MessageObject messageObject10 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message15, true, false);
             messageObject10.eventId = 1L;
             messageObject10.resetLayout();
             this.messages.add(messageObject10);
             TLRPC$TL_message tLRPC$TL_message16 = new TLRPC$TL_message();
-            if (r17.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
+            if (ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
                 tLRPC$TL_message16.message = LocaleController.getString("BackgroundColorSinglePreviewLine1", C1072R.string.BackgroundColorSinglePreviewLine1);
             } else {
                 tLRPC$TL_message16.message = LocaleController.getString("BackgroundPreviewLine1", C1072R.string.BackgroundPreviewLine1);
@@ -3140,8 +3138,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             tLRPC$TL_message16.out = false;
             TLRPC$TL_peerUser tLRPC$TL_peerUser23 = new TLRPC$TL_peerUser();
             tLRPC$TL_message16.peer_id = tLRPC$TL_peerUser23;
-            tLRPC$TL_peerUser23.user_id = UserConfig.getInstance(((BaseFragment) r17).currentAccount).getClientUserId();
-            MessageObject messageObject11 = new MessageObject(((BaseFragment) r17).currentAccount, tLRPC$TL_message16, true, false);
+            tLRPC$TL_peerUser23.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+            MessageObject messageObject11 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message16, true, false);
             messageObject11.eventId = 1L;
             messageObject11.resetLayout();
             this.messages.add(messageObject11);
@@ -3535,7 +3533,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 FrameLayout frameLayout2 = new FrameLayout(this, this.mContext) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(60.0f), 1073741824));
+                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(60.0f), 1073741824));
                     }
                 };
                 frameLayout2.addView(ThemePreviewActivity.this.backgroundButtonsContainer, LayoutHelper.createFrame(-1, 76, 17));
@@ -3547,7 +3545,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 FrameLayout frameLayout3 = new FrameLayout(this, this.mContext) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(60.0f), 1073741824));
+                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(60.0f), 1073741824));
                     }
                 };
                 frameLayout3.addView(ThemePreviewActivity.this.messagesButtonsContainer, LayoutHelper.createFrame(-1, 76, 17));
@@ -3639,7 +3637,6 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         public PatternsAdapter(Context context) {
-            ThemePreviewActivity.this = r1;
             this.mContext = context;
         }
 

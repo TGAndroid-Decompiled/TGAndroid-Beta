@@ -289,7 +289,7 @@ public abstract class BaseFragment {
                     onRemoveFromParent();
                     viewGroup.removeViewInLayout(this.fragmentView);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             this.fragmentView = null;
@@ -301,7 +301,7 @@ public abstract class BaseFragment {
                 try {
                     viewGroup2.removeViewInLayout(this.actionBar);
                 } catch (Exception e2) {
-                    FileLog.m31e(e2);
+                    FileLog.m32e(e2);
                 }
             }
             this.actionBar = null;
@@ -328,7 +328,7 @@ public abstract class BaseFragment {
                         onRemoveFromParent();
                         viewGroup2.removeViewInLayout(this.fragmentView);
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                 }
                 INavigationLayout iNavigationLayout2 = this.parentLayout;
@@ -343,7 +343,7 @@ public abstract class BaseFragment {
                     try {
                         viewGroup.removeViewInLayout(this.actionBar);
                     } catch (Exception e2) {
-                        FileLog.m31e(e2);
+                        FileLog.m32e(e2);
                     }
                 }
                 if (z) {
@@ -466,7 +466,7 @@ public abstract class BaseFragment {
                 this.visibleDialog = null;
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -567,7 +567,7 @@ public abstract class BaseFragment {
             dialog.dismiss();
             this.visibleDialog = null;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -579,7 +579,7 @@ public abstract class BaseFragment {
                 this.visibleDialog = null;
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         C1133ActionBar c1133ActionBar = this.actionBar;
         if (c1133ActionBar != null) {
@@ -623,7 +623,7 @@ public abstract class BaseFragment {
                     this.visibleDialog = null;
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             try {
                 this.visibleDialog = dialog;
@@ -637,7 +637,7 @@ public abstract class BaseFragment {
                 this.visibleDialog.show();
                 return this.visibleDialog;
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
         }
         return null;
@@ -747,7 +747,7 @@ public abstract class BaseFragment {
         return iNavigationLayoutArr;
     }
 
-    public class DialogC11891 extends BottomSheet {
+    class DialogC11891 extends BottomSheet {
         final INavigationLayout[] val$actionBarLayout;
         final BaseFragment val$fragment;
 

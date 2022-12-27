@@ -78,7 +78,7 @@ public class FileLog {
                     }
                 });
             } catch (Throwable th) {
-                m31e(th);
+                m32e(th);
             }
         }
     }
@@ -115,7 +115,7 @@ public class FileLog {
                     }
                 });
             } catch (Throwable th) {
-                m31e(th);
+                m32e(th);
             }
         }
     }
@@ -246,7 +246,7 @@ public class FileLog {
         return "";
     }
 
-    public static void m32e(final String str, final Throwable th) {
+    public static void m33e(final String str, final Throwable th) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
             Log.e(tag, str, th);
@@ -272,7 +272,7 @@ public class FileLog {
         }
     }
 
-    public static void m33e(final String str) {
+    public static void m34e(final String str) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
             Log.e(tag, str);
@@ -297,11 +297,11 @@ public class FileLog {
         }
     }
 
-    public static void m31e(Throwable th) {
-        m30e(th, true);
+    public static void m32e(Throwable th) {
+        m31e(th, true);
     }
 
-    public static void m30e(final Throwable th, boolean z) {
+    public static void m31e(final Throwable th, boolean z) {
         if (BuildVars.LOGS_ENABLED) {
             if (BuildVars.DEBUG_VERSION && needSent(th) && z) {
                 AndroidUtilities.appCenterLog(th);
@@ -388,7 +388,7 @@ public class FileLog {
         return ((th instanceof InterruptedException) || (th instanceof MediaCodecVideoConvertor.ConversionCanceledException) || (th instanceof IgnoreSentException)) ? false : true;
     }
 
-    public static void m34d(final String str) {
+    public static void m35d(final String str) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
             Log.d(tag, str);
@@ -416,7 +416,7 @@ public class FileLog {
         }
     }
 
-    public static void m29w(final String str) {
+    public static void m30w(final String str) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
             Log.w(tag, str);

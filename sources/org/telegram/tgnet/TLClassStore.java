@@ -47,7 +47,7 @@ public class TLClassStore {
                 tLObject.readParams(nativeByteBuffer, z);
                 return tLObject;
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
         }
         return null;

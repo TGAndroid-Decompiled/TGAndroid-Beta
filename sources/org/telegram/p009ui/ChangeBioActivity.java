@@ -70,7 +70,7 @@ public class ChangeBioActivity extends BaseFragment {
                 }
             }
         });
-        ActionBarMenuItem addItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m35dp(56.0f));
+        ActionBarMenuItem addItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m36dp(56.0f));
         this.doneButton = addItemWithWidth;
         addItemWithWidth.setContentDescription(LocaleController.getString("Done", C1072R.string.Done));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -96,7 +96,7 @@ public class ChangeBioActivity extends BaseFragment {
         this.firstNameField.setBackgroundDrawable(null);
         this.firstNameField.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("windowBackgroundWhiteRedText3"));
         this.firstNameField.setMaxLines(4);
-        this.firstNameField.setPadding(AndroidUtilities.m35dp(LocaleController.isRTL ? 24.0f : 0.0f), 0, AndroidUtilities.m35dp(LocaleController.isRTL ? 0.0f : 24.0f), AndroidUtilities.m35dp(6.0f));
+        this.firstNameField.setPadding(AndroidUtilities.m36dp(LocaleController.isRTL ? 24.0f : 0.0f), 0, AndroidUtilities.m36dp(LocaleController.isRTL ? 0.0f : 24.0f), AndroidUtilities.m36dp(6.0f));
         this.firstNameField.setGravity(LocaleController.isRTL ? 5 : 3);
         this.firstNameField.setImeOptions(268435456);
         this.firstNameField.setInputType(147457);
@@ -119,10 +119,10 @@ public class ChangeBioActivity extends BaseFragment {
                 return filter;
             }
         }});
-        this.firstNameField.setMinHeight(AndroidUtilities.m35dp(36.0f));
+        this.firstNameField.setMinHeight(AndroidUtilities.m36dp(36.0f));
         this.firstNameField.setHint(LocaleController.getString("UserBio", i));
         this.firstNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        this.firstNameField.setCursorSize(AndroidUtilities.m35dp(20.0f));
+        this.firstNameField.setCursorSize(AndroidUtilities.m36dp(20.0f));
         this.firstNameField.setCursorWidth(1.5f);
         this.firstNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -248,7 +248,7 @@ public class ChangeBioActivity extends BaseFragment {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         tLRPC$UserFull.about = str;
         NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(tLRPC$User.f995id), tLRPC$UserFull);
@@ -259,7 +259,7 @@ public class ChangeBioActivity extends BaseFragment {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, this, tLRPC$TL_account_updateProfile, new Object[0]);
     }

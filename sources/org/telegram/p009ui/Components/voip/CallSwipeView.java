@@ -117,19 +117,19 @@ public class CallSwipeView extends View {
         }
         canvas.save();
         if (this.dragFromRight) {
-            canvas.translate((getWidth() - getHeight()) - AndroidUtilities.m35dp(18.0f), getHeight() / 2);
+            canvas.translate((getWidth() - getHeight()) - AndroidUtilities.m36dp(18.0f), getHeight() / 2);
         } else {
-            canvas.translate(getHeight() + AndroidUtilities.m35dp(12.0f), getHeight() / 2);
+            canvas.translate(getHeight() + AndroidUtilities.m36dp(12.0f), getHeight() / 2);
         }
         float abs = Math.abs(this.viewToDrag.getTranslationX());
         for (int i = 0; i < 3; i++) {
             float f = 16.0f;
-            this.arrowsPaint.setAlpha(Math.round(this.arrowAlphas[i] * (abs > ((float) AndroidUtilities.m35dp((float) (i * 16))) ? 1.0f - Math.min(1.0f, Math.max(0.0f, (abs - (AndroidUtilities.m35dp(16.0f) * i)) / AndroidUtilities.m35dp(16.0f))) : 1.0f)));
+            this.arrowsPaint.setAlpha(Math.round(this.arrowAlphas[i] * (abs > ((float) AndroidUtilities.m36dp((float) (i * 16))) ? 1.0f - Math.min(1.0f, Math.max(0.0f, (abs - (AndroidUtilities.m36dp(16.0f) * i)) / AndroidUtilities.m36dp(16.0f))) : 1.0f)));
             canvas.drawPath(this.arrow, this.arrowsPaint);
             if (this.dragFromRight) {
                 f = -16.0f;
             }
-            canvas.translate(AndroidUtilities.m35dp(f), 0.0f);
+            canvas.translate(AndroidUtilities.m36dp(f), 0.0f);
         }
         canvas.restore();
         invalidate();

@@ -117,15 +117,15 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(60.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(60.0f), 1073741824));
         if (this.canAddRemove) {
             int measuredWidth = this.addButton.getMeasuredWidth();
             int measuredWidth2 = this.delButton.getMeasuredWidth();
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.delButton.getLayoutParams();
             if (measuredWidth2 < measuredWidth) {
-                layoutParams.rightMargin = AndroidUtilities.m35dp(14.0f) + ((measuredWidth - measuredWidth2) / 2);
+                layoutParams.rightMargin = AndroidUtilities.m36dp(14.0f) + ((measuredWidth - measuredWidth2) / 2);
             } else {
-                layoutParams.rightMargin = AndroidUtilities.m35dp(14.0f);
+                layoutParams.rightMargin = AndroidUtilities.m36dp(14.0f);
             }
             measureChildWithMargins(this.nameTextView, i, measuredWidth, i2, 0);
         }
@@ -317,7 +317,7 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
                         invalidate();
                     }
                     this.paint.setColor(getThemedColor("featuredStickers_unread"));
-                    canvas.drawCircle(this.nameTextView.getRight() + AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(4.0f) * this.unreadProgress, this.paint);
+                    canvas.drawCircle(this.nameTextView.getRight() + AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(20.0f), AndroidUtilities.m36dp(4.0f) * this.unreadProgress, this.paint);
                 }
             }
             if (!z) {
@@ -333,7 +333,7 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
                 }
             }
             this.paint.setColor(getThemedColor("featuredStickers_unread"));
-            canvas.drawCircle(this.nameTextView.getRight() + AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(4.0f) * this.unreadProgress, this.paint);
+            canvas.drawCircle(this.nameTextView.getRight() + AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(20.0f), AndroidUtilities.m36dp(4.0f) * this.unreadProgress, this.paint);
         }
         if (this.needDivider) {
             canvas.drawLine(0.0f, 0.0f, getWidth(), 0.0f, Theme.dividerPaint);

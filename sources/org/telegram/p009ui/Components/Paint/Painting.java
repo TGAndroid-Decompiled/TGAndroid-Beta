@@ -187,7 +187,7 @@ public class Painting {
                     Painting.this.lambda$setHelperShape$1(valueAnimator2);
                 }
             });
-            this.helperAnimator.addListener(new C24681());
+            this.helperAnimator.addListener(new C24711());
             this.helperAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             this.helperAnimator.start();
             this.helperShape = shape;
@@ -224,9 +224,8 @@ public class Painting {
         }
     }
 
-    public class C24681 extends AnimatorListenerAdapter {
-        C24681() {
-            Painting.this = r1;
+    public class C24711 extends AnimatorListenerAdapter {
+        C24711() {
         }
 
         @Override
@@ -235,7 +234,7 @@ public class Painting {
             Painting.this.renderView.performInContext(new Runnable() {
                 @Override
                 public final void run() {
-                    Painting.C24681.this.lambda$onAnimationEnd$0();
+                    Painting.C24711.this.lambda$onAnimationEnd$0();
                 }
             });
         }
@@ -263,7 +262,7 @@ public class Painting {
                 Painting.this.lambda$applyHelperShape$4(valueAnimator2);
             }
         });
-        this.helperApplyAnimator.addListener(new C24692());
+        this.helperApplyAnimator.addListener(new C24722());
         this.helperApplyAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.helperApplyAnimator.setDuration(350L);
         this.helperApplyAnimator.start();
@@ -288,9 +287,8 @@ public class Painting {
         }
     }
 
-    public class C24692 extends AnimatorListenerAdapter {
-        C24692() {
-            Painting.this = r1;
+    public class C24722 extends AnimatorListenerAdapter {
+        C24722() {
         }
 
         @Override
@@ -298,7 +296,7 @@ public class Painting {
             Painting.this.renderView.performInContext(new Runnable() {
                 @Override
                 public final void run() {
-                    Painting.C24692.this.lambda$onAnimationEnd$0();
+                    Painting.C24722.this.lambda$onAnimationEnd$0();
                 }
             });
         }

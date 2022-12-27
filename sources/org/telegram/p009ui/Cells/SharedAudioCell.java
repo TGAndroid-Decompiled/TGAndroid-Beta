@@ -96,9 +96,9 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
 
     public SharedAudioCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.titleY = AndroidUtilities.m35dp(9.0f);
-        this.descriptionY = AndroidUtilities.m35dp(29.0f);
-        this.captionY = AndroidUtilities.m35dp(29.0f);
+        this.titleY = AndroidUtilities.m36dp(9.0f);
+        this.descriptionY = AndroidUtilities.m36dp(29.0f);
+        this.captionY = AndroidUtilities.m36dp(29.0f);
         this.currentAccount = UserConfig.selectedAccount;
         this.showName = true;
         this.showNameProgress = 0.0f;
@@ -124,14 +124,14 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         if (i == 1) {
             TextPaint textPaint = new TextPaint(1);
             this.description2TextPaint = textPaint;
-            textPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
+            textPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(".");
             this.dotSpan = spannableStringBuilder;
             spannableStringBuilder.setSpan(new DotDividerSpan(), 0, 1, 0);
         }
         TextPaint textPaint2 = new TextPaint(1);
         this.captionTextPaint = textPaint2;
-        textPaint2.setTextSize(AndroidUtilities.m35dp(13.0f));
+        textPaint2.setTextSize(AndroidUtilities.m36dp(13.0f));
     }
 
     @Override
@@ -142,13 +142,13 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         this.descriptionLayout = null;
         this.titleLayout = null;
         this.captionLayout = null;
-        int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.m35dp(AndroidUtilities.leftBaseline)) - AndroidUtilities.m35dp(28.0f);
+        int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.m36dp(AndroidUtilities.leftBaseline)) - AndroidUtilities.m36dp(28.0f);
         if (this.viewType == 1) {
             String stringForMessageListDate = LocaleController.stringForMessageListDate(this.currentMessageObject.messageOwner.date);
             int ceil = (int) Math.ceil(this.description2TextPaint.measureText(stringForMessageListDate));
             this.dateLayout = ChatMessageCell.generateStaticLayout(stringForMessageListDate, this.description2TextPaint, ceil, ceil, 0, 1);
-            this.dateLayoutX = ((size - ceil) - AndroidUtilities.m35dp(8.0f)) + AndroidUtilities.m35dp(20.0f);
-            i3 = ceil + AndroidUtilities.m35dp(12.0f);
+            this.dateLayoutX = ((size - ceil) - AndroidUtilities.m36dp(8.0f)) + AndroidUtilities.m36dp(20.0f);
+            i3 = ceil + AndroidUtilities.m36dp(12.0f);
         } else {
             i3 = 0;
         }
@@ -162,16 +162,16 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
             if (highlightText != null) {
                 replace = highlightText;
             }
-            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(replace, Theme.chat_contextResult_titleTextPaint, size - i3, TextUtils.TruncateAt.END), Theme.chat_contextResult_titleTextPaint, (AndroidUtilities.m35dp(4.0f) + size) - i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(replace, Theme.chat_contextResult_titleTextPaint, size - i3, TextUtils.TruncateAt.END), Theme.chat_contextResult_titleTextPaint, (AndroidUtilities.m36dp(4.0f) + size) - i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.titleLayout = staticLayout;
             this.titleLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.titleLayoutEmojis, staticLayout);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (this.currentMessageObject.hasHighlightedWords()) {
-            CharSequence highlightText2 = AndroidUtilities.highlightText(Emoji.replaceEmoji(this.currentMessageObject.messageOwner.message.replace("\n", " ").replaceAll(" +", " ").trim(), Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false), this.currentMessageObject.highlightedWords, this.resourcesProvider);
+            CharSequence highlightText2 = AndroidUtilities.highlightText(Emoji.replaceEmoji(this.currentMessageObject.messageOwner.message.replace("\n", " ").replaceAll(" +", " ").trim(), Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false), this.currentMessageObject.highlightedWords, this.resourcesProvider);
             if (highlightText2 != null) {
-                this.captionLayout = new StaticLayout(TextUtils.ellipsize(AndroidUtilities.ellipsizeCenterEnd(highlightText2, this.currentMessageObject.highlightedWords.get(0), size, this.captionTextPaint, 130), this.captionTextPaint, size, TextUtils.TruncateAt.END), this.captionTextPaint, size + AndroidUtilities.m35dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.captionLayout = new StaticLayout(TextUtils.ellipsize(AndroidUtilities.ellipsizeCenterEnd(highlightText2, this.currentMessageObject.highlightedWords.get(0), size, this.captionTextPaint, 130), this.captionTextPaint, size, TextUtils.TruncateAt.END), this.captionTextPaint, size + AndroidUtilities.m36dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
             this.captionLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.captionLayoutEmojis, this.captionLayout);
         }
@@ -179,7 +179,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
             if (this.viewType == 1 && (this.currentMessageObject.isVoice() || this.currentMessageObject.isRoundVideo())) {
                 String formatDuration = AndroidUtilities.formatDuration(this.currentMessageObject.getDuration(), false);
                 TextPaint textPaint = this.viewType == 1 ? this.description2TextPaint : Theme.chat_contextResult_descriptionTextPaint;
-                this.descriptionLayout = new StaticLayout(TextUtils.ellipsize(formatDuration, textPaint, size, TextUtils.TruncateAt.END), textPaint, size + AndroidUtilities.m35dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.descriptionLayout = new StaticLayout(TextUtils.ellipsize(formatDuration, textPaint, size, TextUtils.TruncateAt.END), textPaint, size + AndroidUtilities.m36dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             } else {
                 String replace2 = this.currentMessageObject.getMusicAuthor().replace('\n', ' ');
                 ?? highlightText3 = AndroidUtilities.highlightText(replace2, this.currentMessageObject.highlightedWords, this.resourcesProvider);
@@ -192,27 +192,27 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
                     spannableStringBuilder = new SpannableStringBuilder(str).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject));
                 }
                 TextPaint textPaint2 = this.viewType == 1 ? this.description2TextPaint : Theme.chat_contextResult_descriptionTextPaint;
-                this.descriptionLayout = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, textPaint2, size, TextUtils.TruncateAt.END), textPaint2, size + AndroidUtilities.m35dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.descriptionLayout = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, textPaint2, size, TextUtils.TruncateAt.END), textPaint2, size + AndroidUtilities.m36dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
             this.descriptionLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.descriptionLayoutEmojis, this.descriptionLayout);
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m35dp(56.0f) + (this.captionLayout != null ? AndroidUtilities.m35dp(18.0f) : 0) + (this.needDivider ? 1 : 0));
-        int size2 = LocaleController.isRTL ? (View.MeasureSpec.getSize(i) - AndroidUtilities.m35dp(8.0f)) - AndroidUtilities.m35dp(52.0f) : AndroidUtilities.m35dp(8.0f);
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m36dp(56.0f) + (this.captionLayout != null ? AndroidUtilities.m36dp(18.0f) : 0) + (this.needDivider ? 1 : 0));
+        int size2 = LocaleController.isRTL ? (View.MeasureSpec.getSize(i) - AndroidUtilities.m36dp(8.0f)) - AndroidUtilities.m36dp(52.0f) : AndroidUtilities.m36dp(8.0f);
         RadialProgress2 radialProgress2 = this.radialProgress;
-        int m35dp = AndroidUtilities.m35dp(4.0f) + size2;
-        this.buttonX = m35dp;
-        int m35dp2 = AndroidUtilities.m35dp(6.0f);
-        this.buttonY = m35dp2;
-        radialProgress2.setProgressRect(m35dp, m35dp2, size2 + AndroidUtilities.m35dp(48.0f), AndroidUtilities.m35dp(50.0f));
+        int m36dp = AndroidUtilities.m36dp(4.0f) + size2;
+        this.buttonX = m36dp;
+        int m36dp2 = AndroidUtilities.m36dp(6.0f);
+        this.buttonY = m36dp2;
+        radialProgress2.setProgressRect(m36dp, m36dp2, size2 + AndroidUtilities.m36dp(48.0f), AndroidUtilities.m36dp(50.0f));
         measureChildWithMargins(this.checkBox, i, 0, i2, 0);
         if (this.captionLayout != null) {
-            this.captionY = AndroidUtilities.m35dp(29.0f);
-            this.descriptionY = AndroidUtilities.m35dp(29.0f) + AndroidUtilities.m35dp(18.0f);
+            this.captionY = AndroidUtilities.m36dp(29.0f);
+            this.descriptionY = AndroidUtilities.m36dp(29.0f) + AndroidUtilities.m36dp(18.0f);
             return;
         }
-        this.descriptionY = AndroidUtilities.m35dp(29.0f);
+        this.descriptionY = AndroidUtilities.m36dp(29.0f);
     }
 
     public void setMessageObject(MessageObject messageObject, boolean z) {
@@ -565,7 +565,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
                     this.showReorderIconProgress = f + 0.10666667f;
                     invalidate();
                     this.showReorderIconProgress = Utilities.clamp(this.showReorderIconProgress, 1.0f, 0.0f);
-                    int measuredWidth = (getMeasuredWidth() - AndroidUtilities.m35dp(12.0f)) - Theme.dialogs_reorderDrawable.getIntrinsicWidth();
+                    int measuredWidth = (getMeasuredWidth() - AndroidUtilities.m36dp(12.0f)) - Theme.dialogs_reorderDrawable.getIntrinsicWidth();
                     int measuredHeight = (getMeasuredHeight() - Theme.dialogs_reorderDrawable.getIntrinsicHeight()) >> 1;
                     canvas.save();
                     float f2 = this.showReorderIconProgress;
@@ -584,7 +584,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
                 }
             }
             this.showReorderIconProgress = Utilities.clamp(this.showReorderIconProgress, 1.0f, 0.0f);
-            int measuredWidth2 = (getMeasuredWidth() - AndroidUtilities.m35dp(12.0f)) - Theme.dialogs_reorderDrawable.getIntrinsicWidth();
+            int measuredWidth2 = (getMeasuredWidth() - AndroidUtilities.m36dp(12.0f)) - Theme.dialogs_reorderDrawable.getIntrinsicWidth();
             int measuredHeight2 = (getMeasuredHeight() - Theme.dialogs_reorderDrawable.getIntrinsicHeight()) >> 1;
             canvas.save();
             float f22 = this.showReorderIconProgress;
@@ -604,7 +604,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         int i = 0;
         if (this.dateLayout != null) {
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline) + (LocaleController.isRTL ? 0 : this.dateLayoutX), this.titleY);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline) + (LocaleController.isRTL ? 0 : this.dateLayoutX), this.titleY);
             this.dateLayout.draw(canvas);
             canvas.restore();
         }
@@ -615,11 +615,11 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
                 Theme.chat_contextResult_titleTextPaint.setAlpha((int) (alpha * f));
             }
             canvas.save();
-            int m35dp = AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
+            int m36dp = AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
             if (LocaleController.isRTL && (staticLayout = this.dateLayout) != null) {
-                i = staticLayout.getWidth() + AndroidUtilities.m35dp(4.0f);
+                i = staticLayout.getWidth() + AndroidUtilities.m36dp(4.0f);
             }
-            canvas.translate(m35dp + i, this.titleY);
+            canvas.translate(m36dp + i, this.titleY);
             this.titleLayout.draw(canvas);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.titleLayout, this.titleLayoutEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
@@ -630,7 +630,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         if (this.captionLayout != null) {
             this.captionTextPaint.setColor(getThemedColor("windowBackgroundWhiteBlackText"));
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.captionY);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.captionY);
             this.captionLayout.draw(canvas);
             canvas.restore();
         }
@@ -642,7 +642,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
                 Theme.chat_contextResult_descriptionTextPaint.setAlpha((int) (alpha2 * f2));
             }
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
+            canvas.translate(AndroidUtilities.m36dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
             this.descriptionLayout.draw(canvas);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.descriptionLayout, this.descriptionLayoutEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
@@ -654,7 +654,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         this.radialProgress.setOverlayImageAlpha(this.showNameProgress);
         this.radialProgress.draw(canvas);
         if (this.needDivider) {
-            canvas.drawLine(AndroidUtilities.m35dp(72.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(AndroidUtilities.m36dp(72.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, Theme.dividerPaint);
         }
     }
 

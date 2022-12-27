@@ -54,7 +54,7 @@ public class TextDetailSettingsCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         if (!this.multiline) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
         } else {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
         }
@@ -74,7 +74,7 @@ public class TextDetailSettingsCell extends FrameLayout {
             this.valueTextView.setLines(0);
             this.valueTextView.setMaxLines(0);
             this.valueTextView.setSingleLine(false);
-            this.valueTextView.setPadding(0, 0, 0, AndroidUtilities.m35dp(12.0f));
+            this.valueTextView.setPadding(0, 0, 0, AndroidUtilities.m36dp(12.0f));
             return;
         }
         this.valueTextView.setLines(1);
@@ -96,8 +96,8 @@ public class TextDetailSettingsCell extends FrameLayout {
         this.valueTextView.setText(charSequence);
         this.imageView.setImageResource(i);
         this.imageView.setVisibility(0);
-        this.textView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.m35dp(50.0f), 0, LocaleController.isRTL ? AndroidUtilities.m35dp(50.0f) : 0, 0);
-        this.valueTextView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.m35dp(50.0f), 0, LocaleController.isRTL ? AndroidUtilities.m35dp(50.0f) : 0, this.multiline ? AndroidUtilities.m35dp(12.0f) : 0);
+        this.textView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.m36dp(50.0f), 0, LocaleController.isRTL ? AndroidUtilities.m36dp(50.0f) : 0, 0);
+        this.valueTextView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.m36dp(50.0f), 0, LocaleController.isRTL ? AndroidUtilities.m36dp(50.0f) : 0, this.multiline ? AndroidUtilities.m36dp(12.0f) : 0);
         this.needDivider = z;
         setWillNotDraw(!z);
     }
@@ -114,23 +114,23 @@ public class TextDetailSettingsCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float m35dp;
+        float m36dp;
         int i;
         if (!this.needDivider || Theme.dividerPaint == null) {
             return;
         }
         if (LocaleController.isRTL) {
-            m35dp = 0.0f;
+            m36dp = 0.0f;
         } else {
-            m35dp = AndroidUtilities.m35dp(this.imageView.getVisibility() == 0 ? 71.0f : 20.0f);
+            m36dp = AndroidUtilities.m36dp(this.imageView.getVisibility() == 0 ? 71.0f : 20.0f);
         }
         float measuredHeight = getMeasuredHeight() - 1;
         int measuredWidth = getMeasuredWidth();
         if (LocaleController.isRTL) {
-            i = AndroidUtilities.m35dp(this.imageView.getVisibility() != 0 ? 20.0f : 71.0f);
+            i = AndroidUtilities.m36dp(this.imageView.getVisibility() != 0 ? 20.0f : 71.0f);
         } else {
             i = 0;
         }
-        canvas.drawLine(m35dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, Theme.dividerPaint);
+        canvas.drawLine(m36dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, Theme.dividerPaint);
     }
 }

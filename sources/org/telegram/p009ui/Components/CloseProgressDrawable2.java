@@ -46,10 +46,10 @@ public class CloseProgressDrawable2 extends Drawable {
         this.rect = new RectF();
         this.globalColorAlpha = 255;
         this.paint.setColor(-1);
-        this.paint.setStrokeWidth(AndroidUtilities.m35dp(f));
+        this.paint.setStrokeWidth(AndroidUtilities.m36dp(f));
         this.paint.setStrokeCap(Paint.Cap.ROUND);
         this.paint.setStyle(Paint.Style.STROKE);
-        this.side = AndroidUtilities.m35dp(8.0f);
+        this.side = AndroidUtilities.m36dp(8.0f);
     }
 
     public void startAnimation() {
@@ -84,11 +84,11 @@ public class CloseProgressDrawable2 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        return AndroidUtilities.m35dp(24.0f);
+        return AndroidUtilities.m36dp(24.0f);
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return AndroidUtilities.m35dp(24.0f);
+        return AndroidUtilities.m36dp(24.0f);
     }
 }

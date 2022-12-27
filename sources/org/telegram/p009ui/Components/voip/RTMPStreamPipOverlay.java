@@ -159,7 +159,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             }
             this.aspectRatio = Float.valueOf(f);
             Point point = AndroidUtilities.displaySize;
-            this.maxScaleFactor = (Math.min(point.x, point.y) - AndroidUtilities.m35dp(32.0f)) / getSuggestedWidth();
+            this.maxScaleFactor = (Math.min(point.x, point.y) - AndroidUtilities.m36dp(32.0f)) / getSuggestedWidth();
         }
         return this.aspectRatio.floatValue();
     }
@@ -255,7 +255,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         this.pipYSpring = new SpringAnimation(this, PIP_Y_PROPERTY).setSpring(new SpringForce().setDampingRatio(0.75f).setStiffness(650.0f));
         final Context context = ApplicationLoader.applicationContext;
         final int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new ScaleGestureDetector$OnScaleGestureListenerC30683());
+        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new ScaleGestureDetector$OnScaleGestureListenerC30713());
         this.scaleGestureDetector = scaleGestureDetector;
         int i = Build.VERSION.SDK_INT;
         if (i >= 19) {
@@ -312,9 +312,9 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                 SpringForce spring = RTMPStreamPipOverlay.this.pipXSpring.setStartVelocity(f).setStartValue(RTMPStreamPipOverlay.this.pipX).getSpring();
                 float f3 = RTMPStreamPipOverlay.this.pipX + (RTMPStreamPipOverlay.this.pipWidth / 2.0f) + (f / 7.0f);
                 int i2 = AndroidUtilities.displaySize.x;
-                spring.setFinalPosition(f3 >= ((float) i2) / 2.0f ? (i2 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(16.0f));
+                spring.setFinalPosition(f3 >= ((float) i2) / 2.0f ? (i2 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(16.0f));
                 RTMPStreamPipOverlay.this.pipXSpring.start();
-                RTMPStreamPipOverlay.this.pipYSpring.setStartVelocity(f).setStartValue(RTMPStreamPipOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(RTMPStreamPipOverlay.this.pipY + (f2 / 10.0f), AndroidUtilities.m35dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.m35dp(16.0f)));
+                RTMPStreamPipOverlay.this.pipYSpring.setStartVelocity(f).setStartValue(RTMPStreamPipOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(RTMPStreamPipOverlay.this.pipY + (f2 / 10.0f), AndroidUtilities.m36dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.m36dp(16.0f)));
                 RTMPStreamPipOverlay.this.pipYSpring.start();
                 return true;
             }
@@ -364,11 +364,11 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                         SpringForce spring = RTMPStreamPipOverlay.this.pipXSpring.setStartValue(RTMPStreamPipOverlay.this.pipX).getSpring();
                         float f = RTMPStreamPipOverlay.this.pipX + (RTMPStreamPipOverlay.this.pipWidth / 2.0f);
                         int i2 = AndroidUtilities.displaySize.x;
-                        spring.setFinalPosition(f >= ((float) i2) / 2.0f ? (i2 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(16.0f));
+                        spring.setFinalPosition(f >= ((float) i2) / 2.0f ? (i2 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(16.0f));
                         RTMPStreamPipOverlay.this.pipXSpring.start();
                     }
                     if (!RTMPStreamPipOverlay.this.pipYSpring.isRunning()) {
-                        RTMPStreamPipOverlay.this.pipYSpring.setStartValue(RTMPStreamPipOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(RTMPStreamPipOverlay.this.pipY, AndroidUtilities.m35dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.m35dp(16.0f)));
+                        RTMPStreamPipOverlay.this.pipYSpring.setStartValue(RTMPStreamPipOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(RTMPStreamPipOverlay.this.pipY, AndroidUtilities.m36dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.m36dp(16.0f)));
                         RTMPStreamPipOverlay.this.pipYSpring.start();
                     }
                 }
@@ -399,7 +399,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                 this.path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, i2, i3);
-                this.path.addRoundRect(rectF, AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(10.0f), Path.Direction.CW);
+                this.path.addRoundRect(rectF, AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(10.0f), Path.Direction.CW);
             }
         };
         ViewGroup viewGroup = new ViewGroup(context) {
@@ -420,7 +420,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             this.contentFrameLayout.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
                 public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.m35dp(10.0f));
+                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.m36dp(10.0f));
                 }
             });
             this.contentFrameLayout.setClipToOutline(true);
@@ -436,7 +436,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         VoIPTextureView voIPTextureView2 = this.textureView;
         voIPTextureView2.scaleType = VoIPTextureView.SCALE_TYPE_FILL;
         voIPTextureView2.renderer.setRotateTextureWithScreen(true);
-        this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new C30748());
+        this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new C30778());
         this.contentFrameLayout.addView(this.textureView, LayoutHelper.createFrame(-1, -1.0f));
         View view = new View(context) {
             @Override
@@ -446,7 +446,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                 }
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                RTMPStreamPipOverlay.this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.m35dp(10.0f), null);
+                RTMPStreamPipOverlay.this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.m36dp(10.0f), null);
                 invalidate();
             }
 
@@ -467,12 +467,12 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         gradientDrawable.setOrientation(GradientDrawable.Orientation.TOP_BOTTOM);
         view2.setBackground(gradientDrawable);
         this.controlsView.addView(view2, LayoutHelper.createFrame(-1, -1.0f));
-        int m35dp = AndroidUtilities.m35dp(8.0f);
+        int m36dp = AndroidUtilities.m36dp(8.0f);
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(C1072R.C1073drawable.pip_video_close);
         imageView.setColorFilter(Theme.getColor("voipgroup_actionBarItems"));
         imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
-        imageView.setPadding(m35dp, m35dp, m35dp, m35dp);
+        imageView.setPadding(m36dp, m36dp, m36dp, m36dp);
         imageView.setOnClickListener(RTMPStreamPipOverlay$$ExternalSyntheticLambda2.INSTANCE);
         float f = 38;
         float f2 = 4;
@@ -481,7 +481,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         imageView2.setImageResource(C1072R.C1073drawable.pip_video_expand);
         imageView2.setColorFilter(Theme.getColor("voipgroup_actionBarItems"));
         imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
-        imageView2.setPadding(m35dp, m35dp, m35dp, m35dp);
+        imageView2.setPadding(m36dp, m36dp, m36dp, m36dp);
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
@@ -496,13 +496,13 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         int i2 = this.pipWidth;
         createWindowLayoutParams.width = i2;
         createWindowLayoutParams.height = this.pipHeight;
-        float m35dp2 = (AndroidUtilities.displaySize.x - i2) - AndroidUtilities.m35dp(16.0f);
-        this.pipX = m35dp2;
-        createWindowLayoutParams.x = (int) m35dp2;
+        float m36dp2 = (AndroidUtilities.displaySize.x - i2) - AndroidUtilities.m36dp(16.0f);
+        this.pipX = m36dp2;
+        createWindowLayoutParams.x = (int) m36dp2;
         WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-        float m35dp3 = (AndroidUtilities.displaySize.y - this.pipHeight) - AndroidUtilities.m35dp(16.0f);
-        this.pipY = m35dp3;
-        layoutParams.y = (int) m35dp3;
+        float m36dp3 = (AndroidUtilities.displaySize.y - this.pipHeight) - AndroidUtilities.m36dp(16.0f);
+        this.pipY = m36dp3;
+        layoutParams.y = (int) m36dp3;
         WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
         layoutParams2.dimAmount = 0.0f;
         layoutParams2.flags = 520;
@@ -519,9 +519,8 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
     }
 
-    public class ScaleGestureDetector$OnScaleGestureListenerC30683 implements ScaleGestureDetector.OnScaleGestureListener {
-        ScaleGestureDetector$OnScaleGestureListenerC30683() {
-            RTMPStreamPipOverlay.this = r1;
+    public class ScaleGestureDetector$OnScaleGestureListenerC30713 implements ScaleGestureDetector.OnScaleGestureListener {
+        ScaleGestureDetector$OnScaleGestureListenerC30713() {
         }
 
         @Override
@@ -535,17 +534,17 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    RTMPStreamPipOverlay.ScaleGestureDetector$OnScaleGestureListenerC30683.this.lambda$onScale$0();
+                    RTMPStreamPipOverlay.ScaleGestureDetector$OnScaleGestureListenerC30713.this.lambda$onScale$0();
                 }
             });
             SpringForce spring = RTMPStreamPipOverlay.this.pipXSpring.setStartValue(RTMPStreamPipOverlay.this.pipX).getSpring();
             float focusX = scaleGestureDetector.getFocusX();
             int i = AndroidUtilities.displaySize.x;
-            spring.setFinalPosition(focusX >= ((float) i) / 2.0f ? (i - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(16.0f));
+            spring.setFinalPosition(focusX >= ((float) i) / 2.0f ? (i - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(16.0f));
             if (!RTMPStreamPipOverlay.this.pipXSpring.isRunning()) {
                 RTMPStreamPipOverlay.this.pipXSpring.start();
             }
-            RTMPStreamPipOverlay.this.pipYSpring.setStartValue(RTMPStreamPipOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(scaleGestureDetector.getFocusY() - (RTMPStreamPipOverlay.this.pipHeight / 2.0f), AndroidUtilities.m35dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.m35dp(16.0f)));
+            RTMPStreamPipOverlay.this.pipYSpring.setStartValue(RTMPStreamPipOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(scaleGestureDetector.getFocusY() - (RTMPStreamPipOverlay.this.pipHeight / 2.0f), AndroidUtilities.m36dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.m36dp(16.0f)));
             if (RTMPStreamPipOverlay.this.pipYSpring.isRunning()) {
                 return true;
             }
@@ -584,7 +583,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                         dynamicAnimation.removeEndListener(this);
                         arrayList.add((SpringAnimation) dynamicAnimation);
                         if (arrayList.size() == 2) {
-                            ScaleGestureDetector$OnScaleGestureListenerC30683.this.updateLayout();
+                            ScaleGestureDetector$OnScaleGestureListenerC30713.this.updateLayout();
                         }
                     }
                 };
@@ -619,9 +618,8 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         }
     }
 
-    public class C30748 implements RendererCommon.RendererEvents {
-        C30748() {
-            RTMPStreamPipOverlay.this = r1;
+    public class C30778 implements RendererCommon.RendererEvents {
+        C30778() {
         }
 
         @Override
@@ -630,7 +628,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    RTMPStreamPipOverlay.C30748.this.lambda$onFirstFrameRendered$0();
+                    RTMPStreamPipOverlay.C30778.this.lambda$onFirstFrameRendered$0();
                 }
             });
         }
@@ -649,7 +647,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    RTMPStreamPipOverlay.C30748.this.lambda$onFrameResolutionChanged$1();
+                    RTMPStreamPipOverlay.C30778.this.lambda$onFrameResolutionChanged$1();
                 }
             });
         }
@@ -737,9 +735,9 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         SpringForce spring = this.pipXSpring.setStartValue(this.pipX).getSpring();
         float suggestedWidth2 = this.pipX + ((getSuggestedWidth() * this.scaleFactor) / 2.0f);
         int i = AndroidUtilities.displaySize.x;
-        spring.setFinalPosition(suggestedWidth2 >= ((float) i) / 2.0f ? (i - (getSuggestedWidth() * this.scaleFactor)) - AndroidUtilities.m35dp(16.0f) : AndroidUtilities.m35dp(16.0f));
+        spring.setFinalPosition(suggestedWidth2 >= ((float) i) / 2.0f ? (i - (getSuggestedWidth() * this.scaleFactor)) - AndroidUtilities.m36dp(16.0f) : AndroidUtilities.m36dp(16.0f));
         this.pipXSpring.start();
-        this.pipYSpring.setStartValue(this.pipY).getSpring().setFinalPosition(MathUtils.clamp(this.pipY, AndroidUtilities.m35dp(16.0f), (AndroidUtilities.displaySize.y - (getSuggestedHeight() * this.scaleFactor)) - AndroidUtilities.m35dp(16.0f)));
+        this.pipYSpring.setStartValue(this.pipY).getSpring().setFinalPosition(MathUtils.clamp(this.pipY, AndroidUtilities.m36dp(16.0f), (AndroidUtilities.displaySize.y - (getSuggestedHeight() * this.scaleFactor)) - AndroidUtilities.m36dp(16.0f)));
         this.pipYSpring.start();
     }
 

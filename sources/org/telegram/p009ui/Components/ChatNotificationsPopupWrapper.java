@@ -73,7 +73,7 @@ public class ChatNotificationsPopupWrapper {
                 this.path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                this.path.addRoundRect(rectF, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), Path.Direction.CW);
+                this.path.addRoundRect(rectF, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), Path.Direction.CW);
                 canvas.clipPath(this.path);
                 boolean drawChild = super.drawChild(canvas, view, j);
                 canvas.restore();
@@ -145,7 +145,7 @@ public class ChatNotificationsPopupWrapper {
         this.windowLayout.addView((View) frameLayout, LayoutHelper.createLinear(-1, 8));
         TextView textView = new TextView(context);
         this.topicsExceptionsTextView = textView;
-        textView.setPadding(AndroidUtilities.m35dp(13.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(13.0f), AndroidUtilities.m35dp(8.0f));
+        textView.setPadding(AndroidUtilities.m36dp(13.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(13.0f), AndroidUtilities.m36dp(8.0f));
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem", resourcesProvider));
         int i4 = C1072R.C1074id.fit_width_tag;
@@ -341,7 +341,7 @@ public class ChatNotificationsPopupWrapper {
         this.popupWindow.setClippingEnabled(true);
         this.popupWindow.setAnimationStyle(C1072R.style.PopupContextAnimation);
         this.popupWindow.setFocusable(true);
-        this.windowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE));
+        this.windowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE));
         this.popupWindow.setInputMethodMode(2);
         this.popupWindow.getContentView().setFocusableInTouchMode(true);
         while (view != baseFragment.getFragmentView()) {

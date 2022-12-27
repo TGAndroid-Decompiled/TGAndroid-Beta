@@ -58,8 +58,8 @@ public class SubstringLayoutAnimator {
                 spannableStringBuilder2.setSpan(new EmptyStubSpan(), charSequence4.length() + indexOf, charSequence3.length(), 0);
             }
             spannableStringBuilder.setSpan(new EmptyStubSpan(), indexOf, charSequence4.length() + indexOf, 0);
-            this.animateInLayout = new StaticLayout(spannableStringBuilder, textPaint, AndroidUtilities.m35dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder2, textPaint, AndroidUtilities.m35dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.animateInLayout = new StaticLayout(spannableStringBuilder, textPaint, AndroidUtilities.m36dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder2, textPaint, AndroidUtilities.m36dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.animateStableLayout = staticLayout2;
             this.animateTextChange = true;
             this.animateTextChangeOut = z;
@@ -67,8 +67,8 @@ public class SubstringLayoutAnimator {
             this.animateOutLayout = null;
             this.replaceAnimation = false;
         } else {
-            this.animateInLayout = new StaticLayout(charSequence2, textPaint, AndroidUtilities.m35dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.animateOutLayout = new StaticLayout(charSequence, textPaint, AndroidUtilities.m35dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.animateInLayout = new StaticLayout(charSequence2, textPaint, AndroidUtilities.m36dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.animateOutLayout = new StaticLayout(charSequence, textPaint, AndroidUtilities.m36dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.animateStableLayout = null;
             this.animateTextChange = true;
             this.replaceAnimation = true;

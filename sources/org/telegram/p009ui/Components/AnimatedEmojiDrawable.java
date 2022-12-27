@@ -222,7 +222,7 @@ public class AnimatedEmojiDrawable extends Drawable {
         private boolean checkThread() {
             if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
                 if (BuildVars.DEBUG_VERSION) {
-                    FileLog.m32e("EmojiDocumentFetcher", new IllegalStateException("Wrong thread"));
+                    FileLog.m33e("EmojiDocumentFetcher", new IllegalStateException("Wrong thread"));
                     return false;
                 }
                 return false;
@@ -254,7 +254,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                             hashSet.remove(Long.valueOf(TLdeserialize.f865id));
                         }
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                     if (byteBufferValue != null) {
                         byteBufferValue.reuse();
@@ -268,7 +268,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                 });
                 queryFinalized.dispose();
             } catch (SQLiteException e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
         }
 
@@ -850,7 +850,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                 Drawable[] drawableArr3 = this.drawables;
                 if (drawableArr3[0] instanceof AnimatedEmojiDrawable) {
                     if (((AnimatedEmojiDrawable) drawableArr3[0]).imageReceiver != null) {
-                        ((AnimatedEmojiDrawable) this.drawables[0]).imageReceiver.setRoundRadius(AndroidUtilities.m35dp(4.0f));
+                        ((AnimatedEmojiDrawable) this.drawables[0]).imageReceiver.setRoundRadius(AndroidUtilities.m36dp(4.0f));
                     }
                     if (f < 1.0f) {
                         float interpolation = this.overshootInterpolator.getInterpolation(f);

@@ -49,7 +49,7 @@ public class SurfaceTextureHelper {
             @Override
             public SurfaceTextureHelper call() {
                 try {
-                    return new SurfaceTextureHelper(context, handler, z, yuvConverter, frameRefMonitor);
+                    return new SurfaceTextureHelper(EglBase.Context.this, handler, z, yuvConverter, frameRefMonitor);
                 } catch (RuntimeException e) {
                     Logging.m7e(SurfaceTextureHelper.TAG, str + " create failure", e);
                     return null;

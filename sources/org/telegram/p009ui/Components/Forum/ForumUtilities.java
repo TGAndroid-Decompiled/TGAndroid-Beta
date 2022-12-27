@@ -195,7 +195,7 @@ public class ForumUtilities {
             if (tLRPC$TL_forumTopic.f910id == 1) {
                 try {
                     GeneralTopicDrawable createGeneralTopicDrawable = createGeneralTopicDrawable(ApplicationLoader.applicationContext, 1.0f, paint == null ? Theme.getColor("chat_inMenu") : paint.getColor());
-                    createGeneralTopicDrawable.setBounds(0, 0, paint == null ? AndroidUtilities.m35dp(14.0f) : (int) paint.getTextSize(), paint == null ? AndroidUtilities.m35dp(14.0f) : (int) paint.getTextSize());
+                    createGeneralTopicDrawable.setBounds(0, 0, paint == null ? AndroidUtilities.m36dp(14.0f) : (int) paint.getTextSize(), paint == null ? AndroidUtilities.m36dp(14.0f) : (int) paint.getTextSize());
                     spannableStringBuilder.append((CharSequence) " ");
                     if (drawableArr != null) {
                         drawableArr[0] = createGeneralTopicDrawable;

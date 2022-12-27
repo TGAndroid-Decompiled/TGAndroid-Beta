@@ -37,10 +37,10 @@ public class InviteTextCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
-        int m35dp = AndroidUtilities.m35dp(72.0f);
-        this.textView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.m35dp(95.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(20.0f), 1073741824));
-        this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(m35dp, Integer.MIN_VALUE));
-        setMeasuredDimension(size, AndroidUtilities.m35dp(72.0f));
+        int m36dp = AndroidUtilities.m36dp(72.0f);
+        this.textView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.m36dp(95.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(20.0f), 1073741824));
+        this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(m36dp, Integer.MIN_VALUE));
+        setMeasuredDimension(size, AndroidUtilities.m36dp(72.0f));
     }
 
     @Override
@@ -48,13 +48,13 @@ public class InviteTextCell extends FrameLayout {
         int i5 = i4 - i2;
         int i6 = i3 - i;
         int textHeight = (i5 - this.textView.getTextHeight()) / 2;
-        int m35dp = AndroidUtilities.m35dp(!LocaleController.isRTL ? 71.0f : 24.0f);
+        int m36dp = AndroidUtilities.m36dp(!LocaleController.isRTL ? 71.0f : 24.0f);
         SimpleTextView simpleTextView = this.textView;
-        simpleTextView.layout(m35dp, textHeight, simpleTextView.getMeasuredWidth() + m35dp, this.textView.getMeasuredHeight() + textHeight);
+        simpleTextView.layout(m36dp, textHeight, simpleTextView.getMeasuredWidth() + m36dp, this.textView.getMeasuredHeight() + textHeight);
         int measuredHeight = (i5 - this.imageView.getMeasuredHeight()) / 2;
-        int m35dp2 = !LocaleController.isRTL ? AndroidUtilities.m35dp(20.0f) : (i6 - this.imageView.getMeasuredWidth()) - AndroidUtilities.m35dp(20.0f);
+        int m36dp2 = !LocaleController.isRTL ? AndroidUtilities.m36dp(20.0f) : (i6 - this.imageView.getMeasuredWidth()) - AndroidUtilities.m36dp(20.0f);
         ImageView imageView = this.imageView;
-        imageView.layout(m35dp2, measuredHeight, imageView.getMeasuredWidth() + m35dp2, this.imageView.getMeasuredHeight() + measuredHeight);
+        imageView.layout(m36dp2, measuredHeight, imageView.getMeasuredWidth() + m36dp2, this.imageView.getMeasuredHeight() + measuredHeight);
     }
 
     public void setTextColor(int i) {

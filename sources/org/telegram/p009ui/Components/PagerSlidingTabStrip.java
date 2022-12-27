@@ -54,11 +54,11 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         this.indicatorColor = -10066330;
         this.underlineColor = 436207616;
         this.shouldExpand = false;
-        this.scrollOffset = AndroidUtilities.m35dp(52.0f);
-        this.indicatorHeight = AndroidUtilities.m35dp(8.0f);
-        this.underlineHeight = AndroidUtilities.m35dp(2.0f);
-        this.dividerPadding = AndroidUtilities.m35dp(12.0f);
-        this.tabPadding = AndroidUtilities.m35dp(24.0f);
+        this.scrollOffset = AndroidUtilities.m36dp(52.0f);
+        this.indicatorHeight = AndroidUtilities.m36dp(8.0f);
+        this.underlineHeight = AndroidUtilities.m36dp(2.0f);
+        this.dividerPadding = AndroidUtilities.m36dp(12.0f);
+        this.tabPadding = AndroidUtilities.m36dp(24.0f);
         this.lastScrollX = 0;
         this.resourcesProvider = resourcesProvider;
         setFillViewport(true);
@@ -139,7 +139,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         };
         imageView.setFocusable(true);
         if (Build.VERSION.SDK_INT >= 21) {
-            RippleDrawable rippleDrawable = (RippleDrawable) Theme.createSelectorDrawable(getThemedColor("chat_emojiBottomPanelIcon"), 1, AndroidUtilities.m35dp(18.0f));
+            RippleDrawable rippleDrawable = (RippleDrawable) Theme.createSelectorDrawable(getThemedColor("chat_emojiBottomPanelIcon"), 1, AndroidUtilities.m36dp(18.0f));
             Theme.setRippleDrawableForceSoftware(rippleDrawable);
             imageView.setBackground(rippleDrawable);
         }
@@ -233,7 +233,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
     public class PageListener implements ViewPager.OnPageChangeListener {
         private PageListener() {
-            PagerSlidingTabStrip.this = r1;
         }
 
         @Override

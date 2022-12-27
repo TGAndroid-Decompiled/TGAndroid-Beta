@@ -37,7 +37,7 @@ public class BlurredRecyclerView extends RecyclerListView {
             return;
         }
         if (SharedConfig.chatBlurEnabled()) {
-            this.blurTopPadding = AndroidUtilities.m35dp(203.0f);
+            this.blurTopPadding = AndroidUtilities.m36dp(203.0f);
             ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.blurTopPadding;
             return;
         }

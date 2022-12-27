@@ -697,7 +697,6 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         ArraySet<Integer> emptyCells = new ArraySet<>();
 
         Adapter() {
-            StatisticActivity.this = r1;
         }
 
         @Override
@@ -824,7 +823,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 loadingCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                 shadowSectionCell = loadingCell;
             } else if (i == 12) {
-                shadowSectionCell = new EmptyCell(viewGroup.getContext(), AndroidUtilities.m35dp(15.0f));
+                shadowSectionCell = new EmptyCell(viewGroup.getContext(), AndroidUtilities.m36dp(15.0f));
             } else if (i == 13) {
                 ChartHeaderView chartHeaderView = new ChartHeaderView(this, viewGroup.getContext()) {
                     @Override
@@ -836,7 +835,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     }
                 };
                 chartHeaderView.setWillNotDraw(false);
-                chartHeaderView.setPadding(chartHeaderView.getPaddingLeft(), AndroidUtilities.m35dp(16.0f), chartHeaderView.getRight(), AndroidUtilities.m35dp(16.0f));
+                chartHeaderView.setPadding(chartHeaderView.getPaddingLeft(), AndroidUtilities.m36dp(16.0f), chartHeaderView.getRight(), AndroidUtilities.m36dp(16.0f));
                 shadowSectionCell = chartHeaderView;
             } else if (i == 14) {
                 shadowSectionCell = new OverviewCell(viewGroup.getContext());
@@ -1278,7 +1277,6 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     public class ChartCell extends BaseChartCell {
         public ChartCell(Context context, int i, BaseChartView.SharedUiComponents sharedUiComponents) {
             super(context, i, sharedUiComponents);
-            StatisticActivity.this = r1;
         }
 
         @Override
@@ -1418,7 +1416,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                         }
                         i5 += getChildAt(i6).getMeasuredWidth();
                     }
-                    setMeasuredDimension(getMeasuredWidth(), measuredHeight + i4 + AndroidUtilities.m35dp(16.0f));
+                    setMeasuredDimension(getMeasuredWidth(), measuredHeight + i4 + AndroidUtilities.m36dp(16.0f));
                 }
 
                 @Override
@@ -1882,13 +1880,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             final int position;
 
             CheckBoxHolder(int i) {
-                BaseChartCell.this = r4;
                 this.position = i;
-                FlatCheckBox flatCheckBox = new FlatCheckBox(r4.getContext());
+                FlatCheckBox flatCheckBox = new FlatCheckBox(BaseChartCell.this.getContext());
                 this.checkBox = flatCheckBox;
-                flatCheckBox.setPadding(AndroidUtilities.m35dp(16.0f), 0, AndroidUtilities.m35dp(16.0f), 0);
-                r4.checkboxContainer.addView(flatCheckBox);
-                r4.checkBoxes.add(this);
+                flatCheckBox.setPadding(AndroidUtilities.m36dp(16.0f), 0, AndroidUtilities.m36dp(16.0f), 0);
+                BaseChartCell.this.checkboxContainer.addView(flatCheckBox);
+                BaseChartCell.this.checkBoxes.add(this);
             }
 
             public void setData(final LineViewData lineViewData) {
@@ -2730,7 +2727,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.secondary = new TextView[4];
             this.title = new TextView[4];
             setOrientation(1);
-            setPadding(AndroidUtilities.m35dp(16.0f), 0, AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f));
+            setPadding(AndroidUtilities.m36dp(16.0f), 0, AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f));
             int i = 0;
             while (i < 2) {
                 LinearLayout linearLayout = new LinearLayout(context);
@@ -2748,7 +2745,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     this.primary[i3].setTextSize(1, 17.0f);
                     this.title[i3].setTextSize(1, 13.0f);
                     this.secondary[i3].setTextSize(1, 13.0f);
-                    this.secondary[i3].setPadding(AndroidUtilities.m35dp(4.0f), 0, 0, 0);
+                    this.secondary[i3].setPadding(AndroidUtilities.m36dp(4.0f), 0, 0, 0);
                     linearLayout3.addView(this.primary[i3]);
                     linearLayout3.addView(this.secondary[i3]);
                     linearLayout2.addView(linearLayout3);

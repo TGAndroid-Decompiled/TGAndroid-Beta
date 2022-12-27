@@ -141,7 +141,7 @@ public class ColorPicker extends FrameLayout {
         }
         float x = motionEvent.getX() - this.rectF.left;
         float y = motionEvent.getY() - this.rectF.top;
-        if (this.interacting || y >= (-AndroidUtilities.m35dp(10.0f))) {
+        if (this.interacting || y >= (-AndroidUtilities.m36dp(10.0f))) {
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked == 3 || actionMasked == 1 || actionMasked == 6) {
                 if (this.interacting && (colorPickerDelegate = this.delegate) != null) {
@@ -165,9 +165,9 @@ public class ColorPicker extends FrameLayout {
                 }
                 setLocation(Math.max(0.0f, Math.min(1.0f, x / this.rectF.width())));
                 setDragging(true, true);
-                if (y < (-AndroidUtilities.m35dp(10.0f))) {
+                if (y < (-AndroidUtilities.m36dp(10.0f))) {
                     this.changingWeight = true;
-                    setWeight(Math.max(0.0f, Math.min(1.0f, ((-y) - AndroidUtilities.m35dp(10.0f)) / AndroidUtilities.m35dp(190.0f))));
+                    setWeight(Math.max(0.0f, Math.min(1.0f, ((-y) - AndroidUtilities.m36dp(10.0f)) / AndroidUtilities.m36dp(190.0f))));
                 }
                 ColorPickerDelegate colorPickerDelegate3 = this.delegate;
                 if (colorPickerDelegate3 != null) {
@@ -185,29 +185,29 @@ public class ColorPicker extends FrameLayout {
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int i5 = i3 - i;
         int i6 = i4 - i2;
-        this.gradientPaint.setShader(new LinearGradient(AndroidUtilities.m35dp(56.0f), 0.0f, i5 - AndroidUtilities.m35dp(56.0f), 0.0f, COLORS, LOCATIONS, Shader.TileMode.REPEAT));
-        int m35dp = i6 - AndroidUtilities.m35dp(32.0f);
-        this.rectF.set(AndroidUtilities.m35dp(56.0f), m35dp, i5 - AndroidUtilities.m35dp(56.0f), m35dp + AndroidUtilities.m35dp(12.0f));
+        this.gradientPaint.setShader(new LinearGradient(AndroidUtilities.m36dp(56.0f), 0.0f, i5 - AndroidUtilities.m36dp(56.0f), 0.0f, COLORS, LOCATIONS, Shader.TileMode.REPEAT));
+        int m36dp = i6 - AndroidUtilities.m36dp(32.0f);
+        this.rectF.set(AndroidUtilities.m36dp(56.0f), m36dp, i5 - AndroidUtilities.m36dp(56.0f), m36dp + AndroidUtilities.m36dp(12.0f));
         ImageView imageView = this.settingsButton;
-        imageView.layout(i5 - imageView.getMeasuredWidth(), i6 - AndroidUtilities.m35dp(52.0f), i5, i6);
-        this.undoButton.layout(0, i6 - AndroidUtilities.m35dp(52.0f), this.settingsButton.getMeasuredWidth(), i6);
+        imageView.layout(i5 - imageView.getMeasuredWidth(), i6 - AndroidUtilities.m36dp(52.0f), i5, i6);
+        this.undoButton.layout(0, i6 - AndroidUtilities.m36dp(52.0f), this.settingsButton.getMeasuredWidth(), i6);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawRoundRect(this.rectF, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), this.gradientPaint);
+        canvas.drawRoundRect(this.rectF, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), this.gradientPaint);
         RectF rectF = this.rectF;
         int width = (int) (rectF.left + (rectF.width() * this.location));
-        int centerY = (int) ((this.rectF.centerY() + (this.draggingFactor * (-AndroidUtilities.m35dp(70.0f)))) - (this.changingWeight ? this.weight * AndroidUtilities.m35dp(190.0f) : 0.0f));
-        int m35dp = (int) (AndroidUtilities.m35dp(24.0f) * (this.draggingFactor + 1.0f) * 0.5f);
-        this.shadowDrawable.setBounds(width - m35dp, centerY - m35dp, width + m35dp, m35dp + centerY);
+        int centerY = (int) ((this.rectF.centerY() + (this.draggingFactor * (-AndroidUtilities.m36dp(70.0f)))) - (this.changingWeight ? this.weight * AndroidUtilities.m36dp(190.0f) : 0.0f));
+        int m36dp = (int) (AndroidUtilities.m36dp(24.0f) * (this.draggingFactor + 1.0f) * 0.5f);
+        this.shadowDrawable.setBounds(width - m36dp, centerY - m36dp, width + m36dp, m36dp + centerY);
         this.shadowDrawable.draw(canvas);
-        float floor = (((int) Math.floor(AndroidUtilities.m35dp(4.0f) + ((AndroidUtilities.m35dp(19.0f) - AndroidUtilities.m35dp(4.0f)) * this.weight))) * (this.draggingFactor + 1.0f)) / 2.0f;
+        float floor = (((int) Math.floor(AndroidUtilities.m36dp(4.0f) + ((AndroidUtilities.m36dp(19.0f) - AndroidUtilities.m36dp(4.0f)) * this.weight))) * (this.draggingFactor + 1.0f)) / 2.0f;
         float f = width;
         float f2 = centerY;
-        canvas.drawCircle(f, f2, (AndroidUtilities.m35dp(22.0f) / 2) * (this.draggingFactor + 1.0f), this.backgroundPaint);
+        canvas.drawCircle(f, f2, (AndroidUtilities.m36dp(22.0f) / 2) * (this.draggingFactor + 1.0f), this.backgroundPaint);
         canvas.drawCircle(f, f2, floor, this.swatchPaint);
-        canvas.drawCircle(f, f2, floor - AndroidUtilities.m35dp(0.5f), this.swatchStrokePaint);
+        canvas.drawCircle(f, f2, floor - AndroidUtilities.m36dp(0.5f), this.swatchStrokePaint);
     }
 
     @Keep

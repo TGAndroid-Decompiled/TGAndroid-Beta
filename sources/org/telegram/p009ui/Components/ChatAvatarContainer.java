@@ -95,7 +95,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         this.avatarDrawable = new AvatarDrawable();
         this.currentAccount = UserConfig.selectedAccount;
         this.occupyStatusBar = true;
-        this.leftPadding = AndroidUtilities.m35dp(8.0f);
+        this.leftPadding = AndroidUtilities.m36dp(8.0f);
         this.lastWidth = -1;
         this.largerWidth = -1;
         this.isOnline = new boolean[1];
@@ -134,7 +134,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             }
         }
         this.avatarImageView.setContentDescription(LocaleController.getString("AccDescrProfilePicture", C1072R.string.AccDescrProfilePicture));
-        this.avatarImageView.setRoundRadius(AndroidUtilities.m35dp(21.0f));
+        this.avatarImageView.setRoundRadius(AndroidUtilities.m36dp(21.0f));
         addView(this.avatarImageView);
         if (z3) {
             this.avatarImageView.setOnClickListener(new View.OnClickListener() {
@@ -167,10 +167,10 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         this.titleTextView.setTextSize(18);
         this.titleTextView.setGravity(3);
         this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.titleTextView.setLeftDrawableTopPadding(-AndroidUtilities.m35dp(1.3f));
+        this.titleTextView.setLeftDrawableTopPadding(-AndroidUtilities.m36dp(1.3f));
         this.titleTextView.setCanHideRightDrawable(false);
         this.titleTextView.setRightDrawableOutside(true);
-        this.titleTextView.setPadding(0, AndroidUtilities.m35dp(6.0f), 0, AndroidUtilities.m35dp(12.0f));
+        this.titleTextView.setPadding(0, AndroidUtilities.m36dp(6.0f), 0, AndroidUtilities.m36dp(12.0f));
         addView(this.titleTextView);
         SimpleTextView simpleTextView2 = new SimpleTextView(context) {
             @Override
@@ -195,12 +195,12 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         this.subtitleTextView.setTag("actionBarDefaultSubtitle");
         this.subtitleTextView.setTextSize(14);
         this.subtitleTextView.setGravity(3);
-        this.subtitleTextView.setPadding(0, 0, AndroidUtilities.m35dp(10.0f), 0);
+        this.subtitleTextView.setPadding(0, 0, AndroidUtilities.m36dp(10.0f), 0);
         addView(this.subtitleTextView);
         if (this.parentFragment != null) {
             ImageView imageView = new ImageView(context);
             this.timeItem = imageView;
-            imageView.setPadding(AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(5.0f), AndroidUtilities.m35dp(5.0f));
+            imageView.setPadding(AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(5.0f), AndroidUtilities.m36dp(5.0f));
             this.timeItem.setScaleType(ImageView.ScaleType.CENTER);
             this.timeItem.setAlpha(0.0f);
             this.timeItem.setScaleY(0.0f);
@@ -251,7 +251,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                 i++;
             }
         }
-        this.emojiStatusDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.titleTextView, AndroidUtilities.m35dp(24.0f));
+        this.emojiStatusDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.titleTextView, AndroidUtilities.m36dp(24.0f));
     }
 
     public void lambda$new$0(View view) {
@@ -271,9 +271,9 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
     }
 
     public void setTitleExpand(boolean z) {
-        int m35dp = z ? AndroidUtilities.m35dp(10.0f) : 0;
-        if (this.titleTextView.getPaddingRight() != m35dp) {
-            this.titleTextView.setPadding(0, AndroidUtilities.m35dp(6.0f), m35dp, AndroidUtilities.m35dp(12.0f));
+        int m36dp = z ? AndroidUtilities.m36dp(10.0f) : 0;
+        if (this.titleTextView.getPaddingRight() != m36dp) {
+            this.titleTextView.setPadding(0, AndroidUtilities.m36dp(6.0f), m36dp, AndroidUtilities.m36dp(12.0f));
             requestLayout();
             invalidate();
         }
@@ -346,7 +346,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         actionBarPopupWindowArr[0].setClippingEnabled(true);
         actionBarPopupWindowArr[0].setAnimationStyle(C1072R.style.PopupContextAnimation);
         actionBarPopupWindowArr[0].setFocusable(true);
-        autoDeletePopupWrapper.windowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE));
+        autoDeletePopupWrapper.windowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE));
         actionBarPopupWindowArr[0].setInputMethodMode(2);
         actionBarPopupWindowArr[0].getContentView().setFocusableInTouchMode(true);
         ActionBarPopupWindow actionBarPopupWindow = actionBarPopupWindowArr[0];
@@ -373,13 +373,13 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
     @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i) + this.titleTextView.getPaddingRight();
-        int m35dp = size - AndroidUtilities.m35dp((this.avatarImageView.getVisibility() == 0 ? 54 : 0) + 16);
-        this.avatarImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(42.0f), 1073741824));
-        this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(m35dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(32.0f) + this.titleTextView.getPaddingRight(), Integer.MIN_VALUE));
-        this.subtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(m35dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(20.0f), Integer.MIN_VALUE));
+        int m36dp = size - AndroidUtilities.m36dp((this.avatarImageView.getVisibility() == 0 ? 54 : 0) + 16);
+        this.avatarImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(42.0f), 1073741824));
+        this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(m36dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(32.0f) + this.titleTextView.getPaddingRight(), Integer.MIN_VALUE));
+        this.subtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(m36dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(20.0f), Integer.MIN_VALUE));
         ImageView imageView = this.timeItem;
         if (imageView != null) {
-            imageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(34.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(34.0f), 1073741824));
+            imageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(34.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(34.0f), 1073741824));
         }
         setMeasuredDimension(size, View.MeasureSpec.getSize(i2));
         int i3 = this.lastWidth;
@@ -387,7 +387,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             fadeOutToLessWidth(i3);
         }
         if (this.titleTextLargerCopyView != null) {
-            this.titleTextLargerCopyView.measure(View.MeasureSpec.makeMeasureSpec(this.largerWidth - AndroidUtilities.m35dp((this.avatarImageView.getVisibility() != 0 ? 0 : 54) + 16), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(24.0f), Integer.MIN_VALUE));
+            this.titleTextLargerCopyView.measure(View.MeasureSpec.makeMeasureSpec(this.largerWidth - AndroidUtilities.m36dp((this.avatarImageView.getVisibility() != 0 ? 0 : 54) + 16), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(24.0f), Integer.MIN_VALUE));
         }
         this.lastWidth = size;
     }
@@ -404,7 +404,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         this.titleTextLargerCopyView.setTextSize(18);
         this.titleTextLargerCopyView.setGravity(3);
         this.titleTextLargerCopyView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.titleTextLargerCopyView.setLeftDrawableTopPadding(-AndroidUtilities.m35dp(1.3f));
+        this.titleTextLargerCopyView.setLeftDrawableTopPadding(-AndroidUtilities.m36dp(1.3f));
         this.titleTextLargerCopyView.setRightDrawable(this.titleTextView.getRightDrawable());
         this.titleTextLargerCopyView.setRightDrawableOutside(this.titleTextView.getRightDrawableOutside());
         this.titleTextLargerCopyView.setLeftDrawable(this.titleTextView.getLeftDrawable());
@@ -454,33 +454,33 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int currentActionBarHeight = ((C1133ActionBar.getCurrentActionBarHeight() - AndroidUtilities.m35dp(42.0f)) / 2) + ((Build.VERSION.SDK_INT < 21 || !this.occupyStatusBar) ? 0 : AndroidUtilities.statusBarHeight);
+        int currentActionBarHeight = ((C1133ActionBar.getCurrentActionBarHeight() - AndroidUtilities.m36dp(42.0f)) / 2) + ((Build.VERSION.SDK_INT < 21 || !this.occupyStatusBar) ? 0 : AndroidUtilities.statusBarHeight);
         BackupImageView backupImageView = this.avatarImageView;
         int i5 = this.leftPadding;
         int i6 = currentActionBarHeight + 1;
-        backupImageView.layout(i5, i6, AndroidUtilities.m35dp(42.0f) + i5, AndroidUtilities.m35dp(42.0f) + i6);
-        int m35dp = this.leftPadding + (this.avatarImageView.getVisibility() == 0 ? AndroidUtilities.m35dp(54.0f) : 0);
+        backupImageView.layout(i5, i6, AndroidUtilities.m36dp(42.0f) + i5, AndroidUtilities.m36dp(42.0f) + i6);
+        int m36dp = this.leftPadding + (this.avatarImageView.getVisibility() == 0 ? AndroidUtilities.m36dp(54.0f) : 0);
         if (this.subtitleTextView.getVisibility() != 8) {
-            this.titleTextView.layout(m35dp, (AndroidUtilities.m35dp(1.3f) + currentActionBarHeight) - this.titleTextView.getPaddingTop(), this.titleTextView.getMeasuredWidth() + m35dp, (((this.titleTextView.getTextHeight() + currentActionBarHeight) + AndroidUtilities.m35dp(1.3f)) - this.titleTextView.getPaddingTop()) + this.titleTextView.getPaddingBottom());
+            this.titleTextView.layout(m36dp, (AndroidUtilities.m36dp(1.3f) + currentActionBarHeight) - this.titleTextView.getPaddingTop(), this.titleTextView.getMeasuredWidth() + m36dp, (((this.titleTextView.getTextHeight() + currentActionBarHeight) + AndroidUtilities.m36dp(1.3f)) - this.titleTextView.getPaddingTop()) + this.titleTextView.getPaddingBottom());
             SimpleTextView simpleTextView = this.titleTextLargerCopyView;
             if (simpleTextView != null) {
-                simpleTextView.layout(m35dp, AndroidUtilities.m35dp(1.3f) + currentActionBarHeight, this.titleTextLargerCopyView.getMeasuredWidth() + m35dp, this.titleTextLargerCopyView.getTextHeight() + currentActionBarHeight + AndroidUtilities.m35dp(1.3f));
+                simpleTextView.layout(m36dp, AndroidUtilities.m36dp(1.3f) + currentActionBarHeight, this.titleTextLargerCopyView.getMeasuredWidth() + m36dp, this.titleTextLargerCopyView.getTextHeight() + currentActionBarHeight + AndroidUtilities.m36dp(1.3f));
             }
         } else {
-            this.titleTextView.layout(m35dp, (AndroidUtilities.m35dp(11.0f) + currentActionBarHeight) - this.titleTextView.getPaddingTop(), this.titleTextView.getMeasuredWidth() + m35dp, (((this.titleTextView.getTextHeight() + currentActionBarHeight) + AndroidUtilities.m35dp(11.0f)) - this.titleTextView.getPaddingTop()) + this.titleTextView.getPaddingBottom());
+            this.titleTextView.layout(m36dp, (AndroidUtilities.m36dp(11.0f) + currentActionBarHeight) - this.titleTextView.getPaddingTop(), this.titleTextView.getMeasuredWidth() + m36dp, (((this.titleTextView.getTextHeight() + currentActionBarHeight) + AndroidUtilities.m36dp(11.0f)) - this.titleTextView.getPaddingTop()) + this.titleTextView.getPaddingBottom());
             SimpleTextView simpleTextView2 = this.titleTextLargerCopyView;
             if (simpleTextView2 != null) {
-                simpleTextView2.layout(m35dp, AndroidUtilities.m35dp(11.0f) + currentActionBarHeight, this.titleTextLargerCopyView.getMeasuredWidth() + m35dp, this.titleTextLargerCopyView.getTextHeight() + currentActionBarHeight + AndroidUtilities.m35dp(11.0f));
+                simpleTextView2.layout(m36dp, AndroidUtilities.m36dp(11.0f) + currentActionBarHeight, this.titleTextLargerCopyView.getMeasuredWidth() + m36dp, this.titleTextLargerCopyView.getTextHeight() + currentActionBarHeight + AndroidUtilities.m36dp(11.0f));
             }
         }
         ImageView imageView = this.timeItem;
         if (imageView != null) {
-            imageView.layout(this.leftPadding + AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(15.0f) + currentActionBarHeight, this.leftPadding + AndroidUtilities.m35dp(50.0f), AndroidUtilities.m35dp(49.0f) + currentActionBarHeight);
+            imageView.layout(this.leftPadding + AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(15.0f) + currentActionBarHeight, this.leftPadding + AndroidUtilities.m36dp(50.0f), AndroidUtilities.m36dp(49.0f) + currentActionBarHeight);
         }
-        this.subtitleTextView.layout(m35dp, AndroidUtilities.m35dp(24.0f) + currentActionBarHeight, this.subtitleTextView.getMeasuredWidth() + m35dp, this.subtitleTextView.getTextHeight() + currentActionBarHeight + AndroidUtilities.m35dp(24.0f));
+        this.subtitleTextView.layout(m36dp, AndroidUtilities.m36dp(24.0f) + currentActionBarHeight, this.subtitleTextView.getMeasuredWidth() + m36dp, this.subtitleTextView.getTextHeight() + currentActionBarHeight + AndroidUtilities.m36dp(24.0f));
         SimpleTextView simpleTextView3 = this.subtitleTextLargerCopyView;
         if (simpleTextView3 != null) {
-            simpleTextView3.layout(m35dp, AndroidUtilities.m35dp(24.0f) + currentActionBarHeight, this.subtitleTextLargerCopyView.getMeasuredWidth() + m35dp, currentActionBarHeight + this.subtitleTextLargerCopyView.getTextHeight() + AndroidUtilities.m35dp(24.0f));
+            simpleTextView3.layout(m36dp, AndroidUtilities.m36dp(24.0f) + currentActionBarHeight, this.subtitleTextLargerCopyView.getMeasuredWidth() + m36dp, currentActionBarHeight + this.subtitleTextLargerCopyView.getTextHeight() + AndroidUtilities.m36dp(24.0f));
         }
     }
 
@@ -556,7 +556,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
 
     public void setTitle(CharSequence charSequence, boolean z, boolean z2, boolean z3, boolean z4, TLRPC$EmojiStatus tLRPC$EmojiStatus, boolean z5) {
         if (charSequence != null) {
-            charSequence = Emoji.replaceEmoji(charSequence, this.titleTextView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(24.0f), false);
+            charSequence = Emoji.replaceEmoji(charSequence, this.titleTextView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(24.0f), false);
         }
         this.titleTextView.setText(charSequence);
         if (z || z2) {
@@ -664,7 +664,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                     i++;
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         } else {
             this.currentTypingDrawable = null;
@@ -722,7 +722,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                 if (z) {
                     AnimatorSet animatorSet2 = new AnimatorSet();
                     this.titleAnimation = animatorSet2;
-                    animatorSet2.playTogether(ObjectAnimator.ofFloat(this.titleTextView, View.TRANSLATION_Y, AndroidUtilities.m35dp(9.7f)), ObjectAnimator.ofFloat(this.subtitleTextView, View.ALPHA, 0.0f));
+                    animatorSet2.playTogether(ObjectAnimator.ofFloat(this.titleTextView, View.TRANSLATION_Y, AndroidUtilities.m36dp(9.7f)), ObjectAnimator.ofFloat(this.subtitleTextView, View.ALPHA, 0.0f));
                     this.titleAnimation.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationCancel(Animator animator) {
@@ -741,7 +741,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                     this.titleAnimation.start();
                     return;
                 }
-                this.titleTextView.setTranslationY(AndroidUtilities.m35dp(9.7f));
+                this.titleTextView.setTranslationY(AndroidUtilities.m36dp(9.7f));
                 this.subtitleTextView.setAlpha(0.0f);
                 this.subtitleTextView.setVisibility(4);
                 return;
@@ -845,7 +845,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                     this.subtitleTextView.setAlpha(1.0f);
                 }
             }
-            str = MessagesController.getInstance(this.currentAccount).getPrintingStringType(this.parentFragment.getDialogId(), this.parentFragment.getThreadId()).intValue() == 5 ? Emoji.replaceEmoji(printingString, this.subtitleTextView.getTextPaint().getFontMetricsInt(), AndroidUtilities.m35dp(15.0f), false) : printingString;
+            str = MessagesController.getInstance(this.currentAccount).getPrintingStringType(this.parentFragment.getDialogId(), this.parentFragment.getThreadId()).intValue() == 5 ? Emoji.replaceEmoji(printingString, this.subtitleTextView.getTextPaint().getFontMetricsInt(), AndroidUtilities.m36dp(15.0f), false) : printingString;
             setTypingAnimation(true);
             z2 = true;
         }
@@ -873,7 +873,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         BackupImageView backupImageView = this.avatarImageView;
         if (backupImageView != null) {
             backupImageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
-            this.avatarImageView.setRoundRadius(AndroidUtilities.m35dp((tLRPC$Chat == null || !tLRPC$Chat.forum) ? 21.0f : 16.0f));
+            this.avatarImageView.setRoundRadius(AndroidUtilities.m36dp((tLRPC$Chat == null || !tLRPC$Chat.forum) ? 21.0f : 16.0f));
         }
     }
 
@@ -920,7 +920,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                 if (backupImageView != null) {
                     backupImageView.setForUserOrChat(currentChat, this.avatarDrawable);
                 }
-                this.avatarImageView.setRoundRadius(AndroidUtilities.m35dp(currentChat.forum ? 16.0f : 21.0f));
+                this.avatarImageView.setRoundRadius(AndroidUtilities.m36dp(currentChat.forum ? 16.0f : 21.0f));
                 return;
             }
             return;

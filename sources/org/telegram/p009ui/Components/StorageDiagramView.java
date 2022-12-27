@@ -85,39 +85,39 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
         }
         String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(this.avatarImageReceiver, this.avatarDrawable, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j));
         this.dialogText = dialogPhotoTitle;
-        this.dialogText = Emoji.replaceEmoji(dialogPhotoTitle, null, AndroidUtilities.m35dp(6.0f), false);
+        this.dialogText = Emoji.replaceEmoji(dialogPhotoTitle, null, AndroidUtilities.m36dp(6.0f), false);
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
         int i3;
         if (this.dialogId != null) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(166.0f), 1073741824));
-            i3 = (View.MeasureSpec.getSize(i) - AndroidUtilities.m35dp(110.0f)) / 2;
-            this.rectF.set(AndroidUtilities.m35dp(3.0f) + i3, AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(107.0f) + i3, AndroidUtilities.m35dp(107.0f));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(166.0f), 1073741824));
+            i3 = (View.MeasureSpec.getSize(i) - AndroidUtilities.m36dp(110.0f)) / 2;
+            this.rectF.set(AndroidUtilities.m36dp(3.0f) + i3, AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(107.0f) + i3, AndroidUtilities.m36dp(107.0f));
         } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(110.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(110.0f), 1073741824));
-            this.rectF.set(AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(107.0f), AndroidUtilities.m35dp(107.0f));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(110.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(110.0f), 1073741824));
+            this.rectF.set(AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(107.0f), AndroidUtilities.m36dp(107.0f));
             i3 = 0;
         }
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.text1;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         animatedTextDrawable.setAnimationProperties(0.18f, 0L, 300L, cubicBezierInterpolator);
-        this.text1.setTextSize(AndroidUtilities.m35dp(24.0f));
+        this.text1.setTextSize(AndroidUtilities.m36dp(24.0f));
         this.text1.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.text2.setAnimationProperties(0.18f, 0L, 300L, cubicBezierInterpolator);
         if (this.dialogId != null) {
-            this.text2.setTextSize(AndroidUtilities.m35dp(16.0f));
+            this.text2.setTextSize(AndroidUtilities.m36dp(16.0f));
             this.text1.setGravity(5);
             this.text2.setGravity(3);
         } else {
-            this.text2.setTextSize(AndroidUtilities.m35dp(13.0f));
+            this.text2.setTextSize(AndroidUtilities.m36dp(13.0f));
             int textSize = (int) this.text1.getTextSize();
             int textSize2 = (int) this.text2.getTextSize();
-            int m35dp = ((AndroidUtilities.m35dp(110.0f) - textSize) - textSize2) / 2;
-            int i4 = textSize + m35dp;
-            this.text1.setBounds(0, m35dp, getMeasuredWidth(), i4);
-            this.text2.setBounds(0, AndroidUtilities.m35dp(2.0f) + i4, getMeasuredWidth(), i4 + textSize2 + AndroidUtilities.m35dp(2.0f));
+            int m36dp = ((AndroidUtilities.m36dp(110.0f) - textSize) - textSize2) / 2;
+            int i4 = textSize + m36dp;
+            this.text1.setBounds(0, m36dp, getMeasuredWidth(), i4);
+            this.text2.setBounds(0, AndroidUtilities.m36dp(2.0f) + i4, getMeasuredWidth(), i4 + textSize2 + AndroidUtilities.m36dp(2.0f));
             this.text1.setGravity(17);
             this.text2.setGravity(17);
         }
@@ -125,14 +125,14 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
             if (this.dialogTextPaint == null) {
                 this.dialogTextPaint = new TextPaint(1);
             }
-            this.dialogTextPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
-            int size = View.MeasureSpec.getSize(i) - AndroidUtilities.m35dp(60.0f);
+            this.dialogTextPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
+            int size = View.MeasureSpec.getSize(i) - AndroidUtilities.m36dp(60.0f);
             this.dialogTextLayout = StaticLayoutEx.createStaticLayout2(this.dialogText, this.dialogTextPaint, size, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, size, 1);
         }
         ImageReceiver imageReceiver = this.avatarImageReceiver;
         if (imageReceiver != null) {
-            imageReceiver.setImageCoords(i3 + AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(90.0f), AndroidUtilities.m35dp(90.0f));
-            this.avatarImageReceiver.setRoundRadius(AndroidUtilities.m35dp(45.0f));
+            imageReceiver.setImageCoords(i3 + AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(90.0f), AndroidUtilities.m36dp(90.0f));
+            this.avatarImageReceiver.setRoundRadius(AndroidUtilities.m36dp(45.0f));
         }
         updateDescription();
     }
@@ -310,18 +310,18 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
             animatedTextDrawable.setTextColor(Theme.getColor("dialogTextBlack"));
             this.text2.setTextColor(Theme.getColor("dialogTextBlack"));
             if (this.dialogId != null) {
-                int currentWidth = this.text1.getCurrentWidth() + AndroidUtilities.m35dp(4.0f) + this.text2.getCurrentWidth();
+                int currentWidth = this.text1.getCurrentWidth() + AndroidUtilities.m36dp(4.0f) + this.text2.getCurrentWidth();
                 int width3 = (getWidth() - currentWidth) / 2;
-                this.text1.setBounds(0, AndroidUtilities.m35dp(115.0f), this.text1.getCurrentWidth() + width3, AndroidUtilities.m35dp(145.0f));
+                this.text1.setBounds(0, AndroidUtilities.m36dp(115.0f), this.text1.getCurrentWidth() + width3, AndroidUtilities.m36dp(145.0f));
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.text2;
-                animatedTextDrawable2.setBounds((width3 + currentWidth) - animatedTextDrawable2.getCurrentWidth(), AndroidUtilities.m35dp(118.0f), getWidth(), AndroidUtilities.m35dp(148.0f));
+                animatedTextDrawable2.setBounds((width3 + currentWidth) - animatedTextDrawable2.getCurrentWidth(), AndroidUtilities.m36dp(118.0f), getWidth(), AndroidUtilities.m36dp(148.0f));
             }
             this.text1.draw(canvas);
             this.text2.draw(canvas);
         }
         if (this.dialogTextLayout != null) {
             canvas.save();
-            canvas.translate(AndroidUtilities.m35dp(30.0f), AndroidUtilities.m35dp(148.0f) - ((this.dialogTextLayout.getHeight() - AndroidUtilities.m35dp(13.0f)) / 2.0f));
+            canvas.translate(AndroidUtilities.m36dp(30.0f), AndroidUtilities.m36dp(148.0f) - ((this.dialogTextLayout.getHeight() - AndroidUtilities.m36dp(13.0f)) / 2.0f));
             this.dialogTextPaint.setColor(Theme.getColor("dialogTextBlack"));
             this.dialogTextLayout.draw(canvas);
             canvas.restore();
@@ -341,7 +341,7 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
             this.clear = true;
             this.firstDraw = false;
             paint.setStyle(Paint.Style.STROKE);
-            this.paint.setStrokeWidth(AndroidUtilities.m35dp(5.0f));
+            this.paint.setStrokeWidth(AndroidUtilities.m36dp(5.0f));
             this.paint.setStrokeCap(Paint.Cap.ROUND);
             this.paint.setStrokeJoin(Paint.Join.ROUND);
         }

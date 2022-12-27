@@ -623,7 +623,7 @@ public class FileRefController extends BaseController {
 
     private boolean onUpdateObjectReference(final Requester requester, byte[] bArr, TLRPC$InputFileLocation tLRPC$InputFileLocation, boolean z) {
         if (BuildVars.DEBUG_VERSION) {
-            FileLog.m34d("fileref updated for " + requester.args[0] + " " + requester.locationKey);
+            FileLog.m35d("fileref updated for " + requester.args[0] + " " + requester.locationKey);
         }
         if (requester.args[0] instanceof TLRPC$TL_inputSingleMedia) {
             final TLRPC$TL_messages_sendMultiMedia tLRPC$TL_messages_sendMultiMedia = (TLRPC$TL_messages_sendMultiMedia) requester.args[1];

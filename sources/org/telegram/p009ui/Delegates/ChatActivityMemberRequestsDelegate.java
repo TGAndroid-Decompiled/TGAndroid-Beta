@@ -77,7 +77,7 @@ public class ChatActivityMemberRequestsDelegate {
                 @Override
                 public void onMeasure(int i, int i2) {
                     int i3 = this.avatarsDrawable.count;
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(i3 == 0 ? 0 : ((i3 - 1) * 20) + 24), 1073741824), i2);
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(i3 == 0 ? 0 : ((i3 - 1) * 20) + 24), 1073741824), i2);
                 }
             };
             this.avatarsView = avatarsImageView;
@@ -95,7 +95,7 @@ public class ChatActivityMemberRequestsDelegate {
             ImageView imageView = new ImageView(this.fragment.getParentActivity());
             this.closeView = imageView;
             if (Build.VERSION.SDK_INT >= 21) {
-                imageView.setBackground(Theme.createSelectorDrawable(this.fragment.getThemedColor("inappPlayerClose") & 436207615, 1, AndroidUtilities.m35dp(14.0f)));
+                imageView.setBackground(Theme.createSelectorDrawable(this.fragment.getThemedColor("inappPlayerClose") & 436207615, 1, AndroidUtilities.m36dp(14.0f)));
             }
             this.closeView.setColorFilter(new PorterDuffColorFilter(this.fragment.getThemedColor("chat_topPanelClose"), PorterDuff.Mode.MULTIPLY));
             this.closeView.setContentDescription(LocaleController.getString("Close", C1072R.string.Close));
@@ -134,7 +134,7 @@ public class ChatActivityMemberRequestsDelegate {
     }
 
     public int getViewHeight() {
-        return AndroidUtilities.m35dp(40.0f);
+        return AndroidUtilities.m36dp(40.0f);
     }
 
     public float getViewEnterOffset() {

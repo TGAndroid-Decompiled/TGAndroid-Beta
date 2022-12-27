@@ -61,7 +61,6 @@ public class FilesMigrationService extends Service {
 
     public class C10191 extends Thread {
         C10191() {
-            FilesMigrationService.this = r1;
         }
 
         @Override
@@ -107,7 +106,7 @@ public class FilesMigrationService extends Service {
         if (file3.canRead() && file3.canWrite()) {
             moveDirectory(file3, file2);
         }
-        FileLog.m34d("move time = " + (System.currentTimeMillis() - currentTimeMillis));
+        FileLog.m35d("move time = " + (System.currentTimeMillis() - currentTimeMillis));
         ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("migration_to_scoped_storage_finished", true).apply();
     }
 
@@ -141,12 +140,12 @@ public class FilesMigrationService extends Service {
                     });
                     convert.close();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
                 try {
                     file.delete();
                 } catch (Exception e2) {
-                    FileLog.m31e(e2);
+                    FileLog.m32e(e2);
                 }
             }
         }
@@ -161,11 +160,11 @@ public class FilesMigrationService extends Service {
         try {
             Files.move(path, file2.toPath(), new CopyOption[0]);
         } catch (Exception e) {
-            FileLog.m30e((Throwable) e, false);
+            FileLog.m31e((Throwable) e, false);
             try {
                 path.toFile().delete();
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
         }
         this.movedFilesCount++;
@@ -262,7 +261,7 @@ public class FilesMigrationService extends Service {
             textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString("MigrateOldFolderDescription", C1072R.string.MigrateOldFolderDescription)));
             linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
             TextView textView3 = new TextView(parentActivity);
-            textView3.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+            textView3.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
             textView3.setGravity(17);
             textView3.setTextSize(1, 14.0f);
             textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));

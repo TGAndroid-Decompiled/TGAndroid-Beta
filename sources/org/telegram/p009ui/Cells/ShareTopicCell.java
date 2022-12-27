@@ -34,7 +34,7 @@ public class ShareTopicCell extends FrameLayout {
         setWillNotDraw(false);
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(28.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(28.0f));
         addView(this.imageView, LayoutHelper.createFrame(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.nameTextView = textView;
@@ -45,12 +45,12 @@ public class ShareTopicCell extends FrameLayout {
         this.nameTextView.setLines(2);
         this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
         addView(this.nameTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, 66.0f, 6.0f, 0.0f));
-        setBackground(Theme.createRadSelectorDrawable(Theme.getColor("listSelectorSDK21"), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f)));
+        setBackground(Theme.createRadSelectorDrawable(Theme.getColor("listSelectorSDK21"), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f)));
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(103.0f), 1073741824));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(103.0f), 1073741824));
     }
 
     public void setTopic(TLRPC$Dialog tLRPC$Dialog, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, boolean z, CharSequence charSequence) {
@@ -79,7 +79,7 @@ public class ShareTopicCell extends FrameLayout {
             combinedDrawable.setFullsize(true);
             this.imageView.setImageDrawable(combinedDrawable);
         }
-        this.imageView.setRoundRadius(AndroidUtilities.m35dp((chat == null || !chat.forum || z) ? 28.0f : 16.0f));
+        this.imageView.setRoundRadius(AndroidUtilities.m36dp((chat == null || !chat.forum || z) ? 28.0f : 16.0f));
         this.currentDialog = tLRPC$Dialog.f863id;
         this.currentTopic = tLRPC$TL_forumTopic.f910id;
     }

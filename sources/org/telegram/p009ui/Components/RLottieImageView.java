@@ -57,7 +57,7 @@ public class RLottieImageView extends ImageView {
     }
 
     public void setAnimation(int i, int i2, int i3, int[] iArr) {
-        setAnimation(new RLottieDrawable(i, "" + i, AndroidUtilities.m35dp(i2), AndroidUtilities.m35dp(i3), false, iArr));
+        setAnimation(new RLottieDrawable(i, "" + i, AndroidUtilities.m36dp(i2), AndroidUtilities.m36dp(i3), false, iArr));
     }
 
     public void setOnAnimationEndListener(Runnable runnable) {
@@ -135,7 +135,7 @@ public class RLottieImageView extends ImageView {
             public void draw(Canvas canvas) {
                 Rect rect = AndroidUtilities.rectTmp2;
                 rect.set(getBounds());
-                rect.inset(AndroidUtilities.m35dp(11.0f), AndroidUtilities.m35dp(11.0f));
+                rect.inset(AndroidUtilities.m36dp(11.0f), AndroidUtilities.m36dp(11.0f));
                 RLottieImageView.this.imageReceiver.setImageCoords(rect);
                 RLottieImageView.this.imageReceiver.draw(canvas);
             }

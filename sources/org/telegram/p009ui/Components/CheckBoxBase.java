@@ -66,11 +66,11 @@ public class CheckBoxBase {
         paint3.setStrokeCap(Paint.Cap.ROUND);
         this.checkPaint.setStyle(Paint.Style.STROKE);
         this.checkPaint.setStrokeJoin(Paint.Join.ROUND);
-        this.checkPaint.setStrokeWidth(AndroidUtilities.m35dp(1.9f));
+        this.checkPaint.setStrokeWidth(AndroidUtilities.m36dp(1.9f));
         Paint paint4 = new Paint(1);
         this.backgroundPaint = paint4;
         paint4.setStyle(Paint.Style.STROKE);
-        this.backgroundPaint.setStrokeWidth(AndroidUtilities.m35dp(1.2f));
+        this.backgroundPaint.setStrokeWidth(AndroidUtilities.m36dp(1.2f));
     }
 
     public void onAttachedToWindow() {
@@ -133,16 +133,16 @@ public class CheckBoxBase {
     public void setBackgroundType(int i) {
         this.backgroundType = i;
         if (i == 12 || i == 13) {
-            this.backgroundPaint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
+            this.backgroundPaint.setStrokeWidth(AndroidUtilities.m36dp(1.0f));
         } else if (i == 4 || i == 5) {
-            this.backgroundPaint.setStrokeWidth(AndroidUtilities.m35dp(1.9f));
+            this.backgroundPaint.setStrokeWidth(AndroidUtilities.m36dp(1.9f));
             if (i == 5) {
-                this.checkPaint.setStrokeWidth(AndroidUtilities.m35dp(1.5f));
+                this.checkPaint.setStrokeWidth(AndroidUtilities.m36dp(1.5f));
             }
         } else if (i == 3) {
-            this.backgroundPaint.setStrokeWidth(AndroidUtilities.m35dp(1.2f));
+            this.backgroundPaint.setStrokeWidth(AndroidUtilities.m36dp(1.2f));
         } else if (i != 0) {
-            this.backgroundPaint.setStrokeWidth(AndroidUtilities.m35dp(1.5f));
+            this.backgroundPaint.setStrokeWidth(AndroidUtilities.m36dp(1.5f));
         }
     }
 

@@ -127,7 +127,7 @@ public class SettingsSuggestionCell extends LinearLayout {
             try {
                 spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("CheckPhoneNumberLearnMoreUrl", C1072R.string.CheckPhoneNumberLearnMoreUrl)), indexOf, lastIndexOf - 2, 33);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         this.detailTextView.setText(spannableStringBuilder);

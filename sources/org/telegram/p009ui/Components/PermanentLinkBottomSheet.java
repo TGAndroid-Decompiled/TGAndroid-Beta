@@ -55,7 +55,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         int i2 = C1072R.raw.shared_link_enter;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(90.0f), AndroidUtilities.m35dp(90.0f), false, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m36dp(90.0f), AndroidUtilities.m36dp(90.0f), false, null);
         this.linkIcon = rLottieDrawable;
         rLottieDrawable.setCustomEndFrame(42);
         rLottieImageView.setAnimation(this.linkIcon);
@@ -106,8 +106,8 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         textView3.setText(LocaleController.getString("ManageInviteLinks", C1072R.string.ManageInviteLinks));
         textView3.setTextSize(14.0f);
         textView3.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText"));
-        textView3.setBackground(Theme.createRadSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlueText"), 76), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f)));
-        textView3.setPadding(AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(4.0f));
+        textView3.setBackground(Theme.createRadSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlueText"), 76), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f)));
+        textView3.setPadding(AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(4.0f));
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -231,8 +231,8 @@ public class PermanentLinkBottomSheet extends BottomSheet {
     }
 
     public void updateColors() {
-        this.imageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.m35dp(90.0f), Theme.getColor("featuredStickers_addButton")));
-        this.manage.setBackground(Theme.createRadSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlueText"), 76), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f)));
+        this.imageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.m36dp(90.0f), Theme.getColor("featuredStickers_addButton")));
+        this.manage.setBackground(Theme.createRadSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlueText"), 76), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f)));
         int color = Theme.getColor("featuredStickers_buttonText");
         this.linkIcon.setLayerColor("Top.**", color);
         this.linkIcon.setLayerColor("Bottom.**", color);

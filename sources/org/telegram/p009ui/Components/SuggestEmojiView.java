@@ -80,7 +80,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
             @Override
             protected void onMeasure(int i2, int i3) {
-                setPadding(AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(6.66f));
+                setPadding(AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(6.66f));
                 super.onMeasure(i2, i3);
             }
 
@@ -286,7 +286,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         if (str2 != null && this.lastQueryType == 1 && str2.equals(str) && !this.clear && !this.keywordResults.isEmpty()) {
             this.forceClose = false;
             this.containerView.setVisibility(0);
-            this.lastSpanY = AndroidUtilities.m35dp(10.0f);
+            this.lastSpanY = AndroidUtilities.m36dp(10.0f);
             this.containerView.invalidate();
             return;
         }
@@ -333,7 +333,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                 this.clear = false;
                 this.forceClose = false;
                 this.containerView.setVisibility(0);
-                this.lastSpanY = AndroidUtilities.m35dp(10.0f);
+                this.lastSpanY = AndroidUtilities.m36dp(10.0f);
                 this.keywordResults = arrayList;
                 this.arrowToStart = 0;
                 this.arrowToEnd = Integer.valueOf(str.length());
@@ -426,7 +426,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                 return null;
             }
         }
-        return Emoji.replaceEmoji(str, fontMetricsInt, AndroidUtilities.m35dp(20.0f), true);
+        return Emoji.replaceEmoji(str, fontMetricsInt, AndroidUtilities.m36dp(20.0f), true);
     }
 
     private void onClick(String str) {
@@ -502,7 +502,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                 this.arrowX = x + emojiSpan2.lastDrawX;
                 this.lastSpanY = emojiSpan2.lastDrawY;
             } else if (this.arrowToStart != null && this.arrowToEnd != null) {
-                this.arrowX = this.enterView.getEditField().getX() + this.enterView.getEditField().getPaddingLeft() + AndroidUtilities.m35dp(12.0f);
+                this.arrowX = this.enterView.getEditField().getX() + this.enterView.getEditField().getPaddingLeft() + AndroidUtilities.m36dp(12.0f);
             }
         }
         boolean z = (!this.show || this.forceClose || this.keywordResults.isEmpty() || this.clear) ? false : true;
@@ -514,28 +514,28 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
         this.path.rewind();
         float left = this.listView.getLeft();
-        float left2 = this.listView.getLeft() + (this.keywordResults.size() * AndroidUtilities.m35dp(44.0f));
+        float left2 = this.listView.getLeft() + (this.keywordResults.size() * AndroidUtilities.m36dp(44.0f));
         boolean z2 = this.listViewWidthAnimated.get() <= 0.0f;
         float f4 = left2 - left;
         float f5 = f4 <= 0.0f ? this.listViewWidthAnimated.get() : this.listViewWidthAnimated.set(f4, z2);
         float f6 = this.listViewCenterAnimated.set((left + left2) / 2.0f, z2);
         ChatActivityEnterView chatActivityEnterView2 = this.enterView;
         if (chatActivityEnterView2 != null && chatActivityEnterView2.getEditField() != null) {
-            this.containerView.setTranslationY(((-this.enterView.getEditField().getHeight()) - this.enterView.getEditField().getScrollY()) + this.lastSpanY + AndroidUtilities.m35dp(5.0f));
+            this.containerView.setTranslationY(((-this.enterView.getEditField().getHeight()) - this.enterView.getEditField().getScrollY()) + this.lastSpanY + AndroidUtilities.m36dp(5.0f));
         }
         float f7 = f5 / 4.0f;
         float f8 = f5 / 2.0f;
-        int max = (int) Math.max((this.arrowX - Math.max(f7, Math.min(f8, AndroidUtilities.m35dp(66.0f)))) - this.listView.getLeft(), 0.0f);
+        int max = (int) Math.max((this.arrowX - Math.max(f7, Math.min(f8, AndroidUtilities.m36dp(66.0f)))) - this.listView.getLeft(), 0.0f);
         if (this.listView.getPaddingLeft() != max) {
             this.listView.setPadding(max, 0, 0, 0);
             this.listView.scrollBy(this.listView.getPaddingLeft() - max, 0);
         }
-        this.listView.setTranslationX(((int) Math.max((f3 - Math.max(f7, Math.min(f8, AndroidUtilities.m35dp(66.0f)))) - this.listView.getLeft(), 0.0f)) - max);
+        this.listView.setTranslationX(((int) Math.max((f3 - Math.max(f7, Math.min(f8, AndroidUtilities.m36dp(66.0f)))) - this.listView.getLeft(), 0.0f)) - max);
         float paddingLeft = (f6 - f8) + this.listView.getPaddingLeft() + this.listView.getTranslationX();
         float top = this.listView.getTop() + this.listView.getTranslationY() + this.listView.getPaddingTop();
         float min = Math.min(f6 + f8 + this.listView.getPaddingLeft() + this.listView.getTranslationX(), getWidth() - this.containerView.getPaddingRight());
-        float bottom = (this.listView.getBottom() + this.listView.getTranslationY()) - AndroidUtilities.m35dp(6.66f);
-        float min2 = Math.min(AndroidUtilities.m35dp(9.0f), f8) * 2.0f;
+        float bottom = (this.listView.getBottom() + this.listView.getTranslationY()) - AndroidUtilities.m36dp(6.66f);
+        float min2 = Math.min(AndroidUtilities.m36dp(9.0f), f8) * 2.0f;
         RectF rectF = AndroidUtilities.rectTmp;
         float f9 = bottom - min2;
         float f10 = paddingLeft + min2;
@@ -549,25 +549,25 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         this.path.arcTo(rectF, -90.0f, 90.0f);
         rectF.set(f12, f9, min, bottom);
         this.path.arcTo(rectF, 0.0f, 90.0f);
-        this.path.lineTo(AndroidUtilities.m35dp(8.66f) + f3, bottom);
-        this.path.lineTo(f3, AndroidUtilities.m35dp(6.66f) + bottom);
-        this.path.lineTo(f3 - AndroidUtilities.m35dp(8.66f), bottom);
+        this.path.lineTo(AndroidUtilities.m36dp(8.66f) + f3, bottom);
+        this.path.lineTo(f3, AndroidUtilities.m36dp(6.66f) + bottom);
+        this.path.lineTo(f3 - AndroidUtilities.m36dp(8.66f), bottom);
         this.path.close();
         if (this.backgroundPaint == null) {
             Paint paint = new Paint(1);
             this.backgroundPaint = paint;
-            paint.setPathEffect(new CornerPathEffect(AndroidUtilities.m35dp(2.0f)));
-            this.backgroundPaint.setShadowLayer(AndroidUtilities.m35dp(4.33f), 0.0f, AndroidUtilities.m35dp(0.33333334f), AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+            paint.setPathEffect(new CornerPathEffect(AndroidUtilities.m36dp(2.0f)));
+            this.backgroundPaint.setShadowLayer(AndroidUtilities.m36dp(4.33f), 0.0f, AndroidUtilities.m36dp(0.33333334f), AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
             this.backgroundPaint.setColor(Theme.getColor("chat_stickersHintPanel", this.resourcesProvider));
         }
         if (f < 1.0f) {
             this.circlePath.rewind();
-            float m35dp = AndroidUtilities.m35dp(6.66f) + bottom;
+            float m36dp = AndroidUtilities.m36dp(6.66f) + bottom;
             double d = f3 - paddingLeft;
-            double d2 = m35dp - top;
+            double d2 = m36dp - top;
             double d3 = f3 - min;
-            double d4 = m35dp - bottom;
-            this.circlePath.addCircle(f3, m35dp, ((float) Math.sqrt(Math.max(Math.max(Math.pow(d, 2.0d) + Math.pow(d2, 2.0d), Math.pow(d2, 2.0d) + Math.pow(d3, 2.0d)), Math.max(Math.pow(d, 2.0d) + Math.pow(d4, 2.0d), Math.pow(d3, 2.0d) + Math.pow(d4, 2.0d))))) * f, Path.Direction.CW);
+            double d4 = m36dp - bottom;
+            this.circlePath.addCircle(f3, m36dp, ((float) Math.sqrt(Math.max(Math.max(Math.pow(d, 2.0d) + Math.pow(d2, 2.0d), Math.pow(d2, 2.0d) + Math.pow(d3, 2.0d)), Math.max(Math.pow(d, 2.0d) + Math.pow(d4, 2.0d), Math.pow(d3, 2.0d) + Math.pow(d4, 2.0d))))) * f, Path.Direction.CW);
             canvas.save();
             canvas2 = canvas;
             canvas2.clipPath(this.circlePath);
@@ -589,14 +589,14 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         float f4 = this.leftGradientAlpha.set(this.listView.canScrollHorizontally(-1) ? 1.0f : 0.0f);
         if (f4 > 0.0f) {
             int i = (int) paddingLeft;
-            Theme.chat_gradientRightDrawable.setBounds(i, (int) top, AndroidUtilities.m35dp(32.0f) + i, (int) bottom);
+            Theme.chat_gradientRightDrawable.setBounds(i, (int) top, AndroidUtilities.m36dp(32.0f) + i, (int) bottom);
             Theme.chat_gradientRightDrawable.setAlpha((int) (f4 * 255.0f));
             Theme.chat_gradientRightDrawable.draw(canvas);
         }
         float f5 = this.rightGradientAlpha.set(this.listView.canScrollHorizontally(1) ? 1.0f : 0.0f);
         if (f5 > 0.0f) {
             int i2 = (int) min;
-            Theme.chat_gradientLeftDrawable.setBounds(i2 - AndroidUtilities.m35dp(32.0f), (int) top, i2, (int) bottom);
+            Theme.chat_gradientLeftDrawable.setBounds(i2 - AndroidUtilities.m36dp(32.0f), (int) top, i2, (int) bottom);
             Theme.chat_gradientLeftDrawable.setAlpha((int) (f5 * 255.0f));
             Theme.chat_gradientLeftDrawable.draw(canvas);
         }
@@ -669,14 +669,13 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
             public EmojiImageView(Context context) {
                 super(context);
-                Adapter.this = r3;
                 this.pressed = new AnimatedFloat(this, 350L, new OvershootInterpolator(5.0f));
             }
 
             @Override
             protected void onMeasure(int i, int i2) {
-                setPadding(AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(3.0f), AndroidUtilities.m35dp(9.66f));
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(52.0f), 1073741824));
+                setPadding(AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(3.0f), AndroidUtilities.m36dp(9.66f));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(52.0f), 1073741824));
             }
 
             public void setEmoji(String str) {
@@ -759,7 +758,6 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         public Adapter() {
-            SuggestEmojiView.this = r1;
         }
 
         @Override

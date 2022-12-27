@@ -24,7 +24,7 @@ public class LoginOrView extends View {
         this.linePaint = new Paint(1);
         this.textBounds = new Rect();
         this.string = LocaleController.getString(C1072R.string.LoginOrSingInWithGoogle);
-        this.textPaint.setTextSize(AndroidUtilities.m35dp(14.0f));
+        this.textPaint.setTextSize(AndroidUtilities.m36dp(14.0f));
         updateColors();
     }
 
@@ -53,9 +53,9 @@ public class LoginOrView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float width = this.measureAfter != null ? ((((getWidth() - this.textBounds.width()) - AndroidUtilities.m35dp(8.0f)) - this.measureAfter.getPaddingLeft()) - this.measureAfter.getPaddingRight()) / 2.0f : AndroidUtilities.m35dp(48.0f);
-        canvas.drawLine((((getWidth() - this.textBounds.width()) / 2.0f) - AndroidUtilities.m35dp(8.0f)) - width, getHeight() / 2.0f, ((getWidth() - this.textBounds.width()) / 2.0f) - AndroidUtilities.m35dp(8.0f), getHeight() / 2.0f, this.linePaint);
-        canvas.drawLine(((getWidth() + this.textBounds.width()) / 2.0f) + AndroidUtilities.m35dp(8.0f), getHeight() / 2.0f, ((getWidth() + this.textBounds.width()) / 2.0f) + AndroidUtilities.m35dp(8.0f) + width, getHeight() / 2.0f, this.linePaint);
+        float width = this.measureAfter != null ? ((((getWidth() - this.textBounds.width()) - AndroidUtilities.m36dp(8.0f)) - this.measureAfter.getPaddingLeft()) - this.measureAfter.getPaddingRight()) / 2.0f : AndroidUtilities.m36dp(48.0f);
+        canvas.drawLine((((getWidth() - this.textBounds.width()) / 2.0f) - AndroidUtilities.m36dp(8.0f)) - width, getHeight() / 2.0f, ((getWidth() - this.textBounds.width()) / 2.0f) - AndroidUtilities.m36dp(8.0f), getHeight() / 2.0f, this.linePaint);
+        canvas.drawLine(((getWidth() + this.textBounds.width()) / 2.0f) + AndroidUtilities.m36dp(8.0f), getHeight() / 2.0f, ((getWidth() + this.textBounds.width()) / 2.0f) + AndroidUtilities.m36dp(8.0f) + width, getHeight() / 2.0f, this.linePaint);
         canvas.drawText(this.string, (getWidth() - this.textBounds.width()) / 2.0f, (getHeight() + this.textBounds.height()) / 2.0f, this.textPaint);
     }
 }

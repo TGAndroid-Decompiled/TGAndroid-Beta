@@ -79,7 +79,6 @@ public class ChartPickerDelegate {
         public final int state;
 
         public CapturesData(int i) {
-            ChartPickerDelegate.this = r1;
             this.state = i;
         }
 
@@ -294,7 +293,7 @@ public class ChartPickerDelegate {
                 this.tryMoveTo = false;
                 float x = this.moveToX - motionEvent.getX();
                 float y = this.moveToY - motionEvent.getY();
-                if (motionEvent.getAction() == 1 && System.currentTimeMillis() - this.startTapTime < 300 && Math.sqrt((x * x) + (y * y)) < AndroidUtilities.m35dp(10.0f)) {
+                if (motionEvent.getAction() == 1 && System.currentTimeMillis() - this.startTapTime < 300 && Math.sqrt((x * x) + (y * y)) < AndroidUtilities.m36dp(10.0f)) {
                     float f3 = (this.moveToX - BaseChartView.HORIZONTAL_PADDING) / this.pickerWidth;
                     final float f4 = this.pickerEnd;
                     final float f5 = this.pickerStart;

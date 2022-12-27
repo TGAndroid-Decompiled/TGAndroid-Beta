@@ -27,9 +27,8 @@ public abstract class BaseCell extends ViewGroup {
         return i;
     }
 
-    public final class CheckForTap implements Runnable {
+    private final class CheckForTap implements Runnable {
         private CheckForTap() {
-            BaseCell.this = r1;
         }
 
         @Override
@@ -44,11 +43,10 @@ public abstract class BaseCell extends ViewGroup {
         }
     }
 
-    public class CheckForLongPress implements Runnable {
+    class CheckForLongPress implements Runnable {
         public int currentPressCount;
 
         CheckForLongPress() {
-            BaseCell.this = r1;
         }
 
         @Override

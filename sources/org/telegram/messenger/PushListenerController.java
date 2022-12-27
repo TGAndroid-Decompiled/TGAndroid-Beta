@@ -117,7 +117,7 @@ public class PushListenerController {
     public static void processRemoteMessage(int i, final String str, final long j) {
         final String str2 = i == 2 ? "FCM" : "HCM";
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d(str2 + " PRE START PROCESSING");
+            FileLog.m35d(str2 + " PRE START PROCESSING");
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -131,17 +131,17 @@ public class PushListenerController {
         } catch (Throwable unused) {
         }
         if (BuildVars.DEBUG_VERSION) {
-            FileLog.m34d("finished " + str2 + " service, time = " + (SystemClock.elapsedRealtime() - elapsedRealtime));
+            FileLog.m35d("finished " + str2 + " service, time = " + (SystemClock.elapsedRealtime() - elapsedRealtime));
         }
     }
 
     public static void lambda$processRemoteMessage$8(final String str, final String str2, final long j) {
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d(str + " PRE INIT APP");
+            FileLog.m35d(str + " PRE INIT APP");
         }
         ApplicationLoader.postInitApplication();
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d(str + " POST INIT APP");
+            FileLog.m35d(str + " POST INIT APP");
         }
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
@@ -469,10 +469,10 @@ public class PushListenerController {
             String str = SharedConfig.pushString;
             if (!TextUtils.isEmpty(str)) {
                 if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("FCM regId = " + str);
+                    FileLog.m35d("FCM regId = " + str);
                 }
             } else if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("FCM Registration not found.");
+                FileLog.m35d("FCM Registration not found.");
             }
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
@@ -492,7 +492,7 @@ public class PushListenerController {
                     }
                 });
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
         }
 
@@ -500,7 +500,7 @@ public class PushListenerController {
             SharedConfig.pushStringGetTimeEnd = SystemClock.elapsedRealtime();
             if (!task.isSuccessful()) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("Failed to get regid");
+                    FileLog.m35d("Failed to get regid");
                 }
                 SharedConfig.pushStringStatus = "__FIREBASE_FAILED__";
                 PushListenerController.sendRegistrationToServer(getPushType(), null);
@@ -519,7 +519,7 @@ public class PushListenerController {
                 try {
                     this.hasServices = Boolean.valueOf(GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(ApplicationLoader.applicationContext) == 0);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     this.hasServices = Boolean.FALSE;
                 }
             }

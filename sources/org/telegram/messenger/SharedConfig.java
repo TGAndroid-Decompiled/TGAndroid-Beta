@@ -264,7 +264,7 @@ public class SharedConfig {
                 edit2.putBoolean("floatingDebugActive", isFloatingDebugActive);
                 edit2.apply();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -336,7 +336,7 @@ public class SharedConfig {
                     passportConfigMap.put(next.toUpperCase(), jSONObject.getString(next).toUpperCase());
                 }
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
         }
         return passportConfigMap;
@@ -351,7 +351,7 @@ public class SharedConfig {
         try {
             i = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             i = BuildVars.BUILD_VERSION;
         }
         return pendingAppUpdateBuildVersion == i;
@@ -377,7 +377,7 @@ public class SharedConfig {
                     passcodeHash = Utilities.bytesToHex(Utilities.computeSHA256(bArr, 0, length));
                     saveConfig();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             return equals;
@@ -391,7 +391,7 @@ public class SharedConfig {
             System.arraycopy(passcodeSalt, 0, bArr2, bytes2.length + 16, 16);
             return passcodeHash.equals(Utilities.bytesToHex(Utilities.computeSHA256(bArr2, 0, length2)));
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
             return false;
         }
     }
@@ -528,7 +528,7 @@ public class SharedConfig {
             File externalFilesDir = ApplicationLoader.applicationContext.getExternalFilesDir(null);
             Utilities.clearDir(new File(externalFilesDir.getAbsolutePath() + "/logs").getAbsolutePath(), 0, j, false);
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putInt("lastLogsCheckTime", lastLogsCheckTime);
@@ -622,7 +622,7 @@ public class SharedConfig {
                                     try {
                                         keepMediaFile.file.delete();
                                     } catch (Exception e) {
-                                        FileLog.m31e(e);
+                                        FileLog.m32e(e);
                                     }
                                 }
                             }
@@ -631,7 +631,7 @@ public class SharedConfig {
                         j2 = Long.MAX_VALUE;
                     }
                 } catch (Throwable th) {
-                    FileLog.m31e(th);
+                    FileLog.m32e(th);
                 }
                 i6++;
                 i2 = 4;
@@ -654,7 +654,7 @@ public class SharedConfig {
                 Collections.sort(arrayList3, SharedConfig$$ExternalSyntheticLambda5.INSTANCE);
                 for (int i14 = 0; i14 < arrayList3.size(); i14++) {
                     j5 -= ((FileInfoInternal) arrayList3.get(i14)).file.length();
-                    Log.m664d("kek", "remove files by size" + ((FileInfoInternal) arrayList3.get(i14)).file.getName());
+                    Log.m665d("kek", "remove files by size" + ((FileInfoInternal) arrayList3.get(i14)).file.getName());
                     try {
                         ((FileInfoInternal) arrayList3.get(i14)).file.delete();
                     } catch (Exception unused) {
@@ -663,7 +663,7 @@ public class SharedConfig {
                         break;
                     }
                 }
-                Log.m664d("kek", "total size " + AndroidUtilities.formatFileSize(j5));
+                Log.m665d("kek", "total size " + AndroidUtilities.formatFileSize(j5));
             }
         }
         File file3 = new File(file, "acache");
@@ -671,7 +671,7 @@ public class SharedConfig {
             try {
                 Utilities.clearDir(file3.getAbsolutePath(), 0, i - 86400, false);
             } catch (Throwable th2) {
-                FileLog.m31e(th2);
+                FileLog.m32e(th2);
             }
         }
         MessagesController.getGlobalMainSettings().edit().putInt("lastKeepMediaCheckTime", lastKeepMediaCheckTime).apply();
@@ -1096,7 +1096,7 @@ public class SharedConfig {
                 new File(file3, ".nomedia").delete();
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -1159,7 +1159,7 @@ public class SharedConfig {
                 devicePerformanceClass = 2;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("device performance info selected_class = " + devicePerformanceClass + " (cpu_count = " + i2 + ", freq = " + ceil + ", memoryClass = " + memoryClass + ", android version " + i + ", manufacture " + Build.MANUFACTURER + ")");
+                FileLog.m35d("device performance info selected_class = " + devicePerformanceClass + " (cpu_count = " + i2 + ", freq = " + ceil + ", memoryClass = " + memoryClass + ", android version " + i + ", manufacture " + Build.MANUFACTURER + ")");
             }
         }
         return devicePerformanceClass;

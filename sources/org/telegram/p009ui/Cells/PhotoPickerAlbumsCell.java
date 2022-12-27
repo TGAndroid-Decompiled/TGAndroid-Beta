@@ -36,7 +36,6 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
 
         public AlbumView(Context context) {
             super(context);
-            PhotoPickerAlbumsCell.this = r18;
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
             addView(backupImageView, LayoutHelper.createFrame(-1, -1.0f));
@@ -157,21 +156,21 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int m35dp;
+        int m36dp;
         if (AndroidUtilities.isTablet()) {
-            m35dp = ((AndroidUtilities.m35dp(490.0f) - AndroidUtilities.m35dp(12.0f)) - ((this.albumsCount - 1) * AndroidUtilities.m35dp(4.0f))) / this.albumsCount;
+            m36dp = ((AndroidUtilities.m36dp(490.0f) - AndroidUtilities.m36dp(12.0f)) - ((this.albumsCount - 1) * AndroidUtilities.m36dp(4.0f))) / this.albumsCount;
         } else {
-            m35dp = ((AndroidUtilities.displaySize.x - AndroidUtilities.m35dp(12.0f)) - ((this.albumsCount - 1) * AndroidUtilities.m35dp(4.0f))) / this.albumsCount;
+            m36dp = ((AndroidUtilities.displaySize.x - AndroidUtilities.m36dp(12.0f)) - ((this.albumsCount - 1) * AndroidUtilities.m36dp(4.0f))) / this.albumsCount;
         }
         for (int i3 = 0; i3 < this.albumsCount; i3++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.albumViews[i3].getLayoutParams();
-            layoutParams.topMargin = AndroidUtilities.m35dp(4.0f);
-            layoutParams.leftMargin = (AndroidUtilities.m35dp(4.0f) + m35dp) * i3;
-            layoutParams.width = m35dp;
-            layoutParams.height = m35dp;
+            layoutParams.topMargin = AndroidUtilities.m36dp(4.0f);
+            layoutParams.leftMargin = (AndroidUtilities.m36dp(4.0f) + m36dp) * i3;
+            layoutParams.width = m36dp;
+            layoutParams.height = m36dp;
             layoutParams.gravity = 51;
             this.albumViews[i3].setLayoutParams(layoutParams);
         }
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(4.0f) + m35dp, 1073741824));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(4.0f) + m36dp, 1073741824));
     }
 }

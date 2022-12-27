@@ -100,14 +100,14 @@ public class SettingsSearchCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
     }
 
     public void setTextAndValueAndIcon(CharSequence charSequence, String[] strArr, int i, boolean z) {
         this.textView.setText(charSequence);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textView.getLayoutParams();
-        layoutParams.leftMargin = AndroidUtilities.m35dp(LocaleController.isRTL ? 16.0f : 71.0f);
-        layoutParams.rightMargin = AndroidUtilities.m35dp(LocaleController.isRTL ? 71.0f : 16.0f);
+        layoutParams.leftMargin = AndroidUtilities.m36dp(LocaleController.isRTL ? 16.0f : 71.0f);
+        layoutParams.rightMargin = AndroidUtilities.m36dp(LocaleController.isRTL ? 71.0f : 16.0f);
         if (strArr != null) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             for (int i2 = 0; i2 < strArr.length; i2++) {
@@ -122,12 +122,12 @@ public class SettingsSearchCell extends FrameLayout {
             }
             this.valueTextView.setText(spannableStringBuilder);
             this.valueTextView.setVisibility(0);
-            layoutParams.topMargin = AndroidUtilities.m35dp(10.0f);
+            layoutParams.topMargin = AndroidUtilities.m36dp(10.0f);
             FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.valueTextView.getLayoutParams();
-            layoutParams2.leftMargin = AndroidUtilities.m35dp(LocaleController.isRTL ? 16.0f : 71.0f);
-            layoutParams2.rightMargin = AndroidUtilities.m35dp(LocaleController.isRTL ? 71.0f : 16.0f);
+            layoutParams2.leftMargin = AndroidUtilities.m36dp(LocaleController.isRTL ? 16.0f : 71.0f);
+            layoutParams2.rightMargin = AndroidUtilities.m36dp(LocaleController.isRTL ? 71.0f : 16.0f);
         } else {
-            layoutParams.topMargin = AndroidUtilities.m35dp(21.0f);
+            layoutParams.topMargin = AndroidUtilities.m36dp(21.0f);
             this.valueTextView.setVisibility(8);
         }
         if (i != 0) {
@@ -158,7 +158,7 @@ public class SettingsSearchCell extends FrameLayout {
             }
             this.textView.setText(spannableStringBuilder);
             this.valueTextView.setVisibility(0);
-            layoutParams.topMargin = AndroidUtilities.m35dp(10.0f);
+            layoutParams.topMargin = AndroidUtilities.m36dp(10.0f);
         } else {
             this.textView.setText(charSequence);
             if (strArr != null) {
@@ -175,19 +175,19 @@ public class SettingsSearchCell extends FrameLayout {
                 }
                 this.valueTextView.setText(spannableStringBuilder2);
                 this.valueTextView.setVisibility(0);
-                layoutParams.topMargin = AndroidUtilities.m35dp(10.0f);
+                layoutParams.topMargin = AndroidUtilities.m36dp(10.0f);
             } else {
-                layoutParams.topMargin = AndroidUtilities.m35dp(21.0f);
+                layoutParams.topMargin = AndroidUtilities.m36dp(21.0f);
                 this.valueTextView.setVisibility(8);
             }
         }
-        int m35dp = AndroidUtilities.m35dp(16.0f);
-        layoutParams.rightMargin = m35dp;
-        layoutParams.leftMargin = m35dp;
+        int m36dp = AndroidUtilities.m36dp(16.0f);
+        layoutParams.rightMargin = m36dp;
+        layoutParams.leftMargin = m36dp;
         FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.valueTextView.getLayoutParams();
-        int m35dp2 = AndroidUtilities.m35dp(16.0f);
-        layoutParams2.rightMargin = m35dp2;
-        layoutParams2.leftMargin = m35dp2;
+        int m36dp2 = AndroidUtilities.m36dp(16.0f);
+        layoutParams2.rightMargin = m36dp2;
+        layoutParams2.leftMargin = m36dp2;
         this.imageView.setVisibility(8);
         this.needDivider = z2;
         setWillNotDraw(!z2);
@@ -197,7 +197,7 @@ public class SettingsSearchCell extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(this.left), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(this.left) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(this.left), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(this.left) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }
 }

@@ -121,15 +121,15 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         return false;
     }
 
-    public class C36151 extends TextView {
+    public class C36181 extends TextView {
         final NotificationCenter.NotificationCenterDelegate delegate;
 
-        C36151(NewContactBottomSheet newContactBottomSheet, Context context) {
+        C36181(NewContactBottomSheet newContactBottomSheet, Context context) {
             super(context);
             this.delegate = new NotificationCenter.NotificationCenterDelegate() {
                 @Override
                 public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                    NewContactBottomSheet.C36151.this.lambda$$0(i, i2, objArr);
+                    NewContactBottomSheet.C36181.this.lambda$$0(i, i2, objArr);
                 }
             };
         }
@@ -151,9 +151,8 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
     }
 
-    public class C36162 implements CountrySelectActivity.CountrySelectActivityDelegate {
-        C36162() {
-            NewContactBottomSheet.this = r1;
+    public class C36192 implements CountrySelectActivity.CountrySelectActivityDelegate {
+        C36192() {
         }
 
         @Override
@@ -162,7 +161,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NewContactBottomSheet.C36162.this.lambda$didSelectCountry$0();
+                    NewContactBottomSheet.C36192.this.lambda$didSelectCountry$0();
                 }
             }, 300L);
             NewContactBottomSheet.this.phoneField.requestFocus();
@@ -176,7 +175,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
 
     public void lambda$createView$3(View view) {
         CountrySelectActivity countrySelectActivity = new CountrySelectActivity(true);
-        countrySelectActivity.setCountrySelectActivityDelegate(new C36162());
+        countrySelectActivity.setCountrySelectActivityDelegate(new C36192());
         this.parentFragment.showAsSheet(countrySelectActivity);
     }
 
@@ -307,7 +306,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             }
             bufferedReader.close();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (str.startsWith("+")) {
             return str;
@@ -341,7 +340,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         if (languageFlag != null) {
             spannableStringBuilder.append((CharSequence) languageFlag);
         }
-        setCountryButtonText(Emoji.replaceEmoji(spannableStringBuilder, this.countryFlag.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false));
+        setCountryButtonText(Emoji.replaceEmoji(spannableStringBuilder, this.countryFlag.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false));
         this.countryCodeForHint = str;
         this.wasCountryHintIndex = -1;
         invalidateCountryHint();
@@ -351,9 +350,9 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         if (TextUtils.isEmpty(charSequence)) {
             ViewPropertyAnimator animate = this.countryFlag.animate();
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-            animate.setInterpolator(cubicBezierInterpolator).translationY(AndroidUtilities.m35dp(30.0f)).setDuration(150L);
-            this.plusTextView.animate().setInterpolator(cubicBezierInterpolator).translationX(-AndroidUtilities.m35dp(30.0f)).setDuration(150L);
-            this.codeField.animate().setInterpolator(cubicBezierInterpolator).translationX(-AndroidUtilities.m35dp(30.0f)).setDuration(150L);
+            animate.setInterpolator(cubicBezierInterpolator).translationY(AndroidUtilities.m36dp(30.0f)).setDuration(150L);
+            this.plusTextView.animate().setInterpolator(cubicBezierInterpolator).translationX(-AndroidUtilities.m36dp(30.0f)).setDuration(150L);
+            this.codeField.animate().setInterpolator(cubicBezierInterpolator).translationX(-AndroidUtilities.m36dp(30.0f)).setDuration(150L);
             return;
         }
         this.countryFlag.animate().setInterpolator(AndroidUtilities.overshootInterpolator).translationY(0.0f).setDuration(350L).start();

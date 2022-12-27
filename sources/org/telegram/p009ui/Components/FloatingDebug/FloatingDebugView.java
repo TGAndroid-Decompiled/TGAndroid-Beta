@@ -230,7 +230,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         textView.setTextSize(1, 20.0f);
         this.titleView.setText(LocaleController.getString(C1072R.string.DebugMenu));
         this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.titleView.setPadding(AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(19.0f), AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(19.0f));
+        this.titleView.setPadding(AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(19.0f), AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(19.0f));
         this.bigLayout.addView(this.titleView, LayoutHelper.createLinear(-1, -2));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
@@ -244,7 +244,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 View headerCell;
-                int i2 = C23134.f1071xe4e639ed[FloatingDebugController.DebugItemType.values()[i].ordinal()];
+                int i2 = C23164.f1071xe4e639ed[FloatingDebugController.DebugItemType.values()[i].ordinal()];
                 if (i2 == 2) {
                     headerCell = new HeaderCell(context);
                 } else if (i2 != 3) {
@@ -259,7 +259,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 FloatingDebugController.DebugItem debugItem = (FloatingDebugController.DebugItem) FloatingDebugView.this.debugItems.get(i);
-                int i2 = C23134.f1071xe4e639ed[debugItem.type.ordinal()];
+                int i2 = C23164.f1071xe4e639ed[debugItem.type.ordinal()];
                 if (i2 == 1) {
                     AlertDialog.AlertDialogCell alertDialogCell = (AlertDialog.AlertDialogCell) viewHolder.itemView;
                     alertDialogCell.setTextColor(Theme.getColor("dialogTextBlack"));
@@ -303,7 +303,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         setWillNotDraw(false);
     }
 
-    static class C23134 {
+    static class C23164 {
         static final int[] f1071xe4e639ed;
 
         static {
@@ -355,11 +355,11 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     }
 
     private void updateDrawables() {
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m35dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
+        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.m36dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
         Drawable mutate = getResources().getDrawable(C1072R.C1073drawable.floating_shadow).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
-        combinedDrawable.setIconSize(AndroidUtilities.m35dp(56.0f), AndroidUtilities.m35dp(56.0f));
+        combinedDrawable.setIconSize(AndroidUtilities.m36dp(56.0f), AndroidUtilities.m36dp(56.0f));
         this.floatingButtonBackground = combinedDrawable;
         Drawable drawable = getResources().getDrawable(C1072R.C1073drawable.popup_fixed_alert3);
         drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
@@ -453,18 +453,18 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     public void lambda$showBigMenu$2(float f, float f2, Window window, DynamicAnimation dynamicAnimation, float f3, float f4) {
         float f5 = f3 / 1000.0f;
         this.bigLayout.setAlpha(f5);
-        this.bigLayout.setTranslationX(AndroidUtilities.lerp(f - AndroidUtilities.m35dp(8.0f), 0.0f, f5));
-        this.bigLayout.setTranslationY(AndroidUtilities.lerp(f2 - AndroidUtilities.m35dp(8.0f), 0.0f, f5));
-        this.bigLayout.setPivotX(this.floatingButtonContainer.getTranslationX() + AndroidUtilities.m35dp(28.0f));
-        this.bigLayout.setPivotY(this.floatingButtonContainer.getTranslationY() + AndroidUtilities.m35dp(28.0f));
+        this.bigLayout.setTranslationX(AndroidUtilities.lerp(f - AndroidUtilities.m36dp(8.0f), 0.0f, f5));
+        this.bigLayout.setTranslationY(AndroidUtilities.lerp(f2 - AndroidUtilities.m36dp(8.0f), 0.0f, f5));
+        this.bigLayout.setPivotX(this.floatingButtonContainer.getTranslationX() + AndroidUtilities.m36dp(28.0f));
+        this.bigLayout.setPivotY(this.floatingButtonContainer.getTranslationY() + AndroidUtilities.m36dp(28.0f));
         if (this.bigLayout.getWidth() != 0) {
             this.bigLayout.setScaleX(AndroidUtilities.lerp(this.floatingButtonContainer.getWidth() / this.bigLayout.getWidth(), 1.0f, f5));
         }
         if (this.bigLayout.getHeight() != 0) {
             this.bigLayout.setScaleY(AndroidUtilities.lerp(this.floatingButtonContainer.getHeight() / this.bigLayout.getHeight(), 1.0f, f5));
         }
-        this.floatingButtonContainer.setTranslationX(AndroidUtilities.lerp(f, (getWidth() / 2.0f) - AndroidUtilities.m35dp(28.0f), f5));
-        this.floatingButtonContainer.setTranslationY(AndroidUtilities.lerp(f2, (getHeight() / 2.0f) - AndroidUtilities.m35dp(28.0f), f5));
+        this.floatingButtonContainer.setTranslationX(AndroidUtilities.lerp(f, (getWidth() / 2.0f) - AndroidUtilities.m36dp(28.0f), f5));
+        this.floatingButtonContainer.setTranslationY(AndroidUtilities.lerp(f2, (getHeight() / 2.0f) - AndroidUtilities.m36dp(28.0f), f5));
         this.floatingButtonContainer.setAlpha(1.0f - f5);
         if (Build.VERSION.SDK_INT >= 21) {
             window.setStatusBarColor(ColorUtils.blendARGB(this.wasStatusBar, 2046820352, f5));
@@ -538,11 +538,11 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     }
 
     public float clampX(DisplayMetrics displayMetrics, float f) {
-        return MathUtils.clamp(f, AndroidUtilities.m35dp(16.0f), displayMetrics.widthPixels - AndroidUtilities.m35dp(72.0f));
+        return MathUtils.clamp(f, AndroidUtilities.m36dp(16.0f), displayMetrics.widthPixels - AndroidUtilities.m36dp(72.0f));
     }
 
     public float clampY(DisplayMetrics displayMetrics, float f) {
-        return MathUtils.clamp(f, AndroidUtilities.m35dp(16.0f), displayMetrics.heightPixels - AndroidUtilities.m35dp(72.0f));
+        return MathUtils.clamp(f, AndroidUtilities.m36dp(16.0f), displayMetrics.heightPixels - AndroidUtilities.m36dp(72.0f));
     }
 
     @Override
@@ -569,8 +569,8 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
 
     public void lambda$showFab$8(DynamicAnimation dynamicAnimation, float f, float f2) {
         float f3 = f / 1000.0f;
-        this.floatingButtonContainer.setPivotX(AndroidUtilities.m35dp(28.0f));
-        this.floatingButtonContainer.setPivotY(AndroidUtilities.m35dp(28.0f));
+        this.floatingButtonContainer.setPivotX(AndroidUtilities.m36dp(28.0f));
+        this.floatingButtonContainer.setPivotY(AndroidUtilities.m36dp(28.0f));
         this.floatingButtonContainer.setScaleX(f3);
         this.floatingButtonContainer.setScaleY(f3);
         this.floatingButtonContainer.setAlpha(MathUtils.clamp(f3, 0.0f, 1.0f));
@@ -581,7 +581,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         runnable.run();
     }
 
-    public class SeekBarCell extends FrameLayout {
+    private class SeekBarCell extends FrameLayout {
         private AnimationProperties.FloatProperty callback;
         private int lastWidth;
         private float max;
@@ -596,7 +596,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             setWillNotDraw(false);
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
-            textPaint.setTextSize(AndroidUtilities.m35dp(16.0f));
+            textPaint.setTextSize(AndroidUtilities.m36dp(16.0f));
             SeekBarView seekBarView = new SeekBarView(context);
             this.seekBar = seekBarView;
             seekBarView.setReportChanges(true);
@@ -632,10 +632,10 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         @Override
         protected void onDraw(Canvas canvas) {
             this.textPaint.setColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            canvas.drawText(this.title, AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(24.0f), this.textPaint);
+            canvas.drawText(this.title, AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(24.0f), this.textPaint);
             this.textPaint.setColor(Theme.getColor("windowBackgroundWhiteValueText"));
             String format = String.format(Locale.ROOT, "%.2f", Float.valueOf(this.value));
-            canvas.drawText(format, (getMeasuredWidth() - AndroidUtilities.m35dp(8.0f)) - this.textPaint.measureText(format), AndroidUtilities.m35dp(23.0f) + this.seekBar.getY(), this.textPaint);
+            canvas.drawText(format, (getMeasuredWidth() - AndroidUtilities.m36dp(8.0f)) - this.textPaint.measureText(format), AndroidUtilities.m36dp(23.0f) + this.seekBar.getY(), this.textPaint);
         }
 
         @Override

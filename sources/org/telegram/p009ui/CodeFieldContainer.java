@@ -39,9 +39,9 @@ public class CodeFieldContainer extends LinearLayout {
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         Paint paint = this.paint;
-        float m35dp = AndroidUtilities.m35dp(1.5f);
-        this.strokeWidth = m35dp;
-        paint.setStrokeWidth(m35dp);
+        float m36dp = AndroidUtilities.m36dp(1.5f);
+        this.strokeWidth = m36dp;
+        paint.setStrokeWidth(m36dp);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class CodeFieldContainer extends LinearLayout {
                     float f2 = -Math.max(0.0f, this.strokeWidth * (codeNumberField.getSuccessScaleProgress() - 1.0f));
                     rectF.inset(f2, f2);
                 }
-                canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), this.paint);
+                canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), this.paint);
             }
         }
         super.dispatchDraw(canvas);

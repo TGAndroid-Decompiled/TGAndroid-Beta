@@ -134,7 +134,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
 
     public void lambda$createView$1(int i, boolean z) {
         Runnable runnable;
-        if (i < AndroidUtilities.m35dp(20.0f) || (runnable = this.onShowKeyboardCallback) == null) {
+        if (i < AndroidUtilities.m36dp(20.0f) || (runnable = this.onShowKeyboardCallback) == null) {
             return;
         }
         runnable.run();
@@ -247,11 +247,10 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         UserConfig.getInstance(this.currentAccount).saveConfig(false);
     }
 
-    public class C36414 extends C1133ActionBar.ActionBarMenuOnItemClick {
+    public class C36444 extends C1133ActionBar.ActionBarMenuOnItemClick {
         final ActionBarMenuSubItem val$switchItem;
 
-        C36414(ActionBarMenuSubItem actionBarMenuSubItem) {
-            PasscodeActivity.this = r1;
+        C36444(ActionBarMenuSubItem actionBarMenuSubItem) {
             this.val$switchItem = actionBarMenuSubItem;
         }
 
@@ -268,7 +267,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PasscodeActivity.C36414.this.lambda$onItemClick$0(actionBarMenuSubItem);
+                        PasscodeActivity.C36444.this.lambda$onItemClick$0(actionBarMenuSubItem);
                     }
                 }, 150L);
                 PasscodeActivity.this.passwordEditText.setText("");
@@ -294,7 +293,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         TextView textView = new TextView(context);
         textView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText6"));
         textView.setGravity(1);
-        textView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+        textView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
         textView.setTextSize(1, 15.0f);
         return textView;
     }
@@ -329,10 +328,9 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public class C36458 extends CodeFieldContainer {
-        C36458(Context context) {
+    public class C36488 extends CodeFieldContainer {
+        C36488(Context context) {
             super(context);
-            PasscodeActivity.this = r1;
         }
 
         @Override
@@ -343,7 +341,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                 postDelayed(new Runnable() {
                     @Override
                     public final void run() {
-                        PasscodeActivity.C36458.this.lambda$processNextPressed$0();
+                        PasscodeActivity.C36488.this.lambda$processNextPressed$0();
                     }
                 }, 260L);
             }
@@ -387,7 +385,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         if (!z2) {
             this.keyboardView.setVisibility(z ? 0 : 8);
             this.keyboardView.setAlpha(z ? 1.0f : 0.0f);
-            this.keyboardView.setTranslationY(z ? 0.0f : AndroidUtilities.m35dp(230.0f));
+            this.keyboardView.setTranslationY(z ? 0.0f : AndroidUtilities.m36dp(230.0f));
             this.fragmentView.requestLayout();
             return;
         }
@@ -424,7 +422,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
     public void lambda$setCustomKeyboardVisible$13(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.keyboardView.setAlpha(floatValue);
-        this.keyboardView.setTranslationY((1.0f - floatValue) * AndroidUtilities.m35dp(230.0f) * 0.75f);
+        this.keyboardView.setTranslationY((1.0f - floatValue) * AndroidUtilities.m36dp(230.0f) * 0.75f);
         this.fragmentView.requestLayout();
     }
 
@@ -435,7 +433,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
             this.floatingButtonAnimator = null;
         }
         if (!z2) {
-            this.floatingAutoAnimator.setOffsetY(z ? 0.0f : AndroidUtilities.m35dp(70.0f));
+            this.floatingAutoAnimator.setOffsetY(z ? 0.0f : AndroidUtilities.m36dp(70.0f));
             this.floatingButtonContainer.setAlpha(z ? 1.0f : 0.0f);
             this.floatingButtonContainer.setVisibility(z ? 0 : 8);
             return;
@@ -475,7 +473,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
 
     public void lambda$setFloatingButtonVisible$14(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.floatingAutoAnimator.setOffsetY(AndroidUtilities.m35dp(70.0f) * (1.0f - floatValue));
+        this.floatingAutoAnimator.setOffsetY(AndroidUtilities.m36dp(70.0f) * (1.0f - floatValue));
         this.floatingButtonContainer.setAlpha(floatValue);
     }
 
@@ -609,7 +607,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                 this.fingerprintRow = -1;
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
         int i4 = this.rowCount;
         int i5 = i4 + 1;
@@ -783,7 +781,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                 System.arraycopy(SharedConfig.passcodeSalt, 0, bArr, bytes.length + 16, 16);
                 SharedConfig.passcodeHash = Utilities.bytesToHex(Utilities.computeSHA256(bArr, 0, length));
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             SharedConfig.allowScreenCapture = true;
             SharedConfig.passcodeType = this.currentPasswordType;
@@ -918,7 +916,6 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         private Context mContext;
 
         public ListAdapter(Context context) {
-            PasscodeActivity.this = r1;
             this.mContext = context;
         }
 
@@ -1110,11 +1107,11 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                     PasscodeActivity.RLottieImageHolderView.this.lambda$new$0(view);
                 }
             });
-            int m35dp = AndroidUtilities.m35dp(120.0f);
-            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(m35dp, m35dp);
+            int m36dp = AndroidUtilities.m36dp(120.0f);
+            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(m36dp, m36dp);
             layoutParams.gravity = 1;
             addView(this.imageView, layoutParams);
-            setPadding(0, AndroidUtilities.m35dp(32.0f), 0, 0);
+            setPadding(0, AndroidUtilities.m36dp(32.0f), 0, 0);
             setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
         }
 

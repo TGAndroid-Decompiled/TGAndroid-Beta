@@ -20,8 +20,8 @@ public class AudioVisualizerDrawable {
     private final float[] current = new float[8];
     private final float[] f1033dt = new float[8];
     private final Random random = new Random();
-    public float IDLE_RADIUS = AndroidUtilities.m35dp(6.0f) * 0.33f;
-    public float WAVE_RADIUS = AndroidUtilities.m35dp(12.0f) * 0.36f;
+    public float IDLE_RADIUS = AndroidUtilities.m36dp(6.0f) * 0.33f;
+    public float WAVE_RADIUS = AndroidUtilities.m36dp(12.0f) * 0.36f;
     public float ANIMATION_DURATION = 120.0f;
     public int ALPHA = 61;
     private float[] lastAmplitude = new float[6];
@@ -33,7 +33,7 @@ public class AudioVisualizerDrawable {
             CircleBezierDrawable circleBezierDrawable = new CircleBezierDrawable(6);
             circleBezierDrawableArr[i] = circleBezierDrawable;
             circleBezierDrawable.idleStateDiff = 0.0f;
-            circleBezierDrawable.radius = AndroidUtilities.m35dp(24.0f);
+            circleBezierDrawable.radius = AndroidUtilities.m36dp(24.0f);
             circleBezierDrawable.radiusDiff = 0.0f;
             circleBezierDrawable.randomK = 1.0f;
         }
@@ -160,14 +160,14 @@ public class AudioVisualizerDrawable {
             this.tmpWaveform[i3] = (int) (this.current[i3 + 3] * this.WAVE_RADIUS);
         }
         this.drawables[1].setAdditionals(this.tmpWaveform);
-        float m35dp = AndroidUtilities.m35dp(22.0f) + (AndroidUtilities.m35dp(4.0f) * f8) + (this.IDLE_RADIUS * f7);
-        if (m35dp > AndroidUtilities.m35dp(26.0f)) {
-            m35dp = AndroidUtilities.m35dp(26.0f);
+        float m36dp = AndroidUtilities.m36dp(22.0f) + (AndroidUtilities.m36dp(4.0f) * f8) + (this.IDLE_RADIUS * f7);
+        if (m36dp > AndroidUtilities.m36dp(26.0f)) {
+            m36dp = AndroidUtilities.m36dp(26.0f);
         }
         CircleBezierDrawable[] circleBezierDrawableArr = this.drawables;
         CircleBezierDrawable circleBezierDrawable = circleBezierDrawableArr[0];
-        circleBezierDrawableArr[1].radius = m35dp;
-        circleBezierDrawable.radius = m35dp;
+        circleBezierDrawableArr[1].radius = m36dp;
+        circleBezierDrawable.radius = m36dp;
         canvas.save();
         double d = this.rotation;
         Double.isNaN(d);

@@ -234,7 +234,7 @@ public class PaintToolsView extends LinearLayout {
         if (f > 0.25f && f < 0.75f) {
             f2 = (f <= 0.25f || f >= 0.5f) ? 1.0f - ((0.75f - f) / 0.25f) : (0.5f - f) / 0.25f;
         }
-        float min = (Math.min((rLottieImageView.getWidth() - rLottieImageView.getPaddingLeft()) - rLottieImageView.getPaddingRight(), (rLottieImageView.getHeight() - rLottieImageView.getPaddingTop()) - rLottieImageView.getPaddingBottom()) / 2.0f) + AndroidUtilities.m35dp(3.0f) + (AndroidUtilities.m35dp(3.0f) * f2);
+        float min = (Math.min((rLottieImageView.getWidth() - rLottieImageView.getPaddingLeft()) - rLottieImageView.getPaddingRight(), (rLottieImageView.getHeight() - rLottieImageView.getPaddingTop()) - rLottieImageView.getPaddingBottom()) / 2.0f) + AndroidUtilities.m36dp(3.0f) + (AndroidUtilities.m36dp(3.0f) * f2);
         float x = rLottieImageView.getX() + (rLottieImageView.getWidth() / 2.0f) + getOffsetForIndex(this.selectedIndex);
         float x2 = rLottieImageView2 != null ? rLottieImageView2.getX() + (rLottieImageView2.getWidth() / 2.0f) : 0.0f;
         int i2 = this.nextSelectedIndex;
@@ -243,7 +243,7 @@ public class PaintToolsView extends LinearLayout {
 
     private float getOffsetForIndex(int i) {
         if (i == this.brushesCount + 1) {
-            return AndroidUtilities.m35dp(4.0f);
+            return AndroidUtilities.m36dp(4.0f);
         }
         return 0.0f;
     }
@@ -254,7 +254,7 @@ public class PaintToolsView extends LinearLayout {
 
     private RLottieImageView createView(boolean z, boolean z2) {
         RLottieImageView rLottieImageView = new RLottieImageView(getContext());
-        rLottieImageView.setPadding(AndroidUtilities.m35dp(z ? 0.0f : 8.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(z2 ? 0.0f : 8.0f), AndroidUtilities.m35dp(8.0f));
+        rLottieImageView.setPadding(AndroidUtilities.m36dp(z ? 0.0f : 8.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(z2 ? 0.0f : 8.0f), AndroidUtilities.m36dp(8.0f));
         rLottieImageView.setLayoutParams(LayoutHelper.createLinear(0, 40, 1.0f));
         rLottieImageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         return rLottieImageView;

@@ -469,7 +469,7 @@ public class FastDateParser implements DateParser, Serializable {
         }
     }
 
-    public static class NumberStrategy extends Strategy {
+    private static class NumberStrategy extends Strategy {
         private final int field;
 
         @Override

@@ -137,18 +137,18 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     public static final float HORIZONTAL_PADDING = AndroidUtilities.dpf2(16.0f);
     private static final float SELECTED_LINE_WIDTH = AndroidUtilities.dpf2(1.5f);
     private static final float SIGNATURE_TEXT_SIZE = AndroidUtilities.dpf2(12.0f);
-    public static final int SIGNATURE_TEXT_HEIGHT = AndroidUtilities.m35dp(18.0f);
-    private static final int BOTTOM_SIGNATURE_TEXT_HEIGHT = AndroidUtilities.m35dp(14.0f);
-    public static final int BOTTOM_SIGNATURE_START_ALPHA = AndroidUtilities.m35dp(10.0f);
-    protected static final int PICKER_PADDING = AndroidUtilities.m35dp(16.0f);
-    private static final int PICKER_CAPTURE_WIDTH = AndroidUtilities.m35dp(24.0f);
-    private static final int LANDSCAPE_END_PADDING = AndroidUtilities.m35dp(16.0f);
-    private static final int BOTTOM_SIGNATURE_OFFSET = AndroidUtilities.m35dp(10.0f);
-    private static final int DP_12 = AndroidUtilities.m35dp(12.0f);
-    private static final int DP_6 = AndroidUtilities.m35dp(6.0f);
-    private static final int DP_5 = AndroidUtilities.m35dp(5.0f);
-    private static final int DP_2 = AndroidUtilities.m35dp(2.0f);
-    private static final int DP_1 = AndroidUtilities.m35dp(1.0f);
+    public static final int SIGNATURE_TEXT_HEIGHT = AndroidUtilities.m36dp(18.0f);
+    private static final int BOTTOM_SIGNATURE_TEXT_HEIGHT = AndroidUtilities.m36dp(14.0f);
+    public static final int BOTTOM_SIGNATURE_START_ALPHA = AndroidUtilities.m36dp(10.0f);
+    protected static final int PICKER_PADDING = AndroidUtilities.m36dp(16.0f);
+    private static final int PICKER_CAPTURE_WIDTH = AndroidUtilities.m36dp(24.0f);
+    private static final int LANDSCAPE_END_PADDING = AndroidUtilities.m36dp(16.0f);
+    private static final int BOTTOM_SIGNATURE_OFFSET = AndroidUtilities.m36dp(10.0f);
+    private static final int DP_12 = AndroidUtilities.m36dp(12.0f);
+    private static final int DP_6 = AndroidUtilities.m36dp(6.0f);
+    private static final int DP_5 = AndroidUtilities.m36dp(5.0f);
+    private static final int DP_2 = AndroidUtilities.m36dp(2.0f);
+    private static final int DP_1 = AndroidUtilities.m36dp(1.0f);
 
     public interface DateSelectionListener {
         void onDateSelected(long j);
@@ -221,7 +221,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         this.superDraw = false;
         this.useAlphaSignature = false;
         this.transitionMode = 0;
-        this.pikerHeight = AndroidUtilities.m35dp(46.0f);
+        this.pikerHeight = AndroidUtilities.m36dp(46.0f);
         this.chartArea = new RectF();
         this.pickerHeightUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -349,7 +349,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         if (!this.landscape) {
             setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i));
         } else {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.displaySize.y - AndroidUtilities.m35dp(56.0f));
+            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.displaySize.y - AndroidUtilities.m36dp(56.0f));
         }
         if (getMeasuredWidth() == this.lastW && getMeasuredHeight() == this.lastH) {
             return;
@@ -381,10 +381,10 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         ChartPickerDelegate chartPickerDelegate = this.pickerDelegate;
         this.chartFullWidth = f2 / (chartPickerDelegate.pickerEnd - chartPickerDelegate.pickerStart);
         updateLineSignature();
-        this.chartBottom = AndroidUtilities.m35dp(100.0f);
+        this.chartBottom = AndroidUtilities.m36dp(100.0f);
         this.chartArea.set(this.chartStart - f, 0.0f, this.chartEnd + f, getMeasuredHeight() - this.chartBottom);
         if (this.chartData != null) {
-            this.bottomSignatureOffset = (int) (AndroidUtilities.m35dp(20.0f) / (this.pickerWidth / this.chartData.f1025x.length));
+            this.bottomSignatureOffset = (int) (AndroidUtilities.m36dp(20.0f) / (this.pickerWidth / this.chartData.f1025x.length));
         }
         measureHeightThreshold();
     }
@@ -531,7 +531,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                                 } else {
                                     this.bottomSignaturePaint.setAlpha((int) (i3 * this.bottomSignaturePaintAlpha * f));
                                 }
-                                canvas.drawText(this.chartData.getDayString(i9), f3, (getMeasuredHeight() - this.chartBottom) + BOTTOM_SIGNATURE_TEXT_HEIGHT + AndroidUtilities.m35dp(3.0f), this.bottomSignaturePaint);
+                                canvas.drawText(this.chartData.getDayString(i9), f3, (getMeasuredHeight() - this.chartBottom) + BOTTOM_SIGNATURE_TEXT_HEIGHT + AndroidUtilities.m36dp(3.0f), this.bottomSignaturePaint);
                             }
                         }
                     }
@@ -1457,7 +1457,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                 this.canvas = new Canvas(this.pickerRoundBitmap);
                 this.rectF.set(0.0f, 0.0f, i2, i);
                 this.canvas.drawColor(Theme.getColor("windowBackgroundWhite"));
-                this.canvas.drawRoundRect(this.rectF, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), this.xRefP);
+                this.canvas.drawRoundRect(this.rectF, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), this.xRefP);
             }
             return this.pickerRoundBitmap;
         }

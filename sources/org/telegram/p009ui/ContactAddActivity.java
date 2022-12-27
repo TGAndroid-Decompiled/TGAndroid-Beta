@@ -209,7 +209,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 24.0f, 24.0f, 24.0f, 0.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImage = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(30.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(30.0f));
         frameLayout.addView(this.avatarImage, LayoutHelper.createFrame(60, 60, (LocaleController.isRTL ? 5 : 3) | 48));
         final Paint paint = new Paint(1);
         paint.setColor(1426063360);
@@ -227,7 +227,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         frameLayout.addView(view, LayoutHelper.createFrame(60, 60, (LocaleController.isRTL ? 5 : 3) | 48));
         RadialProgressView radialProgressView = new RadialProgressView(context);
         this.avatarProgressView = radialProgressView;
-        radialProgressView.setSize(AndroidUtilities.m35dp(30.0f));
+        radialProgressView.setSize(AndroidUtilities.m36dp(30.0f));
         this.avatarProgressView.setProgressColor(-1);
         this.avatarProgressView.setNoProgress(false);
         frameLayout.addView(this.avatarProgressView, LayoutHelper.createFrame(60, 60, (LocaleController.isRTL ? 5 : 3) | 48));
@@ -277,7 +277,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.firstNameField.setImeOptions(5);
         this.firstNameField.setHint(LocaleController.getString("FirstName", C1072R.string.FirstName));
         this.firstNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
-        this.firstNameField.setCursorSize(AndroidUtilities.m35dp(20.0f));
+        this.firstNameField.setCursorSize(AndroidUtilities.m36dp(20.0f));
         this.firstNameField.setCursorWidth(1.5f);
         this.linearLayout.addView(this.firstNameField, LayoutHelper.createLinear(-1, 36, 24.0f, 24.0f, 24.0f, 0.0f));
         this.firstNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -294,7 +294,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             @Override
             public void onFocusChange(View view2, boolean z3) {
                 if (!ContactAddActivity.this.paused && !z3 && this.focused) {
-                    FileLog.m34d("changed");
+                    FileLog.m35d("changed");
                 }
                 this.focused = z3;
             }
@@ -320,7 +320,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.lastNameField.setImeOptions(6);
         this.lastNameField.setHint(LocaleController.getString("LastName", C1072R.string.LastName));
         this.lastNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
-        this.lastNameField.setCursorSize(AndroidUtilities.m35dp(20.0f));
+        this.lastNameField.setCursorSize(AndroidUtilities.m36dp(20.0f));
         this.lastNameField.setCursorWidth(1.5f);
         this.linearLayout.addView(this.lastNameField, LayoutHelper.createLinear(-1, 36, 24.0f, 16.0f, 24.0f, 0.0f));
         this.lastNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -355,8 +355,8 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                 CheckBoxCell checkBoxCell = new CheckBoxCell(getParentActivity(), 0);
                 this.checkBoxCell = checkBoxCell;
                 checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                this.checkBoxCell.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString("SharePhoneNumberWith", C1072R.string.SharePhoneNumberWith)), Emoji.replaceEmoji(UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(12.0f), false)), "", true, false);
-                this.checkBoxCell.setPadding(AndroidUtilities.m35dp(7.0f), 0, AndroidUtilities.m35dp(7.0f), 0);
+                this.checkBoxCell.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString("SharePhoneNumberWith", C1072R.string.SharePhoneNumberWith)), Emoji.replaceEmoji(UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(12.0f), false)), "", true, false);
+                this.checkBoxCell.setPadding(AndroidUtilities.m36dp(7.0f), 0, AndroidUtilities.m36dp(7.0f), 0);
                 this.checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
@@ -373,9 +373,9 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             textCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
             textCell.setColors("windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteBlueButton");
             int i2 = C1072R.raw.photo_suggest_icon;
-            final RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(50.0f), AndroidUtilities.m35dp(50.0f), false, null);
-            textCell.imageView.setTranslationY((float) (-AndroidUtilities.m35dp(9.0f)));
-            textCell.imageView.setTranslationX((float) (-AndroidUtilities.m35dp(8.0f)));
+            final RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m36dp(50.0f), AndroidUtilities.m36dp(50.0f), false, null);
+            textCell.imageView.setTranslationY((float) (-AndroidUtilities.m36dp(9.0f)));
+            textCell.imageView.setTranslationX((float) (-AndroidUtilities.m36dp(8.0f)));
             textCell.imageView.setAnimation(rLottieDrawable);
             textCell.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -389,9 +389,9 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             textCell2.setBackgroundDrawable(Theme.getSelectorDrawable(false));
             textCell2.setColors("windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteBlueButton");
             int i3 = C1072R.raw.camera_outline;
-            final RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i3, "" + i3, AndroidUtilities.m35dp(50.0f), AndroidUtilities.m35dp(50.0f), false, null);
-            textCell2.imageView.setTranslationY((float) (-AndroidUtilities.m35dp(9.0f)));
-            textCell2.imageView.setTranslationX((float) (-AndroidUtilities.m35dp(8.0f)));
+            final RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i3, "" + i3, AndroidUtilities.m36dp(50.0f), AndroidUtilities.m36dp(50.0f), false, null);
+            textCell2.imageView.setTranslationY((float) (-AndroidUtilities.m36dp(9.0f)));
+            textCell2.imageView.setTranslationX((float) (-AndroidUtilities.m36dp(8.0f)));
             textCell2.imageView.setAnimation(rLottieDrawable2);
             textCell2.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -405,16 +405,16 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                 @Override
                 public void onMeasure(int i4, int i5) {
                     super.onMeasure(i4, i5);
-                    ContactAddActivity.this.oldAvatarView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(30.0f), 1073741824));
-                    ContactAddActivity.this.oldAvatarView.setRoundRadius(AndroidUtilities.m35dp(30.0f));
+                    ContactAddActivity.this.oldAvatarView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(30.0f), 1073741824));
+                    ContactAddActivity.this.oldAvatarView.setRoundRadius(AndroidUtilities.m36dp(30.0f));
                 }
 
                 @Override
                 public void onLayout(boolean z3, int i4, int i5, int i6, int i7) {
                     super.onLayout(z3, i4, i5, i6, i7);
-                    int m35dp = AndroidUtilities.m35dp(21.0f);
+                    int m36dp = AndroidUtilities.m36dp(21.0f);
                     int measuredHeight = (getMeasuredHeight() - ContactAddActivity.this.oldAvatarView.getMeasuredHeight()) / 2;
-                    ContactAddActivity.this.oldAvatarView.layout(m35dp, measuredHeight, ContactAddActivity.this.oldAvatarView.getMeasuredWidth() + m35dp, ContactAddActivity.this.oldAvatarView.getMeasuredHeight() + measuredHeight);
+                    ContactAddActivity.this.oldAvatarView.layout(m36dp, measuredHeight, ContactAddActivity.this.oldAvatarView.getMeasuredWidth() + m36dp, ContactAddActivity.this.oldAvatarView.getMeasuredHeight() + measuredHeight);
                 }
             };
             if (this.avatarDrawable == null) {
@@ -617,7 +617,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }
         if (TextUtils.isEmpty(getPhone())) {
             this.nameTextView.setText(LocaleController.getString("MobileHidden", C1072R.string.MobileHidden));
-            this.infoTextView.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString("MobileHiddenExceptionInfo", C1072R.string.MobileHiddenExceptionInfo)), Emoji.replaceEmoji(UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(12.0f), false)));
+            this.infoTextView.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString("MobileHiddenExceptionInfo", C1072R.string.MobileHiddenExceptionInfo)), Emoji.replaceEmoji(UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(12.0f), false)));
         } else {
             TextView textView = this.nameTextView;
             C0995PhoneFormat c0995PhoneFormat = C0995PhoneFormat.getInstance();
@@ -901,9 +901,9 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
             if (getParentActivity() != null) {
                 if (i == 2) {
-                    BulletinFactory.m13of(this).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", C1072R.string.UserCustomPhotoSeted, user.first_name))).show();
+                    BulletinFactory.m14of(this).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", C1072R.string.UserCustomPhotoSeted, user.first_name))).show();
                 } else {
-                    BulletinFactory.m13of(this).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", C1072R.string.UserCustomPhotoSeted, user.first_name))).show();
+                    BulletinFactory.m14of(this).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", C1072R.string.UserCustomPhotoSeted, user.first_name))).show();
                 }
             }
         }

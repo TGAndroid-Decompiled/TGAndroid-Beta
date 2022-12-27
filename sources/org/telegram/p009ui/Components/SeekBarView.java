@@ -124,11 +124,11 @@ public class SeekBarView extends FrameLayout {
         Paint paint = new Paint(1);
         this.outerPaint1 = paint;
         paint.setColor(getThemedColor("player_progress"));
-        this.selectorWidth = AndroidUtilities.m35dp(32.0f);
-        this.thumbSize = AndroidUtilities.m35dp(24.0f);
-        this.currentRadius = AndroidUtilities.m35dp(6.0f);
+        this.selectorWidth = AndroidUtilities.m36dp(32.0f);
+        this.thumbSize = AndroidUtilities.m36dp(24.0f);
+        this.currentRadius = AndroidUtilities.m36dp(6.0f);
         if (Build.VERSION.SDK_INT >= 21) {
-            Drawable createSelectorDrawable = Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(getThemedColor("player_progress"), 40), 1, AndroidUtilities.m35dp(16.0f));
+            Drawable createSelectorDrawable = Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(getThemedColor("player_progress"), 40), 1, AndroidUtilities.m36dp(16.0f));
             this.hoverDrawable = createSelectorDrawable;
             createSelectorDrawable.setCallback(this);
             this.hoverDrawable.setVisible(true, false);
@@ -483,20 +483,20 @@ public class SeekBarView extends FrameLayout {
             if (this.timestampLabelPaint == null) {
                 TextPaint textPaint = new TextPaint(1);
                 this.timestampLabelPaint = textPaint;
-                textPaint.setTextSize(AndroidUtilities.m35dp(12.0f));
+                textPaint.setTextSize(AndroidUtilities.m36dp(12.0f));
                 this.timestampLabelPaint.setColor(-1);
             }
             for (URLSpanNoUnderline uRLSpanNoUnderline : uRLSpanNoUnderlineArr) {
                 if (uRLSpanNoUnderline != null && uRLSpanNoUnderline.getURL() != null && uRLSpanNoUnderline.label != null && uRLSpanNoUnderline.getURL().startsWith("audio?") && (parseInt = Utilities.parseInt((CharSequence) uRLSpanNoUnderline.getURL().substring(6))) != null && parseInt.intValue() >= 0) {
                     float intValue = ((float) (parseInt.intValue() * 1000)) / ((float) l.longValue());
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(uRLSpanNoUnderline.label);
-                    Emoji.replaceEmoji(spannableStringBuilder, this.timestampLabelPaint.getFontMetricsInt(), AndroidUtilities.m35dp(14.0f), false);
+                    Emoji.replaceEmoji(spannableStringBuilder, this.timestampLabelPaint.getFontMetricsInt(), AndroidUtilities.m36dp(14.0f), false);
                     this.timestamps.add(new Pair<>(Float.valueOf(intValue), spannableStringBuilder));
                 }
             }
             Collections.sort(this.timestamps, SeekBarView$$ExternalSyntheticLambda1.INSTANCE);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             this.timestamps = null;
             this.currentTimestamp = -1;
             this.timestampsAppearing = 0.0f;
@@ -519,29 +519,29 @@ public class SeekBarView extends FrameLayout {
         int i;
         float f;
         float f2;
-        float m35dp = AndroidUtilities.m35dp(2.0f);
+        float m36dp = AndroidUtilities.m36dp(2.0f);
         ArrayList<Pair<Float, CharSequence>> arrayList = this.timestamps;
         if (arrayList == null || arrayList.isEmpty()) {
-            canvas.drawRoundRect(rectF, m35dp, m35dp, paint);
+            canvas.drawRoundRect(rectF, m36dp, m36dp, paint);
             return;
         }
         float f3 = rectF.bottom;
         float f4 = this.selectorWidth / 2.0f;
         float measuredWidth = getMeasuredWidth() - (this.selectorWidth / 2.0f);
         AndroidUtilities.rectTmp.set(rectF);
-        float m35dp2 = AndroidUtilities.m35dp(this.timestampsAppearing * 1.0f) / 2.0f;
+        float m36dp2 = AndroidUtilities.m36dp(this.timestampsAppearing * 1.0f) / 2.0f;
         if (tmpPath == null) {
             tmpPath = new Path();
         }
         tmpPath.reset();
-        float m35dp3 = AndroidUtilities.m35dp(4.0f) / (measuredWidth - f4);
+        float m36dp3 = AndroidUtilities.m36dp(4.0f) / (measuredWidth - f4);
         int i2 = 0;
         while (true) {
             i = -1;
             if (i2 >= this.timestamps.size()) {
                 i2 = -1;
                 break;
-            } else if (((Float) this.timestamps.get(i2).first).floatValue() >= m35dp3) {
+            } else if (((Float) this.timestamps.get(i2).first).floatValue() >= m36dp3) {
                 break;
             } else {
                 i2++;
@@ -555,7 +555,7 @@ public class SeekBarView extends FrameLayout {
         while (true) {
             if (size < 0) {
                 break;
-            } else if (1.0f - ((Float) this.timestamps.get(size).first).floatValue() >= m35dp3) {
+            } else if (1.0f - ((Float) this.timestamps.get(size).first).floatValue() >= m36dp3) {
                 i = size + 1;
                 break;
             } else {
@@ -569,13 +569,13 @@ public class SeekBarView extends FrameLayout {
         while (i4 <= i) {
             float floatValue = i4 == i2 ? 0.0f : ((Float) this.timestamps.get(i4 - 1).first).floatValue();
             float floatValue2 = i4 == i ? 1.0f : ((Float) this.timestamps.get(i4).first).floatValue();
-            while (i4 != i && i4 != 0 && i4 < this.timestamps.size() - i3 && ((Float) this.timestamps.get(i4).first).floatValue() - floatValue <= m35dp3) {
+            while (i4 != i && i4 != 0 && i4 < this.timestamps.size() - i3 && ((Float) this.timestamps.get(i4).first).floatValue() - floatValue <= m36dp3) {
                 i4++;
                 floatValue2 = ((Float) this.timestamps.get(i4).first).floatValue();
             }
             RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.left = AndroidUtilities.lerp(f4, measuredWidth, floatValue) + (i4 > 0 ? m35dp2 : 0.0f);
-            float lerp = AndroidUtilities.lerp(f4, measuredWidth, floatValue2) - (i4 < i ? m35dp2 : 0.0f);
+            rectF2.left = AndroidUtilities.lerp(f4, measuredWidth, floatValue) + (i4 > 0 ? m36dp2 : 0.0f);
+            float lerp = AndroidUtilities.lerp(f4, measuredWidth, floatValue2) - (i4 < i ? m36dp2 : 0.0f);
             rectF2.right = lerp;
             float f5 = rectF.right;
             boolean z = lerp > f5;
@@ -585,7 +585,7 @@ public class SeekBarView extends FrameLayout {
             float f6 = rectF2.right;
             float f7 = rectF.left;
             if (f6 < f7) {
-                f = m35dp3;
+                f = m36dp3;
                 f2 = f4;
             } else {
                 if (rectF2.left < f7) {
@@ -595,36 +595,36 @@ public class SeekBarView extends FrameLayout {
                     tmpRadii = new float[8];
                 }
                 if (i4 == i2 || (z && rectF2.left >= rectF.left)) {
-                    f = m35dp3;
+                    f = m36dp3;
                     f2 = f4;
                     float[] fArr = tmpRadii;
-                    fArr[7] = m35dp;
-                    fArr[6] = m35dp;
-                    fArr[1] = m35dp;
-                    fArr[0] = m35dp;
-                    float f8 = 0.7f * m35dp * this.timestampsAppearing;
+                    fArr[7] = m36dp;
+                    fArr[6] = m36dp;
+                    fArr[1] = m36dp;
+                    fArr[0] = m36dp;
+                    float f8 = 0.7f * m36dp * this.timestampsAppearing;
                     fArr[5] = f8;
                     fArr[4] = f8;
                     fArr[3] = f8;
                     fArr[2] = f8;
                 } else if (i4 >= i) {
                     float[] fArr2 = tmpRadii;
-                    f = m35dp3;
-                    float f9 = 0.7f * m35dp * this.timestampsAppearing;
+                    f = m36dp3;
+                    float f9 = 0.7f * m36dp * this.timestampsAppearing;
                     fArr2[7] = f9;
                     fArr2[6] = f9;
                     fArr2[1] = f9;
                     fArr2[0] = f9;
-                    fArr2[5] = m35dp;
-                    fArr2[4] = m35dp;
-                    fArr2[3] = m35dp;
-                    fArr2[2] = m35dp;
+                    fArr2[5] = m36dp;
+                    fArr2[4] = m36dp;
+                    fArr2[3] = m36dp;
+                    fArr2[2] = m36dp;
                     f2 = f4;
                 } else {
-                    f = m35dp3;
+                    f = m36dp3;
                     float[] fArr3 = tmpRadii;
                     f2 = f4;
-                    float f10 = 0.7f * m35dp * this.timestampsAppearing;
+                    float f10 = 0.7f * m36dp * this.timestampsAppearing;
                     fArr3[5] = f10;
                     fArr3[4] = f10;
                     fArr3[3] = f10;
@@ -640,7 +640,7 @@ public class SeekBarView extends FrameLayout {
                 }
             }
             i4++;
-            m35dp3 = f;
+            m36dp3 = f;
             f4 = f2;
             i3 = 1;
         }
@@ -668,7 +668,7 @@ public class SeekBarView extends FrameLayout {
             this.timestampLabel = new StaticLayout[2];
         }
         float f = this.selectorWidth / 2.0f;
-        float abs = Math.abs(f - (getMeasuredWidth() - (this.selectorWidth / 2.0f))) - AndroidUtilities.m35dp(66.0f);
+        float abs = Math.abs(f - (getMeasuredWidth() - (this.selectorWidth / 2.0f))) - AndroidUtilities.m36dp(66.0f);
         float f2 = this.lastWidth;
         if (f2 > 0.0f && Math.abs(f2 - abs) > 0.01f) {
             StaticLayout[] staticLayoutArr = this.timestampLabel;
@@ -727,12 +727,12 @@ public class SeekBarView extends FrameLayout {
         }
         float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(this.timestampChangeT);
         canvas.save();
-        canvas.translate(f + AndroidUtilities.m35dp(25.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.m35dp(13.0f));
+        canvas.translate(f + AndroidUtilities.m36dp(25.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.m36dp(13.0f));
         this.timestampLabelPaint.setColor(getThemedColor("player_time"));
         if (this.timestampLabel[1] != null) {
             canvas.save();
             if (this.timestampChangeDirection != 0) {
-                canvas.translate(AndroidUtilities.m35dp(8.0f) + (AndroidUtilities.m35dp(16.0f) * (-this.timestampChangeDirection) * interpolation), 0.0f);
+                canvas.translate(AndroidUtilities.m36dp(8.0f) + (AndroidUtilities.m36dp(16.0f) * (-this.timestampChangeDirection) * interpolation), 0.0f);
             }
             canvas.translate(0.0f, (-this.timestampLabel[1].getHeight()) / 2.0f);
             this.timestampLabelPaint.setAlpha((int) ((1.0f - interpolation) * 255.0f * this.timestampsAppearing));
@@ -742,7 +742,7 @@ public class SeekBarView extends FrameLayout {
         if (this.timestampLabel[0] != null) {
             canvas.save();
             if (this.timestampChangeDirection != 0) {
-                canvas.translate(AndroidUtilities.m35dp(8.0f) + (AndroidUtilities.m35dp(16.0f) * this.timestampChangeDirection * (1.0f - interpolation)), 0.0f);
+                canvas.translate(AndroidUtilities.m36dp(8.0f) + (AndroidUtilities.m36dp(16.0f) * this.timestampChangeDirection * (1.0f - interpolation)), 0.0f);
             }
             canvas.translate(0.0f, (-this.timestampLabel[0].getHeight()) / 2.0f);
             this.timestampLabelPaint.setAlpha((int) (interpolation * 255.0f * this.timestampsAppearing));
@@ -756,14 +756,14 @@ public class SeekBarView extends FrameLayout {
         if (this.timestampLabelPaint == null) {
             TextPaint textPaint = new TextPaint(1);
             this.timestampLabelPaint = textPaint;
-            textPaint.setTextSize(AndroidUtilities.m35dp(12.0f));
+            textPaint.setTextSize(AndroidUtilities.m36dp(12.0f));
         }
         this.timestampLabelPaint.setColor(getThemedColor("player_time"));
         String str = charSequence == null ? "" : charSequence;
         if (Build.VERSION.SDK_INT >= 23) {
-            return StaticLayout.Builder.obtain(str, 0, str.length(), this.timestampLabelPaint, i).setMaxLines(1).setAlignment(Layout.Alignment.ALIGN_CENTER).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(Math.min(AndroidUtilities.m35dp(400.0f), i)).build();
+            return StaticLayout.Builder.obtain(str, 0, str.length(), this.timestampLabelPaint, i).setMaxLines(1).setAlignment(Layout.Alignment.ALIGN_CENTER).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(Math.min(AndroidUtilities.m36dp(400.0f), i)).build();
         }
-        return new StaticLayout(str, 0, str.length(), this.timestampLabelPaint, i, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, Math.min(AndroidUtilities.m35dp(400.0f), i));
+        return new StaticLayout(str, 0, str.length(), this.timestampLabelPaint, i, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, Math.min(AndroidUtilities.m36dp(400.0f), i));
     }
 
     public SeekBarAccessibilityDelegate getSeekBarAccessibilityDelegate() {

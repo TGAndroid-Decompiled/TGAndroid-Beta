@@ -111,10 +111,10 @@ public class StatisticPostInfoCell extends FrameLayout {
         ArrayList<TLRPC$PhotoSize> arrayList = messageObject.photoThumbs;
         if (arrayList != null) {
             this.imageView.setImage(ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize()), messageObject.photoThumbsObject), "50_50", ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50), messageObject.photoThumbsObject), "b1", 0, messageObject);
-            this.imageView.setRoundRadius(AndroidUtilities.m35dp(4.0f));
+            this.imageView.setRoundRadius(AndroidUtilities.m36dp(4.0f));
         } else if (this.chat.chat_photo.sizes.size() > 0) {
             this.imageView.setImage(ImageLocation.getForPhoto(this.chat.chat_photo.sizes.get(0), this.chat.chat_photo), "50_50", (String) null, (Drawable) null, this.chat);
-            this.imageView.setRoundRadius(AndroidUtilities.m35dp(46.0f) >> 1);
+            this.imageView.setRoundRadius(AndroidUtilities.m36dp(46.0f) >> 1);
         }
         if (messageObject.isMusic()) {
             charSequence = String.format("%s, %s", messageObject.getMusicTitle().trim(), messageObject.getMusicAuthor().trim());
@@ -133,7 +133,7 @@ public class StatisticPostInfoCell extends FrameLayout {
     public void setData(StatisticActivity.MemberData memberData) {
         this.avatarDrawable.setInfo(memberData.user);
         this.imageView.setForUserOrChat(memberData.user, this.avatarDrawable);
-        this.imageView.setRoundRadius(AndroidUtilities.m35dp(46.0f) >> 1);
+        this.imageView.setRoundRadius(AndroidUtilities.m36dp(46.0f) >> 1);
         this.message.setText(memberData.user.first_name);
         this.date.setText(memberData.description);
         this.views.setVisibility(8);

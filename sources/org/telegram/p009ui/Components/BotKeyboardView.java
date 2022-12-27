@@ -55,7 +55,7 @@ public class BotKeyboardView extends LinearLayout {
         setBackgroundColor(getThemedColor("chat_emojiPanelBackground"));
         for (int i = 0; i < this.buttonViews.size(); i++) {
             this.buttonViews.get(i).setTextColor(getThemedColor("chat_botKeyboardButtonText"));
-            this.buttonViews.get(i).setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), getThemedColor("chat_botKeyboardButtonBackground"), getThemedColor("chat_botKeyboardButtonBackgroundPressed")));
+            this.buttonViews.get(i).setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), getThemedColor("chat_botKeyboardButtonBackground"), getThemedColor("chat_botKeyboardButtonBackgroundPressed")));
             this.buttonIcons.get(i).setColorFilter(getThemedColor("chat_botKeyboardButtonText"));
         }
         invalidate();
@@ -71,14 +71,14 @@ public class BotKeyboardView extends LinearLayout {
         if (!this.isFullSize || (tLRPC$TL_replyKeyboardMarkup = this.botButtons) == null || tLRPC$TL_replyKeyboardMarkup.rows.size() == 0) {
             return;
         }
-        this.buttonHeight = !this.isFullSize ? 42 : (int) Math.max(42.0f, (((this.panelHeight - AndroidUtilities.m35dp(30.0f)) - ((this.botButtons.rows.size() - 1) * AndroidUtilities.m35dp(10.0f))) / this.botButtons.rows.size()) / AndroidUtilities.density);
+        this.buttonHeight = !this.isFullSize ? 42 : (int) Math.max(42.0f, (((this.panelHeight - AndroidUtilities.m36dp(30.0f)) - ((this.botButtons.rows.size() - 1) * AndroidUtilities.m36dp(10.0f))) / this.botButtons.rows.size()) / AndroidUtilities.density);
         int childCount = this.container.getChildCount();
-        int m35dp = AndroidUtilities.m35dp(this.buttonHeight);
+        int m36dp = AndroidUtilities.m36dp(this.buttonHeight);
         for (int i2 = 0; i2 < childCount; i2++) {
             View childAt = this.container.getChildAt(i2);
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
-            if (layoutParams.height != m35dp) {
-                layoutParams.height = m35dp;
+            if (layoutParams.height != m36dp) {
+                layoutParams.height = m36dp;
                 childAt.setLayoutParams(layoutParams);
             }
         }
@@ -108,7 +108,7 @@ public class BotKeyboardView extends LinearLayout {
         int i = 1;
         boolean z2 = !tLRPC$TL_replyKeyboardMarkup.resize;
         this.isFullSize = z2;
-        this.buttonHeight = !z2 ? 42 : (int) Math.max(42.0f, (((this.panelHeight - AndroidUtilities.m35dp(30.0f)) - ((this.botButtons.rows.size() - 1) * AndroidUtilities.m35dp(10.0f))) / this.botButtons.rows.size()) / AndroidUtilities.density);
+        this.buttonHeight = !z2 ? 42 : (int) Math.max(42.0f, (((this.panelHeight - AndroidUtilities.m36dp(30.0f)) - ((this.botButtons.rows.size() - 1) * AndroidUtilities.m36dp(10.0f))) / this.botButtons.rows.size()) / AndroidUtilities.density);
         int i2 = 0;
         while (i2 < tLRPC$TL_replyKeyboardMarkup.rows.size()) {
             TLRPC$TL_keyboardButtonRow tLRPC$TL_keyboardButtonRow = tLRPC$TL_replyKeyboardMarkup.rows.get(i2);
@@ -123,13 +123,13 @@ public class BotKeyboardView extends LinearLayout {
                 TextView textView = new TextView(getContext());
                 textView.setTag(tLRPC$KeyboardButton);
                 textView.setTextColor(getThemedColor("chat_botKeyboardButtonText"));
-                textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), getThemedColor("chat_botKeyboardButtonBackground"), getThemedColor("chat_botKeyboardButtonBackgroundPressed")));
+                textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), getThemedColor("chat_botKeyboardButtonBackground"), getThemedColor("chat_botKeyboardButtonBackgroundPressed")));
                 textView.setTextSize(i, 16.0f);
                 textView.setGravity(17);
                 FrameLayout frameLayout = new FrameLayout(getContext());
                 frameLayout.addView(textView, LayoutHelper.createFrame(-1, -1.0f));
-                textView.setPadding(AndroidUtilities.m35dp(4.0f), r3, AndroidUtilities.m35dp(4.0f), r3);
-                textView.setText(Emoji.replaceEmoji(tLRPC$KeyboardButton.text, textView.getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(16.0f), r3));
+                textView.setPadding(AndroidUtilities.m36dp(4.0f), r3, AndroidUtilities.m36dp(4.0f), r3);
+                textView.setText(Emoji.replaceEmoji(tLRPC$KeyboardButton.text, textView.getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(16.0f), r3));
                 linearLayout.addView(frameLayout, LayoutHelper.createLinear(0, -1, size, 0, 0, i3 != tLRPC$TL_keyboardButtonRow.buttons.size() + (-1) ? 10 : 0, 0));
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -167,7 +167,7 @@ public class BotKeyboardView extends LinearLayout {
         if (tLRPC$TL_replyKeyboardMarkup == null) {
             return 0;
         }
-        return this.isFullSize ? this.panelHeight : (tLRPC$TL_replyKeyboardMarkup.rows.size() * AndroidUtilities.m35dp(this.buttonHeight)) + AndroidUtilities.m35dp(30.0f) + ((this.botButtons.rows.size() - 1) * AndroidUtilities.m35dp(10.0f));
+        return this.isFullSize ? this.panelHeight : (tLRPC$TL_replyKeyboardMarkup.rows.size() * AndroidUtilities.m36dp(this.buttonHeight)) + AndroidUtilities.m36dp(30.0f) + ((this.botButtons.rows.size() - 1) * AndroidUtilities.m36dp(10.0f));
     }
 
     private int getThemedColor(String str) {

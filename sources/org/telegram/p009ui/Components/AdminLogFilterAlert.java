@@ -88,7 +88,7 @@ public class AdminLogFilterAlert extends BottomSheet {
             tLRPC$TL_channelAdminLogEventsFilter2.invites = tLRPC$TL_channelAdminLogEventsFilter.invites;
         }
         if (longSparseArray != null) {
-            this.selectedAdmins = longSparseArray.m678clone();
+            this.selectedAdmins = longSparseArray.m679clone();
         }
         this.isMegagroup = z;
         if (z) {
@@ -145,14 +145,14 @@ public class AdminLogFilterAlert extends BottomSheet {
                     size -= AndroidUtilities.statusBarHeight;
                 }
                 getMeasuredWidth();
-                int m35dp = AndroidUtilities.m35dp(48.0f) + ((AdminLogFilterAlert.this.isMegagroup ? 11 : 8) * AndroidUtilities.m35dp(48.0f)) + ((BottomSheet) AdminLogFilterAlert.this).backgroundPaddingTop + AndroidUtilities.m35dp(17.0f);
+                int m36dp = AndroidUtilities.m36dp(48.0f) + ((AdminLogFilterAlert.this.isMegagroup ? 11 : 8) * AndroidUtilities.m36dp(48.0f)) + ((BottomSheet) AdminLogFilterAlert.this).backgroundPaddingTop + AndroidUtilities.m36dp(17.0f);
                 if (AdminLogFilterAlert.this.currentAdmins != null) {
-                    m35dp += ((AdminLogFilterAlert.this.currentAdmins.size() + 1) * AndroidUtilities.m35dp(48.0f)) + AndroidUtilities.m35dp(20.0f);
+                    m36dp += ((AdminLogFilterAlert.this.currentAdmins.size() + 1) * AndroidUtilities.m36dp(48.0f)) + AndroidUtilities.m36dp(20.0f);
                 }
                 int i11 = size / 5;
-                int i12 = ((float) m35dp) < ((float) i11) * 3.2f ? 0 : i11 * 2;
-                if (i12 != 0 && m35dp < size) {
-                    i12 -= size - m35dp;
+                int i12 = ((float) m36dp) < ((float) i11) * 3.2f ? 0 : i11 * 2;
+                if (i12 != 0 && m36dp < size) {
+                    i12 -= size - m36dp;
                 }
                 if (i12 == 0) {
                     i12 = ((BottomSheet) AdminLogFilterAlert.this).backgroundPaddingTop;
@@ -162,7 +162,7 @@ public class AdminLogFilterAlert extends BottomSheet {
                     AdminLogFilterAlert.this.listView.setPadding(0, i12, 0, 0);
                     AdminLogFilterAlert.this.ignoreLayout = false;
                 }
-                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(Math.min(m35dp, size), 1073741824));
+                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(Math.min(m36dp, size), 1073741824));
             }
 
             @Override
@@ -427,7 +427,7 @@ public class AdminLogFilterAlert extends BottomSheet {
         int i = 0;
         View childAt = this.listView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-        int top = childAt.getTop() - AndroidUtilities.m35dp(8.0f);
+        int top = childAt.getTop() - AndroidUtilities.m36dp(8.0f);
         if (top > 0 && holder != null && holder.getAdapterPosition() == 0) {
             i = top;
         }
@@ -443,7 +443,6 @@ public class AdminLogFilterAlert extends BottomSheet {
         private Context context;
 
         public ListAdapter(Context context) {
-            AdminLogFilterAlert.this = r1;
             this.context = context;
         }
 

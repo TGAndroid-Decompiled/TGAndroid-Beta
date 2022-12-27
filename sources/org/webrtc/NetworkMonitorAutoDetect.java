@@ -77,9 +77,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
     }
 
     @SuppressLint({"NewApi"})
-    public class SimpleNetworkCallback extends ConnectivityManager.NetworkCallback {
+    private class SimpleNetworkCallback extends ConnectivityManager.NetworkCallback {
         private SimpleNetworkCallback() {
-            NetworkMonitorAutoDetect.this = r1;
         }
 
         @Override

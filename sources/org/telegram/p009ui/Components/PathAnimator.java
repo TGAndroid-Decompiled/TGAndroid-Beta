@@ -98,7 +98,7 @@ public class PathAnimator {
             }
             this.keyFrames.add(keyFrame);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 

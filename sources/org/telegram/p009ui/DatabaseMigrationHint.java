@@ -41,7 +41,7 @@ public class DatabaseMigrationHint extends FrameLayout {
         this.container.addView(this.title, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 50, 32, 50, 0));
         TextView textView2 = new TextView(context);
         this.description1 = textView2;
-        textView2.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+        textView2.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
         this.description1.setTextSize(1, 14.0f);
         this.description1.setText(LocaleController.getString("OptimizingTelegramDescription1", C1072R.string.OptimizingTelegramDescription1));
         this.description1.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));

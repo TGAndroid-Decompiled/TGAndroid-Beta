@@ -61,7 +61,7 @@ public class LetterDrawable extends Drawable {
             if (namePaint == null) {
                 namePaint = new TextPaint(1);
             }
-            namePaint.setTextSize(AndroidUtilities.m35dp(28.0f));
+            namePaint.setTextSize(AndroidUtilities.m36dp(28.0f));
             paint.setColor(Theme.getColor("sharedMedia_linkPlaceholder", resourcesProvider));
             namePaint.setColor(Theme.getColor("sharedMedia_linkPlaceholderText", resourcesProvider));
             this.textPaint = namePaint;
@@ -70,7 +70,7 @@ public class LetterDrawable extends Drawable {
                 namePaintTopic = new TextPaint(1);
             }
             namePaintTopic.setColor(-1);
-            namePaintTopic.setTextSize(AndroidUtilities.m35dp(13.0f));
+            namePaintTopic.setTextSize(AndroidUtilities.m36dp(13.0f));
             namePaintTopic.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
             this.textPaint = namePaintTopic;
         } else {
@@ -99,7 +99,7 @@ public class LetterDrawable extends Drawable {
         }
         if (this.stringBuilder.length() > 0) {
             try {
-                StaticLayout staticLayout = new StaticLayout(this.stringBuilder.toString().toUpperCase(), this.textPaint, AndroidUtilities.m35dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                StaticLayout staticLayout = new StaticLayout(this.stringBuilder.toString().toUpperCase(), this.textPaint, AndroidUtilities.m36dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.textLayout = staticLayout;
                 if (staticLayout.getLineCount() > 0) {
                     this.textLeft = this.textLayout.getLineLeft(0);
@@ -109,7 +109,7 @@ public class LetterDrawable extends Drawable {
                 }
                 return;
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return;
             }
         }
@@ -124,7 +124,7 @@ public class LetterDrawable extends Drawable {
         }
         if (this.style == 0) {
             this.rect.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-            canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), paint);
+            canvas.drawRoundRect(this.rect, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), paint);
         }
         canvas.save();
         float f = this.scale;

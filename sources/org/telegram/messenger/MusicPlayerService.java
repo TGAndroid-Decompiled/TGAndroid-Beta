@@ -98,7 +98,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         if (Build.VERSION.SDK_INT >= 21) {
             this.mediaSession = new MediaSession(this, "telegramAudioPlayer");
             this.playbackState = new PlaybackState.Builder();
-            this.albumArtPlaceholder = Bitmap.createBitmap(AndroidUtilities.m35dp(102.0f), AndroidUtilities.m35dp(102.0f), Bitmap.Config.ARGB_8888);
+            this.albumArtPlaceholder = Bitmap.createBitmap(AndroidUtilities.m36dp(102.0f), AndroidUtilities.m36dp(102.0f), Bitmap.Config.ARGB_8888);
             Drawable drawable = getResources().getDrawable(C1072R.C1073drawable.nocover_big);
             drawable.setBounds(0, 0, this.albumArtPlaceholder.getWidth(), this.albumArtPlaceholder.getHeight());
             drawable.draw(new Canvas(this.albumArtPlaceholder));
@@ -189,7 +189,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 }
                 this.remoteControlClient.setTransportControlFlags(189);
             } catch (Exception e2) {
-                FileLog.m31e(e2);
+                FileLog.m32e(e2);
             }
         }
         createNotification(playingMessageObject, false);
@@ -424,7 +424,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                     try {
                         editMetadata.putBitmap(100, cover);
                     } catch (Throwable th) {
-                        FileLog.m31e(th);
+                        FileLog.m32e(th);
                     }
                 }
                 editMetadata.apply();

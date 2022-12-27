@@ -94,7 +94,6 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         private String url;
 
         public LinkSpan(String str) {
-            ThemeSetUrlActivity.this = r1;
             this.url = str;
         }
 
@@ -112,7 +111,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                     BulletinFactory.createCopyLinkBulletin(ThemeSetUrlActivity.this).show();
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
@@ -130,7 +129,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 }
                 return onTouchEvent;
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return false;
             }
         }
@@ -209,7 +208,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         this.nameField.setImeOptions(6);
         this.nameField.setHint(LocaleController.getString("ThemeNamePlaceholder", C1072R.string.ThemeNamePlaceholder));
         this.nameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        this.nameField.setCursorSize(AndroidUtilities.m35dp(20.0f));
+        this.nameField.setCursorSize(AndroidUtilities.m36dp(20.0f));
         this.nameField.setCursorWidth(1.5f);
         this.linearLayoutTypeContainer.addView(this.nameField, LayoutHelper.createLinear(-1, 50, 23.0f, 0.0f, 23.0f, 0.0f));
         this.nameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -223,7 +222,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         View view = new View(this, context) {
             @Override
             protected void onDraw(Canvas canvas) {
-                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         };
         this.divider = view;
@@ -260,7 +259,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         this.linkField.setImeOptions(6);
         this.linkField.setHint(LocaleController.getString("SetUrlPlaceholder", C1072R.string.SetUrlPlaceholder));
         this.linkField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        this.linkField.setCursorSize(AndroidUtilities.m35dp(20.0f));
+        this.linkField.setCursorSize(AndroidUtilities.m36dp(20.0f));
         this.linkField.setCursorWidth(1.5f);
         linearLayout4.addView(this.linkField, LayoutHelper.createLinear(-1, 50));
         this.linkField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -454,7 +453,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                     alertDialog2.dismiss();
                     this.progressDialog = null;
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
                 Theme.applyTheme(this.themeInfo, false);
                 finishFragment();
@@ -467,7 +466,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                     alertDialog.dismiss();
                     this.progressDialog = null;
                 } catch (Exception e2) {
-                    FileLog.m31e(e2);
+                    FileLog.m32e(e2);
                 }
             }
         }
@@ -688,7 +687,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             this.progressDialog.dismiss();
             this.progressDialog = null;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         Theme.setThemeUploadInfo(this.themeInfo, this.themeAccent, tLRPC$TL_theme, this.currentAccount, false);
         finishFragment();
@@ -699,7 +698,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             this.progressDialog.dismiss();
             this.progressDialog = null;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, this, tLRPC$TL_account_updateTheme, new Object[0]);
     }

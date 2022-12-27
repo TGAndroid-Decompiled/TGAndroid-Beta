@@ -81,12 +81,12 @@ public class PaintTextOptionsView extends LinearLayout {
                 PaintTextOptionsView.this.lambda$new$1(view2);
             }
         });
-        this.alignView.setPadding(AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f));
+        this.alignView.setPadding(AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f));
         addView(this.alignView, LayoutHelper.createLinear(28, 28, 16, 0, 0, 16, 0));
         ImageView imageView = new ImageView(context);
         this.outlineView = imageView;
         imageView.setImageResource(C1072R.C1073drawable.msg_text_outlined);
-        this.outlineView.setPadding(AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(1.0f));
+        this.outlineView.setPadding(AndroidUtilities.m36dp(1.0f), AndroidUtilities.m36dp(1.0f), AndroidUtilities.m36dp(1.0f), AndroidUtilities.m36dp(1.0f));
         this.outlineView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -105,7 +105,7 @@ public class PaintTextOptionsView extends LinearLayout {
                 PaintTextOptionsView.this.lambda$new$3(view2);
             }
         });
-        this.plusView.setPadding(AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f), AndroidUtilities.m35dp(2.0f));
+        this.plusView.setPadding(AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f), AndroidUtilities.m36dp(2.0f));
         addView(this.plusView, LayoutHelper.createLinear(28, 28, 16, 0, 0, 16, 0));
         addView(new Space(context), LayoutHelper.createLinear(0, 0, 1.0f));
         TypefaceCell typefaceCell = new TypefaceCell(context);
@@ -149,7 +149,7 @@ public class PaintTextOptionsView extends LinearLayout {
     }
 
     public void getTypefaceCellBounds(RectF rectF) {
-        rectF.set(this.typefaceCell.getLeft() + AndroidUtilities.m35dp(8.0f), this.typefaceCell.getTop(), this.typefaceCell.getRight() + AndroidUtilities.m35dp(8.0f), this.typefaceCell.getBottom());
+        rectF.set(this.typefaceCell.getLeft() + AndroidUtilities.m36dp(8.0f), this.typefaceCell.getTop(), this.typefaceCell.getRight() + AndroidUtilities.m36dp(8.0f), this.typefaceCell.getBottom());
     }
 
     public void animatePlusToIcon(int i) {
@@ -274,11 +274,11 @@ public class PaintTextOptionsView extends LinearLayout {
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             if (this.isCurrent) {
-                int height = (getHeight() - AndroidUtilities.m35dp(16.0f)) / 2;
+                int height = (getHeight() - AndroidUtilities.m36dp(16.0f)) / 2;
                 if (LocaleController.isRTL) {
-                    this.expandDrawable.setBounds(AndroidUtilities.m35dp(12.0f), height, AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(16.0f) + height);
+                    this.expandDrawable.setBounds(AndroidUtilities.m36dp(12.0f), height, AndroidUtilities.m36dp(28.0f), AndroidUtilities.m36dp(16.0f) + height);
                 } else {
-                    this.expandDrawable.setBounds(getWidth() - AndroidUtilities.m35dp(28.0f), height, getWidth() - AndroidUtilities.m35dp(12.0f), AndroidUtilities.m35dp(16.0f) + height);
+                    this.expandDrawable.setBounds(getWidth() - AndroidUtilities.m36dp(28.0f), height, getWidth() - AndroidUtilities.m36dp(12.0f), AndroidUtilities.m36dp(16.0f) + height);
                 }
                 this.expandDrawable.draw(canvas);
             }
@@ -287,10 +287,10 @@ public class PaintTextOptionsView extends LinearLayout {
         public void setCurrent(boolean z) {
             this.isCurrent = z;
             if (z) {
-                setPadding(AndroidUtilities.m35dp(LocaleController.isRTL ? 38.0f : 14.0f), AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(LocaleController.isRTL ? 14.0f : 38.0f), AndroidUtilities.m35dp(6.0f));
-                setBackground(Theme.AdaptiveRipple.rect(1090519039, AndroidUtilities.m35dp(32.0f)));
+                setPadding(AndroidUtilities.m36dp(LocaleController.isRTL ? 38.0f : 14.0f), AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(LocaleController.isRTL ? 14.0f : 38.0f), AndroidUtilities.m36dp(6.0f));
+                setBackground(Theme.AdaptiveRipple.rect(1090519039, AndroidUtilities.m36dp(32.0f)));
             } else {
-                setPadding(AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(14.0f), AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(14.0f));
+                setPadding(AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(14.0f), AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(14.0f));
                 setBackground(Theme.AdaptiveRipple.rect(-14145495));
             }
             if (this.isCurrent && this.expandDrawable == null) {

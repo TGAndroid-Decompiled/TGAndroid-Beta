@@ -121,15 +121,15 @@ public class LoadingDrawable extends Drawable {
 
     public void setRadiiDp(float f) {
         if (this.usePath != null) {
-            this.paint.setPathEffect(new CornerPathEffect(AndroidUtilities.m35dp(f)));
-            this.strokePaint.setPathEffect(new CornerPathEffect(AndroidUtilities.m35dp(f)));
+            this.paint.setPathEffect(new CornerPathEffect(AndroidUtilities.m36dp(f)));
+            this.strokePaint.setPathEffect(new CornerPathEffect(AndroidUtilities.m36dp(f)));
             return;
         }
         setRadiiDp(f, f, f, f);
     }
 
     public void setRadiiDp(float f, float f2, float f3, float f4) {
-        setRadii(AndroidUtilities.m35dp(f), AndroidUtilities.m35dp(f2), AndroidUtilities.m35dp(f3), AndroidUtilities.m35dp(f4));
+        setRadii(AndroidUtilities.m36dp(f), AndroidUtilities.m36dp(f2), AndroidUtilities.m36dp(f3), AndroidUtilities.m36dp(f4));
     }
 
     public void setRadii(float f, float f2, float f3, float f4) {
@@ -166,6 +166,10 @@ public class LoadingDrawable extends Drawable {
         this.disappearStart = SystemClock.elapsedRealtime();
     }
 
+    public void resetDisappear() {
+        this.disappearStart = -1L;
+    }
+
     @Override
     public void draw(Canvas canvas) {
         if (isDisappeared()) {
@@ -177,9 +181,9 @@ public class LoadingDrawable extends Drawable {
         }
         int width = bounds.width();
         if (width <= 0) {
-            width = AndroidUtilities.m35dp(200.0f);
+            width = AndroidUtilities.m36dp(200.0f);
         }
-        int min = (int) (Math.min(AndroidUtilities.m35dp(400.0f), width) * this.gradientWidthScale);
+        int min = (int) (Math.min(AndroidUtilities.m36dp(400.0f), width) * this.gradientWidthScale);
         Integer num = this.color1;
         int intValue = num != null ? num.intValue() : Theme.getColor(this.colorKey1, this.resourcesProvider);
         Integer num2 = this.color2;
@@ -218,7 +222,7 @@ public class LoadingDrawable extends Drawable {
             f2 = Math.min(f2, 1.0f - CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(Math.min(1.0f, ((float) (elapsedRealtime - j)) / 460.0f)));
         }
         if (this.appearByGradient) {
-            int max = Math.max(AndroidUtilities.m35dp(200.0f), bounds.width() / 3);
+            int max = Math.max(AndroidUtilities.m36dp(200.0f), bounds.width() / 3);
             if (f2 < 1.0f) {
                 if (this.appearPaint == null) {
                     this.appearPaint = new Paint(1);

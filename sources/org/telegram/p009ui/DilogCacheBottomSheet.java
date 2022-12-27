@@ -196,7 +196,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
             }
         };
         this.cachedMediaLayout = cachedMediaLayout;
-        cachedMediaLayout.setBottomPadding(AndroidUtilities.m35dp(80.0f));
+        cachedMediaLayout.setBottomPadding(AndroidUtilities.m36dp(80.0f));
         this.cachedMediaLayout.setCacheModel(cacheModel);
         this.cachedMediaLayout.setDelegate(new CachedMediaLayout.Delegate() {
             @Override

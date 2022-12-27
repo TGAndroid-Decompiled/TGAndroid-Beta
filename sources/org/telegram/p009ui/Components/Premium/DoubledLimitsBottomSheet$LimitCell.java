@@ -8,7 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.LayoutHelper;
 
-public class DoubledLimitsBottomSheet$LimitCell extends LinearLayout {
+class DoubledLimitsBottomSheet$LimitCell extends LinearLayout {
     LimitPreviewView previewView;
     TextView subtitle;
     TextView title;
@@ -16,7 +16,7 @@ public class DoubledLimitsBottomSheet$LimitCell extends LinearLayout {
     public DoubledLimitsBottomSheet$LimitCell(Context context) {
         super(context);
         setOrientation(1);
-        setPadding(AndroidUtilities.m35dp(6.0f), 0, AndroidUtilities.m35dp(6.0f), 0);
+        setPadding(AndroidUtilities.m36dp(6.0f), 0, AndroidUtilities.m36dp(6.0f), 0);
         TextView textView = new TextView(context);
         this.title = textView;
         textView.setTextSize(1, 15.0f);

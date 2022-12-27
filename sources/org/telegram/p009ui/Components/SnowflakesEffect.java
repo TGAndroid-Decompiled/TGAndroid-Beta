@@ -35,7 +35,6 @@ public class SnowflakesEffect {
         float f1146y;
 
         private Particle() {
-            SnowflakesEffect.this = r1;
         }
 
         public void draw(Canvas canvas) {
@@ -48,20 +47,20 @@ public class SnowflakesEffect {
             SnowflakesEffect snowflakesEffect = SnowflakesEffect.this;
             if (snowflakesEffect.particleBitmap == null) {
                 snowflakesEffect.particleThinPaint.setAlpha(255);
-                SnowflakesEffect.this.particleBitmap = Bitmap.createBitmap(AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), Bitmap.Config.ARGB_8888);
+                SnowflakesEffect.this.particleBitmap = Bitmap.createBitmap(AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), Bitmap.Config.ARGB_8888);
                 Canvas canvas2 = new Canvas(SnowflakesEffect.this.particleBitmap);
                 float dpf2 = AndroidUtilities.dpf2(2.0f) * 2.0f;
                 float f2 = (-AndroidUtilities.dpf2(0.57f)) * 2.0f;
                 float dpf22 = 2.0f * AndroidUtilities.dpf2(1.55f);
                 int i = 0;
                 while (i < 6) {
-                    float m35dp = AndroidUtilities.m35dp(8.0f);
-                    float m35dp2 = AndroidUtilities.m35dp(8.0f);
+                    float m36dp = AndroidUtilities.m36dp(8.0f);
+                    float m36dp2 = AndroidUtilities.m36dp(8.0f);
                     double d = f;
                     float cos = ((float) Math.cos(d)) * dpf2;
                     float sin = ((float) Math.sin(d)) * dpf2;
                     float f3 = cos * 0.66f;
-                    canvas2.drawLine(m35dp, m35dp2, m35dp + cos, m35dp2 + sin, SnowflakesEffect.this.particleThinPaint);
+                    canvas2.drawLine(m36dp, m36dp2, m36dp + cos, m36dp2 + sin, SnowflakesEffect.this.particleThinPaint);
                     Double.isNaN(d);
                     double d2 = (float) (d - 1.5707963267948966d);
                     double cos2 = Math.cos(d2);
@@ -75,9 +74,9 @@ public class SnowflakesEffect {
                     Double.isNaN(d3);
                     double cos3 = Math.cos(d2);
                     Double.isNaN(d4);
-                    float f4 = m35dp + f3;
-                    float f5 = m35dp2 + (sin * 0.66f);
-                    canvas3.drawLine(f4, f5, m35dp + ((float) ((cos2 * d3) - (sin2 * d4))), m35dp2 + ((float) ((sin3 * d3) + (cos3 * d4))), SnowflakesEffect.this.particleThinPaint);
+                    float f4 = m36dp + f3;
+                    float f5 = m36dp2 + (sin * 0.66f);
+                    canvas3.drawLine(f4, f5, m36dp + ((float) ((cos2 * d3) - (sin2 * d4))), m36dp2 + ((float) ((sin3 * d3) + (cos3 * d4))), SnowflakesEffect.this.particleThinPaint);
                     Double.isNaN(d3);
                     double d5 = (-Math.cos(d2)) * d3;
                     double sin4 = Math.sin(d2);
@@ -85,7 +84,7 @@ public class SnowflakesEffect {
                     Double.isNaN(d3);
                     double cos4 = Math.cos(d2);
                     Double.isNaN(d4);
-                    canvas3.drawLine(f4, f5, m35dp + ((float) (d5 - (sin4 * d4))), m35dp2 + ((float) (((-Math.sin(d2)) * d3) + (cos4 * d4))), SnowflakesEffect.this.particleThinPaint);
+                    canvas3.drawLine(f4, f5, m36dp + ((float) (d5 - (sin4 * d4))), m36dp2 + ((float) (((-Math.sin(d2)) * d3) + (cos4 * d4))), SnowflakesEffect.this.particleThinPaint);
                     f += 1.0471976f;
                     i++;
                     canvas2 = canvas3;
@@ -105,12 +104,12 @@ public class SnowflakesEffect {
         this.viewType = i;
         Paint paint = new Paint(1);
         this.particlePaint = paint;
-        paint.setStrokeWidth(AndroidUtilities.m35dp(1.5f));
+        paint.setStrokeWidth(AndroidUtilities.m36dp(1.5f));
         this.particlePaint.setStrokeCap(Paint.Cap.ROUND);
         this.particlePaint.setStyle(Paint.Style.STROKE);
         Paint paint2 = new Paint(1);
         this.particleThinPaint = paint2;
-        paint2.setStrokeWidth(AndroidUtilities.m35dp(0.5f));
+        paint2.setStrokeWidth(AndroidUtilities.m36dp(0.5f));
         this.particleThinPaint.setStrokeCap(Paint.Cap.ROUND);
         this.particleThinPaint.setStyle(Paint.Style.STROKE);
         updateColors();
@@ -188,7 +187,7 @@ public class SnowflakesEffect {
                 if (this.particles.size() < i3 && Utilities.random.nextFloat() > 0.7f) {
                     int i6 = Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0;
                     float nextFloat = Utilities.random.nextFloat() * view.getMeasuredWidth();
-                    float nextFloat2 = i6 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.m35dp(20.0f)) - i6));
+                    float nextFloat2 = i6 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.m36dp(20.0f)) - i6));
                     double nextInt = (Utilities.random.nextInt(40) - 20) + 90;
                     Double.isNaN(nextInt);
                     double d = nextInt * 0.017453292519943295d;

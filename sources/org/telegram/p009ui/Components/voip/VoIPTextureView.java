@@ -153,7 +153,7 @@ public class VoIPTextureView extends FrameLayout {
         this.screencastText = textView;
         textView.setText(LocaleController.getString("VoipVideoScreenSharing", C1072R.string.VoipVideoScreenSharing));
         this.screencastText.setGravity(17);
-        this.screencastText.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+        this.screencastText.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
         this.screencastText.setTextColor(-1);
         this.screencastText.setTextSize(1, 15.0f);
         this.screencastText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -210,7 +210,7 @@ public class VoIPTextureView extends FrameLayout {
             float f4 = f3 - f2;
             this.screencastImage.setScaleX(f4);
             this.screencastImage.setScaleY(f4);
-            this.screencastImage.setTranslationY(AndroidUtilities.m35dp(60.0f) * f);
+            this.screencastImage.setTranslationY(AndroidUtilities.m36dp(60.0f) * f);
         }
     }
 

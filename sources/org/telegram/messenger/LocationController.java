@@ -146,7 +146,6 @@ public class LocationController extends BaseController implements NotificationCe
         }
 
         private GpsLocationListener() {
-            LocationController.this = r1;
         }
 
         @Override
@@ -166,7 +165,6 @@ public class LocationController extends BaseController implements NotificationCe
 
     public class FusedLocationListener implements ILocationServiceProvider.ILocationListener {
         private FusedLocationListener() {
-            LocationController.this = r1;
         }
 
         @Override
@@ -329,7 +327,7 @@ public class LocationController extends BaseController implements NotificationCe
                 startFusedLocationRequest(true);
             }
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -404,7 +402,7 @@ public class LocationController extends BaseController implements NotificationCe
                     ApplicationLoader.getLocationServiceProvider().requestLocationUpdates(this.locationRequest, this.fusedLocationListener);
                     return;
                 } catch (Throwable th) {
-                    FileLog.m31e(th);
+                    FileLog.m32e(th);
                     return;
                 }
             }
@@ -756,7 +754,7 @@ public class LocationController extends BaseController implements NotificationCe
             executeFast.step();
             executeFast.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -818,7 +816,7 @@ public class LocationController extends BaseController implements NotificationCe
                 getMessagesStorage().getUsersInternal(TextUtils.join(",", arrayList4), arrayList2);
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (arrayList.isEmpty()) {
             return;
@@ -902,7 +900,7 @@ public class LocationController extends BaseController implements NotificationCe
                 nativeByteBuffer.reuse();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -967,7 +965,7 @@ public class LocationController extends BaseController implements NotificationCe
         try {
             ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, LocationSharingService.class));
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
         }
     }
 
@@ -1058,7 +1056,7 @@ public class LocationController extends BaseController implements NotificationCe
                 ApplicationLoader.getLocationServiceProvider().removeLocationUpdates(this.fusedLocationListener);
                 this.apiClient.disconnect();
             } catch (Throwable th) {
-                FileLog.m30e(th, false);
+                FileLog.m31e(th, false);
             }
         }
         this.locationManager.removeUpdates(this.gpsLocationListener);

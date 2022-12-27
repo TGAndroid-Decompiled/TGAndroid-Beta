@@ -45,7 +45,7 @@ public class AttachBotIntroTopView extends View {
         });
         this.attachDrawable = ContextCompat.getDrawable(context, C1072R.C1073drawable.input_attach).mutate().getConstantState().newDrawable();
         this.paint.setStyle(Paint.Style.STROKE);
-        this.paint.setStrokeWidth(AndroidUtilities.m35dp(3.0f));
+        this.paint.setStrokeWidth(AndroidUtilities.m36dp(3.0f));
         this.paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
@@ -99,13 +99,13 @@ public class AttachBotIntroTopView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight() + AndroidUtilities.m35dp(6.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.m35dp(6.0f), AndroidUtilities.m35dp(6.0f), this.backgroundPaint);
-        this.imageReceiver.setImageCoords((getWidth() / 2.0f) - AndroidUtilities.m35dp(66.0f), (getHeight() / 2.0f) - (AndroidUtilities.m35dp(42.0f) / 2.0f), AndroidUtilities.m35dp(42.0f), AndroidUtilities.m35dp(42.0f));
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight() + AndroidUtilities.m36dp(6.0f));
+        canvas.drawRoundRect(rectF, AndroidUtilities.m36dp(6.0f), AndroidUtilities.m36dp(6.0f), this.backgroundPaint);
+        this.imageReceiver.setImageCoords((getWidth() / 2.0f) - AndroidUtilities.m36dp(66.0f), (getHeight() / 2.0f) - (AndroidUtilities.m36dp(42.0f) / 2.0f), AndroidUtilities.m36dp(42.0f), AndroidUtilities.m36dp(42.0f));
         this.imageReceiver.draw(canvas);
-        canvas.drawLine((getWidth() / 2.0f) - AndroidUtilities.m35dp(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + AndroidUtilities.m35dp(8.0f), getHeight() / 2.0f, this.paint);
-        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.m35dp(8.0f), getWidth() / 2.0f, (getHeight() / 2.0f) + AndroidUtilities.m35dp(8.0f), this.paint);
-        this.attachDrawable.setBounds((getWidth() / 2) + AndroidUtilities.m35dp(24.0f), (getHeight() / 2) - (AndroidUtilities.m35dp(42.0f) / 2), (getWidth() / 2) + AndroidUtilities.m35dp(66.0f), (getHeight() / 2) + (AndroidUtilities.m35dp(42.0f) / 2));
+        canvas.drawLine((getWidth() / 2.0f) - AndroidUtilities.m36dp(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + AndroidUtilities.m36dp(8.0f), getHeight() / 2.0f, this.paint);
+        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.m36dp(8.0f), getWidth() / 2.0f, (getHeight() / 2.0f) + AndroidUtilities.m36dp(8.0f), this.paint);
+        this.attachDrawable.setBounds((getWidth() / 2) + AndroidUtilities.m36dp(24.0f), (getHeight() / 2) - (AndroidUtilities.m36dp(42.0f) / 2), (getWidth() / 2) + AndroidUtilities.m36dp(66.0f), (getHeight() / 2) + (AndroidUtilities.m36dp(42.0f) / 2));
         this.attachDrawable.draw(canvas);
     }
 }

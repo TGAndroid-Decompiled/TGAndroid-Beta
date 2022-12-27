@@ -102,27 +102,27 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         @Override
         protected void onMeasure(int i, int i2) {
             int size = View.MeasureSpec.getSize(i);
-            AndroidUtilities.m35dp(48.0f);
-            this.textView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.m35dp(94.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(20.0f), 1073741824));
-            this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(50.0f), 1073741824));
-            setMeasuredDimension(size, AndroidUtilities.m35dp(50.0f));
+            AndroidUtilities.m36dp(48.0f);
+            this.textView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.m36dp(94.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(20.0f), 1073741824));
+            this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(50.0f), 1073741824));
+            setMeasuredDimension(size, AndroidUtilities.m36dp(50.0f));
         }
 
         @Override
         protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            int m35dp;
+            int m36dp;
             int i5 = i3 - i;
             int textHeight = ((i4 - i2) - this.textView.getTextHeight()) / 2;
             if (LocaleController.isRTL) {
-                m35dp = (getMeasuredWidth() - this.textView.getMeasuredWidth()) - AndroidUtilities.m35dp(this.imageView.getVisibility() != 0 ? 23.0f : 64.0f);
+                m36dp = (getMeasuredWidth() - this.textView.getMeasuredWidth()) - AndroidUtilities.m36dp(this.imageView.getVisibility() != 0 ? 23.0f : 64.0f);
             } else {
-                m35dp = AndroidUtilities.m35dp(this.imageView.getVisibility() != 0 ? 23.0f : 64.0f);
+                m36dp = AndroidUtilities.m36dp(this.imageView.getVisibility() != 0 ? 23.0f : 64.0f);
             }
             SimpleTextView simpleTextView = this.textView;
-            simpleTextView.layout(m35dp, textHeight, simpleTextView.getMeasuredWidth() + m35dp, this.textView.getMeasuredHeight() + textHeight);
-            int m35dp2 = !LocaleController.isRTL ? AndroidUtilities.m35dp(20.0f) : (i5 - this.imageView.getMeasuredWidth()) - AndroidUtilities.m35dp(20.0f);
+            simpleTextView.layout(m36dp, textHeight, simpleTextView.getMeasuredWidth() + m36dp, this.textView.getMeasuredHeight() + textHeight);
+            int m36dp2 = !LocaleController.isRTL ? AndroidUtilities.m36dp(20.0f) : (i5 - this.imageView.getMeasuredWidth()) - AndroidUtilities.m36dp(20.0f);
             ImageView imageView = this.imageView;
-            imageView.layout(m35dp2, 0, imageView.getMeasuredWidth() + m35dp2, this.imageView.getMeasuredHeight());
+            imageView.layout(m36dp2, 0, imageView.getMeasuredWidth() + m36dp2, this.imageView.getMeasuredHeight());
         }
 
         public void setTextAndIcon(String str, Drawable drawable, boolean z) {
@@ -171,7 +171,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
         @Override
         protected void onMeasure(int i, int i2) {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m35dp(64.0f));
+            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m36dp(64.0f));
             measureChildWithMargins(this.addButton, i, 0, i2, 0);
             measureChildWithMargins(this.textView, i, this.addButton.getMeasuredWidth(), i2, 0);
             measureChildWithMargins(this.valueTextView, i, this.addButton.getMeasuredWidth(), i2, 0);
@@ -311,7 +311,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(50.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(50.0f), 1073741824));
         }
 
         public void setFilter(org.telegram.messenger.MessagesController.DialogFilter r9, boolean r10) {
@@ -329,7 +329,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         @Override
         protected void onDraw(Canvas canvas) {
             if (this.needDivider) {
-                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(62.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(62.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
             MessagesController.DialogFilter dialogFilter = this.currentFilter;
             if (dialogFilter != null) {
@@ -464,9 +464,9 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
         frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
-        C32632 c32632 = new C32632(context);
-        this.listView = c32632;
-        ((DefaultItemAnimator) c32632.getItemAnimator()).setDelayAnimations(false);
+        C32662 c32662 = new C32662(context);
+        this.listView = c32662;
+        ((DefaultItemAnimator) c32662.getItemAnimator()).setDelayAnimations(false);
         this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setVerticalScrollBarEnabled(false);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
@@ -496,10 +496,9 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         return this.fragmentView;
     }
 
-    public class C32632 extends RecyclerListView {
-        C32632(Context context) {
+    public class C32662 extends RecyclerListView {
+        C32662(Context context) {
             super(context);
-            FiltersSetupActivity.this = r1;
         }
 
         @Override
@@ -508,7 +507,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        FiltersSetupActivity.C32632.this.lambda$onTouchEvent$0();
+                        FiltersSetupActivity.C32662.this.lambda$onTouchEvent$0();
                     }
                 }, 250L);
             }
@@ -581,7 +580,6 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         private Context mContext;
 
         public ListAdapter(Context context) {
-            FiltersSetupActivity.this = r1;
             this.mContext = context;
         }
 
@@ -608,8 +606,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             final MessagesController.DialogFilter currentFilter = ((FilterCell) view.getParent()).getCurrentFilter();
             AlertDialog.Builder builder = new AlertDialog.Builder(FiltersSetupActivity.this.getParentActivity());
             TextPaint textPaint = new TextPaint(1);
-            textPaint.setTextSize(AndroidUtilities.m35dp(20.0f));
-            builder.setTitle(Emoji.replaceEmoji(currentFilter.name, textPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false));
+            textPaint.setTextSize(AndroidUtilities.m36dp(20.0f));
+            builder.setTitle(Emoji.replaceEmoji(currentFilter.name, textPaint.getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false));
             builder.setItems(new CharSequence[]{LocaleController.getString("FilterEditItem", C1072R.string.FilterEditItem), LocaleController.getString("FilterDeleteItem", C1072R.string.FilterDeleteItem)}, new int[]{C1072R.C1073drawable.msg_edit, C1072R.C1073drawable.msg_delete}, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
@@ -683,7 +681,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 try {
                     alertDialog.dismiss();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             int indexOf = FiltersSetupActivity.this.getMessagesController().dialogFilters.indexOf(dialogFilter);
@@ -985,7 +983,6 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
 
         public TouchHelperCallback() {
-            FiltersSetupActivity.this = r1;
         }
 
         @Override
@@ -1071,7 +1068,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.fragmentView.performHapticFeedback(3, 1);
         } catch (Exception unused) {
         }
-        BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString("LimitReachedReorderFolder", C1072R.string.LimitReachedReorderFolder, LocaleController.getString(C1072R.string.FilterAllChats))), LocaleController.getString("PremiumMore", C1072R.string.PremiumMore), 5000, new Runnable() {
+        BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString("LimitReachedReorderFolder", C1072R.string.LimitReachedReorderFolder, LocaleController.getString(C1072R.string.FilterAllChats))), LocaleController.getString("PremiumMore", C1072R.string.PremiumMore), 5000, new Runnable() {
             @Override
             public final void run() {
                 FiltersSetupActivity.this.lambda$onDefaultTabMoved$2();

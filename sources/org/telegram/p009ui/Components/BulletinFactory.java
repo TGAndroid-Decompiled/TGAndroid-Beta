@@ -38,11 +38,11 @@ public final class BulletinFactory {
     private final BaseFragment fragment;
     private final Theme.ResourcesProvider resourcesProvider;
 
-    public static BulletinFactory m13of(BaseFragment baseFragment) {
+    public static BulletinFactory m14of(BaseFragment baseFragment) {
         return new BulletinFactory(baseFragment);
     }
 
-    public static BulletinFactory m14of(FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider) {
+    public static BulletinFactory m15of(FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider) {
         return new BulletinFactory(frameLayout, resourcesProvider);
     }
 
@@ -115,7 +115,6 @@ public final class BulletinFactory {
         }
 
         private FileType(String str, int i, String str2, int i2, Icon icon) {
-            super(str, i);
             this.localeKey = str2;
             this.localeRes = i2;
             this.icon = icon;
@@ -123,7 +122,6 @@ public final class BulletinFactory {
         }
 
         private FileType(String str, int i, String str2, Icon icon) {
-            super(str, i);
             this.localeKey = str2;
             this.icon = icon;
             this.localeRes = 0;
@@ -227,7 +225,7 @@ public final class BulletinFactory {
                 }
             }
             if (list.size() == 1) {
-                usersLayout.avatarsImageView.setTranslationX(AndroidUtilities.m35dp(4.0f));
+                usersLayout.avatarsImageView.setTranslationX(AndroidUtilities.m36dp(4.0f));
                 usersLayout.avatarsImageView.setScaleX(1.2f);
                 usersLayout.avatarsImageView.setScaleY(1.2f);
             } else {
@@ -246,11 +244,11 @@ public final class BulletinFactory {
             usersLayout.subtitleView.setSingleLine(true);
             usersLayout.subtitleView.setMaxLines(1);
             if (usersLayout.linearLayout.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-                int m35dp = AndroidUtilities.m35dp(70 - ((3 - i) * 12));
+                int m36dp = AndroidUtilities.m36dp(70 - ((3 - i) * 12));
                 if (LocaleController.isRTL) {
-                    ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).rightMargin = m35dp;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).rightMargin = m36dp;
                 } else {
-                    ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).leftMargin = m35dp;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).leftMargin = m36dp;
                 }
             }
         } else {
@@ -258,11 +256,11 @@ public final class BulletinFactory {
             usersLayout.textView.setMaxLines(2);
             usersLayout.textView.setText(charSequence);
             if (usersLayout.textView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-                int m35dp2 = AndroidUtilities.m35dp(70 - ((3 - i) * 12));
+                int m36dp2 = AndroidUtilities.m36dp(70 - ((3 - i) * 12));
                 if (LocaleController.isRTL) {
-                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).rightMargin = m35dp2;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).rightMargin = m36dp2;
                 } else {
-                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).leftMargin = m35dp2;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).leftMargin = m36dp2;
                 }
             }
         }
@@ -337,7 +335,7 @@ public final class BulletinFactory {
             }
             int indexOf = spannableStringBuilder.toString().indexOf("<{LOADING}>");
             if (indexOf >= 0) {
-                LoadingSpan loadingSpan2 = new LoadingSpan(null, AndroidUtilities.m35dp(100.0f));
+                LoadingSpan loadingSpan2 = new LoadingSpan(null, AndroidUtilities.m36dp(100.0f));
                 spannableStringBuilder.setSpan(loadingSpan2, indexOf, indexOf + 11, 33);
                 loadingSpan2.setColors(ColorUtils.setAlphaComponent(Theme.getColor("undo_infoColor", this.resourcesProvider), 32), ColorUtils.setAlphaComponent(Theme.getColor("undo_infoColor", this.resourcesProvider), 72));
                 loadingSpan = loadingSpan2;
@@ -602,15 +600,15 @@ public final class BulletinFactory {
     }
 
     public static Bulletin createSaveToGalleryBulletin(BaseFragment baseFragment, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        return m13of(baseFragment).createDownloadBulletin(z ? FileType.VIDEO : FileType.PHOTO, resourcesProvider);
+        return m14of(baseFragment).createDownloadBulletin(z ? FileType.VIDEO : FileType.PHOTO, resourcesProvider);
     }
 
     public static Bulletin createSaveToGalleryBulletin(FrameLayout frameLayout, boolean z, int i, int i2) {
-        return m14of(frameLayout, null).createDownloadBulletin(z ? FileType.VIDEO : FileType.PHOTO, 1, i, i2);
+        return m15of(frameLayout, null).createDownloadBulletin(z ? FileType.VIDEO : FileType.PHOTO, 1, i, i2);
     }
 
     public static Bulletin createSaveToGalleryBulletin(FrameLayout frameLayout, int i, boolean z, int i2, int i3) {
-        return m14of(frameLayout, null).createDownloadBulletin(z ? i > 1 ? FileType.VIDEOS : FileType.VIDEO : i > 1 ? FileType.PHOTOS : FileType.PHOTO, i, i2, i3);
+        return m15of(frameLayout, null).createDownloadBulletin(z ? i > 1 ? FileType.VIDEOS : FileType.VIDEO : i > 1 ? FileType.PHOTOS : FileType.PHOTO, i, i2, i3);
     }
 
     public static Bulletin createPromoteToAdminBulletin(BaseFragment baseFragment, String str) {
@@ -663,11 +661,11 @@ public final class BulletinFactory {
     }
 
     public static Bulletin createCopyLinkBulletin(BaseFragment baseFragment) {
-        return m13of(baseFragment).createCopyLinkBulletin();
+        return m14of(baseFragment).createCopyLinkBulletin();
     }
 
     public static Bulletin createCopyLinkBulletin(FrameLayout frameLayout) {
-        return m14of(frameLayout, null).createCopyLinkBulletin();
+        return m15of(frameLayout, null).createCopyLinkBulletin();
     }
 
     public static Bulletin createPinMessageBulletin(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {

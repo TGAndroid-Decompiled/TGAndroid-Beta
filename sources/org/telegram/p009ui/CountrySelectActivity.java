@@ -250,7 +250,6 @@ public class CountrySelectActivity extends BaseFragment {
         }
 
         public CountryAdapter(Context context, ArrayList<Country> arrayList) {
-            CountrySelectActivity.this = r6;
             this.mContext = context;
             if (arrayList != null) {
                 for (int i = 0; i < arrayList.size(); i++) {
@@ -291,7 +290,7 @@ public class CountrySelectActivity extends BaseFragment {
                     bufferedReader.close();
                     open.close();
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             Collections.sort(this.sortedCountries, CountrySelectActivity$CountryAdapter$$ExternalSyntheticLambda0.INSTANCE);
@@ -342,7 +341,7 @@ public class CountrySelectActivity extends BaseFragment {
                 createSettingsCell = CountrySelectActivity.createSettingsCell(this.mContext);
             } else {
                 createSettingsCell = new DividerCell(this.mContext);
-                createSettingsCell.setPadding(AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(8.0f));
+                createSettingsCell.setPadding(AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(8.0f));
             }
             return new RecyclerListView.Holder(createSettingsCell);
         }
@@ -353,7 +352,7 @@ public class CountrySelectActivity extends BaseFragment {
             if (viewHolder.getItemViewType() == 0) {
                 Country country = this.countries.get(this.sortedCountries.get(i)).get(i2);
                 TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
-                CharSequence replaceEmoji = Emoji.replaceEmoji(CountrySelectActivity.getCountryNameWithFlag(country), textSettingsCell.getTextView().getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false);
+                CharSequence replaceEmoji = Emoji.replaceEmoji(CountrySelectActivity.getCountryNameWithFlag(country), textSettingsCell.getTextView().getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false);
                 if (CountrySelectActivity.this.needPhoneCode) {
                     str = "+" + country.code;
                 } else {
@@ -402,7 +401,6 @@ public class CountrySelectActivity extends BaseFragment {
         }
 
         public CountrySearchAdapter(Context context, HashMap<String, ArrayList<Country>> hashMap) {
-            CountrySelectActivity.this = r4;
             this.mContext = context;
             for (ArrayList<Country> arrayList : hashMap.values()) {
                 for (Country country : arrayList) {
@@ -423,7 +421,7 @@ public class CountrySelectActivity extends BaseFragment {
                     timer.cancel();
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             Timer timer2 = new Timer();
             this.searchTimer = timer2;
@@ -434,7 +432,7 @@ public class CountrySelectActivity extends BaseFragment {
                         CountrySearchAdapter.this.searchTimer.cancel();
                         CountrySearchAdapter.this.searchTimer = null;
                     } catch (Exception e2) {
-                        FileLog.m31e(e2);
+                        FileLog.m32e(e2);
                     }
                     CountrySearchAdapter.this.processSearch(str);
                 }
@@ -519,7 +517,7 @@ public class CountrySelectActivity extends BaseFragment {
             String str;
             Country country = this.searchResult.get(i);
             TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
-            CharSequence replaceEmoji = Emoji.replaceEmoji(CountrySelectActivity.getCountryNameWithFlag(country), textSettingsCell.getTextView().getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(CountrySelectActivity.getCountryNameWithFlag(country), textSettingsCell.getTextView().getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false);
             if (CountrySelectActivity.this.needPhoneCode) {
                 str = "+" + country.code;
             } else {
@@ -531,21 +529,21 @@ public class CountrySelectActivity extends BaseFragment {
 
     public static TextSettingsCell createSettingsCell(Context context) {
         TextSettingsCell textSettingsCell = new TextSettingsCell(context);
-        textSettingsCell.setPadding(AndroidUtilities.m35dp(LocaleController.isRTL ? 16.0f : 12.0f), 0, AndroidUtilities.m35dp(LocaleController.isRTL ? 12.0f : 16.0f), 0);
-        textSettingsCell.addOnAttachStateChangeListener(new View$OnAttachStateChangeListenerC31284(textSettingsCell));
+        textSettingsCell.setPadding(AndroidUtilities.m36dp(LocaleController.isRTL ? 16.0f : 12.0f), 0, AndroidUtilities.m36dp(LocaleController.isRTL ? 12.0f : 16.0f), 0);
+        textSettingsCell.addOnAttachStateChangeListener(new View$OnAttachStateChangeListenerC31314(textSettingsCell));
         return textSettingsCell;
     }
 
-    public class View$OnAttachStateChangeListenerC31284 implements View.OnAttachStateChangeListener {
+    public class View$OnAttachStateChangeListenerC31314 implements View.OnAttachStateChangeListener {
         private NotificationCenter.NotificationCenterDelegate listener;
         final TextSettingsCell val$view;
 
-        View$OnAttachStateChangeListenerC31284(final TextSettingsCell textSettingsCell) {
+        View$OnAttachStateChangeListenerC31314(final TextSettingsCell textSettingsCell) {
             this.val$view = textSettingsCell;
             this.listener = new NotificationCenter.NotificationCenterDelegate() {
                 @Override
                 public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                    CountrySelectActivity.View$OnAttachStateChangeListenerC31284.lambda$$0(TextSettingsCell.this, i, i2, objArr);
+                    CountrySelectActivity.View$OnAttachStateChangeListenerC31314.lambda$$0(TextSettingsCell.this, i, i2, objArr);
                 }
             };
         }
@@ -579,7 +577,7 @@ public class CountrySelectActivity extends BaseFragment {
 
                 @Override
                 public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-                    return AndroidUtilities.m35dp(16.0f);
+                    return AndroidUtilities.m36dp(16.0f);
                 }
             }, languageFlag.length(), languageFlag.length() + 1, 0);
         }

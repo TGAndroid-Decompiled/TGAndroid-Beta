@@ -43,7 +43,7 @@ public class SearchField extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         View view = new View(context);
         this.searchBackground = view;
-        view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.m35dp(18.0f), getThemedColor("dialogSearchBackground")));
+        view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.m36dp(18.0f), getThemedColor("dialogSearchBackground")));
         if (z) {
             createFrame = LayoutHelper.createFrameRelatively(-1.0f, 36.0f, 8388659, 14.0f, 11.0f, 14.0f, 0.0f);
         } else {
@@ -73,7 +73,7 @@ public class SearchField extends FrameLayout {
         };
         this.progressDrawable = closeProgressDrawable2;
         imageView3.setImageDrawable(closeProgressDrawable2);
-        this.progressDrawable.setSide(AndroidUtilities.m35dp(7.0f));
+        this.progressDrawable.setSide(AndroidUtilities.m36dp(7.0f));
         this.clearSearchImageView.setScaleX(0.1f);
         this.clearSearchImageView.setScaleY(0.1f);
         this.clearSearchImageView.setAlpha(0.0f);
@@ -119,7 +119,7 @@ public class SearchField extends FrameLayout {
         this.searchEditText.setGravity((z ? LayoutHelper.getAbsoluteGravityStart() : 3) | 16);
         this.searchEditText.setImeOptions(268435459);
         this.searchEditText.setCursorColor(getThemedColor("featuredStickers_addedIcon"));
-        this.searchEditText.setCursorSize(AndroidUtilities.m35dp(20.0f));
+        this.searchEditText.setCursorSize(AndroidUtilities.m36dp(20.0f));
         this.searchEditText.setCursorWidth(1.5f);
         if (z) {
             createFrame4 = LayoutHelper.createFrameRelatively(-1.0f, 40.0f, 8388659, 54.0f, 9.0f, 46.0f, 0.0f);

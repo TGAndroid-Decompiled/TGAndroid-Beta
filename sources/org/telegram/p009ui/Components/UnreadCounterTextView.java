@@ -60,9 +60,9 @@ public class UnreadCounterTextView extends View {
         this.layoutPaint = new TextPaint(1);
         this.replaceProgress = 1.0f;
         this.textColorKey = "chat_fieldOverlayText";
-        this.textPaint.setTextSize(AndroidUtilities.m35dp(13.0f));
+        this.textPaint.setTextSize(AndroidUtilities.m36dp(13.0f));
         this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.layoutPaint.setTextSize(AndroidUtilities.m35dp(15.0f));
+        this.layoutPaint.setTextSize(AndroidUtilities.m36dp(15.0f));
         this.layoutPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
     }
 
@@ -162,20 +162,20 @@ public class UnreadCounterTextView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         StaticLayout staticLayout;
-        int m35dp;
+        int m36dp;
         if (motionEvent.getAction() == 0 && (staticLayout = this.textLayout) != null) {
             int ceil = (int) Math.ceil(staticLayout.getLineWidth(0));
             if (getMeasuredWidth() == ((View) getParent()).getMeasuredWidth()) {
-                m35dp = getMeasuredWidth() - AndroidUtilities.m35dp(96.0f);
+                m36dp = getMeasuredWidth() - AndroidUtilities.m36dp(96.0f);
             } else if (isTouchFullWidth()) {
-                m35dp = getMeasuredWidth();
+                m36dp = getMeasuredWidth();
             } else {
                 int i = this.circleWidth;
-                m35dp = ceil + (i > 0 ? i + AndroidUtilities.m35dp(8.0f) : 0) + AndroidUtilities.m35dp(48.0f);
+                m36dp = ceil + (i > 0 ? i + AndroidUtilities.m36dp(8.0f) : 0) + AndroidUtilities.m36dp(48.0f);
             }
-            int measuredWidth = (getMeasuredWidth() - m35dp) / 2;
-            float f = m35dp / 2.0f;
-            this.rect.set(measuredWidth, (getMeasuredHeight() / 2.0f) - f, measuredWidth + m35dp, (getMeasuredHeight() / 2.0f) + f);
+            int measuredWidth = (getMeasuredWidth() - m36dp) / 2;
+            float f = m36dp / 2.0f;
+            this.rect.set(measuredWidth, (getMeasuredHeight() / 2.0f) - f, measuredWidth + m36dp, (getMeasuredHeight() / 2.0f) + f);
             if (!this.rect.contains(motionEvent.getX(), motionEvent.getY())) {
                 setPressed(false);
                 return false;
@@ -194,7 +194,7 @@ public class UnreadCounterTextView extends View {
                 String formatWholeNumber = AndroidUtilities.formatWholeNumber(i, 0);
                 this.currentCounterString = formatWholeNumber;
                 this.textWidth = (int) Math.ceil(this.textPaint.measureText(formatWholeNumber));
-                int max = Math.max(AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(12.0f) + this.textWidth);
+                int max = Math.max(AndroidUtilities.m36dp(20.0f), AndroidUtilities.m36dp(12.0f) + this.textWidth);
                 if (this.circleWidth != max) {
                     this.circleWidth = max;
                 }
@@ -232,20 +232,20 @@ public class UnreadCounterTextView extends View {
             int measuredWidth2 = getMeasuredWidth();
             int measuredWidth3 = (getMeasuredWidth() - measuredWidth2) / 2;
             if (this.rippleColor != Theme.getColor(this.textColorKey, getResourceProvider()) || this.selectableBackground == null) {
-                int m35dp = AndroidUtilities.m35dp(60.0f);
+                int m36dp = AndroidUtilities.m36dp(60.0f);
                 int color4 = Theme.getColor(this.textColorKey, getResourceProvider());
                 this.rippleColor = color4;
-                Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(m35dp, 0, ColorUtils.setAlphaComponent(color4, 26));
+                Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(m36dp, 0, ColorUtils.setAlphaComponent(color4, 26));
                 this.selectableBackground = createSimpleSelectorCircleDrawable;
                 createSimpleSelectorCircleDrawable.setCallback(this);
             }
-            int m35dp2 = getLeft() + measuredWidth3 <= 0 ? measuredWidth3 - AndroidUtilities.m35dp(20.0f) : measuredWidth3;
+            int m36dp2 = getLeft() + measuredWidth3 <= 0 ? measuredWidth3 - AndroidUtilities.m36dp(20.0f) : measuredWidth3;
             int i = measuredWidth3 + measuredWidth2;
             if (i > ((View) getParent()).getMeasuredWidth()) {
-                i += AndroidUtilities.m35dp(20.0f);
+                i += AndroidUtilities.m36dp(20.0f);
             }
             int i2 = measuredWidth2 / 2;
-            this.selectableBackground.setBounds(m35dp2, (getMeasuredHeight() / 2) - i2, i, (getMeasuredHeight() / 2) + i2);
+            this.selectableBackground.setBounds(m36dp2, (getMeasuredHeight() / 2) - i2, i, (getMeasuredHeight() / 2) + i2);
             this.selectableBackground.draw(canvas);
         }
         if (this.textLayout != null) {
@@ -254,10 +254,10 @@ public class UnreadCounterTextView extends View {
                 int alpha = this.layoutPaint.getAlpha();
                 canvas.save();
                 canvas.translate(((getMeasuredWidth() - this.textLayoutOut.getWidth()) / 2) - (this.circleWidth / 2), ((getMeasuredHeight() - this.textLayout.getHeight()) / 2) + getTopOffset());
-                canvas.translate(this.iconOut != null ? (drawable2.getIntrinsicWidth() / 2) + AndroidUtilities.m35dp(3.0f) : 0, (this.animatedFromBottom ? -1.0f : 1.0f) * AndroidUtilities.m35dp(18.0f) * this.replaceProgress);
+                canvas.translate(this.iconOut != null ? (drawable2.getIntrinsicWidth() / 2) + AndroidUtilities.m36dp(3.0f) : 0, (this.animatedFromBottom ? -1.0f : 1.0f) * AndroidUtilities.m36dp(18.0f) * this.replaceProgress);
                 Drawable drawable4 = this.iconOut;
                 if (drawable4 != null) {
-                    drawable4.setBounds((-drawable4.getIntrinsicWidth()) - AndroidUtilities.m35dp(6.0f), ((this.textLayout.getHeight() - this.iconOut.getIntrinsicHeight()) / 2) + AndroidUtilities.m35dp(1.0f), -AndroidUtilities.m35dp(6.0f), ((this.textLayout.getHeight() + this.iconOut.getIntrinsicHeight()) / 2) + AndroidUtilities.m35dp(1.0f));
+                    drawable4.setBounds((-drawable4.getIntrinsicWidth()) - AndroidUtilities.m36dp(6.0f), ((this.textLayout.getHeight() - this.iconOut.getIntrinsicHeight()) / 2) + AndroidUtilities.m36dp(1.0f), -AndroidUtilities.m36dp(6.0f), ((this.textLayout.getHeight() + this.iconOut.getIntrinsicHeight()) / 2) + AndroidUtilities.m36dp(1.0f));
                     this.iconOut.setAlpha((int) (alpha * (1.0f - this.replaceProgress)));
                     this.iconOut.draw(canvas);
                 }
@@ -267,10 +267,10 @@ public class UnreadCounterTextView extends View {
                 canvas.restore();
                 canvas.save();
                 canvas.translate(((getMeasuredWidth() - this.layoutTextWidth) / 2) - (this.circleWidth / 2), ((getMeasuredHeight() - this.textLayout.getHeight()) / 2) + getTopOffset());
-                canvas.translate(this.icon != null ? (drawable3.getIntrinsicWidth() / 2) + AndroidUtilities.m35dp(3.0f) : 0, (this.animatedFromBottom ? 1.0f : -1.0f) * AndroidUtilities.m35dp(18.0f) * (1.0f - this.replaceProgress));
+                canvas.translate(this.icon != null ? (drawable3.getIntrinsicWidth() / 2) + AndroidUtilities.m36dp(3.0f) : 0, (this.animatedFromBottom ? 1.0f : -1.0f) * AndroidUtilities.m36dp(18.0f) * (1.0f - this.replaceProgress));
                 Drawable drawable5 = this.icon;
                 if (drawable5 != null) {
-                    drawable5.setBounds((-drawable5.getIntrinsicWidth()) - AndroidUtilities.m35dp(6.0f), ((this.textLayout.getHeight() - this.icon.getIntrinsicHeight()) / 2) + AndroidUtilities.m35dp(1.0f), -AndroidUtilities.m35dp(6.0f), ((this.textLayout.getHeight() + this.icon.getIntrinsicHeight()) / 2) + AndroidUtilities.m35dp(1.0f));
+                    drawable5.setBounds((-drawable5.getIntrinsicWidth()) - AndroidUtilities.m36dp(6.0f), ((this.textLayout.getHeight() - this.icon.getIntrinsicHeight()) / 2) + AndroidUtilities.m36dp(1.0f), -AndroidUtilities.m36dp(6.0f), ((this.textLayout.getHeight() + this.icon.getIntrinsicHeight()) / 2) + AndroidUtilities.m36dp(1.0f));
                     this.icon.setAlpha((int) (this.replaceProgress * f));
                     this.icon.draw(canvas);
                 }
@@ -280,10 +280,10 @@ public class UnreadCounterTextView extends View {
                 this.layoutPaint.setAlpha(alpha);
             } else {
                 int measuredWidth4 = ((getMeasuredWidth() - this.layoutTextWidth) / 2) - (this.circleWidth / 2);
-                canvas.translate(measuredWidth4 + (this.icon != null ? (drawable.getIntrinsicWidth() / 2) + AndroidUtilities.m35dp(3.0f) : 0), ((getMeasuredHeight() - this.textLayout.getHeight()) / 2) + getTopOffset());
+                canvas.translate(measuredWidth4 + (this.icon != null ? (drawable.getIntrinsicWidth() / 2) + AndroidUtilities.m36dp(3.0f) : 0), ((getMeasuredHeight() - this.textLayout.getHeight()) / 2) + getTopOffset());
                 Drawable drawable6 = this.icon;
                 if (drawable6 != null) {
-                    drawable6.setBounds((-drawable6.getIntrinsicWidth()) - AndroidUtilities.m35dp(6.0f), ((this.textLayout.getHeight() - this.icon.getIntrinsicHeight()) / 2) + AndroidUtilities.m35dp(1.0f), -AndroidUtilities.m35dp(6.0f), ((this.textLayout.getHeight() + this.icon.getIntrinsicHeight()) / 2) + AndroidUtilities.m35dp(1.0f));
+                    drawable6.setBounds((-drawable6.getIntrinsicWidth()) - AndroidUtilities.m36dp(6.0f), ((this.textLayout.getHeight() - this.icon.getIntrinsicHeight()) / 2) + AndroidUtilities.m36dp(1.0f), -AndroidUtilities.m36dp(6.0f), ((this.textLayout.getHeight() + this.icon.getIntrinsicHeight()) / 2) + AndroidUtilities.m36dp(1.0f));
                     this.icon.setAlpha(255);
                     this.icon.draw(canvas);
                 }
@@ -295,9 +295,9 @@ public class UnreadCounterTextView extends View {
             return;
         }
         int ceil = (int) Math.ceil(staticLayout.getLineWidth(0));
-        this.rect.set(((((getMeasuredWidth() - ceil) / 2) + ceil) - (this.circleWidth / 2)) + AndroidUtilities.m35dp(6.0f), (getMeasuredHeight() / 2) - AndroidUtilities.m35dp(10.0f), measuredWidth + this.circleWidth, (getMeasuredHeight() / 2) + AndroidUtilities.m35dp(10.0f));
-        canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(10.0f), this.paint);
-        canvas.drawText(this.currentCounterString, this.rect.centerX() - (this.textWidth / 2.0f), this.rect.top + AndroidUtilities.m35dp(14.5f), this.textPaint);
+        this.rect.set(((((getMeasuredWidth() - ceil) / 2) + ceil) - (this.circleWidth / 2)) + AndroidUtilities.m36dp(6.0f), (getMeasuredHeight() / 2) - AndroidUtilities.m36dp(10.0f), measuredWidth + this.circleWidth, (getMeasuredHeight() / 2) + AndroidUtilities.m36dp(10.0f));
+        canvas.drawRoundRect(this.rect, AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(10.0f), this.paint);
+        canvas.drawText(this.currentCounterString, this.rect.centerX() - (this.textWidth / 2.0f), this.rect.top + AndroidUtilities.m36dp(14.5f), this.textPaint);
     }
 
     public void setTextColorKey(String str) {

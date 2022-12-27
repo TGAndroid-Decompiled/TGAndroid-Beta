@@ -118,7 +118,7 @@ public class TopicCreateFragment extends BaseFragment {
             this.actionBar.setTitle(LocaleController.getString("NewTopic", C1072R.string.NewTopic));
         }
         this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
-        this.actionBar.setActionBarMenuOnItemClick(new C41741());
+        this.actionBar.setActionBarMenuOnItemClick(new C41771());
         if (this.topicForEdit == null) {
             this.actionBar.createMenu().addItem(1, LocaleController.getString("Create", C1072R.string.Create).toUpperCase());
         } else {
@@ -131,7 +131,7 @@ public class TopicCreateFragment extends BaseFragment {
             protected void onMeasure(int i, int i2) {
                 measureKeyboardHeight();
                 if (getKeyboardHeight() == 0 && !this.keyboardWasShown) {
-                    int i3 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.m35dp(200.0f));
+                    int i3 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.m36dp(200.0f));
                     this.keyboardHeight = i3;
                     setPadding(0, 0, 0, i3);
                 } else {
@@ -158,7 +158,7 @@ public class TopicCreateFragment extends BaseFragment {
         editTextBoldCursor.setHintText(LocaleController.getString("EnterTopicName", C1072R.string.EnterTopicName));
         this.editTextBoldCursor.setHintColor(getThemedColor("chat_messagePanelHint"));
         this.editTextBoldCursor.setTextColor(getThemedColor("chat_messagePanelText"));
-        this.editTextBoldCursor.setPadding(AndroidUtilities.m35dp(0.0f), this.editTextBoldCursor.getPaddingTop(), AndroidUtilities.m35dp(0.0f), this.editTextBoldCursor.getPaddingBottom());
+        this.editTextBoldCursor.setPadding(AndroidUtilities.m36dp(0.0f), this.editTextBoldCursor.getPaddingTop(), AndroidUtilities.m36dp(0.0f), this.editTextBoldCursor.getPaddingBottom());
         this.editTextBoldCursor.setBackgroundDrawable(null);
         this.editTextBoldCursor.setSingleLine(true);
         EditTextBoldCursor editTextBoldCursor2 = this.editTextBoldCursor;
@@ -193,8 +193,8 @@ public class TopicCreateFragment extends BaseFragment {
                 }
             }
         });
-        C41774 c41774 = new C41774(this, context);
-        c41774.setOnClickListener(new View.OnClickListener() {
+        C41804 c41804 = new C41804(this, context);
+        c41804.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 TopicCreateFragment.this.lambda$createView$0(view);
@@ -202,9 +202,9 @@ public class TopicCreateFragment extends BaseFragment {
         });
         for (int i = 0; i < 2; i++) {
             this.backupImageView[i] = new BackupImageView(context);
-            c41774.addView(this.backupImageView[i], LayoutHelper.createFrame(28, 28, 17));
+            c41804.addView(this.backupImageView[i], LayoutHelper.createFrame(28, 28, 17));
         }
-        frameLayout.addView(c41774, LayoutHelper.createFrame(40, 40.0f, 16, 10.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.addView(c41804, LayoutHelper.createFrame(40, 40.0f, 16, 10.0f, 0.0f, 0.0f, 0.0f));
         linearLayout.addView(headerCell);
         linearLayout.addView(frameLayout);
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -260,7 +260,7 @@ public class TopicCreateFragment extends BaseFragment {
             ImageView imageView = new ImageView(context);
             imageView.setImageResource(C1072R.C1073drawable.msg_filled_general);
             imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_inMenu"), PorterDuff.Mode.MULTIPLY));
-            c41774.addView(imageView, LayoutHelper.createFrame(22, 22, 17));
+            c41804.addView(imageView, LayoutHelper.createFrame(22, 22, 17));
             frameLayout2.addView(new ActionBarPopupWindow.GapView(context, getResourceProvider()), LayoutHelper.createFrame(-1, 8.0f));
             TextCheckCell2 textCheckCell2 = new TextCheckCell2(context);
             this.checkBoxCell = textCheckCell2;
@@ -290,27 +290,26 @@ public class TopicCreateFragment extends BaseFragment {
         return this.fragmentView;
     }
 
-    public class C41741 extends C1133ActionBar.ActionBarMenuOnItemClick {
+    public class C41771 extends C1133ActionBar.ActionBarMenuOnItemClick {
         public static void lambda$onItemClick$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         }
 
         public static void lambda$onItemClick$3(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         }
 
-        C41741() {
-            TopicCreateFragment.this = r1;
+        C41771() {
         }
 
         @Override
         public void onItemClick(int r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.TopicCreateFragment.C41741.onItemClick(int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.TopicCreateFragment.C41771.onItemClick(int):void");
         }
 
         public void lambda$onItemClick$1(final String str, final AlertDialog alertDialog, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TopicCreateFragment.C41741.this.lambda$onItemClick$0(tLObject, str, alertDialog);
+                    TopicCreateFragment.C41771.this.lambda$onItemClick$0(tLObject, str, alertDialog);
                 }
             });
         }
@@ -366,12 +365,12 @@ public class TopicCreateFragment extends BaseFragment {
         }
     }
 
-    public class C41774 extends FrameLayout {
+    public class C41804 extends FrameLayout {
         ValueAnimator backAnimator;
         boolean pressed;
         float pressedProgress;
 
-        C41774(TopicCreateFragment topicCreateFragment, Context context) {
+        C41804(TopicCreateFragment topicCreateFragment, Context context) {
             super(context);
         }
 
@@ -406,14 +405,14 @@ public class TopicCreateFragment extends BaseFragment {
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            TopicCreateFragment.C41774.this.lambda$setPressed$0(valueAnimator2);
+                            TopicCreateFragment.C41804.this.lambda$setPressed$0(valueAnimator2);
                         }
                     });
                     this.backAnimator.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             super.onAnimationEnd(animator);
-                            C41774.this.backAnimator = null;
+                            C41804.this.backAnimator = null;
                         }
                     });
                     this.backAnimator.setInterpolator(new OvershootInterpolator(5.0f));
@@ -462,7 +461,7 @@ public class TopicCreateFragment extends BaseFragment {
         if (!z && longValue != 0 && !getUserConfig().isPremium()) {
             TLRPC$Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, l.longValue());
             if (findDocument != null) {
-                BulletinFactory.m13of(this).createEmojiBulletin(findDocument, AndroidUtilities.replaceTags(LocaleController.getString("UnlockPremiumEmojiHint", C1072R.string.UnlockPremiumEmojiHint)), LocaleController.getString("PremiumMore", C1072R.string.PremiumMore), new Runnable() {
+                BulletinFactory.m14of(this).createEmojiBulletin(findDocument, AndroidUtilities.replaceTags(LocaleController.getString("UnlockPremiumEmojiHint", C1072R.string.UnlockPremiumEmojiHint)), LocaleController.getString("PremiumMore", C1072R.string.PremiumMore), new Runnable() {
                     @Override
                     public final void run() {
                         TopicCreateFragment.this.lambda$selectEmoji$2();

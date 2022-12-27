@@ -58,9 +58,9 @@ public class LoadingStickerDrawable extends Drawable {
         this.currentColor1 = color2;
         int averageColor = AndroidUtilities.getAverageColor(color2, color);
         this.placeholderPaint.setColor(color2);
-        float m35dp = AndroidUtilities.m35dp(500.0f);
-        this.gradientWidth = m35dp;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, m35dp, 0.0f, new int[]{color2, averageColor, color2}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
+        float m36dp = AndroidUtilities.m36dp(500.0f);
+        this.gradientWidth = m36dp;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, m36dp, 0.0f, new int[]{color2, averageColor, color2}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
         this.placeholderGradient = linearGradient;
         linearGradient.setLocalMatrix(this.placeholderMatrix);
         Bitmap bitmap = this.bitmap;

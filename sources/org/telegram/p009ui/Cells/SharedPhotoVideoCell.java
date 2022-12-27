@@ -72,7 +72,6 @@ public class SharedPhotoVideoCell extends FrameLayout {
 
         public PhotoVideoView(Context context) {
             super(context);
-            SharedPhotoVideoCell.this = r13;
             setWillNotDraw(false);
             FrameLayout frameLayout = new FrameLayout(context);
             this.container = frameLayout;
@@ -82,18 +81,18 @@ public class SharedPhotoVideoCell extends FrameLayout {
             backupImageView.getImageReceiver().setNeedsQualityThumb(true);
             this.imageView.getImageReceiver().setShouldGenerateQualityThumb(true);
             this.container.addView(this.imageView, LayoutHelper.createFrame(-1, -1.0f));
-            FrameLayout frameLayout2 = new FrameLayout(this, context, r13) {
+            FrameLayout frameLayout2 = new FrameLayout(this, context, SharedPhotoVideoCell.this) {
                 private RectF rect = new RectF();
 
                 @Override
                 protected void onDraw(Canvas canvas) {
                     this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), Theme.chat_timeBackgroundPaint);
+                    canvas.drawRoundRect(this.rect, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), Theme.chat_timeBackgroundPaint);
                 }
             };
             this.videoInfoContainer = frameLayout2;
             frameLayout2.setWillNotDraw(false);
-            this.videoInfoContainer.setPadding(AndroidUtilities.m35dp(5.0f), 0, AndroidUtilities.m35dp(5.0f), 0);
+            this.videoInfoContainer.setPadding(AndroidUtilities.m36dp(5.0f), 0, AndroidUtilities.m36dp(5.0f), 0);
             this.container.addView(this.videoInfoContainer, LayoutHelper.createFrame(-2, 17.0f, 83, 4.0f, 0.0f, 0.0f, 4.0f));
             ImageView imageView = new ImageView(context);
             imageView.setImageResource(C1072R.C1073drawable.play_mini_video);
@@ -401,20 +400,20 @@ public class SharedPhotoVideoCell extends FrameLayout {
     protected void onMeasure(int i, int i2) {
         int itemSize;
         if (this.type == 1) {
-            itemSize = (View.MeasureSpec.getSize(i) - ((this.itemsCount - 1) * AndroidUtilities.m35dp(2.0f))) / this.itemsCount;
+            itemSize = (View.MeasureSpec.getSize(i) - ((this.itemsCount - 1) * AndroidUtilities.m36dp(2.0f))) / this.itemsCount;
         } else {
             itemSize = getItemSize(this.itemsCount);
         }
         this.ignoreLayout = true;
         for (int i3 = 0; i3 < this.itemsCount; i3++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.photoVideoViews[i3].getLayoutParams();
-            layoutParams.topMargin = this.isFirst ? 0 : AndroidUtilities.m35dp(2.0f);
-            layoutParams.leftMargin = (AndroidUtilities.m35dp(2.0f) + itemSize) * i3;
+            layoutParams.topMargin = this.isFirst ? 0 : AndroidUtilities.m36dp(2.0f);
+            layoutParams.leftMargin = (AndroidUtilities.m36dp(2.0f) + itemSize) * i3;
             if (i3 == this.itemsCount - 1) {
                 if (AndroidUtilities.isTablet()) {
-                    layoutParams.width = AndroidUtilities.m35dp(490.0f) - ((this.itemsCount - 1) * (AndroidUtilities.m35dp(2.0f) + itemSize));
+                    layoutParams.width = AndroidUtilities.m36dp(490.0f) - ((this.itemsCount - 1) * (AndroidUtilities.m36dp(2.0f) + itemSize));
                 } else {
-                    layoutParams.width = AndroidUtilities.displaySize.x - ((this.itemsCount - 1) * (AndroidUtilities.m35dp(2.0f) + itemSize));
+                    layoutParams.width = AndroidUtilities.displaySize.x - ((this.itemsCount - 1) * (AndroidUtilities.m36dp(2.0f) + itemSize));
                 }
             } else {
                 layoutParams.width = itemSize;
@@ -424,13 +423,13 @@ public class SharedPhotoVideoCell extends FrameLayout {
             this.photoVideoViews[i3].setLayoutParams(layoutParams);
         }
         this.ignoreLayout = false;
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((this.isFirst ? 0 : AndroidUtilities.m35dp(2.0f)) + itemSize, 1073741824));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((this.isFirst ? 0 : AndroidUtilities.m36dp(2.0f)) + itemSize, 1073741824));
     }
 
     public static int getItemSize(int i) {
         if (AndroidUtilities.isTablet()) {
-            return (AndroidUtilities.m35dp(490.0f) - ((i - 1) * AndroidUtilities.m35dp(2.0f))) / i;
+            return (AndroidUtilities.m36dp(490.0f) - ((i - 1) * AndroidUtilities.m36dp(2.0f))) / i;
         }
-        return (AndroidUtilities.displaySize.x - ((i - 1) * AndroidUtilities.m35dp(2.0f))) / i;
+        return (AndroidUtilities.displaySize.x - ((i - 1) * AndroidUtilities.m36dp(2.0f))) / i;
     }
 }

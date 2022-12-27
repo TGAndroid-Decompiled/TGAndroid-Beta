@@ -163,11 +163,11 @@ public class ForwardingPreviewView extends FrameLayout {
                 @Override
                 @TargetApi(21)
                 public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(0, ForwardingPreviewView.this.currentTopOffset + 1, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.m35dp(6.0f));
+                    outline.setRoundRect(0, ForwardingPreviewView.this.currentTopOffset + 1, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.m36dp(6.0f));
                 }
             });
             this.chatPreviewContainer.setClipToOutline(true);
-            this.chatPreviewContainer.setElevation(AndroidUtilities.m35dp(4.0f));
+            this.chatPreviewContainer.setElevation(AndroidUtilities.m36dp(4.0f));
         }
         C1133ActionBar c1133ActionBar = new C1133ActionBar(context, resourcesDelegate);
         this.actionBar = c1133ActionBar;
@@ -266,10 +266,10 @@ public class ForwardingPreviewView extends FrameLayout {
                                     int top = chatMessageCell2.getTop() + chatMessageCell2.getBackgroundDrawableTop();
                                     int top2 = chatMessageCell2.getTop() + chatMessageCell2.getBackgroundDrawableBottom();
                                     if ((chatMessageCell2.getCurrentPosition().flags & 4) == 0) {
-                                        top -= AndroidUtilities.m35dp(10.0f);
+                                        top -= AndroidUtilities.m36dp(10.0f);
                                     }
                                     if ((chatMessageCell2.getCurrentPosition().flags & 8) == 0) {
-                                        top2 += AndroidUtilities.m35dp(10.0f);
+                                        top2 += AndroidUtilities.m36dp(10.0f);
                                     }
                                     if (chatMessageCell2.willRemovedAfterAnimation()) {
                                         currentMessagesGroup.transitionParams.cell = chatMessageCell2;
@@ -311,11 +311,11 @@ public class ForwardingPreviewView extends FrameLayout {
                                     f2 += transitionParams3.cell.getTranslationY();
                                     f4 += groupedMessages2.transitionParams.cell.getTranslationY();
                                 }
-                                if (f2 < (-AndroidUtilities.m35dp(20.0f))) {
-                                    f2 = -AndroidUtilities.m35dp(20.0f);
+                                if (f2 < (-AndroidUtilities.m36dp(20.0f))) {
+                                    f2 = -AndroidUtilities.m36dp(20.0f);
                                 }
-                                if (f4 > ForwardingPreviewView.this.chatListView.getMeasuredHeight() + AndroidUtilities.m35dp(20.0f)) {
-                                    f4 = ForwardingPreviewView.this.chatListView.getMeasuredHeight() + AndroidUtilities.m35dp(20.0f);
+                                if (f4 > ForwardingPreviewView.this.chatListView.getMeasuredHeight() + AndroidUtilities.m36dp(20.0f)) {
+                                    f4 = ForwardingPreviewView.this.chatListView.getMeasuredHeight() + AndroidUtilities.m36dp(20.0f);
                                 }
                                 boolean z2 = (groupedMessages2.transitionParams.cell.getScaleX() == 1.0f && groupedMessages2.transitionParams.cell.getScaleY() == 1.0f) ? false : true;
                                 if (z2) {
@@ -355,9 +355,9 @@ public class ForwardingPreviewView extends FrameLayout {
             }
         };
         this.chatListView = recyclerListView;
-        C23235 c23235 = new C23235(null, this.chatListView, resourcesDelegate, i);
-        this.itemAnimator = c23235;
-        recyclerListView.setItemAnimator(c23235);
+        C23265 c23265 = new C23265(null, this.chatListView, resourcesDelegate, i);
+        this.itemAnimator = c23265;
+        recyclerListView.setItemAnimator(c23265);
         this.chatListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
@@ -390,10 +390,10 @@ public class ForwardingPreviewView extends FrameLayout {
         Adapter adapter = new Adapter();
         this.adapter = adapter;
         recyclerListView2.setAdapter(adapter);
-        this.chatListView.setPadding(0, AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f));
-        C23268 c23268 = new C23268(context, 1000, 1, true, forwardingMessagesParams);
-        this.chatLayoutManager = c23268;
-        c23268.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+        this.chatListView.setPadding(0, AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f));
+        C23298 c23298 = new C23298(context, 1000, 1, true, forwardingMessagesParams);
+        this.chatLayoutManager = c23298;
+        c23298.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int i4) {
                 if (i4 < 0 || i4 >= forwardingMessagesParams.previewMessages.size()) {
@@ -440,7 +440,7 @@ public class ForwardingPreviewView extends FrameLayout {
                         byte b = groupedMessagePosition.minY;
                         byte b2 = currentPosition.minY;
                         if (b == b2 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b != b2 || groupedMessagePosition.maxY != currentPosition.maxY) && b == b2)) {
-                            round -= ((int) Math.ceil(max * groupedMessagePosition.f815ph)) - AndroidUtilities.m35dp(4.0f);
+                            round -= ((int) Math.ceil(max * groupedMessagePosition.f815ph)) - AndroidUtilities.m36dp(4.0f);
                             break;
                         }
                         i4++;
@@ -615,14 +615,13 @@ public class ForwardingPreviewView extends FrameLayout {
         updateColors();
     }
 
-    public class C23235 extends ChatListItemAnimator {
+    public class C23265 extends ChatListItemAnimator {
         Runnable finishRunnable;
         int scrollAnimationIndex;
         final int val$currentAccount;
 
-        C23235(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider, int i) {
+        C23265(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider, int i) {
             super(chatActivity, recyclerListView, resourcesProvider);
-            ForwardingPreviewView.this = r1;
             this.val$currentAccount = i;
             this.scrollAnimationIndex = -1;
         }
@@ -653,7 +652,7 @@ public class ForwardingPreviewView extends FrameLayout {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ForwardingPreviewView.C23235.this.lambda$onAllAnimationsDone$0(i);
+                    ForwardingPreviewView.C23265.this.lambda$onAllAnimationsDone$0(i);
                 }
             };
             this.finishRunnable = runnable2;
@@ -664,7 +663,7 @@ public class ForwardingPreviewView extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ForwardingPreviewView.C23235.this.lambda$onAllAnimationsDone$1();
+                        ForwardingPreviewView.C23265.this.lambda$onAllAnimationsDone$1();
                     }
                 });
             }
@@ -692,7 +691,7 @@ public class ForwardingPreviewView extends FrameLayout {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ForwardingPreviewView.C23235.this.lambda$endAnimations$2(i);
+                    ForwardingPreviewView.C23265.this.lambda$endAnimations$2(i);
                 }
             };
             this.finishRunnable = runnable2;
@@ -707,7 +706,7 @@ public class ForwardingPreviewView extends FrameLayout {
         }
     }
 
-    public class C23268 extends GridLayoutManagerFixed {
+    public class C23298 extends GridLayoutManagerFixed {
         final ForwardingMessagesParams val$params;
 
         @Override
@@ -715,9 +714,8 @@ public class ForwardingPreviewView extends FrameLayout {
             return false;
         }
 
-        C23268(Context context, int i, int i2, boolean z, ForwardingMessagesParams forwardingMessagesParams) {
+        C23298(Context context, int i, int i2, boolean z, ForwardingMessagesParams forwardingMessagesParams) {
             super(context, i, i2, z);
-            ForwardingPreviewView.this = r1;
             this.val$params = forwardingMessagesParams;
         }
 
@@ -754,11 +752,11 @@ public class ForwardingPreviewView extends FrameLayout {
             try {
                 super.onLayoutChildren(recycler, state);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ForwardingPreviewView.C23268.this.lambda$onLayoutChildren$0();
+                        ForwardingPreviewView.C23298.this.lambda$onLayoutChildren$0();
                     }
                 });
             }
@@ -973,14 +971,14 @@ public class ForwardingPreviewView extends FrameLayout {
         ((ViewGroup.MarginLayoutParams) this.chatListView.getLayoutParams()).topMargin = C1133ActionBar.getCurrentActionBarHeight();
         if (this.isLandscapeMode) {
             this.chatPreviewContainer.getLayoutParams().height = -1;
-            ((ViewGroup.MarginLayoutParams) this.chatPreviewContainer.getLayoutParams()).topMargin = AndroidUtilities.m35dp(8.0f);
-            ((ViewGroup.MarginLayoutParams) this.chatPreviewContainer.getLayoutParams()).bottomMargin = AndroidUtilities.m35dp(8.0f);
-            this.chatPreviewContainer.getLayoutParams().width = (int) Math.min(View.MeasureSpec.getSize(i), Math.max(AndroidUtilities.m35dp(340.0f), View.MeasureSpec.getSize(i) * 0.6f));
+            ((ViewGroup.MarginLayoutParams) this.chatPreviewContainer.getLayoutParams()).topMargin = AndroidUtilities.m36dp(8.0f);
+            ((ViewGroup.MarginLayoutParams) this.chatPreviewContainer.getLayoutParams()).bottomMargin = AndroidUtilities.m36dp(8.0f);
+            this.chatPreviewContainer.getLayoutParams().width = (int) Math.min(View.MeasureSpec.getSize(i), Math.max(AndroidUtilities.m36dp(340.0f), View.MeasureSpec.getSize(i) * 0.6f));
             this.menuScrollView.getLayoutParams().height = -1;
         } else {
             ((ViewGroup.MarginLayoutParams) this.chatPreviewContainer.getLayoutParams()).topMargin = 0;
             ((ViewGroup.MarginLayoutParams) this.chatPreviewContainer.getLayoutParams()).bottomMargin = 0;
-            this.chatPreviewContainer.getLayoutParams().height = ((View.MeasureSpec.getSize(i2) - AndroidUtilities.m35dp(6.0f)) - this.buttonsLayout.getMeasuredHeight()) - this.buttonsLayout2.getMeasuredHeight();
+            this.chatPreviewContainer.getLayoutParams().height = ((View.MeasureSpec.getSize(i2) - AndroidUtilities.m36dp(6.0f)) - this.buttonsLayout.getMeasuredHeight()) - this.buttonsLayout2.getMeasuredHeight();
             if (this.chatPreviewContainer.getLayoutParams().height < View.MeasureSpec.getSize(i2) * 0.5f) {
                 this.chatPreviewContainer.getLayoutParams().height = (int) (View.MeasureSpec.getSize(i2) * 0.5f);
             }
@@ -993,7 +991,7 @@ public class ForwardingPreviewView extends FrameLayout {
                 if (this.isLandscapeMode) {
                     this.forwardingMessagesParams.previewMessages.get(i6).parentWidth = this.chatPreviewContainer.getLayoutParams().width;
                 } else {
-                    this.forwardingMessagesParams.previewMessages.get(i6).parentWidth = View.MeasureSpec.getSize(i) - AndroidUtilities.m35dp(16.0f);
+                    this.forwardingMessagesParams.previewMessages.get(i6).parentWidth = View.MeasureSpec.getSize(i) - AndroidUtilities.m36dp(16.0f);
                 }
                 this.forwardingMessagesParams.previewMessages.get(i6).resetLayout();
                 this.forwardingMessagesParams.previewMessages.get(i6).forceUpdate = true;
@@ -1028,23 +1026,23 @@ public class ForwardingPreviewView extends FrameLayout {
                         top = this.chatListView.getChildAt(i2).getTop();
                     }
                 }
-                int m35dp = top - AndroidUtilities.m35dp(4.0f);
-                if (m35dp < 0) {
+                int m36dp = top - AndroidUtilities.m36dp(4.0f);
+                if (m36dp < 0) {
                     this.chatTopOffset = 0;
                 } else {
-                    this.chatTopOffset = m35dp;
+                    this.chatTopOffset = m36dp;
                 }
             }
-            float m35dp2 = (AndroidUtilities.m35dp(8.0f) + (((getMeasuredHeight() - AndroidUtilities.m35dp(16.0f)) - (((this.buttonsLayout.getMeasuredHeight() + this.buttonsLayout2.getMeasuredHeight()) - AndroidUtilities.m35dp(8.0f)) + (this.chatPreviewContainer.getMeasuredHeight() - this.chatTopOffset))) / 2.0f)) - this.chatTopOffset;
-            this.yOffset = m35dp2;
-            if (m35dp2 > AndroidUtilities.m35dp(8.0f)) {
-                this.yOffset = AndroidUtilities.m35dp(8.0f);
+            float m36dp2 = (AndroidUtilities.m36dp(8.0f) + (((getMeasuredHeight() - AndroidUtilities.m36dp(16.0f)) - (((this.buttonsLayout.getMeasuredHeight() + this.buttonsLayout2.getMeasuredHeight()) - AndroidUtilities.m36dp(8.0f)) + (this.chatPreviewContainer.getMeasuredHeight() - this.chatTopOffset))) / 2.0f)) - this.chatTopOffset;
+            this.yOffset = m36dp2;
+            if (m36dp2 > AndroidUtilities.m36dp(8.0f)) {
+                this.yOffset = AndroidUtilities.m36dp(8.0f);
             }
             this.menuScrollView.setTranslationX(getMeasuredWidth() - this.menuScrollView.getMeasuredWidth());
         } else {
             this.yOffset = 0.0f;
             this.chatTopOffset = 0;
-            this.menuScrollView.setTranslationX(this.chatListView.getMeasuredWidth() + AndroidUtilities.m35dp(8.0f));
+            this.menuScrollView.setTranslationX(this.chatListView.getMeasuredWidth() + AndroidUtilities.m36dp(8.0f));
         }
         boolean z = this.firstLayout;
         if (z || (this.chatTopOffset == i && this.yOffset == f)) {
@@ -1111,7 +1109,7 @@ public class ForwardingPreviewView extends FrameLayout {
             this.chatPreviewContainer.invalidateOutline();
         }
         this.chatPreviewContainer.setTranslationY(f);
-        this.menuScrollView.setTranslationY((f + this.chatPreviewContainer.getMeasuredHeight()) - AndroidUtilities.m35dp(2.0f));
+        this.menuScrollView.setTranslationY((f + this.chatPreviewContainer.getMeasuredHeight()) - AndroidUtilities.m36dp(2.0f));
     }
 
     public boolean isShowing() {
@@ -1120,7 +1118,6 @@ public class ForwardingPreviewView extends FrameLayout {
 
     public class Adapter extends RecyclerView.Adapter {
         private Adapter() {
-            ForwardingPreviewView.this = r1;
         }
 
         @Override

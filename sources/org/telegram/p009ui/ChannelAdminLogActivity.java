@@ -313,7 +313,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public int getBottomOffset(int i) {
-                return AndroidUtilities.m35dp(51.0f);
+                return AndroidUtilities.m36dp(51.0f);
             }
         });
         return true;
@@ -336,13 +336,13 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             return;
         }
         if (!TextUtils.isEmpty(this.searchQuery)) {
-            this.emptyView.setPadding(AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(5.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(5.0f));
+            this.emptyView.setPadding(AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(5.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(5.0f));
             this.emptyView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("EventLogEmptyTextSearch", C1072R.string.EventLogEmptyTextSearch, this.searchQuery)));
         } else if (this.selectedAdmins != null || this.currentFilter != null) {
-            this.emptyView.setPadding(AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(5.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(5.0f));
+            this.emptyView.setPadding(AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(5.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(5.0f));
             this.emptyView.setText(AndroidUtilities.replaceTags(LocaleController.getString("EventLogEmptySearch", C1072R.string.EventLogEmptySearch)));
         } else {
-            this.emptyView.setPadding(AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f));
+            this.emptyView.setPadding(AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f));
             if (this.currentChat.megagroup) {
                 this.emptyView.setText(AndroidUtilities.replaceTags(LocaleController.getString("EventLogEmpty", C1072R.string.EventLogEmpty)));
             } else {
@@ -657,7 +657,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                                 measureChildWithMargins(childAt, i2, 0, i3, 0);
                             }
                         } else {
-                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.m35dp(10.0f), paddingTop - AndroidUtilities.m35dp(50.0f)), 1073741824));
+                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.m36dp(10.0f), paddingTop - AndroidUtilities.m36dp(50.0f)), 1073741824));
                         }
                     }
                 }
@@ -665,7 +665,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ChannelAdminLogActivity.C15095.onLayout(boolean, int, int, int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ChannelAdminLogActivity.C15115.onLayout(boolean, int, int, int, int):void");
             }
 
             @Override
@@ -692,8 +692,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         textView.setTextSize(1, 14.0f);
         this.emptyView.setGravity(17);
         this.emptyView.setTextColor(Theme.getColor("chat_serviceText"));
-        this.emptyView.setBackground(Theme.createServiceDrawable(AndroidUtilities.m35dp(6.0f), this.emptyView, this.contentView));
-        this.emptyView.setPadding(AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f));
+        this.emptyView.setBackground(Theme.createServiceDrawable(AndroidUtilities.m36dp(6.0f), this.emptyView, this.contentView));
+        this.emptyView.setPadding(AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f));
         this.emptyViewContainer.addView(this.emptyView, LayoutHelper.createFrame(-2, -2.0f, 17, 16.0f, 0.0f, 16.0f, 0.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
@@ -741,8 +741,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                             }
                         }
                     }
-                    if (y3 - AndroidUtilities.m35dp(48.0f) < y2) {
-                        y3 = y2 + AndroidUtilities.m35dp(48.0f);
+                    if (y3 - AndroidUtilities.m36dp(48.0f) < y2) {
+                        y3 = y2 + AndroidUtilities.m36dp(48.0f);
                     }
                     if (!chatMessageCell.drawPinnedBottom() && y3 > (y = (int) (chatMessageCell.getY() + chatMessageCell.getMeasuredHeight()))) {
                         y3 = y;
@@ -754,7 +754,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     if (chatMessageCell.getCurrentMessagesGroup() != null && chatMessageCell.getCurrentMessagesGroup().transitionParams.backgroundChangeBounds) {
                         y3 = (int) (y3 - chatMessageCell.getTranslationY());
                     }
-                    avatarImage.setImageY(y3 - AndroidUtilities.m35dp(44.0f));
+                    avatarImage.setImageY(y3 - AndroidUtilities.m36dp(44.0f));
                     if (chatMessageCell.shouldDrawAlphaLayer()) {
                         avatarImage.setAlpha(chatMessageCell.getAlpha());
                         canvas.scale(chatMessageCell.getScaleX(), chatMessageCell.getScaleY(), chatMessageCell.getX() + chatMessageCell.getPivotX(), chatMessageCell.getY() + (chatMessageCell.getHeight() >> 1));
@@ -792,11 +792,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.chatAdapter = chatActivityAdapter;
         recyclerListView2.setAdapter(chatActivityAdapter);
         this.chatListView.setClipToPadding(false);
-        this.chatListView.setPadding(0, AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(3.0f));
+        this.chatListView.setPadding(0, AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(3.0f));
         RecyclerListView recyclerListView3 = this.chatListView;
-        C15128 c15128 = new C15128(null, this.chatListView, null);
-        this.chatListItemAnimator = c15128;
-        recyclerListView3.setItemAnimator(c15128);
+        C15148 c15148 = new C15148(null, this.chatListView, null);
+        this.chatListItemAnimator = c15148;
+        recyclerListView3.setItemAnimator(c15148);
         this.chatListItemAnimator.setReversePositions(true);
         this.chatListView.setLayoutAnimation(null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, context) {
@@ -819,8 +819,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.contentView.addView(this.chatListView, LayoutHelper.createFrame(-1, -1.0f));
         this.chatListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             {
-                ChannelAdminLogActivity.this = this;
-                AndroidUtilities.m35dp(100.0f);
+                AndroidUtilities.m36dp(100.0f);
             }
 
             @Override
@@ -871,11 +870,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.contentView.addView(this.progressView, LayoutHelper.createFrame(-1, -1, 51));
         View view = new View(context);
         this.progressView2 = view;
-        view.setBackground(Theme.createServiceDrawable(AndroidUtilities.m35dp(18.0f), this.progressView2, this.contentView));
+        view.setBackground(Theme.createServiceDrawable(AndroidUtilities.m36dp(18.0f), this.progressView2, this.contentView));
         this.progressView.addView(this.progressView2, LayoutHelper.createFrame(36, 36, 17));
         RadialProgressView radialProgressView = new RadialProgressView(context);
         this.progressBar = radialProgressView;
-        radialProgressView.setSize(AndroidUtilities.m35dp(28.0f));
+        radialProgressView.setSize(AndroidUtilities.m36dp(28.0f));
         this.progressBar.setProgressColor(Theme.getColor("chat_serviceText"));
         this.progressView.addView(this.progressBar, LayoutHelper.createFrame(32, 32, 17));
         ChatActionCell chatActionCell = new ChatActionCell(context);
@@ -895,7 +894,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         };
         this.bottomOverlayChat = frameLayout3;
         frameLayout3.setWillNotDraw(false);
-        this.bottomOverlayChat.setPadding(0, AndroidUtilities.m35dp(3.0f), 0, 0);
+        this.bottomOverlayChat.setPadding(0, AndroidUtilities.m36dp(3.0f), 0, 0);
         this.contentView.addView(this.bottomOverlayChat, LayoutHelper.createFrame(-1, 51, 80));
         this.bottomOverlayChat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -938,7 +937,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.searchContainer.setFocusable(true);
         this.searchContainer.setFocusableInTouchMode(true);
         this.searchContainer.setClickable(true);
-        this.searchContainer.setPadding(0, AndroidUtilities.m35dp(3.0f), 0, 0);
+        this.searchContainer.setPadding(0, AndroidUtilities.m36dp(3.0f), 0, 0);
         this.contentView.addView(this.searchContainer, LayoutHelper.createFrame(-1, 51, 80));
         ImageView imageView2 = new ImageView(context);
         this.searchCalendarButton = imageView2;
@@ -969,19 +968,18 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.chatListView.setAnimateEmptyView(true, 1);
         UndoView undoView = new UndoView(context);
         this.undoView = undoView;
-        undoView.setAdditionalTranslationY(AndroidUtilities.m35dp(51.0f));
+        undoView.setAdditionalTranslationY(AndroidUtilities.m36dp(51.0f));
         this.contentView.addView(this.undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
         updateEmptyPlaceholder();
         return this.fragmentView;
     }
 
-    public class C15128 extends ChatListItemAnimator {
+    public class C15148 extends ChatListItemAnimator {
         Runnable finishRunnable;
         int scrollAnimationIndex;
 
-        C15128(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider) {
+        C15148(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider) {
             super(chatActivity, recyclerListView, resourcesProvider);
-            ChannelAdminLogActivity.this = r1;
             this.scrollAnimationIndex = -1;
         }
 
@@ -996,7 +994,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 this.finishRunnable = null;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("admin logs chatItemAnimator disable notifications");
+                FileLog.m35d("admin logs chatItemAnimator disable notifications");
             }
         }
 
@@ -1010,7 +1008,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAdminLogActivity.C15128.this.lambda$onAllAnimationsDone$0();
+                    ChannelAdminLogActivity.C15148.this.lambda$onAllAnimationsDone$0();
                 }
             };
             this.finishRunnable = runnable2;
@@ -1023,7 +1021,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 this.scrollAnimationIndex = -1;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("admin logs chatItemAnimator enable notifications");
+                FileLog.m35d("admin logs chatItemAnimator enable notifications");
             }
         }
     }
@@ -1106,7 +1104,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         int i = C1072R.C1073drawable.popup_fixed_alert;
         int i2 = 0;
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(parentActivity, i, getResourceProvider(), 0);
-        actionBarPopupWindowLayout.setMinimumWidth(AndroidUtilities.m35dp(200.0f));
+        actionBarPopupWindowLayout.setMinimumWidth(AndroidUtilities.m36dp(200.0f));
         Rect rect = new Rect();
         getParentActivity().getResources().getDrawable(i).mutate().getPadding(rect);
         actionBarPopupWindowLayout.setBackgroundColor(getThemedColor("actionBarDefaultSubmenuBackground"));
@@ -1120,7 +1118,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 actionBarPopupWindowLayout.addView((View) new ActionBarPopupWindow.GapView(getContext(), getResourceProvider()), LayoutHelper.createLinear(-1, 8));
             } else {
                 ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getParentActivity(), i3 == 0, i3 == size + (-1), getResourceProvider());
-                actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.m35dp(200.0f));
+                actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.m36dp(200.0f));
                 actionBarMenuSubItem.setTextAndIcon((CharSequence) arrayList2.get(i3), ((Integer) arrayList3.get(i3)).intValue());
                 final Integer num = (Integer) arrayList.get(i3);
                 actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
@@ -1171,16 +1169,16 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.scrimPopupWindow.setClippingEnabled(true);
         this.scrimPopupWindow.setAnimationStyle(C1072R.style.PopupContextAnimation);
         this.scrimPopupWindow.setFocusable(true);
-        chatScrimPopupContainerLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(1000.0f), Integer.MIN_VALUE));
+        chatScrimPopupContainerLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(1000.0f), Integer.MIN_VALUE));
         this.scrimPopupWindow.setInputMethodMode(2);
         this.scrimPopupWindow.setSoftInputMode(48);
         this.scrimPopupWindow.getContentView().setFocusableInTouchMode(true);
         actionBarPopupWindowLayout.setFitItems(true);
-        int left = (((view.getLeft() + ((int) f)) - chatScrimPopupContainerLayout.getMeasuredWidth()) + rect.left) - AndroidUtilities.m35dp(28.0f);
-        if (left < AndroidUtilities.m35dp(6.0f)) {
-            left = AndroidUtilities.m35dp(6.0f);
-        } else if (left > (this.chatListView.getMeasuredWidth() - AndroidUtilities.m35dp(6.0f)) - chatScrimPopupContainerLayout.getMeasuredWidth()) {
-            left = (this.chatListView.getMeasuredWidth() - AndroidUtilities.m35dp(6.0f)) - chatScrimPopupContainerLayout.getMeasuredWidth();
+        int left = (((view.getLeft() + ((int) f)) - chatScrimPopupContainerLayout.getMeasuredWidth()) + rect.left) - AndroidUtilities.m36dp(28.0f);
+        if (left < AndroidUtilities.m36dp(6.0f)) {
+            left = AndroidUtilities.m36dp(6.0f);
+        } else if (left > (this.chatListView.getMeasuredWidth() - AndroidUtilities.m36dp(6.0f)) - chatScrimPopupContainerLayout.getMeasuredWidth()) {
+            left = (this.chatListView.getMeasuredWidth() - AndroidUtilities.m36dp(6.0f)) - chatScrimPopupContainerLayout.getMeasuredWidth();
         }
         if (AndroidUtilities.isTablet()) {
             int[] iArr = new int[2];
@@ -1188,22 +1186,22 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             left += iArr[0];
         }
         int height = this.contentView.getHeight();
-        int measuredHeight = chatScrimPopupContainerLayout.getMeasuredHeight() + AndroidUtilities.m35dp(48.0f);
+        int measuredHeight = chatScrimPopupContainerLayout.getMeasuredHeight() + AndroidUtilities.m36dp(48.0f);
         int measureKeyboardHeight = this.contentView.measureKeyboardHeight();
-        if (measureKeyboardHeight > AndroidUtilities.m35dp(20.0f)) {
+        if (measureKeyboardHeight > AndroidUtilities.m36dp(20.0f)) {
             height += measureKeyboardHeight;
         }
         if (measuredHeight < height) {
             i2 = (int) (this.chatListView.getY() + view.getTop() + f2);
-            if ((measuredHeight - rect.top) - rect.bottom > AndroidUtilities.m35dp(240.0f)) {
-                i2 += AndroidUtilities.m35dp(240.0f) - measuredHeight;
+            if ((measuredHeight - rect.top) - rect.bottom > AndroidUtilities.m36dp(240.0f)) {
+                i2 += AndroidUtilities.m36dp(240.0f) - measuredHeight;
             }
-            if (i2 < this.chatListView.getY() + AndroidUtilities.m35dp(24.0f)) {
-                i2 = (int) (this.chatListView.getY() + AndroidUtilities.m35dp(24.0f));
+            if (i2 < this.chatListView.getY() + AndroidUtilities.m36dp(24.0f)) {
+                i2 = (int) (this.chatListView.getY() + AndroidUtilities.m36dp(24.0f));
             } else {
                 int i4 = height - measuredHeight;
-                if (i2 > i4 - AndroidUtilities.m35dp(8.0f)) {
-                    i2 = i4 - AndroidUtilities.m35dp(8.0f);
+                if (i2 > i4 - AndroidUtilities.m36dp(8.0f)) {
+                    i2 = i4 - AndroidUtilities.m36dp(8.0f);
                 }
             }
         } else if (!this.inBubbleMode) {
@@ -1353,11 +1351,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
     public void lambda$processSelectedOption$11(TLObject tLObject) {
         if (tLObject instanceof TLRPC$TL_boolTrue) {
-            BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.msg_antispam, LocaleController.getString("ChannelAntiSpamFalsePositiveReported", C1072R.string.ChannelAntiSpamFalsePositiveReported)).show();
+            BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.msg_antispam, LocaleController.getString("ChannelAntiSpamFalsePositiveReported", C1072R.string.ChannelAntiSpamFalsePositiveReported)).show();
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.error, LocaleController.getString("UnknownError", C1072R.string.UnknownError)).show();
+            BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.error, LocaleController.getString("UnknownError", C1072R.string.UnknownError)).show();
         } else {
-            BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.error, LocaleController.getString("UnknownError", C1072R.string.UnknownError)).show();
+            BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.error, LocaleController.getString("UnknownError", C1072R.string.UnknownError)).show();
         }
     }
 
@@ -1616,7 +1614,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 if (measuredHeight2 > measuredHeight) {
                     measuredHeight2 = i4 + measuredHeight;
                 }
-                chatMessageCell2.setVisiblePart(i4, measuredHeight2 - i4, (this.contentView.getHeightWithKeyboard() - AndroidUtilities.m35dp(48.0f)) - this.chatListView.getTop(), 0.0f, (childAt.getY() + this.actionBar.getMeasuredHeight()) - this.contentView.getBackgroundTranslationY(), this.contentView.getMeasuredWidth(), this.contentView.getBackgroundSizeY(), 0, 0);
+                chatMessageCell2.setVisiblePart(i4, measuredHeight2 - i4, (this.contentView.getHeightWithKeyboard() - AndroidUtilities.m36dp(48.0f)) - this.chatListView.getTop(), 0.0f, (childAt.getY() + this.actionBar.getMeasuredHeight()) - this.contentView.getBackgroundTranslationY(), this.contentView.getMeasuredWidth(), this.contentView.getBackgroundSizeY(), 0, 0);
                 MessageObject messageObject2 = chatMessageCell2.getMessageObject();
                 if (this.roundVideoContainer != null && messageObject2.isRoundVideo() && MediaController.getInstance().isPlayingMessage(messageObject2)) {
                     ImageReceiver photoImage = chatMessageCell2.getPhotoImage();
@@ -1780,7 +1778,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             bufferedWriter.close();
             showDialog(new PhonebookShareAlert(this, null, tLRPC$User, null, file, str2, str3));
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1861,7 +1859,6 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
 
         public ChatActivityAdapter(Context context) {
-            ChannelAdminLogActivity.this = r1;
             this.mContext = context;
         }
 
@@ -1904,7 +1901,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     view = new ChatMessageCell(this.mContext);
                 }
                 ChatMessageCell chatMessageCell = (ChatMessageCell) view;
-                chatMessageCell.setDelegate(new C15141());
+                chatMessageCell.setDelegate(new C15161());
                 chatMessageCell.setAllowAssistant(true);
                 chatActionCell = view;
             } else if (i == 1) {
@@ -1915,7 +1912,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                         accessibilityNodeInfo.setVisibleToUser(true);
                     }
                 };
-                chatActionCell2.setDelegate(new C15163());
+                chatActionCell2.setDelegate(new C15183());
                 chatActionCell = chatActionCell2;
             } else if (i == 2) {
                 chatActionCell = new ChatUnreadCell(this.mContext, null);
@@ -1926,7 +1923,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             return new RecyclerListView.Holder(chatActionCell);
         }
 
-        public class C15141 implements ChatMessageCell.ChatMessageCellDelegate {
+        public class C15161 implements ChatMessageCell.ChatMessageCellDelegate {
             @Override
             public boolean canDrawOutboundsContent() {
                 return true;
@@ -2109,8 +2106,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$videoTimerReached(this);
             }
 
-            C15141() {
-                ChatActivityAdapter.this = r1;
+            C15161() {
             }
 
             @Override
@@ -2165,20 +2161,20 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public boolean didLongPressUserAvatar(final ChatMessageCell chatMessageCell, final TLRPC$User tLRPC$User, float f, float f2) {
-                AvatarPreviewer.Data m17of;
+                AvatarPreviewer.Data m18of;
                 if (tLRPC$User != null && tLRPC$User.f995id != UserConfig.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).getClientUserId()) {
                     AvatarPreviewer.MenuItem[] menuItemArr = {AvatarPreviewer.MenuItem.OPEN_PROFILE, AvatarPreviewer.MenuItem.SEND_MESSAGE};
                     TLRPC$UserFull userFull = ChannelAdminLogActivity.this.getMessagesController().getUserFull(tLRPC$User.f995id);
                     if (userFull == null) {
-                        m17of = AvatarPreviewer.Data.m17of(tLRPC$User, ((BaseFragment) ChannelAdminLogActivity.this).classGuid, menuItemArr);
+                        m18of = AvatarPreviewer.Data.m18of(tLRPC$User, ((BaseFragment) ChannelAdminLogActivity.this).classGuid, menuItemArr);
                     } else {
-                        m17of = AvatarPreviewer.Data.m16of(userFull, menuItemArr);
+                        m18of = AvatarPreviewer.Data.m17of(userFull, menuItemArr);
                     }
-                    if (AvatarPreviewer.canPreview(m17of)) {
-                        AvatarPreviewer.getInstance().show((ViewGroup) ((BaseFragment) ChannelAdminLogActivity.this).fragmentView, m17of, new AvatarPreviewer.Callback() {
+                    if (AvatarPreviewer.canPreview(m18of)) {
+                        AvatarPreviewer.getInstance().show((ViewGroup) ((BaseFragment) ChannelAdminLogActivity.this).fragmentView, m18of, new AvatarPreviewer.Callback() {
                             @Override
                             public final void onMenuClick(AvatarPreviewer.MenuItem menuItem) {
-                                ChannelAdminLogActivity.ChatActivityAdapter.C15141.this.lambda$didLongPressUserAvatar$0(chatMessageCell, tLRPC$User, menuItem);
+                                ChannelAdminLogActivity.ChatActivityAdapter.C15161.this.lambda$didLongPressUserAvatar$0(chatMessageCell, tLRPC$User, menuItem);
                             }
                         });
                         return true;
@@ -2188,7 +2184,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             public void lambda$didLongPressUserAvatar$0(ChatMessageCell chatMessageCell, TLRPC$User tLRPC$User, AvatarPreviewer.MenuItem menuItem) {
-                int i = C150623.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
+                int i = C150823.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
                 if (i == 1) {
                     openDialog(chatMessageCell, tLRPC$User);
                 } else if (i != 2) {
@@ -2264,7 +2260,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                         builder.setItems(new CharSequence[]{LocaleController.getString("Open", C1072R.string.Open), LocaleController.getString("Copy", C1072R.string.Copy)}, new DialogInterface.OnClickListener() {
                             @Override
                             public final void onClick(DialogInterface dialogInterface, int i) {
-                                ChannelAdminLogActivity.ChatActivityAdapter.C15141.this.lambda$didPressUrl$1(url2, dialogInterface, i);
+                                ChannelAdminLogActivity.ChatActivityAdapter.C15161.this.lambda$didPressUrl$1(url2, dialogInterface, i);
                             }
                         });
                         ChannelAdminLogActivity.this.showDialog(builder.create());
@@ -2307,7 +2303,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
             @Override
             public void didPressImage(org.telegram.p009ui.Cells.ChatMessageCell r10, float r11, float r12) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ChannelAdminLogActivity.ChatActivityAdapter.C15141.didPressImage(org.telegram.ui.Cells.ChatMessageCell, float, float):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ChannelAdminLogActivity.ChatActivityAdapter.C15161.didPressImage(org.telegram.ui.Cells.ChatMessageCell, float, float):void");
             }
 
             @Override
@@ -2336,7 +2332,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
         }
 
-        public class C15163 implements ChatActionCell.ChatActionCellDelegate {
+        public class C15183 implements ChatActionCell.ChatActionCellDelegate {
             @Override
             public boolean canDrawOutboundsContent() {
                 return ChatActionCell.ChatActionCellDelegate.CC.$default$canDrawOutboundsContent(this);
@@ -2361,8 +2357,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 ChatActionCell.ChatActionCellDelegate.CC.$default$needShowEffectOverlay(this, chatActionCell, tLRPC$Document, tLRPC$VideoSize);
             }
 
-            C15163() {
-                ChatActivityAdapter.this = r1;
+            C15183() {
             }
 
             @Override
@@ -2419,21 +2414,21 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public final void onCancel(DialogInterface dialogInterface) {
-                            ChannelAdminLogActivity.ChatActivityAdapter.C15163.this.lambda$needOpenInviteLink$0(zArr, dialogInterface);
+                            ChannelAdminLogActivity.ChatActivityAdapter.C15183.this.lambda$needOpenInviteLink$0(zArr, dialogInterface);
                         }
                     });
                     alertDialog.showDelayed(300L);
                     ChannelAdminLogActivity.this.getConnectionsManager().bindRequestToGuid(ChannelAdminLogActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_messages_getExportedChatInvite, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            ChannelAdminLogActivity.ChatActivityAdapter.C15163.this.lambda$needOpenInviteLink$2(tLRPC$TL_chatInviteExported, zArr, alertDialog, tLObject, tLRPC$TL_error);
+                            ChannelAdminLogActivity.ChatActivityAdapter.C15183.this.lambda$needOpenInviteLink$2(tLRPC$TL_chatInviteExported, zArr, alertDialog, tLObject, tLRPC$TL_error);
                         }
                     }), ((BaseFragment) ChannelAdminLogActivity.this).classGuid);
                 } else if (obj instanceof TLRPC$TL_messages_exportedChatInvite) {
                     ChannelAdminLogActivity channelAdminLogActivity = ChannelAdminLogActivity.this;
                     channelAdminLogActivity.showInviteLinkBottomSheet((TLRPC$TL_messages_exportedChatInvite) obj, channelAdminLogActivity.usersMap);
                 } else {
-                    BulletinFactory.m13of(ChannelAdminLogActivity.this).createSimpleBulletin(C1072R.raw.linkbroken, LocaleController.getString("LinkHashExpired", C1072R.string.LinkHashExpired)).show();
+                    BulletinFactory.m14of(ChannelAdminLogActivity.this).createSimpleBulletin(C1072R.raw.linkbroken, LocaleController.getString("LinkHashExpired", C1072R.string.LinkHashExpired)).show();
                 }
             }
 
@@ -2460,7 +2455,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChannelAdminLogActivity.ChatActivityAdapter.C15163.this.lambda$needOpenInviteLink$1(tLRPC$TL_chatInviteExported, tLRPC$TL_messages_exportedChatInvite2, zArr, alertDialog);
+                        ChannelAdminLogActivity.ChatActivityAdapter.C15183.this.lambda$needOpenInviteLink$1(tLRPC$TL_chatInviteExported, tLRPC$TL_messages_exportedChatInvite2, zArr, alertDialog);
                     }
                 });
             }
@@ -2477,7 +2472,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     channelAdminLogActivity.showInviteLinkBottomSheet(tLRPC$TL_messages_exportedChatInvite, channelAdminLogActivity.usersMap);
                     return;
                 }
-                BulletinFactory.m13of(ChannelAdminLogActivity.this).createSimpleBulletin(C1072R.raw.linkbroken, LocaleController.getString("LinkHashExpired", C1072R.string.LinkHashExpired)).show();
+                BulletinFactory.m14of(ChannelAdminLogActivity.this).createSimpleBulletin(C1072R.raw.linkbroken, LocaleController.getString("LinkHashExpired", C1072R.string.LinkHashExpired)).show();
             }
 
             @Override
@@ -2523,7 +2518,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                         }
                         View view2 = viewHolder.itemView;
                         if (view2 instanceof ChatMessageCell) {
-                            ((ChatMessageCell) view).setVisiblePart(i, measuredHeight2 - i, (ChannelAdminLogActivity.this.contentView.getHeightWithKeyboard() - AndroidUtilities.m35dp(48.0f)) - ChannelAdminLogActivity.this.chatListView.getTop(), 0.0f, (view.getY() + ((BaseFragment) ChannelAdminLogActivity.this).actionBar.getMeasuredHeight()) - ChannelAdminLogActivity.this.contentView.getBackgroundTranslationY(), ChannelAdminLogActivity.this.contentView.getMeasuredWidth(), ChannelAdminLogActivity.this.contentView.getBackgroundSizeY(), 0, 0);
+                            ((ChatMessageCell) view).setVisiblePart(i, measuredHeight2 - i, (ChannelAdminLogActivity.this.contentView.getHeightWithKeyboard() - AndroidUtilities.m36dp(48.0f)) - ChannelAdminLogActivity.this.chatListView.getTop(), 0.0f, (view.getY() + ((BaseFragment) ChannelAdminLogActivity.this).actionBar.getMeasuredHeight()) - ChannelAdminLogActivity.this.contentView.getBackgroundTranslationY(), ChannelAdminLogActivity.this.contentView.getMeasuredWidth(), ChannelAdminLogActivity.this.contentView.getBackgroundSizeY(), 0, 0);
                             return true;
                         } else if (!(view2 instanceof ChatActionCell) || ((BaseFragment) ChannelAdminLogActivity.this).actionBar == null || ChannelAdminLogActivity.this.contentView == null) {
                             return true;
@@ -2551,7 +2546,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             try {
                 super.notifyDataSetChanged();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
 
@@ -2561,7 +2556,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             try {
                 super.notifyItemChanged(i);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
 
@@ -2571,7 +2566,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             try {
                 super.notifyItemRangeChanged(i, i2);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
 
@@ -2581,7 +2576,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             try {
                 super.notifyItemMoved(i, i2);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
 
@@ -2591,7 +2586,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             try {
                 super.notifyItemRangeInserted(i, i2);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
 
@@ -2601,7 +2596,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             try {
                 super.notifyItemRemoved(i);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
 
@@ -2611,12 +2606,12 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             try {
                 super.notifyItemRangeRemoved(i, i2);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
     }
 
-    public static class C150623 {
+    public static class C150823 {
         static final int[] $SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem;
 
         static {

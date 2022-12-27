@@ -119,11 +119,11 @@ public class SpoilerEffect extends Drawable {
         for (int i = 0; i < ALPHAS.length; i++) {
             this.particlePaints[i] = new Paint();
             if (i == 0) {
-                this.particlePaints[i].setStrokeWidth(AndroidUtilities.m35dp(1.4f));
+                this.particlePaints[i].setStrokeWidth(AndroidUtilities.m36dp(1.4f));
                 this.particlePaints[i].setStyle(Paint.Style.STROKE);
                 this.particlePaints[i].setStrokeCap(Paint.Cap.ROUND);
             } else {
-                this.particlePaints[i].setStrokeWidth(AndroidUtilities.m35dp(1.2f));
+                this.particlePaints[i].setStrokeWidth(AndroidUtilities.m36dp(1.2f));
                 this.particlePaints[i].setStyle(Paint.Style.STROKE);
                 this.particlePaints[i].setStrokeCap(Paint.Cap.ROUND);
             }
@@ -142,7 +142,7 @@ public class SpoilerEffect extends Drawable {
     }
 
     public void updateMaxParticles() {
-        int width = getBounds().width() / AndroidUtilities.m35dp(6.0f);
+        int width = getBounds().width() / AndroidUtilities.m36dp(6.0f);
         int i = PARTICLES_PER_CHARACTER;
         setMaxParticlesCount(MathUtils.clamp(width * i, i, MAX_PARTICLES_PER_ENTITY));
     }
@@ -384,7 +384,7 @@ public class SpoilerEffect extends Drawable {
     }
 
     private boolean isOutOfBounds(int i, int i2, int i3, int i4, float f, float f2) {
-        if (f < i || f > i3 || f2 < i2 + AndroidUtilities.m35dp(2.5f) || f2 > i4 - AndroidUtilities.m35dp(2.5f)) {
+        if (f < i || f > i3 || f2 < i2 + AndroidUtilities.m36dp(2.5f) || f2 > i4 - AndroidUtilities.m36dp(2.5f)) {
             return true;
         }
         for (int i5 = 0; i5 < this.spaces.size(); i5++) {
@@ -401,8 +401,8 @@ public class SpoilerEffect extends Drawable {
             float f = this.particleRands[i % 14];
             List<Long> list2 = this.keyPoints;
             long longValue = list2.get(Utilities.fastRandom.nextInt(list2.size())).longValue();
-            particle.f1160x = (((float) (getBounds().left + (longValue >> 16))) + (AndroidUtilities.m35dp(5.0f) * f)) - AndroidUtilities.m35dp(2.5f);
-            particle.f1161y = (((float) (getBounds().top + (longValue & 65535))) + (f * AndroidUtilities.m35dp(5.0f))) - AndroidUtilities.m35dp(2.5f);
+            particle.f1160x = (((float) (getBounds().left + (longValue >> 16))) + (AndroidUtilities.m36dp(5.0f) * f)) - AndroidUtilities.m36dp(2.5f);
+            particle.f1161y = (((float) (getBounds().top + (longValue & 65535))) + (f * AndroidUtilities.m36dp(5.0f))) - AndroidUtilities.m36dp(2.5f);
             return;
         }
         particle.f1160x = getBounds().left + (Utilities.fastRandom.nextFloat() * getBounds().width());
@@ -639,7 +639,7 @@ public class SpoilerEffect extends Drawable {
                 float primaryHorizontal4 = layout.getPrimaryHorizontal(i8 + 1);
                 rectF.left = (int) Math.min(primaryHorizontal3, primaryHorizontal4);
                 rectF.right = (int) Math.max(primaryHorizontal3, primaryHorizontal4);
-                if (Math.abs(primaryHorizontal3 - primaryHorizontal4) <= AndroidUtilities.m35dp(20.0f)) {
+                if (Math.abs(primaryHorizontal3 - primaryHorizontal4) <= AndroidUtilities.m36dp(20.0f)) {
                     spoilerEffect.spaces.add(rectF);
                 }
             }
@@ -687,7 +687,7 @@ public class SpoilerEffect extends Drawable {
 
                                 @Override
                                 public int getSize(Paint paint, CharSequence charSequence, int i6, int i7, Paint.FontMetricsInt fontMetricsInt) {
-                                    return emojiSpan.getSize(paint, charSequence, i6, i7, fontMetricsInt);
+                                    return Emoji.EmojiSpan.this.getSize(paint, charSequence, i6, i7, fontMetricsInt);
                                 }
                             }, spannable.getSpanStart(emojiSpan), spannable.getSpanEnd(emojiSpan), spannable.getSpanFlags(textStyleSpan));
                             spannableStringBuilder.removeSpan(emojiSpan);

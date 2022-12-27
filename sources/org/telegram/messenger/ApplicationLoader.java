@@ -130,7 +130,7 @@ public class ApplicationLoader extends Application {
             file.mkdirs();
             return file;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return new File("/data/data/org.telegram.messenger/files");
         }
     }
@@ -174,7 +174,7 @@ public class ApplicationLoader extends Application {
         try {
             isScreenOn = ((PowerManager) applicationContext.getSystemService("power")).isScreenOn();
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("screen state = " + isScreenOn);
+                FileLog.m35d("screen state = " + isScreenOn);
             }
         } catch (Exception e4) {
             e4.printStackTrace();
@@ -197,7 +197,7 @@ public class ApplicationLoader extends Application {
         }
         ((ApplicationLoader) applicationContext).initPushServices();
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("app initied");
+            FileLog.m35d("app initied");
         }
         MediaController.getInstance();
         for (int i2 = 0; i2 < 4; i2++) {
@@ -222,8 +222,8 @@ public class ApplicationLoader extends Application {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             startTime = elapsedRealtime;
             sb.append(elapsedRealtime);
-            FileLog.m34d(sb.toString());
-            FileLog.m34d("buildVersion = " + BuildVars.BUILD_VERSION);
+            FileLog.m35d(sb.toString());
+            FileLog.m35d("buildVersion = " + BuildVars.BUILD_VERSION);
         }
         if (applicationContext == null) {
             applicationContext = getApplicationContext();
@@ -241,7 +241,7 @@ public class ApplicationLoader extends Application {
             }
         };
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("load libs time = " + (SystemClock.elapsedRealtime() - startTime));
+            FileLog.m35d("load libs time = " + (SystemClock.elapsedRealtime() - startTime));
         }
         applicationHandler = new Handler(applicationContext.getMainLooper());
         AndroidUtilities.runOnUIThread(ApplicationLoader$$ExternalSyntheticLambda1.INSTANCE);
@@ -291,7 +291,7 @@ public class ApplicationLoader extends Application {
             return;
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m34d("No valid " + getPushProvider().getLogTitle() + " APK found.");
+            FileLog.m35d("No valid " + getPushProvider().getLogTitle() + " APK found.");
         }
         SharedConfig.pushStringStatus = "__NO_GOOGLE_PLAY_SERVICES__";
         PushListenerController.sendRegistrationToServer(getPushProvider().getPushType(), null);
@@ -301,7 +301,7 @@ public class ApplicationLoader extends Application {
         try {
             return GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == 0;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return true;
         }
     }
@@ -341,7 +341,7 @@ public class ApplicationLoader extends Application {
             }
             return false;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return false;
         }
     }
@@ -358,7 +358,7 @@ public class ApplicationLoader extends Application {
                 return true;
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return false;
     }
@@ -372,7 +372,7 @@ public class ApplicationLoader extends Application {
                 }
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return false;
     }
@@ -396,7 +396,7 @@ public class ApplicationLoader extends Application {
         try {
             ensureCurrentNetworkGet(false);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (currentNetworkInfo == null) {
             return 0;
@@ -441,7 +441,7 @@ public class ApplicationLoader extends Application {
             }
             return true;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return true;
         }
     }
@@ -465,7 +465,7 @@ public class ApplicationLoader extends Application {
             }
             return true;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return true;
         }
     }
@@ -473,7 +473,7 @@ public class ApplicationLoader extends Application {
     public static boolean isNetworkOnline() {
         boolean isNetworkOnlineRealtime = isNetworkOnlineRealtime();
         if (BuildVars.DEBUG_PRIVATE_VERSION && isNetworkOnlineRealtime != isNetworkOnlineFast()) {
-            FileLog.m34d("network online mismatch");
+            FileLog.m35d("network online mismatch");
         }
         return isNetworkOnlineRealtime;
     }

@@ -94,7 +94,7 @@ public class GlShader {
         try {
             GlUtil.checkNoGLES2Error("glUseProgram");
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 

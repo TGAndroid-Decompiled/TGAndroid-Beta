@@ -101,7 +101,7 @@ public class FilterGLThread extends DispatchQueue {
                             FilterGLThread.this.egl10.eglSwapBuffers(FilterGLThread.this.eglDisplay, FilterGLThread.this.eglSurface);
                         }
                     } else if (BuildVars.LOGS_ENABLED) {
-                        FileLog.m33e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(FilterGLThread.this.egl10.eglGetError()));
+                        FileLog.m34e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(FilterGLThread.this.egl10.eglGetError()));
                     }
                 }
             }
@@ -171,7 +171,7 @@ public class FilterGLThread extends DispatchQueue {
                             FilterGLThread.this.egl10.eglSwapBuffers(FilterGLThread.this.eglDisplay, FilterGLThread.this.eglSurface);
                         }
                     } else if (BuildVars.LOGS_ENABLED) {
-                        FileLog.m33e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(FilterGLThread.this.egl10.eglGetError()));
+                        FileLog.m34e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(FilterGLThread.this.egl10.eglGetError()));
                     }
                 }
             }
@@ -204,14 +204,14 @@ public class FilterGLThread extends DispatchQueue {
         this.eglDisplay = eglGetDisplay;
         if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m33e("eglGetDisplay failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+                FileLog.m34e("eglGetDisplay failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
             }
             finish();
             return false;
         }
         if (!this.egl10.eglInitialize(eglGetDisplay, new int[2])) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m33e("eglInitialize failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+                FileLog.m34e("eglInitialize failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
             }
             finish();
             return false;
@@ -220,7 +220,7 @@ public class FilterGLThread extends DispatchQueue {
         EGLConfig[] eGLConfigArr = new EGLConfig[1];
         if (!this.egl10.eglChooseConfig(this.eglDisplay, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m33e("eglChooseConfig failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+                FileLog.m34e("eglChooseConfig failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
             }
             finish();
             return false;
@@ -230,7 +230,7 @@ public class FilterGLThread extends DispatchQueue {
             this.eglContext = eglCreateContext;
             if (eglCreateContext == null) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m33e("eglCreateContext failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+                    FileLog.m34e("eglCreateContext failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
                 }
                 finish();
                 return false;
@@ -241,13 +241,13 @@ public class FilterGLThread extends DispatchQueue {
                 this.eglSurface = eglCreateWindowSurface;
                 if (eglCreateWindowSurface == null || eglCreateWindowSurface == EGL10.EGL_NO_SURFACE) {
                     if (BuildVars.LOGS_ENABLED) {
-                        FileLog.m33e("createWindowSurface failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+                        FileLog.m34e("createWindowSurface failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
                     }
                     finish();
                     return false;
                 } else if (!this.egl10.eglMakeCurrent(this.eglDisplay, eglCreateWindowSurface, eglCreateWindowSurface, this.eglContext)) {
                     if (BuildVars.LOGS_ENABLED) {
-                        FileLog.m33e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+                        FileLog.m34e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
                     }
                     finish();
                     return false;
@@ -324,7 +324,7 @@ public class FilterGLThread extends DispatchQueue {
             return false;
         } else {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m33e("eglConfig not initialized");
+                FileLog.m34e("eglConfig not initialized");
             }
             finish();
             return false;
@@ -428,7 +428,7 @@ public class FilterGLThread extends DispatchQueue {
                     countDownLatch.await();
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
             return bitmapArr[0];
         }

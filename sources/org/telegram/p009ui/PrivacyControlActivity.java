@@ -233,7 +233,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             tLRPC$TL_user.first_name = getUserConfig().getCurrentUser().first_name;
             tLRPC$TL_user.last_name = getUserConfig().getCurrentUser().last_name;
             tLRPC$TL_user.access_hash = getUserConfig().getCurrentUser().access_hash;
-            BulletinFactory.m13of(this).createUsersBulletin(Collections.singletonList(tLRPC$TL_user), LocaleController.getString("PhotoForRestTooltip", C1072R.string.PhotoForRestTooltip)).show();
+            BulletinFactory.m14of(this).createUsersBulletin(Collections.singletonList(tLRPC$TL_user), LocaleController.getString("PhotoForRestTooltip", C1072R.string.PhotoForRestTooltip)).show();
         }
         updateRows(false);
     }
@@ -330,7 +330,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             setWillNotDraw(false);
             setClipToPadding(false);
             this.shadowDrawable = Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow");
-            setPadding(0, AndroidUtilities.m35dp(11.0f), 0, AndroidUtilities.m35dp(11.0f));
+            setPadding(0, AndroidUtilities.m36dp(11.0f), 0, AndroidUtilities.m36dp(11.0f));
             TLRPC$User user = MessagesController.getInstance(((BaseFragment) privacyControlActivity).currentAccount).getUser(Long.valueOf(UserConfig.getInstance(((BaseFragment) privacyControlActivity).currentAccount).getClientUserId()));
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.message = LocaleController.getString("PrivacyForwardsMessageLine", C1072R.string.PrivacyForwardsMessageLine);
@@ -755,7 +755,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
             }
         });
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m35dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, C1072R.C1073drawable.ic_ab_done, AndroidUtilities.m36dp(56.0f), LocaleController.getString("Done", C1072R.string.Done));
         boolean hasChanges = hasChanges();
         this.doneButton.setAlpha(hasChanges ? 1.0f : 0.0f);
         this.doneButton.setScaleX(hasChanges ? 1.0f : 0.0f);
@@ -871,10 +871,13 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$createView$3() {
+        TLRPC$Photo tLRPC$Photo;
         this.avatarForRest = null;
         this.avatarForRestPhoto = null;
         TLRPC$UserFull userFull = getMessagesController().getUserFull(getUserConfig().clientUserId);
-        TLRPC$Photo tLRPC$Photo = userFull.fallback_photo;
+        if (userFull == null || (tLRPC$Photo = userFull.fallback_photo) == null) {
+            return;
+        }
         userFull.flags &= -4194305;
         userFull.fallback_photo = null;
         getMessagesStorage().updateUserInfo(userFull, true);
@@ -1119,7 +1122,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             try {
                 alertDialog.dismiss();
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
         if (tLRPC$TL_error == null) {
@@ -1504,7 +1507,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         private Context mContext;
 
         public ListAdapter(Context context) {
-            PrivacyControlActivity.this = r1;
             this.mContext = context;
         }
 
@@ -1548,9 +1550,9 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                     PrivacyControlActivity.this.setAvatarCell.setColors("windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteBlueButton");
                     PrivacyControlActivity privacyControlActivity = PrivacyControlActivity.this;
                     int i2 = C1072R.raw.camera_outline;
-                    privacyControlActivity.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m35dp(50.0f), AndroidUtilities.m35dp(50.0f), false, null);
-                    PrivacyControlActivity.this.setAvatarCell.imageView.setTranslationY((float) (-AndroidUtilities.m35dp(9.0f)));
-                    PrivacyControlActivity.this.setAvatarCell.imageView.setTranslationX((float) (-AndroidUtilities.m35dp(8.0f)));
+                    privacyControlActivity.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.m36dp(50.0f), AndroidUtilities.m36dp(50.0f), false, null);
+                    PrivacyControlActivity.this.setAvatarCell.imageView.setTranslationY((float) (-AndroidUtilities.m36dp(9.0f)));
+                    PrivacyControlActivity.this.setAvatarCell.imageView.setTranslationX((float) (-AndroidUtilities.m36dp(8.0f)));
                     PrivacyControlActivity.this.setAvatarCell.imageView.setAnimation(PrivacyControlActivity.this.cameraDrawable);
                     PrivacyControlActivity.this.setAvatarCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     view = PrivacyControlActivity.this.setAvatarCell;
@@ -1565,16 +1567,16 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                         @Override
                         public void onMeasure(int i3, int i4) {
                             super.onMeasure(i3, i4);
-                            PrivacyControlActivity.this.oldAvatarView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(30.0f), 1073741824));
-                            PrivacyControlActivity.this.oldAvatarView.setRoundRadius(AndroidUtilities.m35dp(30.0f));
+                            PrivacyControlActivity.this.oldAvatarView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(30.0f), 1073741824));
+                            PrivacyControlActivity.this.oldAvatarView.setRoundRadius(AndroidUtilities.m36dp(30.0f));
                         }
 
                         @Override
                         public void onLayout(boolean z, int i3, int i4, int i5, int i6) {
                             super.onLayout(z, i3, i4, i5, i6);
-                            int m35dp = AndroidUtilities.m35dp(21.0f);
+                            int m36dp = AndroidUtilities.m36dp(21.0f);
                             int measuredHeight = (getMeasuredHeight() - PrivacyControlActivity.this.oldAvatarView.getMeasuredHeight()) / 2;
-                            PrivacyControlActivity.this.oldAvatarView.layout(m35dp, measuredHeight, PrivacyControlActivity.this.oldAvatarView.getMeasuredWidth() + m35dp, PrivacyControlActivity.this.oldAvatarView.getMeasuredHeight() + measuredHeight);
+                            PrivacyControlActivity.this.oldAvatarView.layout(m36dp, measuredHeight, PrivacyControlActivity.this.oldAvatarView.getMeasuredWidth() + m36dp, PrivacyControlActivity.this.oldAvatarView.getMeasuredHeight() + measuredHeight);
                         }
                     };
                     if (PrivacyControlActivity.this.avatarForRest != null) {
@@ -1695,7 +1697,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                                 @Override
                                 public void onClick(View view) {
                                     ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", format));
-                                    BulletinFactory.m13of(PrivacyControlActivity.this).createCopyLinkBulletin(LocaleController.getString("LinkCopied", C1072R.string.LinkCopied), PrivacyControlActivity.this.getResourceProvider()).show();
+                                    BulletinFactory.m14of(PrivacyControlActivity.this).createCopyLinkBulletin(LocaleController.getString("LinkCopied", C1072R.string.LinkCopied), PrivacyControlActivity.this.getResourceProvider()).show();
                                 }
                             }, 0, format.length(), 33);
                             spannableStringBuilder.append((CharSequence) LocaleController.getString("PrivacyPhoneInfo", C1072R.string.PrivacyPhoneInfo)).append((CharSequence) "\n\n").append((CharSequence) LocaleController.getString("PrivacyPhoneInfo4", C1072R.string.PrivacyPhoneInfo4)).append((CharSequence) "\n").append((CharSequence) spannableString);
@@ -1865,7 +1867,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         int oldRowCount;
 
         private DiffCallback() {
-            PrivacyControlActivity.this = r1;
             this.oldPositionToItem = new SparseIntArray();
             this.newPositionToItem = new SparseIntArray();
         }

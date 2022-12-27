@@ -599,7 +599,7 @@ public class MessageObject {
                         try {
                             break;
                         } catch (Exception e) {
-                            FileLog.m31e(e);
+                            FileLog.m32e(e);
                         }
                     }
                 }
@@ -857,7 +857,7 @@ public class MessageObject {
                 textPaint = Theme.chat_msgTextPaint;
             }
             int[] iArr = allowsBigEmoji() ? new int[1] : null;
-            CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false, iArr);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false, iArr);
             this.messageText = replaceEmoji;
             Spannable replaceAnimatedEmoji = replaceAnimatedEmoji(replaceEmoji, this.messageOwner.entities, textPaint.getFontMetricsInt());
             this.messageText = replaceAnimatedEmoji;
@@ -976,7 +976,7 @@ public class MessageObject {
                         }
                     }
                 } catch (Throwable th) {
-                    FileLog.m31e(th);
+                    FileLog.m32e(th);
                 }
             }
         }
@@ -1033,7 +1033,7 @@ public class MessageObject {
                     return;
                 }
                 for (int i3 = 0; i3 < animatedEmojiSpanArr.length; i3++) {
-                    animatedEmojiSpanArr[i3].replaceFontMetrics(Theme.chat_msgTextPaint.getFontMetricsInt(), (int) (Theme.chat_msgTextPaint.getTextSize() + AndroidUtilities.m35dp(4.0f)), -1);
+                    animatedEmojiSpanArr[i3].replaceFontMetrics(Theme.chat_msgTextPaint.getFontMetricsInt(), (int) (Theme.chat_msgTextPaint.getTextSize() + AndroidUtilities.m36dp(4.0f)), -1);
                     animatedEmojiSpanArr[i3].full = false;
                 }
                 return;
@@ -1082,7 +1082,7 @@ public class MessageObject {
                     i4 = i5;
                     break;
             }
-            int textSize = (int) (textPaint.getTextSize() + AndroidUtilities.m35dp(4.0f));
+            int textSize = (int) (textPaint.getTextSize() + AndroidUtilities.m36dp(4.0f));
             if (emojiSpanArr != null && emojiSpanArr.length > 0) {
                 for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
                     emojiSpan.replaceFontMetrics(textPaint.getFontMetricsInt(), textSize);
@@ -1102,7 +1102,7 @@ public class MessageObject {
         if (animatedEmojiSpanArr2 != null && animatedEmojiSpanArr2.length > 0) {
             this.totalAnimatedEmojiCount = animatedEmojiSpanArr2.length;
             for (int i7 = 0; i7 < animatedEmojiSpanArr2.length; i7++) {
-                animatedEmojiSpanArr2[i7].replaceFontMetrics(Theme.chat_msgTextPaint.getFontMetricsInt(), (int) (Theme.chat_msgTextPaint.getTextSize() + AndroidUtilities.m35dp(4.0f)), -1);
+                animatedEmojiSpanArr2[i7].replaceFontMetrics(Theme.chat_msgTextPaint.getFontMetricsInt(), (int) (Theme.chat_msgTextPaint.getTextSize() + AndroidUtilities.m36dp(4.0f)), -1);
                 animatedEmojiSpanArr2[i7].full = false;
             }
             return;
@@ -1214,7 +1214,7 @@ public class MessageObject {
             textPaint = Theme.chat_msgTextPaint;
         }
         int[] iArr = allowsBigEmoji() ? new int[1] : null;
-        CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false, iArr);
+        CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false, iArr);
         this.messageText = replaceEmoji;
         Spannable replaceAnimatedEmoji = replaceAnimatedEmoji(replaceEmoji, this.messageOwner.entities, textPaint.getFontMetricsInt());
         this.messageText = replaceAnimatedEmoji;
@@ -1296,7 +1296,7 @@ public class MessageObject {
             TLRPC$MessageAction tLRPC$MessageAction = this.messageOwner.action;
             str = localeController.formatCurrencyString(tLRPC$MessageAction.total_amount, tLRPC$MessageAction.currency);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             str = "<error>";
         }
         MessageObject messageObject = this.replyMessageObject;
@@ -1446,7 +1446,7 @@ public class MessageObject {
                     }
                     CharSequence replaceWithLink = replaceWithLink(formatString, "un1", tLRPC$Chat15);
                     this.messageText = replaceWithLink;
-                    this.messageText = Emoji.replaceEmoji(replaceWithLink, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false);
+                    this.messageText = Emoji.replaceEmoji(replaceWithLink, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false);
                     return;
                 } else {
                     CharSequence charSequence = this.replyMessageObject.messageText;
@@ -1458,7 +1458,7 @@ public class MessageObject {
                         } else {
                             z = false;
                         }
-                        CharSequence replaceEmoji = Emoji.replaceEmoji(cloneSpans, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false);
+                        CharSequence replaceEmoji = Emoji.replaceEmoji(cloneSpans, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false);
                         MessageObject messageObject2 = this.replyMessageObject;
                         Spannable spannable = replaceEmoji;
                         if (messageObject2 != null) {
@@ -1903,19 +1903,19 @@ public class MessageObject {
                         if (str == null) {
                             str = "";
                         }
-                        replaceEmoji = Emoji.replaceEmoji(str, Theme.chat_msgBotButtonPaint.getFontMetricsInt(), AndroidUtilities.m35dp(15.0f), false);
+                        replaceEmoji = Emoji.replaceEmoji(str, Theme.chat_msgBotButtonPaint.getFontMetricsInt(), AndroidUtilities.m36dp(15.0f), false);
                     }
-                    StaticLayout staticLayout = new StaticLayout(replaceEmoji, Theme.chat_msgBotButtonPaint, AndroidUtilities.m35dp(2000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                    StaticLayout staticLayout = new StaticLayout(replaceEmoji, Theme.chat_msgBotButtonPaint, AndroidUtilities.m36dp(2000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                     if (staticLayout.getLineCount() > 0) {
                         float lineWidth = staticLayout.getLineWidth(0);
                         float lineLeft = staticLayout.getLineLeft(0);
                         if (lineLeft < lineWidth) {
                             lineWidth -= lineLeft;
                         }
-                        i3 = Math.max(i3, ((int) Math.ceil(lineWidth)) + AndroidUtilities.m35dp(4.0f));
+                        i3 = Math.max(i3, ((int) Math.ceil(lineWidth)) + AndroidUtilities.m36dp(4.0f));
                     }
                 }
-                this.wantedBotKeyboardWidth = Math.max(this.wantedBotKeyboardWidth, ((i3 + AndroidUtilities.m35dp(12.0f)) * size) + (AndroidUtilities.m35dp(5.0f) * (size - 1)));
+                this.wantedBotKeyboardWidth = Math.max(this.wantedBotKeyboardWidth, ((i3 + AndroidUtilities.m36dp(12.0f)) * size) + (AndroidUtilities.m36dp(5.0f) * (size - 1)));
             }
             return;
         }
@@ -1927,18 +1927,18 @@ public class MessageObject {
                 StringBuilder sb3 = this.botButtonsLayout;
                 sb3.append(0);
                 sb3.append(i5);
-                StaticLayout staticLayout2 = new StaticLayout(Emoji.replaceEmoji(String.format("%d %s", Integer.valueOf(tLRPC$ReactionCount.count), tLRPC$ReactionCount.reaction), Theme.chat_msgBotButtonPaint.getFontMetricsInt(), AndroidUtilities.m35dp(15.0f), false), Theme.chat_msgBotButtonPaint, AndroidUtilities.m35dp(2000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                StaticLayout staticLayout2 = new StaticLayout(Emoji.replaceEmoji(String.format("%d %s", Integer.valueOf(tLRPC$ReactionCount.count), tLRPC$ReactionCount.reaction), Theme.chat_msgBotButtonPaint.getFontMetricsInt(), AndroidUtilities.m36dp(15.0f), false), Theme.chat_msgBotButtonPaint, AndroidUtilities.m36dp(2000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 if (staticLayout2.getLineCount() > 0) {
                     float lineWidth2 = staticLayout2.getLineWidth(0);
                     float lineLeft2 = staticLayout2.getLineLeft(0);
                     if (lineLeft2 < lineWidth2) {
                         lineWidth2 -= lineLeft2;
                     }
-                    i = Math.max(0, ((int) Math.ceil(lineWidth2)) + AndroidUtilities.m35dp(4.0f));
+                    i = Math.max(0, ((int) Math.ceil(lineWidth2)) + AndroidUtilities.m36dp(4.0f));
                 } else {
                     i = 0;
                 }
-                this.wantedBotKeyboardWidth = Math.max(this.wantedBotKeyboardWidth, ((i + AndroidUtilities.m35dp(12.0f)) * size2) + (AndroidUtilities.m35dp(5.0f) * (size2 - 1)));
+                this.wantedBotKeyboardWidth = Math.max(this.wantedBotKeyboardWidth, ((i + AndroidUtilities.m36dp(12.0f)) * size2) + (AndroidUtilities.m36dp(5.0f) * (size2 - 1)));
             }
         }
     }
@@ -2137,7 +2137,7 @@ public class MessageObject {
         int i = this.type;
         if ((i == 0 || i == 19) && this.messageOwner.peer_id != null && (charSequence = this.messageText) != null && charSequence.length() != 0) {
             if (this.layoutCreated) {
-                if (Math.abs(this.generatedWithMinSize - (AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() : AndroidUtilities.displaySize.x)) > AndroidUtilities.m35dp(52.0f) || this.generatedWithDensity != AndroidUtilities.density) {
+                if (Math.abs(this.generatedWithMinSize - (AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() : AndroidUtilities.displaySize.x)) > AndroidUtilities.m36dp(52.0f) || this.generatedWithDensity != AndroidUtilities.density) {
                     this.layoutCreated = false;
                 }
             }
@@ -2152,7 +2152,7 @@ public class MessageObject {
                     textPaint = Theme.chat_msgTextPaint;
                 }
                 int[] iArr = allowsBigEmoji() ? new int[1] : null;
-                CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false, iArr);
+                CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false, iArr);
                 this.messageText = replaceEmoji;
                 Spannable replaceAnimatedEmoji = replaceAnimatedEmoji(replaceEmoji, this.messageOwner.entities, textPaint.getFontMetricsInt());
                 this.messageText = replaceAnimatedEmoji;
@@ -2712,10 +2712,10 @@ public class MessageObject {
             try {
                 AndroidUtilities.addLinks((Spannable) this.linkDescription, 1);
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
             }
         }
-        CharSequence replaceEmoji = Emoji.replaceEmoji(this.linkDescription, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false);
+        CharSequence replaceEmoji = Emoji.replaceEmoji(this.linkDescription, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false);
         this.linkDescription = replaceEmoji;
         ArrayList<TLRPC$MessageEntity> arrayList = this.webPageDescriptionEntities;
         if (arrayList != null) {
@@ -2748,7 +2748,7 @@ public class MessageObject {
             return spannableString;
         }
         String str2 = this.messageOwner.voiceTranscription;
-        return !TextUtils.isEmpty(str2) ? Emoji.replaceEmoji(str2, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false) : str2;
+        return !TextUtils.isEmpty(str2) ? Emoji.replaceEmoji(str2, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false) : str2;
     }
 
     public float measureVoiceTranscriptionHeight() {
@@ -2757,11 +2757,11 @@ public class MessageObject {
         if (voiceTranscription == null) {
             return 0.0f;
         }
-        int m35dp = AndroidUtilities.displaySize.x - AndroidUtilities.m35dp(needDrawAvatar() ? 147.0f : 95.0f);
+        int m36dp = AndroidUtilities.displaySize.x - AndroidUtilities.m36dp(needDrawAvatar() ? 147.0f : 95.0f);
         if (Build.VERSION.SDK_INT >= 24) {
-            staticLayout = StaticLayout.Builder.obtain(voiceTranscription, 0, voiceTranscription.length(), Theme.chat_msgTextPaint, m35dp).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
+            staticLayout = StaticLayout.Builder.obtain(voiceTranscription, 0, voiceTranscription.length(), Theme.chat_msgTextPaint, m36dp).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
         } else {
-            staticLayout = new StaticLayout(voiceTranscription, Theme.chat_msgTextPaint, m35dp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            staticLayout = new StaticLayout(voiceTranscription, Theme.chat_msgTextPaint, m36dp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
         return staticLayout.getHeight();
     }
@@ -2788,7 +2788,7 @@ public class MessageObject {
             return;
         }
         boolean z = false;
-        CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageOwner.message, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.m35dp(20.0f), false);
+        CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageOwner.message, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.m36dp(20.0f), false);
         this.caption = replaceEmoji;
         this.caption = replaceAnimatedEmoji(replaceEmoji, this.messageOwner.entities, Theme.chat_msgTextPaint.getFontMetricsInt());
         TLRPC$Message tLRPC$Message2 = this.messageOwner;
@@ -2800,7 +2800,7 @@ public class MessageObject {
                 try {
                     AndroidUtilities.addLinks((Spannable) this.caption, 5);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             addUrlsByPattern(isOutOwner(), this.caption, true, 0, 0, true);
@@ -2891,13 +2891,13 @@ public class MessageObject {
                 try {
                     AndroidUtilities.addLinks((Spannable) charSequence, 5, z4);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             } else {
                 try {
                     AndroidUtilities.addLinks((Spannable) charSequence, 1, z4);
                 } catch (Exception e2) {
-                    FileLog.m31e(e2);
+                    FileLog.m32e(e2);
                 }
             }
             addUrlsByPattern(z, charSequence, z2, 0, 0, z3);
@@ -3079,7 +3079,7 @@ public class MessageObject {
 
     public int getMaxMessageTextWidth() {
         if (AndroidUtilities.isTablet() && this.eventId != 0) {
-            this.generatedWithMinSize = AndroidUtilities.m35dp(530.0f);
+            this.generatedWithMinSize = AndroidUtilities.m36dp(530.0f);
         } else {
             this.generatedWithMinSize = AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() : getParentWidth();
         }
@@ -3090,21 +3090,21 @@ public class MessageObject {
                 Uri parse = Uri.parse(getMedia(this.messageOwner).webpage.url);
                 String lastPathSegment = parse.getLastPathSegment();
                 if (parse.getQueryParameter("bg_color") != null) {
-                    i = AndroidUtilities.m35dp(220.0f);
+                    i = AndroidUtilities.m36dp(220.0f);
                 } else if (lastPathSegment.length() == 6 || (lastPathSegment.length() == 13 && lastPathSegment.charAt(6) == '-')) {
-                    i = AndroidUtilities.m35dp(200.0f);
+                    i = AndroidUtilities.m36dp(200.0f);
                 }
             } catch (Exception unused) {
             }
         } else if (isAndroidTheme()) {
-            i = AndroidUtilities.m35dp(200.0f);
+            i = AndroidUtilities.m36dp(200.0f);
         }
         if (i == 0) {
-            int m35dp = this.generatedWithMinSize - AndroidUtilities.m35dp((!needDrawAvatarInternal() || isOutOwner() || this.messageOwner.isThreadMessage) ? 80.0f : 132.0f);
+            int m36dp = this.generatedWithMinSize - AndroidUtilities.m36dp((!needDrawAvatarInternal() || isOutOwner() || this.messageOwner.isThreadMessage) ? 80.0f : 132.0f);
             if (needDrawShareButton() && !isOutOwner()) {
-                m35dp -= AndroidUtilities.m35dp(10.0f);
+                m36dp -= AndroidUtilities.m36dp(10.0f);
             }
-            i = getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGame ? m35dp - AndroidUtilities.m35dp(10.0f) : m35dp;
+            i = getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGame ? m36dp - AndroidUtilities.m36dp(10.0f) : m36dp;
         }
         int i2 = this.emojiOnlyCount;
         if (i2 >= 1) {
@@ -4050,39 +4050,39 @@ public class MessageObject {
         if (i3 == 0) {
             int i5 = this.textHeight;
             if ((getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaWebPage) && (getMedia(this.messageOwner).webpage instanceof TLRPC$TL_webPage)) {
-                i4 = AndroidUtilities.m35dp(100.0f);
+                i4 = AndroidUtilities.m36dp(100.0f);
             }
             int i6 = i5 + i4;
-            return isReply() ? i6 + AndroidUtilities.m35dp(42.0f) : i6;
+            return isReply() ? i6 + AndroidUtilities.m36dp(42.0f) : i6;
         } else if (i3 == 20) {
             return AndroidUtilities.getPhotoSize();
         } else {
             if (i3 == 2) {
-                return AndroidUtilities.m35dp(72.0f);
+                return AndroidUtilities.m36dp(72.0f);
             }
             if (i3 == 12) {
-                return AndroidUtilities.m35dp(71.0f);
+                return AndroidUtilities.m36dp(71.0f);
             }
             if (i3 == 9) {
-                return AndroidUtilities.m35dp(100.0f);
+                return AndroidUtilities.m36dp(100.0f);
             }
             if (i3 == 4) {
-                return AndroidUtilities.m35dp(114.0f);
+                return AndroidUtilities.m36dp(114.0f);
             }
             if (i3 == 14) {
-                return AndroidUtilities.m35dp(82.0f);
+                return AndroidUtilities.m36dp(82.0f);
             }
             if (i3 == 10) {
-                return AndroidUtilities.m35dp(30.0f);
+                return AndroidUtilities.m36dp(30.0f);
             }
             if (i3 == 11 || i3 == 18 || i3 == 21) {
-                return AndroidUtilities.m35dp(50.0f);
+                return AndroidUtilities.m36dp(50.0f);
             }
             if (i3 == 5) {
                 return AndroidUtilities.roundMessageSize;
             }
             if (i3 == 19) {
-                return this.textHeight + AndroidUtilities.m35dp(30.0f);
+                return this.textHeight + AndroidUtilities.m36dp(30.0f);
             }
             if (i3 == 13 || i3 == 15) {
                 float f = AndroidUtilities.displaySize.y * 0.4f;
@@ -4107,7 +4107,7 @@ public class MessageObject {
                 i2 = 0;
                 if (i4 == 0) {
                     i2 = (int) f;
-                    i4 = AndroidUtilities.m35dp(100.0f) + i2;
+                    i4 = AndroidUtilities.m36dp(100.0f) + i2;
                 }
                 float f3 = i2;
                 if (f3 > f) {
@@ -4118,7 +4118,7 @@ public class MessageObject {
                 if (f4 > f2) {
                     i2 = (int) (i2 * (f2 / f4));
                 }
-                return i2 + AndroidUtilities.m35dp(14.0f);
+                return i2 + AndroidUtilities.m36dp(14.0f);
             }
             if (AndroidUtilities.isTablet()) {
                 min = AndroidUtilities.getMinTabletSide();
@@ -4127,20 +4127,20 @@ public class MessageObject {
                 min = Math.min(point.x, point.y);
             }
             int i8 = (int) (min * 0.7f);
-            int m35dp = AndroidUtilities.m35dp(100.0f) + i8;
+            int m36dp = AndroidUtilities.m36dp(100.0f) + i8;
             if (i8 > AndroidUtilities.getPhotoSize()) {
                 i8 = AndroidUtilities.getPhotoSize();
             }
-            if (m35dp > AndroidUtilities.getPhotoSize()) {
-                m35dp = AndroidUtilities.getPhotoSize();
+            if (m36dp > AndroidUtilities.getPhotoSize()) {
+                m36dp = AndroidUtilities.getPhotoSize();
             }
             if (FileLoader.getClosestPhotoSizeWithSize(this.photoThumbs, AndroidUtilities.getPhotoSize()) != null) {
                 int i9 = (int) (closestPhotoSizeWithSize.f887h / (closestPhotoSizeWithSize.f888w / i8));
                 if (i9 == 0) {
-                    i9 = AndroidUtilities.m35dp(100.0f);
+                    i9 = AndroidUtilities.m36dp(100.0f);
                 }
-                if (i9 <= m35dp) {
-                    m35dp = i9 < AndroidUtilities.m35dp(120.0f) ? AndroidUtilities.m35dp(120.0f) : i9;
+                if (i9 <= m36dp) {
+                    m36dp = i9 < AndroidUtilities.m36dp(120.0f) ? AndroidUtilities.m36dp(120.0f) : i9;
                 }
                 if (needDrawBluredPreview()) {
                     if (AndroidUtilities.isTablet()) {
@@ -4149,10 +4149,10 @@ public class MessageObject {
                         Point point2 = AndroidUtilities.displaySize;
                         min2 = Math.min(point2.x, point2.y);
                     }
-                    m35dp = (int) (min2 * 0.5f);
+                    m36dp = (int) (min2 * 0.5f);
                 }
             }
-            return m35dp + AndroidUtilities.m35dp(14.0f);
+            return m36dp + AndroidUtilities.m36dp(14.0f);
         }
     }
 

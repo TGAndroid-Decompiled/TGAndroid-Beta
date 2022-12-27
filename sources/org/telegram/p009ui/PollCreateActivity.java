@@ -114,7 +114,6 @@ public class PollCreateActivity extends BaseFragment {
         }
 
         public TouchHelperCallback() {
-            PollCreateActivity.this = r1;
         }
 
         @Override
@@ -183,7 +182,7 @@ public class PollCreateActivity extends BaseFragment {
             this.actionBar.setOccupyStatusBar(false);
         }
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new C38661());
+        this.actionBar.setActionBarMenuOnItemClick(new C38691());
         this.doneItem = this.actionBar.createMenu().addItem(1, LocaleController.getString("Create", C1072R.string.Create).toUpperCase());
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -200,7 +199,7 @@ public class PollCreateActivity extends BaseFragment {
 
             @Override
             public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
-                rect.bottom += AndroidUtilities.m35dp(60.0f);
+                rect.bottom += AndroidUtilities.m36dp(60.0f);
                 return super.requestChildRectangleOnScreen(view, rect, z);
             }
         };
@@ -240,9 +239,8 @@ public class PollCreateActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public class C38661 extends C1133ActionBar.ActionBarMenuOnItemClick {
-        C38661() {
-            PollCreateActivity.this = r1;
+    public class C38691 extends C1133ActionBar.ActionBarMenuOnItemClick {
+        C38691() {
         }
 
         @Override
@@ -303,7 +301,7 @@ public class PollCreateActivity extends BaseFragment {
                     AlertsCreator.createScheduleDatePickerDialog(PollCreateActivity.this.getParentActivity(), PollCreateActivity.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
                         public final void didSelectDate(boolean z, int i5) {
-                            PollCreateActivity.C38661.this.lambda$onItemClick$0(tLRPC$TL_messageMediaPoll, hashMap, z, i5);
+                            PollCreateActivity.C38691.this.lambda$onItemClick$0(tLRPC$TL_messageMediaPoll, hashMap, z, i5);
                         }
                     });
                     return;
@@ -394,7 +392,7 @@ public class PollCreateActivity extends BaseFragment {
                         PollEditTextCell pollEditTextCell = (PollEditTextCell) view2;
                         pollEditTextCell.setShowCheckBox(this.quizPoll, true);
                         pollEditTextCell.setChecked(this.answersChecks[i5 - this.answerStartRow], z2);
-                        if (pollEditTextCell.getTop() > AndroidUtilities.m35dp(40.0f) && i == this.quizRow && !this.hintShowed) {
+                        if (pollEditTextCell.getTop() > AndroidUtilities.m36dp(40.0f) && i == this.quizRow && !this.hintShowed) {
                             this.hintView.showForView(pollEditTextCell.getCheckBox(), true);
                             this.hintShowed = true;
                         }
@@ -424,7 +422,7 @@ public class PollCreateActivity extends BaseFragment {
                 View view = findViewHolderForAdapterPosition.itemView;
                 if (view instanceof PollEditTextCell) {
                     PollEditTextCell pollEditTextCell = (PollEditTextCell) view;
-                    if (pollEditTextCell.getTop() > AndroidUtilities.m35dp(40.0f)) {
+                    if (pollEditTextCell.getTop() > AndroidUtilities.m36dp(40.0f)) {
                         this.hintView.showForView(pollEditTextCell.getCheckBox(), true);
                         return;
                     }
@@ -601,7 +599,6 @@ public class PollCreateActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
-            PollCreateActivity.this = r1;
             this.mContext = context;
         }
 

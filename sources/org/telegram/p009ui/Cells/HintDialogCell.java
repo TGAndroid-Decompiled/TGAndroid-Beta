@@ -49,12 +49,12 @@ public class HintDialogCell extends FrameLayout {
         this.drawCheckbox = z;
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(27.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(27.0f));
         addView(this.imageView, LayoutHelper.createFrame(54, 54.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         TextView textView = new TextView(this, context) {
             @Override
             public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m35dp(10.0f), false), bufferType);
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.m36dp(10.0f), false), bufferType);
             }
         };
         this.nameTextView = textView;
@@ -98,8 +98,8 @@ public class HintDialogCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(86.0f), 1073741824));
-        this.counterView.counterDrawable.horizontalPadding = AndroidUtilities.m35dp(13.0f);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(86.0f), 1073741824));
+        this.counterView.counterDrawable.horizontalPadding = AndroidUtilities.m36dp(13.0f);
     }
 
     public void update(int i) {
@@ -190,7 +190,7 @@ public class HintDialogCell extends FrameLayout {
             int top = this.imageView.getTop() + (this.imageView.getMeasuredHeight() / 2);
             Theme.checkboxSquare_checkPaint.setColor(Theme.getColor("dialogRoundCheckBox"));
             Theme.checkboxSquare_checkPaint.setAlpha((int) (this.checkBox.getProgress() * 255.0f));
-            canvas.drawCircle(left, top, AndroidUtilities.m35dp(28.0f), Theme.checkboxSquare_checkPaint);
+            canvas.drawCircle(left, top, AndroidUtilities.m36dp(28.0f), Theme.checkboxSquare_checkPaint);
         }
     }
 

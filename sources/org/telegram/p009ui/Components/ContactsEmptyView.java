@@ -30,10 +30,10 @@ public class ContactsEmptyView extends LinearLayout implements NotificationCente
         this.textViews = new ArrayList<>();
         this.imageViews = new ArrayList<>();
         this.currentAccount = UserConfig.selectedAccount;
-        setPadding(0, AndroidUtilities.m35dp(12.0f), 0, AndroidUtilities.m35dp(12.0f));
+        setPadding(0, AndroidUtilities.m36dp(12.0f), 0, AndroidUtilities.m36dp(12.0f));
         setOrientation(1);
         this.stickerView = new BackupImageView(context);
-        LoadingStickerDrawable loadingStickerDrawable = new LoadingStickerDrawable(this.stickerView, "m418 282.6c13.4-21.1 20.2-44.9 20.2-70.8 0-88.3-79.8-175.3-178.9-175.3-100.1 0-178.9 88-178.9 175.3 0 46.6 16.9 73.1 29.1 86.1-19.3 23.4-30.9 52.3-34.6 86.1-2.5 22.7 3.2 41.4 17.4 57.3 14.3 16 51.7 35 148.1 35 41.2 0 119.9-5.3 156.7-18.3 49.5-17.4 59.2-41.1 59.2-76.2 0-41.5-12.9-74.8-38.3-99.2z", AndroidUtilities.m35dp(130.0f), AndroidUtilities.m35dp(130.0f));
+        LoadingStickerDrawable loadingStickerDrawable = new LoadingStickerDrawable(this.stickerView, "m418 282.6c13.4-21.1 20.2-44.9 20.2-70.8 0-88.3-79.8-175.3-178.9-175.3-100.1 0-178.9 88-178.9 175.3 0 46.6 16.9 73.1 29.1 86.1-19.3 23.4-30.9 52.3-34.6 86.1-2.5 22.7 3.2 41.4 17.4 57.3 14.3 16 51.7 35 148.1 35 41.2 0 119.9-5.3 156.7-18.3 49.5-17.4 59.2-41.1 59.2-76.2 0-41.5-12.9-74.8-38.3-99.2z", AndroidUtilities.m36dp(130.0f), AndroidUtilities.m36dp(130.0f));
         this.drawable = loadingStickerDrawable;
         this.stickerView.setImageDrawable(loadingStickerDrawable);
         if (!AndroidUtilities.isTablet()) {
@@ -46,7 +46,7 @@ public class ContactsEmptyView extends LinearLayout implements NotificationCente
         this.titleTextView.setGravity(1);
         this.titleTextView.setText(LocaleController.getString("NoContactsYet", C1072R.string.NoContactsYet));
         this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.titleTextView.setMaxWidth(AndroidUtilities.m35dp(260.0f));
+        this.titleTextView.setMaxWidth(AndroidUtilities.m36dp(260.0f));
         addView(this.titleTextView, LayoutHelper.createLinear(-2, -2, 49, 0, 18, 0, 14));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -66,7 +66,7 @@ public class ContactsEmptyView extends LinearLayout implements NotificationCente
             TextView textView2 = new TextView(context);
             textView2.setTextSize(1, 15.0f);
             textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
-            textView2.setMaxWidth(AndroidUtilities.m35dp(260.0f));
+            textView2.setMaxWidth(AndroidUtilities.m36dp(260.0f));
             this.textViews.add(textView2);
             textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             if (i == 0) {

@@ -472,7 +472,7 @@ public class DrawerLayoutContainer extends FrameLayout {
                             childAt.layout(-childAt.getMeasuredWidth(), layoutParams.topMargin + getPaddingTop(), 0, layoutParams.topMargin + childAt.getMeasuredHeight() + getPaddingTop());
                         }
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                 }
             }
@@ -584,7 +584,7 @@ public class DrawerLayoutContainer extends FrameLayout {
                     }
                 }
                 if (i != 0) {
-                    canvas.clipRect(i - AndroidUtilities.m35dp(1.0f), 0, width, getHeight());
+                    canvas.clipRect(i - AndroidUtilities.m36dp(1.0f), 0, width, getHeight());
                 }
                 i2 = i3;
             } else {
@@ -598,7 +598,7 @@ public class DrawerLayoutContainer extends FrameLayout {
                     canvas.drawRect(i, 0.0f, width, getHeight(), this.scrimPaint);
                 }
             } else if (this.shadowLeft != null) {
-                float max = Math.max(0.0f, Math.min(this.drawerPosition / AndroidUtilities.m35dp(20.0f), 1.0f));
+                float max = Math.max(0.0f, Math.min(this.drawerPosition / AndroidUtilities.m36dp(20.0f), 1.0f));
                 if (max != 0.0f) {
                     this.shadowLeft.setBounds((int) this.drawerPosition, view.getTop(), ((int) this.drawerPosition) + this.shadowLeft.getIntrinsicWidth(), view.getBottom());
                     this.shadowLeft.setAlpha((int) (max * 255.0f));
@@ -659,12 +659,12 @@ public class DrawerLayoutContainer extends FrameLayout {
         public PreviewForegroundDrawable() {
             GradientDrawable gradientDrawable = new GradientDrawable();
             this.topDrawable = gradientDrawable;
-            gradientDrawable.setStroke(AndroidUtilities.m35dp(1.0f), Theme.getColor("actionBarDefault"));
-            gradientDrawable.setCornerRadius(AndroidUtilities.m35dp(6.0f));
+            gradientDrawable.setStroke(AndroidUtilities.m36dp(1.0f), Theme.getColor("actionBarDefault"));
+            gradientDrawable.setCornerRadius(AndroidUtilities.m36dp(6.0f));
             GradientDrawable gradientDrawable2 = new GradientDrawable();
             this.bottomDrawable = gradientDrawable2;
             gradientDrawable2.setStroke(1, Theme.getColor("divider"));
-            gradientDrawable2.setCornerRadius(AndroidUtilities.m35dp(6.0f));
+            gradientDrawable2.setCornerRadius(AndroidUtilities.m36dp(6.0f));
         }
 
         @Override

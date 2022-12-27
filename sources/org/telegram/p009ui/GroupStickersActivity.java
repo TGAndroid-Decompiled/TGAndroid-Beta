@@ -454,7 +454,6 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         private List<TLRPC$TL_messages_stickerSet> localSearchEntries = new ArrayList();
 
         public SearchAdapter(Context context) {
-            GroupStickersActivity.this = r1;
             this.mContext = context;
             setHasStableIds(true);
         }
@@ -617,7 +616,6 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         private Context mContext;
 
         public ListAdapter(Context context) {
-            GroupStickersActivity.this = r1;
             this.mContext = context;
         }
 
@@ -656,7 +654,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
                         ((TextInfoPrivacyCell) viewHolder.itemView).setText(spannableStringBuilder);
                         return;
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                         ((TextInfoPrivacyCell) viewHolder.itemView).setText(string);
                         return;
                     }

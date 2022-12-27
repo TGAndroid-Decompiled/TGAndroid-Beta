@@ -160,13 +160,13 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                         try {
                             decodeFile = BitmapFactory.decodeFile(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$FileLocation, true).toString());
                         } catch (Throwable th) {
-                            FileLog.m31e(th);
+                            FileLog.m32e(th);
                         }
                     } else {
                         decodeFile = null;
                     }
-                    int m35dp = AndroidUtilities.m35dp(48.0f);
-                    Bitmap createBitmap = Bitmap.createBitmap(m35dp, m35dp, Bitmap.Config.ARGB_8888);
+                    int m36dp = AndroidUtilities.m36dp(48.0f);
+                    Bitmap createBitmap = Bitmap.createBitmap(m36dp, m36dp, Bitmap.Config.ARGB_8888);
                     createBitmap.eraseColor(0);
                     Canvas canvas = new Canvas(createBitmap);
                     if (decodeFile == null) {
@@ -180,7 +180,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                         } else {
                             avatarDrawable = new AvatarDrawable(tLRPC$Chat);
                         }
-                        avatarDrawable.setBounds(0, 0, m35dp, m35dp);
+                        avatarDrawable.setBounds(0, 0, m36dp, m36dp);
                         avatarDrawable.draw(canvas);
                     } else {
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
@@ -189,7 +189,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                             this.roundPaint = new Paint(1);
                             this.bitmapRect = new RectF();
                         }
-                        float width = m35dp / decodeFile.getWidth();
+                        float width = m36dp / decodeFile.getWidth();
                         canvas.save();
                         canvas.scale(width, width);
                         this.roundPaint.setShader(bitmapShader);

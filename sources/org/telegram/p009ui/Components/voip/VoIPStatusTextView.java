@@ -34,7 +34,7 @@ public class VoIPStatusTextView extends FrameLayout {
         for (int i = 0; i < 2; i++) {
             this.textView[i] = new TextView(context);
             this.textView[i].setTextSize(1, 15.0f);
-            this.textView[i].setShadowLayer(AndroidUtilities.m35dp(3.0f), 0.0f, AndroidUtilities.m35dp(0.6666667f), 1275068416);
+            this.textView[i].setShadowLayer(AndroidUtilities.m36dp(3.0f), 0.0f, AndroidUtilities.m36dp(0.6666667f), 1275068416);
             this.textView[i].setTextColor(-1);
             this.textView[i].setGravity(1);
             addView(this.textView[i]);
@@ -42,7 +42,7 @@ public class VoIPStatusTextView extends FrameLayout {
         TextView textView = new TextView(context);
         this.reconnectTextView = textView;
         textView.setTextSize(1, 15.0f);
-        this.reconnectTextView.setShadowLayer(AndroidUtilities.m35dp(3.0f), 0.0f, AndroidUtilities.m35dp(0.6666667f), 1275068416);
+        this.reconnectTextView.setShadowLayer(AndroidUtilities.m36dp(3.0f), 0.0f, AndroidUtilities.m36dp(0.6666667f), 1275068416);
         this.reconnectTextView.setTextColor(-1);
         this.reconnectTextView.setGravity(1);
         addView(this.reconnectTextView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));
@@ -142,7 +142,7 @@ public class VoIPStatusTextView extends FrameLayout {
     public void replaceViews(final View view, final View view2, Runnable runnable) {
         view.setVisibility(0);
         view2.setVisibility(0);
-        view2.setTranslationY(AndroidUtilities.m35dp(15.0f));
+        view2.setTranslationY(AndroidUtilities.m36dp(15.0f));
         view2.setAlpha(0.0f);
         this.animationInProgress = true;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -153,7 +153,7 @@ public class VoIPStatusTextView extends FrameLayout {
                 VoIPStatusTextView.lambda$replaceViews$1(view2, view, valueAnimator);
             }
         });
-        this.animator.addListener(new C30921(view, view2, runnable));
+        this.animator.addListener(new C30951(view, view2, runnable));
         this.animator.setDuration(250L).setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.animator.start();
     }
@@ -163,23 +163,22 @@ public class VoIPStatusTextView extends FrameLayout {
         float f = (floatValue * 0.6f) + 0.4f;
         float f2 = 1.0f - floatValue;
         float f3 = (0.6f * f2) + 0.4f;
-        view.setTranslationY(AndroidUtilities.m35dp(10.0f) * f2);
+        view.setTranslationY(AndroidUtilities.m36dp(10.0f) * f2);
         view.setAlpha(floatValue);
         view.setScaleX(f);
         view.setScaleY(f);
-        view2.setTranslationY((-AndroidUtilities.m35dp(10.0f)) * floatValue);
+        view2.setTranslationY((-AndroidUtilities.m36dp(10.0f)) * floatValue);
         view2.setAlpha(f2);
         view2.setScaleX(f3);
         view2.setScaleY(f3);
     }
 
-    public class C30921 extends AnimatorListenerAdapter {
+    public class C30951 extends AnimatorListenerAdapter {
         final View val$in;
         final Runnable val$onEnd;
         final View val$out;
 
-        C30921(View view, View view2, Runnable runnable) {
-            VoIPStatusTextView.this = r1;
+        C30951(View view, View view2, Runnable runnable) {
             this.val$out = view;
             this.val$in = view2;
             this.val$onEnd = runnable;
@@ -215,7 +214,7 @@ public class VoIPStatusTextView extends FrameLayout {
                     voIPStatusTextView3.replaceViews(textViewArr[0], textViewArr[1], new Runnable() {
                         @Override
                         public final void run() {
-                            VoIPStatusTextView.C30921.this.lambda$onAnimationEnd$0();
+                            VoIPStatusTextView.C30951.this.lambda$onAnimationEnd$0();
                         }
                     });
                 }

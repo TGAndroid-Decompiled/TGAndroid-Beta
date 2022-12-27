@@ -40,7 +40,6 @@ public class ForwardingMessagesParams {
         public int totalVotersCached;
 
         public PreviewMediaPoll() {
-            ForwardingMessagesParams.this = r1;
         }
     }
 }

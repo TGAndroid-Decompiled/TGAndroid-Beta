@@ -87,7 +87,7 @@ public class SessionCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(this.currentType == 0 ? 70.0f : 90.0f) + (this.needDivider ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(this.currentType == 0 ? 70.0f : 90.0f) + (this.needDivider ? 1 : 0), 1073741824));
     }
 
     public void setSession(TLObject tLObject, boolean z) {
@@ -126,7 +126,7 @@ public class SessionCell extends FrameLayout {
             }
             if (spannableStringBuilder.length() != 0) {
                 DotDividerSpan dotDividerSpan = new DotDividerSpan();
-                dotDividerSpan.setTopPadding(AndroidUtilities.m35dp(1.5f));
+                dotDividerSpan.setTopPadding(AndroidUtilities.m36dp(1.5f));
                 spannableStringBuilder.append((CharSequence) " . ").setSpan(dotDividerSpan, spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 0);
             }
             spannableStringBuilder.append((CharSequence) stringForMessageListDate);
@@ -227,13 +227,13 @@ public class SessionCell extends FrameLayout {
             }
             Drawable mutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, i).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("avatar_text"), PorterDuff.Mode.SRC_IN));
-            return new CombinedDrawable(new CircleGradientDrawable(AndroidUtilities.m35dp(42.0f), Theme.getColor(str2), Theme.getColor(str)), mutate);
+            return new CombinedDrawable(new CircleGradientDrawable(AndroidUtilities.m36dp(42.0f), Theme.getColor(str2), Theme.getColor(str)), mutate);
         }
         str = "avatar_background2Pink";
         str2 = "avatar_backgroundPink";
         Drawable mutate2 = ContextCompat.getDrawable(ApplicationLoader.applicationContext, i).mutate();
         mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("avatar_text"), PorterDuff.Mode.SRC_IN));
-        return new CombinedDrawable(new CircleGradientDrawable(AndroidUtilities.m35dp(42.0f), Theme.getColor(str2), Theme.getColor(str)), mutate2);
+        return new CombinedDrawable(new CircleGradientDrawable(AndroidUtilities.m36dp(42.0f), Theme.getColor(str2), Theme.getColor(str)), mutate2);
     }
 
     public static class CircleGradientDrawable extends Drawable {
@@ -293,19 +293,19 @@ public class SessionCell extends FrameLayout {
                 View view = (View) getParent();
                 this.globalGradient.setParentSize(view.getMeasuredWidth(), view.getMeasuredHeight(), -getX());
             }
-            float top = this.linearLayout.getTop() + this.nameTextView.getTop() + AndroidUtilities.m35dp(12.0f);
+            float top = this.linearLayout.getTop() + this.nameTextView.getTop() + AndroidUtilities.m36dp(12.0f);
             float x = this.linearLayout.getX();
             RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.set(x, top - AndroidUtilities.m35dp(4.0f), (getMeasuredWidth() * 0.2f) + x, top + AndroidUtilities.m35dp(4.0f));
-            canvas.drawRoundRect(rectF2, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), this.globalGradient.getPaint());
-            float top2 = (this.linearLayout.getTop() + this.detailTextView.getTop()) - AndroidUtilities.m35dp(1.0f);
+            rectF2.set(x, top - AndroidUtilities.m36dp(4.0f), (getMeasuredWidth() * 0.2f) + x, top + AndroidUtilities.m36dp(4.0f));
+            canvas.drawRoundRect(rectF2, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), this.globalGradient.getPaint());
+            float top2 = (this.linearLayout.getTop() + this.detailTextView.getTop()) - AndroidUtilities.m36dp(1.0f);
             float x2 = this.linearLayout.getX();
-            rectF2.set(x2, top2 - AndroidUtilities.m35dp(4.0f), (getMeasuredWidth() * 0.4f) + x2, top2 + AndroidUtilities.m35dp(4.0f));
-            canvas.drawRoundRect(rectF2, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), this.globalGradient.getPaint());
-            float top3 = (this.linearLayout.getTop() + this.detailExTextView.getTop()) - AndroidUtilities.m35dp(1.0f);
+            rectF2.set(x2, top2 - AndroidUtilities.m36dp(4.0f), (getMeasuredWidth() * 0.4f) + x2, top2 + AndroidUtilities.m36dp(4.0f));
+            canvas.drawRoundRect(rectF2, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), this.globalGradient.getPaint());
+            float top3 = (this.linearLayout.getTop() + this.detailExTextView.getTop()) - AndroidUtilities.m36dp(1.0f);
             float x3 = this.linearLayout.getX();
-            rectF2.set(x3, top3 - AndroidUtilities.m35dp(4.0f), (getMeasuredWidth() * 0.3f) + x3, top3 + AndroidUtilities.m35dp(4.0f));
-            canvas.drawRoundRect(rectF2, AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), this.globalGradient.getPaint());
+            rectF2.set(x3, top3 - AndroidUtilities.m36dp(4.0f), (getMeasuredWidth() * 0.3f) + x3, top3 + AndroidUtilities.m36dp(4.0f));
+            canvas.drawRoundRect(rectF2, AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), this.globalGradient.getPaint());
             invalidate();
             if (f < 1.0f) {
                 canvas.restore();
@@ -313,7 +313,7 @@ public class SessionCell extends FrameLayout {
         }
         if (this.needDivider) {
             int i = this.currentType == 1 ? 49 : 72;
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m35dp(i), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m35dp(i) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.m36dp(i), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.m36dp(i) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }
 
@@ -322,7 +322,7 @@ public class SessionCell extends FrameLayout {
         this.showStub = true;
         Drawable mutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, AndroidUtilities.isTablet() ? C1072R.C1073drawable.device_tablet_android : C1072R.C1073drawable.device_phone_android).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("avatar_text"), PorterDuff.Mode.SRC_IN));
-        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.m35dp(42.0f), Theme.getColor("avatar_backgroundGreen")), mutate);
+        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.m36dp(42.0f), Theme.getColor("avatar_backgroundGreen")), mutate);
         BackupImageView backupImageView = this.placeholderImageView;
         if (backupImageView != null) {
             backupImageView.setImageDrawable(combinedDrawable);

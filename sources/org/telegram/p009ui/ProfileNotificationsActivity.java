@@ -294,7 +294,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                     intent.putExtra("android.intent.extra.ringtone.EXISTING_URI", parcelable);
                     startActivityForResult(intent, 13);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             } else if (i == this.vibrateRow) {
                 showDialog(AlertsCreator.createVibrationSelectDialog(getParentActivity(), this.dialogId, this.topicId, false, false, new Runnable() {
@@ -532,7 +532,6 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         private Context context;
 
         public ListAdapter(Context context) {
-            ProfileNotificationsActivity.this = r1;
             this.context = context;
         }
 

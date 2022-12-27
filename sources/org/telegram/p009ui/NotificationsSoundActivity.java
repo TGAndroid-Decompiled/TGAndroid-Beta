@@ -183,7 +183,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.actionBar.setItemsColor(Theme.getColor("actionBarDefaultIcon", this.resourcesProvider), false);
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setAllowOverlayTitle(false);
-        this.actionBar.setActionBarMenuOnItemClick(new C36341(context));
+        this.actionBar.setActionBarMenuOnItemClick(new C36371(context));
         if (this.dialogId == 0) {
             int i = this.currentType;
             if (i == 1) {
@@ -225,8 +225,8 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.selectedTonesCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon", this.resourcesProvider));
         createActionMode.addView(this.selectedTonesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
         this.selectedTonesCountTextView.setOnTouchListener(NotificationsSoundActivity$$ExternalSyntheticLambda0.INSTANCE);
-        createActionMode.addItemWithWidth(2, C1072R.C1073drawable.msg_forward, AndroidUtilities.m35dp(54.0f), LocaleController.getString("ShareFile", C1072R.string.ShareFile));
-        createActionMode.addItemWithWidth(1, C1072R.C1073drawable.msg_delete, AndroidUtilities.m35dp(54.0f), LocaleController.getString("Delete", C1072R.string.Delete));
+        createActionMode.addItemWithWidth(2, C1072R.C1073drawable.msg_forward, AndroidUtilities.m36dp(54.0f), LocaleController.getString("ShareFile", C1072R.string.ShareFile));
+        createActionMode.addItemWithWidth(1, C1072R.C1073drawable.msg_delete, AndroidUtilities.m36dp(54.0f), LocaleController.getString("Delete", C1072R.string.Delete));
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
@@ -260,14 +260,13 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         return this.fragmentView;
     }
 
-    public class C36341 extends C1133ActionBar.ActionBarMenuOnItemClick {
+    public class C36371 extends C1133ActionBar.ActionBarMenuOnItemClick {
         final Context val$context;
 
         public static void lambda$deleteSelectedMessages$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         }
 
-        C36341(Context context) {
-            NotificationsSoundActivity.this = r1;
+        C36371(Context context) {
             this.val$context = context;
         }
 
@@ -290,7 +289,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 builder.setPositiveButton(LocaleController.getString("Delete", C1072R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
-                        NotificationsSoundActivity.C36341.this.lambda$onItemClick$1(dialogInterface, i2);
+                        NotificationsSoundActivity.C36371.this.lambda$onItemClick$1(dialogInterface, i2);
                     }
                 });
                 TextView textView = (TextView) builder.show().getButton(-1);
@@ -547,10 +546,9 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
 
     public class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
-            NotificationsSoundActivity.this = r1;
         }
 
-        Adapter(NotificationsSoundActivity notificationsSoundActivity, C36341 c36341) {
+        Adapter(NotificationsSoundActivity notificationsSoundActivity, C36371 c36371) {
             this();
         }
 
@@ -709,7 +707,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             super(context);
             RadioButton radioButton = new RadioButton(context);
             this.radioButton = radioButton;
-            radioButton.setSize(AndroidUtilities.m35dp(20.0f));
+            radioButton.setSize(AndroidUtilities.m36dp(20.0f));
             this.radioButton.setColor(Theme.getColor("radioBackground", resourcesProvider), Theme.getColor("radioBackgroundChecked", resourcesProvider));
             RadioButton radioButton2 = this.radioButton;
             boolean z = LocaleController.isRTL;
@@ -739,13 +737,13 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(50.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(50.0f), 1073741824));
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
             if (this.needDivider) {
-                canvas.drawLine(AndroidUtilities.m35dp(LocaleController.isRTL ? 0.0f : 60.0f), getHeight() - 1, getMeasuredWidth() - AndroidUtilities.m35dp(LocaleController.isRTL ? 60.0f : 0.0f), getHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(AndroidUtilities.m36dp(LocaleController.isRTL ? 0.0f : 60.0f), getHeight() - 1, getMeasuredWidth() - AndroidUtilities.m36dp(LocaleController.isRTL ? 60.0f : 0.0f), getHeight() - 1, Theme.dividerPaint);
             }
         }
 
@@ -909,7 +907,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             intent.setType("audio/mpeg");
             startActivityForResult(intent, 21);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -961,7 +959,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         private Tone() {
         }
 
-        Tone(C36341 c36341) {
+        Tone(C36371 c36371) {
             this();
         }
 

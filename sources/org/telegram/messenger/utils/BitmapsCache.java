@@ -113,7 +113,7 @@ public class BitmapsCache {
         sb.append(".pcache2");
         File file3 = new File(file2, sb.toString());
         this.file = file3;
-        this.useSharedBuffers = i < AndroidUtilities.m35dp(60.0f) && i2 < AndroidUtilities.m35dp(60.0f);
+        this.useSharedBuffers = i < AndroidUtilities.m36dp(60.0f) && i2 < AndroidUtilities.m36dp(60.0f);
         if (SharedConfig.getDevicePerformanceClass() >= 2) {
             this.fileExist = file3.exists();
             if (this.fileExist) {
@@ -295,7 +295,7 @@ public class BitmapsCache {
                     } catch (Throwable th) {
                         th = th;
                         randomAccessFile2 = randomAccessFile;
-                        FileLog.m30e(th, false);
+                        FileLog.m31e(th, false);
                         int i2 = this.tryCount + 1;
                         this.tryCount = i2;
                         if (i2 > 10) {

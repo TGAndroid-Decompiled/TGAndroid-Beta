@@ -42,7 +42,7 @@ public class TooManyCommunitiesHintCell extends FrameLayout {
         addView(this.messageTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 36.0f, 110.0f, 36.0f, 0.0f));
         final TextPaint textPaint = new TextPaint(1);
         textPaint.setColor(-1);
-        textPaint.setTextSize(AndroidUtilities.m35dp(12.0f));
+        textPaint.setTextSize(AndroidUtilities.m36dp(12.0f));
         textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         final Paint paint = new Paint(1);
         FrameLayout frameLayout = new FrameLayout(this, context) {
@@ -53,10 +53,10 @@ public class TooManyCommunitiesHintCell extends FrameLayout {
                 super.onDraw(canvas);
                 paint.setColor(Theme.getColor("windowBackgroundWhiteRedText"));
                 canvas.save();
-                canvas.translate((getMeasuredWidth() - textPaint.measureText(r5)) - AndroidUtilities.m35dp(8.0f), AndroidUtilities.dpf2(7.0f));
+                canvas.translate((getMeasuredWidth() - textPaint.measureText(r5)) - AndroidUtilities.m36dp(8.0f), AndroidUtilities.dpf2(7.0f));
                 this.rect.set(0.0f, 0.0f, textPaint.measureText(r5), textPaint.getTextSize());
-                this.rect.inset(-AndroidUtilities.m35dp(6.0f), -AndroidUtilities.m35dp(3.0f));
-                float textSize = (textPaint.getTextSize() / 2.0f) + AndroidUtilities.m35dp(3.0f);
+                this.rect.inset(-AndroidUtilities.m36dp(6.0f), -AndroidUtilities.m36dp(3.0f));
+                float textSize = (textPaint.getTextSize() / 2.0f) + AndroidUtilities.m36dp(3.0f);
                 canvas.drawRoundRect(this.rect, textSize, textSize, paint);
                 canvas.drawText(r5, 0.0f, textPaint.getTextSize() - AndroidUtilities.dpf2(2.0f), textPaint);
                 canvas.restore();

@@ -107,7 +107,7 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             });
             notifyDataSetChanged();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -286,7 +286,7 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             userCell = new GraySectionCell(this.mContext);
         } else if (i == 3) {
             userCell = new DividerCell(this.mContext);
-            userCell.setPadding(AndroidUtilities.m35dp(LocaleController.isRTL ? 28.0f : 72.0f), AndroidUtilities.m35dp(8.0f), AndroidUtilities.m35dp(LocaleController.isRTL ? 72.0f : 28.0f), AndroidUtilities.m35dp(8.0f));
+            userCell.setPadding(AndroidUtilities.m36dp(LocaleController.isRTL ? 28.0f : 72.0f), AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(LocaleController.isRTL ? 72.0f : 28.0f), AndroidUtilities.m36dp(8.0f));
         } else if (i == 4) {
             FrameLayout frameLayout = new FrameLayout(this.mContext) {
                 @Override
@@ -298,15 +298,15 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                     if (size == 0) {
                         size = (AndroidUtilities.displaySize.y - C1133ActionBar.getCurrentActionBarHeight()) - (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
                     }
-                    int m35dp = AndroidUtilities.m35dp(50.0f);
-                    int m35dp2 = ContactsAdapter.this.onlyUsers != 0 ? 0 : AndroidUtilities.m35dp(30.0f) + m35dp;
+                    int m36dp = AndroidUtilities.m36dp(50.0f);
+                    int m36dp2 = ContactsAdapter.this.onlyUsers != 0 ? 0 : AndroidUtilities.m36dp(30.0f) + m36dp;
                     if (ContactsAdapter.this.hasGps) {
-                        m35dp2 += m35dp;
+                        m36dp2 += m36dp;
                     }
                     if (!ContactsAdapter.this.isAdmin && !ContactsAdapter.this.needPhonebook) {
-                        m35dp2 += m35dp;
+                        m36dp2 += m36dp;
                     }
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(m35dp2 < size ? size - m35dp2 : 0, 1073741824));
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(m36dp2 < size ? size - m36dp2 : 0, 1073741824));
                 }
             };
             frameLayout.addView(new ContactsEmptyView(this.mContext), LayoutHelper.createFrame(-2, -2, 17));

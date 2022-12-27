@@ -13,7 +13,7 @@ public class HashtagSearchCell extends TextView {
     public HashtagSearchCell(Context context) {
         super(context);
         setGravity(16);
-        setPadding(AndroidUtilities.m35dp(16.0f), 0, AndroidUtilities.m35dp(16.0f), 0);
+        setPadding(AndroidUtilities.m36dp(16.0f), 0, AndroidUtilities.m36dp(16.0f), 0);
         setTextSize(1, 17.0f);
         setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
     }
@@ -24,7 +24,7 @@ public class HashtagSearchCell extends TextView {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m35dp(48.0f) + 1);
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.m36dp(48.0f) + 1);
     }
 
     @Override

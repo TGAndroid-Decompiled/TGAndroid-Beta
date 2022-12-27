@@ -211,7 +211,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         WebViewSwipeContainer webViewSwipeContainer = new WebViewSwipeContainer(context) {
             @Override
             protected void onMeasure(int i, int i2) {
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(((View.MeasureSpec.getSize(i2) - C1133ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.m35dp(84.0f)) + ChatAttachAlertBotWebViewLayout.this.measureOffsetY, 1073741824));
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(((View.MeasureSpec.getSize(i2) - C1133ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.m36dp(84.0f)) + ChatAttachAlertBotWebViewLayout.this.measureOffsetY, 1073741824));
             }
         };
         this.swipeContainer = webViewSwipeContainer;
@@ -273,7 +273,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     public Boolean lambda$new$6(Void r2) {
-        return Boolean.valueOf(this.parentAlert.sizeNotifierFrameLayout.getKeyboardHeight() >= AndroidUtilities.m35dp(20.0f));
+        return Boolean.valueOf(this.parentAlert.sizeNotifierFrameLayout.getKeyboardHeight() >= AndroidUtilities.m36dp(20.0f));
     }
 
     public void lambda$new$8(Float f) {
@@ -474,7 +474,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
     public void requestEnableKeyboard() {
         BaseFragment baseFragment = this.parentAlert.getBaseFragment();
-        if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).contentView.measureKeyboardHeight() > AndroidUtilities.m35dp(20.0f)) {
+        if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).contentView.measureKeyboardHeight() > AndroidUtilities.m36dp(20.0f)) {
             AndroidUtilities.hideKeyboard(this.parentAlert.baseFragment.getFragmentView());
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -553,7 +553,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             tLRPC$TL_dataJSON.data = jSONObject.toString();
             tLRPC$TL_messages_requestWebView.flags |= 4;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_requestWebView, new RequestDelegate() {
             @Override
@@ -625,7 +625,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
     @Override
     int getFirstOffset() {
-        return getListTopPadding() + AndroidUtilities.m35dp(56.0f);
+        return getListTopPadding() + AndroidUtilities.m36dp(56.0f);
     }
 
     @Override
@@ -635,7 +635,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
     @Override
     int getButtonsHideOffset() {
-        return ((int) this.swipeContainer.getTopActionBarOffsetY()) + AndroidUtilities.m35dp(12.0f);
+        return ((int) this.swipeContainer.getTopActionBarOffsetY()) + AndroidUtilities.m36dp(12.0f);
     }
 
     @Override
@@ -687,7 +687,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     public static class WebViewSwipeContainer extends FrameLayout {
-        public static final SimpleFloatPropertyCompat<WebViewSwipeContainer> SWIPE_OFFSET_Y = new SimpleFloatPropertyCompat<>("swipeOffsetY", C2021xea937caa.INSTANCE, C2022xea937cab.INSTANCE);
+        public static final SimpleFloatPropertyCompat<WebViewSwipeContainer> SWIPE_OFFSET_Y = new SimpleFloatPropertyCompat<>("swipeOffsetY", C2024xea937caa.INSTANCE, C2025xea937cab.INSTANCE);
         private Delegate delegate;
         private boolean flingInProgress;
         private GestureDetectorCompat gestureDetector;
@@ -723,7 +723,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             this.offsetY = 0.0f;
             this.pendingOffsetY = -1.0f;
             this.pendingSwipeOffsetY = -2.14748365E9f;
-            this.isKeyboardVisible = C2020xea937ca9.INSTANCE;
+            this.isKeyboardVisible = C2023xea937ca9.INSTANCE;
             final int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
             this.gestureDetector = new GestureDetectorCompat(context, new GestureDetector.SimpleOnGestureListener() {
                 @Override
@@ -814,7 +814,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
         private void updateStickyRange() {
             Point point = AndroidUtilities.displaySize;
-            this.swipeStickyRange = AndroidUtilities.m35dp(point.x > point.y ? 8.0f : 64.0f);
+            this.swipeStickyRange = AndroidUtilities.m36dp(point.x > point.y ? 8.0f : 64.0f);
         }
 
         @Override
@@ -863,7 +863,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             }
             final float f2 = this.offsetY;
             final float f3 = f - f2;
-            final boolean z = Math.abs((this.swipeOffsetY + f2) - this.topActionBarOffsetY) <= ((float) AndroidUtilities.m35dp(1.0f));
+            final boolean z = Math.abs((this.swipeOffsetY + f2) - this.topActionBarOffsetY) <= ((float) AndroidUtilities.m36dp(1.0f));
             if (!this.isSwipeOffsetAnimationDisallowed) {
                 SpringAnimation springAnimation2 = this.offsetYAnimator;
                 if (springAnimation2 != null) {
@@ -1048,13 +1048,13 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
         public WebProgressView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
-            this.LOAD_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("loadProgress", C2015x21c92f6c.INSTANCE, C2016x21c92f6d.INSTANCE).setMultiplier(100.0f);
+            this.LOAD_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("loadProgress", C2018x21c92f6c.INSTANCE, C2019x21c92f6d.INSTANCE).setMultiplier(100.0f);
             Paint paint = new Paint(1);
             this.bluePaint = paint;
             this.resourcesProvider = resourcesProvider;
             paint.setColor(getThemedColor("featuredStickers_addButton"));
             this.bluePaint.setStyle(Paint.Style.STROKE);
-            this.bluePaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+            this.bluePaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
             this.bluePaint.setStrokeCap(Paint.Cap.ROUND);
         }
 

@@ -46,7 +46,7 @@ public class ChatThemeController extends BaseController {
             themesHash = sharedPreferences.getLong("hash", 0L);
             lastReloadTimeMs = sharedPreferences.getLong("lastReload", 0L);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         allChatThemes = getAllChatThemesFromPrefs();
         preloadSticker("❌");
@@ -128,7 +128,7 @@ public class ChatThemeController extends BaseController {
                     arrayList.add(new EmojiThemes(TLdeserialize, false));
                 }
             } catch (Throwable th) {
-                FileLog.m31e(th);
+                FileLog.m32e(th);
             }
         }
         return arrayList;
@@ -272,7 +272,7 @@ public class ChatThemeController extends BaseController {
                 bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (resultCallback != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -304,7 +304,7 @@ public class ChatThemeController extends BaseController {
             bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
             fileOutputStream.close();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 

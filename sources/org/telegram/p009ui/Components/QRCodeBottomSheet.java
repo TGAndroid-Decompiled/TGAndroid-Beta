@@ -52,14 +52,14 @@ public class QRCodeBottomSheet extends BottomSheet {
             imageView.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
                 public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.m35dp(12.0f));
+                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.m36dp(12.0f));
                 }
             });
             imageView.setClipToOutline(true);
         }
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        linearLayout.setPadding(0, AndroidUtilities.m35dp(16.0f), 0, 0);
+        linearLayout.setPadding(0, AndroidUtilities.m36dp(16.0f), 0, 0);
         Bitmap createQR = createQR(context, str, this.qrCode);
         this.qrCode = createQR;
         imageView.setImageBitmap(createQR);
@@ -95,7 +95,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         linearLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 40.0f, 8.0f, 40.0f, 8.0f));
         TextView textView2 = new TextView(context);
         this.buttonTextView = textView2;
-        textView2.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView2.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -110,7 +110,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         if (z) {
             TextView textView3 = new TextView(context);
             this.button2TextView = textView3;
-            textView3.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+            textView3.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
             this.button2TextView.setGravity(17);
             this.button2TextView.setTextSize(1, 14.0f);
             this.button2TextView.setText(LocaleController.getString("ShareLink", C1072R.string.ShareLink));
@@ -161,7 +161,7 @@ public class QRCodeBottomSheet extends BottomSheet {
             this.imageSize = qRCodeWriter.getImageSize();
             return encode;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return null;
         }
     }
@@ -178,7 +178,7 @@ public class QRCodeBottomSheet extends BottomSheet {
 
     public void updateColors() {
         this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-        this.buttonTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
+        this.buttonTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
         TextView textView = this.button2TextView;
         if (textView != null) {
             textView.setTextColor(Theme.getColor("featuredStickers_addButton"));

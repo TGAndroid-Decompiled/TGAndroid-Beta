@@ -250,7 +250,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                     int i3 = 0;
                     while (i3 < 4) {
                         RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
-                        radioColorCell.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+                        radioColorCell.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
                         radioColorCell.setTag(Integer.valueOf(i3));
                         radioColorCell.setCheckColor(Theme.getColor("radioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
                         radioColorCell.setTextAndValue(strArr[i3], i2 == i3);
@@ -282,9 +282,9 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                         try {
                             this.fragmentView.performHapticFeedback(3, 2);
                         } catch (Exception e) {
-                            FileLog.m31e(e);
+                            FileLog.m32e(e);
                         }
-                        BulletinFactory.m13of(this).createRestrictVoiceMessagesPremiumBulletin().show();
+                        BulletinFactory.m14of(this).createRestrictVoiceMessagesPremiumBulletin().show();
                         return;
                     }
                     presentFragment(new PrivacyControlActivity(8));
@@ -416,7 +416,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                         CheckBoxCell checkBoxCell = new CheckBoxCell(getParentActivity(), 1, 21, null);
                         checkBoxCell.setTag(Integer.valueOf(i5));
                         checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                        checkBoxCell.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+                        checkBoxCell.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
                         linearLayout2.addView(checkBoxCell, LayoutHelper.createLinear(-1, 50));
                         checkBoxCell.setText(string, null, true, false);
                         checkBoxCell.setTextColor(Theme.getColor("dialogTextBlack"));
@@ -489,7 +489,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (tLObject instanceof TLRPC$TL_boolTrue) {
             this.deleteAccountUpdate = true;
@@ -592,7 +592,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 dialog.dismiss();
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(LocaleController.getString("PrivacyPaymentsClearAlertTitle", C1072R.string.PrivacyPaymentsClearAlertTitle));
@@ -632,7 +632,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         } else {
             string = LocaleController.getString("PrivacyPaymentsPaymentInfoCleared", C1072R.string.PrivacyPaymentsPaymentInfoCleared);
         }
-        BulletinFactory.m13of(this).createSimpleBulletin(C1072R.raw.chats_infotip, string).show();
+        BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.chats_infotip, string).show();
     }
 
     @Override
@@ -957,7 +957,6 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         private Context mContext;
 
         public ListAdapter(Context context) {
-            PrivacySettingsActivity.this = r1;
             this.mContext = context;
         }
 
@@ -1073,7 +1072,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                             if (!PrivacySettingsActivity.this.getUserConfig().isPremium()) {
                                 valueImageView.setVisibility(0);
                                 valueImageView.setImageResource(C1072R.C1073drawable.msg_mini_premiumlock);
-                                valueImageView.setTranslationY(AndroidUtilities.m35dp(1.0f));
+                                valueImageView.setTranslationY(AndroidUtilities.m36dp(1.0f));
                                 valueImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteValueText"), PorterDuff.Mode.MULTIPLY));
                             } else {
                                 valueImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.MULTIPLY));

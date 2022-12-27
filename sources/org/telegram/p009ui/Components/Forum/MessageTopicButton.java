@@ -257,7 +257,7 @@ public class MessageTopicButton {
         int i3 = this.topicNameColor;
         if (this.topicNameLayout != null) {
             canvas.save();
-            canvas.translate((AndroidUtilities.m35dp(this.isGeneralTopic ? 13.0f : 17.0f) + Theme.chat_topicTextPaint.getTextSize()) - this.topicNameLeft, AndroidUtilities.m35dp(4.5f));
+            canvas.translate((AndroidUtilities.m36dp(this.isGeneralTopic ? 13.0f : 17.0f) + Theme.chat_topicTextPaint.getTextSize()) - this.topicNameLeft, AndroidUtilities.m36dp(4.5f));
             AnimatedColor animatedColor2 = this.topicNameColorAnimated;
             if (animatedColor2 != null) {
                 TextPaint textPaint = Theme.chat_topicTextPaint;

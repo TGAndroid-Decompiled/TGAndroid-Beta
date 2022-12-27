@@ -156,7 +156,6 @@ public class AvatarPreviewer {
         }
 
         private MenuItem(String str, int i, String str2, int i2, int i3) {
-            super(str, i);
             this.labelKey = str2;
             this.labelResId = i2;
             this.iconResId = i3;
@@ -175,13 +174,13 @@ public class AvatarPreviewer {
         private final String videoFilter;
         private final ImageLocation videoLocation;
 
-        public static Data m17of(TLRPC$User tLRPC$User, int i, MenuItem... menuItemArr) {
+        public static Data m18of(TLRPC$User tLRPC$User, int i, MenuItem... menuItemArr) {
             ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(tLRPC$User, 0);
             ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(tLRPC$User, 1);
             return new Data(forUserOrChat, forUserOrChat2, null, null, (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC$TL_photoStrippedSize)) ? null : "b", null, null, tLRPC$User, menuItemArr, new UserInfoLoadTask(tLRPC$User, i));
         }
 
-        public static Data m16of(TLRPC$UserFull tLRPC$UserFull, MenuItem... menuItemArr) {
+        public static Data m17of(TLRPC$UserFull tLRPC$UserFull, MenuItem... menuItemArr) {
             ImageLocation imageLocation;
             String str;
             ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(tLRPC$UserFull.user, 0);
@@ -204,13 +203,13 @@ public class AvatarPreviewer {
             return new Data(forUserOrChat, forUserOrChat2, imageLocation, null, str3, str2, str, tLRPC$UserFull.user, menuItemArr, null);
         }
 
-        public static Data m19of(TLRPC$Chat tLRPC$Chat, int i, MenuItem... menuItemArr) {
+        public static Data m20of(TLRPC$Chat tLRPC$Chat, int i, MenuItem... menuItemArr) {
             ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(tLRPC$Chat, 0);
             ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(tLRPC$Chat, 1);
             return new Data(forUserOrChat, forUserOrChat2, null, null, (forUserOrChat2 == null || !(forUserOrChat2.photoSize instanceof TLRPC$TL_photoStrippedSize)) ? null : "b", null, null, tLRPC$Chat, menuItemArr, new ChatInfoLoadTask(tLRPC$Chat, i));
         }
 
-        public static Data m18of(TLRPC$Chat tLRPC$Chat, TLRPC$ChatFull tLRPC$ChatFull, MenuItem... menuItemArr) {
+        public static Data m19of(TLRPC$Chat tLRPC$Chat, TLRPC$ChatFull tLRPC$ChatFull, MenuItem... menuItemArr) {
             ImageLocation imageLocation;
             String str;
             ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(tLRPC$Chat, 0);
@@ -359,7 +358,7 @@ public class AvatarPreviewer {
 
         public Layout(Context context, Callback callback) {
             super(context);
-            this.radialProgressSize = AndroidUtilities.m35dp(64.0f);
+            this.radialProgressSize = AndroidUtilities.m36dp(64.0f);
             new Rect();
             this.interpolator = new AccelerateDecelerateInterpolator();
             this.backgroundDrawable = new ColorDrawable(1895825408);
@@ -371,7 +370,7 @@ public class AvatarPreviewer {
             setFitsSystemWindows(true);
             imageReceiver.setAspectFit(true);
             imageReceiver.setInvalidateAll(true);
-            imageReceiver.setRoundRadius(AndroidUtilities.m35dp(6.0f));
+            imageReceiver.setRoundRadius(AndroidUtilities.m36dp(6.0f));
             imageReceiver.setParentView(this);
             RadialProgress2 radialProgress2 = new RadialProgress2(this);
             this.radialProgress = radialProgress2;
@@ -422,7 +421,7 @@ public class AvatarPreviewer {
                         if (this.downY < 0.0f) {
                             this.downY = motionEvent.getY();
                         } else {
-                            float max = Math.max(-1.0f, Math.min(0.0f, (motionEvent.getY() - this.downY) / AndroidUtilities.m35dp(56.0f)));
+                            float max = Math.max(-1.0f, Math.min(0.0f, (motionEvent.getY() - this.downY) / AndroidUtilities.m36dp(56.0f)));
                             this.moveProgress = max;
                             if (max == -1.0f) {
                                 performHapticFeedback(0);
@@ -514,25 +513,25 @@ public class AvatarPreviewer {
                 return;
             }
             this.backgroundDrawable.setBounds(0, 0, width, height);
-            int m35dp = AndroidUtilities.m35dp(8.0f);
+            int m36dp = AndroidUtilities.m36dp(8.0f);
             if (Build.VERSION.SDK_INT >= 21) {
-                int stableInsetLeft = this.insets.getStableInsetLeft() + m35dp;
-                i2 = this.insets.getStableInsetRight() + m35dp;
-                i = m35dp + Math.max(this.insets.getStableInsetTop(), this.insets.getStableInsetBottom());
-                m35dp = stableInsetLeft;
+                int stableInsetLeft = this.insets.getStableInsetLeft() + m36dp;
+                i2 = this.insets.getStableInsetRight() + m36dp;
+                i = m36dp + Math.max(this.insets.getStableInsetTop(), this.insets.getStableInsetBottom());
+                m36dp = stableInsetLeft;
             } else {
-                i = m35dp;
+                i = m36dp;
                 i2 = i;
             }
             int intrinsicWidth = this.arrowDrawable.getIntrinsicWidth();
             int intrinsicHeight = this.arrowDrawable.getIntrinsicHeight();
-            int m35dp2 = AndroidUtilities.m35dp(24.0f);
-            int i3 = width - (i2 + m35dp);
+            int m36dp2 = AndroidUtilities.m36dp(24.0f);
+            int i3 = width - (i2 + m36dp);
             int i4 = height - (i * 2);
             int min = Math.min(i3, i4);
             int i5 = intrinsicHeight / 2;
-            int i6 = m35dp2 + i5;
-            int i7 = ((i3 - min) / 2) + m35dp;
+            int i6 = m36dp2 + i5;
+            int i7 = ((i3 - min) / 2) + m36dp;
             int i8 = ((i4 - min) / 2) + i + (i3 > i4 ? i6 : 0);
             this.imageReceiver.setImageCoords(i7, i8, min, min - (i3 > i4 ? i6 : 0));
             int centerX = (int) this.imageReceiver.getCenterX();
@@ -541,7 +540,7 @@ public class AvatarPreviewer {
             int i9 = this.radialProgressSize;
             radialProgress2.setProgressRect(centerX - (i9 / 2), centerY - (i9 / 2), centerX + (i9 / 2), centerY + (i9 / 2));
             int i10 = i7 + (min / 2);
-            int i11 = i8 - m35dp2;
+            int i11 = i8 - m36dp2;
             int i12 = intrinsicWidth / 2;
             this.arrowDrawable.setBounds(i10 - i12, i11 - i5, i10 + i12, i11 + i5);
         }
@@ -584,9 +583,9 @@ public class AvatarPreviewer {
                 return;
             }
             if (obj instanceof TLRPC$UserFull) {
-                setData(Data.m16of((TLRPC$UserFull) obj, data.menuItems));
+                setData(Data.m17of((TLRPC$UserFull) obj, data.menuItems));
             } else if (obj instanceof TLRPC$ChatFull) {
-                setData(Data.m18of((TLRPC$Chat) data.infoLoadTask.argument, (TLRPC$ChatFull) obj, data.menuItems));
+                setData(Data.m19of((TLRPC$Chat) data.infoLoadTask.argument, (TLRPC$ChatFull) obj, data.menuItems));
             }
         }
 

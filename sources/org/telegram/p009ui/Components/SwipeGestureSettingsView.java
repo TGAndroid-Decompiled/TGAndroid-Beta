@@ -67,22 +67,22 @@ public class SwipeGestureSettingsView extends FrameLayout {
         strArr2[4] = "dialogSwipeRemove";
         strArr2[5] = "chats_archivePinBackground";
         this.outlinePaint.setStyle(Paint.Style.STROKE);
-        this.outlinePaint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
+        this.outlinePaint.setStrokeWidth(AndroidUtilities.m36dp(1.0f));
         this.linePaint.setStyle(Paint.Style.STROKE);
         this.linePaint.setStrokeCap(Paint.Cap.ROUND);
-        this.linePaint.setStrokeWidth(AndroidUtilities.m35dp(5.0f));
+        this.linePaint.setStrokeWidth(AndroidUtilities.m36dp(5.0f));
         this.pickerDividersPaint.setStyle(Paint.Style.STROKE);
         this.pickerDividersPaint.setStrokeCap(Paint.Cap.ROUND);
-        this.pickerDividersPaint.setStrokeWidth(AndroidUtilities.m35dp(2.0f));
+        this.pickerDividersPaint.setStrokeWidth(AndroidUtilities.m36dp(2.0f));
         NumberPicker numberPicker = new NumberPicker(context, 13) {
             @Override
             public void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
-                float m35dp = AndroidUtilities.m35dp(31.0f);
+                float m36dp = AndroidUtilities.m36dp(31.0f);
                 SwipeGestureSettingsView.this.pickerDividersPaint.setColor(Theme.getColor("radioBackgroundChecked"));
-                canvas.drawLine(AndroidUtilities.m35dp(2.0f), m35dp, getMeasuredWidth() - AndroidUtilities.m35dp(2.0f), m35dp, SwipeGestureSettingsView.this.pickerDividersPaint);
-                float measuredHeight = getMeasuredHeight() - AndroidUtilities.m35dp(31.0f);
-                canvas.drawLine(AndroidUtilities.m35dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.m35dp(2.0f), measuredHeight, SwipeGestureSettingsView.this.pickerDividersPaint);
+                canvas.drawLine(AndroidUtilities.m36dp(2.0f), m36dp, getMeasuredWidth() - AndroidUtilities.m36dp(2.0f), m36dp, SwipeGestureSettingsView.this.pickerDividersPaint);
+                float measuredHeight = getMeasuredHeight() - AndroidUtilities.m36dp(31.0f);
+                canvas.drawLine(AndroidUtilities.m36dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.m36dp(2.0f), measuredHeight, SwipeGestureSettingsView.this.pickerDividersPaint);
             }
         };
         this.picker = numberPicker;
@@ -174,7 +174,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(102.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(102.0f), 1073741824));
     }
 
     @Override
@@ -200,7 +200,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
                 i2 = C1072R.raw.swipe_disabled;
             }
             int i3 = i2;
-            rLottieDrawableArr[i] = new RLottieDrawable(i3, "" + i3, AndroidUtilities.m35dp(28.0f), AndroidUtilities.m35dp(28.0f), true, null);
+            rLottieDrawableArr[i] = new RLottieDrawable(i3, "" + i3, AndroidUtilities.m36dp(28.0f), AndroidUtilities.m36dp(28.0f), true, null);
             updateIconColor(i);
         }
         return this.icons[i];

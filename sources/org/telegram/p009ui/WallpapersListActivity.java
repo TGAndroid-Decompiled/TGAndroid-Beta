@@ -317,7 +317,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         this.colorPaint = new Paint(1);
         Paint paint = new Paint(1);
         this.colorFramePaint = paint;
-        paint.setStrokeWidth(AndroidUtilities.m35dp(1.0f));
+        paint.setStrokeWidth(AndroidUtilities.m36dp(1.0f));
         this.colorFramePaint.setStyle(Paint.Style.STROKE);
         this.colorFramePaint.setColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
         this.updater = new WallpaperUpdater(getParentActivity(), this, new WallpaperUpdater.WallpaperUpdaterDelegate() {
@@ -339,7 +339,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         } else if (i == 1) {
             this.actionBar.setTitle(LocaleController.getString("SelectColorTitle", C1072R.string.SelectColorTitle));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C42702());
+        this.actionBar.setActionBarMenuOnItemClick(new C42732());
         if (this.currentType == 0) {
             ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, C1072R.C1073drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
                 @Override
@@ -381,8 +381,8 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             this.selectedMessagesCountTextView.setTextColor(Theme.getColor("actionBarDefaultIcon"));
             this.selectedMessagesCountTextView.setOnTouchListener(WallpapersListActivity$$ExternalSyntheticLambda1.INSTANCE);
             createActionMode.addView(this.selectedMessagesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
-            this.actionModeViews.add(createActionMode.addItemWithWidth(3, C1072R.C1073drawable.msg_forward, AndroidUtilities.m35dp(54.0f), LocaleController.getString("Forward", C1072R.string.Forward)));
-            this.actionModeViews.add(createActionMode.addItemWithWidth(4, C1072R.C1073drawable.msg_delete, AndroidUtilities.m35dp(54.0f), LocaleController.getString("Delete", C1072R.string.Delete)));
+            this.actionModeViews.add(createActionMode.addItemWithWidth(3, C1072R.C1073drawable.msg_forward, AndroidUtilities.m36dp(54.0f), LocaleController.getString("Forward", C1072R.string.Forward)));
+            this.actionModeViews.add(createActionMode.addItemWithWidth(4, C1072R.C1073drawable.msg_delete, AndroidUtilities.m36dp(54.0f), LocaleController.getString("Delete", C1072R.string.Delete)));
             this.selectedWallPapers.clear();
         }
         FrameLayout frameLayout = new FrameLayout(context);
@@ -398,7 +398,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
 
             @Override
             public void onDraw(android.graphics.Canvas r15) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.WallpapersListActivity.C42724.onDraw(android.graphics.Canvas):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.WallpapersListActivity.C42754.onDraw(android.graphics.Canvas):void");
             }
         };
         this.listView = recyclerListView;
@@ -465,9 +465,8 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         return this.fragmentView;
     }
 
-    public class C42702 extends C1133ActionBar.ActionBarMenuOnItemClick {
-        C42702() {
-            WallpapersListActivity.this = r1;
+    public class C42732 extends C1133ActionBar.ActionBarMenuOnItemClick {
+        C42732() {
         }
 
         @Override
@@ -489,7 +488,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                     dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                         @Override
                         public final void didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z) {
-                            WallpapersListActivity.C42702.this.lambda$onItemClick$3(dialogsActivity2, arrayList, charSequence, z);
+                            WallpapersListActivity.C42732.this.lambda$onItemClick$3(dialogsActivity2, arrayList, charSequence, z);
                         }
                     });
                     WallpapersListActivity.this.presentFragment(dialogsActivity);
@@ -502,7 +501,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 builder.setPositiveButton(LocaleController.getString("Delete", C1072R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
-                        WallpapersListActivity.C42702.this.lambda$onItemClick$2(dialogInterface, i2);
+                        WallpapersListActivity.C42732.this.lambda$onItemClick$2(dialogInterface, i2);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
@@ -559,7 +558,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                     ConnectionsManager.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendRequest(tLRPC$TL_account_saveWallPaper, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            WallpapersListActivity.C42702.this.lambda$onItemClick$1(iArr, tLObject, tLRPC$TL_error);
+                            WallpapersListActivity.C42732.this.lambda$onItemClick$1(iArr, tLObject, tLRPC$TL_error);
                         }
                     });
                 }
@@ -576,7 +575,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    WallpapersListActivity.C42702.this.lambda$onItemClick$0(iArr);
+                    WallpapersListActivity.C42732.this.lambda$onItemClick$0(iArr);
                 }
             });
         }
@@ -1194,7 +1193,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 }
             });
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (Theme.hasWallpaperFromTheme() && !Theme.isThemeWallpaperPublic()) {
             if (this.themeWallpaper == null) {
@@ -1380,12 +1379,11 @@ public class WallpapersListActivity extends BaseFragment implements Notification
 
         public ColorCell(Context context) {
             super(context);
-            WallpapersListActivity.this = r1;
         }
 
         @Override
         protected void onMeasure(int i, int i2) {
-            setMeasuredDimension(AndroidUtilities.m35dp(50.0f), AndroidUtilities.m35dp(62.0f));
+            setMeasuredDimension(AndroidUtilities.m36dp(50.0f), AndroidUtilities.m36dp(62.0f));
         }
 
         public void setColor(int i) {
@@ -1395,9 +1393,9 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         @Override
         protected void onDraw(Canvas canvas) {
             WallpapersListActivity.this.colorPaint.setColor(this.color);
-            canvas.drawCircle(AndroidUtilities.m35dp(25.0f), AndroidUtilities.m35dp(31.0f), AndroidUtilities.m35dp(18.0f), WallpapersListActivity.this.colorPaint);
+            canvas.drawCircle(AndroidUtilities.m36dp(25.0f), AndroidUtilities.m36dp(31.0f), AndroidUtilities.m36dp(18.0f), WallpapersListActivity.this.colorPaint);
             if (this.color == Theme.getColor("windowBackgroundWhite")) {
-                canvas.drawCircle(AndroidUtilities.m35dp(25.0f), AndroidUtilities.m35dp(31.0f), AndroidUtilities.m35dp(18.0f), WallpapersListActivity.this.colorFramePaint);
+                canvas.drawCircle(AndroidUtilities.m36dp(25.0f), AndroidUtilities.m36dp(31.0f), AndroidUtilities.m36dp(18.0f), WallpapersListActivity.this.colorFramePaint);
             }
         }
     }
@@ -1423,7 +1421,6 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             }
 
             private CategoryAdapterRecycler() {
-                SearchAdapter.this = r1;
             }
 
             @Override
@@ -1444,7 +1441,6 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         }
 
         public SearchAdapter(Context context) {
-            WallpapersListActivity.this = r1;
             this.mContext = context;
         }
 
@@ -1720,7 +1716,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                         return false;
                     }
                 };
-                recyclerListView.setPadding(AndroidUtilities.m35dp(7.0f), 0, AndroidUtilities.m35dp(7.0f), 0);
+                recyclerListView.setPadding(AndroidUtilities.m36dp(7.0f), 0, AndroidUtilities.m36dp(7.0f), 0);
                 recyclerListView.setClipToPadding(false);
                 linearLayoutManager.setOrientation(0);
                 recyclerListView.setLayoutManager(linearLayoutManager);
@@ -1736,7 +1732,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 view = new GraySectionCell(this.mContext);
             }
             if (i == 1) {
-                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(60.0f)));
+                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m36dp(60.0f)));
             } else {
                 view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             }
@@ -1775,7 +1771,6 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         private Context mContext;
 
         public ListAdapter(Context context) {
-            WallpapersListActivity.this = r1;
             this.mContext = context;
         }
 

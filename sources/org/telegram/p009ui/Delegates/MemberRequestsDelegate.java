@@ -571,7 +571,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             onImportersChanged(this.query, false, true);
             if (z) {
                 Bulletin.MultiLineLayout multiLineLayout = new Bulletin.MultiLineLayout(this.fragment.getParentActivity(), this.fragment.getResourceProvider());
-                multiLineLayout.imageView.setRoundRadius(AndroidUtilities.m35dp(15.0f));
+                multiLineLayout.imageView.setRoundRadius(AndroidUtilities.m36dp(15.0f));
                 multiLineLayout.imageView.setForUserOrChat(tLRPC$User, new AvatarDrawable(tLRPC$User));
                 String firstName = UserObject.getFirstName(tLRPC$User);
                 if (this.isChannel) {
@@ -626,7 +626,6 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
 
     public class Adapter extends RecyclerListView.SelectionAdapter {
         private Adapter() {
-            MemberRequestsDelegate.this = r1;
         }
 
         @Override
@@ -640,7 +639,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 memberRequestCell = new View(this, viewGroup.getContext()) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(52.0f), 1073741824));
+                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(52.0f), 1073741824));
                     }
                 };
             } else if (i != 3) {
@@ -752,7 +751,6 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             super(context, C1072R.style.TransparentDialog2);
             int i;
             String str;
-            MemberRequestsDelegate.this = r9;
             Drawable mutate = getContext().getResources().getDrawable(C1072R.C1073drawable.popup_fixed_alert2).mutate();
             this.pagerShadowDrawable = mutate;
             TextView textView = new TextView(getContext());
@@ -791,11 +789,11 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                     int min = Math.min(getMeasuredWidth(), getMeasuredHeight());
                     double measuredHeight = getMeasuredHeight();
                     Double.isNaN(measuredHeight);
-                    int min2 = Math.min(min, (int) (measuredHeight * 0.66d)) - (AndroidUtilities.m35dp(12.0f) * 2);
+                    int min2 = Math.min(min, (int) (measuredHeight * 0.66d)) - (AndroidUtilities.m36dp(12.0f) * 2);
                     int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(min2, Integer.MIN_VALUE);
                     PreviewDialog.this.viewPager.measure(makeMeasureSpec, makeMeasureSpec);
                     PreviewDialog.this.pagerIndicator.measure(makeMeasureSpec, makeMeasureSpec);
-                    int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(min2 - (AndroidUtilities.m35dp(16.0f) * 2), 1073741824);
+                    int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(min2 - (AndroidUtilities.m36dp(16.0f) * 2), 1073741824);
                     PreviewDialog.this.nameText.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(0, 0));
                     PreviewDialog.this.bioText.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(0, 0));
                     PreviewDialog.this.popupLayout.measure(View.MeasureSpec.makeMeasureSpec(PreviewDialog.this.viewPager.getMeasuredWidth() + (PreviewDialog.this.shadowPaddingLeft * 2), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
@@ -807,24 +805,24 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                     int width = (getWidth() - PreviewDialog.this.viewPager.getMeasuredWidth()) / 2;
                     PreviewDialog.this.viewPager.layout(width, height, PreviewDialog.this.viewPager.getMeasuredWidth() + width, PreviewDialog.this.viewPager.getMeasuredHeight() + height);
                     PreviewDialog.this.pagerIndicator.layout(PreviewDialog.this.viewPager.getLeft(), PreviewDialog.this.viewPager.getTop(), PreviewDialog.this.viewPager.getRight(), PreviewDialog.this.viewPager.getTop() + PreviewDialog.this.pagerIndicator.getMeasuredHeight());
-                    int measuredHeight = height + PreviewDialog.this.viewPager.getMeasuredHeight() + AndroidUtilities.m35dp(12.0f);
-                    PreviewDialog.this.nameText.layout(PreviewDialog.this.viewPager.getLeft() + AndroidUtilities.m35dp(16.0f), measuredHeight, PreviewDialog.this.viewPager.getRight() - AndroidUtilities.m35dp(16.0f), PreviewDialog.this.nameText.getMeasuredHeight() + measuredHeight);
+                    int measuredHeight = height + PreviewDialog.this.viewPager.getMeasuredHeight() + AndroidUtilities.m36dp(12.0f);
+                    PreviewDialog.this.nameText.layout(PreviewDialog.this.viewPager.getLeft() + AndroidUtilities.m36dp(16.0f), measuredHeight, PreviewDialog.this.viewPager.getRight() - AndroidUtilities.m36dp(16.0f), PreviewDialog.this.nameText.getMeasuredHeight() + measuredHeight);
                     int measuredHeight2 = measuredHeight + PreviewDialog.this.nameText.getMeasuredHeight();
                     if (PreviewDialog.this.bioText.getVisibility() != 8) {
-                        int m35dp = measuredHeight2 + AndroidUtilities.m35dp(4.0f);
-                        PreviewDialog.this.bioText.layout(PreviewDialog.this.nameText.getLeft(), m35dp, PreviewDialog.this.nameText.getRight(), PreviewDialog.this.bioText.getMeasuredHeight() + m35dp);
-                        measuredHeight2 = m35dp + PreviewDialog.this.bioText.getMeasuredHeight();
+                        int m36dp = measuredHeight2 + AndroidUtilities.m36dp(4.0f);
+                        PreviewDialog.this.bioText.layout(PreviewDialog.this.nameText.getLeft(), m36dp, PreviewDialog.this.nameText.getRight(), PreviewDialog.this.bioText.getMeasuredHeight() + m36dp);
+                        measuredHeight2 = m36dp + PreviewDialog.this.bioText.getMeasuredHeight();
                     }
-                    int m35dp2 = measuredHeight2 + AndroidUtilities.m35dp(12.0f);
-                    PreviewDialog.this.pagerShadowDrawable.setBounds(PreviewDialog.this.viewPager.getLeft() - PreviewDialog.this.shadowPaddingLeft, PreviewDialog.this.viewPager.getTop() - PreviewDialog.this.shadowPaddingTop, PreviewDialog.this.viewPager.getRight() + PreviewDialog.this.shadowPaddingLeft, PreviewDialog.this.shadowPaddingTop + m35dp2);
-                    PreviewDialog.this.popupLayout.layout((PreviewDialog.this.viewPager.getRight() - PreviewDialog.this.popupLayout.getMeasuredWidth()) + PreviewDialog.this.shadowPaddingLeft, m35dp2, PreviewDialog.this.viewPager.getRight() + PreviewDialog.this.shadowPaddingLeft, PreviewDialog.this.popupLayout.getMeasuredHeight() + m35dp2);
+                    int m36dp2 = measuredHeight2 + AndroidUtilities.m36dp(12.0f);
+                    PreviewDialog.this.pagerShadowDrawable.setBounds(PreviewDialog.this.viewPager.getLeft() - PreviewDialog.this.shadowPaddingLeft, PreviewDialog.this.viewPager.getTop() - PreviewDialog.this.shadowPaddingTop, PreviewDialog.this.viewPager.getRight() + PreviewDialog.this.shadowPaddingLeft, PreviewDialog.this.shadowPaddingTop + m36dp2);
+                    PreviewDialog.this.popupLayout.layout((PreviewDialog.this.viewPager.getRight() - PreviewDialog.this.popupLayout.getMeasuredWidth()) + PreviewDialog.this.shadowPaddingLeft, m36dp2, PreviewDialog.this.viewPager.getRight() + PreviewDialog.this.shadowPaddingLeft, PreviewDialog.this.popupLayout.getMeasuredHeight() + m36dp2);
                     PreviewDialog.this.popupLayout.setVisibility(PreviewDialog.this.popupLayout.getBottom() < i5 ? 0 : 8);
-                    int m35dp3 = AndroidUtilities.m35dp(6.0f);
-                    this.rectF.set(PreviewDialog.this.viewPager.getLeft(), PreviewDialog.this.viewPager.getTop(), PreviewDialog.this.viewPager.getRight(), PreviewDialog.this.viewPager.getTop() + (m35dp3 * 2));
+                    int m36dp3 = AndroidUtilities.m36dp(6.0f);
+                    this.rectF.set(PreviewDialog.this.viewPager.getLeft(), PreviewDialog.this.viewPager.getTop(), PreviewDialog.this.viewPager.getRight(), PreviewDialog.this.viewPager.getTop() + (m36dp3 * 2));
                     this.clipPath.reset();
-                    float f = m35dp3;
+                    float f = m36dp3;
                     this.clipPath.addRoundRect(this.rectF, f, f, Path.Direction.CW);
-                    this.rectF.set(i2, PreviewDialog.this.viewPager.getTop() + m35dp3, i4, i5);
+                    this.rectF.set(i2, PreviewDialog.this.viewPager.getTop() + m36dp3, i4, i5);
                     this.clipPath.addRect(this.rectF, Path.Direction.CW);
                 }
 
@@ -866,7 +864,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             this.contentView = viewGroup;
             setCancelable(true);
             viewGroup.setVisibility(4);
-            int color = Theme.getColor("actionBarDefaultSubmenuBackground", r9.fragment.getResourceProvider());
+            int color = Theme.getColor("actionBarDefaultSubmenuBackground", MemberRequestsDelegate.this.fragment.getResourceProvider());
             mutate.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
             mutate.setCallback(viewGroup);
             Rect rect = new Rect();
@@ -877,7 +875,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             this.popupLayout = actionBarPopupWindowLayout;
             actionBarPopupWindowLayout.setBackgroundColor(color);
             viewGroup.addView(actionBarPopupWindowLayout);
-            AvatarPreviewPagerIndicator avatarPreviewPagerIndicator = new AvatarPreviewPagerIndicator(this, getContext(), r9) {
+            AvatarPreviewPagerIndicator avatarPreviewPagerIndicator = new AvatarPreviewPagerIndicator(this, getContext(), MemberRequestsDelegate.this) {
                 @Override
                 public void onDraw(Canvas canvas) {
                     if (this.profileGalleryView.getRealCount() > 1) {
@@ -886,18 +884,18 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 }
             };
             this.pagerIndicator = avatarPreviewPagerIndicator;
-            ProfileGalleryView profileGalleryView = new ProfileGalleryView(context, r9.fragment.getActionBar(), recyclerListView, avatarPreviewPagerIndicator);
+            ProfileGalleryView profileGalleryView = new ProfileGalleryView(context, MemberRequestsDelegate.this.fragment.getActionBar(), recyclerListView, avatarPreviewPagerIndicator);
             this.viewPager = profileGalleryView;
             profileGalleryView.setCreateThumbFromParent(true);
             viewGroup.addView(profileGalleryView);
             avatarPreviewPagerIndicator.setProfileGalleryView(profileGalleryView);
             viewGroup.addView(avatarPreviewPagerIndicator);
             textView.setMaxLines(1);
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", r9.fragment.getResourceProvider()));
+            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", MemberRequestsDelegate.this.fragment.getResourceProvider()));
             textView.setTextSize(16.0f);
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             viewGroup.addView(textView);
-            textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText", r9.fragment.getResourceProvider()));
+            textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText", MemberRequestsDelegate.this.fragment.getResourceProvider()));
             textView2.setTextSize(14.0f);
             viewGroup.addView(textView2);
             ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(context, true, false);
@@ -1122,11 +1120,11 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
         }
 
         public int getContentHeight() {
-            int measuredHeight = this.viewPager.getMeasuredHeight() + AndroidUtilities.m35dp(12.0f) + this.nameText.getMeasuredHeight();
+            int measuredHeight = this.viewPager.getMeasuredHeight() + AndroidUtilities.m36dp(12.0f) + this.nameText.getMeasuredHeight();
             if (this.bioText.getVisibility() != 8) {
-                measuredHeight += AndroidUtilities.m35dp(4.0f) + this.bioText.getMeasuredHeight();
+                measuredHeight += AndroidUtilities.m36dp(4.0f) + this.bioText.getMeasuredHeight();
             }
-            return measuredHeight + AndroidUtilities.m35dp(12.0f) + this.popupLayout.getMeasuredHeight();
+            return measuredHeight + AndroidUtilities.m36dp(12.0f) + this.popupLayout.getMeasuredHeight();
         }
 
         private int getContentWidth() {

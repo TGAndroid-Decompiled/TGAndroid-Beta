@@ -14,7 +14,7 @@ public class LoadingSpan extends ReplacementSpan {
     public int yOffset;
 
     public LoadingSpan(View view, int i) {
-        this(view, i, AndroidUtilities.m35dp(2.0f));
+        this(view, i, AndroidUtilities.m36dp(2.0f));
     }
 
     public LoadingSpan(View view, int i, int i2) {
@@ -47,7 +47,7 @@ public class LoadingSpan extends ReplacementSpan {
     @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
         int i6 = (int) f;
-        this.drawable.setBounds(i6, i3 + this.yOffset, this.size + i6, (i5 - AndroidUtilities.m35dp(2.0f)) + this.yOffset);
+        this.drawable.setBounds(i6, i3 + this.yOffset, this.size + i6, (i5 - AndroidUtilities.m36dp(2.0f)) + this.yOffset);
         this.drawable.draw(canvas);
         View view = this.view;
         if (view != null) {

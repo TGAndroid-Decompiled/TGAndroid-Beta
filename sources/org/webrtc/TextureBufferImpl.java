@@ -117,7 +117,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
                 }
             });
         } catch (Throwable th) {
-            FileLog.m31e(th);
+            FileLog.m32e(th);
             int width = getWidth();
             int height = getHeight();
             int i = ((width + 7) / 8) * 8;

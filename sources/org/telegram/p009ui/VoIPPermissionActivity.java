@@ -32,7 +32,7 @@ public class VoIPPermissionActivity extends Activity {
         try {
             requestPermissions((String[]) arrayList.toArray(new String[0]), z ? 102 : FileLoader.MEDIA_DIR_VIDEO_PUBLIC);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 

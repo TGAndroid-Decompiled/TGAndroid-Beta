@@ -182,7 +182,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             HintDialogCell hintDialogCell = new HintDialogCell(this.mContext, this.drawChecked);
-            hintDialogCell.setLayoutParams(new RecyclerView.LayoutParams(AndroidUtilities.m35dp(80.0f), AndroidUtilities.m35dp(86.0f)));
+            hintDialogCell.setLayoutParams(new RecyclerView.LayoutParams(AndroidUtilities.m36dp(80.0f), AndroidUtilities.m36dp(86.0f)));
             return new RecyclerListView.Holder(hintDialogCell);
         }
 
@@ -731,7 +731,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 }
             });
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -774,7 +774,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
             executeFast.step();
             executeFast.dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -821,7 +821,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
             sb.insert(0, "DELETE FROM search_recent WHERE ");
             MessagesStorage.getInstance(this.currentAccount).getDatabase().executeFast(sb.toString()).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -848,7 +848,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
             SQLiteDatabase database = MessagesStorage.getInstance(this.currentAccount).getDatabase();
             database.executeFast("DELETE FROM search_recent WHERE did = " + j).stepThis().dispose();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 
@@ -1495,7 +1495,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 break;
         }
         if (i == 5) {
-            flickerLoadingView.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m35dp(86.0f)));
+            flickerLoadingView.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.m36dp(86.0f)));
         } else {
             flickerLoadingView.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
         }

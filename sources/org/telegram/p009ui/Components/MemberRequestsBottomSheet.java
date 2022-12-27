@@ -66,7 +66,7 @@ public class MemberRequestsBottomSheet extends UsersAlertBase {
     @Override
     public void show() {
         if (this.delegate.isNeedRestoreList && this.scrollOffsetY == 0) {
-            this.scrollOffsetY = AndroidUtilities.m35dp(8.0f);
+            this.scrollOffsetY = AndroidUtilities.m36dp(8.0f);
         }
         super.show();
         this.delegate.isNeedRestoreList = false;
@@ -100,7 +100,7 @@ public class MemberRequestsBottomSheet extends UsersAlertBase {
     @Override
     public void updateLayout() {
         if (this.listView.getChildCount() <= 0) {
-            int paddingTop = this.listView.getVisibility() == 0 ? this.listView.getPaddingTop() - AndroidUtilities.m35dp(8.0f) : 0;
+            int paddingTop = this.listView.getVisibility() == 0 ? this.listView.getPaddingTop() - AndroidUtilities.m36dp(8.0f) : 0;
             if (this.scrollOffsetY != paddingTop) {
                 this.scrollOffsetY = paddingTop;
                 setTranslationY(paddingTop);

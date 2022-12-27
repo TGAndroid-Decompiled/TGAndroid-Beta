@@ -70,13 +70,13 @@ public class TermsOfServiceView extends FrameLayout {
         this.textView.setTextSize(1, 15.0f);
         this.textView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
         this.textView.setGravity(51);
-        this.textView.setLineSpacing(AndroidUtilities.m35dp(2.0f), 1.0f);
+        this.textView.setLineSpacing(AndroidUtilities.m36dp(2.0f), 1.0f);
         linearLayout.addView(this.textView, LayoutHelper.createLinear(-1, -2, 3, 0, 15, 0, 15));
         ScrollView scrollView = new ScrollView(context);
         this.scrollView = scrollView;
         scrollView.setVerticalScrollBarEnabled(false);
         this.scrollView.setOverScrollMode(2);
-        this.scrollView.setPadding(AndroidUtilities.m35dp(24.0f), i, AndroidUtilities.m35dp(24.0f), AndroidUtilities.m35dp(75.0f));
+        this.scrollView.setPadding(AndroidUtilities.m36dp(24.0f), i, AndroidUtilities.m36dp(24.0f), AndroidUtilities.m36dp(75.0f));
         this.scrollView.addView(linearLayout, new FrameLayout.LayoutParams(-1, -2));
         addView(this.scrollView, LayoutHelper.createLinear(-1, -2));
         TextView textView3 = new TextView(context);
@@ -86,7 +86,7 @@ public class TermsOfServiceView extends FrameLayout {
         textView3.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
         textView3.setTextSize(1, 14.0f);
         textView3.setBackground(Theme.getRoundRectSelectorDrawable(Theme.getColor("windowBackgroundWhiteGrayText")));
-        textView3.setPadding(AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(10.0f), AndroidUtilities.m35dp(20.0f), AndroidUtilities.m35dp(10.0f));
+        textView3.setPadding(AndroidUtilities.m36dp(20.0f), AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(20.0f), AndroidUtilities.m36dp(10.0f));
         addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 83, 16.0f, 0.0f, 16.0f, 16.0f));
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +100,8 @@ public class TermsOfServiceView extends FrameLayout {
         textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView4.setTextColor(-1);
         textView4.setTextSize(1, 14.0f);
-        textView4.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m35dp(4.0f), -11491093, -12346402));
-        textView4.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        textView4.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.m36dp(4.0f), -11491093, -12346402));
+        textView4.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         addView(textView4, LayoutHelper.createFrame(-2, 42.0f, 85, 16.0f, 0.0f, 16.0f, 16.0f));
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +112,7 @@ public class TermsOfServiceView extends FrameLayout {
         View view2 = new View(context);
         view2.setBackgroundColor(Theme.getColor("divider"));
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, 1);
-        layoutParams.bottomMargin = AndroidUtilities.m35dp(75.0f);
+        layoutParams.bottomMargin = AndroidUtilities.m36dp(75.0f);
         layoutParams.gravity = 80;
         addView(view2, layoutParams);
     }
@@ -172,7 +172,7 @@ public class TermsOfServiceView extends FrameLayout {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         if (tLObject instanceof TLRPC$TL_boolTrue) {
             MessagesController.getInstance(this.currentAccount).performLogout(0);
@@ -224,7 +224,7 @@ public class TermsOfServiceView extends FrameLayout {
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tLRPC$TL_help_termsOfService.text);
         MessageObject.addEntitiesToText(spannableStringBuilder, tLRPC$TL_help_termsOfService.entities, false, false, false, false);
-        addBulletsToText(spannableStringBuilder, '-', AndroidUtilities.m35dp(10.0f), -11491093, AndroidUtilities.m35dp(4.0f));
+        addBulletsToText(spannableStringBuilder, '-', AndroidUtilities.m36dp(10.0f), -11491093, AndroidUtilities.m36dp(4.0f));
         this.textView.setText(spannableStringBuilder);
         this.currentTos = tLRPC$TL_help_termsOfService;
         this.currentAccount = i;

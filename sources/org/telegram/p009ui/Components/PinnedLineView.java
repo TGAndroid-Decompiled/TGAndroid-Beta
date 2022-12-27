@@ -55,10 +55,10 @@ public class PinnedLineView extends View {
         this.selectedPaint.setStyle(Paint.Style.FILL);
         this.selectedPaint.setStrokeCap(Paint.Cap.ROUND);
         this.fadePaint = new Paint();
-        this.fadePaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.m35dp(6.0f), new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        this.fadePaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.m36dp(6.0f), new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         this.fadePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         this.fadePaint2 = new Paint();
-        this.fadePaint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.m35dp(6.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        this.fadePaint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.m36dp(6.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         this.fadePaint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         updateColors();
     }
@@ -147,14 +147,14 @@ public class PinnedLineView extends View {
         if (z) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
         }
-        int m35dp = AndroidUtilities.m35dp(8.0f);
+        int m36dp = AndroidUtilities.m36dp(8.0f);
         if (this.replaceInProgress) {
             float f2 = this.animationProgress;
             measuredHeight = (this.lineHFrom * (1.0f - f2)) + (this.lineHTo * f2);
         } else if (this.totalCount == 0) {
             return;
         } else {
-            measuredHeight = (getMeasuredHeight() - (m35dp * 2)) / Math.min(this.totalCount, 3);
+            measuredHeight = (getMeasuredHeight() - (m36dp * 2)) / Math.min(this.totalCount, 3);
         }
         float f3 = 0.0f;
         if (measuredHeight == 0.0f) {
@@ -175,14 +175,14 @@ public class PinnedLineView extends View {
             if (f < 0.0f) {
                 f = 0.0f;
             } else {
-                float f7 = m35dp;
-                if ((((this.totalCount - 1) * measuredHeight) + f7) - f < (getMeasuredHeight() - m35dp) - measuredHeight) {
-                    f = (f7 + ((this.totalCount - 1) * measuredHeight)) - ((getMeasuredHeight() - m35dp) - measuredHeight);
+                float f7 = m36dp;
+                if ((((this.totalCount - 1) * measuredHeight) + f7) - f < (getMeasuredHeight() - m36dp) - measuredHeight) {
+                    f = (f7 + ((this.totalCount - 1) * measuredHeight)) - ((getMeasuredHeight() - m36dp) - measuredHeight);
                 }
             }
         }
         float measuredWidth = getMeasuredWidth() / 2.0f;
-        float f8 = m35dp;
+        float f8 = m36dp;
         int max = Math.max(0, (int) (((f8 + f) / measuredHeight) - 1.0f));
         int min = Math.min(max + 6, this.replaceInProgress ? Math.max(this.animateFromTotal, this.animateToTotal) : this.totalCount);
         while (max < min) {
@@ -218,15 +218,15 @@ public class PinnedLineView extends View {
             canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.selectedPaint);
         }
         if (z) {
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.m35dp(6.0f), this.fadePaint);
-            canvas.drawRect(0.0f, getMeasuredHeight() - AndroidUtilities.m35dp(6.0f), getMeasuredWidth(), getMeasuredHeight(), this.fadePaint);
-            canvas.translate(0.0f, getMeasuredHeight() - AndroidUtilities.m35dp(6.0f));
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.m35dp(6.0f), this.fadePaint2);
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.m36dp(6.0f), this.fadePaint);
+            canvas.drawRect(0.0f, getMeasuredHeight() - AndroidUtilities.m36dp(6.0f), getMeasuredWidth(), getMeasuredHeight(), this.fadePaint);
+            canvas.translate(0.0f, getMeasuredHeight() - AndroidUtilities.m36dp(6.0f));
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.m36dp(6.0f), this.fadePaint2);
         }
     }
 
     public void set(int i, int i2, boolean z) {
-        int m35dp;
+        int m36dp;
         int i3;
         int i4;
         int i5 = this.selectedPosition;
@@ -244,17 +244,17 @@ public class PinnedLineView extends View {
                 this.nextPosition = 0;
                 valueAnimator2.cancel();
             }
-            int m35dp2 = AndroidUtilities.m35dp(8.0f) * 2;
-            this.lineHFrom = (getMeasuredHeight() - m35dp2) / Math.min(this.totalCount, 3);
-            this.lineHTo = (getMeasuredHeight() - m35dp2) / Math.min(i2, 3);
+            int m36dp2 = AndroidUtilities.m36dp(8.0f) * 2;
+            this.lineHFrom = (getMeasuredHeight() - m36dp2) / Math.min(this.totalCount, 3);
+            this.lineHTo = (getMeasuredHeight() - m36dp2) / Math.min(i2, 3);
             float f = (this.selectedPosition - 1) * this.lineHFrom;
             this.startOffsetFrom = f;
             if (f < 0.0f) {
                 this.startOffsetFrom = 0.0f;
             } else {
                 int i6 = this.lineHFrom;
-                if ((((this.totalCount - 1) * i3) + m35dp) - f < (getMeasuredHeight() - m35dp) - i6) {
-                    this.startOffsetFrom = (((this.totalCount - 1) * i6) + m35dp) - ((getMeasuredHeight() - m35dp) - this.lineHFrom);
+                if ((((this.totalCount - 1) * i3) + m36dp) - f < (getMeasuredHeight() - m36dp) - i6) {
+                    this.startOffsetFrom = (((this.totalCount - 1) * i6) + m36dp) - ((getMeasuredHeight() - m36dp) - this.lineHFrom);
                 }
             }
             float f2 = (i - 1) * this.lineHTo;
@@ -264,8 +264,8 @@ public class PinnedLineView extends View {
             } else {
                 int i7 = i2 - 1;
                 int i8 = this.lineHTo;
-                if (((i4 * i7) + m35dp) - f2 < (getMeasuredHeight() - m35dp) - i8) {
-                    this.startOffsetTo = ((i7 * i8) + m35dp) - ((getMeasuredHeight() - m35dp) - this.lineHTo);
+                if (((i4 * i7) + m36dp) - f2 < (getMeasuredHeight() - m36dp) - i8) {
+                    this.startOffsetTo = ((i7 * i8) + m36dp) - ((getMeasuredHeight() - m36dp) - this.lineHTo);
                 }
             }
             this.animateFromPosition = this.selectedPosition;

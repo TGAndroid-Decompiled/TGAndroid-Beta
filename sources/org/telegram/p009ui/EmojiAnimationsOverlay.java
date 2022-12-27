@@ -269,9 +269,9 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                         float imageX = x + imageReceiver.getImageX();
                         float imageY = y + imageReceiver.getImageY();
                         if (drawingObject.isOut) {
-                            f2 = ((-imageReceiver.getImageWidth()) * 2.0f) + AndroidUtilities.m35dp(24.0f);
+                            f2 = ((-imageReceiver.getImageWidth()) * 2.0f) + AndroidUtilities.m36dp(24.0f);
                         } else {
-                            f2 = -AndroidUtilities.m35dp(24.0f);
+                            f2 = -AndroidUtilities.m36dp(24.0f);
                         }
                         drawingObject.lastX = imageX + f2;
                         drawingObject.lastY = imageY - imageReceiver.getImageWidth();
@@ -785,7 +785,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
             clearSendingInfo();
         } catch (JSONException e) {
             clearSendingInfo();
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 

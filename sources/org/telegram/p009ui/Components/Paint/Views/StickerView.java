@@ -37,7 +37,6 @@ public class StickerView extends EntityView {
     public class FrameLayoutDrawer extends FrameLayout {
         public FrameLayoutDrawer(Context context) {
             super(context);
-            StickerView.this = r1;
             setWillNotDraw(false);
         }
 
@@ -214,12 +213,12 @@ public class StickerView extends EntityView {
 
         @Override
         protected int pointInsideHandle(float f, float f2) {
-            float m35dp = AndroidUtilities.m35dp(19.5f);
-            float m35dp2 = AndroidUtilities.m35dp(1.0f) + m35dp;
-            float f3 = m35dp2 * 2.0f;
-            float measuredHeight = ((getMeasuredHeight() - f3) / 2.0f) + m35dp2;
-            if (f <= m35dp2 - m35dp || f2 <= measuredHeight - m35dp || f >= m35dp2 + m35dp || f2 >= measuredHeight + m35dp) {
-                if (f <= ((getMeasuredWidth() - f3) + m35dp2) - m35dp || f2 <= measuredHeight - m35dp || f >= m35dp2 + (getMeasuredWidth() - f3) + m35dp || f2 >= measuredHeight + m35dp) {
+            float m36dp = AndroidUtilities.m36dp(19.5f);
+            float m36dp2 = AndroidUtilities.m36dp(1.0f) + m36dp;
+            float f3 = m36dp2 * 2.0f;
+            float measuredHeight = ((getMeasuredHeight() - f3) / 2.0f) + m36dp2;
+            if (f <= m36dp2 - m36dp || f2 <= measuredHeight - m36dp || f >= m36dp2 + m36dp || f2 >= measuredHeight + m36dp) {
+                if (f <= ((getMeasuredWidth() - f3) + m36dp2) - m36dp || f2 <= measuredHeight - m36dp || f >= m36dp2 + (getMeasuredWidth() - f3) + m36dp || f2 >= measuredHeight + m36dp) {
                     float measuredWidth = getMeasuredWidth() / 2.0f;
                     return Math.pow((double) (f - measuredWidth), 2.0d) + Math.pow((double) (f2 - measuredWidth), 2.0d) < Math.pow((double) measuredWidth, 2.0d) ? 3 : 0;
                 }
@@ -231,18 +230,18 @@ public class StickerView extends EntityView {
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            float m35dp = AndroidUtilities.m35dp(4.5f);
-            float m35dp2 = AndroidUtilities.m35dp(1.0f) + m35dp + AndroidUtilities.m35dp(15.0f);
-            float measuredWidth = (getMeasuredWidth() / 2) - m35dp2;
-            float f = m35dp2 + (2.0f * measuredWidth);
-            this.arcRect.set(m35dp2, m35dp2, f, f);
+            float m36dp = AndroidUtilities.m36dp(4.5f);
+            float m36dp2 = AndroidUtilities.m36dp(1.0f) + m36dp + AndroidUtilities.m36dp(15.0f);
+            float measuredWidth = (getMeasuredWidth() / 2) - m36dp2;
+            float f = m36dp2 + (2.0f * measuredWidth);
+            this.arcRect.set(m36dp2, m36dp2, f, f);
             canvas.drawArc(this.arcRect, 0.0f, 180.0f, false, this.paint);
             canvas.drawArc(this.arcRect, 180.0f, 180.0f, false, this.paint);
-            float f2 = measuredWidth + m35dp2;
-            canvas.drawCircle(m35dp2, f2, m35dp, this.dotPaint);
-            canvas.drawCircle(m35dp2, f2, m35dp, this.dotStrokePaint);
-            canvas.drawCircle(f, f2, m35dp, this.dotPaint);
-            canvas.drawCircle(f, f2, m35dp, this.dotStrokePaint);
+            float f2 = measuredWidth + m36dp2;
+            canvas.drawCircle(m36dp2, f2, m36dp, this.dotPaint);
+            canvas.drawCircle(m36dp2, f2, m36dp, this.dotStrokePaint);
+            canvas.drawCircle(f, f2, m36dp, this.dotPaint);
+            canvas.drawCircle(f, f2, m36dp, this.dotStrokePaint);
         }
     }
 }

@@ -52,7 +52,7 @@ public class GigagroupConvertAlert extends BottomSheet {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(80.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(80.0f), 1073741824));
         }
 
         public void setText(CharSequence charSequence) {
@@ -94,7 +94,7 @@ public class GigagroupConvertAlert extends BottomSheet {
                 textView2.setTextSize(1, 15.0f);
                 textView2.setTextColor(Theme.getColor("dialogTextGray3"));
                 textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-                textView2.setMaxWidth(AndroidUtilities.m35dp(260.0f));
+                textView2.setMaxWidth(AndroidUtilities.m36dp(260.0f));
                 if (i == 0) {
                     textView2.setText(LocaleController.getString("GigagroupConvertInfo1", C1072R.string.GigagroupConvertInfo1));
                 } else if (i == 1) {

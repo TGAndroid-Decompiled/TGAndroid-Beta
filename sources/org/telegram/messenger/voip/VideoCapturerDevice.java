@@ -92,6 +92,7 @@ public class VideoCapturerDevice {
         }
         videoCapturerDeviceArr[1].currentWidth = i2;
         videoCapturerDeviceArr[1].currentHeight = screenCaptureSize.y;
+        final VideoCapturerDevice videoCapturerDevice = videoCapturerDeviceArr[1];
         videoCapturerDeviceArr[1].handler.post(new Runnable() {
             @Override
             public final void run() {
@@ -228,7 +229,6 @@ public class VideoCapturerDevice {
 
     public class C11171 extends MediaProjection.Callback {
         C11171() {
-            VideoCapturerDevice.this = r1;
         }
 
         @Override
@@ -281,7 +281,6 @@ public class VideoCapturerDevice {
         }
 
         C11182() {
-            VideoCapturerDevice.this = r1;
         }
 
         @Override
@@ -311,7 +310,6 @@ public class VideoCapturerDevice {
         }
 
         C11193() {
-            VideoCapturerDevice.this = r1;
         }
 
         @Override
@@ -418,7 +416,7 @@ public class VideoCapturerDevice {
         try {
             this.thread.quitSafely();
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
     }
 

@@ -95,9 +95,9 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
                 layoutParams.topMargin = ((BaseFragment) MediaActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0;
                 layoutParams.height = C1133ActionBar.getCurrentActionBarHeight();
-                ((FrameLayout.LayoutParams) MediaActivity.this.nameTextView.getLayoutParams()).topMargin = (((C1133ActionBar.getCurrentActionBarHeight() / 2) - AndroidUtilities.m35dp(22.0f)) / 2) + AndroidUtilities.m35dp((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 5.0f : 4.0f);
-                ((FrameLayout.LayoutParams) MediaActivity.this.mediaCounterTextView.getLayoutParams()).topMargin = ((C1133ActionBar.getCurrentActionBarHeight() / 2) + (((C1133ActionBar.getCurrentActionBarHeight() / 2) - AndroidUtilities.m35dp(19.0f)) / 2)) - AndroidUtilities.m35dp(3.0f);
-                ((FrameLayout.LayoutParams) MediaActivity.this.avatarImageView.getLayoutParams()).topMargin = (C1133ActionBar.getCurrentActionBarHeight() - AndroidUtilities.m35dp(42.0f)) / 2;
+                ((FrameLayout.LayoutParams) MediaActivity.this.nameTextView.getLayoutParams()).topMargin = (((C1133ActionBar.getCurrentActionBarHeight() / 2) - AndroidUtilities.m36dp(22.0f)) / 2) + AndroidUtilities.m36dp((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 5.0f : 4.0f);
+                ((FrameLayout.LayoutParams) MediaActivity.this.mediaCounterTextView.getLayoutParams()).topMargin = ((C1133ActionBar.getCurrentActionBarHeight() / 2) + (((C1133ActionBar.getCurrentActionBarHeight() / 2) - AndroidUtilities.m36dp(19.0f)) / 2)) - AndroidUtilities.m36dp(3.0f);
+                ((FrameLayout.LayoutParams) MediaActivity.this.avatarImageView.getLayoutParams()).topMargin = (C1133ActionBar.getCurrentActionBarHeight() - AndroidUtilities.m36dp(42.0f)) / 2;
                 super.onMeasure(i, i2);
             }
 
@@ -126,7 +126,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         simpleTextView.setTextSize(18);
         this.nameTextView.setGravity(3);
         this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.nameTextView.setLeftDrawableTopPadding(-AndroidUtilities.m35dp(1.3f));
+        this.nameTextView.setLeftDrawableTopPadding(-AndroidUtilities.m36dp(1.3f));
         this.nameTextView.setScrollNonFitText(true);
         this.nameTextView.setImportantForAccessibility(2);
         frameLayout.addView(this.nameTextView, LayoutHelper.createFrame(-2, -2.0f, 51, 118.0f, 0.0f, 56.0f, 0.0f));
@@ -148,7 +148,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         };
         this.avatarImageView = avatarImageView;
         avatarImageView.getImageReceiver().setAllowDecodeSingleFrame(true);
-        this.avatarImageView.setRoundRadius(AndroidUtilities.m35dp(21.0f));
+        this.avatarImageView.setRoundRadius(AndroidUtilities.m36dp(21.0f));
         this.avatarImageView.setPivotX(0.0f);
         this.avatarImageView.setPivotY(0.0f);
         AvatarDrawable avatarDrawable2 = new AvatarDrawable();

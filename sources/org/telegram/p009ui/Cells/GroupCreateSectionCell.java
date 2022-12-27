@@ -35,12 +35,12 @@ public class GroupCreateSectionCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(40.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(40.0f), 1073741824));
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        this.drawable.setBounds(0, getMeasuredHeight() - AndroidUtilities.m35dp(3.0f), getMeasuredWidth(), getMeasuredHeight());
+        this.drawable.setBounds(0, getMeasuredHeight() - AndroidUtilities.m36dp(3.0f), getMeasuredWidth(), getMeasuredHeight());
         this.drawable.draw(canvas);
     }
 

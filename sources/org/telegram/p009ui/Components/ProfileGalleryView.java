@@ -770,7 +770,6 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         private final ArrayList<BackupImageView> imageViews = new ArrayList<>();
 
         public ViewPagerAdapter(Context context, ProfileActivity.AvatarImageView avatarImageView, C1133ActionBar c1133ActionBar) {
-            ProfileGalleryView.this = r1;
             this.context = context;
             this.parentAvatarImageView = avatarImageView;
             Paint paint = new Paint(1);
@@ -954,12 +953,11 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
 
         public AvatarImageView(Context context, int i, Paint paint) {
             super(context);
-            ProfileGalleryView.this = r3;
-            this.radialProgressSize = AndroidUtilities.m35dp(64.0f);
+            this.radialProgressSize = AndroidUtilities.m36dp(64.0f);
             this.firstDrawTime = -1L;
             this.position = i;
             this.placeholderPaint = paint;
-            setLayerNum(r3.imagesLayerNum);
+            setLayerNum(ProfileGalleryView.this.imagesLayerNum);
         }
 
         @Override

@@ -37,7 +37,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
         setWillNotDraw(false);
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.m35dp(4.0f));
+        backupImageView.setRoundRadius(AndroidUtilities.m36dp(4.0f));
         addView(this.imageView, LayoutHelper.createFrame(-1, -1.0f));
         FrameLayout frameLayout = new FrameLayout(context);
         this.checkFrame = frameLayout;
@@ -56,11 +56,11 @@ public class PhotoPickerPhotoCell extends FrameLayout {
                 fArr[2] = 0.0f;
                 fArr[1] = 0.0f;
                 fArr[0] = 0.0f;
-                float m35dp = AndroidUtilities.m35dp(4.0f);
-                fArr[7] = m35dp;
-                fArr[6] = m35dp;
-                fArr[5] = m35dp;
-                fArr[4] = m35dp;
+                float m36dp = AndroidUtilities.m36dp(4.0f);
+                fArr[7] = m36dp;
+                fArr[6] = m36dp;
+                fArr[5] = m36dp;
+                fArr[4] = m36dp;
                 this.path.reset();
                 this.path.addRoundRect(this.rect, this.radii, Path.Direction.CW);
                 this.path.close();
@@ -70,7 +70,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
         };
         this.videoInfoContainer = frameLayout2;
         frameLayout2.setWillNotDraw(false);
-        this.videoInfoContainer.setPadding(AndroidUtilities.m35dp(3.0f), 0, AndroidUtilities.m35dp(3.0f), 0);
+        this.videoInfoContainer.setPadding(AndroidUtilities.m36dp(3.0f), 0, AndroidUtilities.m36dp(3.0f), 0);
         addView(this.videoInfoContainer, LayoutHelper.createFrame(-1, 16, 83));
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(C1072R.C1073drawable.ic_video);

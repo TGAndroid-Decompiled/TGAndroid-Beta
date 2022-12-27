@@ -213,7 +213,6 @@ public class LocaleController {
 
     public class TimeZoneChangedReceiver extends BroadcastReceiver {
         private TimeZoneChangedReceiver() {
-            LocaleController.this = r1;
         }
 
         @Override
@@ -522,12 +521,12 @@ public class LocaleController {
             }
             applyLanguage(localeInfo, z, true, UserConfig.selectedAccount);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         try {
             ApplicationLoader.applicationContext.registerReceiver(new TimeZoneChangedReceiver(), new IntentFilter("android.intent.action.TIMEZONE_CHANGED"));
         } catch (Exception e2) {
-            FileLog.m31e(e2);
+            FileLog.m32e(e2);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -845,7 +844,7 @@ public class LocaleController {
             }
             return false;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
         }
         return false;
     }
@@ -1002,19 +1001,19 @@ public class LocaleController {
                     try {
                         fileInputStream2.close();
                     } catch (Exception e) {
-                        FileLog.m31e(e);
+                        FileLog.m32e(e);
                     }
                     return hashMap;
                 } catch (Exception e2) {
                     e = e2;
                     fileInputStream = fileInputStream2;
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                     this.reloadLastFile = true;
                     if (fileInputStream != null) {
                         try {
                             fileInputStream.close();
                         } catch (Exception e3) {
-                            FileLog.m31e(e3);
+                            FileLog.m32e(e3);
                         }
                     }
                     return new HashMap<>();
@@ -1025,7 +1024,7 @@ public class LocaleController {
                         try {
                             fileInputStream.close();
                         } catch (Exception e4) {
-                            FileLog.m31e(e4);
+                            FileLog.m32e(e4);
                         }
                     }
                     throw th;
@@ -1071,7 +1070,7 @@ public class LocaleController {
         }
         if ((localeInfo.isRemote() || localeInfo.isUnofficial()) && (z4 || !pathToFile.exists() || (hasBaseLang && !pathToBaseFile.exists()))) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("reload locale because one of file doesn't exist" + pathToFile + " " + pathToBaseFile);
+                FileLog.m35d("reload locale because one of file doesn't exist" + pathToFile + " " + pathToBaseFile);
             }
             if (z2) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1163,7 +1162,7 @@ public class LocaleController {
                 }
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             this.changingConfiguration = false;
         }
         recreateFormatters();
@@ -1212,7 +1211,7 @@ public class LocaleController {
                 try {
                     str3 = ApplicationLoader.applicationContext.getString(i);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
         }
@@ -1304,7 +1303,7 @@ public class LocaleController {
                     return getInstance().currentLocale != null ? String.format(getInstance().currentLocale, replace, sb) : String.format(replace, sb);
                 }
             } catch (Exception e) {
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return "LOC_ERR: " + str;
             }
         }
@@ -1352,7 +1351,7 @@ public class LocaleController {
             }
             return String.format(str3, objArr);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR: " + str;
         }
     }
@@ -2173,7 +2172,7 @@ public class LocaleController {
             }
             return String.format(str, objArr);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR: " + str;
         }
     }
@@ -2274,7 +2273,7 @@ public class LocaleController {
             }
             return getInstance().chatFullDate.format(j2);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR: formatDateChat";
         }
     }
@@ -2299,7 +2298,7 @@ public class LocaleController {
             }
             return getInstance().formatterYear.format(new Date(j2));
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR: formatDate";
         }
     }
@@ -2315,7 +2314,7 @@ public class LocaleController {
             int i4 = calendar.get(1);
             return (i3 == i && i2 == i4) ? z ? formatString("TodayAtFormatted", C1072R.string.TodayAtFormatted, getInstance().formatterDay.format(new Date(j2))) : formatString("TodayAtFormattedWithToday", C1072R.string.TodayAtFormattedWithToday, getInstance().formatterDay.format(new Date(j2))) : (i3 + 1 == i && i2 == i4) ? formatString("YesterdayAtFormatted", C1072R.string.YesterdayAtFormatted, getInstance().formatterDay.format(new Date(j2))) : Math.abs(System.currentTimeMillis() - j2) < 31536000000L ? formatString("formatDateAtTime", C1072R.string.formatDateAtTime, getInstance().formatterDayMonth.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2))) : formatString("formatDateAtTime", C1072R.string.formatDateAtTime, getInstance().formatterYear.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2)));
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR";
         }
     }
@@ -2334,7 +2333,7 @@ public class LocaleController {
             }
             return (i3 + 1 == i && i2 == i4) ? formatString("YesterdayAtFormatted", C1072R.string.YesterdayAtFormatted, getInstance().formatterDay.format(new Date(j2))) : Math.abs(System.currentTimeMillis() - j2) < 31536000000L ? formatString("formatDateAtTime", C1072R.string.formatDateAtTime, getInstance().chatDate.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2))) : formatString("formatDateAtTime", C1072R.string.formatDateAtTime, getInstance().chatFullDate.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2)));
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR";
         }
     }
@@ -2356,7 +2355,7 @@ public class LocaleController {
             }
             return getInstance().chatFullDate.format(new Date(j2));
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR";
         }
     }
@@ -2372,7 +2371,7 @@ public class LocaleController {
             int i4 = calendar.get(1);
             return (i3 == i && i2 == i4) ? formatString("TodayAtFormattedWithToday", C1072R.string.TodayAtFormattedWithToday, getInstance().formatterDay.format(new Date(j2))) : (i3 + 1 == i && i2 == i4) ? formatString("YesterdayAtFormatted", C1072R.string.YesterdayAtFormatted, getInstance().formatterDay.format(new Date(j2))) : Math.abs(System.currentTimeMillis() - j2) < 31536000000L ? formatString("formatDateAtTime", C1072R.string.formatDateAtTime, getInstance().chatDate.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2))) : formatString("formatDateAtTime", C1072R.string.formatDateAtTime, getInstance().chatFullDate.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2)));
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR";
         }
     }
@@ -2401,7 +2400,7 @@ public class LocaleController {
                 return formatString("LocationUpdatedFormatted", C1072R.string.LocationUpdatedFormatted, formatString("formatDateAtTime", C1072R.string.formatDateAtTime, getInstance().formatterYear.format(new Date(j2)), getInstance().formatterDay.format(new Date(j2))));
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR";
         }
     }
@@ -2450,7 +2449,7 @@ public class LocaleController {
                 return formatString("LastSeenFormatted", C1072R.string.LastSeenFormatted, formatString("YesterdayAtFormatted", C1072R.string.YesterdayAtFormatted, getInstance().formatterDay.format(new Date(j2))));
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR";
         }
     }
@@ -2592,7 +2591,7 @@ public class LocaleController {
             }
             return strArr[i3] + " " + i2;
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR";
         }
     }
@@ -2608,7 +2607,7 @@ public class LocaleController {
             }
             return getInstance().formatterBannedUntil.format(new Date(j2));
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR";
         }
     }
@@ -2632,7 +2631,7 @@ public class LocaleController {
             }
             return getInstance().formatterDay.format(new Date(j2));
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR";
         }
     }
@@ -2678,7 +2677,7 @@ public class LocaleController {
             }
             return formatString("ChannelOtherSubscriberJoined", C1072R.string.ChannelOtherSubscriberJoined, formatString);
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR";
         }
     }
@@ -2688,7 +2687,7 @@ public class LocaleController {
             Date date = new Date(j * 1000);
             return String.format("%1$s, %2$s", getInstance().formatterYear.format(date), getInstance().formatterDay.format(date));
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             return "LOC_ERR";
         }
     }
@@ -2811,7 +2810,7 @@ public class LocaleController {
                 }
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("save locale file to " + pathToBaseFile);
+                FileLog.m35d("save locale file to " + pathToBaseFile);
             }
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(pathToBaseFile));
             bufferedWriter.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
@@ -2884,7 +2883,7 @@ public class LocaleController {
                 this.changingConfiguration = false;
             }
         } catch (Exception e) {
-            FileLog.m31e(e);
+            FileLog.m32e(e);
             this.changingConfiguration = false;
         }
         recreateFormatters();
@@ -2954,7 +2953,7 @@ public class LocaleController {
         for (int i3 = 0; i3 < size2; i3++) {
             TLRPC$TL_langPackLanguage tLRPC$TL_langPackLanguage = (TLRPC$TL_langPackLanguage) tLRPC$Vector.objects.get(i3);
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m34d("loaded lang " + tLRPC$TL_langPackLanguage.name);
+                FileLog.m35d("loaded lang " + tLRPC$TL_langPackLanguage.name);
             }
             LocaleInfo localeInfo = new LocaleInfo();
             localeInfo.nameEnglish = tLRPC$TL_langPackLanguage.name;
@@ -2993,7 +2992,7 @@ public class LocaleController {
             LocaleInfo localeInfo2 = this.remoteLanguages.get(i4);
             if (localeInfo2.serverIndex == Integer.MAX_VALUE && localeInfo2 != this.currentLocaleInfo) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34d("remove lang " + localeInfo2.getKey());
+                    FileLog.m35d("remove lang " + localeInfo2.getKey());
                 }
                 this.remoteLanguages.remove(i4);
                 this.remoteLanguagesDict.remove(localeInfo2.getKey());
@@ -3916,7 +3915,7 @@ public class LocaleController {
                 return;
             } catch (Exception e) {
                 useImperialSystemType = Boolean.FALSE;
-                FileLog.m31e(e);
+                FileLog.m32e(e);
                 return;
             }
         }

@@ -54,14 +54,14 @@ public class StickerCell extends FrameLayout {
         setFocusable(true);
         PremiumLockIconView premiumLockIconView = new PremiumLockIconView(context, PremiumLockIconView.TYPE_STICKERS_PREMIUM_LOCKED);
         this.premiumIconView = premiumLockIconView;
-        premiumLockIconView.setPadding(AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f));
+        premiumLockIconView.setPadding(AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f));
         this.premiumIconView.setImageReceiver(this.imageView.getImageReceiver());
         addView(this.premiumIconView, LayoutHelper.createFrame(24, 24.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(76.0f) + getPaddingLeft() + getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(78.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(76.0f) + getPaddingLeft() + getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(78.0f), 1073741824));
     }
 
     @Override
@@ -215,21 +215,21 @@ public class StickerCell extends FrameLayout {
         }
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.premiumIconView.getLayoutParams();
         if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-            int m35dp = AndroidUtilities.m35dp(24.0f);
-            layoutParams.width = m35dp;
-            layoutParams.height = m35dp;
+            int m36dp = AndroidUtilities.m36dp(24.0f);
+            layoutParams.width = m36dp;
+            layoutParams.height = m36dp;
             layoutParams.gravity = 81;
             layoutParams.rightMargin = 0;
             layoutParams.bottomMargin = 0;
-            this.premiumIconView.setPadding(AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f), AndroidUtilities.m35dp(4.0f));
+            this.premiumIconView.setPadding(AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f), AndroidUtilities.m36dp(4.0f));
         } else {
-            int m35dp2 = AndroidUtilities.m35dp(16.0f);
-            layoutParams.width = m35dp2;
-            layoutParams.height = m35dp2;
+            int m36dp2 = AndroidUtilities.m36dp(16.0f);
+            layoutParams.width = m36dp2;
+            layoutParams.height = m36dp2;
             layoutParams.gravity = 85;
-            layoutParams.bottomMargin = AndroidUtilities.m35dp(8.0f);
-            layoutParams.rightMargin = AndroidUtilities.m35dp(8.0f);
-            this.premiumIconView.setPadding(AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(1.0f), AndroidUtilities.m35dp(1.0f));
+            layoutParams.bottomMargin = AndroidUtilities.m36dp(8.0f);
+            layoutParams.rightMargin = AndroidUtilities.m36dp(8.0f);
+            this.premiumIconView.setPadding(AndroidUtilities.m36dp(1.0f), AndroidUtilities.m36dp(1.0f), AndroidUtilities.m36dp(1.0f), AndroidUtilities.m36dp(1.0f));
         }
         this.premiumIconView.setLocked(true ^ UserConfig.getInstance(UserConfig.selectedAccount).isPremium());
         AndroidUtilities.updateViewVisibilityAnimated(this.premiumIconView, this.showPremiumLock, 0.9f, z);

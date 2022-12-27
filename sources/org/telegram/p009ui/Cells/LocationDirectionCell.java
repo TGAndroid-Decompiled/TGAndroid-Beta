@@ -24,9 +24,9 @@ public class LocationDirectionCell extends FrameLayout {
         addView(this.frameLayout, LayoutHelper.createFrame(-1, 48.0f, 51, 16.0f, 10.0f, 16.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.buttonTextView = simpleTextView;
-        simpleTextView.setPadding(AndroidUtilities.m35dp(34.0f), 0, AndroidUtilities.m35dp(34.0f), 0);
+        simpleTextView.setPadding(AndroidUtilities.m36dp(34.0f), 0, AndroidUtilities.m36dp(34.0f), 0);
         this.buttonTextView.setGravity(17);
-        this.buttonTextView.setDrawablePadding(AndroidUtilities.m35dp(8.0f));
+        this.buttonTextView.setDrawablePadding(AndroidUtilities.m36dp(8.0f));
         this.buttonTextView.setTextColor(getThemedColor("featuredStickers_buttonText"));
         this.buttonTextView.setTextSize(14);
         this.buttonTextView.setText(LocaleController.getString("Directions", C1072R.string.Directions));
@@ -37,7 +37,7 @@ public class LocationDirectionCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(73.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(73.0f), 1073741824));
     }
 
     public void setOnButtonClick(View.OnClickListener onClickListener) {

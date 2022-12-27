@@ -77,10 +77,10 @@ public class EditTextOutline extends EditTextBoldCursor {
     public void setFrameColor(int i) {
         int i2 = this.mFrameColor;
         if (i2 == 0 && i != 0) {
-            setPadding(AndroidUtilities.m35dp(19.0f), AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(19.0f), AndroidUtilities.m35dp(7.0f));
+            setPadding(AndroidUtilities.m36dp(19.0f), AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(19.0f), AndroidUtilities.m36dp(7.0f));
             setCursorColor(-16777216);
         } else if (i2 != 0 && i == 0) {
-            setPadding(AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(7.0f), AndroidUtilities.m35dp(7.0f));
+            setPadding(AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(7.0f), AndroidUtilities.m36dp(7.0f));
             setCursorColor(-1);
         }
         this.mFrameColor = i;

@@ -54,7 +54,6 @@ public class UpdateAppAlertDialog extends BottomSheet {
 
         public BottomSheetCell(Context context, boolean z) {
             super(context);
-            UpdateAppAlertDialog.this = r13;
             this.textView = new TextView[2];
             this.hasBackground = !z;
             setBackground(null);
@@ -78,7 +77,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
                     this.textView[i].setTextColor(Theme.getColor("featuredStickers_addButton"));
                 }
                 this.textView[i].setTextSize(1, 14.0f);
-                this.textView[i].setPadding(0, 0, 0, this.hasBackground ? 0 : AndroidUtilities.m35dp(13.0f));
+                this.textView[i].setPadding(0, 0, 0, this.hasBackground ? 0 : AndroidUtilities.m36dp(13.0f));
                 addView(this.textView[i], LayoutHelper.createFrame(-2, -2, 17));
                 if (i == 1) {
                     this.textView[i].setAlpha(0.0f);
@@ -88,7 +87,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(this.hasBackground ? 80.0f : 50.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(this.hasBackground ? 80.0f : 50.0f), 1073741824));
         }
 
         public void setText(CharSequence charSequence, boolean z) {
@@ -101,7 +100,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(180L);
             animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.textView[0], View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.textView[0], View.TRANSLATION_Y, 0.0f, -AndroidUtilities.m35dp(10.0f)), ObjectAnimator.ofFloat(this.textView[1], View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.textView[1], View.TRANSLATION_Y, AndroidUtilities.m35dp(10.0f), 0.0f));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this.textView[0], View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.textView[0], View.TRANSLATION_Y, 0.0f, -AndroidUtilities.m36dp(10.0f)), ObjectAnimator.ofFloat(this.textView[1], View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.textView[1], View.TRANSLATION_Y, AndroidUtilities.m36dp(10.0f), 0.0f));
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -164,7 +163,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
                 measureChildWithMargins(UpdateAppAlertDialog.this.linearLayout, i2, 0, i3, 0);
                 int measuredHeight = UpdateAppAlertDialog.this.linearLayout.getMeasuredHeight();
                 int i4 = (size / 5) * 2;
-                if (measuredHeight - (size - i4) < AndroidUtilities.m35dp(90.0f) || measuredHeight < (size / 2) + AndroidUtilities.m35dp(90.0f)) {
+                if (measuredHeight - (size - i4) < AndroidUtilities.m36dp(90.0f) || measuredHeight < (size / 2) + AndroidUtilities.m36dp(90.0f)) {
                     i4 = size - measuredHeight;
                 }
                 if (i4 < 0) {
@@ -252,7 +251,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         textView3.setGravity(51);
         this.linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 51, 23, 15, 23, 0));
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 83);
-        layoutParams.bottomMargin = AndroidUtilities.m35dp(130.0f);
+        layoutParams.bottomMargin = AndroidUtilities.m36dp(130.0f);
         View view = new View(context);
         this.shadow = view;
         view.setBackgroundColor(Theme.getColor("dialogShadowLine"));
@@ -335,8 +334,8 @@ public class UpdateAppAlertDialog extends BottomSheet {
 
     public void updateLayout() {
         this.linearLayout.getChildAt(0).getLocationInWindow(this.location);
-        int max = Math.max(this.location[1] - AndroidUtilities.m35dp(24.0f), 0);
-        if (this.location[1] + this.linearLayout.getMeasuredHeight() <= (this.container.getMeasuredHeight() - AndroidUtilities.m35dp(113.0f)) + this.containerView.getTranslationY()) {
+        int max = Math.max(this.location[1] - AndroidUtilities.m36dp(24.0f), 0);
+        if (this.location[1] + this.linearLayout.getMeasuredHeight() <= (this.container.getMeasuredHeight() - AndroidUtilities.m36dp(113.0f)) + this.containerView.getTranslationY()) {
             runShadowAnimation(0, false);
         } else {
             runShadowAnimation(0, true);

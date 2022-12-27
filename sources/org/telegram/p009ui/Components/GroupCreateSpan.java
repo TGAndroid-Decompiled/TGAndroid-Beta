@@ -102,7 +102,7 @@ public class GroupCreateSpan extends View {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(AndroidUtilities.m35dp(57.0f) + this.textWidth, AndroidUtilities.m35dp(32.0f));
+        setMeasuredDimension(AndroidUtilities.m36dp(57.0f) + this.textWidth, AndroidUtilities.m36dp(32.0f));
     }
 
     @Override
@@ -130,27 +130,27 @@ public class GroupCreateSpan extends View {
             invalidate();
         }
         canvas.save();
-        this.rect.set(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.m35dp(32.0f));
+        this.rect.set(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.m36dp(32.0f));
         Paint paint = backPaint;
         int[] iArr = this.colors;
         int i = iArr[6];
         float f3 = iArr[7] - iArr[6];
         float f4 = this.progress;
         paint.setColor(Color.argb(i + ((int) (f3 * f4)), iArr[0] + ((int) ((iArr[1] - iArr[0]) * f4)), iArr[2] + ((int) ((iArr[3] - iArr[2]) * f4)), iArr[4] + ((int) ((iArr[5] - iArr[4]) * f4))));
-        canvas.drawRoundRect(this.rect, AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), backPaint);
+        canvas.drawRoundRect(this.rect, AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), backPaint);
         this.imageReceiver.draw(canvas);
         if (this.progress != 0.0f) {
             backPaint.setColor(this.avatarDrawable.getColor());
             backPaint.setAlpha((int) (this.progress * 255.0f * (Color.alpha(color) / 255.0f)));
-            canvas.drawCircle(AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f), backPaint);
+            canvas.drawCircle(AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f), backPaint);
             canvas.save();
-            canvas.rotate((1.0f - this.progress) * 45.0f, AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f));
-            this.deleteDrawable.setBounds(AndroidUtilities.m35dp(11.0f), AndroidUtilities.m35dp(11.0f), AndroidUtilities.m35dp(21.0f), AndroidUtilities.m35dp(21.0f));
+            canvas.rotate((1.0f - this.progress) * 45.0f, AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f));
+            this.deleteDrawable.setBounds(AndroidUtilities.m36dp(11.0f), AndroidUtilities.m36dp(11.0f), AndroidUtilities.m36dp(21.0f), AndroidUtilities.m36dp(21.0f));
             this.deleteDrawable.setAlpha((int) (this.progress * 255.0f));
             this.deleteDrawable.draw(canvas);
             canvas.restore();
         }
-        canvas.translate(this.textX + AndroidUtilities.m35dp(41.0f), AndroidUtilities.m35dp(8.0f));
+        canvas.translate(this.textX + AndroidUtilities.m36dp(41.0f), AndroidUtilities.m36dp(8.0f));
         textPaint.setColor(ColorUtils.blendARGB(Theme.getColor("groupcreate_spanText"), Theme.getColor("avatar_text"), this.progress));
         this.nameLayout.draw(canvas);
         canvas.restore();

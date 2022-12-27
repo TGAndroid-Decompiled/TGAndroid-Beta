@@ -198,7 +198,7 @@ public class C1133ActionBar extends FrameLayout {
         if (this.itemsColor != 0) {
             this.backButtonImageView.setColorFilter(new PorterDuffColorFilter(this.itemsColor, this.colorFilterMode));
         }
-        this.backButtonImageView.setPadding(AndroidUtilities.m35dp(1.0f), 0, 0, 0);
+        this.backButtonImageView.setPadding(AndroidUtilities.m36dp(1.0f), 0, 0, 0);
         addView(this.backButtonImageView, LayoutHelper.createFrame(54, 54, 51));
         this.backButtonImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -457,9 +457,9 @@ public class C1133ActionBar extends FrameLayout {
             this.titleTextView[i].setTextColor(getThemedColor("actionBarDefaultTitle"));
         }
         this.titleTextView[i].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.titleTextView[i].setDrawablePadding(AndroidUtilities.m35dp(4.0f));
-        this.titleTextView[i].setPadding(0, AndroidUtilities.m35dp(8.0f), 0, AndroidUtilities.m35dp(8.0f));
-        this.titleTextView[i].setRightDrawableTopPadding(-AndroidUtilities.m35dp(1.0f));
+        this.titleTextView[i].setDrawablePadding(AndroidUtilities.m36dp(4.0f));
+        this.titleTextView[i].setPadding(0, AndroidUtilities.m36dp(8.0f), 0, AndroidUtilities.m36dp(8.0f));
+        this.titleTextView[i].setRightDrawableTopPadding(-AndroidUtilities.m36dp(1.0f));
         addView(this.titleTextView[i], 0, LayoutHelper.createFrame(-2, -2, 51));
     }
 
@@ -1330,7 +1330,7 @@ public class C1133ActionBar extends FrameLayout {
 
     @Override
     public void onMeasure(int i, int i2) {
-        int m35dp;
+        int m36dp;
         SimpleTextView simpleTextView;
         SimpleTextView simpleTextView2;
         int makeMeasureSpec;
@@ -1351,22 +1351,22 @@ public class C1133ActionBar extends FrameLayout {
         setMeasuredDimension(size, currentActionBarHeight + (this.occupyStatusBar ? AndroidUtilities.statusBarHeight : 0) + this.extraHeight);
         ImageView imageView = this.backButtonImageView;
         if (imageView != null && imageView.getVisibility() != 8) {
-            this.backButtonImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(54.0f), 1073741824), makeMeasureSpec2);
-            m35dp = AndroidUtilities.m35dp(AndroidUtilities.isTablet() ? 80.0f : 72.0f);
+            this.backButtonImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(54.0f), 1073741824), makeMeasureSpec2);
+            m36dp = AndroidUtilities.m36dp(AndroidUtilities.isTablet() ? 80.0f : 72.0f);
         } else {
-            m35dp = AndroidUtilities.m35dp(AndroidUtilities.isTablet() ? 26.0f : 18.0f);
+            m36dp = AndroidUtilities.m36dp(AndroidUtilities.isTablet() ? 26.0f : 18.0f);
         }
         ActionBarMenu actionBarMenu2 = this.menu;
         if (actionBarMenu2 != null && actionBarMenu2.getVisibility() != 8) {
             if (this.menu.searchFieldVisible() && !this.isSearchFieldVisible) {
                 this.menu.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), makeMeasureSpec2);
                 int itemsMeasuredWidth = this.menu.getItemsMeasuredWidth();
-                makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.m35dp(AndroidUtilities.isTablet() ? 74.0f : 66.0f)) + this.menu.getItemsMeasuredWidth(), 1073741824);
+                makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.m36dp(AndroidUtilities.isTablet() ? 74.0f : 66.0f)) + this.menu.getItemsMeasuredWidth(), 1073741824);
                 if (!this.isMenuOffsetSuppressed) {
                     this.menu.translateXItems(-itemsMeasuredWidth);
                 }
             } else if (this.isSearchFieldVisible) {
-                makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.m35dp(AndroidUtilities.isTablet() ? 74.0f : 66.0f), 1073741824);
+                makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.m36dp(AndroidUtilities.isTablet() ? 74.0f : 66.0f), 1073741824);
                 if (!this.isMenuOffsetSuppressed) {
                     this.menu.translateXItems(0.0f);
                 }
@@ -1382,7 +1382,7 @@ public class C1133ActionBar extends FrameLayout {
             SimpleTextView[] simpleTextViewArr = this.titleTextView;
             if ((simpleTextViewArr[0] != null && simpleTextViewArr[0].getVisibility() != 8) || ((simpleTextView = this.subtitleTextView) != null && simpleTextView.getVisibility() != 8)) {
                 ActionBarMenu actionBarMenu3 = this.menu;
-                int measuredWidth = (((size - (actionBarMenu3 != null ? actionBarMenu3.getMeasuredWidth() : 0)) - AndroidUtilities.m35dp(16.0f)) - m35dp) - this.titleRightMargin;
+                int measuredWidth = (((size - (actionBarMenu3 != null ? actionBarMenu3.getMeasuredWidth() : 0)) - AndroidUtilities.m36dp(16.0f)) - m36dp) - this.titleRightMargin;
                 boolean z = this.fromBottom;
                 if (((z && i3 == 0) || (!z && i3 == 1)) && this.overlayTitleAnimation && this.titleAnimationRunning) {
                     this.titleTextView[i3].setTextSize((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 20 : 20);
@@ -1415,12 +1415,12 @@ public class C1133ActionBar extends FrameLayout {
                 }
                 SimpleTextView[] simpleTextViewArr5 = this.titleTextView;
                 if (simpleTextViewArr5[i3] != null && simpleTextViewArr5[i3].getVisibility() != 8) {
-                    this.titleTextView[i3].measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(24.0f) + this.titleTextView[i3].getPaddingTop() + this.titleTextView[i3].getPaddingBottom(), Integer.MIN_VALUE));
+                    this.titleTextView[i3].measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(24.0f) + this.titleTextView[i3].getPaddingTop() + this.titleTextView[i3].getPaddingBottom(), Integer.MIN_VALUE));
                     if (this.centerScale) {
                         CharSequence text = this.titleTextView[i3].getText();
                         SimpleTextView[] simpleTextViewArr6 = this.titleTextView;
                         simpleTextViewArr6[i3].setPivotX(simpleTextViewArr6[i3].getTextPaint().measureText(text, 0, text.length()) / 2.0f);
-                        this.titleTextView[i3].setPivotY(AndroidUtilities.m35dp(24.0f) >> 1);
+                        this.titleTextView[i3].setPivotY(AndroidUtilities.m36dp(24.0f) >> 1);
                     } else {
                         this.titleTextView[i3].setPivotX(0.0f);
                         this.titleTextView[i3].setPivotY(0.0f);
@@ -1428,17 +1428,17 @@ public class C1133ActionBar extends FrameLayout {
                 }
                 SimpleTextView simpleTextView6 = this.subtitleTextView;
                 if (simpleTextView6 != null && simpleTextView6.getVisibility() != 8) {
-                    this.subtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(20.0f), Integer.MIN_VALUE));
+                    this.subtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(20.0f), Integer.MIN_VALUE));
                 }
                 SimpleTextView simpleTextView7 = this.additionalSubtitleTextView;
                 if (simpleTextView7 != null && simpleTextView7.getVisibility() != 8) {
-                    this.additionalSubtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(20.0f), Integer.MIN_VALUE));
+                    this.additionalSubtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(20.0f), Integer.MIN_VALUE));
                 }
             }
         }
         BackupImageView backupImageView = this.avatarSearchImageView;
         if (backupImageView != null) {
-            backupImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m35dp(42.0f), 1073741824));
+            backupImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(42.0f), 1073741824));
         }
         int childCount = getChildCount();
         for (int i4 = 0; i4 < childCount; i4++) {
@@ -1583,13 +1583,13 @@ public class C1133ActionBar extends FrameLayout {
 
     public static int getCurrentActionBarHeight() {
         if (AndroidUtilities.isTablet()) {
-            return AndroidUtilities.m35dp(64.0f);
+            return AndroidUtilities.m36dp(64.0f);
         }
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
-            return AndroidUtilities.m35dp(48.0f);
+            return AndroidUtilities.m36dp(48.0f);
         }
-        return AndroidUtilities.m35dp(56.0f);
+        return AndroidUtilities.m36dp(56.0f);
     }
 
     public void setTitleAnimated(CharSequence charSequence, boolean z, long j) {
@@ -1624,11 +1624,11 @@ public class C1133ActionBar extends FrameLayout {
         this.titleTextView[0].setAlpha(0.0f);
         if (!z2) {
             SimpleTextView simpleTextView = this.titleTextView[0];
-            int m35dp = AndroidUtilities.m35dp(20.0f);
+            int m36dp = AndroidUtilities.m36dp(20.0f);
             if (!z) {
-                m35dp = -m35dp;
+                m36dp = -m36dp;
             }
-            simpleTextView.setTranslationY(m35dp);
+            simpleTextView.setTranslationY(m36dp);
         }
         ViewPropertyAnimator duration = this.titleTextView[0].animate().alpha(1.0f).translationY(0.0f).setDuration(j);
         if (interpolator != null) {
@@ -1638,11 +1638,11 @@ public class C1133ActionBar extends FrameLayout {
         this.titleAnimationRunning = true;
         ViewPropertyAnimator alpha = this.titleTextView[1].animate().alpha(0.0f);
         if (!z2) {
-            int m35dp2 = AndroidUtilities.m35dp(20.0f);
+            int m36dp2 = AndroidUtilities.m36dp(20.0f);
             if (z) {
-                m35dp2 = -m35dp2;
+                m36dp2 = -m36dp2;
             }
-            alpha.translationY(m35dp2);
+            alpha.translationY(m36dp2);
         }
         if (interpolator != null) {
             alpha.setInterpolator(interpolator);

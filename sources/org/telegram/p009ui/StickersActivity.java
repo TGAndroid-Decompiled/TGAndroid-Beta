@@ -149,7 +149,6 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         }
 
         public TouchHelperCallback() {
-            StickersActivity.this = r1;
         }
 
         @Override
@@ -276,11 +275,11 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         this.selectedCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon"));
         createActionMode.addView(this.selectedCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
         this.selectedCountTextView.setOnTouchListener(StickersActivity$$ExternalSyntheticLambda1.INSTANCE);
-        createActionMode.addItemWithWidth(2, C1072R.C1073drawable.msg_share, AndroidUtilities.m35dp(54.0f));
+        createActionMode.addItemWithWidth(2, C1072R.C1073drawable.msg_share, AndroidUtilities.m36dp(54.0f));
         if (this.currentType != 5) {
-            createActionMode.addItemWithWidth(0, C1072R.C1073drawable.msg_archive, AndroidUtilities.m35dp(54.0f));
+            createActionMode.addItemWithWidth(0, C1072R.C1073drawable.msg_archive, AndroidUtilities.m36dp(54.0f));
         }
-        this.deleteMenuItem = createActionMode.addItemWithWidth(1, C1072R.C1073drawable.msg_delete, AndroidUtilities.m35dp(54.0f));
+        this.deleteMenuItem = createActionMode.addItemWithWidth(1, C1072R.C1073drawable.msg_delete, AndroidUtilities.m36dp(54.0f));
         if (this.currentType != 5 || (arrayList = this.frozenEmojiPacks) == null) {
             arrayList = new ArrayList<>(MessagesController.getInstance(this.currentAccount).filterPremiumStickers(MediaDataController.getInstance(this.currentAccount).getStickerSets(this.currentType)));
         }
@@ -423,7 +422,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             int i3 = 0;
             while (i3 < 3) {
                 RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
-                radioColorCell.setPadding(AndroidUtilities.m35dp(4.0f), 0, AndroidUtilities.m35dp(4.0f), 0);
+                radioColorCell.setPadding(AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f), 0);
                 radioColorCell.setTag(Integer.valueOf(i3));
                 radioColorCell.setCheckColor(Theme.getColor("radioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
                 radioColorCell.setTextAndValue(strArr[i3], SharedConfig.suggestStickers == i3);
@@ -596,8 +595,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     List<TLRPC$TL_messages_stickerSet> oldList;
 
                     {
-                        StickersActivity.this = this;
-                        this.oldList = this.listAdapter.stickerSets;
+                        this.oldList = StickersActivity.this.listAdapter.stickerSets;
                     }
 
                     @Override
@@ -626,8 +624,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     List<TLRPC$StickerSetCovered> oldList;
 
                     {
-                        StickersActivity.this = this;
-                        this.oldList = this.listAdapter.featuredStickerSets;
+                        this.oldList = StickersActivity.this.listAdapter.featuredStickerSets;
                     }
 
                     @Override
@@ -902,7 +899,6 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         private final List<Long> loadingFeaturedStickerSets = new ArrayList();
 
         public ListAdapter(Context context, List<TLRPC$TL_messages_stickerSet> list, List<TLRPC$StickerSetCovered> list2) {
-            StickersActivity.this = r1;
             this.mContext = context;
             setStickerSets(list);
             if (list2.size() > 3) {
@@ -1048,7 +1044,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     intent.putExtra("android.intent.extra.TEXT", StickersActivity.this.getLinkForSet(tLRPC$TL_messages_stickerSet));
                     StickersActivity.this.getParentActivity().startActivityForResult(Intent.createChooser(intent, LocaleController.getString("StickersShare", C1072R.string.StickersShare)), 500);
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             } else if (i != 3) {
                 if (i != 4 || (indexOf = this.stickerSets.indexOf(tLRPC$TL_messages_stickerSet)) < 0) {
@@ -1067,7 +1063,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", String.format(locale, sb.toString(), tLRPC$TL_messages_stickerSet.set.short_name)));
                     BulletinFactory.createCopyLinkBulletin(StickersActivity.this).show();
                 } catch (Exception e2) {
-                    FileLog.m31e(e2);
+                    FileLog.m32e(e2);
                 }
             }
         }
@@ -1423,7 +1419,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     }, indexOf, indexOf + 9, 18);
                     return spannableStringBuilder;
                 } catch (Exception e) {
-                    FileLog.m31e(e);
+                    FileLog.m32e(e);
                 }
             }
             return str;

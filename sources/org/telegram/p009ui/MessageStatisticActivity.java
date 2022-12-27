@@ -466,7 +466,6 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         private Context mContext;
 
         public ListAdapter(Context context) {
-            MessageStatisticActivity.this = r1;
             this.mContext = context;
         }
 
@@ -483,14 +482,13 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             return MessageStatisticActivity.this.rowCount;
         }
 
-        public class C36141 extends StatisticActivity.BaseChartCell {
+        public class C36171 extends StatisticActivity.BaseChartCell {
             @Override
             void loadData(StatisticActivity.ChartViewData chartViewData) {
             }
 
-            C36141(Context context, int i, BaseChartView.SharedUiComponents sharedUiComponents) {
+            C36171(Context context, int i, BaseChartView.SharedUiComponents sharedUiComponents) {
                 super(context, i, sharedUiComponents);
-                ListAdapter.this = r1;
             }
 
             @Override
@@ -530,7 +528,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                         ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).sendRequest(tLRPC$TL_stats_loadAsyncGraph, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                MessageStatisticActivity.ListAdapter.C36141.this.lambda$onZoomed$1(str, zoomCancelable, tLObject, tLRPC$TL_error);
+                                MessageStatisticActivity.ListAdapter.C36171.this.lambda$onZoomed$1(str, zoomCancelable, tLObject, tLRPC$TL_error);
                             }
                         }, null, null, 0, MessageStatisticActivity.this.chat.stats_dc, 1, true), ((BaseFragment) MessageStatisticActivity.this).classGuid);
                     }
@@ -551,7 +549,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessageStatisticActivity.ListAdapter.C36141.this.lambda$onZoomed$0(chartData, str, zoomCancelable);
+                        MessageStatisticActivity.ListAdapter.C36171.this.lambda$onZoomed$0(chartData, str, zoomCancelable);
                     }
                 });
             }
@@ -602,9 +600,9 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 headerCell2.setHeight(43);
                 headerCell = headerCell2;
             } else if (i == 4) {
-                View c36141 = new C36141(this.mContext, 1, MessageStatisticActivity.this.sharedUi = new BaseChartView.SharedUiComponents());
-                c36141.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                headerCell = c36141;
+                View c36171 = new C36171(this.mContext, 1, MessageStatisticActivity.this.sharedUi = new BaseChartView.SharedUiComponents());
+                c36171.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                headerCell = c36171;
             } else if (i == 5) {
                 View overviewCell = new OverviewCell(this.mContext);
                 overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
@@ -616,7 +614,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 emptyCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                 headerCell = emptyCell;
             } else {
-                headerCell = new LoadingCell(this.mContext, AndroidUtilities.m35dp(40.0f), AndroidUtilities.m35dp(120.0f));
+                headerCell = new LoadingCell(this.mContext, AndroidUtilities.m36dp(40.0f), AndroidUtilities.m36dp(120.0f));
             }
             return new RecyclerListView.Holder(headerCell);
         }
@@ -669,12 +667,11 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
 
         public OverviewCell(Context context) {
             super(context);
-            MessageStatisticActivity.this = r8;
             this.primary = new TextView[3];
             this.title = new TextView[3];
             this.cell = new View[3];
             setOrientation(1);
-            setPadding(AndroidUtilities.m35dp(16.0f), 0, AndroidUtilities.m35dp(16.0f), AndroidUtilities.m35dp(16.0f));
+            setPadding(AndroidUtilities.m36dp(16.0f), 0, AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(16.0f));
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(0);
             for (int i = 0; i < 3; i++) {
