@@ -482,12 +482,12 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             return MessageStatisticActivity.this.rowCount;
         }
 
-        public class C36181 extends StatisticActivity.BaseChartCell {
+        public class C36191 extends StatisticActivity.BaseChartCell {
             @Override
             void loadData(StatisticActivity.ChartViewData chartViewData) {
             }
 
-            C36181(Context context, int i, BaseChartView.SharedUiComponents sharedUiComponents) {
+            C36191(Context context, int i, BaseChartView.SharedUiComponents sharedUiComponents) {
                 super(context, i, sharedUiComponents);
             }
 
@@ -528,7 +528,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                         ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).sendRequest(tLRPC$TL_stats_loadAsyncGraph, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                MessageStatisticActivity.ListAdapter.C36181.this.lambda$onZoomed$1(str, zoomCancelable, tLObject, tLRPC$TL_error);
+                                MessageStatisticActivity.ListAdapter.C36191.this.lambda$onZoomed$1(str, zoomCancelable, tLObject, tLRPC$TL_error);
                             }
                         }, null, null, 0, MessageStatisticActivity.this.chat.stats_dc, 1, true), ((BaseFragment) MessageStatisticActivity.this).classGuid);
                     }
@@ -549,7 +549,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessageStatisticActivity.ListAdapter.C36181.this.lambda$onZoomed$0(chartData, str, zoomCancelable);
+                        MessageStatisticActivity.ListAdapter.C36191.this.lambda$onZoomed$0(chartData, str, zoomCancelable);
                     }
                 });
             }
@@ -600,9 +600,9 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 headerCell2.setHeight(43);
                 headerCell = headerCell2;
             } else if (i == 4) {
-                View c36181 = new C36181(this.mContext, 1, MessageStatisticActivity.this.sharedUi = new BaseChartView.SharedUiComponents());
-                c36181.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                headerCell = c36181;
+                View c36191 = new C36191(this.mContext, 1, MessageStatisticActivity.this.sharedUi = new BaseChartView.SharedUiComponents());
+                c36191.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                headerCell = c36191;
             } else if (i == 5) {
                 View overviewCell = new OverviewCell(this.mContext);
                 overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));

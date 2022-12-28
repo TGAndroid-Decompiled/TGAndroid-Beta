@@ -339,7 +339,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         } else if (i == 1) {
             this.actionBar.setTitle(LocaleController.getString("SelectColorTitle", C1072R.string.SelectColorTitle));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new C42742());
+        this.actionBar.setActionBarMenuOnItemClick(new C42772());
         if (this.currentType == 0) {
             ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, C1072R.C1073drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
                 @Override
@@ -398,7 +398,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
 
             @Override
             public void onDraw(android.graphics.Canvas r15) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.WallpapersListActivity.C42764.onDraw(android.graphics.Canvas):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.WallpapersListActivity.C42794.onDraw(android.graphics.Canvas):void");
             }
         };
         this.listView = recyclerListView;
@@ -465,8 +465,8 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         return this.fragmentView;
     }
 
-    public class C42742 extends C1133ActionBar.ActionBarMenuOnItemClick {
-        C42742() {
+    public class C42772 extends C1133ActionBar.ActionBarMenuOnItemClick {
+        C42772() {
         }
 
         @Override
@@ -488,7 +488,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                     dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                         @Override
                         public final void didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z) {
-                            WallpapersListActivity.C42742.this.lambda$onItemClick$3(dialogsActivity2, arrayList, charSequence, z);
+                            WallpapersListActivity.C42772.this.lambda$onItemClick$3(dialogsActivity2, arrayList, charSequence, z);
                         }
                     });
                     WallpapersListActivity.this.presentFragment(dialogsActivity);
@@ -501,7 +501,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 builder.setPositiveButton(LocaleController.getString("Delete", C1072R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
-                        WallpapersListActivity.C42742.this.lambda$onItemClick$2(dialogInterface, i2);
+                        WallpapersListActivity.C42772.this.lambda$onItemClick$2(dialogInterface, i2);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
@@ -558,7 +558,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                     ConnectionsManager.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendRequest(tLRPC$TL_account_saveWallPaper, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            WallpapersListActivity.C42742.this.lambda$onItemClick$1(iArr, tLObject, tLRPC$TL_error);
+                            WallpapersListActivity.C42772.this.lambda$onItemClick$1(iArr, tLObject, tLRPC$TL_error);
                         }
                     });
                 }
@@ -575,7 +575,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    WallpapersListActivity.C42742.this.lambda$onItemClick$0(iArr);
+                    WallpapersListActivity.C42772.this.lambda$onItemClick$0(iArr);
                 }
             });
         }

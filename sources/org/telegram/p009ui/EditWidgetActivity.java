@@ -422,7 +422,7 @@ public class EditWidgetActivity extends BaseFragment {
                 EditWidgetActivity.this.lambda$createView$1(context, view, i);
             }
         });
-        this.listView.setOnItemLongClickListener(new C32342());
+        this.listView.setOnItemLongClickListener(new C32352());
         return this.fragmentView;
     }
 
@@ -450,7 +450,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
     }
 
-    public class C32342 implements RecyclerListView.OnItemLongClickListenerExtended {
+    public class C32352 implements RecyclerListView.OnItemLongClickListenerExtended {
         private Rect rect = new Rect();
 
         @Override
@@ -461,7 +461,7 @@ public class EditWidgetActivity extends BaseFragment {
         public void onMove(float f, float f2) {
         }
 
-        C32342() {
+        C32352() {
         }
 
         @Override
@@ -473,7 +473,7 @@ public class EditWidgetActivity extends BaseFragment {
                     builder.setItems(new CharSequence[]{LocaleController.getString("Delete", C1072R.string.Delete)}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i2) {
-                            EditWidgetActivity.C32342.this.lambda$onItemClick$0(i, dialogInterface, i2);
+                            EditWidgetActivity.C32352.this.lambda$onItemClick$0(i, dialogInterface, i2);
                         }
                     });
                     EditWidgetActivity.this.showDialog(builder.create());

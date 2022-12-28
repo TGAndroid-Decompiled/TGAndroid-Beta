@@ -156,70 +156,67 @@ public class SvgHelper {
                 setupGradient(str, this.currentResourcesProvider, this.colorAlpha, z);
             }
             float scale = getScale((int) f3, (int) f4);
-            if (this.placeholderGradient[i] != null) {
-                float f5 = gradientWidth;
-                if (f5 > 0.0f) {
-                    if (z) {
-                        long j3 = j - lastUpdateTime;
-                        j2 = j3 <= 64 ? j3 : 64L;
-                        if (j2 > 0) {
-                            lastUpdateTime = j;
-                            totalTranslation += (((float) j2) * f5) / 1800.0f;
-                            while (true) {
-                                float f6 = totalTranslation;
-                                float f7 = gradientWidth;
-                                if (f6 < f7 * 2.0f) {
-                                    break;
-                                }
-                                totalTranslation = f6 - (f7 * 2.0f);
-                            }
-                        }
-                    } else if (shiftRunnable == null || shiftDrawable.get() == this) {
-                        long j4 = j - lastUpdateTime;
-                        j2 = j4 <= 64 ? j4 : 64L;
-                        long j5 = j2 >= 0 ? j2 : 0L;
+            if (this.placeholderGradient[i] != null && gradientWidth > 0.0f && !SharedConfig.getLightMode().enabled()) {
+                if (z) {
+                    long j3 = j - lastUpdateTime;
+                    j2 = j3 <= 64 ? j3 : 64L;
+                    if (j2 > 0) {
                         lastUpdateTime = j;
-                        totalTranslation += (((float) j5) * gradientWidth) / 1800.0f;
+                        totalTranslation += (((float) j2) * gradientWidth) / 1800.0f;
                         while (true) {
-                            float f8 = totalTranslation;
-                            float f9 = gradientWidth;
-                            if (f8 < f9 / 2.0f) {
+                            float f5 = totalTranslation;
+                            float f6 = gradientWidth;
+                            if (f5 < f6 * 2.0f) {
                                 break;
                             }
-                            totalTranslation = f8 - f9;
+                            totalTranslation = f5 - (f6 * 2.0f);
                         }
-                        shiftDrawable = new WeakReference<>(this);
-                        Runnable runnable = shiftRunnable;
-                        if (runnable != null) {
-                            AndroidUtilities.cancelRunOnUIThread(runnable);
-                        }
-                        SvgHelper$SvgDrawable$$ExternalSyntheticLambda0 svgHelper$SvgDrawable$$ExternalSyntheticLambda0 = SvgHelper$SvgDrawable$$ExternalSyntheticLambda0.INSTANCE;
-                        shiftRunnable = svgHelper$SvgDrawable$$ExternalSyntheticLambda0;
-                        AndroidUtilities.runOnUIThread(svgHelper$SvgDrawable$$ExternalSyntheticLambda0, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
                     }
-                    ImageReceiver imageReceiver = this.parentImageReceiver;
-                    if (imageReceiver == null || z) {
-                        i2 = 0;
+                } else if (shiftRunnable == null || shiftDrawable.get() == this) {
+                    long j4 = j - lastUpdateTime;
+                    j2 = j4 <= 64 ? j4 : 64L;
+                    long j5 = j2 >= 0 ? j2 : 0L;
+                    lastUpdateTime = j;
+                    totalTranslation += (((float) j5) * gradientWidth) / 1800.0f;
+                    while (true) {
+                        float f7 = totalTranslation;
+                        float f8 = gradientWidth;
+                        if (f7 < f8 / 2.0f) {
+                            break;
+                        }
+                        totalTranslation = f7 - f8;
+                    }
+                    shiftDrawable = new WeakReference<>(this);
+                    Runnable runnable = shiftRunnable;
+                    if (runnable != null) {
+                        AndroidUtilities.cancelRunOnUIThread(runnable);
+                    }
+                    SvgHelper$SvgDrawable$$ExternalSyntheticLambda0 svgHelper$SvgDrawable$$ExternalSyntheticLambda0 = SvgHelper$SvgDrawable$$ExternalSyntheticLambda0.INSTANCE;
+                    shiftRunnable = svgHelper$SvgDrawable$$ExternalSyntheticLambda0;
+                    AndroidUtilities.runOnUIThread(svgHelper$SvgDrawable$$ExternalSyntheticLambda0, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
+                }
+                ImageReceiver imageReceiver = this.parentImageReceiver;
+                if (imageReceiver == null || z) {
+                    i2 = 0;
+                } else {
+                    imageReceiver.getParentPosition(parentPosition);
+                    i2 = parentPosition[0];
+                }
+                int i3 = z ? i + 1 : 0;
+                Matrix[] matrixArr = this.placeholderMatrix;
+                if (matrixArr[i3] != null) {
+                    matrixArr[i3].reset();
+                    if (z) {
+                        this.placeholderMatrix[i3].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
                     } else {
-                        imageReceiver.getParentPosition(parentPosition);
-                        i2 = parentPosition[0];
+                        this.placeholderMatrix[i3].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
                     }
-                    int i3 = z ? i + 1 : 0;
-                    Matrix[] matrixArr = this.placeholderMatrix;
-                    if (matrixArr[i3] != null) {
-                        matrixArr[i3].reset();
-                        if (z) {
-                            this.placeholderMatrix[i3].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
-                        } else {
-                            this.placeholderMatrix[i3].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
-                        }
-                        float f10 = 1.0f / scale;
-                        this.placeholderMatrix[i3].postScale(f10, f10);
-                        this.placeholderGradient[i3].setLocalMatrix(this.placeholderMatrix[i3]);
-                        ImageReceiver imageReceiver2 = this.parentImageReceiver;
-                        if (imageReceiver2 != null && !z) {
-                            imageReceiver2.invalidate();
-                        }
+                    float f9 = 1.0f / scale;
+                    this.placeholderMatrix[i3].postScale(f9, f9);
+                    this.placeholderGradient[i3].setLocalMatrix(this.placeholderMatrix[i3]);
+                    ImageReceiver imageReceiver2 = this.parentImageReceiver;
+                    if (imageReceiver2 != null && !z) {
+                        imageReceiver2.invalidate();
                     }
                 }
             }
@@ -266,8 +263,8 @@ public class SvgHelper {
                     } else if (obj instanceof RoundRect) {
                         RoundRect roundRect = (RoundRect) obj;
                         RectF rectF = roundRect.rect;
-                        float f11 = roundRect.f832rx;
-                        canvas.drawRoundRect(rectF, f11, f11, paint);
+                        float f10 = roundRect.f832rx;
+                        canvas.drawRoundRect(rectF, f10, f10, paint);
                     }
                     paint.setAlpha(alpha);
                 }
@@ -314,6 +311,21 @@ public class SvgHelper {
                 this.currentColorKey = str;
                 iArr[z ? 1 : 0] = color;
                 gradientWidth = AndroidUtilities.displaySize.x * 2;
+                if (SharedConfig.getLightMode().enabled()) {
+                    if (z) {
+                        if (this.backgroundPaint == null) {
+                            this.backgroundPaint = new Paint(1);
+                        }
+                        this.backgroundPaint.setShader(null);
+                        this.backgroundPaint.setColor(this.currentColor[z ? 1 : 0]);
+                        return;
+                    }
+                    for (Paint paint : this.paints.values()) {
+                        paint.setShader(null);
+                        paint.setColor(this.currentColor[z ? 1 : 0]);
+                    }
+                    return;
+                }
                 float m36dp = AndroidUtilities.m36dp(180.0f) / gradientWidth;
                 int argb = Color.argb((int) ((Color.alpha(color) / 2) * this.colorAlpha), Color.red(color), Color.green(color), Color.blue(color));
                 float f2 = (1.0f - m36dp) / 2.0f;
@@ -347,11 +359,11 @@ public class SvgHelper {
                         return;
                     }
                 }
-                for (Paint paint : this.paints.values()) {
+                for (Paint paint2 : this.paints.values()) {
                     if (Build.VERSION.SDK_INT <= 22) {
-                        paint.setShader(bitmapShader);
+                        paint2.setShader(bitmapShader);
                     } else {
-                        paint.setShader(new ComposeShader(this.placeholderGradient[z ? 1 : 0], bitmapShader, PorterDuff.Mode.ADD));
+                        paint2.setShader(new ComposeShader(this.placeholderGradient[z ? 1 : 0], bitmapShader, PorterDuff.Mode.ADD));
                     }
                 }
             }

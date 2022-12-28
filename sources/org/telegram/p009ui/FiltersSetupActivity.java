@@ -464,9 +464,9 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
         frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
-        C32672 c32672 = new C32672(context);
-        this.listView = c32672;
-        ((DefaultItemAnimator) c32672.getItemAnimator()).setDelayAnimations(false);
+        C32682 c32682 = new C32682(context);
+        this.listView = c32682;
+        ((DefaultItemAnimator) c32682.getItemAnimator()).setDelayAnimations(false);
         this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setVerticalScrollBarEnabled(false);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
@@ -496,8 +496,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         return this.fragmentView;
     }
 
-    public class C32672 extends RecyclerListView {
-        C32672(Context context) {
+    public class C32682 extends RecyclerListView {
+        C32682(Context context) {
             super(context);
         }
 
@@ -507,7 +507,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        FiltersSetupActivity.C32672.this.lambda$onTouchEvent$0();
+                        FiltersSetupActivity.C32682.this.lambda$onTouchEvent$0();
                     }
                 }, 250L);
             }

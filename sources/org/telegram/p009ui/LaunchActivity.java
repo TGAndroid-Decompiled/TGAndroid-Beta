@@ -393,9 +393,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             this.themeSwitchImageView = imageView;
             imageView.setVisibility(8);
         }
-        C34473 c34473 = new C34473(this);
-        this.drawerLayoutContainer = c34473;
-        c34473.setBehindKeyboardColor(Theme.getColor("windowBackgroundWhite"));
+        C34483 c34483 = new C34483(this);
+        this.drawerLayoutContainer = c34483;
+        c34483.setBehindKeyboardColor(Theme.getColor("windowBackgroundWhite"));
         this.frameLayout.addView(this.drawerLayoutContainer, LayoutHelper.createFrame(-1, -1.0f));
         if (i2 >= 21) {
             View view = new View(this) {
@@ -776,10 +776,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class C34473 extends DrawerLayoutContainer {
+    public class C34483 extends DrawerLayoutContainer {
         private boolean wasPortrait;
 
-        C34473(Context context) {
+        C34483(Context context) {
             super(context);
         }
 
@@ -792,7 +792,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        LaunchActivity.C34473.this.lambda$onLayout$0();
+                        LaunchActivity.C34483.this.lambda$onLayout$0();
                     }
                 });
                 this.wasPortrait = z2;
@@ -1250,17 +1250,17 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             swapAnimatedEmojiDrawable = null;
         }
         View view2 = view;
-        C343412 c343412 = new C343412(lastFragment, this, true, Integer.valueOf(i), 0, null, selectAnimatedEmojiDialogWindowArr);
+        C343512 c343512 = new C343512(lastFragment, this, true, Integer.valueOf(i), 0, null, selectAnimatedEmojiDialogWindowArr);
         if (user != null) {
             TLRPC$EmojiStatus tLRPC$EmojiStatus = user.emoji_status;
             if ((tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil) && ((TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus).until > ((int) (System.currentTimeMillis() / 1000))) {
-                c343412.setExpireDateHint(((TLRPC$TL_emojiStatusUntil) user.emoji_status).until);
+                c343512.setExpireDateHint(((TLRPC$TL_emojiStatusUntil) user.emoji_status).until);
             }
         }
-        c343412.setSelected((swapAnimatedEmojiDrawable == null || !(swapAnimatedEmojiDrawable.getDrawable() instanceof AnimatedEmojiDrawable)) ? null : Long.valueOf(((AnimatedEmojiDrawable) swapAnimatedEmojiDrawable.getDrawable()).getDocumentId()));
-        c343412.setSaveState(2);
-        c343412.setScrimDrawable(swapAnimatedEmojiDrawable, view2);
-        SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(c343412, -2, -2) {
+        c343512.setSelected((swapAnimatedEmojiDrawable == null || !(swapAnimatedEmojiDrawable.getDrawable() instanceof AnimatedEmojiDrawable)) ? null : Long.valueOf(((AnimatedEmojiDrawable) swapAnimatedEmojiDrawable.getDrawable()).getDocumentId()));
+        c343512.setSaveState(2);
+        c343512.setScrimDrawable(swapAnimatedEmojiDrawable, view2);
+        SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(c343512, -2, -2) {
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -1273,10 +1273,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         selectAnimatedEmojiDialogWindowArr[0].dimBehind();
     }
 
-    public class C343412 extends SelectAnimatedEmojiDialog {
+    public class C343512 extends SelectAnimatedEmojiDialog {
         final SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] val$popup;
 
-        C343412(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr) {
+        C343512(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr) {
             super(baseFragment, context, z, num, i, resourcesProvider);
             this.val$popup = selectAnimatedEmojiDialogWindowArr;
         }
@@ -1649,7 +1649,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             this.termsOfServiceView = termsOfServiceView;
             termsOfServiceView.setAlpha(0.0f);
             this.drawerLayoutContainer.addView(this.termsOfServiceView, LayoutHelper.createFrame(-1, -1.0f));
-            this.termsOfServiceView.setDelegate(new C343715());
+            this.termsOfServiceView.setDelegate(new C343815());
         }
         TLRPC$TL_help_termsOfService tLRPC$TL_help_termsOfService2 = UserConfig.getInstance(i).unacceptedTermsOfService;
         if (tLRPC$TL_help_termsOfService2 != tLRPC$TL_help_termsOfService && (tLRPC$TL_help_termsOfService2 == null || !tLRPC$TL_help_termsOfService2.f915id.data.equals(tLRPC$TL_help_termsOfService.f915id.data))) {
@@ -1661,8 +1661,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.termsOfServiceView.animate().alpha(1.0f).setDuration(150L).setInterpolator(AndroidUtilities.decelerateInterpolator).setListener(null).start();
     }
 
-    public class C343715 implements TermsOfServiceView.TermsOfServiceViewDelegate {
-        C343715() {
+    public class C343815 implements TermsOfServiceView.TermsOfServiceViewDelegate {
+        C343815() {
         }
 
         @Override
@@ -1676,7 +1676,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             LaunchActivity.this.termsOfServiceView.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.C343715.this.lambda$onAcceptTerms$0();
+                    LaunchActivity.C343815.this.lambda$onAcceptTerms$0();
                 }
             }).start();
         }
@@ -2584,7 +2584,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         }
                     } else {
                         long j3 = j;
-                        MessagesController.getInstance(i).ensureMessagesLoaded(j3, num == null ? 0 : num.intValue(), new C344018(runnable, str3, chatActivity, j3, num, bundle3));
+                        MessagesController.getInstance(i).ensureMessagesLoaded(j3, num == null ? 0 : num.intValue(), new C344118(runnable, str3, chatActivity, j3, num, bundle3));
                     }
                     z2 = false;
                 }
@@ -3053,7 +3053,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class C344018 implements MessagesController.MessagesLoadedCallback {
+    public class C344118 implements MessagesController.MessagesLoadedCallback {
         final Bundle val$args;
         final long val$dialog_id;
         final Runnable val$dismissLoading;
@@ -3061,7 +3061,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final String val$livestream;
         final Integer val$messageId;
 
-        C344018(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
+        C344118(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -3091,7 +3091,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            LaunchActivity.C344018.this.lambda$onMessagesLoaded$2(str, j, baseFragment2);
+                            LaunchActivity.C344118.this.lambda$onMessagesLoaded$2(str, j, baseFragment2);
                         }
                     }, 150L);
                 }
@@ -3120,7 +3120,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.C344018.this.lambda$onMessagesLoaded$2(str2, j2, baseFragment22);
+                    LaunchActivity.C344118.this.lambda$onMessagesLoaded$2(str2, j2, baseFragment22);
                 }
             }, 150L);
         }
@@ -3146,7 +3146,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     accountInstance.getMessagesController().getGroupCall(j2, true, new Runnable() {
                         @Override
                         public final void run() {
-                            LaunchActivity.C344018.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
+                            LaunchActivity.C344118.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
                         }
                     });
                 }
@@ -3157,7 +3157,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.C344018.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
+                    LaunchActivity.C344118.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
                 }
             });
         }

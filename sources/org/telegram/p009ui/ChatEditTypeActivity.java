@@ -441,9 +441,9 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         });
         this.permanentLinkView.setUsers(0, null);
         this.privateContainer.addView(this.permanentLinkView);
-        C16946 c16946 = new C16946(context);
-        this.checkTextView = c16946;
-        c16946.setBackgroundDrawable(Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+        C16956 c16956 = new C16956(context);
+        this.checkTextView = c16956;
+        c16956.setBackgroundDrawable(Theme.getThemedDrawable(context, C1072R.C1073drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
         this.checkTextView.setBottomPadding(6);
         this.linearLayout.addView(this.checkTextView, LayoutHelper.createLinear(-2, -2));
         TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
@@ -543,11 +543,11 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    class C16946 extends TextInfoPrivacyCell {
+    class C16956 extends TextInfoPrivacyCell {
         int prevHeight;
         ValueAnimator translateAnimator;
 
-        C16946(Context context) {
+        C16956(Context context) {
             super(context);
             this.prevHeight = -1;
         }
@@ -567,7 +567,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                     charSequence.setSpan(new ClickableSpan() {
                         @Override
                         public void onClick(View view) {
-                            Context context = C16946.this.getContext();
+                            Context context = C16956.this.getContext();
                             Browser.openUrl(context, "https://fragment.com/username/" + obj);
                         }
 
@@ -607,7 +607,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ChatEditTypeActivity.C16946.lambda$onLayout$0(arrayList, height, valueAnimator2);
+                        ChatEditTypeActivity.C16956.lambda$onLayout$0(arrayList, height, valueAnimator2);
                     }
                 });
                 this.translateAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -760,14 +760,14 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             this.adapter = adapter;
             setAdapter(adapter);
             setLayoutManager(new LinearLayoutManager(context));
-            setOnItemClickListener(new C16961(ChatEditTypeActivity.this));
+            setOnItemClickListener(new C16971(ChatEditTypeActivity.this));
             ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
             this.itemTouchHelper = itemTouchHelper;
             itemTouchHelper.attachToRecyclerView(this);
         }
 
-        public class C16961 implements RecyclerListView.OnItemClickListener {
-            C16961(ChatEditTypeActivity chatEditTypeActivity) {
+        public class C16971 implements RecyclerListView.OnItemClickListener {
+            C16971(ChatEditTypeActivity chatEditTypeActivity) {
             }
 
             @Override
@@ -817,9 +817,9 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 message.setPositiveButton(LocaleController.getString(str3, i4), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i5) {
-                        ChatEditTypeActivity.UsernamesListView.C16961.this.lambda$onItemClick$4(tLRPC$TL_username, view, dialogInterface, i5);
+                        ChatEditTypeActivity.UsernamesListView.C16971.this.lambda$onItemClick$4(tLRPC$TL_username, view, dialogInterface, i5);
                     }
-                }).setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), DialogInterface$OnClickListenerC1700xdfb97325.INSTANCE).show();
+                }).setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), DialogInterface$OnClickListenerC1701xdfb97325.INSTANCE).show();
             }
 
             public void lambda$onItemClick$4(final TLRPC$TL_username tLRPC$TL_username, View view, DialogInterface dialogInterface, int i) {
@@ -843,7 +843,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                     ChatEditTypeActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_channels_toggleUsername, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            ChatEditTypeActivity.UsernamesListView.C16961.this.lambda$onItemClick$3(tLRPC$TL_channels_toggleUsername, tLRPC$TL_username, z2, tLObject, tLRPC$TL_error);
+                            ChatEditTypeActivity.UsernamesListView.C16971.this.lambda$onItemClick$3(tLRPC$TL_channels_toggleUsername, tLRPC$TL_username, z2, tLObject, tLRPC$TL_error);
                         }
                     });
                     ChatEditTypeActivity.this.loadingUsernames.add(tLRPC$TL_username.username);
@@ -856,7 +856,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatEditTypeActivity.UsernamesListView.C16961.this.lambda$onItemClick$2(tLRPC$TL_channels_toggleUsername, tLObject, tLRPC$TL_username, z, tLRPC$TL_error);
+                        ChatEditTypeActivity.UsernamesListView.C16971.this.lambda$onItemClick$2(tLRPC$TL_channels_toggleUsername, tLObject, tLRPC$TL_username, z, tLRPC$TL_error);
                     }
                 });
             }
@@ -869,7 +869,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatEditTypeActivity.UsernamesListView.C16961.this.lambda$onItemClick$1(tLRPC$TL_username, z);
+                            ChatEditTypeActivity.UsernamesListView.C16971.this.lambda$onItemClick$1(tLRPC$TL_username, z);
                         }
                     });
                 } else {
@@ -883,7 +883,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 new AlertDialog.Builder(UsernamesListView.this.getContext(), ((RecyclerListView) UsernamesListView.this).resourcesProvider).setTitle(LocaleController.getString("UsernameActivateErrorTitle", C1072R.string.UsernameActivateErrorTitle)).setMessage(LocaleController.getString("UsernameActivateErrorMessage", C1072R.string.UsernameActivateErrorMessage)).setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        ChatEditTypeActivity.UsernamesListView.C16961.this.lambda$onItemClick$0(tLRPC$TL_username, z, dialogInterface, i);
+                        ChatEditTypeActivity.UsernamesListView.C16971.this.lambda$onItemClick$0(tLRPC$TL_username, z, dialogInterface, i);
                     }
                 }).show();
             }

@@ -418,8 +418,8 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
         return LocaleController.getString(C1072R.string.GiftTelegramPremiumTitle);
     }
 
-    public class C26121 extends RecyclerListView.SelectionAdapter {
-        C26121() {
+    public class C26131 extends RecyclerListView.SelectionAdapter {
+        C26131() {
         }
 
         @Override
@@ -457,14 +457,14 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
                     @Override
                     public final Object provide(Object obj) {
                         Paint lambda$onCreateViewHolder$0;
-                        lambda$onCreateViewHolder$0 = GiftPremiumBottomSheet.C26121.this.lambda$onCreateViewHolder$0(premiumGiftTierCell2, (Void) obj);
+                        lambda$onCreateViewHolder$0 = GiftPremiumBottomSheet.C26131.this.lambda$onCreateViewHolder$0(premiumGiftTierCell2, (Void) obj);
                         return lambda$onCreateViewHolder$0;
                     }
                 });
                 premiumGiftTierCell2.setProgressDelegate(new CheckBoxBase.ProgressDelegate() {
                     @Override
                     public final void setProgress(float f) {
-                        GiftPremiumBottomSheet.C26121.lambda$onCreateViewHolder$1(atomicReference, premiumGiftTierCell2, f);
+                        GiftPremiumBottomSheet.C26131.lambda$onCreateViewHolder$1(atomicReference, premiumGiftTierCell2, f);
                     }
                 });
                 premiumGiftTierCell = premiumGiftTierCell2;
@@ -545,14 +545,14 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
 
     @Override
     protected RecyclerListView.SelectionAdapter createAdapter() {
-        return new C26121();
+        return new C26131();
     }
 
     private final class LinkSpan extends ClickableSpan {
         private LinkSpan() {
         }
 
-        LinkSpan(GiftPremiumBottomSheet giftPremiumBottomSheet, C26121 c26121) {
+        LinkSpan(GiftPremiumBottomSheet giftPremiumBottomSheet, C26131 c26131) {
             this();
         }
 

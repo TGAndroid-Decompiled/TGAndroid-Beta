@@ -229,12 +229,12 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         filterGLThread.setFilterGLThreadDelegate(this);
     }
 
-    public class TextureView$SurfaceTextureListenerC25561 implements TextureView.SurfaceTextureListener {
+    public class TextureView$SurfaceTextureListenerC25571 implements TextureView.SurfaceTextureListener {
         @Override
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         }
 
-        TextureView$SurfaceTextureListenerC25561() {
+        TextureView$SurfaceTextureListenerC25571() {
         }
 
         @Override
@@ -256,7 +256,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 PhotoFilterView.this.eglThread.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        PhotoFilterView.TextureView$SurfaceTextureListenerC25561.this.lambda$onSurfaceTextureSizeChanged$0();
+                        PhotoFilterView.TextureView$SurfaceTextureListenerC25571.this.lambda$onSurfaceTextureSizeChanged$0();
                     }
                 });
             }

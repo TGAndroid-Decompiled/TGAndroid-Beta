@@ -351,7 +351,7 @@ public class LinkActionView extends LinearLayout {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             if (view2.getParent() != null) {
-                                C24323 c24323 = C24323.this;
+                                C24333 c24333 = C24333.this;
                                 container.removeView(view2);
                             }
                             container.getViewTreeObserver().removeOnPreDrawListener(onPreDrawListener);

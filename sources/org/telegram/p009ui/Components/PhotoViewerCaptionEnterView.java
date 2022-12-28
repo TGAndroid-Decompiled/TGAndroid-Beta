@@ -263,7 +263,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
                 PhotoViewerCaptionEnterView.this.lambda$new$4(view2);
             }
         });
-        this.messageEditText.addTextChangedListener(new C25582(photoViewer, sizeNotifierFrameLayoutPhoto));
+        this.messageEditText.addTextChangedListener(new C25592(photoViewer, sizeNotifierFrameLayoutPhoto));
         this.doneDrawable = Theme.createCircleDrawable(AndroidUtilities.m36dp(16.0f), -10043398);
         this.checkDrawable = context.getResources().getDrawable(C1072R.C1073drawable.input_done).mutate();
         CombinedDrawable combinedDrawable = new CombinedDrawable(this.doneDrawable, this.checkDrawable, 0, AndroidUtilities.m36dp(1.0f));
@@ -334,7 +334,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
         }
     }
 
-    public class C25582 implements TextWatcher {
+    public class C25592 implements TextWatcher {
         boolean heightShouldBeChanged;
         boolean processChange = false;
         final SizeNotifierFrameLayoutPhoto val$parent;
@@ -344,7 +344,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
         public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         }
 
-        C25582(PhotoViewer photoViewer, SizeNotifierFrameLayoutPhoto sizeNotifierFrameLayoutPhoto) {
+        C25592(PhotoViewer photoViewer, SizeNotifierFrameLayoutPhoto sizeNotifierFrameLayoutPhoto) {
             this.val$photoViewer = photoViewer;
             this.val$parent = sizeNotifierFrameLayoutPhoto;
         }
@@ -375,7 +375,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
 
         @Override
         public void afterTextChanged(android.text.Editable r11) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.PhotoViewerCaptionEnterView.C25582.afterTextChanged(android.text.Editable):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.PhotoViewerCaptionEnterView.C25592.afterTextChanged(android.text.Editable):void");
         }
 
         public void lambda$afterTextChanged$0(ValueAnimator valueAnimator) {
@@ -899,8 +899,8 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
                 return true;
             }
 
-            class C25611 extends BaseFragment {
-                C25611() {
+            class C25621 extends BaseFragment {
+                C25621() {
                 }
 
                 @Override
@@ -928,11 +928,11 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
                     return new Dialog(PhotoViewerCaptionEnterView.this.getContext()) {
                         @Override
                         public void dismiss() {
-                            if ((C25611.this.getParentActivity() instanceof LaunchActivity) && ((LaunchActivity) C25611.this.getParentActivity()).getActionBarLayout() != null) {
-                                C25611 c25611 = C25611.this;
-                                ((BaseFragment) c25611).parentLayout = ((LaunchActivity) c25611.getParentActivity()).getActionBarLayout();
-                                if (((BaseFragment) C25611.this).parentLayout != null && ((BaseFragment) C25611.this).parentLayout.getLastFragment() != null && ((BaseFragment) C25611.this).parentLayout.getLastFragment().getVisibleDialog() != null) {
-                                    Dialog visibleDialog = ((BaseFragment) C25611.this).parentLayout.getLastFragment().getVisibleDialog();
+                            if ((C25621.this.getParentActivity() instanceof LaunchActivity) && ((LaunchActivity) C25621.this.getParentActivity()).getActionBarLayout() != null) {
+                                C25621 c25621 = C25621.this;
+                                ((BaseFragment) c25621).parentLayout = ((LaunchActivity) c25621.getParentActivity()).getActionBarLayout();
+                                if (((BaseFragment) C25621.this).parentLayout != null && ((BaseFragment) C25621.this).parentLayout.getLastFragment() != null && ((BaseFragment) C25621.this).parentLayout.getLastFragment().getVisibleDialog() != null) {
+                                    Dialog visibleDialog = ((BaseFragment) C25621.this).parentLayout.getLastFragment().getVisibleDialog();
                                     if (visibleDialog instanceof ChatAttachAlert) {
                                         ((ChatAttachAlert) visibleDialog).dismiss(true);
                                     } else {
@@ -948,7 +948,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
 
             @Override
             public void onAnimatedEmojiUnlockClick() {
-                new PremiumFeatureBottomSheet(new C25611(), 11, false).show();
+                new PremiumFeatureBottomSheet(new C25621(), 11, false).show();
             }
 
             @Override

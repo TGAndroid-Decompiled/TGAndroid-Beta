@@ -355,9 +355,9 @@ public class ForwardingPreviewView extends FrameLayout {
             }
         };
         this.chatListView = recyclerListView;
-        C23275 c23275 = new C23275(null, this.chatListView, resourcesDelegate, i);
-        this.itemAnimator = c23275;
-        recyclerListView.setItemAnimator(c23275);
+        C23285 c23285 = new C23285(null, this.chatListView, resourcesDelegate, i);
+        this.itemAnimator = c23285;
+        recyclerListView.setItemAnimator(c23285);
         this.chatListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
@@ -391,9 +391,9 @@ public class ForwardingPreviewView extends FrameLayout {
         this.adapter = adapter;
         recyclerListView2.setAdapter(adapter);
         this.chatListView.setPadding(0, AndroidUtilities.m36dp(4.0f), 0, AndroidUtilities.m36dp(4.0f));
-        C23308 c23308 = new C23308(context, 1000, 1, true, forwardingMessagesParams);
-        this.chatLayoutManager = c23308;
-        c23308.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+        C23318 c23318 = new C23318(context, 1000, 1, true, forwardingMessagesParams);
+        this.chatLayoutManager = c23318;
+        c23318.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int i4) {
                 if (i4 < 0 || i4 >= forwardingMessagesParams.previewMessages.size()) {
@@ -615,12 +615,12 @@ public class ForwardingPreviewView extends FrameLayout {
         updateColors();
     }
 
-    public class C23275 extends ChatListItemAnimator {
+    public class C23285 extends ChatListItemAnimator {
         Runnable finishRunnable;
         int scrollAnimationIndex;
         final int val$currentAccount;
 
-        C23275(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider, int i) {
+        C23285(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider, int i) {
             super(chatActivity, recyclerListView, resourcesProvider);
             this.val$currentAccount = i;
             this.scrollAnimationIndex = -1;
@@ -652,7 +652,7 @@ public class ForwardingPreviewView extends FrameLayout {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ForwardingPreviewView.C23275.this.lambda$onAllAnimationsDone$0(i);
+                    ForwardingPreviewView.C23285.this.lambda$onAllAnimationsDone$0(i);
                 }
             };
             this.finishRunnable = runnable2;
@@ -663,7 +663,7 @@ public class ForwardingPreviewView extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ForwardingPreviewView.C23275.this.lambda$onAllAnimationsDone$1();
+                        ForwardingPreviewView.C23285.this.lambda$onAllAnimationsDone$1();
                     }
                 });
             }
@@ -691,7 +691,7 @@ public class ForwardingPreviewView extends FrameLayout {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    ForwardingPreviewView.C23275.this.lambda$endAnimations$2(i);
+                    ForwardingPreviewView.C23285.this.lambda$endAnimations$2(i);
                 }
             };
             this.finishRunnable = runnable2;
@@ -706,7 +706,7 @@ public class ForwardingPreviewView extends FrameLayout {
         }
     }
 
-    public class C23308 extends GridLayoutManagerFixed {
+    public class C23318 extends GridLayoutManagerFixed {
         final ForwardingMessagesParams val$params;
 
         @Override
@@ -714,7 +714,7 @@ public class ForwardingPreviewView extends FrameLayout {
             return false;
         }
 
-        C23308(Context context, int i, int i2, boolean z, ForwardingMessagesParams forwardingMessagesParams) {
+        C23318(Context context, int i, int i2, boolean z, ForwardingMessagesParams forwardingMessagesParams) {
             super(context, i, i2, z);
             this.val$params = forwardingMessagesParams;
         }
@@ -756,7 +756,7 @@ public class ForwardingPreviewView extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ForwardingPreviewView.C23308.this.lambda$onLayoutChildren$0();
+                        ForwardingPreviewView.C23318.this.lambda$onLayoutChildren$0();
                     }
                 });
             }

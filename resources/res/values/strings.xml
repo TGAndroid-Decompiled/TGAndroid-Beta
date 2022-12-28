@@ -1901,6 +1901,7 @@
     <string name="EnableAllStreamingInfo">Some videos can\'t be streamed – e.g., all videos that were sent from Android using Telegram 4.7 and earlier versions.\n</string>
     <string name="EnableAnimations">Enable Animations</string>
     <string name="EnableAutoDelete">Enable Auto-Delete</string>
+    <string name="EnableLightMode">Enable light mode</string>
     <string name="EnablePasscode">Enable passcode</string>
     <string name="EnablePhotoSpoiler">Hide with spoiler</string>
     <string name="EnableReactions">Enable Reactions</string>
@@ -2739,6 +2740,8 @@
     <string name="LeaveMegaMenu">Leave group</string>
     <string name="LedColor">LED Color</string>
     <string name="LedDisabled">Disabled</string>
+    <string name="LightMode">Light Mode (Beta)</string>
+    <string name="LightModeInfoRow">This mode turns off all visual effects in the app. It is reccommended only for those devices that are low on CPU and memory.</string>
     <string name="LimitByPeriod">Limit by time period</string>
     <string name="LimitFree">Free</string>
     <string name="LimitNumberOfUses">Limit number of uses</string>
@@ -4189,6 +4192,7 @@
     <string name="ProximityTooltioGroup">Alert when other members of the group are close</string>
     <string name="ProximityTooltioUser">Alert when %1$s is close</string>
     <string name="Proxy">Proxy</string>
+    <string name="ProxyAddedSuccess">Proxy added.</string>
     <string name="ProxyConnections">Connections</string>
     <string name="ProxyDetails">Proxy Details</string>
     <string name="ProxySettings">Proxy Settings</string>
@@ -4796,6 +4800,7 @@
     <string name="ShareContactTitle">Share Contact</string>
     <string name="ShareFile">Share</string>
     <string name="ShareLink">Share Link</string>
+    <string name="ShareLinks">Share Links</string>
     <string name="ShareLocation">Location</string>
     <string name="ShareLocationAlertButton">Share</string>
     <string name="ShareLocationAlertText">For the alert to work, please share your live location in this chat.</string>

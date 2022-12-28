@@ -8,7 +8,7 @@ import java.util.List;
 import org.telegram.messenger.ApplicationLoader;
 
 public class PersistColorPalette {
-    private static final List<Integer> DEFAULT_COLORS = Arrays.asList(-1, -16777216, -16087809, -13318311, -10593050, -47814, -10742, -24822, -10230046, -7434605, -5468568, -51361, -4236558, 1090424165);
+    private static final List<Integer> DEFAULT_COLORS = Arrays.asList(-14837249, -16532268, -12994005, -417009, -365034, -1559228, -5091841, -2645892, -5475508, -7319252, -11325921, -16777216, -8289919, -1);
     private static final Integer DEFAULT_MARKER_COLOR = -16087809;
     private static PersistColorPalette[] instances = new PersistColorPalette[4];
     private int currentAlignment;

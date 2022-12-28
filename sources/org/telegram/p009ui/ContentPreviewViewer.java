@@ -111,7 +111,7 @@ public class ContentPreviewViewer {
     private boolean isVisible = false;
     private int keyboardHeight = AndroidUtilities.m36dp(200.0f);
     private Paint paint = new Paint(1);
-    private Runnable showSheetRunnable = new RunnableC31241();
+    private Runnable showSheetRunnable = new RunnableC31251();
 
     public interface ContentPreviewViewerDelegate {
 
@@ -188,8 +188,8 @@ public class ContentPreviewViewer {
         }
     }
 
-    public class RunnableC31241 implements Runnable {
-        RunnableC31241() {
+    public class RunnableC31251 implements Runnable {
+        RunnableC31251() {
             ContentPreviewViewer.this = r1;
         }
 
@@ -268,16 +268,16 @@ public class ContentPreviewViewer {
                     for (int i7 = 0; i7 < arrayList3.size(); i7++) {
                         iArr[i7] = ((Integer) arrayList3.get(i7)).intValue();
                     }
-                    View$OnClickListenerC31251 view$OnClickListenerC31251 = new View$OnClickListenerC31251(arrayList2, isStickerInFavorites);
+                    View$OnClickListenerC31261 view$OnClickListenerC31261 = new View$OnClickListenerC31261(arrayList2, isStickerInFavorites);
                     ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), C1072R.C1073drawable.popup_fixed_alert2, ContentPreviewViewer.this.resourcesProvider);
                     for (int i8 = 0; i8 < arrayList.size(); i8++) {
                         ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList3.get(i8)).intValue(), (CharSequence) arrayList.get(i8), false, ContentPreviewViewer.this.resourcesProvider);
                         addItem.setTag(Integer.valueOf(i8));
-                        addItem.setOnClickListener(view$OnClickListenerC31251);
+                        addItem.setOnClickListener(view$OnClickListenerC31261);
                     }
                     ContentPreviewViewer.this.popupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2) {
                         {
-                            RunnableC31241.this = this;
+                            RunnableC31251.this = this;
                         }
 
                         @Override
@@ -358,7 +358,7 @@ public class ContentPreviewViewer {
                 View.OnClickListener onClickListener = new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        ContentPreviewViewer.RunnableC31241.this.lambda$run$1(arrayList5, view);
+                        ContentPreviewViewer.RunnableC31251.this.lambda$run$1(arrayList5, view);
                     }
                 };
                 int i10 = 0;
@@ -374,7 +374,7 @@ public class ContentPreviewViewer {
                 }
                 ContentPreviewViewer.this.popupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout2, -2, -2) {
                     {
-                        RunnableC31241.this = this;
+                        RunnableC31251.this = this;
                     }
 
                     @Override
@@ -422,7 +422,7 @@ public class ContentPreviewViewer {
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            ContentPreviewViewer.RunnableC31241.this.lambda$run$2(valueAnimator);
+                            ContentPreviewViewer.RunnableC31251.this.lambda$run$2(valueAnimator);
                         }
                     });
                     ofFloat.setDuration(350L);
@@ -432,12 +432,12 @@ public class ContentPreviewViewer {
             }
         }
 
-        class View$OnClickListenerC31251 implements View.OnClickListener {
+        class View$OnClickListenerC31261 implements View.OnClickListener {
             final ArrayList val$actions;
             final boolean val$inFavs;
 
-            View$OnClickListenerC31251(ArrayList arrayList, boolean z) {
-                RunnableC31241.this = r1;
+            View$OnClickListenerC31261(ArrayList arrayList, boolean z) {
+                RunnableC31251.this = r1;
                 this.val$actions = arrayList;
                 this.val$inFavs = z;
             }
@@ -503,7 +503,7 @@ public class ContentPreviewViewer {
                 AlertsCreator.createScheduleDatePickerDialog(ContentPreviewViewer.this.parentActivity, contentPreviewViewerDelegate.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
                     public final void didSelectDate(boolean z, int i) {
-                        ContentPreviewViewer.RunnableC31241.lambda$run$0(ContentPreviewViewer.ContentPreviewViewerDelegate.this, tLRPC$Document, tLRPC$BotInlineResult, obj, z, i);
+                        ContentPreviewViewer.RunnableC31251.lambda$run$0(ContentPreviewViewer.ContentPreviewViewerDelegate.this, tLRPC$Document, tLRPC$BotInlineResult, obj, z, i);
                     }
                 }, ContentPreviewViewer.this.resourcesProvider);
             }

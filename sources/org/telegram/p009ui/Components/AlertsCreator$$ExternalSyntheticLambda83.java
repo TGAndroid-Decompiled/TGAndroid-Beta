@@ -1,6 +1,5 @@
 package org.telegram.p009ui.Components;
 
-import android.view.MotionEvent;
 import android.view.View;
 
 public final class AlertsCreator$$ExternalSyntheticLambda83 implements View.OnTouchListener {
@@ -10,9 +9,7 @@ public final class AlertsCreator$$ExternalSyntheticLambda83 implements View.OnTo
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        boolean lambda$createAutoDeleteDatePickerDialog$71;
-        lambda$createAutoDeleteDatePickerDialog$71 = AlertsCreator.lambda$createAutoDeleteDatePickerDialog$71(view, motionEvent);
-        return lambda$createAutoDeleteDatePickerDialog$71;
+    public final boolean onTouch(android.view.View r1, android.view.MotionEvent r2) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.AlertsCreator$$ExternalSyntheticLambda83.onTouch(android.view.View, android.view.MotionEvent):boolean");
     }
 }

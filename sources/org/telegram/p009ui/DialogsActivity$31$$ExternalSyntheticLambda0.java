@@ -13,6 +13,6 @@ public final class DialogsActivity$31$$ExternalSyntheticLambda0 implements Reque
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        DialogsActivity.C319831.lambda$onEmojiSelected$0(tLObject, tLRPC$TL_error);
+        DialogsActivity.C319931.lambda$onEmojiSelected$0(tLObject, tLRPC$TL_error);
     }
 }

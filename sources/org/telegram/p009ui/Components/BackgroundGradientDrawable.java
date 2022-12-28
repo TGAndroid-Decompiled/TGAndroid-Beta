@@ -364,7 +364,7 @@ public class BackgroundGradientDrawable extends GradientDrawable {
         return bitmap;
     }
 
-    public static class C18362 {
+    public static class C18372 {
         static final int[] f1036x8f1352bc;
 
         static {
@@ -403,7 +403,7 @@ public class BackgroundGradientDrawable extends GradientDrawable {
 
     public static Rect getGradientPoints(GradientDrawable.Orientation orientation, int i, int i2) {
         Rect rect = new Rect();
-        switch (C18362.f1036x8f1352bc[orientation.ordinal()]) {
+        switch (C18372.f1036x8f1352bc[orientation.ordinal()]) {
             case 1:
                 int i3 = i / 2;
                 rect.left = i3;

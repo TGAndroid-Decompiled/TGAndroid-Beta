@@ -153,7 +153,7 @@ public class VoIPStatusTextView extends FrameLayout {
                 VoIPStatusTextView.lambda$replaceViews$1(view2, view, valueAnimator);
             }
         });
-        this.animator.addListener(new C30961(view, view2, runnable));
+        this.animator.addListener(new C30971(view, view2, runnable));
         this.animator.setDuration(250L).setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.animator.start();
     }
@@ -173,12 +173,12 @@ public class VoIPStatusTextView extends FrameLayout {
         view2.setScaleY(f3);
     }
 
-    public class C30961 extends AnimatorListenerAdapter {
+    public class C30971 extends AnimatorListenerAdapter {
         final View val$in;
         final Runnable val$onEnd;
         final View val$out;
 
-        C30961(View view, View view2, Runnable runnable) {
+        C30971(View view, View view2, Runnable runnable) {
             this.val$out = view;
             this.val$in = view2;
             this.val$onEnd = runnable;
@@ -214,7 +214,7 @@ public class VoIPStatusTextView extends FrameLayout {
                     voIPStatusTextView3.replaceViews(textViewArr[0], textViewArr[1], new Runnable() {
                         @Override
                         public final void run() {
-                            VoIPStatusTextView.C30961.this.lambda$onAnimationEnd$0();
+                            VoIPStatusTextView.C30971.this.lambda$onAnimationEnd$0();
                         }
                     });
                 }

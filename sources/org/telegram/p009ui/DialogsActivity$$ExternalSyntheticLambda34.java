@@ -2,10 +2,10 @@ package org.telegram.p009ui;
 
 import android.view.animation.Interpolator;
 
-public final class DialogsActivity$$ExternalSyntheticLambda32 implements Interpolator {
-    public static final DialogsActivity$$ExternalSyntheticLambda32 INSTANCE = new DialogsActivity$$ExternalSyntheticLambda32();
+public final class DialogsActivity$$ExternalSyntheticLambda34 implements Interpolator {
+    public static final DialogsActivity$$ExternalSyntheticLambda34 INSTANCE = new DialogsActivity$$ExternalSyntheticLambda34();
 
-    private DialogsActivity$$ExternalSyntheticLambda32() {
+    private DialogsActivity$$ExternalSyntheticLambda34() {
     }
 
     @Override

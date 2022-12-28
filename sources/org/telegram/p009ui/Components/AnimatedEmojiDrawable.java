@@ -13,6 +13,7 @@ import android.view.animation.OvershootInterpolator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Objects;
 import org.telegram.SQLite.SQLiteCursor;
@@ -386,7 +387,7 @@ public class AnimatedEmojiDrawable extends Drawable {
 
     public void lambda$new$0(TLRPC$Document tLRPC$Document) {
         this.document = tLRPC$Document;
-        initDocument();
+        initDocument(false);
     }
 
     public AnimatedEmojiDrawable(int i, int i2, long j, String str) {
@@ -405,7 +406,7 @@ public class AnimatedEmojiDrawable extends Drawable {
 
     public void lambda$new$1(TLRPC$Document tLRPC$Document) {
         this.document = tLRPC$Document;
-        initDocument();
+        initDocument(false);
     }
 
     public AnimatedEmojiDrawable(int i, int i2, TLRPC$Document tLRPC$Document) {
@@ -413,7 +414,7 @@ public class AnimatedEmojiDrawable extends Drawable {
         this.currentAccount = i2;
         this.document = tLRPC$Document;
         updateSize();
-        initDocument();
+        initDocument(false);
     }
 
     private void updateSize() {
@@ -438,8 +439,8 @@ public class AnimatedEmojiDrawable extends Drawable {
         return this.document;
     }
 
-    private void initDocument() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.AnimatedEmojiDrawable.initDocument():void");
+    private void initDocument(boolean r33) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.AnimatedEmojiDrawable.initDocument(boolean):void");
     }
 
     void invalidate() {
@@ -1030,6 +1031,21 @@ public class AnimatedEmojiDrawable extends Drawable {
                     ((View) this.parentView.getParent()).invalidate();
                 } else {
                     this.parentView.invalidate();
+                }
+            }
+        }
+    }
+
+    public static void lightModeChanged() {
+        for (HashMap<Long, AnimatedEmojiDrawable> hashMap : globalEmojiCache.values()) {
+            Iterator it = new ArrayList(hashMap.keySet()).iterator();
+            while (it.hasNext()) {
+                Long l = (Long) it.next();
+                AnimatedEmojiDrawable animatedEmojiDrawable = hashMap.get(l);
+                if (animatedEmojiDrawable.attached) {
+                    animatedEmojiDrawable.initDocument(true);
+                } else {
+                    hashMap.remove(l);
                 }
             }
         }

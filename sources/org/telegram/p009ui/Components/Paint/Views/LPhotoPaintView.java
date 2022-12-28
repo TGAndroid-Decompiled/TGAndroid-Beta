@@ -480,7 +480,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
             @Override
             protected void onDraw(android.graphics.Canvas r14) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Paint.Views.LPhotoPaintView.C25096.onDraw(android.graphics.Canvas):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Paint.Views.LPhotoPaintView.C25106.onDraw(android.graphics.Canvas):void");
             }
         };
         this.entitiesView = entitiesContainerView;
@@ -2264,6 +2264,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
     @Override
     public List<TLRPC$InputDocument> getMasks() {
+        AnimatedEmojiSpan[] animatedEmojiSpanArr;
         int childCount = this.entitiesView.getChildCount();
         ArrayList arrayList = null;
         for (int i = 0; i < childCount; i++) {
@@ -2282,6 +2283,32 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     tLRPC$TL_inputDocument.file_reference = new byte[0];
                 }
                 arrayList.add(tLRPC$TL_inputDocument);
+            } else if (childAt instanceof TextPaintView) {
+                CharSequence text = ((TextPaintView) childAt).getText();
+                if ((text instanceof Spanned) && (animatedEmojiSpanArr = (AnimatedEmojiSpan[]) ((Spanned) text).getSpans(0, text.length(), AnimatedEmojiSpan.class)) != null) {
+                    for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
+                        if (animatedEmojiSpan != null) {
+                            TLRPC$Document tLRPC$Document = animatedEmojiSpan.document;
+                            if (tLRPC$Document == null) {
+                                tLRPC$Document = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpan.getDocumentId());
+                            }
+                            if (tLRPC$Document != null) {
+                                if (arrayList == null) {
+                                    arrayList = new ArrayList();
+                                }
+                                TLRPC$TL_inputDocument tLRPC$TL_inputDocument2 = new TLRPC$TL_inputDocument();
+                                tLRPC$TL_inputDocument2.f873id = tLRPC$Document.f865id;
+                                tLRPC$TL_inputDocument2.access_hash = tLRPC$Document.access_hash;
+                                byte[] bArr2 = tLRPC$Document.file_reference;
+                                tLRPC$TL_inputDocument2.file_reference = bArr2;
+                                if (bArr2 == null) {
+                                    tLRPC$TL_inputDocument2.file_reference = new byte[0];
+                                }
+                                arrayList.add(tLRPC$TL_inputDocument2);
+                            }
+                        }
+                    }
+                }
             }
         }
         return arrayList;
@@ -3573,11 +3600,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         if (AndroidUtilities.isTablet()) {
             this.emojiView.setForseMultiwindowLayout(true);
         }
-        this.emojiView.setDelegate(new C250420());
+        this.emojiView.setDelegate(new C250520());
         addView(this.emojiView);
     }
 
-    public class C250420 implements EmojiView.EmojiViewDelegate {
+    public class C250520 implements EmojiView.EmojiViewDelegate {
         @Override
         public boolean canSchedule() {
             return EmojiView.EmojiViewDelegate.CC.$default$canSchedule(this);
@@ -3682,7 +3709,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             EmojiView.EmojiViewDelegate.CC.$default$showTrendingStickersAlert(this, trendingStickersLayout);
         }
 
-        C250420() {
+        C250520() {
         }
 
         @Override
@@ -3750,7 +3777,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             builder.setPositiveButton(LocaleController.getString("ClearButton", C1072R.string.ClearButton), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    LPhotoPaintView.C250420.this.lambda$onClearEmojiRecent$0(dialogInterface, i);
+                    LPhotoPaintView.C250520.this.lambda$onClearEmojiRecent$0(dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);

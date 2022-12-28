@@ -136,6 +136,7 @@ import org.telegram.p009ui.ActionBar.BottomSheet;
 import org.telegram.p009ui.ActionBar.INavigationLayout;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Cells.TextDetailSettingsCell;
+import org.telegram.p009ui.ChatActivity;
 import org.telegram.p009ui.Components.BackgroundGradientDrawable;
 import org.telegram.p009ui.Components.CubicBezierInterpolator;
 import org.telegram.p009ui.Components.ForegroundColorSpanThemable;
@@ -148,6 +149,7 @@ import org.telegram.p009ui.Components.RecyclerListView;
 import org.telegram.p009ui.Components.ShareAlert;
 import org.telegram.p009ui.Components.TypefaceSpan;
 import org.telegram.p009ui.Components.URLSpanReplacement;
+import org.telegram.p009ui.LaunchActivity;
 import org.telegram.p009ui.ThemePreviewActivity;
 import org.telegram.p009ui.WallpapersListActivity;
 import org.telegram.tgnet.ConnectionsManager;
@@ -3201,7 +3203,7 @@ public class AndroidUtilities {
         return i < 26 || i >= 28 || (!((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).isPowerSaveMode() && Settings.Global.getFloat(ApplicationLoader.applicationContext.getContentResolver(), "animator_duration_scale", 1.0f) > 0.0f);
     }
 
-    public static void showProxyAlert(Activity activity, final String str, final String str2, final String str3, final String str4, final String str5) {
+    public static void showProxyAlert(final Activity activity, final String str, final String str2, final String str3, final String str4, final String str5) {
         String str6;
         BottomSheet.Builder builder = new BottomSheet.Builder(activity);
         final Runnable dismissRunnable = builder.getDismissRunnable();
@@ -3271,13 +3273,13 @@ public class AndroidUtilities {
         pickerBottomLayout.doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                AndroidUtilities.lambda$showProxyAlert$12(str, str2, str5, str4, str3, dismissRunnable, view2);
+                AndroidUtilities.lambda$showProxyAlert$12(str, str2, str5, str4, str3, activity, dismissRunnable, view2);
             }
         });
         builder.show();
     }
 
-    public static void lambda$showProxyAlert$12(String str, String str2, String str3, String str4, String str5, Runnable runnable, View view) {
+    public static void lambda$showProxyAlert$12(String str, String str2, String str3, String str4, String str5, Activity activity, Runnable runnable, View view) {
         SharedConfig.ProxyInfo proxyInfo;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("proxy_enabled", true);
@@ -3307,6 +3309,16 @@ public class AndroidUtilities {
         SharedConfig.currentProxy = SharedConfig.addProxy(proxyInfo);
         ConnectionsManager.setProxySettings(true, str, intValue, str5, str4, str3);
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.proxySettingsChanged, new Object[0]);
+        if (activity instanceof LaunchActivity) {
+            BaseFragment lastFragment = ((LaunchActivity) activity).getActionBarLayout().getLastFragment();
+            if (lastFragment instanceof ChatActivity) {
+                ((ChatActivity) lastFragment).getUndoView().showWithAction(0L, 87, (Runnable) null);
+            } else {
+                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 6, LocaleController.getString(C1072R.string.ProxyAddedSuccess));
+            }
+        } else {
+            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 6, LocaleController.getString(C1072R.string.ProxyAddedSuccess));
+        }
         runnable.run();
     }
 

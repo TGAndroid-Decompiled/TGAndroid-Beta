@@ -77,14 +77,14 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         Adapter adapter = new Adapter();
         this.adapter = adapter;
         recyclerListView.setAdapter(adapter);
-        this.recyclerListView.setOnItemClickListener(new C42172());
+        this.recyclerListView.setOnItemClickListener(new C42202());
         frameLayout.addView(this.recyclerListView);
         frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
         return this.fragmentView;
     }
 
-    public class C42172 implements RecyclerListView.OnItemClickListener {
-        C42172() {
+    public class C42202 implements RecyclerListView.OnItemClickListener {
+        C42202() {
         }
 
         @Override
@@ -98,7 +98,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 topicsFragment.setOnTopicSelectedListener(new TopicsFragment.OnTopicSelectedListener() {
                     @Override
                     public final void onTopicSelected(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
-                        TopicsNotifySettingsFragments.C42172.this.lambda$onItemClick$1(tLRPC$TL_forumTopic);
+                        TopicsNotifySettingsFragments.C42202.this.lambda$onItemClick$1(tLRPC$TL_forumTopic);
                     }
                 });
                 TopicsNotifySettingsFragments.this.presentFragment(topicsFragment);
@@ -110,7 +110,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 bundle2.putInt("topic_id", tLRPC$TL_forumTopic.f910id);
                 bundle2.putBoolean("exception", false);
                 ProfileNotificationsActivity profileNotificationsActivity = new ProfileNotificationsActivity(bundle2);
-                profileNotificationsActivity.setDelegate(new C42181(tLRPC$TL_forumTopic));
+                profileNotificationsActivity.setDelegate(new C42211(tLRPC$TL_forumTopic));
                 TopicsNotifySettingsFragments.this.presentFragment(profileNotificationsActivity);
             }
             if (TopicsNotifySettingsFragments.this.items.get(i).viewType == 4) {
@@ -120,7 +120,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 builder.setPositiveButton(LocaleController.getString("Delete", C1072R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
-                        TopicsNotifySettingsFragments.C42172.this.lambda$onItemClick$2(dialogInterface, i2);
+                        TopicsNotifySettingsFragments.C42202.this.lambda$onItemClick$2(dialogInterface, i2);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
@@ -142,7 +142,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             profileNotificationsActivity.setDelegate(new ProfileNotificationsActivity.ProfileNotificationsActivityDelegate() {
                 @Override
                 public final void didCreateNewException(NotificationsSettingsActivity.NotificationException notificationException) {
-                    TopicsNotifySettingsFragments.C42172.this.lambda$onItemClick$0(tLRPC$TL_forumTopic, notificationException);
+                    TopicsNotifySettingsFragments.C42202.this.lambda$onItemClick$0(tLRPC$TL_forumTopic, notificationException);
                 }
 
                 @Override
@@ -158,14 +158,14 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             TopicsNotifySettingsFragments.this.updateRows();
         }
 
-        public class C42181 implements ProfileNotificationsActivity.ProfileNotificationsActivityDelegate {
+        public class C42211 implements ProfileNotificationsActivity.ProfileNotificationsActivityDelegate {
             final TLRPC$TL_forumTopic val$topic;
 
             @Override
             public void didCreateNewException(NotificationsSettingsActivity.NotificationException notificationException) {
             }
 
-            C42181(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+            C42211(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                 this.val$topic = tLRPC$TL_forumTopic;
             }
 
@@ -176,7 +176,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        TopicsNotifySettingsFragments.C42172.C42181.this.lambda$didRemoveException$0(tLRPC$TL_forumTopic);
+                        TopicsNotifySettingsFragments.C42202.C42211.this.lambda$didRemoveException$0(tLRPC$TL_forumTopic);
                     }
                 }, 300L);
             }

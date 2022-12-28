@@ -203,7 +203,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         private BasePhotoProvider() {
         }
 
-        BasePhotoProvider(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, C20781 c20781) {
+        BasePhotoProvider(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, C20791 c20791) {
             this();
         }
 
@@ -320,13 +320,13 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    public class C20781 extends BasePhotoProvider {
+    public class C20791 extends BasePhotoProvider {
         @Override
         public boolean cancelButtonPressed() {
             return false;
         }
 
-        C20781() {
+        C20791() {
             super(ChatAttachAlertPhotoLayout.this, null);
         }
 
@@ -347,7 +347,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertPhotoLayout.C20781.this.lambda$onClose$0();
+                    ChatAttachAlertPhotoLayout.C20791.this.lambda$onClose$0();
                 }
             }, 150L);
         }
@@ -558,7 +558,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.itemsPerRow = 3;
         this.loading = true;
         this.animationIndex = -1;
-        this.photoViewerProvider = new C20781();
+        this.photoViewerProvider = new C20791();
         this.forceDarkTheme = z;
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.albumsDidLoad);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.cameraInitied);
@@ -878,7 +878,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         ShutterButton shutterButton = new ShutterButton(context);
         this.shutterButton = shutterButton;
         this.cameraPanel.addView(shutterButton, LayoutHelper.createFrame(84, 84, 17));
-        this.shutterButton.setDelegate(new C207910(container));
+        this.shutterButton.setDelegate(new C208010(container));
         this.shutterButton.setFocusable(true);
         this.shutterButton.setContentDescription(LocaleController.getString("AccDescrShutter", C1072R.string.AccDescrShutter));
         ImageView imageView = new ImageView(context);
@@ -1085,12 +1085,12 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         showZoomControls(true, true);
     }
 
-    public class C207910 implements ShutterButton.ShutterButtonDelegate {
+    public class C208010 implements ShutterButton.ShutterButtonDelegate {
         private File outputFile;
         final FrameLayout val$container;
         private boolean zoomingWas;
 
-        C207910(FrameLayout frameLayout) {
+        C208010(FrameLayout frameLayout) {
             this.val$container = frameLayout;
         }
 
@@ -1118,19 +1118,19 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                         ChatAttachAlertPhotoLayout.this.videoRecordRunnable = new Runnable() {
                             @Override
                             public final void run() {
-                                ChatAttachAlertPhotoLayout.C207910.this.lambda$shutterLongPressed$0();
+                                ChatAttachAlertPhotoLayout.C208010.this.lambda$shutterLongPressed$0();
                             }
                         };
                         AndroidUtilities.lockOrientation(ChatAttachAlertPhotoLayout.this.parentAlert.baseFragment.getParentActivity());
                         CameraController.getInstance().recordVideo(ChatAttachAlertPhotoLayout.this.cameraView.getCameraSession(), this.outputFile, ChatAttachAlertPhotoLayout.this.parentAlert.avatarPicker != 0, new CameraController.VideoTakeCallback() {
                             @Override
                             public final void onFinishVideoRecording(String str, long j) {
-                                ChatAttachAlertPhotoLayout.C207910.this.lambda$shutterLongPressed$1(str, j);
+                                ChatAttachAlertPhotoLayout.C208010.this.lambda$shutterLongPressed$1(str, j);
                             }
                         }, new Runnable() {
                             @Override
                             public final void run() {
-                                ChatAttachAlertPhotoLayout.C207910.this.lambda$shutterLongPressed$2();
+                                ChatAttachAlertPhotoLayout.C208010.this.lambda$shutterLongPressed$2();
                             }
                         }, ChatAttachAlertPhotoLayout.this.cameraView);
                         ChatAttachAlertPhotoLayout.this.shutterButton.setState(ShutterButton.State.RECORDING, true);
@@ -1249,7 +1249,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             ChatAttachAlertPhotoLayout.this.takingPhoto = CameraController.getInstance().takePicture(generatePicturePath, ChatAttachAlertPhotoLayout.this.cameraView.getCameraSession(), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertPhotoLayout.C207910.this.lambda$shutterReleased$3(generatePicturePath, isSameTakePictureOrientation);
+                    ChatAttachAlertPhotoLayout.C208010.this.lambda$shutterReleased$3(generatePicturePath, isSameTakePictureOrientation);
                 }
             });
             ChatAttachAlertPhotoLayout.this.cameraView.startTakePictureAnimation();
@@ -1653,12 +1653,12 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             if (this.parentAlert.getAvatarFor() != null && photoEntry != null) {
                 this.parentAlert.getAvatarFor().isVideo = photoEntry.isVideo;
             }
-            PhotoViewer.getInstance().openPhotoForSelect(allPhotosArray, size, i, false, new C208415(z), chatActivity);
+            PhotoViewer.getInstance().openPhotoForSelect(allPhotosArray, size, i, false, new C208515(z), chatActivity);
             PhotoViewer.getInstance().setAvatarFor(this.parentAlert.getAvatarFor());
         }
     }
 
-    public class C208415 extends BasePhotoProvider {
+    public class C208515 extends BasePhotoProvider {
         final boolean val$sameTakePictureOrientation;
 
         @Override
@@ -1671,7 +1671,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             return null;
         }
 
-        C208415(boolean z) {
+        C208515(boolean z) {
             super(ChatAttachAlertPhotoLayout.this, null);
             this.val$sameTakePictureOrientation = z;
         }
@@ -1692,7 +1692,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatAttachAlertPhotoLayout.C208415.this.lambda$cancelButtonPressed$0();
+                        ChatAttachAlertPhotoLayout.C208515.this.lambda$cancelButtonPressed$0();
                     }
                 }, 1000L);
                 ChatAttachAlertPhotoLayout.this.zoomControlView.setZoom(0.0f, false);

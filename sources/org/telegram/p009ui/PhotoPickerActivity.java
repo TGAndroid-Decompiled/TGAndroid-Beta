@@ -549,7 +549,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             addItem.addSubItem(2, C1072R.C1073drawable.msg_openin, LocaleController.getString("OpenInExternalApp", C1072R.string.OpenInExternalApp));
         }
         if (this.selectedAlbum == null) {
-            ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, C1072R.C1073drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new C37504());
+            ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, C1072R.C1073drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new C37514());
             this.searchItem = actionBarMenuItemSearchListener;
             EditTextBoldCursor searchField = actionBarMenuItemSearchListener.getSearchField();
             searchField.setTextColor(Theme.getColor(this.textKey));
@@ -564,9 +564,9 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 this.searchItem.setSearchFieldHint(LocaleController.getString("SearchGifsTitle", C1072R.string.SearchGifsTitle));
             }
         }
-        C37515 c37515 = new C37515(context);
-        this.sizeNotifierFrameLayout = c37515;
-        c37515.setBackgroundColor(Theme.getColor(this.dialogBackgroundKey));
+        C37525 c37525 = new C37525(context);
+        this.sizeNotifierFrameLayout = c37525;
+        c37525.setBackgroundColor(Theme.getColor(this.dialogBackgroundKey));
         this.fragmentView = this.sizeNotifierFrameLayout;
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
@@ -848,11 +848,11 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         return this.fragmentView;
     }
 
-    public class C37504 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
+    public class C37514 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
         Runnable updateSearch = new Runnable() {
             @Override
             public final void run() {
-                PhotoPickerActivity.C37504.this.lambda$$0();
+                PhotoPickerActivity.C37514.this.lambda$$0();
             }
         };
 
@@ -860,7 +860,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         public void onSearchExpand() {
         }
 
-        C37504() {
+        C37514() {
         }
 
         @Override
@@ -901,12 +901,12 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public class C37515 extends SizeNotifierFrameLayout {
+    public class C37525 extends SizeNotifierFrameLayout {
         private boolean ignoreLayout;
         private int lastItemSize;
         private int lastNotifyWidth;
 
-        C37515(Context context) {
+        C37525(Context context) {
             super(context);
         }
 
@@ -931,7 +931,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PhotoPickerActivity.C37515.this.lambda$onMeasure$0();
+                        PhotoPickerActivity.C37525.this.lambda$onMeasure$0();
                     }
                 });
             }
@@ -949,12 +949,12 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
 
         private void onMeasureInternal(int r13, int r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerActivity.C37515.onMeasureInternal(int, int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerActivity.C37525.onMeasureInternal(int, int):void");
         }
 
         @Override
         public void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerActivity.C37515.onLayout(boolean, int, int, int, int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerActivity.C37525.onLayout(boolean, int, int, int, int):void");
         }
 
         @Override

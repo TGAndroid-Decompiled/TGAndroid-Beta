@@ -174,11 +174,11 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         cellFlickerDrawable.setColors(i, 153, 204);
         BackupImageView backupImageView = new BackupImageView(context) {
             {
-                this.imageReceiver = new C18461(this);
+                this.imageReceiver = new C18471(this);
             }
 
-            public class C18461 extends ImageReceiver {
-                C18461(View view) {
+            public class C18471 extends ImageReceiver {
+                C18471(View view) {
                     super(view);
                 }
 
@@ -189,7 +189,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                     duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            BotWebViewContainer.C18451.C18461.this.lambda$setImageBitmapByKey$0(valueAnimator);
+                            BotWebViewContainer.C18461.C18471.this.lambda$setImageBitmapByKey$0(valueAnimator);
                         }
                     });
                     duration.start();
@@ -197,7 +197,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                 }
 
                 public void lambda$setImageBitmapByKey$0(ValueAnimator valueAnimator) {
-                    C18451.this.imageReceiver.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                    C18461.this.imageReceiver.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                     invalidate();
                 }
             }
@@ -339,7 +339,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                 BotWebViewContainer.this.setPageLoaded(str);
             }
         });
-        this.webView.setWebChromeClient(new C18494());
+        this.webView.setWebChromeClient(new C18504());
         this.webView.setAlpha(0.0f);
         addView(this.webView);
         if (Build.VERSION.SDK_INT >= 17) {
@@ -347,10 +347,10 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         }
     }
 
-    public class C18494 extends WebChromeClient {
+    public class C18504 extends WebChromeClient {
         private Dialog lastPermissionsDialog;
 
-        C18494() {
+        C18504() {
         }
 
         @Override
@@ -388,7 +388,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                 Dialog createWebViewPermissionsRequestDialog = AlertsCreator.createWebViewPermissionsRequestDialog(BotWebViewContainer.this.parentActivity, BotWebViewContainer.this.resourcesProvider, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, C1072R.raw.permission_request_location, LocaleController.formatString(C1072R.string.BotWebViewRequestGeolocationPermission, UserObject.getUserName(BotWebViewContainer.this.botUser)), LocaleController.formatString(C1072R.string.BotWebViewRequestGeolocationPermissionWithHint, UserObject.getUserName(BotWebViewContainer.this.botUser)), new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        BotWebViewContainer.C18494.this.lambda$onGeolocationPermissionsShowPrompt$1(callback, str, (Boolean) obj);
+                        BotWebViewContainer.C18504.this.lambda$onGeolocationPermissionsShowPrompt$1(callback, str, (Boolean) obj);
                     }
                 });
                 this.lastPermissionsDialog = createWebViewPermissionsRequestDialog;
@@ -405,7 +405,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                     BotWebViewContainer.this.runWithPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            BotWebViewContainer.C18494.this.lambda$onGeolocationPermissionsShowPrompt$0(callback, str, (Boolean) obj);
+                            BotWebViewContainer.C18504.this.lambda$onGeolocationPermissionsShowPrompt$0(callback, str, (Boolean) obj);
                         }
                     });
                 } else {
@@ -449,7 +449,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                     Dialog createWebViewPermissionsRequestDialog = AlertsCreator.createWebViewPermissionsRequestDialog(BotWebViewContainer.this.parentActivity, BotWebViewContainer.this.resourcesProvider, new String[]{"android.permission.CAMERA"}, C1072R.raw.permission_request_camera, LocaleController.formatString(C1072R.string.BotWebViewRequestCameraPermission, UserObject.getUserName(BotWebViewContainer.this.botUser)), LocaleController.formatString(C1072R.string.BotWebViewRequestCameraPermissionWithHint, UserObject.getUserName(BotWebViewContainer.this.botUser)), new Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            BotWebViewContainer.C18494.this.lambda$onPermissionRequest$5(permissionRequest, str, (Boolean) obj);
+                            BotWebViewContainer.C18504.this.lambda$onPermissionRequest$5(permissionRequest, str, (Boolean) obj);
                         }
                     });
                     this.lastPermissionsDialog = createWebViewPermissionsRequestDialog;
@@ -458,7 +458,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                     Dialog createWebViewPermissionsRequestDialog2 = AlertsCreator.createWebViewPermissionsRequestDialog(BotWebViewContainer.this.parentActivity, BotWebViewContainer.this.resourcesProvider, new String[]{"android.permission.RECORD_AUDIO"}, C1072R.raw.permission_request_microphone, LocaleController.formatString(C1072R.string.BotWebViewRequestMicrophonePermission, UserObject.getUserName(BotWebViewContainer.this.botUser)), LocaleController.formatString(C1072R.string.BotWebViewRequestMicrophonePermissionWithHint, UserObject.getUserName(BotWebViewContainer.this.botUser)), new Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            BotWebViewContainer.C18494.this.lambda$onPermissionRequest$3(permissionRequest, str, (Boolean) obj);
+                            BotWebViewContainer.C18504.this.lambda$onPermissionRequest$3(permissionRequest, str, (Boolean) obj);
                         }
                     });
                     this.lastPermissionsDialog = createWebViewPermissionsRequestDialog2;
@@ -474,7 +474,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                     BotWebViewContainer.this.runWithPermissions(new String[]{"android.permission.RECORD_AUDIO"}, new Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            BotWebViewContainer.C18494.this.lambda$onPermissionRequest$2(permissionRequest, str, (Boolean) obj);
+                            BotWebViewContainer.C18504.this.lambda$onPermissionRequest$2(permissionRequest, str, (Boolean) obj);
                         }
                     });
                 } else {
@@ -499,7 +499,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                     BotWebViewContainer.this.runWithPermissions(new String[]{"android.permission.CAMERA"}, new Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            BotWebViewContainer.C18494.this.lambda$onPermissionRequest$4(permissionRequest, str, (Boolean) obj);
+                            BotWebViewContainer.C18504.this.lambda$onPermissionRequest$4(permissionRequest, str, (Boolean) obj);
                         }
                     });
                 } else {

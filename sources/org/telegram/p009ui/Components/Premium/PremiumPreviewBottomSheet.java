@@ -813,7 +813,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 PremiumPreviewBottomSheet.this.lambda$onCustomOpenAnimation$7(valueAnimator);
             }
         });
-        this.enterAnimator.addListener(new C26384());
+        this.enterAnimator.addListener(new C26394());
         this.enterAnimator.setDuration(600L);
         this.enterAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.enterAnimator.start();
@@ -825,8 +825,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this.container.invalidate();
     }
 
-    public class C26384 extends AnimatorListenerAdapter {
-        C26384() {
+    public class C26394 extends AnimatorListenerAdapter {
+        C26394() {
         }
 
         @Override
@@ -840,7 +840,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PremiumPreviewBottomSheet.C26384.this.lambda$onAnimationEnd$0(rightDrawable, valueAnimator);
+                    PremiumPreviewBottomSheet.C26394.this.lambda$onAnimationEnd$0(rightDrawable, valueAnimator);
                 }
             });
             ofInt.start();

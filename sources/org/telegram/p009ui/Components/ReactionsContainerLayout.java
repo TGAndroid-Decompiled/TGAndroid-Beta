@@ -294,9 +294,9 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         });
         recyclerListView.setLayoutManager(this.linearLayoutManager);
         recyclerListView.setOverScrollMode(2);
-        C26945 c26945 = new C26945(context);
-        this.listAdapter = c26945;
-        recyclerListView.setAdapter(c26945);
+        C26955 c26955 = new C26955(context);
+        this.listAdapter = c26955;
+        recyclerListView.setAdapter(c26955);
         recyclerListView.addOnScrollListener(new LeftRightShadowsListener());
         recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -362,7 +362,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         MediaDataController.getInstance(i).preloadDefaultReactions();
     }
 
-    public class C26945 extends AdapterWithDiffUtils {
+    public class C26955 extends AdapterWithDiffUtils {
         ArrayList<InnerItem> items = new ArrayList<>();
         ArrayList<InnerItem> oldItems = new ArrayList<>();
         final Context val$context;
@@ -372,7 +372,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             return false;
         }
 
-        C26945(Context context) {
+        C26955(Context context) {
             this.val$context = context;
         }
 
@@ -392,7 +392,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 ReactionsContainerLayout.this.premiumLockIconView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ReactionsContainerLayout.C26945.this.lambda$onCreateViewHolder$0(view2);
+                        ReactionsContainerLayout.C26955.this.lambda$onCreateViewHolder$0(view2);
                     }
                 });
                 view = ReactionsContainerLayout.this.premiumLockContainer;
@@ -411,7 +411,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 ReactionsContainerLayout.this.customEmojiReactionsIconView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        ReactionsContainerLayout.C26945.this.lambda$onCreateViewHolder$1(view2);
+                        ReactionsContainerLayout.C26955.this.lambda$onCreateViewHolder$1(view2);
                     }
                 });
                 view = ReactionsContainerLayout.this.customReactionsContainer;
@@ -471,7 +471,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         class InnerItem extends AdapterWithDiffUtils.Item {
             ReactionsLayoutInBubble.VisibleReaction reaction;
 
-            public InnerItem(C26945 c26945, int i, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+            public InnerItem(C26955 c26955, int i, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
                 super(i, false);
                 this.reaction = visibleReaction;
             }
@@ -1276,7 +1276,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 }
             };
             this.touchable = true;
-            this.enterImageView = new C27022(context, ReactionsContainerLayout.this);
+            this.enterImageView = new C27032(context, ReactionsContainerLayout.this);
             this.loopImageView = new BackupImageView(context);
             this.enterImageView.getImageReceiver().setAutoRepeat(0);
             this.enterImageView.getImageReceiver().setAllowStartLottieAnimation(false);
@@ -1295,8 +1295,8 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             this.pressedBackupImageView.setLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
         }
 
-        public class C27022 extends BackupImageView {
-            C27022(Context context, ReactionsContainerLayout reactionsContainerLayout) {
+        public class C27032 extends BackupImageView {
+            C27032(Context context, ReactionsContainerLayout reactionsContainerLayout) {
                 super(context);
             }
 
@@ -1315,7 +1315,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ReactionsContainerLayout.ReactionHolderView.C27022.this.lambda$dispatchDraw$0();
+                            ReactionsContainerLayout.ReactionHolderView.C27032.this.lambda$dispatchDraw$0();
                         }
                     });
                 }

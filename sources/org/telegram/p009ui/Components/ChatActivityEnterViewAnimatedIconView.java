@@ -67,7 +67,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
             setAnimation(rLottieDrawable2);
             AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda2(rLottieDrawable2));
         }
-        int i = C19712.f1042x9047a843[state.ordinal()];
+        int i = C19722.f1042x9047a843[state.ordinal()];
         if (i == 1) {
             setContentDescription(LocaleController.getString("AccDescrVoiceMessage", C1072R.string.AccDescrVoiceMessage));
         } else if (i != 2) {
@@ -80,7 +80,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         this.animatingState = null;
     }
 
-    public static class C19712 {
+    public static class C19722 {
         static final int[] f1042x9047a843;
 
         static {

@@ -1,7 +1,7 @@
 package org.telegram.messenger;
 
 import java.util.Comparator;
-import org.telegram.tgnet.TLRPC$Updates;
+import org.telegram.messenger.MessagesController;
 
 public final class MessagesController$$ExternalSyntheticLambda235 implements Comparator {
     public static final MessagesController$$ExternalSyntheticLambda235 INSTANCE = new MessagesController$$ExternalSyntheticLambda235();
@@ -11,8 +11,8 @@ public final class MessagesController$$ExternalSyntheticLambda235 implements Com
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        int lambda$processUpdatesQueue$272;
-        lambda$processUpdatesQueue$272 = MessagesController.lambda$processUpdatesQueue$272((TLRPC$Updates) obj, (TLRPC$Updates) obj2);
-        return lambda$processUpdatesQueue$272;
+        int lambda$processLoadedDialogFilters$17;
+        lambda$processLoadedDialogFilters$17 = MessagesController.lambda$processLoadedDialogFilters$17((MessagesController.DialogFilter) obj, (MessagesController.DialogFilter) obj2);
+        return lambda$processLoadedDialogFilters$17;
     }
 }

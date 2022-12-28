@@ -609,7 +609,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
                     }
                 });
                 ofFloat.setDuration(300L).setInterpolator(CubicBezierInterpolator.DEFAULT);
-                ofFloat.addListener(new C30953(z));
+                ofFloat.addListener(new C30963(z));
                 ofFloat.start();
                 VoIPPiPView.this.expandAnimator = ofFloat;
             }
@@ -672,10 +672,10 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
             }
         }
 
-        public class C30953 extends AnimatorListenerAdapter {
+        public class C30963 extends AnimatorListenerAdapter {
             final boolean val$expanded;
 
-            C30953(boolean z) {
+            C30963(boolean z) {
                 this.val$expanded = z;
             }
 
@@ -691,7 +691,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        VoIPPiPView.FloatingView.C30953.this.lambda$onAnimationEnd$0(z);
+                        VoIPPiPView.FloatingView.C30963.this.lambda$onAnimationEnd$0(z);
                     }
                 }, 64L);
             }

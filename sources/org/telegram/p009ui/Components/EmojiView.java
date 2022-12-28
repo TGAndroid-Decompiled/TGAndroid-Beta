@@ -1021,11 +1021,11 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         public void lambda$sendEmoji$1() {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", UserConfig.getInstance(EmojiView.this.currentAccount).getClientUserId());
-            EmojiView.this.fragment.presentFragment(new C22811(this, bundle));
+            EmojiView.this.fragment.presentFragment(new C22821(this, bundle));
         }
 
-        public class C22811 extends ChatActivity {
-            C22811(ImageViewEmoji imageViewEmoji, Bundle bundle) {
+        public class C22821 extends ChatActivity {
+            C22821(ImageViewEmoji imageViewEmoji, Bundle bundle) {
                 super(bundle);
             }
 
@@ -1040,7 +1040,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 this.chatActivityEnterView.postDelayed(new Runnable() {
                     @Override
                     public final void run() {
-                        EmojiView.ImageViewEmoji.C22811.this.lambda$onTransitionAnimationEnd$0();
+                        EmojiView.ImageViewEmoji.C22821.this.lambda$onTransitionAnimationEnd$0();
                     }
                 }, 100L);
             }
@@ -1515,7 +1515,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
             @Override
             public boolean onItemClick(android.view.View r18, int r19) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.EmojiView.C22644.onItemClick(android.view.View, int):boolean");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.EmojiView.C22654.onItemClick(android.view.View, int):boolean");
             }
         });
         this.emojiGridView.setInstantClick(true);
@@ -1530,7 +1530,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 try {
                     LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(recyclerView.getContext(), 2) {
                         {
-                            C22655.this = this;
+                            C22665.this = this;
                         }
 
                         @Override
@@ -1652,7 +1652,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
             @Override
             protected boolean onTabClick(int r10) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.EmojiView.C22709.onTabClick(int):boolean");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.EmojiView.C22719.onTabClick(int):boolean");
             }
 
             @Override
@@ -1970,9 +1970,9 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             SearchField searchField3 = new SearchField(context, 0);
             this.stickersSearchField = searchField3;
             this.stickersContainer.addView(searchField3, new FrameLayout.LayoutParams(-1, this.searchFieldHeight + AndroidUtilities.getShadowHeight()));
-            C224017 c224017 = new C224017(context, resourcesProvider2);
-            this.stickersTab = c224017;
-            c224017.setDragEnabled(true);
+            C224117 c224117 = new C224117(context, resourcesProvider2);
+            this.stickersTab = c224117;
+            c224117.setDragEnabled(true);
             this.stickersTab.setWillNotDraw(false);
             this.stickersTab.setType(ScrollSlidingTabStrip.Type.TAB);
             this.stickersTab.setUnderlineHeight(AndroidUtilities.getShadowHeight());
@@ -2444,11 +2444,11 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
     }
 
-    public class C224017 extends DraggableScrollSlidingTabStrip {
+    public class C224117 extends DraggableScrollSlidingTabStrip {
         public static void lambda$sendReorder$1(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         }
 
-        C224017(Context context, Theme.ResourcesProvider resourcesProvider) {
+        C224117(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
             EmojiView.this = r1;
         }
@@ -2473,7 +2473,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 @Override
                 public final int compare(Object obj, Object obj2) {
                     int lambda$stickerSetPositionChanged$0;
-                    lambda$stickerSetPositionChanged$0 = EmojiView.C224017.this.lambda$stickerSetPositionChanged$0((TLRPC$TL_messages_stickerSet) obj, (TLRPC$TL_messages_stickerSet) obj2);
+                    lambda$stickerSetPositionChanged$0 = EmojiView.C224117.this.lambda$stickerSetPositionChanged$0((TLRPC$TL_messages_stickerSet) obj, (TLRPC$TL_messages_stickerSet) obj2);
                     return lambda$stickerSetPositionChanged$0;
                 }
             });
@@ -5605,13 +5605,13 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         this.mediaBanTooltip.setVisibility(0);
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(ObjectAnimator.ofFloat(this.mediaBanTooltip, View.ALPHA, 0.0f, 1.0f));
-        animatorSet.addListener(new C226237());
+        animatorSet.addListener(new C226337());
         animatorSet.setDuration(300L);
         animatorSet.start();
     }
 
-    public class C226237 extends AnimatorListenerAdapter {
-        C226237() {
+    public class C226337 extends AnimatorListenerAdapter {
+        C226337() {
             EmojiView.this = r1;
         }
 
@@ -5620,7 +5620,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    EmojiView.C226237.this.lambda$onAnimationEnd$0();
+                    EmojiView.C226337.this.lambda$onAnimationEnd$0();
                 }
             }, 5000L);
         }
@@ -5633,7 +5633,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             animatorSet.playTogether(ObjectAnimator.ofFloat(EmojiView.this.mediaBanTooltip, View.ALPHA, 0.0f));
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 {
-                    C226237.this = this;
+                    C226337.this = this;
                 }
 
                 @Override
@@ -7151,17 +7151,17 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                         textView4.setTextColor(EmojiView.this.getThemedColor("dialogTextLink"));
                         textView4.setGravity(LocaleController.isRTL ? 5 : 3);
                         linearLayout.addView(textView4, LayoutHelper.createLinear(-2, -2, 51, 0, 18, 0, 16));
-                        textView4.setOnClickListener(new View$OnClickListenerC22771(zArr, builder));
+                        textView4.setOnClickListener(new View$OnClickListenerC22781(zArr, builder));
                         builder.setCustomView(linearLayout);
                         builder.show();
                     }
 
-                    public class View$OnClickListenerC22771 implements View.OnClickListener {
+                    public class View$OnClickListenerC22781 implements View.OnClickListener {
                         final BottomSheet.Builder val$builder;
                         final boolean[] val$loadingUrl;
 
-                        View$OnClickListenerC22771(boolean[] zArr, BottomSheet.Builder builder) {
-                            View$OnClickListenerC22762.this = r1;
+                        View$OnClickListenerC22781(boolean[] zArr, BottomSheet.Builder builder) {
+                            View$OnClickListenerC22772.this = r1;
                             this.val$loadingUrl = zArr;
                             this.val$builder = builder;
                         }
@@ -7187,13 +7187,13 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                             final int sendRequest = connectionsManager.sendRequest(tLRPC$TL_messages_getEmojiURL, new RequestDelegate() {
                                 @Override
                                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                    EmojiView.EmojiSearchAdapter.View$OnClickListenerC22762.View$OnClickListenerC22771.this.lambda$onClick$1(alertDialogArr, builder, tLObject, tLRPC$TL_error);
+                                    EmojiView.EmojiSearchAdapter.View$OnClickListenerC22772.View$OnClickListenerC22781.this.lambda$onClick$1(alertDialogArr, builder, tLObject, tLRPC$TL_error);
                                 }
                             });
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    EmojiView.EmojiSearchAdapter.View$OnClickListenerC22762.View$OnClickListenerC22771.this.lambda$onClick$3(alertDialogArr, sendRequest);
+                                    EmojiView.EmojiSearchAdapter.View$OnClickListenerC22772.View$OnClickListenerC22781.this.lambda$onClick$3(alertDialogArr, sendRequest);
                                 }
                             }, 1000L);
                         }
@@ -7202,7 +7202,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    EmojiView.EmojiSearchAdapter.View$OnClickListenerC22762.View$OnClickListenerC22771.this.lambda$onClick$0(alertDialogArr, tLObject, builder);
+                                    EmojiView.EmojiSearchAdapter.View$OnClickListenerC22772.View$OnClickListenerC22781.this.lambda$onClick$0(alertDialogArr, tLObject, builder);
                                 }
                             });
                         }
@@ -7226,7 +7226,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                             alertDialogArr[0].setOnCancelListener(new DialogInterface.OnCancelListener() {
                                 @Override
                                 public final void onCancel(DialogInterface dialogInterface) {
-                                    EmojiView.EmojiSearchAdapter.View$OnClickListenerC22762.View$OnClickListenerC22771.this.lambda$onClick$2(i, dialogInterface);
+                                    EmojiView.EmojiSearchAdapter.View$OnClickListenerC22772.View$OnClickListenerC22781.this.lambda$onClick$2(i, dialogInterface);
                                 }
                             });
                             alertDialogArr[0].show();
@@ -7290,7 +7290,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     EmojiView.this.lastSearchKeyboardLanguage = currentKeyboardLanguage;
                     MediaDataController.getInstance(EmojiView.this.currentAccount).getEmojiSuggestions(EmojiView.this.lastSearchKeyboardLanguage, EmojiSearchAdapter.this.lastSearchEmojiString, false, new MediaDataController.KeywordResultCallback() {
                         {
-                            RunnableC22783.this = this;
+                            RunnableC22793.this = this;
                         }
 
                         @Override
@@ -8072,7 +8072,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         private HashMap<ArrayList<TLRPC$Document>, String> emojiStickers = new HashMap<>();
         private ArrayList<ArrayList<TLRPC$Document>> emojiArrays = new ArrayList<>();
         private SparseArray<TLRPC$StickerSetCovered> positionsToSets = new SparseArray<>();
-        private Runnable searchRunnable = new RunnableC22891();
+        private Runnable searchRunnable = new RunnableC22901();
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
@@ -8085,8 +8085,8 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             return i;
         }
 
-        public class RunnableC22891 implements Runnable {
-            RunnableC22891() {
+        public class RunnableC22901 implements Runnable {
+            RunnableC22901() {
                 StickersSearchGridAdapter.this = r1;
             }
 
@@ -8106,7 +8106,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
             @Override
             public void run() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.EmojiView.StickersSearchGridAdapter.RunnableC22891.run():void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.EmojiView.StickersSearchGridAdapter.RunnableC22901.run():void");
             }
 
             public void lambda$run$1(final TLRPC$TL_messages_searchStickerSets tLRPC$TL_messages_searchStickerSets, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -8114,7 +8114,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            EmojiView.StickersSearchGridAdapter.RunnableC22891.this.lambda$run$0(tLRPC$TL_messages_searchStickerSets, tLObject);
+                            EmojiView.StickersSearchGridAdapter.RunnableC22901.this.lambda$run$0(tLRPC$TL_messages_searchStickerSets, tLObject);
                         }
                     });
                 }
@@ -8137,7 +8137,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        EmojiView.StickersSearchGridAdapter.RunnableC22891.this.lambda$run$2(tLRPC$TL_messages_getStickers, tLObject, arrayList, longSparseArray);
+                        EmojiView.StickersSearchGridAdapter.RunnableC22901.this.lambda$run$2(tLRPC$TL_messages_getStickers, tLObject, arrayList, longSparseArray);
                     }
                 });
             }

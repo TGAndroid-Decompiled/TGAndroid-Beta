@@ -9,9 +9,7 @@ public final class AlertsCreator$$ExternalSyntheticLambda117 implements NumberPi
     }
 
     @Override
-    public final String format(int i) {
-        String lambda$createSoundFrequencyPickerDialog$74;
-        lambda$createSoundFrequencyPickerDialog$74 = AlertsCreator.lambda$createSoundFrequencyPickerDialog$74(i);
-        return lambda$createSoundFrequencyPickerDialog$74;
+    public final java.lang.String format(int r1) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.AlertsCreator$$ExternalSyntheticLambda117.format(int):java.lang.String");
     }
 }

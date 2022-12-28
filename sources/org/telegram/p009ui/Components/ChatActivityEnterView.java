@@ -1569,10 +1569,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.captionLimitView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.captionLimitView.setCenterAlign(true);
         addView(this.captionLimitView, LayoutHelper.createFrame(48, 20.0f, 85, 3.0f, 0.0f, 0.0f, 48.0f));
-        C190112 c190112 = new C190112(activity, resourcesProvider, resourcesProvider, chatActivity, activity);
-        this.messageEditText = c190112;
+        C190212 c190212 = new C190212(activity, resourcesProvider, resourcesProvider, chatActivity, activity);
+        this.messageEditText = c190212;
         if (i3 >= 28) {
-            c190112.setFallbackLineSpacing(false);
+            c190212.setFallbackLineSpacing(false);
         }
         this.messageEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
             @Override
@@ -1678,7 +1678,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 }
             }
         });
-        this.messageEditText.addTextChangedListener(new C190615());
+        this.messageEditText.addTextChangedListener(new C190715());
         if (z) {
             if (this.parentFragment != null) {
                 Drawable mutate = activity.getResources().getDrawable(C1072R.C1073drawable.input_calendar1).mutate();
@@ -1744,7 +1744,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             BotCommandsMenuView.BotCommandsAdapter botCommandsAdapter = new BotCommandsMenuView.BotCommandsAdapter();
             this.botCommandsAdapter = botCommandsAdapter;
             recyclerListView.setAdapter(botCommandsAdapter);
-            this.botCommandsMenuContainer.listView.setOnItemClickListener(new C190917(resourcesProvider, chatActivity));
+            this.botCommandsMenuContainer.listView.setOnItemClickListener(new C191017(resourcesProvider, chatActivity));
             this.botCommandsMenuContainer.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
                 {
                     ChatActivityEnterView.this = this;
@@ -2384,12 +2384,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         openKeyboardInternal();
     }
 
-    public class C190112 extends EditTextCaption {
+    public class C190212 extends EditTextCaption {
         final Activity val$context;
         final ChatActivity val$fragment;
         final Theme.ResourcesProvider val$resourcesProvider;
 
-        C190112(Context context, Theme.ResourcesProvider resourcesProvider, Theme.ResourcesProvider resourcesProvider2, ChatActivity chatActivity, Activity activity) {
+        C190212(Context context, Theme.ResourcesProvider resourcesProvider, Theme.ResourcesProvider resourcesProvider2, ChatActivity chatActivity, Activity activity) {
             super(context, resourcesProvider);
             ChatActivityEnterView.this = r1;
             this.val$resourcesProvider = resourcesProvider2;
@@ -2443,7 +2443,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     @Override
                     public final boolean onCommitContent(InputContentInfoCompat inputContentInfoCompat, int i, Bundle bundle) {
                         boolean lambda$onCreateInputConnection$1;
-                        lambda$onCreateInputConnection$1 = ChatActivityEnterView.C190112.this.lambda$onCreateInputConnection$1(resourcesProvider, inputContentInfoCompat, i, bundle);
+                        lambda$onCreateInputConnection$1 = ChatActivityEnterView.C190212.this.lambda$onCreateInputConnection$1(resourcesProvider, inputContentInfoCompat, i, bundle);
                         return lambda$onCreateInputConnection$1;
                     }
                 });
@@ -2466,7 +2466,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     AlertsCreator.createScheduleDatePickerDialog(ChatActivityEnterView.this.parentActivity, ChatActivityEnterView.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
                         public final void didSelectDate(boolean z, int i2) {
-                            ChatActivityEnterView.C190112.this.lambda$onCreateInputConnection$0(inputContentInfoCompat, z, i2);
+                            ChatActivityEnterView.C190212.this.lambda$onCreateInputConnection$0(inputContentInfoCompat, z, i2);
                         }
                     }, resourcesProvider);
                 } else {
@@ -2496,7 +2496,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                ChatActivityEnterView.C190112.this.lambda$onTouchEvent$2();
+                                ChatActivityEnterView.C190212.this.lambda$onTouchEvent$2();
                             }
                         }, 200L);
                     }
@@ -2575,7 +2575,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.C190112.this.lambda$editPhoto$4(activity, uri, generatePicturePath);
+                    ChatActivityEnterView.C190212.this.lambda$editPhoto$4(activity, uri, generatePicturePath);
                 }
             });
         }
@@ -2599,7 +2599,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                ChatActivityEnterView.C190112.this.lambda$editPhoto$3(arrayList, file);
+                                ChatActivityEnterView.C190212.this.lambda$editPhoto$3(arrayList, file);
                             }
                         });
                         return;
@@ -2623,7 +2623,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     }
 
                     {
-                        C190112.this = this;
+                        C190212.this = this;
                     }
 
                     @Override
@@ -2676,12 +2676,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             AndroidUtilities.hideKeyboard(ChatActivityEnterView.this.messageEditText);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 {
-                    C190112.this = this;
+                    C190212.this = this;
                 }
 
                 @Override
                 public void run() {
-                    C190112.this.lambda$editPhoto$3(arrayList, file);
+                    C190212.this.lambda$editPhoto$3(arrayList, file);
                 }
             }, 100L);
         }
@@ -2700,14 +2700,14 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class C190615 implements TextWatcher {
+    public class C190715 implements TextWatcher {
         boolean heightShouldBeChanged;
         private boolean ignorePrevTextChange;
         private boolean nextChangeIsSend;
         private CharSequence prevText;
         private boolean processChange;
 
-        C190615() {
+        C190715() {
             ChatActivityEnterView.this = r1;
         }
 
@@ -2775,7 +2775,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         @Override
         public void afterTextChanged(android.text.Editable r11) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ChatActivityEnterView.C190615.afterTextChanged(android.text.Editable):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ChatActivityEnterView.C190715.afterTextChanged(android.text.Editable):void");
         }
 
         public void lambda$afterTextChanged$0(ValueAnimator valueAnimator) {
@@ -2828,11 +2828,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    public class C190917 implements RecyclerListView.OnItemClickListener {
+    public class C191017 implements RecyclerListView.OnItemClickListener {
         final ChatActivity val$fragment;
         final Theme.ResourcesProvider val$resourcesProvider;
 
-        C190917(Theme.ResourcesProvider resourcesProvider, ChatActivity chatActivity) {
+        C191017(Theme.ResourcesProvider resourcesProvider, ChatActivity chatActivity) {
             ChatActivityEnterView.this = r1;
             this.val$resourcesProvider = resourcesProvider;
             this.val$fragment = chatActivity;
@@ -2849,7 +2849,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     AlertsCreator.createScheduleDatePickerDialog(ChatActivityEnterView.this.parentActivity, ChatActivityEnterView.this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
                         public final void didSelectDate(boolean z, int i2) {
-                            ChatActivityEnterView.C190917.this.lambda$onItemClick$0(command, z, i2);
+                            ChatActivityEnterView.C191017.this.lambda$onItemClick$0(command, z, i2);
                         }
                     }, this.val$resourcesProvider);
                     return;
@@ -3137,7 +3137,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         simpleAvatarView.setPivotY(0.0f);
         simpleAvatarView.setScaleX(0.75f);
         simpleAvatarView.setScaleY(0.75f);
-        simpleAvatarView.getViewTreeObserver().addOnDrawListener(new ViewTreeObserver$OnDrawListenerC191522(this, simpleAvatarView, senderView));
+        simpleAvatarView.getViewTreeObserver().addOnDrawListener(new ViewTreeObserver$OnDrawListenerC191622(this, simpleAvatarView, senderView));
         dialog.show();
         this.senderSelectView.setScaleX(1.0f);
         this.senderSelectView.setScaleY(1.0f);
@@ -3174,11 +3174,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }), new SpringAnimation(simpleAvatarView, viewProperty).setSpring(new SpringForce(m36dp3).setStiffness(1000.0f).setDampingRatio(1.0f)), new SpringAnimation(simpleAvatarView, viewProperty2).setSpring(new SpringForce(m36dp3).setStiffness(1000.0f).setDampingRatio(1.0f)));
     }
 
-    public class ViewTreeObserver$OnDrawListenerC191522 implements ViewTreeObserver.OnDrawListener {
+    public class ViewTreeObserver$OnDrawListenerC191622 implements ViewTreeObserver.OnDrawListener {
         final SimpleAvatarView val$avatar;
         final SenderSelectPopup.SenderView val$senderView;
 
-        ViewTreeObserver$OnDrawListenerC191522(ChatActivityEnterView chatActivityEnterView, SimpleAvatarView simpleAvatarView, SenderSelectPopup.SenderView senderView) {
+        ViewTreeObserver$OnDrawListenerC191622(ChatActivityEnterView chatActivityEnterView, SimpleAvatarView simpleAvatarView, SenderSelectPopup.SenderView senderView) {
             this.val$avatar = simpleAvatarView;
             this.val$senderView = senderView;
         }
@@ -3190,7 +3190,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             simpleAvatarView.post(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.ViewTreeObserver$OnDrawListenerC191522.this.lambda$onDraw$0(simpleAvatarView, senderView);
+                    ChatActivityEnterView.ViewTreeObserver$OnDrawListenerC191622.this.lambda$onDraw$0(simpleAvatarView, senderView);
                 }
             });
         }
@@ -6996,7 +6996,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         emojiView2.setAllow(this.allowStickers, this.allowGifs, true);
         this.emojiView.setVisibility(8);
         this.emojiView.setShowing(false);
-        this.emojiView.setDelegate(new C195357());
+        this.emojiView.setDelegate(new C195457());
         this.emojiView.setDragListener(new EmojiView.DragListener() {
             int initialOffset;
             boolean wasExpanded;
@@ -7078,8 +7078,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         checkChannelRights();
     }
 
-    public class C195357 implements EmojiView.EmojiViewDelegate {
-        C195357() {
+    public class C195457 implements EmojiView.EmojiViewDelegate {
+        C195457() {
             ChatActivityEnterView.this = r1;
         }
 
@@ -7124,7 +7124,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.C195357.this.lambda$onCustomEmojiSelected$0(str, tLRPC$Document, j, z);
+                    ChatActivityEnterView.C195457.this.lambda$onCustomEmojiSelected$0(str, tLRPC$Document, j, z);
                 }
             });
         }
@@ -7263,7 +7263,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             AlertsCreator.createScheduleDatePickerDialog(ChatActivityEnterView.this.parentActivity, ChatActivityEnterView.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z2, int i2) {
-                    ChatActivityEnterView.C195357.this.lambda$onGifSelected$1(view, obj, str, obj2, z2, i2);
+                    ChatActivityEnterView.C195457.this.lambda$onGifSelected$1(view, obj, str, obj2, z2, i2);
                 }
             }, ChatActivityEnterView.this.resourcesProvider);
         }
@@ -7286,7 +7286,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             builder.setPositiveButton(LocaleController.getString("ClearButton", C1072R.string.ClearForAll), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    ChatActivityEnterView.C195357.this.lambda$onClearEmojiRecent$2(dialogInterface, i);
+                    ChatActivityEnterView.C195457.this.lambda$onClearEmojiRecent$2(dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);
@@ -7388,7 +7388,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
             ChatActivityEnterView.this.trendingStickersAlert = new TrendingStickersAlert(ChatActivityEnterView.this.parentActivity, ChatActivityEnterView.this.parentFragment, trendingStickersLayout, ChatActivityEnterView.this.resourcesProvider) {
                 {
-                    C195357.this = this;
+                    C195457.this = this;
                 }
 
                 @Override

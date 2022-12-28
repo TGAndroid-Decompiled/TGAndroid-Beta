@@ -540,13 +540,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ChatUsersActivity.lambda$createView$5(android.content.Context, android.view.View, int):void");
     }
 
-    public class C17358 implements ChatUsersActivityDelegate {
+    public class C17368 implements ChatUsersActivityDelegate {
         @Override
         public void didKickParticipant(long j) {
             ChatUsersActivityDelegate.CC.$default$didKickParticipant(this, j);
         }
 
-        C17358() {
+        C17368() {
         }
 
         @Override
@@ -574,7 +574,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatUsersActivity.C17358.this.lambda$didSelectUser$0(user);
+                        ChatUsersActivity.C17368.this.lambda$didSelectUser$0(user);
                     }
                 }, 200L);
             }
@@ -601,10 +601,10 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public class C17369 implements GroupCreateActivity.ContactsAddActivityDelegate {
+    public class C17379 implements GroupCreateActivity.ContactsAddActivityDelegate {
         final Context val$context;
 
-        C17369(Context context) {
+        C17379(Context context) {
             this.val$context = context;
         }
 
@@ -617,7 +617,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatUsersActivity.C17369.lambda$didSelectUsers$0(arrayList2, size, context);
+                    ChatUsersActivity.C17379.lambda$didSelectUsers$0(arrayList2, size, context);
                 }
             };
             for (int i2 = 0; i2 < size; i2++) {
@@ -625,13 +625,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 ChatUsersActivity.this.getMessagesController().addUserToChat(ChatUsersActivity.this.chatId, tLRPC$User, i, null, ChatUsersActivity.this, false, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatUsersActivity.C17369.this.lambda$didSelectUsers$1(iArr, size, arrayList2, runnable, tLRPC$User);
+                        ChatUsersActivity.C17379.this.lambda$didSelectUsers$1(iArr, size, arrayList2, runnable, tLRPC$User);
                     }
                 }, new MessagesController.ErrorDelegate() {
                     @Override
                     public final boolean run(TLRPC$TL_error tLRPC$TL_error) {
                         boolean lambda$didSelectUsers$2;
-                        lambda$didSelectUsers$2 = ChatUsersActivity.C17369.lambda$didSelectUsers$2(iArr, arrayList2, tLRPC$User, size, runnable, tLRPC$TL_error);
+                        lambda$didSelectUsers$2 = ChatUsersActivity.C17379.lambda$didSelectUsers$2(iArr, arrayList2, tLRPC$User, size, runnable, tLRPC$TL_error);
                         return lambda$didSelectUsers$2;
                     }
                 });
@@ -767,12 +767,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         BulletinFactory.m14of(this).createSimpleBulletin(C1072R.raw.error, LocaleController.getString("UnknownError", C1072R.string.UnknownError)).show();
     }
 
-    public class DialogC171910 extends GigagroupConvertAlert {
+    public class DialogC172010 extends GigagroupConvertAlert {
         @Override
         protected void onCancel() {
         }
 
-        DialogC171910(Context context, BaseFragment baseFragment) {
+        DialogC172010(Context context, BaseFragment baseFragment) {
             super(context, baseFragment);
         }
 
@@ -781,7 +781,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             ChatUsersActivity.this.getMessagesController().convertToGigaGroup(ChatUsersActivity.this.getParentActivity(), ChatUsersActivity.this.currentChat, ChatUsersActivity.this, new MessagesStorage.BooleanCallback() {
                 @Override
                 public final void run(boolean z) {
-                    ChatUsersActivity.DialogC171910.this.lambda$onCovert$0(z);
+                    ChatUsersActivity.DialogC172010.this.lambda$onCovert$0(z);
                 }
             });
         }

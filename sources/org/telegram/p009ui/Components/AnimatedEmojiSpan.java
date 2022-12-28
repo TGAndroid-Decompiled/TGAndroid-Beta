@@ -21,6 +21,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.p009ui.ActionBar.Theme;
 import org.telegram.p009ui.Components.spoilers.SpoilerEffect;
@@ -690,7 +691,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
 
         private void checkBackgroundRendering() {
             DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable;
-            if (this.allowBackgroundRendering && this.holders.size() >= 10 && this.backgroundThreadDrawable == null) {
+            if (this.allowBackgroundRendering && this.holders.size() >= 10 && this.backgroundThreadDrawable == null && !SharedConfig.getLightMode().enabled()) {
                 DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable2 = new DrawingInBackgroundThreadDrawable() {
                     private final ArrayList<AnimatedEmojiHolder> backgroundHolders = new ArrayList<>();
 

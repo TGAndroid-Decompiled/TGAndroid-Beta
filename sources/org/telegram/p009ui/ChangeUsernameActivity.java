@@ -226,7 +226,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         itemTouchHelper.attachToRecyclerView(this.listView);
         ((FrameLayout) this.fragmentView).addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.fragmentView.setOnTouchListener(ChangeUsernameActivity$$ExternalSyntheticLambda1.INSTANCE);
-        this.listView.setOnItemClickListener(new C14863());
+        this.listView.setOnItemClickListener(new C14873());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -236,8 +236,8 @@ public class ChangeUsernameActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public class C14863 implements RecyclerListView.OnItemClickListener {
-        C14863() {
+    public class C14873 implements RecyclerListView.OnItemClickListener {
+        C14873() {
         }
 
         @Override
@@ -286,7 +286,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 message.setPositiveButton(LocaleController.getString(str3, i4), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i5) {
-                        ChangeUsernameActivity.C14863.this.lambda$onItemClick$3(tLRPC$TL_username, i, view, dialogInterface, i5);
+                        ChangeUsernameActivity.C14873.this.lambda$onItemClick$3(tLRPC$TL_username, i, view, dialogInterface, i5);
                     }
                 }).setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), ChangeUsernameActivity$3$$ExternalSyntheticLambda2.INSTANCE).show();
             } else if (view instanceof InputCell) {
@@ -302,7 +302,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             ChangeUsernameActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_account_toggleUsername, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChangeUsernameActivity.C14863.this.lambda$onItemClick$2(tLRPC$TL_account_toggleUsername, i, tLRPC$TL_username, z, tLObject, tLRPC$TL_error);
+                    ChangeUsernameActivity.C14873.this.lambda$onItemClick$2(tLRPC$TL_account_toggleUsername, i, tLRPC$TL_username, z, tLObject, tLRPC$TL_error);
                 }
             });
             ChangeUsernameActivity.this.loadingUsernames.add(tLRPC$TL_username.username);
@@ -313,7 +313,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChangeUsernameActivity.C14863.this.lambda$onItemClick$1(tLRPC$TL_account_toggleUsername, tLObject, i, tLRPC$TL_error, tLRPC$TL_username, z);
+                    ChangeUsernameActivity.C14873.this.lambda$onItemClick$1(tLRPC$TL_account_toggleUsername, tLObject, i, tLRPC$TL_error, tLRPC$TL_username, z);
                 }
             });
         }
@@ -329,7 +329,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 new AlertDialog.Builder(ChangeUsernameActivity.this.getContext(), ChangeUsernameActivity.this.getResourceProvider()).setTitle(LocaleController.getString("UsernameActivateErrorTitle", C1072R.string.UsernameActivateErrorTitle)).setMessage(LocaleController.getString("UsernameActivateErrorMessage", C1072R.string.UsernameActivateErrorMessage)).setPositiveButton(LocaleController.getString("OK", C1072R.string.OK), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
-                        ChangeUsernameActivity.C14863.this.lambda$onItemClick$0(tLRPC$TL_username, z, dialogInterface, i2);
+                        ChangeUsernameActivity.C14873.this.lambda$onItemClick$0(tLRPC$TL_username, z, dialogInterface, i2);
                     }
                 }).show();
             } else {

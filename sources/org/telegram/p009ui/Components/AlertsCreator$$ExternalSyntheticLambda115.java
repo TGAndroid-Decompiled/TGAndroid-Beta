@@ -9,9 +9,7 @@ public final class AlertsCreator$$ExternalSyntheticLambda115 implements NumberPi
     }
 
     @Override
-    public final String format(int i) {
-        String lambda$createDatePickerDialog$43;
-        lambda$createDatePickerDialog$43 = AlertsCreator.lambda$createDatePickerDialog$43(i);
-        return lambda$createDatePickerDialog$43;
+    public final java.lang.String format(int r1) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.AlertsCreator$$ExternalSyntheticLambda115.format(int):java.lang.String");
     }
 }

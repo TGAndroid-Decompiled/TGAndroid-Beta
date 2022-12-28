@@ -188,7 +188,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
 
             @Override
             protected void onSizeChanged(int r26, int r27, int r28, int r29) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.voip.PrivateVideoPreviewDialog.C30673.onSizeChanged(int, int, int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.voip.PrivateVideoPreviewDialog.C30683.onSizeChanged(int, int, int, int):void");
             }
 
             @Override

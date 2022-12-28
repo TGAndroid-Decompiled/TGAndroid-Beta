@@ -1570,7 +1570,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         private HashMap<TLRPC$TL_messages_stickerSet, Integer> localPacksByName = new HashMap<>();
         private HashMap<ArrayList<TLRPC$Document>, String> emojiStickers = new HashMap<>();
         private ArrayList<ArrayList<TLRPC$Document>> emojiArrays = new ArrayList<>();
-        private Runnable searchRunnable = new RunnableC28911();
+        private Runnable searchRunnable = new RunnableC28921();
 
         static int access$5604(StickersSearchGridAdapter stickersSearchGridAdapter) {
             int i = stickersSearchGridAdapter.emojiSearchId + 1;
@@ -1578,8 +1578,8 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
             return i;
         }
 
-        public class RunnableC28911 implements Runnable {
-            RunnableC28911() {
+        public class RunnableC28921 implements Runnable {
+            RunnableC28921() {
             }
 
             private void clear() {
@@ -1597,7 +1597,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
 
             @Override
             public void run() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.StickerMasksAlert.StickersSearchGridAdapter.RunnableC28911.run():void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.StickerMasksAlert.StickersSearchGridAdapter.RunnableC28921.run():void");
             }
 
             public void lambda$run$0(int i, HashMap hashMap, ArrayList arrayList, String str) {
@@ -1633,7 +1633,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StickerMasksAlert.StickersSearchGridAdapter.RunnableC28911.this.lambda$run$1(tLRPC$TL_messages_getStickers, tLObject, arrayList, longSparseArray);
+                        StickerMasksAlert.StickersSearchGridAdapter.RunnableC28921.this.lambda$run$1(tLRPC$TL_messages_getStickers, tLObject, arrayList, longSparseArray);
                     }
                 });
             }

@@ -12,6 +12,6 @@ public final class MessagesController$$ExternalSyntheticLambda363 implements Req
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        MessagesController.lambda$hidePeerSettingsBar$59(tLObject, tLRPC$TL_error);
+        MessagesController.lambda$installTheme$101(tLObject, tLRPC$TL_error);
     }
 }

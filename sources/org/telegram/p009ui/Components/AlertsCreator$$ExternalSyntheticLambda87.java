@@ -4,10 +4,10 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 
-public final class AlertsCreator$$ExternalSyntheticLambda86 implements TextView.OnEditorActionListener {
-    public static final AlertsCreator$$ExternalSyntheticLambda86 INSTANCE = new AlertsCreator$$ExternalSyntheticLambda86();
+public final class AlertsCreator$$ExternalSyntheticLambda87 implements TextView.OnEditorActionListener {
+    public static final AlertsCreator$$ExternalSyntheticLambda87 INSTANCE = new AlertsCreator$$ExternalSyntheticLambda87();
 
-    private AlertsCreator$$ExternalSyntheticLambda86() {
+    private AlertsCreator$$ExternalSyntheticLambda87() {
     }
 
     @Override

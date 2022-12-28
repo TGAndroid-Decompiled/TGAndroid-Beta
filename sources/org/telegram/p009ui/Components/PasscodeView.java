@@ -530,7 +530,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 return lambda$new$0;
             }
         });
-        this.passwordEditText.addTextChangedListener(new C25252());
+        this.passwordEditText.addTextChangedListener(new C25262());
         this.passwordEditText.setCustomSelectionActionModeCallback(new ActionMode.Callback(this) {
             @Override
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
@@ -719,12 +719,12 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         return false;
     }
 
-    public class C25252 implements TextWatcher {
+    public class C25262 implements TextWatcher {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         }
 
-        C25252() {
+        C25262() {
         }
 
         @Override
@@ -753,7 +753,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     PasscodeView.this.backgroundSpringQueue.offer(new Runnable() {
                         @Override
                         public final void run() {
-                            PasscodeView.C25252.this.lambda$beforeTextChanged$0(z, motionBackgroundDrawable);
+                            PasscodeView.C25262.this.lambda$beforeTextChanged$0(z, motionBackgroundDrawable);
                         }
                     });
                     PasscodeView.this.backgroundSpringNextQueue.offer(Boolean.valueOf(z));
@@ -1465,7 +1465,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.passwordEditText2.eraseAllCharacters(false);
         if (z2) {
             setAlpha(0.0f);
-            getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver$OnGlobalLayoutListenerC25329(i, i2, runnable));
+            getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver$OnGlobalLayoutListenerC25339(i, i2, runnable));
             requestLayout();
         } else {
             setAlpha(1.0f);
@@ -1480,12 +1480,12 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         setOnTouchListener(PasscodeView$$ExternalSyntheticLambda5.INSTANCE);
     }
 
-    public class ViewTreeObserver$OnGlobalLayoutListenerC25329 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public class ViewTreeObserver$OnGlobalLayoutListenerC25339 implements ViewTreeObserver.OnGlobalLayoutListener {
         final Runnable val$onShow;
         final int val$x;
         final int val$y;
 
-        ViewTreeObserver$OnGlobalLayoutListenerC25329(int i, int i2, Runnable runnable) {
+        ViewTreeObserver$OnGlobalLayoutListenerC25339(int i, int i2, Runnable runnable) {
             this.val$x = i;
             this.val$y = i2;
             this.val$onShow = runnable;
@@ -1507,7 +1507,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PasscodeView.ViewTreeObserver$OnGlobalLayoutListenerC25329.this.lambda$onGlobalLayout$0();
+                    PasscodeView.ViewTreeObserver$OnGlobalLayoutListenerC25339.this.lambda$onGlobalLayout$0();
                 }
             }, 350L);
             AnimatorSet animatorSet2 = new AnimatorSet();
@@ -1623,7 +1623,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PasscodeView.ViewTreeObserver$OnGlobalLayoutListenerC25329.this.lambda$onGlobalLayout$1(max, valueAnimator);
+                        PasscodeView.ViewTreeObserver$OnGlobalLayoutListenerC25339.this.lambda$onGlobalLayout$1(max, valueAnimator);
                     }
                 });
                 animatorSet2.setInterpolator(Easings.easeInOutQuad);
@@ -1633,7 +1633,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             animatorSet2.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    Runnable runnable = ViewTreeObserver$OnGlobalLayoutListenerC25329.this.val$onShow;
+                    Runnable runnable = ViewTreeObserver$OnGlobalLayoutListenerC25339.this.val$onShow;
                     if (runnable != null) {
                         runnable.run();
                     }

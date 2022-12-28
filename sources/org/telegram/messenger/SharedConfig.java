@@ -12,8 +12,10 @@ import android.webkit.WebView;
 import androidx.core.content.p001pm.ShortcutManagerCompat;
 import java.io.File;
 import java.io.RandomAccessFile;
+import java.io.UnsupportedEncodingException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,6 +23,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import org.json.JSONObject;
 import org.telegram.messenger.CacheByChatsController;
+import org.telegram.p009ui.Components.AnimatedEmojiDrawable;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
@@ -78,6 +81,7 @@ public class SharedConfig {
     public static long lastUpdateCheckTime = 0;
     public static String lastUpdateVersion = null;
     public static long lastUptimeMillis = 0;
+    public static LightMode lightMode = null;
     public static int lockRecordAudioVideoHint = 0;
     public static boolean loopStickers = false;
     public static int mediaColumnsCount = 0;
@@ -147,6 +151,13 @@ public class SharedConfig {
     public @interface PerformanceClass {
     }
 
+    public static LightMode getLightMode() {
+        if (lightMode == null) {
+            lightMode = new LightMode();
+        }
+        return lightMode;
+    }
+
     static {
         chatBubbles = Build.VERSION.SDK_INT >= 30;
         autoplayGifs = true;
@@ -206,6 +217,31 @@ public class SharedConfig {
             if (str4 == null) {
                 this.secret = "";
             }
+        }
+
+        public String getLink() {
+            StringBuilder sb = new StringBuilder(!TextUtils.isEmpty(this.secret) ? "https://t.me/proxy?" : "https://t.me/socks?");
+            try {
+                sb.append("server=");
+                sb.append(URLEncoder.encode(this.address, "UTF-8"));
+                sb.append("&");
+                sb.append("port=");
+                sb.append(this.port);
+                if (!TextUtils.isEmpty(this.username)) {
+                    sb.append("&user=");
+                    sb.append(URLEncoder.encode(this.username, "UTF-8"));
+                }
+                if (!TextUtils.isEmpty(this.password)) {
+                    sb.append("&pass=");
+                    sb.append(URLEncoder.encode(this.password, "UTF-8"));
+                }
+                if (!TextUtils.isEmpty(this.secret)) {
+                    sb.append("&secret=");
+                    sb.append(URLEncoder.encode(this.secret, "UTF-8"));
+                }
+            } catch (UnsupportedEncodingException unused) {
+            }
+            return sb.toString();
         }
     }
 
@@ -1223,6 +1259,36 @@ public class SharedConfig {
         private FileInfoInternal(File file) {
             this.file = file;
             this.lastUsageDate = Utilities.getLastUsageFileTime(file.getAbsolutePath());
+        }
+    }
+
+    public static class LightMode {
+        private boolean enabled;
+
+        LightMode() {
+            loadPreference();
+        }
+
+        public boolean enabled() {
+            return this.enabled;
+        }
+
+        public void toggleMode() {
+            this.enabled = !this.enabled;
+            savePreference();
+            AnimatedEmojiDrawable.lightModeChanged();
+        }
+
+        private void loadPreference() {
+            this.enabled = (MessagesController.getGlobalMainSettings().getInt("light_mode", 0) & 1) != 0;
+        }
+
+        public void savePreference() {
+            MessagesController.getGlobalMainSettings().edit().putInt("light_mode", this.enabled ? 1 : 0).apply();
+        }
+
+        public boolean animatedEmojiEnabled() {
+            return !this.enabled;
         }
     }
 }

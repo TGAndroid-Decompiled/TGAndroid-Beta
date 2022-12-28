@@ -121,15 +121,15 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         return false;
     }
 
-    public class C36191 extends TextView {
+    public class C36201 extends TextView {
         final NotificationCenter.NotificationCenterDelegate delegate;
 
-        C36191(NewContactBottomSheet newContactBottomSheet, Context context) {
+        C36201(NewContactBottomSheet newContactBottomSheet, Context context) {
             super(context);
             this.delegate = new NotificationCenter.NotificationCenterDelegate() {
                 @Override
                 public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                    NewContactBottomSheet.C36191.this.lambda$$0(i, i2, objArr);
+                    NewContactBottomSheet.C36201.this.lambda$$0(i, i2, objArr);
                 }
             };
         }
@@ -151,8 +151,8 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
     }
 
-    public class C36202 implements CountrySelectActivity.CountrySelectActivityDelegate {
-        C36202() {
+    public class C36212 implements CountrySelectActivity.CountrySelectActivityDelegate {
+        C36212() {
         }
 
         @Override
@@ -161,7 +161,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NewContactBottomSheet.C36202.this.lambda$didSelectCountry$0();
+                    NewContactBottomSheet.C36212.this.lambda$didSelectCountry$0();
                 }
             }, 300L);
             NewContactBottomSheet.this.phoneField.requestFocus();
@@ -175,7 +175,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
 
     public void lambda$createView$3(View view) {
         CountrySelectActivity countrySelectActivity = new CountrySelectActivity(true);
-        countrySelectActivity.setCountrySelectActivityDelegate(new C36202());
+        countrySelectActivity.setCountrySelectActivityDelegate(new C36212());
         this.parentFragment.showAsSheet(countrySelectActivity);
     }
 

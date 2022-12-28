@@ -111,7 +111,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         setOpaque(false);
         setRenderer(new GLIconRenderer(context, i));
         initialize(context);
-        GestureDetector gestureDetector = new GestureDetector(context, new GestureDetector$OnGestureListenerC26041());
+        GestureDetector gestureDetector = new GestureDetector(context, new GestureDetector$OnGestureListenerC26051());
         this.gestureDetector = gestureDetector;
         gestureDetector.setIsLongpressEnabled(true);
         for (int i2 = 0; i2 < 5; i2++) {
@@ -120,7 +120,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         Collections.shuffle(this.animationIndexes);
     }
 
-    public class GestureDetector$OnGestureListenerC26041 implements GestureDetector.OnGestureListener {
+    public class GestureDetector$OnGestureListenerC26051 implements GestureDetector.OnGestureListener {
         @Override
         public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
             return false;
@@ -130,7 +130,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         public void onShowPress(MotionEvent motionEvent) {
         }
 
-        GestureDetector$OnGestureListenerC26041() {
+        GestureDetector$OnGestureListenerC26051() {
         }
 
         @Override
@@ -160,7 +160,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GLIconTextureView.GestureDetector$OnGestureListenerC26041.this.lambda$onSingleTapUp$0(nextInt, nextInt2);
+                    GLIconTextureView.GestureDetector$OnGestureListenerC26051.this.lambda$onSingleTapUp$0(nextInt, nextInt2);
                 }
             }, 16L);
             return true;
@@ -304,7 +304,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         private RenderThread() {
         }
 
-        RenderThread(GLIconTextureView gLIconTextureView, GestureDetector$OnGestureListenerC26041 gestureDetector$OnGestureListenerC26041) {
+        RenderThread(GLIconTextureView gLIconTextureView, GestureDetector$OnGestureListenerC26051 gestureDetector$OnGestureListenerC26051) {
             this();
         }
 

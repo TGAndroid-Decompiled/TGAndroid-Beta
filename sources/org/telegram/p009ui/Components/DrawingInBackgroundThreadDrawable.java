@@ -36,7 +36,7 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
     private final Runnable bitmapCreateTask = new Runnable() {
         @Override
         public void run() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.DrawingInBackgroundThreadDrawable.RunnableC21851.run():void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.DrawingInBackgroundThreadDrawable.RunnableC21861.run():void");
         }
     };
     Runnable uiFrameRunnable = new Runnable() {

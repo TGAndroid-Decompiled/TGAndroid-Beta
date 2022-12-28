@@ -433,6 +433,19 @@ public final class BulletinFactory {
         return create(lottieLayout, 1500);
     }
 
+    public Bulletin createSuccessBulletin(CharSequence charSequence) {
+        return createSuccessBulletin(charSequence, null);
+    }
+
+    public Bulletin createSuccessBulletin(CharSequence charSequence, Theme.ResourcesProvider resourcesProvider) {
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), resourcesProvider);
+        lottieLayout.setAnimation(C1072R.raw.contact_check, new String[0]);
+        lottieLayout.textView.setText(charSequence);
+        lottieLayout.textView.setSingleLine(false);
+        lottieLayout.textView.setMaxLines(2);
+        return create(lottieLayout, 1500);
+    }
+
     public Bulletin createCaptionLimitBulletin(int i, final Runnable runnable) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), null);
         lottieLayout.setAnimation(C1072R.raw.caption_limit, new String[0]);

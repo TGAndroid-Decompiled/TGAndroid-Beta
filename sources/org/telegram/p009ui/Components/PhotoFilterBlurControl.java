@@ -177,7 +177,7 @@ public class PhotoFilterBlurControl extends FrameLayout {
         } else {
             int i3 = this.type;
             if (i3 == 0) {
-                int i4 = C25551.f1102xcde84254[this.activeControl.ordinal()];
+                int i4 = C25561.f1102xcde84254[this.activeControl.ordinal()];
                 if (i4 == 1) {
                     float f9 = x - this.pointerStartX;
                     float f10 = y - this.pointerStartY;
@@ -214,7 +214,7 @@ public class PhotoFilterBlurControl extends FrameLayout {
                     this.pointerStartY = y;
                 }
             } else if (i3 == 1) {
-                int i5 = C25551.f1102xcde84254[this.activeControl.ordinal()];
+                int i5 = C25561.f1102xcde84254[this.activeControl.ordinal()];
                 if (i5 == 1) {
                     float f18 = x - this.pointerStartX;
                     float f19 = y - this.pointerStartY;
@@ -247,7 +247,7 @@ public class PhotoFilterBlurControl extends FrameLayout {
         }
     }
 
-    public static class C25551 {
+    public static class C25561 {
         static final int[] f1102xcde84254;
 
         static {

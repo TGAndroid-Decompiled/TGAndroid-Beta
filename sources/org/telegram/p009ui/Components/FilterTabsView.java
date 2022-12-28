@@ -560,9 +560,9 @@ public class FilterTabsView extends FrameLayout {
         };
         this.listView = recyclerListView;
         recyclerListView.setClipChildren(false);
-        C23014 c23014 = new C23014();
-        this.itemAnimator = c23014;
-        c23014.setDelayAnimations(false);
+        C23024 c23024 = new C23024();
+        this.itemAnimator = c23024;
+        c23024.setDelayAnimations(false);
         this.listView.setItemAnimator(this.itemAnimator);
         this.listView.setSelectorType(8);
         this.listView.setSelectorRadius(6);
@@ -647,8 +647,8 @@ public class FilterTabsView extends FrameLayout {
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
     }
 
-    public class C23014 extends DefaultItemAnimator {
-        C23014() {
+    public class C23024 extends DefaultItemAnimator {
+        C23024() {
         }
 
         @Override
@@ -662,7 +662,7 @@ public class FilterTabsView extends FrameLayout {
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        FilterTabsView.C23014.this.lambda$runPendingAnimations$0(valueAnimator);
+                        FilterTabsView.C23024.this.lambda$runPendingAnimations$0(valueAnimator);
                     }
                 });
                 ofFloat.setDuration(getMoveDuration());
@@ -725,7 +725,7 @@ public class FilterTabsView extends FrameLayout {
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            FilterTabsView.C23014.lambda$animateMoveImpl$1(FilterTabsView.TabView.this, valueAnimator2);
+                            FilterTabsView.C23024.lambda$animateMoveImpl$1(FilterTabsView.TabView.this, valueAnimator2);
                         }
                     });
                     ofFloat.addListener(new AnimatorListenerAdapter(this) {

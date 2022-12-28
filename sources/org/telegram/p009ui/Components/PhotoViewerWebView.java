@@ -292,7 +292,7 @@ public class PhotoViewerWebView extends FrameLayout {
             this.webView.getSettings().setMixedContentMode(0);
             CookieManager.getInstance().setAcceptThirdPartyCookies(this.webView, true);
         }
-        this.webView.setWebViewClient(new C25652());
+        this.webView.setWebViewClient(new C25662());
         addView(this.webView, LayoutHelper.createFrame(-1, -1, 51));
         LinearLayout linearLayout = new LinearLayout(context);
         this.errorLayout = linearLayout;
@@ -331,8 +331,8 @@ public class PhotoViewerWebView extends FrameLayout {
         addView(this.progressBar, LayoutHelper.createFrame(-2, -2, 17));
     }
 
-    public class C25652 extends WebViewClient {
-        C25652() {
+    public class C25662 extends WebViewClient {
+        C25662() {
         }
 
         @Override
@@ -353,7 +353,7 @@ public class PhotoViewerWebView extends FrameLayout {
                 Utilities.externalNetworkQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        PhotoViewerWebView.C25652.this.lambda$shouldInterceptRequest$0(uri, webResourceRequest);
+                        PhotoViewerWebView.C25662.this.lambda$shouldInterceptRequest$0(uri, webResourceRequest);
                     }
                 });
                 return null;

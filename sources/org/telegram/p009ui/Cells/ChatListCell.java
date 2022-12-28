@@ -18,18 +18,18 @@ import org.telegram.p009ui.Components.LayoutHelper;
 import org.telegram.p009ui.Components.RadioButton;
 
 public class ChatListCell extends LinearLayout {
-    private C1382ListView[] listView;
+    private C1383ListView[] listView;
 
     protected void didSelectChatType(boolean z) {
     }
 
-    public class C1382ListView extends FrameLayout {
+    public class C1383ListView extends FrameLayout {
         private RadioButton button;
         private boolean isThreeLines;
         private RectF rect;
         private TextPaint textPaint;
 
-        public C1382ListView(ChatListCell chatListCell, Context context, boolean z) {
+        public C1383ListView(ChatListCell chatListCell, Context context, boolean z) {
             super(context);
             int i;
             String str;
@@ -51,7 +51,7 @@ public class ChatListCell extends LinearLayout {
                 @Override
                 public void invalidate() {
                     super.invalidate();
-                    C1382ListView.this.invalidate();
+                    C1383ListView.this.invalidate();
                 }
             };
             this.button = radioButton;
@@ -136,17 +136,17 @@ public class ChatListCell extends LinearLayout {
 
     public ChatListCell(Context context) {
         super(context);
-        this.listView = new C1382ListView[2];
+        this.listView = new C1383ListView[2];
         setOrientation(0);
         setPadding(AndroidUtilities.m36dp(21.0f), AndroidUtilities.m36dp(10.0f), AndroidUtilities.m36dp(21.0f), 0);
         int i = 0;
         while (true) {
-            C1382ListView[] c1382ListViewArr = this.listView;
-            if (i >= c1382ListViewArr.length) {
+            C1383ListView[] c1383ListViewArr = this.listView;
+            if (i >= c1383ListViewArr.length) {
                 return;
             }
             final boolean z = i == 1;
-            c1382ListViewArr[i] = new C1382ListView(this, context, z);
+            c1383ListViewArr[i] = new C1383ListView(this, context, z);
             addView(this.listView[i], LayoutHelper.createLinear(-1, -1, 0.5f, i == 1 ? 10 : 0, 0, 0, 0));
             this.listView[i].setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -170,11 +170,11 @@ public class ChatListCell extends LinearLayout {
         super.invalidate();
         int i = 0;
         while (true) {
-            C1382ListView[] c1382ListViewArr = this.listView;
-            if (i >= c1382ListViewArr.length) {
+            C1383ListView[] c1383ListViewArr = this.listView;
+            if (i >= c1383ListViewArr.length) {
                 return;
             }
-            c1382ListViewArr[i].invalidate();
+            c1383ListViewArr[i].invalidate();
             i++;
         }
     }

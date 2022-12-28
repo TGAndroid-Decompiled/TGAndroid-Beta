@@ -11,6 +11,7 @@ import android.graphics.RectF;
 import android.os.SystemClock;
 import android.text.Layout;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
 import android.util.Pair;
@@ -198,6 +199,8 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
     public static class LinkCollector {
         private ArrayList<Pair<LinkSpanDrawable, Object>> mLinks = new ArrayList<>();
         private int mLinksCount = 0;
+        private ArrayList<Pair<LoadingDrawable, Object>> mLoading = new ArrayList<>();
+        private int mLoadingCount = 0;
         private View mParent;
 
         public LinkCollector() {
@@ -214,6 +217,34 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         public void addLink(LinkSpanDrawable linkSpanDrawable, Object obj) {
             this.mLinks.add(new Pair<>(linkSpanDrawable, obj));
             this.mLinksCount++;
+            invalidate(obj);
+        }
+
+        public static LoadingDrawable makeLoading(Layout layout, CharacterStyle characterStyle, float f) {
+            if (layout == null || characterStyle == null || !(layout.getText() instanceof Spanned)) {
+                return null;
+            }
+            Spanned spanned = (Spanned) layout.getText();
+            LinkPath linkPath = new LinkPath(true);
+            int spanStart = spanned.getSpanStart(characterStyle);
+            int spanEnd = spanned.getSpanEnd(characterStyle);
+            linkPath.setCurrentLayout(layout, spanStart, f);
+            layout.getSelectionPath(spanStart, spanEnd, linkPath);
+            LoadingDrawable loadingDrawable = new LoadingDrawable();
+            loadingDrawable.usePath(linkPath);
+            loadingDrawable.setAppearByGradient(true);
+            loadingDrawable.setRadiiDp(4.0f);
+            loadingDrawable.updateBounds();
+            return loadingDrawable;
+        }
+
+        public void addLoading(LoadingDrawable loadingDrawable) {
+            addLoading(loadingDrawable, null);
+        }
+
+        public void addLoading(LoadingDrawable loadingDrawable, Object obj) {
+            this.mLoading.add(new Pair<>(loadingDrawable, obj));
+            this.mLoadingCount++;
             invalidate(obj);
         }
 
@@ -294,6 +325,51 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
             removeLink(linkSpanDrawable, false);
         }
 
+        public void removeLoading(LoadingDrawable loadingDrawable, boolean z) {
+            if (loadingDrawable == null) {
+                return;
+            }
+            for (int i = 0; i < this.mLoadingCount; i++) {
+                if (this.mLoading.get(i).first == loadingDrawable) {
+                    removeLoadingAt(i, z);
+                    return;
+                }
+            }
+        }
+
+        private void removeLoadingAt(int i, boolean z) {
+            Pair<LoadingDrawable, Object> pair;
+            if (i < 0 || i >= this.mLoadingCount || (pair = this.mLoading.get(i)) == null) {
+                return;
+            }
+            final LoadingDrawable loadingDrawable = (LoadingDrawable) pair.first;
+            if (z) {
+                if (!loadingDrawable.isDisappeared()) {
+                    if (!loadingDrawable.isDisappearing()) {
+                        loadingDrawable.disappear();
+                    }
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            LinkSpanDrawable.LinkCollector.this.lambda$removeLoadingAt$2(loadingDrawable);
+                        }
+                    }, loadingDrawable.timeToDisappear());
+                    return;
+                }
+                removeLoading(loadingDrawable, false);
+                return;
+            }
+            this.mLoading.remove(pair);
+            loadingDrawable.reset();
+            loadingDrawable.resetDisappear();
+            this.mLoadingCount = this.mLoading.size();
+            invalidate(pair.second);
+        }
+
+        public void lambda$removeLoadingAt$2(LoadingDrawable loadingDrawable) {
+            removeLoading(loadingDrawable, false);
+        }
+
         public void clear() {
             clear(true);
         }
@@ -327,18 +403,30 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         }
 
         public boolean draw(Canvas canvas) {
+            int i = 0;
             boolean z = false;
-            for (int i = 0; i < this.mLinksCount; i++) {
-                z = ((LinkSpanDrawable) this.mLinks.get(i).first).draw(canvas) || z;
+            while (i < this.mLoadingCount) {
+                ((LoadingDrawable) this.mLoading.get(i).first).draw(canvas);
+                i++;
+                z = true;
+            }
+            for (int i2 = 0; i2 < this.mLinksCount; i2++) {
+                z = ((LinkSpanDrawable) this.mLinks.get(i2).first).draw(canvas) || z;
             }
             return z;
         }
 
         public boolean draw(Canvas canvas, Object obj) {
             boolean z = false;
-            for (int i = 0; i < this.mLinksCount; i++) {
-                if (this.mLinks.get(i).second == obj) {
-                    z = ((LinkSpanDrawable) this.mLinks.get(i).first).draw(canvas) || z;
+            for (int i = 0; i < this.mLoadingCount; i++) {
+                if (this.mLoading.get(i).second == obj) {
+                    ((LoadingDrawable) this.mLoading.get(i).first).draw(canvas);
+                    z = true;
+                }
+            }
+            for (int i2 = 0; i2 < this.mLinksCount; i2++) {
+                if (this.mLinks.get(i2).second == obj) {
+                    z = ((LinkSpanDrawable) this.mLinks.get(i2).first).draw(canvas) || z;
                 }
             }
             invalidate(obj, false);

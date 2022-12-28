@@ -667,7 +667,7 @@ public class CacheChart extends View {
         float f8 = this.loadingFloat.set(this.loading ? 1.0f : 0.0f);
         float f9 = this.completeFloat.set(this.complete ? 1.0f : 0.0f);
         this.chartInnerBounds.set(this.chartBounds);
-        float lerp = AndroidUtilities.lerp(AndroidUtilities.m36dp(38.0f), AndroidUtilities.m36dp(10.0f), f8);
+        float lerp = AndroidUtilities.lerp(AndroidUtilities.dpf2(38.0f), AndroidUtilities.dpf2(10.0f), f8);
         this.chartInnerBounds.inset(lerp, lerp);
         char c = 0;
         float lerp2 = AndroidUtilities.lerp(0, AndroidUtilities.m36dp(60.0f), f8);

@@ -832,24 +832,20 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             }
         }
         bitmap.recycle();
-        if (messageObject.videoEditedInfo != null) {
-            long j = ((videoEditedInfo.bitrate / 8) * (((float) videoEditedInfo.estimatedDuration) / 1000.0f)) / 32768;
-        }
         if (this.bigPhoto != null) {
             UserConfig.getInstance(this.currentAccount).saveConfig(false);
             this.uploadingImage = FileLoader.getDirectory(4) + "/" + this.bigPhoto.location.volume_id + "_" + this.bigPhoto.location.local_id + ".jpg";
             if (this.uploadAfterSelect) {
-                VideoEditedInfo videoEditedInfo2 = messageObject.videoEditedInfo;
-                if (videoEditedInfo2 != null) {
+                if (messageObject != null && (videoEditedInfo = messageObject.videoEditedInfo) != null) {
                     this.convertingVideo = messageObject;
-                    long j2 = videoEditedInfo2.startTime;
-                    if (j2 < 0) {
-                        j2 = 0;
+                    long j = videoEditedInfo.startTime;
+                    if (j < 0) {
+                        j = 0;
                     }
-                    double d = videoEditedInfo2.avatarStartTime - j2;
+                    double d = videoEditedInfo.avatarStartTime - j;
                     Double.isNaN(d);
                     this.videoTimestamp = d / 1000000.0d;
-                    videoEditedInfo2.shouldLimitFps = false;
+                    videoEditedInfo.shouldLimitFps = false;
                     NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingStarted);
                     NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingFailed);
                     NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileNewChunkAvailable);

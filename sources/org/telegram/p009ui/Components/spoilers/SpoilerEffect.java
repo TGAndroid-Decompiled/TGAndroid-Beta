@@ -367,6 +367,9 @@ public class SpoilerEffect extends Drawable {
         }
         SpoilerEffectBitmapFactory.getInstance().getPaint().setColorFilter(new PorterDuffColorFilter(this.lastColor, PorterDuff.Mode.SRC_IN));
         canvas.drawRect(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, SpoilerEffectBitmapFactory.getInstance().getPaint());
+        if (SharedConfig.getLightMode().enabled()) {
+            return;
+        }
         invalidateSelf();
         SpoilerEffectBitmapFactory.getInstance().checkUpdate();
     }
@@ -376,6 +379,9 @@ public class SpoilerEffect extends Drawable {
             this.visibleRect = new RectF();
         }
         RectF rectF = this.visibleRect;
+        if (rectF.left == f && rectF.right == f3 && rectF.top == f2 && rectF.bottom == f4) {
+            return;
+        }
         rectF.left = f;
         rectF.top = f2;
         rectF.right = f3;

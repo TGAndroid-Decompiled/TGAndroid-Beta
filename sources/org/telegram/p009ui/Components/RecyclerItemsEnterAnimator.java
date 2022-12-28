@@ -68,16 +68,16 @@ public class RecyclerItemsEnterAnimator {
             ofFloat.start();
             i--;
         }
-        ViewTreeObserver$OnPreDrawListenerC27142 viewTreeObserver$OnPreDrawListenerC27142 = new ViewTreeObserver$OnPreDrawListenerC27142(progressView, i);
-        this.preDrawListeners.add(viewTreeObserver$OnPreDrawListenerC27142);
-        this.listView.getViewTreeObserver().addOnPreDrawListener(viewTreeObserver$OnPreDrawListenerC27142);
+        ViewTreeObserver$OnPreDrawListenerC27152 viewTreeObserver$OnPreDrawListenerC27152 = new ViewTreeObserver$OnPreDrawListenerC27152(progressView, i);
+        this.preDrawListeners.add(viewTreeObserver$OnPreDrawListenerC27152);
+        this.listView.getViewTreeObserver().addOnPreDrawListener(viewTreeObserver$OnPreDrawListenerC27152);
     }
 
-    public class ViewTreeObserver$OnPreDrawListenerC27142 implements ViewTreeObserver.OnPreDrawListener {
+    public class ViewTreeObserver$OnPreDrawListenerC27152 implements ViewTreeObserver.OnPreDrawListener {
         final int val$finalFrom;
         final View val$finalProgressView;
 
-        ViewTreeObserver$OnPreDrawListenerC27142(View view, int i) {
+        ViewTreeObserver$OnPreDrawListenerC27152(View view, int i) {
             this.val$finalProgressView = view;
             this.val$finalFrom = i;
         }
@@ -100,7 +100,7 @@ public class RecyclerItemsEnterAnimator {
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            RecyclerItemsEnterAnimator.ViewTreeObserver$OnPreDrawListenerC27142.this.lambda$onPreDraw$0(childAdapterPosition, valueAnimator);
+                            RecyclerItemsEnterAnimator.ViewTreeObserver$OnPreDrawListenerC27152.this.lambda$onPreDraw$0(childAdapterPosition, valueAnimator);
                         }
                     });
                     ofFloat.addListener(new AnimatorListenerAdapter() {

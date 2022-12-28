@@ -9,9 +9,7 @@ public final class AlertsCreator$$ExternalSyntheticLambda121 implements NumberPi
     }
 
     @Override
-    public final String format(int i) {
-        String lambda$createCalendarPickerDialog$87;
-        lambda$createCalendarPickerDialog$87 = AlertsCreator.lambda$createCalendarPickerDialog$87(i);
-        return lambda$createCalendarPickerDialog$87;
+    public final java.lang.String format(int r1) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.AlertsCreator$$ExternalSyntheticLambda121.format(int):java.lang.String");
     }
 }

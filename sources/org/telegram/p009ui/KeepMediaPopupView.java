@@ -84,11 +84,14 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
                 @Override
                 public void onClick(View view2) {
                     ((ActionBarPopupWindow.ActionBarPopupWindowLayout) KeepMediaPopupView.this).window.dismiss();
-                    KeepMediaPopupView.this.cacheByChatsController.setKeepMedia(KeepMediaPopupView.this.currentType, i2);
                     KeepMediaPopupView keepMediaPopupView = KeepMediaPopupView.this;
-                    Callback callback = keepMediaPopupView.callback;
-                    if (callback != null) {
-                        callback.onKeepMediaChange(keepMediaPopupView.currentType, i2);
+                    if (keepMediaPopupView.currentType >= 0) {
+                        keepMediaPopupView.cacheByChatsController.setKeepMedia(KeepMediaPopupView.this.currentType, i2);
+                        KeepMediaPopupView keepMediaPopupView2 = KeepMediaPopupView.this;
+                        Callback callback = keepMediaPopupView2.callback;
+                        if (callback != null) {
+                            callback.onKeepMediaChange(keepMediaPopupView2.currentType, i2);
+                        }
                     }
                 }
             });
@@ -197,6 +200,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
     }
 
     public void updateForDialog(boolean z) {
+        this.currentType = -1;
         this.gap.setVisibility(0);
         this.delete.setVisibility(z ? 8 : 0);
         this.description.setVisibility(0);

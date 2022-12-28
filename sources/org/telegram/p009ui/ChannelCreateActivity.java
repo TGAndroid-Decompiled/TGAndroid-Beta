@@ -488,7 +488,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
 
                 @Override
                 public void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ChannelCreateActivity.C15272.onLayout(boolean, int, int, int, int):void");
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.ChannelCreateActivity.C15282.onLayout(boolean, int, int, int, int):void");
                 }
 
                 @Override

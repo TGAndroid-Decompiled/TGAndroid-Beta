@@ -138,8 +138,8 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         return i;
     }
 
-    public class RunnableC17922 implements Runnable {
-        RunnableC17922() {
+    public class RunnableC17932 implements Runnable {
+        RunnableC17932() {
         }
 
         @Override
@@ -164,7 +164,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedFileDrawable.RunnableC17922.this.lambda$run$1();
+                    AnimatedFileDrawable.RunnableC17932.this.lambda$run$1();
                 }
             };
             animatedFileDrawable3.cacheGenRunnable = runnable;
@@ -176,7 +176,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedFileDrawable.RunnableC17922.this.lambda$run$0();
+                    AnimatedFileDrawable.RunnableC17932.this.lambda$run$0();
                 }
             });
         }

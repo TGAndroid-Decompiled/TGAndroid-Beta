@@ -67,9 +67,9 @@ import org.telegram.p009ui.Components.FloatingDebug.FloatingDebugProvider;
 import org.telegram.p009ui.Components.GroupCallPip;
 import org.telegram.p009ui.Components.LayoutHelper;
 import org.telegram.p009ui.Components.SeekBarView;
-import org.telegram.p009ui.LNavigation.C3415LNavigation;
+import org.telegram.p009ui.LNavigation.C3416LNavigation;
 
-public class C3415LNavigation extends FrameLayout implements INavigationLayout, FloatingDebugProvider {
+public class C3416LNavigation extends FrameLayout implements INavigationLayout, FloatingDebugProvider {
     private static float SPRING_DAMPING_RATIO = 1.0f;
     private static float SPRING_STIFFNESS = 1000.0f;
     private boolean allowToPressByHover;
@@ -255,11 +255,11 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
         INavigationLayout.CC.$default$removeFragmentFromStack(this, i);
     }
 
-    public C3415LNavigation(Context context) {
+    public C3416LNavigation(Context context) {
         this(context, null);
     }
 
-    public C3415LNavigation(Context context, AttributeSet attributeSet) {
+    public C3416LNavigation(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         this.pulledDialogs = new ArrayList();
         this.ignoreRect = new Rect();
@@ -294,12 +294,12 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
 
             @Override
             public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-                if (C3415LNavigation.this.highlightActionButtons && !C3415LNavigation.this.allowToPressByHover && C3415LNavigation.this.isFirstHoverAllowed && C3415LNavigation.this.isInPreviewMode() && ((Math.abs(f) >= scaledTouchSlop || Math.abs(f2) >= scaledTouchSlop) && !C3415LNavigation.this.isSwipeInProgress && C3415LNavigation.this.previewMenu != null)) {
-                    C3415LNavigation.this.allowToPressByHover = true;
+                if (C3416LNavigation.this.highlightActionButtons && !C3416LNavigation.this.allowToPressByHover && C3416LNavigation.this.isFirstHoverAllowed && C3416LNavigation.this.isInPreviewMode() && ((Math.abs(f) >= scaledTouchSlop || Math.abs(f2) >= scaledTouchSlop) && !C3416LNavigation.this.isSwipeInProgress && C3416LNavigation.this.previewMenu != null)) {
+                    C3416LNavigation.this.allowToPressByHover = true;
                 }
-                if (C3415LNavigation.this.allowToPressByHover && C3415LNavigation.this.previewMenu != null && (C3415LNavigation.this.previewMenu.getSwipeBack() == null || C3415LNavigation.this.previewMenu.getSwipeBack().isForegroundOpen())) {
-                    for (int i = 0; i < C3415LNavigation.this.previewMenu.getItemsCount(); i++) {
-                        ActionBarMenuSubItem actionBarMenuSubItem = (ActionBarMenuSubItem) C3415LNavigation.this.previewMenu.getItemAt(i);
+                if (C3416LNavigation.this.allowToPressByHover && C3416LNavigation.this.previewMenu != null && (C3416LNavigation.this.previewMenu.getSwipeBack() == null || C3416LNavigation.this.previewMenu.getSwipeBack().isForegroundOpen())) {
+                    for (int i = 0; i < C3416LNavigation.this.previewMenu.getItemsCount(); i++) {
+                        ActionBarMenuSubItem actionBarMenuSubItem = (ActionBarMenuSubItem) C3416LNavigation.this.previewMenu.getItemAt(i);
                         if (actionBarMenuSubItem != null) {
                             Drawable background = actionBarMenuSubItem.getBackground();
                             Rect rect = AndroidUtilities.rectTmp2;
@@ -317,52 +317,52 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
                         }
                     }
                 }
-                if (!C3415LNavigation.this.isSwipeInProgress && !C3415LNavigation.this.isSwipeDisallowed) {
+                if (!C3416LNavigation.this.isSwipeInProgress && !C3416LNavigation.this.isSwipeDisallowed) {
                     if (Math.abs(f) >= Math.abs(f2) * 1.5f && f <= (-scaledTouchSlop)) {
-                        C3415LNavigation c3415LNavigation = C3415LNavigation.this;
-                        if (!c3415LNavigation.isIgnoredView(c3415LNavigation.getForegroundView(), motionEvent2, C3415LNavigation.this.ignoreRect) && C3415LNavigation.this.getLastFragment() != null && C3415LNavigation.this.getLastFragment().canBeginSlide() && C3415LNavigation.this.getLastFragment().isSwipeBackEnabled(motionEvent2) && C3415LNavigation.this.fragmentStack.size() >= 2 && !C3415LNavigation.this.isInActionMode && !C3415LNavigation.this.isInPreviewMode()) {
-                            C3415LNavigation.this.isSwipeInProgress = true;
-                            C3415LNavigation c3415LNavigation2 = C3415LNavigation.this;
-                            c3415LNavigation2.startScroll = c3415LNavigation2.swipeProgress - MathUtils.clamp((motionEvent2.getX() - motionEvent.getX()) / C3415LNavigation.this.getWidth(), 0.0f, 1.0f);
-                            if (C3415LNavigation.this.getParentActivity().getCurrentFocus() != null) {
-                                AndroidUtilities.hideKeyboard(C3415LNavigation.this.getParentActivity().getCurrentFocus());
+                        C3416LNavigation c3416LNavigation = C3416LNavigation.this;
+                        if (!c3416LNavigation.isIgnoredView(c3416LNavigation.getForegroundView(), motionEvent2, C3416LNavigation.this.ignoreRect) && C3416LNavigation.this.getLastFragment() != null && C3416LNavigation.this.getLastFragment().canBeginSlide() && C3416LNavigation.this.getLastFragment().isSwipeBackEnabled(motionEvent2) && C3416LNavigation.this.fragmentStack.size() >= 2 && !C3416LNavigation.this.isInActionMode && !C3416LNavigation.this.isInPreviewMode()) {
+                            C3416LNavigation.this.isSwipeInProgress = true;
+                            C3416LNavigation c3416LNavigation2 = C3416LNavigation.this;
+                            c3416LNavigation2.startScroll = c3416LNavigation2.swipeProgress - MathUtils.clamp((motionEvent2.getX() - motionEvent.getX()) / C3416LNavigation.this.getWidth(), 0.0f, 1.0f);
+                            if (C3416LNavigation.this.getParentActivity().getCurrentFocus() != null) {
+                                AndroidUtilities.hideKeyboard(C3416LNavigation.this.getParentActivity().getCurrentFocus());
                             }
-                            if (C3415LNavigation.this.getBackgroundView() != null) {
-                                C3415LNavigation.this.getBackgroundView().setVisibility(0);
+                            if (C3416LNavigation.this.getBackgroundView() != null) {
+                                C3416LNavigation.this.getBackgroundView().setVisibility(0);
                             }
-                            C3415LNavigation.this.getLastFragment().prepareFragmentToSlide(true, true);
-                            C3415LNavigation.this.getLastFragment().onBeginSlide();
-                            BaseFragment backgroundFragment = C3415LNavigation.this.getBackgroundFragment();
+                            C3416LNavigation.this.getLastFragment().prepareFragmentToSlide(true, true);
+                            C3416LNavigation.this.getLastFragment().onBeginSlide();
+                            BaseFragment backgroundFragment = C3416LNavigation.this.getBackgroundFragment();
                             if (backgroundFragment != null) {
                                 backgroundFragment.setPaused(false);
                                 backgroundFragment.prepareFragmentToSlide(false, true);
                                 backgroundFragment.onBeginSlide();
                             }
                             MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                            for (int i2 = 0; i2 < C3415LNavigation.this.getChildCount(); i2++) {
-                                C3415LNavigation.this.getChildAt(i2).dispatchTouchEvent(obtain);
+                            for (int i2 = 0; i2 < C3416LNavigation.this.getChildCount(); i2++) {
+                                C3416LNavigation.this.getChildAt(i2).dispatchTouchEvent(obtain);
                             }
                             obtain.recycle();
-                            C3415LNavigation.this.invalidateActionBars();
+                            C3416LNavigation.this.invalidateActionBars();
                         }
                     }
-                    C3415LNavigation.this.isSwipeDisallowed = true;
+                    C3416LNavigation.this.isSwipeDisallowed = true;
                 }
-                if (C3415LNavigation.this.isSwipeInProgress) {
-                    C3415LNavigation c3415LNavigation3 = C3415LNavigation.this;
-                    c3415LNavigation3.swipeProgress = MathUtils.clamp(c3415LNavigation3.startScroll + ((motionEvent2.getX() - motionEvent.getX()) / C3415LNavigation.this.getWidth()), 0.0f, 1.0f);
-                    C3415LNavigation.this.invalidateTranslation();
+                if (C3416LNavigation.this.isSwipeInProgress) {
+                    C3416LNavigation c3416LNavigation3 = C3416LNavigation.this;
+                    c3416LNavigation3.swipeProgress = MathUtils.clamp(c3416LNavigation3.startScroll + ((motionEvent2.getX() - motionEvent.getX()) / C3416LNavigation.this.getWidth()), 0.0f, 1.0f);
+                    C3416LNavigation.this.invalidateTranslation();
                 }
-                return C3415LNavigation.this.isSwipeInProgress;
+                return C3416LNavigation.this.isSwipeInProgress;
             }
 
             @Override
             public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-                if (!C3415LNavigation.this.isSwipeInProgress || f < 800.0f) {
+                if (!C3416LNavigation.this.isSwipeInProgress || f < 800.0f) {
                     return false;
                 }
-                C3415LNavigation.this.closeLastFragment(true, false, f / 15.0f);
-                C3415LNavigation.this.clearTouchFlags();
+                C3416LNavigation.this.closeLastFragment(true, false, f / 15.0f);
+                C3416LNavigation.this.clearTouchFlags();
                 return true;
             }
         });
@@ -403,7 +403,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
                 float f2 = (f * 1000.0f) + 500.0f;
                 textView.setText(String.format(Locale.ROOT, "Stiffness: %f", Float.valueOf(f2)));
                 if (z) {
-                    float unused = C3415LNavigation.SPRING_STIFFNESS = f2;
+                    float unused = C3416LNavigation.SPRING_STIFFNESS = f2;
                 }
             }
         });
@@ -436,7 +436,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
                 float f2 = (f * 0.8f) + 0.2f;
                 textView2.setText(String.format(Locale.ROOT, "Damping ratio: %f", Float.valueOf(f2)));
                 if (z) {
-                    float unused = C3415LNavigation.SPRING_DAMPING_RATIO = f2;
+                    float unused = C3416LNavigation.SPRING_DAMPING_RATIO = f2;
                 }
             }
         });
@@ -448,7 +448,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
         this.openChatCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                C3415LNavigation.this.lambda$new$0(view);
+                C3416LNavigation.this.lambda$new$0(view);
             }
         });
         this.stiffnessControl.addView(this.openChatCheckbox, LayoutHelper.createLinear(-1, 36));
@@ -499,19 +499,19 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
         spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                C3415LNavigation.this.lambda$animateReset$1(lastFragment, dynamicAnimation, f, f2);
+                C3416LNavigation.this.lambda$animateReset$1(lastFragment, dynamicAnimation, f, f2);
             }
         });
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                C3415LNavigation.this.lambda$animateReset$2(lastFragment, backgroundFragment);
+                C3416LNavigation.this.lambda$animateReset$2(lastFragment, backgroundFragment);
             }
         };
         this.currentSpringAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                C3415LNavigation.this.lambda$animateReset$3(runnable, dynamicAnimation, z, f, f2);
+                C3416LNavigation.this.lambda$animateReset$3(runnable, dynamicAnimation, z, f, f2);
             }
         });
         if (this.swipeProgress != 0.0f) {
@@ -680,7 +680,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    C3415LNavigation.this.lambda$presentFragment$4(navigationParams, backgroundFragment);
+                    C3416LNavigation.this.lambda$presentFragment$4(navigationParams, backgroundFragment);
                 }
             };
             if (z) {
@@ -728,7 +728,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
                         onCreateHolderView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                C3415LNavigation.this.lambda$presentFragment$5(view);
+                                C3416LNavigation.this.lambda$presentFragment$5(view);
                             }
                         });
                     }
@@ -743,7 +743,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
                     Runnable runnable2 = new Runnable() {
                         @Override
                         public final void run() {
-                            C3415LNavigation.this.lambda$presentFragment$6(navigationParams);
+                            C3416LNavigation.this.lambda$presentFragment$6(navigationParams);
                         }
                     };
                     this.delayedPresentAnimation = runnable2;
@@ -757,7 +757,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
                 AnimatorSet onCustomTransitionAnimation = baseFragment.onCustomTransitionAnimation(true, new Runnable() {
                     @Override
                     public final void run() {
-                        C3415LNavigation.this.lambda$presentFragment$7(baseFragment, backgroundFragment, runnable);
+                        C3416LNavigation.this.lambda$presentFragment$7(baseFragment, backgroundFragment, runnable);
                     }
                 });
                 this.customAnimation = onCustomTransitionAnimation;
@@ -771,13 +771,13 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
                 spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                        C3415LNavigation.this.lambda$presentFragment$8(baseFragment, dynamicAnimation, f, f2);
+                        C3416LNavigation.this.lambda$presentFragment$8(baseFragment, dynamicAnimation, f, f2);
                     }
                 });
                 this.currentSpringAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                     @Override
                     public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                        C3415LNavigation.this.lambda$presentFragment$9(baseFragment, backgroundFragment, navigationParams, runnable, dynamicAnimation, z2, f, f2);
+                        C3416LNavigation.this.lambda$presentFragment$9(baseFragment, backgroundFragment, navigationParams, runnable, dynamicAnimation, z2, f, f2);
                     }
                 });
                 this.currentSpringAnimation.start();
@@ -786,7 +786,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
                     Runnable runnable3 = new Runnable() {
                         @Override
                         public final void run() {
-                            C3415LNavigation.this.lambda$presentFragment$10(navigationParams);
+                            C3416LNavigation.this.lambda$presentFragment$10(navigationParams);
                         }
                     };
                     this.delayedPresentAnimation = runnable3;
@@ -1164,14 +1164,14 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
             this.currentSpringAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                    C3415LNavigation.this.lambda$rebuildFragments$13(i, dynamicAnimation, z, f, f2);
+                    C3416LNavigation.this.lambda$rebuildFragments$13(i, dynamicAnimation, z, f, f2);
                 }
             });
             return;
         }
         AnimatorSet animatorSet = this.customAnimation;
         if (animatorSet != null && animatorSet.isRunning()) {
-            this.customAnimation.addListener(new C34194(i));
+            this.customAnimation.addListener(new C34204(i));
         } else if (this.fragmentStack.isEmpty()) {
             while (getChildCount() > 1) {
                 removeViewAt(0);
@@ -1217,20 +1217,20 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                C3415LNavigation.this.lambda$rebuildFragments$12(i);
+                C3416LNavigation.this.lambda$rebuildFragments$12(i);
             }
         });
     }
 
-    public class C34194 extends AnimatorListenerAdapter {
+    public class C34204 extends AnimatorListenerAdapter {
         final int val$flags;
 
-        C34194(int i) {
+        C34204(int i) {
             this.val$flags = i;
         }
 
         public void lambda$onAnimationEnd$0(int i) {
-            C3415LNavigation.this.lambda$rebuildFragments$12(i);
+            C3416LNavigation.this.lambda$rebuildFragments$12(i);
         }
 
         @Override
@@ -1239,7 +1239,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    C3415LNavigation.C34194.this.lambda$onAnimationEnd$0(i);
+                    C3416LNavigation.C34204.this.lambda$onAnimationEnd$0(i);
                 }
             });
         }
@@ -1252,7 +1252,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
 
     @Override
     public void draw(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.LNavigation.C3415LNavigation.draw(android.graphics.Canvas):void");
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.LNavigation.C3416LNavigation.draw(android.graphics.Canvas):void");
     }
 
     @Override
@@ -1301,7 +1301,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
                     AnimatorSet onCustomTransitionAnimation = lastFragment2.onCustomTransitionAnimation(false, new Runnable() {
                         @Override
                         public final void run() {
-                            C3415LNavigation.this.lambda$closeLastFragment$14(lastFragment2, backgroundFragment);
+                            C3416LNavigation.this.lambda$closeLastFragment$14(lastFragment2, backgroundFragment);
                         }
                     });
                     this.customAnimation = onCustomTransitionAnimation;
@@ -1322,13 +1322,13 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
                 this.currentSpringAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f2, float f3) {
-                        C3415LNavigation.this.lambda$closeLastFragment$15(lastFragment2, backgroundFragment, dynamicAnimation, f2, f3);
+                        C3416LNavigation.this.lambda$closeLastFragment$15(lastFragment2, backgroundFragment, dynamicAnimation, f2, f3);
                     }
                 });
                 this.currentSpringAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                     @Override
                     public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f2, float f3) {
-                        C3415LNavigation.this.lambda$closeLastFragment$16(lastFragment2, backgroundFragment, dynamicAnimation, z3, f2, f3);
+                        C3416LNavigation.this.lambda$closeLastFragment$16(lastFragment2, backgroundFragment, dynamicAnimation, z3, f2, f3);
                     }
                 });
                 this.currentSpringAnimation.start();
@@ -1480,7 +1480,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                C3415LNavigation.this.lambda$animateThemedValues$18(size, themeAnimationSettings, runnable);
+                C3416LNavigation.this.lambda$animateThemedValues$18(size, themeAnimationSettings, runnable);
             }
         };
         if (size >= 1 && themeAnimationSettings.applyTheme) {
@@ -1608,20 +1608,20 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    C3415LNavigation.this.lambda$animateThemedValues$17(valueAnimator);
+                    C3416LNavigation.this.lambda$animateThemedValues$17(valueAnimator);
                 }
             });
             this.themeAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    if (animator.equals(C3415LNavigation.this.themeAnimator)) {
-                        C3415LNavigation.this.themeAnimatorDescriptions.clear();
-                        C3415LNavigation.this.animateStartColors.clear();
-                        C3415LNavigation.this.animateEndColors.clear();
-                        C3415LNavigation.this.themeAnimatorDelegate.clear();
+                    if (animator.equals(C3416LNavigation.this.themeAnimator)) {
+                        C3416LNavigation.this.themeAnimatorDescriptions.clear();
+                        C3416LNavigation.this.animateStartColors.clear();
+                        C3416LNavigation.this.animateEndColors.clear();
+                        C3416LNavigation.this.themeAnimatorDelegate.clear();
                         Theme.setAnimatingColor(false);
-                        C3415LNavigation.this.presentingFragmentDescriptions = null;
-                        C3415LNavigation.this.themeAnimator = null;
+                        C3416LNavigation.this.presentingFragmentDescriptions = null;
+                        C3416LNavigation.this.themeAnimator = null;
                         Runnable runnable5 = themeAnimationSettings.afterAnimationRunnable;
                         if (runnable5 != null) {
                             runnable5.run();
@@ -1631,14 +1631,14 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
 
                 @Override
                 public void onAnimationCancel(Animator animator) {
-                    if (animator.equals(C3415LNavigation.this.themeAnimator)) {
-                        C3415LNavigation.this.themeAnimatorDescriptions.clear();
-                        C3415LNavigation.this.animateStartColors.clear();
-                        C3415LNavigation.this.animateEndColors.clear();
-                        C3415LNavigation.this.themeAnimatorDelegate.clear();
+                    if (animator.equals(C3416LNavigation.this.themeAnimator)) {
+                        C3416LNavigation.this.themeAnimatorDescriptions.clear();
+                        C3416LNavigation.this.animateStartColors.clear();
+                        C3416LNavigation.this.animateEndColors.clear();
+                        C3416LNavigation.this.themeAnimatorDelegate.clear();
                         Theme.setAnimatingColor(false);
-                        C3415LNavigation.this.presentingFragmentDescriptions = null;
-                        C3415LNavigation.this.themeAnimator = null;
+                        C3416LNavigation.this.presentingFragmentDescriptions = null;
+                        C3416LNavigation.this.themeAnimator = null;
                         Runnable runnable5 = themeAnimationSettings.afterAnimationRunnable;
                         if (runnable5 != null) {
                             runnable5.run();
@@ -1748,7 +1748,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
 
     @Override
     public void movePreviewFragment(float r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.LNavigation.C3415LNavigation.movePreviewFragment(float):void");
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.LNavigation.C3416LNavigation.movePreviewFragment(float):void");
     }
 
     @Override
@@ -1778,13 +1778,13 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
         spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                C3415LNavigation.this.lambda$expandPreviewFragment$20(backgroundView, foregroundView, translationY, dynamicAnimation, f, f2);
+                C3416LNavigation.this.lambda$expandPreviewFragment$20(backgroundView, foregroundView, translationY, dynamicAnimation, f, f2);
             }
         });
         this.currentSpringAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                C3415LNavigation.this.lambda$expandPreviewFragment$21(lastFragment, dynamicAnimation, z, f, f2);
+                C3416LNavigation.this.lambda$expandPreviewFragment$21(lastFragment, dynamicAnimation, z, f, f2);
             }
         });
         this.currentSpringAnimation.start();
@@ -1835,7 +1835,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    C3415LNavigation.this.lambda$finishPreviewFragment$22();
+                    C3416LNavigation.this.lambda$finishPreviewFragment$22();
                 }
             };
             if (!isTransitionAnimationInProgress()) {
@@ -2231,20 +2231,20 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
             boolean z = indexOfChild(view) == 0 && this.fragment.isInPreviewMode();
             if (z) {
                 canvas.save();
-                C3415LNavigation.this.path.rewind();
+                C3416LNavigation.this.path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(view.getLeft(), view.getTop() + AndroidUtilities.statusBarHeight, view.getRight(), view.getBottom());
-                C3415LNavigation.this.path.addRoundRect(rectF, AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f), Path.Direction.CW);
-                canvas.clipPath(C3415LNavigation.this.path);
+                C3416LNavigation.this.path.addRoundRect(rectF, AndroidUtilities.m36dp(8.0f), AndroidUtilities.m36dp(8.0f), Path.Direction.CW);
+                canvas.clipPath(C3416LNavigation.this.path);
             }
             boolean drawChild = super.drawChild(canvas, view, j);
             if (z) {
                 canvas.restore();
             }
-            if (i != 0 && C3415LNavigation.this.headerShadowDrawable != null) {
+            if (i != 0 && C3416LNavigation.this.headerShadowDrawable != null) {
                 int i4 = i2 + i;
-                C3415LNavigation.this.headerShadowDrawable.setBounds(0, i4, getMeasuredWidth(), C3415LNavigation.this.headerShadowDrawable.getIntrinsicHeight() + i4);
-                C3415LNavigation.this.headerShadowDrawable.draw(canvas);
+                C3416LNavigation.this.headerShadowDrawable.setBounds(0, i4, getMeasuredWidth(), C3416LNavigation.this.headerShadowDrawable.getIntrinsicHeight() + i4);
+                C3416LNavigation.this.headerShadowDrawable.draw(canvas);
             }
             return drawChild;
         }
@@ -2267,7 +2267,7 @@ public class C3415LNavigation extends FrameLayout implements INavigationLayout, 
                 ((ViewGroup) fragmentView.getParent()).removeView(fragmentView);
             }
             addView(fragmentView);
-            if (C3415LNavigation.this.removeActionBarExtraHeight) {
+            if (C3416LNavigation.this.removeActionBarExtraHeight) {
                 baseFragment.getActionBar().setOccupyStatusBar(false);
             }
             if (baseFragment.getActionBar() != null && baseFragment.getActionBar().shouldAddToContainer()) {

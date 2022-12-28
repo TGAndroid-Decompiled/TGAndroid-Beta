@@ -191,7 +191,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
 
             @Override
             protected void onDraw(android.graphics.Canvas r13) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.InviteLinkBottomSheet.C23971.onDraw(android.graphics.Canvas):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.InviteLinkBottomSheet.C23981.onDraw(android.graphics.Canvas):void");
             }
 
             private void updateLightStatusBar(boolean z3) {
@@ -506,7 +506,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 case 3:
                     InviteLinkBottomSheet inviteLinkBottomSheet = InviteLinkBottomSheet.this;
                     LinkActionView linkActionView = new LinkActionView(context, inviteLinkBottomSheet.fragment, inviteLinkBottomSheet, inviteLinkBottomSheet.chatId, false, InviteLinkBottomSheet.this.isChannel);
-                    linkActionView.setDelegate(new C24021());
+                    linkActionView.setDelegate(new C24031());
                     linkActionView.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                     headerCell = linkActionView;
                     break;
@@ -555,13 +555,13 @@ public class InviteLinkBottomSheet extends BottomSheet {
             return new RecyclerListView.Holder(headerCell);
         }
 
-        public class C24021 implements LinkActionView.Delegate {
+        public class C24031 implements LinkActionView.Delegate {
             @Override
             public void showUsersForPermanentLink() {
                 LinkActionView.Delegate.CC.$default$showUsersForPermanentLink(this);
             }
 
-            C24021() {
+            C24031() {
             }
 
             @Override
@@ -579,7 +579,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     ConnectionsManager.getInstance(((BottomSheet) InviteLinkBottomSheet.this).currentAccount).sendRequest(tLRPC$TL_messages_editExportedChatInvite, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            InviteLinkBottomSheet.Adapter.C24021.this.lambda$revokeLink$1(tLObject, tLRPC$TL_error);
+                            InviteLinkBottomSheet.Adapter.C24031.this.lambda$revokeLink$1(tLObject, tLRPC$TL_error);
                         }
                     });
                 }
@@ -590,7 +590,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteLinkBottomSheet.Adapter.C24021.this.lambda$revokeLink$0(tLRPC$TL_error, tLObject);
+                        InviteLinkBottomSheet.Adapter.C24031.this.lambda$revokeLink$0(tLRPC$TL_error, tLObject);
                     }
                 });
             }
@@ -678,7 +678,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     ConnectionsManager.getInstance(((BottomSheet) InviteLinkBottomSheet.this).currentAccount).sendRequest(tLRPC$TL_messages_deleteExportedChatInvite, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            InviteLinkBottomSheet.Adapter.C24021.this.lambda$removeLink$3(tLObject, tLRPC$TL_error);
+                            InviteLinkBottomSheet.Adapter.C24031.this.lambda$removeLink$3(tLObject, tLRPC$TL_error);
                         }
                     });
                 }
@@ -689,7 +689,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteLinkBottomSheet.Adapter.C24021.this.lambda$removeLink$2(tLRPC$TL_error);
+                        InviteLinkBottomSheet.Adapter.C24031.this.lambda$removeLink$2(tLRPC$TL_error);
                     }
                 });
             }

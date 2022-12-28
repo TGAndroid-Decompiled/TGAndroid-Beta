@@ -687,7 +687,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     public static class WebViewSwipeContainer extends FrameLayout {
-        public static final SimpleFloatPropertyCompat<WebViewSwipeContainer> SWIPE_OFFSET_Y = new SimpleFloatPropertyCompat<>("swipeOffsetY", C2025xea937caa.INSTANCE, C2026xea937cab.INSTANCE);
+        public static final SimpleFloatPropertyCompat<WebViewSwipeContainer> SWIPE_OFFSET_Y = new SimpleFloatPropertyCompat<>("swipeOffsetY", C2026xea937caa.INSTANCE, C2027xea937cab.INSTANCE);
         private Delegate delegate;
         private boolean flingInProgress;
         private GestureDetectorCompat gestureDetector;
@@ -723,7 +723,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             this.offsetY = 0.0f;
             this.pendingOffsetY = -1.0f;
             this.pendingSwipeOffsetY = -2.14748365E9f;
-            this.isKeyboardVisible = C2024xea937ca9.INSTANCE;
+            this.isKeyboardVisible = C2025xea937ca9.INSTANCE;
             final int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
             this.gestureDetector = new GestureDetectorCompat(context, new GestureDetector.SimpleOnGestureListener() {
                 @Override
@@ -1048,7 +1048,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
         public WebProgressView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
-            this.LOAD_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("loadProgress", C2019x21c92f6c.INSTANCE, C2020x21c92f6d.INSTANCE).setMultiplier(100.0f);
+            this.LOAD_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("loadProgress", C2020x21c92f6c.INSTANCE, C2021x21c92f6d.INSTANCE).setMultiplier(100.0f);
             Paint paint = new Paint(1);
             this.bluePaint = paint;
             this.resourcesProvider = resourcesProvider;

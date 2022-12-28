@@ -10,6 +10,6 @@ public final class DialogsActivity$$ExternalSyntheticLambda14 implements DialogI
 
     @Override
     public final void onClick(DialogInterface dialogInterface, int i) {
-        DialogsActivity.lambda$onResume$22(dialogInterface, i);
+        DialogsActivity.lambda$onResume$23(dialogInterface, i);
     }
 }

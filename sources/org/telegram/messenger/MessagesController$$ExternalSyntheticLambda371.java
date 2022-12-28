@@ -12,6 +12,6 @@ public final class MessagesController$$ExternalSyntheticLambda371 implements Req
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        MessagesController.lambda$hidePromoDialog$113(tLObject, tLRPC$TL_error);
+        MessagesController.lambda$installTheme$102(tLObject, tLRPC$TL_error);
     }
 }

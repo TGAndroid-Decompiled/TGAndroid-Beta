@@ -565,9 +565,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         };
         this.titleTextView = clippingTextViewSwitcher;
         this.playerLayout.addView(clippingTextViewSwitcher, LayoutHelper.createFrame(-1, -2.0f, 51, 20.0f, 20.0f, 72.0f, 0.0f));
-        C18299 c18299 = new C18299(context, context);
-        this.authorTextView = c18299;
-        this.playerLayout.addView(c18299, LayoutHelper.createFrame(-1, -2.0f, 51, 14.0f, 47.0f, 72.0f, 0.0f));
+        C18309 c18309 = new C18309(context, context);
+        this.authorTextView = c18309;
+        this.playerLayout.addView(c18309, LayoutHelper.createFrame(-1, -2.0f, 51, 14.0f, 47.0f, 72.0f, 0.0f));
         SeekBarView seekBarView = new SeekBarView(context, resourcesProvider) {
             @Override
             public boolean onTouch(MotionEvent motionEvent) {
@@ -716,10 +716,10 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         int themedColor = getThemedColor("player_button");
         float scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         View[] viewArr2 = this.buttons;
-        C181013 c181013 = new C181013(context, scaledTouchSlop);
-        this.prevButton = c181013;
-        viewArr2[1] = c181013;
-        c181013.setScaleType(ImageView.ScaleType.CENTER);
+        C181113 c181113 = new C181113(context, scaledTouchSlop);
+        this.prevButton = c181113;
+        viewArr2[1] = c181113;
+        c181113.setScaleType(ImageView.ScaleType.CENTER);
         RLottieImageView rLottieImageView = this.prevButton;
         int i4 = C1072R.raw.player_prev;
         rLottieImageView.setAnimation(i4, 20, 20);
@@ -748,10 +748,10 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         frameLayout2.addView(this.playButton, LayoutHelper.createFrame(48, 48, 51));
         this.playButton.setOnClickListener(AudioPlayerAlert$$ExternalSyntheticLambda3.INSTANCE);
         View[] viewArr4 = this.buttons;
-        C181314 c181314 = new C181314(context, scaledTouchSlop);
-        this.nextButton = c181314;
-        viewArr4[3] = c181314;
-        c181314.setScaleType(ImageView.ScaleType.CENTER);
+        C181414 c181414 = new C181414(context, scaledTouchSlop);
+        this.nextButton = c181414;
+        viewArr4[3] = c181414;
+        c181414.setScaleType(ImageView.ScaleType.CENTER);
         this.nextButton.setAnimation(i4, 20, 20);
         this.nextButton.setLayerColor("Triangle 3.**", themedColor);
         this.nextButton.setLayerColor("Triangle 4.**", themedColor);
@@ -947,10 +947,10 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         updateEmptyView();
     }
 
-    public class C18299 extends ClippingTextViewSwitcher {
+    public class C18309 extends ClippingTextViewSwitcher {
         final Context val$context;
 
-        C18299(Context context, Context context2) {
+        C18309(Context context, Context context2) {
             super(context);
             this.val$context = context2;
         }
@@ -967,7 +967,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AudioPlayerAlert.C18299.this.lambda$createTextView$0(textView, view);
+                    AudioPlayerAlert.C18309.this.lambda$createTextView$0(textView, view);
                 }
             });
             return textView;
@@ -1058,7 +1058,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         updateRepeatButton();
     }
 
-    class C181013 extends RLottieImageView {
+    class C181113 extends RLottieImageView {
         private final Runnable backSeek;
         long lastTime;
         long lastUpdateTime;
@@ -1069,16 +1069,16 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         float startY;
         final float val$touchSlop;
 
-        C181013(Context context, float f) {
+        C181113(Context context, float f) {
             super(context);
             this.val$touchSlop = f;
             this.pressedCount = 0;
             this.pressedRunnable = new Runnable() {
                 @Override
                 public void run() {
-                    C181013 c181013 = C181013.this;
-                    int i = c181013.pressedCount + 1;
-                    c181013.pressedCount = i;
+                    C181113 c181113 = C181113.this;
+                    int i = c181113.pressedCount + 1;
+                    c181113.pressedCount = i;
                     if (i != 1) {
                         if (i == 2) {
                             AndroidUtilities.runOnUIThread(this, 2000L);
@@ -1089,9 +1089,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                     AudioPlayerAlert audioPlayerAlert = AudioPlayerAlert.this;
                     audioPlayerAlert.rewindingState = -1;
                     audioPlayerAlert.rewindingProgress = MediaController.getInstance().getPlayingMessageObject().audioProgress;
-                    C181013.this.lastTime = System.currentTimeMillis();
+                    C181113.this.lastTime = System.currentTimeMillis();
                     AndroidUtilities.runOnUIThread(this, 2000L);
-                    AndroidUtilities.runOnUIThread(C181013.this.backSeek);
+                    AndroidUtilities.runOnUIThread(C181113.this.backSeek);
                 }
             };
             this.backSeek = new Runnable() {
@@ -1099,16 +1099,16 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 public void run() {
                     long duration = MediaController.getInstance().getDuration();
                     if (duration == 0 || duration == -9223372036854775807L) {
-                        C181013.this.lastTime = System.currentTimeMillis();
+                        C181113.this.lastTime = System.currentTimeMillis();
                         return;
                     }
                     float f2 = AudioPlayerAlert.this.rewindingProgress;
                     long currentTimeMillis = System.currentTimeMillis();
-                    C181013 c181013 = C181013.this;
-                    long j = currentTimeMillis - c181013.lastTime;
-                    c181013.lastTime = currentTimeMillis;
-                    long j2 = currentTimeMillis - c181013.lastUpdateTime;
-                    int i = c181013.pressedCount;
+                    C181113 c181113 = C181113.this;
+                    long j = currentTimeMillis - c181113.lastTime;
+                    c181113.lastTime = currentTimeMillis;
+                    long j2 = currentTimeMillis - c181113.lastUpdateTime;
+                    int i = c181113.pressedCount;
                     float f3 = (float) duration;
                     float f4 = ((f2 * f3) - ((float) (j * (i == 1 ? 3L : i == 2 ? 6L : 12L)))) / f3;
                     if (f4 < 0.0f) {
@@ -1119,13 +1119,13 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                     if (playingMessageObject != null && playingMessageObject.isMusic()) {
                         AudioPlayerAlert.this.updateProgress(playingMessageObject);
                     }
-                    C181013 c1810132 = C181013.this;
+                    C181113 c1811132 = C181113.this;
                     AudioPlayerAlert audioPlayerAlert = AudioPlayerAlert.this;
-                    if (audioPlayerAlert.rewindingState != -1 || c1810132.pressedCount <= 0) {
+                    if (audioPlayerAlert.rewindingState != -1 || c1811132.pressedCount <= 0) {
                         return;
                     }
                     if (j2 > 200 || audioPlayerAlert.rewindingProgress == 0.0f) {
-                        c1810132.lastUpdateTime = currentTimeMillis;
+                        c1811132.lastUpdateTime = currentTimeMillis;
                         if (audioPlayerAlert.rewindingProgress == 0.0f) {
                             MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), 0.0f);
                             MediaController.getInstance().pauseByRewind();
@@ -1133,18 +1133,18 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                             MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f4);
                         }
                     }
-                    C181013 c1810133 = C181013.this;
-                    if (c1810133.pressedCount <= 0 || AudioPlayerAlert.this.rewindingProgress <= 0.0f) {
+                    C181113 c1811133 = C181113.this;
+                    if (c1811133.pressedCount <= 0 || AudioPlayerAlert.this.rewindingProgress <= 0.0f) {
                         return;
                     }
-                    AndroidUtilities.runOnUIThread(c1810133.backSeek, 16L);
+                    AndroidUtilities.runOnUIThread(c1811133.backSeek, 16L);
                 }
             };
         }
 
         @Override
         public boolean onTouchEvent(android.view.MotionEvent r10) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.AudioPlayerAlert.C181013.onTouchEvent(android.view.MotionEvent):boolean");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.AudioPlayerAlert.C181113.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
         @Override
@@ -1165,14 +1165,14 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
     }
 
-    class C181314 extends RLottieImageView {
+    class C181414 extends RLottieImageView {
         boolean pressed;
         private final Runnable pressedRunnable;
         float startX;
         float startY;
         final float val$touchSlop;
 
-        C181314(Context context, float f) {
+        C181414(Context context, float f) {
             super(context);
             this.val$touchSlop = f;
             this.pressedRunnable = new Runnable() {
@@ -1181,7 +1181,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                     if (MediaController.getInstance().getPlayingMessageObject() == null) {
                         return;
                     }
-                    C181314 c181314 = C181314.this;
+                    C181414 c181414 = C181414.this;
                     AudioPlayerAlert audioPlayerAlert = AudioPlayerAlert.this;
                     int i = audioPlayerAlert.rewindingForwardPressedCount + 1;
                     audioPlayerAlert.rewindingForwardPressedCount = i;
@@ -1194,7 +1194,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                         MediaController.getInstance().setPlaybackSpeed(true, 13.0f);
                         return;
                     }
-                    c181314.pressed = true;
+                    c181414.pressed = true;
                     audioPlayerAlert.rewindingState = 1;
                     if (MediaController.getInstance().isMessagePaused()) {
                         AudioPlayerAlert.this.startForwardRewindingSeek();
@@ -1213,7 +1213,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
 
         @Override
         public boolean onTouchEvent(android.view.MotionEvent r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.AudioPlayerAlert.C181314.onTouchEvent(android.view.MotionEvent):boolean");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.AudioPlayerAlert.C181414.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
         @Override

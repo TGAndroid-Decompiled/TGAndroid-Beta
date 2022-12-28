@@ -970,10 +970,10 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             return 0;
         }
 
-        public class C17071 extends JoinToSendSettingsView {
+        public class C17081 extends JoinToSendSettingsView {
             final TLRPC$Chat val$chat;
 
-            C17071(Context context, TLRPC$Chat tLRPC$Chat, TLRPC$Chat tLRPC$Chat2) {
+            C17081(Context context, TLRPC$Chat tLRPC$Chat, TLRPC$Chat tLRPC$Chat2) {
                 super(context, tLRPC$Chat);
                 this.val$chat = tLRPC$Chat2;
             }
@@ -983,7 +983,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                     ChatLinkActivity.this.getMessagesController().convertToMegaGroup(ChatLinkActivity.this.getParentActivity(), this.val$chat.f857id, ChatLinkActivity.this, new MessagesStorage.LongCallback() {
                         @Override
                         public final void run(long j) {
-                            ChatLinkActivity.ListAdapter.C17071.this.lambda$migrateIfNeeded$0(runnable2, j);
+                            ChatLinkActivity.ListAdapter.C17081.this.lambda$migrateIfNeeded$0(runnable2, j);
                         }
                     }, runnable);
                 } else {
@@ -1015,7 +1015,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 migrateIfNeeded(overrideCancel, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17071.this.lambda$onJoinRequestToggle$3(tLRPC$Chat, z, runnable);
+                        ChatLinkActivity.ListAdapter.C17081.this.lambda$onJoinRequestToggle$3(tLRPC$Chat, z, runnable);
                     }
                 });
                 return true;
@@ -1026,12 +1026,12 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 ChatLinkActivity.this.getMessagesController().toggleChatJoinRequest(tLRPC$Chat.f857id, z, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17071.this.lambda$onJoinRequestToggle$1();
+                        ChatLinkActivity.ListAdapter.C17081.this.lambda$onJoinRequestToggle$1();
                     }
                 }, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17071.this.lambda$onJoinRequestToggle$2(runnable);
+                        ChatLinkActivity.ListAdapter.C17081.this.lambda$onJoinRequestToggle$2(runnable);
                     }
                 });
             }
@@ -1049,7 +1049,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 return new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17071.this.lambda$overrideCancel$4(runnable);
+                        ChatLinkActivity.ListAdapter.C17081.this.lambda$overrideCancel$4(runnable);
                     }
                 };
             }
@@ -1071,7 +1071,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 migrateIfNeeded(overrideCancel, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17071.this.lambda$onJoinToSendToggle$9(tLRPC$Chat, z, runnable);
+                        ChatLinkActivity.ListAdapter.C17081.this.lambda$onJoinToSendToggle$9(tLRPC$Chat, z, runnable);
                     }
                 });
                 return true;
@@ -1082,12 +1082,12 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 ChatLinkActivity.this.getMessagesController().toggleChatJoinToSend(tLRPC$Chat.f857id, z, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17071.this.lambda$onJoinToSendToggle$7(z, tLRPC$Chat);
+                        ChatLinkActivity.ListAdapter.C17081.this.lambda$onJoinToSendToggle$7(z, tLRPC$Chat);
                     }
                 }, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17071.this.lambda$onJoinToSendToggle$8(runnable);
+                        ChatLinkActivity.ListAdapter.C17081.this.lambda$onJoinToSendToggle$8(runnable);
                     }
                 });
             }
@@ -1102,12 +1102,12 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 ChatLinkActivity.this.getMessagesController().toggleChatJoinRequest(tLRPC$Chat.f857id, false, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17071.this.lambda$onJoinToSendToggle$5();
+                        ChatLinkActivity.ListAdapter.C17081.this.lambda$onJoinToSendToggle$5();
                     }
                 }, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatLinkActivity.ListAdapter.C17071.this.lambda$onJoinToSendToggle$6(tLRPC$Chat);
+                        ChatLinkActivity.ListAdapter.C17081.this.lambda$onJoinToSendToggle$6(tLRPC$Chat);
                     }
                 });
             }
@@ -1144,7 +1144,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                     manageChatUserCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                 } else if (i == 4) {
                     TLRPC$Chat tLRPC$Chat = ChatLinkActivity.this.isChannel ? (TLRPC$Chat) ChatLinkActivity.this.chats.get(0) : ChatLinkActivity.this.currentChat;
-                    view = ChatLinkActivity.this.joinToSendSettings = new C17071(this.mContext, tLRPC$Chat, tLRPC$Chat);
+                    view = ChatLinkActivity.this.joinToSendSettings = new C17081(this.mContext, tLRPC$Chat, tLRPC$Chat);
                 } else {
                     view = new HintInnerCell(ChatLinkActivity.this, this.mContext);
                 }

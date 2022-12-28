@@ -3,10 +3,10 @@ package org.telegram.p009ui;
 import android.view.MotionEvent;
 import android.view.View;
 
-public final class DialogsActivity$$ExternalSyntheticLambda31 implements View.OnTouchListener {
-    public static final DialogsActivity$$ExternalSyntheticLambda31 INSTANCE = new DialogsActivity$$ExternalSyntheticLambda31();
+public final class DialogsActivity$$ExternalSyntheticLambda33 implements View.OnTouchListener {
+    public static final DialogsActivity$$ExternalSyntheticLambda33 INSTANCE = new DialogsActivity$$ExternalSyntheticLambda33();
 
-    private DialogsActivity$$ExternalSyntheticLambda31() {
+    private DialogsActivity$$ExternalSyntheticLambda33() {
     }
 
     @Override

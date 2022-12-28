@@ -4,10 +4,10 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 import org.telegram.p009ui.Components.Paint.ColorPickerBottomSheet;
 
-public final class C2469x8f669e74 implements TextView.OnEditorActionListener {
-    public static final C2469x8f669e74 INSTANCE = new C2469x8f669e74();
+public final class C2470x8f669e74 implements TextView.OnEditorActionListener {
+    public static final C2470x8f669e74 INSTANCE = new C2470x8f669e74();
 
-    private C2469x8f669e74() {
+    private C2470x8f669e74() {
     }
 
     @Override

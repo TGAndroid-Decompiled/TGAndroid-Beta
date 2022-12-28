@@ -255,7 +255,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         this.pipYSpring = new SpringAnimation(this, PIP_Y_PROPERTY).setSpring(new SpringForce().setDampingRatio(0.75f).setStiffness(650.0f));
         final Context context = ApplicationLoader.applicationContext;
         final int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new ScaleGestureDetector$OnScaleGestureListenerC30723());
+        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new ScaleGestureDetector$OnScaleGestureListenerC30733());
         this.scaleGestureDetector = scaleGestureDetector;
         int i = Build.VERSION.SDK_INT;
         if (i >= 19) {
@@ -436,7 +436,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         VoIPTextureView voIPTextureView2 = this.textureView;
         voIPTextureView2.scaleType = VoIPTextureView.SCALE_TYPE_FILL;
         voIPTextureView2.renderer.setRotateTextureWithScreen(true);
-        this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new C30788());
+        this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new C30798());
         this.contentFrameLayout.addView(this.textureView, LayoutHelper.createFrame(-1, -1.0f));
         View view = new View(context) {
             @Override
@@ -519,8 +519,8 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
     }
 
-    public class ScaleGestureDetector$OnScaleGestureListenerC30723 implements ScaleGestureDetector.OnScaleGestureListener {
-        ScaleGestureDetector$OnScaleGestureListenerC30723() {
+    public class ScaleGestureDetector$OnScaleGestureListenerC30733 implements ScaleGestureDetector.OnScaleGestureListener {
+        ScaleGestureDetector$OnScaleGestureListenerC30733() {
         }
 
         @Override
@@ -534,7 +534,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    RTMPStreamPipOverlay.ScaleGestureDetector$OnScaleGestureListenerC30723.this.lambda$onScale$0();
+                    RTMPStreamPipOverlay.ScaleGestureDetector$OnScaleGestureListenerC30733.this.lambda$onScale$0();
                 }
             });
             SpringForce spring = RTMPStreamPipOverlay.this.pipXSpring.setStartValue(RTMPStreamPipOverlay.this.pipX).getSpring();
@@ -583,7 +583,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                         dynamicAnimation.removeEndListener(this);
                         arrayList.add((SpringAnimation) dynamicAnimation);
                         if (arrayList.size() == 2) {
-                            ScaleGestureDetector$OnScaleGestureListenerC30723.this.updateLayout();
+                            ScaleGestureDetector$OnScaleGestureListenerC30733.this.updateLayout();
                         }
                     }
                 };
@@ -618,8 +618,8 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         }
     }
 
-    public class C30788 implements RendererCommon.RendererEvents {
-        C30788() {
+    public class C30798 implements RendererCommon.RendererEvents {
+        C30798() {
         }
 
         @Override
@@ -628,7 +628,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    RTMPStreamPipOverlay.C30788.this.lambda$onFirstFrameRendered$0();
+                    RTMPStreamPipOverlay.C30798.this.lambda$onFirstFrameRendered$0();
                 }
             });
         }
@@ -647,7 +647,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    RTMPStreamPipOverlay.C30788.this.lambda$onFrameResolutionChanged$1();
+                    RTMPStreamPipOverlay.C30798.this.lambda$onFrameResolutionChanged$1();
                 }
             });
         }

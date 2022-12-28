@@ -806,7 +806,7 @@ public class CropAreaView extends ViewGroup {
             this.previousX = x;
             this.previousY = y;
             boolean z = Math.abs(f4) > Math.abs(f5);
-            switch (C21703.$SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[this.activeControl.ordinal()]) {
+            switch (C21713.$SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[this.activeControl.ordinal()]) {
                 case 1:
                     RectF rectF = this.tempRect;
                     rectF.left += f4;
@@ -984,7 +984,7 @@ public class CropAreaView extends ViewGroup {
         }
     }
 
-    static class C21703 {
+    static class C21713 {
         static final int[] $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control;
 
         static {

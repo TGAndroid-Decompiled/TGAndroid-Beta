@@ -12,6 +12,6 @@ public final class MessagesController$$ExternalSyntheticLambda376 implements Req
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        MessagesController.lambda$deleteParticipantFromChat$254(tLObject, tLRPC$TL_error);
+        MessagesController.lambda$unregistedPush$263(tLObject, tLRPC$TL_error);
     }
 }

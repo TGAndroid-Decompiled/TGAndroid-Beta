@@ -103,6 +103,13 @@ public class LoadingDrawable extends Drawable {
         return this.disappearStart > 0 && ((float) (SystemClock.elapsedRealtime() - this.disappearStart)) >= 460.0f;
     }
 
+    public long timeToDisappear() {
+        if (this.disappearStart > 0) {
+            return 460 - (SystemClock.elapsedRealtime() - this.disappearStart);
+        }
+        return 0L;
+    }
+
     public void usePath(Path path) {
         this.usePath = path;
     }

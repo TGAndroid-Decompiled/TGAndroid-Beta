@@ -530,20 +530,20 @@ public class CountrySelectActivity extends BaseFragment {
     public static TextSettingsCell createSettingsCell(Context context) {
         TextSettingsCell textSettingsCell = new TextSettingsCell(context);
         textSettingsCell.setPadding(AndroidUtilities.m36dp(LocaleController.isRTL ? 16.0f : 12.0f), 0, AndroidUtilities.m36dp(LocaleController.isRTL ? 12.0f : 16.0f), 0);
-        textSettingsCell.addOnAttachStateChangeListener(new View$OnAttachStateChangeListenerC31324(textSettingsCell));
+        textSettingsCell.addOnAttachStateChangeListener(new View$OnAttachStateChangeListenerC31334(textSettingsCell));
         return textSettingsCell;
     }
 
-    public class View$OnAttachStateChangeListenerC31324 implements View.OnAttachStateChangeListener {
+    public class View$OnAttachStateChangeListenerC31334 implements View.OnAttachStateChangeListener {
         private NotificationCenter.NotificationCenterDelegate listener;
         final TextSettingsCell val$view;
 
-        View$OnAttachStateChangeListenerC31324(final TextSettingsCell textSettingsCell) {
+        View$OnAttachStateChangeListenerC31334(final TextSettingsCell textSettingsCell) {
             this.val$view = textSettingsCell;
             this.listener = new NotificationCenter.NotificationCenterDelegate() {
                 @Override
                 public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                    CountrySelectActivity.View$OnAttachStateChangeListenerC31324.lambda$$0(TextSettingsCell.this, i, i2, objArr);
+                    CountrySelectActivity.View$OnAttachStateChangeListenerC31334.lambda$$0(TextSettingsCell.this, i, i2, objArr);
                 }
             };
         }

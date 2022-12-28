@@ -106,6 +106,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_getStickerSet;
 import org.telegram.tgnet.TLRPC$TL_messages_installStickerSet;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSetInstallResultArchive;
+import org.telegram.tgnet.TLRPC$TL_stickerSetFullCovered;
 import org.telegram.tgnet.TLRPC$TL_stickers_checkShortName;
 import org.telegram.tgnet.TLRPC$TL_stickers_suggestShortName;
 import org.telegram.tgnet.TLRPC$TL_stickers_suggestedShortName;
@@ -699,9 +700,9 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.reqId = 0;
         if (tLRPC$TL_error == null) {
             if (Build.VERSION.SDK_INT >= 19) {
-                C29072 c29072 = new C29072();
-                c29072.addTarget(this.containerView);
-                TransitionManager.beginDelayedTransition(this.container, c29072);
+                C29082 c29082 = new C29082();
+                c29082.addTarget(this.containerView);
+                TransitionManager.beginDelayedTransition(this.container, c29082);
             }
             this.optionsButton.setVisibility(0);
             TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = (TLRPC$TL_messages_stickerSet) tLObject;
@@ -722,8 +723,8 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
     }
 
-    public class C29072 extends Transition {
-        C29072() {
+    public class C29082 extends Transition {
+        C29082() {
         }
 
         @Override
@@ -747,7 +748,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    StickersAlert.C29072.this.lambda$createAnimator$0(intValue, i, valueAnimator);
+                    StickersAlert.C29082.this.lambda$createAnimator$0(intValue, i, valueAnimator);
                 }
             });
             return ofFloat;
@@ -804,7 +805,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
             @Override
             protected void onMeasure(int r12, int r13) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.StickersAlert.C29083.onMeasure(int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.StickersAlert.C29093.onMeasure(int, int):void");
             }
 
             @Override
@@ -844,7 +845,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
             @Override
             protected void onDraw(android.graphics.Canvas r14) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.StickersAlert.C29083.onDraw(android.graphics.Canvas):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.StickersAlert.C29093.onDraw(android.graphics.Canvas):void");
             }
         };
         this.containerView = frameLayout;
@@ -1255,22 +1256,22 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         if (context == null) {
             context = getContext();
         }
-        DialogC290110 dialogC290110 = new DialogC290110(context, null, str2, false, str2, false, this.resourcesProvider);
+        DialogC290210 dialogC290210 = new DialogC290210(context, null, str2, false, str2, false, this.resourcesProvider);
         BaseFragment baseFragment2 = this.parentFragment;
         if (baseFragment2 != null) {
-            baseFragment2.showDialog(dialogC290110);
+            baseFragment2.showDialog(dialogC290210);
             BaseFragment baseFragment3 = this.parentFragment;
             if (baseFragment3 instanceof ChatActivity) {
-                dialogC290110.setCalcMandatoryInsets(((ChatActivity) baseFragment3).isKeyboardVisible());
+                dialogC290210.setCalcMandatoryInsets(((ChatActivity) baseFragment3).isKeyboardVisible());
                 return;
             }
             return;
         }
-        dialogC290110.show();
+        dialogC290210.show();
     }
 
-    public class DialogC290110 extends ShareAlert {
-        DialogC290110(Context context, ArrayList arrayList, String str, boolean z, String str2, boolean z2, Theme.ResourcesProvider resourcesProvider) {
+    public class DialogC290210 extends ShareAlert {
+        DialogC290210(Context context, ArrayList arrayList, String str, boolean z, String str2, boolean z2, Theme.ResourcesProvider resourcesProvider) {
             super(context, arrayList, str, z, str2, z2, resourcesProvider);
         }
 
@@ -1290,7 +1291,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickersAlert.DialogC290110.this.lambda$onSend$0(longSparseArray, i);
+                    StickersAlert.DialogC290210.this.lambda$onSend$0(longSparseArray, i);
                 }
             }, 100L);
         }
@@ -2315,6 +2316,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
         @Override
         public void notifyDataSetChanged() {
+            ArrayList<TLRPC$Document> arrayList;
             int i;
             int i2;
             if (StickersAlert.this.stickerSetCovereds != null) {
@@ -2330,7 +2332,12 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 this.stickersRowCount = 0;
                 for (int i3 = 0; i3 < StickersAlert.this.stickerSetCovereds.size(); i3++) {
                     TLRPC$StickerSetCovered tLRPC$StickerSetCovered = (TLRPC$StickerSetCovered) StickersAlert.this.stickerSetCovereds.get(i3);
-                    if (!tLRPC$StickerSetCovered.covers.isEmpty() || tLRPC$StickerSetCovered.cover != null) {
+                    if (tLRPC$StickerSetCovered instanceof TLRPC$TL_stickerSetFullCovered) {
+                        arrayList = ((TLRPC$TL_stickerSetFullCovered) tLRPC$StickerSetCovered).documents;
+                    } else {
+                        arrayList = tLRPC$StickerSetCovered.covers;
+                    }
+                    if (arrayList != null && (!arrayList.isEmpty() || tLRPC$StickerSetCovered.cover != null)) {
                         double d = this.stickersRowCount;
                         double ceil = Math.ceil(StickersAlert.this.stickerSetCovereds.size() / this.stickersPerRow);
                         Double.isNaN(d);
@@ -2341,10 +2348,10 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                         this.totalItems = i4 + 1;
                         sparseArray.put(i4, Integer.valueOf(i3));
                         int i5 = this.totalItems / this.stickersPerRow;
-                        if (!tLRPC$StickerSetCovered.covers.isEmpty()) {
-                            i = (int) Math.ceil(tLRPC$StickerSetCovered.covers.size() / this.stickersPerRow);
-                            for (int i6 = 0; i6 < tLRPC$StickerSetCovered.covers.size(); i6++) {
-                                this.cache.put(this.totalItems + i6, tLRPC$StickerSetCovered.covers.get(i6));
+                        if (!arrayList.isEmpty()) {
+                            i = (int) Math.ceil(arrayList.size() / this.stickersPerRow);
+                            for (int i6 = 0; i6 < arrayList.size(); i6++) {
+                                this.cache.put(this.totalItems + i6, arrayList.get(i6));
                             }
                         } else {
                             this.cache.put(this.totalItems, tLRPC$StickerSetCovered.cover);

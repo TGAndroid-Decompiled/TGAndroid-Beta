@@ -244,7 +244,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 View headerCell;
-                int i2 = C23174.f1071xe4e639ed[FloatingDebugController.DebugItemType.values()[i].ordinal()];
+                int i2 = C23184.f1071xe4e639ed[FloatingDebugController.DebugItemType.values()[i].ordinal()];
                 if (i2 == 2) {
                     headerCell = new HeaderCell(context);
                 } else if (i2 != 3) {
@@ -259,7 +259,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 FloatingDebugController.DebugItem debugItem = (FloatingDebugController.DebugItem) FloatingDebugView.this.debugItems.get(i);
-                int i2 = C23174.f1071xe4e639ed[debugItem.type.ordinal()];
+                int i2 = C23184.f1071xe4e639ed[debugItem.type.ordinal()];
                 if (i2 == 1) {
                     AlertDialog.AlertDialogCell alertDialogCell = (AlertDialog.AlertDialogCell) viewHolder.itemView;
                     alertDialogCell.setTextColor(Theme.getColor("dialogTextBlack"));
@@ -303,7 +303,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         setWillNotDraw(false);
     }
 
-    static class C23174 {
+    static class C23184 {
         static final int[] f1071xe4e639ed;
 
         static {

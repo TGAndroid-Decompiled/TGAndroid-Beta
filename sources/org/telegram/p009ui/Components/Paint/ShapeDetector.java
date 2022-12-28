@@ -182,13 +182,13 @@ public class ShapeDetector {
     }
 
     public void lambda$parseTemplates$0() {
-        C24771 c24771;
+        C24781 c24781;
         char c;
         String string;
         try {
             InputStream open = ApplicationLoader.applicationContext.getAssets().open("shapes.dat");
             while (true) {
-                c24771 = null;
+                c24781 = null;
                 c = 0;
                 if (open.available() <= 5) {
                     break;
@@ -223,7 +223,7 @@ public class ShapeDetector {
                         this.templates.add(template2);
                     }
                     i2++;
-                    c24771 = null;
+                    c24781 = null;
                     c = 0;
                 }
             }
