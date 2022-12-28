@@ -166,7 +166,7 @@ public class PinchToZoomHelper {
             this.blurImage.setImageBitmap((Bitmap) null);
         }
         if (imageReceiver.getBitmap() != null && !imageReceiver.getBitmap().isRecycled() && this.hasMediaSpoiler) {
-            this.blurImage.setImageBitmap(Utilities.stackBlurBitmapWithScaleFactor(imageReceiver.getBitmap(), 12.0f));
+            this.blurImage.setImageBitmap(Utilities.stackBlurBitmapMax(imageReceiver.getBitmap()));
         }
         setFullImage(messageObject);
         this.imageX = imageReceiver.getImageX();

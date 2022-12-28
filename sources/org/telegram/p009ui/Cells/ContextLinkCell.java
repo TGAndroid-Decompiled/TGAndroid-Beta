@@ -635,7 +635,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             int i = this.resolveFileNameId;
             this.resolveFileNameId = i + 1;
             this.resolveFileNameId = i;
-            Utilities.searchQueue.postRunnable(new RunnableC13981(i, z));
+            Utilities.searchQueue.postRunnable(new RunnableC13991(i, z));
             this.radialProgress.setIcon(4, z, false);
         } else if (TextUtils.isEmpty(str)) {
             this.buttonState = -1;
@@ -684,18 +684,18 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         }
     }
 
-    public class RunnableC13981 implements Runnable {
+    public class RunnableC13991 implements Runnable {
         final boolean val$ifSame;
         final int val$localId;
 
-        RunnableC13981(int i, boolean z) {
+        RunnableC13991(int i, boolean z) {
             this.val$localId = i;
             this.val$ifSame = z;
         }
 
         @Override
         public void run() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Cells.ContextLinkCell.RunnableC13981.run():void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Cells.ContextLinkCell.RunnableC13991.run():void");
         }
 
         public void lambda$run$0(int i, String str, File file, boolean z, boolean z2) {

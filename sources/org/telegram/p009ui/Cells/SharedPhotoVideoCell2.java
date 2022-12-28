@@ -100,7 +100,7 @@ public class SharedPhotoVideoCell2 extends View {
         if (this.blurImageReceiver.getBitmap() != null) {
             this.blurImageReceiver.getBitmap().recycle();
         }
-        this.blurImageReceiver.setImageBitmap(Utilities.stackBlurBitmapWithScaleFactor(this.imageReceiver.getBitmap(), 12.0f));
+        this.blurImageReceiver.setImageBitmap(Utilities.stackBlurBitmapMax(this.imageReceiver.getBitmap()));
     }
 
     public void setStyle(int i) {

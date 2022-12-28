@@ -623,7 +623,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
                 @Override
                 public void afterTextChanged(android.text.Editable r6) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Paint.ColorPickerBottomSheet.SlidersPickerView.C24661.afterTextChanged(android.text.Editable):void");
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.Paint.ColorPickerBottomSheet.SlidersPickerView.C24671.afterTextChanged(android.text.Editable):void");
                 }
             });
             this.hexEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -632,7 +632,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
                     ColorPickerBottomSheet.SlidersPickerView.this.lambda$new$0(view, z);
                 }
             });
-            this.hexEdit.setOnEditorActionListener(C2468x8f669e74.INSTANCE);
+            this.hexEdit.setOnEditorActionListener(C2469x8f669e74.INSTANCE);
             linearLayout.addView(this.hexEdit, LayoutHelper.createLinear(72, 36));
         }
 

@@ -356,10 +356,10 @@ public class ThemeEditorView {
 
                         @Override
                         public void afterTextChanged(android.text.Editable r7) {
-                            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ThemeEditorView.EditorAlert.ColorPicker.C29461.afterTextChanged(android.text.Editable):void");
+                            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ThemeEditorView.EditorAlert.ColorPicker.C29471.afterTextChanged(android.text.Editable):void");
                         }
                     });
-                    this.colorEditText[i].setOnEditorActionListener(C2950x6ea38e02.INSTANCE);
+                    this.colorEditText[i].setOnEditorActionListener(C2951x6ea38e02.INSTANCE);
                     i++;
                 }
             }
@@ -600,7 +600,7 @@ public class ThemeEditorView {
 
                 @Override
                 protected void onDraw(android.graphics.Canvas r14) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ThemeEditorView.EditorAlert.C29401.onDraw(android.graphics.Canvas):void");
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ThemeEditorView.EditorAlert.C29411.onDraw(android.graphics.Canvas):void");
                 }
 
                 private void updateLightStatusBar(boolean z) {
@@ -1293,7 +1293,7 @@ public class ThemeEditorView {
             Instance.destroy();
         }
         this.themeInfo = themeInfo;
-        this.windowView = new C29361(activity);
+        this.windowView = new C29371(activity);
         this.windowManager = (WindowManager) activity.getSystemService("window");
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0);
         this.preferences = sharedPreferences;
@@ -1341,7 +1341,7 @@ public class ThemeEditorView {
         }
     }
 
-    public class C29361 extends FrameLayout {
+    public class C29371 extends FrameLayout {
         private boolean dragging;
         private float startX;
         private float startY;
@@ -1354,13 +1354,13 @@ public class ThemeEditorView {
             return true;
         }
 
-        C29361(Context context) {
+        C29371(Context context) {
             super(context);
         }
 
         @Override
         public boolean onTouchEvent(android.view.MotionEvent r11) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ThemeEditorView.C29361.onTouchEvent(android.view.MotionEvent):boolean");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ThemeEditorView.C29371.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
         public void lambda$onTouchEvent$1(DialogInterface dialogInterface) {

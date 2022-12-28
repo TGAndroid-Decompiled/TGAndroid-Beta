@@ -506,9 +506,9 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         addView(this.avatars, LayoutHelper.createFrame(108, 36, i));
         int i3 = C1072R.raw.voice_muted;
         this.muteDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.m36dp(16.0f), AndroidUtilities.m36dp(20.0f), true, null);
-        C23457 c23457 = new C23457(context);
-        this.muteButton = c23457;
-        c23457.setColorFilter(new PorterDuffColorFilter(getThemedColor("returnToCallText"), PorterDuff.Mode.MULTIPLY));
+        C23467 c23467 = new C23467(context);
+        this.muteButton = c23467;
+        c23467.setColorFilter(new PorterDuffColorFilter(getThemedColor("returnToCallText"), PorterDuff.Mode.MULTIPLY));
         if (i2 >= 21) {
             this.muteButton.setBackground(Theme.createSelectorDrawable(getThemedColor("inappPlayerClose") & 436207615, 1, AndroidUtilities.m36dp(f)));
         }
@@ -604,24 +604,24 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         updateAvatars(true);
     }
 
-    public class C23457 extends RLottieImageView {
+    public class C23467 extends RLottieImageView {
         private final Runnable pressRunnable;
         boolean pressed;
         boolean scheduled;
         private final Runnable toggleMicRunnable;
 
-        C23457(Context context) {
+        C23467(Context context) {
             super(context);
             this.toggleMicRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    FragmentContextView.C23457.this.lambda$$0();
+                    FragmentContextView.C23467.this.lambda$$0();
                 }
             };
             this.pressRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    FragmentContextView.C23457.this.lambda$$1();
+                    FragmentContextView.C23467.this.lambda$$1();
                 }
             };
         }

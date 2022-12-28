@@ -8,7 +8,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.C1072R;
 import org.telegram.messenger.CacheByChatsController;
 import org.telegram.messenger.LocaleController;
@@ -36,7 +35,6 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
     ActionBarMenuSubItem forever;
     FrameLayout gap;
     ActionBarMenuSubItem oneDay;
-    ActionBarMenuSubItem oneMinute;
     ActionBarMenuSubItem oneMonth;
     ActionBarMenuSubItem oneWeek;
     BaseFragment parentFragment;
@@ -51,18 +49,13 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         this.parentFragment = baseFragment;
         this.cacheByChatsController = baseFragment.getMessagesController().getCacheByChatsController();
         setFitItems(true);
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this, C1072R.C1073drawable.msg_autodelete, LocaleController.formatPluralString("Minutes", 1, new Object[0]), false, null);
-            this.oneMinute = addItem;
-            this.checkItems.add(new CheckItem(addItem, CacheByChatsController.KEEP_MEDIA_ONE_MINUTE));
-        }
         this.oneDay = ActionBarMenuItem.addItem(this, C1072R.C1073drawable.msg_autodelete_1d, LocaleController.formatPluralString("Days", 1, new Object[0]), false, null);
         this.oneWeek = ActionBarMenuItem.addItem(this, C1072R.C1073drawable.msg_autodelete_1w, LocaleController.formatPluralString("Weeks", 1, new Object[0]), false, null);
         this.oneMonth = ActionBarMenuItem.addItem(this, C1072R.C1073drawable.msg_autodelete_1m, LocaleController.formatPluralString("Months", 1, new Object[0]), false, null);
         this.forever = ActionBarMenuItem.addItem(this, C1072R.C1073drawable.msg_cancel, LocaleController.getString("AutoDeleteMediaNever", C1072R.string.AutoDeleteMediaNever), false, null);
-        ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(this, C1072R.C1073drawable.msg_delete, LocaleController.getString("DeleteException", C1072R.string.DeleteException), false, null);
-        this.delete = addItem2;
-        addItem2.setColors(Theme.getColor("windowBackgroundWhiteRedText"), Theme.getColor("windowBackgroundWhiteRedText"));
+        ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this, C1072R.C1073drawable.msg_delete, LocaleController.getString("DeleteException", C1072R.string.DeleteException), false, null);
+        this.delete = addItem;
+        addItem.setColors(Theme.getColor("windowBackgroundWhiteRedText"), Theme.getColor("windowBackgroundWhiteRedText"));
         this.checkItems.add(new CheckItem(this.oneDay, CacheByChatsController.KEEP_MEDIA_ONE_DAY));
         this.checkItems.add(new CheckItem(this.oneWeek, CacheByChatsController.KEEP_MEDIA_ONE_WEEK));
         this.checkItems.add(new CheckItem(this.oneMonth, CacheByChatsController.KEEP_MEDIA_ONE_MONTH));

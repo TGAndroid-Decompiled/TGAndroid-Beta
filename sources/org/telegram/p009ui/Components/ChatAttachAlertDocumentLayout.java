@@ -159,7 +159,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             this.ext = "";
         }
 
-        ListItem(C20411 c20411) {
+        ListItem(C20421 c20421) {
             this();
         }
     }
@@ -171,13 +171,13 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         private HistoryEntry() {
         }
 
-        HistoryEntry(C20411 c20411) {
+        HistoryEntry(C20421 c20421) {
             this();
         }
     }
 
-    public class C20411 extends BroadcastReceiver {
-        C20411() {
+    public class C20421 extends BroadcastReceiver {
+        C20421() {
             ChatAttachAlertDocumentLayout.this = r1;
         }
 
@@ -186,7 +186,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertDocumentLayout.C20411.this.lambda$onReceive$0();
+                    ChatAttachAlertDocumentLayout.C20421.this.lambda$onReceive$0();
                 }
             };
             if ("android.intent.action.MEDIA_UNMOUNTED".equals(intent.getAction())) {
@@ -218,7 +218,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         this.selectedFilesOrder = new ArrayList<>();
         this.selectedMessages = new HashMap<>();
         this.maxSelectedFiles = -1;
-        this.receiver = new C20411();
+        this.receiver = new C20421();
         this.listAdapter = new ListAdapter(context);
         this.allowMusic = i == 1;
         this.isSoundPicker = i == 2;
@@ -388,7 +388,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i3) {
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
                     {
-                        C20466.this = this;
+                        C20476.this = this;
                     }
 
                     @Override
@@ -1836,7 +1836,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                         }
                         animatorSet.addListener(new AnimatorListenerAdapter() {
                             {
-                                ViewTreeObserver$OnPreDrawListenerC20533.this = this;
+                                ViewTreeObserver$OnPreDrawListenerC20543.this = this;
                             }
 
                             @Override
@@ -1856,7 +1856,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                                 ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view3, View.ALPHA, view3.getAlpha(), 0.0f);
                                 ofFloat2.addListener(new AnimatorListenerAdapter() {
                                     {
-                                        ViewTreeObserver$OnPreDrawListenerC20533.this = this;
+                                        ViewTreeObserver$OnPreDrawListenerC20543.this = this;
                                     }
 
                                     @Override

@@ -699,9 +699,9 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.reqId = 0;
         if (tLRPC$TL_error == null) {
             if (Build.VERSION.SDK_INT >= 19) {
-                C29062 c29062 = new C29062();
-                c29062.addTarget(this.containerView);
-                TransitionManager.beginDelayedTransition(this.container, c29062);
+                C29072 c29072 = new C29072();
+                c29072.addTarget(this.containerView);
+                TransitionManager.beginDelayedTransition(this.container, c29072);
             }
             this.optionsButton.setVisibility(0);
             TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = (TLRPC$TL_messages_stickerSet) tLObject;
@@ -722,8 +722,8 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
     }
 
-    public class C29062 extends Transition {
-        C29062() {
+    public class C29072 extends Transition {
+        C29072() {
         }
 
         @Override
@@ -747,7 +747,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    StickersAlert.C29062.this.lambda$createAnimator$0(intValue, i, valueAnimator);
+                    StickersAlert.C29072.this.lambda$createAnimator$0(intValue, i, valueAnimator);
                 }
             });
             return ofFloat;
@@ -804,7 +804,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
             @Override
             protected void onMeasure(int r12, int r13) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.StickersAlert.C29073.onMeasure(int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.StickersAlert.C29083.onMeasure(int, int):void");
             }
 
             @Override
@@ -844,7 +844,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
             @Override
             protected void onDraw(android.graphics.Canvas r14) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.StickersAlert.C29073.onDraw(android.graphics.Canvas):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.StickersAlert.C29083.onDraw(android.graphics.Canvas):void");
             }
         };
         this.containerView = frameLayout;
@@ -1255,22 +1255,22 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         if (context == null) {
             context = getContext();
         }
-        DialogC290010 dialogC290010 = new DialogC290010(context, null, str2, false, str2, false, this.resourcesProvider);
+        DialogC290110 dialogC290110 = new DialogC290110(context, null, str2, false, str2, false, this.resourcesProvider);
         BaseFragment baseFragment2 = this.parentFragment;
         if (baseFragment2 != null) {
-            baseFragment2.showDialog(dialogC290010);
+            baseFragment2.showDialog(dialogC290110);
             BaseFragment baseFragment3 = this.parentFragment;
             if (baseFragment3 instanceof ChatActivity) {
-                dialogC290010.setCalcMandatoryInsets(((ChatActivity) baseFragment3).isKeyboardVisible());
+                dialogC290110.setCalcMandatoryInsets(((ChatActivity) baseFragment3).isKeyboardVisible());
                 return;
             }
             return;
         }
-        dialogC290010.show();
+        dialogC290110.show();
     }
 
-    public class DialogC290010 extends ShareAlert {
-        DialogC290010(Context context, ArrayList arrayList, String str, boolean z, String str2, boolean z2, Theme.ResourcesProvider resourcesProvider) {
+    public class DialogC290110 extends ShareAlert {
+        DialogC290110(Context context, ArrayList arrayList, String str, boolean z, String str2, boolean z2, Theme.ResourcesProvider resourcesProvider) {
             super(context, arrayList, str, z, str2, z2, resourcesProvider);
         }
 
@@ -1290,7 +1290,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickersAlert.DialogC290010.this.lambda$onSend$0(longSparseArray, i);
+                    StickersAlert.DialogC290110.this.lambda$onSend$0(longSparseArray, i);
                 }
             }, 100L);
         }

@@ -540,11 +540,11 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         if (AndroidUtilities.isTablet()) {
             this.emojiView.setForseMultiwindowLayout(true);
         }
-        this.emojiView.setDelegate(new C21975());
+        this.emojiView.setDelegate(new C21985());
         this.sizeNotifierLayout.addView(this.emojiView);
     }
 
-    public class C21975 implements EmojiView.EmojiViewDelegate {
+    public class C21985 implements EmojiView.EmojiViewDelegate {
         @Override
         public boolean canSchedule() {
             return EmojiView.EmojiViewDelegate.CC.$default$canSchedule(this);
@@ -645,7 +645,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             EmojiView.EmojiViewDelegate.CC.$default$showTrendingStickersAlert(this, trendingStickersLayout);
         }
 
-        C21975() {
+        C21985() {
         }
 
         @Override
@@ -755,7 +755,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             builder.setPositiveButton(LocaleController.getString("ClearButton", C1072R.string.ClearButton), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    EditTextEmoji.C21975.this.lambda$onClearEmojiRecent$0(dialogInterface, i);
+                    EditTextEmoji.C21985.this.lambda$onClearEmojiRecent$0(dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), null);

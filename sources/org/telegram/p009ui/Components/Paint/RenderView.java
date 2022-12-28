@@ -67,7 +67,7 @@ public class RenderView extends TextureView {
         this.bitmap = bitmap;
         this.painting = painting;
         painting.setRenderView(this);
-        setSurfaceTextureListener(new TextureView$SurfaceTextureListenerC24731());
+        setSurfaceTextureListener(new TextureView$SurfaceTextureListenerC24741());
         this.input = new Input(this);
         this.shapeInput = new ShapeInput(this, new Runnable() {
             @Override
@@ -95,12 +95,12 @@ public class RenderView extends TextureView {
         });
     }
 
-    public class TextureView$SurfaceTextureListenerC24731 implements TextureView.SurfaceTextureListener {
+    public class TextureView$SurfaceTextureListenerC24741 implements TextureView.SurfaceTextureListener {
         @Override
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         }
 
-        TextureView$SurfaceTextureListenerC24731() {
+        TextureView$SurfaceTextureListenerC24741() {
         }
 
         @Override
@@ -114,7 +114,7 @@ public class RenderView extends TextureView {
             RenderView.this.post(new Runnable() {
                 @Override
                 public final void run() {
-                    RenderView.TextureView$SurfaceTextureListenerC24731.this.lambda$onSurfaceTextureAvailable$0();
+                    RenderView.TextureView$SurfaceTextureListenerC24741.this.lambda$onSurfaceTextureAvailable$0();
                 }
             });
             if (RenderView.this.painting.isPaused()) {
@@ -139,7 +139,7 @@ public class RenderView extends TextureView {
             RenderView.this.internal.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    RenderView.TextureView$SurfaceTextureListenerC24731.this.lambda$onSurfaceTextureSizeChanged$1();
+                    RenderView.TextureView$SurfaceTextureListenerC24741.this.lambda$onSurfaceTextureSizeChanged$1();
                 }
             });
         }
@@ -156,7 +156,7 @@ public class RenderView extends TextureView {
                 RenderView.this.painting.onPause(new Runnable() {
                     @Override
                     public final void run() {
-                        RenderView.TextureView$SurfaceTextureListenerC24731.this.lambda$onSurfaceTextureDestroyed$2();
+                        RenderView.TextureView$SurfaceTextureListenerC24741.this.lambda$onSurfaceTextureDestroyed$2();
                     }
                 });
             }
@@ -369,7 +369,7 @@ public class RenderView extends TextureView {
 
         public CanvasInternal(SurfaceTexture surfaceTexture) {
             super("CanvasInternal");
-            this.drawRunnable = new RunnableC24751();
+            this.drawRunnable = new RunnableC24761();
             this.surfaceTexture = surfaceTexture;
         }
 
@@ -483,8 +483,8 @@ public class RenderView extends TextureView {
             return false;
         }
 
-        public class RunnableC24751 implements Runnable {
-            RunnableC24751() {
+        public class RunnableC24761 implements Runnable {
+            RunnableC24761() {
             }
 
             @Override
@@ -505,7 +505,7 @@ public class RenderView extends TextureView {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            RenderView.CanvasInternal.RunnableC24751.this.lambda$run$0();
+                            RenderView.CanvasInternal.RunnableC24761.this.lambda$run$0();
                         }
                     });
                 }

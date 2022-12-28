@@ -917,12 +917,12 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.provider = new PhotoViewer.EmptyPhotoViewerProvider() {
             @Override
             public org.telegram.p009ui.PhotoViewer.PlaceProviderObject getPlaceForPhoto(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC$FileLocation r18, int r19, boolean r20) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.SharedMediaLayout.C28021.getPlaceForPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean):org.telegram.ui.PhotoViewer$PlaceProviderObject");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.SharedMediaLayout.C28031.getPlaceForPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean):org.telegram.ui.PhotoViewer$PlaceProviderObject");
             }
         };
         this.sharedMediaData = new SharedMediaData[6];
         this.messageAlphaEnter = new SparseArray<>();
-        this.sharedLinkCellDelegate = new C282730();
+        this.sharedLinkCellDelegate = new C282830();
         this.viewType = i2;
         this.resourcesProvider = resourcesProvider;
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
@@ -1110,7 +1110,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.photoVideoOptionsItem.setImageDrawable(mutate);
         this.photoVideoOptionsItem.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         this.actionBar.addView(this.photoVideoOptionsItem, LayoutHelper.createFrame(48, 56, 85));
-        this.photoVideoOptionsItem.setOnClickListener(new View$OnClickListenerC28295(context));
+        this.photoVideoOptionsItem.setOnClickListener(new View$OnClickListenerC28305(context));
         EditTextBoldCursor searchField = this.searchItem.getSearchField();
         searchField.setTextColor(getThemedColor("windowBackgroundWhiteBlackText"));
         searchField.setHintTextColor(getThemedColor("player_time"));
@@ -1375,7 +1375,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
                 @Override
                 public void dispatchDraw(android.graphics.Canvas r26) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.SharedMediaLayout.C280310.dispatchDraw(android.graphics.Canvas):void");
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.SharedMediaLayout.C280410.dispatchDraw(android.graphics.Canvas):void");
                 }
 
                 @Override
@@ -1584,10 +1584,10 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
     }
 
-    public class View$OnClickListenerC28295 implements View.OnClickListener {
+    public class View$OnClickListenerC28305 implements View.OnClickListener {
         final Context val$context;
 
-        View$OnClickListenerC28295(Context context) {
+        View$OnClickListenerC28305(Context context) {
             this.val$context = context;
         }
 
@@ -1615,7 +1615,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    SharedMediaLayout.View$OnClickListenerC28295.this.lambda$onClick$0(actionBarMenuSubItem, actionBarMenuSubItem2, view2);
+                    SharedMediaLayout.View$OnClickListenerC28305.this.lambda$onClick$0(actionBarMenuSubItem, actionBarMenuSubItem2, view2);
                 }
             });
             actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
@@ -3447,16 +3447,16 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         if (view != null) {
             recyclerListView.removeView(view);
         }
-        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC282127(recyclerListView, sparseBooleanArray, view, i));
+        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC282227(recyclerListView, sparseBooleanArray, view, i));
     }
 
-    public class ViewTreeObserver$OnPreDrawListenerC282127 implements ViewTreeObserver.OnPreDrawListener {
+    public class ViewTreeObserver$OnPreDrawListenerC282227 implements ViewTreeObserver.OnPreDrawListener {
         final SparseBooleanArray val$addedMesages;
         final RecyclerListView val$finalListView;
         final View val$finalProgressView;
         final int val$oldItemCount;
 
-        ViewTreeObserver$OnPreDrawListenerC282127(RecyclerListView recyclerListView, SparseBooleanArray sparseBooleanArray, View view, int i) {
+        ViewTreeObserver$OnPreDrawListenerC282227(RecyclerListView recyclerListView, SparseBooleanArray sparseBooleanArray, View view, int i) {
             this.val$finalListView = recyclerListView;
             this.val$addedMesages = sparseBooleanArray;
             this.val$finalProgressView = view;
@@ -3480,14 +3480,14 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                    SharedMediaLayout.ViewTreeObserver$OnPreDrawListenerC282127.this.lambda$onPreDraw$0(messageId, recyclerListView, valueAnimator);
+                                    SharedMediaLayout.ViewTreeObserver$OnPreDrawListenerC282227.this.lambda$onPreDraw$0(messageId, recyclerListView, valueAnimator);
                                 }
                             });
                             ofFloat.addListener(new AnimatorListenerAdapter() {
                                 @Override
                                 public void onAnimationEnd(Animator animator) {
                                     SharedMediaLayout.this.messageAlphaEnter.remove(messageId);
-                                    ViewTreeObserver$OnPreDrawListenerC282127.this.val$finalListView.invalidate();
+                                    ViewTreeObserver$OnPreDrawListenerC282227.this.val$finalListView.invalidate();
                                 }
                             });
                             ofFloat.setStartDelay((int) ((Math.min(this.val$finalListView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / this.val$finalListView.getMeasuredHeight()) * 100.0f));
@@ -3520,10 +3520,10 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                             ofFloat3.addListener(new AnimatorListenerAdapter() {
                                 @Override
                                 public void onAnimationEnd(Animator animator) {
-                                    ViewTreeObserver$OnPreDrawListenerC282127.this.val$finalProgressView.setAlpha(1.0f);
-                                    layoutManager.stopIgnoringView(ViewTreeObserver$OnPreDrawListenerC282127.this.val$finalProgressView);
-                                    ViewTreeObserver$OnPreDrawListenerC282127 viewTreeObserver$OnPreDrawListenerC282127 = ViewTreeObserver$OnPreDrawListenerC282127.this;
-                                    viewTreeObserver$OnPreDrawListenerC282127.val$finalListView.removeView(viewTreeObserver$OnPreDrawListenerC282127.val$finalProgressView);
+                                    ViewTreeObserver$OnPreDrawListenerC282227.this.val$finalProgressView.setAlpha(1.0f);
+                                    layoutManager.stopIgnoringView(ViewTreeObserver$OnPreDrawListenerC282227.this.val$finalProgressView);
+                                    ViewTreeObserver$OnPreDrawListenerC282227 viewTreeObserver$OnPreDrawListenerC282227 = ViewTreeObserver$OnPreDrawListenerC282227.this;
+                                    viewTreeObserver$OnPreDrawListenerC282227.val$finalListView.removeView(viewTreeObserver$OnPreDrawListenerC282227.val$finalProgressView);
                                 }
                             });
                             ofFloat3.start();
@@ -4159,8 +4159,8 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
     }
 
-    public class C282730 implements SharedLinkCell.SharedLinkCellDelegate {
-        C282730() {
+    public class C282830 implements SharedLinkCell.SharedLinkCellDelegate {
+        C282830() {
         }
 
         @Override
@@ -4184,7 +4184,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             builder.setItems(new CharSequence[]{LocaleController.getString("Open", C1072R.string.Open), LocaleController.getString("Copy", C1072R.string.Copy)}, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    SharedMediaLayout.C282730.this.lambda$onLinkPress$0(str, dialogInterface, i);
+                    SharedMediaLayout.C282830.this.lambda$onLinkPress$0(str, dialogInterface, i);
                 }
             });
             SharedMediaLayout.this.profileActivity.showDialog(builder.create());

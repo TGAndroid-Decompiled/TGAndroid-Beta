@@ -79,7 +79,7 @@ public class CarouselView extends View implements PagerHeaderView {
                     CarouselView.this.lambda$scrollToInternal$2(f2, f, valueAnimator2);
                 }
             });
-            this.autoScrollAnimation.addListener(new C26013(f));
+            this.autoScrollAnimation.addListener(new C26023(f));
             this.autoScrollAnimation.setInterpolator(new OvershootInterpolator());
             this.autoScrollAnimation.setDuration(600L);
             this.autoScrollAnimation.start();
@@ -92,10 +92,10 @@ public class CarouselView extends View implements PagerHeaderView {
         invalidate();
     }
 
-    public class C26013 extends AnimatorListenerAdapter {
+    public class C26023 extends AnimatorListenerAdapter {
         final float val$scrollTo;
 
-        C26013(float f) {
+        C26023(float f) {
             this.val$scrollTo = f;
         }
 
@@ -108,7 +108,7 @@ public class CarouselView extends View implements PagerHeaderView {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    CarouselView.C26013.this.lambda$onAnimationEnd$0();
+                    CarouselView.C26023.this.lambda$onAnimationEnd$0();
                 }
             });
         }

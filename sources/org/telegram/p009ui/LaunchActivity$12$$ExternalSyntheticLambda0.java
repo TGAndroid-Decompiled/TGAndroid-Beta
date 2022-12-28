@@ -13,6 +13,6 @@ public final class LaunchActivity$12$$ExternalSyntheticLambda0 implements Reques
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        LaunchActivity.C343312.lambda$onEmojiSelected$0(tLObject, tLRPC$TL_error);
+        LaunchActivity.C343412.lambda$onEmojiSelected$0(tLObject, tLRPC$TL_error);
     }
 }

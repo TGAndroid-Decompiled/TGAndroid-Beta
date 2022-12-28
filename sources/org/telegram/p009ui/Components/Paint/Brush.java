@@ -20,7 +20,7 @@ public abstract class Brush {
     }
 
     public float getDefaultWeight() {
-        return 0.5f;
+        return 0.25f;
     }
 
     public int getIconRes() {
@@ -88,6 +88,11 @@ public abstract class Brush {
         }
 
         @Override
+        public float getDefaultWeight() {
+            return 0.5f;
+        }
+
+        @Override
         public float getOverrideAlpha() {
             return 0.45f;
         }
@@ -127,6 +132,11 @@ public abstract class Brush {
         @Override
         public float getAlpha() {
             return 0.7f;
+        }
+
+        @Override
+        public float getDefaultWeight() {
+            return 0.5f;
         }
 
         @Override
@@ -170,6 +180,11 @@ public abstract class Brush {
     }
 
     public static class Arrow extends Brush {
+        @Override
+        public float getDefaultWeight() {
+            return 0.25f;
+        }
+
         @Override
         public float getSmoothThicknessRate() {
             return 0.25f;

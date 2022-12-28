@@ -381,7 +381,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         addView(flickerLoadingView);
         addView(this.recyclerListView);
         this.recyclerListView.setSectionsType(2);
-        this.recyclerListView.setOnScrollListener(new C32496());
+        this.recyclerListView.setOnScrollListener(new C32506());
         ChatActionCell chatActionCell = new ChatActionCell(parentActivity);
         this.floatingDateView = chatActionCell;
         chatActionCell.setCustomDate((int) (System.currentTimeMillis() / 1000), false, false);
@@ -416,8 +416,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
     }
 
-    public class C32496 extends RecyclerView.OnScrollListener {
-        C32496() {
+    public class C32506 extends RecyclerView.OnScrollListener {
+        C32506() {
         }
 
         @Override
@@ -443,7 +443,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            FilteredSearchView.C32496.this.lambda$onScrolled$0();
+                            FilteredSearchView.C32506.this.lambda$onScrolled$0();
                         }
                     });
                 }
@@ -879,7 +879,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                                 public void onAnimationEnd(Animator animator) {
                                     view.setAlpha(1.0f);
                                     layoutManager.stopIgnoringView(view);
-                                    ViewTreeObserver$OnPreDrawListenerC32507 viewTreeObserver$OnPreDrawListenerC32507 = ViewTreeObserver$OnPreDrawListenerC32507.this;
+                                    ViewTreeObserver$OnPreDrawListenerC32517 viewTreeObserver$OnPreDrawListenerC32517 = ViewTreeObserver$OnPreDrawListenerC32517.this;
                                     FilteredSearchView.this.recyclerListView.removeView(view);
                                 }
                             });
@@ -1104,7 +1104,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
 
     public class SharedLinksAdapter extends RecyclerListView.SectionsAdapter {
         private Context mContext;
-        private final SharedLinkCell.SharedLinkCellDelegate sharedLinkCellDelegate = new C32601();
+        private final SharedLinkCell.SharedLinkCellDelegate sharedLinkCellDelegate = new C32611();
 
         @Override
         public Object getItem(int i, int i2) {
@@ -1121,8 +1121,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             return true;
         }
 
-        public class C32601 implements SharedLinkCell.SharedLinkCellDelegate {
-            C32601() {
+        public class C32611 implements SharedLinkCell.SharedLinkCellDelegate {
+            C32611() {
             }
 
             @Override
@@ -1146,7 +1146,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 builder.setItems(new CharSequence[]{LocaleController.getString("Open", C1072R.string.Open), LocaleController.getString("Copy", C1072R.string.Copy)}, new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        FilteredSearchView.SharedLinksAdapter.C32601.this.lambda$onLinkPress$0(str, dialogInterface, i);
+                        FilteredSearchView.SharedLinksAdapter.C32611.this.lambda$onLinkPress$0(str, dialogInterface, i);
                     }
                 });
                 FilteredSearchView.this.parentFragment.showDialog(builder.create());

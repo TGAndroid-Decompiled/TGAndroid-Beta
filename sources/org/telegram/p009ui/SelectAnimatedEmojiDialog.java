@@ -274,7 +274,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
     }
 
     public static class SelectAnimatedEmojiDialogWindow extends PopupWindow {
-        private static final ViewTreeObserver.OnScrollChangedListener NOP = ViewTreeObserver$OnScrollChangedListenerC4052xd29219.INSTANCE;
+        private static final ViewTreeObserver.OnScrollChangedListener NOP = ViewTreeObserver$OnScrollChangedListenerC4053xd29219.INSTANCE;
         private static final Field superListenerField;
         private ViewTreeObserver.OnScrollChangedListener mSuperScrollListener;
         private ViewTreeObserver mViewTreeObserver;
@@ -770,9 +770,9 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                 SelectAnimatedEmojiDialog.this.smoothScrolling = false;
             }
         });
-        C401513 c401513 = new C401513(i, context, resourcesProvider, num);
-        this.emojiGridView.setOnItemLongClickListener(c401513, ViewConfiguration.getLongPressTimeout() * 0.25f);
-        this.emojiSearchGridView.setOnItemLongClickListener(c401513, ViewConfiguration.getLongPressTimeout() * 0.25f);
+        C401613 c401613 = new C401613(i, context, resourcesProvider, num);
+        this.emojiGridView.setOnItemLongClickListener(c401613, ViewConfiguration.getLongPressTimeout() * 0.25f);
+        this.emojiSearchGridView.setOnItemLongClickListener(c401613, ViewConfiguration.getLongPressTimeout() * 0.25f);
         RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i3) {
@@ -844,7 +844,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         return true;
     }
 
-    public class C401513 implements RecyclerListView.OnItemLongClickListenerExtended {
+    public class C401613 implements RecyclerListView.OnItemLongClickListenerExtended {
         final Context val$context;
         final Integer val$emojiX;
         final Theme.ResourcesProvider val$resourcesProvider;
@@ -855,7 +855,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
             RecyclerListView.OnItemLongClickListenerExtended.CC.$default$onMove(this, f, f2);
         }
 
-        C401513(int i, Context context, Theme.ResourcesProvider resourcesProvider, Integer num) {
+        C401613(int i, Context context, Theme.ResourcesProvider resourcesProvider, Integer num) {
             this.val$type = i;
             this.val$context = context;
             this.val$resourcesProvider = resourcesProvider;
@@ -877,8 +877,8 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                             @Override
                             protected boolean getOutBounds(Rect rect) {
                                 if (SelectAnimatedEmojiDialog.this.scrimDrawable != null) {
-                                    C401513 c401513 = C401513.this;
-                                    if (c401513.val$emojiX != null) {
+                                    C401613 c401613 = C401613.this;
+                                    if (c401613.val$emojiX != null) {
                                         rect.set(SelectAnimatedEmojiDialog.this.drawableToBounds);
                                         return true;
                                     }
@@ -957,7 +957,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        SelectAnimatedEmojiDialog.C401513.this.lambda$onLongClickRelease$0(valueAnimator);
+                        SelectAnimatedEmojiDialog.C401613.this.lambda$onLongClickRelease$0(valueAnimator);
                     }
                 });
                 ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -3741,9 +3741,9 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
             this.search.setImageResource(C1072R.C1073drawable.smiles_inputsearch);
             this.search.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chat_emojiSearchIcon", SelectAnimatedEmojiDialog.this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
             this.box.addView(this.search, LayoutHelper.createFrame(36, 36, 51));
-            C40432 c40432 = new C40432(context, SelectAnimatedEmojiDialog.this.resourcesProvider, SelectAnimatedEmojiDialog.this);
-            this.input = c40432;
-            c40432.addTextChangedListener(new TextWatcher(SelectAnimatedEmojiDialog.this) {
+            C40442 c40442 = new C40442(context, SelectAnimatedEmojiDialog.this.resourcesProvider, SelectAnimatedEmojiDialog.this);
+            this.input = c40442;
+            c40442.addTextChangedListener(new TextWatcher(SelectAnimatedEmojiDialog.this) {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 }
@@ -3817,8 +3817,8 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
             });
         }
 
-        public class C40432 extends EditTextCaption {
-            C40432(Context context, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog) {
+        public class C40442 extends EditTextCaption {
+            C40442(Context context, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog) {
                 super(context, resourcesProvider);
             }
 
@@ -3829,7 +3829,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            SelectAnimatedEmojiDialog.SearchBox.C40432.this.lambda$onFocusChanged$0();
+                            SelectAnimatedEmojiDialog.SearchBox.C40442.this.lambda$onFocusChanged$0();
                         }
                     }, 200L);
                 }

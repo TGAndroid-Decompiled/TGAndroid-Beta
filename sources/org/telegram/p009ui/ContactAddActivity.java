@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -887,7 +888,10 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, 1000);
             if (closestPhotoSizeWithSize != null && tLRPC$FileLocation != null) {
                 FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$FileLocation, true).renameTo(FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true));
-                ImageLoader.getInstance().replaceImageInCache(tLRPC$FileLocation.volume_id + "_" + tLRPC$FileLocation.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUser(user, 1), false);
+                String str = tLRPC$FileLocation.volume_id + "_" + tLRPC$FileLocation.local_id + "@50_50";
+                String str2 = closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50";
+                ImageLoader.getInstance().replaceImageInCache(str, str2, ImageLocation.getForUser(user, 1), false);
+                Log.d("kek", "replace image" + str + " " + str2);
             }
             if (closestPhotoSizeWithSize2 != null && tLRPC$FileLocation != null) {
                 FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$FileLocation, true).renameTo(FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize2, true));

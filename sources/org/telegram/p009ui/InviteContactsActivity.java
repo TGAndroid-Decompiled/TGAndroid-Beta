@@ -815,13 +815,13 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             }
             Timer timer2 = new Timer();
             this.searchTimer = timer2;
-            timer2.schedule(new C34091(str), 200L, 300L);
+            timer2.schedule(new C34101(str), 200L, 300L);
         }
 
-        public class C34091 extends TimerTask {
+        public class C34101 extends TimerTask {
             final String val$query;
 
-            C34091(String str) {
+            C34101(String str) {
                 this.val$query = str;
             }
 
@@ -837,7 +837,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteContactsActivity.InviteAdapter.C34091.this.lambda$run$1(str);
+                        InviteContactsActivity.InviteAdapter.C34101.this.lambda$run$1(str);
                     }
                 });
             }
@@ -846,13 +846,13 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 Utilities.searchQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        InviteContactsActivity.InviteAdapter.C34091.this.lambda$run$0(str);
+                        InviteContactsActivity.InviteAdapter.C34101.this.lambda$run$0(str);
                     }
                 });
             }
 
             public void lambda$run$0(java.lang.String r17) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.InviteContactsActivity.InviteAdapter.C34091.lambda$run$0(java.lang.String):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.InviteContactsActivity.InviteAdapter.C34101.lambda$run$0(java.lang.String):void");
             }
         }
 

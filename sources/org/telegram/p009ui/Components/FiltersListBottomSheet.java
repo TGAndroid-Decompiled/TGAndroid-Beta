@@ -122,7 +122,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
 
             @Override
             protected void onDraw(android.graphics.Canvas r13) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.FiltersListBottomSheet.C23071.onDraw(android.graphics.Canvas):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.FiltersListBottomSheet.C23081.onDraw(android.graphics.Canvas):void");
             }
 
             private void updateLightStatusBar(boolean z) {

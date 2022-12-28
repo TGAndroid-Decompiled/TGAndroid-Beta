@@ -135,7 +135,7 @@ public class ChecksHintView extends FrameLayout {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
             animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.0f, 1.0f));
-            this.animatorSet.addListener(new C21491());
+            this.animatorSet.addListener(new C21501());
             this.animatorSet.setDuration(180L);
             this.animatorSet.start();
             while (i3 < 2) {
@@ -153,8 +153,8 @@ public class ChecksHintView extends FrameLayout {
         return true;
     }
 
-    public class C21491 extends AnimatorListenerAdapter {
-        C21491() {
+    public class C21501 extends AnimatorListenerAdapter {
+        C21501() {
         }
 
         @Override
@@ -163,7 +163,7 @@ public class ChecksHintView extends FrameLayout {
             AndroidUtilities.runOnUIThread(ChecksHintView.this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChecksHintView.C21491.this.lambda$onAnimationEnd$0();
+                    ChecksHintView.C21501.this.lambda$onAnimationEnd$0();
                 }
             }, 3000L);
         }

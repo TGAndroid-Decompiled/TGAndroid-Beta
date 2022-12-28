@@ -40,7 +40,6 @@ import java.util.Iterator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.C1072R;
 import org.telegram.messenger.CacheByChatsController;
 import org.telegram.messenger.Emoji;
@@ -1362,6 +1361,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     this.subtitle[i].setText(LocaleController.getString("StorageUsageCalculating", C1072R.string.StorageUsageCalculating));
                 } else if (i == 1) {
                     this.subtitle[i].setAlpha(0.0f);
+                    this.subtitle[i].setText(LocaleController.getString("StorageUsageTelegram", C1072R.string.StorageUsageTelegram));
                     this.subtitle[i].setVisibility(8);
                 } else if (i == 2) {
                     this.subtitle[i].setText(LocaleController.getString("StorageCleared2", C1072R.string.StorageCleared2));
@@ -1372,7 +1372,12 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 addView(this.subtitle[i], LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, i == 2 ? 38.0f : 32.0f, 0.0f, 0.0f));
                 i++;
             }
-            this.bottomImage = new View(context);
+            this.bottomImage = new View(this, context, CacheControlActivity.this) {
+                @Override
+                protected void onMeasure(int i2, int i3) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2) + getPaddingLeft() + getPaddingRight(), 1073741824), i3);
+                }
+            };
             Drawable mutate = getContext().getResources().getDrawable(C1072R.C1073drawable.popup_fixed_alert2).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhite"), PorterDuff.Mode.MULTIPLY));
             this.bottomImage.setBackground(mutate);
@@ -1396,7 +1401,11 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             }
             animatedTextView.setText(string);
             if (z) {
-                this.subtitle[1].setText(LocaleController.formatString("StorageUsageTelegram", C1072R.string.StorageUsageTelegram, CacheControlActivity.this.formatPercent(f)));
+                if (f < 0.1f) {
+                    this.subtitle[1].setText(LocaleController.formatString("StorageUsageTelegramLess", C1072R.string.StorageUsageTelegramLess, CacheControlActivity.this.formatPercent(f)));
+                } else {
+                    this.subtitle[1].setText(LocaleController.formatString("StorageUsageTelegram", C1072R.string.StorageUsageTelegram, CacheControlActivity.this.formatPercent(f)));
+                }
                 switchSubtitle(1);
             } else {
                 switchSubtitle(2);
@@ -1421,12 +1430,26 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
         @Override
         protected void onMeasure(int i, int i2) {
+            int i3;
             int size = View.MeasureSpec.getSize(i);
             double d = size;
             Double.isNaN(d);
             int min = (int) Math.min(AndroidUtilities.m36dp(174.0f), d * 0.8d);
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.m36dp(90.0f), 1073741824));
-            this.progressRect.set((size - min) / 2.0f, AndroidUtilities.m36dp(60.0f), (size + min) / 2.0f, AndroidUtilities.m36dp(64.0f));
+            super.measureChildren(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i2);
+            int m36dp = AndroidUtilities.m36dp(72.0f);
+            int i4 = 0;
+            int i5 = 0;
+            while (true) {
+                TextView[] textViewArr = this.subtitle;
+                if (i4 < textViewArr.length) {
+                    i5 = Math.max(i5, textViewArr[i4].getMeasuredHeight());
+                    i4++;
+                } else {
+                    setMeasuredDimension(size, m36dp + i5);
+                    this.progressRect.set((size - min) / 2.0f, i3 - AndroidUtilities.m36dp(30.0f), (size + min) / 2.0f, i3 - AndroidUtilities.m36dp(26.0f));
+                    return;
+                }
+            }
         }
 
         @Override
@@ -1789,7 +1812,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             }
         }
 
-        class C13311 extends CacheChart {
+        class C13321 extends CacheChart {
             public static int lambda$onSectionDown$0(int i) {
                 return i;
             }
@@ -1798,7 +1821,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             protected void onSectionClick(int i) {
             }
 
-            C13311(Context context) {
+            C13321(Context context) {
                 super(context);
             }
 
@@ -1830,7 +1853,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         @Override
                         public final int run() {
                             int lambda$onSectionDown$0;
-                            lambda$onSectionDown$0 = CacheControlActivity.ListAdapter.C13311.lambda$onSectionDown$0(i2);
+                            lambda$onSectionDown$0 = CacheControlActivity.ListAdapter.C13321.lambda$onSectionDown$0(i2);
                             return lambda$onSectionDown$0;
                         }
                     }, 0);
@@ -1952,7 +1975,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         frameLayout = frameLayout2;
                         break;
                     case 9:
-                        view = CacheControlActivity.this.cacheChart = new C13311(this.mContext);
+                        view = CacheControlActivity.this.cacheChart = new C13321(this.mContext);
                         break;
                     case 10:
                         view = CacheControlActivity.this.cacheChartHeader = new CacheChartHeader(this.mContext);
@@ -1979,9 +2002,6 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         slideChooseView2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                         float f = ((int) ((CacheControlActivity.this.totalDeviceSize / 1024) / 1024)) / 1000.0f;
                         final ArrayList arrayList = new ArrayList();
-                        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                            arrayList.add(1);
-                        }
                         if (f <= 5.0f) {
                             arrayList.add(2);
                         }

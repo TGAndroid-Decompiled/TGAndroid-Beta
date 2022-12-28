@@ -117,7 +117,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         if (VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().groupCall == null) {
             Instance.ServerConfig globalServerConfig = Instance.getGlobalServerConfig();
             if (globalServerConfig.enable_h264_encoder || globalServerConfig.enable_h265_encoder || globalServerConfig.enable_vp8_encoder || globalServerConfig.enable_vp9_encoder) {
-                int i = C43121.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+                int i = C43131.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
                 if (i != 1) {
                     if (i != 2) {
                         if (i != 3) {
@@ -137,7 +137,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         return false;
     }
 
-    public static class C43121 {
+    public static class C43131 {
         static final int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
 
         static {
@@ -203,7 +203,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
     }
 
     private int getKeyFrameIntervalSec(VideoCodecMimeType videoCodecMimeType) {
-        int i = C43121.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+        int i = C43131.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i == 1 || i == 2) {
             return 100;
         }

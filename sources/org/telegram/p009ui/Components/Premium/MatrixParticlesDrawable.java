@@ -53,7 +53,7 @@ public class MatrixParticlesDrawable {
         }
         long currentTimeMillis = System.currentTimeMillis();
         ArrayList<Particle>[] arrayListArr = this.particles;
-        C26191 c26191 = null;
+        C26201 c26201 = null;
         int i3 = 0;
         if (arrayListArr == null || arrayListArr.length != width + 1) {
             this.particles = new ArrayList[width + 1];
@@ -123,11 +123,11 @@ public class MatrixParticlesDrawable {
                     i9 = 1;
                 }
                 i8 = i11 + 1;
-                c26191 = null;
+                c26201 = null;
                 i3 = 0;
             }
             i7++;
-            c26191 = null;
+            c26201 = null;
             i3 = 0;
         }
     }

@@ -115,9 +115,9 @@ public class CustomEmojiReactionsWindow {
             }
         });
         this.containerView = new ContainerView(context);
-        C26812 c26812 = new C26812(baseFragment, context, false, null, 1, resourcesProvider, baseFragment, reactionsContainerLayout);
-        this.selectAnimatedEmojiDialog = c26812;
-        c26812.setOnLongPressedListener(new SelectAnimatedEmojiDialog.onLongPressedListener(this) {
+        C26822 c26822 = new C26822(baseFragment, context, false, null, 1, resourcesProvider, baseFragment, reactionsContainerLayout);
+        this.selectAnimatedEmojiDialog = c26822;
+        c26822.setOnLongPressedListener(new SelectAnimatedEmojiDialog.onLongPressedListener(this) {
             @Override
             public void onLongPressed(SelectAnimatedEmojiDialog.ImageViewEmoji imageViewEmoji) {
                 if (imageViewEmoji.isDefaultReaction) {
@@ -163,11 +163,11 @@ public class CustomEmojiReactionsWindow {
         }
     }
 
-    public class C26812 extends SelectAnimatedEmojiDialog {
+    public class C26822 extends SelectAnimatedEmojiDialog {
         final BaseFragment val$baseFragment;
         final ReactionsContainerLayout val$reactionsContainerLayout;
 
-        C26812(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, BaseFragment baseFragment2, ReactionsContainerLayout reactionsContainerLayout) {
+        C26822(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, Theme.ResourcesProvider resourcesProvider, BaseFragment baseFragment2, ReactionsContainerLayout reactionsContainerLayout) {
             super(baseFragment, context, z, num, i, resourcesProvider);
             this.val$baseFragment = baseFragment2;
             this.val$reactionsContainerLayout = reactionsContainerLayout;
@@ -200,7 +200,7 @@ public class CustomEmojiReactionsWindow {
                 BulletinFactory.m15of(CustomEmojiReactionsWindow.this.windowView, null).createEmojiBulletin(tLRPC$Document, AndroidUtilities.replaceTags(LocaleController.getString("UnlockPremiumEmojiReaction", C1072R.string.UnlockPremiumEmojiReaction)), LocaleController.getString("PremiumMore", C1072R.string.PremiumMore), new Runnable() {
                     @Override
                     public final void run() {
-                        CustomEmojiReactionsWindow.C26812.this.lambda$onEmojiSelected$0();
+                        CustomEmojiReactionsWindow.C26822.this.lambda$onEmojiSelected$0();
                     }
                 }).show();
                 return;

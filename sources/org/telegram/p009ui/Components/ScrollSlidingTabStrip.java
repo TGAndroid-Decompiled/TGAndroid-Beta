@@ -166,7 +166,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         this.scrollRunnable = new Runnable() {
             @Override
             public void run() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ScrollSlidingTabStrip.RunnableC27336.run():void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.ScrollSlidingTabStrip.RunnableC27346.run():void");
             }
         };
         this.resourcesProvider = resourcesProvider;
@@ -211,7 +211,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             return;
         }
         this.type = type;
-        int i = C27347.$SwitchMap$org$telegram$ui$Components$ScrollSlidingTabStrip$Type[type.ordinal()];
+        int i = C27357.$SwitchMap$org$telegram$ui$Components$ScrollSlidingTabStrip$Type[type.ordinal()];
         if (i == 1) {
             this.indicatorDrawable.setCornerRadius(0.0f);
         } else if (i != 2) {
@@ -221,7 +221,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         }
     }
 
-    public static class C27347 {
+    public static class C27357 {
         static final int[] $SwitchMap$org$telegram$ui$Components$ScrollSlidingTabStrip$Type;
 
         static {
@@ -249,11 +249,11 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         AutoTransition autoTransition = new AutoTransition();
         autoTransition.setDuration(250L);
         autoTransition.setOrdering(0);
-        autoTransition.addTransition(new C27303());
+        autoTransition.addTransition(new C27313());
         TransitionManager.beginDelayedTransition(this.tabsContainer, autoTransition);
     }
 
-    public class C27303 extends Transition {
+    public class C27313 extends Transition {
         @Override
         public void captureEndValues(TransitionValues transitionValues) {
         }
@@ -262,7 +262,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         public void captureStartValues(TransitionValues transitionValues) {
         }
 
-        C27303() {
+        C27313() {
         }
 
         @Override
@@ -271,7 +271,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ScrollSlidingTabStrip.C27303.this.lambda$createAnimator$0(valueAnimator);
+                    ScrollSlidingTabStrip.C27313.this.lambda$createAnimator$0(valueAnimator);
                 }
             });
             return ofFloat;

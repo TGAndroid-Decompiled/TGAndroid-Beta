@@ -1324,6 +1324,7 @@
     <string name="ClearButton">Clear</string>
     <string name="ClearCache">Clear Cache</string>
     <string name="ClearCacheFewChatsTitle">Empty cache for %1$s</string>
+    <string name="ClearCacheForChat">Are you sure you want to delete cached data for selected chat?</string>
     <string name="ClearCacheForChats">Are you sure you want to delete cached data for selected chats?</string>
     <string name="ClearCacheInfo">Free up disk space on your device; your media will stay in the cloud.</string>
     <string name="ClearDownloadsList">Clear Download List</string>
@@ -5012,6 +5013,7 @@
     <string name="StorageUsageCalculating">Calculating cache size...</string>
     <string name="StorageUsageInfo">All media will stay in the Telegram cloud and can be re-downloaded if you need it again.</string>
     <string name="StorageUsageTelegram">Telegram uses %s of your device storage.</string>
+    <string name="StorageUsageTelegramLess">Telegram uses %s of your device storage.</string>
     <string name="Streaming">Streaming</string>
     <string name="Strike">Strikethrough</string>
     <string name="SubscribeRequests">Subscribe Requests</string>

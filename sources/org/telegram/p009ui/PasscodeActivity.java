@@ -247,10 +247,10 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         UserConfig.getInstance(this.currentAccount).saveConfig(false);
     }
 
-    public class C36444 extends C1133ActionBar.ActionBarMenuOnItemClick {
+    public class C36454 extends C1133ActionBar.ActionBarMenuOnItemClick {
         final ActionBarMenuSubItem val$switchItem;
 
-        C36444(ActionBarMenuSubItem actionBarMenuSubItem) {
+        C36454(ActionBarMenuSubItem actionBarMenuSubItem) {
             this.val$switchItem = actionBarMenuSubItem;
         }
 
@@ -267,7 +267,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PasscodeActivity.C36444.this.lambda$onItemClick$0(actionBarMenuSubItem);
+                        PasscodeActivity.C36454.this.lambda$onItemClick$0(actionBarMenuSubItem);
                     }
                 }, 150L);
                 PasscodeActivity.this.passwordEditText.setText("");
@@ -328,8 +328,8 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public class C36488 extends CodeFieldContainer {
-        C36488(Context context) {
+    public class C36498 extends CodeFieldContainer {
+        C36498(Context context) {
             super(context);
         }
 
@@ -341,7 +341,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                 postDelayed(new Runnable() {
                     @Override
                     public final void run() {
-                        PasscodeActivity.C36488.this.lambda$processNextPressed$0();
+                        PasscodeActivity.C36498.this.lambda$processNextPressed$0();
                     }
                 }, 260L);
             }

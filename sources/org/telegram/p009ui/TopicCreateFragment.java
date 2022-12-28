@@ -118,7 +118,7 @@ public class TopicCreateFragment extends BaseFragment {
             this.actionBar.setTitle(LocaleController.getString("NewTopic", C1072R.string.NewTopic));
         }
         this.actionBar.setBackButtonImage(C1072R.C1073drawable.ic_ab_back);
-        this.actionBar.setActionBarMenuOnItemClick(new C41771());
+        this.actionBar.setActionBarMenuOnItemClick(new C41781());
         if (this.topicForEdit == null) {
             this.actionBar.createMenu().addItem(1, LocaleController.getString("Create", C1072R.string.Create).toUpperCase());
         } else {
@@ -193,8 +193,8 @@ public class TopicCreateFragment extends BaseFragment {
                 }
             }
         });
-        C41804 c41804 = new C41804(this, context);
-        c41804.setOnClickListener(new View.OnClickListener() {
+        C41814 c41814 = new C41814(this, context);
+        c41814.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 TopicCreateFragment.this.lambda$createView$0(view);
@@ -202,9 +202,9 @@ public class TopicCreateFragment extends BaseFragment {
         });
         for (int i = 0; i < 2; i++) {
             this.backupImageView[i] = new BackupImageView(context);
-            c41804.addView(this.backupImageView[i], LayoutHelper.createFrame(28, 28, 17));
+            c41814.addView(this.backupImageView[i], LayoutHelper.createFrame(28, 28, 17));
         }
-        frameLayout.addView(c41804, LayoutHelper.createFrame(40, 40.0f, 16, 10.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.addView(c41814, LayoutHelper.createFrame(40, 40.0f, 16, 10.0f, 0.0f, 0.0f, 0.0f));
         linearLayout.addView(headerCell);
         linearLayout.addView(frameLayout);
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -260,7 +260,7 @@ public class TopicCreateFragment extends BaseFragment {
             ImageView imageView = new ImageView(context);
             imageView.setImageResource(C1072R.C1073drawable.msg_filled_general);
             imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_inMenu"), PorterDuff.Mode.MULTIPLY));
-            c41804.addView(imageView, LayoutHelper.createFrame(22, 22, 17));
+            c41814.addView(imageView, LayoutHelper.createFrame(22, 22, 17));
             frameLayout2.addView(new ActionBarPopupWindow.GapView(context, getResourceProvider()), LayoutHelper.createFrame(-1, 8.0f));
             TextCheckCell2 textCheckCell2 = new TextCheckCell2(context);
             this.checkBoxCell = textCheckCell2;
@@ -290,26 +290,26 @@ public class TopicCreateFragment extends BaseFragment {
         return this.fragmentView;
     }
 
-    public class C41771 extends C1133ActionBar.ActionBarMenuOnItemClick {
+    public class C41781 extends C1133ActionBar.ActionBarMenuOnItemClick {
         public static void lambda$onItemClick$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         }
 
         public static void lambda$onItemClick$3(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         }
 
-        C41771() {
+        C41781() {
         }
 
         @Override
         public void onItemClick(int r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.TopicCreateFragment.C41771.onItemClick(int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.TopicCreateFragment.C41781.onItemClick(int):void");
         }
 
         public void lambda$onItemClick$1(final String str, final AlertDialog alertDialog, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TopicCreateFragment.C41771.this.lambda$onItemClick$0(tLObject, str, alertDialog);
+                    TopicCreateFragment.C41781.this.lambda$onItemClick$0(tLObject, str, alertDialog);
                 }
             });
         }
@@ -365,12 +365,12 @@ public class TopicCreateFragment extends BaseFragment {
         }
     }
 
-    public class C41804 extends FrameLayout {
+    public class C41814 extends FrameLayout {
         ValueAnimator backAnimator;
         boolean pressed;
         float pressedProgress;
 
-        C41804(TopicCreateFragment topicCreateFragment, Context context) {
+        C41814(TopicCreateFragment topicCreateFragment, Context context) {
             super(context);
         }
 
@@ -405,14 +405,14 @@ public class TopicCreateFragment extends BaseFragment {
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            TopicCreateFragment.C41804.this.lambda$setPressed$0(valueAnimator2);
+                            TopicCreateFragment.C41814.this.lambda$setPressed$0(valueAnimator2);
                         }
                     });
                     this.backAnimator.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             super.onAnimationEnd(animator);
-                            C41804.this.backAnimator = null;
+                            C41814.this.backAnimator = null;
                         }
                     });
                     this.backAnimator.setInterpolator(new OvershootInterpolator(5.0f));

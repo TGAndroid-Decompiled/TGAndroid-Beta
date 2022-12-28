@@ -225,28 +225,28 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 final int val$currentAccount;
                 final int val$type;
 
-                public class C14641 extends GestureDetector.SimpleOnGestureListener {
-                    C14641() {
+                public class C14651 extends GestureDetector.SimpleOnGestureListener {
+                    C14651() {
                     }
 
                     @Override
                     public boolean onDoubleTap(MotionEvent motionEvent) {
-                        boolean selectReaction = getMessageObject().selectReaction(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(C14631.this.val$currentAccount).getDoubleTapReaction()), false, false);
-                        C14631 c14631 = C14631.this;
-                        c14631.setMessageObject(c14631.getMessageObject(), null, false, false);
+                        boolean selectReaction = getMessageObject().selectReaction(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(C14641.this.val$currentAccount).getDoubleTapReaction()), false, false);
+                        C14641 c14641 = C14641.this;
+                        c14641.setMessageObject(c14641.getMessageObject(), null, false, false);
                         requestLayout();
                         ReactionsEffectOverlay.removeCurrent(false);
                         if (selectReaction) {
                             ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
-                            ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], null, motionEvent.getX(), motionEvent.getY(), ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(C14631.this.val$currentAccount).getDoubleTapReaction()), C14631.this.val$currentAccount, 0);
+                            ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], null, motionEvent.getX(), motionEvent.getY(), ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(C14641.this.val$currentAccount).getDoubleTapReaction()), C14641.this.val$currentAccount, 0);
                             ReactionsEffectOverlay.startAnimation();
                         }
-                        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC14651());
+                        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC14661());
                         return true;
                     }
 
-                    public class ViewTreeObserver$OnPreDrawListenerC14651 implements ViewTreeObserver.OnPreDrawListener {
-                        ViewTreeObserver$OnPreDrawListenerC14651() {
+                    public class ViewTreeObserver$OnPreDrawListenerC14661 implements ViewTreeObserver.OnPreDrawListener {
+                        ViewTreeObserver$OnPreDrawListenerC14661() {
                         }
 
                         @Override
@@ -260,7 +260,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                    ThemePreviewMessagesCell.C14631.C14641.ViewTreeObserver$OnPreDrawListenerC14651.this.lambda$onPreDraw$0(valueAnimator);
+                                    ThemePreviewMessagesCell.C14641.C14651.ViewTreeObserver$OnPreDrawListenerC14661.this.lambda$onPreDraw$0(valueAnimator);
                                 }
                             });
                             ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -287,7 +287,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                     this.val$context = context;
                     this.val$currentAccount = i2;
                     this.val$type = i;
-                    this.gestureDetector = new GestureDetector(context, new C14641());
+                    this.gestureDetector = new GestureDetector(context, new C14651());
                 }
 
                 @Override

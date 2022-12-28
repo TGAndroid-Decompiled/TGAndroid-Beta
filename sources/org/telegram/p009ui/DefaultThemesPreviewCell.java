@@ -114,7 +114,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             this.browseThemesCell = textCell3;
             textCell3.setTextAndIcon(LocaleController.getString("SettingsBrowseThemes", C1072R.string.SettingsBrowseThemes), C1072R.C1073drawable.msg_colors, false);
             addView(this.browseThemesCell, LayoutHelper.createFrame(-1, -2.0f));
-            this.dayNightCell.setOnClickListener(new View$OnClickListenerC31491(context));
+            this.dayNightCell.setOnClickListener(new View$OnClickListenerC31501(context));
             this.darkThemeDrawable.setPlayInDirectionOfCustomEndFrame(true);
             this.browseThemesCell.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -190,24 +190,24 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         }
     }
 
-    public class View$OnClickListenerC31491 implements View.OnClickListener {
+    public class View$OnClickListenerC31501 implements View.OnClickListener {
         final Context val$context;
 
-        View$OnClickListenerC31491(Context context) {
+        View$OnClickListenerC31501(Context context) {
             this.val$context = context;
         }
 
         @Override
         @android.annotation.SuppressLint({"NotifyDataSetChanged"})
         public void onClick(android.view.View r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DefaultThemesPreviewCell.View$OnClickListenerC31491.onClick(android.view.View):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.DefaultThemesPreviewCell.View$OnClickListenerC31501.onClick(android.view.View):void");
         }
 
         public void lambda$onClick$1(final int i, final Context context, final int i2, final boolean z) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DefaultThemesPreviewCell.View$OnClickListenerC31491.this.lambda$onClick$0(i, context, i2, z);
+                    DefaultThemesPreviewCell.View$OnClickListenerC31501.this.lambda$onClick$0(i, context, i2, z);
                 }
             });
         }

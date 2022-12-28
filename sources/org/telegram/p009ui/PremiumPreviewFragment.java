@@ -1200,7 +1200,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             this.tierListView = recyclerListView;
             recyclerListView.setOverScrollMode(2);
             this.tierListView.setLayoutManager(new LinearLayoutManager(context));
-            this.tierListView.setAdapter(new C38943(PremiumPreviewFragment.this, context));
+            this.tierListView.setAdapter(new C38953(PremiumPreviewFragment.this, context));
             this.tierListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i) {
@@ -1220,7 +1220,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             updatePremiumTiers();
         }
 
-        public class C38943 extends RecyclerListView.SelectionAdapter {
+        public class C38953 extends RecyclerListView.SelectionAdapter {
             final Context val$context;
 
             @Override
@@ -1228,7 +1228,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return true;
             }
 
-            C38943(PremiumPreviewFragment premiumPreviewFragment, Context context) {
+            C38953(PremiumPreviewFragment premiumPreviewFragment, Context context) {
                 this.val$context = context;
             }
 
@@ -1250,7 +1250,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     @Override
                     public final Object provide(Object obj) {
                         Paint lambda$onCreateViewHolder$0;
-                        lambda$onCreateViewHolder$0 = PremiumPreviewFragment.BackgroundView.C38943.this.lambda$onCreateViewHolder$0(premiumTierCell, (Void) obj);
+                        lambda$onCreateViewHolder$0 = PremiumPreviewFragment.BackgroundView.C38953.this.lambda$onCreateViewHolder$0(premiumTierCell, (Void) obj);
                         return lambda$onCreateViewHolder$0;
                     }
                 });

@@ -531,13 +531,13 @@ public class ProximitySheet extends FrameLayout {
             this.currentSheetAnimation.setDuration(250L);
         }
         this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.currentSheetAnimation.addListener(new C26616());
+        this.currentSheetAnimation.addListener(new C26626());
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
         this.currentSheetAnimation.start();
     }
 
-    public class C26616 extends AnimatorListenerAdapter {
-        C26616() {
+    public class C26626 extends AnimatorListenerAdapter {
+        C26626() {
         }
 
         @Override
@@ -548,7 +548,7 @@ public class ProximitySheet extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProximitySheet.C26616.this.lambda$onAnimationEnd$0();
+                        ProximitySheet.C26626.this.lambda$onAnimationEnd$0();
                     }
                 });
             }

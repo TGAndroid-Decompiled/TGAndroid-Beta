@@ -613,7 +613,7 @@ public class PipVideoOverlay {
         });
         Context context = ApplicationLoader.applicationContext;
         int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new ScaleGestureDetector$OnScaleGestureListenerC25793());
+        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new ScaleGestureDetector$OnScaleGestureListenerC25803());
         this.scaleGestureDetector = scaleGestureDetector;
         int i4 = Build.VERSION.SDK_INT;
         if (i4 >= 19) {
@@ -622,7 +622,7 @@ public class PipVideoOverlay {
         if (i4 >= 23) {
             this.scaleGestureDetector.setStylusScaleEnabled(false);
         }
-        this.gestureDetector = new GestureDetectorFixDoubleTap(context, new C25814(scaledTouchSlop));
+        this.gestureDetector = new GestureDetectorFixDoubleTap(context, new C25824(scaledTouchSlop));
         this.contentFrameLayout = new FrameLayout(context) {
             private Path path = new Path();
 
@@ -885,8 +885,8 @@ public class PipVideoOverlay {
         getPipConfig().setPipY(f);
     }
 
-    public class ScaleGestureDetector$OnScaleGestureListenerC25793 implements ScaleGestureDetector.OnScaleGestureListener {
-        ScaleGestureDetector$OnScaleGestureListenerC25793() {
+    public class ScaleGestureDetector$OnScaleGestureListenerC25803 implements ScaleGestureDetector.OnScaleGestureListener {
+        ScaleGestureDetector$OnScaleGestureListenerC25803() {
         }
 
         @Override
@@ -900,7 +900,7 @@ public class PipVideoOverlay {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PipVideoOverlay.ScaleGestureDetector$OnScaleGestureListenerC25793.this.lambda$onScale$0();
+                    PipVideoOverlay.ScaleGestureDetector$OnScaleGestureListenerC25803.this.lambda$onScale$0();
                 }
             });
             float focusX = scaleGestureDetector.getFocusX();
@@ -952,7 +952,7 @@ public class PipVideoOverlay {
                         dynamicAnimation.removeEndListener(this);
                         arrayList.add((SpringAnimation) dynamicAnimation);
                         if (arrayList.size() == 2) {
-                            ScaleGestureDetector$OnScaleGestureListenerC25793.this.updateLayout();
+                            ScaleGestureDetector$OnScaleGestureListenerC25803.this.updateLayout();
                         }
                     }
                 };
@@ -990,12 +990,12 @@ public class PipVideoOverlay {
         }
     }
 
-    public class C25814 extends GestureDetectorFixDoubleTap.OnGestureListener {
+    public class C25824 extends GestureDetectorFixDoubleTap.OnGestureListener {
         private float startPipX;
         private float startPipY;
         final int val$touchSlop;
 
-        C25814(int i) {
+        C25824(int i) {
             this.val$touchSlop = i;
         }
 
@@ -1037,7 +1037,7 @@ public class PipVideoOverlay {
 
         @Override
         public boolean onDoubleTap(android.view.MotionEvent r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.PipVideoOverlay.C25814.onDoubleTap(android.view.MotionEvent):boolean");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.PipVideoOverlay.C25824.onDoubleTap(android.view.MotionEvent):boolean");
         }
 
         @Override
@@ -1109,7 +1109,7 @@ public class PipVideoOverlay {
                         PipVideoOverlay.this.pipXSpring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                             @Override
                             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f5, float f6) {
-                                PipVideoOverlay.C25814.this.lambda$onScroll$0(rawX, dynamicAnimation, z, f5, f6);
+                                PipVideoOverlay.C25824.this.lambda$onScroll$0(rawX, dynamicAnimation, z, f5, f6);
                             }
                         });
                         PipVideoOverlay.this.pipXSpring.setStartValue(f3).getSpring().setFinalPosition(rawX);

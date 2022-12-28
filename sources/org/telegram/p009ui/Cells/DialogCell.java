@@ -1696,7 +1696,7 @@ public class DialogCell extends BaseCell {
                 this.drawPlay[i] = (messageObject.isVideo() || messageObject.isRoundVideo()) && !messageObject.hasMediaSpoilers();
                 this.drawSpoiler[i] = messageObject.hasMediaSpoilers();
                 int i3 = (messageObject.type != 1 || closestPhotoSizeWithSize2 == null) ? 0 : closestPhotoSizeWithSize2.size;
-                String str = messageObject.hasMediaSpoilers() ? "20_20_b2" : "20_20";
+                String str = messageObject.hasMediaSpoilers() ? "5_5_b" : "20_20";
                 this.thumbImage[i].setImage(ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject), str, ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject), str, i3, null, messageObject, 0);
                 this.thumbImage[i].setRoundRadius(AndroidUtilities.m36dp(messageObject.isRoundVideo() ? 18.0f : 2.0f));
                 this.needEmoji = false;

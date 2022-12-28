@@ -109,7 +109,7 @@ public class AboutLinkCell extends FrameLayout {
         this.needSpace = false;
         this.backgroundPaint = new Paint();
         this.SPACE = AndroidUtilities.m36dp(3.0f);
-        this.longPressedRunnable = new RunnableC13692();
+        this.longPressedRunnable = new RunnableC13702();
         this.expandT = 0.0f;
         this.lastMaxWidth = 0;
         this.shouldExpand = false;
@@ -395,8 +395,8 @@ public class AboutLinkCell extends FrameLayout {
         requestLayout();
     }
 
-    public class RunnableC13692 implements Runnable {
-        RunnableC13692() {
+    public class RunnableC13702 implements Runnable {
+        RunnableC13702() {
         }
 
         @Override
@@ -413,13 +413,13 @@ public class AboutLinkCell extends FrameLayout {
                 builder.setItems(new CharSequence[]{LocaleController.getString("Open", C1072R.string.Open), LocaleController.getString("Copy", C1072R.string.Copy)}, new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        AboutLinkCell.RunnableC13692.this.lambda$run$0(clickableSpan, url, dialogInterface, i);
+                        AboutLinkCell.RunnableC13702.this.lambda$run$0(clickableSpan, url, dialogInterface, i);
                     }
                 });
                 builder.setOnPreDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
-                        AboutLinkCell.RunnableC13692.this.lambda$run$1(dialogInterface);
+                        AboutLinkCell.RunnableC13702.this.lambda$run$1(dialogInterface);
                     }
                 });
                 builder.show();

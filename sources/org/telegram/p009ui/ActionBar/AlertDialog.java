@@ -165,7 +165,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     }
 
     private boolean supportsNativeBlur() {
-        return Build.VERSION.SDK_INT >= 31 && LaunchActivity.systemBlurEnabled && this.progressViewStyle == 0;
+        return Build.VERSION.SDK_INT >= 31 && LaunchActivity.systemBlurEnabled;
     }
 
     public void redPositive() {
@@ -271,9 +271,9 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         this.topAnimationAutoRepeat = true;
         float f = 0.8f;
         this.blurAlpha = 0.8f;
-        boolean supportsNativeBlur = supportsNativeBlur();
-        this.blurredNativeBackground = supportsNativeBlur;
-        if (!supportsNativeBlur && SharedConfig.getDevicePerformanceClass() < 2) {
+        boolean z2 = supportsNativeBlur() && this.progressViewStyle == 0;
+        this.blurredNativeBackground = z2;
+        if (!z2 && (supportsNativeBlur() || SharedConfig.getDevicePerformanceClass() < 2)) {
             z = false;
         }
         this.blurredBackground = z;
@@ -844,15 +844,17 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
         if (this.blurredBackground) {
             if (supportsNativeBlur()) {
-                this.blurredNativeBackground = true;
-                window.setBackgroundBlurRadius(50);
-                float m36dp3 = AndroidUtilities.m36dp(12.0f);
-                ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{m36dp3, m36dp3, m36dp3, m36dp3, m36dp3, m36dp3, m36dp3, m36dp3}, null, null));
-                shapeDrawable.getPaint().setColor(ColorUtils.setAlphaComponent(this.backgroundColor, (int) (this.blurAlpha * 255.0f)));
-                window.setBackgroundDrawable(shapeDrawable);
-                if (this.blurBehind) {
-                    layoutParams.flags |= 4;
-                    layoutParams.setBlurBehindRadius(20);
+                if (this.progressViewStyle == 0) {
+                    this.blurredNativeBackground = true;
+                    window.setBackgroundBlurRadius(50);
+                    float m36dp3 = AndroidUtilities.m36dp(12.0f);
+                    ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{m36dp3, m36dp3, m36dp3, m36dp3, m36dp3, m36dp3, m36dp3, m36dp3}, null, null));
+                    shapeDrawable.getPaint().setColor(ColorUtils.setAlphaComponent(this.backgroundColor, (int) (this.blurAlpha * 255.0f)));
+                    window.setBackgroundDrawable(shapeDrawable);
+                    if (this.blurBehind) {
+                        layoutParams.flags |= 4;
+                        layoutParams.setBlurBehindRadius(20);
+                    }
                 }
             } else {
                 AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
@@ -1068,6 +1070,9 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     }
 
     public void lambda$onCreate$5(LinearLayout linearLayout, Bitmap bitmap) {
+        if (bitmap == null) {
+            return;
+        }
         if (this.blurPaint == null) {
             this.blurPaint = new Paint(1);
         }

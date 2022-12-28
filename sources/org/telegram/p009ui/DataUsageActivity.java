@@ -348,8 +348,8 @@ public class DataUsageActivity extends BaseFragment {
                                     DataUsageActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DataUsageActivity.this.viewPages[0].selectedType, 1.0f);
                                 }
                                 DataUsageActivity.this.tabsAnimationInProgress = false;
-                                C31433.this.maybeStartTracking = false;
-                                C31433.this.startedTracking = false;
+                                C31443.this.maybeStartTracking = false;
+                                C31443.this.startedTracking = false;
                                 ((BaseFragment) DataUsageActivity.this).actionBar.setEnabled(true);
                                 DataUsageActivity.this.scrollSlidingTextTabStrip.setEnabled(true);
                             }

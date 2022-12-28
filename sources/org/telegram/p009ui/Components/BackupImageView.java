@@ -92,7 +92,7 @@ public class BackupImageView extends View {
         if (!this.hasBlur || this.blurImageReceiver.getBitmap() != null || this.imageReceiver.getBitmap() == null || (bitmap = this.imageReceiver.getBitmap()) == null || bitmap.isRecycled()) {
             return;
         }
-        this.blurImageReceiver.setImageBitmap(Utilities.stackBlurBitmapWithScaleFactor(bitmap, 12.0f));
+        this.blurImageReceiver.setImageBitmap(Utilities.stackBlurBitmapMax(bitmap));
         invalidate();
     }
 

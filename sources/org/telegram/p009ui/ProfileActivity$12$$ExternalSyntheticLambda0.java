@@ -13,6 +13,6 @@ public final class ProfileActivity$12$$ExternalSyntheticLambda0 implements Reque
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        ProfileActivity.DialogInterface$OnClickListenerC390812.lambda$onClick$0(tLObject, tLRPC$TL_error);
+        ProfileActivity.DialogInterface$OnClickListenerC390912.lambda$onClick$0(tLObject, tLRPC$TL_error);
     }
 }

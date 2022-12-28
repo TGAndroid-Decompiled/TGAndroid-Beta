@@ -348,7 +348,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
 
                 @Override
                 public void draw(android.graphics.Canvas r7, long r8, int r10, int r11, float r12) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.EmojiPacksAlert.C22142.DrawingInBackgroundLine.draw(android.graphics.Canvas, long, int, int, float):void");
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.EmojiPacksAlert.C22152.DrawingInBackgroundLine.draw(android.graphics.Canvas, long, int, int, float):void");
                 }
 
                 @Override
@@ -1215,17 +1215,17 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         if (parentActivity == null) {
             parentActivity = getContext();
         }
-        DialogC22208 dialogC22208 = new DialogC22208(parentActivity, null, str2, false, str2, false, this.resourcesProvider);
+        DialogC22218 dialogC22218 = new DialogC22218(parentActivity, null, str2, false, str2, false, this.resourcesProvider);
         BaseFragment baseFragment2 = this.fragment;
         if (baseFragment2 != null) {
-            baseFragment2.showDialog(dialogC22208);
+            baseFragment2.showDialog(dialogC22218);
         } else {
-            dialogC22208.show();
+            dialogC22218.show();
         }
     }
 
-    public class DialogC22208 extends ShareAlert {
-        DialogC22208(Context context, ArrayList arrayList, String str, boolean z, String str2, boolean z2, Theme.ResourcesProvider resourcesProvider) {
+    public class DialogC22218 extends ShareAlert {
+        DialogC22218(Context context, ArrayList arrayList, String str, boolean z, String str2, boolean z2, Theme.ResourcesProvider resourcesProvider) {
             super(context, arrayList, str, z, str2, z2, resourcesProvider);
         }
 
@@ -1234,7 +1234,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    EmojiPacksAlert.DialogC22208.this.lambda$onSend$0(longSparseArray, i);
+                    EmojiPacksAlert.DialogC22218.this.lambda$onSend$0(longSparseArray, i);
                 }
             }, 100L);
         }

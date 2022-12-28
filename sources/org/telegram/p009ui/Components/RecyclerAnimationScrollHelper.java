@@ -102,17 +102,17 @@ public class RecyclerAnimationScrollHelper {
             if (animatableAdapter != null) {
                 animatableAdapter.onAnimationStart();
             }
-            this.recyclerView.addOnLayoutChangeListener(new View$OnLayoutChangeListenerC27101(adapter, arrayList, z3, animatableAdapter));
+            this.recyclerView.addOnLayoutChangeListener(new View$OnLayoutChangeListenerC27111(adapter, arrayList, z3, animatableAdapter));
         }
     }
 
-    public class View$OnLayoutChangeListenerC27101 implements View.OnLayoutChangeListener {
+    public class View$OnLayoutChangeListenerC27111 implements View.OnLayoutChangeListener {
         final RecyclerView.Adapter val$adapter;
         final AnimatableAdapter val$finalAnimatableAdapter;
         final ArrayList val$oldViews;
         final boolean val$scrollDown;
 
-        View$OnLayoutChangeListenerC27101(RecyclerView.Adapter adapter, ArrayList arrayList, boolean z, AnimatableAdapter animatableAdapter) {
+        View$OnLayoutChangeListenerC27111(RecyclerView.Adapter adapter, ArrayList arrayList, boolean z, AnimatableAdapter animatableAdapter) {
             this.val$adapter = adapter;
             this.val$oldViews = arrayList;
             this.val$scrollDown = z;
@@ -211,7 +211,7 @@ public class RecyclerAnimationScrollHelper {
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    RecyclerAnimationScrollHelper.View$OnLayoutChangeListenerC27101.this.lambda$onLayoutChange$0(arrayList2, z2, i16, arrayList, valueAnimator2);
+                    RecyclerAnimationScrollHelper.View$OnLayoutChangeListenerC27111.this.lambda$onLayoutChange$0(arrayList2, z2, i16, arrayList, valueAnimator2);
                 }
             });
             RecyclerAnimationScrollHelper.this.animator.addListener(new AnimatorListenerAdapter() {
@@ -221,7 +221,7 @@ public class RecyclerAnimationScrollHelper {
                         return;
                     }
                     RecyclerAnimationScrollHelper.this.recyclerView.fastScrollAnimationRunning = false;
-                    Iterator it2 = View$OnLayoutChangeListenerC27101.this.val$oldViews.iterator();
+                    Iterator it2 = View$OnLayoutChangeListenerC27111.this.val$oldViews.iterator();
                     while (it2.hasNext()) {
                         View view4 = (View) it2.next();
                         if (view4 instanceof ChatMessageCell) {
@@ -262,7 +262,7 @@ public class RecyclerAnimationScrollHelper {
                         }
                         view5.setTranslationY(0.0f);
                     }
-                    AnimatableAdapter animatableAdapter = View$OnLayoutChangeListenerC27101.this.val$finalAnimatableAdapter;
+                    AnimatableAdapter animatableAdapter = View$OnLayoutChangeListenerC27111.this.val$finalAnimatableAdapter;
                     if (animatableAdapter != null) {
                         animatableAdapter.onAnimationEnd();
                     }

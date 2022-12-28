@@ -2180,12 +2180,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             showEditDoneProgress(true, true);
             try {
                 if ("stripe".equals(this.paymentForm.native_provider)) {
-                    new Stripe(this.providerApiKey).createToken(card, new C370725());
+                    new Stripe(this.providerApiKey).createToken(card, new C370825());
                 } else if ("smartglocal".equals(this.paymentForm.native_provider)) {
                     new AsyncTask<Object, Object, String>() {
                         @Override
                         public java.lang.String doInBackground(java.lang.Object... r13) {
-                            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PaymentFormActivity.AsyncTaskC370826.doInBackground(java.lang.Object[]):java.lang.String");
+                            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PaymentFormActivity.AsyncTaskC370926.doInBackground(java.lang.Object[]):java.lang.String");
                         }
 
                         @Override
@@ -2212,8 +2212,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public class C370725 implements TokenCallback {
-        C370725() {
+    public class C370825 implements TokenCallback {
+        C370825() {
         }
 
         @Override
@@ -2225,7 +2225,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PaymentFormActivity.C370725.this.lambda$onSuccess$0();
+                    PaymentFormActivity.C370825.this.lambda$onSuccess$0();
                 }
             });
         }

@@ -183,7 +183,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.actionBar.setItemsColor(Theme.getColor("actionBarDefaultIcon", this.resourcesProvider), false);
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setAllowOverlayTitle(false);
-        this.actionBar.setActionBarMenuOnItemClick(new C36371(context));
+        this.actionBar.setActionBarMenuOnItemClick(new C36381(context));
         if (this.dialogId == 0) {
             int i = this.currentType;
             if (i == 1) {
@@ -260,13 +260,13 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         return this.fragmentView;
     }
 
-    public class C36371 extends C1133ActionBar.ActionBarMenuOnItemClick {
+    public class C36381 extends C1133ActionBar.ActionBarMenuOnItemClick {
         final Context val$context;
 
         public static void lambda$deleteSelectedMessages$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         }
 
-        C36371(Context context) {
+        C36381(Context context) {
             this.val$context = context;
         }
 
@@ -289,7 +289,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 builder.setPositiveButton(LocaleController.getString("Delete", C1072R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
-                        NotificationsSoundActivity.C36371.this.lambda$onItemClick$1(dialogInterface, i2);
+                        NotificationsSoundActivity.C36381.this.lambda$onItemClick$1(dialogInterface, i2);
                     }
                 });
                 TextView textView = (TextView) builder.show().getButton(-1);
@@ -548,7 +548,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         private Adapter() {
         }
 
-        Adapter(NotificationsSoundActivity notificationsSoundActivity, C36371 c36371) {
+        Adapter(NotificationsSoundActivity notificationsSoundActivity, C36381 c36381) {
             this();
         }
 
@@ -959,7 +959,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         private Tone() {
         }
 
-        Tone(C36371 c36371) {
+        Tone(C36381 c36381) {
             this();
         }
 

@@ -1465,7 +1465,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                             this.blurredImage.getBitmap().recycle();
                             this.blurredImage.setImageBitmap((Bitmap) null);
                         }
-                        this.blurredImage.setImageBitmap(Utilities.stackBlurBitmapWithScaleFactor(imageReceiver.getBitmap(), 12.0f));
+                        this.blurredImage.setImageBitmap(Utilities.stackBlurBitmapMax(imageReceiver.getBitmap()));
                     }
                 }
 

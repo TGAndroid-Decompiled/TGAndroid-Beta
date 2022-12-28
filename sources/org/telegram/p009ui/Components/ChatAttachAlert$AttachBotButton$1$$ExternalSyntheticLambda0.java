@@ -11,7 +11,7 @@ public final class ChatAttachAlert$AttachBotButton$1$$ExternalSyntheticLambda0 i
 
     @Override
     public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        ChatAttachAlert.AttachBotButton.C19991.lambda$new$0(imageReceiver, z, z2, z3);
+        ChatAttachAlert.AttachBotButton.C20001.lambda$new$0(imageReceiver, z, z2, z3);
     }
 
     @Override

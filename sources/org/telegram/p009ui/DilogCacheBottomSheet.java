@@ -1,6 +1,7 @@
 package org.telegram.p009ui;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.C1072R;
 import org.telegram.messenger.LocaleController;
+import org.telegram.p009ui.ActionBar.AlertDialog;
 import org.telegram.p009ui.ActionBar.BottomSheet;
 import org.telegram.p009ui.ActionBar.C1133ActionBar;
 import org.telegram.p009ui.ActionBar.Theme;
@@ -328,7 +330,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         clearCacheButton.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                DilogCacheBottomSheet.this.lambda$createButton$1(view);
+                DilogCacheBottomSheet.this.lambda$createButton$3(view);
             }
         });
         StorageDiagramView storageDiagramView = this.circleDiagramView;
@@ -337,7 +339,32 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void lambda$createButton$1(View view) {
+    public void lambda$createButton$3(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(LocaleController.getString("ClearCache", C1072R.string.ClearCache));
+        builder.setMessage(LocaleController.getString("ClearCacheForChat", C1072R.string.ClearCacheForChat));
+        builder.setNegativeButton(LocaleController.getString("Cancel", C1072R.string.Cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                DilogCacheBottomSheet.this.lambda$createButton$1(dialogInterface, i);
+            }
+        });
+        builder.setPositiveButton(LocaleController.getString("Clear", C1072R.string.Clear), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                DilogCacheBottomSheet.this.lambda$createButton$2(dialogInterface, i);
+            }
+        });
+        AlertDialog create = builder.create();
+        create.show();
+        create.redPositive();
+    }
+
+    public void lambda$createButton$1(DialogInterface dialogInterface, int i) {
+        dismiss();
+    }
+
+    public void lambda$createButton$2(DialogInterface dialogInterface, int i) {
         dismiss();
         this.cacheDelegate.cleanupDialogFiles(this.entities, this.clearViewData, this.cacheModel);
     }

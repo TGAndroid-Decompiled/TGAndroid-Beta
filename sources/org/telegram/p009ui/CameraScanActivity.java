@@ -125,7 +125,7 @@ public class CameraScanActivity extends BaseFragment {
     private float recognizedT = 0.0f;
     private float newRecognizedT = 0.0f;
     private float useRecognizedBounds = 0.0f;
-    private Runnable requestShot = new RunnableC13677();
+    private Runnable requestShot = new RunnableC13687();
     private float averageProcessTime = 0.0f;
     private long processTimesCount = 0;
 
@@ -169,7 +169,7 @@ public class CameraScanActivity extends BaseFragment {
         return showAsSheet(baseFragment.getParentActivity(), z, i, cameraScanActivityDelegate);
     }
 
-    public class DialogC13601 extends BottomSheet {
+    public class DialogC13611 extends BottomSheet {
         CameraScanActivity fragment;
         final INavigationLayout[] val$actionBarLayout;
         final CameraScanActivityDelegate val$cameraDelegate;
@@ -181,7 +181,7 @@ public class CameraScanActivity extends BaseFragment {
             return false;
         }
 
-        DialogC13601(Context context, boolean z, INavigationLayout[] iNavigationLayoutArr, int i, boolean z2, CameraScanActivityDelegate cameraScanActivityDelegate) {
+        DialogC13611(Context context, boolean z, INavigationLayout[] iNavigationLayoutArr, int i, boolean z2, CameraScanActivityDelegate cameraScanActivityDelegate) {
             super(context, z);
             this.val$actionBarLayout = iNavigationLayoutArr;
             this.val$type = i;
@@ -190,18 +190,18 @@ public class CameraScanActivity extends BaseFragment {
             iNavigationLayoutArr[0].setFragmentStack(new ArrayList());
             CameraScanActivity cameraScanActivity = new CameraScanActivity(i) {
                 {
-                    DialogC13601.this = this;
+                    DialogC13611.this = this;
                 }
 
                 @Override
                 public void finishFragment() {
                     setFinishing(true);
-                    DialogC13601.this.dismiss();
+                    DialogC13611.this.dismiss();
                 }
 
                 @Override
                 public void removeSelfFromStack() {
-                    DialogC13601.this.dismiss();
+                    DialogC13611.this.dismiss();
                 }
             };
             this.fragment = cameraScanActivity;
@@ -222,7 +222,7 @@ public class CameraScanActivity extends BaseFragment {
             setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    CameraScanActivity.DialogC13601.this.lambda$new$0(dialogInterface);
+                    CameraScanActivity.DialogC13611.this.lambda$new$0(dialogInterface);
                 }
             });
         }
@@ -253,14 +253,14 @@ public class CameraScanActivity extends BaseFragment {
         if (activity == null) {
             return null;
         }
-        DialogC13601 dialogC13601 = new DialogC13601(activity, false, new INavigationLayout[]{INavigationLayout.CC.newLayout(activity)}, i, z, cameraScanActivityDelegate);
-        dialogC13601.setUseLightStatusBar(false);
-        AndroidUtilities.setLightNavigationBar(dialogC13601.getWindow(), false);
-        AndroidUtilities.setNavigationBarColor(dialogC13601.getWindow(), -16777216, false);
-        dialogC13601.setUseLightStatusBar(false);
-        dialogC13601.getWindow().addFlags(512);
-        dialogC13601.show();
-        return dialogC13601;
+        DialogC13611 dialogC13611 = new DialogC13611(activity, false, new INavigationLayout[]{INavigationLayout.CC.newLayout(activity)}, i, z, cameraScanActivityDelegate);
+        dialogC13611.setUseLightStatusBar(false);
+        AndroidUtilities.setLightNavigationBar(dialogC13611.getWindow(), false);
+        AndroidUtilities.setNavigationBarColor(dialogC13611.getWindow(), -16777216, false);
+        dialogC13611.setUseLightStatusBar(false);
+        dialogC13611.getWindow().addFlags(512);
+        dialogC13611.show();
+        return dialogC13611;
     }
 
     public CameraScanActivity(int i) {
@@ -1029,8 +1029,8 @@ public class CameraScanActivity extends BaseFragment {
         this.backgroundHandlerThread.quitSafely();
     }
 
-    public class RunnableC13677 implements Runnable {
-        RunnableC13677() {
+    public class RunnableC13687 implements Runnable {
+        RunnableC13687() {
             CameraScanActivity.this = r1;
         }
 
@@ -1042,7 +1042,7 @@ public class CameraScanActivity extends BaseFragment {
             CameraScanActivity.this.handler.post(new Runnable() {
                 @Override
                 public final void run() {
-                    CameraScanActivity.RunnableC13677.this.lambda$run$0();
+                    CameraScanActivity.RunnableC13687.this.lambda$run$0();
                 }
             });
         }
@@ -1291,7 +1291,7 @@ public class CameraScanActivity extends BaseFragment {
         private QrResult(CameraScanActivity cameraScanActivity) {
         }
 
-        QrResult(CameraScanActivity cameraScanActivity, DialogC13601 dialogC13601) {
+        QrResult(CameraScanActivity cameraScanActivity, DialogC13611 dialogC13611) {
             this(cameraScanActivity);
         }
     }

@@ -1005,8 +1005,8 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 return true;
             }
 
-            public class ViewTreeObserver$OnPreDrawListenerC30271 implements ViewTreeObserver.OnPreDrawListener {
-                ViewTreeObserver$OnPreDrawListenerC30271() {
+            public class ViewTreeObserver$OnPreDrawListenerC30281 implements ViewTreeObserver.OnPreDrawListener {
+                ViewTreeObserver$OnPreDrawListenerC30281() {
                 }
 
                 @Override
@@ -1023,7 +1023,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            WebPlayerView.TextureView$SurfaceTextureListenerC30262.ViewTreeObserver$OnPreDrawListenerC30271.this.lambda$onPreDraw$0();
+                            WebPlayerView.TextureView$SurfaceTextureListenerC30272.ViewTreeObserver$OnPreDrawListenerC30281.this.lambda$onPreDraw$0();
                         }
                     });
                     WebPlayerView.this.waitingForFirstTextureUpload = 0;
@@ -1038,7 +1038,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             @Override
             public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
                 if (WebPlayerView.this.waitingForFirstTextureUpload == 1) {
-                    WebPlayerView.this.changedTextureView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC30271());
+                    WebPlayerView.this.changedTextureView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC30281());
                     WebPlayerView.this.changedTextureView.invalidate();
                 }
             }

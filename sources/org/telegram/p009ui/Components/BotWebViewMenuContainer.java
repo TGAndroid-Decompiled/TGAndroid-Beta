@@ -156,9 +156,9 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         this.actionBarOnItemClick = actionBar.getActionBarMenuOnItemClick();
         BotWebViewContainer botWebViewContainer = new BotWebViewContainer(context, chatActivityEnterView.getParentFragment().getResourceProvider(), getColor("windowBackgroundWhite"));
         this.webViewContainer = botWebViewContainer;
-        C18521 c18521 = new C18521(chatActivityEnterView, actionBar);
-        this.webViewDelegate = c18521;
-        botWebViewContainer.setDelegate(c18521);
+        C18531 c18531 = new C18531(chatActivityEnterView, actionBar);
+        this.webViewDelegate = c18531;
+        botWebViewContainer.setDelegate(c18531);
         this.linePaint.setStyle(Paint.Style.FILL_AND_STROKE);
         this.linePaint.setStrokeWidth(AndroidUtilities.m36dp(4.0f));
         this.linePaint.setStrokeCap(Paint.Cap.ROUND);
@@ -166,7 +166,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = new ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer(context) {
             @Override
             protected void onMeasure(int r5, int r6) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.BotWebViewMenuContainer.C18532.onMeasure(int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.BotWebViewMenuContainer.C18542.onMeasure(int, int):void");
             }
 
             @Override
@@ -220,7 +220,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         setWillNotDraw(false);
     }
 
-    public class C18521 implements BotWebViewContainer.Delegate {
+    public class C18531 implements BotWebViewContainer.Delegate {
         final C1133ActionBar val$actionBar;
         final ChatActivityEnterView val$parentEnterView;
 
@@ -239,7 +239,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             BotWebViewContainer.Delegate.CC.$default$onWebAppReady(this);
         }
 
-        C18521(ChatActivityEnterView chatActivityEnterView, C1133ActionBar c1133ActionBar) {
+        C18531(ChatActivityEnterView chatActivityEnterView, C1133ActionBar c1133ActionBar) {
             this.val$parentEnterView = chatActivityEnterView;
             this.val$actionBar = c1133ActionBar;
         }
@@ -266,7 +266,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    BotWebViewMenuContainer.C18521.this.lambda$onWebAppSetActionBarColor$0(i, color, valueAnimator);
+                    BotWebViewMenuContainer.C18531.this.lambda$onWebAppSetActionBarColor$0(i, color, valueAnimator);
                 }
             });
             duration.start();
@@ -291,7 +291,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    BotWebViewMenuContainer.C18521.this.lambda$onWebAppSetBackgroundColor$1(color, i, valueAnimator);
+                    BotWebViewMenuContainer.C18531.this.lambda$onWebAppSetBackgroundColor$1(color, i, valueAnimator);
                 }
             });
             duration.start();
@@ -325,7 +325,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
                 paymentFormActivity.setPaymentFormCallback(new PaymentFormActivity.PaymentFormCallback() {
                     @Override
                     public final void onInvoiceStatusChanged(PaymentFormActivity.InvoiceStatus invoiceStatus) {
-                        BotWebViewMenuContainer.C18521.this.lambda$onWebAppOpenInvoice$2(str, invoiceStatus);
+                        BotWebViewMenuContainer.C18531.this.lambda$onWebAppOpenInvoice$2(str, invoiceStatus);
                     }
                 });
                 parentFragment.presentFragment(paymentFormActivity);
@@ -343,7 +343,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             botWebViewButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    BotWebViewMenuContainer.C18521.this.lambda$onSetupMainButton$3(view);
+                    BotWebViewMenuContainer.C18531.this.lambda$onSetupMainButton$3(view);
                 }
             });
             if (z != BotWebViewMenuContainer.this.botWebViewButtonWasVisible) {
@@ -742,11 +742,11 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         }
         setVisibility(0);
         setAlpha(0.0f);
-        addOnLayoutChangeListener(new View$OnLayoutChangeListenerC18576());
+        addOnLayoutChangeListener(new View$OnLayoutChangeListenerC18586());
     }
 
-    public class View$OnLayoutChangeListenerC18576 implements View.OnLayoutChangeListener {
-        View$OnLayoutChangeListenerC18576() {
+    public class View$OnLayoutChangeListenerC18586 implements View.OnLayoutChangeListener {
+        View$OnLayoutChangeListenerC18586() {
         }
 
         @Override
@@ -757,7 +757,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             new SpringAnimation(BotWebViewMenuContainer.this.swipeContainer, ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.SWIPE_OFFSET_Y, 0.0f).setSpring(new SpringForce(0.0f).setDampingRatio(0.75f).setStiffness(500.0f)).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                    BotWebViewMenuContainer.View$OnLayoutChangeListenerC18576.this.lambda$onLayoutChange$0(dynamicAnimation, z, f, f2);
+                    BotWebViewMenuContainer.View$OnLayoutChangeListenerC18586.this.lambda$onLayoutChange$0(dynamicAnimation, z, f, f2);
                 }
             }).start();
         }

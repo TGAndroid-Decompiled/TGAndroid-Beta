@@ -268,7 +268,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
 
             @Override
             public void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerSearchActivity.C37594.onLayout(boolean, int, int, int, int):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.PhotoPickerSearchActivity.C37604.onLayout(boolean, int, int, int, int):void");
             }
 
             @Override
@@ -429,8 +429,8 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                                     PhotoPickerSearchActivity.this.scrollSlidingTextTabStrip.selectTabWithId(PhotoPickerSearchActivity.this.viewPages[0].selectedType, 1.0f);
                                 }
                                 PhotoPickerSearchActivity.this.tabsAnimationInProgress = false;
-                                C37594.this.maybeStartTracking = false;
-                                C37594.this.startedTracking = false;
+                                C37604.this.maybeStartTracking = false;
+                                C37604.this.startedTracking = false;
                                 ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.setEnabled(true);
                                 PhotoPickerSearchActivity.this.scrollSlidingTextTabStrip.setEnabled(true);
                             }

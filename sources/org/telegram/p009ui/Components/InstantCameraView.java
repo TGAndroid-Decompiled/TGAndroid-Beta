@@ -1156,11 +1156,11 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
         Timer timer2 = new Timer();
         this.progressTimer = timer2;
-        timer2.schedule(new C238210(), 0L, 17L);
+        timer2.schedule(new C238310(), 0L, 17L);
     }
 
-    public class C238210 extends TimerTask {
-        C238210() {
+    public class C238310 extends TimerTask {
+        C238310() {
         }
 
         @Override
@@ -1168,7 +1168,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    InstantCameraView.C238210.this.lambda$run$0();
+                    InstantCameraView.C238310.this.lambda$run$0();
                 }
             });
         }
@@ -1740,16 +1740,16 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             this.lastCameraId = 0;
             this.buffers = new ArrayBlockingQueue<>(10);
             this.keyframeThumbs = new ArrayList<>();
-            this.recorderRunnable = new RunnableC23931();
+            this.recorderRunnable = new RunnableC23941();
         }
 
-        public class RunnableC23931 implements Runnable {
-            RunnableC23931() {
+        public class RunnableC23941 implements Runnable {
+            RunnableC23941() {
             }
 
             @Override
             public void run() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.InstantCameraView.VideoRecorder.RunnableC23931.run():void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.Components.InstantCameraView.VideoRecorder.RunnableC23941.run():void");
             }
 
             public void lambda$run$0(double d) {

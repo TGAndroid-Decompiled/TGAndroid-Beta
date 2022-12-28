@@ -455,7 +455,7 @@ public class PhonebookShareAlert extends BottomSheet {
                     Intent intent2;
                     int i2;
                     boolean z;
-                    DialogInterface$OnClickListenerC25445 dialogInterface$OnClickListenerC25445 = this;
+                    DialogInterface$OnClickListenerC25455 dialogInterface$OnClickListenerC25455 = this;
                     int i3 = 1;
                     if (i == 0) {
                         intent = new Intent("android.intent.action.INSERT");
@@ -474,7 +474,7 @@ public class PhonebookShareAlert extends BottomSheet {
                         ContentValues contentValues = new ContentValues();
                         contentValues.put("mimetype", "vnd.android.cursor.item/phone_v2");
                         contentValues.put("data1", vcardItem.getValue(false));
-                        dialogInterface$OnClickListenerC25445.fillRowWithType(vcardItem.getRawType(false), contentValues);
+                        dialogInterface$OnClickListenerC25455.fillRowWithType(vcardItem.getRawType(false), contentValues);
                         arrayList.add(contentValues);
                     }
                     int i5 = 0;
@@ -486,13 +486,13 @@ public class PhonebookShareAlert extends BottomSheet {
                             ContentValues contentValues2 = new ContentValues();
                             contentValues2.put("mimetype", "vnd.android.cursor.item/email_v2");
                             contentValues2.put("data1", vcardItem2.getValue(z2));
-                            dialogInterface$OnClickListenerC25445.fillRowWithType(vcardItem2.getRawType(z2), contentValues2);
+                            dialogInterface$OnClickListenerC25455.fillRowWithType(vcardItem2.getRawType(z2), contentValues2);
                             arrayList.add(contentValues2);
                         } else if (i6 == 3) {
                             ContentValues contentValues3 = new ContentValues();
                             contentValues3.put("mimetype", "vnd.android.cursor.item/website");
                             contentValues3.put("data1", vcardItem2.getValue(z2));
-                            dialogInterface$OnClickListenerC25445.fillUrlRowWithType(vcardItem2.getRawType(z2), contentValues3);
+                            dialogInterface$OnClickListenerC25455.fillUrlRowWithType(vcardItem2.getRawType(z2), contentValues3);
                             arrayList.add(contentValues3);
                         } else if (i6 == 4) {
                             ContentValues contentValues4 = new ContentValues();
@@ -584,7 +584,7 @@ public class PhonebookShareAlert extends BottomSheet {
                                 } else if (i6 == 6 && !z) {
                                     ContentValues contentValues8 = new ContentValues();
                                     contentValues8.put("mimetype", "vnd.android.cursor.item/organization");
-                                    dialogInterface$OnClickListenerC25445 = this;
+                                    dialogInterface$OnClickListenerC25455 = this;
                                     for (int i7 = i2; i7 < PhonebookShareAlert.this.other.size(); i7++) {
                                         AndroidUtilities.VcardItem vcardItem3 = (AndroidUtilities.VcardItem) PhonebookShareAlert.this.other.get(i7);
                                         if (vcardItem3.type == 6) {
@@ -620,7 +620,7 @@ public class PhonebookShareAlert extends BottomSheet {
                                     z2 = false;
                                 }
                             }
-                            dialogInterface$OnClickListenerC25445 = this;
+                            dialogInterface$OnClickListenerC25455 = this;
                             z3 = z;
                             i5 = i2 + 1;
                             intent = intent2;

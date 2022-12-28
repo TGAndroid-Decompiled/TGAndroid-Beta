@@ -1074,10 +1074,10 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         }
     }
 
-    public class ActionMode$CallbackC14584 implements ActionMode.Callback {
+    public class ActionMode$CallbackC14594 implements ActionMode.Callback {
         private String translateFromLanguage = null;
 
-        ActionMode$CallbackC14584() {
+        ActionMode$CallbackC14594() {
         }
 
         @Override
@@ -1105,12 +1105,12 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 LanguageDetector.detectLanguage(TextSelectionHelper.this.getSelectedText().toString(), new LanguageDetector.StringCallback() {
                     @Override
                     public final void run(String str) {
-                        TextSelectionHelper.ActionMode$CallbackC14584.this.lambda$onPrepareActionMode$0(menu, str);
+                        TextSelectionHelper.ActionMode$CallbackC14594.this.lambda$onPrepareActionMode$0(menu, str);
                     }
                 }, new LanguageDetector.ExceptionCallback() {
                     @Override
                     public final void run(Exception exc) {
-                        TextSelectionHelper.ActionMode$CallbackC14584.this.lambda$onPrepareActionMode$1(menu, exc);
+                        TextSelectionHelper.ActionMode$CallbackC14594.this.lambda$onPrepareActionMode$1(menu, exc);
                     }
                 });
             } else {
@@ -1146,7 +1146,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                         TextSelectionHelper.this.onTranslateListener.run(TextSelectionHelper.this.getSelectedText(), this.translateFromLanguage, LocaleController.getInstance().getCurrentLocale().getLanguage(), new Runnable() {
                             @Override
                             public final void run() {
-                                TextSelectionHelper.ActionMode$CallbackC14584.this.lambda$onActionItemClicked$2();
+                                TextSelectionHelper.ActionMode$CallbackC14594.this.lambda$onActionItemClicked$2();
                             }
                         });
                     }
@@ -1190,26 +1190,26 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
     }
 
     private ActionMode.Callback createActionCallback() {
-        final ActionMode$CallbackC14584 actionMode$CallbackC14584 = new ActionMode$CallbackC14584();
+        final ActionMode$CallbackC14594 actionMode$CallbackC14594 = new ActionMode$CallbackC14594();
         return Build.VERSION.SDK_INT >= 23 ? new ActionMode.Callback2() {
             @Override
             public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-                return actionMode$CallbackC14584.onCreateActionMode(actionMode, menu);
+                return actionMode$CallbackC14594.onCreateActionMode(actionMode, menu);
             }
 
             @Override
             public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-                return actionMode$CallbackC14584.onPrepareActionMode(actionMode, menu);
+                return actionMode$CallbackC14594.onPrepareActionMode(actionMode, menu);
             }
 
             @Override
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-                return actionMode$CallbackC14584.onActionItemClicked(actionMode, menuItem);
+                return actionMode$CallbackC14594.onActionItemClicked(actionMode, menuItem);
             }
 
             @Override
             public void onDestroyActionMode(ActionMode actionMode) {
-                actionMode$CallbackC14584.onDestroyActionMode(actionMode);
+                actionMode$CallbackC14594.onDestroyActionMode(actionMode);
             }
 
             @Override
@@ -1241,7 +1241,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     rect.set(Math.min(i, width), i2, Math.max(i, width), i2 + 1);
                 }
             }
-        } : actionMode$CallbackC14584;
+        } : actionMode$CallbackC14594;
     }
 
     public void copyText() {

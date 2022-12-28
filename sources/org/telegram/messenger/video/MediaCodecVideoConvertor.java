@@ -32,7 +32,7 @@ public class MediaCodecVideoConvertor {
     }
 
     @android.annotation.TargetApi(18)
-    private boolean convertVideoInternal(java.lang.String r79, java.io.File r80, int r81, boolean r82, int r83, int r84, int r85, int r86, int r87, int r88, int r89, long r90, long r92, long r94, long r96, boolean r98, boolean r99, org.telegram.messenger.MediaController.SavedFilterState r100, java.lang.String r101, java.util.ArrayList<org.telegram.messenger.VideoEditedInfo.MediaEntity> r102, boolean r103, org.telegram.messenger.MediaController.CropState r104, boolean r105) {
+    private boolean convertVideoInternal(java.lang.String r74, java.io.File r75, int r76, boolean r77, int r78, int r79, int r80, int r81, int r82, int r83, int r84, long r85, long r87, long r89, long r91, boolean r93, boolean r94, org.telegram.messenger.MediaController.SavedFilterState r95, java.lang.String r96, java.util.ArrayList<org.telegram.messenger.VideoEditedInfo.MediaEntity> r97, boolean r98, org.telegram.messenger.MediaController.CropState r99, boolean r100) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(java.lang.String, java.io.File, int, boolean, int, int, int, int, int, int, int, long, long, long, long, boolean, boolean, org.telegram.messenger.MediaController$SavedFilterState, java.lang.String, java.util.ArrayList, boolean, org.telegram.messenger.MediaController$CropState, boolean):boolean");
     }
 

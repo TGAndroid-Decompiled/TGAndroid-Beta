@@ -500,7 +500,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 return lambda$createView$1;
             }
         });
-        this.listView.setOnScrollListener(new C13562());
+        this.listView.setOnScrollListener(new C13572());
         if (this.loading) {
             this.emptyView.showProgress();
         } else {
@@ -581,13 +581,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    public class C13562 extends RecyclerView.OnScrollListener {
-        C13562() {
+    public class C13572 extends RecyclerView.OnScrollListener {
+        C13572() {
         }
 
         @Override
         public void onScrolled(androidx.recyclerview.widget.RecyclerView r5, int r6, int r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.CallLogActivity.C13562.onScrolled(androidx.recyclerview.widget.RecyclerView, int, int):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.p009ui.CallLogActivity.C13572.onScrolled(androidx.recyclerview.widget.RecyclerView, int, int):void");
         }
 
         public void lambda$onScrolled$0(CallLogRow callLogRow) {

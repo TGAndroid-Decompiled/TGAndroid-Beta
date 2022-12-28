@@ -253,7 +253,7 @@ public class HintView extends FrameLayout {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.animatorSet = animatorSet2;
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f, 1.0f));
-                this.animatorSet.addListener(new C23741());
+                this.animatorSet.addListener(new C23751());
                 this.animatorSet.setDuration(300L);
                 this.animatorSet.start();
             } else {
@@ -264,8 +264,8 @@ public class HintView extends FrameLayout {
         return false;
     }
 
-    public class C23741 extends AnimatorListenerAdapter {
-        C23741() {
+    public class C23751 extends AnimatorListenerAdapter {
+        C23751() {
         }
 
         @Override
@@ -274,7 +274,7 @@ public class HintView extends FrameLayout {
             AndroidUtilities.runOnUIThread(HintView.this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    HintView.C23741.this.lambda$onAnimationEnd$0();
+                    HintView.C23751.this.lambda$onAnimationEnd$0();
                 }
             }, HintView.this.currentType == 0 ? 10000L : 2000L);
         }
@@ -309,7 +309,7 @@ public class HintView extends FrameLayout {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
             animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f, 1.0f));
-            this.animatorSet.addListener(new C23752());
+            this.animatorSet.addListener(new C23762());
             this.animatorSet.setDuration(300L);
             this.animatorSet.start();
         } else {
@@ -318,8 +318,8 @@ public class HintView extends FrameLayout {
         return true;
     }
 
-    public class C23752 extends AnimatorListenerAdapter {
-        C23752() {
+    public class C23762 extends AnimatorListenerAdapter {
+        C23762() {
         }
 
         @Override
@@ -328,7 +328,7 @@ public class HintView extends FrameLayout {
             AndroidUtilities.runOnUIThread(HintView.this.hideRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    HintView.C23752.this.lambda$onAnimationEnd$0();
+                    HintView.C23762.this.lambda$onAnimationEnd$0();
                 }
             }, HintView.this.showingDuration);
         }
