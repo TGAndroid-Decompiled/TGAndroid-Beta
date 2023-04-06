@@ -1403,11 +1403,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
         makeOptions.setScrimViewBackground(new ColorDrawable(Theme.getColor("windowBackgroundWhite")));
         makeOptions.setMinWidth(190);
-        makeOptions.show();
-        boolean z13 = makeOptions.getItemsCount() <= 0;
+        boolean z13 = makeOptions.getItemsCount() > 0;
         if (z || !z13) {
             return z13;
         }
+        makeOptions.show();
         return true;
     }
 
